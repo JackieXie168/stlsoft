@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     24th April 2008
+ * Updated:     30th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      16
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      17
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       72
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,7 +154,8 @@
 # define _STLSOFT_SIZEOF_LONG           (8)
 # define _STLSOFT_SIZEOF_LONG_LONG      (8)
 #elif defined(__linux__) || \
-      defined(__APPLE__)
+      defined(__APPLE__) || \
+      defined(__FreeBSD__)
 # define _STLSOFT_SIZEOF_CHAR           (1)
 # define _STLSOFT_SIZEOF_SHORT          (2)
 # define _STLSOFT_SIZEOF_INT            (4)
