@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     5th September 2008
+ * Updated:     11th September 2008
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        49
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    4
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -231,9 +231,16 @@ inline void stream_insert(S &stm, SYSTEMTIME const& t)
 
         if(cchTotal == s.size())
         {
-            ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
+            ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], static_cast<int>(cchDate));
             s.data()[cchDate - 1] = ' ';
-            ::GetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, cchTime);
+            ::GetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, static_cast<int>(cchTime));
+
+            // Because it's possible for external action to change the date
+            // and/or time pictures between the call to calc_sizes and the
+            // two preceeding calls, we guard against an unterminated
+            // C-style string by forcibly appending the nul-terminator that
+            // GetTimeFormat() will do for us normally.
+            s.data()[cchTotal - 1] = '\0';
         }
 
         stm << s.data();
@@ -288,9 +295,16 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME co
     if( 0 != cchTotal &&
         cchTotal == s.size())
     {
-        ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
+        ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], static_cast<int>(cchDate));
         s.data()[cchDate - 1] = ' ';
-        pfnGetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, cchTime);
+        pfnGetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, static_cast<int>(cchTime));
+
+        // Because it's possible for external action to change the date
+        // and/or time pictures between the call to calc_sizes and the
+        // two preceeding calls, we guard against an unterminated
+        // C-style string by forcibly appending the nul-terminator that
+        // GetTimeFormat() will do for us normally.
+        s.data()[cchTotal - 1] = '\0';
     }
 
     return s;
@@ -322,9 +336,16 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME co
     if( 0 != cchTotal &&
         cchTotal == s.size())
     {
-        ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
+        ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], static_cast<int>(cchDate));
         s.data()[cchDate - 1] = ' ';
-        pfnGetTimeFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, cchTime);
+        pfnGetTimeFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, static_cast<int>(cchTime));
+
+        // Because it's possible for external action to change the date
+        // and/or time pictures between the call to calc_sizes and the
+        // two preceeding calls, we guard against an unterminated
+        // C-style string by forcibly appending the nul-terminator that
+        // GetTimeFormat() will do for us normally.
+        s.data()[cchTotal - 1] = '\0';
     }
 
     return s;

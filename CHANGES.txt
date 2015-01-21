@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  7th September 2008
+; Updated:  11th September 2008
 
 ============================================================================
 
@@ -16,6 +16,29 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.52 (11th September 2008)
+
+Summary:
+========
+
+ * fixed for warnings in 64-bit compilation (VC9) in WinSTL string access
+   shims for SYSTEMTIME; also added extra safeguard against external race
+   condition
+
+Changes:
+========
+
+ WinSTL:
+ -------
+
+  ~ winstl/shims/access/string/time.hpp
+     ~ fixed up 64-bit compiler warnings, by applying suitable
+	   unsigned->signed casts
+     + added in safeguard for unlikely case of changing date/time pictures
+	   mid call
 
 ============================================================================
 
