@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     102
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -195,9 +195,10 @@ T *rounded_ptr(T *p, ss_ptrdiff_t byteOffset, ss_size_t n)
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-/// \brief Exception thrown by the version_info class
-///
-/// \ingroup group__library__system
+/** \brief Exception thrown by the version_info class
+ *
+ * \ingroup group__library__system
+ */
 class version_info_exception
     : public windows_exception
 {
@@ -218,9 +219,10 @@ public:
 };
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-/// \brief Represents the fixed part of a version information block
-///
-/// \ingroup group__library__system
+/** \brief Represents the fixed part of a version information block
+ *
+ * \ingroup group__library__system
+ */
 class fixed_file_info
 {
     typedef fixed_file_info class_type;
@@ -278,9 +280,10 @@ private:
     class_type &operator =(class_type const &);
 };
 
-/// \brief Represents a variable file part of a version information block
-///
-/// \ingroup group__library__system
+/** \brief Represents a variable file part of a version information block
+ *
+ * \ingroup group__library__system
+ */
 class VsVar
 {
 public:
@@ -309,9 +312,10 @@ private:
     LangCodePage const  *m_values;
 };
 
-/// \brief Represents a string part of a version information block
-///
-/// \ingroup group__library__system
+/** \brief Represents a string part of a version information block
+ *
+ * \ingroup group__library__system
+ */
 class VsString
 {
 public:
@@ -332,9 +336,10 @@ private:
     wchar_t const   *m_value;
 };
 
-/// \brief Represents a string table
-///
-/// \ingroup group__library__system
+/** \brief Represents a string table
+ *
+ * \ingroup group__library__system
+ */
 class VsStringTable
     : public stlsoft_ns_qual(stl_collection_tag)
 {
@@ -391,9 +396,10 @@ private:
     void const              *m_strings;
 };
 
-/// \brief Represents a variable file info part of a version information block
-///
-/// \ingroup group__library__system
+/** \brief Represents a variable file info part of a version information block
+ *
+ * \ingroup group__library__system
+ */
 class VsVarFileInfo
     : public stlsoft_ns_qual(stl_collection_tag)
 {
@@ -451,9 +457,10 @@ private:
     void const              *m_vars;
 };
 
-/// \brief Represents a variable string part of a version information block
-///
-/// \ingroup group__library__system
+/** \brief Represents a variable string part of a version information block
+ *
+ * \ingroup group__library__system
+ */
 class VsStringFileInfo
     : public stlsoft_ns_qual(stl_collection_tag)
 {
@@ -515,9 +522,10 @@ private:
 };
 
 
-/// \brief Provides convenient access to aspects of a module's version information
-///
-/// \ingroup group__library__system
+/** \brief Provides convenient access to aspects of a module's version information
+ *
+ * \ingroup group__library__system
+ */
 class version_info
 {
 private:

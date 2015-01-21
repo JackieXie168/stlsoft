@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_mapped_type type.
  *
  * Created:     26th February 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/typefixer/mapped_type.hpp
-///
-/// Definition of the fixer_mapped_type type.
+/** \file stlsoft/typefixer/mapped_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::typefixer::mapped_type
+ *   typefixer class template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_H_STLSOFT_TYPEFIXER_MAPPED_TYPE
 #define STLSOFT_INCL_H_STLSOFT_TYPEFIXER_MAPPED_TYPE
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_MAJOR      1
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_MINOR      3
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_EDIT       9
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,11 +94,14 @@ namespace typefixer
  * Classes
  */
 
-/// \brief Type-fixer for \c mapped_type member type
-///
-/// If type \c T has a \c mapped_type member type, then the type of
-/// <code>fixer_mapped_type<T>::mapped_type</code> is
-/// <code>T::mapped_type</code>, otherwise it is \c void
+/** \brief Type-fixer for \c mapped_type member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c mapped_type member type, then the type of
+ * <code>fixer_mapped_type<T>::mapped_type</code> is
+ * <code>T::mapped_type</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_mapped_type

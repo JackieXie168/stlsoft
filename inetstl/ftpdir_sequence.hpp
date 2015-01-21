@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     18th January 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MAJOR      1
 # define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MINOR      2
 # define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_REVISION   1
-# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_EDIT       10
+# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -264,7 +264,10 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_ftpdir_sequence<is_char_a_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                             ,   throw_internet_exception_policy
@@ -273,7 +276,10 @@ typedef basic_ftpdir_sequence<is_char_a_t
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   filesystem_traits<is_char_a_t>
                             >                                                   ftpdir_sequence_a;
-/// Instantiation of the basic_ftpdir_sequence template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_ftpdir_sequence template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_ftpdir_sequence<is_char_w_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                             ,   throw_internet_exception_policy
@@ -282,7 +288,10 @@ typedef basic_ftpdir_sequence<is_char_w_t
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   filesystem_traits<is_char_w_t>
                             >                                                   ftpdir_sequence_w;
-/// Instantiation of the basic_ftpdir_sequence template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_ftpdir_sequence template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_ftpdir_sequence<TCHAR
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                             ,   throw_internet_exception_policy

@@ -11,48 +11,48 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_file_functions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_file_functions(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "filesystem/file_functions", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "filesystem/file_functions", __FILE__);
 
 
-            if( 0 == ::GetTickCount() &&
-                (::Sleep(1000), 0 == ::GetTickCount()))
-            {
-                stlsoft::simple_string  ss_a;
-                stlsoft::simple_wstring ss_w;
+			if( 0 == ::GetTickCount() &&
+				(::Sleep(1000), 0 == ::GetTickCount()))
+			{
+				stlsoft::simple_string	ss_a;
+				stlsoft::simple_wstring ss_w;
 
-                load_text_file(stlsoft::simple_string("fairly unlikely.event"), ss_a);
-                load_text_file(stlsoft::simple_string("fairly unlikely.event"), ss_w);
+				load_text_file(stlsoft::simple_string("fairly unlikely.event"), ss_a);
+				load_text_file(stlsoft::simple_string("fairly unlikely.event"), ss_w);
 
-                load_text_file(stlsoft::simple_wstring(L"fairly unlikely.event"), ss_a);
-                load_text_file(stlsoft::simple_wstring(L"fairly unlikely.event"), ss_w);
+				load_text_file(stlsoft::simple_wstring(L"fairly unlikely.event"), ss_a);
+				load_text_file(stlsoft::simple_wstring(L"fairly unlikely.event"), ss_w);
 
-                load_text_file((char const *)"fairly unlikely.event", ss_a);
-                load_text_file((char const *)"fairly unlikely.event", ss_w);
+				load_text_file((char const *)"fairly unlikely.event", ss_a);
+				load_text_file((char const *)"fairly unlikely.event", ss_w);
 
-                load_text_file((wchar_t const *)L"fairly unlikely.event", ss_a);
-                load_text_file((wchar_t const *)L"fairly unlikely.event", ss_w);
+				load_text_file((wchar_t const *)L"fairly unlikely.event", ss_a);
+				load_text_file((wchar_t const *)L"fairly unlikely.event", ss_w);
 
 #if 0
-                if(<<x>>)
-                {
-                    r->report("Directory equivalence failed", __LINE__);
-                    bSuccess = false;
-                }
+				if(<<x>>)
+				{
+					r->report("Directory equivalence failed", __LINE__);
+					bSuccess = false;
+				}
 #endif /* 0 */
-            }
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_file_functions(test_winstl_file_functions);
-    }
+		unittest_registrar	  unittest_winstl_file_functions(test_winstl_file_functions);
+	}
 
 }// namespace unittest

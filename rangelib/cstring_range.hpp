@@ -4,7 +4,7 @@
  * Purpose:     Range adaptor for C-strings.
  *
  * Created:     17th May 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     3
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  1
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      28
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,10 @@ namespace rangelib_project
  * Classes
  */
 
-/// Traits type for cstring_range
+/** \brief Traits type for cstring_range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 struct cstring_range_traits
 {
@@ -119,22 +122,25 @@ public:
 };
 
 
-/// This class represents a C-style string as a range
-///
-/// It is categoried as a Notional Range
-///
-/// It could be used as follows
-/// \htmlonly
-/// <code>
-/// <pre>
-///   // Create a range based on a C-string
-///   stlsoft::cstring_range  r("This is a literal string");
-///
-///   // Count the number of i's in the string
-///   size_t  num_Is = stlsoft::r_count(r, 'i');
-/// </pre>
-/// </code>
-/// \endhtmlonly
+/** \brief This class represents a C-style string as a range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * It is categoried as a Notional Range
+ *
+ * It could be used as follows
+ * \htmlonly
+ * <code>
+ * <pre>
+ *   // Create a range based on a C-string
+ *   stlsoft::cstring_range  r("This is a literal string");
+ *
+ *   // Count the number of i's in the string
+ *   size_t  num_Is = stlsoft::r_count(r, 'i');
+ * </pre>
+ * </code>
+ * \endhtmlonly
+ */
 template <ss_typename_param_k C>
 class cstring_range
     : public non_mutating_operator_adaptor< cstring_range<C>

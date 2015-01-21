@@ -4,7 +4,7 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     4
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      36
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,26 +93,15 @@ namespace acestl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ACESTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_messaging Messaging Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating messaging constructs
-
-/// \defgroup acestl_messaging_library Messaging Library (ACESTL)
-/// \ingroup ACESTL libraries_messaging
-/// \brief This library provides facilities for defining and manipulating messaging constructs with ACE
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// Provides sequence over all the elements in a memory queue
-///
+/** \brief Provides sequence over all the elements in a memory queue
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 template <ACE_SYNCH_DECL>
 class message_queue_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -460,10 +449,6 @@ private:
     class_type &operator =(class_type const &);
 /// @}
 };
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // acestl_messaging_library
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

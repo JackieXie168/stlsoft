@@ -4,7 +4,7 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_MINOR      1
 # define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_REVISION   2
-# define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_EDIT       32
+# define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,25 +92,31 @@ namespace mfcstl_project
 
 /* HWND */
 
-/// \brief Access the HWND of the given CWnd instance
-///
-/// This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a> retrieves the
-/// HWND window handle for the given CWnd instance.
-///
-/// \param w A reference to the CWnd instance whose HWND will be retrieved
-/// \return The HWND corresponding to the given CWnd instance \c w
+/** \brief Access the HWND of the given CWnd instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a> retrieves the
+ * HWND window handle for the given CWnd instance.
+ *
+ * \param w A reference to the CWnd instance whose HWND will be retrieved
+ * \return The HWND corresponding to the given CWnd instance \c w
+ */
 inline HWND get_hwnd(CWnd const &w)
 {
     return w.m_hWnd;
 }
 
-/// \brief Access the HWND of the given CWnd instance
-///
-/// This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a> retrieves the
-/// HWND window handle for the given CWnd instance.
-///
-/// \param w A pointer to the CWnd instance whose HWND will be retrieved
-/// \return The HWND corresponding to the given CWnd instance \c w
+/** \brief Access the HWND of the given CWnd instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a> retrieves the
+ * HWND window handle for the given CWnd instance.
+ *
+ * \param w A pointer to the CWnd instance whose HWND will be retrieved
+ * \return The HWND corresponding to the given CWnd instance \c w
+ */
 inline HWND get_hwnd(CWnd const *w)
 {
     return w->GetSafeHwnd();

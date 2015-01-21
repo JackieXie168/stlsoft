@@ -4,7 +4,7 @@
  * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       161
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       162
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,11 +154,14 @@ class fixed_array_5d;
  */
 
 // class fixed_array_1d
-/// 1 dimensional fixed array
-///
-/// \param T The value type
-/// \param A The allocator type
-/// \param P The construction policy type
+/** \brief 1 dimensional fixed array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param A The allocator type
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type
@@ -298,11 +301,14 @@ private:
 };
 
 // class fixed_array_2d
-/// 2 dimensional fixed array
-///
-/// \param T The value type
-/// \param A The allocator type
-/// \param P The construction policy type
+/** \brief 2 dimensional fixed array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param A The allocator type
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type
@@ -448,11 +454,14 @@ private:
 };
 
 // class fixed_array_3d
-/// 3 dimensional fixed array
-///
-/// \param T The value type
-/// \param A The allocator type
-/// \param P The construction policy type
+/** \brief 3 dimensional fixed array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param A The allocator type
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type
@@ -599,11 +608,14 @@ private:
 
 
 // class fixed_array_4d
-/// 4 dimensional fixed array
-///
-/// \param T The value type
-/// \param A The allocator type
-/// \param P The construction policy type
+/** \brief 4 dimensional fixed array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param A The allocator type
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type

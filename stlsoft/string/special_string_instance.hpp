@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/special_string_instance.hpp (originally winstl_current_directory.h)
+ * File:        stlsoft/string/special_string_instance.hpp
  *
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     7th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,16 +61,14 @@
 
 /*
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
+STLSOFT_COMPILER_IS_MSVC:       _MSC_VER<1200
 [Incompatibilies-end]
  */
-
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -79,14 +77,22 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
-# include <stlsoft/util/std/library_discriminator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
-#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
-#  include <stlsoft/meta/select_first_type_if.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
-#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
+
+
+
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
+# include <stlsoft/meta/is_same_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+# include <stlsoft/meta/select_first_type_if.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE
+# include <stlsoft/synch/lock_scope.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -101,51 +107,436 @@ namespace stlsoft
  * Classes
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<   ss_typename_param_k C
+        ,   ss_size_t           N
+        ,   ss_typename_param_k A
+        ,   ss_typename_param_k A0
+        >
+struct ssi_buffer
+{
+/// \name Member Types
+/// @{
+public:
+    typedef C                                                   char_type;
+    typedef A                                                   allocator_type;
+    typedef ss_size_t                                           size_type;
+    typedef A0                                                  argument_0_type;
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+    typedef stlsoft::auto_buffer<char_type, 128, allocator_type>  buffer_type;
+#else /* ? compiler */
+    typedef stlsoft::auto_buffer<char_type, N, allocator_type>  buffer_type;
+#endif /* compiler */
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    ssi_buffer()
+        : m_len(0)
+        , m_buffer(0)
+    {}
+
+    void init(size_type (*pfn)(char_type *, size_type))
+    {
+        size_type   cch =   pfn(NULL, 0);   // We don't pass NULL here, just in case
+
+        if(m_buffer.resize(1 + cch))
+        {
+            for(;;)
+            {
+                cch = pfn(&m_buffer[0], m_buffer.size());
+
+                if(cch < m_buffer.size())
+                {
+                    m_len = cch;
+                    break;
+                }
+                else
+                {
+                    if(!m_buffer.resize(2 * m_buffer.size()))
+                    {
+                        m_buffer.resize(0);
+                        break;
+                    }
+                }
+            }
+        }
+
+        m_buffer[m_len] = '\0';
+    }
+
+    void init(argument_0_type arg0, size_type (*pfn)(argument_0_type, char_type *, size_type))
+    {
+        size_type   cch =   pfn(arg0, NULL, 0);   // We don't pass NULL here, just in case
+
+        if(m_buffer.resize(1 + cch))
+        {
+            for(;;)
+            {
+                cch = pfn(arg0, &m_buffer[0], m_buffer.size());
+
+                if(cch < m_buffer.size())
+                {
+                    m_len = cch;
+                    break;
+                }
+                else
+                {
+                    if(!m_buffer.resize(2 * m_buffer.size()))
+                    {
+                        m_buffer.resize(0);
+                        break;
+                    }
+                }
+            }
+        }
+
+        m_buffer[m_len] = '\0';
+    }
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    char_type const *data() const
+    {
+        return m_buffer.data();
+    }
+    size_type       length() const
+    {
+        return m_len;
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    size_type       m_len;
+    buffer_type     m_buffer;
+/// @}
+};
+
+template<   ss_typename_param_k C
+        ,   ss_size_t           N
+        ,   ss_typename_param_k A
+        ,   ss_typename_param_k A0
+        >
+struct ssi_buffer_non_static
+    : public ssi_buffer<C, N, A, A0>
+{
+/// \name Member Types
+/// @{
+public:
+    typedef ssi_buffer<C, N, A, A0>                         ssi_buffer_type;
+    typedef ssi_buffer<C, N, A, A0>                         parent_class_type;
+    typedef ssi_buffer_non_static<C, N, A, A0>              class_type;
+
+    typedef ss_typename_type_k ssi_buffer_type::char_type   char_type;
+    typedef ss_typename_type_k ssi_buffer_type::size_type   size_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    ssi_buffer_non_static(size_type (*pfn)(char_type *, size_type))
+    {
+        parent_class_type::init(pfn);
+    }
+    ssi_buffer_non_static(A0 a0, size_type (*pfn)(A0, char_type *, size_type))
+    {
+        parent_class_type::init(a0, pfn);
+    }
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    char_type const *data() const
+    {
+        return parent_class_type::data();
+    }
+    size_type       length() const
+    {
+        return parent_class_type::length();
+    }
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    ssi_buffer_non_static(class_type const &);
+    class_type &operator =(class_type const &);
+/// @}
+};
+
+template<   ss_typename_param_k C
+        ,   ss_size_t           N
+        ,   ss_typename_param_k A
+        ,   ss_typename_param_k A0
+        ,   ss_typename_param_k P   // Passes policy type, from which spin_mutex_type is elicited, so non-statics do not need to specify it
+        >
+struct ssi_buffer_static
+{
+/// \name Member Types
+/// @{
+public:
+    typedef ssi_buffer<C, N, A, A0>                         ssi_buffer_type;
+    typedef ssi_buffer_static<C, N, A, A0, P>               class_type;
+
+    typedef ss_typename_type_k ssi_buffer_type::char_type   char_type;
+    typedef ss_typename_type_k ssi_buffer_type::size_type   size_type;
+private:
+    typedef P                                               policy_type;
+    typedef ss_typename_type_k policy_type::spin_mutex_type spin_mutex_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    ssi_buffer_static(size_type (*pfn)(char_type *, size_type))
+        : m_buffer(get_buffer(pfn))
+    {}
+    ssi_buffer_static(A0 a0, size_type (*pfn)(A0, char_type *, size_type))
+        : m_buffer(a0, get_buffer(a0, pfn))
+    {}
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    char_type const *data() const
+    {
+        return m_buffer.data();
+    }
+    size_type       length() const
+    {
+        return m_buffer.length();
+    }
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+    static ssi_buffer_type &get_buffer(size_type (*pfn)(char_type *, size_type))
+    {
+        static ss_sint32_t                      s_count =   0;
+        static bool                             s_bInit =   false;
+        spin_mutex_type                         mx(&s_count);
+        stlsoft::lock_scope<spin_mutex_type>    lock(mx);
+
+        static ssi_buffer_type                  s_buffer;
+
+        if(!s_bInit)
+        {
+            s_buffer.init(pfn);
+
+            s_bInit = true;
+        }
+
+        return s_buffer;
+    }
+    static ssi_buffer_type &get_buffer(A0 a0, size_type (*pfn)(A0, char_type *, size_type))
+    {
+        static ss_sint32_t                      s_count =   0;
+        static bool                             s_bInit =   false;
+        spin_mutex_type                         mx(&s_count);
+        stlsoft::lock_scope<spin_mutex_type>    lock(mx);
+
+        static ssi_buffer_type                  s_buffer;
+
+        if(!s_bInit)
+        {
+            s_buffer.init(a0, pfn);
+
+            s_bInit = true;
+        }
+
+        return s_buffer;
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    ssi_buffer_type     &m_buffer;
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    ssi_buffer_static(class_type const &);
+    class_type &operator =(class_type const &);
+/// @}
+};
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
 /** \brief Special string instance class template.
  *
  * \ingroup group__library__string
+ *
+ * \param P The SSI policy type.
+ *
+ * The policy type provides the following:
+ *
+ * - A member constant <code>internalBufferSize</code> that determines the
+ *   size of the SSI's internal
+ *   \link stlsoft::auto_buffer auto_buffer\endlink's internal buffer size.
+ * - A static method <code>get_value(char_type *buffer, size_type cchBuffer)</code>
+ *   that has the 
+ * - A member constant <code>allowImplicitConversion</code> that determines
+ *   whether an implicit conversion operator (to
+ *   <code>char_type const*</code>) is to be provided.
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k P
-        >
+template <ss_typename_param_k P>
 class special_string_instance_0
 {
 /// \name Member Types
 /// @{
 public:
-    /// \brief The character type.
-    typedef C                                           char_type;
-    /// \brief The policy type.
-    typedef P                                           policy_type;
+    /// \brief The policy type
+    typedef P                                                                   policy_type;
     /// \brief The current instantiation of the template.
-    typedef special_string_instance_0<C, P>             class_type;
+    typedef special_string_instance_0<P>                                        class_type;
+    /// \brief The character type
+    typedef ss_typename_type_k policy_type::char_type                           char_type;
     /// \brief The size type
-    typedef ss_typename_type_k policy_type::size_type   size_type;
+    typedef ss_typename_type_k policy_type::size_type                           size_type;
+
+    /// \brief The character type for ANSI specialisations
+    ///
+    /// \note This is used in the specification of the string access shim
+    ///  functions.
 private:
-    /// \brief 
-#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+    enum { charTypeIsAnsi = is_same_type<ss_char_a_t, char_type>::value };
+public:
+    typedef ss_typename_type_k select_first_type_if<ss_char_a_t const*
+                                                ,   void
+                                                ,   charTypeIsAnsi
+                                                >::type                         cstring_a_type;
+    /// \brief The character type for Unicode specialisations
+    ///
+    /// \note This is used in the specification of the string access shim
+    ///  functions.
+private:
+    enum { charTypeIsWide = is_same_type<ss_char_w_t, char_type>::value };
+public:
+    typedef ss_typename_type_k select_first_type_if<ss_char_w_t const*
+                                                ,   void
+                                                ,   charTypeIsWide
+                                                >::type                         cstring_w_type;
+private:
+    typedef ss_typename_type_k policy_type::pfn_type                            pfn_type;
+private:
+    // This section allows for the case where the policy does not define an
+    // allocator, which it indicates by defining its member type
+    // allocator_type to be void.
+    typedef ss_typename_type_k policy_type::allocator_type                      putative_allocator_type;
+    enum
+    {
+        policy_has_allocator_type       =   (0 != size_of<putative_allocator_type>::value)
+    };
+    typedef ss_typename_type_k allocator_selector<char_type>::allocator_type    backup_allocator_type;
+public:
+    /// \brief The allocator type
+    typedef ss_typename_type_k select_first_type_if<putative_allocator_type
+                                                ,   backup_allocator_type
+                                                ,   policy_has_allocator_type
+                                                >::type                         allocator_type;
+private:
+    enum { allowImplicitConversion = policy_type::allowImplicitConversion };
+public:
+    /// \brief The implicit conversion operator type
     typedef ss_typename_type_k select_first_type_if<char_type const*
                                                 ,   void
-                                                ,   policy_type::allowImplicitConversion
-                                                >::type implicit_conversion_type;
-#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-    typedef char_type const                             *implicit_conversion_type;
-#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-    typedef ss_typename_type_k policy_type::ss_template_qual_k buffer_selector<char_type>      selector_type;
-    typedef ss_typename_type_k selector_type::buffer_type                   buffer_type;
+                                                ,   allowImplicitConversion
+                                                >::type                         implicit_conversion_type;
+private:
+    // This section accounts for whether the policy indicates shared state.
+    // If so, then the buffer type resolves to the appropriate
+    // specialisation of ssi_buffer_static, which stores a threadsafe buffer
+    // shared by all instances. If not, then the buffer type resolves to
+    // ssi_buffer_non_static, which stores a buffer per instance.
+    enum
+    {
+        policy_indicates_shared_state   =   (0 != policy_type::sharedState)
+    };
+
+    struct null_argument
+    {};
+
+    enum { internalBufferSize = policy_type::internalBufferSize };
+    typedef ssi_buffer_static<      char_type
+                                ,   internalBufferSize
+                                ,   allocator_type
+                                ,   null_argument
+                                ,   policy_type // Passes policy type, from which spin_mutex_type is elicited, so non-statics do not need to specify it
+                                >                                               ssi_buffer_static_type;
+    typedef ssi_buffer_non_static<  char_type
+                                ,   internalBufferSize
+                                ,   allocator_type
+                                ,   null_argument
+                                >                                               ssi_buffer_non_static_type;
+
+    typedef ss_typename_type_k select_first_type_if<ssi_buffer_static_type
+                                                ,   ssi_buffer_non_static_type
+                                                ,   policy_indicates_shared_state
+                                                >::type                         buffer_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
     special_string_instance_0()
-        : m_buffer(selector_type::construct_buffer())
-        , m_len(selector_type::init_len_from_buffer(m_buffer))
+        : m_buffer(policy_type::get_fn())
     {}
-    ~special_string_instance_0() stlsoft_throw_0()
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    size_type       length() const
     {
+        return m_buffer.length();
+    }
+    size_type       size() const
+    {
+        return length();
     }
 
+    char_type const *data() const
+    {
+        return m_buffer.data();
+    }
+    char_type const *c_str() const
+    {
+        return data();
+    }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    cstring_a_type  c_str_a() const
+    {
+        return c_str();
+    }
+    cstring_w_type  c_str_w() const
+    {
+        return c_str();
+    }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+/// @}
+
+/// \name Operators
+/// @{
+public:
+#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+    operator implicit_conversion_type () const
+    {
+        return this->c_str();
+    }
+#endif /* compiler */
 /// @}
 
 /// \name Operations
@@ -153,7 +544,145 @@ public:
 public:
     static size_type get(char_type *buffer, size_type cchBuffer)
     {
-        return selector_type::get(buffer, cchBuffer);
+        return (policy_type::get_fn())(buffer, cchBuffer);
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    buffer_type     m_buffer;
+/// @}
+};
+
+/** \brief Special string instance class template.
+ *
+ * \ingroup group__library__string
+ *
+ * \param P The SSI policy type.
+ *
+ * The policy type provides the following:
+ *
+ * - A member constant <code>internalBufferSize</code> that determines the
+ *   size of the SSI's internal
+ *   \link stlsoft::auto_buffer auto_buffer\endlink's internal buffer size.
+ * - A static method <code>get_value(char_type *buffer, size_type cchBuffer)</code>
+ *   that has the 
+ * - A member constant <code>allowImplicitConversion</code> that determines
+ *   whether an implicit conversion operator (to
+ *   <code>char_type const*</code>) is to be provided.
+ */
+template <ss_typename_param_k P>
+class special_string_instance_1
+{
+/// \name Member Types
+/// @{
+public:
+    /// \brief The policy type.
+    typedef P                                                                   policy_type;
+    /// \brief The current instantiation of the template.
+    typedef special_string_instance_1<P>                                        class_type;
+    /// \brief The character type
+    typedef ss_typename_type_k policy_type::char_type                           char_type;
+    /// \brief The size type
+    typedef ss_typename_type_k policy_type::size_type                           size_type;
+    /// \brief The argument type
+    typedef ss_typename_type_k policy_type::argument_0_type                     argument_0_type;
+
+    /// \brief The character type for ANSI specialisations
+    ///
+    /// \note This is used in the specification of the string access shim
+    ///  functions.
+private:
+    enum { charTypeIsAnsi = is_same_type<ss_char_a_t, char_type>::value };
+public:
+    typedef ss_typename_type_k select_first_type_if<ss_char_a_t const*
+                                                ,   void
+                                                ,   charTypeIsAnsi
+                                                >::type                         cstring_a_type;
+    /// \brief The character type for Unicode specialisations
+    ///
+    /// \note This is used in the specification of the string access shim
+    ///  functions.
+private:
+    enum { charTypeIsWide = is_same_type<ss_char_w_t, char_type>::value };
+public:
+    typedef ss_typename_type_k select_first_type_if<ss_char_w_t const*
+                                                ,   void
+                                                ,   charTypeIsWide
+                                                >::type                         cstring_w_type;
+private:
+    typedef ss_typename_type_k policy_type::pfn_type                            pfn_type;
+private:
+    // This section allows for the case where the policy does not define an
+    // allocator, which it indicates by defining its member type
+    // allocator_type to be void.
+    typedef ss_typename_type_k policy_type::allocator_type                      putative_allocator_type;
+    enum
+    {
+        policy_has_allocator_type       =   (0 != size_of<putative_allocator_type>::value)
+    };
+    typedef ss_typename_type_k allocator_selector<char_type>::allocator_type    backup_allocator_type;
+public:
+    /// \brief The allocator type
+    typedef ss_typename_type_k select_first_type_if<putative_allocator_type
+                                                ,   backup_allocator_type
+                                                ,   policy_has_allocator_type
+                                                >::type                         allocator_type;
+
+    /// \brief The implicit conversion operator type
+private:
+    enum { allowImplicitConversion = policy_type::allowImplicitConversion };
+public:
+    typedef ss_typename_type_k select_first_type_if<char_type const*
+                                                ,   void
+                                                ,   allowImplicitConversion
+                                                >::type                         implicit_conversion_type;
+private:
+    // This section accounts for whether the policy indicates shared state.
+    // If so, then the buffer type resolves to the appropriate
+    // specialisation of ssi_buffer_static, which stores a threadsafe buffer
+    // shared by all instances. If not, then the buffer type resolves to
+    // ssi_buffer_non_static, which stores a buffer per instance.
+    enum
+    {
+        policy_indicates_shared_state   =   (0 != policy_type::sharedState)
+    };
+
+    enum { internalBufferSize = policy_type::internalBufferSize };
+    typedef ssi_buffer_static<      char_type
+                                ,   internalBufferSize
+                                ,   allocator_type
+                                ,   argument_0_type
+                                ,   policy_type // Passes policy type, from which spin_mutex_type is elicited, so non-statics do not need to specify it
+                                >                                               ssi_buffer_static_type;
+    typedef ssi_buffer_non_static<  char_type
+                                ,   internalBufferSize
+                                ,   allocator_type
+                                ,   argument_0_type
+                                >                                               ssi_buffer_non_static_type;
+
+    typedef ss_typename_type_k select_first_type_if<ssi_buffer_static_type
+                                                ,   ssi_buffer_non_static_type
+                                                ,   policy_indicates_shared_state
+                                                >::type                         buffer_type;
+
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    special_string_instance_1(argument_0_type argument)
+        : m_buffer(argument, policy_type::get_fn())
+    {}
+/// @}
+
+/// \name Operations
+/// @{
+public:
+    static size_type get(argument_0_type argument, char_type *buffer, size_type cchBuffer)
+    {
+        return (policy_type::get_fn())(argument, buffer, cchBuffer);
     }
 /// @}
 
@@ -162,40 +691,119 @@ public:
 public:
     char_type const *c_str() const
     {
-        return stlsoft_ns_qual(c_str_ptr)(m_buffer);
+        return m_buffer.data();
+    }
+    char_type const *data() const
+    {
+        return m_buffer.data();
     }
     size_type       length() const
     {
-        return m_len;
+        return m_buffer.length();
     }
     size_type       size() const
     {
-        return m_len;
+        return length();
     }
 /// @}
 
 /// \name Operators
 /// @{
 public:
+#if !defined(STLSOFT_COMPILER_IS_BORLAND)
     operator implicit_conversion_type () const
     {
         return this->c_str();
     }
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-
+#endif /* compiler */
 /// @}
 
 /// \name Member Types
 /// @{
 private:
-    buffer_type m_buffer;
-    size_type   m_len;
+    buffer_type     m_buffer;
 /// @}
 };
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Shims
+ */
+
+/** \brief Returns the corresponding C-string pointer of the
+ *    special_string_instance_0 \c ssi, or a null pointer if the instance's
+ *    contents are of zero length.
+ */
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr_null(special_string_instance_0<P> const &ssi)
+{
+    return (0 != ssi.length()) ? ssi.c_str() : NULL;
+}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_null_a(special_string_instance_0<P> const &ssi)
+{
+    return (0 != ssi.length()) ? ssi.c_str_a() : NULL;
+}
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_null_w(special_string_instance_0<P> const &ssi)
+{
+    return (0 != ssi.length()) ? ssi.c_str_w() : NULL;
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief Returns the corresponding C-string pointer of the special_string_instance_0 \c ssi
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr(special_string_instance_0<P> const &ssi)
+{
+    return ssi.c_str();
+}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_a(special_string_instance_0<P> const &ssi)
+{
+    return ssi.c_str_a();
+}
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_w(special_string_instance_0<P> const &ssi)
+{
+    return ssi.c_str_w();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief Returns the corresponding C-string pointer of the special_string_instance_0 \c ssi
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_data(special_string_instance_0<P> const &ssi)
+{
+    return ssi.c_str();
+}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_data_a(special_string_instance_0<P> const &ssi)
+{
+    return ssi.c_str_a();
+}
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_data_w(special_string_instance_0<P> const &ssi)
+{
+    return ssi.c_str_w();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief Returns the length (in characters) of the special_string_instance_0 \c ssi, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
+template <ss_typename_param_k P>
+inline ss_size_t c_str_len(special_string_instance_0<P> const &ssi)
+{
+    return ssi.length();
+}
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     Class to disambiguate between parent classes of same type.
  *
  * Created:     1st September 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MINOR      1
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_EDIT       21
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,10 +75,13 @@ namespace stlsoft
 
 // class inheritance_disambiguator
 
-/// This class is used to disambiguate base classes, thereby faciliating multiple inheritance from the same type
-///
-/// \param T The type to disambiguate
-/// \param N A unique integer index used to disambiguate between the classes
+/** \brief This class is used to disambiguate base classes, thereby faciliating multiple inheritance from the same type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The type to disambiguate
+ * \param N A unique integer index used to disambiguate between the classes
+ */
 template <ss_typename_param_k T, int N>
 class inheritance_disambiguator
     : public T

@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     4
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -392,7 +392,10 @@ using ::stlsoft::unlock_instance;
  */
 
 // class lock_traits
-/// Traits for the semaphore class (for compilers that do not support Koenig Lookup)
+/** \brief Traits for the semaphore class (for compilers that do not support Koenig Lookup)
+ *
+ * \ingroup group__library__synch
+ */
 struct semaphore_lock_traits
 {
 public:

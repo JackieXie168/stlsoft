@@ -4,7 +4,7 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_EXCEPTIONS_MAJOR       1
 # define COMSTL_VER_H_COMSTL_EXCEPTIONS_MINOR       2
 # define COMSTL_VER_H_COMSTL_EXCEPTIONS_REVISION    5
-# define COMSTL_VER_H_COMSTL_EXCEPTIONS_EDIT        27
+# define COMSTL_VER_H_COMSTL_EXCEPTIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,10 @@ namespace comstl_project
  * Classes
  */
 
-/// \brief Exception class for general COM-related failures
+/** \brief Exception class for general COM-related failures
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class com_exception
     : public os_exception
 {
@@ -169,7 +172,10 @@ private:
 /// @}
 };
 
-/// The exception type thrown by safearray_sequence on variant type mismatches
+/** \brief The exception type thrown by safearray_sequence on variant type mismatches
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class variant_type_exception
     : public com_exception
 {
@@ -209,7 +215,10 @@ private:
  * Policies
  */
 
-/// Policy adaptor template for exception throwing
+/** \brief Policy adaptor template for exception throwing
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k X>
 // [[synesis:class:exception-policy: exception_policy_base]]
 struct exception_policy_base
@@ -259,10 +268,16 @@ private:
 /// @}
 };
 
-/// The policy class, which throws a com_exception class.
+/** \brief The policy class, which throws a com_exception class.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef exception_policy_base<com_exception>            com_exception_policy;
 
-/// The policy class, which throws a com_exception class.
+/** \brief The policy class, which throws a com_exception class.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef exception_policy_base<variant_type_exception>   variant_type_exception_policy;
 
 ////////////////////////////////////////////////////////////////////////////

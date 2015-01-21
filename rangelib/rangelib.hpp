@@ -4,7 +4,7 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    2
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     16
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp \brief [C++ only] The root header for the \ref group__project__rangelib "RangeLib" project. */
@@ -84,17 +84,29 @@
  * version symbol, e.g. #if _RANGELIB_VER >= _RANGELIB_VER_1_0_1
  */
 
-/// \def _RANGELIB_VER_MAJOR
-/// The major version number of RangeLib
+/** \brief \def _RANGELIB_VER_MAJOR
+ * The major version number of RangeLib
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \def _RANGELIB_VER_MINOR
-/// The minor version number of RangeLib
+/** \brief \def _RANGELIB_VER_MINOR
+ * The minor version number of RangeLib
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \def _RANGELIB_VER_REVISION
-/// The revision version number of RangeLib
+/** \brief \def _RANGELIB_VER_REVISION
+ * The revision version number of RangeLib
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \def _RANGELIB_VER
-/// The current composite version number of RangeLib
+/** \brief \def _RANGELIB_VER
+ * The current composite version number of RangeLib
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 #define _RANGELIB_VER_MAJOR     1
 #define _RANGELIB_VER_MINOR     0

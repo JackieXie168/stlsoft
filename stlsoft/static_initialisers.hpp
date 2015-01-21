@@ -4,7 +4,7 @@
  * Purpose:     Initialiser classes for the STLSoft libraries.
  *
  * Created:     17th February 1997
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_EDIT      209
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_EDIT      210
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,9 +92,12 @@ public:
 };
 #endif /* 0 */
 
-/// static_initialiser
-///
-/// Initialises any non-class function or type
+/** \brief static_initialiser
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * Initialises any non-class function or type
+ */
 class static_initialiser
 {
 public:
@@ -139,7 +142,10 @@ private:
 /// @}
 };
 
-/// Used to initialise APIs
+/** \brief Used to initialise APIs
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class api_constructor
 {
 /// \name Constructors
@@ -189,7 +195,10 @@ private:
 /// @}
 };
 
-/// Used to initialise classes
+/** \brief Used to initialise classes
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 class class_constructor
     : protected api_constructor

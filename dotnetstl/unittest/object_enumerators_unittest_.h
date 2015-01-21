@@ -9,28 +9,28 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_dotnetstl_object_enumerators(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_dotnetstl_object_enumerators(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, ".netSTL", "object_enumerators", __FILE__);
+			unittest_initialiser	init(r, ".netSTL", "object_enumerators", __FILE__);
 
 #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_dotnetstl_object_enumerators(test_dotnetstl_object_enumerators);
-    } // anonymous namespace
+		unittest_registrar	  unittest_dotnetstl_object_enumerators(test_dotnetstl_object_enumerators);
+	} // anonymous namespace
 
 } // namespace unittest

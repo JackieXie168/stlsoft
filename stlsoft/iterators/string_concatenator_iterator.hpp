@@ -4,7 +4,7 @@
  * Purpose:     string_concatenator_iterator class template.
  *
  * Created:     12th May 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/string_concatenator_iterator.hpp
-///
-/// string_concatenator_iterator class template.
+/** \file stlsoft/iterators/string_concatenator_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::string_concatenator_iterator
+ *   iterator adaptor class template.
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        31
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,26 +106,19 @@ namespace stlsoft
 # pragma message(_sscomp_fileline_message("TODO: Need a function that can do quoting (or anything else)"))
 #endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-
-/// \weakgroup iterators_output Output Iterators
-/// \brief Classes that provide Output Iteration functionality
-/// \ingroup iterators
-/// \brief STL-compatible iterators
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
- * Functors
+ * Classes
  */
 
-/// This output iterator adaptor template wraps a C-style string pointer as an
-/// output iterator, to enable a C-style string to be built up as a result of the
-/// application of an algorithm.
-///
-/// \param S The type of the string that will be written to
-/// \param D The type of the delimiter that will be used to separate the elements written to the iterator
+/** \brief This output iterator adaptor template wraps a C-style string pointer as an
+ * output iterator, to enable a C-style string to be built up as a result of the
+ * application of an algorithm.
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param S The type of the string that will be written to
+ * \param D The type of the delimiter that will be used to separate the elements written to the iterator
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D
         >
@@ -284,12 +280,15 @@ private:
  * Creator Functions
  */
 
-/// \brief Creator function for string_concatenator_iterator
-///
-/// \param s The string instance to which elements will be concatenated
-/// \param delim The delimiter applied between consecutive elements in the concatenation
-///
-/// \return An instance of the specialisation string_concatenator_iterator&lt;S, D&gt;
+/** \brief Creator function for string_concatenator_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param s The string instance to which elements will be concatenated
+ * \param delim The delimiter applied between consecutive elements in the concatenation
+ *
+ * \return An instance of the specialisation string_concatenator_iterator&lt;S, D&gt;
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D
         >
@@ -298,14 +297,17 @@ inline string_concatenator_iterator<S, D> make_string_concatenator_iterator(S &s
     return string_concatenator_iterator<S, D>::create(s, delim);
 }
 
-/// \brief Creator function for string_concatenator_iterator
-///
-/// \param s The string instance to which elements will be concatenated
-/// \param delim The delimiter applied between consecutive elements in the concatenation
-///
-/// \return An instance of the specialisation string_concatenator_iterator&lt;S, D&gt;
-///
-/// \note Short-hand for make_string_concatenator_iterator()
+/** \brief Creator function for string_concatenator_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param s The string instance to which elements will be concatenated
+ * \param delim The delimiter applied between consecutive elements in the concatenation
+ *
+ * \return An instance of the specialisation string_concatenator_iterator&lt;S, D&gt;
+ *
+ * \note Short-hand for make_string_concatenator_iterator()
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D
         >
@@ -318,10 +320,6 @@ inline string_concatenator_iterator<S, D> string_concatenator(S &s, D const &del
     return make_string_concatenator_iterator(s, delim);
 #endif /* compiler */
 }
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

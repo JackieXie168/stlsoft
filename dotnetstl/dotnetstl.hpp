@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     36
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp \brief [C++ only; requires C++.NET compiler] The root header for the \ref group__project__dotnetstl ".netSTL" project. */
@@ -180,20 +180,29 @@
  * The macro dotnetstl_assert provides standard debug-mode assert functionality.
  */
 
-/// Defines a runtime assertion
-///
-/// \param expr Must be non-zero, or an assertion will be fired
+/** \brief Defines a runtime assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ */
 #define DOTNETSTL_ASSERT(expr)                  STLSOFT_ASSERT(expr)
 
-/// Defines a runtime assertion, with message
-///
-/// \param expr Must be non-zero, or an assertion will be fired
-/// \param msg The literal character string message to be included in the assertion
+/** \brief Defines a runtime assertion, with message
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ */
 #define DOTNETSTL_MESSAGE_ASSERT(msg, expr)     STLSOFT_MESSAGE_ASSERT(msg, expr)
 
-/// Defines a compile-time assertion
-///
-/// \param expr Must be non-zero, or compilation will fail
+/** \brief Defines a compile-time assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or compilation will fail
+ */
 #define DOTNETSTL_STATIC_ASSERT(expr)           STLSOFT_STATIC_ASSERT(expr)
 
 
@@ -241,8 +250,11 @@
 
 #ifdef _STLSOFT_NO_NAMESPACE
 /* There is no stlsoft namespace, so must define ::dotnetstl */
-/// The dotnetstl namespace - \c dotnetstl (aliased to \c stlsoft::dotnetstl_project) - is
-/// the namespace for the .netSTL project.
+/** \brief The dotnetstl namespace - \c dotnetstl (aliased to \c stlsoft::dotnetstl_project) - is
+ * the namespace for the .netSTL project.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 namespace dotnetstl
 {
 # else
@@ -360,9 +372,12 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
 # define dotnetstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)  stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Evaluates, at compile time, to the number of elements within the given vector entity
-///
-/// \param ar An array whose dimension is to be evaluated
+/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param ar An array whose dimension is to be evaluated
+ */
 #define DOTNETSTL_NUM_ELEMENTS(ar)                          STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define dotnetstl_num_elements(ar)                         DOTNETSTL_NUM_ELEMENTS(ar)

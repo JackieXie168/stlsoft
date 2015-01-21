@@ -4,7 +4,7 @@
  * Purpose:     Simple class that converts a relative path to an absolute one.
  *
  * Created:     20th December 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        54
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,18 +61,26 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE
+# include <stlsoft/string/special_string_instance.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE */
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 # include <winstl/filesystem/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
-# include <winstl/filesystem/file_path_buffer.hpp>
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>      // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+  // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
+# include <winstl/synch/spin_mutex.hpp>
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -97,6 +105,52 @@ namespace winstl_project
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Classes
+ */
+
+/** \brief \ref group__pattern__special_string_instance "Special String Instance"
+ *   policy template for eliciting the <b>absolute form</b> of a given path.
+ *
+ * \ingroup group__library__system
+ */
+template <ss_typename_param_k C>
+struct abspath_policy
+{
+/// \name Member Types
+/// @{
+public:
+    typedef C                           char_type;
+    typedef char_type const             *argument_0_type;
+    typedef processheap_allocator<C>    allocator_type;
+    typedef size_t                      size_type;
+    typedef size_type                   (*pfn_type)(argument_0_type, char_type *, size_type);
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+    // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
+    typedef winstl::spin_mutex          spin_mutex_type;
+#endif /* compiler */
+/// @}
+
+/// \name Member Constants
+/// @{
+public:
+    enum { internalBufferSize       =   128 };
+
+    enum { allowImplicitConversion  =   1   };
+
+    enum { sharedState              =   0   };
+/// @}
+
+/// \name Operations
+/// @{
+public:
+    static pfn_type     get_fn()
+    {
+        return winstl::filesystem_traits<char_type>::get_full_path_name;
+    }
+/// @}
+};
+
+/* /////////////////////////////////////////////////////////////////////////
  * basic_absolute_path
  *
  * This class converts a relative path to an absolute one, and effectively acts
@@ -111,26 +165,21 @@ namespace winstl_project
  * \param T The traits type. On translators that support default template
  *  arguments, this defaults to filesystem_traits<C>
  */
-template<   ss_typename_param_k C
-#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = filesystem_traits<C>
-#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        >
+template <ss_typename_param_k C>
 class basic_absolute_path
+    : public stlsoft_ns_qual(special_string_instance_1)<abspath_policy<C> >
 {
 /// \name Member Types
 /// @{
+private:
+    typedef stlsoft_ns_qual(special_string_instance_1)<abspath_policy<C> >  parent_class_type;
 public:
     /// \brief The char type
-    typedef C                           char_type;
-    /// \brief The traits type
-    typedef T                           traits_type;
+    typedef ss_typename_type_k parent_class_type::char_type     char_type;
     /// \brief The current parameterisation of the type
-    typedef basic_absolute_path<C, T>   class_type;
+    typedef basic_absolute_path<C>                              class_type;
     /// \brief The size type
-    typedef ws_size_t                   size_type;
+    typedef ss_typename_type_k parent_class_type::size_type     size_type;
 /// @}
 
 /// \name Construction
@@ -138,46 +187,21 @@ public:
 public:
     /// \brief Constructs an absolute path from \c path
     ss_explicit_k basic_absolute_path(char_type const *path)
-        : m_len(traits_type::get_full_path_name(path, m_path.size(), &m_path[0]))
+        : parent_class_type(path)
     {}
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// \brief Constructs an absolute path from \c path
     template<ss_typename_param_k S>
     ss_explicit_k basic_absolute_path(S const &path)
-        : m_len(traits_type::get_full_path_name(stlsoft_ns_qual(c_str_ptr)(path), stlsoft_ns_qual(c_str_len)(m_path), &m_path[0]))
+        : parent_class_type(stlsoft_ns_qual(c_str_ptr)(path))
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 /// @}
 
-/// \name Conversions
-/// @{
-public:
-    /// \brief Implicit conversion to a non-mutable (const) pointer to the path
-    operator char_type const *() const
-    {
-        return stlsoft_ns_qual(c_str_ptr)(m_path);
-    }
-/// @}
-
-/// \name Attributes
-/// @{
-public:
-    /// \brief Returns the length of the converted path
-    size_type length() const
-    {
-        return m_len;
-    }
-/// @}
-
-/// \name Members
-/// @{
-private:
-    basic_file_path_buffer<char_type>   m_path;
-    size_type const                     m_len;
-/// @}
-
-/// \name Not to be implemented
-/// @{
+/** \brief @{
+ *
+ * \ingroup group__library__file_system
+ */
 private:
     basic_absolute_path(class_type const &);
     class_type &operator =(class_type const &);
@@ -188,12 +212,21 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// \brief Instantiation of the basic_absolute_path template for the ANSI character type \c char
-typedef basic_absolute_path<ws_char_a_t, filesystem_traits<ws_char_a_t> >       absolute_path_a;
-/// \brief Instantiation of the basic_absolute_path template for the Unicode character type \c wchar_t
-typedef basic_absolute_path<ws_char_w_t, filesystem_traits<ws_char_w_t> >       absolute_path_w;
-/// \brief Instantiation of the basic_absolute_path template for the Win32 character type \c TCHAR
-typedef basic_absolute_path<TCHAR, filesystem_traits<TCHAR> >                   absolute_path;
+/** \brief Instantiation of the basic_absolute_path template for the ANSI character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
+typedef basic_absolute_path<ws_char_a_t>    absolute_path_a;
+/** \brief Instantiation of the basic_absolute_path template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__file_system
+ */
+typedef basic_absolute_path<ws_char_w_t>    absolute_path_w;
+/** \brief Instantiation of the basic_absolute_path template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__file_system
+ */
+typedef basic_absolute_path<TCHAR>          absolute_path;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Helper functions

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_referent_type and fixer_const_referent_type types.
  *
  * Created:     26th February 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/typefixer/referent_type.hpp
-///
-/// Definition of the fixer_referent and fixer_const_referent_type types.
+/** \file stlsoft/typefixer/referent_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::typefixer::referent_type
+ *   typefixer class template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_H_STLSOFT_TYPEFIXER_REFERENT_TYPE
 #define STLSOFT_INCL_H_STLSOFT_TYPEFIXER_REFERENT_TYPE
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_MAJOR    1
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_MINOR    3
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_EDIT     11
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,11 +100,14 @@ namespace typefixer
  * Classes
  */
 
-/// \brief Type-fixer for \c referent_type member type
-///
-/// If type \c T has a \c referent_type member type, then the type of
-/// <code>fixer_referent_type<T>::referent_type</code> is
-/// <code>T::referent_type</code>, otherwise it is \c void
+/** \brief Type-fixer for \c referent_type member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c referent_type member type, then the type of
+ * <code>fixer_referent_type<T>::referent_type</code> is
+ * <code>T::referent_type</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_referent_type

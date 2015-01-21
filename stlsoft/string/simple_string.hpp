@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,8 +44,6 @@
  *  template.
  *  (\ref group__library__string "String" Library.)
  */
-///
-/// basic_simple_string class template.
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
@@ -53,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     220
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     223
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,9 +99,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS
 # include <stlsoft/algorithms.hpp>         // for stlsoft::copy_n()
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_MINMAX
-# include <stlsoft/minmax.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_MINMAX */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX
+# include <stlsoft/util/minmax.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX */
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
 # include <stlsoft/conversion/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
@@ -139,7 +137,6 @@ namespace stlsoft
  * Classes
  */
 
-// class basic_simple_string
 /** \brief Simple string class
  *
  * \param C The character type
@@ -157,6 +154,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A /* = allocator_selector<C>::allocator_type */
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
+// class basic_simple_string
 class basic_simple_string
     : public stl_collection_tag
 {
@@ -1103,7 +1101,10 @@ inline basic_simple_string<C, T, A> operator +(C lhs, basic_simple_string<C, T, 
 
 /* c_str_ptr_null */
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1112,13 +1113,19 @@ inline C const *c_str_ptr_null(basic_simple_string<C, T, A> const &s)
 {
     return (0 == s.length()) ? NULL : s.c_str();
 }
-/// \brief char variant of c_str_ptr_null for basic_simple_string specialisations
+/** \brief char variant of c_str_ptr_null for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_a_t const *c_str_ptr_null_a(basic_simple_string<ss_char_a_t, T, A> const &s)
 {
     return c_str_ptr_null(s);
 }
-/// \brief wchar_t variant of c_str_ptr_null for basic_simple_string specialisations
+/** \brief wchar_t variant of c_str_ptr_null for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_w_t const *c_str_ptr_null_w(basic_simple_string<ss_char_w_t, T, A> const &s)
 {
@@ -1127,7 +1134,10 @@ inline ss_char_w_t const *c_str_ptr_null_w(basic_simple_string<ss_char_w_t, T, A
 
 /* c_str_ptr */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1136,13 +1146,19 @@ inline C const *c_str_ptr(basic_simple_string<C, T, A> const &s)
 {
     return s.c_str();
 }
-/// \brief char variant of c_str_ptr for basic_simple_string specialisations
+/** \brief char variant of c_str_ptr for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_a_t const *c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> const &s)
 {
     return c_str_ptr(s);
 }
-/// \brief wchar_t variant of c_str_ptr for basic_simple_string specialisations
+/** \brief wchar_t variant of c_str_ptr for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_w_t const *c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> const &s)
 {
@@ -1151,7 +1167,10 @@ inline ss_char_w_t const *c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> con
 
 /* c_str_data */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1160,13 +1179,19 @@ inline C const *c_str_data(basic_simple_string<C, T, A> const &s)
 {
     return s.data();
 }
-/// \brief char variant of c_str_data for basic_simple_string specialisations
+/** \brief char variant of c_str_data for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_a_t const *c_str_data_a(basic_simple_string<ss_char_a_t, T, A> const &s)
 {
     return c_str_data(s);
 }
-/// \brief wchar_t variant of c_str_data for basic_simple_string specialisations
+/** \brief wchar_t variant of c_str_data for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_w_t const *c_str_data_w(basic_simple_string<ss_char_w_t, T, A> const &s)
 {
@@ -1175,7 +1200,10 @@ inline ss_char_w_t const *c_str_data_w(basic_simple_string<ss_char_w_t, T, A> co
 
 /* c_str_ptr_len */
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1184,48 +1212,26 @@ inline ss_size_t c_str_len(basic_simple_string<C, T, A> const &s)
 {
     return s.length();
 }
-/// \brief char variant of c_str_len for basic_simple_string specialisations
+/** \brief char variant of c_str_len for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_size_t c_str_len_a(basic_simple_string<ss_char_a_t, T, A> const &s)
 {
     return c_str_len(s);
 }
-/// \brief wchar_t variant of c_str_len for basic_simple_string specialisations
+/** \brief wchar_t variant of c_str_len for basic_simple_string specialisations
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_size_t c_str_len_w(basic_simple_string<ss_char_w_t, T, A> const &s)
 {
     return c_str_len(s);
 }
 
-/* c_str_ptr_size */
 
-#if 0
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_size_t c_str_size(basic_simple_string<C, T, A> const &s)
-{
-    return c_str_len(s) * sizeof(C);
-}
-#endif /* 0 */
-#if 0
-/// \brief char variant of c_str_size for basic_simple_string specialisations
-template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_size_t c_str_size_a(basic_simple_string<ss_char_a_t, T, A> const &s)
-{
-    return c_str_size(s);
-}
-#endif /* 0 */
-#if 0
-/// \brief wchar_t variant of c_str_size for basic_simple_string specialisations
-template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_size_t c_str_size_w(basic_simple_string<ss_char_w_t, T, A> const &s)
-{
-    return c_str_size(s);
-}
-#endif /* 0 */
 
 /* operator << */
 template<   ss_typename_param_k S

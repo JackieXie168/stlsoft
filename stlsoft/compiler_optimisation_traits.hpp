@@ -4,7 +4,7 @@
  * Purpose:     compiler_optimisation_traits class.
  *
  * Created:     15th November 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        15
+# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,101 +74,131 @@ namespace stlsoft
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// The base class, and the comparand for empty cases
+/** \brief The base class, and the comparand for empty cases
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_optimisation_traits_ebo_parent
 {};
 
 /* EBO - Empty Base Optimisation
  */
 
-/// The result of Case 1, and the intermediate parent for Cases 3 & 4.
-///
-///       compiler_optimisation_traits_ebo_parent
-///                |
-///                V
-///     compiler_optimisation_traits_ebo_thin_child
+/** \brief The result of Case 1, and the intermediate parent for Cases 3 & 4.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *       compiler_optimisation_traits_ebo_parent
+ *                |
+ *                V
+ *     compiler_optimisation_traits_ebo_thin_child
+ */
 struct compiler_optimisation_traits_ebo_thin_child
     : compiler_optimisation_traits_ebo_parent
 {};
 
-/// The result of Case 2
-///
-///       compiler_optimisation_traits_ebo_parent
-///                |
-///                V
-///     compiler_optimisation_traits_ebo_thick_child
+/** \brief The result of Case 2
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *       compiler_optimisation_traits_ebo_parent
+ *                |
+ *                V
+ *     compiler_optimisation_traits_ebo_thick_child
+ */
 struct compiler_optimisation_traits_ebo_thick_child
     : compiler_optimisation_traits_ebo_parent
 {
     int i;
 };
 
-/// Used in Cases 2, 4, 6 & 8
+/** \brief Used in Cases 2, 4, 6 & 8
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_optimisation_traits_ebo_thick_peer
 {
     int i;
 };
 
-/// The result of Case 3
-///
-///       compiler_optimisation_traits_ebo_parent
-///                |
-///                V
-///     compiler_optimisation_traits_ebo_thin_child
-///                |
-///                V
-///   compiler_optimisation_traits_ebo_thin_grandchild
+/** \brief The result of Case 3
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *       compiler_optimisation_traits_ebo_parent
+ *                |
+ *                V
+ *     compiler_optimisation_traits_ebo_thin_child
+ *                |
+ *                V
+ *   compiler_optimisation_traits_ebo_thin_grandchild
+ */
 struct compiler_optimisation_traits_ebo_thin_grandchild
     : compiler_optimisation_traits_ebo_thin_child
 {};
 
-/// The result of Case 4
-///
-///       compiler_optimisation_traits_ebo_parent
-///                |
-///                V
-///     compiler_optimisation_traits_ebo_thin_child
-///                |
-///                V
-///   compiler_optimisation_traits_ebo_thick_grandchild
+/** \brief The result of Case 4
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *       compiler_optimisation_traits_ebo_parent
+ *                |
+ *                V
+ *     compiler_optimisation_traits_ebo_thin_child
+ *                |
+ *                V
+ *   compiler_optimisation_traits_ebo_thick_grandchild
+ */
 struct compiler_optimisation_traits_ebo_thick_grandchild
     : compiler_optimisation_traits_ebo_thin_child
 {
     int i;
 };
 
-/// Used in Case 5
+/** \brief Used in Case 5
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_optimisation_traits_ebo_parent2
 {};
 
-/// The result of Case 5
-///
-///   compiler_optimisation_traits_ebo_parent      compiler_optimisation_traits_ebo_parent2
-///                |                        |
-///                V                        V
-///            compiler_optimisation_traits_ebo_mi_thin_child
+/** \brief The result of Case 5
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *   compiler_optimisation_traits_ebo_parent      compiler_optimisation_traits_ebo_parent2
+ *                |                        |
+ *                V                        V
+ *            compiler_optimisation_traits_ebo_mi_thin_child
+ */
 struct compiler_optimisation_traits_ebo_mi_thin_child
     : compiler_optimisation_traits_ebo_parent, compiler_optimisation_traits_ebo_parent2
 {};
 
-/// The result of Case 6
-///
-///   compiler_optimisation_traits_ebo_parent      compiler_optimisation_traits_ebo_parent2
-///                |                        |
-///                V                        V
-///            compiler_optimisation_traits_ebo_mi_thick_child
+/** \brief The result of Case 6
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *   compiler_optimisation_traits_ebo_parent      compiler_optimisation_traits_ebo_parent2
+ *                |                        |
+ *                V                        V
+ *            compiler_optimisation_traits_ebo_mi_thick_child
+ */
 struct compiler_optimisation_traits_ebo_mi_thick_child
     : compiler_optimisation_traits_ebo_parent, compiler_optimisation_traits_ebo_parent2
 {
     int i;
 };
 
-/// The result of Case 7
-///
-///   compiler_optimisation_traits_ebo_parent      compiler_optimisation_traits_ebo_thick_peer
-///                |                        |
-///                V                        V
-///            compiler_optimisation_traits_ebo_mi_mixin_child
+/** \brief The result of Case 7
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *   compiler_optimisation_traits_ebo_parent      compiler_optimisation_traits_ebo_thick_peer
+ *                |                        |
+ *                V                        V
+ *            compiler_optimisation_traits_ebo_mi_mixin_child
+ */
 struct compiler_optimisation_traits_ebo_mi_mixin_child
     : compiler_optimisation_traits_ebo_parent, compiler_optimisation_traits_ebo_thick_peer
 {};
@@ -177,38 +207,56 @@ struct compiler_optimisation_traits_ebo_mi_mixin_child
 /* EDO - Empty Derived Optimisation
  */
 
-/// Used in Case 1
+/** \brief Used in Case 1
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_optimisation_traits_edo_thin_base
 {};
 
-/// Used in Case 2
+/** \brief Used in Case 2
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_optimisation_traits_edo_thick_base
 {
     int i;
 };
 
-/// Used in Case 3
+/** \brief Used in Case 3
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_optimisation_traits_edo_thin_base2
 {};
 
-/// Used in Cases 3 & 4
+/** \brief Used in Cases 3 & 4
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct compiler_optimisation_traits_edo_child
     : T
 {};
 
-/// Result of case 3
-///
-///       compiler_optimisation_traits_edo_thick_base
-///                    |
-///                    V
-///    compiler_optimisation_traits_edo_child_of_thick_base
+/** \brief Result of case 3
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ *       compiler_optimisation_traits_edo_thick_base
+ *                    |
+ *                    V
+ *    compiler_optimisation_traits_edo_child_of_thick_base
+ */
 struct compiler_optimisation_traits_edo_child_of_thick_base
     : compiler_optimisation_traits_edo_thick_base
 {};
 
 
-/// Used in Cases 7 & 8
+/** \brief Used in Cases 7 & 8
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k T1
         ,   ss_typename_param_k T2
         >
@@ -218,7 +266,10 @@ struct compiler_optimisation_traits_edo_mi_child
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// traits class for (current) compiler
+/** \brief traits class for (current) compiler
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_optimisation_traits
 {
 public:

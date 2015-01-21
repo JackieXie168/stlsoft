@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      105
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,9 +95,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>     // for operator_bool_generator
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
+# include <stlsoft/util/operator_bool.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -128,16 +128,17 @@ namespace winstl_project
  * construction, and pops back to the original at destruction.
  */
 
-/// \brief Current directory scoping class
-///
-/// \ingroup group__library__file_system
-///
-/// This class scopes the process's current directory, by changing to the path
-/// given in the constructor, and then, if that succeeded, changing back in the
-/// destructor
-///
-/// \param C The character type (e.g. \c char, \c wchar_t)
-/// \param T The file-system traits. In translators that support default template parameters that defaults to \c filesystem_traits<C>
+/** \brief Current directory scoping class
+ *
+ * \ingroup group__library__file_system
+ *
+ * This class scopes the process's current directory, by changing to the path
+ * given in the constructor, and then, if that succeeded, changing back in the
+ * destructor
+ *
+ * \param C The character type (e.g. \c char, \c wchar_t)
+ * \param T The file-system traits. In translators that support default template parameters that defaults to \c filesystem_traits<C>
+ */
 
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
@@ -218,11 +219,20 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_current_directory_scope template for the ANSI character type \c char
+/** \brief Instantiation of the basic_current_directory_scope template for the ANSI character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_current_directory_scope<ws_char_a_t, filesystem_traits<ws_char_a_t> >     current_directory_scope_a;
-/// Instantiation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_current_directory_scope<ws_char_w_t, filesystem_traits<ws_char_w_t> >     current_directory_scope_w;
-/// Instantiation of the basic_current_directory_scope template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_current_directory_scope template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_current_directory_scope<TCHAR, filesystem_traits<TCHAR> >                 current_directory_scope;
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -261,15 +271,7 @@ inline ws_size_t c_str_len(basic_current_directory_scope<C, T> const &b)
     return stlsoft_ns_qual(c_str_len)(b.get_previous());
 }
 
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_size_t c_str_size(basic_current_directory_scope<C, T> const &b)
-{
-    return stlsoft_ns_qual(c_str_size)(b.get_previous());
-}
-#endif /* 0 */
+
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -395,10 +397,6 @@ using ::winstl::c_str_ptr;
 using ::winstl::c_str_data;
 
 using ::winstl::c_str_len;
-
-#if 0
-using ::winstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

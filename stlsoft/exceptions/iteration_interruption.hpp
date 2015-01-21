@@ -4,7 +4,7 @@
  * Purpose:     An exception thrown when an active end iterator is exhausted.
  *
  * Created:     30th November 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ITERATION_INTERRUPTION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ITERATION_INTERRUPTION_MINOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ITERATION_INTERRUPTION_REVISION 3
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ITERATION_INTERRUPTION_EDIT     7
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ITERATION_INTERRUPTION_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,8 +78,11 @@ namespace stlsoft
  * Classes
  */
 
-/// An exception thrown when an active iterator is interrupted, by the underlying range
-/// changing outside direct control by the current thread of execution
+/** \brief An exception thrown when an active iterator is interrupted, by the underlying range
+ * changing outside direct control by the current thread of execution
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class iteration_interruption
     : public stlsoft_ns_qual_std(runtime_error)
 {

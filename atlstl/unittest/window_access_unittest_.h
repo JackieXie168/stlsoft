@@ -9,33 +9,33 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_atlstl_window_access(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_atlstl_window_access(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "ATLSTL", "window_access", __FILE__);
+			unittest_initialiser	init(r, "ATLSTL", "window_access", __FILE__);
 
-            HWND    hwndDesktop =   ::GetDesktopWindow();
-            CWindow wndDesktop;
+			HWND	hwndDesktop =	::GetDesktopWindow();
+			CWindow wndDesktop;
 
-            wndDesktop.Attach(hwndDesktop);
+			wndDesktop.Attach(hwndDesktop);
 
-            if(get_hwnd(wndDesktop) != hwndDesktop)
-            {
-                r->report("get_hwnd(CWindow) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(get_hwnd(wndDesktop) != hwndDesktop)
+			{
+				r->report("get_hwnd(CWindow) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            wndDesktop.Detach();
+			wndDesktop.Detach();
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_atlstl_window_access(test_atlstl_window_access);
-    } // anonymous namespace
+		unittest_registrar	  unittest_atlstl_window_access(test_atlstl_window_access);
+	} // anonymous namespace
 
 } // namespace unittest

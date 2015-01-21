@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    10
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        103
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -737,11 +737,20 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/// Instantiation of the basic_reg_key template for the ANSI character type \c char
+/** \brief Instantiation of the basic_reg_key template for the ANSI character type \c char
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_key<ws_char_a_t, reg_traits<ws_char_a_t>, processheap_allocator<ws_char_a_t> >    reg_key_a;
-/// Instantiation of the basic_reg_key template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_reg_key template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_key<ws_char_w_t, reg_traits<ws_char_w_t>, processheap_allocator<ws_char_w_t> >    reg_key_w;
-/// Instantiation of the basic_reg_key template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_reg_key template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_key<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >                      reg_key;
 
 /* /////////////////////////////////////////////////////////////////////////

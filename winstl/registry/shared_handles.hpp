@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     14th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     12
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,9 +117,10 @@ namespace winstl_project
  */
 
 #ifndef _STLSOFT_NO_NAMESPACES
-/// \brief Internal/implementation namespace containing shared handles.
-///
-/// \ingroup group__library__windows_registry
+/** \brief Internal/implementation namespace containing shared handles.
+ *
+ * \ingroup group__library__windows_registry
+ */
 namespace registry_util
 {
 #endif /* !_STLSOFT_NO_NAMESPACES */

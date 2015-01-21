@@ -4,7 +4,7 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      4
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       15
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -216,7 +216,10 @@ inline double strtod(S const &s, char **endptr)
 /// @}
 
 
-/// system()
+/** \brief system()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 template <ss_typename_param_k S>
 inline int system(S const &s)

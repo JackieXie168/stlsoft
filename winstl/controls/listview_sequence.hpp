@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     20th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION	2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      60
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  3
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,9 +132,10 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Item class used by the listview_sequence class
-///
-/// \ingroup group__library__windows_controls
+/** \brief Item class used by the listview_sequence class
+ *
+ * \ingroup group__library__windows_controls
+ */
 //template<ss_typename_param_k S = lvs_string_t>
 class listview_sequence_item
 {
@@ -216,9 +217,10 @@ private:
 };
 
 
-/// \brief Provides an STL-like sequence over the contents of a Windows List-view (<code>"SysListView32"</code>)
-///
-/// \ingroup group__library__windows_controls
+/** \brief Provides an STL-like sequence over the contents of a Windows List-view (<code>"SysListView32"</code>)
+ *
+ * \ingroup group__library__windows_controls
+ */
 class listview_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
 {
@@ -502,12 +504,7 @@ inline ws_size_t c_str_len(listview_sequence_item const &lvi)
     return stlsoft_ns_qual(c_str_len)(lvi.text());
 }
 
-#if 0
-inline ws_size_t c_str_size(listview_sequence_item const &lvi)
-{
-    return stlsoft_ns_qual(c_str_size)(lvi.text());
-}
-#endif /* 0 */
+
 
 template<   ss_typename_param_k S
         >
@@ -560,10 +557,6 @@ using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
-
-#if 0
-using ::winstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

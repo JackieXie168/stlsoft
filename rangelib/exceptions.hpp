@@ -4,7 +4,7 @@
  * Purpose:     Range exceptions.
  *
  * Created:     30th December 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_MAJOR     1
 # define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_MINOR     0
 # define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_REVISION  4
-# define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_EDIT      7
+# define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,10 @@ namespace rangelib_project
  * Classes
  */
 
-/// \brief Exception class for general RangeLib-related failures
+/** \brief Exception class for general RangeLib-related failures
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class range_exception
 #if defined(STLSOFT_COMPILER_IS_DMC)
     : public std::exception
@@ -168,7 +171,10 @@ private:
 /// @}
 };
 
-/// The exception type thrown by safearray_sequence on variant type mismatches
+/** \brief The exception type thrown by safearray_sequence on variant type mismatches
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class empty_range_exception
     : public range_exception
 {

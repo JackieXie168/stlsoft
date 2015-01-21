@@ -4,7 +4,7 @@
  * Purpose:     Contains the exception_string limited functionality string class.
  *
  * Created:     26th December 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/util/exception_string.hpp
-///
-/// Contains the exception_string limited functionality string class.
+/** \file stlsoft/util/exception_string.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::exception_string class.
+ *  (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,6 +88,10 @@ namespace stlsoft
  * Classes
  */
 
+/** \brief Minimalist string class for use within exception classes.
+ *
+ * \ingroup group__library__string
+ */
 class exception_string
 {
 /// \name Member Types
@@ -103,20 +109,20 @@ private:
 /// \name Construction
 /// @{
 public:
-    /// Constructs an empty exception
+    /// \brief Constructs an empty exception
     exception_string()
         : m_message(1)
     {
         m_message[0] = '\0';
     }
-    /// Constructs an exception from the given message
+    /// \brief Constructs an exception from the given message
     ss_explicit_k exception_string(char const *message)
         : m_message(1 + ((NULL == message) ? 0 : traits_type::length(message)))
     {
         traits_type::copy(&m_message[0], message, m_message.size() - 1);
         m_message[m_message.size() - 1] = '\0';
     }
-    /// Copies the message from the given instance
+    /// \brief Copies the message from the given instance
     exception_string(class_type const &rhs)
         : m_message(rhs.m_message.size())
     {
@@ -124,7 +130,7 @@ public:
         m_message[m_message.size() - 1] = '\0';
     }
 
-    /// Appends the given string to the message
+    /// \brief Appends the given string to the message
     void operator +=(char const *s)
     {
         const ss_size_t n       =   traits_type::length(s);
@@ -136,7 +142,7 @@ public:
             m_message[m_message.size() - 1] = '\0';
         }
     }
-    /// Appends the given string to the message
+    /// \brief Appends the given string to the message
     void operator +=(class_type const &rhs)
     {
         const ss_size_t n       =   rhs.length();
@@ -148,7 +154,7 @@ public:
             m_message[m_message.size() - 1] = '\0';
         }
     }
-    /// Appends the given character to the message
+    /// \brief Appends the given character to the message
     void operator +=(char ch)
     {
         const ss_size_t n       =   1;
@@ -165,20 +171,20 @@ public:
 /// \name Attributes
 /// @{
 public:
-    /// Returns a null-terminated c-style string string representing
+    /// \brief Returns a null-terminated c-style string string representing
     /// the message
     char const *c_str() const
     {
         return m_message.data();
     }
-    /// Returns the number of characters in the message
+    /// \brief Returns the number of characters in the message
     size_type   length() const
     {
         STLSOFT_ASSERT(m_message.size() > 0);
 
         return m_message.size() - 1;
     }
-    /// Indicates whether or not the message is blank
+    /// \brief Indicates whether or not the message is blank
     ss_bool_t    empty() const
     {
         return 0 == this->length();
@@ -202,6 +208,10 @@ private:
  * Operators
  */
 
+/** \brief Adds a C-style string to an exception_string
+ *
+ * \ingroup group__library__string
+ */
 inline exception_string operator +(exception_string const &lhs, char const *rhs)
 {
     exception_string    s(lhs);
@@ -211,6 +221,10 @@ inline exception_string operator +(exception_string const &lhs, char const *rhs)
     return s;
 }
 
+/** \brief Adds an exception_string to a character
+ *
+ * \ingroup group__library__string
+ */
 inline exception_string operator +(char lhs, exception_string const &rhs)
 {
     char                lhs_[2] = { lhs, '\0' };
@@ -221,6 +235,10 @@ inline exception_string operator +(char lhs, exception_string const &rhs)
     return s;
 }
 
+/** \brief Adds a character to an exception_string 
+ *
+ * \ingroup group__library__string
+ */
 inline exception_string operator +(exception_string const &lhs, char rhs)
 {
     exception_string    s(lhs);
@@ -230,6 +248,10 @@ inline exception_string operator +(exception_string const &lhs, char rhs)
     return s;
 }
 
+/** \brief Adds an exception_string to a C-style string
+ *
+ * \ingroup group__library__string
+ */
 inline exception_string operator +(char const *lhs, exception_string const &rhs)
 {
     exception_string    s(lhs);
@@ -239,6 +261,10 @@ inline exception_string operator +(char const *lhs, exception_string const &rhs)
     return s;
 }
 
+/** \brief Adds an exception_string to an exception_string
+ *
+ * \ingroup group__library__string
+ */
 inline exception_string operator +(exception_string const &lhs, exception_string const &rhs)
 {
     exception_string    s(lhs);

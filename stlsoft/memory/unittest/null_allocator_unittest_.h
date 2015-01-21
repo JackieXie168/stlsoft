@@ -11,51 +11,51 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_memory_null_allocator(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_memory_null_allocator(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "memory/null_allocator", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "memory/null_allocator", __FILE__);
 
-            typedef null_allocator<int>  int_allocator_t;
+			typedef null_allocator<int>  int_allocator_t;
 
-            int             i;
-            int_allocator_t ator1;
+			int 			i;
+			int_allocator_t ator1;
 
-            ator1.construct(&i, 1968);
+			ator1.construct(&i, 1968);
 
-            if(1968 != i)
-            {
-                r->report("failed to construct ", __LINE__);
-                bSuccess = false;
-            }
+			if(1968 != i)
+			{
+				r->report("failed to construct ", __LINE__);
+				bSuccess = false;
+			}
 
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
-            try
-            {
-                ator1.allocate(1);
+			try
+			{
+				ator1.allocate(1);
 
-                r->report("null_allocator provided a non-NULL allocation ", __LINE__);
-                bSuccess = false;
-            }
-            catch(std::bad_alloc &)
-            {
-            }
+				r->report("null_allocator provided a non-NULL allocation ", __LINE__);
+				bSuccess = false;
+			}
+			catch(std::bad_alloc &)
+			{
+			}
 #else /* ? STLSOFT_CF_THROW_BAD_ALLOC */
-            if(ator1.allocate(1) != NULL)
-            {
-                r->report("null_allocator provided a non-NULL allocation ", __LINE__);
-                bSuccess = false;
-            }
+			if(ator1.allocate(1) != NULL)
+			{
+				r->report("null_allocator provided a non-NULL allocation ", __LINE__);
+				bSuccess = false;
+			}
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_memory_null_allocator(test_stlsoft_memory_null_allocator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_memory_null_allocator(test_stlsoft_memory_null_allocator);
+	} // anonymous namespace
 
 } // namespace unittest
 

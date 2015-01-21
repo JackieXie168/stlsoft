@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the filesystem_traits components.
  *
  * Created:     20th March 2005
- * Updated:     12th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      14
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,13 +118,6 @@ namespace platformstl_project
             >
     class filesystem_traits
     {};
-
-    /// \brief Instantiation of the filesystem_traits template for the ANSI character type \c char
-    typedef filesystem_traits<char>     path_a;
-    /// \brief Instantiation of the filesystem_traits template for the Unicode character type \c wchar_t
-    typedef filesystem_traits<wchar_t>  path_w;
-    /// \brief Instantiation of the filesystem_traits template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
-    typedef filesystem_traits<tchar>    path;
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 

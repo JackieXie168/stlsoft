@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      37
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
 # include <stlsoft/exceptions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_H_ERROR_FUNCTIONS
-# include <winstl/error_functions.h>    // for FormatMessage()
-#endif /* !WINSTL_INCL_WINSTL_H_ERROR_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS
+# include <winstl/error/error_functions.h>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
 # include <stlsoft/util/exception_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
@@ -95,7 +95,10 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Exception class for general Windows operating system failures
+/** \brief Exception class for general Windows operating system failures
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class windows_exception
     : public os_exception
 {
@@ -242,7 +245,10 @@ private:
 /// @}
 };
 
-/// Exception thrown by the clipboard_scope class
+/** \brief Exception thrown by the clipboard_scope class
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class resource_exception
     : public windows_exception
 {
@@ -297,7 +303,10 @@ private:
  * Policies
  */
 
-/// A policy class that throws a windows_exception class.
+/** \brief A policy class that throws a windows_exception class.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:exception-policy: windows_exception_policy]]
 struct windows_exception_policy
 {
@@ -347,7 +356,10 @@ private:
 /// @}
 };
 
-/// A policy class that throws a resource_exception class.
+/** \brief A policy class that throws a resource_exception class.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:exception-policy: resource_exception_policy]]
 struct resource_exception_policy
 {

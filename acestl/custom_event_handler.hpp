@@ -4,7 +4,7 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_MINOR     5
-# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_REVISION  8
-# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_EDIT      39
+# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_REVISION  9
+# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #include <ace/Event_Handler.h>              // for ACE_Event_Handler
 #include <ace/Reactor.h>                    // for ACE_Reactor
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR
-# include <stlsoft/shared_ptr.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR
+# include <stlsoft/smartptr/shared_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR */
 
 #include <map>
 
@@ -102,23 +102,11 @@ namespace acestl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_messaging Messaging Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating messaging constructs
-
-/// \defgroup acestl_messaging_library Messaging Library (ACESTL)
-/// \ingroup ACESTL libraries_messaging
-/// \brief This library provides facilities for defining and manipulating messaging constructs with ACE
-/// @{
-
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// Utility class that establishes a root type for the cancel_adaptor and the
-/// custom_event_handler classes
+/** \brief Utility class that establishes a root type for the cancel_adaptor and the
+ * custom_event_handler classes
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct ceh_root
 {
 private:
@@ -127,8 +115,11 @@ public:
     typedef event_id_   *event_id;
 };
 
-/// Adaptor class that facilitates the
-/// custom_event_handler::cancel_custom_events() member function template.
+/** \brief Adaptor class that facilitates the
+ * custom_event_handler::cancel_custom_events() member function template.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k C>
 struct cancel_adapter
     : public ceh_root
@@ -156,49 +147,52 @@ private:
  * Classes
  */
 
-/// \brief This class provides custom event notification for the ACE Reactor
-/// framework
-///
-/// It provides the ability to schedule a custom event with a code, an optional
-/// delay, and an optional argument
-///
-/// To use, derive from it as you would from ACE_Event_Handler, and override the
-/// handle_custom_event() method, e.g
-///
-/// \htmlonly
-/// <pre>
-///
-/// class MyHandler
-///   : public acestl::custom_event_handler
-/// {
-/// private:
-///   virtual int handle_custom_event(ACE_Time_Value const  &current_time
-///                               ,   long                  event_code
-///                               ,   void                  *arg)
-///   {
-///     fprintf(stdout, "Received custom event: %ld, %p\n", event_code, arg);
-///
-///     return 0;
-///   }
-/// . . .
-/// };
-///
-/// acestl::custom_event_handler *eh = new MyHandler();
-///
-/// // Schedule an event with id 100
-/// eh->schedule_custom_event(100);
-///
-/// // Schedule an event for 10 seconds hence, with id 200
-/// eh->schedule_custom_event(200, ACE_Time_Value(10));
-///
-/// // Schedule an event for 10 seconds hence, with id 300, and an argument in a string instance
-/// eh->schedule_custom_event(300, ACE_Time_Value(10), new std::string("300"));
-///
-/// // Start the reactor loop. Events will be dispatched from here on in
-/// ACE_Reactor::instance()->run_reactor_event_loop();
-///
-/// </pre>
-/// \endhtmlonly
+/** \brief This class provides custom event notification for the ACE Reactor
+ * framework
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * It provides the ability to schedule a custom event with a code, an optional
+ * delay, and an optional argument
+ *
+ * To use, derive from it as you would from ACE_Event_Handler, and override the
+ * handle_custom_event() method, e.g
+ *
+ * \htmlonly
+ * <pre>
+ *
+ * class MyHandler
+ *   : public acestl::custom_event_handler
+ * {
+ * private:
+ *   virtual int handle_custom_event(ACE_Time_Value const  &current_time
+ *                               ,   long                  event_code
+ *                               ,   void                  *arg)
+ *   {
+ *     fprintf(stdout, "Received custom event: %ld, %p\n", event_code, arg);
+ *
+ *     return 0;
+ *   }
+ * . . .
+ * };
+ *
+ * acestl::custom_event_handler *eh = new MyHandler();
+ *
+ * // Schedule an event with id 100
+ * eh->schedule_custom_event(100);
+ *
+ * // Schedule an event for 10 seconds hence, with id 200
+ * eh->schedule_custom_event(200, ACE_Time_Value(10));
+ *
+ * // Schedule an event for 10 seconds hence, with id 300, and an argument in a string instance
+ * eh->schedule_custom_event(300, ACE_Time_Value(10), new std::string("300"));
+ *
+ * // Start the reactor loop. Events will be dispatched from here on in
+ * ACE_Reactor::instance()->run_reactor_event_loop();
+ *
+ * </pre>
+ * \endhtmlonly
+ */
 class custom_event_handler
     : public ACE_Event_Handler
     , public ceh_root
@@ -459,10 +453,6 @@ private:
     custom_event_handler(class_type const &);
     class_type &operator =(class_type const &);
 };
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // acestl_messaging_library
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

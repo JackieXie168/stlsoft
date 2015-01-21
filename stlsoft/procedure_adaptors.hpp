@@ -4,7 +4,7 @@
  * Purpose:     Contains the adaptors to allow functions to be used as procedures in algorithms.
  *
  * Created:     13th June 1999
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_EDIT        8
+# define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,8 +79,11 @@ namespace stlsoft
  * Classes
  */
 
-/// Adapts a unary function into a unary procedure - one in which the return
-/// type of the function call operator is void
+/** \brief Adapts a unary function into a unary procedure - one in which the return
+ * type of the function call operator is void
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:function-class:unary-function: unary_procedure_adaptor<T<F>>]]
 template <ss_typename_param_k F>
 struct unary_procedure_adaptor
@@ -108,15 +111,21 @@ private:
     adapted_function_type   m_func;
 };
 
-/// Creator function for the unary_procedure_adaptor
+/** \brief Creator function for the unary_procedure_adaptor
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k F>
 inline unary_procedure_adaptor<F> adapt_unary_procedure(F func)
 {
     return unary_procedure_adaptor<F>(func);
 }
 
-/// Adapts a biary function into a unary procedure - one in which the return
-/// type of the function call operator is void
+/** \brief Adapts a biary function into a unary procedure - one in which the return
+ * type of the function call operator is void
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:function-class:unary-function: binary_procedure_adaptor<T<F>>]]
 template <ss_typename_param_k F>
 struct binary_procedure_adaptor
@@ -146,7 +155,10 @@ private:
     adapted_function_type   m_func;
 };
 
-/// Creator function for the binary_procedure_adaptor
+/** \brief Creator function for the binary_procedure_adaptor
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k F>
 inline binary_procedure_adaptor<F> adapt_binary_procedure(F func)
 {

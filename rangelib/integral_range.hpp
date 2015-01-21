@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     37
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
+# include <stlsoft/util/operator_bool.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
 # include <stlsoft/exceptions.hpp>        // for null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
@@ -115,7 +115,10 @@ namespace rangelib_project
  * Classes
  */
 
-/// Error policy class for integral_range
+/** \brief Error policy class for integral_range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct invalid_integral_range_policy
 {
 public:
@@ -179,22 +182,25 @@ public:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 };
 
-/// This range class represents an integral range.
-///
-/// It is categoried as a Notional Range
-///
-/// It could be used as follows
-/// \htmlonly
-/// <code>
-/// <pre>
-///   // Create a range of integer values, in the range [-100, 200), in increments of 5
-///   stlsoft::integral_range&lt;int&gt;   r(-100, +100, 5);
-///
-///   // Calculate the total
-///   int total = stlsoft::r_accumulate(r, 0);
-/// </pre>
-/// </code>
-/// \endhtmlonly
+/** \brief This range class represents an integral range.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * It is categoried as a Notional Range
+ *
+ * It could be used as follows
+ * \htmlonly
+ * <code>
+ * <pre>
+ *   // Create a range of integer values, in the range [-100, 200), in increments of 5
+ *   stlsoft::integral_range&lt;int&gt;   r(-100, +100, 5);
+ *
+ *   // Calculate the total
+ *   int total = stlsoft::r_accumulate(r, 0);
+ * </pre>
+ * </code>
+ * \endhtmlonly
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k XP = null_exception_policy
         >

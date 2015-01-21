@@ -98,21 +98,21 @@ namespace platformstl_project
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-	/** \brief A thread key class
-	 *
-	 * The class is not actually defined in the
-	 * \link ::platformstl platformstl\endlink namespace. Rather, it
-	 * resolves to the appropriate type for the given platform, relying on
-	 * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
-	 * of the resolved platform-specific types.
-	 *
-	 * When compiling on UNIX platforms, the platformstl::tss_index
-	 * type resolves to the unixstl::tss_index class. On Windows platforms
-	 * it resolves to the winstl::tss_index class. It is not defined
-	 * for other platforms.
-	 */
-	class tss_index
-	{};
+    /** \brief A thread key class
+     *
+     * The class is not actually defined in the
+     * \link ::platformstl platformstl\endlink namespace. Rather, it
+     * resolves to the appropriate type for the given platform, relying on
+     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * of the resolved platform-specific types.
+     *
+     * When compiling on UNIX platforms, the platformstl::tss_index
+     * type resolves to the unixstl::tss_index class. On Windows platforms
+     * it resolves to the winstl::tss_index class. It is not defined
+     * for other platforms.
+     */
+    class tss_index
+    {};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 

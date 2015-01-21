@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/n_types.hpp (formerly part of stlsoft_meta.h)
+ * File:        stlsoft/meta/n_types.hpp (originally MTBase.h, ::SynesisStl)
  *
  * Purpose:     Basic support meta types.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/n_types.hpp
-///
-/// Options verification.
+/** \file stlsoft/meta/n_types.hpp
+ *
+ * \brief [C++ only] Definition of the different type size "constants".
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
 #define STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
@@ -48,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MINOR     2
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  1
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      110
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  2
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,24 +77,27 @@ namespace stlsoft
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-typedef struct { ss_byte_t ar[1]; }     one_type;
-typedef struct { ss_byte_t ar[2]; }     two_type;
-typedef struct { ss_byte_t ar[3]; }     three_type;
-typedef struct { ss_byte_t ar[4]; }     four_type;
-typedef struct { ss_byte_t ar[5]; }     five_type;
-typedef struct { ss_byte_t ar[6]; }     six_type;
-typedef struct { ss_byte_t ar[7]; }     seven_type;
-typedef struct { ss_byte_t ar[8]; }     eight_type;
-typedef struct { ss_byte_t ar[9]; }     nine_type;
-typedef struct { ss_byte_t ar[10]; }    ten_type;
-typedef struct { ss_byte_t ar[11]; }    eleven_type;
-typedef struct { ss_byte_t ar[12]; }    twelve_type;
-typedef struct { ss_byte_t ar[13]; }    thirteen_type;
-typedef struct { ss_byte_t ar[14]; }    fourteen_type;
-typedef struct { ss_byte_t ar[15]; }    fifteen_type;
-typedef struct { ss_byte_t ar[16]; }    sixteen_type;
-typedef struct { ss_byte_t ar[17]; }    seventeen_type;
-typedef struct { ss_byte_t ar[18]; }    eighteen_type;
+typedef struct { ss_byte_t ar[1]; }     one_type;       //!< A type for which sizeof() yields 1
+typedef struct { ss_byte_t ar[2]; }     two_type;       //!< A type for which sizeof() yields 2
+typedef struct { ss_byte_t ar[3]; }     three_type;     //!< A type for which sizeof() yields 3
+typedef struct { ss_byte_t ar[4]; }     four_type;      //!< A type for which sizeof() yields 4
+typedef struct { ss_byte_t ar[5]; }     five_type;      //!< A type for which sizeof() yields 5
+typedef struct { ss_byte_t ar[6]; }     six_type;       //!< A type for which sizeof() yields 6
+typedef struct { ss_byte_t ar[7]; }     seven_type;     //!< A type for which sizeof() yields 7
+typedef struct { ss_byte_t ar[8]; }     eight_type;     //!< A type for which sizeof() yields 8
+typedef struct { ss_byte_t ar[9]; }     nine_type;      //!< A type for which sizeof() yields 9
+typedef struct { ss_byte_t ar[10]; }    ten_type;       //!< A type for which sizeof() yields 10
+typedef struct { ss_byte_t ar[11]; }    eleven_type;    //!< A type for which sizeof() yields 11
+typedef struct { ss_byte_t ar[12]; }    twelve_type;    //!< A type for which sizeof() yields 12
+typedef struct { ss_byte_t ar[13]; }    thirteen_type;  //!< A type for which sizeof() yields 13
+typedef struct { ss_byte_t ar[14]; }    fourteen_type;  //!< A type for which sizeof() yields 14
+typedef struct { ss_byte_t ar[15]; }    fifteen_type;   //!< A type for which sizeof() yields 15
+typedef struct { ss_byte_t ar[16]; }    sixteen_type;   //!< A type for which sizeof() yields 16
+typedef struct { ss_byte_t ar[17]; }    seventeen_type; //!< A type for which sizeof() yields 17
+typedef struct { ss_byte_t ar[18]; }    eighteen_type;  //!< A type for which sizeof() yields 18
+typedef struct { ss_byte_t ar[19]; }    nineteen_type;  //!< A type for which sizeof() yields 19
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 // Backwards compatiblity
 typedef one_type                        one_t;
@@ -113,8 +118,13 @@ typedef fifteen_type                    fifteen_t;
 typedef sixteen_type                    sixteen_t;
 typedef seventeen_type                  seventeen_t;
 typedef eighteen_type                   eighteen_t;
+typedef nineteen_type                   nineteen_t;
 
-/** \brief This template is used to synthesise types with specific sizes
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief This template is used to synthesise types with specific sizes.
+ *
+ * \ingroup group__library__meta
  */
 template <ss_size_t N>
 struct size_type

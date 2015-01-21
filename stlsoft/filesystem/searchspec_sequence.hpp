@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     1st May 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        40
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    2
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 # include <stlsoft/string/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
-# include <stlsoft/string_tokeniser.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER
+# include <stlsoft/string/string_tokeniser.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER */
 
 //#include <stlsoft_string_access.h>
 
@@ -499,7 +499,10 @@ public:
 /// \name Implementation
 /// @{
 private:
-/// TODO: Rename this to null_str_()
+/** \brief TODO: Rename this to null_str_()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
     static char_type const *get_root_dir()
     {
         static char_type s_rootDir[2] = { '.', '\0' };

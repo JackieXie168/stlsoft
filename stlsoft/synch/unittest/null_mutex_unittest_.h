@@ -9,26 +9,26 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_synch_null_mutex(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_synch_null_mutex(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "synch/null_mutex", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "synch/null_mutex", __FILE__);
 
-            null_mutex              mx;
+			null_mutex				mx;
 
-            mx.lock();
-            mx.unlock();
+			mx.lock();
+			mx.unlock();
 
-            lock_instance(mx);
-            unlock_instance(mx);
+			lock_instance(mx);
+			unlock_instance(mx);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_synch_null_mutex(test_stlsoft_synch_null_mutex);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_synch_null_mutex(test_stlsoft_synch_null_mutex);
+	} // anonymous namespace
 
 } // namespace unittest

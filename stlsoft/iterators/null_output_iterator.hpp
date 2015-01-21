@@ -4,7 +4,7 @@
  * Purpose:     Null output iterator.
  *
  * Created:     18th February 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/null_output_iterator.hpp
-///
-/// Null output iterator.
+/** \file stlsoft/iterators/null_output_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::null_output_iterator class
+ *   template
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,65 +92,44 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup iterators_output Output Iterators
-/// \brief Classes that provide Output Iteration functionality
-/// \ingroup iterators
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// \brief Enhanced functionality over std::null_output_iterator
-///
-/// This class template provides full backwards-compatibility with
-/// std::null_output_iterator, but offers the additional capability to supply both
-/// prefix <i>and</i> suffix to each delimited item.
-///
-/// For example, the following code indents each entry in the sequence as well
-/// as appending a carriage return.
-///
-/// \htmlonly
-/// <pre>
-///
-/// std::vector&lt;int>  ints(10);
-///
-/// { for(size_t i = 0; i &lt; ints.size(); ++i)
-/// {
-///   ints[i] = i;
-/// }}
-///
-/// std::cout &lt;&lt; "Elements:" &lt;&lt; std::endl;
-/// std::copy(ints.begin(), ints.end(), stlsoft::null_output_iterator&lt;int>(std::cout, "\t", "\n");
-/// </pre>
-/// \endhtmlonly
-///
-/// This gives the following output:
-///
-/// \htmlonly
-/// <pre>
-/// <b>
-/// Elements:
-///         0
-///         1
-///         2
-///         3
-///         4
-///         5
-///         6
-///         7
-///         8
-///         9
-/// </b>
-/// </pre>
-/// \endhtmlonly
-///
-/// \param V The value type.
+/** \brief \ref group__pattern__null_object "Null Object" pattern applied to
+ *   the \ref group__concept__output_iterator "Output Iterator" concept.
+ *
+ * \ingroup group__library__iterators
+ *
+ *
+ * This class template provides full backwards-compatibility with
+ * std::null_output_iterator, but offers the additional capability to supply both
+ * prefix <i>and</i> suffix to each delimited item.
+ *
+ * For example, the following code indents each entry in the sequence as well
+ * as appending a carriage return.
+ *
+ * \htmlonly
+ * <pre>
+ *
+ * std::vector&lt;int>  ints(10);
+ *
+ * { for(size_t i = 0; i &lt; ints.size(); ++i)
+ * {
+ *   ints[i] = i;
+ * }}
+ *
+ * std::cout &lt;&lt; "Elements:" &lt;&lt; std::endl;
+ * std::copy(ints.begin(), ints.end(), stlsoft::null_output_iterator&lt;int>());
+ * </pre>
+ * \endhtmlonly
+ *
+ * This has no effect, and produces no output. It does, however, cause the
+ * sequence to be enumerated, and its compilation ensures that all iterators
+ * support the codified operations.
+ *
+ * \param V The value type.
+ */
 template<   ss_typename_param_k V
         >
 // [[synesis:class:iterator: null_output_iterator<T<V>, T<C>, T<T>, T<S>>]]
@@ -211,10 +193,6 @@ public:
     }
 /// @}
 };
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

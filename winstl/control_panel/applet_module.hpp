@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 5
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     7
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 6
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,9 +82,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS
 # include <winstl/control_panel/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_HPP_RESOURCE_STRING
-# include <winstl/resource_string.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_RESOURCE_STRING */
+#ifndef WINSTL_INCL_WINSTL_STRING_HPP_RESOURCE_STRING
+# include <winstl/string/resource_string.hpp>
+#endif /* !WINSTL_INCL_WINSTL_STRING_HPP_RESOURCE_STRING */
 #ifndef WINSTL_INCL_WINSTL_DL_HPP_MODULE
 # include <winstl/dl/module.hpp>
 #endif /* !WINSTL_INCL_WINSTL_DL_HPP_MODULE */

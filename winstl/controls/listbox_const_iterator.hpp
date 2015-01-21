@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_const_iterator class.
  *
  * Created:     10th November 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     58
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,14 +105,15 @@ namespace winstl_project
  * Classes
  */
 
-/// Iterator for listbox_sequence class
-///
-/// \ingroup group__library__windows_controls
-///
-/// This class acts as the iterator for the listbox_sequence class, and implements
-/// the Random Access Iterator concept
-///
-/// \param S The string type
+/** \brief Iterator for listbox_sequence class
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * This class acts as the iterator for the listbox_sequence class, and implements
+ * the Random Access Iterator concept
+ *
+ * \param S The string type
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k BT
         >

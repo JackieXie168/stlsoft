@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MINOR     3
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      22
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -162,7 +162,10 @@ namespace access_string_util
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// String access shim
+/** \brief String access shim
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline ::stlsoft::basic_shim_string<C> c_str_ptr_(ACE_Time_Value const &t)
 {
@@ -220,14 +223,12 @@ inline as_size_t c_str_len(ACE_Time_Value const &/* t */)
     return 23;
 }
 
-#if 0
-inline as_size_t c_str_size(ACE_Time_Value const &t)
-{
-    return sizeof(ACE_TCHAR) * c_str_len(t);
-}
-#endif /* 0 */
 
-/// An inserter function for ACE_Time_Value into output streams
+
+/** \brief An inserter function for ACE_Time_Value into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_Time_Value const &t)
 {
@@ -286,7 +287,10 @@ namespace unittest
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/// An inserter function for ACE_Time_Value into output streams
+/** \brief An inserter function for ACE_Time_Value into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_Time_Value const &t)
 {

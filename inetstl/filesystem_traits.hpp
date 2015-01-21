@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     55
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,12 +96,15 @@ namespace inetstl_project
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// Traits for accessing the correct file-system functions for a given character type
-///
-/// filesystem_traits is a traits class for determining the correct file-system
-/// structures and functions for a given character type.
-///
-/// \param C The character type
+/** \brief Traits for accessing the correct file-system functions for a given character type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * filesystem_traits is a traits class for determining the correct file-system
+ * structures and functions for a given character type.
+ *
+ * \param C The character type
+ */
 template <ss_typename_param_k C>
 struct filesystem_traits
 {

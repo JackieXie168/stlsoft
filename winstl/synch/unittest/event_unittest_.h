@@ -9,29 +9,29 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_synch_event(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_synch_event(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "synch/event", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "synch/event", __FILE__);
 
 #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_synch_event(test_winstl_synch_event);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_synch_event(test_winstl_synch_event);
+	} // anonymous namespace
 
 } // namespace unittest
 

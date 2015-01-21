@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        69
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -404,6 +404,7 @@ public:
 /// @}
 
 /// \name Invariant
+/// @{
 #ifdef STLSOFT_UNITTEST
 public:
 #else
@@ -795,7 +796,10 @@ inline /* static */ void basic_string_view<C, T, A>::close_set_null_() stlsoft_t
     }
 }
 
-/// Invariant
+/** \brief Invariant
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1598,7 +1602,10 @@ inline void swap(basic_string_view<C, T, A> &lhs, basic_string_view<C, T, A> &rh
 
 /* c_str_ptr_null */
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1610,7 +1617,10 @@ inline C const *c_str_ptr_null(basic_string_view<C, T, A> const &s)
 
 /* c_str_ptr */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1622,7 +1632,10 @@ inline C const *c_str_ptr(basic_string_view<C, T, A> const &s)
 
 /* c_str_data */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1632,7 +1645,10 @@ inline C const *c_str_data(basic_string_view<C, T, A> const &s)
     return s.data();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
@@ -1641,7 +1657,10 @@ inline ss_char_a_t const *c_str_ptr_a(basic_string_view<ss_char_a_t, T, A> const
     return s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
@@ -1652,7 +1671,10 @@ inline ss_char_w_t const *c_str_ptr_w(basic_string_view<ss_char_w_t, T, A> const
 
 /* c_str_ptr_len */
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1661,20 +1683,6 @@ inline ss_size_t c_str_len(basic_string_view<C, T, A> const &s)
 {
     return s.length();
 }
-
-/* c_str_ptr_size */
-
-#if 0
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_size_t c_str_size(basic_string_view<C, T, A> const &s)
-{
-    return c_str_len(s) * sizeof(C);
-}
-#endif /* 0 */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

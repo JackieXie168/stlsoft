@@ -4,7 +4,7 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_MAJOR       3
 # define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_MINOR       3
 # define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_REVISION    3
-# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_EDIT        28
+# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,10 @@ namespace inetstl_project
  * Classes
  */
 
-/// \brief Exception class for general Windows operating system failures
+/** \brief Exception class for general Windows operating system failures
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class internet_exception
     : public os_exception
 {
@@ -206,7 +209,10 @@ private:
  * Policies
  */
 
-/// The policy class, which throws a internet_exception class.
+/** \brief The policy class, which throws a internet_exception class.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:exception-policy: throw_internet_exception_policy]]
 struct throw_internet_exception_policy
 {

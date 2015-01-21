@@ -4,7 +4,7 @@
  * Purpose:     Predicates that use access shims to generalise use.
  *
  * Created:     7th November 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_MINOR    3
 # define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_EDIT     15
+# define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,8 +83,11 @@ namespace stlsoft
  * Classes
  */
 
-/// Predicate used to test the equivalence of pointers
-///
+/** \brief Predicate used to test the equivalence of pointers
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 template<   ss_typename_param_k P
         ,   ss_typename_param_k A = P const &
         >
@@ -110,8 +113,11 @@ private:
 };
 
 
-/// Predicate used to test the equivalence of handles
-///
+/** \brief Predicate used to test the equivalence of handles
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 template<   ss_typename_param_k H
         ,   ss_typename_param_k A = H const &
         >

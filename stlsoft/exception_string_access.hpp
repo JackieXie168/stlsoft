@@ -4,7 +4,7 @@
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MAJOR     1
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MINOR     3
-# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_REVISION  3
-# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      22
+# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_REVISION  4
+# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,13 +82,19 @@ namespace stlsoft
 
 /* std::exception */
 
-/// \brief Returns the corresponding C-string pointer of \c x, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c x, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_ptr_null_a(x.what());
 }
 
-/// \brief Returns the corresponding C-string pointer of \c x, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c x, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_ptr_null_a(x);
@@ -102,13 +108,19 @@ inline ss_char_a_t const *c_str_ptr_null(stlsoft_ns_qual_std(exception) const &x
  */
 
 /* std::exception */
-/// \brief Returns the corresponding C-string pointer of \c x
+/** \brief Returns the corresponding C-string pointer of \c x
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_ptr_a(x.what());
 }
 
-/// \brief Returns the corresponding C-string pointer of \c x
+/** \brief Returns the corresponding C-string pointer of \c x
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_ptr_a(x);
@@ -122,14 +134,20 @@ inline ss_char_a_t const *c_str_ptr(stlsoft_ns_qual_std(exception) const &x)
  */
 
 /* std::exception */
-/// \brief Returns the corresponding C-string pointer of \c x
+/** \brief Returns the corresponding C-string pointer of \c x
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_ptr_a(x);
 }
 
 /* std::exception */
-/// \brief Returns the corresponding C-string pointer of \c x
+/** \brief Returns the corresponding C-string pointer of \c x
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_ptr_a(x);
@@ -143,42 +161,23 @@ inline ss_char_a_t const *c_str_data(stlsoft_ns_qual_std(exception) const &x)
  */
 
 /* std::exception */
-/// \brief Returns the length (in characters) of \c x, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c x, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_len_a(x.what());
 }
 
-/// \brief Returns the length (in characters) of \c x, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c x, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_len_a(x);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * c_str_size
- *
- * This can be applied to an expression, and the return value is the number of
- * bytes required to store the character string in the expression, NOT including
- * the null-terminating character.
- */
-
-/* std::exception */
-#if 0
-/// \brief Returns the size (in bytes) of the contents of \c x, <b><i>not</i></b> including the null-terminating character
-inline ss_size_t c_str_size_a(stlsoft_ns_qual_std(exception) const &x)
-{
-    return c_str_size_a(x.what());
-}
-#endif /* 0 */
-
-#if 0
-/// \brief Returns the size (in bytes) of the contents of \c x, <b><i>not</i></b> including the null-terminating character
-inline ss_size_t c_str_size(stlsoft_ns_qual_std(exception) const &x)
-{
-    return c_str_size_a(x);
-}
-#endif /* 0 */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

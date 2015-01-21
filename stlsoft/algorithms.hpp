@@ -4,7 +4,7 @@
  * Purpose:     Contains various simple self-contained algorithms.
  *
  * Created:     23rd October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MINOR       6
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        24
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,12 +96,15 @@ namespace stlsoft
 
 // function copy_n
 
-/// Copies N elements from the range [src, src + n) to the range
-/// [dest, dest + n).
-///
-/// \param src The iterator copied from
-/// \param n The number of elements copied
-/// \param dest The iterator copied to
+/** \brief Copies N elements from the range [src, src + n) to the range
+ * [dest, dest + n).
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param src The iterator copied from
+ * \param n The number of elements copied
+ * \param dest The iterator copied to
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k O
         >
@@ -117,13 +120,16 @@ inline O copy_n(I src, ss_size_t n, O dest)
 
 // function copy_if
 
-/// Copies N elements from the range [src, src + n) to the range
-/// [dest, dest + n).
-///
-/// \param first The start of the (unordered) sequence
-/// \param last The (one past the) end point of the sequence
-/// \param dest The output iterator to which the copies are written
-/// \param pr The predicate
+/** \brief Copies N elements from the range [src, src + n) to the range
+ * [dest, dest + n).
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param first The start of the (unordered) sequence
+ * \param last The (one past the) end point of the sequence
+ * \param dest The output iterator to which the copies are written
+ * \param pr The predicate
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k O
         ,   ss_typename_param_k P
@@ -143,12 +149,15 @@ inline O copy_if(I first, I last, O dest, P pr)
 
 // function skip_equal
 
-/// Skips along from a given iteration point to the first subsequent
-/// iteration point whose value is not equal to that of the starting
-/// point
-///
-/// \param first The start of the sequence
-/// \param last The (one past the) end point of the sequence
+/** \brief Skips along from a given iteration point to the first subsequent
+ * iteration point whose value is not equal to that of the starting
+ * point
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param first The start of the sequence
+ * \param last The (one past the) end point of the sequence
+ */
 template<ss_typename_param_k I>
 inline I skip_equal(I first, I last)
 {
@@ -173,17 +182,20 @@ inline I skip_equal(I first, I last)
 #ifdef STLSOFT_CF_std_NAMESPACE
 // function find_first_duplicate
 
-/// Finds the first duplicate item in the unordered sequence [first, last)
-/// If a duplicate is found, the return value is a pair of the iterators
-/// referring to the first and second elements comprising the duplicate.
-/// If no duplicate is found, the return value is a pair containing the
-/// \c last iterator in both its members
-///
-/// \param first The start of the (unordered) sequence
-/// \param last The (one past the) end point of the sequence
-///
-/// \note This algorithm works for ordered sequences, but \c std::adjacent_find
-/// is more suitable for such cases
+/** \brief Finds the first duplicate item in the unordered sequence [first, last)
+ * If a duplicate is found, the return value is a pair of the iterators
+ * referring to the first and second elements comprising the duplicate.
+ * If no duplicate is found, the return value is a pair containing the
+ * \c last iterator in both its members
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param first The start of the (unordered) sequence
+ * \param last The (one past the) end point of the sequence
+ *
+ * \note This algorithm works for ordered sequences, but \c std::adjacent_find
+ * is more suitable for such cases
+ */
 template<ss_typename_param_k I>
 #if defined(STLSOFT_COMPILER_IS_DMC) && \
     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -238,13 +250,16 @@ inline stlsoft_ns_qual_std(pair)<I, I> find_first_duplicate(I first, I last, P p
 
 // function replace_n
 
-/// Copies N elements from the range [src, src + n) to the range
-/// [dest, dest + n).
-///
-/// \param from The iterator copied from
-/// \param n The number of elements copied
-/// \param oldValue The existing value to search for
-/// \param newValue The existing value with which oldValue will be replaced
+/** \brief Copies N elements from the range [src, src + n) to the range
+ * [dest, dest + n).
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param from The iterator copied from
+ * \param n The number of elements copied
+ * \param oldValue The existing value to search for
+ * \param newValue The existing value with which oldValue will be replaced
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k T
         >

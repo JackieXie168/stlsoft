@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    0
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     66
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,38 +91,41 @@ namespace comstl_project
  * C functions
  */
 
-/// \brief Creates a BSTR from a Unicode string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from a Unicode string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ *
+ * \result The created BSTR
+ */
 STLSOFT_INLINE BSTR comstl__bstr_create_w(cs_char_w_t const *s)
 {
     return STLSOFT_NS_GLOBAL(SysAllocString)(s);
 }
 
-/// \brief Creates a BSTR from a (part of a) Unicode string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-/// \param len The number of characters of \c s to copy into the result
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from a (part of a) Unicode string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ * \param len The number of characters of \c s to copy into the result
+ *
+ * \result The created BSTR
+ */
 STLSOFT_INLINE BSTR comstl__bstr_create_len_w(cs_char_w_t const *s, cs_size_t len)
 {
     return STLSOFT_NS_GLOBAL(SysAllocStringLen)(s, len);
 }
 
-/// \brief Creates a BSTR from an ANSI string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from an ANSI string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ *
+ * \result The created BSTR
+ */
 STLSOFT_INLINE BSTR comstl__bstr_create_a(cs_char_a_t const *s)
 {
     BSTR    bstr = NULL;
@@ -153,14 +156,15 @@ STLSOFT_INLINE BSTR comstl__bstr_create_a(cs_char_a_t const *s)
     return bstr;
 }
 
-/// \brief Creates a BSTR from an ANSI string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-/// \param len The number of characters of \c s to copy into the result
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from an ANSI string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ * \param len The number of characters of \c s to copy into the result
+ *
+ * \result The created BSTR
+ */
 STLSOFT_INLINE BSTR comstl__bstr_create_len_a(cs_char_a_t const *s, cs_size_t len)
 {
     BSTR    bstr = NULL;
@@ -174,10 +178,10 @@ STLSOFT_INLINE BSTR comstl__bstr_create_len_a(cs_char_a_t const *s, cs_size_t le
             int n   =   STLSOFT_NS_GLOBAL(MultiByteToWideChar)(0, 0, s, stlsoft_static_cast(int, len), pwsz, stlsoft_static_cast(int, 1 + len));
 
 #ifdef _DEBUG
-			if(0 == n)
-			{
-				::GetLastError();
-			}
+            if(0 == n)
+            {
+                ::GetLastError();
+            }
 #endif /* _DEBUG */
             if(0 != n)
             {
@@ -191,22 +195,24 @@ STLSOFT_INLINE BSTR comstl__bstr_create_len_a(cs_char_a_t const *s, cs_size_t le
     return bstr;
 }
 
-/// \brief Destroys a BSTR
-///
-/// \ingroup group__library__string
-///
-/// \param bstr The BSTR to destroy
+/** \brief Destroys a BSTR
+ *
+ * \ingroup group__library__string
+ *
+ * \param bstr The BSTR to destroy
+ */
 STLSOFT_INLINE void comstl__bstr_destroy(BSTR bstr)
 {
     STLSOFT_NS_GLOBAL(SysFreeString)(bstr);
 }
 
-/// \brief Duplicates a BSTR
-///
-/// \ingroup group__library__string
-///
-/// \param bstr The BSTR to duplicate
-/// \return The copied BSTR
+/** \brief Duplicates a BSTR
+ *
+ * \ingroup group__library__string
+ *
+ * \param bstr The BSTR to duplicate
+ * \return The copied BSTR
+ */
 STLSOFT_INLINE BSTR comstl__bstr_dup(BSTR bstr)
 {
     return comstl__bstr_create_w(bstr);
@@ -218,122 +224,132 @@ STLSOFT_INLINE BSTR comstl__bstr_dup(BSTR bstr)
 
 #ifdef __cplusplus
 
-/// \brief Creates a BSTR from a Unicode string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from a Unicode string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create_w(cs_char_w_t const *s)
 {
     return comstl__bstr_create_w(s);
 }
 
-/// \brief Creates a BSTR from a Unicode string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-/// \param len The number of characters of \c s to copy into the result
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from a Unicode string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ * \param len The number of characters of \c s to copy into the result
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create_w(cs_char_w_t const *s, cs_size_t len)
 {
     return comstl__bstr_create_len_w(s, len);
 }
 
-/// \brief Creates a BSTR from an ANSI string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from an ANSI string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create_a(cs_char_a_t const *s)
 {
     return comstl__bstr_create_a(s);
 }
 
-/// \brief Creates a BSTR from an ANSI string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-/// \param len The number of characters of \c s to copy into the result
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from an ANSI string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ * \param len The number of characters of \c s to copy into the result
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create_a(cs_char_a_t const *s, cs_size_t len)
 {
     return comstl__bstr_create_len_a(s, len);
 }
 
-/// \brief Creates a BSTR from an ANSI string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from an ANSI string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create(cs_char_a_t const *s)
 {
     return bstr_create_a(s);
 }
 
-/// \brief Creates a BSTR from an ANSI string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-/// \param len The number of characters of \c s to copy into the result
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from an ANSI string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ * \param len The number of characters of \c s to copy into the result
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create(cs_char_a_t const *s, cs_size_t len)
 {
     return bstr_create_a(s, len);
 }
 
-/// \brief Creates a BSTR from a Unicode string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from a Unicode string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create(cs_char_w_t const *s)
 {
     return bstr_create_w(s);
 }
 
-/// \brief Creates a BSTR from a Unicode string
-///
-/// \ingroup group__library__string
-///
-/// \param s The string from which to create the BSTR
-/// \param len The number of characters of \c s to copy into the result
-///
-/// \result The created BSTR
+/** \brief Creates a BSTR from a Unicode string
+ *
+ * \ingroup group__library__string
+ *
+ * \param s The string from which to create the BSTR
+ * \param len The number of characters of \c s to copy into the result
+ *
+ * \result The created BSTR
+ */
 inline BSTR bstr_create(cs_char_w_t const *s, cs_size_t len)
 {
     return bstr_create_w(s, len);
 }
 
-/// \brief Destroys a BSTR
-///
-/// \ingroup group__library__string
-///
-/// \param bstr The BSTR to destroy
+/** \brief Destroys a BSTR
+ *
+ * \ingroup group__library__string
+ *
+ * \param bstr The BSTR to destroy
+ */
 inline void bstr_destroy(BSTR bstr)
 {
     comstl__bstr_destroy(bstr);
 }
 
-/// \brief Duplicates a BSTR
-///
-/// \ingroup group__library__string
-///
-/// \param bstr The BSTR to duplicate
-/// \return The copied BSTR
+/** \brief Duplicates a BSTR
+ *
+ * \ingroup group__library__string
+ *
+ * \param bstr The BSTR to duplicate
+ * \return The copied BSTR
+ */
 inline BSTR bstr_dup(BSTR bstr)
 {
     return comstl__bstr_dup(bstr);

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the CArray_traits traits class.
  *
  * Created:     1st December 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS_MAJOR    1
 # define MFCSTL_VER_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS_MINOR    0
 # define MFCSTL_VER_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS_REVISION 2
-# define MFCSTL_VER_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS_EDIT     4
+# define MFCSTL_VER_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,10 @@ namespace mfcstl_project
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for CArray_adaptor_base
+/** \brief Traits for CArray_adaptor_base
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 struct CArray_traits
 {
@@ -193,7 +196,10 @@ struct CArray_traits<CArray<V, A> >
 # endif /* __AFXTEMPL_H__ && STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Traits type for specific setting of value_type and arg_type
+/** \brief Traits type for specific setting of value_type and arg_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k V
         ,   ss_typename_param_k A
         ,   ss_typename_param_k C

@@ -4,7 +4,7 @@
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     20th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,10 +50,10 @@
 #define WINSTL_INCL_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MAJOR		4
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MINOR		0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_REVISION	2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT		59
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MAJOR     4
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MINOR     0
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_REVISION  2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>					// for stlsoft::iterator_base
+# include <stlsoft/iterator.hpp>                    // for stlsoft::iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS
 # include <winstl/controls/commctrl_functions.h>    // for treeview_getnext(), etc.
@@ -95,12 +95,13 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \brief Iterator for the treeview_child_sequence, treeview_peer_sequence and treeview_visible_sequence classes
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param N The windows message that is used to access the next element in the iteration sequence
-/// \param P The windows message that is used to access the previous element in the iteration sequence
+/** \brief Iterator for the treeview_child_sequence, treeview_peer_sequence and treeview_visible_sequence classes
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param N The windows message that is used to access the next element in the iteration sequence
+ * \param P The windows message that is used to access the previous element in the iteration sequence
+ */
 template <UINT N, UINT P>
 class treeview_sequence_const_iterator
     : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(forward_iterator_tag)
@@ -169,10 +170,11 @@ private:
 };
 
 
-/// \brief Base class for the treeview_child_sequence, 
-///  treeview_peer_sequence and treeview_visible_sequence classes.
-///
-/// \ingroup group__library__windows_controls
+/** \brief Base class for the treeview_child_sequence, 
+ *  treeview_peer_sequence and treeview_visible_sequence classes.
+ *
+ * \ingroup group__library__windows_controls
+ */
 template <UINT N, UINT P>
 class treeview_sequence_base
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -224,9 +226,10 @@ private:
 };
 
 // class treeview_child_sequence
-/// \brief Presents an STL-like sequence interface to the children of a given node in a tree-view
-///
-/// \ingroup group__library__windows_controls
+/** \brief Presents an STL-like sequence interface to the children of a given node in a tree-view
+ *
+ * \ingroup group__library__windows_controls
+ */
 class treeview_child_sequence
     : public treeview_sequence_base<TVGN_NEXT, TVGN_PREVIOUS>
 {
@@ -256,9 +259,10 @@ public:
 };
 
 // class treeview_peer_sequence
-/// brief Presents an STL-like sequence interface to the peers of a given node in a tree-view
-///
-/// \ingroup group__library__windows_controls
+/** \brief brief Presents an STL-like sequence interface to the peers of a given node in a tree-view
+ *
+ * \ingroup group__library__windows_controls
+ */
 class treeview_peer_sequence
     : public treeview_sequence_base<TVGN_NEXT, TVGN_PREVIOUS>
 {
@@ -286,9 +290,10 @@ public:
 };
 
 // class treeview_visible_sequence
-/// \brief Presents an STL-like sequence interface to the visible items in a tree-view
-///
-/// \ingroup group__library__windows_controls
+/** \brief Presents an STL-like sequence interface to the visible items in a tree-view
+ *
+ * \ingroup group__library__windows_controls
+ */
 class treeview_visible_sequence
     : public treeview_sequence_base<TVGN_NEXTVISIBLE, TVGN_PREVIOUSVISIBLE>
 {

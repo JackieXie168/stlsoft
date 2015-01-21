@@ -9,27 +9,27 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_char_traits(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_char_traits(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "string/char_traits", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "string/char_traits", __FILE__);
 
-    #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
+	#if 0
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
+	#endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_char_traits(test_stlsoft_char_traits);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_char_traits(test_stlsoft_char_traits);
+	} // anonymous namespace
 
 } // namespace unittest
 

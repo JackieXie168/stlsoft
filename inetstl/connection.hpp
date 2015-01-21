@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_connection class.
  *
  * Created:     30th April 1999
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_MAJOR       4
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_MINOR       3
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        56
+# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,10 @@ namespace inetstl_project
  * Classes
  */
 
-/// Represents an internet connection
+/** \brief Represents an internet connection
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ,   ss_typename_param_k X   =   throw_internet_exception_policy
@@ -210,11 +213,20 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_connection template for the ANSI character type \c char
+/** \brief Instantiation of the basic_connection template for the ANSI character type \c char
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_connection<is_char_a_t>   connection_a;
-/// Instantiation of the basic_connection template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_connection template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_connection<is_char_w_t>   connection_w;
-/// Instantiation of the basic_connection template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_connection template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_connection<TCHAR>         connection;
 
 /* ////////////////////////////////////////////////////////////////////// */

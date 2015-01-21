@@ -4,7 +4,7 @@
  * Purpose:     Window text scoping class.
  *
  * Created:     21st August 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MINOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     30
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,10 +99,13 @@ namespace winstl_project
  */
 
 // window_text_scope
-/// Provides scoping of the text of a window.
-///
-/// This class provides scoping of the text of a window via the API
-/// function SetWindowText().
+/** \brief Provides scoping of the text of a window.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class provides scoping of the text of a window via the API
+ * function SetWindowText().
+ */
 template <ss_typename_param_k S>
 class window_text_scope
 {

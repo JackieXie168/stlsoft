@@ -98,21 +98,21 @@ namespace platformstl_project
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-	/** \brief A spin mutex class
-	 *
-	 * The class is not actually defined in the
-	 * \link ::platformstl platformstl\endlink namespace. Rather, it
-	 * resolves to the appropriate type for the given platform, relying on
-	 * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
-	 * of the resolved platform-specific types.
-	 *
-	 * When compiling on UNIX platforms, the platformstl::spin_mutex
-	 * type resolves to the unixstl::spin_mutex class. On Windows platforms
-	 * it resolves to the winstl::spin_mutex class. It is not defined
-	 * for other platforms.
-	 */
-	class spin_mutex
-	{};
+    /** \brief A spin mutex class
+     *
+     * The class is not actually defined in the
+     * \link ::platformstl platformstl\endlink namespace. Rather, it
+     * resolves to the appropriate type for the given platform, relying on
+     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * of the resolved platform-specific types.
+     *
+     * When compiling on UNIX platforms, the platformstl::spin_mutex
+     * type resolves to the unixstl::spin_mutex class. On Windows platforms
+     * it resolves to the winstl::spin_mutex class. It is not defined
+     * for other platforms.
+     */
+    class spin_mutex
+    {};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 

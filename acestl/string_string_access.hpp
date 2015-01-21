@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MAJOR       1
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MINOR       2
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_REVISION    4
-# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        17
+# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,25 +91,34 @@ namespace acestl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup concepts STLSoft Concepts
+/** \brief \weakgroup concepts STLSoft Concepts
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
+/** \brief \weakgroup concepts_shims Shims
+ * \ingroup concepts
+ */
 
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
+/** \brief \weakgroup concepts_shims_string_access String Access Shims
+ * \ingroup concepts_shims
+ * \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
+ */
 
-/// \defgroup acestl_string_access_shims String Access Shims (ACESTL)
-/// \ingroup ACESTL concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" accessing string attributes for ACE string types
-/// @{
+/** \brief \defgroup acestl_string_access_shims String Access Shims (ACESTL)
+ * \ingroup ACESTL concepts_shims_string_access
+ * \brief These \ref concepts_shims "shims" accessing string attributes for ACE string types
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
-/// Returns a non-NULL nul-terminated c-string pointer from the given string instance
+/** \brief Returns a non-NULL nul-terminated c-string pointer from the given string instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline C const *c_str_ptr(ACE_String_Base<C> const &s)
 {
@@ -124,7 +133,10 @@ inline as_char_w_t const *c_str_ptr_w(ACE_String_Base<as_char_w_t> const &s)
     return s.c_str();
 }
 
-/// Returns a non-NULL optionally non-nul-terminated c-string pointer from the given string instance
+/** \brief Returns a non-NULL optionally non-nul-terminated c-string pointer from the given string instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline C const *c_str_data(ACE_String_Base<C> const &s)
 {
@@ -139,30 +151,32 @@ inline as_char_w_t const *c_str_data_a(ACE_String_Base<as_char_w_t> const &s)
     return s.c_str();
 }
 
-/// Returns a possibly NULL nul-terminated c-string pointer from the given string instance
+/** \brief Returns a possibly NULL nul-terminated c-string pointer from the given string instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline C const *c_str_ptr_null(ACE_String_Base<C> const &s)
 {
     return (0 == s.length()) ? NULL : s.c_str();
 }
 
-/// Evaluates the length (in characters) of the string
+/** \brief Evaluates the length (in characters) of the string
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline as_size_t c_str_len(ACE_String_Base<C> const &s)
 {
     return s.length();
 }
 
-#if 0
-/// Evaluates the size (in bytes) of the string
-template <ss_typename_param_k C>
-inline as_size_t c_str_size(ACE_String_Base<C> const &s)
-{
-    return sizeof(C) * s.length();
-}
-#endif /* 0 */
 
-/// An inserter function for ACE_Time_Value into output streams
+
+/** \brief An inserter function for ACE_Time_Value into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
@@ -173,7 +187,10 @@ inline S &operator <<(S &s, ACE_String_Base<C> const &str)
     return s;
 }
 
-/// @} // end of group acestl_string_access_shims
+/** \brief @} // end of group acestl_string_access_shims
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -186,7 +203,10 @@ inline S &operator <<(S &s, ACE_String_Base<C> const &str)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/// An inserter function for ACE_Time_Value into output streams
+/** \brief An inserter function for ACE_Time_Value into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
@@ -209,10 +229,6 @@ namespace stlsoft
     using ::acestl::c_str_data_w;
 
     using ::acestl::c_str_len;
-
-#if 0
-    using ::acestl::c_str_size;
-#endif /* 0 */
 
 } // namespace stlsoft
 

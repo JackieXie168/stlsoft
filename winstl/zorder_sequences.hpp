@@ -4,7 +4,7 @@
  * Purpose:     Collection of the peers of a given window.
  *
  * Created:     11th July 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MAJOR       1
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MINOR       0
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_REVISION    4
-# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        6
+# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,7 +95,10 @@ namespace winstl_project
  * Classes
  */
 
-/// Window peer sequence
+/** \brief Window peer sequence
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >

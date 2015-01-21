@@ -4,7 +4,7 @@
  * Purpose:     Contains various simple self-contained algorithms.
  *
  * Created:     26th February 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_UNITTEST_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_UNITTEST_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_UNITTEST_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_UNITTEST_EDIT        25
+# define STLSOFT_VER_STLSOFT_HPP_UNITTEST_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,10 @@ namespace unittest
  * Unit test interfaces
  */
 
-/// Interface for the unit test reporter
+/** \brief Interface for the unit test reporter
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct unittest_reporter
 {
 public:
@@ -111,7 +114,10 @@ public:
 
 typedef ss_bool_t (*unittest_function)(unittest_reporter *);
 
-/// Interface for the unit test host
+/** \brief Interface for the unit test host
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct unittest_host
 {
 public:
@@ -124,23 +130,29 @@ public:
  * Unit test functions
  */
 
-/// \brief This function must be defined by the test program, and should return
-/// an instance of a class implementing the unittest_host interface (protocol)
-///
-/// \note Because the STLSoft components use a scoping initialiser (Schwarz
-/// counter) it is important that the implementing object is a heap instance, to
-/// ensure that it is not destroyed prior to the destructors for the unit test
-/// initialisers using it to deregister themselves.
+/** \brief This function must be defined by the test program, and should return
+ * an instance of a class implementing the unittest_host interface (protocol)
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note Because the STLSoft components use a scoping initialiser (Schwarz
+ * counter) it is important that the implementing object is a heap instance, to
+ * ensure that it is not destroyed prior to the destructors for the unit test
+ * initialisers using it to deregister themselves.
+ */
 extern "C" unittest_host *get_unittest_host(void);
 
 /* /////////////////////////////////////////////////////////////////////////
  * Unit test classes
  */
 
-/// \brief This class is used to automatically register the unit-tests for a
-/// given compilation unit with the unit test host.
-///
-/// To use it you simply declare an instance of it, inside a
+/** \brief This class is used to automatically register the unit-tests for a
+ * given compilation unit with the unit test host.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * To use it you simply declare an instance of it, inside a
+ */
 class unittest_registrar
 {
     typedef unittest_registrar  class_type;
@@ -169,10 +181,13 @@ private:
     unittest_registrar &operator =(class_type const &rhs);
 };
 
-/// \brief This class is used within unit tests to simplify the
-/// process of registering the test information, and calling
-/// \c start() and \c stop() on the reporter.
-///
+/** \brief This class is used within unit tests to simplify the
+ * process of registering the test information, and calling
+ * \c start() and \c stop() on the reporter.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 class unittest_initialiser
 {
     typedef unittest_initialiser    class_type;

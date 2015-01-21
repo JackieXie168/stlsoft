@@ -11,72 +11,72 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_ostream_iterator(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_ostream_iterator(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "ostream_iterator", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "ostream_iterator", __FILE__);
 
-            char const              *strings[] =
-            {
-                    "abc"
-                ,   "de"
-                ,   "fgh"
-                ,   ""
-                ,   "i"
-                ,   "jkl"
-            };
+			char const				*strings[] =
+			{
+					"abc"
+				,	"de"
+				,	"fgh"
+				,	""
+				,	"i"
+				,	"jkl"
+			};
 
 #if !defined(STLSOFT_COMPILER_IS_DMC)
-            {
-                std::stringstream       ss;
+			{
+				std::stringstream		ss;
 
-                stlsoft_ns_qual_std(copy)(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-                                        ,   stlsoft_ns_qual(ostream_iterator)<char const*>(ss));
+				stlsoft_ns_qual_std(copy)(	&strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
+										,	stlsoft_ns_qual(ostream_iterator)<char const*>(ss));
 
-                if(ss.str() != "abcdefghijkl")
-                {
-                    r->report("stream concatenation failed: incorrect contents", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(ss.str() != "abcdefghijkl")
+				{
+					r->report("stream concatenation failed: incorrect contents", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            {
-                std::stringstream       ss;
+			{
+				std::stringstream		ss;
 
-                stlsoft_ns_qual_std(copy)(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-                                        ,   stlsoft_ns_qual(ostream_iterator)<char const*>(ss, ","));
+				stlsoft_ns_qual_std(copy)(	&strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
+										,	stlsoft_ns_qual(ostream_iterator)<char const*>(ss, ","));
 
-                if(ss.str() != "abc,de,fgh,,i,jkl,")
-                {
-                    r->report("stream concatenation failed: incorrect contents", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(ss.str() != "abc,de,fgh,,i,jkl,")
+				{
+					r->report("stream concatenation failed: incorrect contents", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            {
-                std::stringstream       ss;
+			{
+				std::stringstream		ss;
 
-                stlsoft_ns_qual_std(copy)(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-                                        ,   stlsoft_ns_qual(ostream_iterator)<char const*>(ss, "<<", "]]"));
+				stlsoft_ns_qual_std(copy)(	&strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
+										,	stlsoft_ns_qual(ostream_iterator)<char const*>(ss, "<<", "]]"));
 
-                if(ss.str() != "<<abc]]<<de]]<<fgh]]<<]]<<i]]<<jkl]]")
-                {
-                    r->report("stream concatenation failed: incorrect contents", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(ss.str() != "<<abc]]<<de]]<<fgh]]<<]]<<i]]<<jkl]]")
+				{
+					r->report("stream concatenation failed: incorrect contents", __LINE__);
+					bSuccess = false;
+				}
+			}
 #endif /* compiler */
 
-            STLSOFT_SUPPRESS_UNUSED(bSuccess);
+			STLSOFT_SUPPRESS_UNUSED(bSuccess);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_ostream_iterator(test_stlsoft_ostream_iterator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_ostream_iterator(test_stlsoft_ostream_iterator);
+	} // anonymous namespace
 
 } // namespace unittest
 

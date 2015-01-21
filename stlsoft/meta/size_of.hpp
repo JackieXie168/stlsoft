@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/size_of.hpp (formerly stlsoft_meta.h; originally MTBase.h, ::SynesisStl)
+ * File:        stlsoft/meta/size_of.hpp (originally MTBase.h, ::SynesisStl)
  *
  * Purpose:     Size determination.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/size_of.hpp
-///
-/// Size determination.
+/** \file stlsoft/meta/size_of.hpp
+ *
+ * \brief [C++ only] Definition of the void-compatible sizeof() operator
+ *  template: stlsoft::size_of.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF
 #define STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_REVISION  1
-# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      120
+# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,8 +76,11 @@ namespace stlsoft
  * Tests
  */
 
-/// \brief Provides the sizeof the type, and works with void (for which it
-/// provides the value 0)
+/** \brief Provides the sizeof the type, and works with void (for which it
+ *   provides the value 0)
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct size_of
 {

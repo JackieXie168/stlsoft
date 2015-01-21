@@ -153,9 +153,9 @@ struct critical_section
     enum {  is_recursive    =   R       };
     enum {  is_tryable      =   T       };
 
-	/// \brief Type the indicates whether the deriving type 
-	///
-	/// 
+    /// \brief Type the indicates whether the deriving type 
+    ///
+    /// 
     typedef ss_typename_type_k value_to_yesno_type<is_recursive>::type  is_recursive_type;
     typedef ss_typename_type_k value_to_yesno_type<is_tryable>::type    is_tryable_type;
 };

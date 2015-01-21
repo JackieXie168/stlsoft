@@ -4,7 +4,7 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MINOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       52
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,13 +127,14 @@ public:
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief STL-like sequence for combo-box contents
-///
-/// \ingroup group__library__windows_controls
-///
-/// This class presents an STL-like sequence interface to a combo-box
-///
-/// \param S The string type
+/** \brief STL-like sequence for combo-box contents
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * This class presents an STL-like sequence interface to a combo-box
+ *
+ * \param S The string type
+ */
 template <ss_typename_param_k S>
 class combobox_sequence
     : public stlsoft_ns_qual(stl_collection_tag)

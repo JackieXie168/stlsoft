@@ -4,7 +4,7 @@
  * Purpose:     Raw conversion veneer class.
  *
  * Created:     30th July 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       40
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,10 +77,13 @@ namespace stlsoft
  */
 
 // class invalid_conversion
-/// Prevents any conversion
-///
-/// \param T The value type
-/// \param C The conversion type
+/** \brief Prevents any conversion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param C The conversion type
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
         >
@@ -143,10 +146,13 @@ public:
 };
 
 // class static_conversion
-/// Implements conversion via C++'s <code>static_cast</code>
-///
-/// \param T The value type
-/// \param C The conversion type
+/** \brief Implements conversion via C++'s <code>static_cast</code>
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param C The conversion type
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
         >
@@ -222,10 +228,13 @@ public:
 };
 
 // class dynamic_conversion
-/// Implements conversion via C++'s <code>dynamic_cast</code>
-///
-/// \param T The value type
-/// \param C The conversion type
+/** \brief Implements conversion via C++'s <code>dynamic_cast</code>
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param C The conversion type
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
         >
@@ -301,10 +310,13 @@ public:
 };
 
 // class reinterpret_conversion
-/// Implements conversion via C++'s <code>reinterpret_cast</code>
-///
-/// \param T The value type
-/// \param C The conversion type
+/** \brief Implements conversion via C++'s <code>reinterpret_cast</code>
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param C The conversion type
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
         >
@@ -380,10 +392,13 @@ public:
 };
 
 // class c_conversion
-/// Implements conversion via C-style casts
-///
-/// \param T The value type
-/// \param C The conversion type
+/** \brief Implements conversion via C-style casts
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param C The conversion type
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
         >
@@ -459,17 +474,18 @@ public:
 };
 
 // class conversion_veneer
-/// This class allows policy-based control of the four conversions: pointer, non-mutable pointer, reference, non-mutable reference
-///
-/// \param T The type that will be subjected to the <a href = "http://synesis.com.au/resources/articles/cpp/veneers.pdf">veneer</a>
-/// \param C The type that T will be converted to
-/// \param V The value type. On translators that support default template arguments this defaults to T.
-/// \param P The type that controls the pointer conversion
-/// \param R The type that controls the reference conversion
-/// \param PC The type that controls the pointer-to-const conversion
-/// \param RC The type that controls the reference-to-const conversion
-///
-/// \ingroup concepts_veneer
+/** \brief This class allows policy-based control of the four conversions: pointer, non-mutable pointer, reference, non-mutable reference
+ *
+ * \param T The type that will be subjected to the <a href = "http://synesis.com.au/resources/articles/cpp/veneers.pdf">veneer</a>
+ * \param C The type that T will be converted to
+ * \param V The value type. On translators that support default template arguments this defaults to T.
+ * \param P The type that controls the pointer conversion
+ * \param R The type that controls the reference conversion
+ * \param PC The type that controls the pointer-to-const conversion
+ * \param RC The type that controls the reference-to-const conversion
+ *
+ * \ingroup concepts_veneer
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT

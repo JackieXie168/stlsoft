@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation API exception(s).
  *
  * Created:     30th May 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        3
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

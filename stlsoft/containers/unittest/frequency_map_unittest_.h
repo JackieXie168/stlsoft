@@ -9,55 +9,55 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_containers_frequency_map(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_containers_frequency_map(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "containers/frequency_map", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "containers/frequency_map", __FILE__);
 
-            frequency_map<int>      fm;
+			frequency_map<int>		fm;
 
-            if(!fm.empty())
-            {
-                r->report("frequency_map erroneously fails to report empty()", __LINE__);
-                bSuccess = false;
-            }
+			if(!fm.empty())
+			{
+				r->report("frequency_map erroneously fails to report empty()", __LINE__);
+				bSuccess = false;
+			}
 
-            fm.push(1);
-            fm.push(1);
-            fm.push(1);
+			fm.push(1);
+			fm.push(1);
+			fm.push(1);
 
-            if(1 != fm.size())
-            {
-                r->report("frequency_map reports incorrect size()", __LINE__);
-                bSuccess = false;
-            }
-            if(fm.empty())
-            {
-                r->report("frequency_map erroneously reports empty()", __LINE__);
-                bSuccess = false;
-            }
+			if(1 != fm.size())
+			{
+				r->report("frequency_map reports incorrect size()", __LINE__);
+				bSuccess = false;
+			}
+			if(fm.empty())
+			{
+				r->report("frequency_map erroneously reports empty()", __LINE__);
+				bSuccess = false;
+			}
 
-            if(3 != fm[1])
-            {
-                r->report("frequency_map value[1] returned incorrect frequency", __LINE__);
-                bSuccess = false;
-            }
+			if(3 != fm[1])
+			{
+				r->report("frequency_map value[1] returned incorrect frequency", __LINE__);
+				bSuccess = false;
+			}
 
-            fm.push(2);
+			fm.push(2);
 
-            if(2 != fm.size())
-            {
-                r->report("frequency_map reports incorrect size()", __LINE__);
-                bSuccess = false;
-            }
+			if(2 != fm.size())
+			{
+				r->report("frequency_map reports incorrect size()", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_containers_frequency_map(test_stlsoft_containers_frequency_map);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_containers_frequency_map(test_stlsoft_containers_frequency_map);
+	} // anonymous namespace
 
 } // namespace unittest

@@ -4,7 +4,7 @@
  * Purpose:     Container accessor functions.
  *
  * Created:     11th November 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_MINOR     3
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_EDIT      22
+# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,16 +104,19 @@ namespace stlsoft
  * Functions
  */
 
-/// Looks up and returns the matching referent for a given key, or throws
-/// std::out_of_range if the key is not found in the map
-///
-/// \param m The map to be searched
-/// \param key The key to be searched for
-///
-/// \return The matching referent
-///
-/// \note If \c key does not refer to an entry in the map \c m, then
-/// std::out_of_range is thrown
+/** \brief Looks up and returns the matching referent for a given key, or throws
+ * std::out_of_range if the key is not found in the map
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param m The map to be searched
+ * \param key The key to be searched for
+ *
+ * \return The matching referent
+ *
+ * \note If \c key does not refer to an entry in the map \c m, then
+ * std::out_of_range is thrown
+ */
 #if (   !defined(STLSOFT_COMPILER_IS_INTEL) && \
         !defined(STLSOFT_COMPILER_IS_MSVC)) || \
     _MSC_VER >= 1310
@@ -137,16 +140,19 @@ inline ss_typename_type_k M::mapped_type &lookup(M &m, K const &key)
 }
 #endif /* compiler */
 
-/// Looks up and returns the matching referent for a given key, or throws
-/// std::out_of_range if the key is not found in the map
-///
-/// \param m The map to be searched
-/// \param key The key to be searched for
-///
-/// \return The matching referent
-///
-/// \note If \c key does not refer to an entry in the map \c m, then
-/// std::out_of_range is thrown
+/** \brief Looks up and returns the matching referent for a given key, or throws
+ * std::out_of_range if the key is not found in the map
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param m The map to be searched
+ * \param key The key to be searched for
+ *
+ * \return The matching referent
+ *
+ * \note If \c key does not refer to an entry in the map \c m, then
+ * std::out_of_range is thrown
+ */
 template<   ss_typename_param_k M
         ,   ss_typename_param_k K
         >

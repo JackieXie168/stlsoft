@@ -4,7 +4,7 @@
  * Purpose:     Various Windows common control functions.
  *
  * Created:     13th November 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION	1
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       35
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   1
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,44 +92,48 @@ namespace winstl_project
  * C functions
  */
 
-/// Gets the next item in the tree view
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
-/// \param hitem The tree view item
-/// \param flag One of the <b>TVGN_*</b> search flags
+/** \brief Gets the next item in the tree view
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ * \param hitem The tree view item
+ * \param flag One of the <b>TVGN_*</b> search flags
+ */
 STLSOFT_INLINE HTREEITEM winstl__treeview_getnextitem(HWND hwnd, HTREEITEM hitem, UINT flag)
 {
     return stlsoft_reinterpret_cast(HTREEITEM, winstl__SendMessage(hwnd, TVM_GETNEXTITEM, stlsoft_static_cast(WPARAM, flag), stlsoft_reinterpret_cast(LPARAM, hitem)));
 }
 
-/// Gets the tree view child item
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
-/// \param hitem The tree view item whose child is to be retrieved
+/** \brief Gets the tree view child item
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ * \param hitem The tree view item whose child is to be retrieved
+ */
 STLSOFT_INLINE HTREEITEM winstl__treeview_getchilditem(HWND hwnd, HTREEITEM hitem)
 {
     return winstl__treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
 }
 
-/// Gets the tree view root item
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
+/** \brief Gets the tree view root item
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ */
 STLSOFT_INLINE HTREEITEM winstl__treeview_getrootitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_ROOT);
 }
 
-/// Gets the tree view caret item
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
+/** \brief Gets the tree view caret item
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ */
 STLSOFT_INLINE HTREEITEM winstl__treeview_getcaretitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_CARET);
@@ -141,44 +145,48 @@ STLSOFT_INLINE HTREEITEM winstl__treeview_getcaretitem(HWND hwnd)
 
 #ifdef __cplusplus
 
-/// Gets the next item in the tree view
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
-/// \param hitem The tree view item
-/// \param flag One of the <b>TVGN_*</b> search flags
+/** \brief Gets the next item in the tree view
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ * \param hitem The tree view item
+ * \param flag One of the <b>TVGN_*</b> search flags
+ */
 inline HTREEITEM treeview_getnextitem(HWND hwnd, HTREEITEM hitem, UINT flag)
 {
     return winstl__treeview_getnextitem(hwnd, hitem, flag);
 }
 
-/// Gets the tree view child item
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
-/// \param hitem The tree view item whose child is to be retrieved
+/** \brief Gets the tree view child item
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ * \param hitem The tree view item whose child is to be retrieved
+ */
 inline HTREEITEM treeview_getchilditem(HWND hwnd, HTREEITEM hitem)
 {
     return winstl__treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
 }
 
-/// Gets the tree view root item
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
+/** \brief Gets the tree view root item
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ */
 inline HTREEITEM treeview_getrootitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_ROOT);
 }
 
-/// Gets the tree view caret item
-///
-/// \ingroup group__library__windows_controls
-///
-/// \param hwnd The tree view window handle
+/** \brief Gets the tree view caret item
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * \param hwnd The tree view window handle
+ */
 inline HTREEITEM treeview_getcaretitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_CARET);

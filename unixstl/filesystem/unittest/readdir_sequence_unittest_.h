@@ -11,86 +11,86 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_unixstl_filesystem_readdir_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_unixstl_filesystem_readdir_sequence(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "filesystem/readdir_sequence", __FILE__);
+			unittest_initialiser	init(r, "UNIXSTL", "filesystem/readdir_sequence", __FILE__);
 
-            readdir_sequence        files(".", readdir_sequence::files);
-            int                     bFilesTestedEmpty = true;
+			readdir_sequence		files(".", readdir_sequence::files);
+			int 					bFilesTestedEmpty = true;
 
-            {
-                readdir_sequence::const_iterator b  =   files.begin();
+			{
+				readdir_sequence::const_iterator b	=	files.begin();
 
-                b   =   b;
-                b   =   files.begin();
-            }
+				b	=	b;
+				b	=	files.begin();
+			}
 
-            { for(readdir_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
-            {
-                bFilesTestedEmpty = false;
-            }}
+			{ for(readdir_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
+			{
+				bFilesTestedEmpty = false;
+			}}
 
-            if(!bFilesTestedEmpty != !!files.empty())
-            {
-                r->report("readdir_sequence empty() contradiction when enumerating files", __LINE__);
-                bSuccess = false;
-            }
+			if(!bFilesTestedEmpty != !!files.empty())
+			{
+				r->report("readdir_sequence empty() contradiction when enumerating files", __LINE__);
+				bSuccess = false;
+			}
 
-            readdir_sequence        directories(".", readdir_sequence::directories);
-            int                     bDirectoriesTestedEmpty = true;
+			readdir_sequence		directories(".", readdir_sequence::directories);
+			int 					bDirectoriesTestedEmpty = true;
 
-            { for(readdir_sequence::const_iterator b = directories.begin(); b != directories.end(); ++b)
-            {
-                bDirectoriesTestedEmpty = false;
-            }}
+			{ for(readdir_sequence::const_iterator b = directories.begin(); b != directories.end(); ++b)
+			{
+				bDirectoriesTestedEmpty = false;
+			}}
 
-            if(!bDirectoriesTestedEmpty != !!directories.empty())
-            {
-                r->report("readdir_sequence empty() contradiction when enumerating files", __LINE__);
-                bSuccess = false;
-            }
+			if(!bDirectoriesTestedEmpty != !!directories.empty())
+			{
+				r->report("readdir_sequence empty() contradiction when enumerating files", __LINE__);
+				bSuccess = false;
+			}
 
 #if 0
-            if(seq.empty() == (0 == seq.size()))
-            {
-                r->report("readdir_sequence empty() and size() contradict ", __LINE__);
-                bSuccess = false;
-            }
+			if(seq.empty() == (0 == seq.size()))
+			{
+				r->report("readdir_sequence empty() and size() contradict ", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
 #if 0
-            readdir_sequence::size_type   total_forward   =   0;
-            readdir_sequence::size_type   total_backward  =   0;
+			readdir_sequence::size_type   total_forward   =   0;
+			readdir_sequence::size_type   total_backward  =   0;
 
-            readdir_sequence::const_iterator            b_f =   seq.begin();
-            for(; b_f != seq.end(); ++b_f)
-            {
-                total_forward += strlen((*b_f)->d_name);
-            }
+			readdir_sequence::const_iterator			b_f =	seq.begin();
+			for(; b_f != seq.end(); ++b_f)
+			{
+				total_forward += strlen((*b_f)->d_name);
+			}
 
-            readdir_sequence::const_reverse_iterator    b_b =   seq.rbegin();
-            for(; b_b != seq.rend(); ++b_b)
-            {
-                total_backward += strlen((*b_b)->d_name);
-            }
+			readdir_sequence::const_reverse_iterator	b_b =	seq.rbegin();
+			for(; b_b != seq.rend(); ++b_b)
+			{
+				total_backward += strlen((*b_b)->d_name);
+			}
 
-            if(total_forward != total_backward)
-            {
-                r->report("readdir_sequence forward and backward ranges contradict ", __LINE__);
-                bSuccess = false;
-            }
+			if(total_forward != total_backward)
+			{
+				r->report("readdir_sequence forward and backward ranges contradict ", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_unixstl_filesystem_readdir_sequence(test_unixstl_filesystem_readdir_sequence);
-    } // anonymous namespace
+		unittest_registrar	  unittest_unixstl_filesystem_readdir_sequence(test_unixstl_filesystem_readdir_sequence);
+	} // anonymous namespace
 
 } // namespace unittest

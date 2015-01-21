@@ -4,7 +4,7 @@
  * Purpose:     Process functions.
  *
  * Created:     12th March 2006
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/process/functions.h
-///
-/// Process functions.
+/** \file winstl/process/functions.h
+ *
+ * \brief [C, C++] Process control functions.
+ *  (\ref group__library__system "System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_PROCESS_H_FUNCTIONS
 #define WINSTL_INCL_WINSTL_PROCESS_H_FUNCTIONS
@@ -87,6 +89,10 @@ namespace winstl_project
  * C functions
  */
 
+/** 
+ *
+ * \ingroup group__library__system
+ */
 STLSOFT_INLINE BOOL winstl__CreateProcessFEA(ws_char_a_t const *cmdLine, DWORD flags, void const *envBlock)
 {
     STARTUPINFO         si;
@@ -106,11 +112,19 @@ STLSOFT_INLINE BOOL winstl__CreateProcessFEA(ws_char_a_t const *cmdLine, DWORD f
     return b;
 }
 
+/** 
+ *
+ * \ingroup group__library__system
+ */
 STLSOFT_INLINE BOOL winstl__CreateProcessEA(ws_char_a_t const *cmdLine, void const *envBlock)
 {
     return winstl__CreateProcessFEA(cmdLine, 0, envBlock);
 }
 
+/** 
+ *
+ * \ingroup group__library__system
+ */
 STLSOFT_INLINE BOOL winstl__CreateProcess0A(ws_char_a_t const *cmdLine)
 {
     return winstl__CreateProcessEA(cmdLine, NULL);
@@ -122,16 +136,28 @@ STLSOFT_INLINE BOOL winstl__CreateProcess0A(ws_char_a_t const *cmdLine)
 
 #ifdef __cplusplus
 
+/** 
+ *
+ * \ingroup group__library__system
+ */
 inline BOOL CreateProcess(ws_char_a_t const *cmdLine, DWORD flags, void const *envBlock)
 {
     return winstl__CreateProcessFEA(cmdLine, flags, envBlock);
 }
 
+/** 
+ *
+ * \ingroup group__library__system
+ */
 inline BOOL CreateProcess(ws_char_a_t const *cmdLine, void const *envBlock)
 {
     return winstl__CreateProcessEA(cmdLine, envBlock);
 }
 
+/** 
+ *
+ * \ingroup group__library__system
+ */
 inline BOOL CreateProcess(ws_char_a_t const *cmdLine)
 {
     return winstl__CreateProcess0A(cmdLine);

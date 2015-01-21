@@ -9,29 +9,29 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_rangelib_indirect_range_adaptors(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_rangelib_indirect_range_adaptors(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "RangeLib", "indirect_range_adaptors", __FILE__);
+			unittest_initialiser	init(r, "RangeLib", "indirect_range_adaptors", __FILE__);
 
 #if 0
-            if(
-            {
-                r->report("construct() failed ", __LINE__);
-                bSuccess = false;
-            }
+			if(
+			{
+				r->report("construct() failed ", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_rangelib_indirect_range_adaptors(test_rangelib_indirect_range_adaptors);
-    } // anonymous namespace
+		unittest_registrar	  unittest_rangelib_indirect_range_adaptors(test_rangelib_indirect_range_adaptors);
+	} // anonymous namespace
 
 } // namespace unittest
 

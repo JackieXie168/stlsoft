@@ -4,7 +4,7 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     20th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_META_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_META_MINOR       21
-# define STLSOFT_VER_H_STLSOFT_META_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_META_EDIT        122
+# define STLSOFT_VER_H_STLSOFT_META_MINOR       23
+# define STLSOFT_VER_H_STLSOFT_META_REVISION    1
+# define STLSOFT_VER_H_STLSOFT_META_EDIT        126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,21 +68,59 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
+
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_ARRAY_TYPE
+# include <stlsoft/meta/is_array_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_ARRAY_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_BOOL_TYPE
+# include <stlsoft/meta/is_bool_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_BOOL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE
+# include <stlsoft/meta/is_character_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CLASS_TYPE
+# include <stlsoft/meta/is_class_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CLASS_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_COMPOUND_TYPE
+# include <stlsoft/meta/is_compound_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_COMPOUND_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE
+# include <stlsoft/meta/is_const_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FLOATING_POINT_TYPE
+# include <stlsoft/meta/is_floating_point_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FLOATING_POINT_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
 # include <stlsoft/meta/is_function_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE
+# include <stlsoft/meta/is_fundamental_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
 # include <stlsoft/meta/is_integral_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_NUMERIC_TYPE
+# include <stlsoft/meta/is_numeric_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_NUMERIC_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
 # include <stlsoft/meta/is_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE */
-#ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
-# include <stlsoft/meta/n_types.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 # include <stlsoft/meta/is_same_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE
+# include <stlsoft/meta/is_signed_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_VOID_TYPE
+# include <stlsoft/meta/is_void_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_VOID_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_VOLATILE_TYPE
+# include <stlsoft/meta/is_volatile_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_VOLATILE_TYPE */
+
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
+# include <stlsoft/meta/n_types.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
 # include <stlsoft/meta/select_first_type_if.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
@@ -103,41 +141,13 @@ namespace stlsoft
  * Tests
  */
 
-// is_array_type
-//
-/// Constraint to ensure that a type is a pointer type
-
-template <ss_typename_param_k U>
-one_t is_array_type_func(U const volatile *);
-
-two_t is_array_type_func(...);
-
-/// traits type used to determine whether the given type is an array
-template <ss_typename_param_k T>
-struct is_array_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-    enum { value = sizeof(is_array_type_func(t)) == sizeof(one_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct is_array_type<void>
-{
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
 // is_convertible_to_pointer
 //
-/// This test determines whether the given type is convertible to a pointer
-/// type
+/** \brief This test determines whether the given type is convertible to a pointer
+ * type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct is_convertible_to_pointer
 {
@@ -205,8 +215,11 @@ convertible_index<void*>::type          convertible_index_function(void const vo
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// This test determines whether the given type is convertible to a pointer
-/// type
+/** \brief This test determines whether the given type is convertible to a pointer
+ * type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct is_convertible_to_bool
 {
@@ -224,293 +237,44 @@ struct is_convertible_to_bool<void>
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// traits type used to determine whether the given type is a numeric type
-template <ss_typename_param_k T>
-struct is_numeric_type
-{
-    enum { value = 0 };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_sint8_t, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_uint8_t, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_sint16_t, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_uint16_t, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_sint32_t, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_uint32_t, 1)
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_sint64_t, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, ss_uint64_t, 1)
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    _MSC_VER == 1200
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed char, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned char, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed short, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned short, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed int, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned int, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed long, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned long, 1)
-#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed int, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned int, 1)
-#endif /* _MSC_VER == 1200 */
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, float, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, double, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, long double, 1)
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/// traits type used to determine whether a given type is signed
-template <ss_typename_param_k T>
-struct is_signed_type
-{
-    enum { value = 0 };
-
-    typedef no_type     type;
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint8_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint16_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint32_t, 1, yes_type)
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint64_t, 1, yes_type)
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    _MSC_VER == 1200
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed char, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed short, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed int, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed long, 1, yes_type)
-#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed int, 1, yes_type)
-#endif /* _MSC_VER == 1200 */
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, float, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, double, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, long double, 1, yes_type)
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/// traits type used to determine whether the given type is floating point
-template <ss_typename_param_k T>
-struct is_floating_point_type
-{
-    enum { value = 0 };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_floating_point_type, float, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_floating_point_type, double, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_floating_point_type, long double, 1)
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/// traits type used to determine whether the given type is of char type
-template <ss_typename_param_k T>
-struct is_char_type
-{
-    enum { value = 0 };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_char_type, char, 1)
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_char_type, wchar_t, 1)
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/// traits type used to determine whether the given type is \c bool
-template <ss_typename_param_k T>
-struct is_bool_type
-{
-    enum { value = 0 };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_bool_type, ss_bool_t, 1)
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/// traits type used to determine whether a given type is \c void
-template <ss_typename_param_k T>
-struct is_void_type
-{
-    enum { value = 0 };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_GEN_TRAIT_SPECIALISATION(is_void_type, void, 1)
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/// traits type used to determine whether a given type is a fundamental type
-template <ss_typename_param_k T>
-struct is_fundamental_type
-{
-    enum
-    {
-        value   =   is_integral_type<T>::value
-                ||  is_floating_point_type<T>::value
-                ||  is_bool_type<T>::value
-                ||  is_void_type<T>::value
-    };
-
-#ifdef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
-    typedef ss_typename_type_k select_first_type_if<yes_type, no_type, value>::type type;
-#endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
-};
-
-
-/// traits type used to determine whether a given type is a compound type
-template <ss_typename_param_k T>
-struct is_compound_type
-{
-    enum { value = (0 == is_fundamental_type<T>::value) };
-};
-
-
-
-// is_class_type
-
-/// Compatibility
-///
-/// Borland C/C++ 5.6 compiles but thinks everything is a class type
-/// CodePlay compiles but thinks that nothing is a class type
-/// Comeau works with most things (not references)
-/// CodeWarrior 3.0+ compiles and works from version 8 onwards
-/// Digital Mars 8.40+ compiles and works with most things (not references)
-/// GCC works with most things (not references)
-/// Intel works with most things (not references)
-/// Visual C++ compiles and works from version 7.1 onwards with most things (not references)
-
-#if (   !defined(STLSOFT_COMPILER_IS_MWERKS) || \
-        (__MWERKS__ & 0xFF00) >= 0x3000) && \
-    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-        _MSC_VER >= 1100) && \
-    !defined(STLSOFT_COMPILER_IS_WATCOM)
-
-template <ss_typename_param_k C>
-one_t is_class_type_func(int C::*);
-
-template <ss_typename_param_k C>
-two_t is_class_type_func(...);
-
-/// traits type used to determine whether a given type is of class type
-template <ss_typename_param_k T>
-struct is_class_type
-{
-    typedef T   test_type;
-
-    enum { value = sizeof(is_class_type_func<test_type>(0)) == sizeof(one_t) };
-};
-
-#endif /* compiler */
-
-
-// is_const
-
-#if defined(STLSOFT_COMPILER_IS_MWERKS)
-one_t is_const_type_func(void const *);
-
-two_t is_const_type_func(void *);
-#else /* ? compiler */
-one_t is_const_type_func(void volatile const *);
-
-two_t is_const_type_func(void volatile *);
-#endif /* compiler */
-
-two_t is_const_type_func(...);
-
-/// traits type used to determine whether a given type is \c const
+/** \brief Obsolete form of stlsoft::is_const_type
+ *
+ * \ingroup group__library__meta
+ *
+ * \deprecated Use stlsoft::is_const_type instead.
+ */
 template <ss_typename_param_k T>
 struct is_const
 {
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(is_const_type_func(&t)) == sizeof(one_t) };
+    enum { value = is_const_type<T>::value };
 };
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-STLSOFT_TEMPLATE_SPECIALISATION
-struct is_const<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// is_volatile
-
-one_t is_volatile_type_func(void const volatile *);
-
-two_t is_volatile_type_func(void const *);
-
-two_t is_volatile_type_func(...);
-
-/// traits type used to determine whether a given type has volatile qualifier
+/** \brief Obsolete form of stlsoft::is_volatile_type
+ *
+ * \ingroup group__library__meta
+ *
+ * \deprecated Use stlsoft::is_volatile_type instead.
+ */
 template <ss_typename_param_k T>
 struct is_volatile
 {
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(is_volatile_type_func(&t)) == sizeof(one_t) };
+    enum { value = is_volatile_type<T>::value };
 };
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct is_volatile<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// traits type used to determine whether a given type is \c void
+/** \brief Obsolete form of \link stlsoft::is_void_type is_void_type\endlink.
+ *
+ * \ingroup group__library__meta
+ *
+ * \deprecated Use \link stlsoft::is_void_type is_void_type\endlink instead.
+ */
 template <ss_typename_param_k T>
 struct is_void
 {
-    enum { value = 0 };
+    enum { value = is_void_type<T>::value };
 };
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct is_void<void>
-{
-    enum { value = 1 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 
@@ -533,7 +297,10 @@ one_t has_value_type_function(...);
 template <ss_typename_param_k T>
 two_t has_value_type_function(ss_typename_type_k T::value_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c value_type
+/** \brief traits type used to determine whether a given type has a member \c value_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_value_type
 {
@@ -567,7 +334,10 @@ one_t has_iterator_function(...);
 template <ss_typename_param_k T>
 three_t has_iterator_function(ss_typename_type_k T::iterator const volatile *);
 
-/// traits type used to determine whether a given type has a member \c iterator
+/** \brief traits type used to determine whether a given type has a member \c iterator
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_iterator
 {
@@ -605,7 +375,10 @@ one_t has_const_iterator_function(...);
 template <ss_typename_param_k T>
 four_t has_const_iterator_function(ss_typename_type_k T::const_iterator const volatile *);
 
-/// traits type used to determine whether a given type has a member \c const_iterator
+/** \brief traits type used to determine whether a given type has a member \c const_iterator
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_const_iterator
 {
@@ -640,7 +413,10 @@ one_t has_pointer_function(...);
 template <ss_typename_param_k T>
 five_t has_pointer_function(ss_typename_type_k T::pointer const volatile *);
 
-/// traits type used to determine whether a given type has a member \c pointer
+/** \brief traits type used to determine whether a given type has a member \c pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_pointer
 {
@@ -674,7 +450,10 @@ one_t has_pointer_type_function(...);
 template <ss_typename_param_k T>
 six_t has_pointer_type_function(ss_typename_type_k T::pointer_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c pointer_type
+/** \brief traits type used to determine whether a given type has a member \c pointer_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_pointer_type
 {
@@ -711,7 +490,10 @@ one_t has_reference_function(...);
 template <ss_typename_param_k T>
 seven_t has_reference_function(ss_typename_type_k T::reference const volatile *);
 
-/// traits type used to determine whether a given type has a member \c reference
+/** \brief traits type used to determine whether a given type has a member \c reference
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_reference
 {
@@ -745,7 +527,10 @@ one_t has_reference_type_function(...);
 template <ss_typename_param_k T>
 eight_t has_reference_type_function(ss_typename_type_k T::reference_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c reference_type
+/** \brief traits type used to determine whether a given type has a member \c reference_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_reference_type
 {
@@ -778,7 +563,10 @@ one_t has_const_reference_function(...);
 template <ss_typename_param_k T>
 nine_t has_const_reference_function(ss_typename_type_k T::const_reference const volatile *);
 
-/// traits type used to determine whether a given type has a member \c const_reference
+/** \brief traits type used to determine whether a given type has a member \c const_reference
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_const_reference
 {
@@ -814,7 +602,10 @@ one_t has_const_pointer_function(...);
 template <ss_typename_param_k T>
 sixteen_t has_const_pointer_function(ss_typename_type_k T::const_pointer const volatile *);
 
-/// traits type used to determine whether a given type has a member \c const_pointer
+/** \brief traits type used to determine whether a given type has a member \c const_pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_const_pointer
 {
@@ -848,7 +639,10 @@ one_t has_iterator_category_function(...);
 template <ss_typename_param_k T>
 ten_t has_iterator_category_function(ss_typename_type_k T::iterator_category const volatile *);
 
-/// traits type used to determine whether a given type has a member \c iterator_category
+/** \brief traits type used to determine whether a given type has a member \c iterator_category
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_iterator_category
 {
@@ -882,7 +676,10 @@ one_t has_distance_type_function(...);
 template <ss_typename_param_k T>
 eleven_t has_distance_type_function(ss_typename_type_k T::distance_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c distance_type
+/** \brief traits type used to determine whether a given type has a member \c distance_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_distance_type
 {
@@ -916,7 +713,10 @@ one_t has_difference_type_function(...);
 template <ss_typename_param_k T>
 twelve_t has_difference_type_function(ss_typename_type_k T::difference_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c difference_type
+/** \brief traits type used to determine whether a given type has a member \c difference_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_difference_type
 {
@@ -950,7 +750,10 @@ one_t has_key_type_function(...);
 template <ss_typename_param_k T>
 thirteen_t has_key_type_function(ss_typename_type_k T::key_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c key_type
+/** \brief traits type used to determine whether a given type has a member \c key_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_key_type
 {
@@ -984,7 +787,10 @@ one_t has_mapped_type_function(...);
 template <ss_typename_param_k T>
 fourteen_t has_mapped_type_function(ss_typename_type_k T::mapped_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c mapped_type
+/** \brief traits type used to determine whether a given type has a member \c mapped_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_mapped_type
 {
@@ -1018,7 +824,10 @@ one_t has_referent_type_function(...);
 template <ss_typename_param_k T>
 fifteen_t has_referent_type_function(ss_typename_type_k T::referent_type const volatile *);
 
-/// traits type used to determine whether a given type has a member \c referent_type
+/** \brief traits type used to determine whether a given type has a member \c referent_type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct has_referent_type
 {
@@ -1061,166 +870,6 @@ namespace unittest
 {
     namespace
     {
-        ss_bool_t test_stlsoft_meta_integral_type(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
-
-            if(stlsoft::is_integral_type<char>::value == 0)
-            {
-                r->report("is_integral_type<char> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<signed char>::value == 0)
-            {
-                r->report("is_integral_type<signed char> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<unsigned char>::value == 0)
-            {
-                r->report("is_integral_type<unsigned char> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<short>::value == 0)
-            {
-                r->report("is_integral_type<short> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<unsigned short>::value == 0)
-            {
-                r->report("is_integral_type<unsigned short> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<int>::value == 0)
-            {
-                r->report("is_integral_type<int> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<unsigned int>::value == 0)
-            {
-                r->report("is_integral_type<unsigned int> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<long>::value == 0)
-            {
-                r->report("is_integral_type<long> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<unsigned long>::value == 0)
-            {
-                r->report("is_integral_type<unsigned long> == 0", __LINE__);
-                bSuccess = false;
-            }
-
-            if(stlsoft::is_integral_type<bool>::value == 0)
-            {
-                r->report("is_integral_type<bool> == 0", __LINE__);
-                bSuccess = false;
-            }
-
-            if(stlsoft::is_integral_type<ss_uint8_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_uint8_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<ss_sint8_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_sint8_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<ss_uint16_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_uint16_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<ss_sint16_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_sint16_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<ss_uint32_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_uint32_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<ss_sint32_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_sint32_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-            if(stlsoft::is_integral_type<ss_uint64_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_uint64_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_integral_type<ss_sint64_t>::value == 0)
-            {
-                r->report("is_integral_type<ss_sint64_t> == 0", __LINE__);
-                bSuccess = false;
-            }
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
-            return bSuccess;
-        }
-
-        ss_bool_t test_stlsoft_meta_fundamental_type(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
-
-            if(stlsoft::is_fundamental_type<char>::value != stlsoft::is_integral_type<char>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<signed char>::value != stlsoft::is_integral_type<signed char>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<unsigned char>::value != stlsoft::is_integral_type<unsigned char>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<short>::value != stlsoft::is_integral_type<short>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<unsigned short>::value != stlsoft::is_integral_type<unsigned short>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<int>::value != stlsoft::is_integral_type<int>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<unsigned int>::value != stlsoft::is_integral_type<unsigned int>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<long>::value != stlsoft::is_integral_type<long>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<unsigned long>::value != stlsoft::is_integral_type<unsigned long>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-            if(stlsoft::is_fundamental_type<bool>::value != stlsoft::is_integral_type<bool>::value)
-            {
-                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
-                bSuccess = false;
-            }
-
-            return bSuccess;
-        }
-
         ss_bool_t test_stlsoft_meta(unittest_reporter *r)
         {
             using stlsoft::unittest::unittest_initialiser;
@@ -1229,15 +878,7 @@ namespace unittest
 
             unittest_initialiser    init(r, "STLSoft", "meta", __FILE__);
 
-            if(!test_stlsoft_meta_integral_type(r))
-            {
-                bSuccess = false;
-            }
-
-            if(!test_stlsoft_meta_fundamental_type(r))
-            {
-                bSuccess = false;
-            }
+            STLSOFT_SUPPRESS_UNUSED(bSuccess);
 
             return bSuccess;
         }

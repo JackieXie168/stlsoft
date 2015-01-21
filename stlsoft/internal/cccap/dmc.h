@@ -271,7 +271,7 @@
 #endif /* __DMC__ */
 
 #if __DMC__ >= 0x0829
-# define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT	/* obsolete */
+# define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT   /* obsolete */
 # define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 #else
  /* Not defined */

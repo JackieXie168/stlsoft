@@ -11,33 +11,33 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_error_error_desc(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_error_error_desc(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "error/error_desc", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "error/error_desc", __FILE__);
 
-            try
-            {
-                error_desc      ed1(ERROR_ACCESS_DENIED);
+			try
+			{
+				error_desc		ed1(ERROR_ACCESS_DENIED);
 
-                if(0 != lstrcmp(ed1.get_description(), ed1.c_str()))
-                {
-                    r->report("get_description() and c_str() returned different values", __LINE__);
-                    bSuccess = false;
-                }
-            }
-            catch(std::exception &)
-            {}
+				if(0 != lstrcmp(ed1.get_description(), ed1.c_str()))
+				{
+					r->report("get_description() and c_str() returned different values", __LINE__);
+					bSuccess = false;
+				}
+			}
+			catch(std::exception &)
+			{}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_error_error_desc(test_winstl_error_error_desc);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_error_error_desc(test_winstl_error_error_desc);
+	} // anonymous namespace
 
 } // namespace unittest

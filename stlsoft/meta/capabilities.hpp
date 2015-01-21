@@ -4,7 +4,7 @@
  * Purpose:     Pre-processor abilities for the meta library.
  *
  * Created:     5th March 2006
- * Updated:     10th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/capabilities.hpp
-///
-/// Pre-processor abilities for the meta library.
+/** \file stlsoft/meta/capabilities.hpp
+ *
+ * \brief [C++ only] Pre-processor discrimination of meta programming
+ *   support.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 #define STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 2
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     5
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

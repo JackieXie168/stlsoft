@@ -11,19 +11,19 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_iterators_index_iterator(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_iterators_index_iterator(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "iterators/index_iterator", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "iterators/index_iterator", __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_iterators_index_iterator(test_stlsoft_iterators_index_iterator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_iterators_index_iterator(test_stlsoft_iterators_index_iterator);
+	} // anonymous namespace
 
 } // namespace unittest
 

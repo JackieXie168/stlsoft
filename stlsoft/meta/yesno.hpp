@@ -4,7 +4,7 @@
  * Purpose:     yes / no classes.
  *
  * Created:     16th May 2005
- * Updated:     10th June 2006
+ * Updated:     6th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,18 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/yesno.hpp
-///
-/// Options verification.
+/** \file stlsoft/meta/yesno.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::yes_type and
+ *  stlsoft::no_type meta boolean "constants".
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 #define STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MAJOR       1
-# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MINOR       2
+# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MINOR       3
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        9
+# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,17 +76,32 @@ namespace stlsoft
  * Classes
  */
 
-/// The 'yes' type, which acts as a complement to \c no_type
+/** \brief Meta boolean 'yes' type, which acts as a complement to the
+ *   \link stlsoft::no_type no_type\endlink.
+ *
+ * \ingroup group__library__meta
+ */
 struct yes_type
-{};
+{
+    char ar[32];
+};
 
-/// The 'no' type, which acts as a complement to \c yes_type
+/** \brief Meta boolean 'no' type, which acts as a complement to the
+ *   \link stlsoft::yes_type yes_type\endlink.
+ *
+ * \ingroup group__library__meta
+ */
 struct no_type
-{};
+{
+    char ar[1];
+};
 
 
-/// A type which translates a boolean (integral zero / non-zero) value into
-/// the appropriate type (no_type / yes_type).
+/** \brief A type which translates a boolean (integral zero / non-zero)
+ *   value into the appropriate type (no_type / yes_type).
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_bool_t B>
 struct value_to_yesno_type
 {

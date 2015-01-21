@@ -11,25 +11,25 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_std_cstdlib(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_std_cstdlib(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "std/cstdlib", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "std/cstdlib", __FILE__);
 
 			if(-10 != stlsoft::atoi("-10"))
 			{
-                r->report("atoi(char*) failed", __LINE__);
-                bSuccess = false;
+				r->report("atoi(char*) failed", __LINE__);
+				bSuccess = false;
 			}
 
 #ifdef STLSOFT_STD_CSTDLIB_WTOI_SUPPORTED
 			if(-10 != stlsoft::atoi(L"-10"))
 			{
-                r->report("atoi(wchar_t*) failed", __LINE__);
-                bSuccess = false;
+				r->report("atoi(wchar_t*) failed", __LINE__);
+				bSuccess = false;
 			}
 #endif /* STLSOFT_STD_CSTDLIB_WTOI_SUPPORTED */
 
@@ -37,15 +37,15 @@ namespace unittest
 
 			if(-10 != stlsoft::atol("-10"))
 			{
-                r->report("atol(char*) failed", __LINE__);
-                bSuccess = false;
+				r->report("atol(char*) failed", __LINE__);
+				bSuccess = false;
 			}
 
 #ifdef STLSOFT_STD_CSTDLIB_WTOL_SUPPORTED
 			if(-10 != stlsoft::atol(L"-10"))
 			{
-                r->report("atol(wchar_t*) failed", __LINE__);
-                bSuccess = false;
+				r->report("atol(wchar_t*) failed", __LINE__);
+				bSuccess = false;
 			}
 #endif /* STLSOFT_STD_CSTDLIB_WTOL_SUPPORTED */
 
@@ -53,29 +53,29 @@ namespace unittest
 
 			{ double d = stlsoft::atof("9.999");
 
-			if(	d < 9.99 ||
+			if( d < 9.99 ||
 				d > 10.0)
 			{
-                r->report("atof(char*) failed", __LINE__);
-                bSuccess = false;
+				r->report("atof(char*) failed", __LINE__);
+				bSuccess = false;
 			}}
 
 #ifdef STLSOFT_STD_CSTDLIB_WTOF_SUPPORTED
 			{ double d = stlsoft::atof(L"9.999");
 
-			if(	d < 9.99 ||
+			if( d < 9.99 ||
 				d > 10.0)
 			{
-                r->report("atof(wchar_t*) failed", __LINE__);
-                bSuccess = false;
+				r->report("atof(wchar_t*) failed", __LINE__);
+				bSuccess = false;
 			}}
 #endif /* STLSOFT_STD_CSTDLIB_WTOF_SUPPORTED */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_std_cstdlib(test_stlsoft_std_cstdlib);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_std_cstdlib(test_stlsoft_std_cstdlib);
+	} // anonymous namespace
 
 } // namespace unittest
 

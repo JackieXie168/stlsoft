@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    2
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     59
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,14 +88,15 @@ namespace winstl_project
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for accessing the correct registry functions for a given character type
-///
-/// \ingroup group__library__windows_registry
-///
-/// reg_traits is a traits class for determining the correct registry
-/// structures and functions for a given character type.
-///
-/// \param C The character type
+/** \brief Traits for accessing the correct registry functions for a given character type
+ *
+ * \ingroup group__library__windows_registry
+ *
+ * reg_traits is a traits class for determining the correct registry
+ * structures and functions for a given character type.
+ *
+ * \param C The character type
+ */
 template <ss_typename_param_k C>
 struct reg_traits
 {

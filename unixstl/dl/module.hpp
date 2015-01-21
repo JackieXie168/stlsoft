@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file unixstl/dl/module.hpp
  *
  * \brief [C++ only] Definition of the unixstl::module class.
- *  (\reg group__library__dl "DL" Library.)
+ *  (\ref group__library__dl "DL" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     202
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     203
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -205,7 +205,10 @@ private:
  * Access shims
  */
 
-/// Returns the handle for the given module
+/** \brief Returns the handle for the given module
+ *
+ * \ingroup group__library__dl
+ */
 inline void *get_handle(module const &m)
 {
     return m.get_handle();

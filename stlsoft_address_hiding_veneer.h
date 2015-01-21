@@ -4,7 +4,7 @@
  * Purpose:     Contains the address_hiding_veneer template class.
  *
  * Created:     9th July 2004
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_ADDRESS_HIDING_VENEER_MAJOR      2
 # define STLSOFT_VER_H_STLSOFT_ADDRESS_HIDING_VENEER_MINOR      2
 # define STLSOFT_VER_H_STLSOFT_ADDRESS_HIDING_VENEER_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_ADDRESS_HIDING_VENEER_EDIT       12
+# define STLSOFT_VER_H_STLSOFT_ADDRESS_HIDING_VENEER_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,9 +78,10 @@ namespace stlsoft
 
 // class address_hiding_veneer
 
-/// Veneer which hides the address-of operator of its parameterising type
-///
-/// \ingroup concepts_veneer
+/** \brief Veneer which hides the address-of operator of its parameterising type
+ *
+ * \ingroup concepts_veneer
+ */
 template<   ss_typename_param_k T
         >
 class address_hiding_veneer

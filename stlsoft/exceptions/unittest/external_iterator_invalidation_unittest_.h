@@ -11,22 +11,22 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_external_iterator_invalidation(unittest_reporter *r)
-        {
+	namespace
+	{
+		ss_bool_t test_stlsoft_external_iterator_invalidation(unittest_reporter *r)
+		{
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-            using ::stlsoft::unittest::unittest_initialiser;
+			using ::stlsoft::unittest::unittest_initialiser;
 #endif /* compiler */
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "exceptions/external_iterator_invalidation", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "exceptions/external_iterator_invalidation", __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_external_iterator_invalidation(test_stlsoft_external_iterator_invalidation);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_external_iterator_invalidation(test_stlsoft_external_iterator_invalidation);
+	} // anonymous namespace
 
 } // namespace unittest

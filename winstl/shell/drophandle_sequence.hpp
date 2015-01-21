@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      0
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       76
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -144,14 +144,15 @@ class basic_drophandle_sequence;
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for accessing the correct drop-handle functions for a given character type
-///
-/// \ingroup group__library__windows_shell
-///
-/// drophandle_sequence_traits is a traits class for determining the correct
-/// drop-handle structures and functions for a given character type.
-///
-/// \param C The character type
+/** \brief Traits for accessing the correct drop-handle functions for a given character type
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * drophandle_sequence_traits is a traits class for determining the correct
+ * drop-handle structures and functions for a given character type.
+ *
+ * \param C The character type
+ */
 template <ss_typename_param_k C>
 struct drophandle_sequence_traits
 {
@@ -192,12 +193,13 @@ struct drophandle_sequence_traits<ws_char_w_t>
 
 
 // class basic_drophandle_sequence_const_iterator
-/// \brief Iterator for the basic_drophandle_sequence class
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param C The character type
-/// \param T The traits type. For translators that support default template arguments this defaults to drophandle_sequence_traits<C>
+/** \brief Iterator for the basic_drophandle_sequence class
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param C The character type
+ * \param T The traits type. For translators that support default template arguments this defaults to drophandle_sequence_traits<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = drophandle_sequence_traits<C>
@@ -275,12 +277,13 @@ private:
 
 
 // class basic_drophandle_sequence
-/// \brief This class wraps an STL-like sequence interface over a Win32 drop handle
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param C The character type
-/// \param T The traits type. For translators that support default template arguments this defaults to drophandle_sequence_traits<C>
+/** \brief This class wraps an STL-like sequence interface over a Win32 drop handle
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param C The character type
+ * \param T The traits type. For translators that support default template arguments this defaults to drophandle_sequence_traits<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = drophandle_sequence_traits<C>
@@ -371,11 +374,20 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/// \brief Instantiation of the basic_drophandle_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_drophandle_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__shell
+ */
 typedef basic_drophandle_sequence<ws_char_a_t, drophandle_sequence_traits<ws_char_a_t> >    drophandle_sequence_a;
-/// \brief Instantiation of the basic_drophandle_sequence template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_drophandle_sequence template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__shell
+ */
 typedef basic_drophandle_sequence<ws_char_w_t, drophandle_sequence_traits<ws_char_w_t> >    drophandle_sequence_w;
-/// \brief Instantiation of the basic_drophandle_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_drophandle_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__shell
+ */
 typedef basic_drophandle_sequence<TCHAR, drophandle_sequence_traits<TCHAR> >                drophandle_sequence;
 
 ////////////////////////////////////////////////////////////////////////////

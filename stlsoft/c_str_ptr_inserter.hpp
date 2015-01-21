@@ -4,7 +4,7 @@
  * Purpose:     Contains the c_str_ptr_insert_iterator template class and c_str_ptr_inserter creator function.
  *
  * Created:     12th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks to:   Pablo Aguilar for spotting missing inclusions.
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MINOR       3
 # define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_EDIT        17
+# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,23 +91,26 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief This iterator adaptor translates the values assigned to it via the
-/// c_str_ptr access shim, and passes the result to the function on which it's
-/// parameterised.
-///
-/// It would be used as shown in the following example, which copies all files
-/// found in the local directory to the vector of strings:
-///
-/// \htmlonly
-/// <pre>
-///
-///   std::vector&lt;std::string&gt;  c1;
-///   unixstl::readdir_sequence files(".");
-///
-///   std::copy(files.begin(), files.end(), c_str_ptr_inserter(std::back_inserter(c1)));
-///
-/// </pre>
-/// \endhtmlonly
+/** \brief This iterator adaptor translates the values assigned to it via the
+ * c_str_ptr access shim, and passes the result to the function on which it's
+ * parameterised.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * It would be used as shown in the following example, which copies all files
+ * found in the local directory to the vector of strings:
+ *
+ * \htmlonly
+ * <pre>
+ *
+ *   std::vector&lt;std::string&gt;  c1;
+ *   unixstl::readdir_sequence files(".");
+ *
+ *   std::copy(files.begin(), files.end(), c_str_ptr_inserter(std::back_inserter(c1)));
+ *
+ * </pre>
+ * \endhtmlonly
+ */
 
 template <ss_typename_param_k F>
 struct c_str_ptr_extract_iterator

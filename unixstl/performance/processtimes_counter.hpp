@@ -63,7 +63,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifdef _WIN32
-# include <winsock2.h>	/* This required to forestall conflicting type definitions of timeval wrt WinSock. */
+# include <winsock2.h>  /* This required to forestall conflicting type definitions of timeval wrt WinSock. */
 #endif /* _WIN32 */
 #include <sys/time.h>
 #include <sys/resource.h>

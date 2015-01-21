@@ -4,7 +4,7 @@
  * Purpose:     Cursor scoping class.
  *
  * Created:     4th May 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_REVISION   2
-# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_EDIT       32
+# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,10 +93,13 @@ namespace winstl_project
  */
 
 // setfocus_scope
-/// \brief Provides scoping of the focus window.
-///
-/// This class provides scoping of the focus status of a window via the API
-/// function SetFocus().
+/** \brief Provides scoping of the focus window.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class provides scoping of the focus status of a window via the API
+ * function SetFocus().
+ */
 class setfocus_scope
 {
 public:
@@ -123,11 +126,17 @@ public:
         ::SetFocus(m_hwndFocus);
     }
 
-/// Members
+/** \brief Members
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 private:
     HWND    m_hwndFocus;
 
-/// Not to be implemented
+/** \brief Not to be implemented
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 private:
     setfocus_scope(setfocus_scope const &);
     setfocus_scope &operator =(setfocus_scope const &);

@@ -5,7 +5,7 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MAJOR     2
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MINOR     5
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  1
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      47
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -179,23 +179,26 @@ struct list_adaptor_traits<CList<V, A> >
 #endif // __AFXTEMPL_H__
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Adapts MFC List class instances to the STL container concept
-///
-/// This class takes a container type, e.g. CStringList, as its primary (and
-/// only non-default) template argument, C. The second template parameter, T,
-/// defaults to list_adaptor_traits<C>, for which specialisations are provided
-/// for the following types
-///
-///  - CObList       (stores pointers to CObject, or derived, instances)
-///  - CPtrList      (stores raw pointers, ie. void*)
-///  - CStringList   (stores strings, in the form of CString)
-///
-/// and for compilers that support partial specialisation
-///
-///  - CList<V, A>   (stores instances of V, with argument type A)
-///
-/// \param C The container type
-/// \param T The traits type. With translators that support default template arguments, this is defaulted to list_adaptor_traits<C>
+/** \brief Adapts MFC List class instances to the STL container concept
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class takes a container type, e.g. CStringList, as its primary (and
+ * only non-default) template argument, C. The second template parameter, T,
+ * defaults to list_adaptor_traits<C>, for which specialisations are provided
+ * for the following types
+ *
+ *  - CObList       (stores pointers to CObject, or derived, instances)
+ *  - CPtrList      (stores raw pointers, ie. void*)
+ *  - CStringList   (stores strings, in the form of CString)
+ *
+ * and for compilers that support partial specialisation
+ *
+ *  - CList<V, A>   (stores instances of V, with argument type A)
+ *
+ * \param C The container type
+ * \param T The traits type. With translators that support default template arguments, this is defaulted to list_adaptor_traits<C>
+ */
 
 template<   class C                             // The container type
         ,   class T = list_adaptor_traits<C>    // The traits type

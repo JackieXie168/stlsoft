@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     11th June 2006
+ * Updated:     8th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file platformstl/system/environment_map.hpp
  *
  * \brief [C++ only] Definition of the platformstl::environment_map class.
- *  (\reg group__library__system "System" Library.)
+ *  (\ref group__library__system "System" Library.)
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        35
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    5
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <platformstl/platformstl.hpp>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS
-# include <platformstl/environment_variable_traits.hpp>
+# include <platformstl/system/environment_variable_traits.hpp>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
@@ -84,12 +84,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 # error Operating system not discriminated
 #endif /* operating system */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE
-# include <stlsoft/scoped_handle.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR
-# include <stlsoft/shared_ptr.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
+# include <stlsoft/smartptr/scoped_handle.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR
+# include <stlsoft/smartptr/shared_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -182,7 +182,15 @@ private:
     {
     public: // Member Types
         typedef stlsoft_ns_qual(shared_ptr)<snapshot>   ref_type;
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        (   defined(STLSOFT_COMPILER_IS_INTEL) && \
+            defined(_WIN32))) && \
+    _MSC_VER == 1300
+        // VC7 libs get confused with const key type here
+        typedef stlsoft_ns_qual_std(map)<         first_type
+#else /* ? compiler */
         typedef stlsoft_ns_qual_std(map)<   const first_type
+#endif /* compiler */
                                         ,   second_type
                                         >               variables_type_;
         typedef variables_type_::iterator               iterator;

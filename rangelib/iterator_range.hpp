@@ -4,7 +4,7 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     31
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,9 +79,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
+# include <stlsoft/util/operator_bool.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
@@ -128,7 +128,10 @@ namespace rangelib_project
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-/// Traits class for determining the attributes of range-adapted iterator types
+/** \brief Traits class for determining the attributes of range-adapted iterator types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k I
         ,   bool                B_CONST
         >
@@ -261,28 +264,31 @@ struct const_pointer_iterator_range_traits
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 
-/// \brief This class adapts an iterator pair into a Range
-///
-/// \param I The iterator type
-/// \param T The iterator range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type
-///
-/// It is categoried as an Iterable Range
-///
-/// It could be used as follows
-/// \htmlonly
-/// <code>
-/// <pre>
-/// template&lt;typename I&gt;
-/// void dump_elements(I from, I to)
-/// {
-///   for(iterator_range&lt;I&gt; r(from, to); r; ++r)
-///   {
-///     std::cout &lt;&lt; &r; // Dump the current value to stdout
-///   }
-/// }
-/// </pre>
-/// </code>
-/// \endhtmlonly
+/** \brief This class adapts an iterator pair into a Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param I The iterator type
+ * \param T The iterator range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type
+ *
+ * It is categoried as an Iterable Range
+ *
+ * It could be used as follows
+ * \htmlonly
+ * <code>
+ * <pre>
+ * template&lt;typename I&gt;
+ * void dump_elements(I from, I to)
+ * {
+ *   for(iterator_range&lt;I&gt; r(from, to); r; ++r)
+ *   {
+ *     std::cout &lt;&lt; &r; // Dump the current value to stdout
+ *   }
+ * }
+ * </pre>
+ * </code>
+ * \endhtmlonly
+ */
 template<   ss_typename_param_k I
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         ,   ss_typename_param_k T = iterator_range_traits<I, is_const<I>::value>    // Determines whether the iterator is const

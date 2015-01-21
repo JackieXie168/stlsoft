@@ -9,32 +9,32 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_acestl_socket_functions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_acestl_socket_functions(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "ACESTL", "socket_functions", __FILE__);
+			unittest_initialiser	init(r, "ACESTL", "socket_functions", __FILE__);
 
 #if 0
-            typedef message_queue_sequence<char>    env_var_t;
+			typedef message_queue_sequence<char>	env_var_t;
 
-            env_var_t   path("PATH");
+			env_var_t	path("PATH");
 
-            if(0 != strcmp(getenv("PATH"), path))
-            {
-                r->report("message_queue_sequence<char> failed ", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != strcmp(getenv("PATH"), path))
+			{
+				r->report("message_queue_sequence<char> failed ", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_acestl_socket_functions(test_acestl_socket_functions);
-    } // anonymous namespace
+		unittest_registrar	  unittest_acestl_socket_functions(test_acestl_socket_functions);
+	} // anonymous namespace
 
 } // namespace unittest

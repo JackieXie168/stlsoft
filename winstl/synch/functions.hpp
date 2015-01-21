@@ -99,14 +99,14 @@ namespace winstl_project
  *
  * \ingroup group__library__synch
  */
-inline DWORD WaitForMultipleObjects_helper_8(   HANDLE		h0
-                                            ,   HANDLE		h1
-                                            ,   HANDLE		h2
-                                            ,   HANDLE		h3
-                                            ,   HANDLE		h4
-                                            ,   HANDLE		h5
-                                            ,   HANDLE		h6
-                                            ,   HANDLE		h7
+inline DWORD WaitForMultipleObjects_helper_8(   HANDLE      h0
+                                            ,   HANDLE      h1
+                                            ,   HANDLE      h2
+                                            ,   HANDLE      h3
+                                            ,   HANDLE      h4
+                                            ,   HANDLE      h5
+                                            ,   HANDLE      h6
+                                            ,   HANDLE      h7
                                             ,   ws_bool_t   bWaitAll
                                             ,   ws_dword_t  timeout)
 {

@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created:     23rd September 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      2
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   1
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       17
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,45 +84,34 @@ namespace acestl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ACESTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_messaging Messaging Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating messaging constructs
-
-/// \defgroup acestl_messaging_library Messaging Library (ACESTL)
-/// \ingroup ACESTL libraries_messaging functions
-/// \brief This library provides facilities for defining and manipulating messaging constructs with ACE
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
-/// \brief Creates a new ACE_Message_Block instance whose contents are copied
-/// from the given memory.
-///
-/// \param p Pointer to the memory to copy into the new message block. Can be NULL
-/// \param n Number of bytes to copy into the new message block
-///
-/// Usage is extremely simple. Just specify the source (pointer and length), and
-/// test for NULL (allocation failure):
-///
-/// \htmlonly
-/// <pre>
-///
-/// ACE_Message_Block *newBlock = acestl::make_copied_Message_Block("Contents", 7);
-///
-/// if(NULL == newBlock)
-/// {
-///   fprintf(stderr, "Allocation failed!\n");
-/// }
-///
-/// </pre>
-/// \endhtmlonly
+/** \brief Creates a new ACE_Message_Block instance whose contents are copied
+ * from the given memory.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param p Pointer to the memory to copy into the new message block. Can be NULL
+ * \param n Number of bytes to copy into the new message block
+ *
+ * Usage is extremely simple. Just specify the source (pointer and length), and
+ * test for NULL (allocation failure):
+ *
+ * \htmlonly
+ * <pre>
+ *
+ * ACE_Message_Block *newBlock = acestl::make_copied_Message_Block("Contents", 7);
+ *
+ * if(NULL == newBlock)
+ * {
+ *   fprintf(stderr, "Allocation failed!\n");
+ * }
+ *
+ * </pre>
+ * \endhtmlonly
+ */
 inline ACE_Message_Block *make_copied_Message_Block(char const *p, size_t n)
 {
 #if defined(ACE_NEW_THROWS_EXCEPTIONS)
@@ -164,10 +153,6 @@ inline ACE_Message_Block *make_copied_Message_Block(const char (&ar)[N])
 }
 
 #endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // acestl_messaging_library
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

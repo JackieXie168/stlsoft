@@ -1,5 +1,5 @@
 
-// Updated:	11th June 2006
+// Updated: 11th June 2006
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SEMAPHORE)
 # error This file cannot be directly included, and should only be included within unixstl/synch/semaphore.hpp
@@ -11,15 +11,15 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_unixstl_synch_semaphore(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_unixstl_synch_semaphore(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "synch/semaphore", __FILE__);
+			unittest_initialiser	init(r, "UNIXSTL", "synch/semaphore", __FILE__);
 
 			try
 			{
@@ -30,20 +30,20 @@ namespace unittest
 			}
 			catch(synchronisation_exception &x)
 			{
-                r->report(x.what(), __LINE__);
+				r->report(x.what(), __LINE__);
 			}
 
 #if 0
-            if(0 != i)
-            {
-                bSuccess = false;
-            }
+			if(0 != i)
+			{
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_unixstl_synch_semaphore(test_unixstl_synch_semaphore);
-    } // anonymous namespace
+		unittest_registrar	  unittest_unixstl_synch_semaphore(test_unixstl_synch_semaphore);
+	} // anonymous namespace
 
 } // namespace unittest

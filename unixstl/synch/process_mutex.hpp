@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     23rd June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       50
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ class process_mutex
 /// \name Member Types
 /// @{
 public:
-    typedef process_mutex		class_type;
+    typedef process_mutex       class_type;
 /// @}
 
 /// \name Construction
@@ -190,12 +190,12 @@ public:
 /// @{
 public:
     /// \brief The underlying kernel object handle
-    pthread_mutex_t	*handle()
+    pthread_mutex_t *handle()
     {
         return &m_mx;
     }
     /// \brief The underlying kernel object handle
-    pthread_mutex_t	*get()
+    pthread_mutex_t *get()
     {
         return &m_mx;
     }
@@ -328,7 +328,10 @@ namespace unixstl_project
  */
 
 // class lock_traits
-/// Traits for the process_mutex class (for compilers that do not support Koenig Lookup)
+/** \brief Traits for the process_mutex class (for compilers that do not support Koenig Lookup)
+ *
+ * \ingroup group__library__synch
+ */
 struct process_mutex_lock_traits
 {
 public:

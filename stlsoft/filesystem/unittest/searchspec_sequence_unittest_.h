@@ -9,27 +9,27 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_filesystem_searchspec_sequence(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_filesystem_searchspec_sequence(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "filesystem/searchspec_sequence", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "filesystem/searchspec_sequence", __FILE__);
 
-    #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
+	#if 0
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
+	#endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_filesystem_searchspec_sequence(test_stlsoft_filesystem_searchspec_sequence);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_filesystem_searchspec_sequence(test_stlsoft_filesystem_searchspec_sequence);
+	} // anonymous namespace
 
 } // namespace unittest
 

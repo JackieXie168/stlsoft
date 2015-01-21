@@ -9,34 +9,34 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_comstl_memory_functions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_comstl_memory_functions(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "COMSTL", "memory/functions", __FILE__);
+			unittest_initialiser	init(r, "COMSTL", "memory/functions", __FILE__);
 
-            void    *pv =   ::CoTaskMemAlloc(100);
+			void	*pv =	::CoTaskMemAlloc(100);
 
-            if(CoTaskMemGetSize(pv) < 100)
-            {
-                r->report("Memory block has invalid size ", __LINE__);
-                bSuccess = false;
-            }
+			if(CoTaskMemGetSize(pv) < 100)
+			{
+				r->report("Memory block has invalid size ", __LINE__);
+				bSuccess = false;
+			}
 
-            if(0 == CoTaskMemDidAlloc(pv))
-            {
-                r->report("Memory block was not recognised by task allocator ", __LINE__);
-                bSuccess = false;
-            }
+			if(0 == CoTaskMemDidAlloc(pv))
+			{
+				r->report("Memory block was not recognised by task allocator ", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_comstl_memory_functions(test_comstl_memory_functions);
-    } // anonymous namespace
+		unittest_registrar	  unittest_comstl_memory_functions(test_comstl_memory_functions);
+	} // anonymous namespace
 
 } // namespace unittest

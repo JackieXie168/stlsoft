@@ -12,7 +12,7 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      78
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,9 +120,10 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \brief Represents a binary registry value
-///
-/// \ingroup group__library__windows_registry
+/** \brief Represents a binary registry value
+ *
+ * \ingroup group__library__windows_registry
+ */
 template<ss_typename_param_k A>
 class reg_blob
     : protected A
@@ -224,16 +225,17 @@ private:
 /// @}
 };
 
-/// \brief Represents a registry value, providing methods for accessing the value in different types.
-///
-/// \ingroup group__library__windows_registry
-///
-/// This class acts as the value type of classes that manipulate registry values
-/// and encapsulates the concept of a registry value.
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments this defaults to reg_traits<C>
-/// \param A The allocator type. On translators that support default template arguments this defaults to processheap_allocator<C>
+/** \brief Represents a registry value, providing methods for accessing the value in different types.
+ *
+ * \ingroup group__library__windows_registry
+ *
+ * This class acts as the value type of classes that manipulate registry values
+ * and encapsulates the concept of a registry value.
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments this defaults to reg_traits<C>
+ * \param A The allocator type. On translators that support default template arguments this defaults to processheap_allocator<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = reg_traits<C>
@@ -377,11 +379,20 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/// Instantiation of the basic_reg_value template for the ANSI character type \c char
+/** \brief Instantiation of the basic_reg_value template for the ANSI character type \c char
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_value<ws_char_a_t, reg_traits<ws_char_a_t>, processheap_allocator<ws_char_a_t> >  reg_value_a;
-/// Instantiation of the basic_reg_value template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_reg_value template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_value<ws_char_w_t, reg_traits<ws_char_w_t>, processheap_allocator<ws_char_w_t> >  reg_value_w;
-/// Instantiation of the basic_reg_value template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_reg_value template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_value<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >                    reg_value;
 
 ////////////////////////////////////////////////////////////////////////////

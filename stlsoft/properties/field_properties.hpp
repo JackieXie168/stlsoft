@@ -54,10 +54,10 @@
 #define STLSOFT_INCL_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR		4
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR		0
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION	1
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT		20
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   1
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -388,7 +388,7 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k S
         >
 inline S &operator <<(  S                                   &s
-					,	field_property_get<V, R, C> const	&prop)
+                    ,   field_property_get<V, R, C> const   &prop)
 {
     s << static_cast<R>(prop);
 
@@ -401,8 +401,8 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k R
         ,   ss_typename_param_k S
         >
-inline S &operator <<(  S										&s
-					,	field_property_get_external<V, R> const	&prop)
+inline S &operator <<(  S                                       &s
+                    ,   field_property_get_external<V, R> const &prop)
 {
     s << static_cast<R>(prop);
 

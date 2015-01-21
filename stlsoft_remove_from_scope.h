@@ -4,7 +4,7 @@
  * Purpose:     Contains the remove_from_scope class.
  *
  * Created:     10th June 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,18 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_MINOR      2
-# define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_EDIT       32
+# define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_REVISION   3
+# define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ *  Compatibility
+ */
+
+/*
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -61,12 +70,12 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/inert.hpp, and use the class insert instead of remove_from_scope")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/util/inert.hpp, and use the class insert instead of remove_from_scope")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_INERT
-# include <stlsoft/inert.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_INERT */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT
+# include <stlsoft/util/inert.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -81,8 +90,11 @@ namespace stlsoft
  * Classes
  */
 
-/// This class is almost completely unusable, and is used as a placeholder or as
-/// a name remover
+/** \brief This class is almost completely unusable, and is used as a placeholder or as
+ * a name remover
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef inert   remove_from_scope;
 
 /* ////////////////////////////////////////////////////////////////////// */

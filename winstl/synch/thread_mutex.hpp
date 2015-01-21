@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on Windows CRITICAL_SECTION.
  *
  * Created:     17th December 1996
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MINOR     0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      42
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,10 @@ namespace winstl_project
  */
 
 // class thread_mutex
-/// This class provides an implementation of the mutex model based on the Win32 CRITICAL_SECTION
+/** \brief This class provides an implementation of the mutex model based on the Win32 CRITICAL_SECTION
+ *
+ * \ingroup group__library__synch
+ */
 class thread_mutex
     : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_IS_RECURSIVE
 #ifdef __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT
@@ -249,7 +252,10 @@ using ::stlsoft::unlock_instance;
  */
 
 // class lock_traits
-/// Traits for the thread_mutex class (for compilers that do not support Koenig Lookup)
+/** \brief Traits for the thread_mutex class (for compilers that do not support Koenig Lookup)
+ *
+ * \ingroup group__library__synch
+ */
 struct thread_mutex_lock_traits
 {
 public:

@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        53
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,11 +127,14 @@ public:
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// STL-like sequence for list-box contents
-///
-/// This class presents an STL-like sequence interface to a list-box
-///
-/// \param S The string type
+/** \brief STL-like sequence for list-box contents
+ *
+ * \ingroup group__library__windows_controls
+ *
+ * This class presents an STL-like sequence interface to a list-box
+ *
+ * \param S The string type
+ */
 template <ss_typename_param_k S>
 class listbox_sequence
     : public stlsoft_ns_qual(stl_collection_tag)

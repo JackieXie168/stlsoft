@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     13th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MAJOR    2
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    11
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 6
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     108
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 8
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,9 +88,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 # include <stlsoft/string/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
-#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS
-# include <stlsoft/tokenising/tokeniser_functions.hpp> // for find_next_token
-#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS
+# include <stlsoft/string/tokeniser_functions.hpp> // for find_next_token
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
@@ -160,15 +160,18 @@ class basic_findfile_sequence_const_input_iterator;
  */
 
 // class basic_findfile_sequence
-/// Presents an STL-like sequence interface over the items on the file-system
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
-///
-/// \note  This class was described in detail in the article
-/// "Adapting Windows Enumeration Models to STL Iterator Concepts"
-/// (http://www.windevnet.com/documents/win0303a/), in the March 2003 issue of
-/// Windows Developer Network (http://windevnet.com).
+/** \brief Presents an STL-like sequence interface over the items on the file-system
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
+ *
+ * \note  This class was described in detail in the article
+ * "Adapting Windows Enumeration Models to STL Iterator Concepts"
+ * (http://www.windevnet.com/documents/win0303a/), in the March 2003 issue of
+ * Windows Developer Network (http://windevnet.com).
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
@@ -335,7 +338,10 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_findfile_sequence<is_char_a_t
                             ,   filesystem_traits<is_char_a_t>
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -344,7 +350,10 @@ typedef basic_findfile_sequence<is_char_a_t
                             ,   stlsoft_ns_qual(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             >                                                   findfile_sequence_a;
-/// Instantiation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_findfile_sequence<is_char_w_t
                             ,   filesystem_traits<is_char_w_t>
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -353,7 +362,10 @@ typedef basic_findfile_sequence<is_char_w_t
                             ,   stlsoft_ns_qual(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             >                                                   findfile_sequence_w;
-/// Instantiation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_findfile_sequence<TCHAR
                             ,   filesystem_traits<TCHAR>
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -366,7 +378,10 @@ typedef basic_findfile_sequence<TCHAR
 /* ////////////////////////////////////////////////////////////////////// */
 
 // class basic_findfile_sequence_value_type
-/// Value type for the basic_findfile_sequence
+/** \brief Value type for the basic_findfile_sequence
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
@@ -399,7 +414,7 @@ private:
 /// @}
 
 /// \name Construction
-// @{
+/// @{
 public:
     /// Default constructor
     basic_findfile_sequence_value_type();
@@ -420,7 +435,10 @@ private:
     }
 // @}
 
-/// Accessors
+/** \brief Accessors
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // @{
 public:
     /// Returns a non-mutating reference to find-data
@@ -466,7 +484,10 @@ private:
 };
 
 // class basic_findfile_sequence_const_input_iterator
-/// Iterator type for the basic_findfile_sequence supporting the Input Iterator concept
+/** \brief Iterator type for the basic_findfile_sequence supporting the Input Iterator concept
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
@@ -808,16 +829,7 @@ inline is_size_t c_str_len(basic_findfile_sequence_value_type<C, T, X> const &v)
     return stlsoft_ns_qual(c_str_len(v.get_path()));
 }
 
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline is_size_t c_str_size(basic_findfile_sequence_value_type<C, T, X> const &v)
-{
-    return stlsoft_ns_qual(c_str_size(v.get_path()));
-}
-#endif /* 0 */
+
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1612,10 +1624,6 @@ using ::inetstl::c_str_data_a;
 using ::inetstl::c_str_data_w;
 
 using ::inetstl::c_str_len;
-
-#if 0
-using ::inetstl::c_str_size;
-#endif /* 0 */
 
 using ::inetstl::is_empty;
 

@@ -4,7 +4,7 @@
  * Purpose:     ATL ActiveX control (OCX) container window functions.
  *
  * Created:     30th November 2000
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MAJOR    3
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MINOR    1
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_REVISION 2
-# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     21
+# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,8 +89,11 @@ namespace atlstl_project
  * Classes
  */
 
-/// This template is a veneer that provides various useful (and usually missing)
-/// member functions of dialogs and parent windows.
+/** \brief This template is a veneer that provides various useful (and usually missing)
+ * member functions of dialogs and parent windows.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k D>
 class EnhancedWindow
 {
@@ -187,7 +190,10 @@ public:
 #endif /* 0 */
 /// @}
 
-/// Implementation
+/** \brief Implementation
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 private:
     dialog_window_type          *this_()
     {

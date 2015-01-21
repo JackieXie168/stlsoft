@@ -5,7 +5,7 @@
  *              module filename.
  *
  * Created:     31st March 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MAJOR     4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MINOR     0
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MINOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_REVISION  1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      65
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,18 +73,20 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE
+# include <stlsoft/string/special_string_instance.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
-# error winstl/module_filename.hpp is not compatible with Visual C++ 5.0 or earlier
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+  // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
+# include <winstl/synch/spin_mutex.hpp>
 #endif /* compiler */
-
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem/filesystem_traits.hpp>
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
-# include <winstl/filesystem/file_path_buffer.hpp>
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -115,90 +117,73 @@ namespace winstl_project
  * as an adaptor between HINSTANCE and a C-string to the name.
  */
 
-/// Represents a module filename
-///
-/// \ingroup group__library__system
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
-template<   ss_typename_param_k C
-#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = filesystem_traits<C>
-#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        >
-class basic_module_filename
+/** \brief Represents a module filename
+ *
+ * \ingroup group__library__system
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
+ */
+
+template <ss_typename_param_k C>
+struct modfname_policy
 {
+/// \name Member Types
+/// @{
 public:
-    /// The char type
     typedef C                           char_type;
-    /// The traits type
-    typedef T                           traits_type;
-    /// The current parameterisation of the type
-    typedef basic_module_filename<C, T> class_type;
-    /// The size type
-    typedef ws_size_t                   size_type;
+    typedef HINSTANCE                   argument_0_type;
+    typedef processheap_allocator<C>    allocator_type;
+    typedef size_t                      size_type;
+    typedef size_type                   (*pfn_type)(argument_0_type, char_type *, size_type);
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+    // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
+    typedef winstl::spin_mutex          spin_mutex_type;
+#endif /* compiler */
+/// @}
 
-// Construction
+/// \name Member Constants
+/// @{
 public:
-    /// Default constructor - represent the filename of the current process
-    basic_module_filename();
-    /// Represent the filename of the given instance
-    ss_explicit_k basic_module_filename(HINSTANCE hinst);
-    /// Destructor
-    ~basic_module_filename() stlsoft_throw_0();
+    enum { internalBufferSize       =   128  };
 
-// Operations
-public:
-    /// Copy the module filename to the given buffer
-    size_type           get_filename(ws_char_a_t *buffer, size_type cchBuffer) const;
-    /// Copy the module filename to the given buffer
-    size_type           get_filename(ws_char_w_t *buffer, size_type cchBuffer) const;
-    /// Copy the module filename to the given buffer
-    static size_type    get_filename(HINSTANCE hinst, ws_char_a_t *buffer, size_type cchBuffer);
-    /// Copy the module filename to the given buffer
-    static size_type    get_filename(HINSTANCE hinst, ws_char_w_t *buffer, size_type cchBuffer);
+    enum { allowImplicitConversion  =   1   };
 
-// Attributes
-public:
-    /// Returns a non-mutable (const) pointer to the path
-    char_type const *get_filename() const;
-    /// Returns the length of the converted path
-    size_type       length() const;
-    /// Explicit conversion to a non-mutable (const) pointer to the path
-    char_type const *c_str() const;
+    enum { sharedState              =   0   };
+/// @}
 
-// Conversions
+/// \name Operations
+/// @{
 public:
-    /// Implicit conversion to a non-mutable (const) pointer to the path
-    operator char_type const *() const
+    static pfn_type     get_fn()
     {
-        return get_filename();
+        return winstl::system_traits<char_type>::get_module_filename;
     }
-
-// Members
-private:
-    basic_file_path_buffer<char_type>   m_path;
-    HINSTANCE const                     m_hinst;
-    size_type const                     m_len;
-
-// Not to be implemented
-private:
-    basic_module_filename(class_type const &);
-    basic_module_filename &operator =(class_type const &);
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_module_filename template for the ANSI character type \c char
-typedef basic_module_filename<ws_char_a_t, filesystem_traits<ws_char_a_t> >     module_filename_a;
-/// Instantiation of the basic_module_filename template for the Unicode character type \c wchar_t
-typedef basic_module_filename<ws_char_w_t, filesystem_traits<ws_char_w_t> >     module_filename_w;
-/// Instantiation of the basic_module_filename template for the Win32 character type \c TCHAR
-typedef basic_module_filename<TCHAR, filesystem_traits<TCHAR> >                 module_filename;
+/** \brief A \ref group__pattern__special_string_instance "Special String Instance"
+ *   that represents the <b>module</b> directory; ANSI specialisation.
+ *
+ * \ingroup group__library__system
+ */
+typedef stlsoft_ns_qual(special_string_instance_1)<modfname_policy<ws_char_a_t> >    module_filename_a;
+/** \brief A \ref group__pattern__special_string_instance "Special String Instance"
+ *   that represents the <b>module</b> directory; 'Unicode' specialisation.
+ *
+ * \ingroup group__library__system
+ */
+typedef stlsoft_ns_qual(special_string_instance_1)<modfname_policy<ws_char_w_t> >    module_filename_w;
+/** \brief A \ref group__pattern__special_string_instance "Special String Instance"
+ *   that represents the <b>module</b> directory; TCHAR specialisation.
+ *
+ * \ingroup group__library__system
+ */
+typedef stlsoft_ns_qual(special_string_instance_1)<modfname_policy<TCHAR> >          module_filename;
 
 /* //////////////////////////////////////////////////////////////////////////
  * Unit-testing
@@ -207,165 +192,6 @@ typedef basic_module_filename<TCHAR, filesystem_traits<TCHAR> >                 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/module_filename_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Implementation
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline basic_module_filename<C, T>::basic_module_filename()
-    : m_hinst(::GetModuleHandle(NULL))
-    , m_len(get_filename(&m_path[0], m_path.size()))
-{}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline basic_module_filename<C, T>::basic_module_filename(HINSTANCE hinst)
-    : m_hinst(hinst)
-    , m_len(get_filename(hinst, &m_path[0], m_path.size()))
-{}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline basic_module_filename<C, T>::~basic_module_filename() stlsoft_throw_0()
-{
-#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
-    WINSTL_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_hinst) < STLSOFT_RAW_OFFSETOF(class_type, m_len));
-#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_module_filename<C, T>::size_type basic_module_filename<C, T>::get_filename(ws_char_a_t *buffer, ss_typename_type_k basic_module_filename<C, T>::size_type cchBuffer) const
-{
-    return static_cast<size_type>(::GetModuleFileNameA(m_hinst, buffer, cchBuffer));
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_module_filename<C, T>::size_type basic_module_filename<C, T>::get_filename(ws_char_w_t *buffer, ss_typename_type_k basic_module_filename<C, T>::size_type cchBuffer) const
-{
-    return static_cast<size_type>(::GetModuleFileNameW(m_hinst, buffer, cchBuffer));
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline /* static */ ss_typename_type_k basic_module_filename<C, T>::size_type basic_module_filename<C, T>::get_filename(HINSTANCE hinst, ws_char_a_t *buffer, ss_typename_type_k basic_module_filename<C, T>::size_type cchBuffer)
-{
-    return static_cast<size_type>(::GetModuleFileNameA(hinst, buffer, cchBuffer));
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline /* static */ ss_typename_type_k basic_module_filename<C, T>::size_type basic_module_filename<C, T>::get_filename(HINSTANCE hinst, ws_char_w_t *buffer, ss_typename_type_k basic_module_filename<C, T>::size_type cchBuffer)
-{
-    return static_cast<size_type>(::GetModuleFileNameW(hinst, buffer, cchBuffer));
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_module_filename<C, T>::char_type const *basic_module_filename<C, T>::get_filename() const
-{
-    return stlsoft_ns_qual(c_str_ptr)(m_path);
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_module_filename<C, T>::size_type basic_module_filename<C, T>::length() const
-{
-    return m_len;
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_module_filename<C, T>::char_type const *basic_module_filename<C, T>::c_str() const
-{
-    return get_filename();
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////
- * String access shims
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_char_a_t const *c_str_ptr_null_a(basic_module_filename<C, T> const &mfn)
-{
-    return mfn; // Can never be empty, so no need to cater for NULL return
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_char_w_t const *c_str_ptr_null_w(basic_module_filename<C, T> const &mfn)
-{
-    return mfn; // Can never be empty, so no need to cater for NULL return
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_char_a_t const *c_str_ptr_a(basic_module_filename<C, T> const &mfn)
-{
-    return mfn;
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_char_w_t const *c_str_ptr_w(basic_module_filename<C, T> const &mfn)
-{
-    return mfn;
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_module_filename<C, T>::size_type c_str_len_a(basic_module_filename<C, T> const &mfn)
-{
-    return mfn.length();
-}
-
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_module_filename<C, T>::size_type c_str_size(basic_module_filename<C, T> const &mfn)
-{
-    return mfn.length() * sizeof(ss_typename_type_k basic_module_filename<C, T>::char_type);
-}
-#endif /* 0 */
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline S &operator <<(S &s, basic_module_filename<C, T> const &mfn)
-{
-    s << mfn.c_str();
-
-    return s;
-}
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     19th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/member_selector_iterator.hpp
-///
-/// member_selector_iterator class.
+/** \file stlsoft/iterators/member_selector_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::member_selector_iterator
+ *   class template
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    6
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        39
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,21 +102,6 @@ STLSOFT_COMPILER_IS_WATCOM:
 namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup adaptors Adaptors
-/// \brief Adaptor functions and classes used throughout the STLSoft libraries
-
-/// \weakgroup adaptors_iterator Iterator Adaptors
-/// \brief Classes that provide iterator adaptation
-/// \ingroup iterators adaptors
-/// @{
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -180,12 +168,15 @@ public:
 };
 
 // class member_selector_iterator
-/// An iterator adaptor class template that presents a member of the underlying
-/// iterator's value type as the apparent value type.
-///
-/// \param I The type of the base iterator, whose value type should be C, or convertible to C
-/// \param C The class of the member pointer
-/// \param M The type of the member pointer
+/** \brief An iterator adaptor class template that presents a member of the underlying
+ * iterator's value type as the apparent value type.
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param I The type of the base iterator, whose value type should be C, or convertible to C
+ * \param C The class of the member pointer
+ * \param M The type of the member pointer
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k C
         ,   ss_typename_param_k M
@@ -456,8 +447,11 @@ struct msi_iterator_traits<T const volatile*>
 #endif /* dinkumware */
 
 
-/// Traits class used for specifying sub-types for the member_selector()
-/// creator function(s)
+/** \brief Traits class used for specifying sub-types for the member_selector()
+ * creator function(s)
+ *
+ * \ingroup group__library__iterators
+ */
 template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
@@ -540,12 +534,15 @@ public:
 //  + select the general version for DMC++
 //  + proscribe particular functionality for Borland and Visual C++ (pre 7.1)
 
-/// Creator function for member_selector_iterator
-///
-/// \param it The iterator whose values will be subject to member selection
-/// \param member The member pointer which will be used in the selection
-///
-/// \return An instance of a suitable specialisation of member_selector_iterator
+/** \brief Creator function for member_selector_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param it The iterator whose values will be subject to member selection
+ * \param member The member pointer which will be used in the selection
+ *
+ * \return An instance of a suitable specialisation of member_selector_iterator
+ */
 template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
@@ -579,7 +576,10 @@ inline member_selector_iterator<I, C, M> member_selector(I it, M C::*member)
 # endif /* 0 */
 
 #if 0
-/// This one needed by const Struct1 (cw8)
+/** \brief This one needed by const Struct1 (cw8)
+ *
+ * \ingroup group__library__iterators
+ */
 template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
@@ -681,10 +681,6 @@ inline ss_ptrdiff_t operator -(member_selector_iterator<I, C, M> const &lhs, mem
 {
     return lhs.distance(rhs);
 }
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 /* /////////////////////////////////////////////////////////////////////////
  * Unit-testing

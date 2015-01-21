@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     20th June 2006
+ * Updated:     3rd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,11 +55,16 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     275
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 7
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     276
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file stlsoft/stlsoft.h \brief [C, C++] The root header for the \ref group__project__stlsoft "STLSoft" project, and for all other \ref group__projects "projects". */
+/** \file stlsoft/stlsoft.h
+ *
+ * \brief [C, C++] The root header for the
+ *   \ref group__project__stlsoft "STLSoft" project, and for all other
+ *    \ref group__projects "projects".
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version
@@ -1284,6 +1289,42 @@ typedef size_traits<sizeof(void*)>::unsigned_type   uintp_t;
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # if defined(__cplusplus)
+
+struct native_wchar_t_checker
+{
+    void check_for_native_wchar_t(char);
+    void check_for_native_wchar_t(sint8_t);
+    void check_for_native_wchar_t(uint8_t);
+    void check_for_native_wchar_t(sint16_t);
+    void check_for_native_wchar_t(uint16_t);
+    void check_for_native_wchar_t(sint32_t);
+    void check_for_native_wchar_t(uint32_t);
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    void check_for_native_wchar_t(sint64_t);
+    void check_for_native_wchar_t(uint64_t);
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC)) && \
+    _MSC_VER == 1200
+    void check_for_native_wchar_t(signed char);
+    void check_for_native_wchar_t(unsigned char);
+    void check_for_native_wchar_t(signed short);
+    void check_for_native_wchar_t(unsigned short);
+    void check_for_native_wchar_t(signed int);
+    void check_for_native_wchar_t(unsigned int);
+    void check_for_native_wchar_t(signed long);
+    void check_for_native_wchar_t(unsigned long);
+#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
+    void check_for_native_wchar_t(signed int);
+    void check_for_native_wchar_t(unsigned int);
+#endif /* _MSC_VER == 1200 */
+
+#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+    void check_for_native_wchar_t(wchar_t);
+#endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+};
+
 struct stlsoft_size_checker
 {
 #  ifdef STLSOFT_COMPILER_IS_GCC

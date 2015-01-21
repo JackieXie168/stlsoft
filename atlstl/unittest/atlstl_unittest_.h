@@ -9,25 +9,25 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_atlstl(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_atlstl(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
-            char                    szVersion[101];
-            unsigned                atlverHi    =   HIBYTE(_ATL_VER);
-            unsigned                atlverLo    =   HIBYTE(_ATL_VER);
+			ss_bool_t				bSuccess	=	true;
+			char					szVersion[101];
+			unsigned				atlverHi	=	HIBYTE(_ATL_VER);
+			unsigned				atlverLo	=	HIBYTE(_ATL_VER);
 
-            sprintf(szVersion, "ATL %u.%u", atlverHi, atlverLo);
+			sprintf(szVersion, "ATL %u.%u", atlverHi, atlverLo);
 
-            unittest_initialiser    init(r, "ATLSTL", szVersion, __FILE__);
+			unittest_initialiser	init(r, "ATLSTL", szVersion, __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_string_tokeniser(test_atlstl);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_string_tokeniser(test_atlstl);
+	} // anonymous namespace
 
 } // namespace unittest

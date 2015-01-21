@@ -9,27 +9,27 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_fast_string_concatenator(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_fast_string_concatenator(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "string/fast_string_concatenator", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "string/fast_string_concatenator", __FILE__);
 
 #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_fast_string_concatenator(test_stlsoft_fast_string_concatenator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_fast_string_concatenator(test_stlsoft_fast_string_concatenator);
+	} // anonymous namespace
 
 } // namespace unittest
 

@@ -4,7 +4,7 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback from Mac
  *              builds
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_MINOR    1
-# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_EDIT     40
+# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_REVISION 4
+# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,23 +96,35 @@ namespace unixstl_project
  * pointer to the character string or NULL.
  */
 
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr_null(struct dirent const *d)
 {
     return (NULL == d || 0 == d->d_name[0]) ? static_cast<us_char_a_t const*>(NULL) : d->d_name;
 }
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr_null_a(struct dirent const *d)
 {
     return (NULL == d || 0 == d->d_name[0]) ? static_cast<us_char_a_t const*>(NULL) : d->d_name;
 }
 
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr_null(struct dirent const &d)
 {
     return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
 }
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr_null_a(struct dirent const &d)
 {
     return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
@@ -125,23 +137,35 @@ inline us_char_a_t const *c_str_ptr_null_a(struct dirent const &d)
  * pointer to the character string or to an empty string.
  */
 
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr(struct dirent const *d)
 {
     return (NULL == d) ? "" : d->d_name;
 }
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr_a(struct dirent const *d)
 {
     return (NULL == d) ? "" : d->d_name;
 }
 
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr(struct dirent const &d)
 {
     return d.d_name;
 }
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_ptr_a(struct dirent const &d)
 {
     return d.d_name;
@@ -154,23 +178,35 @@ inline us_char_a_t const *c_str_ptr_a(struct dirent const &d)
  * pointer to the character string or to an empty string.
  */
 
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_data(struct dirent const *d)
 {
     return (NULL == d) ? "" : d->d_name;
 }
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_data_a(struct dirent const *d)
 {
     return (NULL == d) ? "" : d->d_name;
 }
 
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_data(struct dirent const &d)
 {
     return d.d_name;
 }
-/// \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_char_a_t const *c_str_data_a(struct dirent const &d)
 {
     return d.d_name;
@@ -183,41 +219,23 @@ inline us_char_a_t const *c_str_data_a(struct dirent const &d)
  * characters in the character string in the expression.
  */
 
-/// \brief Returns the length (in characters) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_size_t c_str_len(struct dirent const *d)
 {
     return stlsoft_ns_qual(c_str_len)(c_str_ptr(d));
 }
 
-/// \brief Returns the length (in characters) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline us_size_t c_str_len(struct dirent const &d)
 {
     return stlsoft_ns_qual(c_str_len)(c_str_ptr(d));
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * c_str_size
- *
- * This can be applied to an expression, and the return value is the number of
- * bytes required to store the character string in the expression, NOT including
- * the null-terminating character.
- */
-
-#if 0
-/// \brief Returns the size (in bytes) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
-inline us_size_t c_str_size(struct dirent const *d)
-{
-    return stlsoft_ns_qual(c_str_size)(c_str_ptr(d));
-}
-#endif /* 0 */
-
-#if 0
-/// \brief Returns the size (in bytes) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
-inline us_size_t c_str_size(struct dirent const &d)
-{
-    return stlsoft_ns_qual(c_str_size)(c_str_ptr(d));
-}
-#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -266,10 +284,6 @@ using ::unixstl::c_str_data_a;
 //using ::unixstl::c_str_data_w;
 
 using ::unixstl::c_str_len;
-
-#if 0
-using ::unixstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

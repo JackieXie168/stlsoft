@@ -1,10 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_same_type.hpp (formerly stlsoft_meta.h; originally MTBase.h, ::SynesisStl)
+ * File:        stlsoft/meta/is_same_type.hpp (originally MTBase.h, ::SynesisStl)
  *
  * Purpose:     is_same_type class.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     6th July 2006
+ *
+ * Thanks to:   Pablo Aguilar for providing the basis for the version that
+ *              works for the Borland compiler.
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,18 +41,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/is_same_type.hpp
-///
-/// is_same_type class.
+/** \file stlsoft/meta/is_same_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::is_same_type meta class
+ *  template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 #define STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MAJOR       4
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR       2
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR       3
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        112
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,6 +80,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/meta/capabilities.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+# include <stlsoft/meta/yesno.hpp>
+#endif /* compiler */
+
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # error This file is not compatible with Visual C++ 5.0 or earlier
@@ -92,9 +102,52 @@ namespace stlsoft
  * Meta-classes
  */
 
-#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
 
-/// \brief Determines whether the type is the same type
+struct is_same_type_helper
+{
+    template <ss_typename_param_k A>
+    static yes_type is_same_type_function(A const &, A const &);
+
+    template<   ss_typename_param_k A
+            ,   ss_typename_param_k B
+            >
+    static no_type is_same_type_function(A const &, B const &);
+};
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k B
+        >
+struct is_same_type
+{
+    enum { value = (sizeof(yes_type) == sizeof(is_same_type_helper::is_same_type_function(A(), B()))) };
+};
+
+template <ss_typename_param_k A>
+struct is_same_type<void, A>
+{
+    enum { value = 0 };
+};
+
+template <ss_typename_param_k A>
+struct is_same_type<A, void>
+{
+    enum { value = 0 };
+};
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct is_same_type<void, void>
+{
+    enum { value = 1 };
+};
+
+#elif defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+
+/** \brief Traits type used to determine whether two types are the same
+ *   type.
+ *
+ * \ingroup group__library__meta
+ */
 template<   ss_typename_param_k T1
         ,   ss_typename_param_k T2
         >

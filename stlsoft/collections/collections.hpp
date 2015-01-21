@@ -4,7 +4,7 @@
  * Purpose:     Collection types.
  *
  * Created:     10th January 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_MINOR      1
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_REVISION   1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_EDIT       5
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,23 +71,33 @@ namespace stlsoft
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup collections Collections
-/// \brief STL-extension collections
+/** \brief \weakgroup collections Collections
+ * \brief STL-extension collections
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup pod_collections POD Collections
-/// \brief Collections for manipulating POD types
-/// \ingroup collections
-/// @{
+/** \brief \weakgroup pod_collections POD Collections
+ * \brief Collections for manipulating POD types
+ * \ingroup collections
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Collections
  */
 
-/// \brief Rootmost tag for a collection
+/** \brief Rootmost tag for a collection
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct collection_tag
 {};
 
-/// \brief Indentifies a collection as being an STL collection: it has begin() and end()
+/** \brief Indentifies a collection as being an STL collection: it has begin() and end()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct stl_collection_tag
 {};
 
@@ -111,7 +121,10 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////
 
-/// @} // end of group pod_collections
+/** \brief @} // end of group pod_collections
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

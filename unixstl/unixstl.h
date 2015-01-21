@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     66
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -316,9 +316,12 @@
  * The macro unixstl_assert provides standard debug-mode assert functionality.
  */
 
-/// Defines a runtime assertion
-///
-/// \param expr Must be non-zero, or an assertion will be fired
+/** \brief Defines a runtime assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ */
 #if defined(UNIXSTL_OS_IS_MACOSX) && \
     defined(__assert)
 # define UNIXSTL_ASSERT(expr)               ((void)((expr) ? 0 : __assert(#expr, __FILE__, __LINE__)))
@@ -326,15 +329,21 @@
 # define UNIXSTL_ASSERT(expr)               STLSOFT_ASSERT(expr)
 #endif /* UNIXSTL_OS_IS_MACOSX */
 
-/// Defines a runtime assertion, with message
-///
-/// \param expr Must be non-zero, or an assertion will be fired
-/// \param msg The literal character string message to be included in the assertion
+/** \brief Defines a runtime assertion, with message
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ */
 #define UNIXSTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
-/// Defines a compile-time assertion
-///
-/// \param expr Must be non-zero, or compilation will fail
+/** \brief Defines a compile-time assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or compilation will fail
+ */
 #define UNIXSTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
 
 
@@ -578,9 +587,12 @@ typedef us_streamoff_t      streamoff_t;        //!< streamoff
 #define unixstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Evaluates, at compile time, to the number of elements within the given vector entity
-///
-/// \param ar An array whose dimension is to be evaluated
+/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param ar An array whose dimension is to be evaluated
+ */
 #define UNIXSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define unixstl_num_elements(ar)                       UNIXSTL_NUM_ELEMENTS(ar)

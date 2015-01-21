@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MAJOR      1
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MINOR      6
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_REVISION   3
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       25
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,17 +95,22 @@ namespace acestl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
+/** \brief \weakgroup libraries STLSoft Libraries
+ * \brief The individual libraries
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup libraries_string String Library
-/// \ingroup libraries
-/// \brief This library provides facilities for accessing string attributes
+/** \brief \weakgroup libraries_string String Library
+ * \ingroup libraries
+ * \brief This library provides facilities for accessing string attributes
+ */
 
-/// \defgroup acestl_string_library String Library (ACESTL)
-/// \ingroup ACESTL libraries_string
-/// \brief This library provides facilities for accessing string attributes for ACE address types
-/// @{
+/** \brief \defgroup acestl_string_library String Library (ACESTL)
+ * \ingroup ACESTL libraries_string
+ * \brief This library provides facilities for accessing string attributes for ACE address types
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Functions
@@ -194,7 +199,10 @@ namespace access_string_util
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// String access shim
+/** \brief String access shim
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <typename C> 
 inline ::stlsoft::basic_shim_string<C> c_str_ptr_(ACE_INET_Addr const &addr)
 {
@@ -244,7 +252,10 @@ inline as_size_t c_str_len(ACE_INET_Addr const &addr)
     return c_str_ptr(addr).size();
 }
 
-/// An inserter function for ACE_INET_Addr into output streams
+/** \brief An inserter function for ACE_INET_Addr into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 {
@@ -255,7 +266,10 @@ inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 
 ////////////////////////////////////////////////////////////////////////////
 
-/// @} // acestl_string_library
+/** \brief @} // acestl_string_library
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -275,7 +289,10 @@ inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/// An inserter function for ACE_INET_Addr into output streams
+/** \brief An inserter function for ACE_INET_Addr into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 {

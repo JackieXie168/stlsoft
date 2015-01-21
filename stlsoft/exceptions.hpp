@@ -4,7 +4,7 @@
  * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_EXCEPTIONS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_EXCEPTIONS_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_EXCEPTIONS_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_EXCEPTIONS_EDIT      39
+# define STLSOFT_VER_STLSOFT_HPP_EXCEPTIONS_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,19 +74,26 @@ namespace stlsoft
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
+/** \brief \weakgroup libraries STLSoft Libraries
+ * \brief The individual libraries
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup libraries_exceptions Exceptions Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating exceptions
-/// @{
+/** \brief \weakgroup libraries_exceptions Exceptions Library
+ * \ingroup libraries
+ * \brief This library provides facilities for defining and manipulating exceptions
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// \brief Root exception class for sub-project platform-specific exceptions
+/** \brief Root exception class for sub-project platform-specific exceptions
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class os_exception
 #if defined(STLSOFT_COMPILER_IS_DMC)
     : public std::exception
@@ -128,16 +135,20 @@ public:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup libraries_exceptions_policies Exception Policies
-/// \ingroup libraries_exceptions
-/// \brief Exception policy classes
-/// @{
+/** \brief \weakgroup libraries_exceptions_policies Exception Policies
+ * \ingroup libraries_exceptions
+ * \brief Exception policy classes
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Policies
  */
 
-/// The no-throwing exception policy. It does not throw, and its throw type is empty.
+/** \brief The no-throwing exception policy. It does not throw, and its throw type is empty.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:exception-policy: null_exception_policy]]
 struct null_exception_policy
 {
@@ -194,10 +205,16 @@ public:
 /// @}
 };
 
-/// Alternative typedef for null_exception_policy
+/** \brief Alternative typedef for null_exception_policy
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef null_exception_policy   nothrow_exception_policy;
 
-/// The throwing exception policy. It throws instances of its parameterising type.
+/** \brief The throwing exception policy. It throws instances of its parameterising type.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k E>
 // [[synesis:class:exception-policy: throw_exception_policy]]
 struct throw_exception_policy
@@ -273,11 +290,17 @@ typedef null_exception_policy   nothrow_exception;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group libraries_exceptions_policies
+/** \brief @} // end of group libraries_exceptions_policies
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group libraries_exceptions
+/** \brief @} // end of group libraries_exceptions
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    4
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     25
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,11 +125,14 @@ namespace rangelib_project
  * Classes
  */
 
-/// \brief This class adapts an STL sequence instance into a Range
-///
-/// \param R The range class
-/// \param P The filter predicate
-/// \param RC The range category tag type
+/** \brief This class adapts an STL sequence instance into a Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param R The range class
+ * \param P The filter predicate
+ * \param RC The range category tag type
+ */
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k RC = ss_typename_type_k R::range_tag_type

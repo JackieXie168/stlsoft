@@ -11,22 +11,22 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_system_console_functions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_system_console_functions(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "system/console_functions", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "system/console_functions", __FILE__);
 
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_system_console_functions(test_winstl_system_console_functions);
+		unittest_registrar	  unittest_stlsoft_system_console_functions(test_winstl_system_console_functions);
 
-    } // anonymous namespace
+	} // anonymous namespace
 
 } // namespace unittest

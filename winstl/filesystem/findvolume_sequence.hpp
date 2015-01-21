@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      92
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,14 +130,15 @@ class basic_findvolume_sequence_const_iterator;
  */
 
 // class basic_findvolume_sequence
-/// \brief Presents an STL-like sequence interface over the volumes on a system
-///
-/// \ingroup group__library__file_system
-///
-/// \note This class functions only on Windows 2000 and later
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
+/** \brief Presents an STL-like sequence interface over the volumes on a system
+ *
+ * \ingroup group__library__file_system
+ *
+ * \note This class functions only on Windows 2000 and later
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
@@ -185,17 +186,29 @@ public:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_findvolume_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_findvolume_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_findvolume_sequence<ws_char_a_t, filesystem_traits<ws_char_a_t> >     findvolume_sequence_a;
-/// Instantiation of the basic_findvolume_sequence template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_findvolume_sequence template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_findvolume_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> >     findvolume_sequence_w;
-/// Instantiation of the basic_findvolume_sequence template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_findvolume_sequence template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_findvolume_sequence<TCHAR, filesystem_traits<TCHAR> >                 findvolume_sequence;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 // class basic_findvolume_sequence_value_type
-/// Value type for the basic_findvolume_sequence
+/** \brief Value type for the basic_findvolume_sequence
+ *
+ * \ingroup group__library__file_system
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -236,7 +249,10 @@ private:
 };
 
 // class basic_findvolume_sequence_const_iterator
-/// Iterator type for the basic_findvolume_sequence, supporting the Input Iterator concept
+/** \brief Iterator type for the basic_findvolume_sequence, supporting the Input Iterator concept
+ *
+ * \ingroup group__library__file_system
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k V
@@ -413,13 +429,7 @@ inline ws_size_t c_str_len(basic_findvolume_sequence_value_type<C, T> const &v)
     return stlsoft_ns_qual(c_str_len(stlsoft_ns_qual(c_str_ptr(v))));
 }
 
-#if 0
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ws_size_t c_str_size(basic_findvolume_sequence_value_type<C, T> const &v)
-{
-    return stlsoft_ns_qual(c_str_size(stlsoft_ns_qual(c_str_ptr(v))));
-}
-#endif /* 0 */
+
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_bool_t is_empty(basic_findvolume_sequence_value_type<C, T> const &v)
@@ -679,10 +689,6 @@ using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
-
-#if 0
-using ::winstl::c_str_size;
-#endif /* 0 */
 
 using ::winstl::is_empty;
 

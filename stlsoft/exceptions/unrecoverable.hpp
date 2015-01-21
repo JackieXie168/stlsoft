@@ -4,7 +4,7 @@
  * Purpose:     Definition of the \c unrecoverable exception class.
  *
  * Created:     14th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_UNRECOVERABLE_MAJOR     1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_UNRECOVERABLE_MINOR     3
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_UNRECOVERABLE_REVISION  3
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_UNRECOVERABLE_EDIT      22
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_UNRECOVERABLE_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,10 +92,13 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief Unrecoverable exception class
-///
-/// Exceptions deriving from this class may be caught, but they result in
-/// process termination at the end of the catch clause, or if they're not caught.
+/** \brief Unrecoverable exception class
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * Exceptions deriving from this class may be caught, but they result in
+ * process termination at the end of the catch clause, or if they're not caught.
+ */
 class unrecoverable
     : public stlsoft_ns_qual_std(exception)
 {

@@ -9,38 +9,38 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_ptr_access(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_ptr_access(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "ptr_access", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "ptr_access", __FILE__);
 
-            int     i;
-            void    *p  =   &i;
+			int 	i;
+			void	*p	=	&i;
 
-            if(get_ptr(p) != p)
-            {
-                r->report("get_ptr(void*) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(get_ptr(p) != p)
+			{
+				r->report("get_ptr(void*) failed", __LINE__);
+				bSuccess = false;
+			}
 
 #ifndef _STLSOFT_PTR_ACCESS_NO_AUTO_PTR
-            stlsoft_ns_qual_std(auto_ptr)<int>  api(new int(1));
+			stlsoft_ns_qual_std(auto_ptr)<int>	api(new int(1));
 
-            if(get_ptr(api) != api.get())
-            {
-                r->report("get_ptr(auto_ptr<int>) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(get_ptr(api) != api.get())
+			{
+				r->report("get_ptr(auto_ptr<int>) failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* _STLSOFT_PTR_ACCESS_NO_AUTO_PTR */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_ptr_access(test_stlsoft_ptr_access);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_ptr_access(test_stlsoft_ptr_access);
+	} // anonymous namespace
 
 } // namespace unittest
 

@@ -5,7 +5,7 @@
  *              non_mutating_operator_adaptor classes.
  *
  * Created:     4th November 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MINOR       5
-# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    2
-# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        22
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    3
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,12 +81,12 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #  include <stlsoft/meta/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_INERT
-# include <stlsoft/inert.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_INERT */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
+# include <stlsoft/util/operator_bool.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT
+# include <stlsoft/util/inert.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -114,8 +114,11 @@ namespace rangelib_project
  * Classes
  */
 
-/// This class facilitates specific definition of the \c const_iterator and
-/// \c iterator member types
+/** \brief This class facilitates specific definition of the \c const_iterator and
+ * \c iterator member types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k CR
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1300
@@ -134,14 +137,17 @@ public:
 };
 
 
-/// \brief This class is a reverse bolt-in, which provides mutating and
-/// non-mutating Range operators based on the method forms of its
-/// parameterising (and deriving) class
-///
-/// \note Because this is a reverse bolt-in, \c R is an incomplete type at the
-/// time of the template parsing. Hence, we cannot deduce \c reference and
-/// \c const_reference from \c R. This is why the traits type is required in
-/// the form of the \c T parameter.
+/** \brief This class is a reverse bolt-in, which provides mutating and
+ * non-mutating Range operators based on the method forms of its
+ * parameterising (and deriving) class
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note Because this is a reverse bolt-in, \c R is an incomplete type at the
+ * time of the template parsing. Hence, we cannot deduce \c reference and
+ * \c const_reference from \c R. This is why the traits type is required in
+ * the form of the \c T parameter.
+ */
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
@@ -205,14 +211,17 @@ public:
 /// @}
 };
 
-/// \brief This class is a reverse bolt-in, which provides non-mutating Range
-/// operators based on the method forms of its parameterising (and deriving)
-/// class
-///
-/// \note Because this is a reverse bolt-in, \c R is an incomplete type at the
-/// time of the template parsing. Hence, we cannot deduce \c reference and
-/// \c const_reference from \c R. This is why the traits type is required in
-/// the form of the \c T parameter.
+/** \brief This class is a reverse bolt-in, which provides non-mutating Range
+ * operators based on the method forms of its parameterising (and deriving)
+ * class
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note Because this is a reverse bolt-in, \c R is an incomplete type at the
+ * time of the template parsing. Hence, we cannot deduce \c reference and
+ * \c const_reference from \c R. This is why the traits type is required in
+ * the form of the \c T parameter.
+ */
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >
@@ -293,8 +302,11 @@ struct fixer_mutating_operator_adaptor<R, T, false>
 
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// This type is used to select the mutating or non-mutating form of the
-/// operator adaptor
+/** \brief This type is used to select the mutating or non-mutating form of the
+ * operator adaptor
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T
         >

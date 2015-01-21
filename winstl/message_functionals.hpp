@@ -4,7 +4,7 @@
  * Purpose:     Window messaging function objects and predicates.
  *
  * Created:     19th January 2001
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     27
+# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,8 +94,11 @@ namespace winstl_project
  * Functor classes
  */
 
-/// Functor used to send a message to windows
-///
+/** \brief Functor used to send a message to windows
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 // [[synesis:class:unary-functor: message_send]]
 struct message_send
     : public std::unary_function<HWND, void>
@@ -137,8 +140,11 @@ private:
     class_type &operator =(class_type const&);
 };
 
-/// Functor used to post a message to windows
-///
+/** \brief Functor used to post a message to windows
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 // [[synesis:class:unary-functor: message_post]]
 struct message_post
     : public std::unary_function<HWND, void>

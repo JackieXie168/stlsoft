@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,8 +44,6 @@
  *  template.
  *  (\ref group__library__string "String" Library.)
  */
-///
-/// basic_static_string class template.
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
@@ -53,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     173
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     175
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,7 +124,6 @@ namespace stlsoft
  * Classes
  */
 
-// class static_string
 /** \brief Simple string class using fixed-size static-based storage
  *
  * \param C The character type
@@ -147,6 +144,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T = /* char_traits<C> */
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
+// class static_string
 class basic_static_string
     : public stl_collection_tag
 {
@@ -805,7 +803,10 @@ inline void swap(basic_static_string<C, CCH, T> &lhs, basic_static_string<C, CCH
 
 /* c_str_ptr_null */
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -817,7 +818,10 @@ inline C const *c_str_ptr_null(basic_static_string<C, CCH, T> const &s)
 
 /* c_str_ptr */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -829,7 +833,10 @@ inline C const *c_str_ptr(basic_static_string<C, CCH, T> const &s)
 
 /* c_str_data */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -841,7 +848,10 @@ inline C const *c_str_data(basic_static_string<C, CCH, T> const &s)
 
 /* c_str_ptr_len */
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -851,21 +861,9 @@ inline ss_size_t c_str_len(basic_static_string<C, CCH, T> const &s)
     return s.length();
 }
 
-/* c_str_ptr_size */
-
-#if 0
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
-template<   ss_typename_param_k C
-        ,   ss_size_t           CCH
-        ,   ss_typename_param_k T
-        >
-inline ss_size_t c_str_size(basic_static_string<C, CCH, T> const &s)
-{
-    return c_str_len(s) * sizeof(C);
-}
-#endif /* 0 */
-
 #endif /* !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+
+
 
 template<   ss_typename_param_k     S
         ,   ss_typename_param_k     C

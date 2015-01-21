@@ -4,7 +4,7 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/contiguous_diluter_iterator.hpp
-///
-/// Enhanced ostream iterator.
+/** \file stlsoft/iterators/contiguous_diluter_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::contiguous_diluter_iterator
+ *   class template
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_CONTIGUOUS_DILUTER_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_CONTIGUOUS_DILUTER_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CONTIGUOUS_DILUTER_ITERATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CONTIGUOUS_DILUTER_ITERATOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CONTIGUOUS_DILUTER_ITERATOR_REVISION 3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CONTIGUOUS_DILUTER_ITERATOR_EDIT     5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CONTIGUOUS_DILUTER_ITERATOR_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,32 +79,21 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup adaptors Adaptors
-/// \brief Adaptor functions and classes used throughout the STLSoft libraries
-
-/// \weakgroup adaptors_iterator Iterator Adaptors
-/// \brief Classes that provide iterator adaptation
-/// \ingroup iterators adaptors
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-// class contiguous_diluter_iterator
-/// An iterator adaptor class for use with Contiguous Iterators, to dilute the
-/// iterator category to BiDirectional or lesser.
-///
-/// \param T The value type of the iterator
-/// \param C The iterator category. Defaults to std::bidirectional_iterator_tag
-/// \param D The difference type of the iterator. Defaults to ptrdiff_t
-/// \param P The pointer type of the iterator. Defaults to T*
-/// \param R The reference type of the iterator. Defaults to T&
+/** \brief An iterator adaptor class for use with Contiguous Iterators, to dilute the
+ * iterator category to BiDirectional or lesser.
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param T The value type of the iterator
+ * \param C The iterator category. Defaults to std::bidirectional_iterator_tag
+ * \param D The difference type of the iterator. Defaults to ptrdiff_t
+ * \param P The pointer type of the iterator. Defaults to T*
+ * \param R The reference type of the iterator. Defaults to T&
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C   =   stlsoft_ns_qual_std(bidirectional_iterator_tag)
         ,   ss_typename_param_k D   =   ss_ptrdiff_t
@@ -125,6 +117,7 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// \brief Constructs from an instance of the iterator to be diluted
     contiguous_diluter_iterator(pointer p)
         : m_p(p)
     {}
@@ -133,19 +126,19 @@ public:
 /// \name Forward Iteration Methods
 /// @{
 public:
-    /// Dereference operator
+    /// \brief Dereference operator
     reference operator *()
     {
         return *m_p;
     }
-    /// Pre-increment operator
+    /// \brief Pre-increment operator
     class_type &operator ++()
     {
         ++m_p;
 
         return *this;
     }
-    /// Post-increment operator
+    /// \brief Post-increment operator
     class_type &operator ++(int)
     {
         class_type r(*this);
@@ -172,14 +165,14 @@ public:
 /// \name Bidirectional Iteration Methods
 /// @{
 public:
-    /// Pre-decrement operator
+    /// \brief Pre-decrement operator
     class_type &operator --()
     {
         --m_p;
 
         return *this;
     }
-    /// Post-decrement operator
+    /// \brief Post-decrement operator
     class_type &operator --(int)
     {
         class_type r(*this);
@@ -196,10 +189,6 @@ private:
     pointer m_p;
 /// @}
 };
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

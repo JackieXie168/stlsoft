@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MINOR      3
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   3
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       74
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   4
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -223,9 +223,12 @@ inline ms_size_t GetWindowText__(CListView const &w, LPTSTR buffer, ms_size_t cc
 
 /* CWnd */
 
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr_null() function, such that the window text of a given window
-/// may be accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr_null() function, such that the window text of a given window
+ * may be accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class c_str_ptr_null_CWnd_proxy
 {
     typedef TCHAR                       char_type;
@@ -305,9 +308,12 @@ private:
     void operator =(class_type const &rhs);
 };
 
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr() function, such that the window text of a given window may be
-/// accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr() function, such that the window text of a given window may be
+ * accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class c_str_ptr_CWnd_proxy
 {
     typedef TCHAR                   char_type;
@@ -449,7 +455,10 @@ inline S &operator <<(S & s, c_str_ptr_CWnd_proxy const &shim)
  */
 
 /* CWnd */
-/// \brief Returns the corresponding C-string pointer of the CWnd \c w, or a null pointer
+/** \brief Returns the corresponding C-string pointer of the CWnd \c w, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CWnd &w)
 {
     return c_str_ptr_null_CWnd_proxy(w);
@@ -507,7 +516,10 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListView &w)
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/// \brief Returns the corresponding C-string pointer of the CString \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of the CString \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline LPCTSTR c_str_ptr_null(const CString &s)
 {
     /* CString always points to valid memory, whether its own
@@ -532,7 +544,10 @@ inline LPCTSTR c_str_ptr_null_w(const CString &s)
  */
 
 /* CWnd */
-/// \brief Returns the corresponding C-string pointer of the CWnd \c w
+/** \brief Returns the corresponding C-string pointer of the CWnd \c w
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_CWnd_proxy c_str_ptr(const CWnd &w)
 {
     return c_str_ptr_CWnd_proxy(w);
@@ -590,7 +605,10 @@ inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListView &w)
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/// \brief Returns the corresponding C-string pointer of the CString \c s
+/** \brief Returns the corresponding C-string pointer of the CString \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline LPCTSTR c_str_ptr(const CString &s)
 {
     /* CString always points to valid memory, whether its own
@@ -615,7 +633,10 @@ inline LPCTSTR c_str_ptr_a(const CString &s)
  */
 
 /* CWnd */
-/// \brief Returns the corresponding C-string pointer of the CWnd \c w
+/** \brief Returns the corresponding C-string pointer of the CWnd \c w
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_CWnd_proxy c_str_data(const CWnd &w)
 {
     return c_str_ptr_CWnd_proxy(w);
@@ -673,7 +694,10 @@ inline c_str_ptr_CWnd_proxy c_str_data_a(const CListView &w)
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/// \brief Returns the corresponding C-string pointer of the CString \c s
+/** \brief Returns the corresponding C-string pointer of the CString \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline LPCTSTR c_str_data(const CString &s)
 {
     /* CString always points to valid memory, whether its own
@@ -698,7 +722,10 @@ inline LPCTSTR c_str_data_a(const CString &s)
  */
 
 /* CWnd */
-/// \brief Returns the length (in characters) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ms_size_t c_str_len(const CWnd &w)
 {
     return GetWindowTextLength__(w);
@@ -724,62 +751,14 @@ inline ms_size_t c_str_len(const CListView &w)
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/// \brief Returns the length (in characters) of the CString \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the CString \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ms_size_t c_str_len(const CString &s)
 {
     return s.GetLength();
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * c_str_size
- *
- * This can be applied to an expression, and the return value is the number of
- * bytes required to store the character string in the expression, NOT including
- * the null-terminating character.
- */
-
-/* CWnd */
-#if 0
-/// \brief Returns the size (in bytes) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
-inline ms_size_t c_str_size(const CWnd &w)
-{
-    return c_str_len(w) * sizeof(TCHAR);
-}
-#endif /* 0 */
-
-#if 0
-inline ms_size_t c_str_size(const CListBox &w)
-{
-    return c_str_len(w) * sizeof(TCHAR);
-}
-#endif /* 0 */
-
-#ifdef __AFXCMN_H__
-#if 0
-inline ms_size_t c_str_size(const CListCtrl &w)
-{
-    return c_str_len(w) * sizeof(TCHAR);
-}
-#endif /* 0 */
-
-# ifdef __AFXCVIEW_H__
-#if 0
-inline ms_size_t c_str_size(const CListView &w)
-{
-    return c_str_size(w.GetListCtrl());
-}
-#endif /* 0 */
-# endif /* __AFXCVIEW_H__ */
-#endif /* __AFXCMN_H__ */
-
-/* CString */
-#if 0
-/// \brief Returns the size (in bytes) of the CString \c s, <b><i>not</i></b> including the null-terminating character
-inline ms_size_t c_str_size(const CString &s)
-{
-    return c_str_len(s) * sizeof(TCHAR);
-}
-#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -840,9 +819,6 @@ using ::mfcstl::c_str_data_a;
 
 using ::mfcstl::c_str_len;
 
-#if 0
-using ::mfcstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

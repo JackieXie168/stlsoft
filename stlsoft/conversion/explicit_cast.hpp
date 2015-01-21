@@ -4,7 +4,7 @@
  * Purpose:     Class to provide explicit cast operators.
  *
  * Created:     20th September 2002
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_EDIT      30
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,11 +122,14 @@ private:
 };
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-/// Being able to cast to non-const references does not work, since
-/// the compilers will refuse to apply such to a temporary.
-///
-/// Furthermore, it is too evil to contemplate (see Effective C++ #30)
-/// so we simply hide the constructor and conversion operator.
+/** \brief Being able to cast to non-const references does not work, since
+ * the compilers will refuse to apply such to a temporary.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * Furthermore, it is too evil to contemplate (see Effective C++ #30)
+ * so we simply hide the constructor and conversion operator.
+ */
 template <ss_typename_param_k T>
 class explicit_cast<T &>
 {
@@ -213,8 +216,11 @@ private:
 
 # endif /* _STLSOFT_EXPLICIT_CAST_FORCE_ALLOW_REFERENCE_TO_CONST_UDT */
 
-/// Not sure I really like this one, and reserve the right to remove it
-/// but for now it stays.
+/** \brief Not sure I really like this one, and reserve the right to remove it
+ * but for now it stays.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 class explicit_cast<T *>
 {

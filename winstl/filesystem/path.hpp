@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     216
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     218
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -442,11 +442,20 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_path template for the ANSI character type \c char
+/** \brief Instantiation of the basic_path template for the ANSI character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_path<ws_char_a_t, filesystem_traits<ws_char_a_t> >       path_a;
-/// Instantiation of the basic_path template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_path template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_path<ws_char_w_t, filesystem_traits<ws_char_w_t> >       path_w;
-/// Instantiation of the basic_path template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_path template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -583,7 +592,10 @@ inline ws_bool_t operator !=(basic_path<C, T, A> const &lhs, basic_path<C, T, A>
 
 // operator /
 
-/// \brief Concatenates \c rhs to the path \c lhs
+/** \brief Concatenates \c rhs to the path \c lhs
+ *
+ * \ingroup group__library__file_system
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -593,7 +605,10 @@ inline basic_path<C, T, A> operator /(basic_path<C, T, A> const &lhs, ss_typenam
     return basic_path<C, T, A>(lhs) /= rhs;
 }
 
-/// \brief Concatenates \c rhs to the path \c lhs
+/** \brief Concatenates \c rhs to the path \c lhs
+ *
+ * \ingroup group__library__file_system
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -603,7 +618,10 @@ inline basic_path<C, T, A> operator /(ss_typename_type_k basic_path<C, T, A>::ch
     return basic_path<C, T, A>(lhs) /= rhs;
 }
 
-/// \brief Concatenates \c rhs to the path \c lhs
+/** \brief Concatenates \c rhs to the path \c lhs
+ *
+ * \ingroup group__library__file_system
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -620,8 +638,11 @@ inline basic_path<C, T, A> operator /(basic_path<C, T, A> const &lhs, basic_path
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER >= 1100
 
-/// This helper function makes a path variable without needing to
-/// qualify the template parameter.
+/** \brief This helper function makes a path variable without needing to
+ * qualify the template parameter.
+ *
+ * \ingroup group__library__file_system
+ */
 template<ss_typename_param_k C>
 inline basic_path<C> make_path(C const *path)
 {
@@ -737,16 +758,7 @@ inline ws_size_t c_str_len(basic_path<C, T, A> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_size_t c_str_size(basic_path<C, T, A> const &b)
-{
-    return stlsoft_ns_qual(c_str_size)(b.c_str());
-}
-#endif /* 0 */
+
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -1623,10 +1635,6 @@ using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
-
-#if 0
-using ::winstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

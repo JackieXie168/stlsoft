@@ -4,7 +4,7 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      3
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   2
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       42
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,15 +103,21 @@ namespace atlstl_project
  * Classes
  */
 
-/// Turns an integral value into a type
+/** \brief Turns an integral value into a type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <int N>
 struct IDD_to_type
 {
     enum { IDD = N };
 };
 
-/// About dialog class based on a type that specifies an Id, and a parent window
-/// type
+/** \brief About dialog class based on a type that specifies an Id, and a parent window
+ * type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   class   T
         ,   class   B = CWindow
         >
@@ -226,7 +232,10 @@ protected:
     }
 };
 
-/// About dialog class based from an Id
+/** \brief About dialog class based from an Id
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   UINT    ID
         ,   class   B = CWindow
         >

@@ -4,7 +4,7 @@
  * Purpose:     Exception classes for TOOLHELP components.
  *
  * Created:     21st May 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MAJOR    1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MINOR    1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_REVISION 1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     5
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,9 +100,10 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Root exception thrown by the \ref group__library__windows_toolhelp "ToolHelp" Library.
-///
-/// \ingroup group__library__windows_toolhelp
+/** \brief Root exception thrown by the \ref group__library__windows_toolhelp "ToolHelp" Library.
+ *
+ * \ingroup group__library__windows_toolhelp
+ */
 struct toolhelp_exception
     : public windows_exception
 {

@@ -4,7 +4,7 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/ostream_iterator.hpp
-///
-/// Enhanced ostream iterator.
+/** \file stlsoft/iterators/ostream_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::ostream_iterator class
+ *   template
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR
@@ -49,12 +52,8 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        24
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Compatibility
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -92,68 +91,60 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup iterators_output Output Iterators
-/// \brief Classes that provide Output Iteration functionality
-/// \ingroup iterators
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// \brief Enhanced functionality over std::ostream_iterator
-///
-/// This class template provides full backwards-compatibility with
-/// std::ostream_iterator, but offers the additional capability to supply both
-/// prefix <i>and</i> suffix to each delimited item.
-///
-/// For example, the following code indents each entry in the sequence as well
-/// as appending a carriage return.
-///
-/// \htmlonly
-/// <pre>
-///
-/// std::vector&lt;int>  ints(10);
-///
-/// { for(size_t i = 0; i &lt; ints.size(); ++i)
-/// {
-///   ints[i] = i;
-/// }}
-///
-/// std::cout &lt;&lt; "Elements:" &lt;&lt; std::endl;
-/// std::copy(ints.begin(), ints.end(), stlsoft::ostream_iterator&lt;int>(std::cout, "\t", "\n");
-/// </pre>
-/// \endhtmlonly
-///
-/// This gives the following output:
-///
-/// \htmlonly
-/// <pre>
-/// <b>
-/// Elements:
-///         0
-///         1
-///         2
-///         3
-///         4
-///         5
-///         6
-///         7
-///         8
-///         9
-/// </b>
-/// </pre>
-/// \endhtmlonly
-///
-/// \param V The value type.
-/// \param C The character type. Defaults to <code>char</code>.
-/// \param T The traits type. Defaults to <code>std::char_traits&lt;C></code>.
-/// \param S The string type. Defaults to <code>std::basic_string&lt;C></code>.
+/** \brief Enhanced functionality over std::ostream_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * This class template provides full backwards-compatibility with
+ * std::ostream_iterator, but offers the additional capability to supply both
+ * prefix <i>and</i> suffix to each delimited item.
+ *
+ * For example, the following code indents each entry in the sequence as well
+ * as appending a carriage return.
+ *
+\htmlonly
+<pre>
+
+std::vector&lt;int>  ints(10);
+
+{ for(size_t i = 0; i &lt; ints.size(); ++i)
+{
+  ints[i] = i;
+}}
+
+std::cout &lt;&lt; "Elements:" &lt;&lt; std::endl;
+std::copy(ints.begin(), ints.end(), stlsoft::ostream_iterator&lt;int>(std::cout, "\t", "\n"));
+</pre>
+\endhtmlonly
+ *
+ * This gives the following output:
+ *
+\htmlonly
+<pre><b>Elements:
+        0
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9</b></pre>
+\endhtmlonly
+ *
+ * \param V The value type.
+ * \param C The character type. Defaults to <code>char</code>.
+ * \param T The traits type. Defaults to <code>std::char_traits&lt;C></code>.
+ * \param S The string type. Defaults to <code>std::basic_string&lt;C></code>.
+ *
+ * \remarks The class template avoids fatuous assignment syntax by using the
+ *  \ref group__pattern__dereference_proxy "Dereference Proxy" pattern.
+ */
 template<   ss_typename_param_k V
         ,   ss_typename_param_k C = char
         ,   ss_typename_param_k T = stlsoft_ns_qual_std(char_traits)<C>
@@ -220,8 +211,10 @@ public:
         , m_prefix(rhs.m_prefix)
         , m_suffix(rhs.m_suffix)
     {}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     ~ostream_iterator() stlsoft_throw_0()
     {}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
 /// \name Implementation
@@ -257,14 +250,17 @@ private:
 /// \name Ouput Iterator Methods
 /// @{
 public:
+    /// \brief Dereference operator
     deref_proxy operator *()
     {
         return deref_proxy(this);
     }
+    /// \brief Pre-increment operator
     class_type &operator ++()
     {
         return *this;
     }
+    /// \brief Post-increment operator
     class_type &operator ++(int)
     {
         return *this;
@@ -296,10 +292,6 @@ private:
     string_type     m_suffix;
 /// @}
 };
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

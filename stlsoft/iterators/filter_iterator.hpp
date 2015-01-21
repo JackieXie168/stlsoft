@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,9 +39,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/filter_iterator.hpp
-///
-/// An iterator adaptor that uses a predicate to filter desired values from the iterator's underlying sequence.
+/** \file stlsoft/iterators/filter_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::filter_iterator
+ *   class template
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR
@@ -50,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     28
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,24 +113,15 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup adaptors Adaptors
-/// \brief Adaptor functions and classes used throughout the STLSoft libraries
-
-/// \weakgroup adaptors_iterator Iterator Adaptors
-/// \brief Classes that provide iterator adaptation
-/// \ingroup iterators adaptors
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// Filters the values of an iterable range
+/** \brief An iterator adaptor that uses a predicate to filter desired
+ *    values from the iterator's underlying sequence.
+ *
+ * \ingroup group__library__iterators
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k P
         ,   ss_typename_param_k T = adapted_iterator_traits<I>
@@ -336,12 +330,16 @@ private:
  * Creator function
  */
 
-/// Creator function for filter_iterator
-///
-/// \param i The iterator to transform
-/// \param pr The predicate used to filter the underlying range
-///
-/// \return An instance of the specialisation filter_iterator&lt;T, P&gt;
+/** \brief Creator function for filter_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param from The iterator marking the start of the range to filter
+ * \param to The iterator marking (one past) the end of the range to filter
+ * \param pr The predicate used to filter the underlying range
+ *
+ * \return An instance of the specialisation filter_iterator&lt;T, P&gt;
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k P
         >
@@ -350,14 +348,18 @@ inline filter_iterator<I, P> make_filter_iterator(I from, I to, P pr)
     return filter_iterator<I, P>(from, to, pr);
 }
 
-/// Creator function for filter_iterator
-///
-/// \param i The iterator to transform
-/// \param pr The predicate used to filter the underlying range
-///
-/// \return An instance of the specialisation filter_iterator&lt;T, P&gt;
-///
-/// \note Short-hand for make_filter_iterator()
+/** \brief Creator function for filter_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param from The iterator marking the start of the range to filter
+ * \param to The iterator marking (one past) the end of the range to filter
+ * \param pr The predicate used to filter the underlying range
+ *
+ * \return An instance of the specialisation filter_iterator&lt;T, P&gt;
+ *
+ * \note Short-hand for make_filter_iterator()
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k P
         >
@@ -391,10 +393,6 @@ inline ss_bool_t operator !=(filter_iterator<I, P, T> const &lhs, filter_iterato
 {
     return !lhs.equal(rhs);
 }
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

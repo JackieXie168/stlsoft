@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    11
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     52
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,10 @@ namespace rangelib_project
 
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 
-/// Traits class for determining the attributes of range-adapted sequence container types
+/** \brief Traits class for determining the attributes of range-adapted sequence container types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k S
         ,   bool                B_CONST = false
         >
@@ -200,7 +203,10 @@ public:
     typedef ss_typename_type_k sequence_type::size_type             size_type;
 };
 
-/// Partial specialisation for constant sequences
+/** \brief Partial specialisation for constant sequences
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k S
         >
 struct sequence_range_traits<S, true>
@@ -278,27 +284,30 @@ public:
 };
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
-/// \brief This class adapts an STL sequence instance into a Range
-///
-/// \param S The sequence class
-/// \param T The sequence range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type
-///
-/// It is categoried as an Iterable Range
-///
-/// It could be used as follows
-/// \htmlonly
-/// <code>
-/// <pre>
-/// void dump_elements(std::vector&lt;int&gt; const &numbers)
-/// {
-///   for(sequence_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
-///   {
-///     std::cout &lt;&lt; &r; // Dump the current value to stdout
-///   }
-/// }
-/// </pre>
-/// </code>
-/// \endhtmlonly
+/** \brief This class adapts an STL sequence instance into a Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param S The sequence class
+ * \param T The sequence range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type
+ *
+ * It is categoried as an Iterable Range
+ *
+ * It could be used as follows
+ * \htmlonly
+ * <code>
+ * <pre>
+ * void dump_elements(std::vector&lt;int&gt; const &numbers)
+ * {
+ *   for(sequence_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
+ *   {
+ *     std::cout &lt;&lt; &r; // Dump the current value to stdout
+ *   }
+ * }
+ * </pre>
+ * </code>
+ * \endhtmlonly
+ */
 template<   ss_typename_param_k S
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
         ,   ss_typename_param_k T = sequence_range_traits<S, is_const<S>::value>    // Determines whether the sequence is const

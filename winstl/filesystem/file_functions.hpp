@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       30
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,15 +77,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE
-# include <stlsoft/scoped_handle.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
+# include <stlsoft/smartptr/scoped_handle.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
 # include <stlsoft/string/string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS
-# include <stlsoft/tokenising/tokeniser_functions.hpp> // for find_next_token
-#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS
+# include <stlsoft/string/tokeniser_functions.hpp> // for find_next_token
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/string/simple_string.hpp>
@@ -124,18 +124,21 @@ template<   ss_typename_param_k S1
 inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents);
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Loads a text file into a string
-///
-/// \param fileName The name/path of the text file to load. Can be nul-terminated
-///                  C-style string, or a string object
-/// \param contents A reference to a string instance into which the contents will
-///                  be loaded (with the assign() method)
-///
-/// \return The number of bytes read from the file
-///
-/// \note The character type of the text file is assumed (and controlled) to be
-/// that of the \c contents parameter. For example, if \c contents is of type
-/// \c std::wstring then the file will be processed as if it contains \c wchar_t.
+/** \brief Loads a text file into a string
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param fileName The name/path of the text file to load. Can be nul-terminated
+ *                  C-style string, or a string object
+ * \param contents A reference to a string instance into which the contents will
+ *                  be loaded (with the assign() method)
+ *
+ * \return The number of bytes read from the file
+ *
+ * \note The character type of the text file is assumed (and controlled) to be
+ * that of the \c contents parameter. For example, if \c contents is of type
+ * \c std::wstring then the file will be processed as if it contains \c wchar_t.
+ */
 template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         >
@@ -321,12 +324,15 @@ void readlines_impl(CH const *p, ss_size_t len, C &container)
     }
 }
 
-/// \brief Reads the lines of a text-file into a sequence container
-///
-/// \param fileName The name of the text-file to load
-/// \param container Reference to the sequence container to which each line read from \c fileName will be appended (via its push_back() method)
-///
-/// \returns The \c container reference
+/** \brief Reads the lines of a text-file into a sequence container
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param fileName The name of the text-file to load
+ * \param container Reference to the sequence container to which each line read from \c fileName will be appended (via its push_back() method)
+ *
+ * \returns The \c container reference
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >

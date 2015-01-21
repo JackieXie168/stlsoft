@@ -4,7 +4,7 @@
  * Purpose:     Adds a const or volatile qualifier to a type.
  *
  * Created:     30th December 2005
- * Updated:     10th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/add_qualifier.hpp
-///
-/// Adds a const or volatile qualifier to a type.
+/** \file stlsoft/meta/add_qualifier.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::add_const,
+ *   stlsoft::add_volatile, stlsoft::add_const_ref and
+ *   stlsoft::add_volatile_ref meta-programming type adjuster components.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_ADD_QUALIFIER
 #define STLSOFT_INCL_STLSOFT_META_HPP_ADD_QUALIFIER
@@ -49,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_REVISION    2
-# define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_EDIT        5
+# define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,11 +77,17 @@ namespace stlsoft
  * Classes
  */
 
+/** \brief Adds <code>const</code> qualifier to a type.
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct add_const
 {
     typedef const T     type;
 };
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct add_const<void>
@@ -85,11 +95,21 @@ struct add_const<void>
     typedef void        type;
 };
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
+/** \brief Adds <code>volatile</code> qualifier to a type.
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct add_volatile
 {
     typedef volatile T  type;
 };
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct add_volatile<void>
@@ -97,12 +117,21 @@ struct add_volatile<void>
     typedef void        type;
 };
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
+
+/** \brief Adds <code>const&amp;</code> qualifier to a type.
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct add_const_ref
 {
     typedef const T     &type;
 };
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct add_const_ref<void>
@@ -110,11 +139,21 @@ struct add_const_ref<void>
     typedef void        type;
 };
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
+/** \brief Adds <code>volatile&amp;</code> qualifier to a type.
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct add_volatile_ref
 {
     typedef volatile T  &type;
 };
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct add_volatile_ref<void>
@@ -122,6 +161,7 @@ struct add_volatile_ref<void>
     typedef void        type;
 };
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

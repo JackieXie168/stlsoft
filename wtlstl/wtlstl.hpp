@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 1
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     31
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp \brief [C++ only; requires WTL library] The root header for the \ref group__project__wtlstl "WTLSTL" project. */
@@ -238,20 +238,29 @@
  * The macro wtlstl_assert provides standard debug-mode assert functionality.
  */
 
-/// Defines a runtime assertion
-///
-/// \param _x Must be non-zero, or an assertion will be fired
+/** \brief Defines a runtime assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param _x Must be non-zero, or an assertion will be fired
+ */
 #define WTLSTL_ASSERT(_x)               STLSOFT_ASSERT(_x)
 
-/// Defines a runtime assertion, with message
-///
-/// \param _x Must be non-zero, or an assertion will be fired
-/// \param _m The literal character string message to be included in the assertion
+/** \brief Defines a runtime assertion, with message
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param _x Must be non-zero, or an assertion will be fired
+ * \param _m The literal character string message to be included in the assertion
+ */
 #define WTLSTL_MESSAGE_ASSERT(_m, _x)   STLSOFT_MESSAGE_ASSERT(_m, _x)
 
-/// Defines a compile-time assertion
-///
-/// \param _x Must be non-zero, or compilation will fail
+/** \brief Defines a compile-time assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param _x Must be non-zero, or compilation will fail
+ */
 #define WTLSTL_STATIC_ASSERT(_x)        STLSOFT_STATIC_ASSERT(_x)
 
 
@@ -360,8 +369,11 @@ namespace wtlstl
 namespace stlsoft
 {
 
-/// The WTLSTL namespace - \c wtlstl (aliased to \c stlsoft::wtlstl_project) - is
-/// the namespace for the WTLSTL project.
+/** \brief The WTLSTL namespace - \c wtlstl (aliased to \c stlsoft::wtlstl_project) - is
+ * the namespace for the WTLSTL project.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 namespace wtlstl_project
 {
 
@@ -486,12 +498,15 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 # define wtlstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Evaluates, at compile time, to the number of elements within the given vector entity
-///
-/// \param ar An array whose dimension is to be evaluated
+/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param ar An array whose dimension is to be evaluated
+ */
 #define WTLSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define wtlstl_num_elements(ar)						WTLSTL_NUM_ELEMENTS(ar)
+# define wtlstl_num_elements(ar)                        WTLSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
