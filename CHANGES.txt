@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  1st January 2009
+; Updated:  4th January 2009
 
 ============================================================================
 
@@ -16,6 +16,31 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.66 (4th January 2009)
+
+Summary:
+========
+
+ * compatibility with GCC 4.3's pedantic precedence warnings
+ * compatibility with SunPro compiler for limit_traits
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/internal/cccap/sunpro.h:
+    ~ correcting Jon's surname
+
+ ~ include/stlsoft/stlsoft.h:
+    ~ compatibility with GCC 4.3's pedantic precedence warnings
+
+ ~ include/stlsoft/util/limit_traits.h:
+    ~ compatibility with SunPro compiler
 
 ============================================================================
 

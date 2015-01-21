@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     1st October 2008
+ * Updated:     31st December 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    3
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     59
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,12 +109,12 @@ class process_mutex
 /// \name Member Types
 /// @{
 public:
-/// @}
     /// This type
     typedef process_mutex   class_type;
     typedef HANDLE          synch_handle_type;
 
     typedef HANDLE          resource_type;
+/// @}
 
 /// \name Construction
 /// @{
