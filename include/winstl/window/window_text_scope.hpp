@@ -4,11 +4,11 @@
  * Purpose:     Window text scoping class.
  *
  * Created:     21st August 2003
- * Updated:     6th November 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_MAJOR    4
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_EDIT     37
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_MINOR    1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_REVISION 1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -194,7 +194,7 @@ public:
             ,   ss_typename_param_k S1
             >
     ss_explicit_k window_text_scope(W &wnd, S1 const& s)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
     {
         buffer_type_    buffer(1 + traits_type::get_window_text_length(m_hwnd));
 

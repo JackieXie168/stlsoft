@@ -21,7 +21,7 @@ namespace unittest
 
 			HWND	hwndDesktopWindow	=	::GetDesktopWindow();
 
-			if(get_hwnd(hwndDesktopWindow) != hwndDesktopWindow)
+			if(get_HWND(hwndDesktopWindow) != hwndDesktopWindow)
 			{
 				r->report("get_HWND(HWND) failed", __LINE__);
 				bSuccess = false;

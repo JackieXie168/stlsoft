@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     9th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        54
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       3
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -174,7 +174,7 @@ public:
     typedef const value_type                                const_reference;    // BVT
     /// \brief The non-mutating (const) iterator type
     class                                                   const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
     typedef const_reverse_bidirectional_iterator_base<  const_iterator
                                                     ,   value_type
@@ -182,7 +182,7 @@ public:
                                                     ,   void            // By-Value Temporary reference category
                                                     ,   difference_type
                                                     >       const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// \brief The type of the class
     typedef environment_map                                 class_type;
 
@@ -327,7 +327,7 @@ public:
     ///
     /// \return A non-mutating (const) iterator representing (one past) the end of the sequence
     const_iterator  end() const;
-# if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+# if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
      !defined(STLSOFT_COMPILER_IS_BORLAND)
     /// \brief Begins the reverse iteration
     ///
@@ -337,7 +337,7 @@ public:
     ///
     /// \return A non-mutating (const) iterator representing (one past) the end of the reverse sequence
     const_reverse_iterator  rend() const;
-# endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
 /// @}
 
@@ -772,7 +772,7 @@ inline environment_map::const_iterator environment_map::end() const
 #endif /* 0 */
 }
 
-# if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+# if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
      !defined(STLSOFT_COMPILER_IS_BORLAND)
 inline environment_map::const_reverse_iterator environment_map::rbegin() const
 {
@@ -783,7 +783,7 @@ inline environment_map::const_reverse_iterator environment_map::rend() const
 {
     return const_reverse_iterator(begin());
 }
-# endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
 
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON

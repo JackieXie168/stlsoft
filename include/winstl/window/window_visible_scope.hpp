@@ -4,11 +4,11 @@
  * Purpose:     Window visible-state scoping class.
  *
  * Created:     26th May 2004
- * Updated:     6th November 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_MAJOR       4
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_MINOR       0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_REVISION    2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_EDIT        36
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_MINOR       1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_REVISION    1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ public:
     /// \param wnd The window whose visible state is to be controlled
     template <ss_typename_param_k W>
     ss_explicit_k window_visible_scope(W &wnd)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
         , m_stateOnDtor(::IsWindowVisible(m_hwnd) ? SW_SHOW : SW_HIDE)
     {
         ::ShowWindow(m_hwnd, (SW_SHOW == m_stateOnDtor) ? SW_HIDE : SW_SHOW);
@@ -154,7 +154,7 @@ public:
     /// \param stateOnDtor The state it is reset to in the destructor
     template <ss_typename_param_k W>
     window_visible_scope(W &wnd, ws_int_t stateOnCtor, ws_int_t stateOnDtor)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
         , m_stateOnDtor(stateOnDtor)
     {
         ::ShowWindow(m_hwnd, stateOnCtor);

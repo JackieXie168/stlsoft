@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     6th December 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      0
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   6
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       89
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      1
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   1
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -307,7 +307,7 @@ public:
     typedef ss_typename_type_k const_iterator::value_type                                   value_type;
     /// \brief The difference type
     typedef ws_ptrdiff_t                                                                    difference_type;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
     /// \brief The non-mutating (const) reverse iterator type
     typedef
@@ -320,7 +320,7 @@ public:
                                                                                 ,   void        // By-Value Temporary reference category
                                                                                 ,   difference_type
                                                                                 >::type     const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 public:
@@ -347,7 +347,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
     /// \brief Begins the reverse iteration
     ///
@@ -357,7 +357,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Members
 private:
@@ -612,7 +612,7 @@ inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_iterator ba
     return const_iterator(m_hdrop, const_iterator::sentinel_());
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_reverse_iterator basic_drophandle_sequence<C, T>::rbegin() const
@@ -625,7 +625,7 @@ inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_reverse_ite
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

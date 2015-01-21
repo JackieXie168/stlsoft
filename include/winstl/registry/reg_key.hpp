@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     24th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       9
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        124
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -896,7 +896,16 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type bas
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(registry_exception("could not open key", static_cast<DWORD>(res)));
+        static const char message[] = "could not open key";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         hkey = NULL;
@@ -925,7 +934,16 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type bas
         if(ERROR_SUCCESS != res)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(registry_exception("could not duplicate key", res));
+            static const char message[] = "could not duplicate key";
+
+            if(ERROR_ACCESS_DENIED == res)
+            {
+                STLSOFT_THROW_X(access_denied_exception(message, res));
+            }
+            else
+            {
+                STLSOFT_THROW_X(key_not_duplicated_exception(message, res));
+            }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             hkeyDup = NULL;
@@ -1017,7 +1035,16 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type basic_reg_key<
     }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    STLSOFT_THROW_X(registry_exception("could not determine the key registry class", static_cast<DWORD>(res)));
+        static const char message[] = "could not determine the key registry class";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     return string_type();
@@ -1032,7 +1059,16 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C,
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(registry_exception("could not determine the number of sub-keys", static_cast<DWORD>(res)));
+        static const char message[] = "could not determine the number of sub-keys";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         c_sub_keys = 0;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1050,7 +1086,16 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C,
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(registry_exception("could not determine the number of values", static_cast<DWORD>(res)));
+        static const char message[] = "could not determine the number of values";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         c_values = 0;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1113,7 +1158,16 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(registry_exception("could not create sub-key", static_cast<DWORD>(res)));
+        static const char message[] = "could not create sub-key";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         return class_type();
@@ -1132,6 +1186,10 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_sub_key_(char_type const* subKeyName)
 {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    static const char message[] = "could not delete sub-key";
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     result_type res = traits_type::reg_delete_key(m_hkey, subKeyName);
 
     switch(res)
@@ -1140,7 +1198,14 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(registry_exception("could not delete sub-key", res));
+            if(ERROR_ACCESS_DENIED == res)
+            {
+                STLSOFT_THROW_X(access_denied_exception(message, res));
+            }
+            else
+            {
+                STLSOFT_THROW_X(registry_exception(message, res));
+            }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through
@@ -1212,7 +1277,16 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::result_type b
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(ERROR_SUCCESS != res)
     {
-        STLSOFT_THROW_X(registry_exception("could not create value", static_cast<DWORD>(res)));
+        static const char message[] = "could not create value";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -1324,6 +1398,10 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName)
 {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    static const char message[] = "could not delete value";
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     result_type res = traits_type::reg_delete_value(m_hkey, valueName);
 
     switch(res)
@@ -1332,7 +1410,14 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(registry_exception("could not delete value", static_cast<DWORD>(res)));
+            if(ERROR_ACCESS_DENIED == res)
+            {
+                STLSOFT_THROW_X(access_denied_exception(message, res));
+            }
+            else
+            {
+                STLSOFT_THROW_X(registry_exception(message, res));
+            }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through

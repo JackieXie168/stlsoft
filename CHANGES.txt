@@ -19,14 +19,70 @@ STLSoft - Changes
 
 ============================================================================
 
-Changes for 1.9.32 (22nd April 2008)
+Changes for 1.9.34 (26th April 2008)
 
 Summary:
-==========
+========
 
-  * added support for the SunPro C and C++ compilers
-  * various mods to ensure headers are self-contained when used with
-    Windows "lean and mean" suppression symbols
+ * renamed winstl::get_hwnd attribute shim to winstl::get_HWND
+ * minor adjustments to Sun Pro support
+ * library feature discrimination symbol cleanup
+ * refactored error/exception handling in Windows Registry library
+
+Changes:
+========
+
+ *:
+ --
+
+  - STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT changed to 
+    STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT in all files
+
+  ~ renamed all get_hwnd() attribute shims to get_HWND()
+
+ STLSoft:
+ --------
+
+  ~ include/stlsoft/internal/cccap/sunpro.h: adjustments to detect _BOOL
+    and _WCHAR_T for the bool and wchar_t types support
+  ~ include/stlsoft/internal/cccap/sunpro.h: adjustment to integral size
+    detection: now simply searches for _LP64 or __LP64__ for LP64, otherwise
+	assumes int & long are 4-bytes
+  ~ include/stlsoft/internal/cccap/sunpro.h: fix to known bug in Sun Pro C++
+    library headers - <cwchar> is introduced to ensure it is included before
+	<stdio.h>
+
+  ~ stlsoft::auto_buffer::allocate_() 1-param overload implemented in terms
+    of the 2-param version
+
+ COMSTL:
+ -------
+
+  ~ fix to comstl::co_create_instance(), to directly assign between
+    ref_ptr instances via set(), rather than copy constructors
+
+ WinSTL:
+ -------
+
+  + winstl::key_not_duplicated_exception exception class to Windows Registry
+    library
+  ~ error/exception handling for all the following classes in the Windows
+    Registry library was refactored and ensured to be comprehensive:
+     * winstl::basic_reg_key
+     * winstl::basic_reg_key_sequence
+     * winstl::basic_reg_value
+     * winstl::basic_reg_value_sequence
+
+============================================================================
+
+Changes for 1.9.33 (25th April 2008)
+
+Summary:
+========
+
+ * added support for the SunPro C and C++ compilers
+ * various mods to ensure headers are self-contained when used with
+   Windows "lean and mean" suppression symbols
 
 Changes:
 ========
@@ -86,10 +142,10 @@ Changes:
 Changes for 1.9.32 (22nd April 2008)
 
 Summary:
-==========
+========
 
-  * fix for VC++ 8/9 linker error in the allocator_selector
-  * refactoring of string access shim headers for lightweight compilation
+ * fix for VC++ 8/9 linker error in the allocator_selector
+ * refactoring of string access shim headers for lightweight compilation
 
 Changes:
 ========
@@ -111,7 +167,7 @@ Changes:
 Changes for 1.9.31 (13th April 2008)
 
 Summary:
-==========
+========
 
  * exception hierarchy refactoring
  * bug fix to stlsoft::must_init
@@ -148,7 +204,7 @@ Changes:
 Changes for 1.9.30 (3rd March 2008)
 
 Summary:
-==========
+========
 
  * tidying of distribution
 
@@ -157,7 +213,7 @@ Summary:
 Changes for 1.9.29 (3rd March 2008)
 
 Summary:
-==========
+========
 
  * more preparation for safe string library compatibility
 
@@ -179,7 +235,7 @@ Changes:
 Changes for 1.9.28 (24th March 2008)
 
 Summary:
-==========
+========
 
  * enhancement to winstl::reg_key class
  * preparation for safe string library compatibility
@@ -213,7 +269,7 @@ Changes:
 Changes for 1.9.27 (17th March 2008)
 
 Summary:
-==========
+========
 
  * support for Visual C++ 9 (Visual C++ 2008)
  * fixed pre-processor typo that breaks GCC -pedantic
@@ -244,7 +300,7 @@ Changes:
 Changes for 1.9.26 (15th March 2008)
 
 Summary:
-==========
+========
 
  * definition, where appropriate, of STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT,
    denoting that a particular compiler supports the __FUNCTION__
@@ -272,7 +328,7 @@ Changes:
 Changes for 1.9.25 (9th March 2008)
 
 Summary:
-==========
+========
 
  * wholesale increase of use of forward include guards, to reduce
    compilation times
@@ -287,7 +343,7 @@ Changes:
 Changes for 1.9.24 (8th March 2008)
 
 Summary:
-==========
+========
 
  * finishing up some missed std::swap refactoring
 
@@ -315,7 +371,7 @@ Changes:
 Changes for 1.9.23 (20th February 2008)
 
 Summary:
-==========
+========
 
  * fix for minor compiler compatibility issue
 
@@ -333,7 +389,7 @@ Changes:
 Changes for 1.9.22 (8th February 2008)
 
 Summary:
-==========
+========
 
  * refactored unixstl/synch/util/features.h
 
@@ -360,7 +416,7 @@ Changes:
 Changes for 1.9.21 (5th February 2008)
 
 Summary:
-==========
+========
 
  * fixed a bug in platformstl/synch/util/features.h
 
@@ -377,7 +433,7 @@ Changes:
 Changes for 1.9.20 (3rd February 2008)
 
 Summary:
-==========
+========
 
  * added new stlsoft::singlethreaded_tss_index synchronisation utility class
 
@@ -397,7 +453,7 @@ Changes:
 Changes for 1.9.19 (2nd February 2008)
 
 Summary:
-==========
+========
 
  * enhancement of SAPI utility header for COMSTL
 
@@ -415,7 +471,7 @@ Changes:
 Changes for 1.9.18 (27th January 2008)
 
 Summary:
-==========
+========
 
  * enhancement of STLSoft's integral_printf_trait component to support
    Pantheios 1.0.1 beta 91
@@ -441,7 +497,7 @@ Additions:
 Changes for 1.9.17 (5th January 2008)
 
 Summary:
-==========
+========
 
  * bug fix for UNIXSTL on Leopard/GCC 4.0.1
 
@@ -459,7 +515,7 @@ Fixes:
 Changes for 1.9.16 (29th December 2007)
 
 Summary:
-==========
+========
 
  * bug fix in stlsoft::printf_traits
  * bug fix in winstl::GetTimeFormat_msA/W
@@ -526,7 +582,7 @@ Fixes:
 Changes for 1.9.15 (24th December 2007)
 
 Summary:
-==========
+========
 
  * minor bug fix for C compilation
 
@@ -546,7 +602,7 @@ Fixes:
 Changes for 1.9.14 (23rd December 2007)
 
 Summary:
-==========
+========
 
  * updated stlsoft version (_STLSOFT_VER) missing in 1.9.13
 
@@ -555,7 +611,7 @@ Summary:
 Changes for 1.9.13 (20th December 2007)
 
 Summary:
-==========
+========
 
  * features enhancements to fixed array classes
 
@@ -575,7 +631,7 @@ Additions:
 Changes for 1.9.12 (19th December 2007)
 
 Summary:
-==========
+========
 
  * features enhancements to fixed array classes
 
@@ -604,7 +660,7 @@ Fixes:
 Changes for 1.9.11 (17th December 2007)
 
 Summary:
-==========
+========
 
  * minor modifications and bug-fixes
 
@@ -637,7 +693,7 @@ Changes:
 Changes for 1.9.10 (10th December 2007)
 
 Summary:
-==========
+========
 
  * bug fix for recls (http://recls.org/)
  * minor feature enhancements
@@ -670,7 +726,7 @@ Changes:
 Changes for 1.9.9 (19th November 2007)
 
 Summary:
-==========
+========
 
  * shim fixes in UNIXSTL
 
@@ -692,7 +748,7 @@ Changes:
 Changes for 1.9.8 (18th November 2007)
 
 Summary:
-==========
+========
 
  * compatibility with Borland C/C++ 5.82 (Turbo C++); now supports VOLE
 

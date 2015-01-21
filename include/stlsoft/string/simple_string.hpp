@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     24th April 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 13
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     240
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     241
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,6 +105,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
 # include <stlsoft/conversion/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
 
 #ifdef STLSOFT_UNITTEST
@@ -203,7 +206,7 @@ public:
                                         ,   const_reference
                                         >::type             const_iterator;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator   <   iterator
                                                             ,   value_type
@@ -219,7 +222,7 @@ public:
                                                             ,   const_pointer
                                                             ,   difference_type
                                                             >::type             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 private:
     /// The allocator type for allocating bytes
@@ -505,7 +508,7 @@ public:
     /// \return An iterator representing the end of the sequence
     iterator                end();
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the reverse sequence
@@ -522,7 +525,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     reverse_iterator        rend();
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Implementation
@@ -700,10 +703,10 @@ struct string_traits<basic_simple_string<C> >
     typedef ss_typename_type_k string_type::const_pointer           const_pointer;
     typedef ss_typename_type_k string_type::iterator                iterator;
     typedef ss_typename_type_k string_type::const_iterator          const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef ss_typename_type_k string_type::reverse_iterator        reverse_iterator;
     typedef ss_typename_type_k string_type::const_reverse_iterator  const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false
@@ -743,10 +746,10 @@ struct string_traits<simple_string>
     typedef string_type::const_pointer                      const_pointer;
     typedef string_type::iterator                           iterator;
     typedef string_type::const_iterator                     const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef string_type::reverse_iterator                   reverse_iterator;
     typedef string_type::const_reverse_iterator             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false
@@ -786,10 +789,10 @@ struct string_traits<simple_wstring>
     typedef string_type::const_pointer                      const_pointer;
     typedef string_type::iterator                           iterator;
     typedef string_type::const_iterator                     const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef string_type::reverse_iterator                   reverse_iterator;
     typedef string_type::const_reverse_iterator             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false
@@ -2081,7 +2084,7 @@ inline ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator basic_simpl
     return end_();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -2117,7 +2120,7 @@ inline ss_typename_type_ret_k basic_simple_string<C, T, A>::reverse_iterator bas
 {
     return reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Assignment
 template<   ss_typename_param_k C

@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     9th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    2
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 2
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     72
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    3
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 1
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,7 +168,7 @@ public:
     typedef as_size_t       size_type;
     /// The difference type
     typedef as_ptrdiff_t    difference_type;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 //    typedef stlsoft_ns_qual(reverse_iterator_base)< iterator
 //                                                ,   value_type
 //                                                ,   reference
@@ -182,7 +182,7 @@ public:
                                                     ,   const_pointer
                                                     ,   difference_type
                                                     >       const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 public:
@@ -223,7 +223,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the reverse sequence
@@ -232,7 +232,7 @@ public:
     ///
     /// \return A non-mutable (const) iterator representing the end of the reverse sequence
     const_reverse_iterator rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -659,7 +659,7 @@ inline ccombstr_veneer::const_iterator ccombstr_veneer::end() const
     return begin() + Length();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 inline ccombstr_veneer::const_reverse_iterator ccombstr_veneer::rbegin() const
 {
     return const_reverse_iterator(end());
@@ -669,7 +669,7 @@ inline ccombstr_veneer::const_reverse_iterator ccombstr_veneer::rend() const
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 inline ccombstr_veneer::reference ccombstr_veneer::operator [](ccombstr_veneer::size_type index)
 {
@@ -801,10 +801,10 @@ struct string_traits< ::atlstl::ccombstr_veneer>
     typedef string_type::const_pointer                      const_pointer;
     typedef string_type::iterator                           iterator;
     typedef string_type::const_iterator                     const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 //    typedef string_type::reverse_iterator                   reverse_iterator;
     typedef string_type::const_reverse_iterator             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false

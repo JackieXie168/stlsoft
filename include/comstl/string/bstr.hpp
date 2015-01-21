@@ -4,13 +4,13 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     19th August 2007
+ * Updated:     25th April 2008
  *
  * Thanks:      To Gabor Fischer for requesting attach().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       7
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        54
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@ public:
     typedef cs_bool_t                                       bool_type;
     typedef pointer                                         iterator;
     typedef const_pointer                                   const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(reverse_iterator_base)< iterator
                                                 ,   value_type
                                                 ,   reference
@@ -151,7 +151,7 @@ public:
                                                     ,   const_pointer
                                                     ,   difference_type
                                                     >       const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
     typedef BSTR                                            resource_type;
 /// @}
@@ -233,7 +233,7 @@ public:
     /// \return A non-mutable (const) iterator representing the end of the sequence
     const_iterator          end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the reverse sequence
@@ -250,7 +250,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     reverse_iterator        rend();
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Comparison
@@ -790,7 +790,7 @@ inline bstr::const_iterator bstr::end() const
     return get() + size();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 inline bstr::const_reverse_iterator bstr::rbegin() const
 {
     return const_reverse_iterator(end());
@@ -810,7 +810,7 @@ inline bstr::reverse_iterator bstr::rend()
 {
     return reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 inline bstr::bool_type bstr::equal(bstr::class_type const& rhs) const
 {
@@ -898,10 +898,10 @@ struct string_traits< ::comstl::bstr>
     typedef string_type::const_pointer                      const_pointer;
     typedef string_type::iterator                           iterator;
     typedef string_type::const_iterator                     const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef string_type::reverse_iterator                   reverse_iterator;
     typedef string_type::const_reverse_iterator             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false

@@ -4,11 +4,11 @@
  * Purpose:     Window icon scoping class.
  *
  * Created:     30th June 1999
- * Updated:     6th November 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_MAJOR      4
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_REVISION   2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_EDIT       47
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_MINOR      1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_REVISION   1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -162,7 +162,7 @@ public:
     /// \param hicon The handle of the icon to associate with the given window's identified icon property
     template <ss_typename_param_k W>
     window_icon_scope(W &wnd, int iconType, HICON hicon)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
         , m_iconId(iconType)
         , m_hicon(set_window_icon(m_hwnd, iconType, hicon))
     {}
@@ -177,7 +177,7 @@ public:
     /// \param iconName The name of the icon to associate with the given window's identified icon property
     template <ss_typename_param_k W>
     window_icon_scope(W &wnd, int iconType, HINSTANCE hinst, LPCTSTR iconName)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
         , m_iconId(iconType)
         , m_hicon(set_window_icon(m_hwnd, iconType, hinst, iconName))
     {}
@@ -192,7 +192,7 @@ public:
     /// \param iconId The resource identifier of the icon to associate with the given window's identified icon property
     template <ss_typename_param_k W>
     window_icon_scope(W &wnd, int iconType, HINSTANCE hinst, int iconId)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
         , m_iconId(iconType)
         , m_hicon(set_window_icon(m_hwnd, iconType, hinst, iconId))
     {}

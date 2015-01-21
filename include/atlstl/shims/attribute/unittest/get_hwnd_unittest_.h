@@ -24,7 +24,7 @@ namespace unittest
 
 			wndDesktop.Attach(hwndDesktop);
 
-			if(get_hwnd(wndDesktop) != hwndDesktop)
+			if(get_HWND(wndDesktop) != hwndDesktop)
 			{
 				r->report("get_HWND(CWindow) failed", __LINE__);
 				bSuccess = false;

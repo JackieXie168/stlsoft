@@ -4,13 +4,13 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     10th January 2007
+ * Updated:     25th April 2008
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MAJOR      3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MINOR      3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   4
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       57
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MINOR      4
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,6 +73,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -154,10 +157,10 @@ public:
     typedef ss_typename_type_k const_iterator::size_type                    size_type;
     /// The difference type
     typedef ss_typename_type_k const_iterator::difference_type              difference_type;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef ss_typename_type_k const_iterator::const_reverse_iterator_type  const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The allocator type
     typedef ss_typename_type_k const_iterator::allocator_type               allocator_type;
 private:
@@ -212,7 +215,7 @@ public:
         return const_iterator(m_hwnd, static_cast<int>(size()));
     }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -227,7 +230,7 @@ public:
     {
         return const_reverse_iterator(begin());
     }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Element Access

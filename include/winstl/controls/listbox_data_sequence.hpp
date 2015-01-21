@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_data_sequence class.
  *
  * Created:     16th March 2008
- * Updated:     24th April 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,10 +50,20 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MAJOR     1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MINOR     1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MINOR     2
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_REVISION  1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_EDIT      2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_EDIT      3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_BORLAND:
+[Incompatibilies-end]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -71,6 +81,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -139,10 +152,10 @@ public:
     typedef const_iterator::size_type                                   size_type;
     /// The difference type
     typedef const_iterator::difference_type                             difference_type;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef const_iterator::const_reverse_iterator_type                 const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 private:
     typedef listbox_data_sequence_traits                                control_traits_type;
 /// @}
@@ -194,7 +207,7 @@ public:
         return const_iterator(m_hwnd, static_cast<int>(size()));
     }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -209,7 +222,7 @@ public:
     {
         return const_reverse_iterator(begin());
     }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Element Access

@@ -1,5 +1,5 @@
 
-// Updated: 8th June 2006
+// Updated: 25th April 2008
 
 #if !defined(WINSTL_INCL_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE)
 # error This file cannot be directly included, and should only be included within winstl/shell/drophandle_sequence.hpp
@@ -56,13 +56,13 @@ namespace unittest
 					--b;
 				}}
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
 	!defined(STLSOFT_COMPILER_IS_BORLAND)
 				{ for(dhs_t::const_reverse_iterator b = dhs.rbegin(), e = dhs.rend(); b != e; ++b)
 				{
 					b.base();
 				}}
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 			}
 
 			return bSuccess;

@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_data_const_iterator class.
  *
  * Created:     16th March 2008
- * Updated:     16th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,10 +49,20 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_MAJOR       1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_MINOR       0
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_MINOR       1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_EDIT        1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_BORLAND:
+[Incompatibilies-end]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -64,12 +74,12 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
-# include <stlsoft/util/std/iterator_helper.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION
 # include <stlsoft/error/external_iterator_invalidation.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -128,7 +138,7 @@ public:
     typedef ws_ptrdiff_t                                                    difference_type;
     /// The non-mutating (const) reference type
     typedef value_type const                                                const_reference;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// \brief The non-mutating (const) reverse iterator type
     ///
     /// This typedef is provided as a convenience for the sequence.
@@ -144,7 +154,7 @@ public:
                                                         ,   void        // By-Value Temporary element references
                                                         ,   difference_type
                                                         >                   const_reverse_iterator_type;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The control traits type
     typedef CT                                                              control_traits_type;
 /// @}

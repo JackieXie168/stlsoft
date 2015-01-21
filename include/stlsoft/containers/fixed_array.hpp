@@ -5,7 +5,7 @@
  *              fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     24th April 2008
+ * Updated:     25th April 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode,
  *              requesting the function call operator, and for requesting
@@ -60,9 +60,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      8
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       185
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      9
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       186
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,9 +110,15 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
-# include <string>                      // for std::string - sigh!
+# ifndef STLSOFT_INCL_STRING
+#  define STLSOFT_INCL_STRING
+#  include <string>                      // for std::string - sigh!
+# endif /* !STLSOFT_INCL_STRING */
 #endif /* compiler */
-#include <stdexcept>                    // for std::out_of_range
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>                    // for std::out_of_range
+#endif /* !STLSOFT_INCL_STDEXCEPT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -224,7 +230,7 @@ public:
                                         ,   const_reference
                                         >::type     const_iterator;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -238,7 +244,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >           const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 private:
@@ -295,12 +301,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -385,7 +391,7 @@ public:
                                         ,   const_reference
                                         >::type     const_iterator;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -399,7 +405,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >           const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 private:
@@ -459,12 +465,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -473,13 +479,13 @@ public:
 
 // Implementation
 private:
-    pointer			allocate_(size_type n);
-    void			deallocate_(pointer p, size_type n);
-					
-    pointer			data_();
-    index_type		calc_index_(index_type i0, index_type i1) const;
-    void			range_check_(index_type i0, index_type i1) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
-    void			range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    pointer         allocate_(size_type n);
+    void            deallocate_(pointer p, size_type n);
+                    
+    pointer         data_();
+    index_type      calc_index_(index_type i0, index_type i1) const;
+    void            range_check_(index_type i0, index_type i1) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    void            range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
     allocator_type& get_allocator_();
 
@@ -552,7 +558,7 @@ public:
                                         ,   const_reference
                                         >::type     const_iterator;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -566,7 +572,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >           const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 private:
@@ -626,12 +632,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -640,13 +646,13 @@ public:
 
 // Implementation
 private:
-    pointer			allocate_(size_type n);
-    void			deallocate_(pointer p, size_type n);
-					
-    pointer			data_();
-    index_type		calc_index_(index_type i0, index_type i1, index_type i2) const;
-    void			range_check_(index_type i0, index_type i1, index_type i2) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
-    void			range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    pointer         allocate_(size_type n);
+    void            deallocate_(pointer p, size_type n);
+                    
+    pointer         data_();
+    index_type      calc_index_(index_type i0, index_type i1, index_type i2) const;
+    void            range_check_(index_type i0, index_type i1, index_type i2) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    void            range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
     allocator_type& get_allocator_();
 
@@ -719,7 +725,7 @@ public:
                                         ,   const_reference
                                         >::type     const_iterator;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -733,7 +739,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >           const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 private:
@@ -794,12 +800,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -808,13 +814,13 @@ public:
 
 // Implementation
 private:
-    pointer			allocate_(size_type n);
-    void			deallocate_(pointer p, size_type n);
-					
-    pointer			data_();
-    index_type		calc_index_(index_type i0, index_type i1, index_type i2, index_type i3) const;
-    void			range_check_(index_type i0, index_type i1, index_type i2, index_type i3) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
-    void			range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    pointer         allocate_(size_type n);
+    void            deallocate_(pointer p, size_type n);
+                    
+    pointer         data_();
+    index_type      calc_index_(index_type i0, index_type i1, index_type i2, index_type i3) const;
+    void            range_check_(index_type i0, index_type i1, index_type i2, index_type i3) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    void            range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
     allocator_type& get_allocator_();
 
@@ -893,7 +899,7 @@ inline void fixed_array_1d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_1d<T, A, P, R>::allocator_type& fixed_array_1d<T, A, P, R>::get_allocator_()
 {
-	return *this;
+    return *this;
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1140,7 +1146,7 @@ inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::const_iterator fixed_a
     return m_data + size();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::reverse_iterator fixed_array_1d<T, A, P, R>::rbegin()
@@ -1166,7 +1172,7 @@ inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::const_reverse_iterator
     return const_reverse_iterator(begin());
 }
 
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::pointer fixed_array_1d<T, A, P, R>::data()
@@ -1228,7 +1234,7 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_2d<T, A, P, R>::allocator_type& fixed_array_2d<T, A, P, R>::get_allocator_()
 {
-	return *this;
+    return *this;
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1534,7 +1540,7 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_iterator fixed_a
     return m_data + size();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::reverse_iterator fixed_array_2d<T, A, P, R>::rbegin()
@@ -1560,7 +1566,7 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_reverse_iterator
     return const_reverse_iterator(begin());
 }
 
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::pointer fixed_array_2d<T, A, P, R>::data()
@@ -1622,7 +1628,7 @@ inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_3d<T, A, P, R>::allocator_type& fixed_array_3d<T, A, P, R>::get_allocator_()
 {
-	return *this;
+    return *this;
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1932,7 +1938,7 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_iterator fixed_a
     return m_data + size();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::reverse_iterator fixed_array_3d<T, A, P, R>::rbegin()
@@ -1958,7 +1964,7 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_reverse_iterator
     return const_reverse_iterator(begin());
 }
 
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::pointer fixed_array_3d<T, A, P, R>::data()
@@ -2021,7 +2027,7 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_4d<T, A, P, R>::allocator_type& fixed_array_4d<T, A, P, R>::get_allocator_()
 {
-	return *this;
+    return *this;
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -2345,7 +2351,7 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_iterator fixed_a
     return m_data + size();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::reverse_iterator fixed_array_4d<T, A, P, R>::rbegin()
@@ -2371,7 +2377,7 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_reverse_iterator
     return const_reverse_iterator(begin());
 }
 
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::pointer fixed_array_4d<T, A, P, R>::data()

@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     17th February 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    9
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        66
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       1
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    1
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,12 +121,12 @@ public:
     typedef value_type const                                &const_reference;
     typedef ss_size_t                                       size_type;
     typedef ss_ptrdiff_t                                    difference_type;
-#if !defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if !defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The iterator type
     typedef value_type                                      *iterator;
     /// The non-mutable (const) iterator type
     typedef value_type const                                *const_iterator;
-#else /* ? !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#else /* ? !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -161,7 +161,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Construction
@@ -361,7 +361,7 @@ public:
         return begin() + size();
     }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -390,7 +390,7 @@ public:
     {
         return reverse_iterator(begin());
     }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 ///  @}
 
 /// \name Invariant

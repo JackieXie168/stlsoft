@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     24th March 2008
+ * Updated:     25th April 2008
  *
  * Thanks to:   Nevin Liber and Scott Meyers for kicking my lazy behind, and
  *              requiring that I implement the full complement of standard
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 3
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     80
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    2
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 1
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,6 +103,9 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT)
@@ -238,7 +241,7 @@ public:
     typedef ms_ptrdiff_t                                                        difference_type;
     /// The instantiation of the current type
     typedef CArray_adaptor_base<A, I, T>                                        class_type;
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator   <   iterator
                                                             ,   value_type
@@ -254,7 +257,7 @@ public:
                                                             ,   const_pointer
                                                             ,   difference_type
                                                             >::type             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Member Constants
@@ -614,7 +617,7 @@ public:
     {
         return begin() + size();
     }
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// \brief Returns a mutable (non-const) reverse iterator representing the start of the array
     reverse_iterator rbegin()
     {
@@ -635,7 +638,7 @@ public:
     {
         return const_reverse_iterator(begin());
     }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Comparison

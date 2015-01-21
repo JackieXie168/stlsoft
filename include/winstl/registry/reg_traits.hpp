@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     24th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     68
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ namespace winstl_project
  * \param C The character type
  */
 template <ss_typename_param_k C>
-struct reg_traits\
+struct reg_traits
     : public system_traits<C>
 {
 /// \name Member Types

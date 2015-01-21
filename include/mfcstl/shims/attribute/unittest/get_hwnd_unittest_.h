@@ -1,5 +1,5 @@
 
-// Updated: 6th November 2007
+// Updated: 25th April 2008
 
 #if !defined(MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND)
 # error This file cannot be directly included, and should only be included within mfcstl/shims/attribute/get_HWND.hpp
@@ -26,7 +26,7 @@ namespace unittest
 
 			wndDesktop.Attach(hwndDesktop);
 
-			if(get_hwnd(wndDesktop) != hwndDesktop)
+			if(get_HWND(wndDesktop) != hwndDesktop)
 			{
 				r->report("get_HWND(CWindow) failed", __LINE__);
 				bSuccess = false;
@@ -36,7 +36,7 @@ namespace unittest
 
 			CWnd	*pwndDesktop	=	CWnd::FromHandle(hwndDesktop);
 
-			if(get_hwnd(pwndDesktop) != hwndDesktop)
+			if(get_HWND(pwndDesktop) != hwndDesktop)
 			{
 				r->report("get_HWND(CWindow*) failed", __LINE__);
 				bSuccess = false;

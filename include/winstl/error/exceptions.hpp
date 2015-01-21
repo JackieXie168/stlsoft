@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     23rd April 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        53
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    4
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -233,11 +233,11 @@ private:
             default:
                 return false;
 #ifdef _HRESULT_DEFINED
-            case    E_OUTOFMEMORY:
+            case    static_cast<error_code_type>(E_OUTOFMEMORY):
 #else /* ? _HRESULT_DEFINED */
-            case    0x8007000EL:
+            case    static_cast<error_code_type>(0x8007000EL):
 #endif /* _HRESULT_DEFINED */
-            case    ERROR_OUTOFMEMORY:
+            case    static_cast<error_code_type>(ERROR_OUTOFMEMORY):
                 return true;
         }
     }

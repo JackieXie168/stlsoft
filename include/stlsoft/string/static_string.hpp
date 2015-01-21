@@ -4,13 +4,13 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     15th April 2008
+ * Updated:     25th April 2008
  *
  * Thanks:      To Cláudio Albuquerque for supplying the pop_back() member.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     193
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     194
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,6 +104,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                   // for std::out_of_range
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -194,7 +197,7 @@ public:
                                         ,   const_reference
                                         >::type                         const_iterator;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator   <   iterator
                                                             ,   value_type
@@ -210,7 +213,7 @@ public:
                                                             ,   const_pointer
                                                             ,   difference_type
                                                             >::type     const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 private:
     typedef auto_buffer_old<char_type
@@ -446,7 +449,7 @@ public:
     /// \return An iterator representing the end of the sequence
     iterator                end();
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the reverse sequence
@@ -463,7 +466,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     reverse_iterator        rend();
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Implementation
@@ -2039,7 +2042,7 @@ inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::iterator basic_sta
 }
 
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -2083,7 +2086,7 @@ inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::reverse_iterator b
 
     return reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

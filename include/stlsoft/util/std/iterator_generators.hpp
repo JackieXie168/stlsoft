@@ -4,11 +4,11 @@
  * Purpose:     Iterator generator classes, and helper macros.
  *
  * Created:     2nd January 2000
- * Updated:     10th January 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MAJOR     3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MINOR     1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_REVISION  5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      90
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MINOR     3
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_REVISION  1
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ namespace stlsoft
  * Generator classes
  */
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
 template<   ss_typename_param_k I   /* iterator */
         ,   ss_typename_param_k V   /* value type */
@@ -126,7 +126,7 @@ public:
 #endif /* compiler */
 };
 
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

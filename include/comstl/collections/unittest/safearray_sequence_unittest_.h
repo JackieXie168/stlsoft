@@ -1,5 +1,5 @@
 
-// Updated: 4th July 2006
+// Updated: 25th April 2008
 
 #if !defined(COMSTL_INCL_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/collections/safearray_sequence.h
@@ -65,13 +65,13 @@ namespace unittest
 						bSuccess = false;
 					}
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 					if(stlsoft_ns_qual_std(accumulate)(array.rbegin(), array.rend(), static_cast<long>(0)) != total)
 					{
 						r->report("array contents (reverse iteration) test failed", __LINE__);
 						bSuccess = false;
 					}
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 				}
 
 				::SafeArrayDestroy(psa);

@@ -4,11 +4,11 @@
  * Purpose:     Window enable-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     6th November 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MAJOR    4
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     87
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MINOR    1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ public:
     /// \param wnd The window whose enable state is to be controlled
     template <ss_typename_param_k W>
     ss_explicit_k window_enable_scope(W &wnd)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
         , m_bEnableOnDtor(::IsWindowEnabled(m_hwnd) != false)
     {
         ::EnableWindow(m_hwnd, !m_bEnableOnDtor);
@@ -154,7 +154,7 @@ public:
     /// \param bEnableOnDtor The state it is reset to in the destructor
     template <ss_typename_param_k W>
     window_enable_scope(W &wnd, ws_bool_t bEnableOnCtor, ws_bool_t bEnableOnDtor)
-        : m_hwnd(get_hwnd(wnd))
+        : m_hwnd(get_HWND(wnd))
         , m_bEnableOnDtor(bEnableOnDtor)
     {
         ::EnableWindow(m_hwnd, bEnableOnCtor);

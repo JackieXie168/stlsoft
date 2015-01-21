@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     6th November 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    1
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 4
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     89
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 1
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -165,7 +165,7 @@ public:
                                                                 ,   const_pointer
                                                                 ,   const_reference
                                                                 >::type             const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
                                                         ,   value_type
@@ -173,7 +173,7 @@ public:
                                                         ,   const_pointer
                                                         ,   difference_type
                                                         >                           const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 public:
@@ -201,7 +201,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -210,7 +210,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // State
 public:
@@ -638,7 +638,7 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator ba
     return m_end;
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -654,7 +654,7 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_ite
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
