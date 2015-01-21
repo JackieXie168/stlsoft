@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     11th January 2007
+ * Updated:     18th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     71
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -534,8 +534,6 @@ inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_en
     {
         if(0 == compare_strings_(name, (*b).name, m_flags))
         {
-//fprintf(stderr, "find-1 [%s, %s]\n", name, (*b).name);
-
             break;
         }
     }
@@ -555,8 +553,6 @@ inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_en
             (   NULL == value ||
                 0 == compare_strings_(value, (*b).value, m_flags)))
         {
-//fprintf(stderr, "find-2 [%s, %s]\n", name, (*b).name);
-
             break;
         }
     }

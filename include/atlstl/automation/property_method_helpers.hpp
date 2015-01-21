@@ -5,7 +5,7 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     13th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_REVISION 2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     65
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -328,16 +328,14 @@ inline HRESULT put_MemberValue(C *const cls, CComVariant const &newVal, CComVari
  * This method is used to implement methods that return a value of a
  * known constant, e.g.
  *
- * \htmlonly
- * <pre>
- *
- * STDMETHODIMP DatabaseFlags::get_OrderFields(BOOL *pVal)
- * {
- *     return atlstl::get_ConstantValue(pVal, openrj::ORJ_FLAG_ORDERFIELDS);
- * }
- *
- * </pre>
- * \endhtmlonly
+\code
+
+STDMETHODIMP DatabaseFlags::get_OrderFields(BOOL *pVal)
+{
+    return atlstl::get_ConstantValue(pVal, openrj::ORJ_FLAG_ORDERFIELDS);
+}
+
+\endcode
  *
  * \param ret Pointer to the return value
  *

@@ -4,7 +4,7 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     0
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  1
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      9
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -163,40 +163,38 @@ private:
  * To use, derive from it as you would from ACE_Event_Handler, and override the
  * handle_custom_event() method, e.g
  *
- * \htmlonly
- * <pre>
- *
- * class MyHandler
- *   : public acestl::custom_event_handler
- * {
- * private:
- *   virtual int handle_custom_event(ACE_Time_Value const  &current_time
- *                               ,   long                  event_code
- *                               ,   void                  *arg)
- *   {
- *     fprintf(stdout, "Received custom event: %ld, %p\n", event_code, arg);
- *
- *     return 0;
- *   }
- * . . .
- * };
- *
- * acestl::custom_event_handler *eh = new MyHandler();
- *
- * // Schedule an event with id 100
- * eh->schedule_custom_event(100);
- *
- * // Schedule an event for 10 seconds hence, with id 200
- * eh->schedule_custom_event(200, ACE_Time_Value(10));
- *
- * // Schedule an event for 10 seconds hence, with id 300, and an argument in a string instance
- * eh->schedule_custom_event(300, ACE_Time_Value(10), new std::string("300"));
- *
- * // Start the reactor loop. Events will be dispatched from here on in
- * ACE_Reactor::instance()->run_reactor_event_loop();
- *
- * </pre>
- * \endhtmlonly
+\code
+
+class MyHandler
+  : public acestl::custom_event_handler
+{
+private:
+  virtual int handle_custom_event(ACE_Time_Value const  &current_time
+                              ,   long                  event_code
+                              ,   void                  *arg)
+  {
+    fprintf(stdout, "Received custom event: %ld, %p\n", event_code, arg);
+
+    return 0;
+  }
+. . .
+};
+
+acestl::custom_event_handler *eh = new MyHandler();
+
+// Schedule an event with id 100
+eh->schedule_custom_event(100);
+
+// Schedule an event for 10 seconds hence, with id 200
+eh->schedule_custom_event(200, ACE_Time_Value(10));
+
+// Schedule an event for 10 seconds hence, with id 300, and an argument in a string instance
+eh->schedule_custom_event(300, ACE_Time_Value(10), new std::string("300"));
+
+// Start the reactor loop. Events will be dispatched from here on in
+ACE_Reactor::instance()->run_reactor_event_loop();
+
+\endcode
  *
  */
 class custom_event_handler

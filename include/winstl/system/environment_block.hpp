@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        50
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,28 +111,23 @@ namespace winstl_project
  * \ingroup group__library__system
  *
  * It is used as follows:
- * \htmlonly
- * <pre>
- *
- * winstl::environment_block   env;
- *
- * env.push_back("Name1", "Value1"); // Insert separate name and value
- * env.push_back("Name2=Value2");    // Insert composite name and value
- *
- * ::CreateProcess(  . . . // application name
- *                ,  . . . // command line
- *                ,  . . . // process attributes
- *                ,  . . . // thread attributes
- *                ,  . . . // handle inherit boolean
- *                ,  . . . // creation flags
- *                ,  const_cast&lt;void*&gt;(env.base()) // The environment
- *                ,  . . . // current directory
- *                ,  . . . // statup info
- *                ,  . . . // process info);
- *
- * </pre>
- * \endhtmlonly
- *
+\code
+winstl::environment_block   env;
+
+env.push_back("Name1", "Value1"); // Insert separate name and value
+env.push_back("Name2=Value2");    // Insert composite name and value
+
+::CreateProcess(  . . . // application name
+               ,  . . . // command line
+               ,  . . . // process attributes
+               ,  . . . // thread attributes
+               ,  . . . // handle inherit boolean
+               ,  . . . // creation flags
+               ,  const_cast<void*>(env.base()) // The environment
+               ,  . . . // current directory
+               ,  . . . // statup info
+               ,  . . . // process info);
+\endcode
  *
  */
 template<   ss_typename_param_k C

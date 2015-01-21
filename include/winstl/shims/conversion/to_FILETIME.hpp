@@ -4,7 +4,7 @@
  * Purpose:     Includes all winstl::to_FILETIME conversion shims.
  *
  * Created:     15th December 2006
- * Updated:     11th January 2007
+ * Updated:     21st January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,21 +49,31 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MAJOR       1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MINOR       0
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        3
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MINOR       1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_REVISION    2
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
+#ifdef WINSTL_UDATE_DEFINED
+# ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_DATE
+#  include <winstl/shims/conversion/to_FILETIME/DATE.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_DATE */
+#endif /* WINSTL_UDATE_DEFINED */
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME
 # include <winstl/shims/conversion/to_FILETIME/FILETIME.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME */
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME
 # include <winstl/shims/conversion/to_FILETIME/SYSTEMTIME.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME */
+#ifdef WINSTL_UDATE_DEFINED
+# ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_UDATE
+#  include <winstl/shims/conversion/to_FILETIME/UDATE.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_UDATE */
+#endif /* WINSTL_UDATE_DEFINED */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

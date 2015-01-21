@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     10th January 2007
+ * Updated:     18th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       0
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        25
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -350,7 +350,7 @@ private:
         if((NULL == m_p) != (NULL == m_pc))
         {
 #ifdef STLSOFT_UNITTEST
-            ::fprintf(stderr, "Managed object's pointer and shared count pointer must both be NULL, or both non-NULL!\n");
+            fprintf(err, "Managed object's pointer and shared count pointer must both be NULL, or both non-NULL!\n");
 #endif /* STLSOFT_UNITTEST */
 
             return false;
@@ -360,7 +360,7 @@ private:
             *m_pc < 1)
         {
 #ifdef STLSOFT_UNITTEST
-            ::fprintf(stderr, "Shared count cannot be less than 1!\n");
+            fprintf(err, "Shared count cannot be less than 1!\n");
 #endif /* STLSOFT_UNITTEST */
 
             return false;

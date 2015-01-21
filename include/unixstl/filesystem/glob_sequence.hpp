@@ -4,9 +4,11 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     10th January 2007
+ * Updated:     21st January 2007
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
+ *              To Nevin Liber for pressing upon me the need to lead by
+ *              example when writing books about good design/implementation.
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      131
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -226,14 +228,18 @@ public:
     }
 /// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     us_int_t const  m_globStatus;
     us_int_t const  m_errno;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     class_type &operator =(class_type const &);
+/// @}
 };
 
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -503,7 +509,8 @@ public:
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
-// Implementation
+/// \name Implementation
+/// @{
 private:
     // Tests the class invariant
     us_bool_t           is_valid() const;
@@ -522,8 +529,10 @@ private:
 
     // Calls glob() and process the results
     us_size_t           init_glob_(char_type const *directory, char_type const *pattern);
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     typedef stlsoft_ns_qual(auto_buffer_old)<   char_type const*
                                             ,   allocator_type
@@ -535,11 +544,14 @@ private:
     us_size_t       m_cItems;
     buffer_type_    m_buffer;
     glob_t          m_glob;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     glob_sequence(class_type const &);
     class_type const &operator =(class_type const &);
+/// @}
 };
 
 ////////////////////////////////////////////////////////////////////////////
@@ -610,7 +622,7 @@ inline glob_sequence::~glob_sequence() stlsoft_throw_0()
 
     if(NULL != m_base)
     {
-        globfree(&m_glob);
+        ::globfree(&m_glob);
     }
 }
 
@@ -901,7 +913,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
     }
 #endif /* GLOB_TILDE */
 
-    int gr = glob(pattern, glob_flags, NULL, &m_glob);
+    int gr = ::glob(pattern, glob_flags, NULL, &m_glob);
 
     if(0 != gr)
     {
@@ -948,14 +960,14 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
             }
             catch(...)
             {
-                globfree(&m_glob);
+                ::globfree(&m_glob);
 
                 throw;
             }
 #else /* STLSOFT_CF_EXCEPTION_SUPPORT */
             if(!m_buffer.resize(cItems))
             {
-                globfree(&m_glob);
+                ::globfree(&m_glob);
 
                 m_base = NULL;
 
@@ -1021,127 +1033,140 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
         if((m_flags & (directories | files)) == files)                  // 2
 #endif /* !UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR */
         {
-            // Declare a path buffer which will be used as a scratch area
-            // in case we need to remove trailing path name separators to
-            // perform stat() on a (suspected) directory entry
-            basic_file_path_buffer<char_type>   buffer;
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            try
+            {
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+                // Declare a path buffer which will be used as a scratch area
+                // in case we need to remove trailing path name separators to
+                // perform stat() on a (suspected) directory entry
+                basic_file_path_buffer<char_type>   buffer;
 
-            char_type                           **begin =   base;
-            char_type                           **end   =   begin + cItems;
+                char_type                           **begin =   base;
+                char_type                           **end   =   begin + cItems;
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-            if(0 == buffer.size())
-            {
-                globfree(&m_glob);
+                if(0 == buffer.size())
+                {
+                    ::globfree(&m_glob);
 
-                m_base = NULL;
+                    m_base = NULL;
 
-                return 0;
-            }
+                    return 0;
+                }
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
-            // This loop enumerates through the list of entries, and attempts
-            // to match each with the requested file type.
-            //
-            // 1. If we're wanting to return only files, then markDirs (GLOB_MARK)
-            //     will have been applied by validate_flags_(), so we test that
-            //     first
-            // 2. If we're wanting to return only directories, then we must not
-            //     be trusting GLOB_ONLYDIR. Either:
-            // 2.1. The user specified markDirs (GLOB_MARK), so use that, or
-            // 2.2. The user did not specify, and we must stat()
-            //
-            for(; begin != end; ++begin)
-            {
-                // Now need to process the file, by using stat
-                struct stat     st;
-                int             res;
-                char_type const *entry  =   *begin;
-
-                // 1.
-                if(files == (m_flags & (directories | files)))
+                // This loop enumerates through the list of entries, and attempts
+                // to match each with the requested file type.
+                //
+                // 1. If we're wanting to return only files, then markDirs (GLOB_MARK)
+                //     will have been applied by validate_flags_(), so we test that
+                //     first
+                // 2. If we're wanting to return only directories, then we must not
+                //     be trusting GLOB_ONLYDIR. Either:
+                // 2.1. The user specified markDirs (GLOB_MARK), so use that, or
+                // 2.2. The user did not specify, and we must stat()
+                //
+                for(; begin != end; ++begin)
                 {
-                    UNIXSTL_ASSERT(markDirs == (m_flags & markDirs));
+                    // Now need to process the file, by using stat
+                    struct stat     st;
+                    int             res;
+                    char_type const *entry  =   *begin;
 
-                    if(!traits_type::has_dir_end(entry))
+                    // 1.
+                    if(files == (m_flags & (directories | files)))
                     {
-                        continue;   // A non-marked entry, hence a file, so accept
-                    }
-#ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
-                    else
-                    {
-                        res = stat(entry, &st);
+                        UNIXSTL_ASSERT(markDirs == (m_flags & markDirs));
 
-                        if(0 != res)
+                        if(!traits_type::has_dir_end(entry))
                         {
-                            // We could throw an exception here, but it might just be
-                            // the case that a file has been deleted subsequent to its
-                            // having been included in the glob list. As such, it makes
-                            // more sense to just kick it from the list
+                            continue;   // A non-marked entry, hence a file, so accept
                         }
+#ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
                         else
-                        { // stat() succeeded
-                            if(S_IFREG == (st.st_mode & S_IFREG))
+                        {
+                            res = ::stat(entry, &st);
+
+                            if(0 != res)
                             {
-                                continue; // A file, so accept it
+                                // We could throw an exception here, but it might just be
+                                // the case that a file has been deleted subsequent to its
+                                // having been included in the glob list. As such, it makes
+                                // more sense to just kick it from the list
+                            }
+                            else
+                            { // stat() succeeded
+                                if(S_IFREG == (st.st_mode & S_IFREG))
+                                {
+                                    continue; // A file, so accept it
+                                }
                             }
                         }
-                    }
 #endif /* !UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK */
-                }
-                else // 2.
-                {
-                    UNIXSTL_ASSERT(directories == (m_flags & (directories | files)));
+                    }
+                    else // 2.
+                    {
+                        UNIXSTL_ASSERT(directories == (m_flags & (directories | files)));
 
 #ifdef UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR
-                    UNIXSTL_MESSAGE_ASSERT("Cannot get here, since trusting GLOB_ONLYDIR", 0);
+                        UNIXSTL_MESSAGE_ASSERT("Cannot get here, since trusting GLOB_ONLYDIR", 0);
 #endif /* UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR */
 
-                    if(markDirs == (m_flags & markDirs))
-                    {
-                        if(traits_type::has_dir_end(entry))
+                        if(markDirs == (m_flags & markDirs))
                         {
-                            continue;   // A marked entry, hence a directory, so accept
-                        }
-                    }
-#ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
-                    else
-#endif /* !UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK */
-                    {
-                        // Now we must stat()
-                        res = stat(entry, &st);
-
-                        if(0 != res)
-                        {
-                            // We could throw an exception here, but it might just be
-                            // the case that a file has been deleted subsequent to its
-                            // having been included in the glob list. As such, it makes
-                            // more sense to just kick it from the list
-                        }
-                        else
-                        { // stat() succeeded
-                            if(S_IFDIR == (st.st_mode & S_IFDIR))
+                            if(traits_type::has_dir_end(entry))
                             {
-                                continue; // A directory, so accept it
+                                continue;   // A marked entry, hence a directory, so accept
                             }
                         }
+#ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
+                        else
+#endif /* !UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK */
+                        {
+                            // Now we must stat()
+                            res = stat(entry, &st);
+
+                            if(0 != res)
+                            {
+                                // We could throw an exception here, but it might just be
+                                // the case that a file has been deleted subsequent to its
+                                // having been included in the glob list. As such, it makes
+                                // more sense to just kick it from the list
+                            }
+                            else
+                            { // stat() succeeded
+                                if(S_IFDIR == (st.st_mode & S_IFDIR))
+                                {
+                                    continue; // A directory, so accept it
+                                }
+                            }
+                        }
+
                     }
 
+                    // This section elides the entry from the list
+                    //
+                    // Note that there is no test here to determine whether or not
+                    // begin == base. It is assumed that most cases of file elision
+                    // will involve several files - how many directories have just
+                    // one file in them? - so the test would actually be a
+                    // pessimisation
+
+                    // Swap with whatever is at base[0]
+                    unixstl_ns_qual_std(swap)(*begin, *base);
+                    ++base;
+                    --cItems;
                 }
-
-                // This section elides the entry from the list
-                //
-                // Note that there is no test here to determine whether or not
-                // begin == base. It is assumed that most cases of file elision
-                // will involve several files - how many directories have just
-                // one file in them? - so the test would actually be a
-                // pessimisation
-
-                // Swap with whatever is at base[0]
-                unixstl_ns_qual_std(swap)(*begin, *base);
-                ++base;
-                --cItems;
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             }
+            catch(...)
+            {
+                ::globfree(&m_glob);
+
+                throw;
+            }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
         // Ensure we've not corrupted the sort order

@@ -1,5 +1,5 @@
 
-// Updated: 6th July 2006
+// Updated: 18th January 2007
 
 #if !defined(WINSTL_INCL_WINSTL_STRING_HPP_RESOURCE_STRING)
 # error This file cannot be directly included, and should only be included within winstl/string/resource_string.hpp
@@ -156,7 +156,7 @@ namespace unittest
 				std::cout << "String with id 1024: " << str << std::endl;
 #endif /* compiler */
 
-				fprintf(stdout, "String with id 1024: %.*s\n", str.size(), str.data());
+				fprintf(out, "String with id 1024: %.*s\n", str.size(), str.data());
 			}
 
 			// Documentation example
@@ -175,11 +175,11 @@ namespace unittest
 				{
 					winstl::basic_resource_string<std::string, throw_exception>  str(hinst, 9999999);
 
-					fprintf(stderr, "Should never get here!!\n");
+					fprintf(err, "Should never get here!!\n");
 				}
 				catch(throw_exception::thrown_type &/* x */)
 				{
-					fprintf(stderr, "This is what's expected\n");
+					fprintf(err, "This is what's expected\n");
 				}
 			}
 

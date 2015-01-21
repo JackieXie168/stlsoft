@@ -5,7 +5,7 @@
  *              unit-test framework.
  *
  * Created:     26th February 2004
- * Updated:     14th January 2007
+ * Updated:     21st January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MAJOR    4
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MINOR    1
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MINOR    2
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_REVISION 1
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     32
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,6 +76,9 @@
 # error This file should not be used when STLSOFT_UNITTEST is not defined. You should probably refrain from including it directly, since it is an internal implementation feature, and subject to change at any time
 #endif /* !STLSOFT_UNITTEST */
 
+#include <stdio.h>
+#include <wchar.h>
+
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
@@ -87,6 +90,20 @@ namespace stlsoft
 namespace unittest
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Globals
+ */
+
+extern FILE	*err;
+extern FILE	*out;
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Functions
+ */
+
+using ::fprintf;
+using ::fwprintf;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Unit test interfaces
@@ -251,6 +268,12 @@ private:
 
 using unittest::unittest_reporter;
 using unittest::unittest_registrar;
+#if 0
+using unittest::fprintf;
+using unittest::fwprintf;
+#endif /* 0 */
+using unittest::err;
+using unittest::out;
 
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */

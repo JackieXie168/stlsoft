@@ -4,7 +4,7 @@
  * Purpose:     Contains the CArray_swap utility function.
  *
  * Created:     4th August 2005
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_MAJOR     2
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_MINOR     0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_REVISION  1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_EDIT      7
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,9 +110,14 @@ template <class A>
 class CArray_swap_veneer
     : public A
 {
+/// \name Member Types
+/// @{
 public:
     typedef CArray_swap_veneer<A>   class_type;
+/// @}
 
+/// \name Operations
+/// @{
 public:
     static void swap(class_type &lhs, class_type &rhs)
     {
@@ -121,12 +126,19 @@ public:
         std_swap(lhs.m_nMaxSize, rhs.m_nMaxSize);
         std_swap(lhs.m_nGrowBy, rhs.m_nGrowBy);
     }
+/// @}
 };
 
 #ifdef STLSOFT_CF_NAMESPACE_SUPPORT
 } // namespace array_impl
 #endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
+
+/** \brief Swaps the contents of two instances of CArray-family 
+ *    containers.
+ *
+ * \ingroup group__library__collections
+ */
 template <class A>
 void CArray_swap(A &lhs, A &rhs)
 {

@@ -5,7 +5,7 @@
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   7
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       32
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,112 +98,101 @@ namespace stlsoft
  * \ingroup group__library__conversion
  *
  * Assume the following class hierarchy, and variables:
-\htmlonly
-<pre>
-  class Parent
-  {
-  public:
-    virtual ~Parent();
-  };
+\code
+class Parent
+{
+public:
+  virtual ~Parent();
+};
 
-  class A
-    : public Parent
-  {
-  public:
-    ~A();
-  };
+class A
+  : public Parent
+{
+public:
+  ~A();
+};
 
-  class B
-    : public Parent
-  {
-  public:
-    ~B();
-  };
+class B
+  : public Parent
+{
+public:
+  ~B();
+};
 
-  . . .
+. . .
 
-  A   a;
-  B   b;
-
-</pre>
-\endhtmlonly
+A   a;
+B   b;
+\endcode
  *
  * The following code segments illustrate the similarities and differences
  * between dynamic_cast and ptr_cast:
  *
  * (i) dynamic cast of reference that succeeds
-\htmlonly
-<pre>
-  A   &ra1 = <b>dynamic_cast</b>&lt;A&>(a);
-  A   &ra2 = stlsoft::<b>ptr_cast</b>&lt;A&>(a);
-  
-  assert(&ra1 == &ra2);
-</pre>
-\endhtmlonly
+\code
+A   &ra1 = dynamic_cast<A&>(a);
+A   &ra2 = stlsoft::ptr_cast<A&>(a);
+
+assert(&ra1 == &ra2);
+\endcode
  *
  * (ii) dynamic cast of pointer that succeeds
-\htmlonly
-<pre>
-  A   *pa = <b>dynamic_cast</b>&lt;A*>(&a);
-  
-  assert(NULL != pa);
-  assert(stlsoft::<b>ptr_cast</b>&lt;A*>(&a) == pa);
-</pre>
-\endhtmlonly
+\code
+A   *pa = dynamic_cast<A*>(&a);
+
+assert(NULL != pa);
+assert(stlsoft::ptr_cast<A*>(&a) == pa);
+\endcode
  *
  * (iii) dynamic cast of reference that fails
-\htmlonly
-<pre>
-  bool bCastFailed1 = false;
+\code
+bool bCastFailed1 = false;
 
-  try
-  {
-    B &b1 = <b>dynamic_cast</b>&lt;B&>(a);
+try
+{
+  B &b1 = dynamic_cast<B&>(a);
 
-    . . . // Will never get here
-  }
-  catch(std::bad_cast &)
-  {
-    bCastFailed1 = true;
-  }
-  assert(bCastFailed1);
+  . . . // Will never get here
+}
+catch(std::bad_cast &)
+{
+  bCastFailed1 = true;
+}
+assert(bCastFailed1);
 
-  bool bCastFailed2 = false;
+bool bCastFailed2 = false;
 
-  try
-  {
-    B &rb = stlsoft::<b>ptr_cast</b>&lt;B&>(a);
+try
+{
+  B &rb = stlsoft::ptr_cast<B&>(a);
 
-    . . . // Will never get here
-  }
-  catch(std::bad_cast &)
-  {
-    bCastFailed2 = true;
-  }
-  assert(bCastFailed2);
-</pre>
-\endhtmlonly
+  . . . // Will never get here
+}
+catch(std::bad_cast &)
+{
+  bCastFailed2 = true;
+}
+assert(bCastFailed2);
+\endcode
  *
  * (iv) dynamic cast of pointer that fails
-\htmlonly
-<pre>
-  assert(NULL == <b>dynamic_cast</b>&lt;B*>(&a));
+\code
+assert(NULL == dynamic_cast<B*>(&a));
 
-  bool bCastFailed = false;
+bool bCastFailed = false;
 
-  try
-  {
-    B &rb = stlsoft::<b>ptr_cast</b>&lt;B&>(&a);
+try
+{
+  B &rb = stlsoft::ptr_cast<B&>(&a);
 
-    . . . // Will never get here
-  }
-  catch(std::bad_cast &)
-  {
-    bCastFailed = true;
-  }
-  assert(bCastFailed);
-</pre>
-\endhtmlonly
+  . . . // Will never get here
+}
+catch(std::bad_cast &)
+{
+  bCastFailed = true;
+}
+assert(bCastFailed);
+\endcode
  *
  * \note This is described in detail in chapter 19 of
  *  <a href = "http://www.imperfectcplusplus.com/">Imperfect C++</a>.

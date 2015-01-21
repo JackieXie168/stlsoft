@@ -1,4 +1,4 @@
-#include <stlsoft.h>
+#include <stlsoft/stlsoft.h>
 
 #ifdef _STLSOFT_COMPILE_VERBOSE
 # pragma message("This file is now obsolete. Instead include stlsoft/algorithms.hpp")

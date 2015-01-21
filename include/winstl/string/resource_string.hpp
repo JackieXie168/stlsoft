@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 2
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     76
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,6 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifdef STLSOFT_UNITTEST
 # include <iostream>                    // for std::cout, std::endl
 # include <string>                      // for std::string, std::wstring
-# include <stdio.h>                     // for fprintf(), stdout
 #endif /* STLSOFT_UNITTEST */
 #include <exception>
 
@@ -129,15 +128,13 @@ namespace winstl_project
  * is parameterised from <code>std::string</code>, and can therefore use its methods
  * and is compatible with its client code:
  *
-\htmlonly
-<pre>
-winstl::basic_resource_string&lt;std::string&gt;  str(1024);
+\code
+winstl::basic_resource_string<std::string>  str(1024);
 
 std::cout << "String with id 1024: " << str << std::endl;
 
 fprintf(stdout, "String with id 1024: %.*s\n", str.size(), str.data());
-</pre>
-\endhtmlonly
+\endcode
  *
  * The second template parameter is the exception policy, which determines
  * how the string reacts to a failure to load a string resource corresponding
@@ -146,28 +143,25 @@ fprintf(stdout, "String with id 1024: %.*s\n", str.size(), str.data());
  * resource string instance will be correctly constructed but will contain
  * the empty string, i.e.:
  *
-\htmlonly
-<pre>
+\code
 // Assuming 9999999 is not a valid string resource identifier in the
 // module whose instance handle is in hinst ...
-winstl::basic_resource_string&lt;std::string&gt;  str(hinst, 9999999);
+winstl::basic_resource_string<std::string>  str(hinst, 9999999);
 
 assert(0 == str.size());
 assert(str == "");
-</pre>
-\endhtmlonly
+\endcode
  *
  * If you want your parameterisation to throw an exception when the string
  * resource is not found, simply specify a policy that throws an exception
  * to the parameterisation, as in:
  *
-\htmlonly
-<pre>
+\code
 // Assuming 9999999 is not a valid string resource identifier in the
 // module whose instance handle is in hinst ...
 try
 {
-  winstl::basic_resource_string&lt;std::string, throw_MyX_policy&gt;  str(hinst, 9999999);
+  winstl::basic_resource_string<std::string, throw_MyX_policy>  str(hinst, 9999999);
 
   std::cerr << "Should never get here!!" << std::endl;
 }
@@ -175,8 +169,7 @@ catch(MyX &x)
 {
   std::cerr << "This is what's expected" << std::endl;
 }
-</pre>
-\endhtmlonly
+\endcode
  *
  * \note The handling of Unicode strings under Windows 9x family operating
  * systems eschews the use of LoadStringW(), instead manipulating the resource

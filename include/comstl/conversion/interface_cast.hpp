@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       109
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -674,20 +674,18 @@ private:
  *
  * \param src The object whose capabilities will be tested. May be NULL
  *
-\htmlonly
-<pre>
-  IStream   *stm = . . .
+\code
+IStream   *stm = . . .
 
-  if(comstl::<b>interface_cast_test</b>&lt;IStorage*>(stm))
-  {
-    printf("Object has IStorage interface\n");
-  }
-  else
-  {
-    printf("Object does not have IStorage interface\n");
-  }
-</pre>
-\endhtmlonly
+if(comstl::interface_cast_test<IStorage*>(stm))
+{
+  printf("Object has IStorage interface\n");
+}
+else
+{
+  printf("Object does not have IStorage interface\n");
+}
+\endcode
  */
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc
@@ -710,20 +708,18 @@ inline cs_bool_t interface_cast_test(ISrc *src)
  *
  * \ingroup group__library__conversion
  *
-\htmlonly
-<pre>
-  stlsoft::ref_ptr&lt;IStream>   stm = . . .
+\code
+stlsoft::ref_ptr<IStream>   stm = . . .
 
-  if(comstl::<b>interface_cast_test</b>&lt;IStorage>(stm))
-  {
-    printf("Wrapper object has IStorage interface\n");
-  }
-  else
-  {
-    printf("Wrapper object does not have IStorage interface\n");
-  }
-</pre>
-\endhtmlonly
+if(comstl::interface_cast_test<IStorage>(stm))
+{
+  printf("Wrapper object has IStorage interface\n");
+}
+else
+{
+  printf("Wrapper object does not have IStorage interface\n");
+}
+\endcode
  *
  * \param src wrapper instance holding the object whose capabilities
  *   will be tested. May be empty.
@@ -805,17 +801,15 @@ inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(stlsoft_ns_qual(ref_ptr)<I
  *
  * \ingroup group__library__conversion
  *
-\htmlonly
-<pre>
-  IStream   *pstm = . . . 
-  stlsoft::ref_ptr&lt;IStorage>  stg = comstl::<b>interface_cast</b>&lt;IStorage>(pstm);
+\code
+IStream                     *pstm = . . . 
+stlsoft::ref_ptr<IStorage>  stg   = comstl::interface_cast<IStorage>(pstm);
 
-  if(!stg.empty())
-  {
-    . . .use <b>stg-></b>
-  }
-</pre>
-\endhtmlonly
+if(!stg.empty())
+{
+  . . . // use stg->
+}
+\endcode
  *
  * \note For technical reasons, the cast destination type differs from the
  *   conventional behaviour. Rather than specifying the actual resultant

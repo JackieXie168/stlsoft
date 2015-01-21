@@ -4,7 +4,7 @@
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     13th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -210,9 +210,11 @@ namespace stlsoft
  * the type, and the maximum of the two. The lengths are inclusive of the
  * null terminator.
  *
- * &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size_min == 6</code><br>
- * &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size_max == 7</code><br>
- * &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size == 7</code><br>
+\code
+  assert(stlsoft::printf_traits<ss_sint16_t>::size_min == 6);
+  assert(stlsoft::printf_traits<ss_sint16_t>::size_max == 7);
+  assert(stlsoft::printf_traits<ss_sint16_t>::size == 7);
+\endcode
  *
  * \param T The type
  *

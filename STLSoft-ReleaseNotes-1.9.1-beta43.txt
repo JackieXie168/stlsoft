@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta42
+File:     STLSoft-ReleaseNotes-1.9.1-beta43
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  15th January 2007
+Updated:  22nd January 2007
 
 ============================================================================
 
@@ -29,6 +29,33 @@ Updated:  15th January 2007
 
 ============================================================================
 
+Changes for 1.9.1 beta 43 (22nd January 2006):
+
+Additions:
+==========
+
+ + comstl::co_create_instance() overloads now have a third, defaulted,
+   member, for creation context. This is required for the new VOLE project,
+   which will be released tomorrow.
+
+ + mfcstl::CArray_cadaptor and mfcstl::CArray_iadaptor now support <, <=, >,
+   and >= comparison, in addition to ==, !=
+
+ + string access shims for UDATE
+
+ + winstl::to_FILETIME support for DATE and UDATE
+
+ + winstl::to_SYSTEMTIME support for DATE and UDATE
+
+Changes:
+========
+
+ ~ stlsoft::get_ptr overload for std::auto_ptr slightly modified
+
+ ~ winstl/shims/access/string.hpp now includes winstl/shims/access/string/time.hpp
+
+============================================================================
+
 Changes for 1.9.1 beta 42 (15th January 2006):
 
 Changes:
@@ -36,9 +63,9 @@ Changes:
 
  ~ refactored atomic integer support on UNIX:
     - Now only supports if for Mac OS-X, Win32 (when emulated, of course),
-	  and if UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS is defined, allowing
-	  the user to decide for themselves whether or not to use (non-portable)
-	  facilities such as asm/atomic.h
+      and if UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS is defined, allowing
+      the user to decide for themselves whether or not to use (non-portable)
+      facilities such as asm/atomic.h
     + unixstl/synch/util/features.h
 
 

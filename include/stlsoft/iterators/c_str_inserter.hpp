@@ -4,7 +4,7 @@
  * Purpose:     Contains the c_str_insert_iterator template class and c_str_inserter creator function.
  *
  * Created:     12th October 2004
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Thanks to:   Pablo Aguilar for spotting missing inclusions.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_REVISION  1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      23
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,17 +104,15 @@ namespace stlsoft
  * It would be used as shown in the following example, which copies all files
  * found in the local directory to the vector of strings:
  *
-\htmlonly
-<pre>
-  std::vector&lt;std::string&gt;  c1;
+\code
+  std::vector<std::string>  c1;
   unixstl::readdir_sequence files(".");
 
   std::copy(files.begin(), files.end(), c_str_inserter(std::back_inserter(c1)));
 
-  std::cout &lt;&lt; "Files:" &lt;&lt; std::endl;
-  std::copy(c1.begin(), c1.end(), stlsoft::ostream_iterator&lt;std::string>(std::cout, "\t", "\n"));
-</pre>
-\endhtmlonly
+  std::cout << "Files:" << std::endl;
+  std::copy(c1.begin(), c1.end(), stlsoft::ostream_iterator<std::string>(std::cout, "\t", "\n"));
+\endcode
  */
 
 template <ss_typename_param_k F>

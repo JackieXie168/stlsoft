@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     183
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -254,7 +254,7 @@ public:
 
         stlsoft_ns_qual_std(copy)(first, last, buffer.begin());
 
-        traits_type::copy(&m_buffer[0], &buffer[0], buffer.size());
+        traits_type::copy(&m_buffer[0], buffer.data(), buffer.size());
 
         m_buffer[m_length]      =   '\0';
         m_buffer[max_size()]    =   '\0';
@@ -508,7 +508,7 @@ private:
         buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
 
         stlsoft_ns_qual_std(copy)(first, last, buffer.begin());
-        assign(&buffer[0], buffer.size());
+        assign(buffer.data(), buffer.size());
 
         return *this;
     }
@@ -540,7 +540,7 @@ private:
         buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
 
         stlsoft_ns_qual_std(copy)(first, last, &buffer[0]);
-        append(&buffer[0], buffer.size());
+        append(buffer.data(), buffer.size());
 
         STLSOFT_ASSERT(is_valid());
         return *this;

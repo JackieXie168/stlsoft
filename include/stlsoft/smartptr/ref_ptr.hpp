@@ -4,7 +4,7 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       480
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       481
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -232,10 +232,6 @@ public:
     ///
     /// \note The interface types of the copying and copied instance must be
     ///   compatible
-    ///
-    /// \htmlonly
-    ///
-    /// \endhtmlonly
     template<   ss_typename_param_k T2
             ,   ss_typename_param_k I2
             ,   ss_typename_param_k U2

@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 7
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     92
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,18 +148,16 @@ namespace comstl_project
  * For example, the following parameterisation defines a sequence operating
  * over a notional <b>IGUIDCollection</b> collection instance.
  *
-\htmlonly
-<pre>
-typedef collection_sequence&lt;IGUIDCollection
+\code
+typedef collection_sequence<IGUIDCollection
                           , IEnumGUID
                           , GUID
                           , GUID_policy
                           , GUID const &
-                          , forward_cloning_policy&lt;IEnumGUID&gt;
+                          , forward_cloning_policy<IEnumGUID>
                           , 5
-                          &gt;    collection_sequence_t;
-</pre>
-\endhtmlonly
+                          >    collection_sequence_t;
+\endcode
  *
  * The value type is <b>GUID</b> and it is returned as a reference, as
  * the <b>GUID const &</b> in fact.
@@ -176,16 +174,14 @@ typedef collection_sequence&lt;IGUIDCollection
  *
  * This would be used as follows:
  *
-\htmlonly
-<pre>
+\code
   void dump_GUID(GUID const &);
 
   IGUIDCollection       *penGUIDs = . . .;      // Create an instance from wherever
   collection_sequence_t guids(penGUIDs, false); // Eat the reference
 
   std::for_each(guids.begin(), guids.end(), dump_GUID);
-</pre>
-\endhtmlonly
+\endcode
  *
  * \note The iterator instances returned by begin() and end() are valid outside
  * the lifetime of the collection instance from which they are obtained

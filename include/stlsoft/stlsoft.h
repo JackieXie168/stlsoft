@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     15th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    7
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     298
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     299
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -1755,18 +1755,16 @@ inline void throw_x(X const &x)
  *
  * Is it used as follows:
  *
-\htmlonly
-<pre>
+\code
 int               ai[20];
 int               i     = 32;
 int               *pi   = &i;
-std::vector&lt;int&gt;  vi;
+std::vector<int>  vi;
 size_t            s_ai  = STLSOFT_NUM_ELEMENTS(ai);   // Ok
 size_t            s_i   = STLSOFT_NUM_ELEMENTS(i);    // Error
 size_t            s_pi  = STLSOFT_NUM_ELEMENTS(pi);   // Error
 size_t            s_vi  = STLSOFT_NUM_ELEMENTS(vi);   // Error
-</pre>
-\endhtmlonly
+\endcode
  *
  * \note For most of the supported compilers, this macro will reject application to pointer
  * types, or to class types providing <code>operator []</code>. This helps to avoid the common
@@ -1970,12 +1968,10 @@ inline void stlsoft_destroy_instance_fn(T *p)
  *
  * For example, the following defines two distinct opaque types:
  *
-\htmlonly
-<pre>
+\code
 STLSOFT_GEN_OPAQUE(HThread)
 STLSOFT_GEN_OPAQUE(HProcess)
-</pre>
-\endhtmlonly
+\endcode
  *
  * The two types are incompatible with each other, and with any other types (except that
  * they are both convertible to <code>void const *</code>
@@ -2003,17 +1999,15 @@ STLSOFT_GEN_OPAQUE(HProcess)
  *
  * Is it used as follows:
  *
-\htmlonly
-<pre>
-template&lt;typename T&gt;
+\code
+template<typename T>
 class Thing
 {
   STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T);
 private:
-  int m_member; // Thing&lt;T&gt;::m_member visible to T
+  int m_member; // Thing<T>::m_member visible to T
 };
-</pre>
-\endhtmlonly
+\endcode
  *
  * \note This is contrary to the C++-98 standard. Section 7.1.5.3(2) notes: <i>"...within a class
  * template with a template type-parameter T, the declaration ["]friend class T;["] is ill-formed."</i>

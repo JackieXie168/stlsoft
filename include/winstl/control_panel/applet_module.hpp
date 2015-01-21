@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 9
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     16
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,14 +154,12 @@ public:
  * Instances of this class are managed by the applet_module class, and
  * available by its subscript operator. For example, the following code
  * retrieves a reference to the first applet and invokes it:
-\htmlonly
-<pre>
-  winstl::applet_module &module   = . . . ;
-  winstl::applet        &applet0  = module[0];
+\code
+winstl::applet_module &module   = . . . ;
+winstl::applet        &applet0  = module[0];
 
-  applet0.open();
-</pre>
-\endhtmlonly
+applet0.open();
+\endcode
  *
  */
 class applet
@@ -253,51 +251,48 @@ private:
  * system directory, and prints out the name and description of each
  * applet contained within.
  *
-\htmlonly
-<pre>
-  #include &lt;winstl/findfile_sequence.hpp>
-  #include &lt;winstl/system_directory.hpp>
-  #include &lt;winstl/control_panel/applet_module.hpp>
+\code
+#include <winstl/findfile_sequence.hpp>
+#include <winstl/system_directory.hpp>
+#include <winstl/control_panel/applet_module.hpp>
 
-  #include &lt;iostream>
+#include <iostream>
 
-  int main()
+int main()
+{
+  try
   {
-    try
-    {
-      winstl::system_directory    sysDir;
-      winstl::findfile_sequence   files(sysDir, "*.cpl", winstl::findfile_sequence::files);
+    winstl::system_directory    sysDir;
+    winstl::findfile_sequence   files(sysDir, "*.cpl", winstl::findfile_sequence::files);
 
-      { for(winstl::findfile_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
+    { for(winstl::findfile_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+      winstl::applet_module module(*b, winstl::applet_module:dontExpectNonZeroInit);
+
+      winstl::applet_module::const_iterator b = module.begin();
+      winstl::applet_module::const_iterator e = module.end();
+
+      std::cout << "path:          " << module.get_path() << std::endl;
+      for(; b != e; ++b)
       {
-        winstl::<b>applet_module</b> module(*b, winstl::<b>applet_module::dontExpectNonZeroInit</b>);
+        winstl::applet const  &applet = *b;
 
-        winstl::applet_module::const_iterator b = module.begin();
-        winstl::applet_module::const_iterator e = module.end();
+        std::cout << " applet index: " << applet.get_index() << std::endl;
 
-        std::cout &lt;&lt; "path:          " &lt;&lt; module.get_path() &lt;&lt; std::endl;
-        for(; b != e; ++b)
-        {
-          winstl::<b>applet</b> const  &applet = *b;
-
-          std::cout &lt;&lt; " applet index: " &lt;&lt; applet.get_index() &lt;&lt; std::endl;
-
-          std::cout &lt;&lt; "  name:        " &lt;&lt; applet.get_name() &lt;&lt; std::endl;
-          std::cout &lt;&lt; "  description: " &lt;&lt; applet.get_description() &lt;&lt; std::endl;
-        }
-        std::cout &lt;&lt; std::endl;
-      }}
-    }
-    catch(std::exception &x)
-    {
-      std::cerr &lt;&lt; "Exception: " &lt;&lt; x.what() &lt;&lt; std::endl;
-    }
-
-    return 0;
+        std::cout << "  name:        " << applet.get_name() << std::endl;
+        std::cout << "  description: " << applet.get_description() << std::endl;
+      }
+      std::cout << std::endl;
+    }}
+  }
+  catch(std::exception &x)
+  {
+    std::cerr << "Exception: " << x.what() << std::endl;
   }
 
-</pre>
-\endhtmlonly
+  return 0;
+}
+\endcode
  *
  * Note the use of the
  * \link winstl::applet_module::load_flags dontExpectNonZeroInit\endlink

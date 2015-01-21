@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     59
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -235,15 +235,13 @@ private:
  *
  * A union cast would be applied as follows:
  *
-\htmlonly
-<pre>
-  // This assumes sizeof(int) == sizeof(short*)
+\code
+// This assumes sizeof(int) == sizeof(short*)
 
-  short  *ps;
-  int    i = stlsoft::<b>union_cast</b>&lt;int>(ps);    // Ok: same size
-  double d = stlsoft::<b>union_cast</b>&lt;double>(ps); // Compile error: different size
-</pre>
-\endhtmlonly
+short  *ps;
+int    i = stlsoft::union_cast<int>(ps);    // Ok: same size
+double d = stlsoft::union_cast<double>(ps); // Compile error: different size
+\endcode
  */
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM

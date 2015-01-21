@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -65,8 +65,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        198
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        201
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -888,7 +888,7 @@ inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T>::bool_type 
     if('\0' == m_directory[0])
     {
 # ifdef STLSOFT_UNITTEST
-        fprintf(stderr, "m_directory is empty when exception handling is enabled\n");
+        fprintf(err, "m_directory is empty when exception handling is enabled\n");
 # endif /* STLSOFT_UNITTEST */
 
         return false;
@@ -900,7 +900,7 @@ inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T>::bool_type 
         !traits_type::has_dir_end(m_directory.c_str()))
     {
 #ifdef STLSOFT_UNITTEST
-        fprintf(stderr, "m_directory is not empty and does not have a trailing path name separator; m_directory=%s\n", m_directory.c_str());
+        fprintf(err, "m_directory is not empty and does not have a trailing path name separator; m_directory=%s\n", m_directory.c_str());
 #endif /* STLSOFT_UNITTEST */
 
         return false;
@@ -915,7 +915,7 @@ inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char
     if( NULL == directory ||
         '\0' == *directory)
     {
-        static char_type    s_cwd[] = { '.', '\0' };
+        static const char_type  s_cwd[] = { '.', '\0' };
 
         directory = &s_cwd[0];
     }

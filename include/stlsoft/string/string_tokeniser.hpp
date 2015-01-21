@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      215
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -448,72 +448,64 @@ public:
  * The following code shows a specialisation using std::string and char, and
  * will output: <b>abc,def,ghi,jkl,</b>
  *
- * \htmlonly
- * <pre>
- *
- * stlsoft::<b>string_tokeniser</b>&lt;std::string, char&gt;  tokens(":abc::def:ghi:jkl::::::::::", ':');
- *
- * std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;std::string>(std::cout, ","));
- * </pre>
- * \endhtmlonly
+\code
+
+stlsoft::string_tokeniser<std::string, char>  tokens(":abc::def:ghi:jkl::::::::::", ':');
+
+std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(std::cout, ","));
+\endcode
  *
  * The following code shows a specialisation using
  * stlsoft::basic_simple_string&lt;wchar_t&gt; and wchar_t, and
  * will output: <b>abc-def-ghi-jkl-</b>
  *
- * \htmlonly
- * <pre>
- *
- * typedef stlsoft::basic_simple_string&lt;wchar_t>   string_t;
- * string_t                                        s(L"|abc||def|ghi|jkl||||||||||");
- * stlsoft::<b>string_tokeniser</b>&lt;string_t, wchar_t>    tokens(s, L'|');
- *
- * std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;string_t, wchar_t>(std::wcout, L"-"));
- * </pre>
- * \endhtmlonly
+\code
+
+typedef stlsoft::basic_simple_string<wchar_t>   string_t;
+string_t                                        s(L"|abc||def|ghi|jkl||||||||||");
+stlsoft::string_tokeniser<string_t, wchar_t>    tokens(s, L'|');
+
+std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<string_t, wchar_t>(std::wcout, L"-"));
+\endcode
  *
  * Optionally, you can stipulate that the blanks be retained by specifying the third
  * template parameter as skip_blank_tokens<false>, as in the following, which will
  * output: <b>,abc,,def,ghi,jkl,,,,,,,,,,</b>
  *
- * \htmlonly
- * <pre>
- *
- * stlsoft::<b>string_tokeniser</b>&lt;  std::string
- *                         ,   char
- *                         ,   stlsoft::skip_blank_tokens&lt;false>
- *                         >                tokens(":abc::def:ghi:jkl::::::::::", ':');
- *
- * std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;std::string>(std::cout, ","));
- * </pre>
- * \endhtmlonly
+\code
+
+stlsoft::string_tokeniser<  std::string
+                        ,   char
+                        ,   stlsoft::skip_blank_tokens<false>
+                        >                tokens(":abc::def:ghi:jkl::::::::::", ':');
+
+std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(std::cout, ","));
+\endcode
  *
  * \note The tokeniser uses \ref group__concept__shim__string_access "String Access Shims" to elicit the
  * string from the given type, so any type that for which shims are defined can be passed to the
  * constructor, as in the following, which will output: <b>abc;def;ghi;jkl;</b>
  *
- * \htmlonly
- * <pre>
- *
- * #include &lt;<b>stlsoft/string/string_tokeniser</b>.hpp&gt;
- * #include &lt;winstl/shims/access/string.hpp&gt;
- *
- * #include &lt;iostream&gt;
- * #include &lt;iterator&gt;
- *
- * int main()
- * {
- *   HWND  hwndButton = ::CreateWindowEx(0, "BUTTON", "+abc++def+ghi+jkl++++++++++", 0, 0, 0, 0, 0, NULL, (HMENU)0, NULL, NULL);
- *
- *   stlsoft::<b>string_tokeniser</b>&lt;  std::string
- *                           ,   char
- *                           ,   stlsoft::skip_blank_tokens&lt;true&gt;
- *                           &gt;                tokens(hwndButton, '+');
- *   std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;std::string&gt;(std::cout, ";"));
- *   return 0;
- * }
- * </pre>
- * \endhtmlonly
+\code
+
+#include <stlsoft/string/string_tokeniser.hpp>
+#include <winstl/shims/access/string.hpp>
+
+#include <iostream>
+#include <iterator>
+
+int main()
+{
+  HWND  hwndButton = ::CreateWindowEx(0, "BUTTON", "+abc++def+ghi+jkl++++++++++", 0, 0, 0, 0, 0, NULL, (HMENU)0, NULL, NULL);
+
+  stlsoft::string_tokeniser<  std::string
+                          ,   char
+                          ,   stlsoft::skip_blank_tokens<true>
+                          >                tokens(hwndButton, '+');
+  std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(std::cout, ";"));
+  return 0;
+}
+\endcode
  *
  * <b>2. Tokenising a string with a string.</b>
  *
@@ -523,14 +515,12 @@ public:
  * The following code shows a specialisation using std::string and std::string, and
  * will output: <b>abc,def,ghi,jkl,</b>
  *
- * \htmlonly
- * <pre>
- *
- * stlsoft::<b>string_tokeniser</b>&lt;std::string, std::string&gt;  tokens("\r\nabc\r\n\r\ndef\r\nghi\r\njkl\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n", "\r\n");
- *
- * std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;std::string>(std::cout, ","));
- * </pre>
- * \endhtmlonly
+\code
+
+stlsoft::string_tokeniser<std::string, std::string>  tokens("\r\nabc\r\n\r\ndef\r\nghi\r\njkl\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n", "\r\n");
+
+std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(std::cout, ","));
+\endcode
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D

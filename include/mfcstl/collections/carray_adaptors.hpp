@@ -5,7 +5,11 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
+ *
+ * Thanks to:   Nevin Liber and Scott Meyers for kicking my lazy behind, and
+ *              requiring that I implement the full complement of standard
+ *              comparison operations.
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     74
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    1
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 1
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,6 +107,7 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
     !defined(MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT)
 # include <afxtempl.h>
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT */
+#include <algorithm>
 
 #ifdef STLSOFT_UNITTEST
 # include <afxtempl.h>
@@ -654,6 +659,52 @@ public:
         array_type const    &lhs    =   this->get_CArray();
 
         return lhs.GetSize() == rhs.GetSize() && stlsoft_ns_qual_std(equal)(begin(), end(), rhs.GetData());
+    }
+
+    template<   ss_typename_param_k A2
+            ,   ss_typename_param_k I2
+            ,   ss_typename_param_k T2
+            >
+    ms_bool_t less_than(CArray_adaptor_base<A2, I2, T2> const &rhs) const
+    {
+        typedef CArray_adaptor_base<A2, I2, T2>         rhs_t;
+        typedef ss_typename_type_k rhs_t::value_type    rhs_value_t;
+
+        STLSOFT_STATIC_ASSERT(sizeof(value_type) == sizeof(ss_typename_type_k rhs_t::value_type));
+
+#ifdef STLSOFT_META_HAS_IS_SAME_TYPE
+        STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<value_type, rhs_value_t>::value));
+#endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
+
+        return stlsoft_ns_qual_std(lexicographical_compare)(begin(), end(), rhs.begin(), rhs.end());
+    }
+
+    ms_bool_t less_than(array_type const &rhs) const
+    {
+        return stlsoft_ns_qual_std(lexicographical_compare)(begin(), end(), rhs.GetData(), rhs.GetData() + rhs.GetSize());
+    }
+
+    template<   ss_typename_param_k A2
+            ,   ss_typename_param_k I2
+            ,   ss_typename_param_k T2
+            >
+    ms_bool_t greater_than(CArray_adaptor_base<A2, I2, T2> const &rhs) const
+    {
+        typedef CArray_adaptor_base<A2, I2, T2>         rhs_t;
+        typedef ss_typename_type_k rhs_t::value_type    rhs_value_t;
+
+        STLSOFT_STATIC_ASSERT(sizeof(value_type) == sizeof(ss_typename_type_k rhs_t::value_type));
+
+#ifdef STLSOFT_META_HAS_IS_SAME_TYPE
+        STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<value_type, rhs_value_t>::value));
+#endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
+
+        return stlsoft_ns_qual_std(lexicographical_compare)(rhs.begin(), rhs.end(), begin(), end());
+    }
+
+    ms_bool_t greater_than(array_type const &rhs) const
+    {
+        return stlsoft_ns_qual_std(lexicographical_compare)(rhs.GetData(), rhs.GetData() + rhs.GetSize(), begin(), end());
     }
 /// @}
 
@@ -1438,6 +1489,56 @@ inline ms_bool_t operator !=(CArray_adaptor_base<A1, I1, T1> const &lhs, CArray_
     return !lhs.equal(rhs);
 }
 
+template<   ss_typename_param_k A1
+        ,   ss_typename_param_k A2
+        ,   ss_typename_param_k I1
+        ,   ss_typename_param_k I2
+        ,   ss_typename_param_k T1
+        ,   ss_typename_param_k T2
+        >
+inline ms_bool_t operator <(CArray_adaptor_base<A1, I1, T1> const &lhs, CArray_adaptor_base<A2, I2, T2> const &rhs)
+{
+    return lhs.less_than(rhs);
+}
+
+template<   ss_typename_param_k A1
+        ,   ss_typename_param_k A2
+        ,   ss_typename_param_k I1
+        ,   ss_typename_param_k I2
+        ,   ss_typename_param_k T1
+        ,   ss_typename_param_k T2
+        >
+inline ms_bool_t operator <=(CArray_adaptor_base<A1, I1, T1> const &lhs, CArray_adaptor_base<A2, I2, T2> const &rhs)
+{
+    return !lhs.greater_than(rhs);
+}
+
+template<   ss_typename_param_k A1
+        ,   ss_typename_param_k A2
+        ,   ss_typename_param_k I1
+        ,   ss_typename_param_k I2
+        ,   ss_typename_param_k T1
+        ,   ss_typename_param_k T2
+        >
+inline ms_bool_t operator >(CArray_adaptor_base<A1, I1, T1> const &lhs, CArray_adaptor_base<A2, I2, T2> const &rhs)
+{
+    return lhs.greater_than(rhs);
+}
+
+template<   ss_typename_param_k A1
+        ,   ss_typename_param_k A2
+        ,   ss_typename_param_k I1
+        ,   ss_typename_param_k I2
+        ,   ss_typename_param_k T1
+        ,   ss_typename_param_k T2
+        >
+inline ms_bool_t operator >=(CArray_adaptor_base<A1, I1, T1> const &lhs, CArray_adaptor_base<A2, I2, T2> const &rhs)
+{
+    return !lhs.less_than(rhs);
+}
+
+
+
 template<   ss_typename_param_k A
         ,   ss_typename_param_k I
         ,   ss_typename_param_k T
@@ -1460,6 +1561,45 @@ template<   ss_typename_param_k A
         ,   ss_typename_param_k I
         ,   ss_typename_param_k T
         >
+inline ms_bool_t operator <(CArray_adaptor_base<A, I, T> const &lhs, A const &rhs)
+{
+    return lhs.less_than(rhs);
+}
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
+inline ms_bool_t operator <=(CArray_adaptor_base<A, I, T> const &lhs, A const &rhs)
+{
+    return !lhs.greater_than(rhs);
+}
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
+inline ms_bool_t operator >(CArray_adaptor_base<A, I, T> const &lhs, A const &rhs)
+{
+    return lhs.greater_than(rhs);
+}
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
+inline ms_bool_t operator >=(CArray_adaptor_base<A, I, T> const &lhs, A const &rhs)
+{
+    return !lhs.less_than(rhs);
+}
+
+
+
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
 inline ms_bool_t operator ==(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
 {
     return rhs.equal(lhs);
@@ -1472,6 +1612,42 @@ template<   ss_typename_param_k A
 inline ms_bool_t operator !=(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
 {
     return !rhs.equal(lhs);
+}
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
+inline ms_bool_t operator <(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
+{
+    return !(rhs.greater_than(lhs) || rhs == lhs);
+}
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
+inline ms_bool_t operator <=(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
+{
+    return !rhs.less_than(lhs);
+}
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
+inline ms_bool_t operator >(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
+{
+    return !(rhs.less_than(lhs) || rhs == lhs);
+}
+
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
+        >
+inline ms_bool_t operator >=(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
+{
+    return !rhs.greater_than(lhs);
 }
 
 ////////////////////////////////////////////////////////////////////////////

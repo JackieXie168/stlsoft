@@ -4,7 +4,7 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     6th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       4
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    6
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        27
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -275,20 +275,16 @@ public:
  *
  * It is categoried as an Iterable Range
  *
- * It could be used as follows
- * \htmlonly
- * <code>
- * <pre>
- * void dump_elements(std::vector&lt;int&gt; const &numbers)
- * {
- *   for(associative_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
- *   {
- *     std::cout &lt;&lt; &r; // Dump the current value to stdout
- *   }
- * }
- * </pre>
- * </code>
- * \endhtmlonly
+ * It could be used as follows:
+\code
+void dump_elements(std::vector<int> const &numbers)
+{
+  for(associative_range<std::vector<int> > r(numbers); r; ++r)
+  {
+    std::cout << &r; // Dump the current value to stdout
+  }
+}
+\endcode
  */
 template<   ss_typename_param_k S
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)

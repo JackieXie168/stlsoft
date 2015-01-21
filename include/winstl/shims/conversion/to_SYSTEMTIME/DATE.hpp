@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/sleep_functions.h
+ * File:        winstl/shims/conversion/to_SYSTEMTIME/DATE.hpp
  *
- * Purpose:     WinSTL time functions.
+ * Purpose:     winstl::to_SYSTEMTIME(DATE const&) overload.
  *
- * Created:     11th June 2006
- * Updated:     20th January 2007
+ * Created:     15th January 2007
+ * Updated:     21st January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,21 +38,32 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/synch/sleep_functions.h
+/** \file winstl/shims/conversion/to_SYSTEMTIME/DATE.hpp
  *
- * \brief [C, C++] Various time functions
- *   (\ref group__library__synch "Synchronisation" Library).
+ * \brief [C++] Definition of the winstl::to_SYSTEMTIME(DATE const&)
+ *   overload
+ *   (\ref group__concept__shim__time_conversion__to_SYSTEMTIME "winstl::to_SYSTEMTIME" Time Conversion Shim).
  */
 
-#ifndef WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS
-#define WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS
+#ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE
+#define WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       13
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MAJOR    1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MINOR    0
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_REVISION 3
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Auto-generation and compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_GCC:
+[Incompatibilies-end]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -61,14 +72,24 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef WINSTL_UDATE_DEFINED
+# error UDATE is not defined. If you are certain that your compiler's Windows header files define this type, #define the symbol WINSTL_FORCE_UDATE
+#endif /* !WINSTL_UDATE_DEFINED */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifndef WINSTL_INCL_WINSTL_ERROR_HPP_CONVERSION_ERROR
+#  include <winstl/error/conversion_error.hpp>
+# endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_CONVERSION_ERROR */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# include <winstl/util/struct_initialisers.hpp>
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
-#if !defined(_WINSTL_NO_NAMESPACE) && \
-    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-# if defined(_STLSOFT_NO_NAMESPACE)
+#ifndef _WINSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -88,75 +109,50 @@ namespace winstl_project
  * Functions
  */
 
-/** \brief [C, C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
-\code
-winstl__micro_sleep(100000);  // Sleep for 0.1 seconds
-winstl__micro_sleep(100);     // Sleep for 0.1 milliseconds
-\endcode
+/** \brief Converts an instance of DATE to an instance of SYSTEMTIME,
+ *    using the Windows API function <code>VarUdateFromDate()</code>.
  *
- * \param microseconds The number of microseconds to wait
+ * \ingroup group__concept__shim__time_conversion__to_SYSTEMTIME
  *
- * \return A boolean value indicating whether the operation was 
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
+ * \param rhs A valid date, of type <code>DATE</code>
+ * \return A valid date, of type <code>SYSTEMTIME</code>
  *
- * \see winstl::micro_sleep
+ * \exception winstl::conversion_error If the conversion fails, e.g. the
+ *   <code>DATE</code> instance does not contain a valid date. When
+ *   compiling absent exception support, a zero-initialised instance of
+ *   <code>SYSTEMTIME</code> is returned.
  */
-STLSOFT_INLINE ws_int_t winstl__micro_sleep(ws_uint_t microseconds)
+inline const SYSTEMTIME to_SYSTEMTIME(DATE const &rhs)
 {
-    return (STLSOFT_NS_GLOBAL(Sleep)(microseconds / 1000), ws_true_v);
+    UDATE	ud;
+	HRESULT	hr;
+
+    if(FAILED(hr = ::VarUdateFromDate(rhs, 0, &ud)))
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        STLSOFT_THROW_X(conversion_error("failed to convert time value", DWORD(hr)));
+#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        zero_struct(ud);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    return ud.st;
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * Namespace
- */
-
-#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-namespace winstl
-{
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////
- * C++ functions
- */
-
-#ifdef __cplusplus
-
-/** \brief [C++ only] Puts the calling thread to sleep for the given number of
- *   microseconds.
-\code
-winstl::micro_sleep(100000);  // Sleep for 0.1 seconds
-winstl::micro_sleep(100);     // Sleep for 0.1 milliseconds
-\endcode
- *
- * \param microseconds The number of microseconds to wait
- *
- * \return A boolean value indicating whether the operation was 
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
- */
-inline ws_int_t micro_sleep(ws_uint_t microseconds)
-{
-    return winstl__micro_sleep(microseconds);
-}
-
-#endif /* __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace stlsoft::winstl_project
+} // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS */
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE */
 
 /* ////////////////////////////////////////////////////////////////////// */

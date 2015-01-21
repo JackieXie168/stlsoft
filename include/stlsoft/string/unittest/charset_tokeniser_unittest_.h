@@ -1,5 +1,5 @@
 
-// Updated: 6th July 2006
+// Updated: 18th January 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_STRING_HPP_CHARSET_TOKENISER)
 # error This file cannot be directly included, and should only be included within stlsoft/string/charset_tokeniser.hpp
@@ -43,8 +43,6 @@ namespace unittest
 			static const wchar_t	str1[]	=	L";abc|:def,ghi;hjk;:|lmn;:|";
 
 			tokeniser_t tokens(str1, L":;|,");
-
-//::fprintf(stderr, "# tokens: %u\n", stlsoft_ns_qual_std(distance(tokens.begin(), tokens.end())));
 
 			if(11 != stlsoft_ns_qual_std(distance(tokens.begin(), tokens.end())))
 			{

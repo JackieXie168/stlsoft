@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    2
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        43
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    1
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -144,10 +144,20 @@ inline void stream_insert(S &stm, SYSTEMTIME const &t)
 }
 
 template <ss_typename_param_k S>
-inline void stream_insert(S &s, FILETIME const &ft)
+inline void stream_insert(S &stm, FILETIME const &ft)
 {
-    stream_insert(s, FILETIME2SYSTEMTIME(ft));
+    stream_insert(stm, FILETIME2SYSTEMTIME(ft));
 }
+
+#ifdef WINSTL_UDATE_DEFINED
+
+template <ss_typename_param_k S>
+inline void stream_insert(S &stm, UDATE const &ud)
+{
+    stream_insert(stm, ud.st);
+}
+
+#endif /* WINSTL_UDATE_DEFINED */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Shims
@@ -156,6 +166,8 @@ inline void stream_insert(S &s, FILETIME const &ft)
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
  */
+
+// SYSTEMTIME
 
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME const &t, ws_bool_t bMilliseconds)
 {
@@ -234,6 +246,9 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(SYSTEMTIME const &t)
     return c_str_ptr(t, ws_false_v);
 }
 
+
+// FILETIME
+
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(FILETIME const &t, ws_bool_t bMilliseconds)
 {
     return c_str_ptr_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
@@ -261,9 +276,48 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(FILETIME const &t)
     return c_str_ptr(t, ws_false_v);
 }
 
+
+#ifdef WINSTL_UDATE_DEFINED
+
+// UDATE
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(UDATE const &ud, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr_a(ud.st, bMilliseconds);
+}
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(UDATE const &ud)
+{
+    return c_str_ptr_a(ud.st);
+}
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(UDATE const &ud, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr_w(ud.st, bMilliseconds);
+}
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(UDATE const &ud)
+{
+    return c_str_ptr_w(ud.st);
+}
+
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(UDATE const &ud, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr(ud.st, bMilliseconds);
+}
+
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(UDATE const &ud)
+{
+    return c_str_ptr(ud.st);
+}
+
+#endif /* WINSTL_UDATE_DEFINED */
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  */
+
+// SYSTEMTIME
 
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(SYSTEMTIME const &t, ws_bool_t bMilliseconds)
 {
@@ -296,6 +350,9 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(SYSTEMTIME const &t)
     return c_str_data(t, ws_false_v);
 }
 
+
+// FILETIME
+
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(FILETIME const &t, ws_bool_t bMilliseconds)
 {
     return c_str_ptr_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
@@ -323,9 +380,45 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(FILETIME const &t)
     return c_str_data(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
+
+// UDATE
+
+#ifdef WINSTL_UDATE_DEFINED
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr_a(t.st, bMilliseconds);
+}
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(UDATE const &t)
+{
+    return c_str_data_a(t.st, ws_false_v);
+}
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr_w(t.st, bMilliseconds);
+}
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(UDATE const &t)
+{
+    return c_str_data_w(t.st, ws_false_v);
+}
+
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr(t.st, bMilliseconds);
+}
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(UDATE const &t)
+{
+    return c_str_data(t.st, ws_false_v);
+}
+
+#endif /* WINSTL_UDATE_DEFINED */
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  */
+
+// SYSTEMTIME
 
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(SYSTEMTIME const &t, ws_bool_t bMilliseconds)
 {
@@ -357,6 +450,9 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(SYSTEMTIME const
 }
 
 
+
+// FILETIME
+
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(FILETIME const &t, ws_bool_t bMilliseconds)
 {
     return c_str_ptr_null_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
@@ -387,6 +483,41 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(FILETIME const &
 }
 
 
+// UDATE
+
+#ifdef WINSTL_UDATE_DEFINED
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr_null_a(t.st, bMilliseconds);
+}
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(UDATE const &t)
+{
+    return c_str_ptr_null_a(t.st, ws_false_v);
+}
+
+
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr_null_w(t.st, bMilliseconds);
+}
+inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(UDATE const &t)
+{
+    return c_str_ptr_null_w(t.st, ws_false_v);
+}
+
+
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_ptr_null(t.st, bMilliseconds);
+}
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(UDATE const &t)
+{
+    return c_str_ptr_null(t.st, ws_false_v);
+}
+
+#endif /* WINSTL_UDATE_DEFINED */
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
@@ -395,6 +526,8 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(FILETIME const &
  * DMC++ gives "ambiguous reference to symbol" errors. (And I didn't have
  * time to investigate further.)
  */
+
+// SYSTEMTIME
 
 inline ws_size_t c_str_len_a(SYSTEMTIME const &t, ws_bool_t bMilliseconds)
 {
@@ -453,6 +586,9 @@ inline ws_size_t c_str_len(SYSTEMTIME const &t)
     return c_str_len(t, ws_false_v);
 }
 
+
+// FILETIME
+
 inline ws_size_t c_str_len_a(FILETIME const &t, ws_bool_t bMilliseconds)
 {
     return c_str_len_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
@@ -481,6 +617,41 @@ inline ws_size_t c_str_len(FILETIME const &t)
     return c_str_len(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
+
+// UDATE
+
+#ifdef WINSTL_UDATE_DEFINED
+
+inline ws_size_t c_str_len_a(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_len_a(t.st, bMilliseconds);
+}
+inline ws_size_t c_str_len_a(UDATE const &t)
+{
+    return c_str_len_a(t.st, ws_false_v);
+}
+
+inline ws_size_t c_str_len_w(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_len_w(t.st, bMilliseconds);
+}
+inline ws_size_t c_str_len_w(UDATE const &t)
+{
+    return c_str_len_w(t.st, ws_false_v);
+}
+
+inline ws_size_t c_str_len(UDATE const &t, ws_bool_t bMilliseconds)
+{
+    return c_str_len(t.st, bMilliseconds);
+}
+inline ws_size_t c_str_len(UDATE const &t)
+{
+    return c_str_len(t.st, ws_false_v);
+}
+
+#endif /* WINSTL_UDATE_DEFINED */
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * Stream inserter
  */
@@ -491,25 +662,42 @@ inline ws_size_t c_str_len(FILETIME const &t)
  *
  */
 template <ss_typename_param_k S>
-inline S &operator <<(S &s, SYSTEMTIME const &addr)
+inline S &operator <<(S &s, SYSTEMTIME const &st)
 {
-    stream_insert(s, addr);
+    stream_insert(s, st);
 
     return s;
 }
 
-/** \brief An inserter function for SYSTEMTIME into output streams
+/** \brief An inserter function for FILETIME into output streams
  *
  * \ingroup group__library__shims__string_access
  *
  */
 template <ss_typename_param_k S>
-inline S &operator <<(S &s, FILETIME const &addr)
+inline S &operator <<(S &s, FILETIME const &ft)
 {
-    stream_insert(s, addr);
+    stream_insert(s, ft);
 
     return s;
 }
+
+#ifdef WINSTL_UDATE_DEFINED
+
+/** \brief An inserter function for UDATE into output streams
+ *
+ * \ingroup group__library__shims__string_access
+ *
+ */
+template <ss_typename_param_k S>
+inline S &operator <<(S &s, UDATE const &ud)
+{
+    stream_insert(s, ud);
+
+    return s;
+}
+
+#endif /* WINSTL_UDATE_DEFINED */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

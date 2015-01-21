@@ -4,7 +4,7 @@
  * Purpose:     Scoped thread-safe access locking class.
  *
  * Created:     7th November 2004
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      15
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,8 +85,7 @@ namespace stlsoft
  *
  * For example, consider that you have a class X whose resources are to be
  * accessible to multiple threads, defined as follows:
-\htmlonly
-<pre>
+\code
   class X
   {
   public:
@@ -99,19 +98,16 @@ namespace stlsoft
   public:
     que
   };
-</pre>
-\endhtmlonly
+\endcode
  *
  * Rather than relying on the good actions of the user, we can instead bind
  * the locking of X's resources with access to its queue, using
  * \link stlsoft::checkout_token checkout_token\endlink, as follows:
  *
-\htmlonly
-<pre>
+\code
 
 
-</pre>
-\endhtmlonly
+\endcode
  *
  */
 template<   ss_typename_param_k CT  //!< Accessed class type

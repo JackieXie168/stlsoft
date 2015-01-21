@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 9
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     232
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 10
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     234
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -609,7 +609,7 @@ private:
         buffer_type_    buffer(n);
 
         copy_n(first, buffer.size(), &buffer[0]);
-        assign(&buffer[0], buffer.size());
+        assign(buffer.data(), buffer.size());
 
         STLSOFT_ASSERT(is_valid());
 
@@ -643,7 +643,7 @@ private:
         buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
 
         stlsoft_ns_qual_std(copy)(first, last, &buffer[0]);
-        append(&buffer[0], buffer.size());
+        append(buffer.data(), buffer.size());
 
         STLSOFT_ASSERT(is_valid());
         return *this;
@@ -2243,7 +2243,7 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::class_type &basic_simple
 
     static_cast<void>(stlsoft_ns_qual_std(fill)(buffer.begin(), buffer.end(), ch));
 
-    return assign(&buffer[0], buffer.size());
+    return assign(buffer.data(), buffer.size());
 }
 
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
@@ -2428,7 +2428,7 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::class_type &basic_simple
 
         static_cast<void>(stlsoft_ns_qual_std(fill)(buffer.begin(), buffer.end(), ch));
 
-        append(&buffer[0], buffer.size());
+        append(buffer.data(), buffer.size());
     }
 
     return *this;

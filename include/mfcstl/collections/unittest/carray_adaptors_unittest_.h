@@ -1,5 +1,5 @@
 
-// Updated: 15th September 2006
+// Updated: 21st January 2007
 
 #if !defined(MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS)
 # error This file cannot be directly included, and should only be included within mfcstl/collections/carray_adaptors.hpp
@@ -255,6 +255,363 @@ namespace unittest
 				bSuccess = false;
 			}
 
+			if(c1 < c2)
+			{
+				;
+			}
+
+			if(c1 <= c2)
+			{
+				;
+			}
+
+			if(c1 > c2)
+			{
+				;
+			}
+
+			if(c1 >= c2)
+			{
+				;
+			}
+
+			return bSuccess;
+		}
+
+		ss_bool_t test_mfcstl_carray_adaptors_test_comparison(unittest_reporter *r)
+		{
+			ss_bool_t						bSuccess	=	true;
+
+			CStringArray					ar1;
+
+			ar1.Add("abcd"); ar1.Add("efgh"); ar1.Add("ijkl"); ar1.Add("mnop");
+
+//			CArray<CString> 				ar2;
+
+			CArray_iadaptor<CStringArray>	ar3(ar1);
+
+			if(!(ar1 == ar3))
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar3 == ar1))
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar1 != ar3)
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar3 != ar1)
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar1 < ar3)
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar3 < ar1)
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar1 <= ar3))
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar3 <= ar1))
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar1 > ar3)
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar3 > ar1)
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar1 >= ar3))
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar3 >= ar1))
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			CArray_cadaptor<CStringArray>	ar4(ar3.begin(), ar3.end());
+
+			if(!(ar4 == ar3))
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar3 == ar4))
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar4 != ar3)
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar3 != ar4)
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar4 < ar3)
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar3 < ar4)
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar4 <= ar3))
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar3 <= ar4))
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar4 > ar3)
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar3 > ar4)
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar4 >= ar3))
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar3 >= ar4))
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			// Remove the last element from ar4, to make it < ar3
+
+			ar4.erase(ar4.end() - 1);
+
+			if(ar3 == ar4)
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar4 == ar3)
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar3 != ar4))
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar4 != ar3))
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar3 < ar4)
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar4 < ar3))
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar3 <= ar4)
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar4 <= ar3))
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar3 > ar4))
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar4 > ar3)
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar3 >= ar4))
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar4 >= ar3)
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			// Remove the first element from ar4, to make it > ar3
+
+			ar4.erase(ar4.begin());
+
+			if(ar3 == ar4)
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar4 == ar3)
+			{
+				r->report("operator ==() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar3 != ar4))
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar4 != ar3))
+			{
+				r->report("operator !=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar3 < ar4))
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar4 < ar3)
+			{
+				r->report("operator <() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(!(ar3 <= ar4))
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(ar4 <= ar3)
+			{
+				r->report("operator <=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar3 > ar4)
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar4 > ar3))
+			{
+				r->report("operator >() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
+			if(ar3 >= ar4)
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+			if(!(ar4 >= ar3))
+			{
+				r->report("operator >=() yields wrong value", __LINE__);
+
+				bSuccess = false;
+			}
+
 			return bSuccess;
 		}
 
@@ -266,6 +623,12 @@ namespace unittest
 			ss_bool_t				bSuccess	=	true;
 
 			unittest_initialiser	init(r, "MFCSTL", "collections/carray_adaptors", __FILE__);
+
+			// Test comparisons
+			if(!test_mfcstl_carray_adaptors_test_comparison(r))
+			{
+				bSuccess = false;
+			}
 
 			{ // CStringArray & CStringArray
 				typedef CStringArray					array_type_1;

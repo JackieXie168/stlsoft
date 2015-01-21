@@ -1,5 +1,5 @@
 
-// Updated: 6th June 2006
+// Updated: 18th January 2007
 
 #if !defined(WINSTL_INCL_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE)
 # error This file cannot be directly included, and should only be included within winstl/system/environment_sequence.hpp
@@ -40,21 +40,14 @@ namespace unittest
 			{
 				environment_sequence::const_iterator	b2;
 
-//b2 = es.find((*b).name);
-//fprintf(stderr, "Finding [%p, %s]=[%p, %s]\n		  [%s=%s]\n 	   [%p, %s]\n", b, (*b).name, b2, (*b2).name, (*b).name, (*b).value, (*b2).name, (*b2).value);
-
 				if(b != (b2 = es.find((*b).name)))
 				{
-//fprintf(stderr, "%s(%d):\n\t[%s]\n\t[%s]\n\t[%s]\n\n", __FILE__, __LINE__, (*b).name, (*b2).name, es[i].name);
-
 					r->report("find(name) failed to find existing name", __LINE__);
 					bSuccess = false;
 				}
 
 				if(b != (b2 = es.find((*b).name, (*b).value)))
 				{
-//fprintf(stderr, "%s(%d): \n\t[%s=%s]\n\t[%s=%s]\n\t[%s=%s]\n\n", __FILE__, __LINE__, (*b).name, (*b).value, (*b2).name, (*b2).value, es[i].name, es[i].value);
-
 					r->report("find(name, value) failed to find existing name/value", __LINE__);
 					bSuccess = false;
 				}
@@ -67,11 +60,8 @@ namespace unittest
 				badValue[0]++;
 				badValue[1] = '\0';
 
-//fprintf(stdout, "Finding [%s=%s] (real value=[%s])\n", (*b).name, badValue, (*b).value);
 				if(b == (b2 = es.find((*b).name, badValue)))
 				{
-//fprintf(stderr, "%s(%d): \n\t[%s=%s]\n\t[%s=%s]\n\t[%s=%s]\n\n", __FILE__, __LINE__, (*b).name, (*b).value, (*b2).name, (*b2).value, es[i].name, es[i].value);
-
 					r->report("find(name, value) erroneously found non-existant name/value", __LINE__);
 					bSuccess = false;
 				}

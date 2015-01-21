@@ -5,7 +5,7 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       43
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,20 +109,16 @@ namespace stlsoft
  * - no cv-qualifiers are stripped from the FROM type
  *
  * For example, this cast is allowed:
-\htmlonly
-<pre>
- int         *pi = . . .;
- short const *ps = stlsoft::<b>sap_cast</b>&lt;short const*>(pi);
-</pre>
-\endhtmlonly
+\code
+int         *pi = . . .;
+short const *ps = stlsoft::sap_cast<short const*>(pi);
+\endcode
  *
  * but this cast is not:
-\htmlonly
-<pre>
- int const   *pi = . . .;
- short       *ps = stlsoft::<b>sap_cast</b>&lt;short*>(pi);
-</pre>
-\endhtmlonly
+\code
+int const   *pi = . . .;
+short       *ps = stlsoft::sap_cast<short*>(pi);
+\endcode
  *
  * \param from The pointer to cast from.
  *

@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 2
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     30
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,19 +111,17 @@ namespace stlsoft
 /** \brief Parses a command line into parts, and provides sequence semantics
  *   for their access.
  *
-\htmlonly
-<pre>
-  <b>stlsoft::commandline_parser_a</b>  cp("abc \"d e f\" ghi);
+\code
+stlsoft::commandline_parser_a  cp("abc \"d e f\" ghi);
 
-  assert(3 == <b>cp.size()</b>);
-  assert(0 == ::strcmp("abc",   <b>cp[0]</b>));
-  assert(0 == ::strcmp("d e f", <b>cp[1]</b>));
-  assert(0 == ::strcmp("ghi",   <b>cp[2]</b>));
+assert(3 == cp.size());
+assert(0 == ::strcmp("abc",   cp[0]));
+assert(0 == ::strcmp("d e f", cp[1]));
+assert(0 == ::strcmp("ghi",   cp[2]));
 
-  std::copy(cp.begin(), cp.end()
-          , std::ostream_iterator&lt;char const*>(std::cout, "\n"));
-</pre>
-\endhtmlonly
+std::copy(cp.begin(), cp.end()
+        , std::ostream_iterator<char const*>(std::cout, "\n"));
+\endcode
  *
  * \ingroup group__library__system
  */

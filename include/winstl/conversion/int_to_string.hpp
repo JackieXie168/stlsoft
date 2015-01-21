@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     13th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MAJOR      2
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      1
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   1
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       35
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -369,14 +369,12 @@ inline C *i2str_get_tss_buffer()
 /** Converts a signed 8-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  signed char   v = 13;
+\code
+signed char   v = 13;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "13"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"13"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "13"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"13"));
+\endcode
  *
  * \ingroup group__library__conversion
  *
@@ -396,14 +394,12 @@ inline C const *int_to_string(ws_sint8_t value)
 /** Converts a unsigned 8-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  unsigned char   v = 14;
+\code
+unsigned char   v = 14;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "14"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"14"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "14"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"14"));
+\endcode
  *
  * \ingroup group__library__conversion
  *
@@ -423,14 +419,12 @@ inline C const *int_to_string(ws_uint8_t value)
 /** Converts a signed 16-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  signed char   v = 15;
+\code
+signed char   v = 15;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "15"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"15"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "15"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"15"));
+\endcode
  *
  * \ingroup group__library__conversion
  *
@@ -450,14 +444,12 @@ inline C const *int_to_string(ws_sint16_t value)
 /** Converts a unsigned 16-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  unsigned char   v = 16;
+\code
+unsigned char   v = 16;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "16"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"16"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "16"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"16"));
+\endcode
  *
  * \ingroup group__library__conversion
  *
@@ -477,14 +469,12 @@ inline C const *int_to_string(ws_uint16_t value)
 /** Converts a signed 32-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  signed char   v = 17;
+\code
+signed char   v = 17;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "17"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"17"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "17"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"17"));
+\endcode
  *
  * \ingroup group__library__conversion
  *
@@ -504,14 +494,12 @@ inline C const *int_to_string(ws_sint32_t value)
 /** Converts a unsigned 32-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  unsigned char   v = 18;
+\code
+unsigned char   v = 18;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "18"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"18"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "18"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"18"));
+\endcode
  *
  * \ingroup group__library__conversion
  *
@@ -531,14 +519,12 @@ inline C const *int_to_string(ws_uint32_t value)
 /** Converts a signed 64-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  signed char   v = 19;
+\code
+signed char   v = 19;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "19"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"19"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "19"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"19"));
+\endcode
  *
  * \ingroup group__library__conversion
  *
@@ -558,14 +544,12 @@ inline C const *int_to_string(ws_sint64_t const &value)
 /** Converts a unsigned 64-bit integer to a character string
  *
  * For example:
-\htmlonly
-<pre>
-  unsigned char   v = 20;
+\code
+unsigned char   v = 20;
   
-  assert(0 == ::strcmp(winstl::int_to_string&lt;char>(v), "20"));
-  assert(0 == ::wcscmp(winstl::int_to_string&lt;wchar_t>(v), L"20"));
-</pre>
-\endhtmlonly
+assert(0 == ::strcmp(winstl::int_to_string<char>(v), "20"));
+assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"20"));
+\endcode
  *
  * \ingroup group__library__conversion
  *

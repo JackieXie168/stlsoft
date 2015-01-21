@@ -6,7 +6,7 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    1
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 4
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     28
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,19 +123,17 @@ namespace winstl_project
  *
  * The following example illustrates the use of the counter to measure an
  * interval:
-\htmlonly
-<pre>
-  <b>winstl::performance_counter</b>   counter;
+\code
+winstl::performance_counter   counter;
 
-  counter.<b>start()</b>;
-  for(volatile size_t i = 0; i != 0x7fffffff; ++i)
-  counter.<b>stop()</b>;
+counter.start();
+for(volatile size_t i = 0; i != 0x7fffffff; ++i)
+counter.stop();
 
-  std::cout << "Number of seconds:      " << counter.<b>get_seconds()</b> << std::endl;
-  std::cout << "Number of milliseconds: " << counter.<b>get_milliseconds()</b> << std::endl;
-  std::cout << "Number of microseconds: " << counter.<b>get_microseconds()</b> << std::endl;
-</pre>
-\endhtmlonly
+std::cout << "Number of seconds:      " << counter.get_seconds() << std::endl;
+std::cout << "Number of milliseconds: " << counter.get_milliseconds() << std::endl;
+std::cout << "Number of microseconds: " << counter.get_microseconds() << std::endl;
+\endcode
  *
  * Note: Some standard libraries' IOStreams do not recognise the 64-bit
  * unsigned integer that is the counter class's <code>interval_type</code>
@@ -145,19 +143,17 @@ namespace winstl_project
  * in the case where, say, the <code>unsigned long</code> type for your
  * compiler is 32-bits and the value returned by a given
  * <code>get_???()</code> method is > 4294967295.
-\htmlonly
-<pre>
-  winstl::performance_counter   counter;
+\code
+winstl::performance_counter   counter;
 
-  counter.start();
-  for(volatile size_t i = 0; i != 0x7fffffff; ++i)
-  counter.stop();
+counter.start();
+for(volatile size_t i = 0; i != 0x7fffffff; ++i)
+counter.stop();
 
-  std::cout << "Number of seconds:      " << <b>static_cast&lt;unsigned long>(</b>counter.get_seconds()<b>)</b> << std::endl;
-  std::cout << "Number of milliseconds: " << <b>static_cast&lt;unsigned long>(</b>counter.get_milliseconds()<b>)</b> << std::endl;
-  std::cout << "Number of microseconds: " << <b>static_cast&lt;unsigned long>(</b>counter.get_microseconds()<b>)</b> << std::endl;
-</pre>
-\endhtmlonly
+std::cout << "Number of seconds:      " << static_cast<unsigned long>(counter.get_seconds()) << std::endl;
+std::cout << "Number of milliseconds: " << static_cast<unsigned long>(counter.get_milliseconds()) << std::endl;
+std::cout << "Number of microseconds: " << static_cast<unsigned long>(counter.get_microseconds()) << std::endl;
+\endcode
  *
  *
  * \remarks This class attempts to use the high performance hardware counter

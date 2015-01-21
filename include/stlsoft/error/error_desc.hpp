@@ -4,7 +4,7 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      9
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,29 +96,25 @@ namespace stlsoft
  * \ingroup group__library__error
  *
  * Consider the following example:
-\htmlonly
-<pre>
+\code
   stlsoft::error_desc_a  ed1(ENOMEM);
   stlsoft::error_desc    ed3(ENOMEM);
 
   assert(0 == ::strcmp("Access is denied", ed1.c_str()));
   assert(0 == ::wcscmp(L"Access is denied", ed2.c_str()));
   assert(0 == ::_tcscmp(_T("Access is denied"), ed3.c_str()));
-</pre>
-\endhtmlonly
+\endcode
  *
  * By default, the strings are looked up from the Windows system DLLs. To
  * use a specific message-string DLL, simply specify this as the second
  * argument to the constructor, as in (assuming <b>MyCustomDll.DLL</b> maps
  * <code>ERROR_ACCESS_DENIED</code> to <code>"No Access!"</code>):
  *
-\htmlonly
-<pre>
+\code
   stlsoft::error_desc_a  ed1(ERROR_ACCESS_DENIED, "MyCustomDll.DLL");
 
   assert(0 == ::strcmp("No Access!", ed1.c_str()));
-</pre>
-\endhtmlonly
+\endcode
  *
  * \note Naturally, \ref group__concept__shim__string_access "String Access
  *  Shim" functions <b>c_str_ptr</b>, <b>c_str_data</b>, <b>c_str_len</b>

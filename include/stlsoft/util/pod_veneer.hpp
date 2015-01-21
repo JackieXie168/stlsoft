@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_veneer template class.
  *
  * Created:     19th January 2002
- * Updated:     11th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_EDIT       47
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,31 +86,29 @@ namespace stlsoft
  * can be used to apply RRID or RAII semantics to a plain old data type. For
  * example,
  *
-\htmlonly
-<pre>
-  struct Simple
-  {
-  public:
-    char *buffer;
-  };
-  
-  void Init_Simple(Simple *simple);
-  void Uninit_Simple(Simple *simple);
-  
-  struct Simple_Init { void operator ()(Simple *simple) { Init_Simple(simple); } };
-  struct Simple_Uninit { void operator ()(Simple *simple) { Uninit_Simple(simple); } };
-  
-  void fn()
-  {
-    typedef   pod_veneer&lt;Simple, Simple_Init, Simple_Uninit>  Simple_raii_t;
-  
-    Simple_raii_t simple; // Init_Simple() called here
-  
-    . . .
-  
-  } // Uninit_Simple() called here
-</pre>
-\endhtmlonly
+\code
+struct Simple
+{
+public:
+  char *buffer;
+};
+
+void Init_Simple(Simple *simple);
+void Uninit_Simple(Simple *simple);
+
+struct Simple_Init { void operator ()(Simple *simple) { Init_Simple(simple); } };
+struct Simple_Uninit { void operator ()(Simple *simple) { Uninit_Simple(simple); } };
+
+void fn()
+{
+  typedef   pod_veneer<Simple, Simple_Init, Simple_Uninit>  Simple_raii_t;
+
+  Simple_raii_t simple; // Init_Simple() called here
+
+  . . .
+
+} // Uninit_Simple() called here
+\endcode
  *
  * \param T The POD type
  * \param CF The function class applied during construction

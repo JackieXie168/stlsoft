@@ -4,7 +4,7 @@
  * Purpose:     Random number range class.
  *
  * Created:     31st May 2004
- * Updated:     6th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   2
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       23
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,17 +109,13 @@ namespace rangelib_project
  * It is categoried as a Notional Range
  *
  * It could be used as follows
- * \htmlonly
- * <code>
- * <pre>
- *   // Create a range of 10 values, whose value are between -100 and +100
- *   stlsoft::random_range   r(10, -100, +100);
- *
- *   // Dump them to stdout
- *   stlsoft::r_copy(r, std::ostream_iterator&lt;int>(" "));
- * </pre>
- * </code>
- * \endhtmlonly
+\code
+  // Create a range of 10 values, whose value are between -100 and +100
+  stlsoft::random_range   r(10, -100, +100);
+
+  // Dump them to stdout
+  stlsoft::r_copy(r, std::ostream_iterator<int>(" "));
+\endcode
  */
 class random_range
     : public notional_range_tag

@@ -7,7 +7,7 @@
  *              in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -184,9 +184,10 @@ namespace stlsoft
  * limit_traits is a traits class for acquiring the minimum and maximum values
  * of types.
  *
- * &nbsp;&nbsp;<code>limit_traits<ss_sint16_t>::minimum() == -32768</code><br>
- * &nbsp;&nbsp;<code>limit_traits<ss_sint16_t>::maximum() == 32767</code><br>
- *
+\code
+  assert(stlsoft::limit_traits<ss_sint16_t>::minimum() == -32768);
+  assert(stlsoft::limit_traits<ss_sint16_t>::maximum() == 32767);
+\endcode
  * \param T The type
  *
  * \note Provides nothing that is not in std::numeric_limits, but uses

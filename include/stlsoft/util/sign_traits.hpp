@@ -4,7 +4,7 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     13th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -88,9 +88,11 @@ namespace stlsoft
  * sign_traits is a traits class for acquiring the corresponding signed,
  * unsigned, and alternate-signed type eg.
  *
- * &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::signed_type == ss_sint16_t</code><br>
- * &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::unsigned_type == ss_uint16_t</code><br>
- * &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::alt_sign_type == ss_uint16_t</code><br>
+\code
+  assert(stlsoft::is_same_type<stlsoft::sign_traits<ss_sint16_t>::signed_type, ss_sint16_t>::value);
+  assert(stlsoft::is_same_type<stlsoft::sign_traits<ss_sint16_t>::unsigned_type, ss_uint16_t>::value);
+  assert(stlsoft::is_same_type<stlsoft::sign_traits<ss_sint16_t>::alt_sign_type, ss_uint16_t>::value);
+\endcode
  *
  * \param T The char type
  *

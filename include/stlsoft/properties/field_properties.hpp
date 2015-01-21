@@ -4,7 +4,7 @@
  * Purpose:     Field-based properties.
  *
  * Created:     6th October 2003
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   2
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       24
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,43 +94,41 @@ namespace stlsoft
 /** \brief Class template used to define a read-only internal field
  *   property.
  *
-\htmlonly
-<pre>
-  class ClassWithReadOnlyProp
+\code
+class ClassWithReadOnlyProp
+{
+public: // Member Types
+  typedef std::string   string_type;
+  typedef int           index_type;
+
+public: // Construction
+  ClassWithReadOnlyProp(char const *instanceName, index_type instanceIndex)
+    : name(instanceName)  // Property value can be initialised inside encloding class
+    , index(1)            // Property value can be initialised inside encloding class
+  {}
+
+public: // Operations
+  void ReBadge(char const *newInstanceName, index_type newInstanceIndex)
   {
-  public: // Member Types
-    typedef std::string   string_type;
-    typedef int           index_type;
+    name  = newInstanceName;  // Property value can be assigned inside encloding class
+    index = newInstanceIndex; // Property value can be assigned inside encloding class
+  }
 
-  public: // Construction
-    ClassWithReadOnlyProp(char const *instanceName, index_type instanceIndex)
-      : name(instanceName)  // Property value can be initialised inside encloding class
-      , index(1)            // Property value can be initialised inside encloding class
-    {}
+public: // Properties
+  stlsoft::field_property_get<index_type, index_type, ClassWithReadOnlyProp>          index;
+  stlsoft::field_property_get<string_type, string_type const&, ClassWithReadOnlyProp> name;
+};
 
-  public: // Operations
-    void ReBadge(char const *newInstanceName, index_type newInstanceIndex)
-    {
-      name  = newInstanceName;  // Property value can be assigned inside encloding class
-      index = newInstanceIndex; // Property value can be assigned inside encloding class
-    }
+. . .
 
-  public: // Properties
-    stlsoft::<b>field_property_get</b>&lt;index_type, index_type, ClassWithReadOnlyProp>          <b>index</b>;
-    stlsoft::<b>field_property_get</b>&lt;string_type, string_type const&, ClassWithReadOnlyProp> <b>name</b>;
-  };
+ClassWithReadOnlyProp   c("Object-#1", 1);
 
-  . . .
+int                 index   =   c.index;    // Ok: access the value of the read-only property
+std::string const   &name   =   c.name;     // Ok: access the value of the read-only property
 
-  ClassWithReadOnlyProp   c("Object-#1", 1);
-
-  int                 index   =   c.index;    // Ok: access the value of the read-only property
-  std::string const   &name   =   c.name;     // Ok: access the value of the read-only property
-
-  c.index =   2;          // Compile error: cannnot write to the read-only property
-  c.name  =   "new name"; // Compile error: cannnot write to the read-only property
-</pre>
-\endhtmlonly
+c.index =   2;          // Compile error: cannnot write to the read-only property
+c.name  =   "new name"; // Compile error: cannnot write to the read-only property
+\endcode
  *
  * \ingroup group__library__properties
  */
@@ -188,22 +186,20 @@ private:
 /** \brief Class template used to define a write-only internal field
  *   property.
  *
-\htmlonly
-<pre>
-  class ClassWithWriteOnlyProp
-  {
-  public:
-      stlsoft::<b>field_property_set</b>&lt;int, int, ClassWithWriteOnlyProp>  prop2;
-  };
+\code
+class ClassWithWriteOnlyProp
+{
+public:
+  stlsoft::field_property_set<int, int, ClassWithWriteOnlyProp>  prop2;
+};
 
-  ClassWithWriteOnlyProp  c;
-  int                     i;
+ClassWithWriteOnlyProp  c;
+int                     i;
 
-  c.prop2 = i;  // Ok: Write to the write-only property
+c.prop2 = i;  // Ok: Write to the write-only property
 
-  i = c.prop2;  // <b>Compile error</b>: Cannot access the value of the write-only property
-</pre>
-\endhtmlonly
+i = c.prop2;  // Compile error: Cannot access the value of the write-only property
+\endcode
  *
  * \ingroup group__library__properties
  */

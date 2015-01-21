@@ -4,7 +4,7 @@
  * Purpose:     Window messaging function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     11th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MAJOR     4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     0
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      33
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,10 +100,8 @@ namespace winstl_project
  *
  * \ingroup group__library__functional
  *
-\htmlonly
-<pre>
-</pre>
-\endhtmlonly
+\code
+\endcode
  */
 // [[synesis:class:unary-functor: message_send]]
 struct message_send
@@ -150,10 +148,8 @@ private:
  *
  * \ingroup group__library__functional
  *
-\htmlonly
-<pre>
-</pre>
-\endhtmlonly
+\code
+\endcode
  */
 // [[synesis:class:unary-functor: message_post]]
 struct message_post
