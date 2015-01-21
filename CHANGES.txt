@@ -1,8 +1,8 @@
-============================================================================
+\============================================================================
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  5th February 2008
+; Updated:  8th February 2008
 
 ============================================================================
 
@@ -15,6 +15,33 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.22 (8th February 2008)
+
+Summary:
+==========
+
+ * refactored unixstl/synch/util/features.h
+
+Changes:
+========
+
+ UNIXSTL:
+ --------
+
+ ~ adjusted the PThreads discrimination in unixstl/synch/util/features.h to
+   not be affected by the inclusion of pthread.h (which seems to be included
+   by <string> on UNIX with GCC !?)
+
+ WinSTL:
+ -------
+
+ ~ minor warning suppression in winstl/filesystem/memory_mapped_file.hpp
+
+ ~ minor warning-avoidance refactoring in
+   winstl/system/console_colour_scope.hpp
 
 ============================================================================
 

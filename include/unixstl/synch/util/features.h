@@ -4,11 +4,11 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     23rd October 1997
- * Updated:     15th January 2007
+ * Updated:     8th February 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,8 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
+
+#include <unistd.h> /* Required for definition of _POSIX_THREADS on some impls. */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Features
@@ -118,11 +120,10 @@
  *
  * PThreads is selected if:
  *
- * - _REENTRANT is defined, or 
- * - _POSIX_THREADS is defined, or
+ * - _POSIX_THREADS is defined and _REENTRANT is defined, or 
  * - UNIXSTL_FORCE_PTHREADS is defined, which causes &lt;pthread.h> to be
- *    included, and the symbols _REENTRANT and/or _POSIX_THREADS to be
- *    defined if they are not already.
+ *    included, and the symbol _REENTRANT (and _POSIX_THREADS on Windows)
+ *    to be defined if they are not already.
  */
 # define UNIXSTL_USING_PTHREADS
 
@@ -133,19 +134,34 @@
 # endif /* UNIXSTL_USING_PTHREADS */
 
 # if defined(UNIXSTL_FORCE_PTHREADS)
-#  ifndef _REENTRANT
-#   define _REENTRANT
-#  endif /* !_REENTRANT */
-#  ifndef _POSIX_THREADS
-#   define _POSIX_THREADS
-#  endif /* !_POSIX_THREADS */
-#  include <pthread.h>
+#  if defined(_STLSOFT_FORCE_ANY_COMPILER) && \
+      (   defined(_WIN32) || \
+          defined(_WIN64))
+    /* Emulating UNIX on Win32 */
+#   if !defined(__MT__) && \
+       !defined(_MT)
+#    error Cannot force PThreads on Windows unless multi-threaded compilation is enabled
+#   else /* ? MT */
+#    ifndef _POSIX_THREADS
+#     define _POSIX_THREADS
+#    endif /* !_POSIX_THREADS */
+#    ifndef _REENTRANT
+#     define _REENTRANT
+#    endif /* !_REENTRANT */
+#   endif /* MT */
+#  else /* ? compiler / OS */
+#   ifndef _POSIX_THREADS
+#    error Cannot force PThreads on a system on which _POSIX_THREADS is not defined
+#   endif /* !_POSIX_THREADS */
+#   ifndef _REENTRANT
+#    define _REENTRANT
+#   endif /* !_REENTRANT */
+#  endif /* compiler / OS */
 # endif /* UNIXSTL_FORCE_PTHREADS */
 
-# if defined(_REENTRANT) || \
-     defined(_POSIX_THREADS)
+# if defined(_REENTRANT)
 #  define UNIXSTL_USING_PTHREADS
-# endif
+# endif /* _REENTRANT */
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  5th February 2008
+; Updated:  8th February 2008
 
 ============================================================================
 
+
+8th February 2008 - 1.9.22 released
+-----------------------------------
+
+ * refactored unixstl/synch/util/features.h
 
 5th February 2008 - 1.9.21 released
 -----------------------------------
