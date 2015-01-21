@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     10th August 2009
+ * Updated:     24th December 2009
  *
  * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
  *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 3
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     248
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     249
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -278,7 +278,7 @@ public:
     /// precondition violations are no more recoverable than any others (see the article
     /// "The Nuclear Reactor and the Deep Space Probe"), this does not represent
     /// a concerning contradiction to the no-throw status of the constructor.
-    enumerator_sequence(interface_type *i, bool_type bAddRef, size_type quanta = 0, bool_type bReset = true)
+    enumerator_sequence(interface_type* i, bool_type bAddRef, size_type quanta = 0, bool_type bReset = true)
         : m_root(i)
         , m_enumerator(NULL)
         , m_quanta(validate_quanta_(quanta))
@@ -362,7 +362,7 @@ public:
             ///
             /// This constructor copies the state of rhs, and is given a new
             /// cloned enumerator instance pointer.
-            enumeration_context(interface_type *i, class_type const& rhs)
+            enumeration_context(interface_type* i, class_type const& rhs)
                 : m_enumerator(i)
                 , m_acquired(rhs.m_acquired)
                 , m_current(rhs.m_current)
@@ -380,10 +380,10 @@ public:
                 try
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 {
-                    value_type          *begin      =   &m_values[0];
-                    value_type          *end        =   &m_values[0] + m_quanta;
-                    value_type const    *src_begin  =   &rhs.m_values[0];
-                    value_type const    *src_end    =   &rhs.m_values[0] + rhs.m_acquired;
+                    value_type*         begin      =   &m_values[0];
+                    value_type*         end        =   &m_values[0] + m_quanta;
+                    value_type const*   src_begin  =   &rhs.m_values[0];
+                    value_type const*   src_end    =   &rhs.m_values[0] + rhs.m_acquired;
 
                     // Copy each element up to the common extent ...
                     for(; src_begin != src_end; ++begin, ++src_begin)
@@ -413,7 +413,7 @@ public:
             /// \brief Sharing constructor
             ///
             /// The iterator is
-            enumeration_context(interface_type *i, size_type quanta, bool_type bFirst)
+            enumeration_context(interface_type* i, size_type quanta, bool_type bFirst)
                 : m_enumerator(bFirst ? (i->AddRef(), i) : cloning_policy_type::share(i))
                 , m_acquired(0)
                 , m_current(0)
@@ -458,7 +458,7 @@ public:
                 }
             }
 
-            static class_type *make_clone(class_type *ctxt)
+            static class_type* make_clone(class_type* ctxt)
             {
                 if(NULL == ctxt)
                 {
@@ -468,7 +468,7 @@ public:
                 {
                     COMSTL_ASSERT(NULL != ctxt->m_enumerator);   // Must always have one, so can test its cloneability
 
-                    interface_type  *copy;
+                    interface_type* copy;
                     const bool      bTrueClone  =   cloning_policy_type::clone(ctxt->m_enumerator, &copy);
 
                     if(!bTrueClone)
@@ -493,7 +493,7 @@ public:
                         //
                         //
 
-                        class_type  *newCtxt;
+                        class_type* newCtxt;
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                         try
@@ -687,7 +687,7 @@ public:
         /// \name Members
         /// @{
         private:
-            interface_type  *m_enumerator;
+            interface_type* m_enumerator;
             size_type       m_acquired;
             size_type       m_current;
             ULONG const     m_quanta;
@@ -709,7 +709,7 @@ public:
         friend class enumerator_sequence<I, V, VP, R, CP, Q>;
 
         /// \brief Constructor
-        iterator(interface_type *i, size_type quanta, bool_type &bFirst)
+        iterator(interface_type* i, size_type quanta, bool_type &bFirst)
             : m_ctxt(new enumeration_context(i, quanta, bFirst))
         {
             bFirst = false;
@@ -906,7 +906,7 @@ public:
     {
         COMSTL_ASSERT(is_valid());
 
-        interface_type  *en;
+        interface_type* en;
 
         if(NULL != m_enumerator)
         {
@@ -989,8 +989,8 @@ private:
 
 // Members
 private:
-    interface_type          *m_root;
-    interface_type          *m_enumerator;
+    interface_type*         m_root;
+    interface_type*         m_enumerator;
     size_type const         m_quanta;
     ss_mutable_k bool_type  m_bFirst;
 

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     10th August 2009
+ * Updated:     22nd December 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    4
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        90
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    5
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,12 +132,15 @@ namespace mfcstl_project
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline ms_size_t GetWindowTextLength__(CWnd const& w)
+namespace impl
+{
+
+inline ms_size_t GetWindowTextLength_T_(CWnd const& w)
 {
     return (NULL != w.m_hWnd) ? static_cast<ms_size_t>(w.GetWindowTextLength()) : 0;
 }
 
-inline ms_size_t GetWindowText__(CWnd const& w, LPTSTR buffer, ms_size_t cchBuffer)
+inline ms_size_t GetWindowText_T_(CWnd const& w, LPTSTR buffer, ms_size_t cchBuffer)
 {
     MFCSTL_ASSERT(NULL != w.m_hWnd);
 
@@ -145,7 +148,7 @@ inline ms_size_t GetWindowText__(CWnd const& w, LPTSTR buffer, ms_size_t cchBuff
 }
 
 
-inline ms_size_t GetWindowTextLength__(CListBox const& w)
+inline ms_size_t GetWindowTextLength_T_(CListBox const& w)
 {
     int sel;
 
@@ -160,7 +163,7 @@ inline ms_size_t GetWindowTextLength__(CListBox const& w)
     }
 }
 
-inline ms_size_t GetWindowText__(CListBox const& w, LPTSTR buffer, ms_size_t cchBuffer)
+inline ms_size_t GetWindowText_T_(CListBox const& w, LPTSTR buffer, ms_size_t cchBuffer)
 {
     int sel = -1;
 
@@ -182,7 +185,7 @@ inline ms_size_t GetWindowText__(CListBox const& w, LPTSTR buffer, ms_size_t cch
 
 #ifdef __AFXCMN_H__
 # if _MFC_VER >= 0x0600
-inline ms_size_t GetWindowTextLength__(CListCtrl const& w)
+inline ms_size_t GetWindowTextLength_T_(CListCtrl const& w)
 {
     if(1 == w.GetSelectedCount())
     {
@@ -197,7 +200,7 @@ inline ms_size_t GetWindowTextLength__(CListCtrl const& w)
     }
 }
 
-inline ms_size_t GetWindowText__(CListCtrl const& w, LPTSTR buffer, ms_size_t cchBuffer)
+inline ms_size_t GetWindowText_T_(CListCtrl const& w, LPTSTR buffer, ms_size_t cchBuffer)
 {
     if(1 == w.GetSelectedCount())
     {
@@ -213,21 +216,22 @@ inline ms_size_t GetWindowText__(CListCtrl const& w, LPTSTR buffer, ms_size_t cc
 }
 
 #  ifdef __AFXCVIEW_H__
-inline ms_size_t GetWindowTextLength__(CListView const& w)
+inline ms_size_t GetWindowTextLength_T_(CListView const& w)
 {
-    return GetWindowTextLength__(w.GetListCtrl());
+    return GetWindowTextLength_T_(w.GetListCtrl());
 }
 
-inline ms_size_t GetWindowText__(CListView const& w, LPTSTR buffer, ms_size_t cchBuffer)
+inline ms_size_t GetWindowText_T_(CListView const& w, LPTSTR buffer, ms_size_t cchBuffer)
 {
-    return GetWindowText__(w.GetListCtrl(), buffer, cchBuffer);
+    return GetWindowText_T_(w.GetListCtrl(), buffer, cchBuffer);
 }
 #  endif /* __AFXCVIEW_H__ */
 # endif /* _MFC_VER >= 0x0600 */
 #endif /* __AFXCMN_H__ */
 
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+} /* namespace impl */
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -259,7 +263,7 @@ public:
     {
         stlsoft_constraint_must_have_base(W, CWnd);
 
-        ms_size_t length = GetWindowTextLength__(w);
+        ms_size_t length = impl::GetWindowTextLength_T_(w);
 
         if(length == 0)
         {
@@ -271,7 +275,7 @@ public:
 
             if(NULL != m_buffer)
             {
-                GetWindowText__(w, m_buffer, length + 1);
+				impl::GetWindowText_T_(w, m_buffer, length + 1);
             }
         }
     }
@@ -345,7 +349,7 @@ public:
     {
         stlsoft_constraint_must_have_base(W, CWnd);
 
-        ms_size_t length = GetWindowTextLength__(w);
+        ms_size_t length = impl::GetWindowTextLength_T_(w);
 
         if(length == 0)
         {
@@ -357,7 +361,7 @@ public:
 
             if(NULL != m_buffer)
             {
-                GetWindowText__(w, m_buffer, length + 1);
+                impl::GetWindowText_T_(w, m_buffer, length + 1);
             }
         }
     }
@@ -720,7 +724,7 @@ inline c_str_ptr_CWnd_proxy c_str_data_a(CListView const& w)
  */
 inline ms_size_t c_str_len(CWnd const& w)
 {
-    return GetWindowTextLength__(w);
+    return GetWindowTextLength_T_(w);
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # ifdef UNICODE
@@ -740,7 +744,7 @@ inline ms_size_t c_str_len_a(CWnd const& w)
  */
 inline ms_size_t c_str_len(CListBox const& w)
 {
-    return GetWindowTextLength__(w);
+    return GetWindowTextLength_T_(w);
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # ifdef UNICODE
@@ -762,7 +766,7 @@ inline ms_size_t c_str_len_a(CListBox const& w)
  */
 inline ms_size_t c_str_len(CListCtrl const& w)
 {
-    return GetWindowTextLength__(w);
+    return GetWindowTextLength_T_(w);
 }
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #  ifdef UNICODE

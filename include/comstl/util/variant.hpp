@@ -4,7 +4,7 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     10th August 2009
+ * Updated:     27th December 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       151
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   2
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -180,7 +180,79 @@ public:
 
     /** Conversion constructor
      *
-     * Initialises the instance with the given short value
+     * Initialises the instance with the given 8-bit signed integer value
+     *
+     * \post <code>assert(VT_I1 == this->vt)</code>
+     * \post <code>assert(i == this->cVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+	variant(stlsoft::sint8_t i);
+
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given 8-bit unsigned integer value
+     *
+     * \post <code>assert(VT_UI1 == this->vt)</code>
+     * \post <code>assert(i == this->bVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+	variant(stlsoft::uint8_t i);
+
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given 16-bit signed integer value
+     *
+     * \post <code>assert(VT_I2 == this->vt)</code>
+     * \post <code>assert(i == this->iVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+	variant(stlsoft::sint16_t i);
+
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given 16-bit unsigned integer value
+     *
+     * \post <code>assert(VT_UI2 == this->vt)</code>
+     * \post <code>assert(i == this->uiVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+	variant(stlsoft::uint16_t i);
+
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given 32-bit signed integer value
+     *
+     * \post <code>assert(VT_I4 == this->vt)</code>
+     * \post <code>assert(i == this->lVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+	variant(stlsoft::sint32_t i);
+
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given 32-bit unsigned integer value
+     *
+     * \post <code>assert(VT_UI4 == this->vt)</code>
+     * \post <code>assert(i == this->ulVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+	variant(stlsoft::uint32_t i);
+
+//#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+//	variant(stlsoft::sint64_t i);
+//	variant(stlsoft::uint64_t i);
+//#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given \c short value
      *
      * \post <code>assert(VT_I2 == this->vt)</code>
      * \post <code>assert(i == this->iVal)</code>
@@ -191,7 +263,21 @@ public:
 
     /** Conversion constructor
      *
-     * Initialises the instance with the given int value
+     * Initialises the instance with the given
+	 * <code>unsigned short</code> value
+     *
+     * \post <code>assert(VT_UI2 == this->vt)</code>
+     * \post <code>assert(i == this->uiVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+    variant(unsigned short i);
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given \c int value
      *
      * \post <code>assert(VT_I4 == this->vt)</code>
      * \post <code>assert(i == this->lVal)</code>
@@ -202,7 +288,21 @@ public:
 
     /** Conversion constructor
      *
-     * Initialises the instance with the given long value
+     * Initialises the instance with the given
+	 * <code>unsigned int</code> value
+     *
+     * \post <code>assert(VT_UI4 == this->vt)</code>
+     * \post <code>assert(i == this->ulVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+    variant(unsigned int i);
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given \c long value
      *
      * \post <code>assert(VT_I4 == this->vt)</code>
      * \post <code>assert(i == this->lVal)</code>
@@ -213,7 +313,20 @@ public:
 
     /** Conversion constructor
      *
-     * Initialises the instance with the given float value
+     * Initialises the instance with the given
+	 * <code>unsigned long</code> value
+     *
+     * \post <code>assert(VT_UI4 == this->vt)</code>
+     * \post <code>assert(i == this->ulVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+    variant(unsigned long i);
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given \c float value
      *
      * \post <code>assert(VT_R4 == this->vt)</code>
      * \post <code>assert(r == this->fltVal)</code>
@@ -224,7 +337,7 @@ public:
 
     /** Conversion constructor
      *
-     * Initialises the instance with the given double value
+     * Initialises the instance with the given \c double value
      *
      * \post <code>assert(VT_R8 == this->vt)</code>
      * \post <code>assert(r == this->dblVal)</code>
@@ -235,7 +348,7 @@ public:
 
     /** Conversion constructor
      *
-     * Initialises the instance with the given currency (CY) value
+     * Initialises the instance with the given currency (\c CY) value
      *
      * \post <code>assert(VT_CY == this->vt)</code>
      * \post <code>assert(r == this->cyVal)</code>
@@ -246,7 +359,7 @@ public:
 
     /** Conversion constructor
      *
-     * Initialises the instance with the given DECIMAL value
+     * Initialises the instance with the given \c DECIMAL value
      *
      * \post <code>assert(VT_DECIMAL == this->vt)</code>
      * \post <code>assert(dec == this->decVal)</code>
@@ -262,6 +375,9 @@ public:
     variant(cs_char_w_t const* s, int len = -1);
     variant(VARIANT const& var, VARTYPE vt);
 
+	/** Releases any resources associated with the underlying
+	 *   <code>VARIANT</code>
+	 */
     ~variant() stlsoft_throw_0()
     {
         stlsoft_constraint_must_be_same_size(class_type, VARIANT);
@@ -269,7 +385,11 @@ public:
         ::VariantClear(this);
     }
 
-    void    clear();
+    /** Clears the variant
+     *
+     * \post <code>assert(VT_EMPTY == this->vt)</code>
+     */
+    void clear();
 
 /// Operations
 public:
@@ -277,16 +397,42 @@ public:
     HRESULT     try_convert(VARTYPE vt);
     class_type  &convert(VARTYPE vt);
 
-    HRESULT     QueryInterface(REFIID riid, void **ppv) const;
+	/** Returns a pointer to a specified interface on an object to which
+	 * a client currently holds an interface pointer.
+	 *
+	 * \return An <code>HRESULT</code> code indicating the success of the
+	 *   operation.
+	 * \retval <code>S_OK</code> The interface is supported:
+	 *   <code>*ppv</code> will hold the pointer to the requested interface
+	 * \retval <code>E_INTERFACE</code> The interface is not supported: the
+	 *   value of <code>*ppv</code> is undefined.
+	 *
+	 * \pre <code>NULL != ppv</code>
+	 */
+    HRESULT     QueryInterface(REFIID riid, void** ppv) const;
 
+	/** Returns a pointer to a specified interface on an object to which
+	 * a client currently holds an interface pointer.
+	 *
+	 * \return An <code>HRESULT</code> code indicating the success of the
+	 *   operation.
+	 * \retval <code>S_OK</code> The interface is supported:
+	 *   <code>*ppi</code> will hold the pointer to the requested interface
+	 * \retval <code>E_INTERFACE</code> The interface is not supported: the
+	 *   value of <code>*ppi</code> is undefined.
+	 *
+	 * \pre <code>NULL != ppi</code>
+	 */
     template <ss_typename_param_k I>
-    HRESULT QueryInterfaceValue(I **ppi)
+    HRESULT QueryInterfaceValue(I** ppi)
     {
         return QueryInterface(IID_traits<I>::iid(), reinterpret_cast<void**>(ppi));
     }
 
 public:
-    void        swap(class_type& rhs);
+	/** Swaps the contents with another instance
+	 */
+    void swap(class_type& rhs);
 
 /// Comparison
 public:
@@ -433,6 +579,55 @@ inline variant::variant(bool b)
     this->boolVal   =   b ? VARIANT_TRUE : VARIANT_FALSE;
 }
 
+inline variant::variant(stlsoft::sint8_t i)
+{
+    ::VariantInit(this);
+
+    this->vt    =   VT_I1;
+    this->cVal  =   static_cast<CHAR>(i);
+}
+
+inline variant::variant(stlsoft::uint8_t i)
+{
+    ::VariantInit(this);
+
+    this->vt    =   VT_UI1;
+    this->bVal  =   static_cast<BYTE>(i);
+}
+
+inline variant::variant(stlsoft::sint16_t i)
+{
+    ::VariantInit(this);
+
+    this->vt    =   VT_I2;
+    this->iVal  =   static_cast<SHORT>(i);
+}
+
+inline variant::variant(stlsoft::uint16_t i)
+{
+    ::VariantInit(this);
+
+    this->vt    =   VT_UI2;
+    this->uiVal =   static_cast<USHORT>(i);
+}
+
+inline variant::variant(stlsoft::sint32_t i)
+{
+    ::VariantInit(this);
+
+    this->vt    =   VT_I4;
+    this->lVal  =   static_cast<LONG>(i);
+}
+
+inline variant::variant(stlsoft::uint32_t i)
+{
+    ::VariantInit(this);
+
+    this->vt    =   VT_UI4;
+    this->ulVal =   static_cast<ULONG>(i);
+}
+
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 inline variant::variant(short i)
 {
     ::VariantInit(this);
@@ -440,7 +635,16 @@ inline variant::variant(short i)
     this->vt    =   VT_I2;
     this->iVal  =   i;
 }
+inline variant::variant(unsigned short i)
+{
+    ::VariantInit(this);
 
+    this->vt    =   VT_UI2;
+    this->uiVal =   i;
+}
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 inline variant::variant(int i)
 {
     ::VariantInit(this);
@@ -448,7 +652,16 @@ inline variant::variant(int i)
     this->vt    =   VT_I4;
     this->lVal  =   i;
 }
+inline variant::variant(unsigned int i)
+{
+    ::VariantInit(this);
 
+    this->vt    =   VT_UI4;
+    this->ulVal =   i;
+}
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 inline variant::variant(long i)
 {
     ::VariantInit(this);
@@ -456,6 +669,15 @@ inline variant::variant(long i)
     this->vt    =   VT_I4;
     this->lVal  =   i;
 }
+inline variant::variant(unsigned long i)
+{
+    ::VariantInit(this);
+
+    this->vt    =   VT_UI4;
+    this->ulVal =   i;
+}
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
 
 inline variant::variant(float r)
 {
@@ -618,7 +840,7 @@ inline variant::class_type& variant::convert(VARTYPE vt)
 }
 
 
-inline HRESULT variant::QueryInterface(REFIID riid, void **ppv) const
+inline HRESULT variant::QueryInterface(REFIID riid, void** ppv) const
 {
     COMSTL_ASSERT(NULL != ppv);
 

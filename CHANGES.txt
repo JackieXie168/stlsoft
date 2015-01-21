@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  11th August 2009
+; Updated:  12th January 2010
 
 ============================================================================
 
@@ -16,6 +16,103 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.88 (12th January 2010)
+
+Summary:
+========
+
+ * added throwOnAccessFailure search flag to winstl::basic_findfile_sequence, along with supporting code
+ * added winstl::access_exception
+ * full integer handling for comstl::variant
+ * addition of max_size() static method to basic_file_path_buffer class template
+ * change of max_size() method to be static in basic_path
+ * fixed longstanding incompatibility between reverse_iterator and const_reverse_iterator
+ * C compatibility fixes
+ * compatibility with GCC 3.4
+ * truncation_test is now a function template (rather than a macro to an internal function)
+ * deprecation/removal of reserved symbols, and replacement with valid symbols
+
+Changes:
+========
+
+ general:
+ =======
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/internal/cccap/unknown.h:
+    ~ changed to "modern" form of feature discrimination mechanisms
+
+ ~ stlsoft/conversion/truncation_test.hpp:
+    ~ truncation_test is now a function template (rather than a macro to an internal function)
+
+ ~ stlsoft/internal/cccap/msvc.h:
+    ~ C compatibility fixes
+
+ ~ stlsoft/util/std/iterator_helper.hpp:
+    ~ compatibility between reverse_iterator and const_reverse_iterator
+
+ COMSTL:
+ =======
+
+ ~ comstl/comstl.h:
+ ~ comstl/error/errorinfo_functions.h:
+    ~ compatibility with GCC 3.4
+
+ ~ comstl/util/rot_functions.h:
+    ~ conversion of deprecated comstl__??? form to comstl_C_??? form
+
+ ~ comstl/util/variant.hpp:
+    + added ctors for unsigned integral types
+    ~ full handling of integers
+
+ MFCSTL:
+ =======
+
+ ~ mfcstl/shims/access/string/cwnd.hpp:
+    ~ removing use of reserved symbols
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/filesystem/file_path_buffer.hpp:
+    + added max_size() static method
+
+ ~ unixstl/filesystem/path.hpp:
+    ~ changed max_size() method to be static
+
+ WinSTL:
+ =======
+
+ ~ winstl/controls/listview_sequence.hpp:
+    ~ introduction of lvs_string_t from global namespace (where it should not be defined) to the winstl namespace (where it should be)
+
+ ~ winstl/error/exceptions.hpp:
+    + added winstl::access_exception
+
+ ~ winstl/filesystem/file_path_buffer.hpp:
+    + added max_size() static method
+
+ ~ winstl/filesystem/findfile_sequence.hpp:
+    + added throwOnAccessFailure search flag, along with supporting code
+
+ ~ winstl/filesystem/path.hpp:
+    ~ changed max_size() method to be static
+
+ ~ winstl/performance/threadtimes_counter.hpp:
+    ~ refactored in preparation of throwing of exceptions when timing information cannot be elicited
+
+ ~ winstl/shims/access/string/HWND.hpp:
+    ~ removing use of reserved symbols
+
+ ~ winstl/winstl.h:
+    ~ compatibility with GCC 3.4
+    + added MAKEINTRESOURCEA
+    + added MAKEINTRESOURCEW
 
 ============================================================================
 

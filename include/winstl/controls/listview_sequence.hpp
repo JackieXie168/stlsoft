@@ -4,13 +4,13 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     10th August 2009
+ * Updated:     8th January 2010
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      74
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,6 +130,14 @@ namespace winstl_project
 {
 
 # endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Typedefs
+ */
+
+#ifndef _WINSTL_NO_NAMESPACE
+using ::lvs_string_t;
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////

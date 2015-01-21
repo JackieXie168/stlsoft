@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     10th August 2009
+ * Updated:     22nd November 2009
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
  *              example when writing books about good design/implementation;
@@ -68,9 +68,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       8
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        215
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -236,13 +236,16 @@ public:
 public:
     enum search_flags
     {
-            includeDots     =   0x0008  //!< Causes the search to include the "." and ".." directories, which are elided by default
-        ,   directories     =   0x0010  //!< Causes the search to include directories
-        ,   files           =   0x0020  //!< Causes the search to include files
-        ,   skipReparseDirs =   0x0100  //!< Causes the search to skip directories that are reparse points
-        ,   skipHiddenFiles =   0x0200  //!< Causes the search to skip files marked hidden
-        ,   skipHiddenDirs  =   0x0400  //!< Causes the search to skip directories marked hidden
-        ,   relativePath    =   0x0800  //!< Each file entry is presented as relative to the search directory.
+            includeDots           =   0x0008  //!< Causes the search to include the "." and ".." directories, which are elided by default
+        ,   directories           =   0x0010  //!< Causes the search to include directories
+        ,   files                 =   0x0020  //!< Causes the search to include files
+        ,   skipReparseDirs       =   0x0100  //!< Causes the search to skip directories that are reparse points
+        ,   skipHiddenFiles       =   0x0200  //!< Causes the search to skip files marked hidden
+        ,   skipHiddenDirs        =   0x0400  //!< Causes the search to skip directories marked hidden
+        ,   relativePath          =   0x0800  //!< Each file entry is presented as relative to the search directory.
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        ,   throwOnAccessFailure  =   0x2000  //!< Causes an exception to be thrown if a directory cannot be access
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     };
 /// @}
 
@@ -895,6 +898,9 @@ inline /* static */ ss_typename_type_ret_k basic_findfile_sequence<C, T>::flags_
                                     |   skipHiddenFiles
                                     |   skipHiddenDirs
                                     |   relativePath
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                                    |   throwOnAccessFailure
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                                     |   0;
 
     WINSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
@@ -1306,12 +1312,20 @@ inline /* static */ HANDLE basic_findfile_sequence_const_input_iterator<C, T, V>
         hSrch = traits_type::find_first_file(searchSpec, findData);
     }
 
-#ifdef _DEBUG
     if(INVALID_HANDLE_VALUE == hSrch)
     {
-        ::GetLastError();
+        DWORD dw = ::GetLastError();
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if(ERROR_ACCESS_DENIED == dw)
+        {
+            if(flags & sequence_type::throwOnAccessFailure)
+            {
+                STLSOFT_THROW_X(access_exception(dw));
+            }
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
-#endif /* _DEBUG */
 
     // Now need to validate against the flags
     for(; INVALID_HANDLE_VALUE != hSrch; )

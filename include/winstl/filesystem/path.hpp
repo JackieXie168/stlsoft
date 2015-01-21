@@ -4,11 +4,11 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     10th August 2009
+ * Updated:     5th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     253
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 16
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     255
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -348,34 +348,34 @@ public:
     /// if the path is terminated by the path name separator
     ///
     /// \note If the path contains no path name separator, the full path will be returned
-    char_type const* get_file() const;
+    char_type const*  get_file() const;
     /// Returns a pointer to the extension, or to the empty string if there is no extension
-    char_type const* get_ext() const;
+    char_type const*  get_ext() const;
     /// Returns the length of the converted path
-    size_type       length() const;
+    size_type         length() const;
     /// Returns the length of the converted path
     ///
     /// \remarks Equivalent to length()
-    size_type       size() const;
+    size_type         size() const;
     /// The maximum possible length of a path
-    size_type       max_size() const;
+    static size_type  max_size();
     /// Determines whether the path is empty
-    bool_type       empty() const;
+    bool_type         empty() const;
     /// Conversion to a non-mutable (const) pointer to the path
-    char_type const* c_str() const;
+    char_type const*  c_str() const;
     /// Returns a non-mutable (const) reference to the character at
     ///  the given index
     ///
     /// \note The behaviour is undefined if <code>index >= size()</code>.
-    char_type const& operator [](size_type index) const;
+    char_type const&  operator [](size_type index) const;
     /// Indicates whether the path represents an existing file system entry
-    bool_type       exists() const;
+    bool_type         exists() const;
     /// Indicates whether the path is rooted
-    bool_type       is_rooted() const;
+    bool_type         is_rooted() const;
     /// Indicates whether the path is absolute
-    bool_type       is_absolute() const;
+    bool_type         is_absolute() const;
     /// Indicates whether the path has a trailing separator
-    bool_type       has_sep() const;
+    bool_type         has_sep() const;
 
     /// Copies the contents into a caller supplied buffer
     ///
@@ -485,7 +485,7 @@ private:
 # ifdef WIN32
                                             ,   _MAX_PATH / 2
 # endif /* OS */
-                                            >                               part_buffer_type_;
+                                            >                                   part_buffer_type_;
 
 
     static size_type coallesce_parts_(part_buffer_type_& parts);
@@ -1819,11 +1819,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline ss_typename_type_ret_k basic_path<C, T, A>::size_type
-basic_path<C, T, A>::max_size() const
+/* static */ basic_path<C, T, A>::max_size()
 {
-    WINSTL_ASSERT(0u != m_buffer.size());
-
-    return m_buffer.size() - 1;
+    return buffer_type_::max_size() - 1u;
 }
 
 template<   ss_typename_param_k C

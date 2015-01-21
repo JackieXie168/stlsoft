@@ -2,9 +2,24 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  11th August 2009
+; Updated:  12th January 2010
 
 ============================================================================
+
+
+12th January 2010 - 1.9.88 released
+-----------------------------------
+
+ * added throwOnAccessFailure search flag to winstl::basic_findfile_sequence, along with supporting code
+ * added winstl::access_exception
+ * full integer handling for comstl::variant
+ * addition of max_size() static method to basic_file_path_buffer class template
+ * change of max_size() method to be static in basic_path
+ * fixed longstanding incompatibility between reverse_iterator and const_reverse_iterator
+ * C compatibility fixes
+ * compatibility with GCC 3.4
+ * truncation_test is now a function template (rather than a macro to an internal function)
+ * deprecation/removal of reserved symbols, and replacement with valid symbols
 
 
 11th August 2009 - 1.9.87 released

@@ -4,7 +4,7 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     10th August 2009
+ * Updated:     26th December 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 5
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     66
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -174,7 +174,7 @@ public:
  * taking a copy of the contents of its source.
  */
 template<   ss_typename_param_k I                                   //!< Enumerator interface
-        ,   IID const*          piid                               //!< Enumerator interface Id
+        ,   IID const*          piid                                //!< Enumerator interface Id
         ,   ss_typename_param_k V                                   //!< Enumerator interface value type
         ,   ss_typename_param_k IV      =   V                       //!< Internal type. Must have value semantics
         ,   ss_typename_param_k I2ETx   =   copy_policy<IV, V>      //!< Internal to external transformation policy
@@ -358,7 +358,7 @@ private:
 // class copy_enumerator
 // [[synesis:class: atlstl::copy_enumerator<T<I>, IID const*, T<V>, T<IV>, T<I2ETx>, T<TM>>]]
 template<   ss_typename_param_k I                                   // Enumerator interface
-        ,   IID const*          piid                               // Enumerator interface Id
+        ,   IID const*          piid                                // Enumerator interface Id
         ,   ss_typename_param_k V                                   // Enumerator interface value type
         ,   ss_typename_param_k IV      =   V                       // Internal type
         ,   ss_typename_param_k I2ETx   =   copy_policy<IV, V>      // Internal to external transformation policy

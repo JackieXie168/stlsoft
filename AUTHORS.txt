@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  19th May 2009
+; Updated:  12th January 2010
 
 ============================================================================
 
@@ -78,6 +78,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     Scott Patterson
     Sean Kelly
     ShaChris23
+    Steven (Kuaf Lee)
     Vivi Orunitia
     Victor T
     Volker Lukas

@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     10th August 2009
+ * Updated:     11th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        117
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -239,11 +239,11 @@ public:
     /// \brief Appends a path name separator to \c dir if one does not exist
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type*   ensure_dir_end(char_type *dir);
+    static char_type*   ensure_dir_end(char_type* dir);
     /// \brief Removes the path name separator from the end of \c dir, if it has it
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type*   remove_dir_end(char_type *dir);
+    static char_type*   remove_dir_end(char_type* dir);
     /// \brief Returns \c true if \c dir has trailing path name separator
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
@@ -301,7 +301,7 @@ public:
     /// \note Because not all systems support fixed maximum path lengths, the value of this function is notionally dynamic
     static size_type    path_max();
     /// \brief Gets the full path name into the given buffer, returning a pointer to the file-part
-    static size_type    get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile);
+    static size_type    get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile);
     /// \brief Gets the full path name into the given buffer
     static size_type    get_full_path_name(char_type const* fileName, char_type* buffer, size_type cchBuffer);
     /// \brief Gets the full path name into the given buffer
@@ -322,13 +322,13 @@ public:
     // FindFirstFile/FindNextFile API
 
     /// \brief Initiate a file-system search
-    static HANDLE       find_first_file(char_type const* spec, find_data_type *findData);
+    static HANDLE       find_first_file(char_type const* spec, find_data_type* findData);
 #if _WIN32_WINNT >= 0x0400
     /// \brief Initiate a file-system search - NT4+-only
-    static HANDLE       find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type *findData);
+    static HANDLE       find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData);
 #endif /* _WIN32_WINNT >= 0x0400 */
     /// \brief Advance a given file-system search
-    static bool_type    find_next_file(HANDLE h, find_data_type *findData);
+    static bool_type    find_next_file(HANDLE h, find_data_type* findData);
     /// \brief Closes the handle of the file-system search
     static void         find_file_close(HANDLE h);
 
@@ -336,9 +336,9 @@ public:
 
 #ifndef _WINSTL_NO_FINDVOLUME_API
     /// \brief Initiate a file-system volume search
-    static HANDLE       find_first_volume(char_type *volume_name, size_type cch_volume_name);
+    static HANDLE       find_first_volume(char_type* volume_name, size_type cch_volume_name);
     /// \brief Advance a given file-system volume search
-    static bool_type    find_next_volume(HANDLE h, char_type *volume_name, size_type cch_volume_name);
+    static bool_type    find_next_volume(HANDLE h, char_type* volume_name, size_type cch_volume_name);
     /// \brief Closes the handle of the file-volume search
     static void         find_volume_close(HANDLE h);
 #endif // !_WINSTL_NO_FINDVOLUME_API
@@ -354,7 +354,7 @@ public:
     /// \deprecated The other overload is now the preferred form
     static size_type    get_current_directory(size_type cchBuffer, char_type* buffer);
     /// \brief Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
-    static size_type    get_current_directory(char_type *buffer, size_type cchBuffer);
+    static size_type    get_current_directory(char_type* buffer, size_type cchBuffer);
 /// @}
 
 /// \name File-system state
@@ -367,9 +367,9 @@ public:
     /// \brief Returns whether the given path represents a directory
     static bool_type    is_directory(char_type const* path);
     /// \brief Gets the information for a particular file system entry
-    static bool_type    stat(char_type const* path, stat_data_type *stat_data);
+    static bool_type    stat(char_type const* path, stat_data_type* stat_data);
     /// \brief Gets the information for a particular open file
-    static bool_type    fstat(file_handle_type fd, fstat_data_type *fstat_data);
+    static bool_type    fstat(file_handle_type fd, fstat_data_type* fstat_data);
 
     /// \brief Returns whether the given stat info represents a file
     static bool_type    is_file(stat_data_type const* stat_data);
@@ -454,7 +454,7 @@ public:
     };
 
 public:
-    static bool_type fstat(file_handle_type fd, fstat_data_type *fstat_data)
+    static bool_type fstat(file_handle_type fd, fstat_data_type* fstat_data)
     {
         return FALSE != ::GetFileInformationByHandle(fd, fstat_data);
     }
@@ -523,11 +523,11 @@ public:
     };
 
 public:
-    static char_type *ensure_dir_end(char_type *dir)
+    static char_type* ensure_dir_end(char_type* dir)
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type *end = str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -539,7 +539,7 @@ public:
         return dir;
     }
 
-    static char_type *remove_dir_end(char_type *dir)
+    static char_type* remove_dir_end(char_type* dir)
     {
         WINSTL_ASSERT(NULL != dir);
 
@@ -689,7 +689,7 @@ public:
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
         WINSTL_MESSAGE_ASSERT("GetFullPathNameW() will crash when the file-name and buffer parameters are the same, so it's not a good idea to do this for ANSI compilation", fileName != buffer);
 
@@ -711,7 +711,7 @@ public:
                 {
                     WINSTL_ASSERT('\0' == buffer[res]);
 
-                    char_type *const    closing2    =   class_type::str_chr(buffer, '"');
+                    char_type *const closing2 = class_type::str_chr(buffer, '"');
 
                     // ... 3. the front-quote skipped converted string contains a single trailing quote
                     if( NULL != closing2 &&
@@ -729,7 +729,7 @@ public:
     }
 #else /* ? compiler */
 private:
-    static size_type get_full_path_name_impl2(char_type const* fileName, size_type len, char_type* buffer, size_type cchBuffer, char_type **ppFile)
+    static size_type get_full_path_name_impl2(char_type const* fileName, size_type len, char_type* buffer, size_type cchBuffer, char_type** ppFile)
     {
         size_type r = class_type::GetFullPathNameA(fileName, cchBuffer, buffer, ppFile);
 
@@ -794,7 +794,7 @@ private:
         }
     }
 
-    static size_type get_full_path_name_impl(char_type const* fileName, size_type len, char_type* buffer, size_type cchBuffer, char_type **ppFile)
+    static size_type get_full_path_name_impl(char_type const* fileName, size_type len, char_type* buffer, size_type cchBuffer, char_type** ppFile)
     {
         WINSTL_ASSERT(len > 0);
 
@@ -831,7 +831,7 @@ private:
     }
 
 public:
-    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
         WINSTL_MESSAGE_ASSERT("GetFullPathNameW() will crash when the file-name and buffer parameters are the same, so it's not a good idea to do this for ANSI compilation", fileName != buffer);
 
@@ -944,7 +944,7 @@ public:
     {
         WINSTL_ASSERT(NULL != fileName);
 
-        char_type *pFile;
+        char_type* pFile;
 
         if('\0' == *fileName)
         {
@@ -972,20 +972,20 @@ public:
 
     // File-system enumeration
 
-    static HANDLE find_first_file(char_type const* spec, find_data_type *findData)
+    static HANDLE find_first_file(char_type const* spec, find_data_type* findData)
     {
         return ::FindFirstFileA(spec, findData);
     }
 
 #if defined(_WIN32_WINNT) && \
     _WIN32_WINNT >= 0x0400
-    static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type *findData)
+    static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData)
     {
         return ::FindFirstFileExA(spec, FindExInfoStandard, findData, flags, NULL, 0);
     }
 #endif /* _WIN32_WINNT >= 0x0400 */
 
-    static bool_type find_next_file(HANDLE h, find_data_type *findData)
+    static bool_type find_next_file(HANDLE h, find_data_type* findData)
     {
         return ::FindNextFileA(h, findData) != FALSE;
     }
@@ -998,12 +998,12 @@ public:
     }
 
 #ifndef _WINSTL_NO_FINDVOLUME_API
-    static HANDLE find_first_volume(char_type *volume_name, size_type cch_volume_name)
+    static HANDLE find_first_volume(char_type* volume_name, size_type cch_volume_name)
     {
         return class_type::FindFirstVolumeA(volume_name, cch_volume_name);
     }
 
-    static bool_type find_next_volume(HANDLE h, char_type *volume_name, size_type cch_volume_name)
+    static bool_type find_next_volume(HANDLE h, char_type* volume_name, size_type cch_volume_name)
     {
         return class_type::FindNextVolumeA(h, volume_name, cch_volume_name) != FALSE;
     }
@@ -1022,7 +1022,7 @@ public:
         return ::SetCurrentDirectoryA(dir) != FALSE;
     }
 
-    static size_type get_current_directory(char_type *buffer, size_type cchBuffer)
+    static size_type get_current_directory(char_type* buffer, size_type cchBuffer)
     {
         return class_type::GetCurrentDirectoryA(cchBuffer, buffer);
     }
@@ -1052,7 +1052,7 @@ public:
     }
 
 private:
-    static bool_type stat_direct_(char_type const* path, stat_data_type *stat_data)
+    static bool_type stat_direct_(char_type const* path, stat_data_type* stat_data)
     {
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
@@ -1082,7 +1082,7 @@ private:
         return (INVALID_HANDLE_VALUE == h) ? false : (find_file_close(h), true);
     }
 public:
-    static bool_type stat(char_type const* path, stat_data_type *stat_data)
+    static bool_type stat(char_type const* path, stat_data_type* stat_data)
     {
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
@@ -1142,7 +1142,7 @@ public:
         }
     }
 
-    static bool_type fstat(file_handle_type fd, fstat_data_type *fstat_data)
+    static bool_type fstat(file_handle_type fd, fstat_data_type* fstat_data)
     {
         return filesystem_traits_::fstat(fd, fstat_data);
     }
@@ -1256,7 +1256,7 @@ private:
     static void         get_file_size(stat_data_type const&);
 
 private:
-    static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
         WINSTL_ASSERT(NULL != fileName);
 
@@ -1311,7 +1311,7 @@ private:
 #endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
-    static HANDLE FindFirstVolumeA(char_type *volume_name, size_type cch_volume_name)
+    static HANDLE FindFirstVolumeA(char_type* volume_name, size_type cch_volume_name)
     {
 #ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -1387,7 +1387,7 @@ public:
 
 public:
     // File-system entry names
-    static char_type *ensure_dir_end(char_type *dir)
+    static char_type* ensure_dir_end(char_type* dir)
     {
         WINSTL_ASSERT(NULL != dir);
 
@@ -1403,7 +1403,7 @@ public:
         return dir;
     }
 
-    static char_type *remove_dir_end(char_type *dir)
+    static char_type* remove_dir_end(char_type* dir)
     {
         WINSTL_ASSERT(NULL != dir);
 
@@ -1551,7 +1551,7 @@ public:
         return (::GetVersion() & 0x80000000) ? (1 + _MAX_PATH) : (1 + CONST_NT_MAX_PATH);
     }
 
-    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
         WINSTL_MESSAGE_ASSERT("GetFullPathNameW() will crash when the file-name and buffer parameters are the same", fileName != buffer);
 
@@ -1580,20 +1580,20 @@ public:
     }
 
     // FindFile() API
-    static HANDLE find_first_file(char_type const* spec, find_data_type *findData)
+    static HANDLE find_first_file(char_type const* spec, find_data_type* findData)
     {
         return ::FindFirstFileW(spec, findData);
     }
 
 #if defined(_WIN32_WINNT) && \
     _WIN32_WINNT >= 0x0400
-    static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type *findData)
+    static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData)
     {
         return ::FindFirstFileExW(spec, FindExInfoStandard, findData, flags, NULL, 0);
     }
 #endif /* _WIN32_WINNT >= 0x0400 */
 
-    static bool_type find_next_file(HANDLE h, find_data_type *findData)
+    static bool_type find_next_file(HANDLE h, find_data_type* findData)
     {
         return ::FindNextFileW(h, findData) != FALSE;
     }
@@ -1607,12 +1607,12 @@ public:
 
     // FindVolume() API
 #ifndef _WINSTL_NO_FINDVOLUME_API
-    static HANDLE find_first_volume(char_type *volume_name, size_type cch_volume_name)
+    static HANDLE find_first_volume(char_type* volume_name, size_type cch_volume_name)
     {
         return class_type::FindFirstVolumeW(volume_name, cch_volume_name);
     }
 
-    static bool_type find_next_volume(HANDLE h, char_type *volume_name, size_type cch_volume_name)
+    static bool_type find_next_volume(HANDLE h, char_type* volume_name, size_type cch_volume_name)
     {
         return class_type::FindNextVolumeW(h, volume_name, cch_volume_name) != FALSE;
     }
@@ -1631,7 +1631,7 @@ public:
         return ::SetCurrentDirectoryW(dir) != FALSE;
     }
 
-    static size_type get_current_directory(char_type *buffer, size_type cchBuffer)
+    static size_type get_current_directory(char_type* buffer, size_type cchBuffer)
     {
         return class_type::GetCurrentDirectoryW(cchBuffer, buffer);
     }
@@ -1661,7 +1661,7 @@ public:
     }
 
 private:
-    static bool_type stat_direct_(char_type const* path, stat_data_type *stat_data)
+    static bool_type stat_direct_(char_type const* path, stat_data_type* stat_data)
     {
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
@@ -1691,7 +1691,7 @@ private:
         return (INVALID_HANDLE_VALUE == h) ? false : (find_file_close(h), true);
     }
 public:
-    static bool_type stat(char_type const* path, stat_data_type *stat_data)
+    static bool_type stat(char_type const* path, stat_data_type* stat_data)
     {
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
@@ -1751,7 +1751,7 @@ public:
         }
     }
 
-    static bool_type fstat(file_handle_type fd, fstat_data_type *fstat_data)
+    static bool_type fstat(file_handle_type fd, fstat_data_type* fstat_data)
     {
         return filesystem_traits_::fstat(fd, fstat_data);
     }
