@@ -24,7 +24,7 @@ namespace unittest
             char        sz[1 + _MAX_PATH];
             curr_dir_t  cd;
 
-            ::GetCurrentDirectoryA(stlsoft_num_elements(sz), sz);
+            ::GetCurrentDirectoryA(STLSOFT_NUM_ELEMENTS(sz), sz);
 
             if(0 != strcmp(sz, cd))
             {

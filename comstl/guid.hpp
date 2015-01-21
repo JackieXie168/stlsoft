@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define _COMSTL_VER_HPP_COMSTL_GUID_MAJOR      3
 # define _COMSTL_VER_HPP_COMSTL_GUID_MINOR      3
 # define _COMSTL_VER_HPP_COMSTL_GUID_REVISION   1
-# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       24
+# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -108,33 +108,33 @@ public:
     ///
     /// \note If a new value cannot be aquired, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the
     ///   instance GUID is set to GUID_NULL otherwise.
     guid();
     /// \brief Constructs with a GUID value equivalent to the given ANSI string
     ///
     /// \param s The string form of the desired GUID
     ///
-    /// Example: \code 
+    /// Example: \code
     ///  guid  g("{00000303-0000-0000-C000-000000000046}");
     /// \endcode
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the
     ///   instance GUID is set to GUID_NULL otherwise.
     ss_explicit_k guid(cs_char_a_t const *s);
     /// \brief Constructs with a GUID value equivalent to the given Unicode string
     ///
     /// \param s The string form of the desired GUID
     ///
-    /// Example: \code 
+    /// Example: \code
     ///  guid  g(L"{00000303-0000-0000-C000-000000000046}");
     /// \endcode
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the
     ///   instance GUID is set to GUID_NULL otherwise.
     ss_explicit_k guid(cs_char_w_t const *s);
     /// \brief Copy constructs from the given GUID
@@ -148,7 +148,7 @@ public:
     ///
     /// \param s The string form of the desired GUID
     ///
-    /// Example: \code 
+    /// Example: \code
     ///  guid  g;
     ///
     ///  g = "{00000303-0000-0000-C000-000000000046}";
@@ -156,14 +156,14 @@ public:
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the
     ///   instance GUID is set to GUID_NULL otherwise.
     guid &operator =(cs_char_a_t const *s);
     /// \brief Assigns to a GUID value equivalent to the given string
     ///
     /// \param s The string form of the desired GUID
     ///
-    /// Example: \code 
+    /// Example: \code
     ///  guid  g;
     ///
     ///  g = L"{00000303-0000-0000-C000-000000000046}";
@@ -171,7 +171,7 @@ public:
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the
     ///   instance GUID is set to GUID_NULL otherwise.
     guid &operator =(cs_char_w_t const *s);
     /// \brief Copies the given GUID value

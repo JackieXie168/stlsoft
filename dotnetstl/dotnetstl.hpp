@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     21st January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    2
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     31
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp The root header for the \ref dotnetSTL ".netSTL" project */
@@ -187,7 +187,7 @@
 /* Visual C++ */
 # if _MSC_VER < 1300
 #  error Versions of Visual C++ prior to 7.0 are not supported by the .netSTL libraries
-# endif /* _MSC_VER */
+# endif /* compiler */
 
 #else /* ? compiler */
 /* No recognised compiler */
@@ -308,13 +308,13 @@ namespace dotnetstl_project
 /// \def dotnetstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if .netSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define dotnetstl_ns_qual_std(x)       ::std::x
 # define dotnetstl_ns_using_std(x)      using ::std::x;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define dotnetstl_ns_qual_std(x)       x
 # define dotnetstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * CLR / VC++ versions
@@ -394,7 +394,12 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define dotnetstl_num_elements(ar)                          stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define DOTNETSTL_NUM_ELEMENTS(ar)                          STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define dotnetstl_num_elements(ar)                         DOTNETSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

@@ -5,11 +5,11 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     29th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MINOR     3
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      29
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_REVISION  2
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -93,8 +93,7 @@ template<   ss_typename_param_k TO
 inline TO sap_cast(FROM from)
 {
 # if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
-    (   !defined(STLSOFT_COMPILER_IS_BORLAND) /* || \
-        __BORLANDC__ >= 0x0564 */)
+    (   !defined(STLSOFT_COMPILER_IS_BORLAND))
     // Both types must be pointer types
     STLSOFT_STATIC_ASSERT(0 != base_type_traits<FROM>::is_pointer);
     STLSOFT_STATIC_ASSERT(0 != base_type_traits<TO>::is_pointer);

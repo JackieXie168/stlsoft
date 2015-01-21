@@ -18,7 +18,7 @@ namespace unittest
             unittest_initialiser    init(r, "STLSoft", "cmdargs", __FILE__);
 
             { // empty
-                char    *argv[] = 
+                char    *argv[] =
                 {
                         "dummyprocname"
                     ,   NULL
@@ -71,7 +71,7 @@ namespace unittest
 
 
             { // non-empty
-                char    *argv[] = 
+                char    *argv[] =
                 {
                         "dummyprocname"
                     ,   "value0"

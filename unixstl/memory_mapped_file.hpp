@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_EDIT        59
+# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

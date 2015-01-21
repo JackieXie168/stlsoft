@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/function_adaptors.hpp (formerly comstl_functionals.h; originally ::SynesisStd)
  *
- * Purpose:     Contains the stlsoft::mem_fun and stlsoft::ptr_fun calling 
+ * Purpose:     Contains the stlsoft::mem_fun and stlsoft::ptr_fun calling
  *              convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_EDIT     52
+# define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      1
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       89
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -281,7 +281,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -295,12 +295,12 @@ public:
     {
         move_lhs_from_rhs(rhs).m_buffer = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_null_HWND_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_null_HWND_proxy() stlsoft_throw_0()
@@ -374,7 +374,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -388,12 +388,12 @@ public:
     {
         move_lhs_from_rhs(rhs).m_buffer = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_HWND_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_HWND_proxy() stlsoft_throw_0()
@@ -468,7 +468,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -482,12 +482,12 @@ public:
     {
         rhs.m_buffer = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_LSA_UNICODE_STRING_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_LSA_UNICODE_STRING_proxy() stlsoft_throw_0()
@@ -539,7 +539,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -553,12 +553,12 @@ public:
     {
         rhs.m_buffer = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_null_LSA_UNICODE_STRING_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_null_LSA_UNICODE_STRING_proxy() stlsoft_throw_0()

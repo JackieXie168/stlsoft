@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     20th January 2006
+ * Updated:     5th February 2006
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    10
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     49
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    11
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -345,7 +345,7 @@ public:
 
 public:
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER == 1200)
@@ -356,9 +356,9 @@ public:
         : m_position(rhs.begin())
         , m_last(rhs.end())
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1200)
     /// Constructor
@@ -369,16 +369,16 @@ public:
         : m_position(rhs.begin())
         , m_last(rhs.end())
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
     /// Constructs a range over an array
     template <ss_size_t N>
     sequence_range(S (&ar)[N])
         : m_position(&ar[0])
         , m_last(&ar[N])
     {}
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     /// Constructs from an iterator
     ///

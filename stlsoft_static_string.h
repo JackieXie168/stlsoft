@@ -4,11 +4,11 @@
  * Purpose:     static_string class.
  *
  * Created:     11th June 1994
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_STATIC_STRING_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_STATIC_STRING_MINOR      2
 # define STLSOFT_VER_H_STLSOFT_STATIC_STRING_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_STATIC_STRING_EDIT       148
+# define STLSOFT_VER_H_STLSOFT_STATIC_STRING_EDIT       150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/static_string.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING
 # include <stlsoft/static_string.hpp>

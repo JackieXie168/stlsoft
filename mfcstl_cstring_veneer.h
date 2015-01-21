@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the cstring_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     26th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       3
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       0
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    2
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        56
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       1
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    1
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@
 
 /*
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 [Incompatibilies-end]
  */
 
@@ -80,9 +80,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* !STLSOFT_OBSOLETE */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
-//# error mfcstl_cstring_veneer.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+    _MSC_VER < 1100
+# error mfcstl_cstring_veneer.h is not compatible with Visual C++ 4.2 or earlier
+#endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
@@ -585,7 +585,7 @@ inline cstring_veneer::class_type &cstring_veneer::assign(cstring_veneer::value_
 
 inline cstring_veneer::class_type &cstring_veneer::assign(cstring_veneer::class_type const &str, cstring_veneer::size_type pos, cstring_veneer::size_type n)
 {
-    mfcstl_assert(pos <= str.length());
+    MFCSTL_ASSERT(pos <= str.length());
 
     value_type const    *s  =   str;
 
@@ -634,14 +634,14 @@ inline cstring_veneer::const_iterator cstring_veneer::end() const
 
 inline cstring_veneer::reference cstring_veneer::operator [](cstring_veneer::size_type index)
 {
-    mfcstl_message_assert("Index out of range", index < length());
+    MFCSTL_MESSAGE_ASSERT("Index out of range", index < length());
 
     return const_cast<reference>(data()[index]);
 }
 
 inline cstring_veneer::const_reference cstring_veneer::operator [](cstring_veneer::size_type index) const
 {
-    mfcstl_message_assert("Index out of range", index < length());
+    MFCSTL_MESSAGE_ASSERT("Index out of range", index < length());
 
     return data()[index];
 }

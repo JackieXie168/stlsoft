@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     11th January 2006
+ * Updated:     28th March 2006
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range.
@@ -76,7 +76,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     32
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -133,8 +133,11 @@ namespace rangelib_project
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
+/// \weakgroup algorithms Algorithms
+/// \brief STL-compatible algorithms
+
 /// \defgroup rangelib_algorithms Range Algorithms
-/// \ingroup rangelib
+/// \ingroup rangelib algorithms
 /// \brief Range algorithms
 /// @{
 

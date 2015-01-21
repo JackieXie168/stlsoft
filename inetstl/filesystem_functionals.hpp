@@ -4,11 +4,11 @@
  * Purpose:     File-system functionals.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MAJOR       3
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION    2
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        19
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       2
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION    1
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -131,12 +131,12 @@ public:
     /// Function call, compares \c s1 with \c s2
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template<ss_typename_param_k T1, ss_typename_param_k T2>
     result_type operator ()(T1 const &s1, T2 const &s2) const
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2) const
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return compare_(stlsoft_ns_qual(c_str_ptr)(s1), stlsoft_ns_qual(c_str_ptr)(s2));
     }
@@ -186,12 +186,12 @@ public:
     {}
 
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k S>
     is_bool_t operator ()(S const &s) const
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     is_bool_t operator ()(argument_type s) const
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return exists_(stlsoft_ns_qual(c_str_ptr)(s));
     }
@@ -202,7 +202,7 @@ private:
         char_type   sz0[1 + _MAX_PATH];
         is_dword_t  dw;
 
-        if(!traits_type::get_full_path_name(m_hConnection, s, stlsoft_num_elements(sz0), sz0))
+        if(!traits_type::get_full_path_name(m_hConnection, s, STLSOFT_NUM_ELEMENTS(sz0), sz0))
         {
             dw = 0xFFFFFFFF;
         }

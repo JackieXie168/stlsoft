@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     29th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MINOR     3
-# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_REVISION  2
-# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      21
+# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_REVISION  3
+# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -121,7 +121,7 @@ inline void stream_insert(S &stm, SYSTEMTIME const &t)
         ::GetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, cchTime);
     }
 
-    stm << s;
+    stm << s.data();
 }
 
 template <ss_typename_param_k S>
@@ -389,7 +389,7 @@ inline ws_size_t c_str_size(FILETIME const &t, ws_bool_t bMilliseconds = false)
  */
 
 /// An inserter function for SYSTEMTIME into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, SYSTEMTIME const &addr)
 {
     stream_insert(s, addr);
@@ -398,7 +398,7 @@ inline S &operator <<(S &s, SYSTEMTIME const &addr)
 }
 
 /// An inserter function for SYSTEMTIME into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, FILETIME const &addr)
 {
     stream_insert(s, addr);
@@ -461,7 +461,7 @@ namespace unittest
 # endif /* _STLSOFT_NO_NAMESPACE */
 
 /// An inserter function for SYSTEMTIME into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, SYSTEMTIME const &st)
 {
     ::winstl::stream_insert(s, st);
@@ -470,7 +470,7 @@ inline S &operator <<(S &s, SYSTEMTIME const &st)
 }
 
 /// An inserter function for FILETIME into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, FILETIME const &st)
 {
     ::winstl::stream_insert(s, st);

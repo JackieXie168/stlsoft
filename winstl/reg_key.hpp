@@ -2,8 +2,12 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_KEY
 #define WINSTL_INCL_WINSTL_HPP_REG_KEY
 
-#ifndef WINSTL_INCL_H_WINSTL_REG_KEY
-# include <winstl_reg_key.h>
-#endif /* !WINSTL_INCL_H_WINSTL_REG_KEY */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include winstl/registry/reg_key.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY
+# include <winstl/registry/reg_key.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY */
 
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_KEY */

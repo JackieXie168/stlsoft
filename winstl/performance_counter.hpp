@@ -6,11 +6,11 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_EDIT       11
+# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>          // for __STLSOFT_GEN_SINT64_SUFFIX
+# include <stlsoft/limit_traits.h>          // for STLSOFT_GEN_SINT64_SUFFIX
 #endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS
 # include <stlsoft/static_initialisers.hpp>
@@ -272,9 +272,9 @@ inline /* static */ performance_counter::interval_type performance_counter::freq
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     interval_type           s_frequency = query_frequency_();
-#else /* ? STLSOFT_COMPILER_IS_BORLAND */
+#else /* ? compiler */
     static interval_type    s_frequency = query_frequency_();
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
     WINSTL_ASSERT(0 != s_frequency);
 
@@ -360,7 +360,7 @@ inline performance_counter::interval_type performance_counter::get_milliseconds(
     interval_type   count   =   get_period_count();
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    if(count < __STLSOFT_GEN_SINT64_SUFFIX(0x20C49BA5E353F7))
+    if(count < STLSOFT_GEN_SINT64_SUFFIX(0x20C49BA5E353F7))
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     if(count < interval_type(0x20C49B, 0xA5E353F7))
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
@@ -381,7 +381,7 @@ inline performance_counter::interval_type performance_counter::get_microseconds(
     interval_type   count   =   get_period_count();
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    if(count < __STLSOFT_GEN_SINT64_SUFFIX(0x8637BD05AF6))
+    if(count < STLSOFT_GEN_SINT64_SUFFIX(0x8637BD05AF6))
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     if(count < interval_type(0x863, 0x7BD05AF6))
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */

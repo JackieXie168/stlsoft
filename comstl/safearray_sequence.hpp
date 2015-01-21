@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     26th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MAJOR     3
 # define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MINOR     3
-# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_REVISION  2
-# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_EDIT      36
+# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_REVISION  4
+# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,8 +72,8 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-# error comstl_safearray_sequence.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+# error comstl/safearray_sequence.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
 
 #if 0
     #ifndef COMSTL_INCL_COMSTL_HPP_REFCOUNT_FUNCTIONS
@@ -161,7 +161,7 @@ public:
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
@@ -170,14 +170,14 @@ public:
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
                                         >::type                             const_iterator;
 
     /// The non-mutating (const) reverse iterator type
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(reverse_iterator_base)      <   iterator
                                                         ,   value_type
                                                         ,   reference
@@ -191,7 +191,7 @@ public:
                                                         ,   const_pointer
                                                         ,   difference_type
                                                         >                   const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 public:
     ss_explicit_k safearray_sequence(LPCSAFEARRAY array); // throw variant_type_exception
@@ -205,7 +205,7 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator          end() const;
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -214,7 +214,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
     /// Begins the iteration
     ///
@@ -224,7 +224,7 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     iterator                end();
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -233,7 +233,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     reverse_iterator        rend();
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 public:
     /// The number of elements in the array
@@ -310,7 +310,7 @@ inline ss_typename_type_k safearray_sequence<T>::const_iterator safearray_sequen
     return static_cast<pointer>(m_sa->pvData) + size();
 }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k T>
 inline ss_typename_type_k safearray_sequence<T>::const_reverse_iterator safearray_sequence<T>::rbegin() const
 {
@@ -322,7 +322,7 @@ inline ss_typename_type_k safearray_sequence<T>::const_reverse_iterator safearra
 {
     return const_reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T>
 inline ss_typename_type_k safearray_sequence<T>::iterator safearray_sequence<T>::begin()
@@ -336,7 +336,7 @@ inline ss_typename_type_k safearray_sequence<T>::iterator safearray_sequence<T>:
     return static_cast<pointer>(m_sa->pvData) + size();
 }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k T>
 inline ss_typename_type_k safearray_sequence<T>::reverse_iterator safearray_sequence<T>::rbegin()
 {
@@ -348,7 +348,7 @@ inline ss_typename_type_k safearray_sequence<T>::reverse_iterator safearray_sequ
 {
     return reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T>
 inline ss_typename_type_k safearray_sequence<T>::size_type safearray_sequence<T>::size() const

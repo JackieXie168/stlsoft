@@ -1,5 +1,5 @@
 
-// Updated: 30th August 2005
+// Updated: 21st March 2006
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_HPP_GLOB_SEQUENCE)
 # error This file cannot be directly included, and should only be included within unixstl/glob_sequence.hpp
@@ -34,7 +34,7 @@ namespace unittest
 
             unittest_initialiser    init(r, "UNIXSTL", "glob_sequence", __FILE__);
 
-            static const char       s_wildcardsAll[] = 
+            static const char       s_wildcardsAll[] =
 #if defined(WIN32) || \
     defined(_WIN32)
                                                         "*.*";

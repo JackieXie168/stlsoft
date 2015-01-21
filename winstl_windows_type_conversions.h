@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     1st June 2003
- * Updated:     2nd January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_WINDOWS_TYPE_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_H_WINSTL_WINDOWS_TYPE_CONVERSIONS_MINOR       2
 # define WINSTL_VER_H_WINSTL_WINDOWS_TYPE_CONVERSIONS_REVISION    1
-# define WINSTL_VER_H_WINSTL_WINDOWS_TYPE_CONVERSIONS_EDIT        27
+# define WINSTL_VER_H_WINSTL_WINDOWS_TYPE_CONVERSIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/windows_type_conversions.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS
 # include <winstl/windows_type_conversions.hpp>

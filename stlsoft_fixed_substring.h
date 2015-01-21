@@ -4,7 +4,7 @@
  * Purpose:     basic_fixed_substring class.
  *
  * Created:     1st May 2003
- * Updated:     21st January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MINOR    5
+# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MINOR    7
 # define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_EDIT     49
+# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR
-# include <stlsoft/new_allocator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR
+# include <stlsoft/memory/new_allocator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 # include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
@@ -167,13 +167,13 @@ private:
 ///
 /// \note Thanks to Scott Patterson for suggesting the name. My \c window_string and \c proxy_string were carbuncles in comparison
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = char_traits<C>
         ,   ss_typename_param_k A = new_allocator<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = char_traits<C> */
         ,   ss_typename_param_k A /* = new_allocator<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_fixed_substring
 {
@@ -214,14 +214,14 @@ public:
     basic_fixed_substring(char_type const *p, size_type n);
     /// Construct from a null-terminated character string
     ss_explicit_k basic_fixed_substring(char_type const *p);
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
     /// Constructs from an array
     template <ss_typename_param_k D, ss_size_t N>
     ss_explicit_k basic_fixed_substring(D (&d)[N])
         : m_first(&d[0])
         , m_last(&d[(d[N - 1] == traits_type::to_char_type(0) ? N -1 : N)])
     {}
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 /// @}
 
 /// \name Operations
@@ -327,11 +327,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator ==(basic_fixed_substring<C, T, A> const &lhs, ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator ==(basic_fixed_substring<C, T, A> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) == 0;
 }
@@ -340,11 +340,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator ==(ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator ==(C *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) == 0;
 }
@@ -363,11 +363,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator !=(basic_fixed_substring<C, T, A> const &lhs, ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator !=(basic_fixed_substring<C, T, A> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) != 0;
 }
@@ -375,11 +375,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator !=(ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator !=(C const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) != 0;
 }
@@ -399,11 +399,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <(basic_fixed_substring<C, T, A> const &lhs, ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <(basic_fixed_substring<C, T, A> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) < 0;
 }
@@ -412,11 +412,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <(ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <(C const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) > 0;
 }
@@ -435,11 +435,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <=(basic_fixed_substring<C, T, A> const &lhs, ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <=(basic_fixed_substring<C, T, A> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) <= 0;
 }
@@ -447,11 +447,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <=(ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <=(C const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) >= 0;
 }
@@ -470,11 +470,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >(basic_fixed_substring<C, T, A> const &lhs, ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >(basic_fixed_substring<C, T, A> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) > 0;
 }
@@ -482,11 +482,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >(ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >(C const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) < 0;
 }
@@ -505,11 +505,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >=(basic_fixed_substring<C, T, A> const &lhs, ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >=(basic_fixed_substring<C, T, A> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) >= 0;
 }
@@ -517,11 +517,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >=(ss_typename_type_k basic_fixed_substring<C, T, A>::char_type const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#else /* ? __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >=(C const *lhs, basic_fixed_substring<C, T, A> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) <= 0;
 }
@@ -568,7 +568,7 @@ namespace unittest
 
             char const      s[] = "Hello Natty!";
 
-            seg_string_t    ss(&s[0], (stlsoft_num_elements(s) - 1));
+            seg_string_t    ss(&s[0], (STLSOFT_NUM_ELEMENTS(s) - 1));
             seg_string_t    ss1(&s[6], 6);
             seg_string_t    ss2(&s[0], 5);
 

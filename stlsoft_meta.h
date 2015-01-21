@@ -4,7 +4,7 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     11th January 2006
+ * Updated:     14th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_META_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_META_MINOR       16
-# define STLSOFT_VER_H_STLSOFT_META_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_META_EDIT        112
+# define STLSOFT_VER_H_STLSOFT_META_MINOR       19
+# define STLSOFT_VER_H_STLSOFT_META_REVISION    2
+# define STLSOFT_VER_H_STLSOFT_META_EDIT        117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
@@ -74,6 +77,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 # include <stlsoft/meta/is_same_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+# include <stlsoft/meta/select_first_type_if.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -120,60 +126,6 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs and basic support types
  */
-
-
-#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-
-/// This template provides compile-time type selection between the two types
-/// specified in its first two parameters, based on a (compile-time) boolean
-/// value specified as its third parameter. If the third parameter evaluates
-/// to non-zero, then the member type \c type is defined to be equivalent to
-/// the first type, otherwise it is defined to be equivalent to the second.
-template<   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
-        ,   bool                B //!< Selects T1
-        >
-struct select_first_type_if
-{
-    typedef T1          type;   //!< The
-};
-
-# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template<   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
-        >
-struct select_first_type_if<T1, T2, false>
-{
-    typedef T2          type;
-};
-
-
-
-// Obsolete
-template<   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
-        ,   bool                B //!< Selects T1
-        >
-struct select_first_type
-{
-    typedef T1          type;   //!< The
-};
-
-template<   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
-        >
-struct select_first_type<T1, T2, false>
-{
-    typedef T2          type;
-};
-
-
-
-
-# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 /// \brief Converts compile time constants to type
 template <int N>
@@ -247,13 +199,13 @@ struct convertible_index<unsigned>
     typedef size_type<3>    type;
 };
 
-#ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct convertible_index<bool>
 {
     typedef size_type<4>    type;
 };
-#endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct convertible_index<void*>
@@ -278,10 +230,10 @@ convertible_index<int>::type            convertible_index_function(long );
 convertible_index<int>::type            convertible_index_function(unsigned long );
 convertible_index<long double>::type    convertible_index_function(double );
 convertible_index<long double>::type    convertible_index_function(long double );
-# endif /* STLSOFT_COMPILER_IS_MSVC */
-# ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# endif /* compiler */
+# ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 convertible_index<bool>::type           convertible_index_function(bool );
-# endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+# endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 convertible_index<void*>::type          convertible_index_function(void const volatile* );
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -335,7 +287,7 @@ STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed int, 1)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned int, 1)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed long, 1)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned long, 1)
-#elif defined(__STLSOFT_CF_INT_DISTINCT_TYPE)
+#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, signed int, 1)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned int, 1)
 #endif /* _MSC_VER == 1200 */
@@ -378,17 +330,17 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed int, 1, yes_
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned int, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed long, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned long, 1, yes_type)
-#elif defined(__STLSOFT_CF_INT_DISTINCT_TYPE)
+#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed int, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned int, 1, yes_type)
 #endif /* _MSC_VER == 1200 */
-#ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_bool_t, 1, yes_type)
-#endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_a_t, 1, yes_type)
-#ifdef __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_w_t, 1, yes_type)
-#endif /* __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -417,7 +369,7 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed char, 1, yes_t
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed short, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed int, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed long, 1, yes_type)
-#elif defined(__STLSOFT_CF_INT_DISTINCT_TYPE)
+#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed int, 1, yes_type)
 #endif /* _MSC_VER == 1200 */
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, float, 1, yes_type)
@@ -497,9 +449,9 @@ struct is_fundamental_type
                 ||  is_void_type<T>::value
     };
 
-#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
     typedef ss_typename_type_k select_first_type_if<yes_type, no_type, value>::type type;
-#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
 };
 
 
@@ -546,7 +498,7 @@ struct is_class_type
     enum { value = sizeof(is_class_type_func<test_type>(0)) == sizeof(one_t) };
 };
 
-#endif /* !STLSOFT_COMPILER_IS_MWERKS || (__MWERKS__ & 0xFF00) >= 0x3000 */
+#endif /* compiler */
 
 
 // is_const
@@ -555,11 +507,11 @@ struct is_class_type
 one_t is_const_type_func(void const *);
 
 two_t is_const_type_func(void *);
-#else /* ? STLSOFT_COMPILER_IS_MWERKS */
+#else /* ? compiler */
 one_t is_const_type_func(void volatile const *);
 
 two_t is_const_type_func(void volatile *);
-#endif /* STLSOFT_COMPILER_IS_MWERKS */
+#endif /* compiler */
 
 two_t is_const_type_func(...);
 
@@ -777,7 +729,7 @@ struct has_const_iterator<void>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-# endif /* !STLSOFT_COMPILER_IS_DMC || STLSOFT_FORCE_HAS_REFERENCE */
+# endif /* compiler */
 
 // has_pointer
 
@@ -950,7 +902,7 @@ struct has_const_reference<void>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-# endif /* STLSOFT_COMPILER_IS_MWERKS || STLSOFT_FORCE_HAS_REFERENCE */
+# endif /* compiler */
 
 
 // has_const_pointer
@@ -1197,8 +1149,7 @@ struct has_referent_type<void>
 #  undef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
 # endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
-#endif /* !STLSOFT_COMPILER_IS_BORLAND && (!STLSOFT_COMPILER_IS_MSVC || _MSC_VER >= 1310) && !STLSOFT_COMPILER_IS_WATCOM */
-
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

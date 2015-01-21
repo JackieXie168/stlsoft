@@ -4,11 +4,11 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     22nd December 2005
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_MAJOR    1
-# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_MINOR    5
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_EDIT     9
+# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,12 +62,12 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 # include <winstl/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_HPP_GLOBAL_ALLOCATOR
-# include <winstl/global_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_GLOBAL_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR
+# include <winstl/memory/global_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
+# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_FUNCTIONS
 # include <stlsoft/cstring_functions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_FUNCTIONS */
@@ -143,13 +143,13 @@ public:
 /// \name Operations
 /// @{
 public:
-    /// 
+    ///
     void    clear() stlsoft_throw_1(clipboard_scope_exception );
 
-    /// 
+    ///
     HWND    owner() const;
 
-    /// 
+    ///
     ws_bool_t   is_fmt_available(UINT fmt) const;
 
     ///
@@ -169,7 +169,7 @@ public:
     void    set_data(HENHMETAFILE hEmf) stlsoft_throw_1(clipboard_scope_exception );
     void    set_data(HPALETTE hPal) stlsoft_throw_1(clipboard_scope_exception );
 
-    /// 
+    ///
     HANDLE  get_data(UINT fmt) const stlsoft_throw_1(clipboard_scope_exception );
 
     void    get_data(char const *&str) const stlsoft_throw_1(clipboard_scope_exception );

@@ -1,5 +1,5 @@
 
-// Updated: 4th October 2005
+// Updated: 5th February 2006
 
 #if !defined(WINSTL_INCL_WINSTL_HPP_ENVIRONMENT_SEQUENCE)
 # error This file cannot be directly included, and should only be included within winstl/environment_sequence.hpp
@@ -62,7 +62,7 @@ namespace unittest
                 // Now munge the value, to something that it is not
                 TCHAR   badValue[2];
 
-                lstrcpyn(badValue, (*b).value, stlsoft_num_elements(badValue));
+                lstrcpyn(badValue, (*b).value, STLSOFT_NUM_ELEMENTS(badValue));
 
                 badValue[0]++;
                 badValue[1] = '\0';

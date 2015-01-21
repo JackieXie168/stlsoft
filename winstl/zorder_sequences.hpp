@@ -4,7 +4,7 @@
  * Purpose:     Collection of the peers of a given window.
  *
  * Created:     11th July 2005
- * Updated:     26th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MAJOR       1
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MINOR       0
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_REVISION    3
-# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        3
+# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Contains various simple self-contained algorithms.
  *
  * Created:     17th January 2002
- * Updated:     29th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_MAJOR      2
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_MINOR      3
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_EDIT       65
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_MINOR      4
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ namespace stlsoft
 /// \brief Utility functions and constructs used throughout the STLSoft libraries
 
 /// \weakgroup simple_algorithms Simple Algorithms
-/// \brief Algorithms for manipulating types 
+/// \brief Algorithms for manipulating types
 /// \ingroup algorithms utilities
 /// @{
 
@@ -128,7 +128,7 @@ inline F for_each_if(I first, I last, F func, P pred)
 ///
 /// \param first The start of the range to count
 /// \param to The end of the range to count
-/// \param pred The predicate 
+/// \param pred The predicate
 template<   ss_typename_param_k I
         ,   ss_typename_param_k P
         >
@@ -143,7 +143,7 @@ inline ss_size_t for_each_count_success(I first, I to, P pred)
 /// Sets the value of all items in the sequence.
 ///
 /// \note This function is identical in semantics to std::fill(), except that
-/// it returns the value. If you are compiling in the context of a standard 
+/// it returns the value. If you are compiling in the context of a standard
 /// compliant library, and do not need the value returned, you should prefer
 /// std::fill().
 ///
@@ -189,7 +189,7 @@ inline void fill_if(O begin, O end, V const &v, P pred)
 
 /// Sets the value of all items in the sequence.
 ///
-/// \deprecated This is the old name for fill_if(). 
+/// \deprecated This is the old name for fill_if().
 ///
 /// \param begin The start of the sequence
 /// \param end The end of the sequence
@@ -300,7 +300,7 @@ inline void fill_all(C &c, V const &v)
     fill(c.begin(), c.end(), v);
 }
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 // function fill_all
 /// \brief Carries out for_each on the range of items in an array
 ///
@@ -314,7 +314,7 @@ inline void fill_all(T (&ar)[N], V const &v)
 {
     fill(&ar[0], &ar[N], v);
 }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 
 
@@ -331,7 +331,7 @@ inline F for_all(C &c, F f)
     return std_for_each(c.begin(), c.end(), f);
 }
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 // function for_all
 /// \brief Carries out for_each on the range of items in an array
 ///
@@ -345,7 +345,7 @@ inline F for_all(T (&ar)[N], F f)
 {
     return std_for_each(&ar[0], &ar[N], f);
 }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 
 
@@ -377,7 +377,7 @@ inline O copy_all(C &c, O o)
     return std_copy(c.begin(), c.end(), o);
 }
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 // function for_all
 /// Carries out copy on the range of items in an array
 ///
@@ -391,7 +391,7 @@ inline O copy_all(T (&ar)[N], O o)
 {
     return std_copy(&ar[0], &ar[N], o);
 }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 
 

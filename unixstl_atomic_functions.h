@@ -4,11 +4,11 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_ATOMIC_FUNCTIONS_MAJOR       4
 # define UNIXSTL_VER_H_UNIXSTL_ATOMIC_FUNCTIONS_MINOR       2
 # define UNIXSTL_VER_H_UNIXSTL_ATOMIC_FUNCTIONS_REVISION    1
-# define UNIXSTL_VER_H_UNIXSTL_ATOMIC_FUNCTIONS_EDIT        181
+# define UNIXSTL_VER_H_UNIXSTL_ATOMIC_FUNCTIONS_EDIT        183
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/atomic_functions.h")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_H_ATOMIC_FUNCTIONS
 # include <unixstl/atomic_functions.h>

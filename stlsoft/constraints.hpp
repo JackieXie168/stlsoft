@@ -4,9 +4,9 @@
  * Purpose:     Compile-time template constraints templates.
  *
  * Created:     19th November 1998
- * Updated:     21st January 2006
+ * Updated:     21st March 2006
  *
- * Thanks:      To Peter Bannister for having the clear thinking to see the 
+ * Thanks:      To Peter Bannister for having the clear thinking to see the
  *              obvious (but only in hindsight) tactic of overloading the
  *              constraints method in must_be_derived.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MINOR      1
-# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       82
+# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -296,11 +296,11 @@ private:
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
 # if ((__MWERKS__ & 0xFF00) < 0x3000)
         class_type  u;
-# else /* ? __MWERKS__ */
+# else /* ? compiler */
         class_type  u;
 
         u = *static_cast<class_type*>(0);
-# endif /* __MWERKS__ */
+# endif /* compiler */
 #elif defined(STLSOFT_COMPILER_IS_GCC) && \
       __GNUC__ < 3
         class_type  u = *static_cast<class_type*>(0);

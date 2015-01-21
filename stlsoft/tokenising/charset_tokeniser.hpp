@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class using char-sets.
  *
  * Created:     17th October 2005
- * Updated:     31st January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_MAJOR     1
-# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_MINOR     0
-# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_REVISION  3
-# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_EDIT      6
+# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_MINOR     1
+# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_REVISION  4
+# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,10 +71,21 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-
 #ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_STRING_TOKENISER
 # include <stlsoft/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_STRING_TOKENISER */
+#include <algorithm>
+
+#ifdef STLSOFT_UNITTEST
+# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
+#  include <stlsoft/simple_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW
+#  include <stlsoft/string_view.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW */
+# include <algorithm>
+# include <string>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -103,77 +114,101 @@ namespace stlsoft
  * Classes
  */
 
-template <typename S>
+template <ss_typename_param_k S>
 struct charset_comparator
 {
 public:
     typedef S                   delimiter_type;
 
 private:
-    template <typename const_iterator>
+    template <ss_typename_param_k const_iterator>
     static bool equal_(delimiter_type const &delimiter, const_iterator &it)
     {
-        return delimiter.end() != std::find(delimiter.begin(), delimiter.end(), *it);
+        return delimiter.end() != stlsoft_ns_qual_std(find)(delimiter.begin(), delimiter.end(), *it);
     }
 
-    template <typename const_iterator>
+    template <ss_typename_param_k const_iterator>
     static const_iterator advance_(const_iterator it, delimiter_type const &delimiter)
     {
-        return it + 1;  // TODO: This is actually wrong, and will only work for skipping specialisations
+        return it + 1;
     }
 
 public:
-    static size_t length(delimiter_type const &delimiter)
+    ///
+    ///
+    /// \note This is only for compatibility with earlier versions of the string tokeniser
+    template <ss_typename_param_k const_iterator>
+    static bool not_equal(delimiter_type const &delimiter, const_iterator &it)
+    {
+        return !equal_(delimiter, it);
+    }
+
+    static size_t length(delimiter_type const &/* delimiter */)
     {
         return 1;
     }
 
-    template <typename const_iterator>
+    template <ss_typename_param_k const_iterator>
     static bool test_start_token_advance(const_iterator &it, const_iterator end, delimiter_type const &delimiter)
     {
         return equal_(delimiter, it) ? (it = advance_(it, delimiter), true) : false;
     }
 
-    template <typename const_iterator>
+    template <ss_typename_param_k const_iterator>
     static bool test_end_token_advance(const_iterator &it, const_iterator end, delimiter_type const &delimiter)
     {
         return equal_(delimiter, it) ? (it = advance_(it, delimiter), true) : false;
     }
 
-    template <typename const_iterator>
+    template <ss_typename_param_k const_iterator>
     static const_iterator nonskip_move_to_start(const_iterator it, const_iterator end, delimiter_type const &delimiter)
     {
         return it;
     }
 
-    template <typename const_iterator>
+    template <ss_typename_param_k const_iterator>
     static bool test_end_token(const_iterator it, const_iterator end, delimiter_type const &delimiter)
     {
         return equal_(delimiter, it);
     }
 
-    template <typename const_iterator>
+    template <ss_typename_param_k const_iterator>
     static const_iterator find_next_start(const_iterator it, const_iterator end, delimiter_type const &delimiter)
     {
         return advance_(it, delimiter);
     }
 };
 
-
+/// \brief A class template that provides string tokenising behaviour, where the delimiter is a character set, a la <code>strtok()</code>
+///
+/// This class takes a string, and a character-set delimiter, and fashions
+/// a sequence from the given string, with each element determined with
+/// respect to the delimiter. It is derived from stlsoft::string_tokeniser,
+/// and effectively defines a specialisation of it, in order to make it
+/// simpler to specialise. All that's usually required is to specialise
+/// the string type and, optionally, the blanks policy.
+///
+/// \param S The string type
+/// \param B The blank skipping policy type. Defaults to skip_blank_tokens&lt;true&gt;
+/// \param V The value type (the string type that will be used for the values). Defaults to \c S
+/// \param T The string type traits type. Defaults to string_tokeniser_type_traits&lt;S, V&gt;
+/// \param D The delimiter type (can be a string type or a character type). Defaults to \c S
+/// \param P The tokeniser comparator type. Defaults to string_tokeniser_comparator&lt;D, S, T&gt;
+///
 template<   ss_typename_param_k S
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k B = skip_blank_tokens<true>
         ,   ss_typename_param_k V = S
         ,   ss_typename_param_k T = string_tokeniser_type_traits<S, V>
         ,   ss_typename_param_k D = S
         ,   ss_typename_param_k P = charset_comparator<S>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k B
         ,   ss_typename_param_k V
         ,   ss_typename_param_k T
         ,   ss_typename_param_k D
         ,   ss_typename_param_k P
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class charset_tokeniser
     : public string_tokeniser<S, D, B, V, T, P>
@@ -201,8 +236,10 @@ public:
     typedef ss_typename_type_k parent_class_type::char_type             char_type;
     /// The size type
     typedef ss_typename_type_k parent_class_type::size_type             size_type;
+#if 0
     /// The difference type
     typedef ss_typename_type_k parent_class_type::difference_type       difference_type;
+#endif /* 0 */
     /// The non-mutating (const) reference type
     typedef ss_typename_type_k parent_class_type::const_reference       const_reference;
     /// The non-mutating (const) iterator type
@@ -225,7 +262,7 @@ public:
 
 // Define the string_type overload if there member template ctors are not supported, or
 // they are correctly discriminated
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// Tokenise the given string with the given delimiter
     ///
@@ -236,10 +273,10 @@ public:
     charset_tokeniser(string_type const &str, delimiter_type const &charSet)
         : parent_class_type(str, charSet)
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 // Define the template overload if member template ctors are supported
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Tokenise the given string with the given delimiter
     ///
     /// \param str The string whose contents will be tokenised
@@ -250,7 +287,7 @@ public:
     charset_tokeniser(S1 const &str, delimiter_type const &charSet)
         : parent_class_type(str, charSet)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Tokenise the specified length of the given string with the given delimiter
     ///
@@ -263,7 +300,7 @@ public:
         : parent_class_type(psz, cch, charSet)
     {}
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// \brief Tokenise the given range with the given delimiter
     ///
@@ -273,9 +310,9 @@ public:
     charset_tokeniser(char_type const *from, char_type const *to, delimiter_type const &charSet)
         : parent_class_type(from, to, charSet)
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Tokenise the given range with the given delimiter
     ///
     /// \param from The start of the asymmetric range to tokenise
@@ -285,9 +322,17 @@ public:
     charset_tokeniser(I from, I to, delimiter_type const &charSet)
         : parent_class_type(from, to, charSet)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 /// @}
 };
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/charset_tokeniser_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

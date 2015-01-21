@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_variable_traits class.
  *
  * Created:     9th December 2005
- * Updated:     21st January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_MAJOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_MINOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_EDIT       7
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_MINOR      3
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_REVISION   1
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -278,7 +278,7 @@ public:
     ///
     /// \param name The name of the variable to remove
     ///
-    /// \note Erasing a variable that does not exist is a succesful operation 
+    /// \note Erasing a variable that does not exist is a succesful operation
     ///
     /// \return A status code indicating success
     /// \retval 0 The operation completed successfully
@@ -380,24 +380,24 @@ inline /* static */ int environment_variable_traits::call_putenv_(environment_va
     else
 #endif /* !PLATFORMSTL_ENVVAR_ERASE_BY_PUTENV_EQUALS */
     {
-#ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+#ifdef STLSOFT_CF_THROW_BAD_ALLOC
         try
-#endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* STLSOFT_CF_THROW_BAD_ALLOC */
         {
             const ss_size_t                 cchName     =   ::strlen(name);
             const ss_size_t                 cchValue    =   stlsoft::c_str_len(value);
             stlsoft::auto_buffer<char_type> buff(cchName + 1 + cchValue + 1);
 
-#ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+#ifdef STLSOFT_CF_THROW_BAD_ALLOC
             STLSOFT_ASSERT(!buff.empty());
-#else /* ? __STLSOFT_CF_THROW_BAD_ALLOC */
+#else /* ? STLSOFT_CF_THROW_BAD_ALLOC */
             if(buff.empty()) // This check worthwhile since implementation of ator may not support bad_alloc
             {
                 errno = ENOMEM;
                 return -1;
             }
             else
-#endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* STLSOFT_CF_THROW_BAD_ALLOC */
             {
                 ::strncpy(&buff[0], name, cchName);
                 buff[cchName] = '=';
@@ -408,13 +408,13 @@ inline /* static */ int environment_variable_traits::call_putenv_(environment_va
                 return call_putenv_(buff.data());
             }
         }
-#ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+#ifdef STLSOFT_CF_THROW_BAD_ALLOC
         catch(std::bad_alloc &)
         {
             errno = ENOMEM;
             return -1;
         }
-#endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* STLSOFT_CF_THROW_BAD_ALLOC */
     }
 }
 #endif /* putenv ? */

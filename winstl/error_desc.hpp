@@ -4,11 +4,11 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MINOR     2
+# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MINOR     3
 # define WINSTL_VER_WINSTL_HPP_ERROR_DESC_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_EDIT      48
+# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -323,7 +323,7 @@ inline basic_error_desc<C, T>::operator ss_typename_type_k basic_error_desc<C, T
  * String access shims
  */
 
-#ifndef __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+#ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
 /// \brief Returns the corresponding C-string pointer of \c e
 template<   ss_typename_param_k C
@@ -374,7 +374,7 @@ inline S &operator <<(S &s, basic_error_desc<C, T> const &e)
     return s;
 }
 
-#endif /* !__STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+#endif /* !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

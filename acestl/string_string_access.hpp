@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MAJOR       1
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MINOR       2
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_REVISION    2
-# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        13
+# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     22nd December 2005
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MAJOR    4
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MINOR    1
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     44
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MINOR    2
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 2
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -139,9 +139,9 @@ class ccombstr_veneer
 #else /* ? _ATLSTL_CCOMBSTR_VENEER_INHERIT_AS_PUBLIC */
 # if defined(STLSOFT_COMPILER_IS_DMC)
     : protected CComBSTR
-# else /* ? STLSOFT_COMPILER_IS_DMC */
+# else /* ? compiler */
     : private CComBSTR
-# endif /* STLSOFT_COMPILER_IS_DMC */
+# endif /* compiler */
 #endif /* _ATLSTL_CCOMBSTR_VENEER_INHERIT_AS_PUBLIC */
 {
 private:
@@ -667,7 +667,7 @@ inline ccombstr_veneer::const_pointer ccombstr_veneer::data() const
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 namespace stlsoft
 {
     inline void swap(atlstl_ns_qual(ccombstr_veneer) &lhs, atlstl_ns_qual(ccombstr_veneer) &rhs)
@@ -675,7 +675,7 @@ namespace stlsoft
         lhs.swap(rhs);
     }
 } // namespace stlsoft
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

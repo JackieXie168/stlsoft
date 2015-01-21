@@ -4,13 +4,13 @@
  * Purpose:     String container slice functions.
  *
  * Created:     25th April 2005
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_CONTAINER_SLICE_FUNCTIONS_MAJOR    1
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_CONTAINER_SLICE_FUNCTIONS_MINOR    3
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_CONTAINER_SLICE_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_CONTAINER_SLICE_FUNCTIONS_EDIT     8
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_CONTAINER_SLICE_FUNCTIONS_REVISION 2
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_CONTAINER_SLICE_FUNCTIONS_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MINMAX
-# include <stlsoft/minmax.hpp>  
+# include <stlsoft/minmax.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MINMAX */
 #if !defined(STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE)
 # if defined(STLSOFT_STRING_CONTAINERS_SLICE_FNS_USE_std_basic_string) || \
@@ -193,43 +193,43 @@ inline S mid(S const &s, ss_size_t pos, ss_size_t n)
  */
 
 #if defined(STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE)
-# define __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE
+# define _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE  STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE
 #elif defined(STLSOFT_STRING_CONTAINERS_SLICE_FNS_USE_std_basic_string) || \
       defined(STLSOFT_STRING_CONTAINERS_SLICE_FNS_USE_STD_BASIC_STRING)
-# define __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE stlsoft_ns_qual_std(basic_string)
+# define _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE  stlsoft_ns_qual_std(basic_string)
 #else /* ? STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE */
-# define __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE stlsoft_ns_qual(basic_simple_string)
+# define _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE  stlsoft_ns_qual(basic_simple_string)
 #endif /* !STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE */
 
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> left(ss_char_a_t const *s, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> left(ss_char_a_t const *s, ss_size_t n)
 {
-    typedef __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
+    typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
 
     return string_t(s, left_len(s, n));
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> left(ss_char_a_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> left(ss_char_a_t *s, size_t n)
 {
     return left(const_cast<ss_char_a_t const*>(s), n);
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> left(ss_char_w_t const *s, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> left(ss_char_w_t const *s, ss_size_t n)
 {
-    typedef __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
+    typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
 
     return string_t(s, left_len(s, n));
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> left(ss_char_w_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> left(ss_char_w_t *s, size_t n)
 {
     return left(const_cast<ss_char_w_t const*>(s), n);
 }
 
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> right(ss_char_a_t const *s, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> right(ss_char_a_t const *s, ss_size_t n)
 {
-    typedef __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
+    typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
 
     const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
 
@@ -241,14 +241,14 @@ inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> r
     return string_t(s + (len - n), n);
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> right(ss_char_a_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> right(ss_char_a_t *s, size_t n)
 {
     return right(const_cast<ss_char_a_t const*>(s), n);
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> right(ss_char_w_t const *s, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> right(ss_char_w_t const *s, ss_size_t n)
 {
-    typedef __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
+    typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
 
     const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
 
@@ -260,15 +260,15 @@ inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> r
     return string_t(s + (len - n), n);
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> right(ss_char_w_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> right(ss_char_w_t *s, size_t n)
 {
     return right(const_cast<ss_char_w_t const*>(s), n);
 }
 
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> mid(ss_char_a_t const *s, ss_size_t pos, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> mid(ss_char_a_t const *s, ss_size_t pos, ss_size_t n)
 {
-    typedef __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
+    typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
 
     const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
 
@@ -285,14 +285,14 @@ inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> m
     return string_t(s + pos, n);
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> mid(ss_char_a_t *s, ss_size_t pos, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> mid(ss_char_a_t *s, ss_size_t pos, ss_size_t n)
 {
     return mid(const_cast<ss_char_a_t const*>(s), pos, n);
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> mid(ss_char_w_t const *s, ss_size_t pos, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> mid(ss_char_w_t const *s, ss_size_t pos, ss_size_t n)
 {
-    typedef __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
+    typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
 
     const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
 
@@ -309,7 +309,7 @@ inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> m
     return string_t(s + pos, n);
 }
 
-inline __STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> mid(ss_char_w_t *s, ss_size_t pos, ss_size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> mid(ss_char_w_t *s, ss_size_t pos, ss_size_t n)
 {
     return mid(const_cast<ss_char_w_t const*>(s), pos, n);
 }

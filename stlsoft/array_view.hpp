@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     22nd January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MINOR       5
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        49
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_REVISION    3
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,11 +74,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 #  include <stlsoft/iterator.hpp>           // for reverse_iterator_base
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
@@ -116,12 +116,12 @@ public:
     typedef value_type const                                &const_reference;
     typedef ss_size_t                                       size_type;
     typedef ss_ptrdiff_t                                    difference_type;
-#if !defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if !defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The iterator type
     typedef value_type                                      *iterator;
     /// The non-mutable (const) iterator type
     typedef value_type const                                *const_iterator;
-#else /* ? !__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#else /* ? !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -135,7 +135,7 @@ public:
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
-# endif /* STLSOFT_COMPILER_IS_BORLAND */
+# endif /* compiler */
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
@@ -156,7 +156,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* !__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Construction
@@ -172,7 +172,7 @@ public:
         STLSOFT_ASSERT(is_valid());
     }
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
     /// Constructs an instance of the array view from the given array
     ///
     /// \param t The array
@@ -183,7 +183,7 @@ public:
     {
         STLSOFT_ASSERT(is_valid());
     }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     /// Constructs an instance of the array view from the given range
     ///
@@ -356,7 +356,7 @@ public:
         return begin() + size();
     }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -385,7 +385,7 @@ public:
     {
         return reverse_iterator(begin());
     }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 ///  @}
 
 /// \name Invariant
@@ -423,7 +423,7 @@ private:
 
 # ifdef STLSOFT_COMPILER_IS_MSVC
             if(1) // This is needed to avoid Visual C++ warning 4702: 'unreachable code'
-# endif /* STLSOFT_COMPILER_IS_MSVC */
+# endif /* compiler */
             {
                 throw x;
             }
@@ -444,14 +444,14 @@ private:
  * Creator functions
  */
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 template <ss_typename_param_k T, ss_size_t N>
 inline array_view<T> make_array_view(T (&t)[N])
 {
     return array_view<T>(&t[0], &t[N]);
 //    return array_view<T>(t); // This one not used, because CodeWarrior gets confused
 }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 template <ss_typename_param_k T>
 inline array_view<T> make_array_view(T *begin, T *end)

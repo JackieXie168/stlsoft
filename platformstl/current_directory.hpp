@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the current_directory components.
  *
  * Created:     13th June 2005
- * Updated:     4th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     5
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MINOR    1
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/current_directory.hpp Platform header for the current_directory components */
@@ -98,11 +98,11 @@ namespace platformstl_project
      _MSC_VER < 1310
 
     template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k T = unixstl_ns_qual(filesystem_traits)<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k T /* = winstl::filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >
     class basic_current_directory
         : public unixstl_ns_qual(basic_current_directory__)<C, T>
@@ -148,11 +148,11 @@ namespace platformstl_project
      _MSC_VER < 1310
 
     template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k T = winstl_ns_qual(filesystem_traits)<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k T /* = winstl::filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >
     class basic_current_directory
         : public winstl_ns_qual(basic_current_directory__)<C, T>

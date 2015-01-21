@@ -4,7 +4,7 @@
  * Purpose:     RRID veneer for associative containers
  *
  * Created:     2nd October 2002
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     2
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     3
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      32
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -104,11 +104,11 @@ namespace stlsoft
 /// \ingroup concepts_veneer
 template<   ss_typename_param_k T
         ,   ss_typename_param_k FV
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k FK = noop_function<ss_typename_type_def_k T::key_type>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k FK /* = noop_function<T> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class associative_container_veneer
     : public T
@@ -136,7 +136,7 @@ public:
 
 // Construction
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Default constructor
     associative_container_veneer()
     {}
@@ -206,7 +206,7 @@ public:
         : parent_class_type(n1, n2, n3, n4, n5)
     {}
 # endif /* compiler */
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
     /// Destructor, within which all remaining entries are subject to the
     /// key and value destruction functions
@@ -216,9 +216,9 @@ public:
         // compilers that do not work with member-function templates
         typedef select_both <   key_destruction_function_type
                             ,   value_destruction_function_type
-#ifndef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
                             ,   ss_typename_type_k container_type::iterator::value_type
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
                             >   destruction_function_t;
 
         // Simply iterate through the sequence contents and call

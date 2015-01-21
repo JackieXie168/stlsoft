@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     16th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_EVENT_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_EVENT_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_EVENT_MINOR    4
 # define WINSTL_VER_WINSTL_HPP_EVENT_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_EVENT_EDIT     37
+# define WINSTL_VER_WINSTL_HPP_EVENT_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
+# include <winstl/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
@@ -164,17 +167,39 @@ public:
     {
         return m_ev;
     }
+    HANDLE  get()
+    {
+        return m_ev;
+    }
 /// @}
 
 // Implementation
 private:
     static HANDLE create_event_(LPSECURITY_ATTRIBUTES psa, ws_bool_t bManualReset, ws_bool_t bInitialState, ws_char_a_t const *name)
     {
-        return ::CreateEventA(psa, bManualReset, bInitialState, name);
+        HANDLE  h = ::CreateEventA(psa, bManualReset, bInitialState, name);
+
+        if(NULL == h)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw windows_exception("Failed to create event kernel object", ::GetLastError());
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+
+        return h;
     }
     static HANDLE create_event_(LPSECURITY_ATTRIBUTES psa, ws_bool_t bManualReset, ws_bool_t bInitialState, ws_char_w_t const *name)
     {
-        return ::CreateEventW(psa, bManualReset, bInitialState, name);
+        HANDLE h = ::CreateEventW(psa, bManualReset, bInitialState, name);
+
+        if(NULL == h)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw windows_exception("Failed to create event kernel object", ::GetLastError());
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+
+        return h;
     }
 
 // Members

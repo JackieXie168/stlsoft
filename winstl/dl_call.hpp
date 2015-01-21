@@ -4,11 +4,11 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_DL_CALL_MAJOR      1
 # define WINSTL_VER_WINSTL_HPP_DL_CALL_MINOR      4
-# define WINSTL_VER_WINSTL_HPP_DL_CALL_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_DL_CALL_EDIT       11
+# define WINSTL_VER_WINSTL_HPP_DL_CALL_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_DL_CALL_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Exception class for 
+/// \brief Exception class for
 class missing_entry_point_exception
     : public windows_exception
 {
@@ -203,8 +203,8 @@ struct function_descriptor_base
     }
 };
 
-template<   int         CC
-        ,   typename    S
+template<   int                 CC
+        ,   ss_typename_param_k S
         >
 struct function_descriptor
     : public function_descriptor_base
@@ -242,15 +242,15 @@ private:
     function_descriptor &operator =(function_descriptor const &);
 };
 
-template<   int         cc
-        ,   typename    S
+template<   int                 cc
+        ,   ss_typename_param_k S
         >
 inline function_descriptor<cc, S> fn_desc(S const &functionName)
 {
     return function_descriptor<cc, S>(functionName);
 }
 
-template<   typename    S
+template<   ss_typename_param_k    S
         >
 inline function_descriptor<0, S> fn_desc(int cc, S const &functionName)
 {
@@ -261,7 +261,7 @@ inline function_descriptor<0, S> fn_desc(int cc, S const &functionName)
  * Traits
  */
 
-/// 
+///
 ///
 /// \note This is a struct, rather than a namespace, because namespaces are
 ///        open, and we want this to be closed
@@ -308,15 +308,15 @@ public:
 
 
 // These structures used for selecting lock_name_() function templates
-template<   typename    T
+template<   ss_typename_param_k T
         >
 inline T const &lock_name_(T const &t, dl_call_traits::is_not_fd)
 {
     return t;
 }
 
-template<   int         cc
-        ,   typename    S
+template<   int                 cc
+        ,   ss_typename_param_k S
         >
 inline S const &lock_name_(function_descriptor<cc, S> const &fd, dl_call_traits::is_fd)
 {
@@ -339,14 +339,14 @@ inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_h
 {
     return dl_call_traits::library_is_handle();
 }
-#else /* ? STLSOFT_COMPILER_IS_MSVC */
+#else /* ? compiler */
 inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_handle_type const &)
 {
     return dl_call_traits::library_is_handle();
 }
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
-template <typename T>
+template <ss_typename_param_k T>
 inline dl_call_traits::library_is_not_handle test_library_(T const &)
 {
     return dl_call_traits::library_is_not_handle();
@@ -409,7 +409,7 @@ inline calling_convention::calling_convention determine_calling_convention_(C co
     return cc;
 }
 
-template <typename S>
+template <ss_typename_param_k S>
 char const *detect_cc_( dl_call_traits::is_not_fd
                     ,   char const                              *functionName
                     ,   S const                                 &
@@ -420,8 +420,8 @@ char const *detect_cc_( dl_call_traits::is_not_fd
     return functionName;
 }
 
-template<   int         CC
-        ,   typename    C
+template<   int                 CC
+        ,   ss_typename_param_k C
         >
 char const *detect_cc_( dl_call_traits::is_fd
                     ,   char const                              *functionName

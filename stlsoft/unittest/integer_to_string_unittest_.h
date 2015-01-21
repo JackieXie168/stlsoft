@@ -43,7 +43,7 @@ namespace unittest
                 char    sprintfForm[21];
 
                 sprintf(sprintfForm, "%d", i);
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), i), sprintfForm))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), i), sprintfForm))
                 {
                     r->report("conversion of 8-bit signed integer failed", __LINE__);
                     bSuccess = false;
@@ -67,9 +67,9 @@ namespace unittest
                 STLSOFT_INTEGER_TO_STRING_INT2STR_CANDIDATE_ENTRY(127)
             };
 
-            { for(ss_size_t i = 0; i < stlsoft_num_elements(si8s); ++i)
+            { for(ss_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(si8s); ++i)
             {
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), si8s[i].value), si8s[i].string))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), si8s[i].value), si8s[i].string))
                 {
                     r->report("conversion of 8-bit signed integer failed", __LINE__);
                     bSuccess = false;
@@ -82,7 +82,7 @@ namespace unittest
                 char    sprintfForm[21];
 
                 sprintf(sprintfForm, "%u", i);
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), i), sprintfForm))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), i), sprintfForm))
                 {
                     r->report("conversion of 8-bit unsigned integer failed", __LINE__);
                     bSuccess = false;
@@ -108,9 +108,9 @@ namespace unittest
                 STLSOFT_INTEGER_TO_STRING_INT2STR_CANDIDATE_ENTRY(255)
             };
 
-            { for(ss_size_t i = 0; i < stlsoft_num_elements(ui8s); ++i)
+            { for(ss_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(ui8s); ++i)
             {
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), ui8s[i].value), ui8s[i].string))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), ui8s[i].value), ui8s[i].string))
                 {
                     r->report("conversion of 8-bit unsigned integer failed", __LINE__);
                     bSuccess = false;
@@ -123,7 +123,7 @@ namespace unittest
                 char    sprintfForm[21];
 
                 sprintf(sprintfForm, "%d", i);
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), i), sprintfForm))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), i), sprintfForm))
                 {
                     r->report("conversion of 16-bit signed integer failed", __LINE__);
                     bSuccess = false;
@@ -150,9 +150,9 @@ namespace unittest
                 STLSOFT_INTEGER_TO_STRING_INT2STR_CANDIDATE_ENTRY(32767)
             };
 
-            { for(ss_size_t i = 0; i < stlsoft_num_elements(si16s); ++i)
+            { for(ss_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(si16s); ++i)
             {
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), si16s[i].value), si16s[i].string))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), si16s[i].value), si16s[i].string))
                 {
                     r->report("conversion of 16-bit signed integer failed", __LINE__);
                     bSuccess = false;
@@ -165,7 +165,7 @@ namespace unittest
                 char    sprintfForm[21];
 
                 sprintf(sprintfForm, "%u", i);
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), i), sprintfForm))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), i), sprintfForm))
                 {
                     r->report("conversion of 16-bit unsigned integer failed", __LINE__);
                     bSuccess = false;
@@ -192,9 +192,9 @@ namespace unittest
                 STLSOFT_INTEGER_TO_STRING_INT2STR_CANDIDATE_ENTRY(65535)
             };
 
-            { for(ss_size_t i = 0; i < stlsoft_num_elements(ui16s); ++i)
+            { for(ss_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(ui16s); ++i)
             {
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), ui16s[i].value), ui16s[i].string))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), ui16s[i].value), ui16s[i].string))
                 {
                     r->report("conversion of 16-bit unsigned integer failed", __LINE__);
                     bSuccess = false;
@@ -208,7 +208,7 @@ namespace unittest
                 char    sprintfForm[21];
 
                 sprintf(sprintfForm, "%d", i);
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), i), sprintfForm))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), i), sprintfForm))
                 {
                     r->report("conversion of 32-bit signed integer failed", __LINE__);
                     bSuccess = false;
@@ -250,9 +250,9 @@ namespace unittest
                 STLSOFT_INTEGER_TO_STRING_INT2STR_CANDIDATE_ENTRY(23281)
             };
 
-            { for(ss_size_t i = 0; i < stlsoft_num_elements(si32s); ++i)
+            { for(ss_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(si32s); ++i)
             {
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), si32s[i].value), si32s[i].string))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), si32s[i].value), si32s[i].string))
                 {
                     r->report("conversion of 32-bit signed integer failed", __LINE__);
                     bSuccess = false;
@@ -266,7 +266,7 @@ namespace unittest
                 char    sprintfForm[21];
 
                 sprintf(sprintfForm, "%d", i);
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), i), sprintfForm))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), i), sprintfForm))
                 {
                     r->report("conversion of 32-bit unsigned integer failed", __LINE__);
                     bSuccess = false;
@@ -308,9 +308,9 @@ namespace unittest
                 STLSOFT_INTEGER_TO_STRING_INT2STR_CANDIDATE_ENTRY(60913)
             };
 
-            { for(ss_size_t i = 0; i < stlsoft_num_elements(ui32s); ++i)
+            { for(ss_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(ui32s); ++i)
             {
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), ui32s[i].value), ui32s[i].string))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), ui32s[i].value), ui32s[i].string))
                 {
                     r->report("conversion of 32-bit unsigned integer failed", __LINE__);
                     bSuccess = false;
@@ -347,9 +347,9 @@ namespace unittest
                 STLSOFT_INTEGER_TO_STRING_INT2STR_CANDIDATE_ENTRY(23281)
             };
 
-            { for(ss_size_t i = 0; i < stlsoft_num_elements(is); ++i)
+            { for(ss_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(is); ++i)
             {
-                if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), is[i].value), is[i].string))
+                if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), is[i].value), is[i].string))
                 {
                     r->report("conversion of int failed", __LINE__);
                     bSuccess = false;
@@ -359,14 +359,14 @@ namespace unittest
 #if 0
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
             // 64-bit signed integer
-            if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), si64), "-12012012012012"))
+            if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), si64), "-12012012012012"))
             {
                 r->report("conversion of 64-bit signed integer failed", __LINE__);
                 bSuccess = false;
             }
 
             // 64-bit unsigned integer
-            if(0 != strcmp(integer_to_string(buffer, stlsoft_num_elements(buffer), ui64), "45045045045045"))
+            if(0 != strcmp(integer_to_string(buffer, STLSOFT_NUM_ELEMENTS(buffer), ui64), "45045045045045"))
             {
                 r->report("conversion of 64-bit unsigned integer failed", __LINE__);
                 bSuccess = false;

@@ -4,11 +4,11 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_EDIT        10
+# define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -478,8 +478,8 @@ inline mem_fun1_ref_t<R, C, A> mem_fun1_ref(R (C::*PFn)(A))
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/// 
-/// \alpha 
+///
+/// \alpha
 ///
 /// \note This is an alpha form, and *will* be changed in a future release
 template<   ss_typename_param_k R

@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     22nd January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MINOR    6
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MINOR    8
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     162
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     168
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,12 +74,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #if defined(STLSOFT_COMPILER_IS_DMC) && \
     __DMC__ < 0x0839
-# error stlsoft_static_string.h is not compatible with Digital Mars C/C++ 3.38 or earlier
-#endif /* _MSC_VER < 1200 */
+# error stlsoft/static_string.hpp is not compatible with Digital Mars C/C++ 3.38 or earlier
+#endif /* compiler */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-# error stlsoft_static_string.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+# error stlsoft/static_string.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 # include <stlsoft/char_traits.hpp>
@@ -90,9 +90,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
@@ -147,11 +147,11 @@ template<   ss_typename_param_k C
 #else /* ? compiler */
         ,   ss_size_t           cch
 #endif /* compiler */
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = char_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T = /* char_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_static_string
     : public stl_collection_tag
@@ -192,7 +192,7 @@ public:
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
@@ -201,13 +201,13 @@ public:
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
                                         >::type                         const_iterator;
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator   <   iterator
                                                             ,   value_type
@@ -223,7 +223,7 @@ public:
                                                             ,   const_pointer
                                                             ,   difference_type
                                                             >::type     const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 private:
     typedef auto_buffer_old<char_type
@@ -249,9 +249,9 @@ public:
     /// Construct with \c n characters each set to \c ch
     basic_static_string(size_type n, char_type ch);
     /// Construct from the range [first:last)
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
     basic_static_string(char_type const *f, char_type const *t);
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     template <ss_typename_param_k II>
     basic_static_string(II first, II last)
         : m_length(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)))
@@ -267,7 +267,7 @@ public:
         m_buffer[m_length]      =   '\0';
         m_buffer[max_size()]    =   '\0';
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     /// Destructor
     ~basic_static_string() stlsoft_throw_0();
 /// @}
@@ -286,9 +286,9 @@ public:
     /// Assigns \c n characters with the value \c ch
     class_type &assign(size_type n, char_type c);
     /// Assigns from the range [first:last)
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
     class_type &assign(const_iterator first, const_iterator last);
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     template <ss_typename_param_k II>
     class_type &assign(II first, II last)
     {
@@ -304,7 +304,7 @@ public:
         return assign_(first, last, stlsoft_iterator_query_category(II, first));
 # endif /* compiler */
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
     /// Copy assignment operator
     class_type const &operator =(class_type const &rhs);
@@ -328,9 +328,9 @@ public:
     /// Appends \c cch characters with the value \c ch
     class_type &append(size_type cch, char_type ch);
     /// Appends the range [first:last)
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
     class_type &append(const_iterator first, const_iterator last);
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     template <ss_typename_param_k II>
     class_type &append(II first, II last)
     {
@@ -346,7 +346,7 @@ public:
         return append_(first, last, stlsoft_iterator_query_category(II, first));
 # endif /* compiler */
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
     /// Concatenation operator
     class_type &operator +=(char_type ch);
@@ -457,7 +457,7 @@ public:
     /// \return An iterator representing the end of the sequence
     iterator                end();
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the reverse sequence
@@ -474,7 +474,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     reverse_iterator        rend();
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Implementation
@@ -490,10 +490,10 @@ private:
     static ss_sint_t compare_(char_type const *lhs, size_type lhs_len, char_type const *rhs, size_type rhs_len);
 
     // Assignment
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
-       defined(STLSOFT_COMPILER_IS_DMC)
+     defined(STLSOFT_COMPILER_IS_DMC)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
     class_type &assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const *)
 # else /* ? compiler */
@@ -506,7 +506,7 @@ private:
     }
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
-       defined(STLSOFT_COMPILER_IS_DMC)
+     defined(STLSOFT_COMPILER_IS_DMC)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
     class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const *)
 # else /* ? compiler */
@@ -520,13 +520,13 @@ private:
 
         return *this;
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
     // Appending
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
-       defined(STLSOFT_COMPILER_IS_DMC)
+     defined(STLSOFT_COMPILER_IS_DMC)
     class_type &append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const *)
 # else /* ? compiler */
     class_type &append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
@@ -539,7 +539,7 @@ private:
     }
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
-       defined(STLSOFT_COMPILER_IS_DMC)
+     defined(STLSOFT_COMPILER_IS_DMC)
     class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const *)
 # else /* ? compiler */
     class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
@@ -553,7 +553,7 @@ private:
         STLSOFT_ASSERT(is_valid());
         return *this;
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 /// @}
 
 /// \name Members
@@ -589,11 +589,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator ==(basic_static_string<C, CCH, T> const &lhs, ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator ==(basic_static_string<C, CCH, T> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) == 0;
 }
@@ -602,11 +602,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator ==(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator ==(C *lhs, basic_static_string<C, CCH, T> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) == 0;
 }
@@ -625,11 +625,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator !=(basic_static_string<C, CCH, T> const &lhs, ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator !=(basic_static_string<C, CCH, T> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) != 0;
 }
@@ -637,11 +637,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator !=(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator !=(C const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) != 0;
 }
@@ -661,11 +661,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <(basic_static_string<C, CCH, T> const &lhs, ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <(basic_static_string<C, CCH, T> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) < 0;
 }
@@ -674,11 +674,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <(C const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) > 0;
 }
@@ -697,11 +697,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <=(basic_static_string<C, CCH, T> const &lhs, ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <=(basic_static_string<C, CCH, T> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) <= 0;
 }
@@ -709,11 +709,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator <=(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator <=(C const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) >= 0;
 }
@@ -732,11 +732,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >(basic_static_string<C, CCH, T> const &lhs, ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >(basic_static_string<C, CCH, T> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) > 0;
 }
@@ -744,11 +744,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >(C const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) < 0;
 }
@@ -767,11 +767,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >=(basic_static_string<C, CCH, T> const &lhs, ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >=(basic_static_string<C, CCH, T> const &lhs, C const *rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return lhs.compare(rhs) >= 0;
 }
@@ -779,11 +779,11 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-#ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 inline ss_bool_t operator >=(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 inline ss_bool_t operator >=(C const *lhs, basic_static_string<C, CCH, T> const &rhs)
-#endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     return rhs.compare(lhs) <= 0;
 }
@@ -807,7 +807,7 @@ inline void swap(basic_static_string<C, CCH, T> &lhs, basic_static_string<C, CCH
  * Shims
  */
 
-#ifndef __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+#ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
 /* c_str_ptr_null */
 
@@ -869,7 +869,7 @@ inline ss_size_t c_str_size(basic_static_string<C, CCH, T> const &s)
     return c_str_len(s) * sizeof(C);
 }
 
-#endif /* !__STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+#endif /* !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
 template<   ss_typename_param_k     S
         ,   ss_typename_param_k     C
@@ -1071,7 +1071,7 @@ inline basic_static_string<C, CCH, T>::basic_static_string(size_type n, char_typ
     STLSOFT_ASSERT(is_valid());
 }
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -1088,7 +1088,7 @@ inline basic_static_string<C, CCH, T>::basic_static_string(char_type const *f, c
 
     STLSOFT_ASSERT(is_valid());
 }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
@@ -1248,7 +1248,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::class_type &basic_stat
     return *this;
 }
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -1261,7 +1261,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::class_type &basic_stat
     // disgusting STL swill. Sigh!
     return assign(&(*first), last - first);
 }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
@@ -1793,7 +1793,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::class_type &basic_stat
     return *this;
 }
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -1807,7 +1807,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::class_type &basic_stat
     // disgusting STL swill. Sigh!
     return append(&(*first), last - first);
 }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
@@ -1978,7 +1978,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::iterator basic_static_
 }
 
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -2022,7 +2022,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::reverse_iterator basic
 
     return reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -2036,10 +2036,10 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::reverse_iterator basic
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -2055,7 +2055,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

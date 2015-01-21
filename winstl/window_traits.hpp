@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     24th August 2003
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_MINOR    1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_EDIT     17
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -89,14 +89,11 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-stlsoft_ns_using(c_str_ptr_a)
-stlsoft_ns_using(c_str_ptr_w)
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
+/// \defgroup winstl_window_library Window Library (WinSTL)
+/// \ingroup WinSTL libraries_window ccompilation functions
+/// \brief This library provides facilities for defining and manipulating Win32 GUI windows
 /// @{
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -106,11 +103,13 @@ stlsoft_ns_using(c_str_ptr_w)
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /// \brief Traits for accessing the correct registry functions for a given character type
 ///
-/// window_traits is a traits class for determining the correct registry
+/// window_traits is a traits class for determining the correct window manipulation
 /// structures and functions for a given character type.
 template <ss_typename_param_k C>
 struct window_traits
 {
+/// \name Member Types
+/// @{
 public:
     /// The character type
     typedef C               char_type;
@@ -118,10 +117,11 @@ public:
     typedef ws_size_t       size_type;
     /// The difference type
     typedef ws_ptrdiff_t    difference_type;
+/// @}
 
+/// \name General string handling
+/// @{
 public:
-    // General string handling
-
     /// Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const *src);
     /// Appends the contents of \c src to \c dest
@@ -130,9 +130,11 @@ public:
     static ws_int_t     str_compare(char_type *dest, char_type const *src);
     /// Evaluates the length of \c src
     static size_type    str_len(char_type const *src);
+/// @}
 
-    // Window functions
-
+/// \name Window functions
+/// @{
+public:
     /// Gets the number of characters of text for the given window
     static ws_int_t     get_window_text_length(HWND hwnd);
 
@@ -141,7 +143,8 @@ public:
 
     /// Sets the text for the given window
     static ws_bool_t    set_window_text(HWND hwnd, char_type const *buffer);
-}
+/// @}
+};
 
 #else
 
@@ -159,24 +162,23 @@ public:
 public:
     static char_type *str_copy(char_type *dest, char_type const *src)
     {
-        return lstrcpyA(dest, src);
+        return ::lstrcpyA(dest, src);
     }
 
     static char_type *str_cat(char_type *dest, char_type const *src)
     {
-        return lstrcatA(dest, src);
+        return ::lstrcatA(dest, src);
     }
 
     static ws_int_t str_compare(char_type const *s1, char_type const *s2)
     {
-        return lstrcmpA(s1, s2);
+        return ::lstrcmpA(s1, s2);
     }
 
     static size_type str_len(char_type const *src)
     {
-        return static_cast<size_type>(lstrlenA(src));
+        return static_cast<size_type>(::lstrlenA(src));
     }
-
 
     static ws_int_t get_window_text_length(HWND hwnd)
     {
@@ -193,13 +195,13 @@ public:
         return 0 != ::SetWindowTextA(hwnd, s);
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     static ws_bool_t set_window_text(HWND hwnd, S const &s)
     {
-        return 0 != ::SetWindowTextA(hwnd, c_str_ptr_a(s));
+        return 0 != ::SetWindowTextA(hwnd, stlsoft_ns_qual(c_str_ptr_a)(s));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -213,24 +215,23 @@ public:
 public:
     static char_type *str_copy(char_type *dest, char_type const *src)
     {
-        return lstrcpyW(dest, src);
+        return ::lstrcpyW(dest, src);
     }
 
     static char_type *str_cat(char_type *dest, char_type const *src)
     {
-        return lstrcatW(dest, src);
+        return ::lstrcatW(dest, src);
     }
 
     static ws_int_t str_compare(char_type const *s1, char_type const *s2)
     {
-        return lstrcmpW(s1, s2);
+        return ::lstrcmpW(s1, s2);
     }
 
     static size_type str_len(char_type const *src)
     {
-        return static_cast<size_type>(lstrlenW(src));
+        return static_cast<size_type>(::lstrlenW(src));
     }
-
 
     static ws_int_t get_window_text_length(HWND hwnd)
     {
@@ -247,20 +248,20 @@ public:
         return 0 != ::SetWindowTextW(hwnd, s);
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     static ws_bool_t set_window_text(HWND hwnd, S const &s)
     {
-        return 0 != ::SetWindowTextW(hwnd, c_str_ptr_w(s));
+        return 0 != ::SetWindowTextW(hwnd, stlsoft_ns_qual(c_str_ptr_w)(s));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 };
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group winstl_reg_library
+/// @} // end of group winstl_window_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

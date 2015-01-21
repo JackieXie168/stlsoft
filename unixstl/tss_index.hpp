@@ -4,11 +4,11 @@
  * Purpose:     UNIX TSS slot index.
  *
  * Created:     21st January 1999
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_MAJOR    2
 # define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_EDIT     30
+# define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

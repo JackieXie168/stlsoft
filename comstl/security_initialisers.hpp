@@ -4,11 +4,11 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     1st February 1998
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_MAJOR      4
 # define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_MINOR      1
 # define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_REVISION   1
-# define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_EDIT       35
+# define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1200
 # include <iaccess.h>
-#endif /* _MSC_VER >= 1200 */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -4,11 +4,11 @@
  * Purpose:     Command-line sequences class.
  *
  * Created:     25th June 2005
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CMDARGS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_HPP_CMDARGS_MINOR      3
 # define STLSOFT_VER_STLSOFT_HPP_CMDARGS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_CMDARGS_EDIT       12
+# define STLSOFT_VER_STLSOFT_HPP_CMDARGS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -167,7 +167,7 @@ public:
 
     const_options_iterator  options_begin() const;
     const_options_iterator  options_end() const;
-    
+
     const_values_iterator   values_begin() const;
     const_values_iterator   values_end() const;
 
@@ -247,7 +247,7 @@ inline cmdargs::const_options_iterator cmdargs::options_end() const
 {
     return m_options.end();
 }
-    
+
 inline cmdargs::const_values_iterator cmdargs::values_begin() const
 {
     return m_values.begin();
@@ -278,7 +278,7 @@ ss_bool_t cmdargs::empty() const
     return 0 == size();
 }
 
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &stm, cmdargs::option const &option)
 {
     static const char   s_dashes[] =
@@ -301,7 +301,7 @@ inline S &operator <<(S &stm, cmdargs::option const &option)
     return stm;
 }
 
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &stm, cmdargs::value const &value)
 {
     stm << value.m_value;

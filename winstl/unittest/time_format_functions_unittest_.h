@@ -1,5 +1,5 @@
 
-// Updated: 22nd January 2006
+// Updated: 5th February 2006
 
 #if !defined(WINSTL_INCL_WINSTL_H_TIME_FORMAT_FUNCTIONS)
 # error This file cannot be directly included, and should only be included within winstl/time_format_functions.h
@@ -21,7 +21,7 @@ namespace unittest
             ss_bool_t               bSuccess    =   true;
             ws_char_a_t             sz[201];
 
-            if(0 == GetTimeFormat_msA(LOCALE_USER_DEFAULT, 0, &t, picture, &sz[0], stlsoft_num_elements(sz)))
+            if(0 == GetTimeFormat_msA(LOCALE_USER_DEFAULT, 0, &t, picture, &sz[0], STLSOFT_NUM_ELEMENTS(sz)))
             {
                 r->report("GetTimeFormat_msA() failed: call failed", __LINE__);
                 bSuccess = false;
@@ -42,7 +42,7 @@ namespace unittest
             ss_bool_t               bSuccess    =   true;
             ws_char_w_t             sz[201];
 
-            if(0 == GetTimeFormat_msW(LOCALE_USER_DEFAULT, 0, &t, picture, &sz[0], stlsoft_num_elements(sz)))
+            if(0 == GetTimeFormat_msW(LOCALE_USER_DEFAULT, 0, &t, picture, &sz[0], STLSOFT_NUM_ELEMENTS(sz)))
             {
                 r->report("GetTimeFormat_msW() failed: call failed", __LINE__);
                 bSuccess = false;
@@ -151,7 +151,7 @@ namespace unittest
                 bSuccess = test_winstl_time_format_functions_withPicture(r, st, L"hh:mm:ss", L"12:46:01.333");
             }
 
-            if(0 == GetTimeFormat_msA(LOCALE_USER_DEFAULT, 0, &st, "hh:mm:ss tt", &sz[0], stlsoft_num_elements(sz)))
+            if(0 == GetTimeFormat_msA(LOCALE_USER_DEFAULT, 0, &st, "hh:mm:ss tt", &sz[0], STLSOFT_NUM_ELEMENTS(sz)))
             {
                 r->report("GetTimeFormat_msA() failed: call failed", __LINE__);
                 bSuccess = false;

@@ -4,11 +4,11 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     20th December 2005
+ * Updated:     28th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_REF_PTR_MAJOR      4
-# define STLSOFT_VER_STLSOFT_HPP_REF_PTR_MINOR      5
-# define STLSOFT_VER_STLSOFT_HPP_REF_PTR_REVISION   3
-# define STLSOFT_VER_STLSOFT_HPP_REF_PTR_EDIT       469
+# define STLSOFT_VER_STLSOFT_HPP_REF_PTR_MINOR      6
+# define STLSOFT_VER_STLSOFT_HPP_REF_PTR_REVISION   1
+# define STLSOFT_VER_STLSOFT_HPP_REF_PTR_EDIT       471
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -147,6 +147,18 @@ private:
     {
         return c;
     }
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER == 1300
+    /// \brief Helper function to effect upcast from const counted type to interface type
+    static interface_type *i_from_const_c(counted_type const *cc)
+    {
+        counted_type    *c  =   const_cast<counted_type *>(cc);
+
+        return c;
+    }
+#endif /* compiler */
+
 /// @}
 
 /// \name Construction
@@ -186,17 +198,32 @@ public:
         }
     }
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-    _MSC_VER != 1300
-    template <ss_typename_param_k T2>
-    ref_ptr(ref_ptr<T2, I> &rhs)
-#if 0
+    template <ss_typename_param_k T2, ss_typename_param_k I2>
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER == 1300
+    ref_ptr(ref_ptr<T2, I2> const &rhs)
+# if 0
         // We cannot use this form, as it would lead to instances with different
         // counted_type being cross cast invisibly. This would be a *very bad thing*
         : m_pi(rhs.m_pi)
-#else /* ? 0 */
+# else /* ? 0 */
+        : m_pi(i_from_const_c(rhs.get()))
+# endif /* 0 */
+    {
+        if(NULL != m_pi)
+        {
+            add_reference(m_pi);
+        }
+    }
+#else /* ? compiler */
+    ref_ptr(ref_ptr<T2, I2> &rhs)
+# if 0
+        // We cannot use this form, as it would lead to instances with different
+        // counted_type being cross cast invisibly. This would be a *very bad thing*
+        : m_pi(rhs.m_pi)
+# else /* ? 0 */
         : m_pi(i_from_c(rhs.get()))
-#endif /* 0 */
+# endif /* 0 */
     {
         if(NULL != m_pi)
         {
@@ -472,7 +499,7 @@ inline S &operator <<(S &s, ref_ptr<T, I> const &p)
 /* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -487,7 +514,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

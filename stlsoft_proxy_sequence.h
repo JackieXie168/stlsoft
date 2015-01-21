@@ -4,11 +4,11 @@
  * Purpose:     proxy_sequence template class.
  *
  * Created:     10th September 2003
- * Updated:     11th January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MAJOR       2
-# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MINOR       4
+# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MINOR       5
 # define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_EDIT        23
+# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -121,41 +121,41 @@ public:
         , m_end(0)
     {}
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// Constructs a proxy_sequence from a given range.
     proxy_sequence(element_type *first, element_type *last)
         : m_begin(first)
         , m_end(last)
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Constructs a proxy_sequence from a given range.
     template <ss_typename_param_k P>
     proxy_sequence(P *first, P *last)
         : m_begin(first)
         , m_end(last)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// Constructs a proxy_sequence from a given range.
     proxy_sequence(element_type *first, size_type n)
         : m_begin(first)
         , m_end(&first[n])
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Constructs a proxy_sequence from a given range.
     template <ss_typename_param_k P>
     proxy_sequence(P *first, size_type n)
         : m_begin(first)
         , m_end(&first[n])
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 /// \name Iteration
 /// @{

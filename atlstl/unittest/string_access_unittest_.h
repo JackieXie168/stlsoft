@@ -16,9 +16,9 @@ namespace unittest
             ss_bool_t   bSuccess = true;
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
             CComBSTR    bstr1(L"String #1");
-#else /* ? Borland */
+#else /* ? compiler */
             CComBSTR    bstr1("String #1"); // Borland's CComBSTR(LPCSTR) leaves a character off the end!!
-#endif /* Borland */
+#endif /* compiler */
 
             if(0 != wcscmp(L"String #1", c_str_ptr(bstr1)))
             {

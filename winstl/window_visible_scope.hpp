@@ -4,11 +4,11 @@
  * Purpose:     Window visible-state scoping class.
  *
  * Created:     26th May 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_MINOR       1
+# define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_MINOR       2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_EDIT        24
+# define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ public:
         ::ShowWindow(m_hwnd, (SW_SHOW == m_stateOnDtor) ? SW_HIDE : SW_SHOW);
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// \brief Toggles the window visible state
     ///
     /// Takes a HWND and changes it's current visible-status, which is set back to
@@ -142,7 +142,7 @@ public:
     {
         ::ShowWindow(m_hwnd, (SW_SHOW == m_stateOnDtor) ? SW_HIDE : SW_SHOW);
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Modifies the window visible state
     ///
@@ -155,7 +155,7 @@ public:
     {
         ::ShowWindow(m_hwnd, stateOnCtor);
     }
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Modifies the window visible state
     ///
     /// \param wnd The window whose visible state is to be controlled
@@ -168,16 +168,14 @@ public:
     {
         ::ShowWindow(m_hwnd, stateOnCtor);
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Resets the visible status
     ~window_visible_scope() stlsoft_throw_0()
     {
-#if !defined(STLSOFT_COMPILER_IS_COMO) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    !defined(STLSOFT_COMPILER_IS_INTEL)
-        winstl_static_assert(STLSOFT_RAW_OFFSETOF(class_type, m_hwnd) < STLSOFT_RAW_OFFSETOF(class_type, m_stateOnDtor));
-#endif /* compiler */
+#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+        WINSTL_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_hwnd) < STLSOFT_RAW_OFFSETOF(class_type, m_stateOnDtor));
+#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 
         ::ShowWindow(m_hwnd, m_stateOnDtor);
     }

@@ -4,11 +4,11 @@
  * Purpose:     Window redraw-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_REDRAW_SCOPE_MAJOR      4
-# define WINSTL_VER_WINSTL_HPP_WINDOW_REDRAW_SCOPE_MINOR      1
+# define WINSTL_VER_WINSTL_HPP_WINDOW_REDRAW_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_REDRAW_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_REDRAW_SCOPE_EDIT       60
+# define WINSTL_VER_WINSTL_HPP_WINDOW_REDRAW_SCOPE_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -122,14 +122,14 @@ public:
     ///
     /// \param wnd The window whose redraw state is to be controlled
     /// \param bInvalidateOnUnlock Determines whether the window is invalidated upon destruction
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-    template <typename W>
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+    template <ss_typename_param_k W>
     ss_explicit_k window_redraw_scope(W &wnd, ws_bool_t bInvalidateOnUnlock = true)
         : m_hwnd(get_hwnd(wnd))
 #else
     ss_explicit_k window_redraw_scope(HWND wnd, ws_bool_t bInvalidateOnUnlock = true)
         : m_hwnd(wnd)
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
         , m_bInvalidateOnUnlock(bInvalidateOnUnlock)
     {
         ::SendMessage(m_hwnd, WM_SETREDRAW, false, 0L);

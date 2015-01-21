@@ -4,7 +4,7 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     19th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        20
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -108,13 +108,13 @@ namespace stlsoft
 
 /// \brief Enhanced functionality over std::ostream_iterator
 ///
-/// This class template provides full backwards-compatibility with 
+/// This class template provides full backwards-compatibility with
 /// std::ostream_iterator, but offers the additional capability to supply both
 /// prefix <i>and</i> suffix to each delimited item.
 ///
 /// For example, the following code indents each entry in the sequence as well
 /// as appending a carriage return.
-/// 
+///
 /// \htmlonly
 /// <pre>
 ///
@@ -131,7 +131,7 @@ namespace stlsoft
 /// \endhtmlonly
 ///
 /// This gives the following output:
-/// 
+///
 /// \htmlonly
 /// <pre>
 /// <b>
@@ -274,7 +274,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    template <typename S2>
+    template <ss_typename_param_k S2>
     static string_type get_string_(S2 const &s)
     {
         return stlsoft::c_str_ptr(s);

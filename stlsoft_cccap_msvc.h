@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,15 +52,15 @@
 
 #ifndef STLSOFT_COMPILER_IS_MSVC
 # error This file has been erroneously included for a compiler other than Visual C++
-#endif /* !STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      71
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. It will be removed in a future version")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 #error This file is now obsolete. It will be removed in a future version
 
 /* ////////////////////////////////////////////////////////////////////////// */

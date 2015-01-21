@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     13th January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_MAJOR     3
-# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_MINOR     4
+# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_MINOR     6
 # define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_EDIT      38
+# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
 # include <unixstl/string_access.hpp>         // for string access shims
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
@@ -124,11 +124,11 @@ namespace unixstl_project
 /// \param C The character type
 /// \param A The allocator type
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k A /* = ss_typename_type_def_k allocator_selector<C>::allocator_type */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_file_path_buffer
 {
@@ -284,11 +284,11 @@ typedef basic_file_path_buffer<us_char_a_t, stlsoft_ns_qual(allocator_selector)<
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
     template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k A /* = ss_typename_type_def_k allocator_selector<C>::allocator_type */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >
     class basic_file_path_buffer__
         : public unixstl_ns_qual(basic_file_path_buffer)<C, A>
@@ -396,10 +396,10 @@ inline S &operator <<(S & s, basic_file_path_buffer<C, A> const &b)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -414,7 +414,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

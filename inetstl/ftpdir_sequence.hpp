@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     18th January 2006
- * Updated:     26th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MAJOR      1
-# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MINOR      1
-# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_REVISION   2
-# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_EDIT       6
+# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MINOR      2
+# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_REVISION   1
+# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -133,17 +133,17 @@ namespace inetstl_project
  */
 
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ,   ss_typename_param_k X   =   throw_internet_exception_policy
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k X   =   stlsoft_ns_qual(null_exception_policy)
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k X /* = throw_internet_exception_policy */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_ftpdir_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -174,9 +174,9 @@ public:
     {
             includeDots =   sequence_type_::includeDots
         ,   directories =   sequence_type_::directories
-        ,   files       =   sequence_type_::files      
+        ,   files       =   sequence_type_::files
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-        ,   noSort      =   sequence_type_::noSort     
+        ,   noSort      =   sequence_type_::noSort
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     };
 /// @}

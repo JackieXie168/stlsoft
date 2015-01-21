@@ -4,7 +4,7 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     21st January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       3
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    2
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        16
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       4
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    1
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <stlsoft/iterator.hpp>      // for discrimination of the MSVC Dinkumware libs (with the bad member types)
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
- // This stuff's needed for type fixing 'referent_type' => 'mapped_type' 
+ // This stuff's needed for type fixing 'referent_type' => 'mapped_type'
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
 #  include <stlsoft/meta/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
@@ -333,7 +333,7 @@ public:
 
 public:
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER == 1200)
@@ -344,9 +344,9 @@ public:
         : m_position(seq.begin())
         , m_last(seq.end())
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1200)
     /// Constructor
@@ -357,7 +357,7 @@ public:
         : m_position(seq.begin())
         , m_last(seq.end())
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Copy constructor
     ///

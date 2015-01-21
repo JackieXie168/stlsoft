@@ -4,11 +4,11 @@
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_TREEVIEW_SEQUENCE_MAJOR    3
 # define WINSTL_VER_H_WINSTL_TREEVIEW_SEQUENCE_MINOR    2
 # define WINSTL_VER_H_WINSTL_TREEVIEW_SEQUENCE_REVISION 1
-# define WINSTL_VER_H_WINSTL_TREEVIEW_SEQUENCE_EDIT     45
+# define WINSTL_VER_H_WINSTL_TREEVIEW_SEQUENCE_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/treeview_sequence.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_TREEVIEW_SEQUENCE
 # include <winstl/treeview_sequence.hpp>

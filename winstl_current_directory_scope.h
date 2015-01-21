@@ -4,11 +4,11 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_CURRENT_DIRECTORY_SCOPE_MAJOR      4
 # define WINSTL_VER_H_WINSTL_CURRENT_DIRECTORY_SCOPE_MINOR      2
 # define WINSTL_VER_H_WINSTL_CURRENT_DIRECTORY_SCOPE_REVISION   1
-# define WINSTL_VER_H_WINSTL_CURRENT_DIRECTORY_SCOPE_EDIT       96
+# define WINSTL_VER_H_WINSTL_CURRENT_DIRECTORY_SCOPE_EDIT       98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/current_directory_scope.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE
 # include <winstl/current_directory_scope.hpp>

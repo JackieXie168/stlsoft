@@ -5,14 +5,14 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_buffer_size_() method.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_MAJOR     3
 # define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_MINOR     2
 # define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_REVISION  1
-# define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_EDIT      76
+# define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_EDIT      78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/file_path_buffer.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
 # include <winstl/file_path_buffer.hpp>

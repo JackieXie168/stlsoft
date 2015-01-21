@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_BSTR_FUNCTIONS_MAJOR       3
 # define COMSTL_VER_H_COMSTL_BSTR_FUNCTIONS_MINOR       2
 # define COMSTL_VER_H_COMSTL_BSTR_FUNCTIONS_REVISION    1
-# define COMSTL_VER_H_COMSTL_BSTR_FUNCTIONS_EDIT        60
+# define COMSTL_VER_H_COMSTL_BSTR_FUNCTIONS_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/bstr_functions.h")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef COMSTL_INCL_COMSTL_H_BSTR_FUNCTIONS
 # include <comstl/bstr_functions.h>

@@ -46,7 +46,7 @@ namespace unittest
                 bSuccess = false;
             }
 
-            if( 0 == ::MultiByteToWideChar(0, 0, win_dir_a_1, -1, wszBuffer, stlsoft_num_elements(wszBuffer)) ||
+            if( 0 == ::MultiByteToWideChar(0, 0, win_dir_a_1, -1, wszBuffer, STLSOFT_NUM_ELEMENTS(wszBuffer)) ||
                 0 != lstrcmpiW(wszBuffer, win_dir_w_1))
             {
                 r->report("ANSI and Unicode instances do not report same Windows directory", __LINE__);

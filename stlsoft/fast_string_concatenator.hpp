@@ -4,14 +4,14 @@
  * Purpose:     Fast string concatenator.
  *
  * Created:     4th November 2003 (the time added to STLSoft libraries)
- * Updated:     22nd December 2005
+ * Updated:     8th February 2006
  *
  * Thanks to:   Sean Kelly for picking up on my gratuitous use of pointers
  *              in the first implementation.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_EDIT        121
+# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_MINOR       2
+# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_EDIT        124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # error stlsoft_fast_string_concatenator.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 #endif /* 0 */
 
 #ifndef _STLSOFT_NO_NAMESPACE
@@ -129,9 +129,9 @@ public:
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#ifndef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifndef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 # error fast_string_concatenator cannot be used when default template arguments are not supported
-#endif /* !__STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* !STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 
 /// Class which provides fast string concatenation
 template<   ss_typename_param_k S
@@ -483,9 +483,9 @@ template<   ss_typename_param_k S
         >
 #if defined(STLSOFT_COMPILER_IS_GCC)
 inline fast_string_concatenator<S, C, T>::operator S() const
-#else /* ? STLSOFT_COMPILER_IS_GCC */
+#else /* ? compiler */
 inline fast_string_concatenator<S, C, T>::operator ss_typename_type_k fast_string_concatenator<S, C, T>::string_type() const
-#endif /* STLSOFT_COMPILER_IS_GCC */
+#endif /* compiler */
 {
     size_type   len = length();
     string_type s(len, '~');

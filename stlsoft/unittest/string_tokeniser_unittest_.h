@@ -1,5 +1,5 @@
 
-// Updated: 29th January 2006
+// Updated: 21st March 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER)
 # error This file cannot be directly included, and should only be included within stlsoft/string_tokeniser.hpp
@@ -227,7 +227,7 @@ namespace unittest
         {
             ss_bool_t               bSuccess    =   true;
 
-            { // 
+            { //
                 typedef basic_string_view<char>     string_view_t;
                 typedef string_tokeniser<   string_view_t
                                         ,   string_view_t
@@ -251,7 +251,7 @@ namespace unittest
                 }
             }
 
-            { // 
+            { //
                 typedef basic_string_view<char>     string_view_t;
                 typedef string_tokeniser<   string_view_t
                                         ,   string_view_t

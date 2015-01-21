@@ -4,11 +4,11 @@
  * Purpose:     Registry functions.
  *
  * Created:     20th November 1995
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1995-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1995-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_REGISTRY_FUNCTIONS_MAJOR     2
-# define WINSTL_VER_WINSTL_HPP_REGISTRY_FUNCTIONS_MINOR     2
+# define WINSTL_VER_WINSTL_HPP_REGISTRY_FUNCTIONS_MINOR     3
 # define WINSTL_VER_WINSTL_HPP_REGISTRY_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_REGISTRY_FUNCTIONS_EDIT      35
+# define WINSTL_VER_WINSTL_HPP_REGISTRY_FUNCTIONS_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,12 +59,12 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_REG_DEFS
-# include <winstl/reg_defs.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_REG_DEFS */
-#ifndef WINSTL_INCL_WINSTL_HPP_REG_TRAITS
-# include <winstl/reg_traits.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_REG_TRAITS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
+# include <winstl/registry/defs.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
+# include <winstl/registry/reg_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

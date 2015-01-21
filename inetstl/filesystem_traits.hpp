@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    2
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_REVISION 1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     51
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -431,7 +431,7 @@ public:
         // If we're not rooted, then get the current directory and concatenate
         if(separator != *fileName)
         {
-            is_size_t   cchBuffer   =   stlsoft_num_elements(fullPath);
+            is_size_t   cchBuffer   =   STLSOFT_NUM_ELEMENTS(fullPath);
             int         isDot       =   0 == str_compare(fileName, ".");
 
             if(!get_current_directory(hconn, cchBuffer, fullPath))
@@ -748,7 +748,7 @@ public:
         // If we're not rooted, then get the current directory and concatenate
         if(separator != *fileName)
         {
-            is_size_t   cchBuffer   =   stlsoft_num_elements(fullPath);
+            is_size_t   cchBuffer   =   STLSOFT_NUM_ELEMENTS(fullPath);
             int         isDot       =   0 == str_compare(fileName, L".");
 
 #ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE

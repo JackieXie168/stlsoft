@@ -4,11 +4,11 @@
  * Purpose:     sap_cast - a dangerous weapon in the hands of the unwary.
  *
  * Created:     25th February 2004
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_SAP_CAST_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_SAP_CAST_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_SAP_CAST_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_SAP_CAST_EDIT        25
+# define STLSOFT_VER_H_STLSOFT_SAP_CAST_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/sap_cast.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
 # include <stlsoft/sap_cast.hpp>

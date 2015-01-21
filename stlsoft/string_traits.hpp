@@ -4,7 +4,7 @@
  * Purpose:     Contains string_traits.
  *
  * Created:     16th January 2002
- * Updated:     14th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MINOR      2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_REVISION   2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_EDIT       63
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MINOR      3
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_REVISION   1
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_EDIT       66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -170,7 +170,7 @@ struct string_traits<ss_char_a_t const *>
 
 
 #if 0
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 # if 1
 
 template <ss_size_t N>
@@ -222,7 +222,7 @@ struct string_traits<C const (&)[N]>
 };
 
 # endif /* 0 */
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* 0 */
 
 
@@ -287,8 +287,8 @@ struct string_traits<ss_char_w_t const *>
 template <ss_typename_param_k C>
 struct string_traits<stlsoft_ns_qual_std(basic_string)<C> >
 {
-    // NOTE: Originally, what is string_type_ was defined as value_type, but 
-    // Borland objects to value_type::value_type. 
+    // NOTE: Originally, what is string_type_ was defined as value_type, but
+    // Borland objects to value_type::value_type.
     typedef stlsoft_ns_qual_std(basic_string)<C>                    string_type_;
     typedef ss_typename_type_k string_type_::value_type             char_type;
     typedef ss_typename_type_k string_type_::size_type              size_type;
@@ -313,12 +313,12 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<C> >
     {
         return string_type(src, pos, len);
     }
-#  ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
     static string_type &assign_inplace(string_type &str, I first, I last)
-#  else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#  else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
-#  endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // std::basic_string cannot assign in-place (or rather not all implementations do so)
         str.erase(last, str.end());
@@ -328,7 +328,7 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<C> >
     }
 };
 #  else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-#   if defined(__STLSOFT_CF_std_NAMESPACE)
+#   if defined(STLSOFT_CF_std_NAMESPACE)
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_a_t> >
 {
@@ -355,12 +355,12 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_a_t> >
     {
         return string_type(src, pos, len);
     }
-#  ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
     static string_type &assign_inplace(string_type &str, I first, I last)
-#  else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#  else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
-#  endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // std::basic_string cannot assign in-place (or rather not all implementations do so)
         str.erase(last, str.end());
@@ -396,12 +396,12 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_w_t> >
     {
         return string_type(src, pos, len);
     }
-#  ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
     static string_type &assign_inplace(string_type &str, I first, I last)
-#  else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#  else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
-#  endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // std::basic_string cannot assign in-place (or rather not all implementations do so)
         str.erase(last, str.end());
@@ -410,7 +410,7 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_w_t> >
         return str;
     }
 };
-#   endif /* __STLSOFT_CF_std_NAMESPACE */
+#   endif /* STLSOFT_CF_std_NAMESPACE */
 #  endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 # endif /* _STLSOFT_STRING_TRAITS_NO_STD_STRING */
 

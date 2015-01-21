@@ -1,5 +1,5 @@
 
-// Updated: 27th December 2005
+// Updated: 21st March 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR)
 # error This file cannot be directly included, and should only be included within stlsoft/iterators/cstring_concatenator_iterator.hpp
@@ -20,7 +20,7 @@ namespace unittest
             unittest_initialiser    init(r, "STLSoft", "iterators/cstring_concatenator_iterator", __FILE__);
 
             {
-                char const  *strings[] = 
+                char const  *strings[] =
                 {
                         "abc"
                     ,   "defg"
@@ -49,7 +49,7 @@ namespace unittest
             }
 
             {
-                char const  *strings[] = 
+                char const  *strings[] =
                 {
                         "abc"
                     ,   "defg"

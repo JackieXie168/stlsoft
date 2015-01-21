@@ -4,11 +4,11 @@
  * Purpose:     A container that measures the frequency of the element it contains.
  *
  * Created:     1st October 2005
- * Updated:     11th January 2006
+ * Updated:     12th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define STLSOFT_INCL_STLSOFT_HPP_FREQUENCY_MAP
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_MAJOR    1
-# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_MINOR    2
+# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_MAJOR    2
+# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_MINOR    0
 # define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_EDIT     4
+# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,111 +63,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
-#include <map>
-#include <stdexcept>
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include stlsoft/containers/frequency_map.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _STLSOFT_NO_NAMESPACE
-namespace stlsoft
-{
-#endif /* _STLSOFT_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k N = uint32_t
-        >
-class frequency_map
-    : public stl_collection_tag
-{
-private:
-    typedef stlsoft_ns_qual_std(map)<T, N>                  map_type;
-
-public:
-    typedef ss_typename_param_k map_type::value_type        value_type;
-    typedef ss_typename_param_k map_type::const_iterator    const_iterator;
-//    typedef ss_typename_param_k map_type::const_pointer     const_pointer;
-    typedef ss_typename_param_k map_type::const_reference   const_reference;
-
-    typedef ss_typename_param_k map_type::key_type          key_type;
-//    typedef ss_typename_param_k map_type::mapped_type       mapped_type
-    typedef N                                               count_type;
-    typedef ss_size_t                                       size_type;
-    typedef ss_ptrdiff_t                                    difference_type;
-
-public:
-    frequency_map()
-    {}
-
-public:
-    count_type  push(key_type const &key)
-    {
-        return ++m_map[key];
-    }
-
-    void        clear()
-    {
-        m_map.clear();
-    }
-
-    count_type  operator [](key_type const &key) const // stlsoft_throw_1(std::out_of_range)
-    {
-        const_iterator  it  =   m_map.find(key);
-
-        if(m_map.end() == it)
-        {
-            throw std::out_of_range("invalid key");
-        }
-
-        return (*it).second;
-    }
-
-public:
-    ss_bool_t   empty() const
-    {
-        return m_map.empty();
-    }
-
-    size_type   size() const
-    {
-        return m_map.size();
-    }
-
-public:
-    const_iterator  begin() const
-    {
-        return m_map.begin();
-    }
-    const_iterator  end() const
-    {
-        return m_map.end();
-    }
-
-private:
-    map_type    m_map;
-};
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Unit-testing
- */
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/frequency_map_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_UNRECOVERABLE
+# include <stlsoft/containers/frequency_map.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_UNRECOVERABLE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

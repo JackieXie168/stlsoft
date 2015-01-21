@@ -158,7 +158,7 @@ namespace unittest
                 r->report("Comparison to LPCSTR failed", __LINE__);
                 bSuccess = false;
             }
-#endif /* !(_MSC_VER < 1200) */
+#endif /* compiler */
 
             if(bs3 != L"Hello")
             {

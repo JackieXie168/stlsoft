@@ -4,7 +4,7 @@
  * Purpose:     Class template that allows built-in & aggregate types to be treated as 1st-class types.
  *
  * Created:     8th September 2002
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MINOR     1
+# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      36
+# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -200,16 +200,16 @@ public:
     {}
 
     /// Initialise an instance from an instance of the promoted type
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k U>
     ss_explicit_k first_class_promoter(U &value)
         : m_value(value)
     {}
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k first_class_promoter(value_type const &value)
         : m_value(value)
     {}
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     /// Destructor
     ~first_class_promoter() stlsoft_throw_0()

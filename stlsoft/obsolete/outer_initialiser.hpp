@@ -4,7 +4,7 @@
  * Purpose:     Contains the outer_initialiser template class.
  *
  * Created:     9th July 2004
- * Updated:     4th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_MAJOR       3
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_MINOR       1
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_MINOR       2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_REVISION    1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_EDIT        16
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,6 @@ public:
         // Ensure that there's a good chance that outer_initialiser
         // is in the right place in the outer type
         STLSOFT_ASSERT(sap_cast<char*>(outer) < sap_cast<char*>(this));
-//      static_assert(0 < STLSOFT_RAW_OFFSETOF(outer_type, ;
 
         (m_outer->*m_fn)();
     }

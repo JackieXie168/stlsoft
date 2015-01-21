@@ -5,11 +5,11 @@
  *              module filename.
  *
  * Created:     31st March 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MODULE_FILENAME_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_MODULE_FILENAME_MINOR    1
-# define WINSTL_VER_WINSTL_HPP_MODULE_FILENAME_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_MODULE_FILENAME_EDIT     55
+# define WINSTL_VER_WINSTL_HPP_MODULE_FILENAME_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_MODULE_FILENAME_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_MODULE_FILENAME_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # error winstl_module_filename.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
 # include <winstl/filesystem_traits.hpp>
@@ -131,11 +131,11 @@ namespace winstl_project
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_module_filename
 {
@@ -155,6 +155,8 @@ public:
     basic_module_filename();
     /// Represent the filename of the given instance
     ss_explicit_k basic_module_filename(HINSTANCE hinst);
+    /// Destructor
+    ~basic_module_filename() stlsoft_throw_0();
 
 // Operations
 public:
@@ -227,13 +229,7 @@ template<   ss_typename_param_k C
 inline basic_module_filename<C, T>::basic_module_filename()
     : m_hinst(::GetModuleHandle(NULL))
     , m_len(get_filename(&m_path[0], m_path.size()))
-{
-#if !defined(STLSOFT_COMPILER_IS_COMO) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    !defined(STLSOFT_COMPILER_IS_INTEL)
-    WINSTL_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_hinst) < STLSOFT_RAW_OFFSETOF(class_type, m_len));
-#endif /* compiler */
-}
+{}
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -241,12 +237,16 @@ template<   ss_typename_param_k C
 inline basic_module_filename<C, T>::basic_module_filename(HINSTANCE hinst)
     : m_hinst(hinst)
     , m_len(get_filename(hinst, &m_path[0], m_path.size()))
+{}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        >
+inline basic_module_filename<C, T>::~basic_module_filename() stlsoft_throw_0()
 {
-#if !defined(STLSOFT_COMPILER_IS_COMO) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    !defined(STLSOFT_COMPILER_IS_INTEL)
+#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
     WINSTL_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_hinst) < STLSOFT_RAW_OFFSETOF(class_type, m_len));
-#endif /* compiler */
+#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 }
 
 template<   ss_typename_param_k C

@@ -1,5 +1,5 @@
 
-// Updated: 29th December 2005
+// Updated: 5th February 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS)
 # error This file cannot be directly included, and should only be included within stlsoft/meta/base_type_traits.hpp
@@ -60,13 +60,13 @@ namespace unittest
                 >
         void type_traits_type_test_array_(T&)
         {
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             typedef base_type_traits<T>     base_type_traits_t;
 
             STLSOFT_STATIC_ASSERT(base_type_traits_t::is_array      ==  bIsArray);
-#  else /* ? __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  else /* ? STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
             STLSOFT_STATIC_ASSERT(0                                 ==  bIsArray);
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
         }
 
         template<   ss_int_t bIsArrayOrPointer
@@ -77,9 +77,9 @@ namespace unittest
             typedef base_type_traits<T>     base_type_traits_t;
 
             const int is_array_or_pointer   =   0
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
                                             ||  (0 != base_type_traits_t::is_array)
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
                                             ||  (0 != base_type_traits_t::is_pointer)
                                             ;
 
@@ -135,7 +135,7 @@ namespace unittest
             STLSOFT_SUPPRESS_UNUSED(rpvi);
             STLSOFT_SUPPRESS_UNUSED(rpcvi);
 
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             int                     ai[]    =   { 4 };
             int const               aci[]   =   { 5 };
             int volatile            avi[]   =   { 6 };
@@ -146,7 +146,7 @@ namespace unittest
             STLSOFT_SUPPRESS_UNUSED(avi);
             STLSOFT_SUPPRESS_UNUSED(acvi);
 
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             // 1. Test pointer
 
@@ -170,12 +170,12 @@ namespace unittest
             type_traits_type_test_pointer_<1>(rpvi);
             type_traits_type_test_pointer_<1>(rpcvi);
 
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             type_traits_type_test_pointer_<1>(ai);
             type_traits_type_test_pointer_<1>(aci);
             type_traits_type_test_pointer_<1>(avi);
             type_traits_type_test_pointer_<1>(acvi);
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             // 2. Test reference
 
@@ -199,12 +199,12 @@ namespace unittest
 //          type_traits_type_test_reference_<1>(rpvi);
 //          type_traits_type_test_reference_<1>(rpcvi);
 
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 //          type_traits_type_test_reference_<1>(ai);
 //          type_traits_type_test_reference_<1>(aci);
 //          type_traits_type_test_reference_<1>(avi);
 //          type_traits_type_test_reference_<1>(acvi);
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 
             // 3. Test const
@@ -231,7 +231,7 @@ namespace unittest
             type_traits_type_test_const_<0>(rpvi);
             type_traits_type_test_const_<1>(rpcvi);
 
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             type_traits_type_test_const_<0>(ai);
 #   if !defined(STLSOFT_COMPILER_IS_MSVC)
             type_traits_type_test_const_<1>(aci);
@@ -240,7 +240,7 @@ namespace unittest
 #   if !defined(STLSOFT_COMPILER_IS_MSVC)
             type_traits_type_test_const_<1>(acvi);
 #   endif /* compiler */
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             // 4. Test volatile
 
@@ -264,14 +264,14 @@ namespace unittest
             type_traits_type_test_volatile_<1>(rpvi);
             type_traits_type_test_volatile_<1>(rpcvi);
 
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             type_traits_type_test_volatile_<0>(ai);
             type_traits_type_test_volatile_<0>(aci);
 #   if !defined(STLSOFT_COMPILER_IS_MSVC)
             type_traits_type_test_volatile_<1>(avi);
             type_traits_type_test_volatile_<1>(acvi);
 #   endif /* compiler */
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 #endif /* compiler */
 
@@ -298,12 +298,12 @@ namespace unittest
             type_traits_type_test_array_<0>(rpvi);
             type_traits_type_test_array_<0>(rpcvi);
 
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             type_traits_type_test_array_<1>(ai);
             type_traits_type_test_array_<1>(aci);
             type_traits_type_test_array_<1>(avi);
             type_traits_type_test_array_<1>(acvi);
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             // 6. Test array or pointer
 
@@ -329,12 +329,12 @@ namespace unittest
             type_traits_type_test_array_or_pointer_<1>(rpvi);
             type_traits_type_test_array_or_pointer_<1>(rpcvi);
 
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             type_traits_type_test_array_or_pointer_<1>(ai);
             type_traits_type_test_array_or_pointer_<1>(aci);
             type_traits_type_test_array_or_pointer_<1>(avi);
             type_traits_type_test_array_or_pointer_<1>(acvi);
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 #endif /* compiler */
 

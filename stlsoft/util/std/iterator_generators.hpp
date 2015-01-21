@@ -4,7 +4,7 @@
  * Purpose:     Iterator generator classes, and helper macros.
  *
  * Created:     2nd January 2000
- * Updated:     3rd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MINOR     1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_REVISION  2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      83
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_REVISION  4
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ namespace stlsoft
  * Generator classes
  */
 
-#ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
 template<   ss_typename_param_k I   /* iterator */
         ,   ss_typename_param_k V   /* value type */
@@ -97,8 +97,6 @@ struct reverse_iterator_generator
 public:
 #if defined(STLSOFT_COMPILER_IS_COMO)
     typedef std::reverse_iterator<I>                                                            type;
-//#elif defined(STLSOFT_COMPILER_IS_BORLAND)
-//    typedef tref_reverse_iterator<I, V, R, P, D>                                                type;
 #elif 0
     typedef reverse_iterator_base<I, V, R, P, D>                                                type;
 #else /* ? compiler */
@@ -117,8 +115,6 @@ struct const_reverse_iterator_generator
 public:
 #if defined(STLSOFT_COMPILER_IS_COMO)
     typedef std::reverse_iterator<I>                                                            type;
-//#elif defined(STLSOFT_COMPILER_IS_BORLAND)
-//    typedef tref_reverse_iterator<I, V, R, P, D>                                                type;
 #elif 0
     typedef const_reverse_iterator_base<I, V, R, P, D>                                          type;
 #else /* ? compiler */
@@ -126,7 +122,7 @@ public:
 #endif /* compiler */
 };
 
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

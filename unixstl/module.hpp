@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MINOR       2
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        196
+# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        197
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

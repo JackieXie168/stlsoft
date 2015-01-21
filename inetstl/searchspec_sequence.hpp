@@ -15,11 +15,11 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     26th January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MAJOR      4
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      3
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   2
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       32
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   3
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. The inetstl::basic_findfile_sequence class now supports multi-part patterns. This file will be removed from a future release.")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
 # include <stlsoft/simple_string.hpp>
@@ -94,7 +94,7 @@
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 #  include <stlsoft/iterator.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#endif /* STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -273,7 +273,7 @@ private:
         }
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-_MSC_VER < 1300
+    _MSC_VER < 1300
         friend class const_iterator;
 #endif /* compiler */
 

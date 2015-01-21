@@ -4,11 +4,11 @@
  * Purpose:     yes / no classes.
  *
  * Created:     16th May 2005
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MINOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        7
+# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

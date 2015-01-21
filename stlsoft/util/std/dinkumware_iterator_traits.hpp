@@ -4,7 +4,7 @@
  * Purpose:     "Old" Dinkumware library iterator capability discrimination.
  *
  * Created:     31st December 2005
- * Updated:     3rd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_REVISION   5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       6
+# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ namespace stlsoft
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template <typename I, int B_IS_DINKUMWARE_OLD_FORM>
+template <ss_typename_param_k I, int B_IS_DINKUMWARE_OLD_FORM>
 struct Dinkumware_iterator_test
 {
     enum { is_const =   1   };  // Defaults to const, for safety
@@ -120,7 +120,7 @@ protected:
     }
 };
 
-template <typename I>
+template <ss_typename_param_k I>
 struct Dinkumware_iterator_test<I, 1>
 {
     typedef ss_typename_type_k I::value_type                                    value_type;
@@ -173,12 +173,12 @@ struct Dinkumware_iterator_test<I, 1>
 /// Determines whether the iterator is mutating or non-mutating
 ///
 /// \param I The iterator type
-template <typename I>
+template <ss_typename_param_k I>
 struct Dinkumware_iterator_traits
 {
 private:
-    enum { IS_DINKUMWARE_OLD_FORM   =   0 == member_traits<I>::has_member_pointer && 
-                                        0 == member_traits<I>::has_member_difference_type && 
+    enum { IS_DINKUMWARE_OLD_FORM   =   0 == member_traits<I>::has_member_pointer &&
+                                        0 == member_traits<I>::has_member_difference_type &&
                                         0 != member_traits<I>::has_member_distance_type                 };
 public:
     enum { is_const                 =   Dinkumware_iterator_test<I, IS_DINKUMWARE_OLD_FORM>::is_const   };

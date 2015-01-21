@@ -4,7 +4,7 @@
  * Purpose:     shell_allocator class.
  *
  * Created:     2nd March 2002
- * Updated:     22nd January 2006
+ * Updated:     23rd March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,10 +46,10 @@
 #define WINSTL_INCL_WINSTL_HPP_SHELL_ALLOCATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_MINOR       4
+# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_MAJOR       4
+# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_MINOR       0
 # define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_EDIT        65
+# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,253 +59,14 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#include <stdexcept>                    // for std::runtime_error
-#include <shlobj.h>                     // for SHGetMalloc()
 
-/* ////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include winstl/memory/shell_allocator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
-{
-# else
-/* Define stlsoft::winstl_project */
-
-namespace stlsoft
-{
-
-namespace winstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup winstl_allocator_library Allocator Library (WinSTL)
-/// \ingroup WinSTL libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types for the Win32 API
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// STL Allocator based on the Win32 shell allocator
-///
-/// \param T The value_type of the allocator
-template <ss_typename_param_k T>
-class shell_allocator
-    : public allocator_base<T, shell_allocator<T> >
-{
-private:
-    typedef allocator_base<T, shell_allocator<T> >                  parent_class_type;
-public:
-    /// The parameterisation of the class
-    typedef shell_allocator<T>                                      class_type;
-    /// The value type
-    typedef ss_typename_type_k parent_class_type::value_type        value_type;
-    /// The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer           pointer;
-    /// The non-mutating (const) pointer type
-    typedef ss_typename_type_k parent_class_type::const_pointer     const_pointer;
-    /// The reference type
-    typedef ss_typename_type_k parent_class_type::reference         reference;
-    /// The non-mutating (const) reference type
-    typedef ss_typename_type_k parent_class_type::const_reference   const_reference;
-    /// The difference type
-    typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
-    /// The size type
-    typedef ss_typename_type_k parent_class_type::size_type         size_type;
-
-public:
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator's <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef shell_allocator<U>                                  other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-
-/// \name Construction
-/// @{
-public:
-    /// Default constructor
-    shell_allocator() stlsoft_throw_1(stlsoft_ns_qual_std(runtime_error) )
-        : m_malloc(get_malloc_())
-    {}
-    /// Copy constructor
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    template <ss_typename_param_k U>
-    shell_allocator(shell_allocator<U> const &rhs) stlsoft_throw_0()
-        : m_malloc(get_malloc_())
-    {}
-#else /* ? STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    shell_allocator(const shell_allocator &rhs) stlsoft_throw_0()
-        : m_malloc(addref_malloc_(rhs.m_malloc))
-    {}
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    /// Destructor
-    ~shell_allocator() stlsoft_throw_0()
-    {
-        if(m_malloc != NULL)
-        {
-            m_malloc->Release();
-        }
-    }
-
-    /// Copy assignment operator
-    ///
-    /// \note This has to be provided, to avoid precipitating C4217 with Visual C++
-    class_type const &operator =(class_type const &rhs)
-    {
-        return *this;
-    }
-/// @}
-
-private:
-    friend class allocator_base<T, shell_allocator<T> >;
-
-    void *do_allocate(size_type n, void const *hint)
-    {
-        STLSOFT_SUPPRESS_UNUSED(hint);
-
-#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-        if(NULL != m_malloc)
-        {
-            return NULL;
-        }
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-
-        return static_cast<void*>(m_malloc->Alloc(n * sizeof(value_type)));
-    }
-    void do_deallocate(void *pv, size_type n)
-    {
-        STLSOFT_SUPPRESS_UNUSED(n);
-
-        m_malloc->Free(pv);
-    }
-    void do_deallocate(void *pv)
-    {
-        m_malloc->Free(pv);
-    }
-
-// Implementation
-private:
-    static LPMALLOC get_malloc_() stlsoft_throw_1(stlsoft_ns_qual_std(runtime_error) )
-    {
-        LPMALLOC    lpMalloc;
-        HRESULT     hr  =   ::SHGetMalloc(&lpMalloc);
-
-        if(FAILED(hr))
-        {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw stlsoft_ns_qual_std(runtime_error)("failed to retrieve the shell allocator");
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            lpMalloc = NULL;
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        }
-
-        return lpMalloc;
-    }
-    static LPMALLOC addref_malloc_(LPMALLOC lpMalloc)
-    {
-#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-        if(NULL != lpMalloc)
-        {
-            return NULL;
-        }
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-
-        lpMalloc->AddRef();
-
-        return lpMalloc;
-    }
-
-// Members
-private:
-    LPMALLOC    m_malloc;
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-// Specialisation for void
-STLSOFT_TEMPLATE_SPECIALISATION
-class shell_allocator<void>
-{
-public:
-    typedef void                    value_type;
-    typedef shell_allocator<void>   class_type;
-    typedef void                    *pointer;
-    typedef void const              *const_pointer;
-    typedef ptrdiff_t               difference_type;
-    typedef ws_size_t               size_type;
-
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef shell_allocator<U>  other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-inline ws_bool_t operator ==(const shell_allocator<T> &/* lhs */, const shell_allocator<T> &/* rhs */)
-{
-    return ws_true_v;
-}
-
-template <ss_typename_param_k T>
-inline ws_bool_t operator !=(const shell_allocator<T> &/* lhs */, const shell_allocator<T> &/* rhs */)
-{
-    return ws_false_v;
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/shell_allocator_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_allocator_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
-# else
-} // namespace winstl_project
-} // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR
+# include <winstl/memory/shell_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     19th January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_H_STLSOFT_ARRAY_PROXY_MAJOR    3
 # define STLSOFT_VER_H_STLSOFT_ARRAY_PROXY_MINOR    0
 # define STLSOFT_VER_H_STLSOFT_ARRAY_PROXY_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_ARRAY_PROXY_EDIT     41
+# define STLSOFT_VER_H_STLSOFT_ARRAY_PROXY_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/array_proxy.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ARRAY_PROXY
 # include <stlsoft/array_proxy.hpp>

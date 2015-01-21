@@ -4,11 +4,11 @@
  * Purpose:     String split functions.
  *
  * Created:     28th January 2005
- * Updated:     26th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_MINOR      3
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_REVISION   3
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_EDIT       22
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_REVISION   4
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -86,9 +86,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY
-# ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_ARRAY
-#  include <stlsoft/static_array.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_ARRAY */
+# ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY
+#  include <stlsoft/containers/static_array.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY */
 #else /* ? STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY */
 # include <vector>
 #endif /* STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY */

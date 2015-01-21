@@ -4,11 +4,11 @@
  * Purpose:     size_traits classes.
  *
  * Created:     24th August 2003
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_EDIT       13
+# define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

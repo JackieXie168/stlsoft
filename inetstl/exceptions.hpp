@@ -4,7 +4,7 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_MAJOR       3
 # define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_MINOR       3
-# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_EDIT        23
+# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_REVISION    3
+# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -145,11 +145,13 @@ protected:
         , m_errorCode(err)
     {}
 public:
-#if defined(STLSOFT_COMPILER_IS_COMO) || \
-    defined(STLSOFT_COMPILER_IS_GCC)
+    /// Destructor
+    ///
+    /// \note This does not do have any implementation, but is required to placate
+    /// the Comeau and GCC compilers, which otherwise complain about mismatched
+    /// exception specifications between this class and its parent
     virtual ~internet_exception() stlsoft_throw_0()
     {}
-#endif /* compiler */
 /// @}
 
 /// \name Accessors
@@ -222,14 +224,19 @@ private:
 // [[synesis:class:exception-policy: throw_internet_exception_policy]]
 struct throw_internet_exception_policy
 {
+/// \name Member Types
+/// @{
 public:
     /// The thrown type
     typedef internet_exception                  thrown_type;
     typedef internet_exception::error_code_type error_code_type;
+/// @}
 
+/// \name Operators
+/// @{
 public:
     /// Function call operator, taking no parameters
-    void operator ()()
+    void operator ()() const
     {
         throw_exception_(thrown_type(::GetLastError()));
     }
@@ -243,9 +250,12 @@ public:
     {
         throw_exception_(thrown_type(reason, err));
     }
+/// @}
 
+/// \name Implementation
+/// @{
 private:
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     template <ss_typename_param_k X>
     static void throw_exception_(X const &x)
 #elif defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -257,6 +267,7 @@ private:
     {
         throw x;
     }
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */

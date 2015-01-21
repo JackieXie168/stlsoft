@@ -1,4 +1,6 @@
 
+// Updated: 5th February 2006
+
 #if !defined(COMSTL_INCL_COMSTL_HPP_SAFEARRAY_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/safearray_sequence.h
 #endif /* !COMSTL_INCL_COMSTL_HPP_SAFEARRAY_SEQUENCE */
@@ -25,7 +27,7 @@ namespace unittest
                     {   10,     0   }
                 ,   {   5,      0   }
             };
-            LPSAFEARRAY     psa =   ::SafeArrayCreate(VT_I4, stlsoft_num_elements(bounds), bounds);
+            LPSAFEARRAY     psa =   ::SafeArrayCreate(VT_I4, STLSOFT_NUM_ELEMENTS(bounds), bounds);
 
             if(NULL == psa)
             {
@@ -63,13 +65,13 @@ namespace unittest
                         bSuccess = false;
                     }
 
-    #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
                     if(stlsoft_ns_qual_std(accumulate)(array.rbegin(), array.rend(), static_cast<long>(0)) != total)
                     {
                         r->report("array contents (reverse iteration) test failed", __LINE__);
                         bSuccess = false;
                     }
-    #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
                 }
 
                 ::SafeArrayDestroy(psa);

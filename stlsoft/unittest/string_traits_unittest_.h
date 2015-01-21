@@ -78,9 +78,9 @@ namespace unittest
 #else
 
 # if 0
-#  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-#  else /* ? __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-#  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#  else /* ? STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             enum { is_array_or_pointer = 0 != base_type_traits_array_detector<S>::value };
 

@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MINOR     3
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MINOR     4
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      57
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -70,6 +70,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE
 # include <stlsoft/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD
+# include <stlsoft/string_access_fwd.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -111,14 +114,8 @@ public:
     typedef ws_uint32_t                     size_type;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-public:
-#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-# pragma message(_sscomp_fileline_message("Make this use a create_() method via MUMI"))
-#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
-
-    ss_explicit_k memory_mapped_file(char_type const *fileName)
-        : m_cb(0)
-        , m_memory(NULL)
+private:
+    void open_(char_type const *fileName)
     {
         scoped_handle<HANDLE>   hfile(  traits_type::create_file(   fileName
                                                                 ,   GENERIC_READ
@@ -200,6 +197,20 @@ public:
                 }
             }
         }
+    }
+public:
+    ss_explicit_k memory_mapped_file(char_type const *fileName)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(fileName);
+    }
+    template <ss_typename_param_k S>
+    ss_explicit_k memory_mapped_file(S const &fileName)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(stlsoft_ns_qual(c_str_ptr)(fileName));
     }
     ~memory_mapped_file() stlsoft_throw_0()
     {

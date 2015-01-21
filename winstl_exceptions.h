@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     2nd January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_EXCEPTIONS_MAJOR       3
 # define WINSTL_VER_H_WINSTL_EXCEPTIONS_MINOR       2
 # define WINSTL_VER_H_WINSTL_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_H_WINSTL_EXCEPTIONS_EDIT        26
+# define WINSTL_VER_H_WINSTL_EXCEPTIONS_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/exceptions.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 # include <winstl/exceptions.hpp>

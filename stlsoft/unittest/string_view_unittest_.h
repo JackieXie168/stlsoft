@@ -1,5 +1,5 @@
 
-// Updated: 22nd January 2006
+// Updated: 5th February 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW)
 # error This file cannot be directly included, and should only be included within stlsoft/string_view.hpp
@@ -203,7 +203,7 @@ namespace unittest
                 r->report("Default construction and/or != comparison failed", __LINE__);
                 bSuccess = false;
             }
-            seg_string_t    ss(s, stlsoft_num_elements(s) - 1);
+            seg_string_t    ss(s, STLSOFT_NUM_ELEMENTS(s) - 1);
             seg_string_t    ss1(&s[6], 6);
             seg_string_t    ss2(&s[0], 5);
 
@@ -242,7 +242,7 @@ namespace unittest
                 bSuccess = false;
             }
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
             seg_string_t    ss3(s);
 
             if(ss3 != s)
@@ -250,7 +250,7 @@ namespace unittest
                 r->report("array[] constructor failed", __LINE__);
                 bSuccess = false;
             }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             return bSuccess;
         }

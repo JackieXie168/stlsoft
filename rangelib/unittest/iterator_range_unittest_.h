@@ -11,7 +11,7 @@ namespace unittest
 {
     namespace iterator_range_util
     {
-        template <typename T>
+        template <ss_typename_param_k T>
         ss_bool_t test_container()
         {
             T           cont;

@@ -4,7 +4,7 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     29th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MINOR    1
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_REVISION 2
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_EDIT     57
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@
  *
  * Also influencing this is whether the compiler/std-library actually provide
  * a char_traits type. GCC 2.95 does not. Presence of this is indicated by the
- * definition of __STLSOFT_CF_std_char_traits_AVAILABLE
+ * definition of STLSOFT_CF_std_char_traits_AVAILABLE
  *
  * Finally, DMC++ has a problem whereby, with the SGI libs, the specialisation
  * of char_traits in the global namespace clashes with stlsoft::char_traits<>.
@@ -92,12 +92,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS
 # include <stlsoft/sign_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS */
-#if defined(__STLSOFT_CF_std_char_traits_AVAILABLE) && \
+#if defined(STLSOFT_CF_std_char_traits_AVAILABLE) && \
     defined(_STLSOFT_NO_NAMESPACE) && \
-    !defined(__STLSOFT_CF_std_NAMESPACE)
+    !defined(STLSOFT_CF_std_NAMESPACE)
 # include <string>                  // for std::char_traits
 #elif defined(STLSOFT_COMPILER_IS_DMC) && \
-      !defined(__STLSOFT_CF_std_NAMESPACE)
+      !defined(STLSOFT_CF_std_NAMESPACE)
 # include <string>                  // for std::char_traits
 #endif /* !::stlsoft && !::std */
 #if !defined(STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS) || \
@@ -107,7 +107,7 @@
 # if defined(STLSOFT_COMPILER_IS_BORLAND) && \
      __BORLANDC__ >= 0x0560
 #  include <mem.h>
-#endif /* __BORLANDC__ == 0x0560 */
+#endif /* compiler */
 #endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS || _DEBUG */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -589,7 +589,7 @@ public:
 
 /* DMC++ special handling */
 #if defined(STLSOFT_COMPILER_IS_DMC) &&   /* compiler is DMC++ */ \
-    !defined(__STLSOFT_CF_std_NAMESPACE)    /* std namespace is not defined */
+    !defined(STLSOFT_CF_std_NAMESPACE)    /* std namespace is not defined */
 
 # if !defined(__SGI_STL_STRING_FWD_H)
 #  error Unexpected
@@ -604,9 +604,9 @@ using ::char_traits;
 /* We only define (stlsoft::)char_traits if no std::char_traits is available, or
  * the stlsoft namespace is defined, or the std namespace is defined.
  */
- #if !defined(__STLSOFT_CF_std_char_traits_AVAILABLE) || /* std does not define char_traits */ \
+ #if !defined(STLSOFT_CF_std_char_traits_AVAILABLE) || /* std does not define char_traits */ \
      !defined(_STLSOFT_NO_NAMESPACE) ||                 /* stlsoft namespace is defined */ \
-     defined(__STLSOFT_CF_std_NAMESPACE)
+     defined(STLSOFT_CF_std_NAMESPACE)
 template<   ss_typename_param_k C
         >
 struct char_traits

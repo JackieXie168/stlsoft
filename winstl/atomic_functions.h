@@ -4,11 +4,11 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_H_ATOMIC_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_H_ATOMIC_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_H_ATOMIC_FUNCTIONS_EDIT      186
+# define WINSTL_VER_WINSTL_H_ATOMIC_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_H_ATOMIC_FUNCTIONS_EDIT      188
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -181,7 +181,7 @@ namespace winstl_project
 # if defined(STLSOFT_COMPILER_IS_MWERKS) && \
      (__MWERKS__ & 0xFF00) < 0x3000
 #  error CodeWarrior 7 and earlier does not generate correct code when inline naked functions are used
-# endif /* __MWERKS__ & 0xFF00) < 0x3000 */
+# endif /* compiler */
 
 #if !defined(__cplusplus) && \
     defined(STSLSOFT_INLINE_ASM_SUPPORTED)
@@ -279,7 +279,7 @@ STLSOFT_INLINE ws_sint32_t atomic_preadd(ws_sint32_t volatile *pl, ws_sint32_t n
 #ifdef STLSOFT_COMPILER_IS_BORLAND
 # pragma warn -8002     /* Suppresses: "Restarting compile using assembly" */
 # pragma warn -8070     /* Suppresses: "Function should return a value" */
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
 // Uni-processor
 
@@ -1360,7 +1360,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile * /* pl
 #ifdef STLSOFT_COMPILER_IS_BORLAND
 # pragma warn .8070     /* Suppresses: "Function should return a value" */
 # pragma warn .8002     /* Suppresses: "Restarting compile using assembly" */
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
 #  else /* STSLSOFT_INLINE_ASM_SUPPORTED */
 /* Non-assembler versions

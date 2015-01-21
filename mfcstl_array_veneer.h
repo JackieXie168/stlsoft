@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the array_veneer template.
  *
  * Created:     28th January 2003
- * Updated:     31st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_MAJOR     3
-# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_MINOR     3
-# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_REVISION  4
-# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_EDIT      47
+# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_MINOR     4
+# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_REVISION  1
+# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_EDIT      49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -358,7 +358,7 @@ public:
         /// \param rhs The instance from which to copy assign
         const_iterator const &operator =(class_type const &rhs)
         {
-            mfcstl_message_assert("Attempting to assign iterator from another container!", m_c == NULL || rhs.m_c == NULL || m_c == rhs.m_c);
+            MFCSTL_MESSAGE_ASSERT("Attempting to assign iterator from another container!", m_c == NULL || rhs.m_c == NULL || m_c == rhs.m_c);
 
             m_c     =   rhs.m_c;
             m_index =   rhs.m_index;
@@ -370,7 +370,7 @@ public:
     public:
         const_reference operator *() const
         {
-            mfcstl_message_assert("", m_c != 0);
+            MFCSTL_MESSAGE_ASSERT("", m_c != 0);
 
             // The non-mutating form of the subscript operator on
             // MFC CArray classes does not return a reference, so
@@ -413,7 +413,7 @@ public:
             // can test both members, which results in the after-the-fact
             // equality evaluating correctly.
 
-            mfcstl_message_assert("invalid comparison between iterators from different ranges", m_c == 0 || rhs.m_c == 0 || m_c == rhs.m_c);
+            MFCSTL_MESSAGE_ASSERT("invalid comparison between iterators from different ranges", m_c == 0 || rhs.m_c == 0 || m_c == rhs.m_c);
 
             return m_index - rhs.m_index;
         }
@@ -530,7 +530,7 @@ public:
         /// \param rhs The instance from which to copy assign
         iterator const &operator =(class_type const &rhs)
         {
-            mfcstl_message_assert("Attempting to assign iterator from another container!", m_c == NULL || rhs.m_c == NULL || m_c == rhs.m_c);
+            MFCSTL_MESSAGE_ASSERT("Attempting to assign iterator from another container!", m_c == NULL || rhs.m_c == NULL || m_c == rhs.m_c);
 
             parent_class_type::operator =(rhs);
 
@@ -539,7 +539,7 @@ public:
 
         reference operator *()
         {
-            mfcstl_message_assert("", m_c != 0);
+            MFCSTL_MESSAGE_ASSERT("", m_c != 0);
 
             return (*const_cast<container_type*>(m_c))[m_index];
         }
@@ -577,13 +577,13 @@ public:
     };
 
 /// The reverse non-mutating (const) iterator type
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)< const_iterator,
                                                                         value_type,
                                                                         value_type, // By-Value Temporary reference category
                                                                         void,       // By-Value Temporary reference category
                                                                         difference_type>    const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 
 // Construction
@@ -652,7 +652,7 @@ public:
     }
 
 //  const_reverse_iterator
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -667,7 +667,7 @@ public:
     {
         return const_reverse_iterator(begin());
     }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Accessors
 public:

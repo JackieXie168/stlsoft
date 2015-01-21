@@ -4,11 +4,11 @@
  * Purpose:     Window update-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_MAJOR      4
-# define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_MINOR      1
+# define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_EDIT       60
+# define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -119,8 +119,8 @@ public:
     ///
     /// Takes a HWND and changes it's current update-status, which is set back to
     /// the original state in the destructor.
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-    template <typename W>
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+    template <ss_typename_param_k W>
     ss_explicit_k window_update_scope(W &wnd)
     {
         HWND    hwnd    =   get_hwnd(wnd);
@@ -131,7 +131,7 @@ public:
     ss_explicit_k window_update_scope(HWND wnd)
         : m_bIsLocked(wnd ? (::LockWindowUpdate(wnd) ? true : false) : false)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Releases the lock, if aquired in the constructor
     ~window_update_scope() stlsoft_throw_0()

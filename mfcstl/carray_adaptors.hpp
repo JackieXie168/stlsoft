@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     31st January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MAJOR    3
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    4
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 2
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     48
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    8
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 1
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,15 +70,24 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
-#ifndef MFCSTL_INCL_MFCSTL_HPP_AFX_ALLOCATOR
-# include <mfcstl/afx_allocator.hpp>
-#endif /* !MFCSTL_INCL_MFCSTL_HPP_AFX_ALLOCATOR */
+#ifndef MFCSTL_INCL_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR
+# include <mfcstl/memory/afx_allocator.hpp>
+#endif /* !MFCSTL_INCL_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR */
 #ifndef MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_SWAP
 # include <mfcstl/containers/carray_swap.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_SWAP */
+#ifndef MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS
+# include <mfcstl/containers/carray_traits.hpp>
+#endif /* !MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS */
+#ifndef MFCSTL_INCL_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES
+# include <mfcstl/util/memory_exception_translation_policies.hpp>
+#endif /* !MFCSTL_INCL_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
@@ -100,7 +109,7 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1300
+    _MSC_VER < 1200
 # define MFCSTL_ARRAY_ADAPTORS_NO_TEMPLATE_RANGE_OPS
 #endif /* compiler */
 
@@ -148,108 +157,6 @@ namespace mfcstl_project
  * Classes
  */
 
-#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for CArray_adaptor_base
-template <ss_typename_param_k C>
-struct CArray_adaptor_traits
-{
-    /// \brief Typedef that defines the type of the elements in the array
-    typedef ????            value_type;
-    /// \brief Typedef that defines the type of the arguments to the methods of the array
-    typedef ????            arg_type;
-    /// \brief Typedef that identifies the actual class type used to parameterise the traits
-};
-
-#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-template <ss_typename_param_k C>
-struct CArray_adaptor_traits;
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct CArray_adaptor_traits<CByteArray>
-{
-    typedef BYTE            value_type;
-    typedef BYTE            arg_type;
-    typedef CByteArray      array_type;
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct CArray_adaptor_traits<CDWordArray>
-{
-    typedef DWORD           value_type;
-    typedef DWORD           arg_type;
-    typedef CDWordArray     array_type;
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct CArray_adaptor_traits<CUIntArray>
-{
-    typedef UINT            value_type;
-    typedef UINT            arg_type;
-    typedef CUIntArray      array_type;
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct CArray_adaptor_traits<CWordArray>
-{
-    typedef WORD            value_type;
-    typedef WORD            arg_type;
-    typedef CWordArray      array_type;
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct CArray_adaptor_traits<CPtrArray>
-{
-    typedef void            *value_type;
-    typedef void            *arg_type;
-    typedef CPtrArray       array_type;
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct CArray_adaptor_traits<CObArray>
-{
-    typedef CObject         *value_type;
-    typedef CObject         *arg_type;
-    typedef CObArray        array_type;
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct CArray_adaptor_traits<CStringArray>
-{
-    typedef CString         value_type;
-#if 0
-    typedef const CString   &arg_type;
-#else /* ? 0 */
-    typedef LPCTSTR         arg_type;
-#endif /* 0 */
-    typedef CStringArray    array_type;
-};
-
-#if defined(__AFXTEMPL_H__) && \
-    defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-template <class V, class A>
-struct CArray_adaptor_traits<CArray<V, A> >
-{
-    typedef V               value_type;
-    typedef A               arg_type;
-    typedef CArray<V, A>    array_type;
-};
-#endif /* __AFXTEMPL_H__ && STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/// \brief Traits type for specific setting of value_type and arg_type
-template<   ss_typename_param_k V
-        ,   ss_typename_param_k A
-        ,   ss_typename_param_k C
-        >
-struct CArray_specific_traits
-{
-    typedef V               value_type;
-    typedef A               arg_type;
-    typedef C               array_type;
-};
-
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 // Forward declarations
 template<   ss_typename_param_k A
@@ -270,11 +177,12 @@ class CArray_iadaptor;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Adaptor class, providing implementation for CArray_cadaptor and 
+/// \brief Adaptor class, providing implementation for CArray_cadaptor and
 /// CArray_iadaptor classes
 ///
 /// \param A The array class, e.g. CObArray, CArray<long>, etc.
-/// \param I The interface specialisation, i.e. CArray_cadaptor<CObArray>, CArray_iadaptor<CArray<long> >, etc.
+/// \param I The interface specialisation, e.g. CArray_cadaptor<CObArray>, CArray_iadaptor<CArray<long> >, etc.
+/// \param T The traits class, e.g. CArray_traits<CObArray>
 ///
 /// \note The elements in an adapted array are moved, during insertion / erasure, rather than copied. This
 ///   means that if the elements in the container maintain pointers to their elements, or their peers, then
@@ -286,10 +194,19 @@ template<   ss_typename_param_k A
 class CArray_adaptor_base
     : public stlsoft_ns_qual(stl_collection_tag)
 {
-private:
+/// \name Member Types
+/// @{
+public:
+    /// The type of the underlying MFC array
     typedef A                                                                   array_type;
-    typedef I                                                                   interface_type;
+private:
+    typedef I                                                                   interface_class_type;
     typedef T                                                                   array_traits_type;
+#if defined(MFCSTL_CARRAY_ADAPTORS_USE_BAD_ALLOC_POLICY)
+    typedef bad_alloc_throwing_policy                                           exception_translation_policy_type;
+#else /* ? MFCSTL_CARRAY_ADAPTORS_USE_BAD_ALLOC_POLICY */
+    typedef CMemoryException_throwing_policy                                    exception_translation_policy_type;
+#endif /* MFCSTL_CARRAY_ADAPTORS_USE_BAD_ALLOC_POLICY */
 public:
     /// The value type
     ///
@@ -308,7 +225,7 @@ public:
     typedef ss_typename_type_k allocator_type::const_pointer                    const_pointer;
     /// The mutating (non-const) iterator type
     typedef
-# if !defined(__STLSOFT_COMPILER_IS_BORLAND)
+# if !defined(STLSOFT_COMPILER_IS_BORLAND)
            ss_typename_type_k
 # endif /* compiler */
                        pointer_iterator <   value_type
@@ -317,9 +234,9 @@ public:
                                         >::type                                 iterator;
     /// The non-mutating (const) iterator type
     typedef
-# if !defined(__STLSOFT_COMPILER_IS_BORLAND)
+# if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
-# endif /* __STLSOFT_COMPILER_IS_BORLAND */
+# endif /* compiler */
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
@@ -330,7 +247,7 @@ public:
     typedef ms_ptrdiff_t                                                        difference_type;
     /// The instantiation of the current type
     typedef CArray_adaptor_base<A, I, T>                                        class_type;
-#ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator   <   iterator
                                                             ,   value_type
@@ -346,20 +263,34 @@ public:
                                                             ,   const_pointer
                                                             ,   difference_type
                                                             >::type             const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+/// @}
 
-/// \name Underlying container
+/// \name Constants
+/// @{
+protected:
+    enum { growthGranularity =  16 };
+
+    static size_type calc_increment_(size_type n)
+    {
+        size_type   numBlocks   =   n / growthGranularity;
+
+        return (1 + numBlocks) * growthGranularity;
+    }
+/// @}
+
+/// \name Underlying Container Access
 /// @{
 public:
     /// \brief Returns a mutating (non-const) reference to the underlying array
     array_type          &get_CArray()
     {
-        return static_cast<interface_type*>(this)->get_actual_array_();
+        return static_cast<interface_class_type*>(this)->get_actual_array();
     }
     /// \brief Returns a non-mutating (const) reference to the underlying array
     array_type const    &get_CArray() const
     {
-        return static_cast<interface_type const*>(this)->get_actual_array_();
+        return static_cast<interface_class_type const*>(this)->get_actual_array();
     }
 /// @}
 
@@ -372,15 +303,48 @@ protected:
     /// for CArray_cadaptor and CArray_iadaptor
     CArray_adaptor_base()
     {}
-public:
     /// \brief Destructor
-    ~CArray_adaptor_base()
+    ~CArray_adaptor_base() stlsoft_throw_0()
     {}
-
+public:
     /// Returns a copy of the allocator used by the container
     allocator_type get_allocator() const
     {
         return allocator_type();
+    }
+#if defined(_DEBUG) || \
+    defined(MFCSTL_ARRAY_ADAPTORS_ALLOW_CAPACITY_PEEK)
+public:
+#else /* ? _DEBUG */
+protected:
+#endif /* _DEBUG */
+    size_type grow_increment() const
+    {
+        class GrowByGetter
+            : public array_type
+        {
+        public:
+            size_type grow_increment() const
+            {
+                return m_nGrowBy;
+            }
+        };
+
+        return static_cast<GrowByGetter const&>(get_CArray()).grow_increment();
+    }
+    size_type capacity() const
+    {
+        class CapacityGetter
+            : public array_type
+        {
+        public:
+            size_type capacity() const
+            {
+                return m_nMaxSize;
+            }
+        };
+
+        return static_cast<CapacityGetter const&>(get_CArray()).capacity();
     }
 /// @}
 
@@ -398,17 +362,37 @@ public:
     void assign(size_type n, value_type const &value)
     {
 #ifdef MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT
-        array_type  ar;
+        try
+        {
+            array_type  ar;
 
-        // TODO: deal with allocation failures
-        ar.InsertAt(0, value, static_cast<int>(n));
-
-        CArray_swap(this->get_CArray(), ar);
+            ar.SetSize(0, calc_increment_(n));
+            if(n > 0) // Can't pass 0 to InsertAt()
+            {
+                ar.InsertAt(0, value, static_cast<int>(n));
+            }
+            CArray_swap(this->get_CArray(), ar);
+        }
+        catch(CMemoryException *px)
+        {
+            exception_translation_policy_type::handle(px);
+        }
+        catch(mfcstl_ns_qual_std(bad_alloc) &x)
+        {
+            exception_translation_policy_type::handle(x);
+        }
 #else /* ? MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
-        // TODO: deal with allocation failures
+//      if( empty() &&
+//          0 != n)
+//      {
+//          resize(1);
+//      }
         resize(n);
-        std::fill_n(begin(), n, value);
+        mfcstl_ns_qual_std(fill_n)(begin(), n, value);
 #endif /* MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
+
+        // Postcondition
+        MFCSTL_ASSERT(size() == n);
     }
 
     /// \brief Assigns each element in the range [first, last) to the array, erasing all prior content
@@ -419,26 +403,48 @@ public:
     /// \note Exception-safety is <b>strong</b> if MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT is defined, otherwise <b>weak</b>.
     ///
     /// \note The elements are default constructed, and then copy-assigned
-    template <ss_typename_param_k I>
-    void assign(I first, I last)
+    template <ss_typename_param_k I2>
+    void assign(I2 first, I2 last)
     {
         // Precondition checks
         MFCSTL_ASSERT(is_valid_source_range_(first, last));
 
-# if defined(MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT) && \
-     !defined(MFCSTL_ARRAY_ADAPTORS_NO_TEMPLATE_RANGE_OPS)
-        CArray_cadaptor<array_type>   arf(first, last);
+#ifdef MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT
+        if(empty())
+        {
+            // If "this" is empty, then we can call clear_and_assign_() to instantiate it
+            // and just catch any thrown exception and call clear() to ensure strong
+            // exception safety.
+            try
+            {
+                clear_and_assign_(first, last);
+            }
+            catch(...)
+            {
+                clear();
 
-        CArray_swap(this->get_CArray(), arf.get_CArray());
-# else /* ? MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
-        // TODO: Specialise for random access iterators
-        clear();
-        std::copy(first, last, std::back_inserter<class_type>(*this));
-# endif /* MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
+                throw;
+            }
+        }
+        else
+        {
+            // Otherwise we need to do construct-and-swap idiom, indirectly, via
+            // an instance of the underlying array type and the CArray_iadaptor.
+            array_type                  ar;
+            CArray_iadaptor<array_type
+                        ,   array_traits_type
+                        >               arp(ar);
+            arp.assign(first, last);
+
+            CArray_swap(this->get_CArray(), ar);
+        }
+#else /* ? MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
+        clear_and_assign_(first, last);
+#endif /* MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
     }
 /// @}
 
-/// \name Capacity
+/// \name Size and Capacity
 /// @{
 public:
     /// \brief The number of items in the array
@@ -460,11 +466,25 @@ public:
     ///
     /// \param n The number of elements that the array will contain after resizing
     ///
-    /// \note Exception-safety is <b>strong</b>
+    /// \note Exception-safety is <b>strong</b> if the default constructor of the value type
+    /// cannot throw exceptions, otherwise it is weak
     void resize(size_type n)
     {
-        // TODO: deal with allocation failures
-        get_CArray().SetSize(n);
+        try
+        {
+            get_CArray().SetSize(n, calc_increment_(n));
+        }
+        catch(CMemoryException *px)
+        {
+            exception_translation_policy_type::handle(px);
+        }
+        catch(mfcstl_ns_qual_std(bad_alloc) &x)
+        {
+            exception_translation_policy_type::handle(x);
+        }
+
+        // Postcondition
+        MFCSTL_ASSERT(size() == n);
     }
     /// \brief Adjusts the number of elements in the array
     ///
@@ -472,10 +492,11 @@ public:
     /// \param value The value of any additional elements created during resizing
     ///
     /// \note Due to the limitations of the underlying CArray-family containers, the
-    ///   additional elements are default constructed and then subjected to 
+    ///   additional elements are default constructed and then subjected to
     ///   copy-assignment.
     ///
-    /// \note Exception-safety is <b>strong</b>
+    /// \note Exception-safety is <b>weak</b>, but the size is maintained in the case
+    /// where an exception is thrown by the copy assignment of any new elements.
     void resize(size_type n, value_type value)
     {
         const size_type oldSize = size();
@@ -484,7 +505,7 @@ public:
         {
             try
             {
-                std::fill_n(begin() + oldSize, n - oldSize, value);
+                mfcstl_ns_qual_std(fill_n)(begin() + oldSize, n - oldSize, value);
             }
             catch(...)
             {
@@ -528,7 +549,7 @@ public:
     {
         if(n >= size())
         {
-            throw std::out_of_range("Invalid index specified");
+            throw mfcstl_ns_qual_std(out_of_range)("Invalid index specified");
         }
 
         return (*this)[n];
@@ -541,7 +562,7 @@ public:
     {
         if(n >= size())
         {
-            throw std::out_of_range("Invalid index specified");
+            throw mfcstl_ns_qual_std(out_of_range)("Invalid index specified");
         }
         return (*this)[n];
     }
@@ -591,7 +612,7 @@ public:
     /// \brief Returns a non-mutable (const) iterator representing the start of the array
     const_iterator begin() const
     {
-        // This is needed because CXxxxArray::GetData() const returns, e.g., const CObject** instead of CObject* const* 
+        // This is needed because CXxxxArray::GetData() const returns, e.g., const CObject** instead of CObject* const*
         value_type const    *p1 =   get_CArray().GetData();
         value_type *const   p2  =   const_cast<value_type *const>(p1);
 
@@ -602,7 +623,7 @@ public:
     {
         return begin() + size();
     }
-#ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// \brief Returns a mutable (non-const) reverse iterator representing the start of the array
     reverse_iterator rbegin()
     {
@@ -623,26 +644,35 @@ public:
     {
         return const_reverse_iterator(begin());
     }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Comparison
 /// @{
 public:
-#if 0
     template<   ss_typename_param_k A2
             ,   ss_typename_param_k I2
             ,   ss_typename_param_k T2
             >
     ms_bool_t equal(CArray_adaptor_base<A2, I2, T2> const &rhs) const
     {
+        typedef CArray_adaptor_base<A2, I2, T2>         rhs_t;
+        typedef ss_typename_type_k rhs_t::value_type    rhs_value_t;
+
+        STLSOFT_STATIC_ASSERT(sizeof(value_type) == sizeof(ss_typename_type_k rhs_t::value_type));
+
+#ifdef STLSOFT_META_HAS_IS_SAME_TYPE
+        STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<value_type, rhs_value_t>::value));
+#endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
+
         return size() == rhs.size() && stlsoft_ns_qual_std(equal)(begin(), end(), rhs.begin());
     }
-#endif /* 0 */
-    template <ss_typename_param_k A2>
-    ms_bool_t equal(A2 const &rhs) const
+
+    ms_bool_t equal(array_type const &rhs) const
     {
-        return size() == rhs.size() && stlsoft_ns_qual_std(equal)(begin(), end(), rhs.begin());
+        array_type const    &lhs    =   this->get_CArray();
+
+        return lhs.GetSize() == rhs.GetSize() && stlsoft_ns_qual_std(equal)(begin(), end(), rhs.GetData());
     }
 /// @}
 
@@ -656,13 +686,41 @@ public:
     /// \note All iterators, pointers and references are invalidated
     void push_back(value_type const &value)
     {
-        // TODO: deal with allocation failures
-        get_CArray().Add(value);
+        const size_type oldSize =   size();
+
+        resize(size());
+
+        try
+        {
+            try
+            {
+                get_CArray().Add(value);
+            }
+            catch(CMemoryException *px)
+            {
+                exception_translation_policy_type::handle(px);
+            }
+            catch(mfcstl_ns_qual_std(bad_alloc) &x)
+            {
+                exception_translation_policy_type::handle(x);
+            }
+        }
+        catch(...)
+        {
+            if(size() != oldSize)
+            {
+                MFCSTL_ASSERT(size() == oldSize + 1);
+
+                resize(oldSize);
+            }
+
+            throw;
+        }
     }
     /// \brief Removes the last element from the non-empty array
     ///
     /// \note The behaviour is undefined if the array is empty
-    void pop_back()
+    void pop_back() stlsoft_throw_0()
     {
         // Precondition checks
         MFCSTL_MESSAGE_ASSERT("pop_back() called on empty container", !empty());
@@ -682,17 +740,44 @@ public:
     /// \note Any elements after the insertion position are moved using memmove,
     ///   rather than by copy construction. If the element type maintains
     ///   pointers to its internal members, or to its peer elements, then these
-    ///   relationships will be broked, and the subsequent behaviour of the
+    ///   relationships will be broken, and the subsequent behaviour of the
     ///   program will be undefined
     iterator insert(iterator pos, value_type const &value)
     {
         // Precondition checks
         MFCSTL_ASSERT(pos == end() || (pos >= begin() && pos < end()));
 
-        difference_type index = pos - begin();
+        difference_type index   =   pos - begin();
+        const size_type oldSize =   size();
 
-        // TODO: deal with allocation failures
-        get_CArray().InsertAt(static_cast<int>(index), value, 1);
+        resize(size());
+
+        try
+        {
+            try
+            {
+                get_CArray().InsertAt(static_cast<int>(index), value, 1);
+            }
+            catch(CMemoryException *px)
+            {
+                exception_translation_policy_type::handle(px);
+            }
+            catch(mfcstl_ns_qual_std(bad_alloc) &x)
+            {
+                exception_translation_policy_type::handle(x);
+            }
+        }
+        catch(...)
+        {
+            if(size() != oldSize)
+            {
+                MFCSTL_ASSERT(size() == oldSize + 1);
+
+                get_CArray().RemoveAt(static_cast<int>(index), 1);
+            }
+
+            throw;
+        }
 
         return begin() + index;
     }
@@ -717,8 +802,48 @@ public:
 
         difference_type index = pos - begin();
 
-        // TODO: deal with allocation failures
-        get_CArray().InsertAt(static_cast<int>(index), value, n);
+        if(empty())
+        {
+            MFCSTL_ASSERT(0 == index);
+
+            assign(n, value);
+        }
+        else
+        {
+            const size_type oldSize =   size();
+
+            resize(size());
+
+            try
+            {
+                try
+                {
+                    if(n > 0) // Can't pass 0 to InsertAt()
+                    {
+                        get_CArray().InsertAt(static_cast<int>(index), value, n);
+                    }
+                }
+                catch(CMemoryException *px)
+                {
+                    exception_translation_policy_type::handle(px);
+                }
+                catch(mfcstl_ns_qual_std(bad_alloc) &x)
+                {
+                    exception_translation_policy_type::handle(x);
+                }
+            }
+            catch(...)
+            {
+                if(size() != oldSize)
+                {
+                    MFCSTL_ASSERT(size() == oldSize + n);
+
+                    get_CArray().RemoveAt(static_cast<int>(index), size() - oldSize);
+                }
+
+                throw;
+            }
+        }
     }
     /// \brief Inserts the elements in the range [first, last) at the given position
     ///
@@ -734,8 +859,8 @@ public:
     ///   pointers to its internal members, or to its peer elements, then these
     ///   relationships will be broked, and the subsequent behaviour of the
     ///   program will be undefined
-    template <ss_typename_param_k I>
-    void insert(iterator pos, I first, I last)
+    template <ss_typename_param_k I2>
+    void insert(iterator pos, I2 first, I2 last)
     {
         // Precondition checks
         MFCSTL_ASSERT(is_valid_source_range_(first, last));
@@ -746,10 +871,38 @@ public:
                     ,   array_traits_type
                     >               arp(ar);
         arp.assign(first, last);
-        difference_type             index = pos - begin();
+        difference_type             index   =   pos - begin();
+        const size_type             oldSize =   size();
+        const size_type             n       =   arp.size();
 
-        // TODO: deal with allocation failures
-        get_CArray().InsertAt(static_cast<int>(index), &ar);
+        resize(size());
+
+        try
+        {
+            try
+            {
+                get_CArray().InsertAt(static_cast<int>(index), &ar);
+            }
+            catch(CMemoryException *px)
+            {
+                exception_translation_policy_type::handle(px);
+            }
+            catch(mfcstl_ns_qual_std(bad_alloc) &x)
+            {
+                exception_translation_policy_type::handle(x);
+            }
+        }
+        catch(...)
+        {
+            if(size() != oldSize)
+            {
+                MFCSTL_ASSERT(size() == oldSize + n);
+
+                get_CArray().RemoveAt(static_cast<int>(index), size() - oldSize);
+            }
+
+            throw;
+        }
     }
     /// \brief Erases the element at the given position
     ///
@@ -765,7 +918,7 @@ public:
     ///   pointers to its internal members, or to its peer elements, then these
     ///   relationships will be broked, and the subsequent behaviour of the
     ///   program will be undefined
-    iterator erase(iterator pos)
+    iterator erase(iterator pos) stlsoft_throw_0()
     {
         // Precondition checks
         MFCSTL_ASSERT(pos == end() || (pos >= begin() && pos < end()));
@@ -775,6 +928,8 @@ public:
 
         // Postcondition checks
         MFCSTL_ASSERT(pos == begin() + index);
+
+        resize(size());
 
         return pos;
     }
@@ -793,7 +948,7 @@ public:
     ///   pointers to its internal members, or to its peer elements, then these
     ///   relationships will be broked, and the subsequent behaviour of the
     ///   program will be undefined
-    iterator erase(iterator first, iterator last)
+    iterator erase(iterator first, iterator last) stlsoft_throw_0()
     {
         // Precondition checks
         MFCSTL_ASSERT(first <= last);
@@ -801,19 +956,21 @@ public:
         MFCSTL_ASSERT(last == end() || (last >= begin() && last < end()));
 
         difference_type index = first - begin();
-        get_CArray().RemoveAt(static_cast<int>(index), std::distance(first, last));
-
-// NOTE: CArray - uses memmove
+        get_CArray().RemoveAt(static_cast<int>(index), mfcstl_ns_qual_std(distance)(first, last));
 
         // Postcondition checks
         MFCSTL_ASSERT(first == begin() + index);
 
+        resize(size());
+
         return first;
     }
     /// \brief Removes all the elements from the array
-    void clear()
+    void clear() stlsoft_throw_0()
     {
         get_CArray().RemoveAll();
+
+        resize(size());
     }
 
 #ifdef MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT
@@ -822,9 +979,9 @@ public:
     ///
     /// \param rhs The instance whose contents will be exchanged with the callee
     ///
-    /// \note This method is only defined if the preprocessor symbol 
+    /// \note This method is only defined if the preprocessor symbol
     ///   MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT is defined
-    void swap(class_type &rhs)
+    void swap(class_type &rhs) stlsoft_throw_0()
     {
         mfcstl::CArray_swap(this->get_CArray(), rhs.get_CArray());
     }
@@ -842,97 +999,143 @@ public:
     }
 /// @}
 
+/// \name Implementation
+/// @{
+private:
+    template <ss_typename_param_k I2>
+# if defined(STLSOFT_COMPILER_IS_MWERKS)
+    // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
+    void clear_and_assign_(I2 first, I2 last, stlsoft_ns_qual_std(input_iterator_tag) const *)
+# else /* ? compiler */
+    void clear_and_assign_(I2 first, I2 last, stlsoft_ns_qual_std(input_iterator_tag))
+# endif /* compiler */
+    {
+        clear();
+
+        mfcstl_ns_qual_std(copy)(first, last, mfcstl_ns_qual_std(back_inserter)<class_type>(*this));
+    }
+    template <ss_typename_param_k I2>
+# if defined(STLSOFT_COMPILER_IS_MWERKS)
+    // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
+    void clear_and_assign_(I2 first, I2 last, stlsoft_ns_qual_std(forward_iterator_tag) const *)
+# else /* ? compiler */
+    void clear_and_assign_(I2 first, I2 last, stlsoft_ns_qual_std(forward_iterator_tag))
+# endif /* compiler */
+    {
+        resize(mfcstl_ns_qual_std(distance)(first, last));
+
+        mfcstl_ns_qual_std(copy)(first, last, begin());
+    }
+
+    template <ss_typename_param_k I2>
+    void clear_and_assign_(I2 first, I2 last)
+    {
+# if defined(STLSOFT_COMPILER_IS_GCC) && \
+     __GNUC__ < 3
+        typedef ss_typename_type_k mfcstl_ns_qual_std(iterator_traits)<I2> traits_t;
+
+        clear_and_assign_(first, last, traits_t::iterator_category());
+# elif defined(STLSOFT_COMPILER_IS_MWERKS)
+        clear_and_assign_(first, last, stlsoft_iterator_query_category_ptr(I2, first));
+# else /* ? compiler */
+        clear_and_assign_(first, last, stlsoft_iterator_query_category(I2, first));
+# endif /* compiler */
+    }
+
 protected:
 #if (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER > 1200)
-    template <ss_typename_param_k II>
+    template <ss_typename_param_k I2>
 # if defined(STLSOFT_COMPILER_IS_MWERKS)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
-    static ms_bool_t is_valid_source_range_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const *)
+    static ms_bool_t is_valid_source_range_(I2 first, I2 last, stlsoft_ns_qual_std(input_iterator_tag) const *)
 # else /* ? compiler */
-    static ms_bool_t is_valid_source_range_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
+    static ms_bool_t is_valid_source_range_(I2 first, I2 last, stlsoft_ns_qual_std(input_iterator_tag))
 # endif /* compiler */
     {
         return true;    // Can't test them, as that eats their state, so have to assume yes
     }
 #endif /* compiler */
 
-    template<   ss_typename_param_k II
-            ,   ss_typename_param_k T
+    template<   ss_typename_param_k I2
+            ,   ss_typename_param_k T2
             >
-    static ms_bool_t is_valid_source_range_(II first, II last, T)
+    static ms_bool_t is_valid_source_range_(I2 first, I2 last, T2)
     {
         return true;    // FI and BI don't have <=, so cannot test, so have to assume yes
     }
 
 #if (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER > 1200)
-    template <ss_typename_param_k II>
+    template <ss_typename_param_k I2>
 # if defined(STLSOFT_COMPILER_IS_MWERKS)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
-    static ms_bool_t is_valid_source_range_(II first, II last, stlsoft_ns_qual_std(random_access_iterator_tag) const *)
+    static ms_bool_t is_valid_source_range_(I2 first, I2 last, stlsoft_ns_qual_std(random_access_iterator_tag) const *)
 # else /* ? compiler */
-    static ms_bool_t is_valid_source_range_(II first, II last, stlsoft_ns_qual_std(random_access_iterator_tag))
+    static ms_bool_t is_valid_source_range_(I2 first, I2 last, stlsoft_ns_qual_std(random_access_iterator_tag))
 # endif /* compiler */
     {
         return first <= last;
     }
 #endif /* compiler */
 
-    template <ss_typename_param_k I>
-    static ms_bool_t is_valid_source_range_(I first, I last)
+    template <ss_typename_param_k I2>
+    static ms_bool_t is_valid_source_range_(I2 first, I2 last)
     {
 # if defined(STLSOFT_COMPILER_IS_GCC) && \
      __GNUC__ < 3
-        typedef ss_typename_type_k std::iterator_traits<II> traits_t;
+        typedef ss_typename_type_k mfcstl_ns_qual_std(iterator_traits)<I2> traits_t;
 
         return is_valid_source_range_(first, last, traits_t::iterator_category());
 # elif defined(STLSOFT_COMPILER_IS_MWERKS)
-        return is_valid_source_range_(first, last, stlsoft_iterator_query_category_ptr(II, first));
+        return is_valid_source_range_(first, last, stlsoft_iterator_query_category_ptr(I2, first));
 # elif defined(STLSOFT_COMPILER_IS_DMC)
         return true;
 # else /* ? compiler */
-        return is_valid_source_range_(first, last, stlsoft_iterator_query_category(II, first));
+        return is_valid_source_range_(first, last, stlsoft_iterator_query_category(I2, first));
 # endif /* compiler */
     }
 
 #if 0
-    template <ss_typename_param_k T>
-    static ms_bool_t is_valid_source_range_(T *first, T *last)
+    template <ss_typename_param_k T2>
+    static ms_bool_t is_valid_source_range_(T2 *first, T2 *last)
     {
         return first <= last;
     }
 #endif /* 0 */
 
 #if 0
-    template <ss_typename_param_k T>
-    static ms_bool_t is_valid_source_range_(T const *first, T const *last)
+    template <ss_typename_param_k T2>
+    static ms_bool_t is_valid_source_range_(T2 const *first, T2 const *last)
     {
         return first <= last;
     }
 #endif /* 0 */
+/// @}
 
-/// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     CArray_adaptor_base(class_type const &rhs);
     class_type &operator =(class_type const &rhs);
+/// @}
 };
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /// \brief Adaptor class, representing a Class Adaptor over the CArray family of MFC containers
 ///
-/// The adaptor, being a facade, is 
+/// The adaptor, being a facade, is
 ///
 /// It is used as follows:
 ///
 /// \htmlonly
 /// <pre>
 ///   mfcstl::CArray_cadaptor<CStringArray>   ar;
-/// 
+///
 ///   // As an MFC CStringArray:
 ///   ar.Add("String 1");
 ///   ar.InsertAt(0, "String 0");
-/// 
+///
 ///   // As an STL container
 ///   ar.push_back("String 2");
 ///   std::list<CString>  l;
@@ -950,16 +1153,19 @@ private:
 ///   they are not suitable for use.
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 template<   ss_typename_param_k A
-        ,   ss_typename_param_k T = CArray_adaptor_traits<A>
+        ,   ss_typename_param_k T = CArray_traits<A>
         >
 class CArray_cadaptor
         : public A
         , public CArray_adaptor_base<A, CArray_cadaptor<A, T>, T>
 {
+/// \name Member Types
+/// @{
 private:
-    typedef A                                                       array_type;
     typedef CArray_adaptor_base<A, CArray_cadaptor<A, T>, T>        parent_class_type;
 public:
+    /// The type of the underlying MFC array
+    typedef ss_typename_type_k parent_class_type::array_type        array_type;
     /// The value type
     typedef ss_typename_type_k parent_class_type::value_type        value_type;
     /// The allocator type
@@ -982,64 +1188,93 @@ public:
     typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
     /// The instantiation of the current type
     typedef CArray_cadaptor<A, T>                                   class_type;
+/// @}
 
+/// \name Identity
+/// @{
 private:
     friend class CArray_adaptor_base<A, CArray_cadaptor<A, T>, T>;
 
-    array_type          &get_actual_array_()
+    array_type          &get_actual_array()
     {
         return *this;
     }
-    array_type const    &get_actual_array_() const
+    array_type const    &get_actual_array() const
     {
         return *this;
     }
+/// @}
 
-public: // Construction
-    CArray_cadaptor()
-    {}
+/// \name Construction
+/// @{
+public:
+    /// Default constructs an instance
+    ///
+    /// \note It takes a parameter of type <code>allocator_type</code>, but
+    /// ignores it. This facilitates adaptation by the standard adaptor
+    /// <code>std::stack</code>.
+    ss_explicit_k CArray_cadaptor(allocator_type const & = allocator_type())
+    {
+        parent_class_type::resize(0);   // DMC++ needs it to be qualified. Go figure!
+    }
+    /// Constructs an instance with the given number of elements
+    ///
+    /// \param n The number of elements
     explicit CArray_cadaptor(size_type n)
     {
-        resize(n);
+        parent_class_type::resize(n);
     }
+    /// Constructs an instance with the given number of elements
+    ///
+    /// \param n The number of elements
+    /// \param value The value of each element
     CArray_cadaptor(size_type n, value_type const &value)
     {
-        resize(n, v);
+        parent_class_type::assign(n, value);
     }
+    /// Copy constructor
     CArray_cadaptor(class_type const &rhs)
     {
-        resize(rhs.size());
-        std::copy(rhs.begin(), rhs.end(), begin());
+        parent_class_type::assign(rhs.begin(), rhs.end());
     }
+    /// Copy constructs an instance from the given underlying array
     CArray_cadaptor(array_type const &rhs)
     {
-        resize(static_cast<size_type>(rhs.GetSize()));
-        std::copy(rhs.GetData(), rhs.GetData() + rhs.GetSize(), begin());
+        parent_class_type::assign(rhs.GetData(), rhs.GetData() + rhs.GetSize());
     }
-    template <ss_typename_param_k I>
-    CArray_cadaptor(I first, I last)
+    /// Constructs an instance from the given range
+    template <ss_typename_param_k I2>
+    CArray_cadaptor(I2 first, I2 last)
     {
         // Precondition checks
         MFCSTL_ASSERT(parent_class_type::is_valid_source_range_(first, last));
 
-        std::copy(first, last, std::back_inserter<class_type>(*this));
+        parent_class_type::assign(first, last);
     }
-    ~CArray_cadaptor()
+    ~CArray_cadaptor() stlsoft_throw_0()
     {
-        STLSOFT_STATIC_ASSERT(sizeof(A) == sizeof(typename T::array_type));
+        STLSOFT_STATIC_ASSERT(sizeof(A) == sizeof(ss_typename_type_k T::array_type));
     }
+/// @}
 
+/// \name Assignment
+/// @{
+public:
     class_type &operator =(class_type const &rhs)
     {
 #ifdef MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT
         class_type t(rhs);
         t.swap(*this);
 #else /* ? MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
-        parent_class_type::operator =(rhs);
+        parent_class_type::assign(rhs.begin(), rhs.end());
 #endif /* MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
 
         return *this;
     }
+/// @}
+
+/// \name Element Access
+/// @{
 public:
 #if defined(STLSOFT_COMPILER_IS_DMC)
     reference operator [](size_type index)
@@ -1053,6 +1288,7 @@ public:
 #else /* ? compiler */
     using parent_class_type::operator [];
 #endif /* compiler */
+/// @}
 };
 
 
@@ -1065,11 +1301,11 @@ public:
 /// <pre>
 ///   CStringArray                          ar;
 ///   mfcstl::CArray_iadaptor<CStringArray> arp;
-/// 
+///
 ///   // As an MFC CStringArray:
 ///   ar.Add("String 1");
 ///   ar.InsertAt(0, "String 0");
-/// 
+///
 ///   // As an STL container
 ///   arp.push_back("String 2");
 ///   std::list<CString>  l;
@@ -1087,15 +1323,18 @@ public:
 ///   they are not suitable for use.
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 template<   ss_typename_param_k A
-        ,   ss_typename_param_k T = CArray_adaptor_traits<A>
+        ,   ss_typename_param_k T = CArray_traits<A>
         >
 class CArray_iadaptor
         : public CArray_adaptor_base<A, CArray_iadaptor<A, T>, T>
 {
+/// \name Member Types
+/// @{
 private:
-    typedef A                                                       array_type;
     typedef CArray_adaptor_base<A, CArray_iadaptor<A, T>, T>        parent_class_type;
 public:
+    /// The type of the underlying MFC array
+    typedef ss_typename_type_k parent_class_type::array_type        array_type;
     /// The value type
     typedef ss_typename_type_k parent_class_type::value_type        value_type;
     /// The allocator type
@@ -1118,20 +1357,24 @@ public:
     typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
     /// The instantiation of the current type
     typedef CArray_iadaptor<A, T>                                   class_type;
+/// @}
 
+/// \name Identity
+/// @{
 private:
     friend class CArray_adaptor_base<A, CArray_iadaptor<A, T>, T>;
 
-    array_type          &get_actual_array_()
+    array_type          &get_actual_array()
     {
         MFCSTL_ASSERT(NULL != m_pArray);
         return *m_pArray;
     }
-    array_type const    &get_actual_array_() const
+    array_type const    &get_actual_array() const
     {
         MFCSTL_ASSERT(NULL != m_pArray);
         return *m_pArray;
     }
+/// @}
 
 /// \name Construction
 /// @{
@@ -1141,15 +1384,14 @@ public:
          : m_pArray(&array)
     {
         STLSOFT_STATIC_ASSERT(sizeof(array_type) == sizeof(A2));
-#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_META_HAS_IS_SAME_TYPE
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<array_type, A2>::value));
-#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-        ASSERT(0 == strcmp(array.GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
-#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-
-#ifdef _CPPRTTI
-        ASSERT(0 == strcmp(typeid(A2).name(), typeid(array_type).name()));
-#endif /* _CPPRTTI */
+#else /* ? STLSOFT_META_HAS_IS_SAME_TYPE */
+        ASSERT(0 == ::strcmp(array.GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
+# ifdef _CPPRTTI
+        ASSERT(0 == ::strcmp(typeid(A2).name(), typeid(array_type).name()));
+# endif /* _CPPRTTI */
+#endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
     }
     template <ss_typename_param_k A2>
     CArray_iadaptor(A2 *pArray)
@@ -1158,32 +1400,35 @@ public:
         MFCSTL_MESSAGE_ASSERT("Cannot initialise a CArray_iadaptor with a NULL pointer", NULL != pArray);
 
         STLSOFT_STATIC_ASSERT(sizeof(array_type) == sizeof(A2));
-#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_META_HAS_IS_SAME_TYPE
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<array_type, A2>::value));
-#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-        ASSERT(0 == strcmp(pArray->GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
-#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-
-#ifdef _CPPRTTI
-        ASSERT(0 == strcmp(typeid(A2).name(), typeid(array_type).name()));
-#endif /* _CPPRTTI */
+#else /* ? STLSOFT_META_HAS_IS_SAME_TYPE */
+        ASSERT(0 == ::strcmp(pArray->GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
+# ifdef _CPPRTTI
+        ASSERT(0 == ::strcmp(typeid(A2).name(), typeid(array_type).name()));
+# endif /* _CPPRTTI */
+#endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
     }
 /// @}
-        
+
+/// \name Members
+/// @{
 private:
     array_type  *m_pArray;
+/// @}
 
-/// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     CArray_iadaptor(class_type const &rhs);            // Only possible semantics for copy-ctor are share underlying array
     class_type &operator =(class_type const &rhs);  // Could either repoint, or could do deep copy.
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Comparison
  */
 
-#if 1
 template<   ss_typename_param_k A1
         ,   ss_typename_param_k A2
         ,   ss_typename_param_k I1
@@ -1207,49 +1452,42 @@ inline ms_bool_t operator !=(CArray_adaptor_base<A1, I1, T1> const &lhs, CArray_
 {
     return !lhs.equal(rhs);
 }
-#endif /* 0 */
 
-#if 0
-template<   ss_typename_param_k A1
-        ,   ss_typename_param_k A2
-        ,   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
         >
-inline ms_bool_t operator !=(CArray_cadaptor<A1, T1> const &lhs, CArray_cadaptor<A2, T2> const &rhs)
+inline ms_bool_t operator ==(CArray_adaptor_base<A, I, T> const &lhs, A const &rhs)
 {
-    return !lhs.equal(rhs.get_CArray());
+    return lhs.equal(rhs);
 }
 
-template<   ss_typename_param_k A1
-        ,   ss_typename_param_k A2
-        ,   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
         >
-inline ms_bool_t operator !=(CArray_iadaptor<A1, T1> const &lhs, CArray_iadaptor<A2, T2> const &rhs)
+inline ms_bool_t operator !=(CArray_adaptor_base<A, I, T> const &lhs, A const &rhs)
 {
-    return !lhs.equal(rhs.get_CArray());
+    return !lhs.equal(rhs);
 }
 
-template<   ss_typename_param_k A1
-        ,   ss_typename_param_k A2
-        ,   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
         >
-inline ms_bool_t operator !=(CArray_cadaptor<A1, T1> const &lhs, CArray_iadaptor<A2, T2> const &rhs)
+inline ms_bool_t operator ==(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
 {
-    return !lhs.equal(rhs.get_CArray());
+    return rhs.equal(lhs);
 }
 
-template<   ss_typename_param_k A1
-        ,   ss_typename_param_k A2
-        ,   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
+template<   ss_typename_param_k A
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k T
         >
-inline ms_bool_t operator !=(CArray_iadaptor<A1, T1> const &lhs, CArray_cadaptor<A2, T2> const &rhs)
+inline ms_bool_t operator !=(A const &lhs, CArray_adaptor_base<A, I, T> const &rhs)
 {
-    return !lhs.equal(rhs.get_CArray());
+    return !rhs.equal(lhs);
 }
-#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

@@ -43,7 +43,7 @@ namespace unittest
                 bSuccess = false;
             }
 
-            // This is a bogus comparison, serving just to delude the compiler that the 
+            // This is a bogus comparison, serving just to delude the compiler that the
             // unreachable call to the defaulted grow() is reachable.
             if(!buf_a.grow(buf_a.size()))
             {

@@ -4,11 +4,11 @@
  * Purpose:     Helper for accessing token information.
  *
  * Created:     20th June 2003
- * Updated:     22nd December 2005
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_EDIT       38
+# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
 # include <stlsoft/exceptions.hpp>            // for stlsoft::null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
@@ -232,18 +232,18 @@ struct token_information_traits<static_cast<TOKEN_INFORMATION_CLASS>(TokenOrigin
 /// Provides typed access to token information.
 ///
 template<   TOKEN_INFORMATION_CLASS C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 # ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
 #  pragma message(_sscomp_fileline_message("Note that we have to have data_type as a parameter, otherwise VC5&6 have a cow"))
 # endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
         ,   ss_typename_param_k     X = stlsoft_ns_qual(null_exception_policy)
         ,   ss_typename_param_k     D = ss_typename_type_def_k token_information_traits<C>::data_type
         ,   ss_typename_param_k     A = processheap_allocator<ss_byte_t>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k     X /* = stlsoft_ns_qual(null_exception_policy) */
         ,   ss_typename_param_k     D /* = token_information_traits<C>::data_type */
         ,   ss_typename_param_k     A /* = processheap_allocator<ss_byte_t> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class token_information
 {

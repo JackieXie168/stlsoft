@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        49
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -129,11 +129,11 @@ public:
     }
     static ws_int_t get_text(HWND hwnd, ws_int_t index, ws_char_a_t *s)
     {
-        return listbox_gettext(hwnd, index, s);
+        return listbox_gettext_a(hwnd, index, s);
     }
     static ws_int_t get_text(HWND hwnd, ws_int_t index, ws_char_w_t *s)
     {
-        return listbox_gettext(hwnd, index, s);
+        return listbox_gettext_w(hwnd, index, s);
     }
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -193,7 +193,7 @@ public:
     /// Indicates whether the list-box is empty
     ws_bool_t empty() const
     {
-        return size() == 0;
+        return 0 == size();
     }
     /// Returns the maximum number of items that the list-box can contain
     static size_type max_size()
@@ -217,7 +217,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const
     {
-        return const_iterator(m_hwnd, static_cast<int>(control_traits_type::get_count(m_hwnd)));
+        return const_iterator(m_hwnd, static_cast<int>(size()));
     }
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)

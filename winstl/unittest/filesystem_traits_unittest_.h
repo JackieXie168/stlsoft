@@ -1,5 +1,5 @@
 
-// Updated: 16th September 2005
+// Updated: 5th February 2006
 
 #if !defined(WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS)
 # error This file cannot be directly included, and should only be included within winstl/filesystem_traits.hpp
@@ -24,7 +24,7 @@ namespace unittest
             char        sz2[1 + 4096];
             char        cwd[1 + 4096];
 
-            if(0 == ::GetCurrentDirectoryA(stlsoft_num_elements(cwd), cwd))
+            if(0 == ::GetCurrentDirectoryA(STLSOFT_NUM_ELEMENTS(cwd), cwd))
             {
                 r->report("Failed to get current directory", __LINE__);
                 bSuccess = false;
@@ -33,8 +33,8 @@ namespace unittest
             {
                 char        *pFile1;
                 char        *pFile2;
-                ss_size_t   cch1    =   traits_a_t::get_full_path_name(".", stlsoft_num_elements(sz1), sz1, &pFile1);
-                ss_size_t   cch2    =   traits_a_t::get_full_path_name(cwd, stlsoft_num_elements(sz2), sz2, &pFile2);
+                ss_size_t   cch1    =   traits_a_t::get_full_path_name(".", STLSOFT_NUM_ELEMENTS(sz1), sz1, &pFile1);
+                ss_size_t   cch2    =   traits_a_t::get_full_path_name(cwd, STLSOFT_NUM_ELEMENTS(sz2), sz2, &pFile2);
 
                 STLSOFT_SUPPRESS_UNUSED(cch1);
                 STLSOFT_SUPPRESS_UNUSED(cch2);
@@ -48,8 +48,8 @@ namespace unittest
 
                 traits_a_t::str_cat(traits_a_t::ensure_dir_end(cwd), "..\\..");
 
-                cch1    =   traits_a_t::get_full_path_name("..\\..", stlsoft_num_elements(sz1), sz1, &pFile1);
-                cch2    =   traits_a_t::get_full_path_name(cwd, stlsoft_num_elements(sz2), sz2, &pFile2);
+                cch1    =   traits_a_t::get_full_path_name("..\\..", STLSOFT_NUM_ELEMENTS(sz1), sz1, &pFile1);
+                cch2    =   traits_a_t::get_full_path_name(cwd, STLSOFT_NUM_ELEMENTS(sz2), sz2, &pFile2);
 
                 STLSOFT_SUPPRESS_UNUSED(cch1);
                 STLSOFT_SUPPRESS_UNUSED(cch2);
@@ -155,7 +155,7 @@ namespace unittest
                     ,   "\\\\a"
                 };
 
-                { for(size_t i = 0; i < stlsoft_num_elements(ended_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(ended_dirs); ++i)
                 {
                     if(!traits_a_t::has_dir_end(ended_dirs[i]))
                     {
@@ -168,7 +168,7 @@ namespace unittest
                     }
                 }}
 
-                { for(size_t i = 0; i < stlsoft_num_elements(unended_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(unended_dirs); ++i)
                 {
                     if(traits_a_t::has_dir_end(unended_dirs[i]))
                     {
@@ -257,7 +257,7 @@ namespace unittest
                     ,   "H:a/"
                 };
 
-                { for(size_t i = 0; i < stlsoft_num_elements(rooted_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(rooted_dirs); ++i)
                 {
                     if(!traits_a_t::is_path_rooted(rooted_dirs[i]))
                     {
@@ -270,7 +270,7 @@ namespace unittest
                     }
                 }}
 
-                { for(size_t i = 0; i < stlsoft_num_elements(unrooted_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(unrooted_dirs); ++i)
                 {
                     if(traits_a_t::is_path_rooted(unrooted_dirs[i]))
                     {
@@ -318,7 +318,7 @@ namespace unittest
                     ,   "/a/"
                 };
 
-                { for(size_t i = 0; i < stlsoft_num_elements(absolute_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(absolute_dirs); ++i)
                 {
                     if(!traits_a_t::is_path_absolute(absolute_dirs[i]))
                     {
@@ -331,7 +331,7 @@ namespace unittest
                     }
                 }}
 
-                { for(size_t i = 0; i < stlsoft_num_elements(unabsolute_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(unabsolute_dirs); ++i)
                 {
                     if(traits_a_t::is_path_absolute(unabsolute_dirs[i]))
                     {
@@ -379,7 +379,7 @@ namespace unittest
                     ,   "/a/"
                 };
 
-                { for(size_t i = 0; i < stlsoft_num_elements(UNC_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(UNC_dirs); ++i)
                 {
                     if(!traits_a_t::is_path_UNC(UNC_dirs[i]))
                     {
@@ -392,7 +392,7 @@ namespace unittest
                     }
                 }}
 
-                { for(size_t i = 0; i < stlsoft_num_elements(unUNC_dirs); ++i)
+                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(unUNC_dirs); ++i)
                 {
                     if(traits_a_t::is_path_UNC(unUNC_dirs[i]))
                     {

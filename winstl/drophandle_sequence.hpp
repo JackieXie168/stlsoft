@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     26th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 4
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     67
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    3
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,20 +63,20 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#if defined(__STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED) || \
+#if defined(STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1200)
-# ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-#  include <winstl/processheap_allocator.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+# ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+#  include <winstl/memory/processheap_allocator.hpp>
+# endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
 #  include <stlsoft/simple_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-#else /* ? __STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
+#else /* ? STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING
 #  include <stlsoft/static_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING */
-#endif /* __STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
+#endif /* STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>              // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
@@ -113,17 +113,17 @@ namespace winstl_project
  * Typedefs
  */
 
-#ifdef __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE
-# undef __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE
-#endif /* __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE */
+#ifdef _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE
+# undef _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE
+#endif /* _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE */
 
-#if defined(__STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED) || \
+#if defined(STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1200)
-# define __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)    stlsoft_ns_qual(basic_simple_string)<C, stlsoft_ns_qual(char_traits)<C>, processheap_allocator<C> >
-#else /* ? __STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
-# define __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)    stlsoft_ns_qual(basic_static_string)<C, _MAX_PATH>
-#endif /* __STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
+# define _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)     stlsoft_ns_qual(basic_simple_string)<C, stlsoft_ns_qual(char_traits)<C>, processheap_allocator<C> >
+#else /* ? STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
+# define _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)     stlsoft_ns_qual(basic_static_string)<C, _MAX_PATH>
+#endif /* STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Forward declarations
@@ -192,18 +192,18 @@ struct drophandle_sequence_traits<ws_char_w_t>
 /// \param C The character type
 /// \param T The traits type. For translators that support default template arguments this defaults to drophandle_sequence_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = drophandle_sequence_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = drophandle_sequence_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_drophandle_sequence_const_iterator
     : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(bidirectional_iterator_tag)
-                                        ,   __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)
+                                        ,   _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)
                                         ,   ws_ptrdiff_t
                                         ,   void                                        // By-Value Temporary reference
-                                        ,   __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C) // By-Value Temporary reference category
+                                        ,   _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)  // By-Value Temporary reference category
                                         >
 {
 public:
@@ -212,7 +212,7 @@ public:
     /// The traits type
     typedef T                                                   traits_type;
     /// The string type
-    typedef __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)         string_type;
+    typedef _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)          string_type;
     /// The current parameterisation of the type
     typedef basic_drophandle_sequence_const_iterator<C, T>      class_type;
     /// The value type
@@ -273,11 +273,11 @@ private:
 /// \param C The character type
 /// \param T The traits type. For translators that support default template arguments this defaults to drophandle_sequence_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = drophandle_sequence_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = drophandle_sequence_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_drophandle_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -295,12 +295,12 @@ public:
     typedef ss_typename_type_k const_iterator::value_type                                   value_type;
     /// The difference type
     typedef ws_ptrdiff_t                                                                    difference_type;
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
     /// The non-mutating (const) reverse iterator type
-    typedef 
+    typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-            ss_typename_type_k 
+            ss_typename_type_k
 #endif /* compiler */
                                stlsoft_ns_qual(const_reverse_iterator_generator)<   const_iterator
                                                                                 ,   value_type
@@ -308,7 +308,7 @@ public:
                                                                                 ,   void        // By-Value Temporary reference category
                                                                                 ,   difference_type
                                                                                 >::type     const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 public:
@@ -335,7 +335,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
     /// Begins the reverse iteration
     ///
@@ -345,7 +345,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Members
 private:
@@ -591,7 +591,7 @@ inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_iterator basic_
     return const_iterator(m_hdrop, const_iterator::sentinel_());
 }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_reverse_iterator basic_drophandle_sequence<C, T>::rbegin() const
@@ -604,7 +604,7 @@ inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_reverse_iterato
 {
     return const_reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

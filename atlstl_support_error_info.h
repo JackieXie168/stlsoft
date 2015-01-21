@@ -4,11 +4,11 @@
  * Purpose:     SupportErrorInfoImpl class.
  *
  * Created:     17th April 1999
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_MAJOR      4
 # define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_MINOR      2
 # define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_REVISION   1
-# define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_EDIT       54
+# define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include atlstl/support_error_info.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef ATLSTL_INCL_ATLSTL_HPP_SUPPORT_ERROR_INFO
 # include <atlstl/support_error_info.hpp>

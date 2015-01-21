@@ -4,7 +4,7 @@
  * Purpose:     Contains equivalents to contents of std's <utility>.
  *
  * Created:     17th January 2002
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MAJOR     3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MINOR     1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MINOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      63
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # include <utility>
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

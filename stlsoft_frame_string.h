@@ -4,11 +4,11 @@
  * Purpose:     frame_string class.
  *
  * Created:     11th June 1994
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 # define STLSOFT_VER_H_STLSOFT_FRAME_STRING_MAJOR       2
 # define STLSOFT_VER_H_STLSOFT_FRAME_STRING_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_FRAME_STRING_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_FRAME_STRING_EDIT        122
+# define STLSOFT_VER_H_STLSOFT_FRAME_STRING_EDIT        123
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

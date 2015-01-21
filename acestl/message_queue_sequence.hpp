@@ -4,7 +4,7 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     26th January 2006
+ * Updated:     15th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     1
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     2
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  5
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      30
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     4
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  2
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -122,11 +122,10 @@ class message_queue_sequence
 public:
     /// The value type
     typedef char                                    value_type;
+    /// The sequence type
+    typedef ACE_Message_Queue<ACE_SYNCH_USE>        sequence_type;
     /// The current parameterisation of the type
     typedef message_queue_sequence<ACE_SYNCH_USE>   class_type;
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    typedef class_type                              sequence_class_type;
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// The size type
     typedef ss_size_t                               size_type;
 
@@ -144,14 +143,12 @@ public:
 
         typedef ACE_Message_Queue_Iterator<ACE_SYNCH_USE>   mq_iterator_type;
 
-/// \name Utility classes
-/// @{
     private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
         struct shared_handle
         {
         public:
-            typedef shared_handle       class_type;
+            typedef shared_handle   class_type;
 
         // Members
         public:
@@ -160,16 +157,16 @@ public:
             size_t              m_entryLength;
             size_t              m_entryIndex;
         private:
-            ss_sint32_t         cRefs;
+            ss_sint32_t         m_refCount;
 
         /// Construction
         public:
-            ss_explicit_k shared_handle(ACE_Message_Queue<ACE_SYNCH_USE> &mq)
+            ss_explicit_k shared_handle(sequence_type &mq)
                 : m_mqi(mq)
                 , m_entry(NULL)
                 , m_entryLength(0)
                 , m_entryIndex(0)
-                , cRefs(1)
+                , m_refCount(1)
             {
                 if(m_mqi.next(m_entry))
                 {
@@ -193,11 +190,22 @@ public:
 # endif /* STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
             ~shared_handle() stlsoft_throw_0()
             {
-                ACESTL_MESSAGE_ASSERT("Shared search handle being destroyed with outstanding references!", 0 == cRefs);
+                ACESTL_MESSAGE_ASSERT("Shared search handle being destroyed with outstanding references!", 0 == m_refCount);
             }
 
         /// Accessors
         public:
+            ss_bool_t is_end_point() const
+            {
+                return m_entryIndex == m_entryLength;
+            }
+            char    &current()
+            {
+                ACESTL_ASSERT(NULL != m_entry);
+                ACESTL_ASSERT(m_entryIndex != m_entryLength);
+
+                return m_entryIndex[m_entry->rd_ptr()];
+            }
             char    current() const
             {
                 ACESTL_ASSERT(NULL != m_entry);
@@ -232,16 +240,20 @@ public:
 
         /// Operations
         public:
-            void AddRef()
+            ss_sint32_t AddRef()
             {
-                ++cRefs;
+                return ++m_refCount;
             }
-            void Release()
+            ss_sint32_t Release()
             {
-                if(0 == --cRefs)
+                ss_sint32_t rc = --m_refCount;
+
+                if(0 == rc)
                 {
                     delete this;
                 }
+
+                return rc;
             }
 
         // Implementation
@@ -253,14 +265,12 @@ public:
                 return m_mqi.advance() ? (m_mqi.next(entry), entry) : NULL;
             }
 
-
         // Not to be implemented
         private:
             shared_handle(class_type const &);
             class_type &operator =(class_type const &);
         };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/// @}
 
     public:
         typedef iterator                                    class_type;
@@ -268,7 +278,7 @@ public:
         typedef char                                        value_type;
 
     private:
-        iterator(ACE_Message_Queue<ACE_SYNCH_USE> &mq)
+        iterator(sequence_type &mq)
             : m_handle(new shared_handle(mq))
         {}
     public:
@@ -334,6 +344,13 @@ public:
             return ret;
         }
 
+        value_type &operator *()
+        {
+            ACESTL_ASSERT(NULL != m_handle);
+
+            return m_handle->current();
+        }
+
         value_type operator *() const
         {
             ACESTL_ASSERT(NULL != m_handle);
@@ -385,7 +402,7 @@ public:
     private:
         ss_bool_t is_end_point() const
         {
-            return NULL == m_handle || m_handle->m_entryIndex == m_handle->m_entryLength;
+            return NULL == m_handle || m_handle->is_end_point();
         }
 
     private:
@@ -393,26 +410,13 @@ public:
     };
 /// @}
 
-// Construction
+/// \name Construction
 /// @{
 public:
     /// Create an instance representing the given environment variable
-    ss_explicit_k message_queue_sequence(ACE_Message_Queue<ACE_SYNCH_USE> &mq)
+    ss_explicit_k message_queue_sequence(sequence_type &mq)
         : m_mq(mq)
     {}
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-    /// Create an instance representing the given environment variable
-    template<ss_typename_param_k S>
-    ss_explicit_k message_queue_sequence(S const &name)
-        : m_buffer(1 + traits_type::get_message_queue_sequence(c_str_ptr(name), 0, 0))
-    {
-        if( 0 == traits_type::get_message_queue_sequence(c_str_ptr(name), m_buffer, m_buffer.size()) &&
-            0 != m_buffer.size())
-        {
-            m_buffer[0] = 0;
-        }
-    }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 /// @}
 
 /// \name Iteration
@@ -436,23 +440,25 @@ public:
     {
         return m_mq.message_length() /* - 1 */;
     }
-/// @]
-
-/// \name Operations
-/// @{
-public:
+    /// Indicates whethere there are any bytes in the message queue
+    ss_bool_t empty() const
+    {
+        return const_cast<m_mq.is_empty() /* - 1 */;
+    }
 /// @}
 
 /// \name Members
 /// @{
 private:
-    ACE_Message_Queue<ACE_SYNCH_USE>    &m_mq;
+    sequence_type   &m_mq;
 /// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
-    message_queue_sequence(message_queue_sequence const &);
-    message_queue_sequence &operator =(message_queue_sequence const &);
+    message_queue_sequence(class_type const &);
+    class_type &operator =(class_type const &);
+/// @}
 };
 
 ////////////////////////////////////////////////////////////////////////////////

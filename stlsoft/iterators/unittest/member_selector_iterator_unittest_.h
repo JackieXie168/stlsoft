@@ -13,7 +13,7 @@ namespace unittest
     {
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn -8061
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
         struct MSI_Thing
         {
@@ -83,7 +83,7 @@ namespace unittest
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn .8061
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
     } // anonymous namespace
 
 } // namespace unittest

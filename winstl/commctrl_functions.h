@@ -4,11 +4,11 @@
  * Purpose:     Various Windows common control functions.
  *
  * Created:     13th November 2002
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_H_COMMCTRL_FUNCTIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_H_COMMCTRL_FUNCTIONS_MINOR       1
 # define WINSTL_VER_WINSTL_H_COMMCTRL_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_H_COMMCTRL_FUNCTIONS_EDIT        30
+# define WINSTL_VER_WINSTL_H_COMMCTRL_FUNCTIONS_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_H_MESSAGE_FUNCTIONS
-# include <winstl/message_functions.h>  
+# include <winstl/message_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_H_MESSAGE_FUNCTIONS */
 #include <commctrl.h>
 

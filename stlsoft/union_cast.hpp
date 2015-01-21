@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/union_cast.hpp (formerly stlsoft_union_cast.h; originally MLTypCnv.h, ::SynesisStd)
  *
- * Purpose:     A powerful cast operator that limits the danger of 
+ * Purpose:     A powerful cast operator that limits the danger of
  *              reinterpret_cast, while avoiding the spurious warnings issued by
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     21st January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MAJOR       4
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MINOR       3
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        46
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ namespace stlsoft
 /// \param FROM The type to cast from
 /// \param B_CHECK_ALIGN Determines the default checking behaviour. If 0, no checking on alignment is conducted
 ///
-/// \note This technique is non-portable, and you use this class at your own 
+/// \note This technique is non-portable, and you use this class at your own
 /// risk. Notwithstanding that, the TO and FROM types have to be the same
 /// size, so the technique is widely usable.
 template<   ss_typename_param_k TO

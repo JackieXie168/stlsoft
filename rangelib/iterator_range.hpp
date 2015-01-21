@@ -4,11 +4,11 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     31st December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    5
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     27
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -326,7 +326,7 @@ public:
 /// \name Construction
 /// @{
 public:
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER == 1200)
@@ -335,9 +335,9 @@ public:
         : m_position(first)
         , m_last(last)
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1200)
     /// Constructs from an iterator pair
@@ -346,16 +346,16 @@ public:
         : m_position(first)
         , m_last(last)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
     /// Constructs from an array
     template <ss_typename_param_k T2, ss_size_t N>
     iterator_range(T2 (&ar)[N])
         : m_position(&ar[0])
         , m_last(&ar[N])
     {}
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 /// @}
 
 /// \name Notional Range methods

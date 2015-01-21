@@ -4,11 +4,11 @@
  * Purpose:     Cursor scoping class.
  *
  * Created:     12th May 2003
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       28
+# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_REVISION   3
+# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -88,10 +88,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS)
-stlsoft_ns_using(c_str_ptr)
-#endif /* compiler */
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
 /// \weakgroup libraries STLSoft Libraries
@@ -128,15 +124,15 @@ public:
     ss_explicit_k setcursor_scope(HCURSOR hcur)
         : m_hcurLast(::SetCursor(hcur))
     {}
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// \brief Toggles the current cursor
     ///
     /// Sets the given cursor resource from the given instance.
     template <ss_typename_param_k S>
     setcursor_scope(HINSTANCE hinst, S const &name)
-        : m_hcurLast(::SetCursor(load_(hinst, c_str_ptr(name))))
+        : m_hcurLast(::SetCursor(load_(hinst, stlsoft_ns_qual(c_str_ptr)(name))))
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// \brief Toggles the current cursor
     ///
     /// Sets the given cursor resource from the given instance.

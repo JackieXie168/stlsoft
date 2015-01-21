@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the thread_mutex components.
  *
  * Created:     20th March 2005
- * Updated:     17th July 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_THREAD_MUTEX_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_THREAD_MUTEX_MINOR     0
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_THREAD_MUTEX_REVISION  4
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_THREAD_MUTEX_EDIT      7
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_THREAD_MUTEX_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/thread_mutex.hpp Platform header for the thread_mutex components */

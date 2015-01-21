@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     5th June 2003
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MINOR       2
-# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_EDIT        39
+# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MINOR       3
+# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # error winstl_module_directory.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
 # include <winstl/filesystem_traits.hpp>
@@ -178,11 +178,11 @@ namespace winstl_project
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_module_directory
 {

@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     16th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_MINOR       2
-# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_EDIT        39
+# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_REVISION    2
+# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -248,7 +248,7 @@ namespace unixstl_project
 #  if defined(STLSOFT_COMPILER_IS_BORLAND)
 using ::stlsoft::lock_instance;
 using ::stlsoft::unlock_instance;
-#  endif /* STLSOFT_COMPILER_IS_BORLAND */
+#  endif /* compiler */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 

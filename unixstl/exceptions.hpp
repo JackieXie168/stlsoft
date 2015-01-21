@@ -4,11 +4,11 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     26th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_EDIT        30
+# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_REVISION    3
+# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -125,11 +125,13 @@ protected:
         , m_errorCode(err)
     {}
 public:
-#if defined(STLSOFT_COMPILER_IS_COMO) || \
-    defined(STLSOFT_COMPILER_IS_GCC)
+    /// Destructor
+    ///
+    /// \note This does not do have any implementation, but is required to placate
+    /// the Comeau and GCC compilers, which otherwise complain about mismatched
+    /// exception specifications between this class and its parent
     virtual ~unix_exception() stlsoft_throw_0()
     {}
-#endif /* compiler */
 /// @}
 
 /// \name Accessors
@@ -220,48 +222,50 @@ private:
 // [[synesis:class:exception-policy: unix_exception_policy]]
 struct unix_exception_policy
 {
+/// \name Member Types
+/// @{
 public:
     /// The thrown type
     typedef unix_exception   thrown_type;
     typedef int              error_code_type;
+/// @}
 
+/// \name Operators
+/// @{
 public:
     /// Function call operator, taking no parameters
-    void operator ()()
+    void operator ()() const
     {
-        throw thrown_type(errno);
+        throw_exception_(thrown_type(errno));
     }
     /// Function call operator, taking one parameter
     void operator ()(error_code_type err) const
     {
-        throw thrown_type(err);
+        throw_exception_(thrown_type(err));
     }
     /// Function call operator, taking two parameters
     void operator ()(char const *reason, error_code_type err) const
     {
-        throw thrown_type(reason, err);
+        throw_exception_(thrown_type(reason, err));
     }
-#if 0
-    /// Function call operator, taking three parameters
-    template<   ss_typename_param_k T1
-            ,   ss_typename_param_k T2
-            ,   ss_typename_param_k T3
-            >
-    void operator ()(T1 const &/* t1 */, T2 const &/* t2 */, T3 const &/* t3 */) const
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+    template <ss_typename_param_k X>
+    static void throw_exception_(X const &x)
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      _MSC_VER < 1200
+    static void throw_exception_(std::exception const &x)
+#else /* ? feature / compiler */
+    static void throw_exception_(thrown_type const &x)
+#endif /* feature / compiler */
     {
-        // Do nothing
+        throw x;
     }
-    /// Function call operator, taking four parameters
-    template<   ss_typename_param_k T1
-            ,   ss_typename_param_k T2
-            ,   ss_typename_param_k T3
-            ,   ss_typename_param_k T4
-            >
-    void operator ()(T1 const &/* t1 */, T2 const &/* t2 */, T3 const &/* t3 */, T4 const &/* t4 */) const
-    {
-        // Do nothing
-    }
-#endif /* 0 */
+/// @}
 };
 
 ////////////////////////////////////////////////////////////////////////////////

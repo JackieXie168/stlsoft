@@ -4,11 +4,11 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     22nd December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MINOR      1
+# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MINOR      2
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       32
+# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ struct sign_traits<ss_char_a_t>
 //    typedef ss_uint8_t  alt_sign_type;
 };
 
-#ifdef __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_char_w_t>
 {
@@ -136,7 +136,7 @@ struct sign_traits<ss_char_w_t>
     typedef int_size_traits<bytes>::signed_type     signed_type;
     typedef int_size_traits<bytes>::unsigned_type   unsigned_type;
 };
-#endif /* __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 /* s/uint8 */
 STLSOFT_TEMPLATE_SPECIALISATION

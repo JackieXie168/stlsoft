@@ -4,11 +4,11 @@
  * Purpose:     Cursor scoping class.
  *
  * Created:     4th May 2003
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_EDIT       26
+# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -88,10 +88,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS)
-stlsoft_ns_using(c_str_ptr)
-#endif /* compiler */
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
 /// \weakgroup libraries STLSoft Libraries
@@ -122,14 +118,14 @@ public:
 
 public:
     /// Changes the owner of the focus to the given window, and records the current owner of the focus, to which it will be restored in the destructor
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k W>
     ss_explicit_k setfocus_scope(W &wnd)
         : m_hwndFocus(::SetFocus(get_hwnd(wnd)))
 #else
     ss_explicit_k setfocus_scope(HWND wnd)
         : m_hwndFocus(::SetFocus(wnd))
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     {}
     /// Records the current owner of the focus, to which it will be restored in the destructor
     setfocus_scope()

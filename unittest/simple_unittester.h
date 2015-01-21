@@ -4,11 +4,11 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_MAJOR      1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MINOR      2
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MINOR      3
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_REVISION   1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       10
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       13
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -57,15 +57,15 @@
  */
 
 #include <stlsoft/stlsoft.h>
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # include <vector>
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 #  include <wcvector.h>
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 #ifndef STLSOFT_UNITTEST
 # error This file cannot be used if STLSOFT_UNITTEST is not defined.
@@ -109,15 +109,15 @@ private:
     size_t  size();
 
 private:
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     typedef stlsoft_ns_qual_std(vector)<unittest_function>  functions_t;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
     typedef WCValVector<unittest_function>                  functions_t;
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
     functions_t     m_functions;
 };

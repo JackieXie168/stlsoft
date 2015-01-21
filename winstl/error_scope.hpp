@@ -4,7 +4,7 @@
  * Purpose:     Win32 last error scoping class.
  *
  * Created:     27th November 1998
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_ERROR_SCOPE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_ERROR_SCOPE_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_ERROR_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_ERROR_SCOPE_EDIT     11
+# define WINSTL_VER_WINSTL_HPP_ERROR_SCOPE_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/last_error_scope.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_LAST_ERROR_SCOPE
 # include <winstl/last_error_scope.hpp>

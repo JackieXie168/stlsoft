@@ -4,11 +4,11 @@
  * Purpose:     task_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     15th December 2005
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define COMSTL_INCL_COMSTL_HPP_TASK_ALLOCATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define COMSTL_VER_COMSTL_HPP_TASK_ALLOCATOR_MAJOR     3
-# define COMSTL_VER_COMSTL_HPP_TASK_ALLOCATOR_MINOR     2
+# define COMSTL_VER_COMSTL_HPP_TASK_ALLOCATOR_MAJOR     4
+# define COMSTL_VER_COMSTL_HPP_TASK_ALLOCATOR_MINOR     0
 # define COMSTL_VER_COMSTL_HPP_TASK_ALLOCATOR_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_TASK_ALLOCATOR_EDIT      69
+# define COMSTL_VER_COMSTL_HPP_TASK_ALLOCATOR_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,190 +59,14 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#include <new>
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include comstl/memory/task_allocator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::comstl */
-namespace comstl
-{
-# else
-/* Define stlsoft::comstl_project */
-
-namespace stlsoft
-{
-
-namespace comstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_COMSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup comstl_allocator_library Allocator Library (COMSTL)
-/// \ingroup COMSTL libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types for COM
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// STL Allocator based on the COM task allocator
-///
-/// \param T The value_type of the allocator
-template <ss_typename_param_k T>
-class task_allocator
-    : public allocator_base<T, task_allocator<T> >
-{
-private:
-    typedef allocator_base<T, task_allocator<T> >                   parent_class_type;
-public:
-    /// The parameterisation of the class
-    typedef task_allocator<T>                                       class_type;
-    /// The value type
-    typedef ss_typename_type_k parent_class_type::value_type        value_type;
-    /// The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer           pointer;
-    /// The non-mutating (const) pointer type
-    typedef ss_typename_type_k parent_class_type::const_pointer     const_pointer;
-    /// The reference type
-    typedef ss_typename_type_k parent_class_type::reference         reference;
-    /// The non-mutating (const) reference type
-    typedef ss_typename_type_k parent_class_type::const_reference   const_reference;
-    /// The difference type
-    typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
-    /// The size type
-    typedef ss_typename_type_k parent_class_type::size_type         size_type;
-
-public:
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator's <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef task_allocator<U>                                   other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-
-/// \name Construction
-/// @{
-public:
-    /// Default constructor
-    task_allocator() stlsoft_throw_0()
-    {}
-    /// Copy constructor
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    template <typename U>
-    task_allocator(task_allocator<U> const &)
-    {}
-#else /* ? STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    task_allocator(class_type const &)
-    {}
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-/// @}
-
-private:
-    friend class allocator_base<T, task_allocator<T> >;
-
-    void *do_allocate(size_type n, void const *hint)
-    {
-        STLSOFT_SUPPRESS_UNUSED(hint);
-
-        return ::CoTaskMemAlloc(n * sizeof(value_type));
-    }
-    void do_deallocate(void *pv, size_type n)
-    {
-        STLSOFT_SUPPRESS_UNUSED(n);
-
-        ::CoTaskMemFree(pv);
-    }
-    void do_deallocate(void *pv)
-    {
-        ::CoTaskMemFree(pv);
-    }
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-// Specialisation for void
-STLSOFT_TEMPLATE_SPECIALISATION
-class task_allocator<void>
-{
-public:
-    typedef void                    value_type;
-    typedef task_allocator<void>    class_type;
-    typedef void                    *pointer;
-    typedef void const              *const_pointer;
-    typedef ptrdiff_t               difference_type;
-    typedef cs_size_t               size_type;
-
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef task_allocator<U>   other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-inline cs_bool_t operator ==(const task_allocator<T> &/* lhs */, const task_allocator<T> &/* rhs */)
-{
-    return cs_true_v;
-}
-
-template <ss_typename_param_k T>
-inline cs_bool_t operator !=(const task_allocator<T> &/* lhs */, const task_allocator<T> &/* rhs */)
-{
-    return cs_false_v;
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/task_allocator_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group comstl_allocator_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
-# else
-} // namespace comstl_project
-} // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_COMSTL_NO_NAMESPACE */
+#ifndef COMSTL_INCL_COMSTL_MEMORY_HPP_TASK_ALLOCATOR
+# include <comstl/memory/task_allocator.hpp>
+#endif /* !COMSTL_INCL_COMSTL_MEMORY_HPP_TASK_ALLOCATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

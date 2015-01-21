@@ -4,11 +4,11 @@
  * Purpose:     RRID veneer for sequence containers
  *
  * Created:     2nd October 2002
- * Updated:     11th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER_MINOR      2
-# define STLSOFT_VER_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       36
+# define STLSOFT_VER_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER_REVISION   3
+# define STLSOFT_VER_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # error stlsoft/sequence_container_veneer.hpp is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
@@ -130,7 +130,7 @@ public:
 
 // Construction
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Default constructor
     sequence_container_veneer()
     {}
@@ -140,7 +140,7 @@ public:
         : parent_class_type(rhs)
     {}
 
-#if !defined(STLSOFT_COMPILER_IS_DMC)
+# if !defined(STLSOFT_COMPILER_IS_DMC)
     /// Constructs with the given allocator
     ss_explicit_k sequence_container_veneer(allocator_type const &a)
         : parent_class_type(a)
@@ -165,7 +165,7 @@ public:
     sequence_container_veneer(size_type n, V v, allocator_type const &a)
         : parent_class_type(n, v, a)
     {}
-#else
+# else
     template <ss_typename_param_k N1>
     ss_explicit_k sequence_container_veneer(N1 n1)
         : parent_class_type(n1)
@@ -200,8 +200,8 @@ public:
     sequence_container_veneer(N1 n1, N2 n2, N3 n3, N4 n4, N5 n5)
         : parent_class_type(n1, n2, n3, n4, n5)
     {}
-#endif /* !STLSOFT_COMPILER_IS_DMC */
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+# endif /* compiler */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
     /// Destructor, within which all remaining entries are subject to the
     /// destruction function
@@ -296,13 +296,13 @@ namespace unittest
                 bSuccess = false;
             }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
             if(stlsoft_ns_qual_std(accumulate)(l.rbegin(), l.rend(), static_cast<long>(0)) != total)
             {
                 r->report("sequence_container_veneer<list> contents (forward iteration) test failed", __LINE__);
                 bSuccess = false;
             }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
             if(stlsoft_ns_qual_std(accumulate)(v.begin(), v.end(), static_cast<long>(0)) != total)
             {
@@ -310,13 +310,13 @@ namespace unittest
                 bSuccess = false;
             }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
             if(stlsoft_ns_qual_std(accumulate)(v.rbegin(), v.rend(), static_cast<long>(0)) != total)
             {
                 r->report("sequence_container_veneer<vector> contents (forward iteration) test failed", __LINE__);
                 bSuccess = false;
             }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
             return bSuccess;
         }

@@ -5,11 +5,11 @@
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     6th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       8
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.hpp Root header for the PlatformSTL C++ libraries */

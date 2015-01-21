@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MAJOR    1
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MINOR    5
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_REVISION 1
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     24
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_REVISION 2
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -227,7 +227,7 @@ struct Key
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
                 void operator delete(void *, void *)
                 {}
-#endif /* !STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
                 void operator delete(void *)
                 {}
             };

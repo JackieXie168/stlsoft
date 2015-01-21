@@ -1,5 +1,5 @@
 
-// Updated: 18th December 2005
+// Updated: 21st March 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR)
 # error This file cannot be directly included, and should only be included within stlsoft/iterators/transform_iterator.hpp
@@ -84,10 +84,10 @@ namespace unittest
                 {
                     char    sz[21];
 
-                    return integer_to_string(&sz[0], stlsoft_num_elements(sz), i);
+                    return integer_to_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), i);
                 }
             };
-            
+
 
         } // namespace tx_iter_util
 

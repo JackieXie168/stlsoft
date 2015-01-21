@@ -4,11 +4,11 @@
  * Purpose:     Forward declaration of the string_traits template.
  *
  * Created:     1st April 2005
- * Updated:     20th December 2005
+ * Updated:     6th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRAITS_FWD_MAJOR       1
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRAITS_FWD_MINOR       4
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRAITS_FWD_REVISION    2
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRAITS_FWD_EDIT        8
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRAITS_FWD_MINOR       5
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRAITS_FWD_REVISION    1
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRAITS_FWD_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -99,12 +99,12 @@ struct string_traits
 
     static string_type empty_string();
     static string_type construct(string_type const &src, size_type pos, size_type len);
-# ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
     static string_type &assign_inplace(string_type &str, I first, I last);
-# else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+# else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last);
-# endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 };
 #else
 template <ss_typename_param_k T>

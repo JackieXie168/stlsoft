@@ -4,11 +4,11 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_H_WINSTL_ATOMIC_FUNCTIONS_MINOR     2
 # define WINSTL_VER_H_WINSTL_ATOMIC_FUNCTIONS_REVISION  1
-# define WINSTL_VER_H_WINSTL_ATOMIC_FUNCTIONS_EDIT      187
+# define WINSTL_VER_H_WINSTL_ATOMIC_FUNCTIONS_EDIT      189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/atomic_functions.h")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_H_ATOMIC_FUNCTIONS
 # include <winstl/atomic_functions.h>

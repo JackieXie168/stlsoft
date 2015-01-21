@@ -5,7 +5,7 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     31st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MAJOR    3
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MINOR    3
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION 4
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     47
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MINOR    4
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION 1
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -327,7 +327,7 @@ public:
     public:
         ss_typename_type_k traits_type::value_type operator *() const
         {
-            mfcstl_message_assert("", m_c != 0);
+            MFCSTL_MESSAGE_ASSERT("", m_c != 0);
 
             return m_c->GetAt(m_index);
         }
@@ -365,7 +365,7 @@ public:
             // can test both members, which results in the after-the-fact
             // equality evaluating correctly.
 
-            mfcstl_message_assert("invalid comparison between iterators from different ranges", m_c == 0 || rhs.m_c == 0 || m_c == rhs.m_c);
+            MFCSTL_MESSAGE_ASSERT("invalid comparison between iterators from different ranges", m_c == 0 || rhs.m_c == 0 || m_c == rhs.m_c);
 
             return m_index - rhs.m_index;
         }
@@ -497,13 +497,13 @@ public:
     };
 
 /// The reverse non-mutating (const) iterator type
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)< const_iterator,
                                                                         value_type,
                                                                         value_type, // By-Value Temporary reference category
                                                                         void,       // By-Value Temporary reference category
                                                                         difference_type>    const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 
 // Construction
@@ -551,7 +551,7 @@ public:
     }
 
 //  const_reverse_iterator
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -566,7 +566,7 @@ public:
     {
         return const_reverse_iterator(begin());
     }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Accessors
 public:

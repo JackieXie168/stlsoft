@@ -4,11 +4,11 @@
  * Purpose:     Predicates that use access shims to generalise use.
  *
  * Created:     7th November 2004
- * Updated:     18th December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_MAJOR    1
-# define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_MINOR    2
+# define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_MINOR    3
 # define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_EDIT     12
+# define STLSOFT_VER_STLSOFT_HPP_ACCESS_PREDICATES_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
 # include <stlsoft/handle_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_HANDLE_ACCESS */
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # include <functional>
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -90,9 +90,9 @@ template<   ss_typename_param_k P
         >
 // [[synesis:class:function-class:unary-predicate: equal_ptr]]
 struct equal_ptr
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     : public stlsoft_ns_qual_std(unary_function)<A, ss_bool_t>
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 {
 public:
     equal_ptr(P t)
@@ -117,9 +117,9 @@ template<   ss_typename_param_k H
         >
 // [[synesis:class:function-class:unary-predicate: equal_handle]]
 struct equal_handle
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     : public stlsoft_ns_qual_std(unary_function)<A, ss_bool_t>
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 {
 public:
     equal_handle(H t)

@@ -1,5 +1,5 @@
 
-// Updated: 31st January 2006
+// Updated: 21st March 2006
 
 #if !defined(COMSTL_INCL_COMSTL_HPP_ENUMERATOR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/enumerator_sequence.hpp
@@ -256,7 +256,7 @@ namespace unittest
         {
             using namespace Synesis_COM;
 
-            static const LPCOChar   strings[]   =   
+            static const LPCOChar   strings[]   =
             {
                     L"string-1"
                 ,   L"string-2"

@@ -1,5 +1,5 @@
 
-// Updated: 15th December 2005
+// Updated: 21st March 2006
 
 #if !defined(COMSTL_INCL_COMSTL_HPP_COLL_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/coll_sequence.hpp
@@ -189,7 +189,7 @@ namespace unittest
         {
             using namespace Synesis_COM;
 
-            LPCOChar    strings[]   =   
+            LPCOChar    strings[]   =
             {
                     L"string-1"
                 ,   L"string-2"

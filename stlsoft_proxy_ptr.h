@@ -4,7 +4,7 @@
  * Purpose:     Contains the proxy_ptr template class.
  *
  * Created:     17th January 1999
- * Updated:     20th January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_PROXY_PTR_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_PROXY_PTR_MINOR      0
 # define STLSOFT_VER_H_STLSOFT_PROXY_PTR_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_EDIT       55
+# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,9 +60,9 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/ptr_proxy.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_PTR_PROXY
 # include <stlsoft/ptr_proxy.hpp>

@@ -11,7 +11,7 @@ namespace unittest
 {
     namespace
     {
-        template <typename T>
+        template <ss_typename_param_k T>
         ss_bool_t test_container()
         {
             typedef ss_typename_type_k T::value_type    value_t;

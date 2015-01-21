@@ -4,11 +4,11 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_H_ERROR_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_H_ERROR_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_H_ERROR_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_H_ERROR_FUNCTIONS_EDIT      38
+# define WINSTL_VER_WINSTL_H_ERROR_FUNCTIONS_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -244,7 +244,7 @@ STLSOFT_INLINE void winstl__fmtmsg_LocalFree__(void *pv)
  * C functions
  */
 
-/// \brief Translates the given error to an error string and 
+/// \brief Translates the given error to an error string and
 STLSOFT_INLINE ws_dword_t winstl__format_message_buff_inst_a(DWORD error, HINSTANCE hinst, ws_char_a_t *buffer, ws_uint_t cchBuffer)
 {
     ws_dword_t  res = winstl__FormatMessageA__buff_inst(FORMAT_MESSAGE_MAX_WIDTH_MASK, hinst, error, buffer, cchBuffer);

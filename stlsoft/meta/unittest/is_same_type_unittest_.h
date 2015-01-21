@@ -1,5 +1,5 @@
 
-// Updated: 31st December 2005
+// Updated: 5th March 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE)
 # error This file cannot be directly included, and should only be included within stlsoft/meta/is_same_type.hpp
@@ -32,7 +32,7 @@ namespace unittest
 
             unittest_initialiser    init(r, "STLSoft", "meta/is_same_type", __FILE__);
 
-#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
 
             // Same type
 
@@ -89,9 +89,9 @@ namespace unittest
                 bSuccess = false;
             }
 
-#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#else /* ? STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
             STLSOFT_SUPPRESS_UNUSED(bSuccess);
-#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif // STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
 
             return bSuccess;
         }

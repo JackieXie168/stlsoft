@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     22nd January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MAJOR    3
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    2
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    3
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     36
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
 # include <stlsoft/integer_to_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS
 # include <winstl/registry_functions.hpp>   // for reg_get_string_value()
 #endif /* !WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS */
@@ -211,8 +211,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
     char_t         minutes_[]  =   { '0', '0', '\0' };                      // "00"
     char_t         seconds_[]  =   { '0', '0', '.', '0', '0', '0', '\0' };  // "00.000"
 
-    char_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], stlsoft_num_elements(hours_), lpTime->wHour);
-    char_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], stlsoft_num_elements(minutes_), lpTime->wMinute);
+    char_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], STLSOFT_NUM_ELEMENTS(hours_), lpTime->wHour);
+    char_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], STLSOFT_NUM_ELEMENTS(minutes_), lpTime->wMinute);
                                    stlsoft_ns_qual(integer_to_string)(&seconds_[3], 4, lpTime->wMilliseconds);
     char_t const   *seconds    =   stlsoft_ns_qual(integer_to_string)(&seconds_[0], 3, lpTime->wSecond);
 
@@ -350,7 +350,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
         }
     }
 
-    // If 0 was specified, or 
+    // If 0 was specified, or
 
     if( 0 == cchTime ||
         len <= size_t(cchTime))
@@ -408,8 +408,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
     ws_char_a_t         minutes_[]  =   "00";
     ws_char_a_t         seconds_[]  =   "00.000";
 
-    ws_char_a_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], stlsoft_num_elements(hours_), lpTime->wHour);
-    ws_char_a_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], stlsoft_num_elements(minutes_), lpTime->wMinute);
+    ws_char_a_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], STLSOFT_NUM_ELEMENTS(hours_), lpTime->wHour);
+    ws_char_a_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], STLSOFT_NUM_ELEMENTS(minutes_), lpTime->wMinute);
                                         stlsoft_ns_qual(integer_to_string)(&seconds_[3], 4, lpTime->wMilliseconds);
     ws_char_a_t const   *seconds    =   stlsoft_ns_qual(integer_to_string)(&seconds_[0], 3, lpTime->wSecond);
 
@@ -541,7 +541,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
         }
     }
 
-    // If 0 was specified, or 
+    // If 0 was specified, or
 
     if( 0 == cchTime ||
         len <= size_t(cchTime))
@@ -598,8 +598,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
     ws_char_w_t         minutes_[]  =   L"00";
     ws_char_w_t         seconds_[]  =   L"00.000";
 
-    ws_char_w_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], stlsoft_num_elements(hours_), lpTime->wHour);
-    ws_char_w_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], stlsoft_num_elements(minutes_), lpTime->wMinute);
+    ws_char_w_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], STLSOFT_NUM_ELEMENTS(hours_), lpTime->wHour);
+    ws_char_w_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], STLSOFT_NUM_ELEMENTS(minutes_), lpTime->wMinute);
                                         stlsoft_ns_qual(integer_to_string)(&seconds_[3], 4, lpTime->wMilliseconds);
     ws_char_w_t const   *seconds    =   stlsoft_ns_qual(integer_to_string)(&seconds_[0], 3, lpTime->wSecond);
 

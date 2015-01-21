@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     31st January 2006
+ * Updated:     28th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MAJOR     4
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MINOR     7
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      191
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MINOR     8
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_REVISION  8
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,11 +75,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #if defined(STLSOFT_COMPILER_IS_DMC) && \
     __DMC__ < 0x0839
 # error stlsoft/string_tokeniser.hpp is not compatible with Digital Mars C/C++ 3.38 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1100
 # error stlsoft/string_tokeniser.hpp is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>        // for iterator_base
@@ -106,11 +106,12 @@ STLSOFT_COMPILER_IS_WATCOM:
  * Compatibility
  */
 
-#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1300) || \
-    (   defined(STLSOFT_COMPILER_IS_INTEL) && \
-        defined(WIN32) && \
-        _MSC_VER < 1300)
+#if defined(STLSOFT_STRING_TOKENISER_USE_DELIMITER_INDIRECTION) || \
+    (   (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+            _MSC_VER < 1300) || \
+        (   defined(STLSOFT_COMPILER_IS_INTEL) && \
+            defined(WIN32) && \
+            _MSC_VER < 1300))
 # define STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION
 #endif /* compiler */
 
@@ -210,21 +211,23 @@ public:
     typedef ss_typename_type_k S::const_iterator    const_iterator_type;
     /// The size type
     typedef ss_typename_type_k S::size_type         size_type;
+#if 0
     /// The difference type
     typedef ss_typename_type_k S::difference_type   difference_type;
+#endif /* 0 */
 /// @}
 
 /// \name Operations
 /// @{
 public:
     /// Returns the start of the contained sequence of the given string
-    static const_iterator_type begin(S const &s)
+    static const_iterator_type begin(string_type const &s)
     {
         return s.begin();
     }
 
     /// Returns the end of the contained sequence of the given string
-    static const_iterator_type end(S const &s)
+    static const_iterator_type end(string_type const &s)
     {
         return s.end();
     }
@@ -238,8 +241,9 @@ public:
          * requirement calculation result being stored as the length
          */
 #if defined(STLSOFT_COMPILER_IS_MWERKS) || \
-    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER >= 1300)
+    (   (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+            defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER == 1300))
         return tokeniser_value_type(&*f, static_cast<size_type>(t - f));
 #else /* ? compiler */
         return tokeniser_value_type(f, t);
@@ -281,14 +285,16 @@ private:
 /// \name Implementation
 /// @{
 private:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER >= 1200)
     /// Evaluates whether the contents of the two sequences are equivalent to the given extent
     template<   ss_typename_param_k I1
             ,   ss_typename_param_k I2
             >
-    static ss_bool_t is_equal_(I1 p1, I2 p2, ss_size_t c)
+    static ss_bool_t is_equal_(I1 p1, I2 p2, ss_size_t n)
     {
-        for(; c-- > 0; ++p1, ++p2)
+        for(; n-- > 0; ++p1, ++p2)
         {
             if(*p1 != *p2)
             {
@@ -314,11 +320,19 @@ private:
     {
         return delim.length();
     }
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     /// Evaluates whether the contents of the two sequences are equivalent to the given extent
     static ss_bool_t is_equal_(string_type const &lhs, ss_typename_type_k string_type::value_type const *rhs)
     {
-        return lhs.compare(rhs) == 0;
+        { for(ss_size_t i = 0, n = lhs.length(); i < n; ++i)
+        {
+            if(lhs[i] != rhs[i])
+            {
+                return false;
+            }
+        }}
+
+        return true;
     }
 
     /// Returns the length of the delimiter
@@ -326,7 +340,7 @@ private:
     {
         return s.length();
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
     /// Evaluates whether the delimiter and the sequence are equivalent to the extent of the delimiter
     static ss_bool_t is_equal_(ss_char_a_t const delim, const_iterator &it)
@@ -460,7 +474,7 @@ public:
 ///   stlsoft::<b>string_tokeniser</b>&lt;  std::string
 ///                           ,   char
 ///                           ,   stlsoft::skip_blank_tokens&lt;true&gt;
-///                           &gt;                tokens(hwndButton, ';');
+///                           &gt;                tokens(hwndButton, '+');
 ///   std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;std::string&gt;(std::cout, ";"));
 ///   return 0;
 /// }
@@ -485,17 +499,17 @@ public:
 /// \endhtmlonly
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k B = skip_blank_tokens<true>
         ,   ss_typename_param_k V = S
         ,   ss_typename_param_k T = string_tokeniser_type_traits<S, V>
         ,   ss_typename_param_k P = string_tokeniser_comparator<D, S, T>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k B
         ,   ss_typename_param_k V
         ,   ss_typename_param_k T
         ,   ss_typename_param_k P
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class string_tokeniser
     : public stl_collection_tag
@@ -514,7 +528,7 @@ public:
     /// The blanks policy type
     typedef B                                               blanks_policy_type;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    typedef blanks_policy_type                              ignore_blanks_type;
+    typedef B                                               ignore_blanks_type;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// The value type
     typedef V                                               value_type;
@@ -525,9 +539,14 @@ public:
     /// The character type
     typedef ss_typename_type_k traits_type::value_type      char_type;
     /// The size type
-    typedef ss_typename_type_k traits_type::size_type       size_type;
+	///
+	/// \note This no longer relies on a size_type member type of the traits type (T). It is defined
+	/// as size_t
+    typedef ss_size_t                                       size_type;
+#if 0
     /// The difference type
     typedef ss_typename_type_k traits_type::difference_type difference_type;
+#endif /* 0 */
     /// The non-mutating (const) reference type
     typedef const value_type                                const_reference;
     /// The non-mutating (const) iterator type
@@ -554,7 +573,7 @@ public:
 
 // Define the string_type overload if there member template ctors are not supported, or
 // they are correctly discriminated
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// Tokenise the given string with the given delimiter
     ///
@@ -570,10 +589,10 @@ public:
 
         STLSOFT_ASSERT(is_valid());
     }
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 // Define the template overload if member template ctors are supported
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Tokenise the given string with the given delimiter
     ///
     /// \param str The string whose contents will be tokenised
@@ -589,7 +608,7 @@ public:
 
         STLSOFT_ASSERT(is_valid());
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Tokenise the specified length of the given string with the given delimiter
     ///
@@ -607,7 +626,7 @@ public:
         STLSOFT_ASSERT(is_valid());
     }
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// \brief Tokenise the given range with the given delimiter
     ///
@@ -622,9 +641,9 @@ public:
 
         STLSOFT_ASSERT(is_valid());
     }
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Tokenise the given range with the given delimiter
     ///
     /// \param from The start of the asymmetric range to tokenise
@@ -639,7 +658,7 @@ public:
 
         STLSOFT_ASSERT(is_valid());
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 /// @}
 
 /// \name Iteration
@@ -679,6 +698,11 @@ public:
         typedef value_type                                          effective_const_reference;
     private:
         typedef ss_typename_type_k traits_type::const_iterator_type underlying_iterator_type;
+# if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
+        typedef delimiter_type const                                *delimiter_ref_type;
+# else /* ? STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+        typedef delimiter_type                                      delimiter_ref_type;
+# endif /* STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
     /// @}
 
     /// \name Construction
@@ -711,11 +735,7 @@ public:
             , m_find1(NULL)
             , m_next(NULL)
             , m_end(NULL)
-# if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
-            , m_delimiter(NULL)
-# else /* ? STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
-            , m_delimiter(delimiter_type())
-# endif /* STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+            , m_delimiter(delimiter_ref_type())
             , m_cchDelimiter(0)
         {}
 
@@ -728,11 +748,7 @@ public:
             , m_next(rhs.m_next)
             , m_end(rhs.m_end)
             , m_delimiter(rhs.m_delimiter)
-# if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
-            , m_cchDelimiter(comparator_type::length(*rhs.m_delimiter))
-# else /* ? STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
-            , m_cchDelimiter(comparator_type::length(rhs.m_delimiter))
-# endif /* STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+            , m_cchDelimiter(comparator_type::length(get_delim_ref_(rhs.m_delimiter)))
         {}
 
         /// Copy-assignment operator
@@ -804,6 +820,15 @@ public:
     /// \name Implementation
     /// @{
     private:
+        static delimiter_type const &get_delim_ref_(delimiter_ref_type const &delim)
+        {
+# if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
+            return *delim;
+# else /* ? STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+            return delim;
+# endif /* STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+        }
+
         void increment_()
         {
             STLSOFT_MESSAGE_ASSERT("Attempting to increment an invalid iterator", m_find0 != m_end);
@@ -820,11 +845,7 @@ public:
                 // 1. Skip blanks until at start of next item
                 for(m_find0 = m_next; m_find0 != m_end; )
                 {
-# if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
-                    if(comparator_type::not_equal(*m_delimiter, m_find0))
-# else /* ? STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
-                    if(comparator_type::not_equal(m_delimiter, m_find0))
-# endif /* STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+                    if(comparator_type::not_equal(get_delim_ref_(m_delimiter), m_find0))
                     {
                         break;
                     }
@@ -848,11 +869,7 @@ public:
                     m_next = m_find1;
                     break;
                 }
-# if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
-                else if(comparator_type::not_equal(*m_delimiter, m_find1))
-# else /* ? STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
-                else if(comparator_type::not_equal(m_delimiter, m_find1))
-# endif /* STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+                else if(comparator_type::not_equal(get_delim_ref_(m_delimiter), m_find1))
                 {
                     // current item does not hold a delimiter, so advance one position
                     ++m_find1;
@@ -876,11 +893,7 @@ public:
         underlying_iterator_type    m_find1;        // the end of the current item
         underlying_iterator_type    m_next;         // the start of the next valid (non-null) item
         underlying_iterator_type    m_end;          // end point of controlled sequence
-# if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
-        delimiter_type const        *m_delimiter;
-# else /* ? STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
-        delimiter_type              m_delimiter;
-# endif /* STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION */
+        delimiter_ref_type          m_delimiter;    // The delimiter
         ss_size_t                   m_cchDelimiter;
     /// @}
     };
@@ -1009,7 +1022,7 @@ inline ptrdiff_t* distance_type(string_tokeniser<S, D, B, V, T, P>::const_iterat
 {
     return static_cast<ptrdiff_t*>(0);
 }
-#endif /* STLSOFT_COMPILER_IS_DMC */
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

@@ -4,11 +4,11 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_SAFEARRAY_SEQUENCE_MAJOR       3
 # define COMSTL_VER_H_COMSTL_SAFEARRAY_SEQUENCE_MINOR       2
 # define COMSTL_VER_H_COMSTL_SAFEARRAY_SEQUENCE_REVISION    1
-# define COMSTL_VER_H_COMSTL_SAFEARRAY_SEQUENCE_EDIT        32
+# define COMSTL_VER_H_COMSTL_SAFEARRAY_SEQUENCE_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/safearray_sequence.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef COMSTL_INCL_COMSTL_HPP_SAFEARRAY_SEQUENCE
 # include <comstl/safearray_sequence.hpp>

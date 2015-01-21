@@ -4,11 +4,11 @@
  * Purpose:     processheap_allocator class.
  *
  * Created:     25th February 2002
- * Updated:     23rd December 2005
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_PROCESSHEAP_ALLOCATOR_MAJOR     3
-# define WINSTL_VER_H_WINSTL_PROCESSHEAP_ALLOCATOR_MINOR     2
+# define WINSTL_VER_H_WINSTL_PROCESSHEAP_ALLOCATOR_MINOR     3
 # define WINSTL_VER_H_WINSTL_PROCESSHEAP_ALLOCATOR_REVISION  1
-# define WINSTL_VER_H_WINSTL_PROCESSHEAP_ALLOCATOR_EDIT      65
+# define WINSTL_VER_H_WINSTL_PROCESSHEAP_ALLOCATOR_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -61,12 +61,12 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include winstl/processheap_allocator.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+# pragma message("This file is now obsolete. Instead include winstl/memory/processheap_allocator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

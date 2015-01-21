@@ -21,7 +21,7 @@ namespace unittest
 
             TCHAR   mfn[1 + _MAX_PATH];
 
-            ::GetModuleFileName(NULL, &mfn[0], stlsoft_num_elements(mfn));
+            ::GetModuleFileName(NULL, &mfn[0], STLSOFT_NUM_ELEMENTS(mfn));
 
             if(0 != ::lstrcmp(mfn, module_filename()))
             {

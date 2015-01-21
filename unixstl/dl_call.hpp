@@ -4,11 +4,11 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     20th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_DL_CALL_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_HPP_DL_CALL_MINOR      3
-# define UNIXSTL_VER_UNIXSTL_HPP_DL_CALL_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_HPP_DL_CALL_EDIT       10
+# define UNIXSTL_VER_UNIXSTL_HPP_DL_CALL_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_HPP_DL_CALL_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -95,7 +95,7 @@ namespace unixstl_project
  * Classes
  */
 
-/// \brief Exception class for 
+/// \brief Exception class for
 class missing_entry_point_exception
     : public unix_exception
 {
@@ -140,7 +140,7 @@ private:
  * Traits
  */
 
-/// 
+///
 ///
 /// \note This is a struct, rather than a namespace, because namespaces are
 ///        open, and we want this to be closed
@@ -187,14 +187,14 @@ inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_h
 {
     return dl_call_traits::library_is_handle();
 }
-#else /* ? STLSOFT_COMPILER_IS_MSVC */
+#else /* ? compiler */
 inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_handle_type const &)
 {
     return dl_call_traits::library_is_handle();
 }
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
-template <typename T>
+template <ss_typename_param_k T>
 inline dl_call_traits::library_is_not_handle test_library_(T const &)
 {
     return dl_call_traits::library_is_not_handle();

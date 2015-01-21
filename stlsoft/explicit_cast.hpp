@@ -4,7 +4,7 @@
  * Purpose:     Class to provide explicit cast operators.
  *
  * Created:     20th September 2002
- * Updated:     31st January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_MINOR      2
-# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_EDIT       27
+# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ private:
 
 # if defined(STLSOFT_COMPILER_IS_GCC)
 public: static void f() {}
-# endif /* !STLSOFT_COMPILER_IS_GCC */
+# endif /* compiler */
 };
 
 # ifdef _STLSOFT_EXPLICIT_CAST_FORCE_ALLOW_REFERENCE_TO_CONST_UDT
@@ -193,7 +193,7 @@ private:
 #     pragma warning(push)
 #    endif /* _MSC_VER >= 1200 */
 #    pragma warning(disable : 4512)
-#   endif /* STLSOFT_COMPILER_IS_MSVC */
+#   endif /* compiler */
 #   ifndef STLSOFT_INCL_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS
 #    include <stlsoft/internal/explicit_cast_specialisations.hpp>
 #   endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS */
@@ -203,7 +203,7 @@ private:
 #    else /* _MSC_VER */
 #     pragma warning(disable : 4512)
 #    endif /* _MSC_VER >= 1200 */
-#   endif /* STLSOFT_COMPILER_IS_MSVC */
+#   endif /* compiler */
 #  endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 # endif /* _STLSOFT_EXPLICIT_CAST_FORCE_ALLOW_REFERENCE_TO_CONST_UDT */

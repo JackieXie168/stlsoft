@@ -1,5 +1,5 @@
 
-// Updated: 19th September 2005
+// Updated: 5th February 2006
 
 #if !defined(WINSTL_INCL_WINSTL_HPP_STRING_ACCESS)
 # error This file cannot be directly included, and should only be included within winstl/string_access.hpp
@@ -38,7 +38,7 @@ namespace unittest
             LSA_UNICODE_STRING  lsa1 =
             {
                     static_cast<USHORT>(wcslen(buffer))
-                ,   stlsoft_num_elements(buffer)
+                ,   STLSOFT_NUM_ELEMENTS(buffer)
                 ,   buffer
             };
 

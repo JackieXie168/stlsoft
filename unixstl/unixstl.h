@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    2
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     58
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h The root header for the \ref UNIXSTL project */
@@ -469,13 +469,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def unixstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if UNIXSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define unixstl_ns_qual_std(x)         ::std::x
 # define unixstl_ns_using_std(x)        using ::std::x;
-#else
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define unixstl_ns_qual_std(x)         x
 # define unixstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -579,7 +579,12 @@ typedef us_streamoff_t      streamoff_t;        //!< streamoff
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define unixstl_num_elements(ar)                        stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define UNIXSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define unixstl_num_elements(ar)                       UNIXSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     2nd March 1996
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_OLESTRING_FUNCTIONS_MAJOR      4
 # define COMSTL_VER_H_COMSTL_OLESTRING_FUNCTIONS_MINOR      2
 # define COMSTL_VER_H_COMSTL_OLESTRING_FUNCTIONS_REVISION   1
-# define COMSTL_VER_H_COMSTL_OLESTRING_FUNCTIONS_EDIT       139
+# define COMSTL_VER_H_COMSTL_OLESTRING_FUNCTIONS_EDIT       141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/olestring_functions.h")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS
 # include <comstl/olestring_functions.h>

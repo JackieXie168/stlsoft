@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     30th January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_MAJOR     3
 # define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_MINOR     13
 # define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_REVISION  1
-# define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_EDIT      40
+# define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/controls/listbox_sequence.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE
 # include <winstl/controls/listbox_sequence.hpp>

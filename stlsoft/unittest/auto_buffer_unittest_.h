@@ -1,5 +1,5 @@
 
-// Updated: 14th January 2006
+// Updated: 21st March 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER)
 # error This file cannot be directly included, and should only be included within stlsoft/auto_buffer.hpp
@@ -63,7 +63,7 @@ namespace unittest
                 }
             }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
             /* Check that forward and backward iteration provide the same result. */
             int total_forward   =   stlsoft_ns_qual_std(accumulate)(buffer2.begin(), buffer2.end(), 0);
             int total_backward  =   stlsoft_ns_qual_std(accumulate)(buffer2.rbegin(), buffer2.rend(), 0);
@@ -73,7 +73,7 @@ namespace unittest
                 r->report("Forward and backward enumeration equivalence failed", __LINE__);
                 bSuccess = false;
             }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
             return bSuccess;
         }
@@ -112,7 +112,7 @@ namespace unittest
             }
 #endif /* !STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
 
-            // 3. Test that resizing to 0 makes the 
+            // 3. Test that resizing to 0 makes the
 
             buffer.resize(0);
 

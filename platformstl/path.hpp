@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_MAJOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_MINOR     1
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_MINOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_EDIT      10
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/path.hpp Platform header for the path components */
@@ -118,13 +118,13 @@ namespace platformstl_project
      _MSC_VER < 1310
 
     template<   ss_typename_param_k C
-#  ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#  ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k T = winstl_ns_qual(filesystem_traits)<C>
             ,   ss_typename_param_k A = winstl_ns_qual(processheap_allocator)<C>
-#  else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#  else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k T /* = filesystem_traits<C> */
             ,   ss_typename_param_k A /* = processheap_allocator<C> */
-#  endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#  endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >
     class basic_path
         : public winstl_ns_qual(basic_path__)<C, T, A>
@@ -142,13 +142,13 @@ namespace platformstl_project
         ss_explicit_k basic_path(char_type const *path)
             : parent_class_type(path)
         {}
-#  ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#  ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         /// Constructs a path from \c path
         template<ss_typename_param_k S>
         ss_explicit_k basic_path(S const &s)
             : parent_class_type(s)
         {}
-#  endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#  endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
         basic_path(char_type const *path, size_type cch)
             : parent_class_type(path, cch)
         {}
@@ -168,7 +168,7 @@ namespace platformstl_project
 
             return *this;
         }
-#  ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         template<ss_typename_param_k S>
         class_type &operator =(S const &s)
         {
@@ -176,7 +176,7 @@ namespace platformstl_project
 
             return *this;
         }
-#  endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 
     typedef basic_path<TCHAR>   path;

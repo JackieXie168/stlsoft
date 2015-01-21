@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     26th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_MAJOR    5
 # define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_MINOR    5
 # define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_REVISION 2
-# define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_EDIT     75
+# define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ namespace comstl_project
 /// </code>
 /// \endhtmlonly
 ///
-/// \note The iterator instances returned by begin() and end() are valid outside 
+/// \note The iterator instances returned by begin() and end() are valid outside
 /// the lifetime of the collection instance from which they are obtained
 template<   ss_typename_param_k CI                                      /* Collection interface */
         ,   ss_typename_param_k EI                                      /* Enumerator interface */
@@ -256,10 +256,10 @@ public:
     /// \param bAddRef Causes a reference to be added if \c true, otherwise the sequence is deemed to <i>sink</i>, or consume, the interface pointer
     /// \param quanta The actual quanta required for this instance. Must be <= Q
     ///
-    /// \note This does not throw an exception, so it is safe to be used to "eat" the 
+    /// \note This does not throw an exception, so it is safe to be used to "eat" the
     /// reference. The only possible exception to this is if COMSTL_ASSERT(), which is
     /// used to validate that the given quanta size is within the limit specified in
-    /// the specialisation, has been redefined to throw an exception. But since 
+    /// the specialisation, has been redefined to throw an exception. But since
     /// precondition violations are no more recoverable than any others (see the article
     /// "The Nuclear Reactor and the Deep Space Probe"), this does not represent
     /// a concerning contradiction to the no-throw status of the constructor.

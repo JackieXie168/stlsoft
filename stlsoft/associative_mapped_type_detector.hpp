@@ -4,7 +4,7 @@
  * Purpose:     Definition of the associative_mapped_type_detector type.
  *
  * Created:     26th February 2005
- * Updated:     20th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MINOR     4
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  3
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      14
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ namespace stlsoft
  * Classes
  */
 
-/// Detector traits class template for determining the member types of 
+/// Detector traits class template for determining the member types of
 /// associative containers
 template <ss_typename_param_k T>
 struct associative_mapped_type_detector

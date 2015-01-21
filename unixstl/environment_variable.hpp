@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     13th January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MAJOR     3
-# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MINOR     3
+# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MINOR     5
 # define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_EDIT      48
+# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -124,12 +124,12 @@ namespace unixstl_project
 /// \param T The traits type. Defaults to filesystem_traits<C>. On translators that do not support default template arguments, it must be explicitly stipulated
 /// \param A The allocator class. Defaults to stlsoft::allocator_selector<C>::allocator_type. On translators that do not support default template arguments, it is not part of the template parameter list.
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
         ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft_ns_qual(allocator_selector)<C>::allocator_type
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_environment_variable
 {
@@ -138,15 +138,15 @@ public:
     typedef C                                   char_type;
     /// The traits type
     typedef T                                   traits_type;
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
     /// The allocator type
     typedef A                                   allocator_type;
     /// The current parameterisation of the type
     typedef basic_environment_variable<C, T, A> class_type;
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
     /// The current parameterisation of the type
     typedef basic_environment_variable<C, T>    class_type;
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
     /// The size type
     typedef us_size_t                           size_type;
     /// The difference type
@@ -164,7 +164,7 @@ public:
             m_buffer[0] = 0;
         }
     }
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Create an instance representing the given environment variable
     template<ss_typename_param_k S>
     ss_explicit_k basic_environment_variable(S const &name)
@@ -176,7 +176,7 @@ public:
             m_buffer[0] = 0;
         }
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 // Conversions
 public:
@@ -197,11 +197,11 @@ public:
 // Members
 private:
     typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
                                             ,   allocator_type
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
                                             ,   malloc_allocator<char_type>
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
                                             >       buffer_type;
 
     buffer_type m_buffer;
@@ -238,7 +238,7 @@ inline basic_environment_variable<C> make_environment_variable(C const *path)
     return basic_environment_variable<C>(path);
 }
 
-#endif /* !(_MSC_VER < 1100) */
+#endif /* compiler */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

@@ -4,11 +4,11 @@
  * Purpose:     Initialiser classes for the STLSoft libraries.
  *
  * Created:     17th February 1997
- * Updated:     18th December 2005
+ * Updated:     20th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_MINOR     1
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_EDIT      204
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_MINOR     2
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_REVISION  2
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_INITIALISERS_EDIT      208
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,12 +77,14 @@ namespace stlsoft
 class method_constructor
 {
 public:
-    template<typename T>
+    template<ss_typename_param_k T>
     method_constructor(T const &t, void (T::*const fn)())
     {
         (t.*fn)();
     }
-    template<typename T, typename R>
+    template<   ss_typename_param_k T
+            ,   ss_typename_param_k R
+            >
     method_constructor(T const &t, R (T::*const fn)())
     {
         (t.*fn)();
@@ -101,11 +103,11 @@ public:
 /// \name Constructors
 /// @{
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-    template <typename T>
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+    template <ss_typename_param_k T>
     static_initialiser(T const &/* t */)
     {}
-    template <typename T>
+    template <ss_typename_param_k T>
     static_initialiser(T const * /* pt */)
     {}
 #else
@@ -113,7 +115,7 @@ public:
     {}
     static_initialiser(void const * /* pt */)
     {}
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 /// @}
 
 /// \name Not to be implemented
@@ -128,9 +130,9 @@ private:
     {
         return 0;
     }
-# else /* ? STLSOFT_COMPILER_IS_COMO */
+# else /* ? compiler */
     void *operator new(ss_size_t) stlsoft_throw_0();
-# endif /* STLSOFT_COMPILER_IS_COMO */
+# endif /* compiler */
 #endif /* !new */
     void operator delete(void *)
     {}
@@ -178,9 +180,9 @@ private:
     {
         return 0;
     }
-# else /* ? STLSOFT_COMPILER_IS_COMO */
+# else /* ? compiler */
     void *operator new(ss_size_t) stlsoft_throw_0();
-# endif /* STLSOFT_COMPILER_IS_COMO */
+# endif /* compiler */
 #endif /* !new */
     void operator delete(void *)
     {}
@@ -225,9 +227,9 @@ private:
     {
         return 0;
     }
-# else /* ? STLSOFT_COMPILER_IS_COMO */
+# else /* ? compiler */
     void *operator new(ss_size_t) stlsoft_throw_0();
-# endif /* STLSOFT_COMPILER_IS_COMO */
+# endif /* compiler */
 #endif /* !new */
     void operator delete(void *)
     {}

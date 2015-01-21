@@ -1,5 +1,5 @@
 
-// Updated: 14th January 2006
+// Updated: 21st March 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR)
 # error This file cannot be directly included, and should only be included within stlsoft/iterators/ostream_iterator.hpp
@@ -19,7 +19,7 @@ namespace unittest
 
             unittest_initialiser    init(r, "STLSoft", "ostream_iterator", __FILE__);
 
-            char const              *strings[] = 
+            char const              *strings[] =
             {
                     "abc"
                 ,   "de"

@@ -4,7 +4,7 @@
  * Purpose:     Selects the most appropriate allocator.
  *
  * Created:     20th August 2005
- * Updated:     21st January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,10 +46,10 @@
 #define STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_MINOR       3
-# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_EDIT        11
+# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_MAJOR       2
+# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_MINOR       0
+# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_REVISION    1
+# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,122 +61,20 @@
 */
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Includes - 1
+ * Includes
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* Chosen allocator
- *
- * 
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include stlsoft/memory/allocator_selector.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#if defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR) && \
-    defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR)
-  /* Prevent use of malloc_allocator. */
-# undef STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
-#endif /* allocator */
-
-#if defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_NEW_ALLOCATOR) && \
-    defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR)
-  /* Prevent use of new_allocator. */
-# undef STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR
-#endif /* allocator */
-
-#if defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR) && \
-    defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
-  /* Prevent use of std::allocator. */
-# undef STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR
-#endif /* allocator */
-
-
-
-#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    (   defined(STLSOFT_COMPILER_IS_DMC) && \
-        __DMC__ < 0x0845) || \
-    (   defined(STLSOFT_COMPILER_IS_GCC) && \
-        __GNUC__ < 3)
- // Something's wrong with Borland - big shock! - that causes crashes in deallocation
- //
- // Same for GCC 2.95
- //
- // With DMC++, it crashes the compiler!! ;-(
-# define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR
-#elif defined(STLSOFT_COMPILER_IS_WATCOM)
- // Watcom's got major problems, so we use malloc_allocator
-# define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
-#else /* ? compiler */
- // Now we work out which to select by default for each 
-# if !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR) && \
-     !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR) && \
-     !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
-#  if !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR)
-#   define STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR
-#  elif !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_NEW_ALLOCATOR)
-#   define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR
-#  elif !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR)
-#   define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
-#  else /* ? NO_USE_??? */
-#   error All allocator types disabled. You must enable one or more, by disabling one or more of the 
-#   error symbols STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR, 
-#   error STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_NEW_ALLOCATOR
-#   error or STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR.
-#  endif /* NO_USE_??? */
-# endif /* USE_??? */
-#endif /* allocator */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Includes - 1
- */
-
-#if defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR
-#  include <stlsoft/malloc_allocator.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR */
-#elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR
-#  include <stlsoft/new_allocator.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR */
-#elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
-# include <memory>
-#else /* _USE_??? */
-# error Error in discrimination. allocator_selector must select either std::allocator, stlsoft::malloc_allocator or stlsoft::new_allocator
-#endif /* STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-namespace stlsoft
-{
-#endif /* _STLSOFT_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-template <ss_typename_param_k T>
-struct allocator_selector
-{
-#if defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR)
-    typedef malloc_allocator<T>                 allocator_type;
-#elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR)
-    typedef new_allocator<T>                    allocator_type;
-#elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
-    typedef stlsoft_ns_qual_std(allocator)<T>   allocator_type;
-#else /* USE_??? */
-# error Error in discrimination. allocator_selector must select either std::allocator, stlsoft::malloc_allocator or stlsoft::new_allocator
-#endif /* allocator */
-};
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

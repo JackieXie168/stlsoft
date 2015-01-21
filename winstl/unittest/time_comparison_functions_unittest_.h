@@ -43,7 +43,7 @@ namespace unittest
             }
 
 #if 0
-            inline ws_sint_t 
+            inline ws_sint_t
             inline ws_sint_t compare(FILETIME const &lhs, SYSTEMTIME const &rhs)
             inline ws_sint_t compare(SYSTEMTIME const &lhs, FILETIME const &rhs)
             inline ws_sint_t compare(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)

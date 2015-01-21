@@ -7,11 +7,11 @@
  *              in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_MINOR    1
+# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_EDIT     40
+# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,85 +81,89 @@ namespace stlsoft
  * Constants & definitions
  */
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-#define __STLSOFT_GEN_SINT8_SUFFIX(i)           (i)
-#define __STLSOFT_GEN_UINT8_SUFFIX(i)           (i ## U)
-#define __STLSOFT_GEN_SINT16_SUFFIX(i)          (i)
-#define __STLSOFT_GEN_UINT16_SUFFIX(i)          (i ## U)
-#define __STLSOFT_GEN_SINT32_SUFFIX(i)          (i ## L)
-#define __STLSOFT_GEN_UINT32_SUFFIX(i)          (i ## UL)
+#define STLSOFT_GEN_SINT8_SUFFIX(i)             (i)
+#define STLSOFT_GEN_UINT8_SUFFIX(i)             (i ## U)
+#define STLSOFT_GEN_SINT16_SUFFIX(i)            (i)
+#define STLSOFT_GEN_UINT16_SUFFIX(i)            (i ## U)
+#define STLSOFT_GEN_SINT32_SUFFIX(i)            (i ## L)
+#define STLSOFT_GEN_UINT32_SUFFIX(i)            (i ## UL)
 #if (   defined(STLSOFT_COMPILER_IS_DMC) || \
         defined(STLSOFT_COMPILER_IS_COMO) || \
         defined(STLSOFT_COMPILER_IS_GCC) || \
         defined(STLSOFT_COMPILER_IS_MWERKS))
-# define __STLSOFT_GEN_SINT64_SUFFIX(i)         (i ## LL)
-# define __STLSOFT_GEN_UINT64_SUFFIX(i)         (i ## ULL)
+# define STLSOFT_GEN_SINT64_SUFFIX(i)           (i ## LL)
+# define STLSOFT_GEN_UINT64_SUFFIX(i)           (i ## ULL)
 #elif ( defined(STLSOFT_COMPILER_IS_BORLAND) || \
         defined(STLSOFT_COMPILER_IS_INTEL) || \
         defined(STLSOFT_COMPILER_IS_MSVC) || \
         defined(STLSOFT_COMPILER_IS_VECTORC) || \
         defined(STLSOFT_COMPILER_IS_WATCOM))
-# define __STLSOFT_GEN_SINT64_SUFFIX(i)         (i ## L)
-# define __STLSOFT_GEN_UINT64_SUFFIX(i)         (i ## UL)
+# define STLSOFT_GEN_SINT64_SUFFIX(i)           (i ## L)
+# define STLSOFT_GEN_UINT64_SUFFIX(i)           (i ## UL)
 #else
 # error Compiler not discriminated
 #endif /* __STLSOFT_DVS_COMPILER_GNUC || __STLSOFT_DVS_COMPILER_DECCXX */
 
 
-#define   STLSOFT_LIMIT_TRAITS__SINT8_MIN     (- __STLSOFT_GEN_SINT8_SUFFIX(127) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT8_MAX     (+ __STLSOFT_GEN_SINT8_SUFFIX(127))
+#define   STLSOFT_LIMIT_TRAITS__SINT8_MIN       (- __STLSOFT_GEN_SINT8_SUFFIX(127) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT8_MAX       (+ __STLSOFT_GEN_SINT8_SUFFIX(127))
 
-#define   STLSOFT_LIMIT_TRAITS__UINT8_MIN     (  __STLSOFT_GEN_UINT8_SUFFIX(0))
-#define   STLSOFT_LIMIT_TRAITS__UINT8_MAX     (  __STLSOFT_GEN_UINT8_SUFFIX(255))
+#define   STLSOFT_LIMIT_TRAITS__UINT8_MIN       (  __STLSOFT_GEN_UINT8_SUFFIX(0))
+#define   STLSOFT_LIMIT_TRAITS__UINT8_MAX       (  __STLSOFT_GEN_UINT8_SUFFIX(255))
 
+#define   STLSOFT_LIMIT_TRAITS__SINT16_MIN      (- __STLSOFT_GEN_SINT16_SUFFIX(32767) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT16_MAX      (+ __STLSOFT_GEN_SINT16_SUFFIX(32767))
 
-#define   STLSOFT_LIMIT_TRAITS__SINT16_MIN    (- __STLSOFT_GEN_SINT16_SUFFIX(32767) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT16_MAX    (+ __STLSOFT_GEN_SINT16_SUFFIX(32767))
+#define   STLSOFT_LIMIT_TRAITS__UINT16_MIN      (  __STLSOFT_GEN_UINT16_SUFFIX(0))
+#define   STLSOFT_LIMIT_TRAITS__UINT16_MAX      (  __STLSOFT_GEN_UINT16_SUFFIX(65535))
 
-#define   STLSOFT_LIMIT_TRAITS__UINT16_MIN    (  __STLSOFT_GEN_UINT16_SUFFIX(0))
-#define   STLSOFT_LIMIT_TRAITS__UINT16_MAX    (  __STLSOFT_GEN_UINT16_SUFFIX(65535))
+#define   STLSOFT_LIMIT_TRAITS__SINT32_MIN      (- __STLSOFT_GEN_SINT32_SUFFIX(2147483647) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT32_MAX      (+ __STLSOFT_GEN_SINT32_SUFFIX(2147483647))
 
+#define   STLSOFT_LIMIT_TRAITS__UINT32_MIN      (  __STLSOFT_GEN_UINT32_SUFFIX(0))
+#define   STLSOFT_LIMIT_TRAITS__UINT32_MAX      (  __STLSOFT_GEN_UINT32_SUFFIX(4294967295))
 
-#define   STLSOFT_LIMIT_TRAITS__SINT32_MIN    (- __STLSOFT_GEN_SINT32_SUFFIX(2147483647) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT32_MAX    (+ __STLSOFT_GEN_SINT32_SUFFIX(2147483647))
+#define   STLSOFT_LIMIT_TRAITS__SINT64_MIN      (- __STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT64_MAX      (+ __STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) )
 
-#define   STLSOFT_LIMIT_TRAITS__UINT32_MIN    (  __STLSOFT_GEN_UINT32_SUFFIX(0))
-#define   STLSOFT_LIMIT_TRAITS__UINT32_MAX    (  __STLSOFT_GEN_UINT32_SUFFIX(4294967295))
-
-
-#define   STLSOFT_LIMIT_TRAITS__SINT64_MIN    (- __STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT64_MAX    (+ __STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) )
-
-#define   STLSOFT_LIMIT_TRAITS__UINT64_MIN    (  __STLSOFT_GEN_UINT64_SUFFIX(0) )
-#define   STLSOFT_LIMIT_TRAITS__UINT64_MAX    (  __STLSOFT_GEN_UINT64_SUFFIX(18446744073709551615) )
-
-#define __STLSOFT_LIMIT_TRAITS__SINT8_MIN       STLSOFT_LIMIT_TRAITS__SINT8_MIN
-#define __STLSOFT_LIMIT_TRAITS__SINT8_MAX       STLSOFT_LIMIT_TRAITS__SINT8_MAX
-
-#define __STLSOFT_LIMIT_TRAITS__UINT8_MIN       STLSOFT_LIMIT_TRAITS__UINT8_MIN
-#define __STLSOFT_LIMIT_TRAITS__UINT8_MAX       STLSOFT_LIMIT_TRAITS__UINT8_MAX
+#define   STLSOFT_LIMIT_TRAITS__UINT64_MIN      (  __STLSOFT_GEN_UINT64_SUFFIX(0) )
+#define   STLSOFT_LIMIT_TRAITS__UINT64_MAX      (  __STLSOFT_GEN_UINT64_SUFFIX(18446744073709551615) )
 
 
-#define __STLSOFT_LIMIT_TRAITS__SINT16_MIN      STLSOFT_LIMIT_TRAITS__SINT16_MIN
-#define __STLSOFT_LIMIT_TRAITS__SINT16_MAX      STLSOFT_LIMIT_TRAITS__SINT16_MAX
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#define __STLSOFT_LIMIT_TRAITS__UINT16_MIN      STLSOFT_LIMIT_TRAITS__UINT16_MIN
-#define __STLSOFT_LIMIT_TRAITS__UINT16_MAX      STLSOFT_LIMIT_TRAITS__UINT16_MAX
+# define __STLSOFT_GEN_SINT8_SUFFIX(i)          STLSOFT_GEN_SINT8_SUFFIX(i)
+# define __STLSOFT_GEN_UINT8_SUFFIX(i)          STLSOFT_GEN_UINT8_SUFFIX(i)
+# define __STLSOFT_GEN_SINT16_SUFFIX(i)         STLSOFT_GEN_SINT16_SUFFIX(i)
+# define __STLSOFT_GEN_UINT16_SUFFIX(i)         STLSOFT_GEN_UINT16_SUFFIX(i)
+# define __STLSOFT_GEN_SINT32_SUFFIX(i)         STLSOFT_GEN_SINT32_SUFFIX(i)
+# define __STLSOFT_GEN_UINT32_SUFFIX(i)         STLSOFT_GEN_UINT32_SUFFIX(i)
+# define __STLSOFT_GEN_SINT64_SUFFIX(i)         STLSOFT_GEN_SINT64_SUFFIX(i)
+# define __STLSOFT_GEN_UINT64_SUFFIX(i)         STLSOFT_GEN_UINT64_SUFFIX(i)
 
+# define __STLSOFT_LIMIT_TRAITS__SINT8_MIN      STLSOFT_LIMIT_TRAITS__SINT8_MIN
+# define __STLSOFT_LIMIT_TRAITS__SINT8_MAX      STLSOFT_LIMIT_TRAITS__SINT8_MAX
 
-#define __STLSOFT_LIMIT_TRAITS__SINT32_MIN      STLSOFT_LIMIT_TRAITS__SINT32_MIN
-#define __STLSOFT_LIMIT_TRAITS__SINT32_MAX      STLSOFT_LIMIT_TRAITS__SINT32_MAX
+# define __STLSOFT_LIMIT_TRAITS__UINT8_MIN      STLSOFT_LIMIT_TRAITS__UINT8_MIN
+# define __STLSOFT_LIMIT_TRAITS__UINT8_MAX      STLSOFT_LIMIT_TRAITS__UINT8_MAX
 
-#define __STLSOFT_LIMIT_TRAITS__UINT32_MIN      STLSOFT_LIMIT_TRAITS__UINT32_MIN
-#define __STLSOFT_LIMIT_TRAITS__UINT32_MAX      STLSOFT_LIMIT_TRAITS__UINT32_MAX
+# define __STLSOFT_LIMIT_TRAITS__SINT16_MIN     STLSOFT_LIMIT_TRAITS__SINT16_MIN
+# define __STLSOFT_LIMIT_TRAITS__SINT16_MAX     STLSOFT_LIMIT_TRAITS__SINT16_MAX
 
+# define __STLSOFT_LIMIT_TRAITS__UINT16_MIN     STLSOFT_LIMIT_TRAITS__UINT16_MIN
+# define __STLSOFT_LIMIT_TRAITS__UINT16_MAX     STLSOFT_LIMIT_TRAITS__UINT16_MAX
 
-#define __STLSOFT_LIMIT_TRAITS__SINT64_MIN      STLSOFT_LIMIT_TRAITS__SINT64_MIN
-#define __STLSOFT_LIMIT_TRAITS__SINT64_MAX      STLSOFT_LIMIT_TRAITS__SINT64_MAX
+# define __STLSOFT_LIMIT_TRAITS__SINT32_MIN     STLSOFT_LIMIT_TRAITS__SINT32_MIN
+# define __STLSOFT_LIMIT_TRAITS__SINT32_MAX     STLSOFT_LIMIT_TRAITS__SINT32_MAX
 
-#define __STLSOFT_LIMIT_TRAITS__UINT64_MIN      STLSOFT_LIMIT_TRAITS__UINT64_MIN
-#define __STLSOFT_LIMIT_TRAITS__UINT64_MAX      STLSOFT_LIMIT_TRAITS__UINT64_MAX
+# define __STLSOFT_LIMIT_TRAITS__UINT32_MIN     STLSOFT_LIMIT_TRAITS__UINT32_MIN
+# define __STLSOFT_LIMIT_TRAITS__UINT32_MAX     STLSOFT_LIMIT_TRAITS__UINT32_MAX
+
+# define __STLSOFT_LIMIT_TRAITS__SINT64_MIN     STLSOFT_LIMIT_TRAITS__SINT64_MIN
+# define __STLSOFT_LIMIT_TRAITS__SINT64_MAX     STLSOFT_LIMIT_TRAITS__SINT64_MAX
+
+# define __STLSOFT_LIMIT_TRAITS__UINT64_MIN     STLSOFT_LIMIT_TRAITS__UINT64_MIN
+# define __STLSOFT_LIMIT_TRAITS__UINT64_MAX     STLSOFT_LIMIT_TRAITS__UINT64_MAX
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -215,12 +219,12 @@ public:
     typedef ss_sint8_t  value_type;
 
 public:
-    static value_type       minimum() { return __STLSOFT_LIMIT_TRAITS__SINT8_MIN; }
-    static value_type       maximum() { return __STLSOFT_LIMIT_TRAITS__SINT8_MAX; }
+    static value_type       minimum() { return STLSOFT_LIMIT_TRAITS__SINT8_MIN; }
+    static value_type       maximum() { return STLSOFT_LIMIT_TRAITS__SINT8_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__SINT8_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__SINT8_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__SINT8_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__SINT8_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 
@@ -231,12 +235,12 @@ public:
     typedef ss_uint8_t  value_type;
 
 public:
-    static value_type   minimum() { return __STLSOFT_LIMIT_TRAITS__UINT8_MIN; }
-    static value_type   maximum() { return __STLSOFT_LIMIT_TRAITS__UINT8_MAX; }
+    static value_type   minimum() { return STLSOFT_LIMIT_TRAITS__UINT8_MIN; }
+    static value_type   maximum() { return STLSOFT_LIMIT_TRAITS__UINT8_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__UINT8_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__UINT8_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__UINT8_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__UINT8_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 
@@ -248,12 +252,12 @@ public:
     typedef ss_sint16_t value_type;
 
 public:
-    static value_type   minimum() { return __STLSOFT_LIMIT_TRAITS__SINT16_MIN; }
-    static value_type   maximum() { return __STLSOFT_LIMIT_TRAITS__SINT16_MAX; }
+    static value_type   minimum() { return STLSOFT_LIMIT_TRAITS__SINT16_MIN; }
+    static value_type   maximum() { return STLSOFT_LIMIT_TRAITS__SINT16_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__SINT16_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__SINT16_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__SINT16_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__SINT16_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 
@@ -264,12 +268,12 @@ public:
     typedef ss_uint16_t value_type;
 
 public:
-    static value_type   minimum() { return __STLSOFT_LIMIT_TRAITS__UINT16_MIN; }
-    static value_type   maximum() { return __STLSOFT_LIMIT_TRAITS__UINT16_MAX; }
+    static value_type   minimum() { return STLSOFT_LIMIT_TRAITS__UINT16_MIN; }
+    static value_type   maximum() { return STLSOFT_LIMIT_TRAITS__UINT16_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__UINT16_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__UINT16_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__UINT16_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__UINT16_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 
@@ -281,12 +285,12 @@ public:
     typedef ss_sint32_t value_type;
 
 public:
-    static value_type   minimum() { return __STLSOFT_LIMIT_TRAITS__SINT32_MIN; }
-    static value_type   maximum() { return __STLSOFT_LIMIT_TRAITS__SINT32_MAX; }
+    static value_type   minimum() { return STLSOFT_LIMIT_TRAITS__SINT32_MIN; }
+    static value_type   maximum() { return STLSOFT_LIMIT_TRAITS__SINT32_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__SINT32_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__SINT32_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__SINT32_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__SINT32_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 
@@ -297,12 +301,12 @@ public:
     typedef ss_uint32_t value_type;
 
 public:
-    static value_type   minimum() { return __STLSOFT_LIMIT_TRAITS__UINT32_MIN; }
-    static value_type   maximum() { return __STLSOFT_LIMIT_TRAITS__UINT32_MAX; }
+    static value_type   minimum() { return STLSOFT_LIMIT_TRAITS__UINT32_MIN; }
+    static value_type   maximum() { return STLSOFT_LIMIT_TRAITS__UINT32_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__UINT32_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__UINT32_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__UINT32_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__UINT32_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 
@@ -316,13 +320,13 @@ public:
     typedef ss_sint64_t value_type;
 
 public:
-    static value_type   minimum() { return __STLSOFT_LIMIT_TRAITS__SINT64_MIN; }
-    static value_type   maximum() { return __STLSOFT_LIMIT_TRAITS__SINT64_MAX; }
+    static value_type   minimum() { return STLSOFT_LIMIT_TRAITS__SINT64_MIN; }
+    static value_type   maximum() { return STLSOFT_LIMIT_TRAITS__SINT64_MAX; }
 
 #  if defined(STLSOFT_CF_MEMBER_CONSTANT_SUPPORT) && \
       !defined(STLSOFT_COMPILER_IS_BORLAND)
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__SINT64_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__SINT64_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__SINT64_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__SINT64_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 
@@ -333,13 +337,13 @@ public:
     typedef ss_uint64_t value_type;
 
 public:
-    static value_type   minimum() { return __STLSOFT_LIMIT_TRAITS__UINT64_MIN; }
-    static value_type   maximum() { return __STLSOFT_LIMIT_TRAITS__UINT64_MAX; }
+    static value_type   minimum() { return STLSOFT_LIMIT_TRAITS__UINT64_MIN; }
+    static value_type   maximum() { return STLSOFT_LIMIT_TRAITS__UINT64_MAX; }
 
 #  if defined(STLSOFT_CF_MEMBER_CONSTANT_SUPPORT) && \
       !defined(STLSOFT_COMPILER_IS_BORLAND)
-    static const value_type minimum_value = __STLSOFT_LIMIT_TRAITS__UINT64_MIN;
-    static const value_type maximum_value = __STLSOFT_LIMIT_TRAITS__UINT64_MAX;
+    static const value_type minimum_value = STLSOFT_LIMIT_TRAITS__UINT64_MIN;
+    static const value_type maximum_value = STLSOFT_LIMIT_TRAITS__UINT64_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */

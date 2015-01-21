@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MINOR      7
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       83
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -579,7 +579,10 @@ public:
     /// The type of system error codes
     typedef DWORD                                   error_type;
 private:
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER >= 1200
     typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
+#endif /* compiler */
 public:
 
     enum
@@ -725,9 +728,9 @@ public:
 
         size_type len = str_len(path);
 
-        return  is_path_UNC(path) || 
-                (   (2 < len) && 
-                    (':' == path[1]) && 
+        return  is_path_UNC(path) ||
+                (   (2 < len) &&
+                    (':' == path[1]) &&
                     is_path_name_separator(path[2]));
     }
 
@@ -992,7 +995,7 @@ public:
             n = get_full_path_name_impl(fileName, len, buffer, cchBuffer, ppFile);
         }
 
-        // Paths that exceed _MAX_PATH cause GetFullPathNameA() to fail, but it 
+        // Paths that exceed _MAX_PATH cause GetFullPathNameA() to fail, but it
         // does not (appear to) call SetLastError()
         if( 0 == n &&
             0 == ::GetLastError() &&
@@ -1156,7 +1159,7 @@ private:
 public:
 #endif /* 0 */
 
-private:    
+private:
     static bool_type stat_direct_(char_type const *path, stat_data_type *stat_data)
     {
         WINSTL_ASSERT(NULL != path);
@@ -1193,6 +1196,9 @@ public:
         if( bTryEndTest &&
             class_type::has_dir_end(path + len - 2))
         {
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER >= 1200
+    typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
             WINSTL_ASSERT(len > 2);
 
             buffer_type_    buffer(1 + len);
@@ -1211,6 +1217,9 @@ public:
 
                 return class_type::stat_direct_(buffer.data(), stat_data);
             }
+#else /* ? compiler */
+            return class_type::stat_direct_(path, stat_data);
+#endif /* compiler */
         }
         else
         {
@@ -1384,7 +1393,10 @@ public:
     /// The type of system error codes
     typedef DWORD                                   error_type;
 private:
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER >= 1200
     typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
+#endif /* compiler */
 public:
 
     enum
@@ -1530,9 +1542,9 @@ public:
 
         size_type len = str_len(path);
 
-        return  is_path_UNC(path) || 
-                (   (2 < len) && 
-                    (L':' == path[1]) && 
+        return  is_path_UNC(path) ||
+                (   (2 < len) &&
+                    (L':' == path[1]) &&
                     is_path_name_separator(path[2]));
     }
 

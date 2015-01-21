@@ -4,7 +4,7 @@
  * Purpose:     Traits for detecting characteristics of adapted iterators.
  *
  * Created:     9th July 2004
- * Updated:     17th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MINOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     32
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -126,7 +126,6 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-
 /// Traits for adapted_iterator_traits
 template <ss_typename_param_k I>
 struct adapted_iterator_traits
@@ -145,7 +144,7 @@ private:
 #endif /* compiler */
 
     public:
-    enum { IS_DINKUMWARE_OLD_FORM       =   0 != member_traits<I>::has_member_distance_type && 
+    enum { IS_DINKUMWARE_OLD_FORM       =   0 != member_traits<I>::has_member_distance_type &&
                                             0 == HAS_MEMBER_DIFFERENCE_TYPE                                 };
     private:
 
@@ -201,7 +200,7 @@ public:
     /// \brief The pointer type
     ///
     /// This is the member \c pointer of the adapted iterator type, if it is defined. If not, it is defined to
-    /// be \c void, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint 
+    /// be \c void, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint
     /// to prevent the base iterator type being adapted (which is nice).
     typedef ss_typename_type_k select_first_type_if<putative_pointer_
                                                 ,   void
@@ -215,7 +214,7 @@ public:
     /// \brief The reference type
     ///
     /// This is the member \c reference of the adapted iterator type, if it is defined. If not, it is defined to
-    /// be \c void, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint 
+    /// be \c void, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint
     /// to prevent the base iterator type being adapted (which is nice).
     typedef ss_typename_type_k select_first_type_if<putative_reference_
                                                 ,   void
@@ -251,7 +250,7 @@ protected:
     }
 private:
 
-    // The base type 
+    // The base type
     typedef ss_typename_type_k base_type_traits<pointer>::base_type                     pointer_base_type_;
     typedef ss_typename_type_k base_type_traits<reference>::base_type                   reference_base_type_;
 
@@ -265,7 +264,7 @@ private:
 public:
     /// \brief The const_pointer type
     ///
-    /// This is either void, if the iterator element reference category is Void or BVT, otherwise 
+    /// This is either void, if the iterator element reference category is Void or BVT, otherwise
     /// it's <code>"<i>value_type</i>" const*</code>, where <code>"<i>value_type</i>"</code> is the
     /// deduced value type obtained from \c pointer.
     typedef ss_typename_type_k select_first_type_if<void
@@ -275,7 +274,7 @@ public:
 
     /// \brief The const_reference type
     ///
-    /// This is either void, if the iterator element reference category is Void or BVT, otherwise 
+    /// This is either void, if the iterator element reference category is Void or BVT, otherwise
     /// it's <code>"<i>value_type</i>" const*</code>, where <code>"<i>value_type</i>"</code> is the
     /// deduced value type obtained from \c reference.
     typedef ss_typename_type_k select_first_type_if<void

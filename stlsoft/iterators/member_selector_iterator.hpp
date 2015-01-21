@@ -4,7 +4,7 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     31st January 2006
+ * Updated:     27th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        32
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -236,9 +236,9 @@ public:
 private:
     static void constraints()
     {
-        C   *p      =   0;
-        M   C::*pm  =   0;
-        M   m       =   p->*pm;
+        C       *p      =   0;          // C* is a proper pointer
+        M       C::*pm  =   0;          // M C:: are meaningful class/member types
+        M const &m      =   p->*pm;     // Pointer to member can be dereferenced
 
         STLSOFT_SUPPRESS_UNUSED(m);
     }
@@ -372,7 +372,7 @@ public:
     /// Access the element at the given index
     ///
     /// \param index The required offset from the iterator's position
-    value_type operator [](difference_type index) const
+    value_type const &operator [](difference_type index) const
     {
         return m_it[index];
     }
@@ -452,7 +452,7 @@ struct msi_iterator_traits<T const volatile*>
 #endif /* dinkumware */
 
 
-/// Traits class used for specifying sub-types for the member_selector() 
+/// Traits class used for specifying sub-types for the member_selector()
 /// creator function(s)
 template<   ss_typename_param_k I
         ,   class               C
@@ -480,15 +480,15 @@ public:
 
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
-    typedef ss_typename_type_k select_first_type_if<    const_msi_type 
-                                                    ,   non_const_msi_type 
+    typedef ss_typename_type_k select_first_type_if<    const_msi_type
+                                                    ,   non_const_msi_type
                                                     ,   msi_iterator_traits<I>::is_const
                                                     >::type             type;
 #else /* ? dinkumware */
-    typedef ss_typename_type_k select_first_type_if<    const_msi_type 
-                                                    ,   non_const_msi_type 
+    typedef ss_typename_type_k select_first_type_if<    const_msi_type
+                                                    ,   non_const_msi_type
 #if 0
-                                                    ,   /* base_type_traits<typename std::iterator_traits<I>::value_type>::is_const ||
+                                                    ,   /* base_type_traits<ss_typename_type_k std::iterator_traits<I>::value_type>::is_const ||
                                                          */base_type_traits<tested_member_type>::is_const/*  ||
                                                         base_type_traits<M>::is_const */
 #else /* ? 0 */
@@ -505,7 +505,7 @@ public:
 //
 // - M is const
 // - I's value_type is const
-//     - alas 
+//     - alas
 
 // Solution 1:
 //
@@ -528,7 +528,7 @@ public:
 //
 //   use msi_iterator_traits
 //
-// 
+//
 // Solution final:
 //
 //  + use member types within msi_traits to simplify for readers

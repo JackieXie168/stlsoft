@@ -4,11 +4,11 @@
  * Purpose:     afx_allocator class.
  *
  * Created:     5th August 2005
- * Updated:     22nd December 2005
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define MFCSTL_INCL_MFCSTL_HPP_AFX_ALLOCATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_MAJOR      1
+# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_MAJOR      2
 # define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_MINOR      0
-# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_REVISION   2
-# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_EDIT       3
+# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_REVISION   1
+# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,196 +59,14 @@
 #ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#include <stdexcept>                    // for std::runtime_error
-#include <afx.h>
 
-/* ////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include mfcstl/memory/afx_allocator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _MFCSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::mfcstl */
-namespace mfcstl
-{
-# else
-/* Define stlsoft::mfcstl_project */
-
-namespace stlsoft
-{
-
-namespace mfcstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_MFCSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup mfcstl_allocator_library Allocator Library (MFCSTL)
-/// \ingroup MFCSTL libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types for MFC
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// STL Allocator based on the MFC memory framework
-///
-/// \param T The value_type of the allocator
-template <ss_typename_param_k T>
-class afx_allocator
-    : public allocator_base<T, afx_allocator<T> >
-{
-private:
-    typedef allocator_base<T, afx_allocator<T> >                    parent_class_type;
-public:
-    /// The parameterisation of the class
-    typedef afx_allocator<T>                                        class_type;
-    /// The value type
-    typedef ss_typename_type_k parent_class_type::value_type        value_type;
-    /// The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer           pointer;
-    /// The non-mutating (const) pointer type
-    typedef ss_typename_type_k parent_class_type::const_pointer     const_pointer;
-    /// The reference type
-    typedef ss_typename_type_k parent_class_type::reference         reference;
-    /// The non-mutating (const) reference type
-    typedef ss_typename_type_k parent_class_type::const_reference   const_reference;
-    /// The difference type
-    typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
-    /// The size type
-    typedef ss_typename_type_k parent_class_type::size_type         size_type;
-
-public:
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator's <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef afx_allocator<U>                                    other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-
-// Construction
-public:
-    /// Default constructor
-    afx_allocator() stlsoft_throw_0()
-    {}
-    /// Copy constructor
-    afx_allocator(const afx_allocator &rhs) stlsoft_throw_0()
-    {}
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    template <ss_typename_param_k U>
-    afx_allocator(afx_allocator<U> const &rhs) stlsoft_throw_0()
-    {}
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    /// Destructor
-    ~afx_allocator() stlsoft_throw_0()
-    {}
-
-    class_type const &operator =(class_type const &rhs)
-    {
-        return *this;
-    }
-
-private:
-    friend class allocator_base<T, afx_allocator<T> >;
-
-    void *do_allocate(size_type n, void const *hint)
-    {
-        STLSOFT_SUPPRESS_UNUSED(hint);
-
-        return new BYTE[n * sizeof(value_type)];
-    }
-    void do_deallocate(void *pv, size_type n)
-    {
-        STLSOFT_SUPPRESS_UNUSED(n);
-
-        delete [] static_cast<BYTE*>(pv);
-    }
-    void do_deallocate(void *pv)
-    {
-        delete [] static_cast<BYTE*>(pv);
-    }
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-// Specialisation for void
-STLSOFT_TEMPLATE_SPECIALISATION
-class afx_allocator<void>
-{
-public:
-    typedef void                    value_type;
-    typedef afx_allocator<void>   class_type;
-    typedef void                    *pointer;
-    typedef void const              *const_pointer;
-    typedef ptrdiff_t               difference_type;
-    typedef ms_size_t               size_type;
-
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef afx_allocator<U>  other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-inline ms_bool_t operator ==(const afx_allocator<T> &/* lhs */, const afx_allocator<T> &/* rhs */)
-{
-    return ms_true_v;
-}
-
-template <ss_typename_param_k T>
-inline ms_bool_t operator !=(const afx_allocator<T> &/* lhs */, const afx_allocator<T> &/* rhs */)
-{
-    return ms_false_v;
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/afx_allocator_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group mfcstl_allocator_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _MFCSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace mfcstl
-# else
-} // namespace mfcstl_project
-} // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_MFCSTL_NO_NAMESPACE */
+#ifndef MFCSTL_INCL_MFCSTL_MEMORY_HPP_TASK_ALLOCATOR
+# include <mfcstl/memory/afx_allocator.hpp>
+#endif /* !MFCSTL_INCL_MFCSTL_MEMORY_HPP_TASK_ALLOCATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

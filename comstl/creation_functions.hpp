@@ -4,11 +4,11 @@
  * Purpose:     COM instance creation helper functions
  *
  * Created:     21st September 2005
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_CREATION_FUNCTIONS_MAJOR     1
 # define COMSTL_VER_COMSTL_HPP_CREATION_FUNCTIONS_MINOR     1
 # define COMSTL_VER_COMSTL_HPP_CREATION_FUNCTIONS_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_CREATION_FUNCTIONS_EDIT      2
+# define COMSTL_VER_COMSTL_HPP_CREATION_FUNCTIONS_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ namespace comstl_project
  * Functions
  */
 
-/// \brief 
+/// \brief
 template <ss_typename_param_k I>
 inline HRESULT co_create_instance(  REFCLSID    clsid
                                 ,   I           **ppi)

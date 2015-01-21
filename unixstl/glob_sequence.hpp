@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     26th January 2006
+ * Updated:     25th March 2006
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MAJOR    4
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MINOR    11
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     114
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MINOR    12
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,9 +73,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS
 //# include <stlsoft/tokeniser_functions.hpp> // for find_next_token
 #endif /* !STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS */
@@ -96,7 +96,7 @@
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Library compatibility 
+ * Library compatibility
  */
 
 #ifndef GLOB_ONLYDIR
@@ -107,7 +107,7 @@
 //#define UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Compiler compatibility 
+ * Compiler compatibility
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -131,9 +131,9 @@
 #  define GLOB_SEQUENCE_CTOR_PRIMARY_FORM
 # elif _MSC_VER >= 1020
 #  define GLOB_SEQUENCE_CTOR_ALT_FORM
-# else
+# else /* ? compiler */
 #  define GLOB_SEQUENCE_CTOR_OLD_FORM
-# endif /* _MSC_VER */
+# endif /* compiler */
 #elif defined(STLSOFT_COMPILER_IS_MWERKS)
 # define GLOB_SEQUENCE_CTOR_ALT_FORM
 #elif defined(STLSOFT_COMPILER_IS_VECTORC)
@@ -285,7 +285,7 @@ public:
                                              ,   const_reference
                                              >::type                        const_iterator;
 
-#ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// The type of the const (non-mutating) reverse iterator
     typedef stlsoft_ns_qual(reverse_iterator_base)  <   const_iterator
                                                     ,   value_type
@@ -293,7 +293,7 @@ public:
                                                     ,   const_pointer
                                                     ,   difference_type
                                                     >                       const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Flags
@@ -500,7 +500,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -509,7 +509,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 // Implementation
@@ -650,7 +650,7 @@ inline glob_sequence::const_iterator glob_sequence::end() const
     return m_base + m_cItems;
 }
 
-#ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 inline glob_sequence::const_reverse_iterator glob_sequence::rbegin() const
 {
     return const_reverse_iterator(end());
@@ -660,7 +660,7 @@ inline glob_sequence::const_reverse_iterator glob_sequence::rend() const
 {
     return const_reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 inline us_bool_t glob_sequence::is_valid() const
 {
@@ -678,12 +678,12 @@ inline /* static */ us_int_t glob_sequence::validate_flags_(us_int_t flags)
     const us_int_t  validFlags  =   0
                                 |   includeDots
                                 |   directories
-                                |   files       
-                                |   noSort      
-                                |   markDirs    
+                                |   files
+                                |   noSort
+                                |   markDirs
                                 |   absolutePath
                                 |   breakOnError
-                                |   noEscape   
+                                |   noEscape
 #ifdef GLOB_PERIOD
                                 |   matchPeriod
 #endif /* GLOB_PERIOD */
@@ -917,8 +917,8 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifdef GLOB_NOMATCH
         // When GLOB_NOMATCH is not defined, we can reasonably infer that
-        // there is no replacement value, so throwing on a non-zero 
-        // return from glob() is appropriate 
+        // there is no replacement value, so throwing on a non-zero
+        // return from glob() is appropriate
         if(GLOB_NOMATCH != gr)
 # endif /* GLOB_NOMATCH */
         {
@@ -939,9 +939,9 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
         // the m_buffer member, if any of the following hold:
         //
         // 1. we're eliding dots
-        // 2. we want directories only, and so will need to 
+        // 2. we want directories only, and so will need to
         //     remove files, AND we do not trust GLOB_ONLYDIR
-        // 3. we want files only, and so will need 
+        // 3. we want files only, and so will need
         //     to remove directories
         //
         if( 0 == (m_flags & includeDots) ||                     // 1
@@ -1019,11 +1019,11 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
         // This section performs the filtering, if any of the following
         // hold:
         //
-        // 1. we want directories only, and so will need to 
+        // 1. we want directories only, and so will need to
         //     remove files, AND we do not trust GLOB_ONLYDIR
-        // 2. we want files only, and so will need 
+        // 2. we want files only, and so will need
         //     to remove directories
-        // 
+        //
 #ifndef UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR
         if((m_flags & (directories | files)) != (directories | files))  // 1 & 2
 #else /* ? UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR */
@@ -1057,7 +1057,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
             //     first
             // 2. If we're wanting to return only directories, then we must not
             //     be trusting GLOB_ONLYDIR. Either:
-            // 2.1. The user specified markDirs (GLOB_MARK), so use that, or 
+            // 2.1. The user specified markDirs (GLOB_MARK), so use that, or
             // 2.2. The user did not specify, and we must stat()
             //
             for(; begin != end; ++begin)
@@ -1067,7 +1067,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
                 int             res;
                 char_type const *entry  =   *begin;
 
-                // 1. 
+                // 1.
                 if(files == (m_flags & (directories | files)))
                 {
                     UNIXSTL_ASSERT(markDirs == (m_flags & markDirs));

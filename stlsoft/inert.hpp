@@ -4,11 +4,11 @@
  * Purpose:     Contains the inert class.
  *
  * Created:     16th January 2002
- * Updated:     18th December 2005
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_INERT_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_INERT_MINOR      1
-# define STLSOFT_VER_STLSOFT_HPP_INERT_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_INERT_EDIT       25
+# define STLSOFT_VER_STLSOFT_HPP_INERT_MINOR      2
+# define STLSOFT_VER_STLSOFT_HPP_INERT_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_INERT_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -103,9 +103,9 @@ private:
 #endif /* !new */
 
     int operator !() const;
-#ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
     operator bool() const;
-#endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
     operator void *() const;
     void *operator &() const;
 #if defined(STLSOFT_COMPILER_IS_GCC) || \
@@ -113,15 +113,15 @@ private:
     defined(STLSOFT_COMPILER_IS_WATCOM)
     struct _{};
     _ *operator ->() const;
-#else
+#else /* ? compiler */
     struct {} *operator ->() const;
-#endif /* __SYNSOFT_DBS_DEBUG */
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif /* compiler */
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k T>
     operator T &();
     template <ss_typename_param_k T>
     operator T const &() const;
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */

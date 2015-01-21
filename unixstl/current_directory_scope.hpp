@@ -4,11 +4,11 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR      4
-# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_SCOPE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_SCOPE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_SCOPE_EDIT       91
+# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_SCOPE_MINOR      2
+# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_SCOPE_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_SCOPE_EDIT       95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -97,11 +97,6 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-#if !defined(STLSOFT_COMPILER_IS_GCC) && \
-    __GNUC__ < 3
-stlsoft_ns_using(c_str_ptr)
-#endif /* !gcc or gcc >= 3 */
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
 /// \weakgroup libraries STLSoft Libraries
@@ -133,11 +128,11 @@ stlsoft_ns_using(c_str_ptr)
 /// \param T The file-system traits. In translators that support default template parameters that defaults to \c filesystem_traits<C>
 
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_current_directory_scope
 {
@@ -153,16 +148,16 @@ public:
     ///
     /// \param dir The name of the directory to change the current directory to
     ss_explicit_k basic_current_directory_scope(char_type const *dir);
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// \brief Constructs a scope instance and changes to the given directory
     ///
     /// \param dir The name of the directory to change the current directory to
     template <ss_typename_param_k S>
     ss_explicit_k basic_current_directory_scope(S const &dir)
     {
-        init_(c_str_ptr(dir));
+        init_(stlsoft_ns_qual(c_str_ptr)(dir));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// \brief Returns the current directory to its original location
     ~basic_current_directory_scope() stlsoft_throw_0();
 

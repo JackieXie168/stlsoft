@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_const_iterator class.
  *
  * Created:     10th November 2002
- * Updated:     31st January 2006
+ * Updated:     24th March 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MAJOR    4
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    0
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     50
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
@@ -156,6 +156,8 @@ public:
     typedef ws_ptrdiff_t                                                    difference_type;
     /// The non-mutating (const) reference type
     typedef value_type const                                                &const_reference;
+    /// The non-mutating (const) pointer type
+    typedef value_type const                                                *const_pointer;
     /// The allocator type
     typedef processheap_allocator<char_type>                                allocator_type;
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
@@ -163,7 +165,7 @@ public:
     ///
     /// This typedef is provided as a convenience for the sequence.
     ///
-    /// \note Even though the iterator supports Transient semantics, the 
+    /// \note Even though the iterator supports Transient semantics, the
     /// reverse iterator <b>must</b> be <i>By-Value Temporary</i>, since
     /// there is no underlying range of values of which the offset-by-one
     /// mechanism of the std::reverse_iterator adaptor can access and
@@ -198,7 +200,7 @@ public:
 /// \name Forward Iterator Methods
 /// @{
 public:
-    /// Dereferences the iterator and returns the current value
+    /// Dereferences the iterator and returns a reference to the current value
     const_reference operator *() const
     {
         if(!m_bRetrieved)
@@ -207,22 +209,22 @@ public:
 
             if(control_traits_type::err_constant() == (len = control_traits_type::get_text_len(m_hwnd, m_index)))
             {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 throw stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally");
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 len = 0;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
 
             buffer_type buffer(1 + len);
 
             if(control_traits_type::err_constant() == (len = control_traits_type::get_text(m_hwnd, m_index, &buffer[0])))
             {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 throw stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally");
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 buffer.resize(1);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
 
             // PA: -1 to account for the NULL character
@@ -232,6 +234,12 @@ public:
         }
 
         return m_value;
+    }
+
+    /// Dereferences the iterator and returns a pointer to the current value
+    const_pointer operator ->() const
+    {
+        return &operator *();
     }
 
     /// Pre-increment operator
@@ -264,13 +272,13 @@ public:
     /// Indicates whether \c this and \c rhs are equivalent
     bool operator == (class_type const &rhs) const
     {
-        return compare(rhs) == 0;
+        return 0 == compare(rhs);
     }
 
     /// Indicates whether \c this and \c rhs are not equivalent
     bool operator != (class_type const &rhs) const
     {
-        return compare(rhs) != 0;
+        return 0 != compare(rhs);
     }
 /// @}
 
@@ -385,22 +393,22 @@ public:
 
         if(control_traits_type::err_constant() == (len = control_traits_type::get_text_len(hwnd, index)))
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally");
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             len = 0;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
         buffer_type buffer(1 + len);
 
         if(control_traits_type::err_constant() == (len = control_traits_type::get_text(hwnd, index, &buffer[0])))
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally");
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             buffer.resize(1);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
         return value_type(&buffer[0], buffer.size() - 1);
