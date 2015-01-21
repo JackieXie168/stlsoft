@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     25th April 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     76
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,6 +154,7 @@ class button_check
     : public stlsoft_ns_qual_std(unary_function)<HWND, void>
 {
 public:
+    /// This type
     typedef button_check    class_type;
 public:
     ss_explicit_k button_check(int nCheck = BST_CHECKED)
@@ -196,6 +197,7 @@ class is_checked
     : public stlsoft_ns_qual_std(unary_function)<HWND, BOOL>
 {
 public:
+    /// This type
     typedef is_checked  class_type;
 
 public:
@@ -247,6 +249,7 @@ class is_class
     : public stlsoft_ns_qual_std(unary_function)<HWND, BOOL>
 {
 public:
+    /// This type
     typedef is_class  class_type;
 
 public:
@@ -334,6 +337,7 @@ struct listbox_front_inserter
 #endif /* compiler */
 {
 public:
+    /// This type
     typedef listbox_front_inserter  class_type;
 
 public:
@@ -409,6 +413,7 @@ struct listbox_add_inserter
 #endif /* compiler */
 {
 public:
+    /// This type
     typedef listbox_add_inserter    class_type;
 
 public:
@@ -484,6 +489,7 @@ struct listbox_back_inserter
 #endif /* compiler */
 {
 public:
+    /// This type
     typedef listbox_back_inserter   class_type;
 
 public:
@@ -561,6 +567,7 @@ struct combobox_front_inserter
 #endif /* compiler */
 {
 public:
+    /// This type
     typedef combobox_front_inserter class_type;
 
 public:
@@ -636,6 +643,7 @@ struct combobox_add_inserter
 #endif /* compiler */
 {
 public:
+    /// This type
     typedef combobox_add_inserter   class_type;
 
 public:
@@ -711,6 +719,7 @@ struct combobox_back_inserter
 #endif /* compiler */
 {
 public:
+    /// This type
     typedef combobox_back_inserter  class_type;
 
 public:

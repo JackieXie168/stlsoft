@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     1st June 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        110
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -297,7 +297,9 @@ class c_str_ptr_null_HWND_proxy
 {
     typedef cstring_maker<C>                            string_maker_type;
 public:
+    /// The character type
     typedef C                                           char_type;
+    /// This type
     typedef c_str_ptr_null_HWND_proxy<C>                class_type;
 
 // Construction
@@ -401,7 +403,9 @@ class c_str_ptr_HWND_proxy
 {
     typedef cstring_maker<C>                            string_maker_type;
 public:
+    /// The character type
     typedef C                                           char_type;
+    /// This type
     typedef c_str_ptr_HWND_proxy<C>                     class_type;
 
 // Construction

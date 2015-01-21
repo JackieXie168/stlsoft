@@ -2,7 +2,7 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  23rd August 2008
+; Updated:  1st October 2008
 
 ============================================================================
 

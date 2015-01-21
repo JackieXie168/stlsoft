@@ -4,7 +4,7 @@
  * Purpose:     Window messaging function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     25th April 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MAJOR     4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     1
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      37
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,6 +108,7 @@ struct message_send
     : public std::unary_function<HWND, void>
 {
 public:
+    /// This type
     typedef message_send        class_type;
 public:
     message_send(   UINT    msg
@@ -156,6 +157,7 @@ struct message_post
     : public std::unary_function<HWND, void>
 {
 public:
+    /// This type
     typedef message_post        class_type;
 public:
     message_post(   UINT    msg

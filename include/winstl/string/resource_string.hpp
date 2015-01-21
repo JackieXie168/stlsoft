@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     9th March 2008
+ * Updated:     1st October 2008
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 3
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     80
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,6 +215,7 @@ public:
     typedef exception_policy_type                      exception_type;
 //    typedef stlsoft_ns_qual(string_traits)<S>          string_traits_type;
 
+    /// The value type
     typedef ss_typename_type_k string_type::value_type value_type;
 
 /// \name Construction

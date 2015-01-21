@@ -4,7 +4,7 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     11th May 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -65,7 +65,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_REVISION  3
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      55
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -382,6 +382,8 @@ namespace stlsoft
  * Classes
  */
 
+/* Designates a property
+ */
 struct property_tag
 {};
 
@@ -399,6 +401,8 @@ struct external_property_tag
     enum { is_external  =   1       };
 };
 
+/** Designates an internal property
+ */
 template<   int R
         ,   int W
         ,   int S
@@ -411,6 +415,8 @@ struct internal_property
     enum { is_static    =   S       };
 };
 
+/** Designates an external property
+ */
 template<   int R
         ,   int W
         ,   int S

@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  27th September 2008
+; Updated:  1st October 2008
 
 ============================================================================
 
@@ -16,6 +16,39 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.56 (1st October 2008)
+
+Summary:
+========
+
+ * a large number of minor enhancements to the documentation markup
+ * fixes to defects to include guards in UNIXSTL
+
+Changes:
+========
+
+ *:
+ --
+
+  ~ a large number of minor enhancements to the documentation markup
+
+ UNIXSTL:
+ --------
+
+  ~ unixstl/filesystem/memory_mapped_file.hpp:
+  ~ unixstl/performance/performance_counter.hpp:
+  ~ unixstl/performance/performance_counter.hpp:
+  ~ unixstl/performance/processtimes_counter.hpp:
+  ~ unixstl/performance/processtimes_counter.hpp:
+     ~ tidied up includes for UNIX emulation on Win32
+     ~ fixed defect in forward-include guards for sys/mman.h, sys/resource.h
+	   and sys/time.h
+
+  ~ unixstl/synch/sleep_functions.h:
+     ~ tidied up includes for UNIX emulation on Win32
 
 ============================================================================
 

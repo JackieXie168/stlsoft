@@ -5,11 +5,11 @@
  *              information about the host system version.
  *
  * Created:     10th February 2002
- * Updated:     22nd September 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MAJOR      4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MINOR      0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_REVISION   3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_REVISION   2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -63,11 +63,6 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-
-#ifdef STLSOFT_COMPILER_IS_WATCOM
-# undef major
-# undef minor
-#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -107,6 +102,7 @@ namespace winstl_project
 class system_version
 {
 public:
+    /// This type
     typedef system_version class_type;
 
 // Operations

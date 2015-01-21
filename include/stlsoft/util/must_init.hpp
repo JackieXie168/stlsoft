@@ -5,7 +5,7 @@
  *              explicit initialisation.
  *
  * Created:     18th June 2006
- * Updated:     12th April 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        13
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ namespace stlsoft
  * Algorithms
  */
 
-/* \brief Wraps a variable and forces its explicit initialisation by the
+/** \brief Wraps a variable and forces its explicit initialisation by the
  *   user.
  *
  * \param T The base type, e.g. \c int, \c std::wstring

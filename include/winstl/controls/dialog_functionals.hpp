@@ -4,11 +4,11 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     2nd August 2006
- * Updated:     6th November 2007
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MAJOR     1
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MINOR     0
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_REVISION  2
-# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      6
+# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,6 +126,7 @@ class dialog_button_id_check
     : public stlsoft_ns_qual_std(unary_function)<HWND, void>
 {
 public:
+    /// This type
     typedef dialog_button_id_check    class_type;
 public:
     ss_explicit_k dialog_button_id_check(HWND hwndDlg, UINT nCheck = BST_CHECKED)
