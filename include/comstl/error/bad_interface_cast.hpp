@@ -4,7 +4,7 @@
  * Purpose:     Exception thrown when interface casts fail.
  *
  * Created:     22nd December 2003
- * Updated:     2nd January 2007
+ * Updated:     4th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MAJOR       5
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MINOR       0
-# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_REVISION    1
-# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        29
+# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_REVISION    2
+# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -112,6 +112,8 @@ class bad_interface_cast
     : public comstl_ns_qual_std(bad_cast)
 #endif /* compiler */
 {
+/// \name Member Types
+/// @{
 public:
 #if defined(STLSOFT_COMPILER_IS_DMC)
     typedef std::bad_cast                   parent_class_type;
@@ -119,14 +121,15 @@ public:
     typedef comstl_ns_qual_std(bad_cast)    parent_class_type;
 #endif /* compiler */
     typedef bad_interface_cast              class_type;
+/// @}
 
+/// \name Construction
+/// @{
 public:
+    /// Constructs an instance of the exception from the given interface
+    /// identifier and result code.
     bad_interface_cast(REFIID riid, HRESULT hr) stlsoft_throw_0()
-#if defined(STLSOFT_COMPILER_IS_WATCOM)
-        : parent_class_type("")
-#else /* ? compiler */
         : parent_class_type()
-#endif /* compiler */
         , m_riid(riid)
         , m_hr(hr)
     {}
@@ -160,14 +163,20 @@ public:
     {
         return m_hr;
     }
+/// @}
 
+/// \name Members
+/// @{
 private:
     IID             m_riid;
     HRESULT const   m_hr;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     class_type &operator =(class_type const &);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

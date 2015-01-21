@@ -4,7 +4,7 @@
  * Purpose:     Console functions.
  *
  * Created:     3rd December 2005
- * Updated:     2nd January 2007
+ * Updated:     3rd January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      12
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,12 +128,12 @@ STLSOFT_INLINE ws_size_t winstl__get_console_width(void)
         (   defined(STLSOFT_COMPILER_IS_BORLAND) && \
             !defined(CONSOLE_NO_SELECTION)))
 
-inline HWND GetConsoleWindow()
+STLSOFT_INLINE HWND GetConsoleWindow()
 {
     typedef HWND (WINAPI *GCW_t)();
 
-    HMODULE Kernel32    =   ::LoadLibraryA("KERNEL32");
-    GCW_t   pfn         =   stlsoft_reinterpret_cast(GCW_t, ::GetProcAddress(Kernel32, "GetConsoleWindow"));
+    HMODULE Kernel32    =   STLSOFT_NS_GLOBAL(LoadLibraryA)("KERNEL32");
+    GCW_t   pfn         =   stlsoft_reinterpret_cast(GCW_t, STLSOFT_NS_GLOBAL(GetProcAddress)(Kernel32, "GetConsoleWindow"));
 
     if(NULL == pfn)
     {
@@ -143,7 +143,7 @@ inline HWND GetConsoleWindow()
     {
         HWND    hwnd    =   (*pfn)();
 
-        ::FreeLibrary(Kernel32);
+        STLSOFT_NS_GLOBAL(FreeLibrary)(Kernel32);
 
         return hwnd;
     }

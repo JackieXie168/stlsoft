@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta38
+File:     STLSoft-ReleaseNotes-1.9.1-beta39
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  3rd January 2007
+Updated:  5th January 2007
 
 ============================================================================
 
@@ -25,6 +25,26 @@ Updated:  3rd January 2007
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 39 (5th January 2006):
+
+Additions:
+==========
+
+ + oaidl interfaces to comstl/internal/interface_traits_std.hpp
+
+ + stream inserter for comstl::bstr
+
+Changes / Fixes:
+================
+
+ ~ fix to winstl/system/console_functions.h to ensure C compatibility
+
+ ~ fix to winstl/time/format_functions.h to fix bug with 24-hr time picture
+   elements (HH)
 
 
 ============================================================================

@@ -4,11 +4,11 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     30th December 2006
+ * Updated:     4th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/collections/safearray_sequence.hpp
-///
-/// STL sequence for COM collection interfaces.
+/** \file comstl/collections/safearray_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the comstl::safearray_sequence
+ *   collection class template.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE
 #define COMSTL_INCL_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE
@@ -49,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MAJOR     4
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  6
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      51
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,20 +75,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-# error comstl/safearray_sequence.hpp is not compatible with Visual C++ 5.0 or earlier
+# error comstl/collections/safearray_sequence.hpp is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
-#if 0
-    #ifndef COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS
-    # include <comstl/util/refcount_functions.h>
-    #endif /* !COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS */
-    #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_POLICIES
-    # include <comstl/enumerator_policies.hpp> // for input_cloning_policy
-    #endif /* !COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_POLICIES */
-    #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
-    # include <comstl/util/interface_traits.hpp>
-    #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
-#endif /* 0 */
 #ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
 # include <comstl/error/exceptions.hpp>
 #endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
@@ -134,64 +126,72 @@ template <ss_typename_param_k T>
 class safearray_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
 {
+/// \name Member Types
+/// @{
 private:
-    typedef SAFEARRAY const                                                 *LPCSAFEARRAY;
+    typedef SAFEARRAY const                                 *LPCSAFEARRAY;
 public:
     /// \brief The value type
-    typedef T                                                               value_type;
+    typedef T                                               value_type;
     /// \brief The current parameterisation of the type
-    typedef safearray_sequence<T>                                           class_type;
+    typedef safearray_sequence<T>                           class_type;
     /// \brief The size type
-    typedef cs_size_t                                                       size_type;
+    typedef cs_size_t                                       size_type;
     /// \brief The difference type
-    typedef ptrdiff_t                                                       difference_type;
+    typedef ptrdiff_t                                       difference_type;
     /// \brief The reference type
-    typedef value_type                                                      &reference;
+    typedef value_type                                      &reference;
     /// \brief The non-mutable (const) reference type
-    typedef value_type const                                                &const_reference;
+    typedef value_type const                                &const_reference;
     /// \brief The pointer type
-    typedef value_type                                                      *pointer;
+    typedef value_type                                      *pointer;
     /// \brief The non-mutable (const) pointer type
-    typedef value_type const                                                *const_pointer;
+    typedef value_type const                                *const_pointer;
     /// \brief The iterator type
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
 #endif /* compiler */
-                       pointer_iterator <   value_type
-                                        ,   pointer
-                                        ,   reference
-                                        >::type                             iterator;
+                       pointer_iterator<value_type
+                                    ,   pointer
+                                    ,   reference
+                                    >::type                 iterator;
     /// \brief The non-mutating (const) iterator type
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
 #endif /* compiler */
-                       pointer_iterator <   value_type const
-                                        ,   const_pointer
-                                        ,   const_reference
-                                        >::type                             const_iterator;
+                       pointer_iterator<value_type const
+                                    ,   const_pointer
+                                    ,   const_reference
+                                    >::type                 const_iterator;
 
     /// \brief The non-mutating (const) reverse iterator type
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    typedef stlsoft_ns_qual(reverse_iterator_base)      <   iterator
-                                                        ,   value_type
-                                                        ,   reference
-                                                        ,   pointer
-                                                        ,   difference_type
-                                                        >                   reverse_iterator;
+    typedef stlsoft_ns_qual(reverse_iterator_base)< iterator
+                                                ,   value_type
+                                                ,   reference
+                                                ,   pointer
+                                                ,   difference_type
+                                                >           reverse_iterator;
 
     typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
-                                                        ,   value_type const
-                                                        ,   const_reference
-                                                        ,   const_pointer
-                                                        ,   difference_type
-                                                        >                   const_reverse_iterator;
+                                                    ,   value_type const
+                                                    ,   const_reference
+                                                    ,   const_pointer
+                                                    ,   difference_type
+                                                    >       const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+/// @}
 
+/// \name Construction
+/// @{
 public:
     ss_explicit_k safearray_sequence(LPCSAFEARRAY array); // throw variant_type_exception
+/// @}
 
+/// \name Iteration
+/// @{
 public:
     /// \brief Begins the iteration
     ///
@@ -230,28 +230,43 @@ public:
     /// \return An iterator representing the end of the reverse sequence
     reverse_iterator        rend();
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+/// @}
 
+/// \name Attributes
+/// @{
 public:
     /// \brief The number of elements in the array
     size_type       size() const;
     /// \brief Indicates whether the array is empty
     bool            empty() const;
+/// @}
 
+/// \name Direct memory access
+/// @{
 public:
 //  void            **access_data();    // Should RAII this
 //  void            unaccess_data();
+/// @}
 
+/// \name Implementation
+/// @{
 private:
     static bool     type_is_compatible_(LPCSAFEARRAY array);
     static DWORD    calc_size_(LPCSAFEARRAY array);
+/// @}
 
+/// \name Members
+/// @{
 private:
     LPCSAFEARRAY    m_sa;
     DWORD const     m_cItems;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     class_type &operator =(class_type const &);
+/// @}
 };
 
 ////////////////////////////////////////////////////////////////////////////

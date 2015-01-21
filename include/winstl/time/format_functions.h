@@ -4,7 +4,10 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     2nd January 2007
+ * Updated:     4th January 2007
+ *
+ * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
+ *              time pictures.
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     49
+# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -266,7 +269,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
             switch(ch)
             {
                 case    'h':
-                    if( 'h' == prev &&
+                case    'H':
+                    if( (   'h' == prev ||
+                            'H' == prev) &&
                         hours != &hours_[0])
                     {
                         --hours;
@@ -299,7 +304,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
 
                         switch(prev)
                         {
-                            case    'h':    p = hours;          break;
+                            case    'h':
+                            case    'H':    p = hours;          break;
                             case    'm':    p = minutes;        break;
                             case    's':    p = seconds;        break;
                             case    't':
@@ -458,7 +464,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
             switch(ch)
             {
                 case    'h':
-                    if( 'h' == prev &&
+                case    'H':
+                    if( (   'h' == prev ||
+                            'H' == prev) &&
                         hours != &hours_[0])
                     {
                         --hours;
@@ -490,7 +498,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
 
                         switch(prev)
                         {
-                            case    'h':    p = hours;          break;
+                            case    'h':
+                            case    'H':    p = hours;          break;
                             case    'm':    p = minutes;        break;
                             case    's':    p = seconds;        break;
                             case    't':
@@ -647,7 +656,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
             switch(ch)
             {
                 case    'h':
-                    if( 'h' == prev &&
+                case    'H':
+                    if( (   'h' == prev ||
+                            'H' == prev) &&
                         hours != &hours_[0])
                     {
                         --hours;
@@ -679,7 +690,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
 
                         switch(prev)
                         {
-                            case    'h':    p = hours;          break;
+                            case    'h':
+                            case    'H':    p = hours;          break;
                             case    'm':    p = minutes;        break;
                             case    's':    p = seconds;        break;
                             case    't':

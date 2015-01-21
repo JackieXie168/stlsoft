@@ -4,11 +4,11 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     29th December 2006
+ * Updated:     4th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    5
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        37
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    6
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -289,35 +289,7 @@ typedef exception_policy_base<variant_type_exception>   variant_type_exception_p
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_comstl_exceptions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "COMSTL", "exceptions", __FILE__);
-
-    #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_comstl_exceptions(test_comstl_exceptions);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/exceptions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

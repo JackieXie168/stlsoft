@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     2nd January 2007
+ * Updated:     3rd January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    6
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        41
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       2
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -283,6 +283,21 @@ inline bstr::const_pointer c_str_ptr_null_w(comstl_ns_qual(bstr) const &b)
 inline bstr::const_pointer c_str_ptr_null_o(comstl_ns_qual(bstr) const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
+
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for comstl::bstr
+ *
+ * \ingroup group__concept__shim__stream_insertion
+ */
+template<   ss_typename_param_k S
+        >
+inline S &operator <<(S &stm, comstl_ns_qual(bstr) const &str)
+{
+    STLSOFT_STATIC_ASSERT(sizeof(OLECHAR) == sizeof(ss_typename_type_k S::char_type));
+
+    stm << str.c_str();
+
+    return stm;
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
