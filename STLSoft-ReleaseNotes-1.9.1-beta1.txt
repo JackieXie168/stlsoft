@@ -1,0 +1,102 @@
+================================================================================
+
+File:     STLSoft-ReleaseNotes-1.9.1-beta1
+
+Purpose:  Release notes for beta release of STLSoft.
+
+Author:   Matthew Wilson, Synesis Software Pty Ltd.
+
+          Copyright (c) 2002-2005, Synesis Software Pty Ltd.
+          All rights reserved.
+
+www:      http://www.stlsoft.org/
+
+Date:     20th December 2005
+
+================================================================================
+================================================================================
+
+THIS THE CASE BEFORE:
+ - XMLSTL put into main branch
+ - 1.9 stuff merged in
+
+
+
+STLSoft
+=======
+
+- includes alpha version of new XMLSTL sub-project
+- (nearly) completes the change of directory structure, e.g. from
+    winstl_shell_allocator.h => winstl/shell_allocator.hpp
+- several new components
+
+
+Additions:
+==========
+
++ STLSOFT_CDECL_VALUE (1), STLSOFT_FASTCALL_VALUE(2) and
+  STLSOFT_STDCALL_VALUE (3) to stlsoft.h
++ More operating systems detected in unixstl.h
++ Operating system family detection in unixstl.h
+
++ stlsoft::active_end_iterator_exhaustion (stlsoft/exceptions/active_end_iterator_exhaustion.hpp)
+
++ stlsoft::ostream_iterator (stlsoft/iterators/ostream_iterator.hpp) - an
+  enhancement to std::ostream_iterator, which supports prefix and suffix
+
++ stlsoft::transform_iterator.hpp (stlsoft/iterators/transform_iterator.hpp)
+
++ comstl/stream_functions.h
+
++ mfcstl::CArray_cadaptor / mfcstl::CArray_iadaptor - class and instance
+  adaptors for the MFC CArray family of containers to STL interfaces.
+
++ platformstl::environment_map (platformstl/environment_map.hpp)
+
++ winstl::dl_call() - Extremely powerful Dynamic Library Function invocation
+
++ winstl/console_functions.h
+
++ unixstl::dl_call() - Extremely powerful Dynamic Library Function invocation
+
+
+Changes:
+========
+
+ATLSTL       1.4.3 => 1.4.4
+COMSTL       1.5.4 => 1.6.1
+.netSTL      1.2.2 => 1.2.3
+InetSTL      1.1.3 => 1.1.4
+MFCSTL       1.4.2 => 1.4.3
+PlatformSTL  1.3.1 => 1.4.1
+UNIXSTL      1.5.1 => 1.6.1
+WinSTL       1.7.1 => 1.8.1
+
+
++ dotnetstl/string_access.hpp and dotnetstl/string_accessor.hpp have been
+  updated to support VC++ 8 hat syntax
+
++ stlsoft::ref_ptr now supports equality comparison
+
++ stlsoft::shared_ptr::use_count()
++ stlsoft::shared_ptr contract enforcements
+
++ winstl::pid_sequence now supports reverse iteration
++ winstl::process_module_sequence now supports reverse iteration
+
+~ 
+
+Fixes:
+======
+
+~ stlsoft::string_tokeniser::const_iterator declared as forward iterator
+
+~ winstl/find_file_sequence.hpp - fix for bug when zero-length sub-path matched
+
+~ 
+
+Diffs:
+======
+
+  root-dir-1: H:\3Pty\stlsoft\1.8.3\include
+  root-dir-2: H:\3Pty\stlsoft\1.8.4-beta1

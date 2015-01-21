@@ -1,0 +1,801 @@
+/* /////////////////////////////////////////////////////////////////////////////
+ * File:        stlsoft/member_selector_iterator.hpp
+ *
+ * Purpose:     member_selector_iterator class.
+ *
+ * Created:     7th April 2005
+ * Updated:     18th December 2005
+ *
+ * Home:        http://stlsoft.org/
+ *
+ * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
+ *   any contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * ////////////////////////////////////////////////////////////////////////// */
+
+
+/// \file stlsoft/member_selector_iterator.hpp
+///
+/// member_selector_iterator class.
+
+#ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_SELECTOR_ITERATOR
+#define STLSOFT_INCL_STLSOFT_HPP_MEMBER_SELECTOR_ITERATOR
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR     1
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_SELECTOR_ITERATOR_MINOR     3
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_SELECTOR_ITERATOR_REVISION  1
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_SELECTOR_ITERATOR_EDIT      18
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_WATCOM:
+[Incompatibilies-end]
+ */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
+
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
+# include <stlsoft/iterator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# ifndef STLSOFT_INCL_STLSOFT_HPP_META
+#  include <stlsoft/meta.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+# ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
+#  include <stlsoft/type_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
+#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
+#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
+# include <list>
+# include <set>
+# endif /* compiler */
+#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
+#ifdef STLSOFT_UNITTEST
+# include <algorithm>
+#endif /* STLSOFT_UNITTEST */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifndef _STLSOFT_NO_NAMESPACE
+namespace stlsoft
+{
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/// \weakgroup libraries STLSoft Libraries
+/// \brief The individual libraries
+
+/// \weakgroup libraries_string String Library
+/// \ingroup libraries
+/// \brief This library provides facilities for defining and manipulating strings
+
+/// \weakgroup stlsoft_string_library String Library (STLSoft)
+/// \ingroup STLSoft libraries_string
+/// \brief This library provides facilities for defining and manipulating strings
+/// @{
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Classes
+ */
+
+// class member_selector_iterator
+/// An iterator adaptor class template that presents a member of the underlying
+/// iterator's value type as the apparent value type.
+///
+/// \param I The type of the underlying iterator, whose value type should be C, or convertible to C
+/// \param C The class of the member pointer
+/// \param M The type of the member pointer
+template<   ss_typename_param_k I
+        ,   ss_typename_param_k C
+        ,   ss_typename_param_k M
+        >
+class member_selector_iterator
+#if 0
+    : public iterator_base< stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category
+#else /* ? 0 */
+    : public iterator_base< stlsoft_ns_qual_std(input_iterator_tag)
+#endif /* 0 */
+                        ,   M
+                        ,   ss_ptrdiff_t
+                        ,   M*
+                        ,   M&>
+{
+public:
+    typedef I                                   base_iterator_type;
+    typedef M                                   value_type;
+    typedef member_selector_iterator<I, C, M>   class_type;
+    typedef value_type                          *pointer;
+    typedef value_type const                    *const_pointer;
+    typedef value_type                          &reference;
+    typedef value_type const                    &const_reference;
+//  size_type
+    typedef ss_ptrdiff_t                        difference_type;
+
+/// \name Construction
+/// @{
+public:
+    // 
+    member_selector_iterator(I iterator, M C::*member)
+        : m_iterator(iterator)
+        , m_member(member)
+    {}
+
+    /// Copy constructor
+    member_selector_iterator(class_type const &rhs)
+        : m_iterator(rhs.m_iterator)
+        , m_member(rhs.m_member)
+    {}
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    base_iterator_type current() const
+    {
+        return m_iterator;
+    }
+    M C::* member() const
+    {
+        return m_member;
+    }
+/// @}
+
+/// \name Input Iterator methods
+/// @{
+public:
+    /// Pre-increment iterator
+    ///
+    /// \note Increments the underlying iterator
+    class_type      &operator ++()
+    {
+        ++m_iterator;
+
+        return *this;
+    }
+    /// Post-increment iterator
+    ///
+    /// \note Increments the underlying iterator
+    class_type      operator ++(int)
+    {
+        class_type  r(*this);
+
+        ++m_iterator;
+
+        return r;
+    }
+# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+     !defined(STLSOFT_COMPILER_IS_BORLAND)
+    /// Returns a mutating (non-const) reference to the selected member of the underlying iterators current value
+    reference       operator *()
+    {
+        return (*m_iterator).*m_member;
+    }
+# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !STLSOFT_COMPILER_IS_BORLAND */
+    /// Returns a non-mutating (const) reference to the selected member of the underlying iterators current value
+    const_reference operator *() const
+    {
+        return (*m_iterator).*m_member;
+    }
+
+    /// Evaluates two instances for equality
+    bool equal(class_type const &rhs) const
+    {
+        STLSOFT_ASSERT(m_member == rhs.m_member);
+
+        return m_iterator == rhs.m_iterator;
+    }
+/// @}
+
+/// \name Bidirectional Iterator methods
+/// @{
+public:
+    /// Pre-decrement iterator
+    ///
+    /// \note Decrements the underlying iterator
+    class_type      &operator --()
+    {
+        --m_iterator;
+
+        return *this;
+    }
+    /// Post-decrement iterator
+    ///
+    /// \note Decrements the underlying iterator
+    class_type      operator --(int)
+    {
+        class_type  r(*this);
+
+        --m_iterator;
+
+        return r;
+    }
+/// @}
+
+/// \name Random-Access Iterator methods
+/// @{
+public:
+    /// Moves the iterator forward
+    ///
+    /// \param inc The amount by which to increment the iterator's current position
+    class_type &operator +=(difference_type inc)
+    {
+        m_iterator += inc;
+
+        return *this;
+    }
+
+    /// Moves the iterator backward
+    ///
+    /// \param dec The amount by which to decrement the iterator's current position
+    class_type &operator -=(difference_type dec)
+    {
+        m_iterator -= dec;
+
+        return *this;
+    }
+
+    /// Access the element at the given index
+    ///
+    /// \param index The required offset from the iterator's position
+    value_type &operator [](difference_type index)
+    {
+        return m_iterator[index];
+    }
+
+    /// Access the element at the given index
+    ///
+    /// \param index The required offset from the iterator's position
+    value_type operator [](difference_type index) const
+    {
+        return m_iterator[index];
+    }
+
+    difference_type distance(class_type const &rhs) const
+    {
+        return m_iterator - rhs.m_iterator;
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    I   m_iterator;
+    M   C::*m_member;
+/// @}
+};
+
+#if 0
+template<   ss_typename_param_k I
+        ,   ss_typename_param_k C
+        ,   ss_typename_param_k M
+        >
+class member_selector_const_iterator
+# ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#  ifdef __BORLANDC__
+    : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(input_iterator_tag), M, ss_ptrdiff_t, M*, M&>
+#  else /* ? __BORLANDC__ */
+    : public stlsoft_ns_qual(iterator_base)<ss_typename_type_k stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category, M, ss_ptrdiff_t, M*, M&>
+#  endif /* __BORLANDC__ */
+# else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+    : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(input_iterator_tag), M, ss_ptrdiff_t, M*, M&>
+# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+{
+public:
+    typedef I                                           base_iterator_type;
+    typedef M                                           value_type;
+    typedef member_selector_const_iterator<I, C, M>     class_type;
+    typedef value_type                                  *pointer;
+    typedef value_type const                            *const_pointer;
+    typedef value_type                                  &reference;
+    typedef value_type const                            &const_reference;
+
+/// \name Construction
+/// @{
+public:
+    // 
+    member_selector_const_iterator(I iterator, M C::*member)
+        : m_iterator(iterator)
+        , m_member(member)
+    {}
+
+    /// Copy constructor
+    member_selector_const_iterator(class_type const &rhs)
+        : m_iterator(rhs.m_iterator)
+        , m_member(rhs.m_member)
+    {}
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    base_iterator_type current() const
+    {
+        return m_iterator;
+    }
+    M C::* member() const
+    {
+        return m_member;
+    }
+/// @}
+
+/// \name Input Iterator methods
+/// @{
+public:
+    /// Pre-increment iterator
+    ///
+    /// \note Increments the underlying iterator
+    class_type      &operator ++()
+    {
+        ++m_iterator;
+
+        return *this;
+    }
+    /// Post-increment iterator
+    ///
+    /// \note Increments the underlying iterator
+    class_type      operator ++(int)
+    {
+        class_type  r(*this);
+
+        ++m_iterator;
+
+        return r;
+    }
+    /// Returns a non-mutating (const) reference to the selected member of the underlying iterators current value
+    const_reference operator *() const
+    {
+        return (*m_iterator).*m_member;
+    }
+
+    /// Evaluates two instances for equality
+    bool equal(class_type const &rhs) const
+    {
+        STLSOFT_ASSERT(m_member == rhs.m_member);
+
+        return m_iterator == rhs.m_iterator;
+    }
+/// @}
+
+/// \name Bidirectional Iterator methods
+/// @{
+public:
+    /// Pre-decrement iterator
+    ///
+    /// \note Decrements the underlying iterator
+    class_type      &operator --()
+    {
+        --m_iterator;
+
+        return *this;
+    }
+    /// Post-decrement iterator
+    ///
+    /// \note Decrements the underlying iterator
+    class_type      operator --(int)
+    {
+        class_type  r(*this);
+
+        --m_iterator;
+
+        return r;
+    }
+/// @}
+
+/// \name Random-Access Iterator methods
+/// @{
+public:
+    /// Moves the iterator forward
+    ///
+    /// \param inc The amount by which to increment the iterator's current position
+    class_type &operator +=(difference_type inc)
+    {
+        m_iterator += inc;
+
+        return *this;
+    }
+
+    /// Moves the iterator backward
+    ///
+    /// \param dec The amount by which to decrement the iterator's current position
+    class_type &operator -=(difference_type dec)
+    {
+        m_iterator -= dec;
+
+        return *this;
+    }
+
+    /// Access the element at the given index
+    ///
+    /// \param index The required offset from the iterator's position
+    value_type &operator [](difference_type index)
+    {
+        return m_iterator[index];
+    }
+
+    /// Access the element at the given index
+    ///
+    /// \param index The required offset from the iterator's position
+    value_type operator [](difference_type index) const
+    {
+        return m_iterator[index];
+    }
+
+    difference_type distance(class_type const &rhs) const
+    {
+        return m_iterator - rhs.m_iterator;
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    I   m_iterator;
+    M   C::*m_member;
+/// @}
+};
+#endif /* 0 */
+
+
+#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+    !defined(STLSOFT_COMPILER_IS_DMC)
+
+# if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
+
+template<typename T>
+struct msi_container_traits
+{
+    enum
+    {
+        is_const    =   1
+    };
+};
+
+template<typename T>
+struct msi_container_traits<std::list<T>::iterator>
+{
+    enum
+    {
+        is_const    =   base_type_traits<typename std::list<T>::pointer>::is_const
+    };
+};
+
+template<typename T>
+struct msi_container_traits<std::set<T>::iterator>
+{
+    enum
+    {
+        is_const    =   base_type_traits<typename std::set<T>::pointer>::is_const
+    };
+};
+
+template<typename I>
+struct msi_iterator_traits
+{
+    enum
+    {
+//      is_const    =   base_type_traits<typename I::pointer>::is_const
+        // This doesn't work, because some libs (Dinkumware) don't have member 'pointer'
+
+//      is_const    =   base_type_traits<typename I::reference>::is_const
+        // This doesn't work because the nested class list::iterator does not have a 'reference'
+        // type, even though op *() is declared as 'reference operator*() const'. The 'reference'
+        // here is of the outer class. This is a good example of why you should:
+
+        // NOTE: == BEST PRACTICE: Always define the types you're using as member types of the type where
+        // they're being used! ==
+
+//      is_const    =   base_type_traits<(I::operator*())>::is_const
+
+//      is_const    =   base_type_traits<typename I::pointer_type>::is_const
+        // This doesn't work because std::list<>::iterator derives from std::list<>::const_iterator derives
+        // from std::_Bidit<> derives from std::iterator<>
+        //
+        // Neither std::list<>::const_iterator nor std::_Bitit<> define any members of their own, so we're
+        // left only with std::iterator<>, which contains only iterator_category, value_type, and
+        // distance_type.
+
+        is_const    =   msi_container_traits<typename std::iterator_traits<I>::value_type>::is_const
+    };
+};
+
+template<typename T>
+struct msi_iterator_traits<T*>
+{
+    enum { is_const = 0 };
+};
+
+template<typename T>
+struct msi_iterator_traits<T const*>
+{
+    enum { is_const = 1 };
+};
+#endif /* dinkumware */
+
+
+/// Traits class used for specifying sub-types for the member_select_iterator() 
+/// creator function(s)
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+struct msi_traits
+{
+private:
+    typedef member_selector_iterator<I, C, const M>     const_msi_type;
+    typedef member_selector_iterator<I, C, M>           non_const_msi_type;
+    typedef typename std::iterator_traits<I>::pointer   member_type;
+
+    enum
+    {
+        IS_CONST    =   base_type_traits<member_type>::is_const
+    };
+public:
+
+#if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+    STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
+    typedef typename select_first_type_if< const_msi_type 
+                                    ,   non_const_msi_type 
+                                    ,   msi_iterator_traits<I>::is_const
+                                    >::type             type;
+#else /* ? dinkumware */
+    typedef typename select_first_type_if< const_msi_type 
+                                    ,   non_const_msi_type 
+#if 0
+                                    ,   /* base_type_traits<typename std::iterator_traits<I>::value_type>::is_const ||
+                                         */base_type_traits<member_type>::is_const/*  ||
+                                        base_type_traits<M>::is_const */
+#else /* ? 0 */
+                                    ,   IS_CONST
+#endif /* 0 */
+
+                                    >::type             type;
+#endif /* dinkumware */
+};
+
+
+// Need to identify the conditions under which the iterator needs to define the
+// value type to be const:
+//
+// - M is const
+// - I's value_type is const
+//     - alas 
+
+// Solution 1:
+//
+//  + is_const<iterator_traits<I>::value_type>
+//
+//  - some libraries do not make define, for iterator_traits<T const*>, value_type as const T, but just T
+//  - doesn't cater for case where the member M is constant, even if iterator is mutable (e.g. C* not C const*)
+//
+// Solution 2:
+//
+//  + is_const<iterator_traits<I>::value_type> ||
+//    base_type_traits<typename std::iterator_traits<I>::pointer>::is_const ||
+//    is_const<M>
+//
+//  - at this point we move into msi_traits
+//
+//  - doesn't work with good compilers with crufty libraries (e.g. Intel 8 with VC++ Dinkumware libs)
+//
+// Solution 3:
+//
+//   use msi_iterator_traits
+//
+// 
+// Solution final:
+//
+//  + use member types within msi_traits to simplify for readers
+//  + use msi_iterator_traits for member-detecting compilers with Dinkumware (pre 7.1)
+//  + select the general version for DMC++
+//  + proscribe particular functionality for Borland and Visual C++ (pre 7.1)
+
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline typename msi_traits<I, C, M>::type member_select_iterator(I iterator, M C::*member)
+{
+    typedef typename msi_traits<I, C, M>::type  iterator_t;
+
+#if !defined(STLSOFT_COMPILER_IS_DMC) && \
+    (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
+        STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1)
+    STLSOFT_STATIC_ASSERT((int)is_const<typename std::iterator_traits<I>::value_type>::value == (int)base_type_traits<typename std::iterator_traits<I>::value_type>::is_const);
+#endif /* !compiler */
+
+//    STLSOFT_STATIC_ASSERT(is_const<iterator_t::value_type>::value == 1);
+
+    return iterator_t(iterator, member);
+}
+
+# else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
+# if 0 || defined(STLSOFT_COMPILER_IS_DMC)
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline member_selector_iterator<I, C, M> member_select_iterator(I iterator, M C::*member)
+{
+    return member_selector_iterator<I, C, M>(iterator, member);
+}
+# endif /* 0 */
+
+#if 0
+/// This one needed by const Struct1 (cw8)
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline member_selector_iterator<I, C, const M> member_select_iterator(I iterator, const M C::*member)
+{
+    return member_selector_iterator<I, C, const M>(iterator, member);
+}
+#endif /* 0 */
+
+#if 0 || (defined(STLSOFT_COMPILER_IS_MSVC) && _MSC_VER < 1310)
+template<   class       C
+        ,   typename    M
+        >
+inline member_selector_iterator<C*, C, M> member_select_iterator(C *iterator, M C::*member)
+{
+    return member_selector_iterator<C*, C, M>(iterator, member);
+}
+#endif /* 0 */
+
+#if 0 /* || (defined(STLSOFT_COMPILER_IS_MSVC) && _MSC_VER < 1310) */
+template<   class       C
+        ,   typename    M
+        >
+inline member_selector_iterator<C const*, C, const M> member_select_iterator(C const *iterator, M C::*member)
+{
+    return member_selector_iterator<C const*, C, const M>(iterator, member);
+}
+#endif /* 0 */
+
+#if 0
+//template<   class       C
+//        ,   typename    M
+//        >
+//inline member_selector_const_iterator<C const*, C, const M> member_select_iterator(C const *iterator, M C::*member)
+//{
+//    return member_selector_const_iterator<C const*, C, const M>(iterator, member);
+//}
+#endif /* 0 */
+
+#if 0
+template<   class       C
+        ,   typename    M
+        >
+inline member_selector_const_iterator<C const*, C, const M> member_select_iterator(C const *iterator, const M C::*member)
+{
+    return member_selector_const_iterator<C const*, C, const M>(iterator, member);
+}
+#endif /* 0 */
+
+# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Operators
+ */
+
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline bool operator ==(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
+{
+    return lhs.equal(rhs);
+}
+
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline bool operator !=(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
+{
+    return !lhs.equal(rhs);
+}
+
+
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline member_selector_iterator<I, C, M> operator +(member_selector_iterator<I, C, M> const &lhs, ss_ptrdiff_t delta)
+{
+    return member_selector_iterator<I, C, M>(lhs.current() + delta, lhs.member());
+}
+
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline member_selector_iterator<I, C, M> operator -(member_selector_iterator<I, C, M> const &lhs, ss_ptrdiff_t delta)
+{
+    return member_selector_iterator<I, C, M>(lhs.current() - delta, lhs.member());
+}
+
+template<   typename    I
+        ,   class       C
+        ,   typename    M
+        >
+inline ss_ptrdiff_t operator -(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
+{
+    return lhs.distance(rhs);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/member_selector_iterator_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Implementation
+ */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Shims
+ */
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/// @} // end of group stlsoft_string_library
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+#ifndef _STLSOFT_NO_NAMESPACE
+} // namespace stlsoft
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_SELECTOR_ITERATOR */
+
+/* ////////////////////////////////////////////////////////////////////////// */
