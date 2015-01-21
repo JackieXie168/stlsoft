@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     21st May 2006
+ * Updated:     31st May 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MODULE_MAJOR     5
-# define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     3
-# define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  2
-# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      205
+# define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     4
+# define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  1
+# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      206
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -125,8 +125,16 @@ namespace winstl_project
 class module
 {
 public:
+    /// \brief The handle type
     typedef HINSTANCE   module_handle_type;
+    /// \brief The handle type
+    ///
+    /// \note This member type is required to make it compatible with
+    ///  the STLSoft get_handle access shim
+    typedef HINSTANCE   handle_type;
+    /// \brief The class type
     typedef module      class_type;
+    /// \brief The entry point type
     typedef void        (*proc_pointer)();
 
 /// \name Construction
@@ -188,7 +196,7 @@ public:
         return class_type::load(stlsoft_ns_qual(c_str_ptr)(modName));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static void                 unload(module_handle_type hmodule);
+    static void                 unload(module_handle_type hmodule) stlsoft_throw_0();
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName);
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal);
 
@@ -220,7 +228,7 @@ public:
 /// @{
 public:
     /// \brief Closes the module handle
-    void unload();
+    void unload() stlsoft_throw_0();
 
     /// \brief Yields the module handle to the caller
     module_handle_type detach();
@@ -375,7 +383,7 @@ inline module::~module() stlsoft_throw_0()
     unload(m_hmodule);
 }
 
-inline void module::unload()
+inline void module::unload() stlsoft_throw_0()
 {
     if(NULL != m_hmodule)
     {
@@ -404,7 +412,7 @@ inline /* static */ module::module_handle_type module::load(ws_char_w_t const *m
     return ::LoadLibraryW(modName);
 }
 
-inline /* static */ void module::unload(module::module_handle_type hmodule)
+inline /* static */ void module::unload(module::module_handle_type hmodule) stlsoft_throw_0()
 {
     if(NULL != hmodule)
     {

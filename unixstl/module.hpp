@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     25th May 2006
+ * Updated:     30th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -238,7 +238,7 @@ inline void *get_handle(module const &m)
     return m.get_handle();
 }
 
-/// @} // end of group winstl_module_attribute_shims
+/// @} // end of group unixstl_module_attribute_shims
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Unit-testing

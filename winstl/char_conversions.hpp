@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     6th April 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       5
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    6
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        64
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    7
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -89,9 +89,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 
 #ifdef STLSOFT_UNITTEST
 # include <wchar.h>

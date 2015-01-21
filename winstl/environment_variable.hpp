@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        50
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    4
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -79,9 +79,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */

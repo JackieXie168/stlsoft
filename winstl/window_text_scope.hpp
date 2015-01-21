@@ -4,7 +4,7 @@
  * Purpose:     Window text scoping class.
  *
  * Created:     21st August 2003
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MINOR    3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION 2
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     27
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_TRAITS
 # include <winstl/window_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */

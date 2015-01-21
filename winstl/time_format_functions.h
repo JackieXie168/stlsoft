@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     24th March 2006
+ * Updated:     29th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    3
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     40
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,18 +59,18 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
 # include <stlsoft/integer_to_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS
-# include <winstl/registry_functions.hpp>   // for reg_get_string_value()
-#endif /* !WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_FUNCTIONS
+# include <winstl/registry/functions.hpp>   // for reg_get_string_value()
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

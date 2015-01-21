@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_path_buffer components.
  *
  * Created:     20th March 2005
- * Updated:     5th February 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,8 +45,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_MINOR     2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_EDIT      13
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/file_path_buffer.hpp Platform header for the file_path_buffer components */
@@ -60,13 +60,13 @@
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
-#  include <unixstl/file_path_buffer.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
+# ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
+#  include <unixstl/filesystem/file_path_buffer.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-#  include <winstl/file_path_buffer.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
+# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
+#  include <winstl/filesystem/file_path_buffer.hpp>
+# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */

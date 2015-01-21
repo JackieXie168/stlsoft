@@ -1,9 +1,9 @@
 
-// Updated: 2nd September 2005
+// Updated: 30th May 2006
 
-#if !defined(UNIXSTL_INCL_UNIXSTL_HPP_PATH)
-# error This file cannot be directly included, and should only be included within unixstl/path.hpp
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_PATH */
+#if !defined(UNIXSTL_INCL_UNIXSTL_HPP_PIPE)
+# error This file cannot be directly included, and should only be included within unixstl/pipe.hpp
+#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_PIPE */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft

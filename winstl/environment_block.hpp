@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_MINOR    4
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_REVISION 2
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_EDIT     40
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

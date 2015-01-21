@@ -12,7 +12,7 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     22nd May 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      76
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  7
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,9 +81,9 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>            // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */

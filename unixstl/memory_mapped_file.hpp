@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     21st March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_EDIT        60
+# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_REVISION    2
+# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
-#ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem_traits.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
+#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+# include <unixstl/filesystem/filesystem_traits.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS
 #  include <unixstl/exceptions.hpp>
@@ -146,6 +146,11 @@ public:
                 on_error_("Cannot map files with sizes larger than 4GB with compilers that do not support 64-bit integers", ETOBIG);
             }
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
+            else if(0 == st.st_size)
+            {
+                m_memory    =   NULL;
+                m_cb        =   0;
+            }
             else
             {
                 void    *memory = ::mmap(NULL, st.st_size, PROT_READ, 0, ::stlsoft::get_handle(hfile), 0);

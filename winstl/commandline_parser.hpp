@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_MAJOR       1
 # define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_MINOR       3
-# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_REVISION    2
-# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_EDIT        19
+# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_REVISION    3
+# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -63,9 +63,9 @@
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 # include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */

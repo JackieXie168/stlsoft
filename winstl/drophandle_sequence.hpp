@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    3
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     72
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,9 +60,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #if defined(STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1200)

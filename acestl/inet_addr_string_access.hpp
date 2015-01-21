@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     25th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MAJOR      1
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MINOR      6
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_REVISION   1
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       21
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_REVISION   2
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */

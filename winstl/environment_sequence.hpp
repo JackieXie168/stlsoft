@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MINOR       6
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    5
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        61
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    6
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>              // for stlsoft::const_reverse_iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */

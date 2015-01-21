@@ -4,7 +4,7 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     25th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      3
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       40
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   2
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -69,9 +69,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR
 # include <stlsoft/memory/malloc_allocator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR */
