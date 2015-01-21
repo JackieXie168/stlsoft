@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta35
+File:     STLSoft-ReleaseNotes-1.9.1-beta36
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  27th December 2006
+Updated:  28th December 2006
 
 ============================================================================
 
@@ -25,6 +25,31 @@ Updated:  27th December 2006
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 36 (28th December 2006):
+
+Additions:
+==========
+
+ UNIXSTL
+ -------
+
+ + unittest cases for unixstl::memory_mapped_file
+
+
+ WinSTL
+ ------
+
+ + winstl::memory_mapped_file can now be constructed from a wide string, in
+   addition to a multibyte string. It can also be constructed from any type
+   for which the stlsoft::c_str_ptr string access shim returns a wide
+   string, in addition to any type for which the stlsoft::c_str_ptr string
+   access shim returns a multibyte string
+ + unittest cases for winstl::memory_mapped_file
+
 
 
 ============================================================================
@@ -43,8 +68,8 @@ Additions:
 
  + stlsoft::scoped_handle now supports indirect cleanup functions. In other
    words, if you have a handle type handle_t, you can pass either a cleanup
-	 function taking handle_t - e.g. handle_close(handle_t ); - or a cleanup
-	 function taking a pointer to handle_t - e.g. handle_close_set_null(handle_t *)
+   function taking handle_t - e.g. handle_close(handle_t ); - or a cleanup
+   function taking a pointer to handle_t - e.g. handle_close_set_null(handle_t *)
 
 Changes:
 ========

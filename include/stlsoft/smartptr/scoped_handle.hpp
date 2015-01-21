@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     27th December 2006
+ * Updated:     28th December 2006
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     652
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     653
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,12 +109,16 @@ public:
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
+
         fn(h);
     }
 
     static void translate_indirect(H h, degenerate_function_type pv)
     {
         indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
+
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
         fn(&h);
     }
@@ -136,12 +140,16 @@ public:
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
+
         fn(h);
     }
 
     static void translate_indirect(H h, degenerate_function_type pv)
     {
         indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
+
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
         fn(&h);
     }
@@ -164,12 +172,16 @@ public:
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
+
         fn(h);
     }
 
     static void translate_indirect(H h, degenerate_function_type pv)
     {
         indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
+
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
         fn(&h);
     }
@@ -191,6 +203,8 @@ public:
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
+
         fn();
     }
 };
@@ -208,6 +222,8 @@ public:
     static void translate(degenerate_function_type pv)
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
+
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
         fn();
     }
@@ -227,6 +243,8 @@ public:
     static void translate(degenerate_function_type pv)
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
+
+        STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
         fn();
     }
@@ -318,7 +336,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_cdecl<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 
     /// \brief Construct from a resource handle and an indirect clean-up function with void return type
     scoped_handle(  resource_type   h
@@ -328,7 +348,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_cdecl<H, void>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -341,7 +363,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_cdecl<H, R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
     /// \brief Construct from a resource handle and an indirect clean-up function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  resource_type   h
@@ -351,7 +375,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_cdecl<H, R>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
@@ -365,7 +391,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_fastcall<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
     /// \brief Construct from a resource handle and an indirect clean-up "fastcall" function with void return type
     scoped_handle(  resource_type   h
                 ,   void            (STLSOFT_FASTCALL *f)(resource_type *)
@@ -374,7 +402,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_fastcall<H, void>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -387,7 +417,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_fastcall<H, R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
     /// \brief Construct from a resource handle and an indirect clean-up "fastcall" function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  resource_type   h
@@ -397,7 +429,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_fastcall<H, R>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
@@ -413,7 +447,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_stdcall<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
     /// \brief Construct from a resource handle and an indirect clean-up "stdcall" function with void return type
     scoped_handle(  resource_type   h
                 ,   void            (STLSOFT_STDCALL *f)(resource_type*)
@@ -422,7 +458,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_stdcall<H, void>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -435,7 +473,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_stdcall<H, R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
     /// \brief Construct from a resource handle and an indirect clean-up "stdcall" function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  resource_type   h
@@ -445,7 +485,9 @@ public:
         , m_hNull(hNull)
         , m_tfn(&function_translator_stdcall<H, R>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
@@ -455,6 +497,8 @@ public:
     /// already been called
     ~scoped_handle()
     {
+        STLSOFT_MESSAGE_ASSERT("Invariant violation: function pointer must not be NULL", NULL != m_fn);
+
         if(!empty())
         {
             m_tfn(m_h, m_fn);
@@ -468,6 +512,8 @@ public:
     /// \brief Indicates whether the instance holds a non-"null" resource
     bool empty() const
     {
+        STLSOFT_MESSAGE_ASSERT("Invariant violation: function pointer must not be NULL", NULL != m_fn);
+
         return get_null_value_() == m_h;
     }
 /// @}
@@ -480,6 +526,8 @@ public:
     /// \note Calling this method more than once has no effect.
     void close()
     {
+        STLSOFT_MESSAGE_ASSERT("Invariant violation: function pointer must not be NULL", NULL != m_fn);
+
         if(!empty())
         {
             m_tfn(m_h, m_fn);
@@ -494,6 +542,8 @@ public:
     ///   instance, so it will not be automatically closed.
     resource_type detach()
     {
+        STLSOFT_MESSAGE_ASSERT("Invariant violation: function pointer must not be NULL", NULL != m_fn);
+
         resource_type   h   =   get_null_value_();
 
         std_swap(m_h, h);
@@ -583,7 +633,9 @@ public:
         : m_bInvoked(false)
         , m_tfn(&function_translator_cdecl_void<void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+	}
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -593,7 +645,9 @@ public:
         : m_bInvoked(false)
         , m_tfn(&function_translator_cdecl_void<R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+	}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
@@ -604,7 +658,9 @@ public:
         : m_bInvoked(false)
         , m_tfn(&function_translator_fastcall_void<void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+	}
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -614,7 +670,9 @@ public:
         : m_bInvoked(false)
         , m_tfn(&function_translator_fastcall_void<R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+	}
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
@@ -627,7 +685,9 @@ public:
         : m_bInvoked(false)
         , m_tfn(&function_translator_stdcall_void<void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+	}
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -637,7 +697,9 @@ public:
         : m_bInvoked(false)
         , m_tfn(&function_translator_stdcall_void<R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
-    {}
+    {
+		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+	}
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
