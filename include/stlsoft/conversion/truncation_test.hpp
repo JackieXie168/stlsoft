@@ -4,11 +4,11 @@
  * Purpose:     Runtime checking for numeric conversions.
  *
  * Created:     10th August 2006
- * Updated:     3rd February 2010
+ * Updated:     24th November 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       47
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   6
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,6 +89,9 @@
 #if defined(STLSOFT_UNITTEST) || \
     defined(_DEBUG)
 # include <typeinfo>
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+#  include <crtdbg.h>
+# endif /* VC++ */
 #endif /* STLSOFT_UNITTEST || _DEBUG */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,11 +174,19 @@ template<   ss_typename_param_k TO
 inline bool truncation_test_helper_runtime_test_different_sign_FROM_is_signed(FROM from, yes_type, TO)
 {
 #ifdef _DEBUG
-    char const  *TO_    =   typeid(TO).name();
-    char const  *FROM_  =   typeid(FROM).name();
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	int const flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	_CrtSetDbgFlag(flags & ~(_CRTDBG_ALLOC_MEM_DF));
+# endif /* VC++ */
+
+    char const* TO_     =   typeid(TO).name();
+    char const* FROM_   =   typeid(FROM).name();
 
     STLSOFT_SUPPRESS_UNUSED(TO_);
     STLSOFT_SUPPRESS_UNUSED(FROM_);
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	_CrtSetDbgFlag(flags);
+# endif /* VC++ */
 #endif /* _DEBUG */
 
     enum {  TO_is_signed            =   is_signed_type<TO>::value                   };
@@ -245,11 +256,19 @@ template<   ss_typename_param_k TO
 inline bool truncation_test_helper_runtime_test_different_sign_FROM_is_signed(FROM from, no_type, TO)
 {
 #ifdef _DEBUG
-    char const  *TO_    =   typeid(TO).name();
-    char const  *FROM_  =   typeid(FROM).name();
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	int const flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	_CrtSetDbgFlag(flags & ~(_CRTDBG_ALLOC_MEM_DF));
+# endif /* VC++ */
+
+    char const* TO_     =   typeid(TO).name();
+    char const* FROM_   =   typeid(FROM).name();
 
     STLSOFT_SUPPRESS_UNUSED(TO_);
     STLSOFT_SUPPRESS_UNUSED(FROM_);
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	_CrtSetDbgFlag(flags);
+# endif /* VC++ */
 #endif /* _DEBUG */
 
     enum {  TO_is_signed            =   is_signed_type<TO>::value                   };
@@ -289,11 +308,19 @@ template<   ss_typename_param_k TO
 inline bool truncation_test_helper_runtime_test_same_sign(FROM from, yes_type, TO) // The use of the dummy variable is to fix a bug with VC++ 5-7.0
 {
 #ifdef _DEBUG
-    char const  *TO_    =   typeid(TO).name();
-    char const  *FROM_  =   typeid(FROM).name();
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	int const flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	_CrtSetDbgFlag(flags & ~(_CRTDBG_ALLOC_MEM_DF));
+# endif /* VC++ */
+
+    char const* TO_     =   typeid(TO).name();
+    char const* FROM_   =   typeid(FROM).name();
 
     STLSOFT_SUPPRESS_UNUSED(TO_);
     STLSOFT_SUPPRESS_UNUSED(FROM_);
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	_CrtSetDbgFlag(flags);
+# endif /* VC++ */
 #endif /* _DEBUG */
 
     const ss_size_t sizeofFROM  =   sizeof(FROM);
@@ -326,11 +353,19 @@ template<   ss_typename_param_k TO
 inline bool truncation_test_helper_runtime_test_same_sign(FROM from, no_type, TO)
 {
 #ifdef _DEBUG
-    char const  *TO_    =   typeid(TO).name();
-    char const  *FROM_  =   typeid(FROM).name();
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	int const flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	_CrtSetDbgFlag(flags & ~(_CRTDBG_ALLOC_MEM_DF));
+# endif /* VC++ */
+
+    char const* TO_     =   typeid(TO).name();
+    char const* FROM_   =   typeid(FROM).name();
 
     STLSOFT_SUPPRESS_UNUSED(TO_);
     STLSOFT_SUPPRESS_UNUSED(FROM_);
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	_CrtSetDbgFlag(flags);
+# endif /* VC++ */
 #endif /* _DEBUG */
 
     enum {  TO_is_signed            =   is_signed_type<TO>::value                   };
@@ -357,11 +392,19 @@ template<   ss_typename_param_k TO
 inline bool truncation_test_helper_runtime_test(FROM from, no_type, TO ) // The use of the dummy variable is to fix a bug with VC++ 5-7.0
 {
 #ifdef _DEBUG
-    char const  *TO_    =   typeid(TO).name();
-    char const  *FROM_  =   typeid(FROM).name();
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	int const flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	_CrtSetDbgFlag(flags & ~(_CRTDBG_ALLOC_MEM_DF));
+# endif /* VC++ */
+
+    char const* TO_     =   typeid(TO).name();
+    char const* FROM_   =   typeid(FROM).name();
 
     STLSOFT_SUPPRESS_UNUSED(TO_);
     STLSOFT_SUPPRESS_UNUSED(FROM_);
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	_CrtSetDbgFlag(flags);
+# endif /* VC++ */
 #endif /* _DEBUG */
 
     // Types are different
@@ -395,11 +438,19 @@ template<   ss_typename_param_k TO
 inline bool truncation_test_(FROM from, TO dummy = TO())    // The use of the dummy variable is to fix a bug with VC++ 5-7.0
 {
 #ifdef _DEBUG
-    char const  *TO_    =   typeid(TO).name();
-    char const  *FROM_  =   typeid(FROM).name();
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	int const flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	_CrtSetDbgFlag(flags & ~(_CRTDBG_ALLOC_MEM_DF));
+# endif /* VC++ */
+
+    char const* TO_     =   typeid(TO).name();
+    char const* FROM_   =   typeid(FROM).name();
 
     STLSOFT_SUPPRESS_UNUSED(TO_);
     STLSOFT_SUPPRESS_UNUSED(FROM_);
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+	_CrtSetDbgFlag(flags);
+# endif /* VC++ */
 #endif /* _DEBUG */
 
     // First, we must check that the types are compatible, with constraints

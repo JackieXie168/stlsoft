@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     26th February 2011
+ * Updated:     10th September 2011
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        130
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -156,6 +156,8 @@ public:
     typedef HMODULE                                 module_type;
     /// The type of a handle to a kernel object
     typedef HANDLE                                  handle_type;
+    /// The type of system result codes
+    typedef DWORD                                   result_code_type;
     /// The type of system error codes
     typedef DWORD                                   error_type;
 /// @}
@@ -248,7 +250,7 @@ public:
     /// Gives the last error
     static error_type   get_last_error();
     /// Sets the last error
-    static void         set_last_error(error_type er = error_type());
+    static void         set_last_error(error_type er);
 /// @}
 
 /// \name Environment
@@ -282,6 +284,7 @@ public:
     typedef ws_bool_t                   bool_type;
     typedef HMODULE                     module_type;
     typedef HANDLE                      handle_type;
+    typedef DWORD                       result_code_type;
     typedef DWORD                       error_type;
 
     class scoped_mem_block
@@ -360,6 +363,7 @@ public:
     typedef ws_bool_t                   bool_type;
     typedef HMODULE                     module_type;
     typedef HANDLE                      handle_type;
+    typedef DWORD                       result_code_type;
     typedef DWORD                       error_type;
 
 public:
@@ -811,6 +815,7 @@ public:
     typedef ws_bool_t                   bool_type;
     typedef HMODULE                     module_type;
     typedef HANDLE                      handle_type;
+    typedef DWORD                       result_code_type;
     typedef DWORD                       error_type;
 
 public:

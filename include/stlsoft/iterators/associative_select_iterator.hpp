@@ -5,7 +5,7 @@
  *              underlying iterator in order to obtain the key/mapped type.
  *
  * Created:     28th January 2005
- * Updated:     21st June 2010
+ * Updated:     13th October 2010
  *
  * Thanks:      To Manfred Ehrhart, for detecting issues with iterator
  *              member types and select_second().
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_MINOR    2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     27
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_REVISION 2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -273,10 +273,17 @@ public:
         return ret;
     }
 
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+    const_reference operator *() const
+    {
+        return m_f(*m_i);
+    }
+#else
     reference operator *()
     {
         return m_f(*m_i);
     }
+#endif
 
 private:
     adapted_iterator_type   m_i;

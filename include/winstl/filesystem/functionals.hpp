@@ -4,11 +4,11 @@
  * Purpose:     File-system related functions and predicates.
  *
  * Created:     19th January 2002
- * Updated:     10th August 2009
+ * Updated:     29th November 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      81
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -486,7 +486,8 @@ private:
         const ws_size_t cchFile         =   traits_t::str_len(file);
         buffer_t        path(1 + cchDirectory + 1 + cchFile + 1);
 
-        traits_t::str_copy(&path[0], directory);
+        traits_t::char_copy(&path[0], directory, cchDirectory);
+        path[cchDirectory] = '\0';
         traits_t::ensure_dir_end(&path[0]);
         traits_t::str_cat(&path[0], file);
 
