@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     20th January 2009
+ * Updated:     24th January 2009
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    11
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        114
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ namespace winstl_project
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/** \brief Traits for accessing the correct system functions for a given
+/** Traits for accessing the correct system functions for a given
  *   character type.
  *
  * \ingroup group__library__system
@@ -139,64 +139,66 @@ struct system_traits
 /// \name Types
 /// @{
 public:
-    /// \brief The character type
+    /// The character type
     typedef C                                       char_type;
-    /// \brief The size type
+    /// The size type
     typedef ws_size_t                               size_type;
-    /// \brief The difference type
+    /// The difference type
     typedef ws_ptrdiff_t                            difference_type;
-    /// \brief The current instantion of the type
+    /// The current instantion of the type
     typedef system_traits<C>                        class_type;
-    /// \brief The (signed) integer type
+    /// The (signed) integer type
     typedef ws_int_t                                int_type;
-    /// \brief The Boolean type
+    /// The Boolean type
     typedef ws_bool_t                               bool_type;
-    /// \brief The type of a handle to a dynamically loaded module
+    /// The type of a handle to a dynamically loaded module
     typedef HINSTANCE                               module_type;
-    /// \brief The type of a handle to a kernel object
+    /// The type of a handle to a kernel object
     typedef HANDLE                                  handle_type;
-    /// \brief The type of system error codes
+    /// The type of system error codes
     typedef DWORD                                   error_type;
 /// @}
 
 /// \name General string handling
 /// @{
 public:
+    /// Copies a specific number of characters from the source to the destination
+    static char_type*   char_copy(char_type* dest, char_type const* src, size_type n);
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
-    /// \brief Copies the contents of \c src to \c dest
+    /// Copies the contents of \c src to \c dest
     static char_type*   str_copy(char_type* dest, char_type const* src);
-    /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
+    /// Copies the contents of \c src to \c dest, up to cch \c characters
     static char_type*   str_n_copy(char_type* dest, char_type const* src, size_type cch);
-    /// \brief Appends the contents of \c src to \c dest
+    /// Appends the contents of \c src to \c dest
     static char_type*   str_cat(char_type* dest, char_type const* src);
-    /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
+    /// Appends the contents of \c src to \c dest, up to cch \c characters
     static char_type*   str_n_cat(char_type* dest, char_type const* src, size_type cch);
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
-    /// \brief Comparies the contents of \c src and \c dest
+    /// Comparies the contents of \c src and \c dest
     static int_type     str_compare(char_type const* s1, char_type const* s2);
-    /// \brief Comparies the contents of \c src and \c dest in a case-insensitive fashion
+    /// Comparies the contents of \c src and \c dest in a case-insensitive fashion
     static int_type     str_compare_no_case(char_type const* s1, char_type const* s2);
-    /// \brief Comparies the contents of \c src and \c dest up to \c cch characters
+    /// Comparies the contents of \c src and \c dest up to \c cch characters
     static int_type     str_n_compare(char_type const* s1, char_type const* s2, size_type cch);
-    /// \brief Evaluates the length of \c src
+    /// Evaluates the length of \c src
     static size_type    str_len(char_type const* src);
-    /// \brief Finds the given character \c ch in \c s
+    /// Finds the given character \c ch in \c s
     static char_type*   str_chr(char_type const* s, char_type ch);
-    /// \brief Finds the rightmost instance \c ch in \c s
+    /// Finds the rightmost instance \c ch in \c s
     static char_type*   str_rchr(char_type const* s, char_type ch);
-    /// \brief Finds the given substring \c sub in \c s
+    /// Finds the given substring \c sub in \c s
     static char_type*   str_str(char_type const* s, char_type const* sub);
-    /// \brief Finds one of a set of characters in \c s
+    /// Finds one of a set of characters in \c s
     static char_type*   str_pbrk(char_type const* s, char_type const* charSet);
-    /// \brief \brief Returns a pointer to the end of the string
+    /// Returns a pointer to the end of the string
     static char_type*   str_end(char_type const* s);
 /// @}
 
 /// \name Locale management
 /// @{
 public:
-    /// \brief Returns the locale information
+    /// Returns the locale information
 #ifndef NONLS
     static int_type     get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData);
 #endif /* !NONLS */
@@ -205,47 +207,47 @@ public:
 /// \name Module Paths
 /// @{
 public:
-    /// \brief Gets the full path name of the given module
+    /// Gets the full path name of the given module
     static size_type    get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer);
-    /// \brief Gets the full path name of the directory of the given module
+    /// Gets the full path name of the directory of the given module
     static size_type    get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer);
-    /// \brief Gets the full path name of the system directory
+    /// Gets the full path name of the system directory
     static size_type    get_system_directory(char_type* buffer, size_type cchBuffer);
-    /// \brief Gets the full path name of the windows directory
+    /// Gets the full path name of the windows directory
     static size_type    get_windows_directory(char_type* buffer, size_type cchBuffer);
 /// @}
 
 /// \name Dynamic Loading
 /// @{
 public:
-    /// \brief Loads the given executable module
+    /// Loads the given executable module
     static module_type  load_library(char_type const* name);
-    /// \brief Closes the given executable module
+    /// Closes the given executable module
     static bool_type    free_library(module_type hModule);
-    /// \brief Retrieves the given symbol from the library
+    /// Retrieves the given symbol from the library
     static FARPROC      find_symbol(module_type hModule, char const* symbolName);
 /// @}
 
 /// \name Kernel object control
 /// @{
 public:
-    /// \brief Closes the given operating system handle
+    /// Closes the given operating system handle
     static bool_type    close_handle(handle_type h);
 /// @}
 
 /// \name Error
 /// @{
 public:
-    /// \brief Gives the last error
+    /// Gives the last error
     static error_type   get_last_error();
-    /// \brief Sets the last error
+    /// Sets the last error
     static void         set_last_error(error_type er = error_type());
 /// @}
 
 /// \name Environment
 /// @{
 public:
-    /// \brief Gets an environment variable into the given buffer
+    /// Gets an environment variable into the given buffer
     ///
     /// \param name The name of the variable to find
     /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
@@ -317,6 +319,11 @@ public:
     typedef DWORD                       error_type;
 
 public:
+    static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
+    {
+        return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
+    }
+
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type* str_copy(char_type* dest, char_type const* src)
@@ -645,6 +652,11 @@ public:
     typedef DWORD                       error_type;
 
 public:
+    static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
+    {
+        return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
+    }
+
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type* str_copy(char_type* dest, char_type const* src)

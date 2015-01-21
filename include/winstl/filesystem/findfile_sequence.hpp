@@ -18,14 +18,14 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     22nd September 2008
+ * Updated:     24th January 2009
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
  *              example when writing books about good design/implementation.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -68,8 +68,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        211
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        212
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -287,7 +287,7 @@ public:
     /// Returns the directory of the search
     ///
     /// \note Will be the empty string for instances created with the first constructor
-    char_type const     *get_directory() const;
+    char_type const*    get_directory(size_type* plen = NULL) const;
 /// @}
 
 /// \name State
@@ -296,7 +296,7 @@ public:
     /// Indicates whether the sequence is empty
     ws_bool_t           empty() const;
     /// Returns the maximum number of items in the sequence
-    static ws_size_t    max_size();
+    static size_type    max_size();
 /// @}
 
 /// \name Members
@@ -305,13 +305,14 @@ private:
     typedef basic_file_path_buffer<char_type>       file_path_buffer_type_;
     typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
                                             ,   processheap_allocator<char_type>
-                                            ,   32
+                                            ,   64
                                             >       patterns_buffer_type_;
 
     const char_type         m_delim;
     const flags_type        m_flags;
     file_path_buffer_type_  m_directory;    // The directory, as specified to the constructor
     patterns_buffer_type_   m_patterns;     // The pattern(s) specified to the constructor
+    const size_type         m_directoryLen; // The directory length
 /// @}
 
 /// \name Invariant
@@ -324,7 +325,7 @@ private:
 /// @{
 private:
     static flags_type   validate_flags_(flags_type flags);
-    static void         validate_directory_(char_type const* directory, file_path_buffer_type_ &dir, flags_type flags);
+    static size_type    validate_directory_(char_type const* directory, file_path_buffer_type_& dir, flags_type flags);
 /// @}
 
 /// \name Not to be implemented
@@ -399,12 +400,18 @@ private:
         WINSTL_ASSERT(NULL != directory);
         WINSTL_ASSERT(0 != cchDirectory);
 
-        m_path[cchDirectory] = '\0';
+        const size_type cchFilename = traits_type::str_len(data.cFileName);
 
-        traits_type::str_n_copy(&m_path[0], directory, cchDirectory);
-        traits_type::ensure_dir_end(&m_path[0] + ((cchDirectory > 0) ? (cchDirectory - 1) : cchDirectory));
-        traits_type::str_cat(&m_path[0] + cchDirectory, data.cFileName);
-        m_pathLen = cchDirectory + traits_type::str_len(&m_path[cchDirectory]);
+        traits_type::char_copy(&m_path[0], directory, cchDirectory);
+        m_path[cchDirectory] = '\0';
+        if(!traits_type::has_dir_end(&m_path[0]))
+        {
+            traits_type::ensure_dir_end(&m_path[0] + (cchDirectory - 1));
+            ++cchDirectory;
+        }
+        traits_type::char_copy(&m_path[0] + cchDirectory, data.cFileName, cchFilename);
+        m_path[cchDirectory + cchFilename] = '\0';
+        m_pathLen = cchDirectory + cchFilename;
 
         WINSTL_ASSERT(traits_type::str_len(m_path.c_str()) == m_pathLen);
     }
@@ -417,30 +424,30 @@ public:
 /// @{
 public:
     /// Returns a non-mutating reference to find-data
-    find_data_type const    &get_find_data() const;
+    find_data_type const&   get_find_data() const;
 #ifdef STLSOFT_OBSOLETE
     /// Returns a non-mutating reference to find-data
     ///
     /// \deprecated This method may be removed in a future release. get_find_data() should be used instead
-    find_data_type const    &GetFindData() const;   // Deprecated
+    find_data_type const&   GetFindData() const;   // Deprecated
 #endif /* STLSOFT_OBSOLETE */
 
     /// Returns the filename part of the item
-    char_type const         *get_filename() const;
+    char_type const*        get_filename() const;
     /// Returns the short form of the filename part of the item
-    char_type const         *get_short_filename() const;
+    char_type const*        get_short_filename() const;
     /// Returns the full path of the item
     ///
     /// \note The path is not canonicalised, so will not be in canonical form if the filename is a
     /// dots directory. For this you should use winstl::path, and call canonicalise()
-    char_type const         *get_path() const;
+    char_type const*        get_path() const;
     /// Returns the full path of the item
     ///
     /// \note The path is not canonicalised, so will not be in canonical form if the filename is a
     /// dots directory. For this you should use winstl::path, and call canonicalise()
-    char_type const         *c_str() const;
+    char_type const*        c_str() const;
     /// Returns the length of the full path
-    ws_size_t               length() const;
+    size_type               length() const;
 
     /// Implicit conversion to a pointer-to-const of the full path
     ///
@@ -487,7 +494,7 @@ private:
 
     find_data_type          m_data;
     file_path_buffer_type_  m_path;
-    ws_size_t               m_pathLen;
+    size_type               m_pathLen;
 /// @}
 };
 
@@ -610,7 +617,7 @@ private:
 /// @{
 private:
     basic_findfile_sequence_const_input_iterator(   sequence_type const& l
-                                                ,   char_type const     *patterns
+                                                ,   char_type const*    patterns
                                                 ,   char_type           delim
                                                 ,   flags_type          flags);
     basic_findfile_sequence_const_input_iterator(sequence_type const& l);
@@ -653,12 +660,12 @@ private:
     typedef basic_file_path_buffer<char_type>       file_path_buffer_type_;
 
     sequence_type const* const                      m_list;
-    shared_handle                                   *m_handle;
+    shared_handle*                                  m_handle;
     ss_typename_type_k traits_type::find_data_type  m_data;
     file_path_buffer_type_                          m_subpath;
     size_type                                       m_subPathLen;
-    char_type const                                 *m_pattern0;
-    char_type const                                 *m_pattern1;
+    char_type const*                                m_pattern0;
+    char_type const*                                m_pattern1;
     char_type                                       m_delim;
     flags_type                                      m_flags;
 /// @}
@@ -913,11 +920,25 @@ inline /* static */ ws_bool_t basic_findfile_sequence<C, T>::is_valid() const
         return false;
     }
 
+    if(m_directoryLen != traits_type::str_len(m_directory.c_str()))
+    {
+#ifdef STLSOFT_UNITTEST
+        fprintf(err, "m_directory is not length indicated by m_directoryLen; m_directory=%s; m_directoryLen=%d\n", m_directory.c_str(), int(m_directoryLen));
+#endif /* STLSOFT_UNITTEST */
+
+        return false;
+    }
+
     return true;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char_type const* directory, file_path_buffer_type_ &dir, flags_type flags)
+inline /* static */ ss_typename_type_ret_k basic_findfile_sequence<C, T>::size_type
+basic_findfile_sequence<C, T>::validate_directory_(
+    char_type const*        directory
+,   file_path_buffer_type_& dir
+,   flags_type              flags
+)
 {
     if( NULL == directory ||
         '\0' == *directory)
@@ -927,22 +948,42 @@ inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char
         directory = &s_cwd[0];
     }
 
+    size_type directoryLen = traits_type::str_len(directory);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    if(directoryLen > dir.size())
+    {
+        STLSOFT_THROW_X(windows_exception(CO_E_PATHTOOLONG));
+    }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     if(relativePath & flags)
     {
-        traits_type::str_n_copy(&dir[0], directory, dir.size());
+        WINSTL_ASSERT(directoryLen < dir.size());
+
+        traits_type::char_copy(&dir[0], directory, directoryLen + 1);
     }
-    else if(0 == traits_type::get_full_path_name(directory, dir.size(), &dir[0]))
+    else if(0 == (directoryLen = traits_type::get_full_path_name(directory, dir.size(), &dir[0])))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         STLSOFT_THROW_X(windows_exception(::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        dir[0] = '\0';
-
-        return;
+        return validate_directory_(directory, dir, flags | relativePath);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
-    traits_type::ensure_dir_end(&dir[0]);
+    WINSTL_ASSERT(directoryLen == traits_type::str_len(dir.c_str()));
+
+    if( 0u != directoryLen &&
+        !traits_type::has_dir_end(&dir[directoryLen - 1]))
+    {
+        traits_type::ensure_dir_end(&dir[directoryLen - 1]);
+        ++directoryLen;
+    }
+
+    WINSTL_ASSERT(directoryLen == traits_type::str_len(dir.c_str()));
+
+    return directoryLen;
 }
 
 // Construction
@@ -950,11 +991,11 @@ template <ss_typename_param_k C, ss_typename_param_k T>
 inline basic_findfile_sequence<C, T>::basic_findfile_sequence(char_type const* pattern, flags_type flags /* = directories | files */)
     : m_delim(0)
     , m_flags(validate_flags_(flags))
+    , m_directory()
     , m_patterns(1 + traits_type::str_len(pattern))
+    , m_directoryLen(validate_directory_(NULL, m_directory, m_flags))
 {
-    validate_directory_(NULL, m_directory, m_flags);
-
-    traits_type::str_n_copy(&m_patterns[0], pattern, m_patterns.size());
+    traits_type::char_copy(&m_patterns[0], pattern, m_patterns.size());
 
     WINSTL_ASSERT(is_valid());
 }
@@ -965,11 +1006,11 @@ inline basic_findfile_sequence<C, T>::basic_findfile_sequence(  char_type const*
                                                             ,   flags_type          flags /* = directories | files */)
     : m_delim(delim)
     , m_flags(validate_flags_(flags))
+    , m_directory()
     , m_patterns(1 + traits_type::str_len(patterns))
+    , m_directoryLen(validate_directory_(NULL, m_directory, m_flags))
 {
-    validate_directory_(NULL, m_directory, m_flags);
-
-    traits_type::str_n_copy(&m_patterns[0], patterns, m_patterns.size());
+    traits_type::char_copy(&m_patterns[0], patterns, m_patterns.size());
 
     WINSTL_ASSERT(is_valid());
 }
@@ -980,11 +1021,11 @@ inline basic_findfile_sequence<C, T>::basic_findfile_sequence(  char_type const*
                                                             ,   flags_type          flags /* = directories | files */)
     : m_delim(0)
     , m_flags(validate_flags_(flags))
+    , m_directory()
     , m_patterns(1 + traits_type::str_len(pattern))
+    , m_directoryLen(validate_directory_(directory, m_directory, m_flags))
 {
-    validate_directory_(directory, m_directory, m_flags);
-
-    traits_type::str_n_copy(&m_patterns[0], pattern, m_patterns.size());
+    traits_type::char_copy(&m_patterns[0], pattern, m_patterns.size());
 
     WINSTL_ASSERT(is_valid());
 }
@@ -996,11 +1037,11 @@ inline basic_findfile_sequence<C, T>::basic_findfile_sequence(  char_type const*
                                                             ,   flags_type          flags /* = directories | files */)
     : m_delim(delim)
     , m_flags(validate_flags_(flags))
+    , m_directory()
     , m_patterns(1 + traits_type::str_len(patterns))
+    , m_directoryLen(validate_directory_(directory, m_directory, m_flags))
 {
-    validate_directory_(directory, m_directory, m_flags);
-
-    traits_type::str_n_copy(&m_patterns[0], patterns, m_patterns.size());
+    traits_type::char_copy(&m_patterns[0], patterns, m_patterns.size());
 
     WINSTL_ASSERT(is_valid());
 }
@@ -1012,7 +1053,7 @@ inline basic_findfile_sequence<C, T>::~basic_findfile_sequence() stlsoft_throw_0
 
 #ifdef _DEBUG
     m_directory[0]  =   '\0';
-    m_patterns[0]     =   '\0';
+    m_patterns[0]   =   '\0';
 #endif /* _DEBUG */
 }
 
@@ -1044,9 +1085,19 @@ inline ss_typename_type_ret_k basic_findfile_sequence<C, T>::const_iterator basi
 
 // Attributes
 template <ss_typename_param_k C, ss_typename_param_k T>
-ss_typename_type_k basic_findfile_sequence<C, T>::char_type const* basic_findfile_sequence<C, T>::get_directory() const
+ss_typename_type_k basic_findfile_sequence<C, T>::char_type const* basic_findfile_sequence<C, T>::get_directory(size_type* plen /* = NULL */) const
 {
     WINSTL_ASSERT(is_valid());
+
+    // Null Object (variable) pattern
+    size_type len_;
+
+    if(NULL == plen)
+    {
+        plen = &len_;
+    }
+
+    *plen = m_directoryLen;
 
     return m_directory.c_str();
 }
@@ -1062,9 +1113,9 @@ inline ws_bool_t basic_findfile_sequence<C, T>::empty() const
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline /* static */ ws_size_t basic_findfile_sequence<C, T>::max_size()
+inline /* static */ ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::size_type basic_findfile_sequence<C, T>::max_size()
 {
-    return static_cast<ws_size_t>(-1);
+    return static_cast<size_type>(-1);
 }
 
 // basic_findfile_sequence_value_type
@@ -1200,9 +1251,11 @@ inline ws_bool_t basic_findfile_sequence_value_type<C, T>::equal(basic_findfile_
 // basic_findfile_sequence_const_input_iterator
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
-inline /* static */ HANDLE basic_findfile_sequence_const_input_iterator<C, T, V>::find_first_file_( ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type const* searchSpec
-                                                                                                ,   flags_type flags
-                                                                                                ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::find_data_type* findData)
+inline /* static */ HANDLE basic_findfile_sequence_const_input_iterator<C, T, V>::find_first_file_(
+    ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type const*  searchSpec
+,   flags_type                                                                                  flags
+,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::find_data_type*   findData
+)
 {
     HANDLE      hSrch = INVALID_HANDLE_VALUE;
 
@@ -1308,13 +1361,15 @@ inline basic_findfile_sequence_const_input_iterator<C, T, V>::basic_findfile_seq
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
-inline basic_findfile_sequence_const_input_iterator<C, T, V>::basic_findfile_sequence_const_input_iterator( sequence_type const                                                                         &l
+inline basic_findfile_sequence_const_input_iterator<C, T, V>::basic_findfile_sequence_const_input_iterator(
+    sequence_type const&                                                                        l
 #if 0
-                                                                                                        ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type const   *rootDir
+,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type const*  rootDir
 #endif /* 0 */
-                                                                                                        ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type const   *patterns
-                                                                                                        ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type         delim
-                                                                                                        ,   flags_type                                                                                  flags)
+,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type const*  patterns
+,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::char_type         delim
+,   flags_type                                                                                  flags
+)
     : m_list(&l)
     , m_handle(NULL)
     , m_subpath()
@@ -1371,7 +1426,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, V> &basic_findfile_seq
 {
     WINSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", (m_list == NULL || rhs.m_list == NULL || rhs.m_list));    // Should only be comparing iterators from same container
 
-    shared_handle   *this_handle    =   m_handle;
+    shared_handle* this_handle = m_handle;
 
     m_handle        =   rhs.m_handle;
     m_data          =   rhs.m_data;
@@ -1454,13 +1509,19 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
                     }
                     else
                     {
-                        traits_type::str_n_copy(&search[0], m_list->get_directory(), search.size());
-                        cch = traits_type::str_len(&search[0]);
-                        WINSTL_ASSERT(cch > 0);
-                        --cch; // Directory is always trailing a path name separator
-                        traits_type::ensure_dir_end(&search[(cch > 1) ? (cch - 2) : 0]);
+                        char_type const* directory = m_list->get_directory(&cch);
+
+                        WINSTL_ASSERT(NULL != directory);
+                        WINSTL_ASSERT(0 != cch);
+                        WINSTL_ASSERT(cch <= search.size());
+                        WINSTL_ASSERT(traits_type::has_dir_end(directory));
+
+                        traits_type::char_copy(&search[0], directory, cch + 1);
                     }
-                    traits_type::str_n_cat(&search[0] + cch, m_pattern0, static_cast<ws_size_t>(m_pattern1 - m_pattern0));
+                    size_type n2 = static_cast<size_type>(m_pattern1 - m_pattern0);
+
+                    traits_type::char_copy(&search[0] + cch, m_pattern0, n2);
+                    search[cch + n2] = '\0';
 
                     // Note: At this point, cch may be 1 under, because ensure_dir_end() may have added
                     // a character that we've not counted. But that's ok, because we don't use it as an
@@ -1495,9 +1556,9 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
                             slash = bslash;
                         }
 
-                        const ws_size_t n   =   static_cast<ws_size_t>(slash - &search[0]);
+                        const size_type n = static_cast<size_type>(slash - &search[0]);
 
-                        traits_type::str_n_copy(&m_subpath[0], &search[0], n);
+                        traits_type::char_copy(&m_subpath[0], &search[0], n);
                         m_subPathLen = n;
                         m_subpath[n] = '\0';
                     }
@@ -1522,9 +1583,9 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
                                 (   '.' == m_pattern0[1] &&
                                     m_pattern1 == m_pattern0 + 2)))
                         {
-                            const ws_size_t n   =   static_cast<ws_size_t>(m_pattern1 - m_pattern0);
+                            const size_type n = static_cast<size_type>(m_pattern1 - m_pattern0);
 
-                            traits_type::str_n_copy(&m_data.cFileName[0], m_pattern0, n);
+                            traits_type::char_copy(&m_data.cFileName[0], m_pattern0, n);
                             m_data.cFileName[n] = '\0';
                         }
 

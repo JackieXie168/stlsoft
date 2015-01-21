@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     8th June 2008
+ * Updated:     24th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -147,14 +147,16 @@ public:
 /// \name General string handling
 /// @{
 public:
+    /// Copies a specific number of characters from the source to the destination
+    static char_type*   char_copy(char_type* dest, char_type const* src, size_type n);
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
     /// Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type *dest, char_type const* src);
+    static char_type    *str_copy(char_type* dest, char_type const* src);
     /// Copies the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_copy(char_type *dest, char_type const* src, is_size_t cch);
+    static char_type    *str_n_copy(char_type* dest, char_type const* src, is_size_t cch);
     /// Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type *dest, char_type const* src);
+    static char_type    *str_cat(char_type* dest, char_type const* src);
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
     /// Comparies the contents of \c src and \c dest
     static is_int_t     str_compare(char_type const* s1, char_type const* s2);
@@ -176,11 +178,11 @@ public:
     /// Appends a path name separator to \c dir if one does not exist
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *ensure_dir_end(char_type *dir);
+    static char_type    *ensure_dir_end(char_type* dir);
     /// Removes the path name separator from the end of \c dir, if it has it
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *remove_dir_end(char_type *dir);
+    static char_type    *remove_dir_end(char_type* dir);
     /// Returns \c true if \c dir has trailing path name separator
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
@@ -206,7 +208,7 @@ public:
     /// \note It is '*'
     static char_type const* pattern_all();
     /// Gets the full path name into the given buffer, returning a pointer to the file-part
-    static size_type    get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile);
+    static size_type    get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile);
     /// Gets the full path name into the given buffer
     static size_type    get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer);
 /// @}
@@ -295,10 +297,15 @@ public:
     typedef DWORD                           error_type;
 
 public:
+    static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
+    {
+        return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
+    }
+
     // General string handling
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
-    static char_type *str_copy(char_type *dest, char_type const* src)
+    static char_type* str_copy(char_type* dest, char_type const* src)
     {
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcpyA(dest, src);
@@ -307,12 +314,12 @@ public:
 # endif /* STLSOFT_MIN_CRT */
     }
 
-    static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
+    static char_type* str_n_copy(char_type* dest, char_type const* src, is_size_t cch)
     {
         return ::strncpy(dest, src, cch);
     }
 
-    static char_type *str_cat(char_type *dest, char_type const* src)
+    static char_type* str_cat(char_type* dest, char_type const* src)
     {
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcatA(dest, src);
@@ -345,23 +352,23 @@ public:
 #endif /* STLSOFT_MIN_CRT */
     }
 
-    static char_type *str_chr(char_type const* s, char_type ch)
+    static char_type* str_chr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::strchr(s, ch));
     }
 
-    static char_type *str_rchr(char_type const* s, char_type ch)
+    static char_type* str_rchr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::strrchr(s, ch));
     }
 
-    static char_type *str_str(char_type const* s, char_type const* sub)
+    static char_type* str_str(char_type const* s, char_type const* sub)
     {
         return const_cast<char_type*>(::strstr(s, sub));
     }
 
     // File-system entry names
-    static char_type *ensure_dir_end(char_type *dir)
+    static char_type* ensure_dir_end(char_type* dir)
     {
         char_type       *end;
         char_type const separator = (NULL == str_chr(dir, '/') && NULL != str_chr(dir, '\\')) ? '\\' : '/';
@@ -379,7 +386,7 @@ public:
         return dir;
     }
 
-    static char_type *remove_dir_end(char_type *dir)
+    static char_type* remove_dir_end(char_type* dir)
     {
         char_type   *end;
 
@@ -438,14 +445,14 @@ public:
         return "*";
     }
 
-    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
         INETSTL_ASSERT(0 == cchBuffer || NULL != buffer);
         INETSTL_ASSERT(NULL == buffer || 0 != cchBuffer);
         INETSTL_ASSERT(NULL != fileName);
 
         // Deduce the separator
-        char_type const separator = (NULL == str_chr(fileName, '/') && NULL != str_chr(fileName, '\\')) ? '\\' : '/';
+        char_type const separator   =   (NULL == str_chr(fileName, '/') && NULL != str_chr(fileName, '\\')) ? '\\' : '/';
         char_type       fullPath[1 + _MAX_PATH];
 
         // If we're not rooted, then get the current directory and concatenate
@@ -504,7 +511,7 @@ public:
 
     static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer)
     {
-        char_type *pFile;
+        char_type* pFile;
 
         return get_full_path_name(hconn, fileName, cchBuffer, buffer, &pFile);
     }
@@ -632,10 +639,15 @@ public:
     typedef DWORD                           error_type;
 
 public:
+    static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
+    {
+        return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
+    }
+
     // General string handling
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
-    static char_type *str_copy(char_type *dest, char_type const* src)
+    static char_type* str_copy(char_type* dest, char_type const* src)
     {
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcpyW(dest, src);
@@ -644,12 +656,12 @@ public:
 # endif /* STLSOFT_MIN_CRT */
     }
 
-    static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
+    static char_type* str_n_copy(char_type* dest, char_type const* src, is_size_t cch)
     {
         return ::wcsncpy(dest, src, cch);
     }
 
-    static char_type *str_cat(char_type *dest, char_type const* src)
+    static char_type* str_cat(char_type* dest, char_type const* src)
     {
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcatW(dest, src);
@@ -682,23 +694,23 @@ public:
 #endif /* STLSOFT_MIN_CRT */
     }
 
-    static char_type *str_chr(char_type const* s, char_type ch)
+    static char_type* str_chr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::wcschr(s, ch));
     }
 
-    static char_type *str_rchr(char_type const* s, char_type ch)
+    static char_type* str_rchr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::wcsrchr(s, ch));
     }
 
-    static char_type *str_str(char_type const* s, char_type const* sub)
+    static char_type* str_str(char_type const* s, char_type const* sub)
     {
         return const_cast<char_type*>(::wcsstr(s, sub));
     }
 
     // File-system entry names
-    static char_type *ensure_dir_end(char_type *dir)
+    static char_type* ensure_dir_end(char_type* dir)
     {
         char_type       *end;
         char_type const separator = (NULL == str_chr(dir, L'/') && NULL != str_chr(dir, L'\\')) ? L'\\' : L'/';
@@ -716,7 +728,7 @@ public:
         return dir;
     }
 
-    static char_type *remove_dir_end(char_type *dir)
+    static char_type* remove_dir_end(char_type* dir)
     {
         char_type   *end;
 
@@ -775,7 +787,7 @@ public:
         return L"*";
     }
 
-    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
         INETSTL_ASSERT(0 == cchBuffer || NULL != buffer);
         INETSTL_ASSERT(NULL == buffer || 0 != cchBuffer);
@@ -841,7 +853,7 @@ public:
 
     static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer)
     {
-        char_type *pFile;
+        char_type* pFile;
 
         return get_full_path_name(hconn, fileName, cchBuffer, buffer, &pFile);
     }

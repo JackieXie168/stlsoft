@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  23rd January 2009
+; Updated:  25th January 2009
 
 ============================================================================
 
@@ -16,6 +16,58 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+
+============================================================================
+
+Changes for 1.9.70 (25th January 2009)
+
+Summary:
+========
+
+ * improved stlsoft::find_next_token() function templates to ensure that all empty fields are reported to caller
+ * added char_copy() methods to filesystem_traits classes in InetSTL and WinSTL, as part of move away from "unsafe" string functions
+ * minor enhancements to platformstl::readdir_sequence, to disambiguate constructor overloads
+ * removed all "unsafe" string functions from winstl::basic_findfile_sequence class template and supporting components
+ * improved winstl::basic_path class template to ensure proper behaviour in corner cases of use of push() and pop() methods
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/string/tokeniser_functions.hpp:
+    ~ fixed benign defects in find_next_token() overloads, whereby certain empty fields were not reported to caller
+    ~ documentation enhancements
+    ~ adding in more pre-condition enforcements
+
+ InetSTL:
+ ========
+
+ ~ include/inetstl/filesystem/filesystem_traits.hpp:
+    + char_copy() operations
+
+ PlatformstSTL:
+ ==============
+
+ ~ include/platformstl/filesystem/readdir_sequence.hpp:
+    ~ separation and disambiguation of constructor overloads
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/findfile_sequence.hpp:
+    + added defaulted parameter to get_directory() to retrieve the directory length
+    ~ replaced all instances of so-called "unsafe" string functions with system_traits::char_copy()
+
+ ~ include/winstl/filesystem/path.hpp:
+    ~ various fixes to push() and push_sep()
+    ~ corrected defects in pop(), seen in root directory paths, and paths involving UNC
+
+ ~ include/winstl/system/system_traits.hpp:
+    + added char_copy() to system_traits specialisations
+    ~ trivial documentation markup modifications
 
 ============================================================================
 
