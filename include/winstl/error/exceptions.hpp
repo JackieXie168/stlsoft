@@ -4,11 +4,11 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     22nd September 2008
+ * Updated:     31st January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        55
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,8 +121,11 @@ class windows_exception
 protected:
     typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
+    /// The parent class type
     typedef stlsoft_ns_qual(os_exception)       parent_class_type;
+    /// The error code type
     typedef ws_dword_t                          error_code_type;
+    /// The class type
     typedef windows_exception                   class_type;
 /// @}
 
@@ -268,12 +271,12 @@ private:
     }
 /// @}
 
-/// \name Members
+/// \name Member Variables
 /// @{
 private:
-    const string_type   m_reason;
-    char                *m_strerror;
-    error_code_type     m_errorCode;
+    const string_type       m_reason;
+    char*                   m_strerror;
+    const error_code_type   m_errorCode;
 /// @}
 
 /// \name Not to be implemented

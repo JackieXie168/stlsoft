@@ -4,14 +4,14 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     22nd September 2008
+ * Updated:     28th January 2009
  *
  * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
  *              for special_string_instance_1.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        17
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -137,9 +137,9 @@ public:
         , m_buffer(0)
     {}
 
-    void init(size_type (*pfn)(char_type *, size_type))
+    void init(size_type (*pfn)(char_type*, size_type))
     {
-        size_type   cch =   pfn(NULL, 0);   // We don't pass NULL here, just in case
+        size_type cch = pfn(NULL, 0);   // We don't pass NULL here, just in case
 
         if(m_buffer.resize(1 + cch))
         {
@@ -166,9 +166,9 @@ public:
         m_buffer[m_len] = '\0';
     }
 
-    void init(argument_0_type arg0, size_type (*pfn)(argument_0_type, char_type *, size_type))
+    void init(argument_0_type arg0, size_type (*pfn)(argument_0_type, char_type*, size_type))
     {
-        size_type   cch =   pfn(arg0, NULL, 0);   // We don't pass NULL here, just in case
+        size_type cch = pfn(arg0, NULL, 0);   // We don't pass NULL here, just in case
 
         if(m_buffer.resize(1 + cch))
         {
@@ -239,11 +239,11 @@ public:
 /// \name Construction
 /// @{
 public:
-    ssi_buffer_non_static(size_type (*pfn)(char_type *, size_type))
+    ssi_buffer_non_static(size_type (*pfn)(char_type*, size_type))
     {
         parent_class_type::init(pfn);
     }
-    ssi_buffer_non_static(A0 a0, size_type (*pfn)(A0, char_type *, size_type))
+    ssi_buffer_non_static(A0 a0, size_type (*pfn)(A0, char_type*, size_type))
     {
         parent_class_type::init(a0, pfn);
     }
@@ -294,10 +294,10 @@ private:
 /// \name Construction
 /// @{
 public:
-    ssi_buffer_static(size_type (*pfn)(char_type *, size_type))
+    ssi_buffer_static(size_type (*pfn)(char_type*, size_type))
         : m_buffer(get_buffer(pfn))
     {}
-    ssi_buffer_static(A0 a0, size_type (*pfn)(A0, char_type *, size_type))
+    ssi_buffer_static(A0 a0, size_type (*pfn)(A0, char_type*, size_type))
         : m_buffer(a0, get_buffer(a0, pfn))
     {}
 /// @}
@@ -318,7 +318,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static ssi_buffer_type &get_buffer(size_type (*pfn)(char_type *, size_type))
+    static ssi_buffer_type &get_buffer(size_type (*pfn)(char_type*, size_type))
     {
         static ss_sint32_t                      s_count =   0;
         static bool                             s_bInit =   false;
@@ -336,7 +336,7 @@ private:
 
         return s_buffer;
     }
-    static ssi_buffer_type &get_buffer(A0 a0, size_type (*pfn)(A0, char_type *, size_type))
+    static ssi_buffer_type &get_buffer(A0 a0, size_type (*pfn)(A0, char_type*, size_type))
     {
         static ss_sint32_t                      s_count =   0;
         static bool                             s_bInit =   false;
@@ -384,7 +384,7 @@ private:
  * - A member constant <code>internalBufferSize</code> that determines the
  *   size of the SSI's internal
  *   \link stlsoft::auto_buffer auto_buffer\endlink's internal buffer size.
- * - A static method <code>get_value(char_type *buffer, size_type cchBuffer)</code>
+ * - A static method <code>get_value(char_type* buffer, size_type cchBuffer)</code>
  *   that has the
  * - A member constant <code>allowImplicitConversion</code> that determines
  *   whether an implicit conversion operator (to
@@ -412,10 +412,11 @@ public:
 private:
     enum { charTypeIsAnsi = is_same_type<ss_char_a_t, char_type>::value };
 public:
-    typedef ss_typename_type_k select_first_type_if<ss_char_a_t const*
-                                                ,   void
-                                                ,   charTypeIsAnsi
-                                                >::type                         cstring_a_type;
+    typedef ss_typename_type_k select_first_type_if<
+        ss_char_a_t const*
+    ,   void
+    ,   charTypeIsAnsi
+    >::type                                                                     cstring_a_type;
     /// \brief The character type for Unicode specialisations
     ///
     /// \note This is used in the specification of the string access shim
@@ -423,10 +424,11 @@ public:
 private:
     enum { charTypeIsWide = is_same_type<ss_char_w_t, char_type>::value };
 public:
-    typedef ss_typename_type_k select_first_type_if<ss_char_w_t const*
-                                                ,   void
-                                                ,   charTypeIsWide
-                                                >::type                         cstring_w_type;
+    typedef ss_typename_type_k select_first_type_if<
+        ss_char_w_t const*
+    ,   void
+    ,   charTypeIsWide
+    >::type                                                                     cstring_w_type;
 private:
     typedef ss_typename_type_k policy_type::pfn_type                            pfn_type;
 private:
@@ -441,18 +443,20 @@ private:
     typedef ss_typename_type_k allocator_selector<char_type>::allocator_type    backup_allocator_type;
 public:
     /// \brief The allocator type
-    typedef ss_typename_type_k select_first_type_if<putative_allocator_type
-                                                ,   backup_allocator_type
-                                                ,   policy_has_allocator_type
-                                                >::type                         allocator_type;
+    typedef ss_typename_type_k select_first_type_if<
+        putative_allocator_type
+    ,   backup_allocator_type
+    ,   policy_has_allocator_type
+    >::type                                                                     allocator_type;
 private:
     enum { allowImplicitConversion = policy_type::allowImplicitConversion };
 public:
     /// \brief The implicit conversion operator type
-    typedef ss_typename_type_k select_first_type_if<char_type const*
-                                                ,   void
-                                                ,   allowImplicitConversion
-                                                >::type                         implicit_conversion_type;
+    typedef ss_typename_type_k select_first_type_if<
+        char_type const*
+    ,   void
+    ,   allowImplicitConversion
+    >::type                                                                     implicit_conversion_type;
 private:
     // This section accounts for whether the policy indicates shared state.
     // If so, then the buffer type resolves to the appropriate
@@ -468,22 +472,25 @@ private:
     {};
 
     enum { internalBufferSize = policy_type::internalBufferSize };
-    typedef ssi_buffer_static<      char_type
-                                ,   internalBufferSize
-                                ,   allocator_type
-                                ,   null_argument
-                                ,   policy_type // Passes policy type, from which spin_mutex_type is elicited, so non-statics do not need to specify it
-                                >                                               ssi_buffer_static_type;
-    typedef ssi_buffer_non_static<  char_type
-                                ,   internalBufferSize
-                                ,   allocator_type
-                                ,   null_argument
-                                >                                               ssi_buffer_non_static_type;
+    typedef ssi_buffer_static<
+        char_type
+    ,   internalBufferSize
+    ,   allocator_type
+    ,   null_argument
+    ,   policy_type // Passes policy type, from which spin_mutex_type is elicited, so non-statics do not need to specify it
+    >                                                                           ssi_buffer_static_type;
+    typedef ssi_buffer_non_static<
+        char_type
+    ,   internalBufferSize
+    ,   allocator_type
+    ,   null_argument
+    >                                                                           ssi_buffer_non_static_type;
 
-    typedef ss_typename_type_k select_first_type_if<ssi_buffer_static_type
-                                                ,   ssi_buffer_non_static_type
-                                                ,   policy_indicates_shared_state
-                                                >::type                         buffer_type;
+    typedef ss_typename_type_k select_first_type_if<
+        ssi_buffer_static_type
+    ,   ssi_buffer_non_static_type
+    ,   policy_indicates_shared_state
+    >::type                                                                     buffer_type;
 /// @}
 
 /// \name Construction
@@ -541,7 +548,7 @@ public:
 /// \name Operations
 /// @{
 public:
-    static size_type get(char_type *buffer, size_type cchBuffer)
+    static size_type get(char_type* buffer, size_type cchBuffer)
     {
         return (policy_type::get_fn())(buffer, cchBuffer);
     }
@@ -565,7 +572,7 @@ private:
  * - A member constant <code>internalBufferSize</code> that determines the
  *   size of the SSI's internal
  *   \link stlsoft::auto_buffer auto_buffer\endlink's internal buffer size.
- * - A static method <code>get_value(char_type *buffer, size_type cchBuffer)</code>
+ * - A static method <code>get_value(char_type* buffer, size_type cchBuffer)</code>
  *   that has the
  * - A member constant <code>allowImplicitConversion</code> that determines
  *   whether an implicit conversion operator (to
@@ -595,10 +602,11 @@ public:
 private:
     enum { charTypeIsAnsi = is_same_type<ss_char_a_t, char_type>::value };
 public:
-    typedef ss_typename_type_k select_first_type_if<ss_char_a_t const*
-                                                ,   void
-                                                ,   charTypeIsAnsi
-                                                >::type                         cstring_a_type;
+    typedef ss_typename_type_k select_first_type_if<
+        ss_char_a_t const*
+    ,   void
+    ,   charTypeIsAnsi
+    >::type                                                                     cstring_a_type;
     /// \brief The character type for Unicode specialisations
     ///
     /// \note This is used in the specification of the string access shim
@@ -606,10 +614,11 @@ public:
 private:
     enum { charTypeIsWide = is_same_type<ss_char_w_t, char_type>::value };
 public:
-    typedef ss_typename_type_k select_first_type_if<ss_char_w_t const*
-                                                ,   void
-                                                ,   charTypeIsWide
-                                                >::type                         cstring_w_type;
+    typedef ss_typename_type_k select_first_type_if<
+        ss_char_w_t const*
+    ,   void
+    ,   charTypeIsWide
+    >::type                                                                     cstring_w_type;
 private:
     typedef ss_typename_type_k policy_type::pfn_type                            pfn_type;
 private:
@@ -624,19 +633,21 @@ private:
     typedef ss_typename_type_k allocator_selector<char_type>::allocator_type    backup_allocator_type;
 public:
     /// \brief The allocator type
-    typedef ss_typename_type_k select_first_type_if<putative_allocator_type
-                                                ,   backup_allocator_type
-                                                ,   policy_has_allocator_type
-                                                >::type                         allocator_type;
+    typedef ss_typename_type_k select_first_type_if<
+        putative_allocator_type
+    ,   backup_allocator_type
+    ,   policy_has_allocator_type
+    >::type                                                                     allocator_type;
 
     /// \brief The implicit conversion operator type
 private:
     enum { allowImplicitConversion = policy_type::allowImplicitConversion };
 public:
-    typedef ss_typename_type_k select_first_type_if<char_type const*
-                                                ,   void
-                                                ,   allowImplicitConversion
-                                                >::type                         implicit_conversion_type;
+    typedef ss_typename_type_k select_first_type_if<
+        char_type const*
+    ,   void
+    ,   allowImplicitConversion
+    >::type                                                                     implicit_conversion_type;
 private:
     // This section accounts for whether the policy indicates shared state.
     // If so, then the buffer type resolves to the appropriate
@@ -649,22 +660,25 @@ private:
     };
 
     enum { internalBufferSize = policy_type::internalBufferSize };
-    typedef ssi_buffer_static<      char_type
-                                ,   internalBufferSize
-                                ,   allocator_type
-                                ,   argument_0_type
-                                ,   policy_type // Passes policy type, from which spin_mutex_type is elicited, so non-statics do not need to specify it
-                                >                                               ssi_buffer_static_type;
-    typedef ssi_buffer_non_static<  char_type
-                                ,   internalBufferSize
-                                ,   allocator_type
-                                ,   argument_0_type
-                                >                                               ssi_buffer_non_static_type;
+    typedef ssi_buffer_static<
+        char_type
+    ,   internalBufferSize
+    ,   allocator_type
+    ,   argument_0_type
+    ,   policy_type // Passes policy type, from which spin_mutex_type is elicited, so non-statics do not need to specify it
+    >                                                                           ssi_buffer_static_type;
+    typedef ssi_buffer_non_static<
+        char_type
+    ,   internalBufferSize
+    ,   allocator_type
+    ,   argument_0_type
+    >                                                                           ssi_buffer_non_static_type;
 
-    typedef ss_typename_type_k select_first_type_if<ssi_buffer_static_type
-                                                ,   ssi_buffer_non_static_type
-                                                ,   policy_indicates_shared_state
-                                                >::type                         buffer_type;
+    typedef ss_typename_type_k select_first_type_if<
+        ssi_buffer_static_type
+    ,   ssi_buffer_non_static_type
+    ,   policy_indicates_shared_state
+    >::type                                                                     buffer_type;
 
 /// @}
 

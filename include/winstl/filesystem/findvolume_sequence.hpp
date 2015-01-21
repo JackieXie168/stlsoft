@@ -10,11 +10,11 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     10th October 2008
+ * Updated:     28th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      111
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -258,12 +258,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k V
         >
 class basic_findvolume_sequence_const_iterator
-    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(input_iterator_tag)
-                                        ,   V
-                                        ,   ws_ptrdiff_t
-                                        ,   void    // By-Value Temporary reference
-                                        ,   V       // By-Value Temporary reference
-                                        >
+    : public stlsoft_ns_qual(iterator_base)<
+        winstl_ns_qual_std(input_iterator_tag)
+    ,   V
+    ,   ws_ptrdiff_t
+    ,   void    // By-Value Temporary reference
+    ,   V       // By-Value Temporary reference
+    >
 {
 public:
     /// The character type
@@ -344,7 +345,7 @@ private:
         }
         else
         {
-            traits_type::str_copy(m_name, vol_name);
+            traits_type::char_copy(m_name, vol_name, STLSOFT_NUM_ELEMENTS(m_name));
         }
     }
     basic_findvolume_sequence_const_iterator(basic_findvolume_sequence<C, T> const& l);
@@ -575,19 +576,19 @@ inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_val
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_value_type(class_type const& rhs)
 {
-    traits_type::str_copy(m_name, rhs.m_name);
+    traits_type::char_copy(m_name, rhs.m_name, STLSOFT_NUM_ELEMENTS(m_name));
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_value_type(char_type const* vol_name)
 {
-    traits_type::str_copy(m_name, vol_name);
+    traits_type::char_copy(m_name, vol_name, STLSOFT_NUM_ELEMENTS(m_name));
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ss_typename_type_ret_k basic_findvolume_sequence_value_type<C, T>::class_type& basic_findvolume_sequence_value_type<C, T>::operator =(class_type const& rhs)
 {
-    traits_type::str_copy(m_name, rhs.m_name);
+    traits_type::char_copy(m_name, rhs.m_name, STLSOFT_NUM_ELEMENTS(m_name));
 
     return *this;
 }

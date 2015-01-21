@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     24th January 2009
+ * Updated:     1st February 2009
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        116
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -321,6 +321,9 @@ public:
 public:
     static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(0 == n || NULL != src);
+
         return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
     }
 
@@ -341,7 +344,7 @@ public:
     static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
     {
         WINSTL_ASSERT(NULL != dest);
-        WINSTL_ASSERT(NULL != src);
+        WINSTL_ASSERT(0 == cch || NULL != src);
 
         return ::strncpy(dest, src, cch);
     }
@@ -654,6 +657,9 @@ public:
 public:
     static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(0 == n || NULL != src);
+
         return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
     }
 
@@ -674,7 +680,7 @@ public:
     static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
     {
         WINSTL_ASSERT(NULL != dest);
-        WINSTL_ASSERT(NULL != src);
+        WINSTL_ASSERT(0 == cch || NULL != src);
 
         return ::wcsncpy(dest, src, cch);
     }

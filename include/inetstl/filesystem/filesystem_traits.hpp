@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     24th January 2009
+ * Updated:     1st February 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 7
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     69
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    1
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 1
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -152,24 +152,26 @@ public:
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
     /// Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type* dest, char_type const* src);
+    static char_type*   str_copy(char_type* dest, char_type const* src);
     /// Copies the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_copy(char_type* dest, char_type const* src, is_size_t cch);
+    static char_type*   str_n_copy(char_type* dest, char_type const* src, is_size_t cch);
     /// Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type* dest, char_type const* src);
+    static char_type*   str_cat(char_type* dest, char_type const* src);
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
     /// Comparies the contents of \c src and \c dest
-    static is_int_t     str_compare(char_type const* s1, char_type const* s2);
+    static int_type     str_compare(char_type const* s1, char_type const* s2);
     /// Comparies the contents of \c src and \c dest in a case-insensitive fashion
-    static is_int_t     str_compare_no_case(char_type const* s1, char_type const* s2);
+    static int_type     str_compare_no_case(char_type const* s1, char_type const* s2);
+    /// Comparies the contents of \c src and \c dest up to \c cch characters
+    static int_type     str_n_compare(char_type const* s1, char_type const* s2, size_type cch);
     /// Evaluates the length of \c src
     static size_type    str_len(char_type const* src);
     /// Finds the given character \c ch in \c s
-    static char_type    *str_chr(char_type const* s, char_type ch);
+    static char_type*   str_chr(char_type const* s, char_type ch);
     /// Finds the rightmost instance \c ch in \c s
-    static char_type    *str_rchr(char_type const* s, char_type ch);
+    static char_type*   str_rchr(char_type const* s, char_type ch);
     /// Finds the given substring \c sub in \c s
-    static char_type    *str_str(char_type const* s, char_type const* sub);
+    static char_type*   str_str(char_type const* s, char_type const* sub);
 /// @}
 
 /// \name File-system entry names
@@ -178,11 +180,11 @@ public:
     /// Appends a path name separator to \c dir if one does not exist
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *ensure_dir_end(char_type* dir);
+    static char_type*   ensure_dir_end(char_type* dir);
     /// Removes the path name separator from the end of \c dir, if it has it
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *remove_dir_end(char_type* dir);
+    static char_type*   remove_dir_end(char_type* dir);
     /// Returns \c true if \c dir has trailing path name separator
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
@@ -299,6 +301,9 @@ public:
 public:
     static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(0 == n || NULL != src);
+
         return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
     }
 
@@ -307,6 +312,9 @@ public:
     defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type* str_copy(char_type* dest, char_type const* src)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(NULL != src);
+
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcpyA(dest, src);
 # else /*? STLSOFT_MIN_CRT */
@@ -316,11 +324,17 @@ public:
 
     static char_type* str_n_copy(char_type* dest, char_type const* src, is_size_t cch)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(0 == cch || NULL != src);
+
         return ::strncpy(dest, src, cch);
     }
 
     static char_type* str_cat(char_type* dest, char_type const* src)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(NULL != src);
+
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcatA(dest, src);
 # else /*? STLSOFT_MIN_CRT */
@@ -329,8 +343,11 @@ public:
     }
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
 
-    static is_int_t str_compare(char_type const* s1, char_type const* s2)
+    static int_type str_compare(char_type const* s1, char_type const* s2)
     {
+        INETSTL_ASSERT(NULL != s1);
+        INETSTL_ASSERT(NULL != s2);
+
 #ifdef STLSOFT_MIN_CRT
         return ::lstrcmpA(s1, s2);
 #else /*? STLSOFT_MIN_CRT */
@@ -338,9 +355,20 @@ public:
 #endif /* STLSOFT_MIN_CRT */
     }
 
-    static is_int_t str_compare_no_case(char_type const* s1, char_type const* s2)
+    static int_type str_compare_no_case(char_type const* s1, char_type const* s2)
     {
+        INETSTL_ASSERT(NULL != s1);
+        INETSTL_ASSERT(NULL != s2);
+
         return ::lstrcmpiA(s1, s2);
+    }
+
+    static int_type str_n_compare(char_type const* s1, char_type const* s2, size_type cch)
+    {
+        INETSTL_ASSERT(NULL != s1);
+        INETSTL_ASSERT(NULL != s2);
+
+        return ::strncmp(s1, s2, cch);
     }
 
     static size_type str_len(char_type const* src)
@@ -454,27 +482,37 @@ public:
         // Deduce the separator
         char_type const separator   =   (NULL == str_chr(fileName, '/') && NULL != str_chr(fileName, '\\')) ? '\\' : '/';
         char_type       fullPath[1 + _MAX_PATH];
+        size_type       len         =   str_len(fileName);
 
         // If we're not rooted, then get the current directory and concatenate
         if(separator != *fileName)
         {
             is_size_t   cchBuffer   =   STLSOFT_NUM_ELEMENTS(fullPath);
-            const int   isDot       =   0 == str_compare(fileName, ".");
+            const int   isDot       =   '.' == 0[fileName] && '\0' == 0[fileName];
+
+#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
+# pragma message(_sscomp_fileline_message("This looks a bit dodgy. Better to use an auto_buffer, and cycle the size, testing the return value from get_current_directory"))
+#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
 
             if(!get_current_directory(hconn, cchBuffer, fullPath))
             {
                 fullPath[0] = '\0';
             }
+            size_type   cchFullPath = str_len(fullPath);
+
             if(!isDot)
             {
-                ensure_dir_end(fullPath);
-                str_cat(fullPath, fileName);
+                if(!has_dir_end(fullPath))
+                {
+                    ensure_dir_end(fullPath);
+                    ++cchFullPath;
+                }
+                char_copy(&fullPath[0] + cchFullPath, fileName, 1 + len);
             }
 
-            fileName = fullPath;
+            fileName    =   fullPath;
+            len         +=  cchFullPath;
         }
-
-        size_type len = str_len(fileName);
 
         if(NULL != buffer)
         {
@@ -483,7 +521,7 @@ public:
                 len = cchBuffer;
             }
 
-            str_n_copy(buffer, fileName, cchBuffer);
+            char_copy(buffer, fileName, cchBuffer);
 
             if(NULL != ppFile)
             {
@@ -641,6 +679,9 @@ public:
 public:
     static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(0 == n || NULL != src);
+
         return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
     }
 
@@ -649,6 +690,9 @@ public:
     defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type* str_copy(char_type* dest, char_type const* src)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(NULL != src);
+
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcpyW(dest, src);
 # else /*? STLSOFT_MIN_CRT */
@@ -658,11 +702,17 @@ public:
 
     static char_type* str_n_copy(char_type* dest, char_type const* src, is_size_t cch)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(0 == cch || NULL != src);
+
         return ::wcsncpy(dest, src, cch);
     }
 
     static char_type* str_cat(char_type* dest, char_type const* src)
     {
+        INETSTL_ASSERT(NULL != dest);
+        INETSTL_ASSERT(NULL != src);
+
 # ifdef STLSOFT_MIN_CRT
         return ::lstrcatW(dest, src);
 # else /*? STLSOFT_MIN_CRT */
@@ -671,8 +721,11 @@ public:
     }
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
 
-    static is_int_t str_compare(char_type const* s1, char_type const* s2)
+    static int_type str_compare(char_type const* s1, char_type const* s2)
     {
+        INETSTL_ASSERT(NULL != s1);
+        INETSTL_ASSERT(NULL != s2);
+
 #ifdef STLSOFT_MIN_CRT
         return ::lstrcmpW(s1, s2);
 #else /*? STLSOFT_MIN_CRT */
@@ -680,9 +733,20 @@ public:
 #endif /* STLSOFT_MIN_CRT */
     }
 
-    static is_int_t str_compare_no_case(char_type const* s1, char_type const* s2)
+    static int_type str_compare_no_case(char_type const* s1, char_type const* s2)
     {
+        INETSTL_ASSERT(NULL != s1);
+        INETSTL_ASSERT(NULL != s2);
+
         return ::lstrcmpiW(s1, s2);
+    }
+
+    static int_type str_n_compare(char_type const* s1, char_type const* s2, size_type cch)
+    {
+        INETSTL_ASSERT(NULL != s1);
+        INETSTL_ASSERT(NULL != s2);
+
+        return ::wcsncmp(s1, s2, cch);
     }
 
     static size_type str_len(char_type const* src)
@@ -791,32 +855,42 @@ public:
     {
         INETSTL_ASSERT(0 == cchBuffer || NULL != buffer);
         INETSTL_ASSERT(NULL == buffer || 0 != cchBuffer);
+        INETSTL_ASSERT(NULL != fileName);
 
         // Deduce the separator
-        char_type const separator = (NULL == str_chr(fileName, L'/') && NULL != str_chr(fileName, L'\\')) ? L'\\' : L'/';
+        char_type const separator   =   (NULL == str_chr(fileName, L'/') && NULL != str_chr(fileName, L'\\')) ? L'\\' : L'/';
         char_type       fullPath[1 + _MAX_PATH];
+        size_type       len         =   str_len(fileName);
 
         // If we're not rooted, then get the current directory and concatenate
         if(separator != *fileName)
         {
             is_size_t   cchBuffer   =   STLSOFT_NUM_ELEMENTS(fullPath);
-            const int   isDot       =   0 == str_compare(fileName, L".");
+            const int   isDot       =   L'.' == 0[fileName] && L'\0' == 0[fileName];
 
 #ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
 # pragma message(_sscomp_fileline_message("This looks a bit dodgy. Better to use an auto_buffer, and cycle the size, testing the return value from get_current_directory"))
 #endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
 
-            get_current_directory(hconn, cchBuffer, fullPath);
+            if(!get_current_directory(hconn, cchBuffer, fullPath))
+            {
+                fullPath[0] = L'\0';
+            }
+            size_type   cchFullPath = str_len(fullPath);
+
             if(!isDot)
             {
-                ensure_dir_end(fullPath);
-                str_cat(fullPath, fileName);
+                if(!has_dir_end(fullPath))
+                {
+                    ensure_dir_end(fullPath);
+                    ++cchFullPath;
+                }
+                char_copy(&fullPath[0] + cchFullPath, fileName, 1 + len);
             }
 
-            fileName = fullPath;
+            fileName    =   fullPath;
+            len         +=  cchFullPath;
         }
-
-        size_type len = str_len(fileName);
 
         if(NULL != buffer)
         {
@@ -825,7 +899,7 @@ public:
                 len = cchBuffer;
             }
 
-            str_n_copy(buffer, fileName, cchBuffer);
+            char_copy(buffer, fileName, cchBuffer);
 
             if(NULL != ppFile)
             {

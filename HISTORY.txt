@@ -2,9 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  28th January 2009
+; Updated:  1st February 2009
 
 ============================================================================
+
+
+1st February 2009 - 1.9.72 released
+-----------------------------------
+
+ * added char_copy() methods to filesystem_traits classes in UNIXSTL, as part of move away from "unsafe" string functions
+ * fixed defect in winstl::squeeze_path() whereby wrong length is returned if buffer size is < 5 and the file length < buffer size
+ * removes unwanted trailing slash in application directory from winstl::basic_searchpath_sequence
+ * further work to remove dependency on "unsafe" string functions
 
 
 28th January 2009 - 1.9.71 released

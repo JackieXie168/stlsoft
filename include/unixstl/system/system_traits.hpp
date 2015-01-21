@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     10th October 2008
+ * Updated:     28th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      102
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@ namespace unixstl_project
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/** \brief Traits for accessing the correct system functions for a given
+/** Traits for accessing the correct system functions for a given
  *   character type.
  *
  * \ingroup group__library__system
@@ -167,97 +167,99 @@ struct system_traits
 /// \name Types
 /// @{
 public:
-    /// \brief The character type
+    /// The character type
     typedef C                                       char_type;
-    /// \brief The size type
+    /// The size type
     typedef us_size_t                               size_type;
-    /// \brief The difference type
+    /// The difference type
     typedef us_ptrdiff_t                            difference_type;
-    /// \brief The current instantion of the type
+    /// The current instantion of the type
     typedef system_traits<C>                        class_type;
-    /// \brief The (signed) integer type
+    /// The (signed) integer type
     typedef us_int_t                                int_type;
-    /// \brief The Boolean type
+    /// The Boolean type
     typedef us_bool_t                               bool_type;
-    /// \brief The type of a handle to a dynamically loaded module
+    /// The type of a handle to a dynamically loaded module
     typedef void*                                   module_type;
-    /// \brief The type of a handle to a kernel object
+    /// The type of a handle to a kernel object
     typedef int                                     handle_type;
-    /// \brief The type of system error codes
+    /// The type of system error codes
     typedef int                                     error_type;
 /// @}
 
 /// \name General string handling
 /// @{
 public:
+    /// Copies a specific number of characters from the source to the destination
+    static char_type*   char_copy(char_type* dest, char_type const* src, size_type n);
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
-    /// \brief Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type *dest, char_type const* src);
-    /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_copy(char_type *dest, char_type const* src, size_type cch);
-    /// \brief Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type *dest, char_type const* src);
-    /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_cat(char_type *dest, char_type const* src, size_type cch);
+    /// Copies the contents of \c src to \c dest
+    static char_type*   str_copy(char_type* dest, char_type const* src);
+    /// Copies the contents of \c src to \c dest, up to cch \c characters
+    static char_type*   str_n_copy(char_type* dest, char_type const* src, size_type cch);
+    /// Appends the contents of \c src to \c dest
+    static char_type*   str_cat(char_type* dest, char_type const* src);
+    /// Appends the contents of \c src to \c dest, up to cch \c characters
+    static char_type*   str_n_cat(char_type* dest, char_type const* src, size_type cch);
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
-    /// \brief Comparies the contents of \c src and \c dest
+    /// Comparies the contents of \c src and \c dest
     static int_type     str_compare(char_type const* s1, char_type const* s2);
-    /// \brief Comparies the contents of \c src and \c dest in a case-insensitive fashion
+    /// Comparies the contents of \c src and \c dest in a case-insensitive fashion
     static int_type     str_compare_no_case(char_type const* s1, char_type const* s2);
-    /// \brief Comparies the contents of \c src and \c dest up to \c cch characters
+    /// Comparies the contents of \c src and \c dest up to \c cch characters
     static int_type     str_n_compare(char_type const* s1, char_type const* s2, size_type cch);
-    /// \brief Evaluates the length of \c src
+    /// Evaluates the length of \c src
     static size_type    str_len(char_type const* src);
-    /// \brief Finds the given character \c ch in \c s
-    static char_type    *str_chr(char_type const* s, char_type ch);
-    /// \brief Finds the rightmost instance \c ch in \c s
-    static char_type    *str_rchr(char_type const* s, char_type ch);
-    /// \brief Finds the given substring \c sub in \c s
-    static char_type    *str_str(char_type const* s, char_type const* sub);
-    /// \brief Finds one of a set of characters in \c s
-    static char_type    *str_pbrk(char_type const* s, char_type const* charSet);
-    /// \brief Returns a pointer to the end of the string
-    static char_type    *str_end(char_type const* s);
+    /// Finds the given character \c ch in \c s
+    static char_type*   str_chr(char_type const* s, char_type ch);
+    /// Finds the rightmost instance \c ch in \c s
+    static char_type*   str_rchr(char_type const* s, char_type ch);
+    /// Finds the given substring \c sub in \c s
+    static char_type*   str_str(char_type const* s, char_type const* sub);
+    /// Finds one of a set of characters in \c s
+    static char_type*   str_pbrk(char_type const* s, char_type const* charSet);
+    /// Returns a pointer to the end of the string
+    static char_type*   str_end(char_type const* s);
 /// @}
 
 /// \name Dynamic Loading
 /// @{
 public:
-    /// \brief Loads the given executable module
+    /// Loads the given executable module
     static module_type  load_library(char_type const* name);
-    /// \brief Closes the given executable module
+    /// Closes the given executable module
     static bool_type    free_library(module_type hModule);
-    /// \brief Retrieves the given symbol from the library
-    static void         *find_symbol(module_type hModule, char const* symbolName);
+    /// Retrieves the given symbol from the library
+    static void*        find_symbol(module_type hModule, char const* symbolName);
 /// @}
 
 /// \name Kernel object control
 /// @{
 public:
-    /// \brief Closes the given operating system handle
+    /// Closes the given operating system handle
     static bool_type    close_handle(handle_type h);
 /// @}
 
 /// \name Error
 /// @{
 public:
-    /// \brief Gives the last error
+    /// Gives the last error
     static error_type   get_last_error();
-    /// \brief Sets the last error
+    /// Sets the last error
     static void         set_last_error(error_type er = error_type());
 /// @}
 
 /// \name Environment
 /// @{
 public:
-    /// \brief Gets an environment variable into the given buffer
+    /// Gets an environment variable into the given buffer
     ///
     /// \param name The name of the variable to find
     /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
     /// \param cchBuffer The size of the buffer, in characters
     static size_type    get_environment_variable(char_type const* name, char_type* buffer, size_type cchBuffer);
-    /// \brief Expands environment strings in \c src into \c buffer, up to a maximum \c cchDest characters
+    /// Expands environment strings in \c src into \c buffer, up to a maximum \c cchDest characters
     static size_type    expand_environment_strings(char_type const* src, char_type* buffer, size_type cchBuffer);
 /// @}
 };
@@ -282,24 +284,29 @@ public:
     typedef int                         error_type;
 
 public:
+    static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
+    {
+        return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
+    }
+
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
-    static char_type *str_copy(char_type *dest, char_type const* src)
+    static char_type* str_copy(char_type* dest, char_type const* src)
     {
         return ::strcpy(dest, src);
     }
 
-    static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
     {
         return ::strncpy(dest, src, cch);
     }
 
-    static char_type *str_cat(char_type *dest, char_type const* src)
+    static char_type* str_cat(char_type* dest, char_type const* src)
     {
         return ::strcat(dest, src);
     }
 
-    static char_type *str_n_cat(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_cat(char_type* dest, char_type const* src, size_type cch)
     {
         return ::strncat(dest, src, cch);
     }
@@ -322,27 +329,27 @@ public:
         return static_cast<size_type>(::strlen(src));
     }
 
-    static char_type *str_chr(char_type const* s, char_type ch)
+    static char_type* str_chr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::strchr(s, ch));
     }
 
-    static char_type *str_rchr(char_type const* s, char_type ch)
+    static char_type* str_rchr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::strrchr(s, ch));
     }
 
-    static char_type *str_str(char_type const* s, char_type const* sub)
+    static char_type* str_str(char_type const* s, char_type const* sub)
     {
         return const_cast<char_type*>(::strstr(s, sub));
     }
 
-    static char_type *str_pbrk(char_type const* s, char_type const* charSet)
+    static char_type* str_pbrk(char_type const* s, char_type const* charSet)
     {
         return const_cast<char_type*>(::strpbrk(s, charSet));
     }
 
-    static char_type *str_end(char_type const* s)
+    static char_type* str_end(char_type const* s)
     {
         UNIXSTL_ASSERT(NULL != s);
 
@@ -429,24 +436,29 @@ public:
     typedef int                         error_type;
 
 public:
+    static char_type* char_copy(char_type* dest, char_type const* src, size_type n)
+    {
+        return static_cast<char_type*>(::memcpy(dest, src, sizeof(char_type) * n));
+    }
+
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
-    static char_type *str_copy(char_type *dest, char_type const* src)
+    static char_type* str_copy(char_type* dest, char_type const* src)
     {
         return ::wcscpy(dest, src);
     }
 
-    static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
     {
         return ::wcsncpy(dest, src, cch);
     }
 
-    static char_type *str_cat(char_type *dest, char_type const* src)
+    static char_type* str_cat(char_type* dest, char_type const* src)
     {
         return ::wcscat(dest, src);
     }
 
-    static char_type *str_n_cat(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_cat(char_type* dest, char_type const* src, size_type cch)
     {
         return ::wcsncat(dest, src, cch);
     }
@@ -469,27 +481,27 @@ public:
         return static_cast<size_type>(::wcslen(src));
     }
 
-    static char_type *str_chr(char_type const* s, char_type ch)
+    static char_type* str_chr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::wcschr(s, ch));
     }
 
-    static char_type *str_rchr(char_type const* s, char_type ch)
+    static char_type* str_rchr(char_type const* s, char_type ch)
     {
         return const_cast<char_type*>(::wcsrchr(s, ch));
     }
 
-    static char_type *str_str(char_type const* s, char_type const* sub)
+    static char_type* str_str(char_type const* s, char_type const* sub)
     {
         return const_cast<char_type*>(::wcsstr(s, sub));
     }
 
-    static char_type *str_pbrk(char_type const* s, char_type const* charSet)
+    static char_type* str_pbrk(char_type const* s, char_type const* charSet)
     {
         return const_cast<char_type*>(::wcspbrk(s, charSet));
     }
 
-    static char_type *str_end(char_type const* s)
+    static char_type* str_end(char_type const* s)
     {
         UNIXSTL_ASSERT(NULL != s);
 

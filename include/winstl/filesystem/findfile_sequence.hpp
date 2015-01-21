@@ -958,7 +958,7 @@ basic_findfile_sequence<C, T>::validate_directory_(
         enum { CO_E_PATHTOOLONG = int(0x80040212L) };
 # endif /* !CO_E_PATHTOOLONG */
 
-        STLSOFT_THROW_X(windows_exception(CO_E_PATHTOOLONG));
+        STLSOFT_THROW_X(windows_exception(static_cast<windows_exception::error_code_type>(CO_E_PATHTOOLONG)));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -1118,7 +1118,8 @@ inline ws_bool_t basic_findfile_sequence<C, T>::empty() const
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline /* static */ ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::size_type basic_findfile_sequence<C, T>::max_size()
+inline /* static */ ss_typename_type_ret_k basic_findfile_sequence<C, T>::size_type
+basic_findfile_sequence<C, T>::max_size()
 {
     return static_cast<size_type>(-1);
 }
@@ -1184,7 +1185,8 @@ inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::char_typ
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_size_t basic_findfile_sequence_value_type<C, T>::length() const
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::size_type
+basic_findfile_sequence_value_type<C, T>::length() const
 {
     WINSTL_ASSERT(traits_type::str_len(this->c_str()) == m_pathLen);
 

@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     10th October 2008
+ * Updated:     28th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 1
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     92
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 2
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -137,42 +137,44 @@ class basic_searchpath_sequence
 {
 public:
     /// The character type
-    typedef C                                                                       char_type;
+    typedef C                                                       char_type;
     /// The traits type
-    typedef T                                                                       traits_type;
+    typedef T                                                       traits_type;
     /// The current parameterisation of the type
-    typedef basic_searchpath_sequence<C, T>                                         class_type;
+    typedef basic_searchpath_sequence<C, T>                         class_type;
     /// The value type
-    typedef char_type const*                                                        value_type;
+    typedef char_type const*                                        value_type;
     /// The pointer type
-    typedef value_type*                                                             pointer;
+    typedef value_type*                                             pointer;
     /// The non-mutable (const) pointer type
-    typedef value_type const*                                                       const_pointer;
+    typedef value_type const*                                       const_pointer;
     /// The reference type
-    typedef value_type&                                                             reference;
+    typedef value_type&                                             reference;
     /// The non-mutable (const) reference type
-    typedef value_type const&                                                       const_reference;
+    typedef value_type const&                                       const_reference;
     /// The size type
-    typedef ws_size_t                                                               size_type;
+    typedef ws_size_t                                               size_type;
     /// The difference type
-    typedef ws_ptrdiff_t                                                            difference_type;
+    typedef ws_ptrdiff_t                                            difference_type;
     /// The non-mutating (const) iterator type
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
-    typedef                   stlsoft_ns_qual(pointer_iterator)<   value_type
+    typedef                   stlsoft_ns_qual(pointer_iterator)<
 #else /* ? compiler */
-    typedef ss_typename_type_k stlsoft_ns_qual(pointer_iterator)<   value_type
+    typedef ss_typename_type_k stlsoft_ns_qual(pointer_iterator)<
 #endif /* compiler */
-                                                                ,   const_pointer
-                                                                ,   const_reference
-                                                                >::type             const_iterator;
+        value_type
+,   const_pointer
+,   const_reference
+>::type                                                             const_iterator;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
-    typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
-                                                        ,   value_type
-                                                        ,   const_reference
-                                                        ,   const_pointer
-                                                        ,   difference_type
-                                                        >                           const_reverse_iterator;
+    typedef stlsoft_ns_qual(const_reverse_iterator_base)<
+        const_iterator
+    ,   value_type
+    ,   const_reference
+    ,   const_pointer
+    ,   difference_type
+    >                                                               const_reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
@@ -186,7 +188,11 @@ public:
     /// \param bIncludeApplicationDirectory If this is \c true the application directory is included in the search path sequence
     /// \param bIncludeCurrentDirectory If this is \c true the current directory is included in the search path sequence
     /// \param bApplicationDirectoryFirst If this is \c true the process directory is placed before the current directory in the search (the normal loading sequence). If not, then the current directory comes first.
-    basic_searchpath_sequence(ws_bool_t bIncludeApplicationDirectory, ws_bool_t bIncludeCurrentDirectory, ws_bool_t bApplicationDirectoryFirst = true);
+    basic_searchpath_sequence(
+        ws_bool_t bIncludeApplicationDirectory
+    ,   ws_bool_t bIncludeCurrentDirectory
+    ,   ws_bool_t bApplicationDirectoryFirst = true
+    );
     /// Releases any resources
     ~basic_searchpath_sequence() stlsoft_throw_0();
 
@@ -235,20 +241,30 @@ private:
     // 5. Windows directory
     // 6 - n. Path directories
 
-    typedef processheap_allocator<char_type>                                        main_allocator_type;
-    typedef processheap_allocator<value_type>                                       value_allocator_type;
-    typedef stlsoft_ns_qual(auto_buffer_old)<char_type, main_allocator_type, 1024>  main_buffer_type;
-    typedef stlsoft_ns_qual(auto_buffer_old)<value_type, value_allocator_type, 24>  value_buffer_type;
+    typedef processheap_allocator<char_type>    main_allocator_type_;
+    typedef processheap_allocator<value_type>   value_allocator_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<
+        char_type
+    ,   main_allocator_type_
+    ,   1024
+    >                                           main_buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<
+        value_type
+    ,   value_allocator_type_
+    ,   24
+    >                                           value_buffer_type_;
 
-    main_buffer_type    m_buffer;
-    value_buffer_type   m_values;
+    main_buffer_type_   m_buffer;
+    value_buffer_type_  m_values;
     const_iterator      m_end;
 
 // Implementation
 private:
-    void construct_(ws_bool_t   bIncludeApplicationDirectory
-                ,   ws_bool_t   bIncludeCurrentDirectory
-                ,   ws_bool_t   bApplicationDirectoryFirst);
+    void construct_(
+        ws_bool_t   bIncludeApplicationDirectory
+    ,   ws_bool_t   bIncludeCurrentDirectory
+    ,   ws_bool_t   bApplicationDirectoryFirst
+    );
 
     /* WSCB: Borland has an internal compiler error if use ws_bool_t */
 #ifdef STLSOFT_COMPILER_IS_BORLAND
@@ -257,7 +273,7 @@ private:
     typedef ws_bool_t       init_type;
 #endif /* compiler */
 
-    static char_type const  *get_application_directory()
+    static char_type const* get_application_directory()
     {
         static char_type                        s_application_directory[_MAX_PATH + 1];
         static sint32_t                         s_mx;
@@ -268,18 +284,18 @@ private:
         if(!s_init)
         {
             char_type   dummy[_MAX_PATH + 1];
-            char_type   *file_part;
+            char_type*  file_part;
 
             traits_type::get_module_filename(NULL, s_application_directory, STLSOFT_NUM_ELEMENTS(s_application_directory));
             traits_type::get_full_path_name(s_application_directory, STLSOFT_NUM_ELEMENTS(dummy), dummy, &file_part);
-            s_application_directory[file_part - &dummy[0]] = '\0';
+            s_application_directory[file_part - &dummy[0] - 1] = '\0';
             s_init = ws_true_v;
         }
 
         return s_application_directory;
     }
 
-    static char_type const  *get_system_directory()
+    static char_type const* get_system_directory()
     {
         static char_type                        s_system_directory[_MAX_PATH + 1];
         static sint32_t                         s_mx;
@@ -290,7 +306,7 @@ private:
         return s_system_directory;
     }
 
-    static char_type const  *get_windows_directory()
+    static char_type const* get_windows_directory()
     {
         static char_type                        s_windows_directory[_MAX_PATH + 1];
         static sint32_t                         s_mx;
@@ -301,7 +317,7 @@ private:
         return s_windows_directory;
     }
 
-    static char_type const  *get_system16_directory()
+    static char_type const* get_system16_directory()
     {
         static char_type                        s_system16_directory[_MAX_PATH + 1];
         static sint32_t                         s_mx;
@@ -313,10 +329,10 @@ private:
         {
             if(system_version::winnt())
             {
-                char_type   *file_part;
+                char_type* file_part;
 
                 traits_type::get_full_path_name(get_system_directory(), STLSOFT_NUM_ELEMENTS(s_system16_directory), s_system16_directory, &file_part);
-                traits_type::str_copy(file_part, _disgusting_hack("SYSTEM", L"SYSTEM"));
+                traits_type::char_copy(file_part, disgusting_hack_("SYSTEM", L"SYSTEM"), 7);
             }
             else
             {
@@ -338,7 +354,7 @@ private:
         cch += 1 + traits_type::str_len(get_system_directory());                    // System directory
         cch += 1 + traits_type::str_len(get_system16_directory());                  // 16-bit System directory
         cch += 1 + traits_type::str_len(get_windows_directory());                   // Windows directory
-        cch += 1 + traits_type::get_environment_variable(_disgusting_hack("PATH", L"PATH"), NULL, 0);  // PATH
+        cch += 1 + traits_type::get_environment_variable(disgusting_hack_("PATH", L"PATH"), NULL, 0);  // PATH
 
         return cch;
     }
@@ -346,13 +362,13 @@ private:
     static ws_size_t    num_paths()
     {
         ws_size_t           cPaths  =   0;
-        ws_size_t           cch     =   traits_type::get_environment_variable(_disgusting_hack("PATH", L"PATH"), NULL, 0);
-        main_buffer_type    buffer(1 + cch);
+        ws_size_t           cch     =   traits_type::get_environment_variable(disgusting_hack_("PATH", L"PATH"), NULL, 0);
+        main_buffer_type_   buffer(1 + cch);
         char_type const*    begin  =   &buffer[0];
         char_type const*    end    =   begin + cch;
         char_type const*    last;
 
-        traits_type::get_environment_variable(_disgusting_hack("PATH", L"PATH"), &buffer[0], buffer.size());
+        traits_type::get_environment_variable(disgusting_hack_("PATH", L"PATH"), &buffer[0], buffer.size());
 
         for(; begin != end; ++begin)
         {
@@ -424,7 +440,7 @@ private:
     }
 
     // One to be ashamed of. This will be replaced in the next version of the libraries
-    static char_type const* _disgusting_hack(ws_char_a_t *literal_a, ws_char_w_t *literal_w)
+    static char_type const* disgusting_hack_(ws_char_a_t* literal_a, ws_char_w_t* literal_w)
     {
 #if defined(STLSOFT_COMPILER_IS_DMC)
         if(sizeof(char_type) == sizeof(ws_char_w_t))
@@ -493,7 +509,11 @@ inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence()
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence(ws_bool_t bIncludeApplicationDirectory, ws_bool_t bIncludeCurrentDirectory, ws_bool_t bApplicationDirectoryFirst /* = true */)
+inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence(
+    ws_bool_t bIncludeApplicationDirectory
+,   ws_bool_t bIncludeCurrentDirectory
+,   ws_bool_t bApplicationDirectoryFirst /* = true */
+)
 
     : m_buffer(directories_total())
     , m_values(num_paths() + (system_version::winnt() ? 5 : 4) - (!bIncludeApplicationDirectory + !bIncludeCurrentDirectory))
@@ -504,9 +524,11 @@ inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence(ws_bool_t bInc
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline void basic_searchpath_sequence<C, T>::construct_(ws_bool_t   bIncludeApplicationDirectory
-                                                    ,   ws_bool_t   bIncludeCurrentDirectory
-                                                    ,   ws_bool_t   bApplicationDirectoryFirst)
+inline void basic_searchpath_sequence<C, T>::construct_(
+    ws_bool_t   bIncludeApplicationDirectory
+,   ws_bool_t   bIncludeCurrentDirectory
+,   ws_bool_t   bApplicationDirectoryFirst
+)
 {
     // Determine whether the current directory must be relegated
     ws_bool_t   bIncludeCurrentDirectoryLast    =   bIncludeCurrentDirectory && is_curr_dir_last_();
@@ -528,8 +550,9 @@ inline void basic_searchpath_sequence<C, T>::construct_(ws_bool_t   bIncludeAppl
                 *it++ = psz;
 
                 // 1. Application directory - GetModuleFileName(NULL, ...);
-                traits_type::str_copy(psz, get_application_directory());
-                psz += traits_type::str_len(psz);
+                size_t n = traits_type::str_len(get_application_directory());
+                traits_type::char_copy(psz, get_application_directory(), n + 1);
+                psz += n;
             }
         }
         else
@@ -551,25 +574,30 @@ inline void basic_searchpath_sequence<C, T>::construct_(ws_bool_t   bIncludeAppl
         ++psz;
     }}
 
+    size_t n;
+
     // 3. System directory
     *it++ = psz;
-    traits_type::str_copy(psz, get_system_directory());
-    psz += traits_type::str_len(psz);
+    n = traits_type::str_len(get_system_directory());
+    traits_type::char_copy(psz, get_system_directory(), n + 1);
+    psz += n;
     ++psz;
 
     // 4. NT-only: 16-bit system directory
     if(system_version::winnt())
     {
         *it++ = psz;
-        traits_type::str_copy(psz, get_system16_directory());
-        psz += traits_type::str_len(psz);
+        n = traits_type::str_len(get_system16_directory());
+        traits_type::char_copy(psz, get_system16_directory(), n + 1);
+        psz += n;
         ++psz;
     }
 
     // 5. Windows directory
     *it++ = psz;
-    traits_type::str_copy(psz, get_windows_directory());
-    psz += traits_type::str_len(psz);
+    n = traits_type::str_len(get_windows_directory());
+    traits_type::char_copy(psz, get_windows_directory(), n + 1);
+    psz += n;
     ++psz;
 
     // 2.b. Current directory last?
@@ -581,7 +609,7 @@ inline void basic_searchpath_sequence<C, T>::construct_(ws_bool_t   bIncludeAppl
 
     // 6. Paths
     char_type const*        begin  =   psz;
-    char_type const* const  end     =   begin + traits_type::get_environment_variable(_disgusting_hack("PATH", L"PATH"), psz, static_cast<DWORD>(m_buffer.end() - psz));
+    char_type const* const  end     =   begin + traits_type::get_environment_variable(disgusting_hack_("PATH", L"PATH"), psz, static_cast<DWORD>(m_buffer.end() - psz));
     char_type const*        last;
 
     // Move along to the first valid item
