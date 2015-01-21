@@ -1,5 +1,5 @@
 
-// Updated: 21st March 2006
+// Updated: 4th August 2007
 
 #if !defined(WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY)
 # error This file cannot be directly included, and should only be included within registry/reg_key.hpp
@@ -71,8 +71,8 @@ namespace unittest
 
 			if(0)
 			{
-				reg_key 	WinSTL	=	reg_key::create(HKEY_CURRENT_USER, reg_string_t("SOFTWARE\\Synesis Software\\STLSoft\\test\\WinSTL"));
-				reg_key 	RegKey	=	reg_key::create(HKEY_CURRENT_USER, "SOFTWARE\\Synesis Software\\STLSoft\\test\\reg_key");
+				reg_key 	WinSTL	=	reg_key::create_key(HKEY_CURRENT_USER, reg_string_t("SOFTWARE\\Synesis Software\\STLSoft\\test\\WinSTL"));
+				reg_key 	RegKey	=	reg_key::create_key(HKEY_CURRENT_USER, "SOFTWARE\\Synesis Software\\STLSoft\\test\\reg_key");
 
 			}
 

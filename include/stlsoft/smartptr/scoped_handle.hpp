@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     22nd March 2007
+ * Updated:     4th August 2007
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     661
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    4
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     662
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,6 +138,7 @@ private:
 	H_holder& operator =(H_holder const&);
 };
 
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
 template<   ss_typename_param_k H
         ,   ss_typename_param_k R
         >
@@ -170,6 +171,7 @@ public:
         fn(h.u.ph);
     }
 };
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template<   ss_typename_param_k H
@@ -243,6 +245,7 @@ public:
 
 
 
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
 template<   ss_typename_param_k R
         >
 struct function_translator_cdecl_void
@@ -261,6 +264,7 @@ public:
         fn();
     }
 };
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template<   ss_typename_param_k R
@@ -365,8 +369,9 @@ public:
 /// \name Construction
 /// @{
 public:
-#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
-    defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
+# if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// \brief Construct from a resource handle and a clean-up function with void return type
     scoped_handle(  resource_type   h
                 ,   void            (STLSOFT_CDECL *f)(resource_type)
@@ -390,9 +395,9 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
-#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+# endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+# if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// \brief Construct from a resource handle and a clean-up function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  resource_type   h
@@ -417,7 +422,8 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
-#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 # if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
@@ -665,8 +671,9 @@ public:
 /// \name Construction
 /// @{
 public:
-#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
-    defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
+# if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// \brief Construct from a resource handle and a clean-up function with void return type
     scoped_handle(  void            (STLSOFT_CDECL *f)())
         : m_bInvoked(false)
@@ -675,9 +682,9 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
-#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+# endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+# if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// \brief Construct from a resource handle and a clean-up function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  R               (STLSOFT_CDECL *f)())
@@ -687,7 +694,8 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
-#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 # if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \

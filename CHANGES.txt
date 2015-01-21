@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  2nd August 2007
+; Updated:  4th August 2007
 
 ============================================================================
 
@@ -15,6 +15,41 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.5 (4th August 2007)
+
+Additions:
+==========
+
+ + STLSOFT_CF_CDECL_SUPPORTED, in anticipation of changes to support 64-bit
+   (x64) compilation.
+
+ + comstl::bstr::attach() method
+
+Fixes:
+======
+
+ COMSTL:
+ -------
+
+ ~ comstl::bstr::bstr(C const* s, int len) - fixed bug whereby if len is
+   less than the actual length of s, actual length is used.
+
+ WinSTL:
+ -------
+
+ ~ correction to signature of
+     winstl::basic_reg_key:: template<...> create_key: H& param is now
+     H const&.
+
+ ~ corrected pre-condition enforcements of
+    winstl::system_traits::get_environment_variable
+    winstl::system_traits::get_module_directory
+    winstl::system_traits::get_module_filename
+    winstl::system_traits::get_system_directory
+    winstl::system_traits::get_windows_directory
 
 ============================================================================
 
@@ -39,7 +74,7 @@ Additions:
  + 3 and 4 parameter versions of stlsoft::any_of composite predicate creator
    functions
 
- + stlsoft::to_uint64 conversion shim
+ + new shim: stlsoft::to_uint64 conversion shim
    * degenerate overload (uint64_t)
    * WIN32_FIND_DATA overload
 

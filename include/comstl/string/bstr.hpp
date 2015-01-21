@@ -4,11 +4,13 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     23rd April 2007
+ * Updated:     4th August 2007
+ *
+ * Thanks:      To Gabor Fischer for requesting attach().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       5
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    3
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        52
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       6
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -176,6 +178,8 @@ public:
 
     class_type& operator =(cs_char_a_t const* s);
     class_type& operator =(cs_char_w_t const* s);
+
+    class_type& attach(BSTR bstr);
 
     BSTR        detach();
 
@@ -408,7 +412,9 @@ inline bstr::bstr()
 
 inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
 {
-    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and negative (or default) length", NULL != s || len >= 0);
+    // Precondition tests
+    COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", len >= 0 || len == -1);
+    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and -1 (default) length", NULL != s || len >= 0);
 
     // There's a potential problem here (which has actually occurred!):
     //
@@ -430,7 +436,10 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
     }
     else
     {
-        len = actualLen;
+        if(-1 == len)
+        {
+            len = actualLen;
+        }
 
         m_bstr = bstr_create(s, static_cast<cs_size_t>(len));
     }
@@ -448,7 +457,9 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
 
 inline /* explicit */ bstr::bstr(cs_char_w_t const* s, int len /* = -1 */)
 {
-    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and negative (or default) length", NULL != s || len >= 0);
+    // Precondition tests
+    COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", len >= 0 || len == -1);
+    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and -1 (default) length", NULL != s || len >= 0);
 
     // There's a potential problem here (which has actually occurred!):
     //
@@ -470,7 +481,10 @@ inline /* explicit */ bstr::bstr(cs_char_w_t const* s, int len /* = -1 */)
     }
     else
     {
-        len = actualLen;
+        if(-1 == len)
+        {
+            len = actualLen;
+        }
 
         m_bstr = bstr_create(s, static_cast<cs_size_t>(len));
     }
@@ -594,6 +608,13 @@ inline bstr::class_type& bstr::operator =(cs_char_w_t const* s)
     return assign(s);
 }
 
+inline bstr::class_type& bstr::attach(BSTR bstr)
+{
+    *DestructiveAddress() = bstr;
+
+    return *this;
+}
+
 inline BSTR bstr::detach()
 {
     BSTR    str =   m_bstr;
@@ -627,15 +648,15 @@ inline bstr::class_type& bstr::append(cs_char_w_t const* s, int len /* = -1 */)
     {
         if(len < 0)
         {
-            len = (NULL == s) ? 0 : ::wcslen(s);
+            len = (NULL == s) ? 0 : static_cast<int>(::wcslen(s));
         }
 
         if(0 != len)
         {
             size_type   totalLen = size() + len;
-            bstr        rhs(data(), totalLen);
+            bstr        rhs(data(), static_cast<int>(totalLen));
 
-            ::wcsncpy(&rhs[0] + size(), s, len);
+            ::wcsncpy(&rhs[0] + size(), s, static_cast<cs_size_t>(len));
 
             rhs.swap(*this);
         }
@@ -816,7 +837,7 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits< ::comstl::bstr>
 {
     typedef ::comstl::bstr                                  value_type;
-    typedef value_type::value_type                          char_type;
+    typedef ::comstl::bstr::value_type                      char_type;	// NOTE: Can't use value_type::value_type here, because of BC++ 5.5.1
     typedef value_type::size_type                           size_type;
     typedef char_type const                                 const_char_type;
     typedef value_type                                      string_type;
