@@ -4,11 +4,11 @@
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     12th March 2007
+ * Updated:     16th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       1
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        47
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       2
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    1
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -180,6 +180,15 @@ STLSOFT_INLINE ws_int_t winstl__combobox_gettext(HWND hwnd, ws_int_t index, LPCS
     return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_GETLBTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
 }
 
+/** \brief Gets the data value associated with an item in a combo-box
+ *
+ * \ingroup group__library__windows_controls
+ */
+inline ws_dword_t winstl__combobox_getitemdata(HWND hwnd, ws_int_t index)
+{
+    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
+}
+
 /** \brief Gets the number of items in a combo-box
  *
  * \ingroup group__library__windows_controls
@@ -275,6 +284,15 @@ STLSOFT_INLINE ws_int_t winstl__listbox_gettext_w(HWND hwnd, ws_int_t index, ws_
 STLSOFT_INLINE ws_int_t winstl__listbox_gettext(HWND hwnd, ws_int_t index, LPCSTR s)
 {
     return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_GETTEXT, stlsoft_static_cast(WPARAM, index), stlsoft_reinterpret_cast(LPARAM, s)));
+}
+
+/** \brief Gets the data value associated with an item in a list-box
+ *
+ * \ingroup group__library__windows_controls
+ */
+inline ws_dword_t winstl__listbox_getitemdata(HWND hwnd, ws_int_t index)
+{
+    return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
 }
 
 /** \brief Gets the number of items in a list-box
@@ -478,6 +496,15 @@ inline ws_int_t combobox_gettext(HWND hwnd, ws_int_t index, ws_char_w_t *s)
     return combobox_gettext_w(hwnd, index, s);
 }
 
+/** \brief Gets the data value associated with an item in a combo-box
+ *
+ * \ingroup group__library__windows_controls
+ */
+inline ws_dword_t combobox_getitemdata(HWND hwnd, ws_int_t index)
+{
+    return winstl__combobox_getitemdata(hwnd, index);
+}
+
 /** \brief Gets the number of items in a combo-box
  *
  * \ingroup group__library__windows_controls
@@ -619,6 +646,15 @@ inline ws_int_t listbox_gettext(HWND hwnd, ws_int_t index, ws_char_a_t *s)
 inline ws_int_t listbox_gettext(HWND hwnd, ws_int_t index, ws_char_w_t *s)
 {
     return listbox_gettext_w(hwnd, index, s);
+}
+
+/** \brief Gets the data value associated with an item in a list-box
+ *
+ * \ingroup group__library__windows_controls
+ */
+inline ws_dword_t listbox_getitemdata(HWND hwnd, ws_int_t index)
+{
+    return winstl__listbox_getitemdata(hwnd, index);
 }
 
 /** \brief Gets the number of items in a list-box

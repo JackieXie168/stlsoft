@@ -5,7 +5,10 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     9th March 2008
+ * Updated:     17th March 2008
+ *
+ * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
+ *              broke GCC -pedantic
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      101
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,7 +94,7 @@
 #ifndef STLSOFT_INCL_H_DLFCN
 # define STLSOFT_INCL_H_DLFCN
 # include <dlfcn.h>
-#endif /* !/* !STLSOFT_INCL_H_DLFCN */
+#endif /* !STLSOFT_INCL_H_DLFCN */
 #ifndef STLSOFT_INCL_H_DIRENT
 # define STLSOFT_INCL_H_DIRENT
 # include <dirent.h>
