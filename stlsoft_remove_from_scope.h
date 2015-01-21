@@ -4,7 +4,7 @@
  * Purpose:     Contains the remove_from_scope class.
  *
  * Created:     10th June 2002
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,7 +61,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include stlsoft/inert.hpp, and use the class insert instead of remove_from_scope")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/inert.hpp, and use the class insert instead of remove_from_scope")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_INERT

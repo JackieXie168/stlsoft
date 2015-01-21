@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     8th February 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,56 +48,10 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     26
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file inetstl/inetstl.h The root header for the \ref InetSTL project */
-
-/** \weakgroup projects STLSoft Projects
- *
- * \brief The Projects that comprise the STLSoft libraries
- */
-
-/** \defgroup InetSTL InetSTL
- * \ingroup projects
- *
- * \brief <img src = "inetstl32x32.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<i>Where the Standard Template Library meets the WinInet API</i>
- *
- * The philosophy of InetSTL (http://inetstl.org/) is essentially the same as that
- * of the STLSoft (http://stlsoft.org/) organisation: providing robust and
- * lightweight software to the WinInet API development
- * community. InetSTL provides template-based software that builds on that
- * provided by Win and STLSoft in order to reduce programmer effort and increase
- * robustness in the use of the Win.
- *
- * <b>Namespaces</b>
- *
- * The InetSTL namespace <code><b>inetstl</b></code> is actually an alias for the
- * namespace <code><b>stlsoft::inetstl_project</b></code>, and as such all the
- * InetSTL project components actually reside within the
- * <code><b>stlsoft</b></code> namespace. However, there is never any need to
- * use the <code><b>stlsoft::inetstl_project</b></code> namespace in your code,
- * and you should always use the alias <code><b>inetstl</b></code>.
- *
- * <b>Dependencies</b>
- *
- * As with <b><i>all</i></b> parts of the STLSoft libraries, there are no
- * dependencies on InetSTL binary components and no need to compile InetSTL
- * implementation files; InetSTL is <b>100%</b> header-only!
- *
- * As with most of the STLSoft sub-projects, InetSTL depends only on:
- *
- * - Selected headers from the C standard library, such as  <code><b>wchar.h</b></code>
- * - Selected headers from the C++ standard library, such as <code><b>new</b></code>, <code><b>functional</b></code>
- * - Selected header files of the STLSoft main project
- * - The header files particular to the technology area, in this case the WinInet API library headers, such as <code><b>objbase.h</b></code>
- * - The binary (static and dynamic libraries) components particular to the technology area, in this case the WinInet API libraries that ship with the operating system and your compiler(s)
- *
- * In addition, some parts of the libraries exhibit different behaviour when
- * translated in different contexts, such as the value of <code><b>_WIN32_WINNT</b></code>,
- * or with <code><b>ntsecapi.h</b></code> include. In <b><i>all</i></b>
- * cases the libraries function correctly in whatever context they are compiled.
- */
+/** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * InetSTL version
@@ -133,17 +87,21 @@
  * version symbol, e.g. #if _INETSTL_VER >= _INETSTL_VER_1_0_1
  */
 
-/// \def _INETSTL_VER_MAJOR
-/// The major version number of InetSTL
+/** \def _INETSTL_VER_MAJOR
+ * The major version number of InetSTL
+ */
 
-/// \def _INETSTL_VER_MINOR
-/// The minor version number of InetSTL
+/** \def _INETSTL_VER_MINOR
+ * The minor version number of InetSTL
+ */
 
-/// \def _INETSTL_VER_REVISION
-/// The revision version number of InetSTL
+/** \def _INETSTL_VER_REVISION
+ * The revision version number of InetSTL
+ */
 
-/// \def _INETSTL_VER
-/// The current composite version number of InetSTL
+/** \def _INETSTL_VER
+ * The current composite version number of InetSTL
+ */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       2
@@ -364,8 +322,36 @@
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::inetstl */
-/// The InetSTL namespace - \c inetstl (aliased to \c stlsoft::inetstl_project) - is
-/// the namespace for the InetSTL project.
+/** \brief The <code class="namespace">inetstl</code> namespace contains all components
+ *   in the \ref group__project__inetstl "InetSTL" project.
+ *
+ * By default, the <code>inetstl</code> namespace is actually an alias for
+ * the namespace <code>stlsoft::inetstl_project</code>, which is where all
+ * the \ref group__project__inetstl "InetSTL" components actually reside. This
+ * measure allows all components within the main the
+ * \ref group__project__stlsoft "STLSoft" project (which are defined within
+ * the <code>stlsoft</code> namespace) to be visible to all components
+ * "within" the <code>inetstl</code> namespace. (Otherwise, there would be a
+ * whole lot of onerous qualification throughout the code of all
+ * \ref group__projects "sub-projects".)
+ *
+ * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
+ * and <code>_INETSTL_NO_NAMESPACE</code> are defined, all 
+ * \ref group__project__inetstl "InetSTL" components will be defined in the
+ * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
+ * symbol (not to be confused with the 
+ * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
+ * all \ref group__project__stlsoft "main project" components are to be
+ * defined in the global namespace, and <code>_INETSTL_NO_NAMESPACE</code>
+ * is <b>not</b> defined, then all \ref group__project__inetstl "InetSTL"
+ * components will be defined within a bona fide <code>inetstl`</code>
+ * namespace.
+ *
+ * \note This is a vestige of compatibility with compilers with
+ * no (or no sensible) namespace support that is maintained for reasons of
+ * backwards compatiblity and because it is, in <i>rare circumstances</i>, a
+ * useful facility.
+ */
 namespace inetstl
 {
 # else
@@ -382,11 +368,13 @@ namespace inetstl_project
 stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/// \def inetstl_ns_qual(x)
-/// Qualifies with <b>inetstl::</b> if InetSTL is using namespaces or, if not, does not qualify
+/** \def inetstl_ns_qual(x)
+ * Qualifies with <b>inetstl::</b> if InetSTL is using namespaces or, if not, does not qualify
+ */
 
-/// \def inetstl_ns_using(x)
-/// Declares a using directive (with respect to <b>inetstl</b>) if InetSTL is using namespaces or, if not, does nothing
+/** \def inetstl_ns_using(x)
+ * Declares a using directive (with respect to <b>inetstl</b>) if InetSTL is using namespaces or, if not, does nothing
+ */
 
 #ifndef _INETSTL_NO_NAMESPACE
 # define inetstl_ns_qual(x)          ::inetstl::x
@@ -396,11 +384,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define inetstl_ns_using(x)
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/// \def inetstl_ns_qual_std(x)
-/// Qualifies with <b>std::</b> if InetSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+/** \def inetstl_ns_qual_std(x)
+ * Qualifies with <b>std::</b> if InetSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+ */
 
-/// \def inetstl_ns_using_std(x)
-/// Declares a using directive (with respect to <b>std</b>) if InetSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+/** \def inetstl_ns_using_std(x)
+ * Declares a using directive (with respect to <b>std</b>) if InetSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+ */
 
 #ifdef STLSOFT_CF_std_NAMESPACE
 # define inetstl_ns_qual_std(x)      ::std::x
@@ -521,14 +511,16 @@ typedef is_streamoff_t      streamoff_t;        //!< streamoff
 # define inetstl_num_elements(ar)                        INETSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Destroys the given instance \c p of the given type (\c t and \c _type)
-///
-/// \deprecated
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
+ */
 #define inetstl_destroy_instance(t, _type, p)            STLSOFT_DESTROY_INSTANCE(t, _type, p)
 
-/// Generates an opaque type with the name \c _htype
-///
-/// \deprecated
+/** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
+ */
 #define inetstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
 /* ////////////////////////////////////////////////////////////////////////// */

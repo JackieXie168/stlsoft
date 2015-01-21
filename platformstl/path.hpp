@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     5th February 2006
+ * Updated:     7th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,8 +45,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_MINOR     2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_EDIT      11
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/path.hpp Platform header for the path components */
@@ -142,10 +142,13 @@ namespace platformstl_project
         ss_explicit_k basic_path(char_type const *path)
             : parent_class_type(path)
         {}
+        basic_path(parent_class_type const &s)
+            : parent_class_type(s)
+        {}
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         /// Constructs a path from \c path
         template<ss_typename_param_k S>
-        ss_explicit_k basic_path(S const &s)
+        basic_path(S const &s)
             : parent_class_type(s)
         {}
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -157,6 +160,12 @@ namespace platformstl_project
         {}
 
         class_type &operator =(class_type const &rhs)
+        {
+            parent_class_type::operator =(rhs);
+
+            return *this;
+        }
+        class_type &operator =(parent_class_type const &rhs)
         {
             parent_class_type::operator =(rhs);
 

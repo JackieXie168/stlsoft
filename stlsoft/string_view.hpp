@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     25th March 2006
+ * Updated:     8th April 2006
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MAJOR      2
 # define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MINOR      15
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       64
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -1316,7 +1316,7 @@ inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_stri
         if(1) // This is needed to avoid Visual C++ warning 4702: 'unreachable code'
 # endif /* compiler */
         {
-            throw x;
+            throw_x(x);
         }
     }
 

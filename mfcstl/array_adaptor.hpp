@@ -1,20 +1,3 @@
-/** \file mfcstl/array_adaptor.hpp Redirects inclusion to mfcstl_array_adaptor.h. This will be changed in a subsequent release, such that this file will contain the component definitions, and mfcstl_array_adaptor.h will contain redirect */
-#ifndef MFCSTL_INCL_MFCSTL_HPP_ARRAY_ADAPTOR
-#define MFCSTL_INCL_MFCSTL_HPP_ARRAY_ADAPTOR
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-[<[STLSOFT-AUTO:OBSOLETE]>]
-[<[STLSOFT-AUTO:NO-UNITTEST]>]
-*/
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Includes
- */
-
 #ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
@@ -27,4 +10,8 @@
 # include <mfcstl_array_adaptor.h>
 #endif /* !MFCSTL_INCL_H_MFCSTL_ARRAY_ADAPTOR */
 
-#endif /* !MFCSTL_INCL_MFCSTL_HPP_ARRAY_ADAPTOR */
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
+

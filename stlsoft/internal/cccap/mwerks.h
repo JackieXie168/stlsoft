@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     21st March 2006
+ * Updated:     9th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       7
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        48
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -145,12 +145,12 @@
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 /* Exception support */
-# if __option(exceptions)
-#  define __STLSOFT_CF_EXCEPTION_SUPPORT
-#  define STLSOFT_CF_EXCEPTION_SUPPORT
-# else
+#if __option(exceptions)
+# define __STLSOFT_CF_EXCEPTION_SUPPORT
+# define STLSOFT_CF_EXCEPTION_SUPPORT
+#else
   /* Not defined */
-# endif /* __option(exceptions) */
+#endif /* __option(exceptions) */
 
 /*  */
 #define __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED

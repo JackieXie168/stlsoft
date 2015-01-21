@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     25th March 2006
+ * Updated:     24th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MINOR      5
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       134
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
-# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>

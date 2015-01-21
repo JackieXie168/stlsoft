@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     9th February 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -60,7 +60,7 @@
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MAJOR      4
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      3
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   3
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       35
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. The inetstl::basic_findfile_sequence class now supports multi-part patterns. This file will be removed from a future release.")
+# pragma message("This file is now obsolete, and will be removed in a future release. The inetstl::basic_findfile_sequence class now supports multi-part patterns. This file will be removed from a future release.")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING

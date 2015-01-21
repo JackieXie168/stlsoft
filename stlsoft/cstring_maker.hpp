@@ -4,7 +4,7 @@
  * Purpose:     Simple utility class for creating (constant) C-strings.
  *
  * Created:     14th May 2004
- * Updated:     25th March 2006
+ * Updated:     24th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_MINOR    4
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_EDIT     36
+# define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
-# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>

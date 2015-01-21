@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/shared_handles.hpp (formerly part of winstl/registry/reg_key_sequence.hpp)
  *
- * Purpose:     Contains the reg_key_handle and monitored_reg_key_handle classes.
+ * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     21st March 2006
+ * Updated:     22nd May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,14 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/registry/reg_key_sequence.hpp
-///
-/// Contains the basic_reg_key_sequence template class, and ANSI and Unicode specialisations thereof.
+/** \file winstl/registry/shared_handles.hpp
+ *\brief [C++ only] [IMPLEMENTATION] Contains the 
+ *  \link winstl::registry_util::shared_handle shared_handle\endlink
+ *  and
+ *  \link winstl::registry_util::monitored_shared_handle monitored_shared_handle\endlink
+ *  classes that are used to provide shared context between iterators implement
+ *  the <b>Externally Invalidatable Iterator</b> pattern.
+ */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_SHARED_HANDLES
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_SHARED_HANDLES
@@ -48,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -106,26 +111,26 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-#ifdef _STLSOFT_NO_NAMESPACES
-struct registry_util
-#else /* ? _STLSOFT_NO_NAMESPACES */
+#ifndef _STLSOFT_NO_NAMESPACES
+/// \brief Internal/implementation namespace containing shared handles.
+///
+/// \ingroup group__library__windows_registry
 namespace registry_util
-#endif /* _STLSOFT_NO_NAMESPACES */
 {
+#endif /* !_STLSOFT_NO_NAMESPACES */
 
-    /// Non-monitoring shared registry key context
+    /// \brief [IMPLEMENTATION] Non-monitoring shared registry key context
+    ///
+    /// \ingroup group__library__windows_registry
+#ifdef _STLSOFT_NO_NAMESPACES
+    struct registry_util::shared_handle
+#else /* ? _STLSOFT_NO_NAMESPACES */
     struct shared_handle
+#endif /* _STLSOFT_NO_NAMESPACES */
     {
     /// \name Member Types
     /// @{
@@ -197,6 +202,9 @@ namespace registry_util
     /// @}
     };
 
+    /// \brief [IMPLEMENTATION] Monitoring shared registry key context
+    ///
+    /// \ingroup group__library__windows_registry
     struct monitored_shared_handle
         : public shared_handle
     {
@@ -212,7 +220,7 @@ namespace registry_util
         {
             set();
 
-			AddRef();
+            AddRef();
         }
 
     /// \name Operations
@@ -220,17 +228,17 @@ namespace registry_util
     private:
         virtual void test_reset_and_throw()
         {
-			// 1. Test, . . .
+            // 1. Test, . . .
             if(IsWaitObjectSignalled(m_monitor.handle()))
             {
                 // Must set to watch again here, because several iterators from the same
                 // same reg_key_sequence could be open simultaneously
 
-				// 2. Reset, . . .
+                // 2. Reset, . . .
                 set();
 
-				// 3. . . . and Throw
-                throw stlsoft_ns_qual(external_iterator_invalidation)("registry contents changed");
+                // 3. . . . and Throw
+                throw_x(stlsoft_ns_qual(external_iterator_invalidation)("registry contents changed"));
             }
         }
     private:
@@ -274,7 +282,11 @@ namespace registry_util
     /// @}
     };
 
-    /// \brief Simple factory function for creating an appropriate shared handle
+    /// \brief [IMPLEMENTATION] Simple factory function for creating an appropriate shared handle
+    ///
+    /// \ingroup group__library__windows_registry
+    ///
+    /// Used by basic_reg_key_sequence and basic_reg_value_sequence.
     ///
     /// \param hkey The registry key handle to be owned
     /// \param bMonitorExternalInterruption If non-zero, the given \c eventType event is monitored.
@@ -291,15 +303,9 @@ namespace registry_util
         }
     }
 
-#ifdef _STLSOFT_NO_NAMESPACES
-}; // struct registry_util
-#else /* ? _STLSOFT_NO_NAMESPACES */
+#ifndef _STLSOFT_NO_NAMESPACES
 } // namespace registry_util
-#endif /* _STLSOFT_NO_NAMESPACES */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
+#endif /* !_STLSOFT_NO_NAMESPACES */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

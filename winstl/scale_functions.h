@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        scale_functions.h (formerly winstl_scale_functions.h)
+ * File:        winstl/scale_functions.h (formerly winstl_scale_functions.h)
  *
  * Purpose:     Contains scale functions.
  *
  * Created:     7th February 2002
- * Updated:     21st March 2006
+ * Updated:     1st April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_MAJOR      3
 # define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_EDIT       34
+# define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

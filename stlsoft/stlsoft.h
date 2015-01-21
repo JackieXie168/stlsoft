@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 #define STLSOFT_INCL_STLSOFT_H_STLSOFT
-#define STLSOFT_INCL_H_STLSOFT
+#define STLSOFT_INCL_H_STLSOFT  /*!< \brief Definition of previous include-guard symbol for stlsoft/stlsoft.h, for backwards compatibility. */
 
 #if defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -55,65 +55,11 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     268
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     273
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file stlsoft/stlsoft.h The root header for the \ref STLSoft project, and for all other \ref projects "projects" */
-
-/** \weakgroup projects STLSoft Projects
- *
- * \brief The Projects that comprise the STLSoft libraries
- *
- * The STLSoft libraries are split up into sub-projects, where each sub-project only
- * depends on the STLSoft main project, which resides in the <code><b>stlsoft</b></code>
- * namespace.
- */
-
-/** \defgroup STLSoft STLSoft
- * \ingroup projects
- *
- * \brief <img src = "stlsoft32x32.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<i>... Robust, Lightweight, Cross-platform, Template Software ...</i>
- *
- * The philosophy of STLSoft is very simple: providing robust and lightweight software to the development community. The main STLSoft project, STLSoft itself (located at the site you are viewing now) provides cross-platform, technology/API-neutral classes and functions that stand on their own and are useful as independent libraries. They also support the other sub-projects (COMSTL, UNIXSTL, WinSTL, etc.) which are targeted at specific operating systems, technologies and APIs.
-
- * The philosophy of <a href = "http://comstl.org/">COMSTL</a> is essentially
- * the same as that of the <a href = "http://stlsoft.org/">STLSoft</a>
- * organisation: providing robust and lightweight software to the Component
- * Object Model (COM) development community.
- * <a href = "http://comstl.org/">COMSTL</a> provides template-based software
- * that builds on that provided by COM and
- * <a href = "http://stlsoft.org/">STLSoft</a> in order to reduce programmer
- * effort and increase robustness in the use of the COM.
- *
- * <b>Namespaces</b>
- *
- * The <a href = "http://comstl.org/">COMSTL</a> namespace <code><b>comstl</b></code>
- * is actually an alias for the namespace <code><b>stlsoft::comstl_project</b></code>,
- * and as such all the COMSTL project components actually reside within the
- * <code><b>stlsoft</b></code> namespace
- *
- * <b>Dependencies</b>
- *
- * As with <b><i>all</i></b> parts of the STLSoft libraries, there are no
- * dependencies on <a href = "http://comstl.org/">COMSTL</a> binary components
- * and no need to compile <a href = "http://comstl.org/">COMSTL</a> implementation
- * files; <a href = "http://comstl.org/">COMSTL</a> is <b>100%</b> header-only!
- *
- * As with most of the <a href = "http://stlsoft.org/">STLSoft</a> sub-projects,
- * <a href = "http://comstl.org/">COMSTL</a> depends only on
- *
- * - Selected headers from the C standard library, such as  <code><b>wchar.h</b></code>
- * - Selected headers from the C++ standard library, such as <code><b>new</b></code>, <code><b>functional</b></code>
- * - Selected header files of the <a href = "http://stlsoft.org/">STLSoft</a> main project
- * - The header files particular to the technology area, in this case the COM library headers, such as <code><b>objbase.h</b></code>
- * - The binary (static and dynamic libraries) components particular to the technology area, in this case the COM libraries that ship with the operating system and your compiler(s)
- *
- * In addition, some parts of the libraries exhibit different behaviour when
- * translated in different contexts, such as with <code><b>_WIN32_DCOM</b></code>
- * defined, or with <code><b>iaccess.h</b></code> include. In <b><i>all</i></b>
- * cases the libraries function correctly in whatever context they are compiled.
- */
+/** \file stlsoft/stlsoft.h \brief [C, C++] The root header for the \ref group__project__stlsoft "STLSoft" project, and for all other \ref group__projects "projects". */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * STLSoft version
@@ -150,19 +96,19 @@
  */
 
 /** \def _STLSOFT_VER_MAJOR
- * The major version number of STLSoft
+ * \brief The major version number of STLSoft
  */
 
 /** \def _STLSOFT_VER_MINOR
- * The minor version number of STLSoft
+ * \brief The minor version number of STLSoft
  */
 
 /** \def _STLSOFT_VER_REVISION
- * The revision version number of STLSoft
+ * \brief The revision version number of STLSoft
  */
 
 /** \def _STLSOFT_VER
- * The current composite version number of STLSoft
+ * \brief The current composite version number of STLSoft
  */
 
 #define _STLSOFT_VER_MAJOR      1
@@ -218,14 +164,14 @@
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 # define STLSOFT_STRINGIZE_(x)      #x
 # define STLSOFT_STRINGIZE(x)       STLSOFT_STRINGIZE_(x)
+
+/* Simple macro indirection */
+# define STLSOFT_MACRO_INDIRECT(x)   x
+
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* Simple macro indirection
- */
-
-#define STLSOFT_MACRO_INDIRECT(x)   x
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Sanity checks - 1
@@ -533,8 +479,19 @@
 
 #endif /* compiler tag */
 
-#define __STLSOFT_COMPILER_LABEL_STRING         STLSOFT_COMPILER_LABEL_STRING
-#define __STLSOFT_COMPILER_VERSION_STRING       STLSOFT_COMPILER_VERSION_STRING
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+/** \def STLSOFT_COMPILER_LABEL_STRING
+ * \brief A nul-terminated C-style string denoting the name of the compiler.
+ */
+# define STLSOFT_COMPILER_LABEL_STRING          "Acme Compiler"
+/** \def STLSOFT_COMPILER_VERSION_STRING
+ * \brief A nul-terminated C-style string denoting the name and version of the compiler.
+ */
+# define STLSOFT_COMPILER_VERSION_STRING        "Acme Compiler v1.0"
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
+# define __STLSOFT_COMPILER_LABEL_STRING        STLSOFT_COMPILER_LABEL_STRING
+# define __STLSOFT_COMPILER_VERSION_STRING      STLSOFT_COMPILER_VERSION_STRING
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Compiler language feature support
@@ -614,11 +571,13 @@
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT && (STLSOFT_CF_64BIT_INT_IS___int64 || STLSOFT_CF_64BIT_INT_IS_long_long) */
 
 /* Out-of-class method definition argument full-qualification requirement */
-#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
-# define stlsoft_oom_fn_qual(Q, T)      Q::T
-#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-# define stlsoft_oom_fn_qual(Q, T)      T
-#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#  define stlsoft_oom_fn_qual(Q, T)     Q::T
+# else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#  define stlsoft_oom_fn_qual(Q, T)     T
+# endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Out-of-memory throws bad_alloc.
  *
@@ -656,6 +615,10 @@
 
 
 /* Template specialisation syntax support
+ */
+/** \def STLSOFT_TEMPLATE_SPECIALISATION
+ * \brief Resolves to <code>template <></code>  for compilers that support correct
+ *  template specialisation syntax, and to nothing for those that do not.
  */
 #ifdef STLSOFT_TEMPLATE_SPECIALISATION
 # undef STLSOFT_TEMPLATE_SPECIALISATION
@@ -723,9 +686,36 @@
  * Calling convention
  */
 
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+/** \def STLSOFT_CDECL_SUPPORTED
+ * \brief When defined, indicates that the compiler supports the <b>cdecl</b> calling convention.
+ */
+# define    STLSOFT_CDECL_SUPPORTED
+
+/** \def STLSOFT_FASTCALL_SUPPORTED
+ * \brief When defined, indicates that the compiler supports the <b>fastcall</b> calling convention.
+ */
+# define    STLSOFT_FASTCALL_SUPPORTED
+
+/** \def STLSOFT_STDCALL_SUPPORTED
+ * \brief When defined, indicates that the compiler supports the <b>stdcall</b> calling convention.
+ */
+# define    STLSOFT_STDCALL_SUPPORTED
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/** \def STLSOFT_CDECL
+ * \brief Resolves to the <b>cdecl</b> keyword for the current compiler, or to nothing for compilers
+ *  that do not support any calling conventions.
+ */
+
 #if !defined(STLSOFT_CDECL)
 # define                        STLSOFT_CDECL
 #endif /* !STLSOFT_CDECL */
+
+/** \def STLSOFT_FASTCALL
+ * \brief Resolves to the <b>fastcall</b> keyword for the current compiler
+ */
 
 #if !defined(STLSOFT_FASTCALL)
 # if defined(STLSOFT_CF_FASTCALL_SUPPORTED)
@@ -734,6 +724,10 @@
 #  define                       STLSOFT_FASTCALL
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 #endif /* !STLSOFT_FASTCALL */
+
+/** \def STLSOFT_STDCALL
+ * \brief Resolves to the <b>stdcall</b> keyword for the current compiler
+ */
 
 #if !defined(STLSOFT_STDCALL)
 # if defined(STLSOFT_CF_STDCALL_SUPPORTED)
@@ -745,14 +739,14 @@
 
 
 
-#define STLSOFT_CDECL_VALUE         (1)
+#define STLSOFT_CDECL_VALUE         (1)     /*!< \brief A unique value indicating <b>cdecl</b> calling convention. */
 
 #if defined(STLSOFT_CF_FASTCALL_SUPPORTED)
-# define STLSOFT_FASTCALL_VALUE     (2)
+# define STLSOFT_FASTCALL_VALUE     (2)     /*!< \brief A unique value indicating <b>fastcall</b> calling convention. */
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
 #if defined(STLSOFT_CF_STDCALL_SUPPORTED)
-# define STLSOFT_STDCALL_VALUE      (3)
+# define STLSOFT_STDCALL_VALUE      (3)     /*!< \brief A unique value indicating <b>stdcall</b> calling convention. */
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -845,7 +839,7 @@
  */
 
 /** \defgroup assertion_macros Assertion Macros
- * \ingroup STLSoft
+ * \ingroup group__project__stlsoft
  * \brief These macros are used for debugging / contract-enforcement
  * @{
  */
@@ -856,11 +850,21 @@
 #endif /* _STLSOFT_NO_ASSERT && STLSOFT_CF_ASSERT_SUPPORT */
 
 /** \def STLSOFT_ASSERT(ex)
- * Defines a runtime assertion
+ * \brief Defines an assertion construct for runtime verification.
  *
  * \param ex Must be non-zero, or an assertion will be fired
+ *
+ * \note By default, the macro resolves to the standard macro 
+ *  <code>assert()</code> or the equivalent default assertion macro
+ *  for the compiler (e.g. <code>_ASSERTE()</code> for Visual C++).
+ *  This behaviour can be overriden by not defining: see the
+ *  compiler capability file for your compiler (e.g. 
+ *  <code>include/stlsoft/internal/cccap/gcc.h</code>) for further
+ *  details.
  */
-#ifdef STLSOFT_CF_ASSERT_SUPPORT
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define STLSOFT_ASSERT(ex)                     assert(ex)
+#elif defined(STLSOFT_CF_ASSERT_SUPPORT)
 # ifdef __STLSOFT_CF_USE_cassert
   /* Using the standard assertion mechanism, located in <cassert> */
 #  include <cassert>
@@ -894,11 +898,11 @@
 
 /** \def stlsoft_assert(ex)
  *
- * Defines a runtime assertion
+ * \brief [DEPRECATED] Defines a runtime assertion
  *
  * \param ex Must be non-zero, or an assertion will be fired
  *
- * \deprecated
+ * \deprecated This is deprecated in favour of \ref STLSOFT_ASSERT().
  *
  * \note This is a simple \#define for STLSOFT_ASSERT()
  */
@@ -908,7 +912,7 @@
 
 
 /** \def STLSOFT_MESSAGE_ASSERT(msg, ex)
- * Defines a runtime assertion, with message
+ * \brief Defines a runtime assertion, with message
  *
  * \param ex Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
@@ -929,12 +933,12 @@
 
 /** \def stlsoft_message_assert(ex)
  *
- * Defines a runtime assertion, with message
+ * \brief [DEPRECATED] Defines a runtime assertion, with message
  *
  * \param ex Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  *
- * \deprecated
+ * \deprecated This is deprecated in favour of \ref STLSOFT_MESSAGE_ASSERT().
  *
  * \note This is a simple \#define for STLSOFT_MESSAGE_ASSERT()
  */
@@ -943,9 +947,9 @@
 
 /** \def STLSOFT_STATIC_ASSERT(ex)
  *
- * Defines a compile-time assertion
+ * \brief Defines an assertion construct for compile-time verification.
  *
- * \param ex Must be non-zero, or compilation will fail
+ * \param ex A compile-time evaluatable condition that must be non-zero, or compilation will fail.
  */
 #if defined(STLSOFT_CF_STATIC_ASSERT_SUPPORT)
 # if (  defined(STLSOFT_COMPILER_IS_GCC) && \
@@ -963,13 +967,13 @@
 
 /** \def stlsoft_static_assert(ex)
  *
- * Defines a compile-time assertion
+ * \brief [DEPRECATED] Defines a compile-time assertion
  *
  * \param ex Must be non-zero, or compilation will fail
  *
- * \deprecated
- *
  * \note This is a simple \#define for STLSOFT_STATIC_ASSERT()
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_STATIC_ASSERT().
  */
 #define stlsoft_static_assert(ex)           STLSOFT_STATIC_ASSERT(ex)
 
@@ -1003,20 +1007,37 @@
 #endif /* _STLSOFT_NO_NAMESPACES */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-/** The STLSoft namespace - \c stlsoft - is the namespace for the STLSoft main
- * project, and the root namespace for all the other STLSoft projects, whose
- * individual namespaces reside within it.
+/** \brief The <code class="namespace">stlsoft</code> namespace contains
+ *   all components in the \ref group__project__stlsoft "STLSoft" project,
+ *   and is the root namespace within which all the other
+ *   \ref group__projects "STLSoft sub-projects" reside.
+ *
+ * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
+ * and <code>_STLSOFT_NO_NAMESPACE</code> are defined, all 
+ * \ref group__project__stlsoft "STLSoft" components will be defined in the
+ * global namespace. The difference between the two is that definition of
+ * <code>_STLSOFT_NO_NAMESPACES</code> causes all STLSoft library 
+ * components (i.e. those of <b>all</b>
+ * \ref group__projects "STLSoft sub-projects") to be defined in the
+ * global namespace, whereas <code>_STLSOFT_NO_NAMESPACES</code> has this
+ * effect on only those within the main
+ * \ref group__project__stlsoft "STLSoft" project.
+ *
+ * \note This is a vestige of compatibility with compilers with
+ * no (or no sensible) namespace support that is maintained for reasons of
+ * backwards compatiblity and because it is, in <i>rare circumstances</i>, a
+ * useful facility.
  */
 namespace stlsoft
 {
 #endif /* !_STLSOFT_NO_NAMESPACE */
 
 /** \def stlsoft_ns_qual(x)
- * Qualifies with <b>stlsoft::</b> if STLSoft is using namespaces or, if not, does not qualify
+ * \brief Qualifies with <b>stlsoft::</b> if STLSoft is using namespaces or, if not, does not qualify
  */
 
 /** \def stlsoft_ns_using(x)
- * Declares a using directive (with respect to <b>stlsoft</b>) if STLSoft is using namespaces or, if not, does nothing
+ * \brief Declares a using directive (with respect to <b>stlsoft</b>) if STLSoft is using namespaces or, if not, does nothing
  */
 
 #ifndef _STLSOFT_NO_NAMESPACE
@@ -1028,11 +1049,11 @@ namespace stlsoft
 #endif /* !_STLSOFT_NO_NAMESPACE */
 
 /** \def stlsoft_ns_qual_std(x)
- * Qualifies with <b>std::</b> if STLSoft is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+ * \brief Qualifies with <b>std::</b> if STLSoft is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
  */
 
 /** \def stlsoft_ns_using_std(x)
- * Declares a using directive (with respect to <b>std</b>) if STLSoft is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+ * \brief Declares a using directive (with respect to <b>std</b>) if STLSoft is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
  */
 
 #ifdef STLSOFT_CF_std_NAMESPACE
@@ -1045,7 +1066,7 @@ namespace stlsoft
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /** \def STLSOFT_NS_GLOBAL(X)
- * Qualifies <b>X</b> with <b>::</b> if compiling C++, otherwise just resolves to X
+ * \brief Qualifies <b>X</b> with <b>::</b> if compiling C++, otherwise just resolves to X
  */
 
 #if defined(__cplusplus)
@@ -1175,67 +1196,67 @@ namespace stlsoft
 
 /* Type definitions - proper */
 
-typedef char                ss_char_a_t;        /*!< Ansi char type             */
-typedef ss_char_w_pr_t_     ss_char_w_t;        /*!< Unicode char type          */
-typedef ss_int8_pr_t_       ss_int8_t;          /*!< 8-bit integer              */
-typedef ss_sint8_pr_t_      ss_sint8_t;         /*!< 8-bit signed integer       */
-typedef ss_uint8_pr_t_      ss_uint8_t;         /*!< 8-bit unsigned integer     */
-typedef ss_int16_pr_t_      ss_int16_t;         /*!< 16-bit integer             */
-typedef ss_sint16_pr_t_     ss_sint16_t;        /*!< 16-bit signed integer      */
-typedef ss_uint16_pr_t_     ss_uint16_t;        /*!< 16-bit unsigned integer    */
-typedef ss_int32_pr_t_      ss_int32_t;         /*!< 32-bit integer             */
-typedef ss_sint32_pr_t_     ss_sint32_t;        /*!< 32-bit signed integer      */
-typedef ss_uint32_pr_t_     ss_uint32_t;        /*!< 32-bit unsigned integer    */
+typedef char                ss_char_a_t;        /*!< \brief Ansi char type          */
+typedef ss_char_w_pr_t_     ss_char_w_t;        /*!< \brief Unicode char type       */
+typedef ss_int8_pr_t_       ss_int8_t;          /*!< \brief 8-bit integer           */
+typedef ss_sint8_pr_t_      ss_sint8_t;         /*!< \brief 8-bit signed integer    */
+typedef ss_uint8_pr_t_      ss_uint8_t;         /*!< \brief 8-bit unsigned integer  */
+typedef ss_int16_pr_t_      ss_int16_t;         /*!< \brief 16-bit integer          */
+typedef ss_sint16_pr_t_     ss_sint16_t;        /*!< \brief 16-bit signed integer   */
+typedef ss_uint16_pr_t_     ss_uint16_t;        /*!< \brief 16-bit unsigned integer */
+typedef ss_int32_pr_t_      ss_int32_t;         /*!< \brief 32-bit integer          */
+typedef ss_sint32_pr_t_     ss_sint32_t;        /*!< \brief 32-bit signed integer   */
+typedef ss_uint32_pr_t_     ss_uint32_t;        /*!< \brief 32-bit unsigned integer */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef ss_int64_pr_t_     ss_int64_t;         /*!< 64-bit integer             */
- typedef ss_sint64_pr_t_    ss_sint64_t;        /*!< 64-bit signed integer      */
- typedef ss_uint64_pr_t_    ss_uint64_t;        /*!< 64-bit unsigned integer    */
+ typedef ss_int64_pr_t_     ss_int64_t;         /*!< \brief 64-bit integer          */
+ typedef ss_sint64_pr_t_    ss_sint64_t;        /*!< \brief 64-bit signed integer   */
+ typedef ss_uint64_pr_t_    ss_uint64_t;        /*!< \brief 64-bit unsigned integer */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef short               ss_short_t;         /*!< short integer              */
-typedef int                 ss_int_t;           /*!< integer                    */
-typedef signed int          ss_sint_t;          /*!< signed integer             */
-typedef unsigned int        ss_uint_t;          /*!< unsigned integer           */
-typedef long                ss_long_t;          /*!< long integer               */
-typedef ss_uint8_t          ss_byte_t;          /*!< Byte                       */
+typedef short               ss_short_t;         /*!< \brief short integer           */
+typedef int                 ss_int_t;           /*!< \brief integer                 */
+typedef signed int          ss_sint_t;          /*!< \brief signed integer          */
+typedef unsigned int        ss_uint_t;          /*!< \brief unsigned integer        */
+typedef long                ss_long_t;          /*!< \brief long integer            */
+typedef ss_uint8_t          ss_byte_t;          /*!< \brief Byte                    */
 #if defined(__cplusplus)
-typedef ss_bool_pr_t_       ss_bool_t;          /*!< bool                       */
+typedef ss_bool_pr_t_       ss_bool_t;          /*!< \brief bool                    */
 #endif /* __cplusplus */
-typedef ss_size_pr_t_       ss_size_t;          /*!< size                       */
-typedef ss_ptrdiff_pr_t_    ss_ptrdiff_t;       /*!< ptr diff                   */
-typedef long                ss_streampos_t;     /*!< streampos                  */
-typedef long                ss_streamoff_t;     /*!< streamoff                  */
+typedef ss_size_pr_t_       ss_size_t;          /*!< \brief size                    */
+typedef ss_ptrdiff_pr_t_    ss_ptrdiff_t;       /*!< \brief ptr diff                */
+typedef long                ss_streampos_t;     /*!< \brief streampos               */
+typedef long                ss_streamoff_t;     /*!< \brief streamoff               */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-typedef ss_char_a_t         char_a_t;           /*!< Ansi char type             */
-typedef ss_char_w_t         char_w_t;           /*!< Unicode char type          */
-typedef ss_int8_t           int8_t;             /*!< 8-bit integer              */
-typedef ss_sint8_t          sint8_t;            /*!< 8-bit signed integer       */
-typedef ss_uint8_t          uint8_t;            /*!< 8-bit unsigned integer     */
-typedef ss_int16_t          int16_t;            /*!< 16-bit integer             */
-typedef ss_sint16_t         sint16_t;           /*!< 16-bit signed integer      */
-typedef ss_uint16_t         uint16_t;           /*!< 16-bit unsigned integer    */
-typedef ss_int32_t          int32_t;            /*!< 32-bit integer             */
-typedef ss_sint32_t         sint32_t;           /*!< 32-bit signed integer      */
-typedef ss_uint32_t         uint32_t;           /*!< 32-bit unsigned integer    */
+typedef ss_char_a_t         char_a_t;           /*!< \brief Ansi char type          */
+typedef ss_char_w_t         char_w_t;           /*!< \brief Unicode char type       */
+typedef ss_int8_t           int8_t;             /*!< \brief 8-bit integer           */
+typedef ss_sint8_t          sint8_t;            /*!< \brief 8-bit signed integer    */
+typedef ss_uint8_t          uint8_t;            /*!< \brief 8-bit unsigned integer  */
+typedef ss_int16_t          int16_t;            /*!< \brief 16-bit integer          */
+typedef ss_sint16_t         sint16_t;           /*!< \brief 16-bit signed integer   */
+typedef ss_uint16_t         uint16_t;           /*!< \brief 16-bit unsigned integer */
+typedef ss_int32_t          int32_t;            /*!< \brief 32-bit integer          */
+typedef ss_sint32_t         sint32_t;           /*!< \brief 32-bit signed integer   */
+typedef ss_uint32_t         uint32_t;           /*!< \brief 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef ss_int64_t          int64_t;            /*!< 64-bit integer             */
-typedef ss_sint64_t         sint64_t;           /*!< 64-bit signed integer      */
-typedef ss_uint64_t         uint64_t;           /*!< 64-bit unsigned integer    */
+typedef ss_int64_t          int64_t;            /*!< \brief 64-bit integer          */
+typedef ss_sint64_t         sint64_t;           /*!< \brief 64-bit signed integer   */
+typedef ss_uint64_t         uint64_t;           /*!< \brief 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef ss_short_t          short_t;            /*!< short integer              */
-typedef ss_int_t            int_t;              /*!< integer                    */
-typedef ss_sint_t           sint_t;             /*!< signed integer             */
-typedef ss_uint_t           uint_t;             /*!< unsigned integer           */
-typedef ss_long_t           long_t;             /*!< long integer               */
-typedef ss_byte_t           byte_t;             /*!< Byte                       */
+typedef ss_short_t          short_t;            /*!< \brief short integer           */
+typedef ss_int_t            int_t;              /*!< \brief integer                 */
+typedef ss_sint_t           sint_t;             /*!< \brief signed integer          */
+typedef ss_uint_t           uint_t;             /*!< \brief unsigned integer        */
+typedef ss_long_t           long_t;             /*!< \brief long integer            */
+typedef ss_byte_t           byte_t;             /*!< \brief Byte                    */
 #if defined(__cplusplus)
-typedef ss_bool_t           bool_t;             /*!< bool                       */
+typedef ss_bool_t           bool_t;             /*!< \brief bool                    */
 #endif /* __cplusplus */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-typedef ss_size_t           size_t;             /*!< size                       */
-typedef ss_ptrdiff_t        ptrdiff_t;          /*!< ptr diff                   */
-typedef ss_streampos_t      streampos_t;        /*!< streampos                  */
-typedef ss_streamoff_t      streamoff_t;        /*!< streamoff                  */
+typedef ss_size_t           size_t;             /*!< \brief size                    */
+typedef ss_ptrdiff_t        ptrdiff_t;          /*!< \brief ptr diff                */
+typedef ss_streampos_t      streampos_t;        /*!< \brief streampos               */
+typedef ss_streamoff_t      streamoff_t;        /*!< \brief streamoff               */
 # endif /* compiler */
 #endif /* !_STLSOFT_NO_NAMESPACE */
 
@@ -1326,14 +1347,14 @@ private:
  */
 
 /** \defgroup pseudo_keyword_macros Pseudo-keyword Macros
- * \ingroup STLSoft
+ * \ingroup group__project__stlsoft
  * \brief These macros are used to handle difference in support of certain keywords between translators
  * @{
  */
 
 /** \def ss_explicit_k
  *
- * Evaluates to <b>explicit</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>explicit</b> on translators that support the keyword, otherwise to nothing
  */
 #ifdef STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 # define ss_explicit_k              explicit
@@ -1343,7 +1364,7 @@ private:
 
 /** \def ss_mutable_k
  *
- * Evaluates to <b>mutable</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>mutable</b> on translators that support the keyword, otherwise to nothing
  */
 #ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 # define ss_mutable_k               mutable
@@ -1353,7 +1374,7 @@ private:
 
 /** \def ss_typename_param_k
  *
- * Evaluates to <b>typename</b> on translators that support the keyword, otherwise to <b>class</b>
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to <b>class</b>
  *
  * Used for template parameter declarations
  */
@@ -1365,7 +1386,7 @@ private:
 
 /** \def ss_typename_type_k
  *
- * Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
  *
  * Used for type disambiguation inside template bodies
  */
@@ -1377,7 +1398,7 @@ private:
 
 /** \def ss_typename_type_def_k
  *
- * Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
  *
  * Used for type disambiguation in default template arguments
  */
@@ -1389,7 +1410,7 @@ private:
 
 /** \def ss_typename_type_mil_k
  *
- * Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
  *
  * Used for type disambiguation inside initialiser lists in class template constructors
  */
@@ -1401,7 +1422,7 @@ private:
 
 /** \def ss_template_qual_k
  *
- * Evaluates to <b>template</b> on translators that support its use for type qualification
+ * \brief Evaluates to <b>template</b> on translators that support its use for type qualification
  */
 #ifdef STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 # define ss_template_qual_k         template
@@ -1434,11 +1455,65 @@ private:
  * Exception signature macro(s)
  */
 
+#ifdef __cplusplus
+
+/** \brief Throws the given exception
+ *
+ * \note This is needed because Visual C++ 5.0 goes into an infinite loop if
+ *        the exception instance is passed to throw. The apparent workaround
+ *        (which only took me six years to discover!) is to apply *& to the
+ *        instance.
+ */
+template <ss_typename_param_k X>
+inline void throw_x(X const &x)
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+{
+    X const *px =   &x;
+
+    throw *px;
+}
+#else /* ? compiler */
+{
+    throw x;
+}
+#endif /* compiler */
+
+#endif /* __cplusplus */
+
 /** \defgroup code_modification_macros Code Modification Macros
- * \ingroup STLSoft
+ * \ingroup group__project__stlsoft
  * \brief These macros are used to help out where compiler differences are
  * so great as to cause great disgusting messes in the class/function implementations
  * @{
+ */
+
+/** \def stlsoft_throw_0
+ * \brief Indicates that the given function/method does not throw any exceptions.
+ */
+/** \def stlsoft_throw_1
+ * \brief Indicates that the given function/method throws the named type.
+ */
+/** \def stlsoft_throw_2
+ * \brief Indicates that the given function/method throws the named types.
+ */
+/** \def stlsoft_throw_3
+ * \brief Indicates that the given function/method throws the named types.
+ */
+/** \def stlsoft_throw_4
+ * \brief Indicates that the given function/method throws the named types.
+ */
+/** \def stlsoft_throw_5
+ * \brief Indicates that the given function/method throws the named types.
+ */
+/** \def stlsoft_throw_6
+ * \brief Indicates that the given function/method throws the named types.
+ */
+/** \def stlsoft_throw_7
+ * \brief Indicates that the given function/method throws the named types.
+ */
+/** \def stlsoft_throw_8
+ * \brief Indicates that the given function/method throws the named types.
  */
 
 /* Exception signatures. */
@@ -1479,7 +1554,7 @@ private:
 
 /** \def STLSOFT_NUM_ELEMENTS(ar)
  *
- * Evaluates, at compile time, to the number of elements within the given vector entity
+ * \brief Evaluates, at compile time, to the number of elements within the given vector entity
  *
  * \param ar The array
  *
@@ -1560,11 +1635,11 @@ ss_array_size_struct<N> const &ss_static_array_size(T const (&)[N]);
 
 /** \def stlsoft_num_elements(ar)
  *
- * Evaluates, at compile time, to the number of elements within the given vector entity
+ * \brief Evaluates, at compile time, to the number of elements within the given vector entity
  *
  * \param ar The array
  *
- * \deprecated
+ * \deprecated This is deprecated in favour of \ref STLSOFT_NUM_ELEMENTS().
  *
  * \note This is a simple \#define for STLSOFT_NUM_ELEMENTS()
  */
@@ -1611,7 +1686,7 @@ ss_array_size_struct<N> const &ss_static_array_size(T const (&)[N]);
 
 /** \def STLSOFT_RAW_OFFSETOF(S, M)
  *
- * Evaluates, at compile time, the offset of the member \c m in the structure \c s
+ * \brief Evaluates, at compile time, the offset of the member \c m in the structure \c s
  *
  * \param S The type of the structure/class
  * \param M The name of the member
@@ -1626,24 +1701,29 @@ ss_array_size_struct<N> const &ss_static_array_size(T const (&)[N]);
 
 /** \def stlsoft_raw_offsetof(s, m)
  *
- * Evaluates, at compile time, the offset of a structure/class member
+ * \brief Evaluates, at compile time, the offset of a structure/class member
  *
- * \deprecated
+ * \deprecated This is deprecated in favour of \ref STLSOFT_RAW_OFFSETOF().
  *
- * \note This is a simple \#define for STLSOFT_GEN_OPAQUE()
+ * \note This is a simple \#define for STLSOFT_RAW_OFFSETOF()
  */
 #define stlsoft_raw_offsetof(s, m)                      STLSOFT_RAW_OFFSETOF(s, m)
 
-#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
-# undef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
-#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 
-#if !defined(STLSOFT_COMPILER_IS_COMO) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    !defined(STLSOFT_COMPILER_IS_INTEL) && \
-    !defined(STLSOFT_COMPILER_IS_WATCOM)
-# define STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
-#endif /* compiler */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+#  undef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+# endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
+
+# if !defined(STLSOFT_COMPILER_IS_COMO) && \
+     !defined(STLSOFT_COMPILER_IS_GCC) && \
+     !defined(STLSOFT_COMPILER_IS_INTEL) && \
+     !defined(STLSOFT_COMPILER_IS_WATCOM)
+#  define STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+# endif /* compiler */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Destruction function(s)/macro(s)
@@ -1688,9 +1768,9 @@ inline void stlsoft_destroy_instance_fn(T *p)
 
 /** \def stlsoft_destroy_instance(T1, T2, P)
  *
- * Explicitly destroys an instance
+ * \brief Explicitly destroys an instance
  *
- * \deprecated
+ * \deprecated This is deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  *
  * \note This is a simple \#define for STLSOFT_DESTROY_INSTANCE()
  */
@@ -1700,7 +1780,7 @@ inline void stlsoft_destroy_instance_fn(T *p)
  * Handle generator macro(s)
  */
 
-/** Generates an opaque type with the name \c type
+/** \brief Generates an opaque type with the name \c type
  *
  * For example, the following defines two distinct opaque types:
  *
@@ -1721,9 +1801,9 @@ inline void stlsoft_destroy_instance_fn(T *p)
 
 /** \def stlsoft_gen_opaque(Type)
  *
- * Generates an opaque type with the name \c Type
+ * \brief Generates an opaque type with the name \c Type
  *
- * \deprecated
+ * \deprecated This is deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  *
  * \note This is a simple \#define for STLSOFT_GEN_OPAQUE()
  */
@@ -1896,35 +1976,35 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
  */
 
 /** \defgroup cast_macros Cast Macros
- * \ingroup STLSoft
+ * \ingroup group__project__stlsoft
  * \brief These macros abstract casts, representing the C++ casts in C++ compilation
  * units, and C-casts in C compilation units
  * @{
  */
 
 /** \def stlsoft_c_cast(T, E)
- * C-cast macro; equivalent to ((T)(E)), but more searchable
+ * \brief C-cast macro; equivalent to ((T)(E)), but more searchable
  */
 #define stlsoft_c_cast(T, E)                ((T)(E))
 
 /** \def stlsoft_static_cast(T, E)
- * C-cast macro; equivalent to static_cast<T, E> in C++, and stlsoft_c_cast(T, E) in C
+ * \brief C-cast macro; equivalent to <code>static_cast<T, E></code> in C++, and stlsoft_c_cast(T, E) in C
  */
 
 /** \def stlsoft_const_cast(T, E)
- * C-cast macro; equivalent to const_cast<T, E> in C++, and stlsoft_c_cast(T, E) in C
+ * \brief C-cast macro; equivalent to <code>const_cast<T, E></code> in C++, and stlsoft_c_cast(T, E) in C
  */
 
 /** \def stlsoft_volatile_cast(T, E)
- * C-cast macro; equivalent to const_cast<T, E> in C++, and stlsoft_c_cast(T, E) in C
+ * \brief C-cast macro; equivalent to <code>const_cast<T, E></code> in C++, and stlsoft_c_cast(T, E) in C
  */
 
 /** \def stlsoft_reinterpret_cast(T, E)
- * C-cast macro; equivalent to reinterpret_cast<T, E> in C++, and stlsoft_c_cast(T, E) in C
+ * \brief C-cast macro; equivalent to <code>reinterpret_cast<T, E></code> in C++, and stlsoft_c_cast(T, E) in C
  */
 
 /** \def stlsoft_dynamic_cast(T, E)
- * C-cast macro; equivalent to dynamic_cast<T, E> in C++, and stlsoft_c_cast(T, E) in C
+ * \brief C-cast macro; equivalent to <code>dynamic_cast<T, E></code> in C++, and stlsoft_c_cast(T, E) in C
  */
 
 #if defined(__cplusplus)
@@ -1964,13 +2044,13 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
  */
 
 /** \defgroup inlining_macros Inlining Macros
- * \ingroup STLSoft
+ * \ingroup group__project__stlsoft
  * \brief These macros abstract inline
  * @{
  */
 
 /** \def STLSOFT_INLINE
- * inline pseudo-keyword
+ * \brief inline pseudo-keyword
  *
  * Resolves to \c inline in C++ compilation. In C, resolves to \c inline for
  * compilers that support C99, or otherwise \c STLSOFT_CUSTOM_C_INLINE if
@@ -1995,7 +2075,7 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
  */
 
 /** \defgroup pointer_manipulation_functions Pointer Manipulation Functions
- * \ingroup STLSoft
+ * \ingroup group__project__stlsoft
  * \brief These functions assist in calculations with, and the manipulation of, pointers
  * @{
  */
@@ -2049,7 +2129,7 @@ inline void const *ptr_byte_offset(T const p, ss_ptrdiff_t n)
     return p4;
 }
 
-/** Offsets a pointer by a number of elements
+/** \brief Offsets a pointer by a number of elements
  *
  * \param p The pointer to be offset
  * \param n The number of elements to offset
@@ -2061,7 +2141,7 @@ inline T const *ptr_offset(T const *p, ss_ptrdiff_t n)
     return p + n;
 }
 
-/** Get the difference in bytes between two pointers
+/** \brief Get the difference in bytes between two pointers
  */
 template <ss_typename_param_k T1, ss_typename_param_k T2>
 inline ss_ptrdiff_t ptr_byte_diff(T1 const *p1, T2 const *p2)
@@ -2069,7 +2149,7 @@ inline ss_ptrdiff_t ptr_byte_diff(T1 const *p1, T2 const *p2)
     return static_cast<ss_byte_t const*>(static_cast<void const*>(p1)) - static_cast<ss_byte_t const*>(static_cast<void const*>(p2));
 }
 
-/** Get the difference in elements between two pointers
+/** \brief Get the difference in elements between two pointers
  */
 template <ss_typename_param_k T1, ss_typename_param_k T2>
 inline ss_ptrdiff_t ptr_diff(T1 const *p1, T2 const *p2)
@@ -2086,14 +2166,18 @@ inline ss_ptrdiff_t ptr_diff(T1 const *p1, T2 const *p2)
  */
 
 /** \defgroup cv_qualifier_functions cv-Qualifier Functions
- * \ingroup STLSoft
+ * \ingroup group__project__stlsoft
  * \brief These functions assist in the manipulation of cv-qualifiers
  * @{
  */
 
 #if defined(__cplusplus)
 
-/** Remove const */
+/** \brief Remove const-qualifier from an instance.
+ *
+ * \note Using this function can result in undefined behaviour. As such, the
+ * advice is: <b>Use With Care!</b>
+ */
 template <ss_typename_param_k T>
 inline T &remove_const(T const &t)
 {
@@ -2118,29 +2202,32 @@ inline T &mutable_access(T const &t)
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Move constructor support */
-# ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
-#  define stlsoft_define_move_rhs_type(t)           t &
-# else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
-#  define stlsoft_define_move_rhs_type(t)           t const &
-# endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+#  ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#   define stlsoft_define_move_rhs_type(t)           t &
+#  else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#   define stlsoft_define_move_rhs_type(t)           t const &
+#  endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
 template <ss_typename_param_k T>
 inline T &move_lhs_from_rhs(stlsoft_define_move_rhs_type(T) t)
 {
-# ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#  ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     return t;
-# else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#  else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     return const_cast<T &>(t);
-# endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#  endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 }
 
-/* \brief Takes the address of a variable
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief Takes the address of a variable
  *
- * This function is used to take the address of a variable,
- * possibly a temporary, and allows the code to skip the
- * reasonable reservations of compilers to not want to
- * compile code that uses the address of temporaries. As
- * such, the advice is: <b>Use With Care!</b>
+ * \remarks This function is used to take the address of a variable,
+ * possibly a temporary, and allows the code to skip the reasonable
+ * reservations of compilers to not want to compile code that uses the
+ * address of temporaries. As such, the advice is: <b>Use With Care!</b>
  */
 template <ss_typename_param_k T>
 inline T const *address(T const &t)

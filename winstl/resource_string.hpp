@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     21st March 2006
+ * Updated:     21st May 2006
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     61
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MINOR    3
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -80,6 +80,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
 # include <stlsoft/exceptions.hpp>      // for stlsoft::null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
+# include <winstl/exceptions.hpp>       // for winstl::resource_exception_policy
+#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #ifdef STLSOFT_UNITTEST
 # include <iostream>                    // for std::cout, std::endl
 # include <string>                      // for std::string, std::wstring
@@ -194,7 +197,11 @@ namespace winstl_project
 /// \param X The exception class
 template<   ss_typename_param_k S
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        ,   ss_typename_param_k X = resource_exception_policy
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k X = stlsoft_ns_qual(null_exception_policy)
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k X /* = stlsoft_ns_qual(null_exception_policy) */
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
@@ -205,7 +212,6 @@ class basic_resource_string
 {
 private:
     typedef S                                          parent_class_type;
-//    typedef C                                          value_type;
 public:
     /// The type of the underlying string
     typedef S                                          string_type;
@@ -326,9 +332,8 @@ private:
 
         if(0 == this->LoadString(hinst, id, sz, STLSOFT_NUM_ELEMENTS(sz)))
         {
-            exception_policy_type()(hinst, id);
+            exception_policy_type()("string did not load", ::GetLastError(), MAKEINTRESOURCE(id), RT_STRING);
 
-//            parent_class_type::operator =(string_traits_type::empty_string());
             parent_class_type::operator =(string_type());
         }
         else

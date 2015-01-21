@@ -4,7 +4,7 @@
  * Purpose:     ATL ActiveX control (OCX) container window functions.
  *
  * Created:     30th November 2000
- * Updated:     21st March 2006
+ * Updated:     24th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MAJOR    3
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MINOR    1
-# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     19
+# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_REVISION 2
+# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -180,7 +180,9 @@ public:
     template <ss_typename_param_k S>
     BOOL SetDlgItemText(int nID, S const &s)
     {
-        return this_()->SetDlgItemText(nID, stlsoft_ns_qual(c_str_ptr)(s));
+        HWND    hwndThis    =   *this_();
+
+        return ::SetDlgItemText(hwndThis, nID, stlsoft_ns_qual(c_str_ptr)(s));
     }
 #endif /* 0 */
 /// @}

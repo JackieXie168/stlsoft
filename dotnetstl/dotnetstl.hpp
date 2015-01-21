@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     8th February 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,51 +48,10 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     32
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file dotnetstl/dotnetstl.hpp The root header for the \ref dotnetSTL ".netSTL" project */
-
-/** \weakgroup projects STLSoft Projects
- *
- * \brief The Projects that comprise the STLSoft libraries
- */
-
-/** \defgroup dotnetSTL .netSTL
- * \ingroup projects
- *
- * \brief <img src = "dotnetstl32x32.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<i>Template Software for the Window Template Library</i>
- *
- * The philosophy of .netSTL (http://dotnetstl.org/) is essentially the same as that
- * of the STLSoft (http://stlsoft.org/) organisation: providing robust and
- * lightweight software to the Window Template Library (WTL) development
- * community. .netSTL provides template-based software that builds on that
- * provided by ATL and STLSoft in order to reduce programmer effort and increase
- * robustness in the use of the ATL.
- *
- * <b>Namespaces</b>
- *
- * The .netSTL namespace <code><b>dotnetstl</b></code> is actually an alias for the
- * namespace <code><b>stlsoft::dotnetstl_project</b></code>, and as such all the
- * .netSTL project components actually reside within the
- * <code><b>stlsoft</b></code> namespace. However, there is never any need to
- * use the <code><b>stlsoft::dotnetstl_project</b></code> namespace in your code,
- * and you should always use the alias <code><b>dotnetstl</b></code>.
- *
- * <b>Dependencies</b>
- *
- * As with <b><i>all</i></b> parts of the STLSoft libraries, there are no
- * dependencies on .netSTL binary components and no need to compile .netSTL
- * implementation files; .netSTL is <b>100%</b> header-only!
- *
- * As with most of the STLSoft sub-projects, .netSTL depends only on:
- *
- * - Selected headers from the C standard library, such as  <code><b>wchar.h</b></code>
- * - Selected headers from the C++ standard library, such as <code><b>new</b></code>, <code><b>functional</b></code>
- * - Selected header files of the STLSoft main project
- * - The header files particular to the technology area, in this case the ATL library headers, such as <code><b>atlbase.h</b></code>
- * - The binary (static and dynamic libraries) components particular to the technology area, in this case the ATL libraries that ship with the operating system and your compiler(s)
- */
+/** \file dotnetstl/dotnetstl.hpp \brief [C++ only; requires C++.NET compiler] The root header for the \ref group__project__dotnetstl ".netSTL" project. */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * .netSTL version
@@ -128,17 +87,21 @@
  * version symbol, e.g. #if DOTNETSTL_VER >= DOTNETSTL_VER_1_0_1
  */
 
-/// \def DOTNETSTL_VER_MAJOR
-/// The major version number of .netSTL
+/** \def DOTNETSTL_VER_MAJOR
+ * The major version number of .netSTL
+ */
 
-/// \def DOTNETSTL_VER_MINOR
-/// The minor version number of .netSTL
+/** \def DOTNETSTL_VER_MINOR
+ * The minor version number of .netSTL
+ */
 
-/// \def DOTNETSTL_VER_REVISION
-/// The revision version number of .netSTL
+/** \def DOTNETSTL_VER_REVISION
+ * The revision version number of .netSTL
+ */
 
-/// \def DOTNETSTL_VER
-/// The current composite version number of .netSTL
+/** \def DOTNETSTL_VER
+ * The current composite version number of .netSTL
+ */
 
 #define DOTNETSTL_VER_MAJOR       1
 #define DOTNETSTL_VER_MINOR       2
@@ -293,20 +256,24 @@ namespace dotnetstl_project
 
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/// \def dotnetstl_ns_qual(x)
-/// Qualifies with <b>dotnetstl::</b> if .netSTL is using namespaces or, if not, does not qualify
+/** \def dotnetstl_ns_qual(x)
+ * Qualifies with <b>dotnetstl::</b> if .netSTL is using namespaces or, if not, does not qualify
+ */
 
-/// \def dotnetstl_ns_using(x)
-/// Declares a using directive (with respect to <b>dotnetstl</b>) if .netSTL is using namespaces or, if not, does nothing
+/** \def dotnetstl_ns_using(x)
+ * Declares a using directive (with respect to <b>dotnetstl</b>) if .netSTL is using namespaces or, if not, does nothing
+ */
 
 #define dotnetstl_ns_qual(x)            ::dotnetstl::x
 #define dotnetstl_ns_using(x)           using ::dotnetstl::x;
 
-/// \def dotnetstl_ns_qual_std(x)
-/// Qualifies with <b>std::</b> if .netSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+/** \def dotnetstl_ns_qual_std(x)
+ * Qualifies with <b>std::</b> if .netSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+ */
 
-/// \def dotnetstl_ns_using_std(x)
-/// Declares a using directive (with respect to <b>std</b>) if .netSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+/** \def dotnetstl_ns_using_std(x)
+ * Declares a using directive (with respect to <b>std</b>) if .netSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+ */
 
 #ifdef STLSOFT_CF_std_NAMESPACE
 # define dotnetstl_ns_qual_std(x)       ::std::x
@@ -401,14 +368,16 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
 # define dotnetstl_num_elements(ar)                         DOTNETSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Destroys the given instance \c p of the given type (\c t and \c _type)
-///
-/// \deprecated
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
+ */
 #define dotnetstl_destroy_instance(t, _type, p)             STLSOFT_DESTROY_INSTANCE(t, _type, p)
 
-/// Generates an opaque type with the name \c _htype
-///
-/// \deprecated
+/** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
+ */
 #define dotnetstl_gen_opaque(_htype)                        STLSOFT_GEN_OPAQUE(_htype)
 
 /* ////////////////////////////////////////////////////////////////////////// */

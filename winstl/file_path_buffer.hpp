@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     24th March 2006
+ * Updated:     9th April 2006
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_MINOR       4
-# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_REVISION    4
-# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_EDIT        91
+# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_REVISION    6
+# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,17 +74,28 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1100
-# error winstl_file_path_buffer.h is not compatible with Visual C++ 5.0 or earlier
+#define WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
+
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+# if _MSC_VER < 1100
+#  error winstl/file_path_buffer.hpp is not compatible with Visual C++ prior to version 5.0
+# elif _MSC_VER < 1200
+#  undef WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
+# else /* ? _MSC_VER */
+   /* Nothing to do */
+# endif /* _MSC_VER */
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifdef WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
+# ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
+#  include <stlsoft/auto_buffer.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#else /* ? WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
+# include <vector>
+#endif /* WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
@@ -179,16 +190,21 @@ private:
     };
 
     /// The buffer type
+#ifdef WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
     typedef stlsoft_ns_qual(auto_buffer_old)<   C
                                             ,   A
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
+# if defined(STLSOFT_COMPILER_IS_BORLAND)
     // This is necessary, since Borland will attempt an auto_buffer with what
     // seems like 0 size, or maybe it just can't define the type. Who can tell?
                                             ,   1 + _MAX_PATH
-#else /* ? compiler */
+# else /* ? compiler */
                                             ,   internalBufferSize
-#endif /* compiler */
+# endif /* compiler */
                                             >                       buffer_type;
+#else /* ? WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
+    typedef stlsoft_ns_qual_std(vector)<C>                          buffer_type;
+#endif /* WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
+
 public:
     /// The current parameterisation of the type
     typedef basic_file_path_buffer<C, A>                            class_type;
@@ -208,7 +224,7 @@ public:
         : m_buffer(1 + calc_path_max_())
     {
 #ifdef _DEBUG
-        memset(&m_buffer[0], '?', m_buffer.size());
+        ::memset(&m_buffer[0], '?', m_buffer.size());
         m_buffer[m_buffer.size() - 1] = '\0';
 #endif /* _DEBUG */
     }
@@ -216,13 +232,13 @@ public:
     basic_file_path_buffer(class_type const &rhs)
         : m_buffer(rhs.size())
     {
-        stlsoft_ns_qual(pod_copy_n)(m_buffer.data(), rhs.m_buffer.data(), m_buffer.size());
+        stlsoft_ns_qual(pod_copy_n)(data(), rhs.data(), m_buffer.size());
     }
 
     class_type &operator =(class_type const &rhs)
     {
         m_buffer.resize(rhs.size());
-        stlsoft_ns_qual(pod_copy_n)(m_buffer.data(), rhs.m_buffer.data(), m_buffer.size());
+        stlsoft_ns_qual(pod_copy_n)(data(), rhs.data(), m_buffer.size());
 
         return *this;
     }
@@ -236,10 +252,29 @@ public:
 
 // Accessors
 public:
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    value_type const    *data() const
+    {
+#ifdef WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
+        return m_buffer.data();
+#else /* ? WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
+        return &m_buffer[0];
+#endif /* WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
+    }
+    value_type          *data()
+    {
+#ifdef WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
+        return m_buffer.data();
+#else /* ? WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
+        return &m_buffer[0];
+#endif /* WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
+    }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
     /// Returns a pointer to a nul-terminated string
     value_type const *c_str() const
     {
-        return m_buffer.data();
+        return this->data();
     }
 
     /// Returns a mutable (non-const) pointer to the internal buffer
@@ -256,7 +291,7 @@ public:
     {
         WINSTL_MESSAGE_ASSERT("Index out of range", !(size() < index));
 
-        return m_buffer.data()[index];
+        return data()[index];
     }
 #else /* ? compiler */
 #endif /* compiler */

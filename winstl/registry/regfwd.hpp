@@ -4,7 +4,7 @@
  * Purpose:     Contains forward declarations for components in the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     21st March 2006
+ * Updated:     22nd May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,8 +39,7 @@
 
 
 /// \file winstl/registry/regfwd.hpp
-///
-/// Contains forward declarations for components in the Registry library.
+/// \brief [C++ only] Contains forward declarations for components in the \ref group__library__windows_registry "Windows Registry" Library.
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD
@@ -49,7 +48,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MINOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -84,19 +83,10 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Forward declarations
- */
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<	ss_typename_param_k C // character type
-		>
+template<   ss_typename_param_k C // character type
+        >
 struct reg_traits;
 
 
@@ -114,8 +104,8 @@ template<   ss_typename_param_k C // character type
 class basic_reg_value;
 
 
-template<	ss_typename_param_k A // allocator type
-		>
+template<   ss_typename_param_k A // allocator type
+        >
 class reg_blob;
 
 
@@ -124,11 +114,11 @@ template<   ss_typename_param_k C // character type
         ,   ss_typename_param_k A // allocator type
         >
 class basic_reg_key_sequence;
-template<	ss_typename_param_k C // character type
-		,	ss_typename_param_k T // registry traits type
-		,	ss_typename_param_k V // value type
-		,	ss_typename_param_k A // allocator type
-		>
+template<   ss_typename_param_k C // character type
+        ,   ss_typename_param_k T // registry traits type
+        ,   ss_typename_param_k V // value type
+        ,   ss_typename_param_k A // allocator type
+        >
 class basic_reg_key_sequence_iterator;
 
 
@@ -137,11 +127,11 @@ template<   ss_typename_param_k C // character type
         ,   ss_typename_param_k A // allocator type
         >
 class basic_reg_value_sequence;
-template<	ss_typename_param_k C // character type
-		,	ss_typename_param_k T // registry traits type
-		,	ss_typename_param_k V // value type
-		,	ss_typename_param_k A // allocator type
-		>
+template<   ss_typename_param_k C // character type
+        ,   ss_typename_param_k T // registry traits type
+        ,   ss_typename_param_k V // value type
+        ,   ss_typename_param_k A // allocator type
+        >
 class basic_reg_value_sequence_iterator;
 
 
@@ -149,12 +139,7 @@ class registry_exception;
 
 class wrong_value_type_exception;
 
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

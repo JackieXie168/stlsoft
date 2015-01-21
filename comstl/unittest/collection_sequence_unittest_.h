@@ -1,9 +1,9 @@
 
-// Updated: 21st March 2006
+// Updated: 25th May 2006
 
-#if !defined(COMSTL_INCL_COMSTL_HPP_COLL_SEQUENCE)
-# error This file cannot be directly included, and should only be included within comstl/coll_sequence.hpp
-#endif /* !COMSTL_INCL_COMSTL_HPP_COLL_SEQUENCE */
+#if !defined(COMSTL_INCL_COMSTL_HPP_COLLECTION_SEQUENCE)
+# error This file cannot be directly included, and should only be included within comstl/collection_sequence.hpp
+#endif /* !COMSTL_INCL_COMSTL_HPP_COLLECTION_SEQUENCE */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft

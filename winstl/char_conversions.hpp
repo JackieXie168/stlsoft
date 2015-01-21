@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     24th March 2006
+ * Updated:     6th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       5
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    5
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        63
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    6
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -300,6 +300,9 @@ public:
     encoding2encoding(C const *s)
         : m_s(s)
     {}
+    encoding2encoding(C *s)
+        : m_s(s)
+    {}
     template <ss_typename_param_k S>
     encoding2encoding(S const &s)
         : m_s(s.c_str())
@@ -328,10 +331,12 @@ typedef unicode2Ansi<256>               w2a;
 
 #if defined(UNICODE)
 typedef encoding2encoding<ws_char_w_t>  t2w;
+typedef encoding2encoding<ws_char_w_t>  w2t;
 typedef w2a                             t2a;
 typedef a2w                             a2t;
 #else /* ? UNICODE */
 typedef encoding2encoding<ws_char_a_t>  t2a;
+typedef encoding2encoding<ws_char_a_t>  a2t;
 typedef a2w                             t2w;
 typedef w2a                             w2t;
 #endif /* UNICODE */

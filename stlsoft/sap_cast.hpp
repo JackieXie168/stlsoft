@@ -5,7 +5,7 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     21st March 2006
+ * Updated:     4th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MINOR     3
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      31
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_REVISION  4
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,14 +60,26 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#if !defined(STLSOFT_COMPILER_IS_WATCOM)
+
+#if (   defined(STLSOFT_COMPILER_IS_GCC) && \
+        __GNUC__ < 3) || \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1200) || \
+    defined(STLSOFT_COMPILER_IS_WATCOM)
+# define STLSOFT_NO_SAP_CAST
+#endif /* compiler */
+
+#if !defined(STLSOFT_NO_SAP_CAST)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 #  include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 #  include <stlsoft/meta/base_type_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
-#endif /* ? compiler */
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+#  include <stlsoft/meta/select_first_type_if.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#endif /* !STLSOFT_NO_SAP_CAST */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -82,11 +94,9 @@ namespace stlsoft
  * Functions
  */
 
-#if defined(STLSOFT_COMPILER_IS_WATCOM) || \
-    (   defined(STLSOFT_COMPILER_IS_GCC) && \
-        __GNUC__ < 3)
+#if defined(STLSOFT_NO_SAP_CAST)
 # define    sap_cast    reinterpret_cast
-#else /* ? compiler */
+#else /* ? STLSOFT_NO_SAP_CAST */
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
         >
@@ -126,7 +136,7 @@ inline TO sap_cast(FROM from)
     // static_cast to destination type
     return static_cast<TO>(pv);
 }
-#endif /* compiler */
+#endif /* STLSOFT_NO_SAP_CAST */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

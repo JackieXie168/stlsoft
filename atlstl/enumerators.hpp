@@ -4,11 +4,11 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     27th March 2006
+ * Updated:     20th May 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_MAJOR    3
 # define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_REVISION 3
-# define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_EDIT     47
+# define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,7 @@ public:
         return S_OK;
     }
 #endif /* 0 */
-	/// This is only called when copy() has failed, and a number of copies must be undone
+    /// This is only called when copy() has failed, and a number of copies must be undone
     static void clear(external_value_type *xv);
 #if 0
     {
@@ -307,19 +307,19 @@ private:
 /// @{
 private:
     values_type     m_values;
-    const_iterator	m_current;
+    const_iterator  m_current;
 /// @}
 
 /// \name Not to be implemented
 /// @{
 private:
-	copy_enumerator_impl(class_type const &);
-	class_type &operator =(class_type const &);
+    copy_enumerator_impl(class_type const &);
+    class_type &operator =(class_type const &);
 /// @}
 };
 
 #if defined(STLSOFT_COMPILER_IS_INTEL) || \
-	defined(STLSOFT_COMPILER_IS_MSVC)
+    defined(STLSOFT_COMPILER_IS_MSVC)
 # if _MSC_VER >= 1200
 #  pragma warning(push)
 # endif /* compiler */
@@ -356,7 +356,7 @@ protected:
 };
 
 #if defined(STLSOFT_COMPILER_IS_INTEL) || \
-	defined(STLSOFT_COMPILER_IS_MSVC)
+    defined(STLSOFT_COMPILER_IS_MSVC)
 # if _MSC_VER >= 1200
 #  pragma warning(pop)
 # else /* ? compiler */
@@ -417,19 +417,19 @@ inline STDMETHODIMP copy_enumerator_impl<I, piid, V, IV, I2ETx>::Next(ULONG celt
             internal_to_external_transformer_type::init(rgelt);
             hr = internal_to_external_transformer_type::copy(rgelt, *m_current);
 
-			if(FAILED(hr))
-			{
-				break;
-			}
+            if(FAILED(hr))
+            {
+                break;
+            }
         }}
 
-		if(FAILED(hr))
-		{
-			for(; 0 != *pceltFetched; --*pceltFetched)
-			{
-	            internal_to_external_transformer_type::clear(--rgelt);
-			}
-		}
+        if(FAILED(hr))
+        {
+            for(; 0 != *pceltFetched; --*pceltFetched)
+            {
+                internal_to_external_transformer_type::clear(--rgelt);
+            }
+        }
 
         if(SUCCEEDED(hr))
         {

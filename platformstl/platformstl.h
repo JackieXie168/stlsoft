@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     8th February 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,51 +47,10 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     15
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file platformstl/platformstl.h Root header for the PlatformSTL C/C++ libraries */
-
-/** \weakgroup projects STLSoft Projects
- *
- * \brief The Projects that comprise the STLSoft libraries
- */
-
-/** \defgroup PlatformSTL PlatformSTL
- * \ingroup projects
- *
- * \brief <img src = "platformstl32x32.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<i>Template Software for the UNIX Operating System</i>
- *
- * The philosophy of PlatformSTL (http://platformstl.org/) is essentially the same as that
- * of the STLSoft (http://stlsoft.org/) organisation: providing robust and
- * lightweight software to the UNIX development
- * community. PlatformSTL provides template-based software that builds on that
- * provided by UNIX and STLSoft in order to reduce programmer effort and increase
- * robustness in the use of the UNIX.
- *
- * <b>Namespaces</b>
- *
- * The PlatformSTL namespace <code><b>platformstl</b></code> is actually an alias for the
- * namespace <code><b>stlsoft::platformstl_project</b></code>, and as such all the
- * PlatformSTL project components actually reside within the
- * <code><b>stlsoft</b></code> namespace. However, there is never any need to
- * use the <code><b>stlsoft::platformstl_project</b></code> namespace in your code,
- * and you should always use the alias <code><b>platformstl</b></code>.
- *
- * <b>Dependencies</b>
- *
- * As with <b><i>all</i></b> parts of the STLSoft libraries, there are no
- * dependencies on PlatformSTL binary components and no need to compile PlatformSTL
- * implementation files; PlatformSTL is <b>100%</b> header-only!
- *
- * As with most of the STLSoft sub-projects, PlatformSTL depends only on:
- *
- * - Selected headers from the C standard library, such as  <code><b>wchar.h</b></code>
- * - Selected headers from the C++ standard library, such as <code><b>new</b></code>, <code><b>functional</b></code>
- * - Selected header files of the STLSoft main project
- * - The header files particular to the technology area, in this case the UNIX library headers, such as <code><b>dirent.h</b></code>
- * - The binary (static and dynamic libraries) components particular to the technology area, in this case the UNIX libraries that ship with the operating system and your compiler(s)
- */
+/** \file platformstl/platformstl.h \brief [C, C++] Root header for the \ref group__project__platformstl "PlatformSTL" project. */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * PlatformSTL version
@@ -127,17 +86,21 @@
  * version symbol, e.g.# if _PLATFORMSTL_VER >= _PLATFORMSTL_VER_1_0_1
  */
 
-/// \def _PLATFORMSTL_VER_MAJOR
-/// The major version number of PlatformSTL
+/** \def _PLATFORMSTL_VER_MAJOR
+ * The major version number of PlatformSTL
+ */
 
-/// \def _PLATFORMSTL_VER_MINOR
-/// The minor version number of PlatformSTL
+/** \def _PLATFORMSTL_VER_MINOR
+ * The minor version number of PlatformSTL
+ */
 
-/// \def _PLATFORMSTL_VER_REVISION
-/// The revision version number of PlatformSTL
+/** \def _PLATFORMSTL_VER_REVISION
+ * The revision version number of PlatformSTL
+ */
 
-/// \def _PLATFORMSTL_VER
-/// The current composite version number of PlatformSTL
+/** \def _PLATFORMSTL_VER
+ * The current composite version number of PlatformSTL
+ */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      4
@@ -229,8 +192,36 @@
 #elif defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::platformstl */
-/// The PLATFORMSTL namespace - \c platformstl (aliased to \c stlsoft::platformstl_project) - is
-/// the namespace for the PLATFORMSTL project.
+/** \brief The <code class="namespace">platformstl</code> namespace contains all components
+ *   in the \ref group__project__platformstl "PlatformSTL" project.
+ *
+ * By default, the <code>platformstl</code> namespace is actually an alias for
+ * the namespace <code>stlsoft::platformstl_project</code>, which is where all
+ * the \ref group__project__platformstl "PlatformSTL" components actually reside. This
+ * measure allows all components within the main the
+ * \ref group__project__stlsoft "STLSoft" project (which are defined within
+ * the <code>stlsoft</code> namespace) to be visible to all components
+ * "within" the <code>platformstl</code> namespace. (Otherwise, there would be a
+ * whole lot of onerous qualification throughout the code of all
+ * \ref group__projects "sub-projects".)
+ *
+ * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
+ * and <code>_PLATFORMSTL_NO_NAMESPACE</code> are defined, all 
+ * \ref group__project__platformstl "PlatformSTL" components will be defined in the
+ * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
+ * symbol (not to be confused with the 
+ * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
+ * all \ref group__project__stlsoft "main project" components are to be
+ * defined in the global namespace, and <code>_PLATFORMSTL_NO_NAMESPACE</code>
+ * is <b>not</b> defined, then all \ref group__project__platformstl "PlatformSTL"
+ * components will be defined within a bona fide <code>platformstl</code>
+ * namespace.
+ *
+ * \note This is a vestige of compatibility with compilers with
+ * no (or no sensible) namespace support that is maintained for reasons of
+ * backwards compatiblity and because it is, in <i>rare circumstances</i>, a
+ * useful facility.
+ */
 namespace platformstl
 {
 #else
@@ -243,11 +234,13 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/// \def platformstl_ns_qual(x)
-/// Qualifies with <b>platformstl::</b> if PlatformSTL is using namespaces or, if not, does not qualify
+/** \def platformstl_ns_qual(x)
+ * Qualifies with <b>platformstl::</b> if PlatformSTL is using namespaces or, if not, does not qualify
+ */
 
-/// \def platformstl_ns_using(x)
-/// Declares a using directive (with respect to <b>platformstl</b>) if PlatformSTL is using namespaces or, if not, does nothing
+/** \def platformstl_ns_using(x)
+ * Declares a using directive (with respect to <b>platformstl</b>) if PlatformSTL is using namespaces or, if not, does nothing
+ */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 # define platformstl_ns_qual(x)         ::platformstl::x
@@ -257,11 +250,13 @@ namespace platformstl_project
 # define platformstl_ns_using(x)
 #endif /* !_STLSOFT_NO_NAMESPACE */
 
-/// \def platformstl_ns_qual_std(x)
-/// Qualifies with <b>std::</b> if PlatformSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+/** \def platformstl_ns_qual_std(x)
+ * Qualifies with <b>std::</b> if PlatformSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+ */
 
-/// \def platformstl_ns_using_std(x)
-/// Declares a using directive (with respect to <b>std</b>) if PlatformSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+/** \def platformstl_ns_using_std(x)
+ * Declares a using directive (with respect to <b>std</b>) if PlatformSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+ */
 
 #ifdef STLSOFT_CF_std_NAMESPACE
 # define platformstl_ns_qual_std(x)     ::std::x

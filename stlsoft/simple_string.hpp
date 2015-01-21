@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     25th March 2006
+ * Updated:     8th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MINOR    11
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MINOR    12
 # define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     214
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     215
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
-# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
@@ -1118,6 +1118,18 @@ inline C const *c_str_ptr_null(basic_simple_string<C, T, A> const &s)
 {
     return (0 == s.length()) ? NULL : s.c_str();
 }
+/// \brief char variant of c_str_ptr_null for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_a_t const *c_str_ptr_null_a(basic_simple_string<ss_char_a_t, T, A> const &s)
+{
+    return c_str_ptr_null(s);
+}
+/// \brief wchar_t variant of c_str_ptr_null for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_w_t const *c_str_ptr_null_w(basic_simple_string<ss_char_w_t, T, A> const &s)
+{
+    return c_str_ptr_null(s);
+}
 
 /* c_str_ptr */
 
@@ -1129,6 +1141,18 @@ template<   ss_typename_param_k C
 inline C const *c_str_ptr(basic_simple_string<C, T, A> const &s)
 {
     return s.c_str();
+}
+/// \brief char variant of c_str_ptr for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_a_t const *c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> const &s)
+{
+    return c_str_ptr(s);
+}
+/// \brief wchar_t variant of c_str_ptr for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_w_t const *c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> const &s)
+{
+    return c_str_ptr(s);
 }
 
 /* c_str_data */
@@ -1142,23 +1166,17 @@ inline C const *c_str_data(basic_simple_string<C, T, A> const &s)
 {
     return s.data();
 }
-
-/// \brief Returns the corresponding C-string pointer of \c s
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_char_a_t const *c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> const &s)
+/// \brief char variant of c_str_data for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_a_t const *c_str_data_a(basic_simple_string<ss_char_a_t, T, A> const &s)
 {
-    return s.c_str();
+    return c_str_data(s);
 }
-
-/// \brief Returns the corresponding C-string pointer of \c s
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_char_w_t const *c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> const &s)
+/// \brief wchar_t variant of c_str_data for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_w_t const *c_str_data_w(basic_simple_string<ss_char_w_t, T, A> const &s)
 {
-    return s.c_str();
+    return c_str_data(s);
 }
 
 /* c_str_ptr_len */
@@ -1172,6 +1190,18 @@ inline ss_size_t c_str_len(basic_simple_string<C, T, A> const &s)
 {
     return s.length();
 }
+/// \brief char variant of c_str_len for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_size_t c_str_len_a(basic_simple_string<ss_char_a_t, T, A> const &s)
+{
+    return c_str_len(s);
+}
+/// \brief wchar_t variant of c_str_len for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_size_t c_str_len_w(basic_simple_string<ss_char_w_t, T, A> const &s)
+{
+    return c_str_len(s);
+}
 
 /* c_str_ptr_size */
 
@@ -1183,6 +1213,18 @@ template<   ss_typename_param_k C
 inline ss_size_t c_str_size(basic_simple_string<C, T, A> const &s)
 {
     return c_str_len(s) * sizeof(C);
+}
+/// \brief char variant of c_str_size for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_size_t c_str_size_a(basic_simple_string<ss_char_a_t, T, A> const &s)
+{
+    return c_str_size(s);
+}
+/// \brief wchar_t variant of c_str_size for basic_simple_string specialisations
+template<ss_typename_param_k T, ss_typename_param_k A>
+inline ss_size_t c_str_size_w(basic_simple_string<ss_char_w_t, T, A> const &s)
+{
+    return c_str_size(s);
 }
 
 /* operator << */

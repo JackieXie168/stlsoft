@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,52 +47,11 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     60
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file unixstl/unixstl.h The root header for the \ref UNIXSTL project */
-
-/** \weakgroup projects STLSoft Projects
- *
- * \brief The Projects that comprise the STLSoft libraries
- */
-
-/** \defgroup UNIXSTL UNIXSTL
- * \ingroup projects
- *
- * \brief <img src = "unixstl32x32.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<i>Template Software for the UNIX Operating System</i>
- *
- * The philosophy of UNIXSTL (http://unixstl.org/) is essentially the same as that
- * of the STLSoft (http://stlsoft.org/) organisation: providing robust and
- * lightweight software to the UNIX development
- * community. UNIXSTL provides template-based software that builds on that
- * provided by UNIX and STLSoft in order to reduce programmer effort and increase
- * robustness in the use of the UNIX.
- *
- * <b>Namespaces</b>
- *
- * The UNIXSTL namespace <code><b>unixstl</b></code> is actually an alias for the
- * namespace <code><b>stlsoft::unixstl_project</b></code>, and as such all the
- * UNIXSTL project components actually reside within the
- * <code><b>stlsoft</b></code> namespace. However, there is never any need to
- * use the <code><b>stlsoft::unixstl_project</b></code> namespace in your code,
- * and you should always use the alias <code><b>unixstl</b></code>.
- *
- * <b>Dependencies</b>
- *
- * As with <b><i>all</i></b> parts of the STLSoft libraries, there are no
- * dependencies on UNIXSTL binary components and no need to compile UNIXSTL
- * implementation files; UNIXSTL is <b>100%</b> header-only!
- *
- * As with most of the STLSoft sub-projects, UNIXSTL depends only on:
- *
- * - Selected headers from the C standard library, such as  <code><b>wchar.h</b></code>
- * - Selected headers from the C++ standard library, such as <code><b>new</b></code>, <code><b>functional</b></code>
- * - Selected header files of the STLSoft main project
- * - The header files particular to the technology area, in this case the UNIX library headers, such as <code><b>dirent.h</b></code>
- * - The binary (static and dynamic libraries) components particular to the technology area, in this case the UNIX libraries that ship with the operating system and your compiler(s)
- */
+/** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * UNIXSTL version
@@ -128,17 +87,21 @@
  * version symbol, e.g.# if _UNIXSTL_VER >= _UNIXSTL_VER_1_0_1
  */
 
-/// \def _UNIXSTL_VER_MAJOR
-/// The major version number of UNIXSTL
+/** \def _UNIXSTL_VER_MAJOR
+ * The major version number of UNIXSTL
+ */
 
-/// \def _UNIXSTL_VER_MINOR
-/// The minor version number of UNIXSTL
+/** \def _UNIXSTL_VER_MINOR
+ * The minor version number of UNIXSTL
+ */
 
-/// \def _UNIXSTL_VER_REVISION
-/// The revision version number of UNIXSTL
+/** \def _UNIXSTL_VER_REVISION
+ * The revision version number of UNIXSTL
+ */
 
-/// \def _UNIXSTL_VER
-/// The current composite version number of UNIXSTL
+/** \def _UNIXSTL_VER
+ * The current composite version number of UNIXSTL
+ */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      6
@@ -356,7 +319,12 @@
 /// Defines a runtime assertion
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
-#define UNIXSTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
+#if defined(UNIXSTL_OS_IS_MACOSX) && \
+    defined(__assert)
+# define UNIXSTL_ASSERT(expr)               ((void)((expr) ? 0 : __assert(#expr, __FILE__, __LINE__)))
+#else /* ? UNIXSTL_OS_IS_MACOSX */
+# define UNIXSTL_ASSERT(expr)               STLSOFT_ASSERT(expr)
+#endif /* UNIXSTL_OS_IS_MACOSX */
 
 /// Defines a runtime assertion, with message
 ///
@@ -431,8 +399,36 @@
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::unixstl */
-/// The UNIXSTL namespace - \c unixstl (aliased to \c stlsoft::unixstl_project) - is
-/// the namespace for the UNIXSTL project.
+/** \brief The <code class="namespace">unixstl</code> namespace contains all components
+ *   in the \ref group__project__unixstl "UNIXSTL" project.
+ *
+ * By default, the <code>unixstl</code> namespace is actually an alias for
+ * the namespace <code>stlsoft::unixstl_project</code>, which is where all
+ * the \ref group__project__unixstl "UNIXSTL" components actually reside. This
+ * measure allows all components within the main the
+ * \ref group__project__stlsoft "STLSoft" project (which are defined within
+ * the <code>stlsoft</code> namespace) to be visible to all components
+ * "within" the <code>unixstl</code> namespace. (Otherwise, there would be a
+ * whole lot of onerous qualification throughout the code of all
+ * \ref group__projects "sub-projects".)
+ *
+ * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
+ * and <code>_UNIXSTL_NO_NAMESPACE</code> are defined, all 
+ * \ref group__project__unixstl "UNIXSTL" components will be defined in the
+ * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
+ * symbol (not to be confused with the 
+ * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
+ * all \ref group__project__stlsoft "main project" components are to be
+ * defined in the global namespace, and <code>_UNIXSTL_NO_NAMESPACE</code>
+ * is <b>not</b> defined, then all \ref group__project__unixstl "UNIXSTL"
+ * components will be defined within a bona fide <code>unixstl</code>
+ * namespace.
+ *
+ * \note This is a vestige of compatibility with compilers with
+ * no (or no sensible) namespace support that is maintained for reasons of
+ * backwards compatiblity and because it is, in <i>rare circumstances</i>, a
+ * useful facility.
+ */
 namespace unixstl
 {
 # else
@@ -449,11 +445,13 @@ namespace unixstl_project
 stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/// \def unixstl_ns_qual(x)
-/// Qualifies with <b>unixstl::</b> if UNIXSTL is using namespaces or, if not, does not qualify
+/** \def unixstl_ns_qual(x)
+ * Qualifies with <b>unixstl::</b> if UNIXSTL is using namespaces or, if not, does not qualify
+ */
 
-/// \def unixstl_ns_using(x)
-/// Declares a using directive (with respect to <b>unixstl</b>) if UNIXSTL is using namespaces or, if not, does nothing
+/** \def unixstl_ns_using(x)
+ * Declares a using directive (with respect to <b>unixstl</b>) if UNIXSTL is using namespaces or, if not, does nothing
+ */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # define unixstl_ns_qual(x)             ::unixstl::x
@@ -463,11 +461,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define unixstl_ns_using(x)
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/// \def unixstl_ns_qual_std(x)
-/// Qualifies with <b>std::</b> if UNIXSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+/** \def unixstl_ns_qual_std(x)
+ * Qualifies with <b>std::</b> if UNIXSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+ */
 
-/// \def unixstl_ns_using_std(x)
-/// Declares a using directive (with respect to <b>std</b>) if UNIXSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+/** \def unixstl_ns_using_std(x)
+ * Declares a using directive (with respect to <b>std</b>) if UNIXSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+ */
 
 #ifdef STLSOFT_CF_std_NAMESPACE
 # define unixstl_ns_qual_std(x)         ::std::x
@@ -586,14 +586,16 @@ typedef us_streamoff_t      streamoff_t;        //!< streamoff
 # define unixstl_num_elements(ar)                       UNIXSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Destroys the given instance \c p of the given type (\c t and \c _type)
-///
-/// \deprecated
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
+ */
 #define unixstl_destroy_instance(t, _type, p)           STLSOFT_DESTROY_INSTANCE(t, _type, p)
 
-/// Generates an opaque type with the name \c _htype
-///
-/// \deprecated
+/** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
+ */
 #define unixstl_gen_opaque(_htype)                      STLSOFT_GEN_OPAQUE(_htype)
 
 /* ////////////////////////////////////////////////////////////////////////// */

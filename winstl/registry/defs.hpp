@@ -4,7 +4,7 @@
  * Purpose:     Contains common type and feature discriminations for the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     21st March 2006
+ * Updated:     22nd May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,8 +39,7 @@
 
 
 /// \file winstl/registry/defs.hpp
-///
-/// Contains common type and feature discriminations for the Registry Library
+/// \brief [C++ only] Common type and feature discriminations for the \ref group__library__windows_registry "Windows Registry" Library.
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
@@ -49,7 +48,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_MINOR      0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_REVISION   2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_EDIT       49
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -115,26 +114,32 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \defgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Constants
  */
 
+/// \brief Number of characters in internal buffer of auto_buffer used throughout
+///   the Registry library.
+///
+/// \ingroup group__library__windows_registry
 const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * All the following typedefs may be overriden by use of the pre-processor.
+ */
+
+/** \def _WINSTL_REG_STRING_STRING_A_DEFINED
+ *
+ * \brief If defined, it indicates that the reg_string_a_t string type (for
+ * ANSI character encoding) has been defined.
+ */
+
+/** \def _WINSTL_REG_STRING_STRING_W_DEFINED
+ *
+ * \brief If defined, it indicates that the reg_string_a_t string type (for
+ * Unicode character encoding) has been defined.
  */
 
 #if defined(_WINSTL_REG_STRING_USE_STD_STRING)
@@ -198,25 +203,49 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 
 // ANSI
 
+ /// \brief String type for ANSI character encoding used by the Registry library.
  typedef stlsoft_ns_qual(basic_simple_string)<ws_char_a_t>  reg_string_a_t;
 
 # define _WINSTL_REG_STRING_STRING_A_DEFINED
 
 // Unicode
 
+ /// \brief String type for Unicode character encoding used by the Registry library.
  typedef stlsoft_ns_qual(basic_simple_string)<ws_char_w_t>  reg_string_w_t;
 
 // TCHAR
 
+ /// \brief String type for TCHAR character encoding used by the Registry library.
  typedef stlsoft_ns_qual(basic_simple_string)<TCHAR>        reg_string_t;
 
 # define _WINSTL_REG_STRING_STRING_W_DEFINED
 
 #endif /* string type */
 
-/* ////////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group winstl_reg_library
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+#ifdef _STLSOFT_NO_NAMESPACES
+struct registry_util
+#else /* ? _STLSOFT_NO_NAMESPACES */
+namespace registry_util
+#endif /* _STLSOFT_NO_NAMESPACES */
+{
+
+    typedef reg_string_a_t          string_a_t;
+    typedef reg_string_w_t          string_w_t;
+    typedef reg_string_t            string_t;
+
+    struct shared_handle;
+    struct monitored_shared_handle;
+
+#ifdef _STLSOFT_NO_NAMESPACES
+}; // struct registry_util
+#else /* ? _STLSOFT_NO_NAMESPACES */
+} // namespace registry_util
+#endif /* _STLSOFT_NO_NAMESPACES */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

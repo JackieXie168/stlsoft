@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     28th March 2006
+ * Updated:     11th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MINOR     8
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_REVISION  8
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      199
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_REVISION  10
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      201
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -177,7 +177,7 @@ struct skip_blank_tokens
 /// \brief A traits class for detecting features of the string type and the value type used to specialise string_tokeniser
 ///
 /// This traits class has three responsibilities. First, it defines a number of
-/// member types that are used by the string_tokeniser and 
+/// member types that are used by the string_tokeniser and
 /// string_tokeniser::iterator classes: value_type, size_type, difference_type,
 /// const_iterator_type.
 ///
@@ -211,10 +211,8 @@ public:
     typedef ss_typename_type_k S::const_iterator    const_iterator_type;
     /// The size type
     typedef ss_typename_type_k S::size_type         size_type;
-#if 0
     /// The difference type
     typedef ss_typename_type_k S::difference_type   difference_type;
-#endif /* 0 */
 /// @}
 
 /// \name Operations
@@ -255,7 +253,7 @@ public:
 // string_tokeniser_comparator
 /// \brief A generic comparator, used to specialise string_tokeniser, that covers most string and delimiter types
 ///
-/// This the default tokeniser comparator, providing functionality for both 
+/// This the default tokeniser comparator, providing functionality for both
 /// single-character and fixed string delimiters.
 ///
 /// \param D The delimiter type
@@ -362,6 +360,13 @@ private:
     {
         return 1;
     }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static const_iterator advance_(const_iterator it, delimiter_type const &delim)
+    {
+        return it + get_length_(delim);
+    }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
 /// \name Operations
@@ -378,13 +383,40 @@ public:
     {
         return get_length_(delim);
     }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static ss_bool_t test_start_token_advance(const_iterator &it, const_iterator end, delimiter_type const &delim)
+    {
+        return is_equal_(delim, it) ? (it = advance_(it, delim), true) : false;
+    }
+
+    static ss_bool_t test_end_token_advance(const_iterator &it, const_iterator end, delimiter_type const &delim)
+    {
+        return is_equal_(delim, it) ? (it = advance_(it, delim), true) : false;
+    }
+
+    static const_iterator nonskip_move_to_start(const_iterator it, const_iterator end, delimiter_type const &delim)
+    {
+        return it;
+    }
+
+    static ss_bool_t test_end_token(const_iterator it, const_iterator end, delimiter_type const &delim)
+    {
+        return is_equal_(delim, it);
+    }
+
+    static const_iterator find_next_start(const_iterator it, const_iterator end, delimiter_type const &delim)
+    {
+        return advance_(it, delim);
+    }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 };
 
 /// \brief A class template that provides string tokenising behaviour
 ///
 /// This class takes a string, and a delimiter, and fashions a sequence from
-/// the given string, with each element determined with respect to the 
+/// the given string, with each element determined with respect to the
 /// delimiter
 ///
 /// \param S The string type
@@ -416,20 +448,20 @@ public:
 ///
 /// \htmlonly
 /// <pre>
-/// 
+///
 /// stlsoft::<b>string_tokeniser</b>&lt;std::string, char&gt;  tokens(":abc::def:ghi:jkl::::::::::", ':');
 ///
 /// std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;std::string>(std::cout, ","));
 /// </pre>
 /// \endhtmlonly
 ///
-/// The following code shows a specialisation using 
+/// The following code shows a specialisation using
 /// stlsoft::basic_simple_string&lt;wchar_t&gt; and wchar_t, and
 /// will output: <b>abc-def-ghi-jkl-</b>
 ///
 /// \htmlonly
 /// <pre>
-/// 
+///
 /// typedef stlsoft::basic_simple_string&lt;wchar_t>   string_t;
 /// string_t                                        s(L"|abc||def|ghi|jkl||||||||||");
 /// stlsoft::<b>string_tokeniser</b>&lt;string_t, wchar_t>    tokens(s, L'|');
@@ -439,12 +471,12 @@ public:
 /// \endhtmlonly
 ///
 /// Optionally, you can stipulate that the blanks be retained by specifying the third
-/// template parameter as skip_blank_tokens<false>, as in the following, which will 
+/// template parameter as skip_blank_tokens<false>, as in the following, which will
 /// output: <b>,abc,,def,ghi,jkl,,,,,,,,,,</b>
 ///
 /// \htmlonly
 /// <pre>
-/// 
+///
 /// stlsoft::<b>string_tokeniser</b>&lt;  std::string
 ///                         ,   char
 ///                         ,   stlsoft::skip_blank_tokens&lt;false>
@@ -463,14 +495,14 @@ public:
 ///
 /// #include &lt;stlsoft/<b>string_tokeniser</b>.hpp&gt;
 /// #include &lt;winstl/string_access.hpp&gt;
-/// 
+///
 /// #include &lt;iostream&gt;
 /// #include &lt;iterator&gt;
-/// 
+///
 /// int main()
 /// {
 ///   HWND  hwndButton = ::CreateWindowEx(0, "BUTTON", "+abc++def+ghi+jkl++++++++++", 0, 0, 0, 0, 0, NULL, (HMENU)0, NULL, NULL);
-/// 
+///
 ///   stlsoft::<b>string_tokeniser</b>&lt;  std::string
 ///                           ,   char
 ///                           ,   stlsoft::skip_blank_tokens&lt;true&gt;
@@ -491,7 +523,7 @@ public:
 ///
 /// \htmlonly
 /// <pre>
-/// 
+///
 /// stlsoft::<b>string_tokeniser</b>&lt;std::string, std::string&gt;  tokens("\r\nabc\r\n\r\ndef\r\nghi\r\njkl\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n", "\r\n");
 ///
 /// std::copy(tokens.begin(), tokens.end(), std::ostream_iterator&lt;std::string>(std::cout, ","));
@@ -539,14 +571,12 @@ public:
     /// The character type
     typedef ss_typename_type_k traits_type::value_type      char_type;
     /// The size type
-	///
-	/// \note This no longer relies on a size_type member type of the traits type (T). It is defined
-	/// as size_t
+    ///
+    /// \note This no longer relies on a size_type member type of the traits type (T). It is defined
+    /// as size_t
     typedef ss_size_t                                       size_type;
-#if 0
     /// The difference type
     typedef ss_typename_type_k traits_type::difference_type difference_type;
-#endif /* 0 */
     /// The non-mutating (const) reference type
     typedef const value_type                                const_reference;
     /// The non-mutating (const) iterator type

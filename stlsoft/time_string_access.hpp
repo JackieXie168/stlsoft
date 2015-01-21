@@ -4,7 +4,7 @@
  * Purpose:     String shims for standard time structures.
  *
  * Created:     25th July 2005
- * Updated:     21st March 2006
+ * Updated:     17th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MINOR       1
+# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_EDIT        4
+# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -115,6 +115,11 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr(struct tm const *t)
     return c_str_ptr_a(t);
 }
 
+inline basic_shim_string<ss_char_a_t> c_str_data_a(struct tm const *t)
+{
+    return c_str_ptr_a(t);
+}
+
 inline basic_shim_string<ss_char_a_t> c_str_data(struct tm const *t)
 {
     return c_str_ptr_a(t);
@@ -140,6 +145,11 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr(struct tm const &t)
 inline basic_shim_string<ss_char_a_t> c_str_data(struct tm const &t)
 {
     return c_str_data(&t);
+}
+
+inline basic_shim_string<ss_char_a_t> c_str_data_a(struct tm const &t)
+{
+    return c_str_data_a(&t);
 }
 
 inline ss_size_t c_str_len(struct tm const &/* t */)

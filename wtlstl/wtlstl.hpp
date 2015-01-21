@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,51 +48,10 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 1
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     27
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file wtlstl/wtlstl.hpp The root header for the \ref WTLSTL project */
-
-/** \weakgroup projects STLSoft Projects
- *
- * \brief The Projects that comprise the STLSoft libraries
- */
-
-/** \defgroup WTLSTL WTLSTL
- * \ingroup projects
- *
- * \brief <img src = "wtlstl32x32.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<i>Template Software for the Window Template Library</i>
- *
- * The philosophy of WTLSTL (http://wtlstl.org/) is essentially the same as that
- * of the STLSoft (http://stlsoft.org/) organisation: providing robust and
- * lightweight software to the Window Template Library (WTL) development
- * community. WTLSTL provides template-based software that builds on that
- * provided by ATL and STLSoft in order to reduce programmer effort and increase
- * robustness in the use of the ATL.
- *
- * <b>Namespaces</b>
- *
- * The WTLSTL namespace <code><b>wtlstl</b></code> is actually an alias for the
- * namespace <code><b>stlsoft::wtlstl_project</b></code>, and as such all the
- * WTLSTL project components actually reside within the
- * <code><b>stlsoft</b></code> namespace. However, there is never any need to
- * use the <code><b>stlsoft::wtlstl_project</b></code> namespace in your code,
- * and you should always use the alias <code><b>wtlstl</b></code>.
- *
- * <b>Dependencies</b>
- *
- * As with <b><i>all</i></b> parts of the STLSoft libraries, there are no
- * dependencies on WTLSTL binary components and no need to compile WTLSTL
- * implementation files; WTLSTL is <b>100%</b> header-only!
- *
- * As with most of the STLSoft sub-projects, WTLSTL depends only on:
- *
- * - Selected headers from the C standard library, such as  <code><b>wchar.h</b></code>
- * - Selected headers from the C++ standard library, such as <code><b>new</b></code>, <code><b>functional</b></code>
- * - Selected header files of the STLSoft main project
- * - The header files particular to the technology area, in this case the ATL library headers, such as <code><b>atlbase.h</b></code>
- * - The binary (static and dynamic libraries) components particular to the technology area, in this case the ATL libraries that ship with the operating system and your compiler(s)
- */
+/** \file wtlstl/wtlstl.hpp \brief [C++ only; requires WTL library] The root header for the \ref group__project__wtlstl "WTLSTL" project. */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * WTLSTL version
@@ -128,17 +87,21 @@
  * version symbol, e.g. #if _WTLSTL_VER >= _WTLSTL_VER_1_0_1
  */
 
-/// \def _WTLSTL_VER_MAJOR
-/// The major version number of WTLSTL
+/** \def _WTLSTL_VER_MAJOR
+ * The major version number of WTLSTL
+ */
 
-/// \def _WTLSTL_VER_MINOR
-/// The minor version number of WTLSTL
+/** \def _WTLSTL_VER_MINOR
+ * The minor version number of WTLSTL
+ */
 
-/// \def _WTLSTL_VER_REVISION
-/// The revision version number of WTLSTL
+/** \def _WTLSTL_VER_REVISION
+ * The revision version number of WTLSTL
+ */
 
-/// \def _WTLSTL_VER
-/// The current composite version number of WTLSTL
+/** \def _WTLSTL_VER
+ * The current composite version number of WTLSTL
+ */
 
 #define _WTLSTL_VER_MAJOR       1
 #define _WTLSTL_VER_MINOR       1
@@ -359,6 +322,36 @@
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::wtlstl */
+/** \brief The <code class="namespace">wtlstl</code> namespace contains all components
+ *   in the \ref group__project__wtlstl "WTLSTL" project.
+ *
+ * By default, the <code>wtlstl</code> namespace is actually an alias for
+ * the namespace <code>stlsoft::wtlstl_project</code>, which is where all
+ * the \ref group__project__wtlstl "WTLSTL" components actually reside. This
+ * measure allows all components within the main the
+ * \ref group__project__stlsoft "STLSoft" project (which are defined within
+ * the <code>stlsoft</code> namespace) to be visible to all components
+ * "within" the <code>wtlstl</code> namespace. (Otherwise, there would be a
+ * whole lot of onerous qualification throughout the code of all
+ * \ref group__projects "sub-projects".)
+ *
+ * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
+ * and <code>_WTLSTL_NO_NAMESPACE</code> are defined, all 
+ * \ref group__project__wtlstl "WTLSTL" components will be defined in the
+ * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
+ * symbol (not to be confused with the 
+ * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
+ * all \ref group__project__stlsoft "main project" components are to be
+ * defined in the global namespace, and <code>_WTLSTL_NO_NAMESPACE</code>
+ * is <b>not</b> defined, then all \ref group__project__wtlstl "WTLSTL"
+ * components will be defined within a bona fide <code>wtlstl</code>
+ * namespace.
+ *
+ * \note This is a vestige of compatibility with compilers with
+ * no (or no sensible) namespace support that is maintained for reasons of
+ * backwards compatiblity and because it is, in <i>rare circumstances</i>, a
+ * useful facility.
+ */
 namespace wtlstl
 {
 # else
@@ -377,11 +370,13 @@ namespace wtlstl_project
 stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* !_WTLSTL_NO_NAMESPACE */
 
-/// \def wtlstl_ns_qual(x)
-/// Qualifies with <b>wtlstl::</b> if WTLSTL is using namespaces or, if not, does not qualify
+/** \def wtlstl_ns_qual(x)
+ * Qualifies with <b>wtlstl::</b> if WTLSTL is using namespaces or, if not, does not qualify
+ */
 
-/// \def wtlstl_ns_using(x)
-/// Declares a using directive (with respect to <b>wtlstl</b>) if WTLSTL is using namespaces or, if not, does nothing
+/** \def wtlstl_ns_using(x)
+ * Declares a using directive (with respect to <b>wtlstl</b>) if WTLSTL is using namespaces or, if not, does nothing
+ */
 
 #ifndef _WTLSTL_NO_NAMESPACE
 # define wtlstl_ns_qual(x)          ::wtlstl::x
@@ -391,11 +386,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define wtlstl_ns_using(x)
 #endif /* !_WTLSTL_NO_NAMESPACE */
 
-/// \def wtlstl_ns_qual_std(x)
-/// Qualifies with <b>std::</b> if WTLSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+/** \def wtlstl_ns_qual_std(x)
+ * Qualifies with <b>std::</b> if WTLSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+ */
 
-/// \def wtlstl_ns_using_std(x)
-/// Declares a using directive (with respect to <b>std</b>) if WTLSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+/** \def wtlstl_ns_using_std(x)
+ * Declares a using directive (with respect to <b>std</b>) if WTLSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+ */
 
 #ifdef STLSOFT_CF_std_NAMESPACE
 # define wtlstl_ns_qual_std(x)      ::std::x
@@ -405,11 +402,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define wtlstl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
-/// \def wtlstl_ns_qual_atl(x)
-/// Qualifies with <b>ATL::</b> if WTLSTL is being translated in the context of ATL being within the <b>ATL</b> namespace or, if not, does not qualify
+/** \def wtlstl_ns_qual_atl(x)
+ * Qualifies with <b>ATL::</b> if WTLSTL is being translated in the context of ATL being within the <b>ATL</b> namespace or, if not, does not qualify
+ */
 
-/// \def wtlstl_ns_using_atl(x)
-/// Declares a using directive (with respect to <b>ATL</b>) if WTLSTL is being translated in the context of ATL being within the <b>ATL</b> namespace or, if not, does nothing
+/** \def wtlstl_ns_using_atl(x)
+ * Declares a using directive (with respect to <b>ATL</b>) if WTLSTL is being translated in the context of ATL being within the <b>ATL</b> namespace or, if not, does nothing
+ */
 
 #ifndef ATL_NO_NAMESPACE
 # define wtlstl_ns_qual_atl(x)       ::ATL::x
@@ -495,14 +494,16 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 # define wtlstl_num_elements(ar)						WTLSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Destroys the given instance \c p of the given type (\c t and \c _type)
-///
-/// \deprecated
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
+ */
 #define wtlstl_destroy_instance(t, _type, p)            STLSOFT_DESTROY_INSTANCE(t, _type, p)
 
-/// Generates an opaque type with the name \c _htype
-///
-/// \deprecated
+/** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
+ */
 #define wtlstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
 /* ////////////////////////////////////////////////////////////////////////// */

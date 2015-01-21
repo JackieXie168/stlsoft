@@ -1,5 +1,5 @@
 
-// Updated: 24th February 2006
+// Updated: 25th May 2006
 
 #if !defined(WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE)
 # error This file cannot be directly included, and should only be included within winstl/registry/reg_value.hpp
@@ -19,7 +19,8 @@ namespace unittest
         template <ss_typename_param_k C>
         void test_winstl_registry_with_late_instantiation(C const *)
         {
-#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+#if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    !defined(STLSOFT_COMPILER_IS_DMC)
             if(0)
             {
                 typedef basic_reg_key<  C

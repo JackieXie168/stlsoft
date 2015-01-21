@@ -4,7 +4,7 @@
  * Purpose:     Error info functions.
  *
  * Created:     5th Feburary 2004
- * Updated:     21st March 2006
+ * Updated:     8th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MAJOR      3
-# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MINOR      1
-# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_REVISION   1
-# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       27
+# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MINOR      2
+# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_REVISION   2
+# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -146,7 +146,10 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_w_(   cs_char_w_t const   *descrip
                 hr = COMSTL_ITF_CALL(pCEI)->SetHelpContext(COMSTL_ITF_THIS(pCEI) *helpContext);
             }
 
-            STLSOFT_NS_GLOBAL(SetErrorInfo)(0, pEI);
+            if(SUCCEEDED(hr))
+            {
+                hr = STLSOFT_NS_GLOBAL(SetErrorInfo)(0, pEI);
+            }
 
             COMSTL_ITF_CALL(pEI)->Release(COMSTL_ITF_THIS0(pEI));
         }
@@ -313,6 +316,15 @@ inline HRESULT set_error_info(cs_char_w_t const *description)
     return comstl__set_error_info_description_w(description);
 }
 
+/// \brief Sets the description and source of the current error object to the given ANSI string
+///
+/// \param description The error description
+/// \param source The error source
+inline HRESULT set_error_info(cs_char_a_t const *description, cs_char_a_t const *source)
+{
+    return comstl__set_error_info_description_and_source_a(description, source);
+}
+
 /// \brief Sets the description and source of the current error object to the given Unicode string
 ///
 /// \param description The error description
@@ -320,6 +332,16 @@ inline HRESULT set_error_info(cs_char_w_t const *description)
 inline HRESULT set_error_info(cs_char_w_t const *description, cs_char_w_t const *source)
 {
     return comstl__set_error_info_description_and_source_w(description, source);
+}
+
+/// \brief Sets the description, source and GUID of the current error object to the given ANSI string
+///
+/// \param description The error description
+/// \param source The error source
+/// \param guid The GUID of the interface in error
+inline HRESULT set_error_info(cs_char_a_t const *description, cs_char_a_t const *source, REFGUID guid)
+{
+    return comstl__set_error_info_a_(description, source, &guid, NULL, NULL);
 }
 
 /// \brief Sets the description, source and GUID of the current error object to the given Unicode string

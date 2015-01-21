@@ -4,7 +4,7 @@
  * Purpose:     compiler_traits classes.
  *
  * Created:     15th November 2003
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,7 +61,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include stlsoft/compiler_optimisation_traits.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/compiler_optimisation_traits.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_COMPILER_OPTIMISATION_TRAITS

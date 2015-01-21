@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Watcom C/C++.
  *
  * Created:     7th February 2003
- * Updated:     21st March 2006
+ * Updated:     28th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        53
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -140,7 +140,8 @@
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 /* Exception support */
-# ifdef __CPPUNWIND
+# if defined(_CPPUNWIND) || \
+     defined(__CPPUNWIND)
 #  define __STLSOFT_CF_EXCEPTION_SUPPORT
 #  define STLSOFT_CF_EXCEPTION_SUPPORT
 # else
@@ -215,7 +216,7 @@
 //#define __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 //#define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 
-//#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT	/* obsolete */
+//#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT  /* obsolete */
 //#define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 # ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT

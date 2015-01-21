@@ -4,7 +4,7 @@
  * Purpose:     Compile-time template constraints templates.
  *
  * Created:     19th November 1998
- * Updated:     21st March 2006
+ * Updated:     7th April 2006
  *
  * Thanks:      To Peter Bannister for having the clear thinking to see the
  *              obvious (but only in hindsight) tactic of overloading the
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MINOR      1
-# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_REVISION   2
-# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       85
+# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_REVISION   3
+# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,9 +63,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF
+# include <stlsoft/meta/size_of.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

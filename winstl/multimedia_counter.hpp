@@ -4,7 +4,7 @@
  * Purpose:     WinSTL multimedia performance counter class.
  *
  * Created:     31st July 2002
- * Updated:     21st March 2006
+ * Updated:     26th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/multimedia_counter.hpp
-///
-/// WinSTL multimedia performance counter class.
+/** \file winstl/multimedia_counter.hpp
+ * \brief [C++ only] Definition of the 
+ *  \link winstl::multimedia_counter multimedia_counter\endlink class.
+ *  (\ref group__library__performance "Performance" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_MULTIMEDIA_COUNTER
 #define WINSTL_INCL_WINSTL_HPP_MULTIMEDIA_COUNTER
@@ -49,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_MULTIMEDIA_COUNTER_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_MULTIMEDIA_COUNTER_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_MULTIMEDIA_COUNTER_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_MULTIMEDIA_COUNTER_EDIT        30
+# define WINSTL_VER_WINSTL_HPP_MULTIMEDIA_COUNTER_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -83,29 +85,18 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_performance Performance Library
-/// \ingroup libraries
-/// \brief This library provides performance measuring facilities
-
-/// \weakgroup winstl_perf_library Performance Library (WinSTL)
-/// \ingroup WinSTL libraries_performance
-/// \brief This library provides performance measuring facilities for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // class multimedia_counter
-/// \brief A low-cost, low-resolution performance counter
-///
-/// This class provides low-resolution, but low-latency, performance monitoring
-/// based on the multimedia timer.
+/** \brief A low-cost, low-resolution performance counter
+ *
+ * \ingroup group__library__performance
+ *
+ * This class provides low-resolution, but low-latency, performance monitoring
+ * based on the multimedia timer.
+ */
 class multimedia_counter
 {
 public:
@@ -169,6 +160,8 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 // Implementation
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline multimedia_counter::multimedia_counter()
 {
     // Note that the constructor does nothing, for performance reasons. Calling
@@ -208,9 +201,7 @@ inline multimedia_counter::interval_type multimedia_counter::get_microseconds() 
     return get_period_count() * interval_type(1000);
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_perf_library
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

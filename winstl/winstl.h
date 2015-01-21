@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st March 2006
+ * Updated:     26th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,63 +41,17 @@
 
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 #define WINSTL_INCL_WINSTL_H_WINSTL
-#define WINSTL_INCL_H_WINSTL
+#define WINSTL_INCL_H_WINSTL    /*!< \brief Definition of previous include-guard symbol for winstl/winstl.h, for backwards compatibility. */
 
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        142
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        146
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file winstl/winstl.h The root header for the \ref WinSTL project */
-
-/** \weakgroup projects STLSoft Projects
- *
- * \brief The Projects that comprise the STLSoft libraries
- */
-
-/** \defgroup WinSTL WinSTL
- * \ingroup projects
- *
- * \brief <img src = "winstl32x32.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<i>Where the Standard Template Library meets the Win32 API</i>
- *
- * The philosophy of WinSTL (http://winstl.org/) is essentially the same as that
- * of the STLSoft (http://stlsoft.org/) organisation: providing robust and
- * lightweight software to the Win32 API development
- * community. WinSTL provides template-based software that builds on that
- * provided by Win and STLSoft in order to reduce programmer effort and increase
- * robustness in the use of the Win.
- *
- * <b>Namespaces</b>
- *
- * The WinSTL namespace <code><b>winstl</b></code> is actually an alias for the
- * namespace <code><b>stlsoft::winstl_project</b></code>, and as such all the
- * WinSTL project components actually reside within the
- * <code><b>stlsoft</b></code> namespace. However, there is never any need to
- * use the <code><b>stlsoft::winstl_project</b></code> namespace in your code,
- * and you should always use the alias <code><b>winstl</b></code>.
- *
- * <b>Dependencies</b>
- *
- * As with <b><i>all</i></b> parts of the STLSoft libraries, there are no
- * dependencies on WinSTL binary components and no need to compile WinSTL
- * implementation files; WinSTL is <b>100%</b> header-only!
- *
- * As with most of the STLSoft sub-projects, WinSTL depends only on:
- *
- * - Selected headers from the C standard library, such as  <code><b>wchar.h</b></code>
- * - Selected headers from the C++ standard library, such as <code><b>new</b></code>, <code><b>functional</b></code>
- * - Selected header files of the STLSoft main project
- * - The header files particular to the technology area, in this case the Win32 API library headers, such as <code><b>objbase.h</b></code>
- * - The binary (static and dynamic libraries) components particular to the technology area, in this case the Win32 API libraries that ship with the operating system and your compiler(s)
- *
- * In addition, some parts of the libraries exhibit different behaviour when
- * translated in different contexts, such as the value of <code><b>_WIN32_WINNT</b></code>,
- * or with <code><b>ntsecapi.h</b></code> include. In <b><i>all</i></b>
- * cases the libraries function correctly in whatever context they are compiled.
- */
+/** \file winstl/winstl.h \brief [C, C++] The root header for the \ref group__project__winstl "WinSTL" project. */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * WinSTL version
@@ -133,17 +87,21 @@
  * version symbol, e.g. #if _WINSTL_VER >= _WINSTL_VER_1_0_1
  */
 
-/// \def _WINSTL_VER_MAJOR
-/// The major version number of WinSTL
+/** \def _WINSTL_VER_MAJOR
+ * \brief The major version number of the \ref group__project__winstl project "WinSTL" project
+ */
 
-/// \def _WINSTL_VER_MINOR
-/// The minor version number of WinSTL
+/** \def _WINSTL_VER_MINOR
+ * \brief The minor version number of the \ref group__project__winstl project "WinSTL" project
+ */
 
-/// \def _WINSTL_VER_REVISION
-/// The revision version number of WinSTL
+/** \def _WINSTL_VER_REVISION
+ * \brief The revision version number of the \ref group__project__winstl project "WinSTL" project
+ */
 
-/// \def _WINSTL_VER
-/// The current composite version number of WinSTL
+/** \def _WINSTL_VER
+ * \brief The current composite version number of the \ref group__project__winstl project "WinSTL" project
+ */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       8
@@ -192,7 +150,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <windows.h>    // Windows base header
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER == 1100
+# include <wtypes.h>    /* This is here to fix a thoroughly inexplicable VC 5 bug */
+#endif /* compiler */
+#include <windows.h>    /* Windows base header */
 
 /* Intel is super pernickety about conversions, so we need to bring out the union_cast. */
 #if defined(STLSOFT_COMPILER_IS_INTEL) && \
@@ -217,22 +179,38 @@
 
 #ifdef __cplusplus
 # undef     INVALID_HANDLE_VALUE
+/** \def INVALID_HANDLE_VALUE
+ * \brief A C++-only redifinition of this \#define which uses reinterpret_cast to
+ *  avoid C-style cast warnings.
+ */
 # if defined(STLSOFT_COMPILER_IS_INTEL)
 #  define   INVALID_HANDLE_VALUE        stlsoft_ns_qual(make_union_cast)<HANDLE>(-1)
 # else /* ? compiler */
 #  define   INVALID_HANDLE_VALUE        reinterpret_cast<HANDLE>(-1)
 # endif /* compiler */
 
+/** \def MAKEINTRESOURCE
+ * \brief A C++-only redifinition of this \#define which uses C++ cast operators to
+ *  avoid C-style cast warnings.
+ */
 # undef     MAKEINTRESOURCE
 # define    MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
 
+/** \def MAKELANGID
+ * \brief A C++-only redifinition of this \#define which uses C++ cast operators to
+ *  avoid C-style cast warnings.
+ */
 # undef     MAKELANGID
 # define    MAKELANGID(p, s)            ((static_cast<DWORD>(static_cast<WORD>(s)) << 10) | static_cast<WORD>(p))
 
 
-//# undef     LOWORD
-//# define    LOWORD(l)                   static_cast<WORD>(static_cast<DWORD>(l) & 0xffff)
+/* # undef     LOWORD */
+/* # define    LOWORD(l)                   static_cast<WORD>(static_cast<DWORD>(l) & 0xffff) */
 
+/** \def INVALID_FILE_SIZE
+ * \brief A C++-only redifinition of this \#define which uses C++ cast operators to
+ *  avoid C-style cast warnings.
+ */
 # undef     INVALID_FILE_SIZE
 # define    INVALID_FILE_SIZE           static_cast<DWORD>(0xFFFFFFFF)
 
@@ -332,22 +310,35 @@
  * The macro winstl_assert provides standard debug-mode assert functionality.
  */
 
-/// Defines a runtime assertion
-///
-/// \param expr Must be non-zero, or an assertion will be fired
-#define WINSTL_ASSERT(expr)                 STLSOFT_ASSERT(expr)
+/** \brief Defines an assertion construct for runtime verification.
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ *
+ * \remarks By default this is defined to \ref STLSOFT_ASSERT. However, this
+ *  can be overriden if a prior definition is encountered, allowing the
+ *  runtime assertion of WinSTL components to use a different mechanism to
+ *  those in the other \ref group__projects "projects".
+ */
+#ifndef WINSTL_ASSERT
+# define WINSTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
+#endif /* !WINSTL_ASSERT */
 
-/// Defines a runtime assertion, with message
-///
-/// \param expr Must be non-zero, or an assertion will be fired
-/// \param msg The literal character string message to be included in the assertion
+/** \brief Defines a runtime assertion, with message
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ */
 #define WINSTL_MESSAGE_ASSERT(msg, expr)    STLSOFT_MESSAGE_ASSERT(msg, expr)
 
-/// Defines a compile-time assertion
-///
-/// \param expr Must be non-zero, or compilation will fail
+/** \def WINSTL_STATIC_ASSERT(expr)
+ *
+ * \brief Defines an assertion construct for compile-time verification.
+ *
+ * \param expr A compile-time evaluatable condition that must be non-zero, or compilation will fail.
+ *
+ * \remarks This is defined to \ref STLSOFT_STATIC_ASSERT.
+ */
 #define WINSTL_STATIC_ASSERT(expr)          STLSOFT_STATIC_ASSERT(expr)
-
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -410,8 +401,36 @@
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
-/// The WinSTL namespace - \c winstl (aliased to \c stlsoft::winstl_project) - is
-/// the namespace for the WinSTL project.
+/** \brief The <code class="namespace">winstl</code> namespace contains all components
+ *   in the \ref group__project__winstl "WinSTL" project.
+ *
+ * By default, the <code>winstl</code> namespace is actually an alias for
+ * the namespace <code>stlsoft::winstl_project</code>, which is where all
+ * the \ref group__project__winstl "WinSTL" components actually reside. This
+ * measure allows all components within the main the
+ * \ref group__project__stlsoft "STLSoft" project (which are defined within
+ * the <code>stlsoft</code> namespace) to be visible to all components
+ * "within" the <code>winstl</code> namespace. (Otherwise, there would be a
+ * whole lot of onerous qualification throughout the code of all
+ * \ref group__projects "sub-projects".)
+ *
+ * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
+ * and <code>_WINSTL_NO_NAMESPACE</code> are defined, all 
+ * \ref group__project__winstl "WinSTL" components will be defined in the
+ * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
+ * symbol (not to be confused with the 
+ * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
+ * all \ref group__project__stlsoft "main project" components are to be
+ * defined in the global namespace, and <code>_WINSTL_NO_NAMESPACE</code>
+ * is <b>not</b> defined, then all \ref group__project__winstl "WinSTL"
+ * components will be defined within a bona fide <code>winstl</code>
+ * namespace.
+ *
+ * \note This is a vestige of compatibility with compilers with
+ * no (or no sensible) namespace support that is maintained for reasons of
+ * backwards compatiblity and because it is, in <i>rare circumstances</i>, a
+ * useful facility.
+ */
 namespace winstl
 {
 # else
@@ -428,11 +447,47 @@ namespace winstl_project
 stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/// \def winstl_ns_qual(x)
-/// Qualifies with <b>winstl::</b> if WinSTL is using namespaces or, if not, does not qualify
+/** \def winstl_ns_qual(x)
+ * \brief Namespace qualification macro for 
+ *  \ref group__project__winstl "WinSTL" components that generates correct
+ *  code regardless of whether the <code>winstl</code> namespace is being
+ *  suppressed or enabled.
+ *
+ * If the <span class="code">winstl</span> namespace is being suppressed - by the
+ * definition of <code>_WINSTL_NO_NAMESPACE</code> or 
+ * <code>_WINSTL_NO_NAMESPACES</code> or
+ * <code>_STLSOFT_NO_NAMESPACES</code>; detectable by the presence of the
+ * symbol <code>_WINSTL_NO_NAMESPACE</code> - then
+ * <code>winstl_ns_using(x)</code> is equivalent to writing <code>x</code>.
+ * If the <code>winstl</code> namespace is not being suppressed then
+ * <code>winstl_ns_using(x)</code> is equivalent to writing <code>winstl::x</code>.
+ *
+ * For example, the following code will compile correctly if
+ * <code>winstl</code> is suppressed or not:
+\htmlonly
+<pre>
+#include &lt;winstl/error_desc.hpp>
+#include &lt;stdio.h>
 
-/// \def winstl_ns_using(x)
-/// Declares a using directive (with respect to <b>winstl</b>) if WinSTL is using namespaces or, if not, does nothing
+int main()
+{
+  winstl_ns_qual(reg_key)   key(HKEY_CURRENT_USER, "SOFTWARE\\AcmeLib\\AcmeApp");
+
+  return 0;
+}
+</pre>
+\endhtmlonly
+ *
+ * \remarks These macros are used throughout the <i>implementation</i> of the
+ *  STLSoft libraries. However, we do not recommend their use in application
+ *  code for the simple reason that they are ugly and do not represent a
+ *  widely recognised idiom. Of course, if they suit your purposes, then by
+ *  all means ...
+ */
+
+/** \def winstl_ns_using(x)
+ * \brief Declares a using directive (with respect to <b>winstl</b>) if WinSTL is using namespaces or, if not, does nothing
+ */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # define winstl_ns_qual(x)          ::winstl::x
@@ -442,11 +497,15 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define winstl_ns_using(x)
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/// \def winstl_ns_qual_std(x)
-/// Qualifies with <b>std::</b> if WinSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify
+/** \def winstl_ns_qual_std(x)
+ * \brief Qualifies with <b>std::</b> if WinSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does not qualify.
+ *
+ * \see \ref page__namespace_suppression
+ */
 
-/// \def winstl_ns_using_std(x)
-/// Declares a using directive (with respect to <b>std</b>) if WinSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
+/** \def winstl_ns_using_std(x)
+ * Declares a using directive (with respect to <b>std</b>) if WinSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing.
+ */
 
 #ifdef STLSOFT_CF_std_NAMESPACE
 # define winstl_ns_qual_std(x)      ::std::x
@@ -537,14 +596,22 @@ typedef ws_streamoff_t      streamoff_t;        //!< streamoff
 
 /** \def WINSTL_CONST_NT_MAX_PATH
  *
- * Defines the number of
+ * \brief Defines the number of maximum length of a path specification on
+ *  Windows NT: 4 + 32767.
  *
- * \note Accessing long path names The value is 4 + 32767, since the
+ * Windows NT supports so-called "long names" in the Unicode variants (e.g.
+ * <code>CreateFileW()</code>) of many of its file-system API functions. The
+ * maximum length of a long name is 32767, and a long name must be prefixed
+ * with the 4-character sequence <code>\\\\\?\\</code>. This constant can be
+ * used when there is a need to allocate the maximum possible size for a
+ * file system path. 
  */
 //
 #define WINSTL_CONST_NT_MAX_PATH            (4 + 32767)
 
 #ifdef __cplusplus
+/** \brief C++ constant equivalent to \ref WINSTL_CONST_NT_MAX_PATH.
+ */
 const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
 #endif /* __cplusplus */
 
@@ -579,22 +646,32 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
 # define winstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Evaluates, at compile time, to the number of elements within the given vector entity
-///
-/// \param ar An array whose dimension is to be evaluated
+/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
+ *
+ * \param ar An array whose dimension is to be evaluated
+ *
+ * \remarks This is defined to \ref STLSOFT_NUM_ELEMENTS.
+ *
+ * \see The underlying technique that is used to proscribe the erroneous application of
+ *  this construct to pointers and user-defined types that support subscript operators
+ *  is described in Chapter 14 of
+ *  <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>.
+ */
 #define WINSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define winstl_num_elements(ar)                        WINSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Destroys the given instance \c p of the given type (\c t and \c _type)
-///
-/// \deprecated
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
+ */
 #define winstl_destroy_instance(t, _type, p)            STLSOFT_DESTROY_INSTANCE(t, _type, p)
 
-/// Generates an opaque type with the name \c _htype
-///
-/// \deprecated
+/** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
+ *
+ * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
+ */
 #define winstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -602,17 +679,57 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
  */
 
 #ifdef __cplusplus
-inline bool BOOL2bool(BOOL b)
+/** \brief Safely converts a <code>BOOL</code> to a <code>bool</code>.
+ *
+ * \param bVal The instance of <code>BOOL</code> to be converted to <code>bool</code>.
+ *
+ * \retval false If <code>bVal</code> is 0.
+ * \retval true If <code>bVal</code> is non-0.
+ *
+ * \note In C compilation, this is defined as a functionally equivalent macro.
+ *
+ * \remark Because all compilers (that we know about) represent a 
+ *  <code>bool</code> as one byte and <code>BOOL</code> (which is a typedef
+ *  from <code>int</code>) as more than one byte, safely converting from
+ *  <code>BOOL</code> to <code>bool</code> has to involve a runtime test
+ *  against 0 that cannot be inlined by the compiler. Consequently, use of
+ *  BOOL2bool() should be avoided where possible, and extensive use of it
+ *  in your code base likely represents misuse. (<b>See</b> section 13.4.2
+ *  of <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>
+ *  for a discussion of these issues.)
+ */
+inline bool BOOL2bool(BOOL bVal)
 {
-    return b != FALSE;
+    return bVal != FALSE;
 }
-inline BOOL bool2BOOL(bool b)
+/** \brief Safely converts a <code>bool</code> to a <code>BOOL</code>.
+ *
+ * \param bVal The instance of <code>bool</code> to be converted to <code>BOOL</code>.
+ *
+ * \retval 0 If <code>bVal</code> is <code>false</code>.
+ * \retval 1 If <code>bVal</code> is <code>true</code>.
+ *
+ * \note In C compilation, this is defined as a functionally equivalent macro.
+ *
+ * \remark Although use of the <code>BOOL</code> type indicates that a
+ *  <b>"false"</b> condition is represented by a value of 0, and all other values
+ *  represent <b>"true"</b> it is not the case that all client code is implemented
+ *  as such. In order to avoid fruitless debates with users of STLSoft who
+ *  may be unaware of this convention, or unwilling or unable to accept it,
+ *  bool2BOOL() implemented to ensure that the return value is only ever 0 or 1.
+ *  Consequently, use of this function should be avoided where possible, and
+ *  extensive use of it in your code base likely represents misuse.
+ *  (<b>See</b> section 13.4.2 of
+ *  <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>
+ *  for a discussion of these issues.)
+ */
+inline BOOL bool2BOOL(bool bVal)
 {
-    return b != false;
+    return bVal != false;
 }
 #else
-# define BOOL2bool(b)               stlsoft_static_cast(bool, ((b) != FALSE))
-# define bool2BOOL(b)               stlsoft_static_cast(BOOL, ((b) != false))
+# define BOOL2bool(bVal)            stlsoft_static_cast(bool, ((bVal) != FALSE))
+# define bool2BOOL(bVal)            stlsoft_static_cast(BOOL, ((bVal) != false))
 #endif /* __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////////// */

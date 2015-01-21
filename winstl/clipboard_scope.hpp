@@ -4,7 +4,7 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     25th March 2006
+ * Updated:     24th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_MAJOR    1
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_MINOR    5
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_EDIT     14
+# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_SCOPE_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 # include <winstl/memory/global_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
-# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_FUNCTIONS
 # include <stlsoft/cstring_functions.hpp>

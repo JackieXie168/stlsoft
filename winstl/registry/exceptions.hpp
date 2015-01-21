@@ -4,7 +4,7 @@
  * Purpose:     Exceptions used by the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,8 +39,7 @@
 
 
 /// \file winstl/registry/exceptions.hpp
-///
-/// Exceptions used by the Registry library.
+/// \brief [C++ only] Exceptions used by the \ref group__library__windows_registry "Windows Registry" Library.
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_EXCEPTIONS
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_EXCEPTIONS
@@ -48,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_REVISION 3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_EDIT     4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_REVISION 4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -87,16 +86,9 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// Root exception thrown by the Registry library
+/// \brief Root exception thrown by the \ref group__library__windows_registry "Windows Registry" Library.
+///
+/// \ingroup group__library__windows_registry
 class registry_exception
     : public windows_exception
 {
@@ -110,13 +102,25 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// \brief Constructs an instance from a reason and an error code
     registry_exception(char const *reason, error_code_type err)
         : windows_exception(reason, err)
+    {}
+    /// \brief Constructs an instance from a reason and an error code
+    ///
+    /// \note Since the Windows Registry API error code type is LONG
+    ///  this provides a suitable overload that does not incur compiler
+    ///  warnings. The casting to an unsigned type within the body is
+    ///  entirely benign.
+    registry_exception(char const *reason, LONG err)
+        : windows_exception(reason, static_cast<error_code_type>(err))
     {}
 /// @}
 };
 
-/// Exception class representing a mismatch of value type
+/// \brief Exception class representing a mismatch of value type
+///
+/// \ingroup group__library__windows_registry
 class wrong_value_type_exception
     : public registry_exception
 {
@@ -139,6 +143,7 @@ public:
 /// \name Accessors
 /// @{
 public:
+    /// \brief The actual type of the value
     ws_dword_t actual_value_type() const
     {
         return m_valueType;
@@ -158,7 +163,9 @@ private:
 /// @}
 };
 
-/// Exception class representing insufficient rights to access a key
+/// \brief Exception class representing insufficient rights to access a key
+///
+/// \ingroup group__library__windows_registry
 class access_denied_exception
     : public registry_exception
 {
@@ -183,10 +190,6 @@ private:
     class_type &operator =(class_type const &);
 /// @}
 };
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
