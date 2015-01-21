@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta27
+File:     STLSoft-ReleaseNotes-1.9.1-beta28
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,26 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  22nd October 2006
+Updated:  29th October 2006
 
 ============================================================================
+
+
+============================================================================
+
+Changes for 1.9.1 beta 28 (29th October 2006):
+
+Additions:
+==========
+
++ stlsoft::a2w() and stlsoft::w2a() char conversion functions (functionally
+  the same as the WinSTL ones)
+
+Changes:
+========
+
+~ fixed bug in winstl/shims/access/string/time.hpp that breaks Pantheios
+  in UNICODE builds.
 
 
 ============================================================================
