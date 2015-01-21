@@ -194,9 +194,9 @@ STLSOFT_INLINE HRESULT comstl__is_interface_implemented(/* [in] */ LPUNKNOWN p, 
     LPUNKNOWN   punk    =   NULL;
     HRESULT     hr;
 
-    COMSTL_MESSAGE_ASSERT("is_interface_implemented() does not accept a NULL pointer", NULL != p);
+	COMSTL_MESSAGE_ASSERT("is_interface_implemented() does not accept a NULL pointer", NULL != p);
 
-    hr = COMSTL_ITF_CALL(p)->QueryInterface(COMSTL_ITF_THIS(p) riid, stlsoft_reinterpret_cast(void**, &punk));
+	hr = COMSTL_ITF_CALL(p)->QueryInterface(COMSTL_ITF_THIS(p) riid, stlsoft_reinterpret_cast(void**, &punk));
 
     if(NULL != punk)
     {

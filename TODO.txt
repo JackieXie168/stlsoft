@@ -2,12 +2,12 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  2nd June 2007
+; Updated:  29th July 2007
 
 ============================================================================
 
 
-STLSoft 1.9.2 TODOs:
+STLSoft 1.9.3 TODOs:
 ====================
 
 ? 1. STLSoft Documentation
@@ -34,6 +34,12 @@ Priority: medium
 Priority: medium
 
 
+? 5. Investigate 64-bit compilation for scoped_handle
+-----------------------------------------------------
+
+
+? 6. CString header file #include bringing up to date
+-----------------------------------------------------
 
 
 

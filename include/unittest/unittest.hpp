@@ -95,8 +95,8 @@ namespace unittest
  * Globals
  */
 
-extern FILE *err;
-extern FILE *out;
+extern FILE	*err;
+extern FILE	*out;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Functions

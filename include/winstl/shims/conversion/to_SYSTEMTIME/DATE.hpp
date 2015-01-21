@@ -124,8 +124,8 @@ namespace winstl_project
  */
 inline const SYSTEMTIME to_SYSTEMTIME(DATE const& rhs)
 {
-    UDATE   ud;
-    HRESULT hr;
+    UDATE	ud;
+	HRESULT	hr;
 
     if(FAILED(hr = ::VarUdateFromDate(rhs, 0, &ud)))
     {

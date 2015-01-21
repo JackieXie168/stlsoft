@@ -505,7 +505,7 @@ inline /* static */ ss_typename_type_k basic_reg_value<C, T, A>::hkey_type basic
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             STLSOFT_THROW_X(registry_exception("Could not duplicate key", res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            ::SetLastError(res);
+		    ::SetLastError(res);
             hkeyDup = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }

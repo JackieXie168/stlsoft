@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     2nd June 2007
+ * Updated:     29th July 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      58
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  4
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -352,7 +352,7 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HICON hicon)
     using ::SendMessage;
 # endif /* compiler */
 
-//#if defined(_WIN64) || \
+/*#if defined(_WIN64) || \
 //    defined(_Wp64)
 //    LRESULT l = ::SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon));
 //
@@ -361,9 +361,9 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HICON hicon)
 //  stlsoft_ns_qual(union_caster)<HICON, LRESULT, false>(0);
 //
 //    return LRESULT2HICON(l);
-//#else /* ? width */
+//#else / * ? width */
     return LRESULT2HICON(::SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon)));
-//#endif /* width */
+/*#endif / * width */
 }
 
 inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, LPCTSTR iconName)
