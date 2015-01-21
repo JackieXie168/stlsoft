@@ -5,7 +5,7 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     2nd April 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       13
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -181,6 +181,7 @@ namespace atlstl_project
  * members/properties with the same dispids. (See GetIDsOfNames() and
  * Invoke() for details of the mechanism.)
  */
+// [[synesis:class: atlstl::IDispatchImpl2<T<I0>, IID const*, T<I1>, IID const*, GUID const*>]]
 template<   ss_typename_param_k I0
         ,   IID const           *IID0
         ,   ss_typename_param_k I1
@@ -327,6 +328,7 @@ protected:
  * IDispatchImpl2, except that it supports three dispinterfaces, rather than
  * two.
  */
+// [[synesis:class: atlstl::IDispatchImpl2<T<I0>, IID const*, T<I1>, IID const*, T<I2>, IID const*, GUID const*>]]
 template<   ss_typename_param_k I0
         ,   IID const           *IID0
         ,   ss_typename_param_k I1
@@ -497,6 +499,7 @@ protected:
  * IDispatchImpl3, except that it supports four dispinterfaces, rather than
  *  three.
  */
+// [[synesis:class: atlstl::IDispatchImpl2<T<I0>, IID const*, T<I1>, IID const*, T<I2>, IID const*, T<I3>, IID const*, GUID const*>]]
 template<   ss_typename_param_k I0
         ,   IID const           *IID0
         ,   ss_typename_param_k I1

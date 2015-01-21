@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       6
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        161
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        162
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -199,7 +199,12 @@
  *  avoid C-style cast warnings.
  */
 # undef     MAKEINTRESOURCE
-# define    MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
+# if defined(_WIN64) || \
+     defined(_Wp64)
+#  define   MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
+# else /* ? width */
+#  define   MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
+# endif /* width */
 
 /** \def MAKELANGID
  * \brief A C++-only redefinition of this \#define which uses C++ cast operators to

@@ -4,7 +4,7 @@
  * Purpose:     Adaptor classes for creating COM collection instances.
  *
  * Created:     16th April 1999
- * Updated:     2nd April 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MAJOR     3
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MINOR     2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      101
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,6 +100,7 @@ namespace atlstl_project
  * Classes
  */
 
+// [[synesis:class:collection: atlstl::generic_collection_base<T<D>, T<ThreadModel>, T<I>, int>]]
 template<   ss_typename_param_k D
         ,   ss_typename_param_k ThreadModel
         ,   ss_typename_param_k I
@@ -261,6 +262,7 @@ inline LPUNKNOWN get_clone(I1* instance, HRESULT (STDAPICALLTYPE I3::*pfn)(I2**)
     return clone;
 }
 
+// [[synesis:class:collection: atlstl::generic_automation_collection<T<E>, T<ThreadModel>, T<I>, int>]]
 template<   ss_typename_param_k E
         ,   ss_typename_param_k ThreadModel =   CComObjectThreadModel
         ,   ss_typename_param_k I           =   IDispatch

@@ -4,7 +4,7 @@
  * Purpose:     Const and non-const reference and pointer proxy classes.
  *
  * Created:     28th April 2000
- * Updated:     12th March 2007
+ * Updated:     8th May 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      126
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_REVISION  2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ public:
     }
 
 // Members
-protected:
+private:
     argument_pointer_type   m_a;
 
 // Not to be implemented
@@ -148,7 +148,7 @@ public:
     }
 
 // Members
-protected:
+private:
     argument_pointer_type   m_a;
 
 // Not to be implemented
@@ -188,7 +188,7 @@ public:
     }
 
 // Members
-protected:
+private:
     argument_reference_type m_a;
 
 // Not to be implemented
@@ -228,7 +228,7 @@ public:
     }
 
 // Members
-protected:
+private:
     argument_reference_type m_a;
 
 // Not to be implemented
@@ -267,7 +267,7 @@ public:
     }
 
 // Members
-protected:
+private:
     argument_type   m_a;
 
 // Not to be implemented

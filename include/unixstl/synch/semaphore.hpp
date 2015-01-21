@@ -113,7 +113,7 @@ class semaphore
 /// @{
 public:
     typedef semaphore       class_type;
-    typedef sem_t*			handle_type;
+    typedef sem_t*          handle_type;
     typedef us_bool_t       bool_type;
     typedef us_size_t       count_type;
 

@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     233
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     234
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -296,7 +296,7 @@ public:
     template <ss_typename_param_k S>
     class_type& operator /=(S const& rhs)
     {
-        return operator /=(stlsoft_ns_qual(c_str_ptr)(rhs));
+        return push(stlsoft_ns_qual(c_str_ptr)(rhs));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 

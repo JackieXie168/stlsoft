@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_REVISION   2
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       50
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_REVISION   3
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -337,7 +337,7 @@ public:
         return bEqual;
     }
 
-    ss_int_t compare(class_type const& rhs) const
+    ss_ptrdiff_t compare(class_type const& rhs) const
     {
         return m_begin - rhs.m_begin;
     }

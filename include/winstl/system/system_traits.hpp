@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     12th March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        100
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -284,61 +284,93 @@ public:
 public:
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != src);
+
         return ::lstrcpyA(dest, src);
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != src);
+
         return ::strncpy(dest, src, cch);
     }
 
     static char_type *str_cat(char_type *dest, char_type const* src)
     {
+        WINSTL_ASSERT(NULL != src);
+
         return ::lstrcatA(dest, src);
     }
 
     static char_type *str_n_cat(char_type *dest, char_type const* src, size_type cch)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != src);
+
         return ::strncat(dest, src, cch);
     }
 
     static int_type str_compare(char_type const* s1, char_type const* s2)
     {
+        WINSTL_ASSERT(NULL != s1);
+        WINSTL_ASSERT(NULL != s2);
+
         return ::lstrcmpA(s1, s2);
     }
 
     static int_type str_compare_no_case(char_type const* s1, char_type const* s2)
     {
+        WINSTL_ASSERT(NULL != s1);
+        WINSTL_ASSERT(NULL != s2);
+
         return ::lstrcmpiA(s1, s2);
     }
 
     static int_type str_n_compare(char_type const* s1, char_type const* s2, size_type cch)
     {
+        WINSTL_ASSERT(NULL != s1);
+        WINSTL_ASSERT(NULL != s2);
+
         return ::strncmp(s1, s2, cch);
     }
 
     static size_type str_len(char_type const* src)
     {
+        WINSTL_ASSERT(NULL != src);
+
         return static_cast<size_type>(::lstrlenA(src));
     }
 
     static char_type *str_chr(char_type const* s, char_type ch)
     {
+        WINSTL_ASSERT(NULL != s);
+
         return const_cast<char_type*>(::strchr(s, ch));
     }
 
     static char_type *str_rchr(char_type const* s, char_type ch)
     {
+        WINSTL_ASSERT(NULL != s);
+
         return const_cast<char_type*>(::strrchr(s, ch));
     }
 
     static char_type *str_str(char_type const* s, char_type const* sub)
     {
+        WINSTL_ASSERT(NULL != s);
+        WINSTL_ASSERT(NULL != sub);
+
         return const_cast<char_type*>(::strstr(s, sub));
     }
 
     static char_type *str_pbrk(char_type const* s, char_type const* charSet)
     {
+        WINSTL_ASSERT(NULL != s);
+        WINSTL_ASSERT(NULL != charSet);
+
         return const_cast<char_type*>(::strpbrk(s, charSet));
     }
 
@@ -361,6 +393,8 @@ public:
 public:
     static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         if(0 == cchBuffer)
         {
             char_type   buff[1 + _MAX_PATH];
@@ -373,6 +407,8 @@ public:
 
     static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         size_type   cch =   get_module_filename(hModule, buffer, cchBuffer);
 
         if( 0 != cch &&
@@ -395,17 +431,23 @@ public:
 
     static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         return ::GetSystemDirectoryA(buffer, cchBuffer);
     }
 
     static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         return ::GetWindowsDirectoryA(buffer, cchBuffer);
     }
 
 public:
     static module_type load_library(char_type const* name)
     {
+        WINSTL_ASSERT(NULL != name);
+
         return ::LoadLibraryA(name);
     }
 
@@ -416,6 +458,8 @@ public:
 
     static FARPROC find_symbol(module_type hModule, char const* symbolName)
     {
+        WINSTL_ASSERT(NULL != symbolName);
+
         return system_traits_::find_symbol(hModule, symbolName);
     }
 
@@ -438,11 +482,17 @@ public:
 public:
     static size_type get_environment_variable(char_type const* name, char_type* buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != name);
+        WINSTL_ASSERT(NULL != buffer);
+
         return ::GetEnvironmentVariableA(name, buffer, cchBuffer);
     }
 
     static size_type expand_environment_strings(char_type const* src, char_type *dest, size_type cch_dest)
     {
+        WINSTL_ASSERT(NULL != src);
+        WINSTL_ASSERT(NULL != dest);
+
         return static_cast<size_type>(::ExpandEnvironmentStringsA(src, dest, cch_dest));
     }
 };
@@ -464,61 +514,94 @@ public:
 public:
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != src);
+
         return ::lstrcpyW(dest, src);
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != src);
+
         return ::wcsncpy(dest, src, cch);
     }
 
     static char_type *str_cat(char_type *dest, char_type const* src)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != src);
+
         return ::lstrcatW(dest, src);
     }
 
     static char_type *str_n_cat(char_type *dest, char_type const* src, size_type cch)
     {
+        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != src);
+
         return ::wcsncat(dest, src, cch);
     }
 
     static int_type str_compare(char_type const* s1, char_type const* s2)
     {
+        WINSTL_ASSERT(NULL != s1);
+        WINSTL_ASSERT(NULL != s2);
+
         return ::lstrcmpW(s1, s2);
     }
 
     static int_type str_compare_no_case(char_type const* s1, char_type const* s2)
     {
+        WINSTL_ASSERT(NULL != s1);
+        WINSTL_ASSERT(NULL != s2);
+
         return ::lstrcmpiW(s1, s2);
     }
 
     static int_type str_n_compare(char_type const* s1, char_type const* s2, size_type cch)
     {
+        WINSTL_ASSERT(NULL != s1);
+        WINSTL_ASSERT(NULL != s2);
+
         return ::wcsncmp(s1, s2, cch);
     }
 
     static size_type str_len(char_type const* src)
     {
+        WINSTL_ASSERT(NULL != src);
+
         return static_cast<size_type>(::lstrlenW(src));
     }
 
     static char_type *str_chr(char_type const* s, char_type ch)
     {
+        WINSTL_ASSERT(NULL != s);
+
         return const_cast<char_type*>(::wcschr(s, ch));
     }
 
     static char_type *str_rchr(char_type const* s, char_type ch)
     {
+        WINSTL_ASSERT(NULL != s);
+
         return const_cast<char_type*>(::wcsrchr(s, ch));
     }
 
     static char_type *str_str(char_type const* s, char_type const* sub)
     {
+        WINSTL_ASSERT(NULL != s);
+        WINSTL_ASSERT(NULL != sub);
+
         return const_cast<char_type*>(::wcsstr(s, sub));
     }
 
     static char_type *str_pbrk(char_type const* s, char_type const* charSet)
     {
+        WINSTL_ASSERT(NULL != s);
+        WINSTL_ASSERT(NULL != charSet);
+
         return const_cast<char_type*>(::wcspbrk(s, charSet));
     }
 
@@ -541,6 +624,8 @@ public:
 public:
     static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         if(0 == cchBuffer)
         {
             char_type   buff[1 + _MAX_PATH];
@@ -561,6 +646,8 @@ public:
 
     static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         size_type   cch =   get_module_filename(hModule, buffer, cchBuffer);
 
         if( 0 != cch &&
@@ -583,17 +670,23 @@ public:
 
     static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         return ::GetSystemDirectoryW(buffer, cchBuffer);
     }
 
     static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != buffer);
+
         return ::GetWindowsDirectoryW(buffer, cchBuffer);
     }
 
 public:
     static module_type load_library(char_type const* name)
     {
+        WINSTL_ASSERT(NULL != name);
+
         return ::LoadLibraryW(name);
     }
 
@@ -604,6 +697,8 @@ public:
 
     static FARPROC find_symbol(module_type hModule, char const* symbolName)
     {
+        WINSTL_ASSERT(NULL != symbolName);
+
         return system_traits_::find_symbol(hModule, symbolName);
     }
 
@@ -627,11 +722,17 @@ public:
 public:
     static size_type get_environment_variable(char_type const* name, char_type* buffer, size_type cchBuffer)
     {
+        WINSTL_ASSERT(NULL != name);
+        WINSTL_ASSERT(NULL != buffer);
+
         return ::GetEnvironmentVariableW(name, buffer, cchBuffer);
     }
 
     static size_type expand_environment_strings(char_type const* src, char_type *dest, size_type cch_dest)
     {
+        WINSTL_ASSERT(NULL != src);
+        WINSTL_ASSERT(NULL != dest);
+
         return static_cast<size_type>(::ExpandEnvironmentStringsW(src, dest, cch_dest));
     }
 };

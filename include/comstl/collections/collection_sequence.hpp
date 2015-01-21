@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     12th March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 8
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     96
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -189,6 +189,7 @@ typedef collection_sequence<IGUIDCollection
  *
  * \sa comstl::enumerator_sequence
  */
+// [[synesis:class:collection: comstl::collection_sequence<T<CI>, T<EI>, T<V>, T<VP>, T<R>, T<CP>, size_t, T<EAP>>]]
 template<   ss_typename_param_k CI                                      /* Collection interface */
         ,   ss_typename_param_k EI                                      /* Enumerator interface */
         ,   ss_typename_param_k V                                       /* Value type */

@@ -4,7 +4,7 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     22nd March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  1
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      15
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -270,6 +270,7 @@ ACE_Reactor::instance()->run_reactor_event_loop();
 \endcode
  *
  */
+// [[synesis:class: acestl::custom_event_handler]]
 class custom_event_handler
     : public ACE_Event_Handler
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -286,8 +287,8 @@ public:
     typedef as_bool_t               bool_type;
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
     /// An opaque type that identifies pending event instances
-	///
-	/// The only well-known value is \c NULL, which indicates no-event.
+    ///
+    /// The only well-known value is \c NULL, which indicates no-event.
     typedef event_id_               *event_id;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// Type of the callback function that may be passed to 
@@ -332,7 +333,7 @@ public:
      * handle_custom_event() callback is called, the event has been deregistered from
      * this handler. There is no need to call cancel_custom_event(), and doing so is
      * semantically wrong, though it has no effect.
-	 */
+     */
     event_id schedule_custom_event(long code, ACE_Time_Value const& delay, void* arg = 0);
 
     /** Registers the custom event for immediate action.
@@ -350,7 +351,7 @@ public:
      * handle_custom_event() callback is called, the event has been deregistered from
      * this handler. There is no need to call cancel_custom_event(), and doing so is
      * semantically wrong, though it has no effect.
-	 */
+     */
     event_id schedule_custom_event(long code, void* arg = 0);
 
     /** Cancels the event(s) corresponding to the given event code
@@ -362,7 +363,7 @@ public:
      * \note There is no need to call this function if the event handler
      * callback handle_custom_event() has been called, since the event is
      * already deregistered at that point.
-	 */
+     */
     int cancel_custom_events(long code);
 
     /** Cancels the event(s) corresponding to the given event code, invoking
@@ -436,7 +437,7 @@ public:
      *
      * \param code The code of the event(s) to cancel
      * \param obj The class instance whose method will be invoked
-	 * \param pfn The class method to be invoked
+     * \param pfn The class method to be invoked
      *
      * It is used as shown in the following example:
 \code
@@ -485,7 +486,7 @@ public:
      * \note There is no need to call this function if the event handler
      * callback handle_custom_event() has been called, since the event is
      * already deregistered at that point.
-	 */
+     */
     int cancel_custom_event(event_id event, void** parg = NULL);
 /// @}
 
@@ -504,13 +505,13 @@ public:
      *
      * \retval 0 if no events are registered for the given code
      * \retval 1 if one or more events are registered for the hiven code
-	 */
+     */
     as_int_t has_custom_events(long code) const;
 
     /** [DEPRECATED] Analogue of has_custom_events()
      *
      * \deprecated This method is deprecated in favour of has_custom_events()
-	 */
+     */
     as_int_t has_custom_event(long code) const;
 
     /** Indicates whether the event handler has the given event registered
@@ -519,7 +520,7 @@ public:
      *
      * \retval 0 if the event id matches an outstanding event instance
      * \retval 1 if the event id does not match an outstanding event instance
-	 */
+     */
     as_int_t has_custom_event(event_id event) const;
 /// @}
 
@@ -530,13 +531,13 @@ public:
 private:
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /** This (private) pure virtual function is implemented by derived
-	 *   classes to handle the custom events.
-	 *
-	 * \param current_time The time at which the event was dispatched by the
-	 *   reactor
-	 * \param code The event code
-	 * \param arg The argument specified to schedule_custom_event()
-	 */
+     *   classes to handle the custom events.
+     *
+     * \param current_time The time at which the event was dispatched by the
+     *   reactor
+     * \param code The event code
+     * \param arg The argument specified to schedule_custom_event()
+     */
     virtual int handle_custom_event(ACE_Time_Value const&   current_time
                                 ,   long                    code
                                 ,   void*                   arg)   =   0;

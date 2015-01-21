@@ -4,7 +4,7 @@
  * Purpose:     Scoping class for ATL _Module
  *
  * Created:     8th December 2004
- * Updated:     12th March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MAJOR       2
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       1
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_REVISION    1
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        24
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,6 +95,7 @@ namespace atlstl_project
  *
  * \ingroup group__library__utility
  */
+// [[synesis:class:raii: atlstl::module_scope<T<M>, T<X>>]]
 template<   ss_typename_param_k M
         ,   ss_typename_param_k X = stlsoft_ns_qual(null_exception_policy)
         >

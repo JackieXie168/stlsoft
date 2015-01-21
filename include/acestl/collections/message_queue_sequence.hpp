@@ -4,7 +4,7 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     22nd March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  7
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      53
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ ACE_Message_Queue<ACE_NULL_SYNCH>       &mq = . . .
 message_queue_sequence<ACE_NULL_SYNCH>  mqs(mq);
 
 // Allocate a contiguous buffer, using stlsoft::auto_buffer
-auto_buffer<char>	                    buff(mqs.size());
+auto_buffer<char>                       buff(mqs.size());
 
 // Block copy into the buffer
 std::copy(&buff[0], &buff[0] + (buff.size()), mqs.begin());
@@ -143,6 +143,7 @@ std::copy(&buff[0], &buff[0] + (buff.size()), mqs.begin());
  *   performance, as described in chapter 31 of
  *   \ref section__publishing__books__xstlv1.
  */
+// [[synesis:class:collection: acestl::message_queue_sequence<T<S>>]]
 template <ACE_SYNCH_DECL>
 class message_queue_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -160,12 +161,12 @@ public:
     typedef ss_size_t                               size_type;
 
     /** Iterator type for the message_queue_sequence class template
-	 *
-	 * \note Although this iterator class is an <i>Input Iterator</i>, it
-	 *   uses customisations of \c std algorithms to effect very favourable
-	 *   performance, as described in chapter 31 of <b>Extended STL,
-	 *   volume 1</b> (published by Addison-Wesley, June 2007).
-	 */
+     *
+     * \note Although this iterator class is an <i>Input Iterator</i>, it
+     *   uses customisations of \c std algorithms to effect very favourable
+     *   performance, as described in chapter 31 of <b>Extended STL,
+     *   volume 1</b> (published by Addison-Wesley, June 2007).
+     */
     class iterator
         : public stlsoft_ns_qual(iterator_base)<acestl_ns_qual_std(input_iterator_tag)
                                             ,   char

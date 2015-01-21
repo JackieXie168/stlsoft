@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     7th April 2007
+ * Updated:     1st June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       7
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        117
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,6 +80,9 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HKEY
+# include <winstl/shims/attribute/get_HKEY.hpp>
+#endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HKEY */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
@@ -212,7 +215,7 @@ public:
      *  or the empty string, then a copy of <code>hkeyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
-     *  required access to the key.
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
      *
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
@@ -234,7 +237,7 @@ public:
      *  or the empty string, then a copy of <code>hkeyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
-     *  required access to the key.
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
      *
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
@@ -257,7 +260,7 @@ public:
      *  or the empty string, then a copy of <code>keyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
-     *  required access to the key.
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
      *
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
@@ -279,7 +282,7 @@ public:
      *  or the empty string, then a copy of <code>keyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
-     *  required access to the key.
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
      *
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
@@ -389,7 +392,7 @@ public:
      * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
      *  empty string, then the function returns a copy of the callee.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
-     *  required access to the key.
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
      *
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
@@ -404,7 +407,7 @@ public:
      * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
      *  empty string, then the function returns a copy of the callee.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
-     *  required access to the key.
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
      *
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
@@ -418,6 +421,44 @@ public:
         return create_sub_key_(stlsoft_ns_qual(c_str_ptr)(subKeyName), accessMask);
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+
+    /** \brief Creates a named sub-key of a given key
+     *
+     * \param hkey The parent registry key.
+     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     *  empty string, then the function returns a copy of the callee.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
+     *
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be created. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
+    static class_type create_key(HKEY hkey, char_type const* subKeyName, REGSAM accessMask = KEY_ALL_ACCESS);
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Creates a named sub-key of this key
+     *
+     * \param key The parent registry key.
+     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     *  empty string, then the function returns a copy of the callee.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key. Defaults to KEY_ALL_ACCESS.
+     *
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be created. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
+    template <ss_typename_param_k H, ss_typename_param_k S>
+    static class_type create_key(H &key, S const& subKeyName, REGSAM accessMask = KEY_ALL_ACCESS)
+    {
+        return create_key(get_HKEY(key), stlsoft_ns_qual(c_str_ptr)(subKeyName), accessMask);
+    }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+
 
     /** \brief Deletes the named sub-key of this key
      *
@@ -764,7 +805,7 @@ typedef basic_reg_key<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >  
 
 /* get_handle */
 
-/** \brief [\ref group__concept__shims "Shim" function] Returns the corresponding registry handle of an instance of \link winstl::basic_reg_key basic_reg_key\endlink.
+/** \brief [\ref group__concept__shims "Shim" function] Returns the corresponding registry handle of an instance of winstl::basic_reg_key basic_reg_key.
  *
  * \ingroup group__library__windows_registry
  *
@@ -777,6 +818,26 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline HKEY get_handle(basic_reg_key<C, T, A> const& key)
+{
+    return key.get_key_handle();
+}
+
+/** \brief [\ref group__concept__shims "Shim" function] Returns the corresponding registry handle of an instance of winstl::basic_reg_key basic_reg_key.
+ *
+ * \ingroup group__library__shims__hkey_attribute
+ *
+ * This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a>
+ * retrieves the HKEY registry handle for the given HKEY handle.
+ *
+ * \param key The winstl::basic_reg_key basic_reg_key instance whose corresponding HKEY will be retrieved
+ *
+ * \return The HKEY handle of the given winstl::basic_reg_key basic_reg_key instance
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline HKEY get_HKEY(basic_reg_key<C, T, A> const& key)
 {
     return key.get_key_handle();
 }
@@ -992,6 +1053,14 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_sub_key(char_type const* subKeyName, REGSAM accessMask /* = KEY_ALL_ACCESS */)
 {
     return this->create_sub_key_(subKeyName, accessMask);
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_key(HKEY hkey, char_type const* subKeyName, REGSAM accessMask /* = KEY_ALL_ACCESS */)
+{
+    static const char_type  s_emptyString[] = { '\0' };
+
+    return class_type(hkey, s_emptyString, KEY_CREATE_SUB_KEY).create_sub_key(subKeyName, accessMask);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>

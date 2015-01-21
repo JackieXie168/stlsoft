@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     22nd March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    1
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 4
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     67
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,6 +124,7 @@ namespace atlstl_project
  *
  * \ingroup concepts_veneer
  */
+// [[synesis:class:string: atlstl::ccombstr_veneer]]
 class ccombstr_veneer
 #ifdef _ATLSTL_CCOMBSTR_VENEER_INHERIT_AS_PUBLIC
     : public CComBSTR

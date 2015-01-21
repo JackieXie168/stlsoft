@@ -384,7 +384,7 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k S
         >
 inline S& operator <<(  S& s
-                    ,   field_property_get<V, R, C> const&	prop)
+                    ,   field_property_get<V, R, C> const&  prop)
 {
     s << static_cast<R>(prop);
 
