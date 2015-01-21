@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     4th August 2007
+ * Updated:     17th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      12
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       65
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -327,22 +327,30 @@
 
 #if defined(WIN32)
 
-# define    STLSOFT_CDECL               __cdecl
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
+#  define STLSOFT_CDECL                 __cdecl
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 # if __GNUC__ > 2
-#  define   STLSOFT_CF_FASTCALL_SUPPORTED
-#  define    STLSOFT_FASTCALL           __fastcall
+#  define STLSOFT_CF_FASTCALL_SUPPORTED
+#  define STLSOFT_FASTCALL              __fastcall
 # endif /* __GNUC__ > 2 */
 
-# define    STLSOFT_CF_STDCALL_SUPPORTED
-# define    STLSOFT_STDCALL             __stdcall
+# define STLSOFT_CF_STDCALL_SUPPORTED
+# define STLSOFT_STDCALL                __stdcall
 
 
-#if (   __GNUC__ < 3 || \
+# if (   __GNUC__ < 3 || \
         (   __GNUC__ == 3 && \
             __GNUC_MINOR__ < 4))
-# define    STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-#endif /* version */
+#  define    STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+# endif /* version */
+
+#else /* ? OS */
+
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
+#  define STLSOFT_CDECL
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #endif /* !unix && !__unix__ */
 

@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     12th March 2007
+ * Updated:     3rd September 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MAJOR      2
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      1
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   1
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       37
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   2
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,7 +150,9 @@ public:
         return p;
     }
 
-#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+#if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER >= 1200)
     void operator delete(void *, void *)
     {}
 #endif /* compiler */

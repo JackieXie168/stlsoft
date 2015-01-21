@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     22nd March 2007
+ * Updated:     19th August 2007
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        83
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,6 +84,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD
+# include <stlsoft/string/string_traits_fwd.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
@@ -454,6 +457,147 @@ typedef basic_string_view<ss_char_w_t
                         ,   allocator_selector<ss_char_w_t>::allocator_type
                         >                                                   wstring_view;
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Traits
+ */
+
+# ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+struct string_traits<basic_string_view<C, T, A> >
+{
+    // NOTE: Originally, what is string_type_ was defined as value_type, but
+    // Borland objects to value_type::value_type.
+    typedef basic_string_view<C, T, A>                              string_type_;
+    typedef ss_typename_type_k string_type_::value_type             char_type;
+    typedef ss_typename_type_k string_type_::size_type              size_type;
+    typedef char_type const                                         const_char_type;
+    typedef string_type_                                            string_type;
+    typedef string_type_                                            value_type;
+//    typedef ss_typename_type_k string_type::pointer                 pointer;
+    typedef ss_typename_type_k string_type::const_pointer           const_pointer;
+//    typedef ss_typename_type_k string_type::iterator                iterator;
+    typedef ss_typename_type_k string_type::const_iterator          const_iterator;
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+//    typedef ss_typename_type_k string_type::reverse_iterator        reverse_iterator;
+    typedef ss_typename_type_k string_type::const_reverse_iterator  const_reverse_iterator;
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+    enum
+    {
+            is_pointer          =   false
+        ,   is_pointer_to_const =   false
+        ,   char_type_size      =   sizeof(char_type)
+    };
+
+    static string_type empty_string()
+    {
+        return string_type();
+    }
+    static string_type construct(string_type const& src, size_type pos, size_type len)
+    {
+        return string_type(src, pos, len);
+    }
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    template <ss_typename_param_k I>
+    static string_type &assign_inplace(string_type &str, I first, I last)
+# else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    {
+        // string view cannot assign in-place
+        return (str = string_type(first, last), str);
+    }
+};
+# else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+STLSOFT_TEMPLATE_SPECIALISATION
+struct string_traits<string_view>
+{
+    typedef string_view                                     value_type;
+    typedef value_type::value_type                          char_type;
+    typedef value_type::size_type                           size_type;
+    typedef char_type const                                 const_char_type;
+    typedef value_type                                      string_type;
+//    typedef string_type::pointer                            pointer;
+    typedef string_type::const_pointer                      const_pointer;
+//    typedef string_type::iterator                           iterator;
+    typedef string_type::const_iterator                     const_iterator;
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+//    typedef string_type::reverse_iterator                   reverse_iterator;
+    typedef string_type::const_reverse_iterator             const_reverse_iterator;
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+    enum
+    {
+            is_pointer          =   false
+        ,   is_pointer_to_const =   false
+        ,   char_type_size      =   sizeof(char_type)
+    };
+
+    static string_type empty_string()
+    {
+        return string_type();
+    }
+    static string_type construct(string_type const& src, size_type pos, size_type len)
+    {
+        return string_type(src, pos, len);
+    }
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    template <ss_typename_param_k I>
+    static string_type &assign_inplace(string_type &str, I first, I last)
+# else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    {
+        // string view cannot assign in-place
+        return (str = string_type(first, last), str);
+    }
+};
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct string_traits<wstring_view>
+{
+    typedef wstring_view                                    value_type;
+    typedef value_type::value_type                          char_type;
+    typedef value_type::size_type                           size_type;
+    typedef char_type const                                 const_char_type;
+    typedef value_type                                      string_type;
+//    typedef string_type::pointer                            pointer;
+    typedef string_type::const_pointer                      const_pointer;
+//    typedef string_type::iterator                           iterator;
+    typedef string_type::const_iterator                     const_iterator;
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+//    typedef string_type::reverse_iterator                   reverse_iterator;
+    typedef string_type::const_reverse_iterator             const_reverse_iterator;
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+    enum
+    {
+            is_pointer          =   false
+        ,   is_pointer_to_const =   false
+        ,   char_type_size      =   sizeof(char_type)
+    };
+
+    static string_type empty_string()
+    {
+        return string_type();
+    }
+    static string_type construct(string_type const& src, size_type pos, size_type len)
+    {
+        return string_type(src, pos, len);
+    }
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    template <ss_typename_param_k I>
+    static string_type &assign_inplace(string_type &str, I first, I last)
+# else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    {
+        // string view cannot assign in-place
+        return (str = string_type(first, last), str);
+    }
+};
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Operators

@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st October 2002
- * Updated:     12th March 2007
+ * Updated:     19th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    9
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        82
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    10
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1220,6 +1220,8 @@ struct string_traits<mfcstl_ns_qual(CString_cadaptor)>
     typedef LPCTSTR                             const_pointer;
     typedef LPCSTR                              iterator;
     typedef LPCTSTR                             const_iterator;
+    typedef value_type::reverse_iterator        reverse_iterator;
+    typedef value_type::const_reverse_iterator  const_reverse_iterator;
     enum
     {
             is_pointer          =   false

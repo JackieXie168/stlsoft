@@ -4,7 +4,7 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     12th March 2007
+ * Updated:     5th September 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 7
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     16
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 8
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,8 +69,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
+# include <stlsoft/meta/is_integral_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
 #include <map>
-#include <stdexcept>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -112,50 +114,102 @@ public:
     typedef ss_size_t                                       size_type;
     typedef ss_ptrdiff_t                                    difference_type;
 
-public:
+public: // Construction
+    /// Creates an instance of the map
     frequency_map()
-    {}
-
-public:
-    count_type  push(key_type const& key)
     {
-        return ++m_map[key];
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<N>::value);
     }
 
-    void        clear()
+public: // Modifiers
+    /// Pushes an entry onto the map
+    ///
+    /// If the entry already exists in the map, its count will be increased
+    /// by 1. If it does not previously exist, it will be added with an
+    /// initial count of one
+    ///
+    /// \note <b>Thread-safety</b>: it is strongly exception-safe - if an
+    ///   entry cannot be added, 
+    count_type push(key_type const& key)
+    {
+        return ++m_map[key];
+
+#if 0
+        // NOTE: Because the count type N must be an integer, the code above
+        // is equivalent to the following "full" thread-safe implementation.
+        ss_typename_param_k map_type::iterator it = m_map.find(key);
+        if(m_map.end() == it)
+        {
+            value_type  value(key, 1);
+
+            m_map.insert(value);
+
+            return 1;
+        }
+        else
+        {
+            value_type& value = *it;
+
+            return ++(*it).second;
+        }
+#endif /* 0 */
+    }
+
+    /// Removes all entries from the map
+    void clear()
     {
         m_map.clear();
     }
 
-    count_type  operator [](key_type const& key) const // stlsoft_throw_1(std::out_of_range)
+public: // 
+    /// Returns an iterator for the entry representing the given key, or
+    /// <code>end()</code> if no such entry exists.
+    const_iterator find(key_type const& key) const
     {
-        const_iterator  it  =   m_map.find(key);
-
-        if(m_map.end() == it)
-        {
-            STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("invalid key"));
-        }
-
-        return (*it).second;
+        return m_map.find(key);
     }
 
-public:
-    ss_bool_t   empty() const
+public: // Element Access
+    /// Returns the count associated with the entry representing the given
+    /// key, or 0 if no such entry exists.
+    count_type operator [](key_type const& key) const
+    {
+        return count(key);
+    }
+
+    /// Returns the count associated with the entry representing the given
+    /// key, or 0 if no such entry exists.
+    count_type count(key_type const& key) const
+    {
+        const_iterator it = m_map.find(key);
+
+        return (m_map.end() != it) ? (*it).second : 0;
+    }
+
+public: // Size
+    /// Indicates whether the map is empty
+    ss_bool_t empty() const
     {
         return m_map.empty();
     }
 
-    size_type   size() const
+    /// The number of entries in the map
+    ///
+    /// \remarks This may not be the same as the number of calls to
+    ///   <code>push()</code>
+    size_type size() const
     {
         return m_map.size();
     }
 
 public:
-    const_iterator  begin() const
+    /// A non-mutating (const) iterator representing the start of the sequence
+    const_iterator begin() const
     {
         return m_map.begin();
     }
-    const_iterator  end() const
+    /// A non-mutating (const) iterator representing the end-point of the sequence
+    const_iterator end() const
     {
         return m_map.end();
     }

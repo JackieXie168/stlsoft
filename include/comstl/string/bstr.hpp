@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     4th August 2007
+ * Updated:     19th August 2007
  *
  * Thanks:      To Gabor Fischer for requesting attach().
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       6
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       7
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        53
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -216,10 +216,41 @@ public:
 /// \name Iteration
 /// @{
 public:
-    iterator        begin();
-    iterator        end();
-    const_iterator  begin() const;
-    const_iterator  end() const;
+    /// Begins the iteration
+    ///
+    /// \return An iterator representing the start of the sequence
+    iterator                begin();
+    /// Ends the iteration
+    ///
+    /// \return An iterator representing the end of the sequence
+    iterator                end();
+    /// Begins the iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the start of the sequence
+    const_iterator          begin() const;
+    /// Ends the iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the end of the sequence
+    const_iterator          end() const;
+
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+    /// Begins the reverse iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the start of the reverse sequence
+    const_reverse_iterator  rbegin() const;
+    /// Ends the reverse iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the end of the reverse sequence
+    const_reverse_iterator  rend() const;
+    /// Begins the reverse iteration
+    ///
+    /// \return An iterator representing the start of the reverse sequence
+    reverse_iterator        rbegin();
+    /// Ends the reverse iteration
+    ///
+    /// \return An iterator representing the end of the reverse sequence
+    reverse_iterator        rend();
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Comparison
@@ -759,6 +790,28 @@ inline bstr::const_iterator bstr::end() const
     return get() + size();
 }
 
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+inline bstr::const_reverse_iterator bstr::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+inline bstr::const_reverse_iterator bstr::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+inline bstr::reverse_iterator bstr::rbegin()
+{
+    return reverse_iterator(end());
+}
+
+inline bstr::reverse_iterator bstr::rend()
+{
+    return reverse_iterator(begin());
+}
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
 inline bstr::bool_type bstr::equal(bstr::class_type const& rhs) const
 {
     return 0 == bstr_compare(this->get(), rhs.get());
@@ -837,7 +890,7 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits< ::comstl::bstr>
 {
     typedef ::comstl::bstr                                  value_type;
-    typedef ::comstl::bstr::value_type                      char_type;	// NOTE: Can't use value_type::value_type here, because of BC++ 5.5.1
+    typedef ::comstl::bstr::value_type                      char_type;  // NOTE: Can't use value_type::value_type here, because of BC++ 5.5.1
     typedef value_type::size_type                           size_type;
     typedef char_type const                                 const_char_type;
     typedef value_type                                      string_type;
@@ -871,8 +924,8 @@ struct string_traits< ::comstl::bstr>
     static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
-        // simple_string can assign in-place
-        return str.assign(first, last);
+        // comstl::bstr cannot assign in-place
+        return (str = string_type(first, last - first), str);
     }
 };
 

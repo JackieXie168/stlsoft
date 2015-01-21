@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     2nd June 2007
+ * Updated:     19th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    1
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 4
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     68
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    2
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 1
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,6 +85,12 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #  include <stlsoft/conversion/sap_cast.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 #endif /* compiler */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD
+# include <stlsoft/string/string_traits_fwd.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
@@ -156,6 +162,23 @@ public:
     typedef OLECHAR const   &const_reference;
     /// The size type
     typedef as_size_t       size_type;
+    /// The difference type
+    typedef as_ptrdiff_t    difference_type;
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+//    typedef stlsoft_ns_qual(reverse_iterator_base)< iterator
+//                                                ,   value_type
+//                                                ,   reference
+//                                                ,   pointer
+//                                                ,   difference_type
+//                                                >           reverse_iterator;
+
+    typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
+                                                    ,   value_type const
+                                                    ,   const_reference
+                                                    ,   const_pointer
+                                                    ,   difference_type
+                                                    >       const_reverse_iterator;
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 public:
@@ -195,6 +218,17 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator end() const;
+
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+    /// Begins the reverse iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the start of the reverse sequence
+    const_reverse_iterator rbegin() const;
+    /// Ends the reverse iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the end of the reverse sequence
+    const_reverse_iterator rend() const;
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -621,6 +655,18 @@ inline ccombstr_veneer::const_iterator ccombstr_veneer::end() const
     return begin() + Length();
 }
 
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+inline ccombstr_veneer::const_reverse_iterator ccombstr_veneer::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+inline ccombstr_veneer::const_reverse_iterator ccombstr_veneer::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
 inline ccombstr_veneer::reference ccombstr_veneer::operator [](ccombstr_veneer::size_type index)
 {
     ATLSTL_MESSAGE_ASSERT("Index out of range", index < length());
@@ -734,6 +780,54 @@ using ::atlstl::c_str_ptr_w;
 
 using ::atlstl::c_str_ptr_null;
 using ::atlstl::c_str_ptr_null_w;
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Traits
+ */
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct string_traits< ::atlstl::ccombstr_veneer>
+{
+    typedef ::atlstl::ccombstr_veneer                       value_type;
+    typedef ::atlstl::ccombstr_veneer::value_type           char_type;  // NOTE: Can't use value_type::value_type here, because of BC++ 5.5.1
+    typedef value_type::size_type                           size_type;
+    typedef char_type const                                 const_char_type;
+    typedef value_type                                      string_type;
+    typedef string_type::pointer                            pointer;
+    typedef string_type::const_pointer                      const_pointer;
+    typedef string_type::iterator                           iterator;
+    typedef string_type::const_iterator                     const_iterator;
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+//    typedef string_type::reverse_iterator                   reverse_iterator;
+    typedef string_type::const_reverse_iterator             const_reverse_iterator;
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+    enum
+    {
+            is_pointer          =   false
+        ,   is_pointer_to_const =   false
+        ,   char_type_size      =   sizeof(char_type)
+    };
+
+    static string_type empty_string()
+    {
+        return string_type();
+    }
+    static string_type construct(string_type const& src, size_type pos, size_type len)
+    {
+        return string_type(len, src.data() + pos);
+    }
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    template <ss_typename_param_k I>
+    static string_type &assign_inplace(string_type &str, I first, I last)
+# else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    {
+        // comstl::bstr cannot assign in-place
+        return (str = string_type(last - first, first), str);
+    }
+};
+
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

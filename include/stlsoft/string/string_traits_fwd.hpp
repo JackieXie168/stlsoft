@@ -4,7 +4,7 @@
  * Purpose:     Forward declaration of the string_traits traits class.
  *
  * Created:     1st April 2005
- * Updated:     12th March 2007
+ * Updated:     19th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_MINOR       0
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_REVISION    1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_EDIT        16
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_REVISION    2
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,6 +76,7 @@ namespace stlsoft
 
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 /** \brief Traits for determining the characteristics of strings
  *
  * string_traits is a traits class for determining various characteristics of
@@ -92,27 +93,46 @@ struct string_traits
     typedef C               char_type;      //!< The char type
     typedef ss_size_t       size_type;      //!< The size type
     typedef ???             string_type;    //!< The string type
-    typedef ???             iterator;       //!< The iterator type
+    typedef ???             iterator;       //!< The iterator type. Not defined for non-mutating type
     typedef ???             const_iterator; //!< The const_iterator type
-    typedef ???             pointer;        //!< The pointer type
+    typedef ???             pointer;        //!< The pointer type. Not defined for non-mutating type
     typedef ???             const_pointer;  //!< The const_pointer type
     enum
     {
             is_pointer                      //!< non-zero if C is a pointer type
+    };
+    enum
+    {
         ,   is_pointer_to_const             //!< non-zero if C is a pointer-to-const type
+    };
+    enum
+    {
         ,   char_type_size                  //!< The size of \c char_type
     };
+    enum
+    {
+        ,   is_mutating                     //!< non-zero if C is a mutating type
+    };
 
+    /// \brief Returns an instance of the empty string form of the string type
     static string_type empty_string();
+
+    /// \brief Constructs an instance of the string type
     static string_type construct(string_type const& src, size_type pos, size_type len);
+
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /// \brief Assigns a new value to the string, based on the range [first, last)
+    ///
+    /// \note The range [first, last) may be contained within the string instance
     template <ss_typename_param_k I>
     static string_type &assign_inplace(string_type &str, I first, I last);
 # else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last);
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 };
-#else
+
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 template <ss_typename_param_k T>
 struct string_traits;
 
