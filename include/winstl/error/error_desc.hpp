@@ -4,11 +4,11 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     2nd March 2011
+ * Updated:     6th February 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       5
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    5
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        83
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -340,7 +340,9 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type* basic_error_desc<C, T>::find_message_(
+inline
+ss_typename_type_ret_k basic_error_desc<C, T>::char_type*
+basic_error_desc<C, T>::find_message_(
     DWORD                                                       flags
 ,   ss_typename_type_k basic_error_desc<C, T>::error_type       error
 ,   ss_typename_type_k basic_error_desc<C, T>::char_type const* modulePath
@@ -387,7 +389,11 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_desc<C, T>::error_type error /* = ::GetLastError() */, char_type const* modulePath /* = NULL */)
+inline
+basic_error_desc<C, T>::basic_error_desc(
+    ss_typename_type_k basic_error_desc<C, T>::error_type   error /* = ::GetLastError() */
+,   char_type const*                                        modulePath /* = NULL */
+)
     : m_length(0)
     , m_message(find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, error, modulePath, &m_length))
 {
@@ -404,7 +410,11 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline basic_error_desc<C, T>::basic_error_desc(HRESULT hr, char_type const* modulePath /* = NULL */)
+inline
+basic_error_desc<C, T>::basic_error_desc(
+    HRESULT             hr
+,   char_type const*    modulePath /* = NULL */
+)
     : m_length(0)
     , m_message(find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, static_cast<DWORD>(hr), modulePath, &m_length))
 {
@@ -421,7 +431,8 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline basic_error_desc<C, T>::~basic_error_desc() stlsoft_throw_0()
+inline
+basic_error_desc<C, T>::~basic_error_desc() stlsoft_throw_0()
 {
 #ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
     STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_length) < STLSOFT_RAW_OFFSETOF(class_type, m_message));
@@ -438,7 +449,10 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_desc<C, T>::class_type& rhs) stlsoft_throw_0()
+inline
+basic_error_desc<C, T>::basic_error_desc(
+    ss_typename_type_k basic_error_desc<C, T>::class_type& rhs
+) stlsoft_throw_0()
 {
     m_length        =   rhs.m_length;
     rhs.m_length    =   0;
@@ -451,7 +465,9 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::get_description() const
+inline
+ss_typename_type_ret_k basic_error_desc<C, T>::char_type const*
+basic_error_desc<C, T>::get_description() const
 {
     static const char_type s_nullMessage[1] = { '\0' };
 
@@ -462,7 +478,9 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::c_str() const
+inline
+ss_typename_type_ret_k basic_error_desc<C, T>::char_type const*
+basic_error_desc<C, T>::c_str() const
 {
     return get_description();
 }
@@ -473,9 +491,11 @@ template<
 ,   ss_typename_param_k T
 >
 #if defined(STLSOFT_COMPILER_IS_GCC)
-inline basic_error_desc<C, T>::operator C const* () const
+inline
+basic_error_desc<C, T>::operator C const* () const
 #else /* ? compiler */
-inline basic_error_desc<C, T>::operator ss_typename_type_k basic_error_desc<C, T>::char_type const* () const
+inline
+basic_error_desc<C, T>::operator ss_typename_type_k basic_error_desc<C, T>::char_type const* () const
 #endif /* compiler */
 {
     return get_description();
@@ -486,7 +506,9 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::length() const stlsoft_throw_0()
+inline
+ss_typename_type_ret_k basic_error_desc<C, T>::size_type
+basic_error_desc<C, T>::length() const stlsoft_throw_0()
 {
     return m_length;
 }
@@ -495,7 +517,9 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::size() const stlsoft_throw_0()
+inline
+ss_typename_type_ret_k basic_error_desc<C, T>::size_type
+basic_error_desc<C, T>::size() const stlsoft_throw_0()
 {
     return length();
 }
@@ -504,7 +528,9 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline ss_typename_type_ret_k basic_error_desc<C, T>::bool_type basic_error_desc<C, T>::empty() const stlsoft_throw_0()
+inline
+ss_typename_type_ret_k basic_error_desc<C, T>::bool_type
+basic_error_desc<C, T>::empty() const stlsoft_throw_0()
 {
     return 0 == length();
 }
@@ -525,7 +551,11 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline C const* c_str_ptr_null(winstl_ns_qual(basic_error_desc)<C, T> const& e)
+inline
+C const*
+c_str_ptr_null(
+    winstl_ns_qual(basic_error_desc)<C, T> const& e
+)
 {
     C const* p = e;
 
@@ -533,14 +563,22 @@ inline C const* c_str_ptr_null(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-inline ws_char_a_t const* c_str_ptr_null_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e)
+inline
+ws_char_a_t const*
+c_str_ptr_null_a(
+    winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e
+)
 {
     ws_char_a_t const* p = e;
 
     return ('\0' != *e) ? p : NULL;
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const* c_str_ptr_null_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e)
+inline
+ws_char_w_t const*
+c_str_ptr_null_w(
+    winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e
+)
 {
     ws_char_w_t const* p = e;
 
@@ -556,18 +594,30 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline C const* c_str_ptr(winstl_ns_qual(basic_error_desc)<C, T> const& e)
+inline
+C const*
+c_str_ptr(
+    winstl_ns_qual(basic_error_desc)<C, T> const& e
+)
 {
     return e.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-inline ws_char_a_t const* c_str_ptr_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e)
+inline
+ws_char_a_t const*
+c_str_ptr_a(
+    winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e
+)
 {
     return e.c_str();
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const* c_str_ptr_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e)
+inline
+ws_char_w_t const*
+c_str_ptr_w(
+    winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e
+)
 {
     return e.c_str();
 }
@@ -581,18 +631,30 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline C const* c_str_data(winstl_ns_qual(basic_error_desc)<C, T> const& e)
+inline
+C const*
+c_str_data(
+    winstl_ns_qual(basic_error_desc)<C, T> const& e
+)
 {
     return e.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-inline ws_char_a_t const* c_str_data_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e)
+inline
+ws_char_a_t const*
+c_str_data_a(
+    winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e
+)
 {
     return e.c_str();
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const* c_str_data_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e)
+inline
+ws_char_w_t const*
+c_str_data_w(
+    winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e
+)
 {
     return e.c_str();
 }
@@ -606,7 +668,11 @@ template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
 >
-inline ws_size_t c_str_len(winstl_ns_qual(basic_error_desc)<C, T> const& e)
+inline
+ws_size_t
+c_str_len(
+    winstl_ns_qual(basic_error_desc)<C, T> const& e
+)
 {
     return e.length();
 }
@@ -614,13 +680,21 @@ inline ws_size_t c_str_len(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template<   ss_typename_param_k T
         >
-inline ws_size_t c_str_len_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e)
+inline
+ws_size_t
+c_str_len_a(
+    winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const& e
+)
 {
     return e.length();
 }
 template<   ss_typename_param_k T
         >
-inline ws_size_t c_str_len_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e)
+inline
+ws_size_t
+c_str_len_w(
+    winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const& e
+)
 {
     return e.length();
 }
@@ -652,7 +726,12 @@ template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline S& operator <<(S& s, winstl_ns_qual(basic_error_desc)<C, T> const& e)
+inline
+S&
+operator <<(
+    S&                                              s
+,   winstl_ns_qual(basic_error_desc)<C, T> const&   e
+)
 {
     s << e.get_description();
 

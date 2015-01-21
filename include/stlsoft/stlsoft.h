@@ -6,11 +6,11 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     30th November 2011
+ * Updated:     7th February 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    24
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     421
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     423
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -274,12 +274,13 @@
 # define _STLSOFT_VER_1_9_109   0x01096dff  /*!< Version 1.9.109 (17th February 2011) */
 # define _STLSOFT_VER_1_9_110   0x01096eff  /*!< Version 1.9.110 (25th November 2011) */
 # define _STLSOFT_VER_1_9_111   0x01096fff  /*!< Version 1.9.111 (30th November 2011) */
+# define _STLSOFT_VER_1_9_112   0x010970ff  /*!< Version 1.9.112 (7th February 2012) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   111
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_111
+#define _STLSOFT_VER_REVISION   112
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_112
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -660,7 +661,7 @@
 #  error  Intel C/C++, Metrowerks CodeWarrior, Visual C++ and Watcom C/C++
 #  error  compilers are supported by the STLSoft libraries
 #  error If you want to use the libraries with your compiler, you may specify the
-#  error  _STLSOFT_FORCE_CUSTOM_COMPILER or _STLSOFT_FORCE_ANY_COMPILER pre-processor
+#  error  _STLSOFT_FORCE_CUSTOM_COMPILER or _STLSOFT_FORCE_ANY_COMPILER preprocessor
 #  error  symbols.
 #  error _STLSOFT_FORCE_ANY_COMPILER assumes that your compiler can support all
 #  error  modern C++ compiler features, and causes the inclusion of the compiler

@@ -4,13 +4,13 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     14th February 2010
+ * Updated:     5th February 2012
  *
  * Thanks:      To Sergey Nikulov, for PowerPC (BSD) compatibility fixes
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      19
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       83
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      20
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -243,9 +243,11 @@
  */
 
 #ifdef __cplusplus
-# define STLSOFT_CF_EXCEPTION_SUPPORT
-# define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
-# define STLSOFT_CF_THROW_BAD_ALLOC
+# ifdef __EXCEPTIONS
+#  define STLSOFT_CF_EXCEPTION_SUPPORT
+#  define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+#  define STLSOFT_CF_THROW_BAD_ALLOC
+# endif /* __EXCEPTIONS */
 #endif /* __cplusplus */
 
 #ifdef __cplusplus
@@ -534,7 +536,7 @@
  */
 
 #if defined(_STLSOFT_CUSTOM_ASSERT)
- /* You have defined the pre-processor symbol _STLSOFT_CUSTOM_ASSERT,
+ /* You have defined the preprocessor symbol _STLSOFT_CUSTOM_ASSERT,
   * which stipulates that you will be providing your own assert. This
   * requires that you have defined _STLSOFT_CUSTOM_ASSERT() as a macro
   * taking 1 parameter (the condition to assert).
