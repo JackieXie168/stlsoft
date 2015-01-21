@@ -7,7 +7,7 @@ STLSoft - Known Issues:
 ============================================================================
 
 
-STLSoft 1.9.14 Known Issues:
+STLSoft 1.9.15 Known Issues:
 ----------------------------
 
  * There are some problems with GCC 4.0 in compiling the fixed array classes
