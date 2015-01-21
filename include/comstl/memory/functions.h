@@ -4,7 +4,7 @@
  * Purpose:     COM memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     9th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     1
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  1
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      43
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  2
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,7 +122,7 @@ STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
         ulRet = 0;
     }
 
@@ -158,7 +158,7 @@ STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
         iRet = -1;
     }
 
@@ -188,7 +188,7 @@ STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
     }
 }
 

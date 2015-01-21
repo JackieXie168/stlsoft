@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     12th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     178
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     179
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1693,7 +1693,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::reference basic_static
 
     if(index >= size())
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
@@ -1711,7 +1711,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::const_reference basic_
 
     if(index > size())
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());

@@ -14,7 +14,7 @@
  *              basic_reg_value_sequence).
  *
  * Created:     19th January 2002
- * Updated:     13th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     107
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 7
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -508,7 +508,7 @@ inline registry_util::shared_handle *basic_reg_value_sequence<C, T, A>::create_s
     if(NULL == hkey2)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
     ; // This will fall through to the end() call at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -522,7 +522,7 @@ inline registry_util::shared_handle *basic_reg_value_sequence<C, T, A>::create_s
         if(NULL == handle)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(registry_exception("Failed to create shared enumeration context", ::GetLastError()));
+            STLSOFT_THROW_X(registry_exception("Failed to create shared enumeration context", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ; // This will fall through to the end() call at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -560,7 +560,7 @@ inline /* static */ ss_typename_type_k basic_reg_value_sequence<C, T, A>::hkey_t
     if(ERROR_SUCCESS != result)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Could not duplicate key", result));
+        STLSOFT_THROW_X(registry_exception("Could not duplicate key", result));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         hkeyDup = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -582,7 +582,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence( ss_typename_
     if(ERROR_SUCCESS != (result = traits_type::reg_open_key(hkey, subKeyName, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Could not open key", result));
+        STLSOFT_THROW_X(registry_exception("Could not open key", result));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_hkey = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -603,7 +603,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence( ss_typename_
     if(ERROR_SUCCESS != (result = traits_type::reg_open_key(hkey, subKeyName, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Could not open key", result));
+        STLSOFT_THROW_X(registry_exception("Could not open key", result));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_hkey = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -619,7 +619,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence(ss_typename_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        throw_x(registry_exception("Failed to take duplicate of key", ::GetLastError()));
+        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -634,7 +634,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence( ss_typename_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        throw_x(registry_exception("Failed to take duplicate of key", ::GetLastError()));
+        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -650,7 +650,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence( ss_typename_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        throw_x(registry_exception("Failed to take duplicate of key", ::GetLastError()));
+        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -688,11 +688,11 @@ inline ss_typename_type_k basic_reg_value_sequence<C, T, A>::iterator basic_reg_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw_x(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw_x(registry_exception("Could not elicit value information", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(registry_exception("Could not elicit value information", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ; // This will fall through to the end() call at the end of the function
@@ -709,7 +709,7 @@ inline ss_typename_type_k basic_reg_value_sequence<C, T, A>::iterator basic_reg_
             if(NULL == handle)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw_x(registry_exception("Failed to create shared enumeration context", static_cast<DWORD>(res)));
+                STLSOFT_THROW_X(registry_exception("Failed to create shared enumeration context", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 ; // This will fall through to the end() call at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -743,11 +743,11 @@ inline ss_typename_type_k basic_reg_value_sequence<C, T, A>::iterator basic_reg_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                         if(ERROR_ACCESS_DENIED == res)
                         {
-                            throw_x(access_denied_exception("Could not enumerate values", static_cast<DWORD>(res)));
+                            STLSOFT_THROW_X(access_denied_exception("Could not enumerate values", static_cast<DWORD>(res)));
                         }
                         else
                         {
-                            throw_x(registry_exception("Could not enumerate values", static_cast<DWORD>(res)));
+                            STLSOFT_THROW_X(registry_exception("Could not enumerate values", static_cast<DWORD>(res)));
                         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                         cchName = 0;
@@ -781,7 +781,7 @@ inline ss_typename_type_k basic_reg_value_sequence<C, T, A>::iterator basic_reg_
     if(NULL == handle)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         index = 0; // This will fall through to the constructor at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -821,11 +821,11 @@ inline ss_typename_type_k basic_reg_value_sequence<C, T, A>::size_type basic_reg
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw_x(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw_x(registry_exception("Could not elicit number of values", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(registry_exception("Could not elicit number of values", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         numEntries = 0;
@@ -937,11 +937,11 @@ inline ss_typename_type_k basic_reg_value_sequence_iterator<C, T, V, A>::class_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw_x(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw_x(registry_exception("Could not elicit value information", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(registry_exception("Could not elicit value information", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_index = sentinel_();
@@ -971,11 +971,11 @@ inline ss_typename_type_k basic_reg_value_sequence_iterator<C, T, V, A>::class_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 if(ERROR_ACCESS_DENIED == res)
                 {
-                    throw_x(access_denied_exception("Could not enumerate values", static_cast<DWORD>(res)));
+                    STLSOFT_THROW_X(access_denied_exception("Could not enumerate values", static_cast<DWORD>(res)));
                 }
                 else
                 {
-                    throw_x(registry_exception("Could not enumerate values", static_cast<DWORD>(res)));
+                    STLSOFT_THROW_X(registry_exception("Could not enumerate values", static_cast<DWORD>(res)));
                 }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 m_index = sentinel_();
@@ -1013,11 +1013,11 @@ inline ss_typename_type_k basic_reg_value_sequence_iterator<C, T, V, A>::class_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw_x(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw_x(registry_exception("Could not elicit value information", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(registry_exception("Could not elicit value information", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_index = sentinel_();
@@ -1055,11 +1055,11 @@ inline ss_typename_type_k basic_reg_value_sequence_iterator<C, T, V, A>::class_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 if(ERROR_ACCESS_DENIED == res)
                 {
-                    throw_x(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
+                    STLSOFT_THROW_X(access_denied_exception("Could not elicit value information", static_cast<DWORD>(res)));
                 }
                 else
                 {
-                    throw_x(registry_exception("Could not enumerate values", static_cast<DWORD>(res)));
+                    STLSOFT_THROW_X(registry_exception("Could not enumerate values", static_cast<DWORD>(res)));
                 }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 m_index = sentinel_();

@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/shims/attribute/get_ptr/std/fundamental.hpp
  *
- * \brief [C, C++] Pointer attribute shims for std::auto_ptr.
- *  (\ref group__concept__shim__pointer_attribute "Pointer Attribute Shims".)
+ * \brief [C++] Pointer attribute shims for std::auto_ptr.
+ *  (\ref group__concept__shim__pointer_attribute__get_ptr "get_ptr Pointer Attribute Shim".)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      39
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ namespace stlsoft
 #ifndef _STLSOFT_PTR_ACCESS_NO_AUTO_PTR
 /* std::auto_ptr */
 /** \brief 
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
 inline T *get_ptr(stlsoft_ns_qual_std(auto_ptr)<T> &p)
@@ -95,7 +95,7 @@ inline T *get_ptr(stlsoft_ns_qual_std(auto_ptr)<T> &p)
 }
 
 /** \brief 
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
 inline T const *get_ptr(stlsoft_ns_qual_std(auto_ptr)<T> const &p)

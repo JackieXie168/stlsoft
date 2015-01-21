@@ -4,7 +4,7 @@
  * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
- * Updated:     15th September 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      41
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  3
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -234,44 +234,27 @@ public:
     template <ss_typename_param_k T>
     void operator ()(T const &t) const
     {
-        throw_exception_(thrown_type(t));
+        STLSOFT_THROW_X(thrown_type(t));
     }
     /// Function call operator, taking two parameters
     template<ss_typename_param_k T1, ss_typename_param_k T2>
     void operator ()(T1 const &t1, T2 const &t2) const
     {
-        throw_exception_(thrown_type(t1, t2));
+        STLSOFT_THROW_X(thrown_type(t1, t2));
     }
     /// Function call operator, taking three parameters
     template<ss_typename_param_k T1, ss_typename_param_k T2, ss_typename_param_k T3>
     void operator ()(T1 const &t1, T2 const &t2, T3 const &t3) const
     {
-        throw_exception_(thrown_type(t1, t2, t3));
+        STLSOFT_THROW_X(thrown_type(t1, t2, t3));
     }
     /// Function call operator, taking four parameters
     template<ss_typename_param_k T1, ss_typename_param_k T2, ss_typename_param_k T3, ss_typename_param_k T4>
     void operator ()(T1 const &t1, T2 const &t2, T3 const &t3, T4 const &t4) const
     {
-        throw_exception_(thrown_type(t1, t2, t3, t4));
+        STLSOFT_THROW_X(thrown_type(t1, t2, t3, t4));
     }
 #endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template <ss_typename_param_k X>
-    static void throw_exception_(X const &x)
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
-    static void throw_exception_(std::exception const &x)
-#else /* ? feature / compiler */
-    static void throw_exception_(thrown_type const &x)
-#endif /* feature / compiler */
-    {
-        throw x;
-    }
 /// @}
 };
 

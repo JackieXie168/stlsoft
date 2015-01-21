@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     13th December 2006
+ * Updated:     17th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        45
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -182,7 +182,7 @@ public:
 
     /// Copies the contents of the given instance
     ///
-    /// \exception When compiling with exception support, this will throw
+    /// \exception std::bad_alloc When compiling with exception support, this will throw
     /// std::bad_alloc if memory cannot be acquired. When compiling absent
     /// exception support, failure to acquire memory will leave the
     /// instance unchanged.
@@ -210,7 +210,7 @@ public:
     ///
     /// \note The variable must contain an equal sign ('=')
     ///
-    /// \exception When compiling with exception support, this will throw
+    /// \exception std::bad_alloc When compiling with exception support, this will throw
     /// std::bad_alloc if memory cannot be acquired. When compiling absent
     /// exception support, failure to acquire memory will cause the method
     /// to return false.
@@ -252,7 +252,7 @@ public:
     ///
     /// \note The variable must contain an equal sign ('=')
     ///
-    /// \exception When compiling with exception support, this will throw
+    /// \exception std::bad_alloc When compiling with exception support, this will throw
     /// std::bad_alloc if memory cannot be acquired. When compiling absent
     /// exception support, failure to acquire memory will cause the method
     /// to return false.
@@ -271,7 +271,7 @@ public:
     /// \return An indication of success. This will always return true when
     /// compiling with exception support.
     ///
-    /// \exception When compiling with exception support, this will throw
+    /// \exception std::bad_alloc When compiling with exception support, this will throw
     /// std::bad_alloc if memory cannot be acquired. When compiling absent
     /// exception support, failure to acquire memory will cause the method
     /// to return false.
@@ -316,7 +316,7 @@ public:
     /// \return An indication of success. This will always return true when
     /// compiling with exception support.
     ///
-    /// \exception When compiling with exception support, this will throw
+    /// \exception std::bad_alloc When compiling with exception support, this will throw
     /// std::bad_alloc if memory cannot be acquired. When compiling absent
     /// exception support, failure to acquire memory will cause the method
     /// to return false.

@@ -1,5 +1,5 @@
 
-// Updated: 11th December 2006
+// Updated: 24th December 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_CONVERSION_HPP_PTR_CAST)
 # error This file cannot be directly included, and should only be included within stlsoft/conversion/ptr_cast.hpp
@@ -82,6 +82,7 @@ namespace unittest
 			}
 
 			// (iii) dynamic cast of reference that fails
+#if !defined(STLSOFT_COMPILER_IS_GCC)
 			{
 				try
 				{
@@ -107,8 +108,10 @@ namespace unittest
 				catch(std::bad_cast &)
 				{}
 			}
+#endif /* STLSOFT_COMPILER_IS_GCC */
 
 			// (iv) dynamic cast of pointer that fails
+#if !defined(STLSOFT_COMPILER_IS_GCC)
 			{
 				if(NULL != dynamic_cast<B*>(&a))
 				{
@@ -128,6 +131,7 @@ namespace unittest
 				catch(std::bad_cast &)
 				{}
 			}
+#endif /* STLSOFT_COMPILER_IS_GCC */
 
 			return bSuccess;
 		}

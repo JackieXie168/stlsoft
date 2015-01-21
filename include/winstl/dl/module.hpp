@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     12th December 2006
+ * Updated:     24th December 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      3
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       215
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   2
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -167,7 +167,7 @@ public:
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
         {
-            throw_x(windows_exception("Cannot load module", ::GetLastError()));
+            STLSOFT_THROW_X(windows_exception("Cannot load module", ::GetLastError()));
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -354,7 +354,7 @@ inline module::module(ws_char_a_t const *moduleName)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw_x(windows_exception("Cannot load module", ::GetLastError()));
+        STLSOFT_THROW_X(windows_exception("Cannot load module", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -365,7 +365,7 @@ inline module::module(ws_char_w_t const *moduleName)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw_x(windows_exception("Cannot load module", ::GetLastError()));
+        STLSOFT_THROW_X(windows_exception("Cannot load module", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -376,7 +376,7 @@ inline module::module(module::module_handle_type hmodule)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw_x(windows_exception("Cannot load module", ::GetLastError()));
+        STLSOFT_THROW_X(windows_exception("Cannot load module", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -395,7 +395,7 @@ inline module::module(module const &rhs)
         if(0 == cch)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(windows_exception("Cannot get module path", ::GetLastError()));
+            STLSOFT_THROW_X(windows_exception("Cannot get module path", ::GetLastError()));
 #else /* STLSOFT_CF_EXCEPTION_SUPPORT */
             m_hmodule = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

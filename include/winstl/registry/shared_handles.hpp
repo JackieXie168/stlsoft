@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     1st November 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     16
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -246,7 +246,7 @@ namespace registry_util
                 set();
 
                 // 3. . . . and Throw
-                throw_x(stlsoft_ns_qual(external_iterator_invalidation)("registry contents changed"));
+                STLSOFT_THROW_X(stlsoft_ns_qual(external_iterator_invalidation)("registry contents changed"));
             }
         }
     private:

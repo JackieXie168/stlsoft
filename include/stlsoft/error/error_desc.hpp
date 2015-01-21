@@ -4,7 +4,7 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     13th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  2
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -337,7 +337,7 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual(basic_error_desc)<ss_char_a_t> cons
 
 /** \brief \ref group__concept__shim__pointer_attribute__get_ptr for stlsoft::basic_error_desc
  *
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k C>
 inline C const *get_ptr(stlsoft_ns_qual(basic_error_desc)<C> const &e)

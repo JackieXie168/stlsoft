@@ -4,7 +4,7 @@
  * Purpose:     Contains the ptr_proxy template class.
  *
  * Created:     17th January 1999
- * Updated:     7th July 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_MINOR      0
-# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_REVISION   2
-# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_EDIT       58
+# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_MINOR      1
+# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_REVISION   1
+# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -250,6 +250,31 @@ public:
         return *this;
     }
 };
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Shims
+ */
+
+/** \brief get_ptr shim
+ *
+ * \ingroup group__library__smart_pointers
+ */
+template <ss_typename_param_k T>
+inline T *get_ptr(ptr_proxy<T> &p)
+{
+    return p.get();
+}
+
+/** \brief get_ptr shim
+ *
+ * \ingroup group__library__smart_pointers
+ */
+template <ss_typename_param_k T>
+inline T const *get_ptr(ptr_proxy<T> const &p)
+{
+    return p.get();
+}
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

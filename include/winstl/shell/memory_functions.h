@@ -4,7 +4,7 @@
  * Purpose:     Shell memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     9th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_EDIT      43
+# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ STLSOFT_INLINE void *winstl__SHMemAlloc(ws_size_t cb)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
         pv = NULL;
     }
 
@@ -169,7 +169,7 @@ STLSOFT_INLINE void winstl__SHMemFree(void *pv)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
     }
 }
 
@@ -214,7 +214,7 @@ STLSOFT_INLINE void *winstl__SHMemRealloc(void *pv, ws_size_t cb)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
         pvNew = NULL;
     }
 
@@ -247,7 +247,7 @@ STLSOFT_INLINE ws_size_t winstl__SHMemGetSize(void *pv)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
         ulRet = 0;
     }
 
@@ -283,7 +283,7 @@ STLSOFT_INLINE ws_sint_t winstl__SHMemDidAlloc(void *pv)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
         iRet = -1;
     }
 
@@ -313,7 +313,7 @@ STLSOFT_INLINE void winstl__SHMemHeapMinimise(void)
     }
     else
     {
-        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+        STLSOFT_NS_GLOBAL(SetLastError)(stlsoft_static_cast(DWORD, hr));
     }
 }
 
@@ -438,7 +438,7 @@ inline void SHMemHeapMinimize()
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/functions_unittest_.h"
+# include "./unittest/memory_functions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

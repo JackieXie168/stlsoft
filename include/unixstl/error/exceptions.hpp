@@ -4,7 +4,7 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     16th September 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      39
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MINOR     2
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -112,14 +112,14 @@ namespace unixstl_project
  *
  */
 class unix_exception
-    : public os_exception
+    : public stlsoft_ns_qual(os_exception)
 {
 /// \name Types
 /// @{
 protected:
     typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
-    typedef os_exception                        parent_class_type;
+    typedef stlsoft_ns_qual(os_exception)       parent_class_type;
     typedef int                                 error_code_type;
     typedef unix_exception                      class_type;
 /// @}
@@ -169,14 +169,18 @@ public:
         }
     }
 
+    /// The error code associated with the exception
     error_code_type get_error_code() const
     {
         return m_errorCode;
     }
 
+    /// [DEPRECATED] The error code associated with the exception
+    ///
+    /// \deprecated Use get_error_code() instead.
     error_code_type get_errno() const
     {
-        return m_errorCode;
+        return get_error_code();
     }
 
     char const *strerror() const
@@ -256,34 +260,17 @@ public:
     /// Function call operator, taking no parameters
     void operator ()() const
     {
-        throw_exception_(thrown_type(errno));
+        STLSOFT_THROW_X(thrown_type(errno));
     }
     /// Function call operator, taking one parameter
     void operator ()(error_code_type err) const
     {
-        throw_exception_(thrown_type(err));
+        STLSOFT_THROW_X(thrown_type(err));
     }
     /// Function call operator, taking two parameters
     void operator ()(char const *reason, error_code_type err) const
     {
-        throw_exception_(thrown_type(reason, err));
-    }
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template <ss_typename_param_k X>
-    static void throw_exception_(X const &x)
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
-    static void throw_exception_(std::exception const &x)
-#else /* ? feature / compiler */
-    static void throw_exception_(thrown_type const &x)
-#endif /* feature / compiler */
-    {
-        throw x;
+        STLSOFT_THROW_X(thrown_type(reason, err));
     }
 /// @}
 };

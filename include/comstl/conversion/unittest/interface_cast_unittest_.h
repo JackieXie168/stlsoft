@@ -1,5 +1,5 @@
 
-// Updated: 13th December 2006
+// Updated: 24th December 2006
 
 #if !defined(COMSTL_INCL_COMSTL_CONVERSION_HPP_INTERFACE_CAST)
 # error This file cannot be directly included, and should only be included within comstl/conversion/interface_cast.hpp
@@ -32,21 +32,15 @@ namespace unittest
 
 				if(!interface_cast_test<LPSTREAM>(pstm))
 				{
-					r->report("interface_cast_noaddref did not cast to same type ", __LINE__);
+					r->report("interface_cast_test did not cast to same type ", __LINE__);
 					bSuccess = false;
 				}
 
 				try
 				{
-//#if defined(STLSOFT_COMPILER_IS_DMC) || \
-//	(	defined(STLSOFT_COMPILER_IS_MSVC) && \
-//		_MSC_VER <= 1200)
-//					if(!!interface_cast_test<LPSTORAGE>(pstm))
-//#else /* ? compiler */
 					if(interface_cast_test<LPSTORAGE>(pstm))
-//#endif /* compiler */
 					{
-						r->report("interface_cast_noaddref cast to wrong type ", __LINE__);
+						r->report("interface_cast_test cast to wrong type ", __LINE__);
 						bSuccess = false;
 					}
 				}
@@ -92,6 +86,9 @@ namespace unittest
 			{
 				stlsoft::ref_ptr<IStream>	stm(pstm, false); // Consume the reference
 
+
+				// 1. interface_cast_test
+
 				if(interface_cast_test<IStream>(stm))
 				{}
 				else
@@ -102,7 +99,7 @@ namespace unittest
 
 				if(!interface_cast_test<IStream>(stm))
 				{
-					r->report("interface_cast_noaddref did not cast to same type ", __LINE__);
+					r->report("interface_cast_test did not cast to same type ", __LINE__);
 					bSuccess = false;
 				}
 
@@ -110,7 +107,7 @@ namespace unittest
 				{
 					if(interface_cast_test<IStorage>(stm))
 					{
-						r->report("interface_cast_noaddref cast to wrong type ", __LINE__);
+						r->report("interface_cast_test cast to wrong type ", __LINE__);
 						bSuccess = false;
 					}
 				}
@@ -119,12 +116,14 @@ namespace unittest
 					STLSOFT_SUPPRESS_UNUSED(x);
 				}
 
+				// 2. try_interface_cast
+
 				stlsoft::ref_ptr<IStream>	stm2	=	try_interface_cast<IStream>(stm);
 				stlsoft::ref_ptr<IStorage>	stg 	=	try_interface_cast<IStorage>(stm);
 
 				if(NULL == stm2.get())
 				{
-					r->report("interface_cast_addref did not cast to same type ", __LINE__);
+					r->report("try_interface_cast did not cast to same type ", __LINE__);
 					bSuccess = false;
 				}
 				else
@@ -132,8 +131,34 @@ namespace unittest
 
 				if(NULL != stg.get())
 				{
-					r->report("interface_cast_addref cast to wrong type ", __LINE__);
+					r->report("try_interface_cast cast to wrong type ", __LINE__);
 					bSuccess = false;
+				}
+
+				// 3. interface_cast
+
+				try
+				{
+					stlsoft::ref_ptr<IStream>	stm3	=	interface_cast<IStream>(stm);
+				}
+				catch(bad_interface_cast &x)
+				{
+					r->report("interface_cast did not cast to same type ", __LINE__);
+					bSuccess = false;
+
+					STLSOFT_SUPPRESS_UNUSED(x);
+				}
+
+				try
+				{
+					stlsoft::ref_ptr<IStorage>	stg2	= 	interface_cast<IStorage>(stm);
+
+					r->report("interface_cast cast to wrong type ", __LINE__);
+					bSuccess = false;
+				}
+				catch(bad_interface_cast &x)
+				{
+					STLSOFT_SUPPRESS_UNUSED(x);
 				}
 			}
 

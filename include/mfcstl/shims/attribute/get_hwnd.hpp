@@ -4,7 +4,7 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     12th July 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
 # define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      0
 # define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   1
-# define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       34
+# define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

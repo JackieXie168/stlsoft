@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       38
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
 
     if(INVALID_HANDLE_VALUE == h.get())
     {
-        throw_x(winstl::windows_exception("File does not exist", ::GetLastError()));
+        STLSOFT_THROW_X(windows_exception("File does not exist", ::GetLastError()));
     }
 
     ws_uint64_t             size    =   filesys_traits_t::get_file_size(::stlsoft::get_handle(h));
@@ -222,7 +222,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
     {
         if(size > 0xFFFFFFFF)
         {
-            throw_x(std::out_of_range("Cannot read in files larger than 4GB"));
+            STLSOFT_THROW_X(winstl_ns_qual_std(out_of_range)("Cannot read in files larger than 4GB"));
         }
         else
         {
@@ -238,7 +238,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
 
             if(!::ReadFile(::stlsoft::get_handle(h), &buffer[0], buffer.size(), &dw, NULL))
             {
-                throw_x(winstl::windows_exception("Read operation failed", ::GetLastError()));
+                STLSOFT_THROW_X(windows_exception("Read operation failed", ::GetLastError()));
             }
             else
             {

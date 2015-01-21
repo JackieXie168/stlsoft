@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    3
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        42
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    5
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -562,7 +562,7 @@ inline environment_map::second_type environment_map::operator [](char const *nam
 
     if(NULL == value)
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("variable does not exist"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("variable does not exist"));
     }
 
     return value;
@@ -615,7 +615,7 @@ inline void environment_map::insert(environment_map::first_type const &name, env
         // 2. Insert into the host environment
         if(0 != traits_type::set_variable(name.c_str(), value.c_str()))
         {
-            throw_x(stlsoft_ns_qual_std(runtime_error)("Cannot set environment variable"));
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(runtime_error)("Cannot set environment variable"));
         }
 
         // 3. Update the snapshot
@@ -638,7 +638,7 @@ inline void environment_map::insert(environment_map::first_type const &name, env
                 m_snapshot->erase(name);
             }
 
-            throw_x(stlsoft_ns_qual_std(runtime_error)("Cannot set environment variable"));
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(runtime_error)("Cannot set environment variable"));
         }
     }
 }
@@ -678,7 +678,7 @@ inline environment_map::size_type environment_map::erase(environment_map::first_
         if(NULL != traits_type::get_variable(name.c_str()))
 #endif /* 0 */
         {
-            throw_x(stlsoft_ns_qual_std(runtime_error)("Cannot erase environment variable"));
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(runtime_error)("Cannot erase environment variable"));
         }
     }
     else
@@ -730,7 +730,7 @@ inline void environment_map::erase(environment_map::const_iterator it)
         if(NULL != traits_type::get_variable(name.c_str()))
 #endif /* 0 */
         {
-            throw_x(stlsoft_ns_qual_std(runtime_error)("Cannot erase environment variable"));
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(runtime_error)("Cannot erase environment variable"));
         }
     }
 

@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     13th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -64,9 +64,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        189
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        191
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -830,13 +830,19 @@ inline C const *c_str_ptr_null(winstl_ns_qual(basic_findfile_sequence_value_type
     return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
 }
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Deprecated Shims
+ */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_bool_t is_empty(basic_findfile_sequence<C, T> const &s)
 {
     return s.empty();
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -917,7 +923,7 @@ inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char
     if(0 == traits_type::get_full_path_name(directory, dir.size(), &dir[0]))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(windows_exception(::GetLastError()));
+        STLSOFT_THROW_X(windows_exception(::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         dir[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1734,7 +1740,11 @@ using ::winstl::c_str_ptr_null;
 using ::winstl::c_str_ptr_null_a;
 using ::winstl::c_str_ptr_null_w;
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 using ::winstl::is_empty;
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

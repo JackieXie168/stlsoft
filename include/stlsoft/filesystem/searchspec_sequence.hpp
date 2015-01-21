@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     1st May 2004
- * Updated:     7th July 2006
+ * Updated:     19th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR       4
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        42
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -520,15 +520,6 @@ private:
     ss_int_t    m_flags;
 /// @}
 };
-
-////////////////////////////////////////////////////////////////////////////
-// Shims
-
-template <ss_typename_param_k S>
-inline ss_bool_t is_empty(searchspec_sequence<S> const &s)
-{
-    return s.empty();
-}
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

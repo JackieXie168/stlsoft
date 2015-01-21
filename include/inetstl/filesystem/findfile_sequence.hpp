@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     13th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     118
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 3
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -853,13 +853,6 @@ inline C const *c_str_ptr_null(inetstl_ns_qual(basic_findfile_sequence_value_typ
 
 
 
-
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline is_bool_t is_empty(basic_findfile_sequence<C, T, X> const &s)
-{
-    return s.empty();
-}
-
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
@@ -1517,8 +1510,6 @@ using ::inetstl::c_str_ptr_w;
 using ::inetstl::c_str_ptr_null;
 using ::inetstl::c_str_ptr_null_a;
 using ::inetstl::c_str_ptr_null_w;
-
-using ::inetstl::is_empty;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

@@ -4,7 +4,7 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     15th September 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
-# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_EDIT      31
+# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_MINOR     1
+# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_REVISION  3
+# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,17 +171,24 @@ public:
         }
     }
 
+    /// The error code associated with the exception
     error_code_type get_error_code() const stlsoft_throw_0()
     {
         return m_errorCode;
     }
+    /// [DEPRECATED] The error code associated with the exception
+    ///
+    /// \deprecated Use get_error_code() instead.
     error_code_type last_error() const stlsoft_throw_0()
     {
-        return m_errorCode;
+        return get_error_code();
     }
+    /// [DEPRECATED] The error code associated with the exception
+    ///
+    /// \deprecated Use get_error_code() instead.
     error_code_type error() const stlsoft_throw_0()
     {
-        return m_errorCode;
+        return get_error_code();
     }
 /// @}
 
@@ -244,34 +251,17 @@ public:
     /// Function call operator, taking no parameters
     void operator ()() const
     {
-        throw_exception_(thrown_type(::GetLastError()));
+        STLSOFT_THROW_X(thrown_type(::GetLastError()));
     }
     /// Function call operator, taking one parameter
     void operator ()(error_code_type err) const
     {
-        throw_exception_(thrown_type(err));
+        STLSOFT_THROW_X(thrown_type(err));
     }
     /// Function call operator, taking two parameters
     void operator ()(char const *reason, error_code_type err) const
     {
-        throw_exception_(thrown_type(reason, err));
-    }
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template <ss_typename_param_k X>
-    static void throw_exception_(X const &x)
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
-    static void throw_exception_(std::exception const &x)
-#else /* ? feature / compiler */
-    static void throw_exception_(thrown_type const &x)
-#endif /* feature / compiler */
-    {
-        throw x;
+        STLSOFT_THROW_X(thrown_type(reason, err));
     }
 /// @}
 };

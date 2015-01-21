@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     12th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     76
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,9 +96,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef WINSTL_INCL_WINSTL_ERROR_HPP_EXCEPTIONS
-#  include <winstl/error/exceptions.hpp>
-# endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_EXCEPTIONS */
+# ifndef WINSTL_INCL_WINSTL_ERROR_HPP_CONVERSION_ERROR
+#  include <winstl/error/conversion_error.hpp>
+# endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_CONVERSION_ERROR */
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -205,7 +205,7 @@ private:
             if(0 == ::MultiByteToWideChar(0, 0, s, static_cast<int>(size), data, static_cast<int>(size)))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-// TODO:        throw conversion_exception("failed to convert multibyte string to wide string", ::GetLastError());
+                STLSOFT_THROW_X(conversion_error("failed to convert multibyte string to wide string", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -320,7 +320,7 @@ private:
             if(0 == ::WideCharToMultiByte(0, 0, s, static_cast<int>(size), data, static_cast<int>(size), NULL, NULL))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-// TODO:        throw conversion_exception("failed to convert multibyte string to wide string", ::GetLastError());
+                STLSOFT_THROW_X(conversion_error("failed to convert multibyte string to wide string", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

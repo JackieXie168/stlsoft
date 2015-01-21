@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_const_iterator class.
  *
  * Created:     10th November 2002
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     61
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 3
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -201,7 +201,7 @@ public:
             if(control_traits_type::err_constant() == (len = control_traits_type::get_text_len(m_hwnd, m_index)))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw_x(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
+                STLSOFT_THROW_X(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 len = 0;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -212,7 +212,7 @@ public:
             if(control_traits_type::err_constant() == (len = control_traits_type::get_text(m_hwnd, m_index, &buffer[0])))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw_x(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
+                STLSOFT_THROW_X(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 buffer.resize(1);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -385,7 +385,7 @@ public:
         if(control_traits_type::err_constant() == (len = control_traits_type::get_text_len(hwnd, index)))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
+            STLSOFT_THROW_X(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             len = 0;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -396,7 +396,7 @@ public:
         if(control_traits_type::err_constant() == (len = control_traits_type::get_text(hwnd, index, &buffer[0])))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
+            STLSOFT_THROW_X(stlsoft_ns_qual(external_iterator_invalidation)("external iterator invalidation: control contents may have been altered externally"));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             buffer.resize(1);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

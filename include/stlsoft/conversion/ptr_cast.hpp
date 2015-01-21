@@ -5,7 +5,7 @@
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     11th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       26
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   6
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -262,7 +262,7 @@ public:
     {
         if(NULL == m_p)
         {
-            throw_x(std::bad_cast());
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(bad_cast)());
         }
     }
 
