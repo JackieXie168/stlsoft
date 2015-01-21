@@ -4,11 +4,11 @@
  * Purpose:     is_signed_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     9th March 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_MINOR      1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_REVISION   2
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_EDIT       8
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,4 +143,4 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, long double, 1, yes_t
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

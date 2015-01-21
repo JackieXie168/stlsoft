@@ -4,11 +4,11 @@
  * Purpose:     Raw conversion veneer class.
  *
  * Created:     30th July 2002
- * Updated:     22nd March 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_REVISION   2
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       46
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -677,4 +677,4 @@ public:
 
 #endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

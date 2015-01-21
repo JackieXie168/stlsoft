@@ -4,11 +4,11 @@
  * Purpose:     type traits classes.
  *
  * Created:     24th August 2003
- * Updated:     1st October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_EDIT     35
+# define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -489,4 +489,4 @@ struct base_type_traits<T const volatile*&>
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

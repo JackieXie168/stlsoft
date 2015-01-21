@@ -4,7 +4,7 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     9th July 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      51
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -326,4 +326,4 @@ public:
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_EXCEPTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

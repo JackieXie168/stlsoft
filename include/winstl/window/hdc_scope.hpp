@@ -4,11 +4,11 @@
  * Purpose:     GDI scope class.
  *
  * Created:     20th October 1994
- * Updated:     22nd March 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       42
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -178,4 +178,4 @@ private:
 
 #endif /* WINSTL_INCL_WINSTL_WINDOW_HPP_HDC_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

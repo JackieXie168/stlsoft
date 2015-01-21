@@ -4,11 +4,11 @@
  * Purpose:     Main header file for the STLSoft Algorithms library.
  *
  * Created:     23rd October 2004
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MINOR       0
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        28
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,4 +101,4 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

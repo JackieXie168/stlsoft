@@ -4,11 +4,11 @@
  * Purpose:     Pre-processor abilities for the meta library.
  *
  * Created:     5th March 2006
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     10
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -149,4 +149,4 @@
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

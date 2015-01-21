@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     20th January 2009
+ * Updated:     10th August 2009
  *
  * Thanks to:   Robert Kreger for spotting a defect in the discrimination of
  *              wide character support on GCC 3.3.3.
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      91
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -807,4 +807,4 @@ inline ss_char_w_t const* c_str_ptr_null_w(S const& s)
 
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

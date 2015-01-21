@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     21st July 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    5
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     49
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -569,4 +569,4 @@ namespace inetstl = ::stlsoft::inetstl_project;
 
 #endif /* INETSTL_INCL_INETSTL_H_INETSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

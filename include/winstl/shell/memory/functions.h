@@ -4,11 +4,11 @@
  * Purpose:     Shell memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     9th March 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MAJOR       6
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        52
+# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -501,4 +501,4 @@ inline void SHMemHeapMinimize()
 
 #endif /* !WINSTL_INCL_WINSTL_SHELL_MEMORY_H_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

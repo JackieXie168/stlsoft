@@ -6,11 +6,11 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     11th August 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     63
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -327,4 +327,4 @@ inline ss_bool_t operator < (union_caster<TO, FROM, B_CHECK_ALIGN> const& lhs, u
 
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     Contains forward declarations for components in the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MINOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -160,4 +160,4 @@ class wrong_value_type_exception;
 
 #endif /* WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

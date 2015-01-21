@@ -4,11 +4,11 @@
  * Purpose:     Contains string_traits for MFC.
  *
  * Created:     25th April 2005
- * Updated:     12th March 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_MAJOR       2
 # define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_MINOR       0
 # define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_REVISION    1
-# define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_EDIT        15
+# define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -134,4 +134,4 @@ struct string_traits<CString>
 
 #endif /* !MFCSTL_INCL_MFCSTL_STRING_HPP_STRING_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

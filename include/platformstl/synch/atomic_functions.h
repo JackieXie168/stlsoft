@@ -4,11 +4,11 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     30th April 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        25
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -389,4 +389,4 @@ namespace platformstl_project
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

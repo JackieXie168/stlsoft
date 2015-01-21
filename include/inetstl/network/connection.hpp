@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_connection class.
  *
  * Created:     30th April 1999
- * Updated:     1st May 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MAJOR       5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       1
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    3
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        66
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -426,4 +426,4 @@ inline HINTERNET get_handle(basic_connection<C, X, T> &s)
 
 #endif /* INETSTL_INCL_INETSTL_NETWORK_HPP_CONNECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

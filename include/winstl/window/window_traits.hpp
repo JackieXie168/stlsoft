@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     24th August 2003
- * Updated:     24th March 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_MINOR    1
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_EDIT     30
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -229,4 +229,4 @@ public:
 
 #endif /* WINSTL_INCL_WINSTL_WINDOW_HPP_WINDOW_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

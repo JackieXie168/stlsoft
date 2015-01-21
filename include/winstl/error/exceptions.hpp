@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     31st January 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        56
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -444,4 +444,4 @@ public:
 
 #endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_EXCEPTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

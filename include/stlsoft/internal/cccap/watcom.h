@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Watcom C/C++.
  *
  * Created:     7th February 2003
- * Updated:     8th June 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       18
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        76
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -408,4 +408,4 @@
 #pragma warning 594 10 /* Suppresses "Warning! W594: construct resolved as a declaration/type" */
 #pragma warning 604 10 /* Suppresses "Warning! W604: must look ahead to determine whether construct is a declaration/type or an expression" */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

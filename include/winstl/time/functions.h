@@ -4,11 +4,11 @@
  * Purpose:     Time manipulation functions.
  *
  * Created:     21st November 2003
- * Updated:     14th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_MAJOR       5
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_EDIT        38
+# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,4 +78,4 @@
 
 #endif /* WINSTL_INCL_WINSTL_TIME_H_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

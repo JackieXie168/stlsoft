@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     21st July 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 4
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     41
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp
@@ -546,4 +546,4 @@ namespace wtlstl = ::stlsoft::wtlstl_project;
 
 #endif /* WTLSTL_INCL_WTLSTL_HPP_WTLSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

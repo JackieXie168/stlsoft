@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     21st July 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     7
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  4
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      39
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -489,4 +489,4 @@ namespace acestl = ::stlsoft::acestl_project;
 
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

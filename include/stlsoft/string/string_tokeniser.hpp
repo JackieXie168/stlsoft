@@ -4,11 +4,11 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      220
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      221
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1070,4 +1070,4 @@ inline ss_ptrdiff_t* distance_type(string_tokeniser<S, D, B, V, T, P>::const_ite
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

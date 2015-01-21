@@ -5,11 +5,11 @@
  *              for Internet-related types.
  *
  * Created:
- * Updated:     22nd September 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_MAJOR       1
 # define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_MINOR       0
 # define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_REVISION    2
-# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_EDIT        4
+# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,4 +80,4 @@
 
 #endif /* INETSTL_INCL_INETSTL_INCLUDES_STD_H_IN_ADDR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

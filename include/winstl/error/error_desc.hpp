@@ -4,11 +4,11 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     22nd September 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       5
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        76
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -682,4 +682,4 @@ using ::winstl::get_ptr;
 
 #endif /* WINSTL_INCL_WINSTL_ERROR_HPP_ERROR_DESC */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

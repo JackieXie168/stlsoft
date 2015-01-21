@@ -4,13 +4,13 @@
  * Purpose:     Contains the c_str_insert_iterator template class and c_str_inserter creator function.
  *
  * Created:     12th October 2004
- * Updated:     22nd September 2008
+ * Updated:     10th August 2009
  *
  * Thanks to:   Pablo Aguilar for spotting missing inclusions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_REVISION  2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      28
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,4 +218,4 @@ inline c_str_ptr_extract_iterator<F> c_str_ptr_inserter(F &f)
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_C_STR_INSERTER */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
