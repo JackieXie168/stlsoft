@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  6th March 2009
+; Updated:  7th May 2009
 
 ============================================================================
 
@@ -54,6 +54,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     Maciej Kaniewski
     Manfred Ehrhart
     Marc Kamradt
+    markitus82
     Martin J Moene
     Mateusz Loskot
     Mikael Pahmp

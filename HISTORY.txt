@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  6th May 2009
+; Updated:  7th May 2009
 
 ============================================================================
+
+
+7th May 2009 - 1.9.81 released
+------------------------------
+
+ * now recognises __func__, provided by Sun Pro, via STLSOFT_CF_func_SYMBOL_SUPPORT
+ * abstracts __FUNCTION__ support to STLSOFT_FUNCTION_SYMBOL
 
 
 6th May 2009 - 1.9.80 released
