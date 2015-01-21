@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  27th December 2010
+; Updated:  28th December 2010
 
 ============================================================================
 
@@ -16,6 +16,24 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+============================================================================
+
+Changes for 1.9.106 (28th December 2010)
+
+Summary:
+========
+
+ * workaround for Intel compile error
+
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/winstl/error/exceptions.hpp:
+    ~ workaround for Intel compile error
 
 ============================================================================
 
