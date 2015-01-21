@@ -7,6 +7,7 @@
 #include <stlsoft/string/shim_string.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

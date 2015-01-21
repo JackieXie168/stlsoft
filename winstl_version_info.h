@@ -7,5 +7,6 @@
 #include <winstl/system/version_info.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

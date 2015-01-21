@@ -4,7 +4,7 @@
  * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,6 +59,14 @@
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -80,7 +88,8 @@ namespace stlsoft
  * Classes
  */
 
-/** \brief Root exception class for sub-project platform-specific exceptions
+/** \brief Root exception class for sub-project platform-specific
+ *    exceptions.
  *
  * \ingroup group__library__error
  *

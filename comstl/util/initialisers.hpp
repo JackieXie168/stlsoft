@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MAJOR       3
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MINOR       2
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    1
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        64
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ namespace comstl_project
 
 /** \brief Exception class thrown for COM initialisation failures
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 class com_initialisation_exception
     : public com_exception
@@ -129,7 +129,7 @@ private:
 
 /** \brief Exception policy whose action is to do nothing
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 // [[synesis:class:exception-policy: com_initialisation_exception_policy]]
 struct com_initialisation_exception_policy
@@ -156,7 +156,7 @@ public:
 
 /** \brief Exception policy whose action is to do nothing
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef stlsoft_ns_qual(null_exception_policy)  ignore_initialisation_exception_policy;
 
@@ -166,7 +166,7 @@ typedef stlsoft_ns_qual(null_exception_policy)  ignore_initialisation_exception_
 
 /** \brief Initialises the COM libraries
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * This class is used to initialise the COM libraries. It can respond to
  * CoInitializeEx argument flags when translated in a DCOM build.
@@ -271,34 +271,34 @@ public:
 
 /** \brief Instantiation that initialises via CoInitialize() but does not throw on failure.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef initialiser<CoInitialize_policy, ignore_initialisation_exception_policy>    com_init_nothrow;
 /** \brief Instantiation that initialises via OleInitialize() but does not throw on failure.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef initialiser<OleInitialize_policy, ignore_initialisation_exception_policy>   ole_init_nothrow;
 
 /** \brief Instantiation that initialises via CoInitialize() and throws on failure.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef initialiser<CoInitialize_policy, com_initialisation_exception_policy>       com_init;
 /** \brief Instantiation that initialises via OleInitialize() and throws on failure.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef initialiser<OleInitialize_policy, com_initialisation_exception_policy>      ole_init;
 
 /** \brief \deprecated
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef com_init_nothrow                                                            com_initialiser;
 /** \brief \deprecated
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef ole_init_nothrow                                                            ole_initialiser;
 
@@ -307,12 +307,12 @@ typedef ole_init_nothrow                                                        
 
 /** \brief Equivalent to com_initialiser
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef com_initialiser com_initializer;
 /** \brief Equivalent to ole_initialiser
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef ole_initialiser ole_initializer;
 

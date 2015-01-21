@@ -7,5 +7,6 @@
 #include <winstl/memory/shell_allocator.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

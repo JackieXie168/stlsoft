@@ -7,6 +7,7 @@
 #include <stlsoft/meta/base_type_traits.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

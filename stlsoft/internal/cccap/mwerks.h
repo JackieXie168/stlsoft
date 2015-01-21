@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     25th August 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       7
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        51
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,6 +64,7 @@
  */
 
 /*
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

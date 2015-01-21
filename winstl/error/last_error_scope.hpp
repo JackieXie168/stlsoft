@@ -4,7 +4,7 @@
  * Purpose:     Win32 last error scoping class.
  *
  * Created:     27th November 1998
- * Updated:     9th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,16 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MINOR       0
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT        38
+# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -94,20 +102,19 @@ namespace winstl_project
  *
  * \ingroup group__library__error
  *
-\htmlonly
-<pre>
+\code
   DWORD   err = ::GetLastError();
-  { <b>winstl::last_error_scope</b> scope; // Scope the error while we change it
+  { winstl::last_error_scope  scope; // Scope the error while we change it
 
     // Some code that changes (or may change) the last error
     . . . 
+
     ::SetLastError(ERROR_ACCESS_DENIED); // ... we just do this for pedagogical purposes
 
   } // End of scope - error value replaced to former value
 
   assert(::GetLastError() == err);
-</pre>
-\endhtmlonly
+\endcode
  */
 class last_error_scope
 {

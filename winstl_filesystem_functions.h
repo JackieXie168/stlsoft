@@ -7,5 +7,6 @@
 #include <winstl/directory_functions.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

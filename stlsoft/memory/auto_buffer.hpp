@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     13th September 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        144
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        145
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,7 @@
 [Incompatibilies-start]
 STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3
 [Incompatibilies-end]
+[DocumentationStatus:Ready]
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -187,30 +188,132 @@ struct auto_buffer_internal_size_calculator<ss_char_w_t>
  *
  * \ingroup group__library__memory
  *
+ * \param T The type of the elements in the array
+ * \param SPACE The number of elements in the array. For translators that
+ *   support default template arguments, this is defaulted to <b>256</b>
+ * \param A The allocator type. Defaults to
+ *   \link stlsoft::allocator_selector allocator_selector<T>::allocator_type\endlink
+ *   for translators that support default template arguments.
+ *
  * This class provides an efficient replacement for dynamic memory block
- * allocation when the block size generally falls under a certain limit. In
+ * allocation when the block size generally falls under a predictable limit. In
  * such cases, significant performance benefits can be achieved by using an
  * instance of a parameterisation of auto_buffer, whose size parameter SPACE
  * is set to a level to cater for most of the requested sizes. Only where
  * the size of the buffer needs to be larger than this limit does an
  * allocation occur from the heap/free-store via the given allocator.
  *
- * \param T The type of the elements in the array
- * \param SPACE The number of elements in the array. For translators that
- *   support default template arguments, this is defaulted to 256
- * \param A The allocator type. Defaults to allocator_selector<T>::allocator_type for translators
- *   that support default template arguments.
+ * Using <code>auto_buffer</code> means one can avoid use of heap memory in
+ * circumstances where stack memory is unsuitable, i.e. where there is no
+ * maximum size to a memory requirement, or the maximum size is potentially
+ * very large (and considerably larger than the median size). Consider the
+ * following code extract from the core of the
+ * <a href = "http://pantheios.org/">Pantheios</a> logging library:
+\code
+  int pantheios_log_n(  pan_sev_t           severity
+                     ,  size_t              numSlices
+                     ,  pan_slice_t const   *slices)
+  {
+    typedef stlsoft::auto_buffer<char, 2048>  buffer_t;
+
+    // Calculate the total size of the log statement, by summation of the slice array
+    const size_t  n = std::accumulate(stlsoft::member_selector(slices, &pan_slice_t::len)
+                                    , stlsoft::member_selector(slices + numSlices, &pan_slice_t::len)
+                                    , size_t(0));
+    buffer_t      buffer(1 + n);
+
+    . . .
+\endcode
+ *
+ * This use of auto_buffer illustrates two important features:
+ * - there is no (compile-time) limit on the maximum size of a log statement
+ * - memory is only allocated from the heap in the case where the total statement length >= 2047 bytes.
+ *
+ * Without auto_buffer, we would have three choices, all bad:
+ *
+ * 1. We could go to the heap in all cases:
+\code
+  int pantheios_log_n(  pan_sev_t           severity
+                     ,  size_t              numSlices
+                     ,  pan_slice_t const   *slices)
+  {
+    typedef stlsoft::vector<char>   buffer_t;
+
+    // Calculate the total size of the log statement, by summation of the slice array
+    const size_t  n = std::accumulate(stlsoft::member_selector(slices, &pan_slice_t::len)
+                                    , stlsoft::member_selector(slices + numSlices, &pan_slice_t::len)
+                                    , size_t(0));
+    buffer_t      buffer(1 + n);
+
+    . . .
+\endcode
+ * But this would have an unacceptable performance hit (since the vast
+ * majority of log statements are less than 2K in extent).
+ *
+ * 2. We could use a stack buffer, and truncate any log statement exceeding
+ *     the limit:
+\code
+  int pantheios_log_n(  pan_sev_t           severity
+                     ,  size_t              numSlices
+                     ,  pan_slice_t const   *slices)
+  {
+    // Calculate the total size of the log statement, by summation of the slice array
+    const size_t  n = std::accumulate(stlsoft::member_selector(slices, &pan_slice_t::len)
+                                    , stlsoft::member_selector(slices + numSlices, &pan_slice_t::len)
+                                    , size_t(0));
+    char          buffer[2048];
+
+    . . . // make sure to truncate the statement to a max 2047 characters
+
+\endcode
+ * But this would unnecessarily constrain users of the Pantheios logging
+ * functionality.
+ *
+ * 3. Finally, we could synthesise the functionality of auto_buffer
+ *     manually, as in:
+\code
+  int pantheios_log_n(  pan_sev_t           severity
+                     ,  size_t              numSlices
+                     ,  pan_slice_t const   *slices)
+  {
+    // Calculate the total size of the log statement, by summation of the slice array
+    const size_t  n = std::accumulate(stlsoft::member_selector(slices, &pan_slice_t::len)
+                                    , stlsoft::member_selector(slices + numSlices, &pan_slice_t::len)
+                                    , size_t(0));
+    char    buff[2048];
+	char    *buffer = (n < 2048) ? &buff[0] : new char[1 + n];
+
+    . . .
+
+    if(buffer != &buff[0])
+	{
+	  delete [] buffer;
+	}
+\endcode
+ * But this is onerous manual fiddling, and exception-unsafe. What would be
+ * the point, when auto_buffer already does this (safely) for us?
+ *
+ * As a consequence of its blending of the best features of stack and heap
+ * memory, auto_buffer is an invaluable component in the implementation of
+ * many components within the STLSoft libraries, and in several other
+ * open-source projects, including:
+ * <a href = "http://synesis.com.au/software/b64.html">b64</a>,
+ * <a href = "http://openrj.org/">Open-RJ</a>,
+ * <a href = "http://pantheios.org/">Pantheios</a>,
+ * <a href = "http://recls.org/">recls</a>,
+ * and
+ * <a href = "http://shwild.org/">shwild</a>.
  *
  * \remarks auto_buffer works correctly whether the given allocator throws an
- *   exception on allocation failure, or returns NULL. In the latter case,
- *   construction failure to allocate results in the size() method returning
- *   0.
+ *   exception on allocation failure, or returns <code>NULL</code>. In the
+ *   latter case, construction failure to allocate is reflected by the size()
+ *   method returning 0.
  *
  * \note With version 1.9 of STLSoft, the order of the space and allocator
  *   arguments were reversed. Further, the allocator default changed from
- *   stlsoft::new_allocator to std::allocator for translators that support
+ *   stlsoft::new_allocator to <code>std::allocator</code> for translators that support
  *   the standard library. If you need the old characteristics, you can
- *   \#define the symbol <b>STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS</b>.
+ *   <code>\#define</code> the symbol <b>STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS</b>.
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \

@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     16th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     3
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  1
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      27
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,8 +122,7 @@ namespace winstl_project
  * Classes
  */
 
-/** \brief Exception thrown when an entry point cannot be located in a
- *   dynamic library.
+/** \brief Indicates an entry point cannot be located in a dynamic library.
  *
  * \ingroup group__library__dl__exceptions
  */
@@ -171,7 +170,7 @@ private:
 /// @}
 };
 
-/** \brief Exception thrown when a calling convention specifier is invalid.
+/** \brief Indicates an invalid calling convention specifier.
  *
  * \ingroup group__library__dl__exceptions
  */
@@ -566,6 +565,7 @@ char const *detect_cc_( dl_call_traits::is_fd
 
 // 0 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         >
 inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp)
@@ -578,6 +578,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp)
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         >
 inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp)
@@ -591,6 +592,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp)
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         >
 inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp)
@@ -606,6 +608,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp)
 
 // 1 param
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0
         >
@@ -619,6 +622,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0)
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0
         >
@@ -633,6 +637,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0)
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0
         >
@@ -649,6 +654,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0)
 
 // 2 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1
         >
@@ -662,6 +668,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1)
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1
         >
@@ -676,6 +683,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1
         >
@@ -692,6 +700,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 3 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2
         >
@@ -705,6 +714,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2
         >
@@ -719,6 +729,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2
         >
@@ -735,6 +746,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 4 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3
         >
@@ -748,6 +760,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3
         >
@@ -762,6 +775,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3
         >
@@ -778,6 +792,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 5 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4
         >
@@ -791,6 +806,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4
         >
@@ -805,6 +821,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4
         >
@@ -821,6 +838,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 6 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5
         >
@@ -834,6 +852,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5
         >
@@ -848,6 +867,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5
         >
@@ -864,6 +884,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 7 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6
         >
@@ -877,6 +898,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6
         >
@@ -891,6 +913,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6
         >
@@ -907,6 +930,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 8 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7
         >
@@ -920,6 +944,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7
         >
@@ -934,6 +959,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7
         >
@@ -950,6 +976,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 9 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8
         >
@@ -963,6 +990,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8
         >
@@ -977,6 +1005,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8
         >
@@ -993,6 +1022,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 10 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9
         >
@@ -1006,6 +1036,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9
         >
@@ -1020,6 +1051,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9
         >
@@ -1036,6 +1068,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 11 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10
         >
@@ -1049,6 +1082,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10
         >
@@ -1063,6 +1097,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10
         >
@@ -1079,6 +1114,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 12 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11
         >
@@ -1092,6 +1128,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11
         >
@@ -1106,6 +1143,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11
         >
@@ -1122,6 +1160,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 13 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12
         >
@@ -1135,6 +1174,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12
         >
@@ -1149,6 +1189,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12
         >
@@ -1165,6 +1206,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 14 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13
         >
@@ -1178,6 +1220,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13
         >
@@ -1192,6 +1235,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13
         >
@@ -1208,6 +1252,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 15 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14
         >
@@ -1221,6 +1266,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14
         >
@@ -1235,6 +1281,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14
         >
@@ -1251,6 +1298,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 16 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15
         >
@@ -1264,6 +1312,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15
         >
@@ -1278,6 +1327,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15
         >
@@ -1294,6 +1344,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 17 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16
         >
@@ -1307,6 +1358,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16
         >
@@ -1321,6 +1373,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16
         >
@@ -1337,6 +1390,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 18 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17
         >
@@ -1350,6 +1404,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17
         >
@@ -1364,6 +1419,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17
         >
@@ -1380,6 +1436,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 19 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18
         >
@@ -1393,6 +1450,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18
         >
@@ -1407,6 +1465,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18
         >
@@ -1423,6 +1482,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 20 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19
         >
@@ -1436,6 +1496,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19
         >
@@ -1450,6 +1511,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19
         >
@@ -1466,6 +1528,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 21 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20
         >
@@ -1479,6 +1542,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20
         >
@@ -1493,6 +1557,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20
         >
@@ -1509,6 +1574,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 22 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21
         >
@@ -1522,6 +1588,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21
         >
@@ -1536,6 +1603,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21
         >
@@ -1552,6 +1620,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 23 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22
         >
@@ -1565,6 +1634,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22
         >
@@ -1579,6 +1649,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22
         >
@@ -1595,6 +1666,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 24 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23
         >
@@ -1608,6 +1680,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23
         >
@@ -1622,6 +1695,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23
         >
@@ -1638,6 +1712,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 25 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24
         >
@@ -1651,6 +1726,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24
         >
@@ -1665,6 +1741,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24
         >
@@ -1681,6 +1758,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 26 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25
         >
@@ -1694,6 +1772,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25
         >
@@ -1708,6 +1787,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25
         >
@@ -1724,6 +1804,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 27 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26
         >
@@ -1737,6 +1818,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26
         >
@@ -1751,6 +1833,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26
         >
@@ -1767,6 +1850,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 28 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27
         >
@@ -1780,6 +1864,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27
         >
@@ -1794,6 +1879,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27
         >
@@ -1810,6 +1896,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 29 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28
         >
@@ -1823,6 +1910,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28
         >
@@ -1837,6 +1925,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28
         >
@@ -1853,6 +1942,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 30 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29
         >
@@ -1866,6 +1956,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29
         >
@@ -1880,6 +1971,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29
         >
@@ -1896,6 +1988,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 31 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30
         >
@@ -1909,6 +2002,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30
         >
@@ -1923,6 +2017,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30
         >
@@ -1939,6 +2034,7 @@ inline R dl_call_invoke_stdcall(dl_call_traits::entry_point_type fp, A0 a0, A1 a
 
 // 32 params
 
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30, ss_typename_param_k A31
         >
@@ -1952,6 +2048,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 }
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30, ss_typename_param_k A31
         >
@@ -1966,6 +2063,7 @@ inline R dl_call_invoke_fastcall(dl_call_traits::entry_point_type fp, A0 a0, A1 
 #endif // STLSOFT_CF_FASTCALL_SUPPORTED
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
+/** ingroup group__library__dl */
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30, ss_typename_param_k A31
         >

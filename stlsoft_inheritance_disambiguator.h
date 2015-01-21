@@ -7,6 +7,7 @@
 #include <stlsoft/obsolete/inheritance_disambiguator.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

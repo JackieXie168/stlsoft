@@ -5,7 +5,7 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,16 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_MAJOR    4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_EDIT     123
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_EDIT     124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -87,10 +95,43 @@ namespace stlsoft
  *
  * \ingroup group__library__containers
  *
- * Defaults to true, indicating that construction and destruction will be
- * performed, but is false for all supported integral and boolean types
- *
  * \param T The type
+ *
+ * The template's value is <b>true</b>, indicating that construction and
+ * destruction will be performed, but is <b>false</b> for the specialisations
+ * for integral and boolean types, indicating that no initialisation of
+ * the array elements will be performed.
+ *
+ * You would customise as follows:
+\code
+  struct YourPodType
+  {
+    int x;
+    int y;
+    int z;
+  };
+
+  namespace stlsoft
+  {
+    template <>
+    struct do_construction<YourPodType>
+    {
+      enum { value = false }; // This will cause the array elements to not be initialised
+    }
+  }
+
+  // Create a 2x3 2-dimensional array of YourPodType
+  stlsoft::fixed_array_2d<YourPodType>  pods(2, 3);
+\endcode
+ *
+ * \see stlsoft::fixed_array_1d |
+ *      stlsoft::fixed_array_2d |
+ *      stlsoft::fixed_array_3d |
+ *      stlsoft::fixed_array_4d |
+ *      stlsoft::static_array_1d |
+ *      stlsoft::static_array_2d |
+ *      stlsoft::static_array_3d |
+ *      stlsoft::static_array_4d
  */
 template <ss_typename_param_k T>
 struct do_construction
@@ -151,6 +192,8 @@ struct do_construction<ss_bool_t>   { enum { value = false }; typedef no_type ty
 /** \brief Stipulates that array elements are always constructed
  *
  * \ingroup group__library__containers
+ *
+ * \see stlsoft::do_construction
  */
 struct do_construction_always
 {
@@ -162,6 +205,8 @@ struct do_construction_always
 /** \brief Stipulates that array elements are never constructed
  *
  * \ingroup group__library__containers
+ *
+ * \see stlsoft::do_construction
  */
 struct do_construction_never
 {

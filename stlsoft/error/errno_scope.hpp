@@ -4,7 +4,7 @@
  * Purpose:     errno scoping class.
  *
  * Created:     28th November 1998
- * Updated:     9th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,16 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MAJOR      3
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       29
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -79,20 +87,19 @@ namespace stlsoft
  *
  * \ingroup group__library__error
  *
-\htmlonly
-<pre>
+\code
   DWORD   err = errno;
-  { <b>stlsoft::errno_scope</b> scope; // Scope the error while we change it
+  { stlsoft::errno_scope  scope; // Scope the error while we change it
 
     // Some code that changes (or may change) the last error
     . . . 
+
     errno = ENOMEM; // ... we just do this for pedagogical purposes
 
   } // End of scope - error value replaced to former value
 
   assert(errno == err);
-</pre>
-\endhtmlonly
+\endcode
  */
 class errno_scope
 {

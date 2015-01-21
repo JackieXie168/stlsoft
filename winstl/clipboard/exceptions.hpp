@@ -4,7 +4,7 @@
  * Purpose:     Exceptions used by the Clipboard library.
  *
  * Created:     6th June 2006
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,16 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_EXCEPTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_EXCEPTIONS_MINOR       1
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_EXCEPTIONS_EDIT        4
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_EXCEPTIONS_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for UNIX PThreads TSS key.
  *
  * Created:     21st January 1999
- * Updated:     7th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       35
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,9 +96,9 @@ namespace unixstl_project
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-/** \brief Thrown to indicate a failure to allocate a TSS key.
+/** \brief Indicates that a TSS key cannot be allocated.
  *
- * \note This exception indicates an irrecoverable condition.
+ * \note This exception indicates an unrecoverable condition.
  *
  * \ingroup group__library__synch
  */

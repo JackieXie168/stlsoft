@@ -4,7 +4,7 @@
  * Purpose:     Indexed range adaptor class.
  *
  * Created:     11th October 2004
- * Updated:     15th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       4
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    1
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        29
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    2
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # error This file is not compatible with the current compiler
 #endif /* compiler */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
 #  include <stlsoft/meta/member_traits.hpp>

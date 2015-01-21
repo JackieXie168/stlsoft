@@ -4,7 +4,7 @@
  * Purpose:     Traits for detecting characteristics of adapted iterators.
  *
  * Created:     9th July 2004
- * Updated:     15th July 2006
+ * Updated:     17th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MINOR    5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     38
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,9 +77,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>      // for stlsoft::iterator, and macros
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+# include <stlsoft/meta/select_first_type_if.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
 #if !defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 # error This file is not compatible with compilers that do not support member type detection
 #else /* ? STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */

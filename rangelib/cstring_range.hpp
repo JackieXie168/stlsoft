@@ -4,7 +4,7 @@
  * Purpose:     Range adaptor for C-strings.
  *
  * Created:     17th May 2004
- * Updated:     13th September 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     3
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  2
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      30
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  3
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,6 +74,18 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
 # include <rangelib/operator_adaptors.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_BOOL_TYPE
+# include <stlsoft/meta/is_bool_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_BOOL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
+# include <stlsoft/meta/is_integral_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_NUMERIC_TYPE
+# include <stlsoft/meta/is_numeric_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_NUMERIC_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
 # include <stlsoft/util/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */

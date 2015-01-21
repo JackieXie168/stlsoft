@@ -7,6 +7,7 @@
 #include <stlsoft/fast_string_concatenator.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

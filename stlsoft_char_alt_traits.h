@@ -7,6 +7,7 @@
 #include <stlsoft/string/char_alt_traits.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

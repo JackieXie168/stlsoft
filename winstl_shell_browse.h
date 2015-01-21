@@ -7,5 +7,6 @@
 #include <winstl/shell/browse_for_folder.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

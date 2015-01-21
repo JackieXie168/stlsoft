@@ -4,7 +4,7 @@
  * Purpose:     Selects the most appropriate allocator.
  *
  * Created:     20th August 2005
- * Updated:     10th June 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     17
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,7 @@
 
 /*
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
+[DocumentationStatus:Ready]
 */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,8 +75,6 @@
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
 
 /* Chosen allocator
- *
- *
  */
 
 #if defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR) && \
@@ -167,8 +166,31 @@ namespace stlsoft
  *   template that selects an appropriate allocator specialisation for the
  *   given type.
  *
+ * It is used in several components in the STLSoft libraries, performing the
+ * function of selecting a specialisation of <code>std::allocator</code>
+ * for compilers/libraries where that is defined and compatible, otherwise
+ * selecting a specialisation of one of the allocator classes provided by
+ * STLSoft.
+ *
+ * Although not likely to be necessary, it is available for use in user's
+ * class templates, as in:
+\code
+  template &lt;typename T
+           , typename A = typename stlsoft::allocator_selector&lt;T>::allocator_type
+           >
+  class my_buffer
+  {
+  public: // Member types
+    typedef T   value_type;
+    typedef A   allocator_type;
+
+    . . . 
+  };
+\endcode
+ *
  * \ingroup group__library__memory
  *
+ * \see stlsoft::auto_buffer
  */
 template <ss_typename_param_k T>
 struct allocator_selector

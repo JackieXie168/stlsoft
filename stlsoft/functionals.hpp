@@ -1,23 +1,12 @@
-/** \file stlsoft/functionals.hpp Redirects inclusion to stlsoft_functionals.h. This will be changed in a subsequent release, such that this file will contain the component definitions, and stlsoft_functionals.h will contain redirect */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS
-#define STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS
+#include <stlsoft/stlsoft.h>
 
-/* /////////////////////////////////////////////////////////////////////////
- * Compatibility
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/obsolete/functionals.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_WATCOM:
-[Incompatibilies-end]
- */
+#include <stlsoft/obsolete/functionals.hpp>
 
-/* /////////////////////////////////////////////////////////////////////////
- * Includes
- */
-
-#ifndef STLSOFT_INCL_H_STLSOFT_FUNCTIONALS
-# include <stlsoft_functionals.h>
-#endif /* !STLSOFT_INCL_H_STLSOFT_FUNCTIONALS */
-
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS */
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/

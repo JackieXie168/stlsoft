@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     11th September 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 12
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     281
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 13
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     282
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -592,7 +592,7 @@
 
 /* Out-of-memory throws bad_alloc.
  *
- * Discriminated symbol is __STLSOFT_CF_NOTHROW_BAD_ALLOC
+ * Discriminated symbol is STLSOFT_CF_NOTHROW_BAD_ALLOC
  *
  * By default, compilations with the Borland, and Watcom compilers throw
  * bad_alloc in conditions of memory exhaustion, and those with Digital Mars
@@ -612,17 +612,36 @@
  * GCC/Metrowerks/Watcom from doing so.
  */
 
+
+/** \def STLSOFT_CF_NOTHROW_BAD_ALLOC
+ * \brief Define if you've overridden <code>operator new</code> to return
+ *   <code>NULL</code> on allocation failure (which is non-standard
+ *   behaviour).
+ */
+
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-# define __STLSOFT_CF_NOTHROW_BAD_ALLOC
+# define STLSOFT_CF_NOTHROW_BAD_ALLOC
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifdef __STLSOFT_CF_NOTHROW_BAD_ALLOC
+#ifdef STLSOFT_CF_NOTHROW_BAD_ALLOC
 # ifdef __STLSOFT_CF_THROW_BAD_ALLOC
 #  undef __STLSOFT_CF_THROW_BAD_ALLOC
 # endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
-#else /* ? __STLSOFT_CF_NOTHROW_BAD_ALLOC */
+# ifdef STLSOFT_CF_THROW_BAD_ALLOC
+#  undef STLSOFT_CF_THROW_BAD_ALLOC
+# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
+#else /* ? STLSOFT_CF_NOTHROW_BAD_ALLOC */
  /* Leave it to whatever the compiler's capability discrimination has determined */
-#endif /* __STLSOFT_CF_NOTHROW_BAD_ALLOC */
+#endif /* STLSOFT_CF_NOTHROW_BAD_ALLOC */
+
+
+
+/* Backwards compatible definitions. Do not use! */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef STLSOFT_CF_NOTHROW_BAD_ALLOC
+#  define __STLSOFT_CF_NOTHROW_BAD_ALLOC
+# endif /* STLSOFT_CF_NOTHROW_BAD_ALLOC */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* Template specialisation syntax support
@@ -1414,7 +1433,7 @@ private:
 
 /** \def ss_explicit_k
  *
- * \brief Evaluates to <b>explicit</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>explicit</b> on translators that support the keyword, otherwise to nothing.
  */
 #ifdef STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 # define ss_explicit_k              explicit
@@ -1424,7 +1443,7 @@ private:
 
 /** \def ss_mutable_k
  *
- * \brief Evaluates to <b>mutable</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>mutable</b> on translators that support the keyword, otherwise to nothing.
  */
 #ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 # define ss_mutable_k               mutable
@@ -1446,7 +1465,7 @@ private:
 
 /** \def ss_typename_type_k
  *
- * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing.
  *
  * Used for type disambiguation inside template bodies
  */
@@ -1458,7 +1477,8 @@ private:
 
 /** \def ss_typename_type_def_k
  *
- * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword and its application in
+ *   the context of default template arguments, otherwise to nothing.
  *
  * Used for type disambiguation in default template arguments
  */
@@ -1470,7 +1490,8 @@ private:
 
 /** \def ss_typename_type_mil_k
  *
- * \brief Evaluates to <b>typename</b> on translators that support the keyword, otherwise to nothing
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword and its application in
+ *   the context of member initialisation lists, otherwise to nothing.
  *
  * Used for type disambiguation inside initialiser lists in class template constructors
  */

@@ -4,7 +4,7 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     7th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       4
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    3
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        23
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    4
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
 # include <stlsoft/util/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE
+# include <stlsoft/meta/is_const_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>      // for discrimination of the MSVC Dinkumware libs (with the bad member types)
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
@@ -292,9 +292,9 @@ public:
  */
 template<   ss_typename_param_k S
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
-        ,   ss_typename_param_k T = associative_range_traits<S, is_const<S>::value>    // Determines whether the associative is const
+        ,   ss_typename_param_k T = associative_range_traits<S, is_const_type<S>::value>    // Determines whether the associative is const
 #else /* ? STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-        ,   ss_typename_param_k T = const_associative_range_traits<S>                  // Determines whether the associative is const
+        ,   ss_typename_param_k T = const_associative_range_traits<S>                       // Determines whether the associative is const
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
         >
 class associative_range

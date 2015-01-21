@@ -7,5 +7,6 @@
 #include <winstl/filesystem/filesystem_traits.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

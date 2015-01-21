@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     25th August 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MAJOR    5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MINOR    0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     33
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,29 +66,48 @@
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Allocator compatibilities
+ * Compatibility
  */
 
-/* stl-like allocator classes need deallocate to use void *
+/*
+[DocumentationStatus:Ready]
+ */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Allocator compatibilities
  *
- * Discriminated symbol is STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
+ * Note: these should be resolving on the library, not the compiler.
+ */
+
+/** \def STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
  *
- * Note: this should be resolving on the library, not the compiler
+ * \ingroup group__library__memory
+ *
+ * \brief Indicates, when defined, that STL-like allocator classes need their
+ *    <code>deallocate()</code> method to use <code>void*</code>.
+ *
+ * \see stlsoft::allocator_base::_Charalloc()
  */
 #define STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER   /* This is standard behaviour */
 
-/* stl-like allocator classes need a _Charalloc method
+/** \def STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
  *
- * Discriminated symbol is STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
+ * \ingroup group__library__memory
  *
- * Note: this should be resolving on the library, not the compiler
+ * \brief Indicates, when defined, that STL-like allocator classes need a
+ *    <code>_Charalloc()</code> method, to be compatible with the
+ *    Dinkumware libraries of older Visual C++ compilers.
+ *
+ * \see stlsoft::allocator_base::_Charalloc()
  */
 #ifdef STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
 # undef STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD           /* This is NOT standard behaviour */
 #endif /* STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD */
 
 
-#if defined(STLSOFT_COMPILER_IS_DMC)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
+#elif defined(STLSOFT_COMPILER_IS_DMC)
 # undef STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
 #elif defined(STLSOFT_COMPILER_IS_MWERKS)
 # undef STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
@@ -107,11 +126,16 @@
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* stl-like allocator classes' allocate() method takes a second "hint" parameter
+/** \def STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
  *
- * Discriminated symbol is STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+ * \ingroup group__library__memory
  *
- * Note: this should be resolving solely on the library (and version), and not involving the compiler
+ * \brief Indicates, when defined, that STL-like allocator classes' 
+ *   <code>allocate()</code> method takes a second <code>hint</code>
+ *   parameter.
+ *
+ * TODO: This should be resolving solely on the library (and version), and not
+ * involving the compiler.
  */
 #define STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT  /* This is standard behaviour */
 
@@ -122,11 +146,16 @@
 #endif /* compiler */
 
 
-/* stl-like allocator classes' deallocate() method takes a second "count" parameter
+/** \def STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT
  *
- * Discriminated symbol is STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT
+ * \ingroup group__library__memory
  *
- * Note: this should be resolving solely on the library (and version), and not involving the compiler
+ * \brief Indicates, when defined, that STL-like allocator classes'
+ *   <code>deallocate()</code> method takes a second <code>count</code>
+ *   parameter.
+ *
+ * TODO: This should be resolving solely on the library (and version), and not
+ * involving the compiler.
  */
 #define STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT   /* This is standard behaviour */
 
@@ -137,33 +166,44 @@
 #endif /* compiler */
 
 
-/* stl-like allocator classes use the rebind mechanism
+/** \def STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
  *
- * Discriminated symbol is STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
+ * \ingroup group__library__memory
  *
- * Use this symbol when determining whether to provide rebind for an allocator
+ * \brief Indicates, when defined, that STL-like allocator classes use the
+ *   rebind mechanism.
+ *
+ * Use this symbol when determining whether to provide <code>rebind</code>
+ * for an allocator.
  */
 
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
 # define STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT     /* This is standard behaviour */
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT */
 
-#if (   defined(STLSOFT_COMPILER_IS_DMC) && \
-        __DMC__ < 0x0836) || \
-    (   (   /* defined(STLSOFT_COMPILER_IS_INTEL) || */ \
-            defined(STLSOFT_COMPILER_IS_MSVC)) && \
-        _MSC_VER < 1300) || \
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
+#elif (   defined(STLSOFT_COMPILER_IS_DMC) && \
+          __DMC__ < 0x0836) || \
+      (   (   /* defined(STLSOFT_COMPILER_IS_INTEL) || */ \
+              defined(STLSOFT_COMPILER_IS_MSVC)) && \
+          _MSC_VER < 1300) || \
     defined(STLSOFT_COMPILER_IS_WATCOM)
 # undef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
 #endif /* _MSC_VER */
 
-/* std::allocator defines a rebind
+/** \def STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
  *
- * Discriminated symbol is STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+ * \ingroup group__library__memory
  *
- * Note: Effectively, this can be determines whether _any_ allocator supports rebind.
+ * \brief Indicates, when defined, that <code>std::allocator</code> defines a
+ *    <code>rebind</code> member template.
  *
- * Use this symbol when determining whether to use rebind on an allocator
+ * \note Effectively, this can be used to determine whether <i>any</i>
+ *   allocator supports rebind.
+ *
+ * Use this symbol when determining whether to use <code>rebind</code> on an
+ * allocator.
  */
 
 #ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
@@ -191,32 +231,35 @@
  * Obsolete forwarding #defines
  */
 
-#ifdef STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
-# define __STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
-#endif /* STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#ifdef STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
-# define __STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
-#endif /* STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD */
+# ifdef STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
+#  define __STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
+# endif /* STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER */
 
-#ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
-# define __STLSOFT_CF_ALLOCATOR_ALLOCATE_HAS_HINT
-#endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+# ifdef STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
+#  define __STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
+# endif /* STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD */
 
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-# define __STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
+# ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+#  define __STLSOFT_CF_ALLOCATOR_ALLOCATE_HAS_HINT
+# endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
 
-#ifdef STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT
-# define __STLSOFT_CF_ALLOCATOR_DEALLOCATE_HAS_OBJECTCOUNT
-#endif /* STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT */
+# ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
+#  define __STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
+# endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
+
+# ifdef STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT
+#  define __STLSOFT_CF_ALLOCATOR_DEALLOCATE_HAS_OBJECTCOUNT
+# endif /* STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT */
 
 
 // TODO: This needs to be moved to stlsoft_cccap_*.h
+# if !defined(STLSOFT_COMPILER_IS_WATCOM)
+#  define STLSOFT_CF_COMPILER_SUPPORTS_CRTP
+# endif /* compiler */
 
-#if !defined(STLSOFT_COMPILER_IS_WATCOM)
-# define STLSOFT_CF_COMPILER_SUPPORTS_CRTP
-#endif /* compiler */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

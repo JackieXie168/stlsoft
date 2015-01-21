@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     2nd September 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -185,7 +185,8 @@ private:
     {
     public: // Member Types
         typedef stlsoft_ns_qual(shared_ptr)<snapshot>   ref_type;
-#if STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
+#if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+    STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
         // VC7 libs get confused with const key type here
         typedef stlsoft_ns_qual_std(map)<         first_type
 #else /* ? library */

@@ -4,7 +4,7 @@
  * Purpose:     Exceptions used by the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,16 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_EDIT     9
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -86,7 +94,8 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/** \brief Root exception thrown by the \ref group__library__windows_registry "Windows Registry" Library.
+/** \brief Root exception thrown by the 
+ *    \ref group__library__windows_registry "Windows Registry" Library.
  *
  * \ingroup group__library__windows_registry
  */
@@ -119,7 +128,7 @@ public:
 /// @}
 };
 
-/** \brief Exception class representing a mismatch of value type
+/** \brief Indicates a registry value type mismatch.
  *
  * \ingroup group__library__windows_registry
  */
@@ -165,7 +174,7 @@ private:
 /// @}
 };
 
-/** \brief Exception class representing insufficient rights to access a key
+/** \brief Indicates insufficient rights to access a registry key.
  *
  * \ingroup group__library__windows_registry
  */

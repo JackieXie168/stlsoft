@@ -4,7 +4,7 @@
  * Purpose:     Range exceptions.
  *
  * Created:     30th December 2005
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      9
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,7 @@
 /*
 [Incompatibilies-start]
 [Incompatibilies-end]
+[DocumentationStatus:Ready]
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,7 +108,7 @@ namespace rangelib_project
  * Classes
  */
 
-/** \brief Exception class for general RangeLib-related failures
+/** \brief General exception class for RangeLib failures.
  *
  * \ingroup group__library__error
  *
@@ -178,7 +179,8 @@ private:
 /// @}
 };
 
-/** \brief The exception type thrown by safearray_sequence on variant type mismatches
+/** \brief Indicates that an operation requiring non-empty range was invoked
+ *    on an empty range.
  *
  * \ingroup group__library__error
  *

@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     7th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,9 +39,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file mfcstl/collections/carray_adaptors.hpp
-///
-/// Contains the definition of the CArray_cadaptor and CArray_iadaptor class templates.
+/** \file mfcstl/collections/carray_adaptors.hpp
+ *
+ * \brief [C++ only] Definition of the mfcstl::CArray_cadaptor and
+ *   mfcstl::CArray_iadaptor traits class templates.
+ *  (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS
 #define MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS
@@ -49,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     66
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 2
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,12 +76,12 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef MFCSTL_INCL_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR
 # include <mfcstl/memory/afx_allocator.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR */
-#ifndef MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_SWAP
-# include <mfcstl/containers/carray_swap.hpp>
-#endif /* !MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_SWAP */
-#ifndef MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS
-# include <mfcstl/containers/carray_traits.hpp>
-#endif /* !MFCSTL_INCL_MFCSTL_CONTAINERS_HPP_CARRAY_TRAITS */
+#ifndef MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_SWAP
+# include <mfcstl/collections/carray_swap.hpp>
+#endif /* !MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_SWAP */
+#ifndef MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS
+# include <mfcstl/collections/carray_traits.hpp>
+#endif /* !MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS */
 #ifndef MFCSTL_INCL_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES
 # include <mfcstl/util/memory_exception_translation_policies.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES */
@@ -88,9 +91,11 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifdef STLSOFT_META_HAS_IS_SAME_TYPE
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
+#  include <stlsoft/meta/is_same_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
@@ -103,15 +108,6 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 # include <afxtempl.h>
 # include <stlsoft/string/simple_string.hpp>
 #endif /* STLSOFT_UNITTEST */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Compatibility
- */
-
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
-# define MFCSTL_ARRAY_ADAPTORS_NO_TEMPLATE_RANGE_OPS
-#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -160,7 +156,7 @@ class CArray_iadaptor;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \brief Adaptor class, providing implementation for CArray_cadaptor and
- * CArray_iadaptor classes
+ *    CArray_iadaptor classes
  *
  * \ingroup group__library__collections
  *
@@ -1107,7 +1103,8 @@ private:
 };
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/** \brief Adaptor class, representing a Class Adaptor over the CArray family of MFC containers
+/** \brief Adaptor class, representing a Class Adaptor over the CArray family
+ *    of MFC containers
  *
  * \ingroup group__library__collections
  *
@@ -1115,23 +1112,21 @@ private:
  *
  * It is used as follows:
  *
- * \htmlonly
- * <pre>
- *   mfcstl::CArray_cadaptor<CStringArray>   ar;
- *
- *   // As an MFC CStringArray:
- *   ar.Add("String 1");
- *   ar.InsertAt(0, "String 0");
- *
- *   // As an STL container
- *   ar.push_back("String 2");
- *   std::list<CString>  l;
- *   l.push_back("String 3");
- *   l.push_back("String 4");
- *   ar.insert(ar.begin() + 2, l.begin(), l.end());
- *   std::sort(ar.begin(), ar.end());
- * <pre>
- * \endhtmlonly
+\code
+  mfcstl::CArray_cadaptor<CStringArray>   ar;
+
+  // As an MFC CStringArray:
+  ar.Add("String 1");
+  ar.InsertAt(0, "String 0");
+
+  // As an STL container
+  ar.push_back("String 2");
+  std::list<CString>  l;
+  l.push_back("String 3");
+  l.push_back("String 4");
+  ar.insert(ar.begin() + 2, l.begin(), l.end());
+  std::sort(ar.begin(), ar.end());
+\endcode
  *
  * \param A The array class, e.g. CObArray, CArray<long>, etc.
  *
@@ -1281,30 +1276,29 @@ public:
 
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/** \brief Adaptor class, representing an Instance Adaptor over the CArray family of MFC containers
+/** \brief Adaptor class, representing an Instance Adaptor over the CArray
+ *    family of MFC containers
  *
  * \ingroup group__library__collections
  *
  * It is used as follows:
  *
- * \htmlonly
- * <pre>
- *   CStringArray                          ar;
- *   mfcstl::CArray_iadaptor<CStringArray> arp;
- *
- *   // As an MFC CStringArray:
- *   ar.Add("String 1");
- *   ar.InsertAt(0, "String 0");
- *
- *   // As an STL container
- *   arp.push_back("String 2");
- *   std::list<CString>  l;
- *   l.push_back("String 3");
- *   l.push_back("String 4");
- *   arp.insert(arp.begin() + 2, l.begin(), l.end());
- *   std::sort(arp.begin(), arp.end());
- * <pre>
- * \endhtmlonly
+\code
+  CStringArray                          ar;
+  mfcstl::CArray_iadaptor<CStringArray> arp(ar);
+
+  // As an MFC CStringArray:
+  ar.Add("String 1");
+  ar.InsertAt(0, "String 0");
+
+  // As an STL container
+  arp.push_back("String 2");
+  std::list<CString>  l;
+  l.push_back("String 3");
+  l.push_back("String 4");
+  arp.insert(arp.begin() + 2, l.begin(), l.end());
+  std::sort(arp.begin(), arp.end());
+\endcode
  *
  * \param A The array class, e.g. CObArray, CArray<long>, etc.
  *

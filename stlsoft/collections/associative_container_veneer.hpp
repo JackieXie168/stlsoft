@@ -4,7 +4,7 @@
  * Purpose:     RRID veneer for associative containers
  *
  * Created:     2nd October 2002
- * Updated:     7th July 2006
+ * Updated:     17th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      36
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,12 +75,15 @@ STLSOFT_COMPILER_IS_WATCOM:
 # error stlsoft_associative_container_veneer.h is incompatible with the Borland C/C++ compiler
 #endif /* compiler */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS
-# include <stlsoft/functionals.hpp>   // for stlsoft::noop_function
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS */
+#ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_NOOP
+# include <stlsoft/functional/noop.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_NOOP */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_FUNCTIONALS
+# include <stlsoft/obsolete/functionals.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_FUNCTIONALS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

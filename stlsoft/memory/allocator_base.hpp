@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     7th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,16 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     34
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -92,9 +100,36 @@ namespace stlsoft
 /** \brief STL Allocator base class adaptor, providing much of the boilerplate
  * functionality of an STL-compliant Allocator class.
  *
+ * \param T The allocator value_type
+ * \param A The adapted/derived allocator type
+ *
  * \ingroup group__library__memory
  *
- * \note This uses the SCTP/CRTP (Simulated Compile-time Polymorphism / Curiously
+ * This class template abstracts away much of the common boilerplate
+ * functionality of allocator classes, requiring that a derived type defines
+ * only a simple set of non-static member functions:
+ *
+ * - <code>void *do_allocate(size_type n, void const *hint);</code> - allocates
+ *    <code>n</code> bytes, optionally taking into account the locality
+ *    <code>hint</code>. Return <code>NULL</code> or throw
+ *    <code>std::bad_alloc</code> if the allocation fails.
+ * - <code>void do_deallocate(void *pv, size_type n);</code> - deallocates
+ *    the memory block pointed to by <code>pv</code>, which is <code>n</code>
+ *    bytes in size.  
+ * - <code>void do_deallocate(void *pv);</code> - deallocates the memory block
+ *    pointed to by <code>pv</code>.
+ *
+ * \see stlsoft::malloc_allocator |
+ *      stlsoft::new_allocator |
+ *      stlsoft::null_allocator |
+ *      comstl::task_allocator |
+ *      mfcstl::afx_allocator |
+ *      winstl::global_allocator |
+ *      winstl::netapi_allocator |
+ *      winstl::processheap_allocator |
+ *      winstl::shell_allocator
+ *
+ * \remarks This uses the SCTP/CRTP (Simulated Compile-time Polymorphism / Curiously
  * Recurring Template Pattern) technique, such that derived classes inherit from
  * parameterisations of the adaptor template which specify their fully derived
  * template-id as the first parameter
@@ -103,9 +138,6 @@ namespace stlsoft
  * the compiler does not throwing std::bad_alloc by default, this behaviour can be
  * forced by defining STLSOFT_FORCE_ATORS_THROW_BAD_ALLOC. std::bad_alloc can be
  * suppressed in all circumstances by defining STLSOFT_FORCE_ATORS_RETURN_NULL.
- *
- * \param T The allocator value_type
- * \param A The adapted/derived allocator type
  */
 
 template<   ss_typename_param_k T
@@ -116,24 +148,24 @@ class allocator_base
 /// \name Types
 /// @{
 public:
-    /// The value type
+    /// \brief The value type
     typedef T                                   value_type;
-    /// The type of the current parameterisation
+    /// \brief The type of the current parameterisation
     typedef allocator_base<T, A>                class_type;
-    /// The pointer type
+    /// \brief The pointer type
     typedef value_type                          *pointer;
-    /// The non-mutating (const) pointer type
+    /// \brief The non-mutating (const) pointer type
     typedef value_type const                    *const_pointer;
-    /// The reference type
+    /// \brief The reference type
     typedef value_type                          &reference;
-    /// The non-mutating (const) reference type
+    /// \brief The non-mutating (const) reference type
     typedef value_type const                    &const_reference;
-    /// The difference type
+    /// \brief The difference type
     typedef ptrdiff_t                           difference_type;
-    /// The size type
+    /// \brief The size type
     typedef ss_size_t                           size_type;
 private:
-    /// The type used in deallocate()
+    /// \brief The type used in deallocate()
 #ifdef STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
     typedef pointer                             deallocate_pointer;
 #else /* ? STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER */
@@ -154,7 +186,7 @@ private:
 /// \name Attributes
 /// @{
 public:
-    /// Returns the maximum number of allocatable entities
+    /// \brief Returns the maximum number of allocatable entities
     size_type max_size() const stlsoft_throw_0()
     {
         return static_cast<size_type>(-1) / sizeof(value_type);
@@ -164,14 +196,14 @@ public:
 /// \name Conversion functions
 /// @{
 public:
-    /// Returns the address corresponding to the given reference
+    /// \brief Returns the address corresponding to the given reference
     ///
     /// \param x A reference to a \c value_type instance whose address will be calculated
     pointer address(reference x) const stlsoft_throw_0()
     {
         return &x;
     }
-    /// Returns the address corresponding to the given non-mutable (const) reference
+    /// \brief Returns the address corresponding to the given non-mutable (const) reference
     ///
     /// \param x A non-mutable (const) reference to a \c value_type instance whose address will be calculated
     const_pointer address(const_reference x) const stlsoft_throw_0()
@@ -183,7 +215,7 @@ public:
 /// \name Allocation
 /// @{
 public:
-    /// Allocates a block of memory sufficient to store \c n elements of type \c value_type
+    /// \brief Allocates a block of memory sufficient to store \c n elements of type \c value_type
     ///
     /// \param n The number of elements to allocate
     /// \param hint A hint to enhance localisation
@@ -205,15 +237,23 @@ public:
         return static_cast<pointer>(p);
     }
 
-#ifdef STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
-    /// The type used in deallocate
+#if defined(STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+    /// \brief A method required by the Dinkumware libraries shipped with
+    ///   older versions of Visual C++.
+    ///
+    /// The method is functionally identical to
+    ///    <code>static_cast<char*>(allocate(n, NULL))</code>
+    /// 
+    /// \remarks This method is only defined when the symbol
+    ///   \ref STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD is defined.
     char *_Charalloc(size_type n)
     {
         return sap_cast<char*>(allocate(n, NULL));
     }
 #endif /* STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD */
 
-    /// Deallocates a pointer
+    /// \brief Deallocates a pointer
     ///
     /// \param p The memory block to deallocate
     /// \param n The number of blocks to deallocate
@@ -222,7 +262,7 @@ public:
         static_cast<concrete_allocator_type*>(this)->do_deallocate(p, n * sizeof(value_type));
     }
 
-    /// Deallocates a pointer
+    /// \brief Deallocates a pointer
     ///
     /// \param p The memory block to deallocate
     void deallocate(deallocate_pointer p)
@@ -234,7 +274,7 @@ public:
 /// \name Object initialisation
 /// @{
 public:
-    /// In-place constructs an instance of the \c value_type, with the given value
+    /// \brief In-place constructs an instance of the \c value_type, with the given value
     ///
     /// \param p The location in which to construct the instance
     /// \param x The value with which to copy construct the instance
@@ -245,7 +285,7 @@ public:
         new(p) value_type(x);
     }
 
-    /// In-place constructs an instance of the \c value_type
+    /// \brief In-place constructs an instance of the \c value_type
     ///
     /// \param p The location in which to construct the instance
     void construct(pointer p)
@@ -255,7 +295,7 @@ public:
         new(p) value_type();
     }
 
-    /// In-place destroys an instance
+    /// \brief In-place destroys an instance
     ///
     /// \param p The instance whose destructor is to be called
     void destroy(pointer p) stlsoft_throw_0()
@@ -266,9 +306,11 @@ public:
     }
 /// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
 //    class_type const &operator =(class_type const &rhs);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////// */
