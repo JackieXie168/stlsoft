@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     18th December 2005
+ * Updated:     6th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    7
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    8
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     12
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h Root header for the PlatformSTL C/C++ libraries */
@@ -345,6 +345,14 @@ typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; //!< streamoff
 } // namespace stlsoft
 namespace platformstl = ::stlsoft::platformstl_project;
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

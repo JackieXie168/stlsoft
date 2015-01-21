@@ -4,7 +4,7 @@
  * Purpose:     Contains various simple self-contained algorithms.
  *
  * Created:     17th January 2002
- * Updated:     18th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_MAJOR      2
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_MINOR      3
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_EDIT       64
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -220,12 +220,12 @@ template<   ss_typename_param_k C
         >
 inline void remove_duplicates_from_unordered_sequence(C &container, P pred)
 {
-    typedef ss_typename_type_k C::iterator  iterator_type;
+    typedef ss_typename_type_k C::iterator  iterator_t;
 
 #if 0
-    for(iterator_type begin = container.begin(); begin != container.end(); ++begin)
+    for(iterator_t begin = container.begin(); begin != container.end(); ++begin)
     {
-        iterator_type it = begin;
+        iterator_t it = begin;
 
         for(++it; it != container.end(); ++it)
         {
@@ -239,14 +239,14 @@ inline void remove_duplicates_from_unordered_sequence(C &container, P pred)
     }
 #endif /* 0 */
 
-    ss_size_t       last;
-    ss_size_t       index;
-    iterator_type   begin;
+    ss_size_t   last;
+    ss_size_t   index;
+    iterator_t  begin;
 
     for(index = 0, last = 0, begin = container.begin(); begin != container.end(); )
     {
-        iterator_type   it  =   begin;
-        iterator_type   end =   container.end();
+        iterator_t  it  =   begin;
+        iterator_t  end =   container.end();
 
         if(++it == end)
         {

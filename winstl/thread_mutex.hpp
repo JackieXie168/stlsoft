@@ -1,14 +1,14 @@
 /* ////////////////////////////////////////////////////////////////////////////
- * File:        thread_mutex.hpp (formerly winstl_thread_mutex.h)
+ * File:        winstl/thread_mutex.hpp (formerly winstl_thread_mutex.h)
  *
  * Purpose:     Intra-process mutex, based on Windows CRITICAL_SECTION.
  *
  * Created:     17th December 1996
- * Updated:     18th December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_THREAD_MUTEX_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_THREAD_MUTEX_MINOR     1
+# define WINSTL_VER_WINSTL_HPP_THREAD_MUTEX_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_THREAD_MUTEX_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_THREAD_MUTEX_EDIT      35
+# define WINSTL_VER_WINSTL_HPP_THREAD_MUTEX_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -111,6 +114,13 @@ namespace winstl_project
 // class thread_mutex
 /// This class provides an implementation of the mutex model based on the Win32 CRITICAL_SECTION
 class thread_mutex
+    : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_IS_RECURSIVE
+#ifdef __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT
+                                            ,   STLSOFT_CRITICAL_SECTION_IS_TRYABLE
+#else /* ? __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT */
+                                            ,   STLSOFT_CRITICAL_SECTION_ISNOT_TRYABLE
+#endif /* __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT */
+                                            >
 {
 public:
     typedef thread_mutex class_type;

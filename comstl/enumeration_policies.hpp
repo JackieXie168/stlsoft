@@ -4,11 +4,11 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     22nd December 2005
+ * Updated:     12th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MAJOR       5
-# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MINOR       1
+# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MINOR       5
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_REVISION    1
-# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        21
+# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ public:
 /// @{
 public:
     /// Constructs an instance from the given HRESULT code
-    ss_explicit_k clone_failure(HRESULT hr) stlsoft_throw_0()
+    ss_explicit_k clone_failure(HRESULT hr)
         : parent_class_type(hr)
     {}
 /// @}
@@ -183,6 +183,12 @@ public:
 
         return ret;
     }
+    static cs_bool_t clone(interface_type *src, interface_type **pdest)
+    {
+        *pdest = NULL;
+
+        return false;
+    }
 };
 
 /// Policy type that causes COM enumerator cloning according the STL Forward Iterator concept
@@ -222,11 +228,25 @@ public:
 
         return ret;
     }
+    static cs_bool_t clone(interface_type *src, interface_type **pdest)
+    {
+        *pdest = clone(src);
+
+#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+        COMSTL_ASSERT(NULL != *pdest);
+
+        return true;
+#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+        return NULL != *pdest;
+#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
 };
 
 /// Policy type that causes COM enumerator cloning according the best available STL Iterator concept
 ///
 /// \param I The enumeration interface
+///
+/// \deprecated This is no longer recommended, since it does not provide any benefit to algorithms
 template<ss_typename_param_k I>
 struct degenerate_cloning_policy
 {
@@ -254,13 +274,29 @@ public:
 
         return ret;
     }
+    static cs_bool_t clone(interface_type *src, interface_type **pdest)
+    {
+        COMSTL_ASSERT(NULL != pdest);
+
+        if( NULL == src ||
+            FAILED(src->Clone(pdest)))
+        {
+            *pdest = NULL;
+
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 };
 
 /// Adapts a value policy to a function object based interface
 ///
 /// \param P The value policy (e.g. BSTR_policy, VARIANT_policy, FORMATETC_policy)
 template <ss_typename_param_k P>
-struct policy_adaptor
+struct value_policy_adaptor
     : public P
 {
 public:
@@ -296,6 +332,126 @@ public:
     };
 };
 
+/// \deprecated Equivalent to value_policy_adaptor
+template <ss_typename_param_k P>
+struct policy_adaptor
+    : public value_policy_adaptor<P>
+{
+public:
+    typedef ss_typename_type_k P::value_type    value_type;
+}; 
+
+/// \brief Acquires an enumerator from a collection assuming _NewEnum property
+///
+/// \note Invokes the the get__NewEnum() method
+template <ss_typename_param_k CI>
+struct new_enum_property_policy
+{
+public:
+    typedef CI          collection_interface;
+
+public:
+    static HRESULT acquire(collection_interface *pcoll, LPUNKNOWN *ppunkEnum)
+    {
+        COMSTL_ASSERT(NULL != pcoll);
+        COMSTL_ASSERT(NULL != ppunkEnum);
+
+        // If the compiler complains here that your interface does not have the
+        // get__NewEnum method, then:
+        //
+        // - you're passing a pure IDispatch interface, so you need to use 
+        //    new_enum_by_dispid_policy
+        // - you're passing a collection interface that defines _NeWEnum as a
+        //    method, so you need to use new_enum_method_policy
+        // - you're passing the wrong interface. Check your code to ensure
+        //    you've not used the wrong interface to specialise 
+        //    comstl::collection_sequence.
+        return pcoll->get__NewEnum(ppunkEnum);
+    }
+};
+
+/// \brief Acquires an enumerator from a collection assuming _NewEnum method
+///
+/// \note Invokes the the _NewEnum() method
+template <ss_typename_param_k CI>
+struct new_enum_method_policy
+{
+public:
+    typedef CI          collection_interface;
+
+public:
+    static HRESULT acquire(collection_interface *pcoll, LPUNKNOWN *ppunkEnum)
+    {
+        COMSTL_ASSERT(NULL != pcoll);
+        COMSTL_ASSERT(NULL != ppunkEnum);
+
+        return pcoll->_NewEnum(ppunkEnum);
+    }
+};
+
+/// Acquires an enumerator from a collection by looking up the DISPID_NEWENUM on the collection's IDispatch interface
+///
+/// \note Calls IDispatch::Invoke(DISPID_NEWENUM, . . . , DISPATCH_METHOD | DISPATCH_PROPERTYGET, . . . );
+template <ss_typename_param_k CI>
+struct new_enum_by_dispid_policy
+{
+public:
+    typedef CI          collection_interface;
+
+public:
+    static HRESULT acquire(collection_interface *pcoll, LPUNKNOWN *ppunkEnum)
+    {
+        COMSTL_ASSERT(NULL != pcoll);
+        COMSTL_ASSERT(NULL != ppunkEnum);
+
+        LPDISPATCH  pdisp;
+        HRESULT     hr  =   pcoll->QueryInterface(IID_IDispatch, reinterpret_cast<void**>(&pdisp));
+
+        if(SUCCEEDED(hr))
+        {
+            DISPPARAMS  params;
+            UINT        argErrIndex;
+            VARIANT     result;
+
+            ::memset(&params, 0, sizeof(params));
+            ::VariantInit(&result);
+
+            hr = pdisp->Invoke( DISPID_NEWENUM
+                            ,   IID_NULL
+                            ,   LOCALE_USER_DEFAULT
+                            ,   DISPATCH_METHOD | DISPATCH_PROPERTYGET
+                            ,   &params
+                            ,   &result
+                            ,   NULL
+                            ,   &argErrIndex);
+
+            pdisp->Release();
+
+            if(SUCCEEDED(hr))
+            {
+                hr = ::VariantChangeType(&result, &result, 0, VT_UNKNOWN);
+
+                if(SUCCEEDED(hr))
+                {
+                    if(NULL == result.punkVal)
+                    {
+                        hr = E_UNEXPECTED;
+                    }
+                    else
+                    {
+                        *ppunkEnum = result.punkVal;
+
+                        (*ppunkEnum)->AddRef();
+                    }
+                }
+
+                ::VariantClear(&result);
+            }
+        }
+
+        return hr;
+    }
+};
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

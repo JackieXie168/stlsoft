@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     18th December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_SPIN_MUTEX_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_SPIN_MUTEX_MINOR     1
+# define WINSTL_VER_WINSTL_HPP_SPIN_MUTEX_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_SPIN_MUTEX_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_SPIN_MUTEX_EDIT      36
+# define WINSTL_VER_WINSTL_HPP_SPIN_MUTEX_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/lock_scope.hpp>
@@ -93,6 +96,9 @@ namespace winstl_project
 // class spin_mutex
 /// This class provides an implementation of the mutex model based on a spinning mechanism
 class spin_mutex
+    : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_ISNOT_RECURSIVE
+                                            ,   STLSOFT_CRITICAL_SECTION_ISNOT_TRYABLE
+                                            >
 {
 public:
     typedef spin_mutex  class_type;

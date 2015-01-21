@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define WINSTL_INCL_WINSTL_HPP_HEAPWALK_SEQUENCE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MAJOR        3
-# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MINOR        1
-# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_REVISION     1
-# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_EDIT         42
+# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MAJOR      3
+# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_REVISION   1
+# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -68,6 +68,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>      // for stlsoft::iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -105,6 +108,7 @@ class heapwalk_sequence_const_iterator;
 /// An STL-like sequence for walking heap allocated blocks
 ///
 class heapwalk_sequence
+    : public stl_collection_tag
 {
     typedef PROCESS_HEAP_ENTRY                  entry_type;
 public:

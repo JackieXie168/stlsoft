@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        inheritance_disambiguator.hpp (formerly stlsoft_inheritance_disambiguator.h)
+ * File:        stlsoft/obsolete/inheritance_disambiguator.hpp (formerly stlsoft_inheritance_disambiguator.h)
  *
  * Purpose:     Class to disambiguate between parent classes of same type.
  *
  * Created:     1st September 2002
- * Updated:     18th December 2005
+ * Updated:     4th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_MINOR      1
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_EDIT       18
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_INHERITANCE_DISAMBIGUATOR_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

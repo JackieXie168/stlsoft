@@ -4,11 +4,11 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     17th February 2004
- * Updated:     18th December 2005
+ * Updated:     4th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define STLSOFT_INCL_H_STLSOFT_CONTAINER_BASE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_MAJOR     2
-# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_MINOR     1
+# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_MAJOR     3
+# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_MINOR     0
 # define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_EDIT      10
+# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,69 +60,13 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* ////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef _STLSOFT_COMPILE_VERBOSE
+# pragma message("This file is now obsolete. Instead include stlsoft/obsolete/container_base.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
-#ifndef _STLSOFT_NO_NAMESPACE
-namespace stlsoft
-{
-#endif /* _STLSOFT_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// Base template for STL allocators
-template <ss_typename_param_k A>
-struct container_base
-#ifndef STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
-    : public A
-#endif /* STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
-{
-    typedef A                   allocator_type;
-    typedef container_base<A>   class_type;
-
-protected:
-    container_base()
-    {}
-    container_base(class_type const &)
-    {}
-
-    operator allocator_type &()
-    {
-        return get_allocator_();
-    }
-    operator allocator_type const &() const
-    {
-        return get_allocator_();
-    }
-
-private:
-#ifndef STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
-    allocator_type &get_allocator_()
-    {
-        return *this;
-    }
-    allocator_type const &get_allocator_() const
-    {
-        return *this;
-    }
-#else /* ? STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
-    static allocator_type &get_allocator_()
-    {
-        static allocator_type   s_allocator;
-
-        return s_allocator;
-    }
-#endif /* STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
-};
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE
+# include <stlsoft/obsolete/container_base.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

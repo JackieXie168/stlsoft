@@ -4,11 +4,11 @@
  * Purpose:     Window text scoping class.
  *
  * Created:     21st August 2003
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define WINSTL_INCL_WINSTL_HPP_WINDOW_TEXT_SCOPE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MAJOR        3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MINOR        1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION     2
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT         23
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MAJOR    3
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION 1
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -132,9 +132,9 @@ public:
     /// The traits type
     typedef window_traits<char_type>                    traits_type;
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   processheap_allocator<char_type>
-                                        >               buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   processheap_allocator<char_type>
+                                            >           buffer_type_;
 /// @}
 
 /// \name Construction

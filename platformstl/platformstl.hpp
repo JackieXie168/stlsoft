@@ -5,7 +5,7 @@
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     17th July 2005
+ * Updated:     6th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      0
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   5
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       7
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   1
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.hpp Root header for the PlatformSTL C++ libraries */
@@ -92,6 +92,14 @@ namespace platformstl_project
 } // namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

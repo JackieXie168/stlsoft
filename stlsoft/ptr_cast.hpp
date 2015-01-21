@@ -5,7 +5,7 @@
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     22nd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_PTR_CAST_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_PTR_CAST_MINOR     1
+# define STLSOFT_VER_STLSOFT_HPP_PTR_CAST_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_PTR_CAST_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_PTR_CAST_EDIT      19
+# define STLSOFT_VER_STLSOFT_HPP_PTR_CAST_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-# include <stlsoft/type_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+# include <stlsoft/meta/base_type_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 #include <typeinfo>
 
 /* /////////////////////////////////////////////////////////////////////////////

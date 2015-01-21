@@ -4,11 +4,11 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     26th December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_PATH_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_MINOR     4
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      185
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_MINOR     5
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      187
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -536,6 +536,12 @@ inline S &operator <<(S & s, basic_path<C, T, A> const &b)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1300
+#  pragma warning(push)
+#  pragma warning(disable : 4702)
+# endif /* compiler*/
+
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -560,6 +566,12 @@ inline /* static */ ss_typename_param_k basic_path<C, T, A>::char_type const *ba
 
     return NULL;
 }
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1300
+#  pragma warning(pop)
+# endif /* compiler*/
+
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -901,9 +913,9 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(us_bool_t bRemoveT
     typedef ss_typename_type_k allocator_selector<part>::allocator_type     part_ator_type;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
-    typedef stlsoft_ns_qual(auto_buffer)<   part
-                                        ,   part_ator_type
-                                        >                                   part_buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   part
+                                            ,   part_ator_type
+                                            >                               part_buffer_t;
 
     part_buffer_t   parts(this->length() / 2);  // Uncanonicalised directory parts
     char_type       *dest   =   &newPath.m_buffer[0];

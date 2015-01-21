@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for 
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MAJOR      2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MINOR      10
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_REVISION   3
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       55
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MINOR      11
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_REVISION   1
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -87,6 +87,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>        // for stlsoft iterator bases
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                   // for std::out_of_range
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -142,6 +145,7 @@ class basic_string_view
 #else /* ? compiler */
     : private A
 #endif /* compiler */
+    , public stl_collection_tag
 {
 public:
     /// The value type

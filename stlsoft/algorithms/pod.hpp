@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     22nd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       2
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        69
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,14 +62,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM
 # include <stlsoft/util/std/algorithm.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM */
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-#  include <stlsoft/type_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+#  include <stlsoft/meta/base_type_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 #  include <stlsoft/constraints.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_INTEL) || \
@@ -147,14 +147,14 @@ inline void pod_copy(I *first, I *last, O *dest)
     std_copy(&first[0], &last[0], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*first));
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
         // Both must be non-pointers, or must point to POD types
     typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
     typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
 
     stlsoft_constraint_must_be_pod(i_base_type);
     stlsoft_constraint_must_be_pod(o_base_type);
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     ss_size_t n = static_cast<ss_size_t>(last - first);
 
@@ -200,14 +200,14 @@ inline void pod_copy_n(O *dest, I *src, ss_size_t n)
     std_copy(&src[0], &src[n], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
         // Both must be non-pointers, or must point to POD types
     typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
     typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
 
     stlsoft_constraint_must_be_pod(i_base_type);
     stlsoft_constraint_must_be_pod(o_base_type);
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     if(0 != n)
     {
@@ -242,14 +242,14 @@ inline void pod_move(I *first, I *last, O *dest)
     std_copy(&first[0], &last[0], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*first) == sizeof(*dest));
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
         // Both must be non-pointers, or must point to POD types
     typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
     typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
 
     stlsoft_constraint_must_be_pod(i_base_type);
     stlsoft_constraint_must_be_pod(o_base_type);
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     ss_size_t n = static_cast<ss_size_t>(last - first);
 
@@ -285,14 +285,14 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
     std_copy(&src[0], &src[n], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
         // Both must be non-pointers, or must point to POD types
     typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
     typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
 
     stlsoft_constraint_must_be_pod(i_base_type);
     stlsoft_constraint_must_be_pod(o_base_type);
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     if(0 != n)
     {
@@ -334,11 +334,11 @@ template<   ss_typename_param_k T
 inline void pod_fill_n(T *dest, ss_size_t n, V const &value)
 {
     // Constrain to POD type:
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
     typedef ss_typename_type_k base_type_traits<T>::base_type   base_type;
 
     stlsoft_constraint_must_be_pod(base_type);
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     std_fill_n(dest, n, value);
 }

@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MAJOR       4
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       1
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        84
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       2
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,10 +71,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>                // for iterator base class templates
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                           // for std::exception
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
 #include <wchar.h>
+
 #ifdef STLSOFT_UNITTEST
 # include <stdio.h>
 #endif /* STLSOFT_UNITTEST */
@@ -304,6 +308,7 @@ private:
 
 /// Represents a string table
 class VsStringTable
+    : public stl_collection_tag
 {
 public:
     typedef VsStringTable   class_type;
@@ -321,8 +326,9 @@ public:
         : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(forward_iterator_tag)
                                             ,   value_type
                                             ,   ws_ptrdiff_t
-                                            ,   void
-                                            ,   value_type>
+                                            ,   void        // By-Value Temporary reference
+                                            ,   value_type  // By-Value Temporary reference
+                                            >
     {
     public:
         typedef const_iterator  class_type;
@@ -359,6 +365,7 @@ private:
 
 /// Represents a variable file info part of a version information block
 class VsVarFileInfo
+    : public stl_collection_tag
 {
 public:
     typedef VsVarFileInfo   class_type;
@@ -378,8 +385,9 @@ public:
         : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(forward_iterator_tag)
                                             ,   value_type
                                             ,   ws_ptrdiff_t
-                                            ,   void
-                                            ,   value_type>
+                                            ,   void        // By-Value Temporary reference
+                                            ,   value_type  // By-Value Temporary reference
+                                            >
     {
     public:
         typedef const_iterator  class_type;
@@ -415,6 +423,7 @@ private:
 
 /// Represents a variable string part of a version information block
 class VsStringFileInfo
+    : public stl_collection_tag
 {
 public:
     typedef VsStringFileInfo    class_type;
@@ -434,8 +443,9 @@ public:
         : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(forward_iterator_tag)
                                             ,   value_type
                                             ,   ws_ptrdiff_t
-                                            ,   void
-                                            ,   value_type>
+                                            ,   void        // By-Value Temporary reference
+                                            ,   value_type  // By-Value Temporary reference
+                                            >
     {
     public:
         /// The class type

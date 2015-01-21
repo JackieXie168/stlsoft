@@ -4,7 +4,7 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     18th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    0
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    1
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     11
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -342,11 +342,11 @@
 
 /* Template partial specialisation support.
  *
- * Discriminated symbol is __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+ * Discriminated symbol is STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
  */
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-# undef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-#endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# undef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 /* Template out-of-class function specialisation support.
  *

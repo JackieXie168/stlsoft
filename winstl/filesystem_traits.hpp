@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MINOR      6
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   2
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       81
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   3
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    1
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     61
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -83,6 +83,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -196,11 +199,12 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_drophandle_sequence_const_iterator
-    : public stlsoft_ns_qual(iterator_base)<    winstl_ns_qual_std(bidirectional_iterator_tag)
-                                            ,   __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)
-                                            ,   ws_ptrdiff_t
-                                            ,   void
-                                            ,   __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)>
+    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(bidirectional_iterator_tag)
+                                        ,   __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)
+                                        ,   ws_ptrdiff_t
+                                        ,   void                                        // By-Value Temporary reference
+                                        ,   __STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C) // By-Value Temporary reference category
+                                        >
 {
 public:
     /// The character type
@@ -276,6 +280,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_drophandle_sequence
+    : public stl_collection_tag
 {
 public:
     /// The character type
@@ -299,8 +304,8 @@ public:
 #endif /* compiler */
                                stlsoft_ns_qual(const_reverse_iterator_generator)<   const_iterator
                                                                                 ,   value_type
-                                                                                ,   value_type&
-                                                                                ,   value_type*
+                                                                                ,   value_type  // By-Value Temporary reference category
+                                                                                ,   void        // By-Value Temporary reference category
                                                                                 ,   difference_type
                                                                                 >::type     const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */

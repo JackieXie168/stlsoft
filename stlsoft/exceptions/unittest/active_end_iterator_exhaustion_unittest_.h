@@ -1,4 +1,6 @@
 
+// Updated: 14th January 2006
+
 #if !defined(STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION)
 # error This file cannot be directly included, and should only be included within stlsoft/exceptions/active_end_iterator_exhaustion.hpp
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION */
@@ -15,12 +17,11 @@ namespace unittest
         {
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
             using ::stlsoft::unittest::unittest_initialiser;
-            using stlsoft::null_exception_policy;
 #endif /* compiler */
 
             ss_bool_t               bSuccess    =   true;
 
-            unittest_initialiser    init(r, "STLSoft", "active_end_iterator_exhaustion", __FILE__);
+            unittest_initialiser    init(r, "STLSoft", "exceptions/active_end_iterator_exhaustion", __FILE__);
 
             return bSuccess;
         }

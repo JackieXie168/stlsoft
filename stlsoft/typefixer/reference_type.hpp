@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_reference_type and fixer_const_reference_type types.
  *
  * Created:     9th February 2004
- * Updated:     18th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_MAJOR     1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_MINOR     3
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_MINOR     4
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_EDIT      23
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifndef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifndef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 # error stlsoft/typefixer/reference_type.hpp is only compatible with compilers that support partial template specialisation
-#endif /* !__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -1,14 +1,14 @@
 /* ////////////////////////////////////////////////////////////////////////////
- * File:        event.hpp (formerly winstl_event.h)
+ * File:        winstl/event.hpp (formerly winstl_event.h)
  *
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2004, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_EVENT_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_EVENT_MINOR    1
+# define WINSTL_VER_WINSTL_HPP_EVENT_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_EVENT_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_EVENT_EDIT     35
+# define WINSTL_VER_WINSTL_HPP_EVENT_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_HANDLE_ACCESS
-# include <winstl/handle_access.hpp>  // for get_handle()
-#endif /* !WINSTL_INCL_WINSTL_HPP_HANDLE_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -95,6 +95,7 @@ namespace winstl_project
 
 /// Class which wraps the Win32 EVENT synchronisation object
 class event
+    : public stlsoft_ns_qual(synchronisable_object_tag)
 {
 public:
     typedef event       class_type;
@@ -144,6 +145,15 @@ public:
     void reset() stlsoft_throw_0()
     {
         ::ResetEvent(m_ev);
+    }
+/// @}
+
+/// \name State
+/// @{
+public:
+    ws_bool_t is_signalled() const
+    {
+        return WAIT_OBJECT_0 == ::WaitForSingleObject(m_ev, 0);
     }
 /// @}
 

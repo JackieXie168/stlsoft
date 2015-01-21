@@ -4,7 +4,7 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     22nd December 2005
+ * Updated:     31st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,14 +40,14 @@
 
 /** \file rangelib/filtered_range.hpp Range filter adaptor */
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_FILTERED_RANGE
-#define STLSOFT_INCL_RANGELIB_HPP_FILTERED_RANGE
+#ifndef RANGELIB_INCL_RANGELIB_HPP_FILTERED_RANGE
+#define RANGELIB_INCL_RANGELIB_HPP_FILTERED_RANGE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
-# define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    3
-# define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 4
-# define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     21
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    4
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ STLSOFT_COMPILER_IS_MWERKS:     (__MWERKS__ & 0xFF00) < 0x3000
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR
-# include <stlsoft/filter_iterator.hpp>
+# include <stlsoft/iterators/filter_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -186,9 +186,9 @@ private:
                                                 >::type                         iterator_base_type;
 public:
     /// The mutating (non-const) iterator type
-    typedef filtered_iterator<iterator_base_type, filter_predicate_type>        iterator;
+    typedef filter_iterator<iterator_base_type, filter_predicate_type>          iterator;
     /// The non-mutating (const) iterator type
-    typedef filtered_iterator<const_iterator_base_type, filter_predicate_type>  const_iterator;
+    typedef filter_iterator<const_iterator_base_type, filter_predicate_type>    const_iterator;
     /// The mutating (non-const) reference type
     typedef ss_typename_type_k select_first_type_if<   ss_typename_type_k ::stlsoft::typefixer::fixer_reference<filtered_range_type, HAS_MEMBER_REFERENCE>::reference
                                                 ,   ss_typename_type_k filtered_range_type::const_reference
@@ -301,6 +301,14 @@ private:
 template<   ss_typename_param_k R
         ,   ss_typename_param_k P
         >
+inline filtered_range<R, P> make_filtered_range(R r, P pr)
+{
+    return filtered_range<R, P>(r, pr);
+}
+
+template<   ss_typename_param_k R
+        ,   ss_typename_param_k P
+        >
 inline filtered_range<R, P> filter_range(R r, P pr)
 {
     return filtered_range<R, P>(r, pr);
@@ -310,40 +318,7 @@ inline filtered_range<R, P> filter_range(R r, P pr)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_rangelib_filtered_range(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "RangeLib", "filtered_range", __FILE__);
-
-    #if 0
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
-
-                if(1968 != *pi1)
-                {
-                    r->report("construct() failed ", __LINE__);
-                    bSuccess = false;
-                }
-            }
-    #endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_rangelib_filtered_range(test_rangelib_filtered_range);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/filtered_range_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -364,6 +339,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_FILTERED_RANGE */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_FILTERED_RANGE */
 
 /* ////////////////////////////////////////////////////////////////////////// */

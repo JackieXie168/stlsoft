@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_MINOR       2
+# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_MINOR       3
 # define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_EDIT        83
+# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -179,16 +179,16 @@ private:
     };
 
     /// The buffer type
-    typedef stlsoft_ns_qual(auto_buffer)<   C
-                                        ,   A
+    typedef stlsoft_ns_qual(auto_buffer_old)<   C
+                                            ,   A
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     // This is necessary, since Borland will attempt an auto_buffer with what
     // seems like 0 size, or maybe it just can't define the type. Who can tell?
-                                        ,   1 + _MAX_PATH
+                                            ,   1 + _MAX_PATH
 #else /* ? compiler */
-                                        ,   internalBufferSize
+                                            ,   internalBufferSize
 #endif /* compiler */
-                                        >                           buffer_type;
+                                            >                       buffer_type;
 public:
     /// The current parameterisation of the type
     typedef basic_file_path_buffer<C, A>                            class_type;

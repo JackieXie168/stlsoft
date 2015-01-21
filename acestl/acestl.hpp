@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     22nd December 2005
+ * Updated:     6th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     4
+# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     5
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      18
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp The root header for the \ref ACESTL project */
@@ -449,6 +449,14 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
 namespace acestl = ::stlsoft::acestl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ACESTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

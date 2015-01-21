@@ -4,7 +4,7 @@
  * Purpose:     Adapts associative containers into a sequence of their values.
  *
  * Created:     28th January 2005
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MINOR       1
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        11
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,6 +72,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR
 # include <stlsoft/associative_select_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <stdexcept>
 #ifdef STLSOFT_UNITTEST
 # include <map>
@@ -92,6 +95,7 @@ namespace stlsoft
 
 template <ss_typename_param_k A>
 class associative_value_sequence
+    : public stl_collection_tag
 {
 /// \name Types
 /// @{

@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       3
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       4
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        55
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -129,14 +129,14 @@ stlsoft_ns_using(c_str_len)
 /// Converts an ANSI (\c char-based) string to a Unicode (\c whar_t-based) string
 template <ws_size_t CCH>
 class ansi2Unicode
-    : public auto_buffer<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>
+    : public auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>
 {
 private:
-    typedef auto_buffer<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>   parent_class_type;
+    typedef auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>   parent_class_type;
 public:
-    typedef ws_char_w_t                                                         char_type;
-    typedef ss_typename_type_k parent_class_type::size_type                     size_type;
-    typedef ss_typename_type_k parent_class_type::pointer                       pointer;
+    typedef ws_char_w_t                                                             char_type;
+    typedef ss_typename_type_k parent_class_type::size_type                         size_type;
+    typedef ss_typename_type_k parent_class_type::pointer                           pointer;
 
 public:
 #ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
@@ -215,14 +215,14 @@ private:
 /// Converts a Unicode (\c whar_t-based) string to an ANSI (\c char-based) string
 template <ws_size_t CCH>
 class unicode2Ansi
-    : public auto_buffer<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>
+    : public auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>
 {
 private:
-    typedef auto_buffer<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>   parent_class_type;
+    typedef auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>   parent_class_type;
 public:
-    typedef ws_char_a_t                                                         char_type;
-    typedef ss_typename_type_k parent_class_type::size_type                     size_type;
-    typedef ss_typename_type_k parent_class_type::pointer                       pointer;
+    typedef ws_char_a_t                                                             char_type;
+    typedef ss_typename_type_k parent_class_type::size_type                         size_type;
+    typedef ss_typename_type_k parent_class_type::pointer                           pointer;
 
 public:
 #ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT

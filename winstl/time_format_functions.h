@@ -4,11 +4,11 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MAJOR    3
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     34
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    2
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 1
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -179,9 +179,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
 {
     typedef C                                                               char_t;
     typedef time_format_functions_traits<char_t>                            traits_t;
-    typedef stlsoft_ns_qual(auto_buffer)<   char_t
-                                        ,   processheap_allocator<char_t>
-                                        >                                   buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_t
+                                            ,   processheap_allocator<char_t>
+                                            >                               buffer_t;
 
     if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
     {
@@ -376,9 +376,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
                                             ,   ws_char_a_t         *lpTimeStr  // formatted string buffer
                                             ,   const int           cchTime)    // size of string buffer
 {
-    typedef stlsoft_ns_qual(auto_buffer)<   ws_char_a_t
-                                        ,   processheap_allocator<ws_char_a_t>
-                                        >                           buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   ws_char_a_t
+                                            ,   processheap_allocator<ws_char_a_t>
+                                            >                       buffer_t;
 
     if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
     {
@@ -566,9 +566,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
                                             ,   ws_char_w_t         *lpTimeStr  // formatted string buffer
                                             ,   const int           cchTime)    // size of string buffer
 {
-    typedef stlsoft_ns_qual(auto_buffer)<   ws_char_w_t
-                                        ,   processheap_allocator<ws_char_w_t>
-                                        >                                   buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   ws_char_w_t
+                                            ,   processheap_allocator<ws_char_w_t>
+                                            >                               buffer_t;
 
     if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
     {
@@ -831,9 +831,9 @@ namespace unittest
         {
             using stlsoft::unittest::unittest_initialiser;
 
-            typedef stlsoft_ns_qual(auto_buffer)<   char
-                                                ,   processheap_allocator<char>
-                                                >                       buffer_a_t;
+            typedef stlsoft_ns_qual(auto_buffer_old)<   char
+                                                    ,   processheap_allocator<char>
+                                                    >                   buffer_a_t;
 
             ss_bool_t               bSuccess    =   true;
 

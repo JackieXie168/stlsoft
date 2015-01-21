@@ -4,11 +4,11 @@
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     22nd December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_MINOR    2
-# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_EDIT     44
+# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_MINOR    3
+# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIZE_TRAITS */
 
 #ifdef STLSOFT_UNITTEST
-# ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-#  include <stlsoft/limit_traits.h>
-# endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
+# include <stlsoft/limit_traits.h>
+# include <stlsoft/meta/yesno.hpp>
+# include <stlsoft/util/std/stdio_overload_detectors.hpp>
 # include <stdarg.h>
 # include <stdio.h>
 # include <string.h>
@@ -88,31 +88,55 @@ namespace stlsoft
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#define __STLSOFT_PRINTF_TRAITS__SINT8_MIN      -128
-#define __STLSOFT_PRINTF_TRAITS__SINT8_MAX      127
+#define STLSOFT_PRINTF_TRAITS_SINT8_MIN         -128
+#define STLSOFT_PRINTF_TRAITS_SINT8_MAX         127
 
-#define __STLSOFT_PRINTF_TRAITS__UINT8_MIN      0
-#define __STLSOFT_PRINTF_TRAITS__UINT8_MAX      255
+#define STLSOFT_PRINTF_TRAITS_UINT8_MIN         0
+#define STLSOFT_PRINTF_TRAITS_UINT8_MAX         255
 
-#define __STLSOFT_PRINTF_TRAITS__SINT16_MIN     -32768
-#define __STLSOFT_PRINTF_TRAITS__SINT16_MAX     32767
+#define STLSOFT_PRINTF_TRAITS_SINT16_MIN        -32768
+#define STLSOFT_PRINTF_TRAITS_SINT16_MAX        32767
 
-#define __STLSOFT_PRINTF_TRAITS__UINT16_MIN     0
-#define __STLSOFT_PRINTF_TRAITS__UINT16_MAX     65535
+#define STLSOFT_PRINTF_TRAITS_UINT16_MIN        0
+#define STLSOFT_PRINTF_TRAITS_UINT16_MAX        65535
 
-#define __STLSOFT_PRINTF_TRAITS__SINT32_MIN     -2147483648
-#define __STLSOFT_PRINTF_TRAITS__SINT32_MAX     2147483647
+#define STLSOFT_PRINTF_TRAITS_SINT32_MIN        -2147483648
+#define STLSOFT_PRINTF_TRAITS_SINT32_MAX        2147483647
 
-#define __STLSOFT_PRINTF_TRAITS__UINT32_MIN     0
-#define __STLSOFT_PRINTF_TRAITS__UINT32_MAX     4294967295
+#define STLSOFT_PRINTF_TRAITS_UINT32_MIN        0
+#define STLSOFT_PRINTF_TRAITS_UINT32_MAX        4294967295
 
-#define __STLSOFT_PRINTF_TRAITS__SINT64_MIN     -9223372036854775808
-#define __STLSOFT_PRINTF_TRAITS__SINT64_MAX     9223372036854775807
+#define STLSOFT_PRINTF_TRAITS_SINT64_MIN        -9223372036854775808
+#define STLSOFT_PRINTF_TRAITS_SINT64_MAX        9223372036854775807
 
-#define __STLSOFT_PRINTF_TRAITS__UINT64_MIN     0
-#define __STLSOFT_PRINTF_TRAITS__UINT64_MAX     18446744073709551615
+#define STLSOFT_PRINTF_TRAITS_UINT64_MIN        0
+#define STLSOFT_PRINTF_TRAITS_UINT64_MAX        18446744073709551615
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+#define __STLSOFT_PRINTF_TRAITS__SINT8_MIN      STLSOFT_PRINTF_TRAITS_SINT8_MIN
+#define __STLSOFT_PRINTF_TRAITS__SINT8_MAX      STLSOFT_PRINTF_TRAITS_SINT8_MAX
+
+#define __STLSOFT_PRINTF_TRAITS__UINT8_MIN      STLSOFT_PRINTF_TRAITS_UINT8_MIN
+#define __STLSOFT_PRINTF_TRAITS__UINT8_MAX      STLSOFT_PRINTF_TRAITS_UINT8_MAX
+
+#define __STLSOFT_PRINTF_TRAITS__SINT16_MIN     STLSOFT_PRINTF_TRAITS_SINT16_MIN
+#define __STLSOFT_PRINTF_TRAITS__SINT16_MAX     STLSOFT_PRINTF_TRAITS_SINT16_MAX
+
+#define __STLSOFT_PRINTF_TRAITS__UINT16_MIN     STLSOFT_PRINTF_TRAITS_UINT16_MIN
+#define __STLSOFT_PRINTF_TRAITS__UINT16_MAX     STLSOFT_PRINTF_TRAITS_UINT16_MAX
+
+#define __STLSOFT_PRINTF_TRAITS__SINT32_MIN     STLSOFT_PRINTF_TRAITS_SINT32_MIN
+#define __STLSOFT_PRINTF_TRAITS__SINT32_MAX     STLSOFT_PRINTF_TRAITS_SINT32_MAX
+
+#define __STLSOFT_PRINTF_TRAITS__UINT32_MIN     STLSOFT_PRINTF_TRAITS_UINT32_MIN
+#define __STLSOFT_PRINTF_TRAITS__UINT32_MAX     STLSOFT_PRINTF_TRAITS_UINT32_MAX
+
+#define __STLSOFT_PRINTF_TRAITS__SINT64_MIN     STLSOFT_PRINTF_TRAITS_SINT64_MIN
+#define __STLSOFT_PRINTF_TRAITS__SINT64_MAX     STLSOFT_PRINTF_TRAITS_SINT64_MAX
+
+#define __STLSOFT_PRINTF_TRAITS__UINT64_MIN     STLSOFT_PRINTF_TRAITS_UINT64_MIN
+#define __STLSOFT_PRINTF_TRAITS__UINT64_MAX     STLSOFT_PRINTF_TRAITS_UINT64_MAX
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Macros
@@ -213,8 +237,8 @@ struct printf_traits_fixed<ss_sint8_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT8_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT8_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT8_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT8_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -233,8 +257,8 @@ struct printf_traits_fixed<ss_uint8_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT8_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT8_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT8_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT8_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -257,8 +281,8 @@ struct printf_traits_fixed<ss_sint16_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT16_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT16_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT16_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT16_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -277,8 +301,8 @@ struct printf_traits_fixed<ss_uint16_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT16_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT16_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT16_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT16_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -301,8 +325,8 @@ struct printf_traits_fixed<ss_sint32_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT32_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT32_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT32_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT32_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -321,8 +345,8 @@ struct printf_traits_fixed<ss_uint32_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT32_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT32_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT32_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT32_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -345,8 +369,8 @@ struct printf_traits_fixed<ss_sint64_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT64_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__SINT64_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT64_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT64_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -377,8 +401,8 @@ struct printf_traits_fixed<ss_uint64_t>
 {
     enum
     {
-            size_min = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT64_MIN))
-        ,   size_max = sizeof(___stringise(__STLSOFT_PRINTF_TRAITS__UINT64_MAX))
+            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT64_MIN))
+        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT64_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 

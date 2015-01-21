@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MAJOR     4
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MINOR     4
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      177
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MINOR     5
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_REVISION  2
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      180
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -93,6 +93,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <iterator>                     // for std::distance()
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -366,6 +369,7 @@ template<   ss_typename_param_k S
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class string_tokeniser
+    : public stl_collection_tag
 {
 public:
     /// The current parameterisation of the type
@@ -494,7 +498,12 @@ public:
 public:
     /// Iterator for string_tokeniser, supporting the Forward Iterator concept
     class const_iterator
-        : public iterator_base<stlsoft_ns_qual_std(forward_iterator_tag), S, ss_ptrdiff_t, void, S>
+        : public iterator_base< stlsoft_ns_qual_std(forward_iterator_tag)
+                            ,   string_type
+                            ,   ss_ptrdiff_t
+                            ,   void
+                            ,   value_type
+                            >
     {
     public:
         /// The type
@@ -516,6 +525,7 @@ public:
         /// The traits type
         typedef ss_typename_type_k tokeniser_type::traits_type      traits_type;
 #endif /* __SYNSOFT_DBS_DEBUG */
+        typedef S                                                   effective_const_reference;
 
     // Construction
     public:

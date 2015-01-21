@@ -3,12 +3,12 @@
  *
  * Purpose:     Error info functions.
  *
- * Created:
- * Updated:     15th December 2005
+ * Created:     5th Feburary 2004
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2004, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MAJOR      3
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MINOR      1
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_REVISION   1
-# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       25
+# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

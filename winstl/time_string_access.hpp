@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     22nd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MINOR     3
-# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      20
+# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_REVISION  2
+# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,7 @@ inline void stream_insert(S &stm, SYSTEMTIME const &t)
     const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
     string_t        s(cchTotal);
 
-    if(cchTotal != s.size())
+    if(cchTotal == s.size())
     {
         ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
         s.data()[cchDate - 1] = ' ';
@@ -172,7 +172,7 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME co
     const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
     string_t        s(cchTotal);
 
-    if(cchTotal != s.size())
+    if(cchTotal == s.size())
     {
         ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
         s.data()[cchDate - 1] = ' ';
@@ -200,7 +200,7 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME co
     const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
     string_t        s(cchTotal);
 
-    if(cchTotal != s.size())
+    if(cchTotal == s.size())
     {
         ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
         s.data()[cchDate - 1] = ' ';

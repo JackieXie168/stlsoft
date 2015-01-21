@@ -4,11 +4,11 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MAJOR       1
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        19
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MINOR       5
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    1
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -87,6 +87,9 @@ STLSOFT_COMPILER_IS_COMO:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #if !defined(_PSAPI_H_) && \
     !defined(_PSAPI_H)
 # ifndef WINSTL_INCL_WINSTL_HPP_DL_CALL
@@ -114,6 +117,7 @@ namespace winstl_project
 
 /// Process Id sequence
 class pid_sequence
+    : public stl_collection_tag
 {
 /// \name Member Types
 /// @{
@@ -255,10 +259,10 @@ public:
 /// \name Members
 /// @{
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   value_type
-                                        ,   allocator_type
-                                        ,   64
-                                        >       buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   value_type
+                                            ,   allocator_type
+                                            ,   64
+                                            >       buffer_type_;
 
     buffer_type_    m_pids;
 /// @}

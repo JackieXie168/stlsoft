@@ -4,7 +4,7 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     18th December 2005
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,14 +38,14 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_RANGELIB
-#define STLSOFT_INCL_RANGELIB_HPP_RANGELIB
+#ifndef RANGELIB_INCL_RANGELIB_HPP_RANGELIB
+#define RANGELIB_INCL_RANGELIB_HPP_RANGELIB
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
-# define STLSOFT_VER_RANGELIB_HPP_RANGELIB_MINOR    2
-# define STLSOFT_VER_RANGELIB_HPP_RANGELIB_REVISION 1
-# define STLSOFT_VER_RANGELIB_HPP_RANGELIB_EDIT     9
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    2
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp The root header for the \ref rangelib project */
@@ -297,6 +297,6 @@ namespace rangelib = ::stlsoft::rangelib_project;
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_RANGELIB */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
 
 /* ////////////////////////////////////////////////////////////////////////// */

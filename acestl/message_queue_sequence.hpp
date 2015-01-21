@@ -4,7 +4,7 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     1
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  5
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      25
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     2
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  2
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <ace/Message_Queue_T.h>            // for ACE_Message_Queue_Iterator<>
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -108,6 +111,7 @@ namespace acestl_project
 ///
 template <ACE_SYNCH_DECL>
 class message_queue_sequence
+    : public stl_collection_tag
 {
 /// \name Types
 /// @{
@@ -124,7 +128,12 @@ public:
 
     /// Iterator type for the message_queue_sequence class template
     class iterator
-        : public stlsoft_ns_qual(iterator_base)<acestl_ns_qual_std(input_iterator_tag), char, ss_ptrdiff_t, char*, char&>
+        : public stlsoft_ns_qual(iterator_base)<acestl_ns_qual_std(input_iterator_tag)
+                                            ,   char
+                                            ,   ss_ptrdiff_t
+                                            ,   char*
+                                            ,   char&
+                                            >
     {
     private:
         friend class message_queue_sequence<ACE_SYNCH_USE>;

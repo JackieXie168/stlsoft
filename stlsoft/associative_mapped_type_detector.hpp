@@ -4,7 +4,7 @@
  * Purpose:     Definition of the associative_mapped_type_detector type.
  *
  * Created:     26th February 2005
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MINOR     4
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      12
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  2
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,7 @@
 /*
 [Incompatibilies-start]
 STLSOFT_COMPILER_IS_BORLAND:
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1310
 [Incompatibilies-end]
  */
 

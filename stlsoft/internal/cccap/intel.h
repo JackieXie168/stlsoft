@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       1
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       4
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        47
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -83,6 +83,11 @@
 
 #define STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 
+/* Support for #pragma once
+ */
+
+#define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+
 /* Types:
  */
 
@@ -95,7 +100,33 @@
 #endif /* __BOOL_DEFINED */
 
 /* wchar_t */
-//#define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#if defined(_MSC_VER)
+# if _MSC_VER >= 1300
+  /* Even though VC 7.0 and 7.1 provide a native wchar_t type, that is __wchar_t,
+   * it is not compatible with their libraries (which use the typedef wchar_t),
+   * so we cannot use it.
+   *
+   * wchar_t itself may be used, when _NATIVE_WCHAR_T_DEFINED is defined
+   */
+#  ifdef _NATIVE_WCHAR_T_DEFINED
+#   define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#  elif defined(_WCHAR_T_DEFINED)
+#   define __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  else
+   /* Not defined */
+#   define __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  endif /* _WCHAR_T_DEFINED */
+# else
+  /* Previous versions do not have a native type, but do have the typedef wchar_t
+   * when _WCHAR_T_DEFINED is defined
+   */
+#  if defined(_WCHAR_T_DEFINED)
+#   define __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  else
+   /* Not defined */
+#  endif /* _WCHAR_T_DEFINED */
+# endif /* _MSC_VER */
+#endif /* _MSC_VER */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT
@@ -199,6 +230,7 @@
 #define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
 #define __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
 #define STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED
 
@@ -212,7 +244,8 @@
 
 #define __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 
-#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT	/* obsolete */
+#define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 #define __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 

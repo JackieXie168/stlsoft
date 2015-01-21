@@ -4,11 +4,11 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_MAJOR       1
-# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_MINOR       2
-# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_REVISION    2
-# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_EDIT        16
+# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_MINOR       3
+# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_REVISION    1
+# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ public:
 private:
     typedef processheap_allocator<C>                                    allocator_type;
     typedef processheap_allocator<C*>                                   pointers_allocator_type;
-    typedef stlsoft_ns_qual(auto_buffer)<C, allocator_type>             buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<C, allocator_type>         buffer_type;
 # if !defined(STLSOFT_COMPILER_IS_MSVC) || \
      _MSC_VER >= 1200
     typedef stlsoft_ns_qual(pod_vector)<C*, pointers_allocator_type>    pointers_type;

@@ -4,13 +4,13 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      1
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      3
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       41
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -100,6 +100,9 @@ typedef stlsoft_ns_qual(basic_simple_string)<   TCHAR
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -157,10 +160,10 @@ public:
 public:
     lvs_string_t text(int iSubItem = 0) const
     {
-        typedef stlsoft_ns_qual(auto_buffer)<   TCHAR
-                                            ,   processheap_allocator<TCHAR>
-                                            ,   256
-                                            >       buffer_t;
+        typedef stlsoft_ns_qual(auto_buffer_old)<   TCHAR
+                                                ,   processheap_allocator<TCHAR>
+                                                ,   256
+                                                >       buffer_t;
 
         ws_size_t   cb  =   buffer_t::internal_size();
         LV_ITEM     item;
@@ -225,6 +228,7 @@ private:
 
 /// Provides an STL-like sequence over the contents of a Windows List-view (<code>"SysListView32"</code>)
 class listview_sequence
+    : public stl_collection_tag
 {
 public:
     /// The value type
@@ -249,8 +253,8 @@ public:
         : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(random_access_iterator_tag)
                                             ,   sequence_value_type
                                             ,   ws_ptrdiff_t
-                                            ,   void
-                                            ,   sequence_value_type
+                                            ,   void                // By-Value Temporary reference
+                                            ,   sequence_value_type // By-Value Temporary reference
                                             >
     {
         typedef const_iterator                  class_type;
@@ -395,8 +399,8 @@ public:
     /// The non-mutating (const) reverse iterator type
     typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
                                                         ,   value_type
-                                                        ,   value_type // Return by value!
-                                                        ,   void*
+                                                        ,   value_type  // By-Value Temporary reference category
+                                                        ,   void        // By-Value Temporary reference category
                                                         ,   difference_type
                                                         >   const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */

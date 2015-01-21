@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_MINOR     1
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_EDIT      156
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_MINOR     2
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_REVISION  1
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_EDIT      157
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -96,6 +96,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>  // for is_pointer
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     defined(__STLSOFT_CF_STL_IS_STLPORT)
 # include <string>                      // for std::string - sigh!
@@ -189,6 +192,7 @@ template<   ss_typename_param_k T
         >
 class static_array_1d
     : public null_allocator<T>
+    , public stl_collection_tag
 {
 public:
     typedef static_array_1d<T, N0, P, M>                    class_type;
@@ -323,6 +327,7 @@ template<   ss_typename_param_k T
         >
 class static_array_2d
     : public null_allocator<T>
+    , public stl_collection_tag
 {
 public:
     typedef static_array_2d<T, N0, N1, P, M>                class_type;
@@ -468,6 +473,7 @@ template<   ss_typename_param_k T
         >
 class static_array_3d
     : public null_allocator<T>
+    , public stl_collection_tag
 {
 public:
     typedef static_array_3d<T, N0, N1, N2, P, M>            class_type;
@@ -616,6 +622,7 @@ template<   ss_typename_param_k T
         >
 class static_array_4d
     : public null_allocator<T>
+    , public stl_collection_tag
 {
 public:
     typedef static_array_4d<T, N0, N1, N2, N3, P, M>        class_type;

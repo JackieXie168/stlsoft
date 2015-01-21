@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     22nd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MAJOR     3
-# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MINOR     1
+# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MINOR     2
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      81
+# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -213,7 +213,7 @@ public:
  * all environments.
  */
 
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 /// Interface pointer traits
 ///
@@ -248,7 +248,7 @@ private:
     }
 };
 
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////////////
  * Classes
@@ -271,10 +271,10 @@ class interface_cast_base
 public:
     /// The interface pointer type
     typedef I                                                               interface_pointer_type;
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
     /// The interface type
     typedef ss_typename_type_k interface_pointer_traits<I>::interface_type  interface_type;
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     /// The release type
     typedef R                                                               release_type;
     /// The exception type
@@ -389,13 +389,13 @@ public:
     typedef interface_cast_noaddref<I, X>                                   class_type;
     /// The interface pointer type
     typedef ss_typename_type_k parent_class_type::interface_pointer_type    interface_pointer_type;
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
     /// The interface type
     typedef ss_typename_type_k parent_class_type::interface_type            interface_type;
     typedef protect_refcount<interface_type>                                *protected_interface_pointer_type;
 #else
     typedef interface_pointer_type                                          protected_interface_pointer_type;
-#endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 // Construction
 public:
@@ -520,13 +520,13 @@ public:
     typedef interface_cast_test<I>                                                          class_type;
     /// The interface pointer type
     typedef ss_typename_type_k parent_class_type::interface_pointer_type                    interface_pointer_type;
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
     /// The interface type
     typedef ss_typename_type_k parent_class_type::interface_type                            interface_type;
     typedef protect_refcount<interface_type>                                                *protected_interface_pointer_type;
-#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     typedef interface_pointer_type                                                          protected_interface_pointer_type;
-#endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 // Construction
 public:

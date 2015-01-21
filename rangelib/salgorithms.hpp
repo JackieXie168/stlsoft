@@ -4,7 +4,7 @@
  * Purpose:     Range-adapted Sequence algorithms.
  *
  * Created:     19th July 2005
- * Updated:     22nd December 2005
+ * Updated:     31st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,14 +62,14 @@
  * - sr_replace_if()
  */
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_SALGORITHMS
-#define STLSOFT_INCL_RANGELIB_HPP_SALGORITHMS
+#ifndef RANGELIB_INCL_RANGELIB_HPP_SALGORITHMS
+#define RANGELIB_INCL_RANGELIB_HPP_SALGORITHMS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_MAJOR     1
-# define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_MINOR     0
-# define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_REVISION  5
-# define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_EDIT      6
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MAJOR     1
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MINOR     1
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_REVISION  1
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -91,17 +91,17 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGELIB
 # include <rangelib/rangelib.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
-#ifndef STLSOFT_INCL_RANGELIB_HPP_ALGORITHMS
+#ifndef RANGELIB_INCL_RANGELIB_HPP_ALGORITHMS
 # include <rangelib/algorithms.hpp>
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_ALGORITHMS */
-#ifndef STLSOFT_INCL_RANGELIB_HPP_SEQUENCE_RANGE
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_ALGORITHMS */
+#ifndef RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE
 # include <rangelib/sequence_range.hpp>
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_META
 #  include <stlsoft/meta.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -141,9 +141,9 @@ template<   ss_typename_param_k S
         >
 inline T sr_accumulate(S &s, T val)
 {
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
     STLSOFT_STATIC_ASSERT(stlsoft::has_iterator<S>::value || stlsoft::has_const_iterator<S>::value);
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     return r_accumulate(sequence_range<S>(s), val);
 }
@@ -154,9 +154,9 @@ template<   ss_typename_param_k S
         >
 inline T sr_accumulate(S &s, T val, P pred)
 {
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
     STLSOFT_STATIC_ASSERT(stlsoft::has_iterator<S>::value || stlsoft::has_const_iterator<S>::value);
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     return r_accumulate(sequence_range<S>(s), val, pred);
 }
@@ -183,9 +183,9 @@ template<   ss_typename_param_k S
         >
 inline size_t sr_count(S &s, V const &val)
 {
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
     STLSOFT_STATIC_ASSERT(stlsoft::has_iterator<S>::value || stlsoft::has_const_iterator<S>::value);
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     return r_count(sequence_range<S>(s), val);
 }
@@ -195,9 +195,9 @@ template<   ss_typename_param_k S
         >
 inline size_t sr_count_if(S &s, P pred)
 {
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
     STLSOFT_STATIC_ASSERT(stlsoft::has_iterator<S>::value || stlsoft::has_const_iterator<S>::value);
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     return r_count_if(sequence_range<S>(s), pred);
 }
@@ -258,9 +258,9 @@ template<   ss_typename_param_k S
         >
 inline F sr_for_each(S &s, F f)
 {
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
     STLSOFT_STATIC_ASSERT(stlsoft::has_iterator<S>::value || stlsoft::has_const_iterator<S>::value);
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     return r_for_each(sequence_range<S>(s), f);
 }
@@ -342,6 +342,6 @@ inline void sr_replace_if(S &s, P pred, T newVal)
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_SALGORITHMS */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_SALGORITHMS */
 
 /* ////////////////////////////////////////////////////////////////////////// */

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        treeview_sequence.hpp (formerly winstl_treeview_sequence.h)
+ * File:        winstl/treeview_sequence.hpp (formerly winstl_treeview_sequence.h)
  *
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MINOR    1
-# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     45
+# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MINOR    3
+# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS
 # include <winstl/commctrl_functions.h>     // for treeview_getnext(), etc.
 #endif /* !WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
@@ -108,13 +111,15 @@ namespace winstl_project
 /// \param P The windows message that is used to access the previous element in the iteration sequence
 template <UINT N, UINT P>
 class treeview_sequence_const_iterator
-    : public stlsoft_ns_qual(iterator_base) <   winstl_ns_qual_std(bidirectional_iterator_tag)
-                                            ,   HTREEITEM
-                                            ,   ws_ptrdiff_t
-                                            ,   void
-                                            ,   HTREEITEM
-                                            >
+    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(forward_iterator_tag)
+                                        ,   HTREEITEM
+                                        ,   ws_ptrdiff_t
+                                        ,   void        // By-Value Temporary reference category
+                                        ,   HTREEITEM   // By-Value Temporary reference category
+                                        >
 {
+/// \name Member Types
+/// @{
 public:
     /// The current parameterisation of the type
     typedef treeview_sequence_const_iterator<N, P>  class_type;
@@ -122,11 +127,20 @@ public:
     typedef HTREEITEM                               value_type;
     /// The difference type
     typedef ws_ptrdiff_t                            difference_type;
+    /// The effective reference type
+    typedef value_type                              effective_reference;
+/// @}
 
+/// \name Construction
+/// @{
 private:
-    friend class treeview_sequence_base;
+#if 0
+//    friend class treeview_sequence_base<N, P>;
+    friend struct treeview_sequence_const_iterator_friend;
     friend class treeview_visible_sequence;
-
+#else /* ? 0 */
+public:
+#endif /* 0 */
     treeview_sequence_const_iterator(HWND hwndTree, HTREEITEM hitem);
 public:
     /// Default constructor
@@ -136,10 +150,13 @@ public:
 
     /// Copy assignment operator
     treeview_sequence_const_iterator &operator =(class_type const &rhs);
+/// @}
 
+/// \name Forward Iterator methods
+/// @{
 public:
     /// Derefences and returns the current item
-    HTREEITEM operator *() const;
+    effective_reference operator *() const;
     /// Pre-increment
     class_type &operator ++();
     /// Post-increment
@@ -149,22 +166,24 @@ public:
     ws_bool_t operator ==(class_type const &rhs) const;
     /// Evaluates whether \c this and \c rhs are not equivalent
     ws_bool_t operator !=(class_type const &rhs) const;
+/// @}
 
-#if 0
-    // Bidirectional support not yet available
-    class_type &operator --();
-#endif /* 0 */
-
-// Members
+/// \name Members
+/// @{
 private:
     HWND        m_hwnd;
     HTREEITEM   m_hitem;
+/// @}
 };
 
 
 /// Base class for the treeview_child_sequence and treeview_peer_sequence classes
+template <UINT N, UINT P>
 class treeview_sequence_base
+    : public stl_collection_tag
 {
+/// \name Member Types
+/// @{
 #if defined(STLSOFT_COMPILER_IS_DMC) &&  \
     __DMC__ < 0x0840
 public:
@@ -172,33 +191,24 @@ public:
 protected:
 #endif /* __DMC__ < 0x0840 */
     /// This class
-    typedef treeview_sequence_base                                      class_type;
+    typedef treeview_sequence_base<N, P>                                class_type;
     /// The non-mutating (const) iterator type
-    typedef treeview_sequence_const_iterator<TVGN_NEXT, TVGN_PREVIOUS>  const_iterator;
+    typedef treeview_sequence_const_iterator<N, P>                      const_iterator;
     /// The value type
-    typedef const_iterator::value_type                                  value_type;
+    typedef ss_typename_type_k const_iterator::value_type               value_type;
     /// The difference type
-    typedef const_iterator::difference_type                             difference_type;
+    typedef ss_typename_type_k const_iterator::difference_type          difference_type;
+/// @}
 
-#if 0
-    // Bidirectional support not yet available
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    /// The non-mutating (const) reverse iterator type
-    typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)  <   const_iterator
-                                                                        ,   value_type
-                                                                        ,   value_type // Return by value!
-                                                                        ,   value_type*
-                                                                        ,   difference_type
-                                                                        >    const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-#endif /* 0 */
-
-// Construction
+/// \name Construction
+/// @{
 protected:
     /// Constructs from the given tree and item
     treeview_sequence_base(HWND hwndTree, HTREEITEM hitem);
+/// @}
 
-// Iteration
+/// \name Iteration
+/// @{
 public:
     /// Begins the iteration
     ///
@@ -208,33 +218,25 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator end() const;
+/// @}
 
-#if 0
-    // Bidirectional support not yet available
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    /// Begins the reverse iteration
-    ///
-    /// \return An iterator representing the start of the reverse sequence
-    const_reverse_iterator rbegin() const;
-    /// Ends the reverse iteration
-    ///
-    /// \return An iterator representing the end of the reverse sequence
-    const_reverse_iterator rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-#endif /* 0 */
-
-// Members
+/// \name Members
+/// @{
 private:
     HWND        m_hwnd;
     HTREEITEM   m_hitem;
+/// @}
 };
 
 // class treeview_child_sequence
 /// Presents an STL-like sequence interface to the children of a given node in a tree-view
 class treeview_child_sequence
-    : public treeview_sequence_base
+    : public treeview_sequence_base<TVGN_NEXT, TVGN_PREVIOUS>
 {
-    typedef treeview_sequence_base                                      base_class_type;
+/// \name Member Types
+/// @{
+private:
+    typedef treeview_sequence_base<TVGN_NEXT, TVGN_PREVIOUS>            base_class_type;
 public:
     /// This class
     typedef treeview_child_sequence                                     class_type;
@@ -244,27 +246,27 @@ public:
     typedef base_class_type::value_type                                 value_type;
     /// The difference type
     typedef base_class_type::difference_type                            difference_type;
-#if 0
-    // Bidirectional support not yet available
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    typedef base_class_type::const_reverse_iterator                     const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-#endif /* 0 */
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
     /// Create sequence of the children of \c hitem in the given tree
     treeview_child_sequence(HWND hwndTree, HTREEITEM hitem);
     /// Create sequence of the children of the root in the given tree
     ss_explicit_k treeview_child_sequence(HWND hwndTree);
+/// @}
 };
 
 // class treeview_peer_sequence
 /// Presents an STL-like sequence interface to the peers of a given node in a tree-view
 class treeview_peer_sequence
-    : public treeview_sequence_base
+    : public treeview_sequence_base<TVGN_NEXT, TVGN_PREVIOUS>
 {
-    typedef treeview_sequence_base                                      base_class_type;
+/// \name Member Types
+/// @{
+private:
+    typedef treeview_sequence_base<TVGN_NEXT, TVGN_PREVIOUS>            base_class_type;
 public:
     /// This class
     typedef treeview_child_sequence                                     class_type;
@@ -274,82 +276,42 @@ public:
     typedef base_class_type::value_type                                 value_type;
     /// The difference type
     typedef base_class_type::difference_type                            difference_type;
-#if 0
-    // Bidirectional support not yet available
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    typedef base_class_type::const_reverse_iterator                     const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-#endif /* 0 */
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
     /// Create sequence of the peers of \c hitem in the given tree
     treeview_peer_sequence(HWND hwndTree, HTREEITEM hitem);
+/// @}
 };
 
 // class treeview_visible_sequence
 /// Presents an STL-like sequence interface to the visible items in a tree-view
 class treeview_visible_sequence
+    : public treeview_sequence_base<TVGN_NEXTVISIBLE, TVGN_PREVIOUSVISIBLE>
 {
+/// \name Member Types
+/// @{
+private:
+    typedef treeview_sequence_base<TVGN_NEXTVISIBLE, TVGN_PREVIOUSVISIBLE>  base_class_type;
 public:
     /// This class
-    typedef treeview_visible_sequence                                   class_type;
+    typedef treeview_child_sequence                                         class_type;
     /// The non-mutating (const) iterator type
-    typedef treeview_sequence_const_iterator<   TVGN_NEXTVISIBLE
-                                            ,   TVGN_PREVIOUSVISIBLE
-                                            >                           const_iterator;
+    typedef base_class_type::const_iterator                                 const_iterator;
     /// The value type
-    typedef const_iterator::value_type                                  value_type;
+    typedef base_class_type::value_type                                     value_type;
     /// The difference type
-    typedef const_iterator::difference_type                             difference_type;
+    typedef base_class_type::difference_type                                difference_type;
+/// @}
 
-#if 0
-    // Bidirectional support not yet available
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    /// The non-mutating (const) reverse iterator type
-    typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)  <   const_iterator
-                                                                        ,   value_type
-                                                                        ,   value_type // Return by value!
-                                                                        ,   value_type*
-                                                                        ,   difference_type
-                                                                        >    const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-#endif /* 0 */
-
-// Construction
+/// \name Construction
+/// @{
 public:
     /// Create sequence of the visible items in the given tree
     ss_explicit_k treeview_visible_sequence(HWND hwndTree);
-
-// Iteration
-public:
-    /// Begins the iteration
-    ///
-    /// \return An iterator representing the start of the sequence
-    const_iterator begin() const;
-    /// Ends the iteration
-    ///
-    /// \return An iterator representing the end of the sequence
-    const_iterator end() const;
-
-#if 0
-    // Bidirectional support not yet available
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    /// Begins the reverse iteration
-    ///
-    /// \return An iterator representing the start of the reverse sequence
-    const_reverse_iterator rbegin() const;
-    /// Ends the reverse iteration
-    ///
-    /// \return An iterator representing the end of the reverse sequence
-    const_reverse_iterator rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-#endif /* 0 */
-
-// Members
-private:
-    HWND        m_hwnd;
-    HTREEITEM   m_hitem;
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -436,17 +398,20 @@ inline ws_bool_t treeview_sequence_const_iterator<N, P>::operator !=(treeview_se
 
 // treeview_sequence_base
 
-inline treeview_sequence_base::treeview_sequence_base(HWND hwndTree, HTREEITEM hitem)
+template <UINT N, UINT P>
+inline treeview_sequence_base<N, P>::treeview_sequence_base(HWND hwndTree, HTREEITEM hitem)
     : m_hwnd(hwndTree)
     , m_hitem(hitem)
 {}
 
-inline treeview_sequence_base::const_iterator treeview_sequence_base::begin() const
+template <UINT N, UINT P>
+inline ss_typename_type_k treeview_sequence_base<N, P>::const_iterator treeview_sequence_base<N, P>::begin() const
 {
     return const_iterator(m_hwnd, m_hitem);
 }
 
-inline treeview_sequence_base::const_iterator treeview_sequence_base::end() const
+template <UINT N, UINT P>
+inline ss_typename_type_k treeview_sequence_base<N, P>::const_iterator treeview_sequence_base<N, P>::end() const
 {
     return const_iterator();
 }
@@ -470,19 +435,8 @@ inline treeview_peer_sequence::treeview_peer_sequence(HWND hwndTree, HTREEITEM h
 // treeview_visible_sequence
 
 inline treeview_visible_sequence::treeview_visible_sequence(HWND hwndTree)
-    : m_hwnd(hwndTree)
-    , m_hitem((HTREEITEM)::SendMessage(hwndTree, TVM_GETNEXTITEM, TVGN_FIRSTVISIBLE, 0))
+    : base_class_type(hwndTree, treeview_getnextitem(hwndTree, NULL, TVGN_FIRSTVISIBLE))
 {}
-
-inline treeview_visible_sequence::const_iterator treeview_visible_sequence::begin() const
-{
-    return const_iterator(m_hwnd, m_hitem);
-}
-
-inline treeview_visible_sequence::const_iterator treeview_visible_sequence::end() const
-{
-    return const_iterator();
-}
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

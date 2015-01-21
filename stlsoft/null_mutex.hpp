@@ -4,11 +4,11 @@
  * Purpose:     Mutual exclusion model class.
  *
  * Created:     19th December 1997
- * Updated:     18th December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_NULL_MUTEX_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_NULL_MUTEX_MINOR       1
+# define STLSOFT_VER_STLSOFT_HPP_NULL_MUTEX_MINOR       3
 # define STLSOFT_VER_STLSOFT_HPP_NULL_MUTEX_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_NULL_MUTEX_EDIT        30
+# define STLSOFT_VER_STLSOFT_HPP_NULL_MUTEX_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -77,6 +80,9 @@ namespace stlsoft
 
 /// This class provides a null implementation of the mutex model
 class null_mutex
+    : public critical_section<  STLSOFT_CRITICAL_SECTION_IS_RECURSIVE
+                            ,   STLSOFT_CRITICAL_SECTION_ISNOT_TRYABLE
+                            >
 {
 public:
     typedef null_mutex class_type;

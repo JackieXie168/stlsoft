@@ -4,11 +4,11 @@
  * Purpose:     Z-order iteration.
  *
  * Created:     11th July 2005
- * Updated:     18th December 2005
+ * Updated:     18th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MAJOR    1
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     9
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MINOR    5
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION
+# include <stlsoft/exceptions/external_iterator_invalidation.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -89,35 +92,116 @@ namespace winstl_project
  * Classes
  */
 
+struct zorder_iterator_base
+{
+public:
+    enum search
+    {
+            fromFirstPeer   =   1   //!< Positions the iterator at the start of the list of peers of the given window
+        ,   fromCurrent     =   2   //!< Positions the iterator at point of the given window in its list of window peers
+        ,   atLastPeer      =   3   //!< Positions the iterator at the end of the list of peers of the given window
+        ,   fromFirstChild  =   4   //!< Positions the iterator at the start of the list of children of the given window
+        ,   atLastChild     =   5   //!< Positions the iterator at the end of the list of children of the given window
+    };
+};
+
+struct zorder_iterator_forward_traits;
+struct zorder_iterator_reverse_traits;
+
+struct zorder_iterator_forward_traits
+{
+public:
+    typedef zorder_iterator_forward_traits  this_type;
+    typedef zorder_iterator_reverse_traits  alternate_type;
+public:
+    static HWND get_first_child(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_CHILD);
+    }
+    static HWND get_first_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDFIRST);
+    }
+    static HWND get_next_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDNEXT);
+    }
+    static HWND get_previous_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDPREV);
+    }
+    static HWND get_last_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDLAST);
+    }
+};
+
+struct zorder_iterator_reverse_traits
+{
+public:
+    typedef zorder_iterator_reverse_traits  this_type;
+    typedef zorder_iterator_forward_traits  alternate_type;
+public:
+    static HWND get_first_child(HWND hwnd)
+    {
+        return ::GetWindow(::GetWindow(hwnd, GW_CHILD), GW_HWNDLAST);
+    }
+    static HWND get_first_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDLAST);
+    }
+    static HWND get_next_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDPREV);
+    }
+    static HWND get_previous_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDNEXT);
+    }
+    static HWND get_last_peer(HWND hwnd)
+    {
+        return ::GetWindow(hwnd, GW_HWNDFIRST);
+    }
+};
+
 /// Iterates over the Z-order of window peers
-class zorder_iterator
-    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(bidirectional_iterator_tag)
+template <ss_typename_param_k T>
+class zorder_iterator_tmpl
+    : public zorder_iterator_base
+#if 0
+    , public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(bidirectional_iterator_tag)
+#else /* ? 0 */
+    , public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(input_iterator_tag)
+#endif /* 0 */
                                         ,   HWND
                                         ,   ws_ptrdiff_t
-                                        ,   void
-                                        ,   HWND
+                                        ,   void    // By-Value Temporary reference
+                                        ,   HWND    // By-Value Temporary reference: This has to be non-void, otherwise reverse_iterator::operator *() will return void
                                         >
 {
 /// \name Types
 /// @{
 public:
-    typedef HWND                value_type;
-    typedef ws_size_t           size_type;
-    typedef ws_ptrdiff_t        difference_type;
-    typedef zorder_iterator     class_type;
+    typedef T                                                                       traits_type;
+    typedef HWND                                                                    value_type;
+    typedef ws_size_t                                                               size_type;
+    typedef ws_ptrdiff_t                                                            difference_type;
+    typedef zorder_iterator_tmpl<T>                                                 class_type;
+    typedef zorder_iterator_tmpl<ss_typename_type_k traits_type::alternate_type>    base_iterator_type;
+    typedef base_iterator_type                                                      iterator_type;
 /// @}
 
 /// \name Construction
 /// @{
+private:
+    zorder_iterator_tmpl(HWND hwndRoot, HWND hwndCurrent);
 public:
-    zorder_iterator(HWND hwndRoot, HWND hwndCurrent);
-public:
-    zorder_iterator();
-    ss_explicit_k zorder_iterator(HWND hwndRoot);
-    zorder_iterator(class_type const &);
-    ~zorder_iterator() stlsoft_throw_0();
+    zorder_iterator_tmpl();
+    ~zorder_iterator_tmpl() stlsoft_throw_0();
 
     class_type &operator =(class_type const &);
+
+    static class_type create(HWND hwndRoot, search from);
 /// @}
 
 /// \name Iteration
@@ -130,17 +214,24 @@ public:
     value_type  operator *() const;
     /// @}
 
-    /// \name Bidirectoonal Iterator Methods
+    /// \name Bidirectional Iterator Methods
     /// @{
     class_type  &operator --();
     class_type  operator --(int);
     /// @}
+    base_iterator_type base() const;
 /// @}
 
 /// \name Comparison
 /// @{
 public:
     bool equal(class_type const &rhs) const;
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+    static HWND get_next_window_(HWND hwnd, HWND (*pfn)(HWND )) /* throw(stlsoft::external_iterator_invalidation) */;
 /// @}
 
 /// \name Members
@@ -152,16 +243,36 @@ private:
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
+ * Typedefs
+ */
+
+typedef zorder_iterator_tmpl<zorder_iterator_forward_traits>    zorder_iterator;
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Proscribe the use of std::reverse_iterator
+ */
+
+#if 0
+STLSOFT_TEMPLATE_SPECIALISATION
+class std::ostream_iterator<zorder_iterator_tmpl<zorder_iterator_forward_traits> >;
+
+STLSOFT_TEMPLATE_SPECIALISATION
+class std::ostream_iterator<zorder_iterator_tmpl<zorder_iterator_reverse_traits> >;
+#endif /* 0 */
+
+/* /////////////////////////////////////////////////////////////////////////////
  * Operators
  */
 
-inline bool operator ==(zorder_iterator const &lhs
-                    ,   zorder_iterator const &rhs)
+template <ss_typename_param_k T>
+inline bool operator ==(zorder_iterator_tmpl<T> const &lhs
+                    ,   zorder_iterator_tmpl<T> const &rhs)
 {
     return lhs.equal(rhs);
 }
-inline bool operator !=(zorder_iterator const &lhs
-                    ,   zorder_iterator const &rhs)
+template <ss_typename_param_k T>
+inline bool operator !=(zorder_iterator_tmpl<T> const &lhs
+                    ,   zorder_iterator_tmpl<T> const &rhs)
 {
     return !lhs.equal(rhs);
 }
@@ -170,30 +281,45 @@ inline bool operator !=(zorder_iterator const &lhs
  * Implementation
  */
 
-inline zorder_iterator::zorder_iterator()
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T>
+inline /* static */ HWND zorder_iterator_tmpl<T>::get_next_window_(HWND hwnd, HWND (*pfn)(HWND )) /* throw(stlsoft::external_iterator_invalidation) */
+{
+    hwnd = (*pfn)(hwnd);
+
+    if(NULL == hwnd)
+    {
+        DWORD   dwErr   =   ::GetLastError();
+
+//        if(ERROR_INVALID_WINDOW_HANDLE == dwErr)
+        if(ERROR_SUCCESS != dwErr)
+        {
+            throw stlsoft_ns_qual(external_iterator_invalidation)("z-order search failed: window has been destroyed", static_cast<long>(dwErr));
+        }
+    }
+
+    return hwnd;
+}
+
+template <ss_typename_param_k T>
+inline zorder_iterator_tmpl<T>::zorder_iterator_tmpl()
     : m_hwndRoot(NULL)
     , m_hwndCurrent(NULL)
 {}
 
-inline zorder_iterator::zorder_iterator(HWND hwndRoot, HWND hwndCurrent)
+template <ss_typename_param_k T>
+inline zorder_iterator_tmpl<T>::zorder_iterator_tmpl(HWND hwndRoot, HWND hwndCurrent)
     : m_hwndRoot(hwndRoot)
     , m_hwndCurrent(hwndCurrent)
 {}
 
-inline zorder_iterator::zorder_iterator(HWND hwndRoot)
-    : m_hwndRoot(hwndRoot)
-    , m_hwndCurrent(hwndRoot)
+template <ss_typename_param_k T>
+inline zorder_iterator_tmpl<T>::~zorder_iterator_tmpl() stlsoft_throw_0()
 {}
 
-inline zorder_iterator::zorder_iterator(class_type const &rhs)
-    : m_hwndRoot(rhs.m_hwndRoot)
-    , m_hwndCurrent(rhs.m_hwndCurrent)
-{}
-
-inline zorder_iterator::~zorder_iterator() stlsoft_throw_0()
-{}
-
-inline zorder_iterator::class_type &zorder_iterator::operator =(zorder_iterator::class_type const &rhs)
+template <ss_typename_param_k T>
+inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator =(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const &rhs)
 {
     WINSTL_ASSERT(NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot));
 
@@ -202,16 +328,50 @@ inline zorder_iterator::class_type &zorder_iterator::operator =(zorder_iterator:
     return *this;
 }
 
-inline zorder_iterator::class_type &zorder_iterator::operator ++()
+template <ss_typename_param_k T>
+inline /* static */ zorder_iterator_tmpl<T> zorder_iterator_tmpl<T>::create(HWND hwndRoot, search from)
+{
+    HWND    hwndCurrent;
+
+    switch(from)
+    {
+        case    fromFirstChild:
+        case    atLastChild:
+            hwndRoot = get_next_window_(hwndRoot, traits_type::get_first_child);
+        default:
+            break;
+    }
+
+    switch(from)
+    {
+        case    fromCurrent:
+            hwndCurrent = hwndRoot;
+            break;
+        case    fromFirstPeer:
+        case    fromFirstChild:
+            hwndCurrent = get_next_window_(hwndRoot, traits_type::get_first_peer);
+            break;
+        case    atLastChild:
+        case    atLastPeer:
+            hwndCurrent = NULL;
+            break;
+    }
+
+    return zorder_iterator_tmpl<T>(hwndRoot, hwndCurrent);
+}
+
+template <ss_typename_param_k T>
+inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Attempt to increment an invalid / out-of-range iterator", NULL != m_hwndCurrent);
 
-    m_hwndCurrent = ::GetNextWindow(m_hwndCurrent, GW_HWNDNEXT);
+    m_hwndCurrent  = class_type::get_next_window_(m_hwndCurrent, traits_type::get_next_peer);
 
     return *this;
 }
 
-inline zorder_iterator::class_type  zorder_iterator::operator ++(int)
+template <ss_typename_param_k T>
+inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator ++(int)
 {
     class_type  ret(*this);
 
@@ -220,21 +380,25 @@ inline zorder_iterator::class_type  zorder_iterator::operator ++(int)
     return ret;
 }
 
-inline zorder_iterator::class_type &zorder_iterator::operator --()
+template <ss_typename_param_k T>
+inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator --()
 {
+    WINSTL_MESSAGE_ASSERT("Attempt to increment an invalid / out-of-range iterator", NULL != m_hwndRoot);
+
     if(NULL != m_hwndCurrent)
     {
-        m_hwndCurrent = ::GetNextWindow(m_hwndCurrent, GW_HWNDPREV);
+        m_hwndCurrent  = class_type::get_next_window_(m_hwndCurrent, traits_type::get_previous_peer);
     }
     else
     {
-        m_hwndCurrent = ::GetWindow(m_hwndRoot, GW_HWNDLAST);
+        m_hwndCurrent  = class_type::get_next_window_(m_hwndRoot, traits_type::get_last_peer);
     }
 
     return *this;
 }
 
-inline zorder_iterator::class_type zorder_iterator::operator --(int)
+template <ss_typename_param_k T>
+inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator --(int)
 {
     class_type  ret(*this);
 
@@ -243,17 +407,29 @@ inline zorder_iterator::class_type zorder_iterator::operator --(int)
     return ret;
 }
 
-inline zorder_iterator::value_type zorder_iterator::operator *() const
+template <ss_typename_param_k T>
+inline ss_typename_type_k zorder_iterator_tmpl<T>::base_iterator_type zorder_iterator_tmpl<T>::base() const
+{
+    base_iterator_type  it = base_iterator_type::create(m_hwndCurrent, fromCurrent);
+
+    return ++it;
+}
+
+template <ss_typename_param_k T>
+inline ss_typename_type_k zorder_iterator_tmpl<T>::value_type zorder_iterator_tmpl<T>::operator *() const
 {
     return m_hwndCurrent;
 }
 
-inline bool zorder_iterator::equal(zorder_iterator::class_type const &rhs) const
+template <ss_typename_param_k T>
+inline bool zorder_iterator_tmpl<T>::equal(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const &rhs) const
 {
-    WINSTL_ASSERT(NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot));
+    WINSTL_MESSAGE_ASSERT("Iterators are not end-point iterators, and refer to different collection", NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot));
 
     return m_hwndCurrent == rhs.m_hwndCurrent;
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

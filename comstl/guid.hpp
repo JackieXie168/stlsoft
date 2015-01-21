@@ -4,11 +4,11 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     15th December 2005
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define _COMSTL_VER_HPP_COMSTL_GUID_MAJOR      3
 # define _COMSTL_VER_HPP_COMSTL_GUID_MINOR      2
 # define _COMSTL_VER_HPP_COMSTL_GUID_REVISION   2
-# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       22
+# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     22nd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MINOR     1
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MINOR     3
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      27
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 #  include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-#  include <stlsoft/type_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+#  include <stlsoft/meta/base_type_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 #endif /* ? compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ template<   ss_typename_param_k TO
         >
 inline TO sap_cast(FROM from)
 {
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_BORLAND) /* || \
         __BORLANDC__ >= 0x0564 */)
     // Both types must be pointer types
@@ -119,10 +119,10 @@ inline TO sap_cast(FROM from)
 
     // "static_cast" to void (const) (volatile) *
     pointer_type        pv  =   from;
-# else /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# else /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     void const volatile *p1 =   from;
     void                *pv =   const_cast<void*>(p1);
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     // static_cast to destination type
     return static_cast<TO>(pv);

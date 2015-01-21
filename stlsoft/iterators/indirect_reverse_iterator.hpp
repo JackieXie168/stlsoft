@@ -4,11 +4,11 @@
  * Purpose:     indirect_reverse_iterator class template.
  *
  * Created:     7th June 2005
- * Updated:     27th December 2005
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MAJOR      2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MINOR      1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       14
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MINOR      2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -112,7 +112,7 @@ namespace stlsoft
 /// \param P The pointer type
 /// \param D The distance type
 template<   ss_typename_param_k I
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND) && \
     (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
         STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1)
@@ -123,14 +123,14 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k R = T&
         ,   ss_typename_param_k P = T*
         ,   ss_typename_param_k D = ptrdiff_t
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND) && \
     (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
         STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1)
         ,   ss_typename_param_k C = ss_typename_type_def_k stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category
-#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
         ,   ss_typename_param_k C = stlsoft_ns_qual_std(input_iterator_tag)
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
         >
 // [[synesis:class:iterator: indirect_reverse_iterator<T<I>, T<T>, T<R>, T<P>, T<D>>]]
 class indirect_reverse_iterator
@@ -175,7 +175,8 @@ public:
 /// \name Iterator Operations
 /// @{
 public:
-    I base() const
+    /// \brief A copy of the base iterator
+    iterator_type base() const
     {
         return *m_it.get();
     }

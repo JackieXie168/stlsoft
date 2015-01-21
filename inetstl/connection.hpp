@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_connection class.
  *
  * Created:     30th April 1999
- * Updated:     22nd December 2005
+ * Updated:     17th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_MAJOR       4
-# define INETSTL_VER_INETSTL_HPP_CONNECTION_MINOR       1
+# define INETSTL_VER_INETSTL_HPP_CONNECTION_MINOR       2
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        52
+# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -202,7 +202,12 @@ public:
     /// The last Win32/WinInet error associated with this connection object
     is_dword_t  last_error() const;
 
+    /// The underlying WinInet handle
+    HINTERNET get() const;
+
     /// Implicit conversion operator to a WinInet handle
+    ///
+    /// \deprecated This will be removed in a future release
     operator HINTERNET ();
 
 // Implementation
@@ -265,7 +270,7 @@ inline basic_connection<C, X, T>::basic_connection( HINTERNET       hsess
 {
     if(NULL == m_hConn)
     {
-        exception_policy_type()(m_lastError);
+        exception_policy_type()("Failed to open connection", m_lastError);
     }
 }
 
@@ -307,7 +312,7 @@ inline is_bool_t basic_connection<C, X, T>::connect(HINTERNET       hsess
 
         if(NULL == m_hConn)
         {
-            exception_policy_type()(m_lastError);
+            exception_policy_type()("Failed to open connection", m_lastError);
 
             bRet = false;
         }
@@ -365,6 +370,15 @@ template<   ss_typename_param_k C
 inline is_dword_t basic_connection<C, X, T>::last_error() const
 {
     return m_lastError;
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k X
+        ,   ss_typename_param_k T
+        >
+inline HINTERNET basic_connection<C, X, T>::get() const
+{
+    return m_hConn;
 }
 
 template<   ss_typename_param_k C

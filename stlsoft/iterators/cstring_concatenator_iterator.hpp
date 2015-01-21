@@ -4,11 +4,11 @@
  * Purpose:     cstring_concatenator_iterator class template.
  *
  * Created:     20th June 2005
- * Updated:     27th December 2005
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   6
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       14
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   8
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -110,17 +110,12 @@ namespace stlsoft
 template <ss_typename_param_k C>
 // [[synesis:class:iterator: cstring_concatenator_iterator<T<C>>]]
 class cstring_concatenator_iterator
-    : public stlsoft_ns_qual(iterator_base) <   stlsoft_ns_qual_std(output_iterator_tag)
-                                            ,   C
-                                            ,   void
-                                            ,   void
-                                            ,   void
-                                            >
+    : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, void, void, void>
 {
 /// \name Member Types
 /// @{
 public:
-    typedef C                                   value_type;
+    typedef C                                   char_type;
     typedef ss_size_t                           size_type;
     typedef cstring_concatenator_iterator<C>    class_type;
 private:
@@ -144,7 +139,7 @@ public:
     /// must be initialised by the caller.
     /// \param pNumWritten Pointer to an unsigned integer that receives the number
     /// of characters written by the iterator, or NULL if not required
-    ss_explicit_k cstring_concatenator_iterator(value_type *dest, size_type *pNumWritten = NULL)
+    ss_explicit_k cstring_concatenator_iterator(char_type *dest, size_type *pNumWritten = NULL)
         : m_dest(dest)
         , m_numWritten((NULL != pNumWritten) ? pNumWritten : dummy_())
     {
@@ -204,7 +199,7 @@ private:
 /// \name Implementation
 /// @{
 private:
-    void concat_(value_type const *s, size_type len)
+    void concat_(char_type const *s, size_type len)
     {
         pod_copy_n(m_dest, s, len);
 
@@ -229,7 +224,7 @@ private:
 /// \name Members
 /// @{
 private:
-    value_type  *m_dest;
+    char_type   *m_dest;
     size_type   *m_numWritten;
 /// @}
 };

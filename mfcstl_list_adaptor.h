@@ -5,7 +5,7 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     18th December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MAJOR     2
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MINOR     2
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  1
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      34
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MINOR     4
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  2
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -163,7 +166,7 @@ struct list_adaptor_traits<CStringList>
 // For CList<, >
 
 #ifdef __AFXTEMPL_H__
-# ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 /* If your translator supports partial template specialisation, then
  * you should be fine with the following specialisation ...
  */
@@ -186,7 +189,7 @@ struct list_adaptor_traits<CList<V, A> >
  *  };
  */
 
-# endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 #endif // __AFXTEMPL_H__
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -212,6 +215,7 @@ template<   class C                             // The container type
         ,   class T = list_adaptor_traits<C>    // The traits type
         >
 class list_adaptor
+    : public stl_collection_tag
 {
 public:
     typedef list_adaptor<C, T>                          class_type;
@@ -231,7 +235,12 @@ public:
     ///
     /// \note This currently supports the Input Iterator concept only
     class const_iterator
-        : public stlsoft_ns_qual(iterator_base)<mfcstl_ns_qual_std(input_iterator_tag), value_type, ms_ptrdiff_t, void, value_type>
+        : public stlsoft_ns_qual(iterator_base)<mfcstl_ns_qual_std(input_iterator_tag)
+                                            ,   value_type
+                                            ,   ms_ptrdiff_t
+                                            ,   void        // By-Value Temporary reference
+                                            ,   value_type  // By-Value Temporary reference
+                                            >
     {
         friend class list_adaptor<C, T>;
 
@@ -239,10 +248,10 @@ public:
         // NOTE: If you get a compiler error on the next line, referring to
         // undefined 'value_type' then you need to provide a traits type
         // with the member type 'value_type' defined.
-# ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         typedef ss_typename_type_k list_adaptor<C, T>::value_type   value_type;
 # else
-# endif /* !__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 # ifndef _MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR
         typedef stlsoft_define_move_rhs_type(class_type)            rhs_type;
 # endif /* !_MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR */

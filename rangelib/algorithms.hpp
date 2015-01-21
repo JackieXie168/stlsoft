@@ -4,14 +4,14 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     13th December 2005
+ * Updated:     11th January 2006
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -69,14 +69,14 @@
  * - r_replace_copy_if()
  */
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_ALGORITHMS
-#define STLSOFT_INCL_RANGELIB_HPP_ALGORITHMS
+#ifndef RANGELIB_INCL_RANGELIB_HPP_ALGORITHMS
+#define RANGELIB_INCL_RANGELIB_HPP_ALGORITHMS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
-# define STLSOFT_VER_RANGELIB_HPP_ALGORITHMS_MINOR    0
-# define STLSOFT_VER_RANGELIB_HPP_ALGORITHMS_REVISION 7
-# define STLSOFT_VER_RANGELIB_HPP_ALGORITHMS_EDIT     28
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    2
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -100,6 +100,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
+#ifndef RANGELIB_INCL_RANGELIB_HPP_EXCEPTIONS
+# include <rangelib/exceptions.hpp>
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_EXCEPTIONS */
 #ifndef RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
 # include <rangelib/basic_indirect_range_adaptor.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR */
@@ -1091,10 +1094,21 @@ inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, notional_range
     return max_;
 }
 
+template <ss_typename_param_k I>
+inline I r_max_element_1_impl_iterable(I from, I to)
+{
+    if(from == to)
+    {
+        throw empty_range_exception("Cannot determine maximum element of empty range");
+    }
+
+    return std::max_element(from, to);
+}
+
 template <ss_typename_param_k R>
 inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, iterable_range_tag const &)
 {
-    return *std::max_element(r.begin(), r.end());
+    return *r_max_element_1_impl_iterable(r.begin(), r.end());
 }
 
 template <ss_typename_param_k R>
@@ -1127,12 +1141,25 @@ inline ss_typename_type_k R::value_type r_max_element(R r)
  * max_element (2)
  */
 
+template<   ss_typename_param_k I
+        ,   ss_typename_param_k F
+        >
+inline I r_max_element_2_impl_iterable(I from, I to, F f)
+{
+    if(from == to)
+    {
+        throw empty_range_exception("Cannot determine maximum element of empty range");
+    }
+
+    return std::max_element(from, to, f);
+}
+
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
 inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, iterable_range_tag const &)
 {
-    return *std::max_element(r.begin(), r.end(), f);
+    return *r_max_element_2_impl_iterable(r.begin(), r.end(), f);
 }
 
 template<   ss_typename_param_k R
@@ -1193,12 +1220,6 @@ inline ss_typename_type_k R::value_type r_max_element(R r, F f)
  */
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, iterable_range_tag const &)
-{
-    return *std::min_element(r.begin(), r.end());
-}
-
-template <ss_typename_param_k R>
 inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, notional_range_tag const &)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
@@ -1221,6 +1242,23 @@ inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, notional_range
 
         return min_;
     }
+}
+
+template <ss_typename_param_k I>
+inline I r_min_element_1_impl_iterable(I from, I to)
+{
+    if(from == to)
+    {
+        throw empty_range_exception("Cannot determine minimum element of empty range");
+    }
+
+    return std::min_element(from, to);
+}
+
+template <ss_typename_param_k R>
+inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, iterable_range_tag const &)
+{
+    return *r_min_element_1_impl_iterable(r.begin(), r.end());
 }
 
 template <ss_typename_param_k R>
@@ -1253,12 +1291,25 @@ inline ss_typename_type_k R::value_type r_min_element(R r)
  * min_element (2)
  */
 
+template<   ss_typename_param_k I
+        ,   ss_typename_param_k F
+        >
+inline I r_min_element_2_impl_iterable(I from, I to, F f)
+{
+    if(from == to)
+    {
+        throw empty_range_exception("Cannot determine minimum element of empty range");
+    }
+
+    return std::min_element(from, to, f);
+}
+
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
 inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, iterable_range_tag const &)
 {
-    return *std::min_element(r.begin(), r.end(), f);
+    return *r_min_element_2_impl_iterable(r.begin(), r.end(), f);
 }
 
 template<   ss_typename_param_k R
@@ -1488,40 +1539,7 @@ inline void r_replace_copy_if(RI ri, RO ro, P pred, T newVal)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_rangelib_algorithms(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "RangeLib", "algorithms", __FILE__);
-
-#if 0
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
-
-                if(1968 != *pi1)
-                {
-                    r->report("construct() failed ", __LINE__);
-                    bSuccess = false;
-                }
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_rangelib_algorithms(test_rangelib_algorithms);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/algorithms_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -1542,6 +1560,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_ALGORITHMS */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_ALGORITHMS */
 
 /* ////////////////////////////////////////////////////////////////////////// */

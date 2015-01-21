@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MINOR    2
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_REVISION 4
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     158
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MINOR    4
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     160
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -96,6 +96,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                   // for std::out_of_range
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -151,6 +154,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_static_string
+    : public stl_collection_tag
 {
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
     enum { cch = CCH };
@@ -222,9 +226,9 @@ public:
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 private:
-    typedef auto_buffer<char_type
-                    ,   allocator_type
-                    >                                                   buffer_type_;
+    typedef auto_buffer_old<char_type
+                        ,   allocator_type
+                        >                                               buffer_type_;
 /// @}
 
 /// \name Construction

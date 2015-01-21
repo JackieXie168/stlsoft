@@ -4,7 +4,7 @@
  * Purpose:     Random number range class.
  *
  * Created:     31st May 2004
- * Updated:     22nd December 2005
+ * Updated:     31st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,14 +40,14 @@
 
 /** \file rangelib/random_range.hpp Random number range class */
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_RANDOM_RANGE
-#define STLSOFT_INCL_RANGELIB_HPP_RANDOM_RANGE
+#ifndef RANGELIB_INCL_RANGELIB_HPP_RANDOM_RANGE
+#define RANGELIB_INCL_RANGELIB_HPP_RANDOM_RANGE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
-# define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      1
-# define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   3
-# define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       16
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   1
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -266,67 +266,7 @@ private:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-
-        ss_bool_t test_stlsoft_rangelib_random_range(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "RangeLib", "random_range", __FILE__);
-
-            random_range    r1(10, -10, 10);
-            int             sum;
-
-            STLSOFT_ASSERT(-10 == r1.minimum());
-            STLSOFT_ASSERT(+10 == r1.maximum());
-
-            for(sum = 0; r1; ++r1)
-            {
-                STLSOFT_ASSERT(*r1 >= r1.minimum());
-                STLSOFT_ASSERT(*r1 <= r1.maximum());
-
-                sum += *r1;
-            }
-
-            if( sum < 10 * r1.minimum() ||
-                sum >= 10 * r1.maximum())
-            {
-                r->report("manual enumeration failed", __LINE__);
-                bSuccess = false;
-            }
-
-            if(r1.is_open())
-            {
-                r->report("closed range presents as open (is_open() method)", __LINE__);
-                bSuccess = false;
-            }
-
-            if(r1)
-            {
-                r->report("closed range presents as open (operator \"bool\"())", __LINE__);
-                bSuccess = false;
-            }
-
-            if(random_range(0, 0, 0))
-            {
-                r->report("closed range presents as open", __LINE__);
-                bSuccess = false;
-            }
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_rangelib_random_range(test_stlsoft_rangelib_random_range);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/random_range_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -347,6 +287,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_RANDOM_RANGE */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_RANDOM_RANGE */
 
 /* ////////////////////////////////////////////////////////////////////////// */

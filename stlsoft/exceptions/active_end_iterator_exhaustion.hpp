@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exceptions/active_end_iterator_exhausation.hpp
+ * File:        stlsoft/exceptions/active_end_iterator_exhaustion.hpp
  *
  * Purpose:     An exception thrown when an active end iterator is exhausted.
  *
  * Created:     30th November 2005
- * Updated:     18th December 2005
+ * Updated:     15th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/exceptions/active_end_iterator_exhausation.hpp
+/// \file stlsoft/exceptions/active_end_iterator_exhaustion.hpp
 ///
 /// An exception thrown when an active end iterator is exhausted.
 
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_MAJOR    1
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_MINOR    1
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_REVISION 1
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_EDIT     2
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_MINOR    4
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_REVISION 2
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <exception>
+#ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_ITERATION_INTERRUPTION
+# include <stlsoft/exceptions/iteration_interruption.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_ITERATION_INTERRUPTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -80,40 +82,37 @@ namespace stlsoft
 
 /// An exception thrown when an active end iterator is exhausted
 class active_end_iterator_exhaustion
-    : public stlsoft_ns_qual_std(runtime_error)
+    : public iteration_interruption
 {
 /// \name Member Types
 /// @{
 public:
-    typedef std::runtime_error              parent_class_type;
+    typedef iteration_interruption          parent_class_type;
     typedef active_end_iterator_exhaustion  class_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    active_end_iterator_exhaustion(char const *message)
+    active_end_iterator_exhaustion()
+        : parent_class_type()
+    {}
+    ss_explicit_k active_end_iterator_exhaustion(char const *message)
         : parent_class_type(message)
     {}
-
+    active_end_iterator_exhaustion(char const *message, long errorCode)
+        : parent_class_type(message, errorCode)
+    {}
     virtual ~active_end_iterator_exhaustion() throw()
     {}
 /// @}
 
-/// \name Accessors
+/// \name Implementation
 /// @{
-public:
-    virtual char const *what() const throw()
+private:
+    virtual char const *real_what_() const throw()
     {
-        char const *message =   parent_class_type::what();
-
-        if( NULL == message ||
-            '\0' == *message)
-        {
-            message = "Active End Iterator exhaustion";
-        }
-
-        return message;
+        return "active end iterator invalidation";
     }
 /// @}
 };

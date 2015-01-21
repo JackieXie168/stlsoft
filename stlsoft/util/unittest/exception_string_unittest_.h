@@ -1,4 +1,6 @@
 
+// Updated: 28th December 2005
+
 #if !defined(STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING)
 # error This file cannot be directly included, and should only be included within stlsoft/util/exception_string.hpp
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
@@ -25,7 +27,6 @@ namespace unittest
                     r->report("empty() returned erroneous value", __LINE__);
                     bSuccess = false;
 				}
-
 			}
 
 			{
@@ -42,12 +43,10 @@ namespace unittest
                     r->report("c_str() returned erroneous value", __LINE__);
                     bSuccess = false;
 				}
-
 			}
 
-
-			return bSuccess;
-		}
+            return bSuccess;
+        }
 
         unittest_registrar    unittest_stlsoft_util_exception_string(test_stlsoft_util_exception_string);
     } // anonymous namespace

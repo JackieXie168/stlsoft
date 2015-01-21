@@ -4,11 +4,11 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     27th December 2005
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        25
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       3
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    3
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,22 +72,20 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 # ifndef STLSOFT_INCL_STLSOFT_HPP_META
 #  include <stlsoft/meta.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-#  include <stlsoft/type_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+#  include <stlsoft/meta/base_type_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 # if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
      STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
-# include <list>
-# include <set>
-# endif /* compiler */
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#  ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS
+#   include <stlsoft/util/std/dinkumware_iterator_traits.hpp>
+#  endif /* STLSOFT_INCL_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS */
+# endif /* old-dinkumware */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>
@@ -135,7 +133,7 @@ struct msi_parent_type
 //    libraries
 //
 #if defined(STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT) && \
-    defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+    defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
         STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -185,7 +183,7 @@ public:
 /// An iterator adaptor class template that presents a member of the underlying
 /// iterator's value type as the apparent value type.
 ///
-/// \param I The type of the underlying iterator, whose value type should be C, or convertible to C
+/// \param I The type of the base iterator, whose value type should be C, or convertible to C
 /// \param C The class of the member pointer
 /// \param M The type of the member pointer
 template<   ss_typename_param_k I
@@ -228,13 +226,13 @@ public:
         , m_member(rhs.m_member)
     {}
 
+    /// Destructor
     ~member_selector_iterator() stlsoft_throw_0()
     {
         void    (*p)()  =   constraints;
 
         STLSOFT_SUPPRESS_UNUSED(p);
     }
-
 private:
     static void constraints()
     {
@@ -244,16 +242,24 @@ private:
 
         STLSOFT_SUPPRESS_UNUSED(m);
     }
+public:
+    /// \brief A copy of the base iterator
+    base_iterator_type base() const
+    {
+        return m_it;
+    }
+    /// \brief A copy of the base iterator
+    ///
+    /// \deprecated This is replaced by base()
+    base_iterator_type current() const
+    {
+        return m_it;
+    }
 /// @}
 
 /// \name Accessors
 /// @{
 public:
-    /// \brief A copy of the underlying iterator
-    base_iterator_type current() const
-    {
-        return m_it;
-    }
     /// \brief Constructs an instance from an iterator and a member pointer
     value_type C::* member() const // NOTE: Has to be C, not selected_class_type, or VC 7.0+ spits
     {
@@ -266,7 +272,7 @@ public:
 public:
     /// Pre-increment iterator
     ///
-    /// \note Increments the underlying iterator
+    /// \note Increments the base iterator
     class_type &operator ++()
     {
         ++m_it;
@@ -275,7 +281,7 @@ public:
     }
     /// Post-increment iterator
     ///
-    /// \note Increments the underlying iterator
+    /// \note Increments the base iterator
     class_type operator ++(int)
     {
         class_type  r(*this);
@@ -284,15 +290,15 @@ public:
 
         return r;
     }
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
      !defined(STLSOFT_COMPILER_IS_BORLAND)
-    /// Returns a mutating (non-const) reference to the selected member of the underlying iterators current value
+    /// Returns a mutating (non-const) reference to the selected member of the base iterators current value
     reference operator *()
     {
         return (*m_it).*m_member;
     }
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !STLSOFT_COMPILER_IS_BORLAND */
-    /// Returns a non-mutating (const) reference to the selected member of the underlying iterators current value
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !STLSOFT_COMPILER_IS_BORLAND */
+    /// Returns a non-mutating (const) reference to the selected member of the base iterators current value
     const_reference operator *() const
     {
         return (*m_it).*m_member;
@@ -312,7 +318,7 @@ public:
 public:
     /// Pre-decrement iterator
     ///
-    /// \note Decrements the underlying iterator
+    /// \note Decrements the base iterator
     class_type &operator --()
     {
         --m_it;
@@ -321,7 +327,7 @@ public:
     }
     /// Post-decrement iterator
     ///
-    /// \note Decrements the underlying iterator
+    /// \note Decrements the base iterator
     class_type operator --(int)
     {
         class_type  r(*this);
@@ -337,20 +343,20 @@ public:
 public:
     /// Moves the iterator forward
     ///
-    /// \param inc The amount by which to increment the iterator's current position
-    class_type &operator +=(difference_type inc)
+    /// \param n The amount by which to increment the iterator's current position
+    class_type &operator +=(difference_type n)
     {
-        m_it += inc;
+        m_it += n;
 
         return *this;
     }
 
     /// Moves the iterator backward
     ///
-    /// \param dec The amount by which to decrement the iterator's current position
-    class_type &operator -=(difference_type dec)
+    /// \param n The amount by which to decrement the iterator's current position
+    class_type &operator -=(difference_type n)
     {
-        m_it -= dec;
+        m_it -= n;
 
         return *this;
     }
@@ -385,42 +391,16 @@ private:
 /// @}
 };
 
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_DMC)
 
 # if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
      STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
 
-template <ss_typename_param_k T>
-struct msi_container_traits
-{
-    enum
-    {
-        is_const    =   1
-    };
-};
-
-template <ss_typename_param_k T>
-struct msi_container_traits<std::list<T>::iterator>
-{
-    enum
-    {
-        is_const    =   base_type_traits<ss_typename_type_k std::list<T>::pointer>::is_const
-    };
-};
-
-template <ss_typename_param_k T>
-struct msi_container_traits<std::set<T>::iterator>
-{
-    enum
-    {
-        is_const    =   base_type_traits<ss_typename_type_k std::set<T>::pointer>::is_const
-    };
-};
-
 template <ss_typename_param_k I>
 struct msi_iterator_traits
 {
+public:
     enum
     {
 //      is_const    =   base_type_traits<typename I::pointer>::is_const
@@ -444,7 +424,7 @@ struct msi_iterator_traits
         // left only with std::iterator<>, which contains only iterator_category, value_type, and
         // distance_type.
 
-        is_const    =   msi_container_traits<ss_typename_type_k std::iterator_traits<I>::value_type>::is_const
+        is_const    =   Dinkumware_iterator_traits<I>::is_const
     };
 };
 
@@ -453,9 +433,18 @@ struct msi_iterator_traits<T*>
 {
     enum { is_const = 0 };
 };
-
 template<ss_typename_param_k T>
 struct msi_iterator_traits<T const*>
+{
+    enum { is_const = 1 };
+};
+template<ss_typename_param_k T>
+struct msi_iterator_traits<T volatile*>
+{
+    enum { is_const = 0 };
+};
+template<ss_typename_param_k T>
+struct msi_iterator_traits<T const volatile*>
 {
     enum { is_const = 1 };
 };
@@ -483,6 +472,10 @@ private:
     };
 #endif /* dinkumware */
 public:
+
+#if 1
+
+#endif /* 1 */
 
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
@@ -567,7 +560,7 @@ inline ss_typename_type_k msi_traits<I, C, M>::type member_selector(I it, M C::*
     return iterator_t(it, member);
 }
 
-# else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 # if 0 || defined(STLSOFT_COMPILER_IS_DMC)
 template<   ss_typename_param_k I
@@ -632,7 +625,7 @@ inline member_selector_const_iterator<C const*, C, const M> member_selector(C co
 }
 #endif /* 0 */
 
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Operators

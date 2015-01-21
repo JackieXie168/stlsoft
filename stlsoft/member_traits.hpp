@@ -5,7 +5,7 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     18th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,10 +50,10 @@
 #define STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_MAJOR    1
-# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_MINOR    4
-# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_EDIT     21
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_MAJOR    2
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_MINOR    0
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_MEMBER_TRAITS_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,93 +76,14 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 
-#ifndef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
-# error This file is not compatible with compilers that do not support member type detection
-#endif /* !STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include stlsoft/meta/member_traits.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-namespace stlsoft
-{
-#endif /* _STLSOFT_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// \brief A structure that can be used to report whether various well-known
-/// facets of a type are supported
-///
-/// member_traits may be used in the compile-time evaluation of whether a given
-/// type has certain members, as follows:
-///
-/// \htmlonly
-/// <pre>
-///
-///
-///
-///
-///
-/// </pre>
-/// \endhtmlonly
-
-template<ss_typename_param_k T>
-struct member_traits
-{
-public:
-    typedef T                   value_type;
-    typedef member_traits<T>    class_type;
-
-/// \name Member Constants
-/// @{
-public:
-    
-#if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
-    enum {  has_member_iterator_category    =   0 != has_iterator_category<T>::value    /*!< Indicates whether the type has an \c iterator_category member  */  };
-    enum {  has_member_value_type           =   0 != has_value_type<T>::value           /*!< Indicates whether the type has a \c value_type member          */  };
-    enum {  has_member_distance_type        =   0 != has_distance_type<T>::value        /*!< Indicates whether the type has a \c distance_type member       */  };
-    enum {  has_member_pointer              =   0 != has_pointer<T>::value              /*!< Indicates whether the type has a \c pointer member             */  };
-    enum {  has_member_pointer_type         =   0 != has_pointer_type<T>::value         /*!< Indicates whether the type has a \c pointer_type member        */  };
-    enum {  has_member_iterator             =   0 != has_iterator<T>::value             /*!< Indicates whether the type has an \c iterator member           */  };
-# if !defined(STLSOFT_COMPILER_IS_DMC) || \
-      __DMC__ >= 0x0845
-    enum {  has_member_const_iterator       =   0 != has_const_iterator<T>::value       /*!< Indicates whether the type has a \c const_iterator member      */  };
-# endif /* !STLSOFT_COMPILER_IS_DMC */
-# if defined(STLSOFT_COMPILER_IS_MWERKS)
-    enum {  has_member_reference            =   0 != has_reference<T>::value            /*!< Indicates whether the type has a \c reference member           */  };  
-    enum {  has_member_reference_type       =   0 != has_reference_type<T>::value       /*!< Indicates whether the type has a \c reference_type member      */  };
-    enum {  has_member_const_reference      =   0 != has_const_reference<T>::value      /*!< Indicates whether the type has a \c const_reference member     */  };
-# endif /* STLSOFT_COMPILER_IS_MWERKS */
-    enum {  has_member_difference_type      =   0 != has_difference_type<T>::value      /*!< Indicates whether the type has a \c difference_type member     */  };
-    enum {  has_member_key_type             =   0 != has_key_type<T>::value             /*!< Indicates whether the type has a \c key_type member            */  };
-    enum {  has_member_mapped_type          =   0 != has_mapped_type<T>::value          /*!< Indicates whether the type has a \c mapped_type member         */  };
-    enum {  has_member_referent_type        =   0 != has_referent_type<T>::value        /*!< Indicates whether the type has a \c referent_type member       */  };
-#endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-/// @}
-
-// Not to be implemented
-private:
-    member_traits();
-#ifdef STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
-protected:
-#endif /* STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
-
-    member_traits(class_type const &rhs);
-    class_type &operator =(class_type const &rhs);
-};
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
+# include <stlsoft/meta/member_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

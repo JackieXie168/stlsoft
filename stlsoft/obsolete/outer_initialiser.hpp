@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        outer_initialiser.hpp (formerly stlsoft_outer_initialiser.h)
+ * File:        stlsoft/obsolete/outer_initialiser.hpp (formerly stlsoft_outer_initialiser.h)
  *
  * Purpose:     Contains the outer_initialiser template class.
  *
  * Created:     9th July 2004
- * Updated:     22nd December 2005
+ * Updated:     4th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,14 +42,14 @@
 ///
 /// Contains the outer_initialiser template class.
 
-#ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_H_OUTER_INITIALISER
-#define STLSOFT_INCL_STLSOFT_OBSOLETE_H_OUTER_INITIALISER
+#ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER
+#define STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_MAJOR      3
-# define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_MINOR      1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_EDIT       15
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_MAJOR       3
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_MINOR       1
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_REVISION    1
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -140,6 +140,6 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_H_OUTER_INITIALISER */
+#endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_OUTER_INITIALISER */
 
 /* ////////////////////////////////////////////////////////////////////////// */

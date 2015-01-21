@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

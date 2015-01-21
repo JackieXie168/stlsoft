@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     26th December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MAJOR     1
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MINOR     4
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MINOR     5
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      20
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -191,10 +191,10 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
         {
 // TODO: Catch the out-of-memory exception and translate to a std::out_of_range()
 
-            typedef ::stlsoft::auto_buffer< char_2_type
-                                        ,   processheap_allocator<char_2_type>
-                                        ,   1024
-                                        >                   buffer_t;
+            typedef ::stlsoft::auto_buffer_old< char_2_type
+                                            ,   processheap_allocator<char_2_type>
+                                            ,   1024
+                                            >                   buffer_t;
 
             buffer_t    buffer(static_cast<ss_typename_type_k buffer_t::size_type>(size));
             DWORD       dw;

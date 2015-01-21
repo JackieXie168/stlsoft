@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     23rd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MAJOR      4
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      2
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      3
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   1
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       30
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -79,11 +79,14 @@
 # include <stlsoft/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-  # include <stlsoft/string_access.hpp>
+# include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
 # include <stlsoft/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 //#include <inetstl_string_access.h>
 
@@ -150,6 +153,7 @@ inline void call_set_null(T *&pt, void (T::*F)())
 /// Provides multi-pattern functionality over a file-system search sequence class
 template <ss_typename_param_k S>
 class searchspec_sequence
+    : public stl_collection_tag
 {
 public:
     /// The underlying find sequence type

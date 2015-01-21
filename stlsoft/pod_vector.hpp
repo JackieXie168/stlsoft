@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     27th December 2005
+ * Updated:     13th January 2006
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_MINOR       2
-# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_EDIT        47
+# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_MINOR       4
+# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_REVISION    1
+# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -91,6 +91,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 # include <stlsoft/algorithms/pod.hpp>          // for pod_copy_n(), etc.
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <stdexcept>                            // for std::out_of_range
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -118,11 +121,12 @@ template<   ss_typename_param_k T
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT && __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
         >
 class pod_vector
+    : public stl_collection_tag
 {
 /// \name Typedefs
 /// @{
 private:
-    typedef auto_buffer<T, A, SPACE>                                buffer_type;
+    typedef auto_buffer_old<T, A, SPACE>                            buffer_type;
 public:
     /// The value type
     typedef ss_typename_type_k buffer_type::value_type              value_type;

@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MINOR       1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        44
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MINOR       2
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    1
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -218,9 +218,9 @@ public:
 
 // Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   allocator_type
-                                        >       buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   allocator_type
+                                            >       buffer_type_;
 
     buffer_type_    m_buffer;
 

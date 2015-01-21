@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     22nd December 2005
+ * Updated:     17th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    1
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    2
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_REVISION 1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     49
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -119,19 +119,37 @@ namespace inetstl_project
 template <ss_typename_param_k C>
 struct filesystem_traits
 {
+/// \name Member Types
+/// @{
 public:
     /// The character type
-    typedef C               char_type;
+    typedef C                       char_type;
     /// The size type
-    typedef is_size_t       size_type;
+    typedef is_size_t               size_type;
     /// The difference type
-    typedef is_ptrdiff_t    difference_type;
+    typedef is_ptrdiff_t            difference_type;
     /// The find data type
-    typedef WIN32_FIND_DATA find_data_type;     // Placeholder only
+    typedef WIN32_FIND_DATA         find_data_type;
+    /// The stat data type
+    typedef WIN32_FIND_DATA         stat_data_type;
+    /// The current instantion of the type
+    typedef filesystem_traits<C>    class_type;
+    /// The (signed) integer type
+    typedef is_int_t                int_type;
+    /// The Boolean type
+    typedef is_bool_t               bool_type;
+    /// The type of system error codes
+    typedef DWORD                   error_type;
+/// @}
 
+/// \name Constants
+/// @{
 public:
-    // General string handling
+/// @}
 
+/// \name General string handling
+/// @{
+public:
     /// Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const *src);
     /// Copies the contents of \c src to \c dest, up to cch \c characters
@@ -150,9 +168,11 @@ public:
     static char_type    *str_rchr(char_type const *s, char_type ch);
     /// Finds the given substring \c sub in \c s
     static char_type    *str_str(char_type const *s, char_type const *sub);
+/// @}
 
-    // File-system entry names
-
+/// \name File-system entry names
+/// @{
+public:
     /// Appends a path name separator to \c dir if one does not exist
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
@@ -164,14 +184,14 @@ public:
     /// Returns \c true if \c dir has trailing path name separator
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static is_bool_t    has_dir_end(char_type const *dir);
+    static bool_type    has_dir_end(char_type const *dir);
 
     /// Returns \c true if dir is \c "." or \c ".."
-    static is_bool_t    is_dots(char_type const *dir);
+    static bool_type    is_dots(char_type const *dir);
     /// Returns \c true if path is rooted
-    static is_bool_t    is_path_rooted(char_type const *path);
+    static bool_type    is_path_rooted(char_type const *path);
     /// Returns \c true if path is an absolute path
-    static is_bool_t    is_path_absolute(char_type const *path);
+    static bool_type    is_path_absolute(char_type const *path);
 
     /// Returns the path separator
     ///
@@ -189,82 +209,70 @@ public:
     static is_dword_t   get_full_path_name(HINTERNET hconn, char_type const *fileName, is_dword_t cchBuffer, char_type *buffer, char_type **ppFile);
     /// Gets the full path name into the given buffer
     static is_dword_t   get_full_path_name(HINTERNET hconn, char_type const *fileName, is_dword_t cchBuffer, char_type *buffer);
+/// @}
 
-    // Internet connectivity
-
+/// \name Internet connectivity
+/// @{
+public:
     /// Opens a WinInet session
     static HINTERNET    internet_open(char_type const *agent, is_dword_t accessType, char_type const *proxy, char_type const *proxyBypass, is_dword_t flags);
     /// Makes a connection to a FTP or HTTP site
     static HINTERNET    internet_connect(HINTERNET hsess, char_type const *server, INTERNET_PORT port, char_type const *userName, char_type const *password, is_dword_t service, is_dword_t flags, is_dword_t context);
     /// Closes the connection to the FTP or HTTP site
     static void         close_connection(HINTERNET hconn);
+/// @}
 
-    // FindFile() API
-
+/// \name File-system enumeration
+/// @{
+public:
     /// Initiate a file-system search
     static HINTERNET    find_first_file(HINTERNET hconn, char_type const *spec, find_data_type *findData, is_dword_t flags = 0, is_dword_t context = 0);
     /// Advance a given file-system search
-    static is_bool_t    find_next_file(HANDLE h, find_data_type *findData);
+    static bool_type    find_next_file(HANDLE h, find_data_type *findData);
     /// Closes the file-search
     static void         find_close(HINTERNET hfind);
+/// @}
 
-    // File system state
-
+/// \name File-system state
+/// @{
+public:
     /// Sets the current directory to \c dir
-    static is_bool_t    set_current_directory(HINTERNET hconn, char_type const *dir);
+    static bool_type    set_current_directory(HINTERNET hconn, char_type const *dir);
     /// Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
-    static is_bool_t    get_current_directory(HINTERNET hconn, is_size_t &cchBuffer, char_type *buffer);
+    static bool_type    get_current_directory(HINTERNET hconn, is_size_t &cchBuffer, char_type *buffer);
 
     /// Returns whether a file exists or not
-    static is_bool_t    file_exists(HINTERNET hconn, char_type const *fileName);
+    static bool_type    file_exists(HINTERNET hconn, char_type const *fileName);
+    /// Returns whether the given path represents a file
+    static bool_type    is_file(HINTERNET hconn, char_type const *path);
+    /// Returns whether the given path represents a directory
+    static bool_type    is_directory(HINTERNET hconn, char_type const *path);
+    /// Gets the information for a particular file system entry
+    static bool_type    stat(HINTERNET hconn, char_type const *path, stat_data_type *stat_data);
 
-    // File system control
+    /// Returns whether the given stat info represents a file
+    static bool_type    is_file(stat_data_type const *stat_data);
+    /// Returns whether the given stat info represents a directory
+    static bool_type    is_directory(stat_data_type const *stat_data);
+    /// Returns whether the given stat info represents a link
+    static bool_type    is_link(stat_data_type const *stat_data);
+    /// Returns whether the given stat info represents a read-only entry
+    static bool_type    is_readonly(stat_data_type const *stat_data);
+/// @}
 
+/// \name File-system control
+/// @{
+public:
     /// Creates a directory
-    static is_bool_t    create_directory(HINTERNET hconn, char_type const *dir);
+    static bool_type    create_directory(HINTERNET hconn, char_type const *dir);
     /// Deletes a directory
-    static is_bool_t    remove_directory(HINTERNET hconn, char_type const *dir);
+    static bool_type    remove_directory(HINTERNET hconn, char_type const *dir);
 
     /// Delete a file
-    static is_bool_t    delete_file(HINTERNET hconn, char_type const *file);
+    static bool_type    delete_file(HINTERNET hconn, char_type const *file);
     /// Rename a file
-    static is_bool_t    rename_file(HINTERNET hconn, char_type const *currentName, char_type const *newName);
-
-/*  BOOL WINAPI FtpGetFile(
-HINTERNET hConnect,
-LPCTSTR lpszRemoteFile,
-LPCTSTR lpszNewFile,
-BOOL fFailIfExists,
-DWORD dwFlagsAndAttributes,
-DWORD dwFlags,
-DWORD dwContext);
-
-    BOOL WINAPI FtpOpenFile(
-HINTERNET hConnect,
-LPCTSTR lpszFileName,
-DWORD dwAccess,
-DWORD dwFlags,
-DWORD dwContext);
-
-    BOOL WINAPI FtpPutFile(
-HINTERNET hConnect,
-LPCTSTR lpszLocalFile,
-LPCTSTR lpszNewRemoteFile,
-DWORD dwFlags,
-DWORD dwContext);
-
-    BOOL WINAPI InternetReadFile(
-IN HINTERNET hFile,
-IN LPVOID lpBuffer,
-IN DWORD dwNumberOfBytesToRead,
-OUT LPDWORD lpdwNumberOfBytesRead);
-
-    BOOL InternetReadFileEx (
-HINTERNET hFile,
-LPINTERNET_BUFFERS lpBuffersOut,
-DWORD dwFlags,
-DWORD dwContext);
- */
+    static bool_type    rename_file(HINTERNET hconn, char_type const *currentName, char_type const *newName);
+/// @}
 };
 
 #else
@@ -276,16 +284,21 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<is_char_a_t>
 {
 public:
-    typedef is_char_a_t         char_type;
-    typedef is_size_t           size_type;
-    typedef is_ptrdiff_t        difference_type;
-    typedef WIN32_FIND_DATAA    find_data_type;
+    typedef is_char_a_t                     char_type;
+    typedef is_size_t                       size_type;
+    typedef is_ptrdiff_t                    difference_type;
+    typedef WIN32_FIND_DATAA                find_data_type;
+    typedef WIN32_FIND_DATAA                stat_data_type;
+    typedef filesystem_traits<is_char_a_t>  class_type;
+    typedef is_int_t                        int_type;
+    typedef is_bool_t                       bool_type;
+    typedef DWORD                           error_type;
 
 public:
     // General string handling
     static char_type *str_copy(char_type *dest, char_type const *src)
     {
-        return lstrcpyA(dest, src);
+        return ::lstrcpyA(dest, src);
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const *src, is_size_t cch)
@@ -295,22 +308,22 @@ public:
 
     static char_type *str_cat(char_type *dest, char_type const *src)
     {
-        return lstrcatA(dest, src);
+        return ::lstrcatA(dest, src);
     }
 
     static is_int_t str_compare(char_type const *s1, char_type const *s2)
     {
-        return lstrcmpA(s1, s2);
+        return ::lstrcmpA(s1, s2);
     }
 
     static is_int_t str_compare_no_case(char_type const *s1, char_type const *s2)
     {
-        return lstrcmpiA(s1, s2);
+        return ::lstrcmpiA(s1, s2);
     }
 
     static size_type str_len(char_type const *src)
     {
-        return static_cast<size_type>(lstrlenA(src));
+        return static_cast<size_type>(::lstrlenA(src));
     }
 
     static char_type *str_chr(char_type const *s, char_type ch)
@@ -363,14 +376,14 @@ public:
         return dir;
     }
 
-    static is_bool_t has_dir_end(char_type const *dir)
+    static bool_type has_dir_end(char_type const *dir)
     {
         is_size_t len = str_len(dir);
 
         return (0 < len) && path_name_separator() == dir[len - 1];
     }
 
-    static is_bool_t is_dots(char_type const *dir)
+    static bool_type is_dots(char_type const *dir)
     {
         return  dir != 0 &&
                 dir[0] == '.' &&
@@ -379,14 +392,14 @@ public:
                         dir[2] == '\0'));
     }
 
-    static is_bool_t is_path_rooted(char_type const *path)
+    static bool_type is_path_rooted(char_type const *path)
     {
         INETSTL_ASSERT(NULL != path);
 
         return '/' == *path;
     }
 
-    static is_bool_t is_path_absolute(char_type const *path)
+    static bool_type is_path_absolute(char_type const *path)
     {
         return is_path_rooted(path);
     }
@@ -511,7 +524,7 @@ printf("find_first_file(0x%08x, %s => %s)\n", hfind, spec, findData->cFileName);
         return hfind;
     }
 
-    static is_bool_t find_next_file(HANDLE h, find_data_type *findData)
+    static bool_type find_next_file(HANDLE h, find_data_type *findData)
     {
         return FALSE != ::InternetFindNextFileA(h, findData);
     }
@@ -524,17 +537,17 @@ printf("find_first_file(0x%08x, %s => %s)\n", hfind, spec, findData->cFileName);
     }
 
     // File system state
-    static is_bool_t set_current_directory(HINTERNET hconn, char_type const *dir)
+    static bool_type set_current_directory(HINTERNET hconn, char_type const *dir)
     {
         return ::FtpSetCurrentDirectoryA(hconn, dir) != FALSE;
     }
 
-    static is_bool_t get_current_directory(HINTERNET hconn, is_size_t &cchBuffer, char_type *buffer)
+    static bool_type get_current_directory(HINTERNET hconn, is_size_t &cchBuffer, char_type *buffer)
     {
         return FALSE != ::FtpGetCurrentDirectoryA(hconn, buffer, sap_cast<unsigned long*>(&cchBuffer));
     }
 
-    static is_bool_t file_exists(HINTERNET hconn, char_type const *fileName)
+    static bool_type file_exists(HINTERNET hconn, char_type const *fileName)
     {
         find_data_type  data;
         HINTERNET       hfind = find_first_file(hconn, fileName, &data);
@@ -542,23 +555,43 @@ printf("find_first_file(0x%08x, %s => %s)\n", hfind, spec, findData->cFileName);
         return (NULL == hfind) ? false : (find_close(hfind), true);
     }
 
+#if 0
+    static bool_type    is_file(HINTERNET hconn, char_type const *path);
+    static bool_type    is_directory(HINTERNET hconn, char_type const *path);
+    static bool_type    stat(HINTERNET hconn, char_type const *path, stat_data_type *stat_data);
+#endif /* 0 */
+
+    static bool_type    is_file(stat_data_type const *stat_data)
+    {
+        return FILE_ATTRIBUTE_DIRECTORY != (stat_data->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+    }
+    static bool_type    is_directory(stat_data_type const *stat_data)
+    {
+        return FILE_ATTRIBUTE_DIRECTORY == (stat_data->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+    }
+    static bool_type    is_link(stat_data_type const *stat_data);
+    static bool_type    is_readonly(stat_data_type const *stat_data)
+    {
+        return FILE_ATTRIBUTE_READONLY == (stat_data->dwFileAttributes & FILE_ATTRIBUTE_READONLY);
+    }
+
     // File system control
-    static is_bool_t create_directory(HINTERNET hconn, char_type const *dir)
+    static bool_type create_directory(HINTERNET hconn, char_type const *dir)
     {
         return FALSE != ::FtpCreateDirectoryA(hconn, dir);
     }
 
-    static is_bool_t remove_directory(HINTERNET hconn, char_type const *dir)
+    static bool_type remove_directory(HINTERNET hconn, char_type const *dir)
     {
         return FALSE != ::FtpRemoveDirectoryA(hconn, dir);
     }
 
-    static is_bool_t delete_file(HINTERNET hconn, char_type const *file)
+    static bool_type delete_file(HINTERNET hconn, char_type const *file)
     {
         return FALSE != ::FtpDeleteFileA(hconn, file);
     }
 
-    static is_bool_t rename_file(HINTERNET hconn, char_type const *currentName, char_type const *newName)
+    static bool_type rename_file(HINTERNET hconn, char_type const *currentName, char_type const *newName)
     {
         return FALSE != ::FtpRenameFileA(hconn, currentName, newName);
     }
@@ -568,16 +601,21 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<is_char_w_t>
 {
 public:
-    typedef is_char_w_t         char_type;
-    typedef is_size_t           size_type;
-    typedef is_ptrdiff_t        difference_type;
-    typedef WIN32_FIND_DATAW    find_data_type;
+    typedef is_char_w_t                     char_type;
+    typedef is_size_t                       size_type;
+    typedef is_ptrdiff_t                    difference_type;
+    typedef WIN32_FIND_DATAW                find_data_type;
+    typedef WIN32_FIND_DATAW                stat_data_type;
+    typedef filesystem_traits<is_char_w_t>  class_type;
+    typedef is_int_t                        int_type;
+    typedef is_bool_t                       bool_type;
+    typedef DWORD                           error_type;
 
 public:
     // General string handling
     static char_type *str_copy(char_type *dest, char_type const *src)
     {
-        return lstrcpyW(dest, src);
+        return ::lstrcpyW(dest, src);
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const *src, is_size_t cch)
@@ -587,22 +625,22 @@ public:
 
     static char_type *str_cat(char_type *dest, char_type const *src)
     {
-        return lstrcatW(dest, src);
+        return ::lstrcatW(dest, src);
     }
 
     static is_int_t str_compare(char_type const *s1, char_type const *s2)
     {
-        return lstrcmpW(s1, s2);
+        return ::lstrcmpW(s1, s2);
     }
 
     static is_int_t str_compare_no_case(char_type const *s1, char_type const *s2)
     {
-        return lstrcmpiW(s1, s2);
+        return ::lstrcmpiW(s1, s2);
     }
 
     static size_type str_len(char_type const *src)
     {
-        return static_cast<size_type>(lstrlenW(src));
+        return static_cast<size_type>(::lstrlenW(src));
     }
 
     static char_type *str_chr(char_type const *s, char_type ch)
@@ -655,14 +693,14 @@ public:
         return dir;
     }
 
-    static is_bool_t has_dir_end(char_type const *dir)
+    static bool_type has_dir_end(char_type const *dir)
     {
         is_size_t len = str_len(dir);
 
         return (0 < len) && path_name_separator() == dir[len - 1];
     }
 
-    static is_bool_t is_dots(char_type const *dir)
+    static bool_type is_dots(char_type const *dir)
     {
         return  dir != 0 &&
                 dir[0] == '.' &&
@@ -671,14 +709,14 @@ public:
                         dir[2] == L'\0'));
     }
 
-    static is_bool_t is_path_rooted(char_type const *path)
+    static bool_type is_path_rooted(char_type const *path)
     {
         INETSTL_ASSERT(NULL != path);
 
         return L'/' == *path;
     }
 
-    static is_bool_t is_path_absolute(char_type const *path)
+    static bool_type is_path_absolute(char_type const *path)
     {
         return is_path_rooted(path);
     }
@@ -793,7 +831,7 @@ public:
         return ::FtpFindFirstFileW(hconn, spec, any_caster<find_data_type*, LPWIN32_FIND_DATAA, LPWIN32_FIND_DATAW>(findData), flags, context);
     }
 
-    static is_bool_t find_next_file(HANDLE h, find_data_type *findData)
+    static bool_type find_next_file(HANDLE h, find_data_type *findData)
     {
         return FALSE != ::InternetFindNextFileW(h, findData);
     }
@@ -806,18 +844,18 @@ public:
     }
 
     // File system state
-    static is_bool_t set_current_directory(HINTERNET hconn, char_type const *dir)
+    static bool_type set_current_directory(HINTERNET hconn, char_type const *dir)
     {
         return ::FtpSetCurrentDirectoryW(hconn, dir) != FALSE;
     }
 
-    static is_bool_t get_current_directory(HINTERNET hconn, is_size_t &cchBuffer, char_type *buffer)
+    static bool_type get_current_directory(HINTERNET hconn, is_size_t &cchBuffer, char_type *buffer)
     {
         return FALSE != ::FtpGetCurrentDirectoryW(hconn, buffer, sap_cast<unsigned long*>(&cchBuffer));
     }
 
     /// Returns whether a file exists or not
-    static is_bool_t file_exists(HINTERNET hconn, char_type const *fileName)
+    static bool_type file_exists(HINTERNET hconn, char_type const *fileName)
     {
         find_data_type  data;
         HINTERNET       hfind = find_first_file(hconn, fileName, &data);
@@ -825,23 +863,43 @@ public:
         return (NULL == hfind) ? false : (find_close(hfind), true);
     }
 
+#if 0
+    static bool_type    is_file(HINTERNET hconn, char_type const *path);
+    static bool_type    is_directory(HINTERNET hconn, char_type const *path);
+    static bool_type    stat(HINTERNET hconn, char_type const *path, stat_data_type *stat_data);
+#endif /* 0 */
+
+    static bool_type    is_file(stat_data_type const *stat_data)
+    {
+        return FILE_ATTRIBUTE_DIRECTORY != (stat_data->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+    }
+    static bool_type    is_directory(stat_data_type const *stat_data)
+    {
+        return FILE_ATTRIBUTE_DIRECTORY == (stat_data->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+    }
+    static bool_type    is_link(stat_data_type const *stat_data);
+    static bool_type    is_readonly(stat_data_type const *stat_data)
+    {
+        return FILE_ATTRIBUTE_READONLY == (stat_data->dwFileAttributes & FILE_ATTRIBUTE_READONLY);
+    }
+
     // File system control
-    static is_bool_t create_directory(HINTERNET hconn, char_type const *dir)
+    static bool_type create_directory(HINTERNET hconn, char_type const *dir)
     {
         return FALSE != ::FtpCreateDirectoryW(hconn, dir);
     }
 
-    static is_bool_t remove_directory(HINTERNET hconn, char_type const *dir)
+    static bool_type remove_directory(HINTERNET hconn, char_type const *dir)
     {
         return FALSE != ::FtpRemoveDirectoryW(hconn, dir);
     }
 
-    static is_bool_t delete_file(HINTERNET hconn, char_type const *file)
+    static bool_type delete_file(HINTERNET hconn, char_type const *file)
     {
         return FALSE != ::FtpDeleteFileW(hconn, file);
     }
 
-    static is_bool_t rename_file(HINTERNET hconn, char_type const *currentName, char_type const *newName)
+    static bool_type rename_file(HINTERNET hconn, char_type const *currentName, char_type const *newName)
     {
         return FALSE != ::FtpRenameFileW(hconn, currentName, newName);
     }

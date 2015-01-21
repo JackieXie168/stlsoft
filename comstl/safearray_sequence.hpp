@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MAJOR     3
-# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MINOR     1
+# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MINOR     2
 # define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_EDIT      33
+# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -92,6 +92,10 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>
 #endif /* STLSOFT_UNITTEST */
@@ -132,6 +136,7 @@ namespace comstl_project
 /// Provides an STL-iterable view over a COM SAFEARRAY
 template <ss_typename_param_k T>
 class safearray_sequence
+    : public stl_collection_tag
 {
 private:
     typedef SAFEARRAY const                                                 *LPCSAFEARRAY;

@@ -10,11 +10,11 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     18th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_MAJOR       2
-# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_MINOR       2
-# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_REVISION    1
-# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_EDIT        69
+# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_MINOR       5
+# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_REVISION    2
+# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -83,9 +83,27 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_HPP_EVENT
+# include <winstl/event.hpp>
+#endif /* !WINSTL_INCL_WINSTL_HPP_EVENT */
+#ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
+# include <winstl/functions.h>
+#endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_HPP_DL_CALL
+# include <winstl/dl_call.hpp>
+#endif /* !WINSTL_INCL_WINSTL_HPP_DL_CALL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>                // for stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION
+# include <stlsoft/exceptions/external_iterator_invalidation.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MUST_INIT
+//# include <stlsoft/util/must_init.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MUST_INIT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -151,6 +169,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_reg_value_sequence
+    : public stl_collection_tag
 {
 public:
     /// The character type
@@ -187,8 +206,8 @@ public:
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)  <   const_iterator
                                                                         ,   value_type
-                                                                        ,   value_type // Return by value!
-                                                                        ,   void*
+                                                                        ,   value_type  // By-Value Temporary reference category
+                                                                        ,   void        // By-Value Temporary reference category
                                                                         ,   difference_type
                                                                         >           const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
@@ -235,7 +254,7 @@ public:
 
 // Members
 private:
-    ss_typename_type_k traits_type::hkey_type  m_hkey;
+    ss_typename_type_k traits_type::hkey_type   m_hkey;
 
 // Not to be implemented
 private:
@@ -264,12 +283,12 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 class basic_reg_value_sequence_const_iterator
-    : public stlsoft_ns_qual(iterator_base) <   winstl_ns_qual_std(bidirectional_iterator_tag)
-                                            ,   V
-                                            ,   ws_ptrdiff_t
-                                            ,   void *
-                                            ,   V
-                                            >
+    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(bidirectional_iterator_tag)
+                                        ,   V
+                                        ,   ws_ptrdiff_t
+                                        ,   void    // By-Value Temporary reference
+                                        ,   V       // By-Value Temporary reference
+                                        >
 {
 public:
     /// The character type
@@ -296,14 +315,20 @@ public:
 // Construction
 private:
     basic_reg_value_sequence_const_iterator(hkey_type hkey, index_type index, string_type const &value_name)
-        : m_hkey(hkey)
+        : m_hkey(traits_type::key_dup(hkey))
         , m_index(index)
         , m_name(value_name)
-    {} // Implementation is within class, otherwise VC5 will not link
+        , m_monitor(true, false)
+    {
+        dl_call<LONG>("ADVAPI32.DLL", "S:RegNotifyChangeKeyValue", m_hkey, false, (int)REG_NOTIFY_CHANGE_LAST_SET, m_monitor.handle(), true);
+    } // Implementation is within class, otherwise VC5 will not link
     ss_explicit_k basic_reg_value_sequence_const_iterator(hkey_type hkey)
-        : m_hkey(hkey)
+        : m_hkey(traits_type::key_dup(hkey))
         , m_index(sentinel_())
-    {} // Implementation is within class, otherwise VC5 will not link
+        , m_monitor(true, false)
+    {
+        dl_call<LONG>("ADVAPI32.DLL", "S:RegNotifyChangeKeyValue", m_hkey, false, (int)REG_NOTIFY_CHANGE_LAST_SET, m_monitor.handle(), true);
+    } // Implementation is within class, otherwise VC5 will not link
 public:
     /// Default constructor
     basic_reg_value_sequence_const_iterator();
@@ -342,9 +367,10 @@ private:
 
     typedef basic_reg_value_sequence<C, T, A>      list_type;
 
-    hkey_type   m_hkey;     // Parent container
-    index_type  m_index;    // Iteration index
-    string_type m_name;     // The value name
+    hkey_type           m_hkey;     // Parent container
+    index_type          m_index;    // Iteration index
+    string_type         m_name;     // The value name
+    event               m_monitor;  // The event that will monitor changes to the API.
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -374,13 +400,13 @@ namespace unittest
                 reg_value_sequence_a::value_type    v   =   *b;
             }
 
-    #if 0
+#if 0
             if(<<TODO>>)
             {
                 r->report("<<TODO>> failed", __LINE__);
                 bSuccess = false;
             }
-    #endif /* 0 */
+#endif /* 0 */
 
             return bSuccess;
         }
@@ -417,11 +443,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence(reg_key_type const &key)
-//#ifdef __STLSOFT_CF_TYPENAME_TYPE_CIL_KEYWORD_SUPPORT
-//    : m_hkey(ss_typename_type_k traits_type::key_dup(key.m_hkey))
-//#else
     : m_hkey(traits_type::key_dup(key.m_hkey))
-//#endif /* STLSOFT_COMPILER_IS_BORLAND */
 {}
 
 template<   ss_typename_param_k C
@@ -448,8 +470,8 @@ inline ss_typename_type_k basic_reg_value_sequence<C, T, A>::const_iterator basi
 
     if(res == 0)
     {
-        stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(++cch_value_name);
-        size_type                                                                           cb_data = 0;
+        stlsoft_ns_qual(auto_buffer_old)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(++cch_value_name);
+        size_type                                                                               cb_data = 0;
 
         res = traits_type::reg_enum_value(m_hkey, 0, &buffer[0], &cch_value_name, NULL, NULL, cb_data);
 
@@ -548,8 +570,8 @@ template<   ss_typename_param_k C
 inline basic_reg_value_sequence_const_iterator<C, T, V, A>::basic_reg_value_sequence_const_iterator()
     : m_hkey(NULL)
     , m_index(sentinel_())
-{
-}
+    , m_monitor(true, false)
+{}
 
 #if 0
 template<   ss_typename_param_k C
@@ -558,11 +580,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_reg_value_sequence_const_iterator<C, T, V, A>::basic_reg_value_sequence_const_iterator(basic_reg_value_sequence_const_iterator<C, T, V, A>::hkey_type hkey, basic_reg_value_sequence_const_iterator<C, T, V, A>::index_type index, basic_reg_value_sequence_const_iterator<C, T, V, A>::string_type const &value_name)
-    : m_hkey(hkey)
+    : m_hkey(traits_type::key_dup(hkey))
     , m_index(index)
     , m_name(value_name)
-{
-}
+    , m_monitor(true, false)
+{}
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -570,10 +592,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_reg_value_sequence_const_iterator<C, T, V, A>::basic_reg_value_sequence_const_iterator(basic_reg_value_sequence_const_iterator<C, T, V, A>::hkey_type hkey)
-    : m_hkey(hkey)
+    : m_hkey(traits_type::key_dup(hkey))
     , m_index(sentinel_())
-{
-}
+    , m_monitor(true, false)
+{}
 #endif /* 0 */
 
 template<   ss_typename_param_k C
@@ -582,10 +604,12 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_reg_value_sequence_const_iterator<C, T, V, A>::basic_reg_value_sequence_const_iterator(class_type const &rhs)
-    : m_hkey(rhs.m_hkey)
+    : m_hkey(traits_type::key_dup(rhs.m_hkey))
     , m_index(rhs.m_index)
     , m_name(rhs.m_name)
+    , m_monitor(true, rhs.m_monitor.is_signalled())
 {
+    dl_call<LONG>("ADVAPI32.DLL", "S:RegNotifyChangeKeyValue", m_hkey, false, (int)REG_NOTIFY_CHANGE_LAST_SET, m_monitor.handle(), true);
 }
 
 template<   ss_typename_param_k C
@@ -598,9 +622,31 @@ inline ss_typename_type_k basic_reg_value_sequence_const_iterator<C, T, V, A>::c
     // For efficiency, we don't do self-assignment test, and assume (reasonably)
     // that m_name will be self-protecting
 
-    m_hkey  =   rhs.m_hkey;
-    m_index =   rhs.m_index;
-    m_name  =   rhs.m_name;
+    m_hkey      =   traits_type::key_dup(rhs.m_hkey);
+    m_index     =   rhs.m_index;
+    m_name      =   rhs.m_name;
+
+#if 0
+#if 0
+    if(&rhs != this)
+    {
+        HANDLE  hCopy;
+
+        // TODO: Should throw an exception here
+
+        if(ERROR_SUCCESS != winstl__DuplicateLocalHandle(rhs.m_hMonitor, &hCopy))
+        {
+            hCopy = NULL;
+        }
+
+        winstl__CloseHandleSetNull(m_hEvent);
+
+        m_hEvent = hCopy;
+    }
+#else
+    m_hEvent    =   rhs.m_hEvent;
+#endif /* 0 */
+#endif /* 0 */
 
     return *this;
 }
@@ -612,6 +658,10 @@ template<   ss_typename_param_k C
         >
 inline basic_reg_value_sequence_const_iterator<C, T, V, A>::~basic_reg_value_sequence_const_iterator() stlsoft_throw_0()
 {
+    if(NULL != m_hkey)
+    {
+        ::RegCloseKey(m_hkey);
+    }
 }
 
 template<   ss_typename_param_k C
@@ -627,8 +677,8 @@ inline ss_typename_type_k basic_reg_value_sequence_const_iterator<C, T, V, A>::c
 
     if(res == 0)
     {
-        stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(++cch_value_name);
-        size_type                                                                           cb_data = 0;
+        stlsoft_ns_qual(auto_buffer_old)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(++cch_value_name);
+        size_type                                                                               cb_data = 0;
 
         res = traits_type::reg_enum_value(m_hkey, static_cast<ws_dword_t>(++m_index), &buffer[0], &cch_value_name, NULL, NULL, cb_data);
 
@@ -648,6 +698,16 @@ inline ss_typename_type_k basic_reg_value_sequence_const_iterator<C, T, V, A>::c
         m_index = sentinel_();
     }
 
+    if(IsWaitObjectSignalled(m_monitor.handle()))
+    {
+        // Must set to watch again here, because several iterators from the same
+        // same reg_value_sequence could be open simultaneously
+
+        dl_call<LONG>("ADVAPI32.DLL", "S:RegNotifyChangeKeyValue", m_hkey, false, (int)REG_NOTIFY_CHANGE_LAST_SET, m_monitor.handle(), true);
+
+        throw stlsoft_ns_qual(external_iterator_invalidation)("registry value(s) changed");
+    }
+
     return *this;
 }
 
@@ -665,8 +725,8 @@ inline ss_typename_type_k basic_reg_value_sequence_const_iterator<C, T, V, A>::c
 
     if(res == 0)
     {
-        stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(++cch_value_name);
-        size_type                                                                           cb_data = 0;
+        stlsoft_ns_qual(auto_buffer_old)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(++cch_value_name);
+        size_type                                                                               cb_data = 0;
 
         // If the iterator is currently at the "end()", ...
         if(m_index == sentinel_())
@@ -692,6 +752,16 @@ inline ss_typename_type_k basic_reg_value_sequence_const_iterator<C, T, V, A>::c
     else
     {
         m_index = sentinel_();
+    }
+
+    if(IsWaitObjectSignalled(m_monitor.handle()))
+    {
+        // Must set to watch again here, because several iterators from the same
+        // same reg_value_sequence could be open simultaneously
+
+        dl_call<LONG>("ADVAPI32.DLL", "S:RegNotifyChangeKeyValue", m_hkey, false, (int)REG_NOTIFY_CHANGE_LAST_SET, m_monitor.handle(), true);
+
+        throw stlsoft_ns_qual(external_iterator_invalidation)("registry value(s) changed");
     }
 
     return *this;
@@ -742,7 +812,7 @@ template<   ss_typename_param_k C
         >
 inline ws_bool_t basic_reg_value_sequence_const_iterator<C, T, V, A>::operator ==(class_type const &rhs) const
 {
-    winstl_message_assert("Comparing reg_value_sequence iterators from different sequences!", m_hkey == rhs.m_hkey);
+//    WINSTL_MESSAGE_ASSERT("Comparing reg_value_sequence iterators from different sequences!", m_hkey == rhs.m_hkey);
 
     return m_index == rhs.m_index;
 }

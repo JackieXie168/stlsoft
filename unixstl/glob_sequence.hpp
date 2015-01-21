@@ -4,13 +4,13 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MAJOR    4
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MINOR    7
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     109
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MINOR    9
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -79,6 +79,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS
 //# include <stlsoft/tokeniser_functions.hpp> // for find_next_token
 #endif /* !STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <sys/types.h>
 #include <sys/stat.h>                       // for stat()
 #include <errno.h>
@@ -252,6 +255,7 @@ private:
 /// iteration over the results of file-system wildcard matches.
 
 class glob_sequence
+    : public stl_collection_tag
 {
 /// \name Types
 /// @{
@@ -530,10 +534,10 @@ private:
 
 // Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type const*
-                                        ,   allocator_type
-                                        ,   128
-                                        >           buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type const*
+                                            ,   allocator_type
+                                            ,   128
+                                            >       buffer_type_;
 
     us_int_t const  m_flags;
     char_type const **m_base;

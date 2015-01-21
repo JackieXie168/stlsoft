@@ -5,11 +5,11 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     22nd December 2005
+ * Updated:     17th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,10 +47,10 @@
 #define STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_MINOR      1
-# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_EDIT       17
+# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_MAJOR      4
+# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_MINOR      0
+# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_REVISION   3
+# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,8 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_BORLAND:
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1310
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -70,414 +72,14 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>      // for stlsoft::iterator, and macros
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-# include <stlsoft/type_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include stlsoft/iterators/filter_iterator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _STLSOFT_NO_NAMESPACE
-namespace stlsoft
-{
-#endif /* _STLSOFT_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-
-/// Traits for filtered_iterator
-template <ss_typename_param_k I>
-struct filtered_iterator_traits
-{
-public:
-    /// The iterator category
-    typedef ss_typename_type_k I::iterator_category                                     iterator_category;
-    /// The value type
-    typedef ss_typename_type_k I::value_type                                            value_type;
-    /// The difference type
-    typedef ss_typename_type_k I::difference_type                                       difference_type;
-private:
-#ifdef STLSOFT_ITERATOR_ITERATOR_FORM2_SUPPORT
-    // Use the iterator itself to determine whether the iterator is const
-    enum { IS_CONST = base_type_traits<value_type>::is_const };
-#else /* ? STLSOFT_ITERATOR_ITERATOR_FORM2_SUPPORT */
-    // 1. Use iterator_traits ...
-    typedef std::iterator_traits<I>                                                     traits_type_;
-    // ... to get the pointer type ...
-    typedef ss_typename_type_k traits_type_::pointer                                    pointer_type_;
-    // ... to determine whether the iterator is const
-    enum { IS_CONST = base_type_traits<pointer_type_>::is_const };
-#endif /* !STLSOFT_ITERATOR_ITERATOR_FORM2_SUPPORT */
-    // 2. Use Determine the base type of the value_type, which may then be used to create a reference of the appropriate type
-    typedef ss_typename_type_k base_type_traits<value_type>::base_type                  base_value_type;
-//  enum { IS_CONST = is_const<pointer>::value };
-public:
-    // TODO: Need to discriminate pointer and, hence, const_pointer types
-//    typedef value_type volatile const                       *pointer;
-//    typedef value_type volatile const                       *const_pointer;
-    typedef I                                                                           iterator;
-    typedef ss_typename_type_k base_type_traits<iterator>::base_type const              &const_iterator;
-    typedef ss_typename_type_k select_first_type_if<   base_value_type const &
-                                                ,   base_value_type &, IS_CONST>::type  reference;
-    typedef base_value_type const                                                       &const_reference;
-};
-
-# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-struct filtered_iterator_traits<T*>
-{
-    typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
-    typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
-    typedef value_type                                      *iterator;
-    typedef value_type const                                *const_iterator;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-};
-
-template <ss_typename_param_k T>
-struct filtered_iterator_traits<T const*>
-{
-    typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
-    typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
-    typedef value_type const                                *pointer;
-    typedef value_type const                                *const_pointer;
-    typedef value_type const                                *iterator;
-    typedef value_type const                                *const_iterator;
-    typedef value_type const                                &reference;
-    typedef value_type const                                &const_reference;
-};
-
-template <ss_typename_param_k T>
-struct filtered_iterator_traits<T volatile*>
-{
-    typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
-    typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
-    typedef value_type volatile                             *pointer;
-    typedef value_type volatile const                       *const_pointer;
-    typedef value_type volatile                             *iterator;
-    typedef value_type volatile const                       *const_iterator;
-    typedef value_type volatile                             &reference;
-    typedef value_type volatile const                       &const_reference;
-};
-
-template <ss_typename_param_k T>
-struct filtered_iterator_traits<T const volatile*>
-{
-    typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
-    typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
-    typedef value_type volatile const                       *pointer;
-    typedef value_type volatile const                       *const_pointer;
-    typedef value_type volatile const                       *iterator;
-    typedef value_type volatile const                       *const_iterator;
-    typedef value_type volatile const                       &reference;
-    typedef value_type volatile const                       &const_reference;
-};
-
-# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-
-
-/// Filters the values of an iterable range
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T = filtered_iterator_traits<I>
-        >
-class filtered_iterator
-{
-public:
-    typedef I                                                   filtered_iterator_type;
-    typedef P                                                   filter_predicate_type;
-    typedef T                                                   traits_type;
-    typedef filtered_iterator<I, P, T>                          class_type;
-    typedef ss_typename_type_k traits_type::iterator_category   iterator_category;
-    typedef ss_typename_type_k traits_type::value_type          value_type;
-    typedef ss_typename_type_k traits_type::difference_type     difference_type;
-    typedef ss_typename_type_k traits_type::pointer             pointer;
-    typedef ss_typename_type_k traits_type::const_pointer       const_pointer;
-    typedef ss_typename_type_k traits_type::reference           reference;
-    typedef ss_typename_type_k traits_type::const_reference     const_reference;
-
-public:
-    filtered_iterator(filtered_iterator_type begin, filtered_iterator_type end, filter_predicate_type pr)
-        : m_begin(begin)
-        , m_end(end)
-        , m_predicate(pr)
-    {
-        for(; m_begin != m_end; ++m_begin)
-        {
-            if(m_predicate(*m_begin))
-            {
-                break;
-            }
-        }
-    }
-
-/// \name Accessors
-/// @{
-public:
-    reference operator *()
-    {
-        return *m_begin;
-    }
-    const_reference operator *() const
-    {
-        return *m_begin;
-    }
-    pointer operator ->()
-    {
-        return &*m_begin;
-    }
-    const_pointer operator ->() const
-    {
-        return &*m_begin;
-    }
-/// @}
-
-/// \name Forward Iterator methods
-/// @{
-public:
-    class_type &operator ++()
-    {
-        for(++m_begin; m_begin != m_end; ++m_begin)
-        {
-            if(m_predicate(*m_begin))
-            {
-                break;
-            }
-        }
-
-        return *this;
-    }
-    class_type &operator ++(int)
-    {
-        class_type  ret(*this);
-
-        operator ++();
-
-        return ret;
-    }
-/// @}
-
-/// \name Bidirectional Iterator methods
-/// @{
-public:
-    class_type &operator --();
-#if 0
-    {
-        // TODO: Do filtering here
-    }
-#endif /* 0 */
-    class_type &operator --(int)
-    {
-        class_type  ret(*this);
-
-        operator --();
-
-        return ret;
-    }
-/// @}
-
-/// \name Random Access Iterator methods
-/// @{
-public:
-    class_type &operator +=(difference_type d)
-    {
-        m_begin += d;
-
-        return *this;
-    }
-    class_type &operator -=(difference_type d)
-    {
-        m_begin -= d;
-
-        return *this;
-    }
-
-    reference operator [](difference_type index)
-    {
-        STLSOFT_MESSAGE_ASSERT("Requested index is out of range", index <= distance());
-
-        return m_begin[index];
-    }
-    const_reference operator [](difference_type index) const
-    {
-        STLSOFT_MESSAGE_ASSERT("Requested index is out of range", index <= distance());
-
-        return m_begin[index];
-    }
-/// @}
-
-/// \name Comparison
-/// @{
-public:
-    ss_bool_t equal(class_type const &rhs) const
-    {
-        STLSOFT_MESSAGE_ASSERT("Comparing iterators from different sequences", m_end == rhs.m_end);
-
-        return m_begin == rhs.m_begin;
-    }
-    /// \deprecated
-    ss_bool_t equals(class_type const &rhs) const
-    {
-        return equal(rhs);
-    }
-    ss_sint_t compare(class_type const &rhs) const
-    {
-        STLSOFT_MESSAGE_ASSERT("Comparing iterators from different sequences", m_end == rhs.m_end);
-
-        return m_begin - rhs.m_begin;
-    }
-    difference_type difference(class_type const &rhs) const
-    {
-        STLSOFT_MESSAGE_ASSERT("Comparing iterators from different sequences", m_end == rhs.m_end);
-
-        return m_begin - rhs.m_begin;
-    }
-/// @}
-
-/// \name Attributes
-/// @{
-public:
-    difference_type distance() const
-    {
-        return m_end - m_begin;
-    }
-/// @}
-
-
-// Members
-private:
-    filtered_iterator_type  m_begin;
-    filtered_iterator_type  m_end;
-    filter_predicate_type   m_predicate;
-};
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Operators
- */
-
-// operator +
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline filtered_iterator<I, P, T> operator +(filtered_iterator<I, P, T> const &lhs, ss_typename_type_k filtered_iterator<I, P, T>::difference_type rhs)
-{
-    return filtered_iterator<I, P, T>(lhs) += rhs;
-}
-
-// operator -
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline filtered_iterator<I, P, T> operator -(filtered_iterator<I, P, T> const &lhs, ss_typename_type_k filtered_iterator<I, P, T>::difference_type rhs)
-{
-    return filtered_iterator<I, P, T>(lhs) -= rhs;
-}
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k filtered_iterator<I, P, T>::difference_type operator -(filtered_iterator<I, P, T> const &lhs, filtered_iterator<I, P, T> const &rhs)
-{
-    return lhs.difference(rhs);
-}
-
-// operator ==
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline ss_bool_t operator ==(filtered_iterator<I, P, T> const &lhs, filtered_iterator<I, P, T> const &rhs)
-{
-    return lhs.equal(rhs);
-}
-
-// operator !=
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline ss_bool_t operator !=(filtered_iterator<I, P, T> const &lhs, filtered_iterator<I, P, T> const &rhs)
-{
-    return !lhs.equal(rhs);
-}
-
-// operator <
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline ss_bool_t operator <(filtered_iterator<I, P, T> const &lhs, filtered_iterator<I, P, T> const &rhs)
-{
-    return lhs.compare(rhs) < 0;
-}
-
-// operator <=
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline ss_bool_t operator <=(filtered_iterator<I, P, T> const &lhs, filtered_iterator<I, P, T> const &rhs)
-{
-    return lhs.compare(rhs) <= 0;
-}
-
-// operator >
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline ss_bool_t operator >(filtered_iterator<I, P, T> const &lhs, filtered_iterator<I, P, T> const &rhs)
-{
-    return lhs.compare(rhs) > 0;
-}
-
-// operator >=
-
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k P
-        ,   ss_typename_param_k T
-        >
-inline ss_bool_t operator >=(filtered_iterator<I, P, T> const &lhs, filtered_iterator<I, P, T> const &rhs)
-{
-    return lhs.compare(rhs) >= 0;
-}
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR
+# include <stlsoft/iterators/filter_iterator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

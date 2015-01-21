@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the current_directory components.
  *
  * Created:     13th June 2005
- * Updated:     20th October 2005
+ * Updated:     4th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,8 +45,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_REVISION 3
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     4
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_REVISION 4
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/current_directory.hpp Platform header for the current_directory components */
@@ -185,9 +185,13 @@ namespace platformstl_project
 #  ifdef _WINSTL_NO_NAMESPACE
     using ::basic_current_directory;
     using ::current_directory_a;
+    using ::current_directory_w;
+    using ::current_directory;
 #  else /* ? _WINSTL_NO_NAMESPACE */
     using ::winstl::basic_current_directory;
     using ::winstl::current_directory_a;
+    using ::winstl::current_directory_w;
+    using ::winstl::current_directory;
 #  endif /* _WINSTL_NO_NAMESPACE */
 
 # endif /* compiler */

@@ -1,5 +1,5 @@
 
-// Updated: 13th December 2005
+// Updated: 19th January 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS)
 # error This file cannot be directly included, and should only be included within stlsoft/printf_traits.hpp
@@ -36,6 +36,7 @@ namespace unittest
             }
         } // anonymous namespace
 
+#if 0
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     (   defined(STLSOFT_COMPILER_IS_COMO) && \
         defined(_MSC_VER)) || \
@@ -57,11 +58,11 @@ namespace unittest
            (   defined(STLSOFT_COMPILER_IS_INTEL) && \
                defined(WIN32))) && \
         _MSC_VER >= 1400
-            iRet    =   swprintf_p(_vswprintf_c, sz, cch, fmt, args);
+            iRet    =   swprintf_p(::_vswprintf_c, sz, cch, fmt, args);
 
             sz[iRet] = '\0';
 # else /* ? compiler */
-            iRet    =   swprintf_p(vswprintf, sz, cch, fmt, args);
+            iRet    =   swprintf_p(::vswprintf, sz, cch, fmt, args);
 # endif /* compiler */
 
             va_end(args);
@@ -69,6 +70,74 @@ namespace unittest
             return iRet;
         }
 #endif /* compiler */
+#else /* ? 0 */
+
+        template<   ss_typename_param_k HAS4
+                ,   ss_typename_param_k HAS3
+                >
+        struct vswprintf_invoker;
+
+        STLSOFT_TEMPLATE_SPECIALISATION
+        struct vswprintf_invoker<yes_type, yes_type>
+        {
+        public:
+            static int invoke(int (*pfn)(wchar_t *, size_t, const wchar_t *, va_list), wchar_t *sz, size_t cch, wchar_t const *fmt, va_list args)
+            {
+                return (*pfn)(sz, cch, fmt, args);
+            }
+        };
+        STLSOFT_TEMPLATE_SPECIALISATION
+        struct vswprintf_invoker<no_type, yes_type>
+        {
+            static int invoke(int (*pfn)(wchar_t *, size_t, const wchar_t *, va_list), wchar_t *sz, size_t cch, wchar_t const *fmt, va_list args)
+            {
+                return (*pfn)(sz, cch, fmt, args);
+            }
+        };
+        STLSOFT_TEMPLATE_SPECIALISATION
+        struct vswprintf_invoker<yes_type, no_type>
+        {
+            static int invoke(int (*pfn)(wchar_t *, const wchar_t *, va_list), wchar_t *sz, size_t /* cch */, wchar_t const *fmt, va_list args)
+            {
+                return (*pfn)(sz, fmt, args);
+            }
+        };
+#if 0
+        STLSOFT_TEMPLATE_SPECIALISATION
+        struct vswprintf_invoker<no_type, no_type>
+        {
+            static int invoke(int (*)(wchar_t *, const wchar_t *, va_list), wchar_t * /* sz */, size_t /* cch */, wchar_t const * /* fmt */, va_list /* args */)
+            {
+                return 0;
+            }
+        };
+#endif /* 0 */
+
+
+
+        inline int swprintf(wchar_t *sz, size_t cch, wchar_t const *fmt, ...)
+        {
+            va_list args;
+            int     iRet;
+            va_start(args, fmt);
+
+            typedef value_to_yesno_type<0 != vswprintf_detector::has_3_param>::type     has_3_yesno_t;
+            typedef value_to_yesno_type<0 != vswprintf_detector::has_4_param>::type     has_4_yesno_t;
+
+            // Don't know what to do if neither are supported!
+            STLSOFT_STATIC_ASSERT(0 != vswprintf_detector::has_3_param || 0 != vswprintf_detector::has_4_param);
+
+            typedef vswprintf_invoker<has_3_yesno_t, has_4_yesno_t> invoker_t;
+
+            iRet = invoker_t::invoke(::vswprintf, sz, cch, fmt, args);
+
+            va_end(args);
+
+            return iRet;
+        }
+
+
+#endif /* 0 */
 
         ss_bool_t test_stlsoft_printf_traits(unittest_reporter *r)
         {

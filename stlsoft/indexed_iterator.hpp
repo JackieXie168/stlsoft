@@ -4,11 +4,11 @@
  * Purpose:     indexed_iterator class template.
  *
  * Created:     20th June 2005
- * Updated:     22nd December 2005
+ * Updated:     17th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_INDEXED_ITERATOR_MAJOR     2
-# define STLSOFT_VER_STLSOFT_HPP_INDEXED_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_HPP_INDEXED_ITERATOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_INDEXED_ITERATOR_EDIT      3
+# define STLSOFT_VER_STLSOFT_HPP_INDEXED_ITERATOR_MINOR     1
+# define STLSOFT_VER_STLSOFT_HPP_INDEXED_ITERATOR_REVISION  3
+# define STLSOFT_VER_STLSOFT_HPP_INDEXED_ITERATOR_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -58,6 +58,8 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_BORLAND:
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1310
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -71,12 +73,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include stlsoft/iterators/indexed_iterator.hpp")
+# pragma message("This file is now obsolete. Instead include stlsoft/iterators/index_iterator.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDEXED_ITERATOR
-# include <stlsoft/iterators/indexed_iterator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDEXED_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR
+# include <stlsoft/iterators/index_iterator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

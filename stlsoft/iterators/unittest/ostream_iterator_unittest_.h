@@ -1,5 +1,5 @@
 
-// Updated: 19th December 2005
+// Updated: 14th January 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR)
 # error This file cannot be directly included, and should only be included within stlsoft/iterators/ostream_iterator.hpp
@@ -19,7 +19,58 @@ namespace unittest
 
             unittest_initialiser    init(r, "STLSoft", "ostream_iterator", __FILE__);
 
-			STLSOFT_SUPPRESS_UNUSED(bSuccess);
+            char const              *strings[] = 
+            {
+                    "abc"
+                ,   "de"
+                ,   "fgh"
+                ,   ""
+                ,   "i"
+                ,   "jkl"
+            };
+
+#if !defined(STLSOFT_COMPILER_IS_DMC)
+            {
+                std::stringstream       ss;
+
+                stlsoft_ns_qual_std(copy)(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
+                                        ,   stlsoft_ns_qual(ostream_iterator)<char const*>(ss));
+
+                if(ss.str() != "abcdefghijkl")
+                {
+                    r->report("stream concatenation failed: incorrect contents", __LINE__);
+                    bSuccess = false;
+                }
+            }
+
+            {
+                std::stringstream       ss;
+
+                stlsoft_ns_qual_std(copy)(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
+                                        ,   stlsoft_ns_qual(ostream_iterator)<char const*>(ss, ","));
+
+                if(ss.str() != "abc,de,fgh,,i,jkl,")
+                {
+                    r->report("stream concatenation failed: incorrect contents", __LINE__);
+                    bSuccess = false;
+                }
+            }
+
+            {
+                std::stringstream       ss;
+
+                stlsoft_ns_qual_std(copy)(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
+                                        ,   stlsoft_ns_qual(ostream_iterator)<char const*>(ss, "<<", "]]"));
+
+                if(ss.str() != "<<abc]]<<de]]<<fgh]]<<]]<<i]]<<jkl]]")
+                {
+                    r->report("stream concatenation failed: incorrect contents", __LINE__);
+                    bSuccess = false;
+                }
+            }
+#endif /* compiler */
+
+            STLSOFT_SUPPRESS_UNUSED(bSuccess);
 
             return bSuccess;
         }

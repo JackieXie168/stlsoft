@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MAJOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MINOR      6
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_REVISION   3
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       24
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MINOR      7
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -98,6 +98,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <map>
 #include <utility>
 
@@ -125,6 +128,7 @@ namespace platformstl_project
  */
 
 class environment_map
+    : public stl_collection_tag
 {
 /// \name Member Types
 /// @{
@@ -145,7 +149,7 @@ public:
     typedef const_reverse_bidirectional_iterator_base<  const_iterator
                                                     ,   value_type
                                                     ,   const_reference
-                                                    ,   void
+                                                    ,   void            // By-Value Temporary reference category
                                                     ,   difference_type
                                                     >       const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
@@ -288,8 +292,8 @@ public:
         : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(bidirectional_iterator_tag)
                                             ,   value_type
                                             ,   ss_ptrdiff_t
-                                            ,   void
-                                            ,   const value_type
+                                            ,   void                // By-Value Temporary reference
+                                            ,   const value_type    // By-Value Temporary reference
                                             >
     {
     /// \name Member Types

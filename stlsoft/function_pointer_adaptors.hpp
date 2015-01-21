@@ -4,11 +4,11 @@
  * Purpose:     Contains the stlsoft::ptr_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     18th December 2005
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_POINTER_ADAPTORS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_POINTER_ADAPTORS_MINOR    1
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_POINTER_ADAPTORS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_FUNCTION_POINTER_ADAPTORS_EDIT     53
+# define STLSOFT_VER_STLSOFT_HPP_FUNCTION_POINTER_ADAPTORS_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

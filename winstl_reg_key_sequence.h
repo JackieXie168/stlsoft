@@ -10,11 +10,11 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_MAJOR     2
-# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_MINOR     2
-# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_REVISION  2
-# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_EDIT      80
+# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_MINOR     4
+# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_REVISION  1
+# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -80,9 +80,18 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_HPP_EVENT
+# include <winstl/event.hpp>
+#endif /* !WINSTL_INCL_WINSTL_HPP_EVENT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>                // for stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION
+# include <stlsoft/exceptions/external_iterator_invalidation.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -144,6 +153,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_reg_key_sequence
+    : public stl_collection_tag
 {
 public:
     /// The character type
@@ -176,14 +186,15 @@ public:
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)< const_iterator,
                                                                         value_type,
-                                                                        value_type, // Return by value!
-                                                                        void*,
+                                                                        value_type, // By-Value Temporary reference category
+                                                                        void,       // By-Value Temporary reference category
                                                                         difference_type>    const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   allocator_type
-                                        ,   CCH_REG_API_AUTO_BUFFER>                buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   allocator_type
+                                            ,   CCH_REG_API_AUTO_BUFFER
+                                            >                           buffer_type_;
 
 // Construction
 public:
@@ -248,6 +259,8 @@ private:
 typedef basic_reg_key_sequence<ws_char_a_t, reg_traits<ws_char_a_t>, processheap_allocator<ws_char_a_t> > reg_key_sequence_a;
 /// Instantiation of the basic_reg_key_sequence template for the Unicode character type \c wchar_t
 typedef basic_reg_key_sequence<ws_char_w_t, reg_traits<ws_char_w_t>, processheap_allocator<ws_char_w_t> > reg_key_sequence_w;
+/// Instantiation of the basic_reg_key_sequence template for the Win32 character type \c TCHAR
+typedef basic_reg_key_sequence<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >                   reg_key_sequence;
 
 // class basic_reg_key_sequence_const_iterator
 /// Iterator for the basic_reg_key_sequence class
@@ -262,7 +275,12 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 class basic_reg_key_sequence_const_iterator
-    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(bidirectional_iterator_tag), V, ws_ptrdiff_t, void *, V>
+    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(bidirectional_iterator_tag)
+                                        ,   V
+                                        ,   ws_ptrdiff_t
+                                        ,   void    // By-Value Temporary reference
+                                        ,   V       // By-Value Temporary reference
+                                        >
 {
 public:
     /// The character type
@@ -286,9 +304,10 @@ public:
     /// The hkey type
     typedef ss_typename_type_k traits_type::hkey_type                   hkey_type;
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   allocator_type
-                                        ,   CCH_REG_API_AUTO_BUFFER>    buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   allocator_type
+                                            ,   CCH_REG_API_AUTO_BUFFER
+                                            >                           buffer_type_;
 
 // Construction
 private:

@@ -4,7 +4,7 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     22nd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_MINOR       1
+# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_EDIT        30
+# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -156,7 +156,7 @@ public:
 };
 
 
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template<literal_cast_int_t V>
 class literal_cast<invalid_int_t, V>
 {
@@ -184,7 +184,7 @@ private:
 public: static void f() {}
 #endif /* !STLSOFT_COMPILER_IS_GCC */
 };
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 #endif /* 0 */
 

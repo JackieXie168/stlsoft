@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MINOR       2
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MINOR       3
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        45
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -79,6 +79,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #  include <stlsoft/iterator.hpp>           // for reverse_iterator_base
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                       // for std::out_of_range
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -100,6 +103,7 @@ namespace stlsoft
 /// have safe access to both array pointer and length
 template <ss_typename_param_k T>
 class array_view
+    : public stl_collection_tag
 {
 /// \name Types
 ///  @{

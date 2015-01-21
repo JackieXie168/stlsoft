@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_MAJOR       2
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_MINOR       2
-# define WINSTL_VER_H_WINSTL_REG_TRAITS_REVISION    1
-# define WINSTL_VER_H_WINSTL_REG_TRAITS_EDIT        45
+# define WINSTL_VER_H_WINSTL_REG_TRAITS_REVISION    2
+# define WINSTL_VER_H_WINSTL_REG_TRAITS_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -124,6 +124,7 @@ public:
 public:
     // General string handling
 
+#if 0
     /// Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const *src);
     /// Appends the contents of \c src to \c dest
@@ -132,11 +133,14 @@ public:
     static ws_int_t     str_compare(char_type *dest, char_type const *src);
     /// Evaluates the length of \c src
     static size_type    str_len(char_type const *src);
+#endif /* 0 */
 
     // Registry names
 
+#if 0
     /// Appends a registry path separator to \c path if one does not exist
     static char_type    *ensure_subkey_end(char_type *path);
+#endif /* 0 */
 
     /// Expands environment strings in \c src into \c dest, up to a maximum \c cchDest characters
     static size_type    expand_env_strings(char_type const *src, char_type *dest, size_type cch_dest);
@@ -212,6 +216,7 @@ public:
     typedef FILETIME            time_type;
 
 public:
+#if 0
     static char_type *str_copy(char_type *dest, char_type const *src)
     {
         return lstrcpyA(dest, src);
@@ -231,7 +236,9 @@ public:
     {
         return static_cast<size_type>(lstrlenA(src));
     }
+#endif /* 0 */
 
+#if 0
     static char_type *ensure_subkey_end(char_type *path)
     {
         char_type   *end;
@@ -248,6 +255,7 @@ public:
 
         return path;
     }
+#endif /* 0 */
 
     static size_type expand_env_strings(char_type const *src, char_type *dest, size_type cch_dest)
     {
@@ -342,6 +350,7 @@ public:
     typedef FILETIME            time_type;
 
 public:
+#if 0
     static char_type *str_copy(char_type *dest, char_type const *src)
     {
         return lstrcpyW(dest, src);
@@ -361,7 +370,9 @@ public:
     {
         return static_cast<size_type>(lstrlenW(src));
     }
+#endif /* 0 */
 
+#if 0
     static char_type *ensure_subkey_end(char_type *path)
     {
         char_type   *end;
@@ -378,6 +389,7 @@ public:
 
         return path;
     }
+#endif /* 0 */
 
     static size_type expand_env_strings(char_type const *src, char_type *dest, size_type cch_dest)
     {
