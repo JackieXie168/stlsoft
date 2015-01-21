@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     11th May 2008
+ * Updated:     17th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  9
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      64
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  10
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,9 +95,33 @@ namespace winstl_project
 
 #ifndef NOWINOFFSETS
 
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+STLSOFT_INLINE ws_sptrint_t winstl__get_window_sptrint_(HWND h, int index)
+{
+#if defined(WINSTL_OS_IS_WIN64) || \
+    defined(_Wp64)
+    return STLSOFT_NS_GLOBAL(GetWindowLongPtr)(h, index);
+#else /* ? width */
+    return STLSOFT_NS_GLOBAL(GetWindowLong)(h, index);
+#endif /* width */
+}
+STLSOFT_INLINE ws_sptrint_t winstl__set_window_sptrint_(HWND h, int index, ws_sptrint_t newData)
+{
+#if defined(WINSTL_OS_IS_WIN64) || \
+    defined(_Wp64)
+    return STLSOFT_NS_GLOBAL(SetWindowLongPtr)(h, index, newData);
+#else /* ? width */
+    return STLSOFT_NS_GLOBAL(SetWindowLong)(h, index, newData);
+#endif /* width */
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
 STLSOFT_INLINE ws_sptrint_t winstl__GetStyle(HWND h)
 {
-    return STLSOFT_NS_GLOBAL(GetWindowLong)(h, GWL_STYLE);
+    return winstl__get_window_sptrint_(h, GWL_STYLE);
 }
 
 /** Gets the extended style of the window
@@ -106,7 +130,7 @@ STLSOFT_INLINE ws_sptrint_t winstl__GetStyle(HWND h)
  */
 STLSOFT_INLINE ws_sptrint_t winstl__GetExStyle(HWND h)
 {
-    return STLSOFT_NS_GLOBAL(GetWindowLong)(h, GWL_EXSTYLE);
+    return winstl__get_window_sptrint_(h, GWL_EXSTYLE);
 }
 
 /** Sets the style of the window
@@ -115,7 +139,7 @@ STLSOFT_INLINE ws_sptrint_t winstl__GetExStyle(HWND h)
  */
 STLSOFT_INLINE ws_sptrint_t winstl__SetStyle(HWND h, ws_sptrint_t s)
 {
-    return STLSOFT_NS_GLOBAL(SetWindowLong)(h, GWL_STYLE, stlsoft_static_cast(ws_sptrint_t, s));
+    return winstl__set_window_sptrint_(h, GWL_STYLE, s);
 }
 
 /** Sets the extended style of the window
@@ -124,7 +148,7 @@ STLSOFT_INLINE ws_sptrint_t winstl__SetStyle(HWND h, ws_sptrint_t s)
  */
 STLSOFT_INLINE ws_sptrint_t winstl__SetExStyle(HWND h, ws_sptrint_t x)
 {
-    return STLSOFT_NS_GLOBAL(SetWindowLong)(h, GWL_EXSTYLE, stlsoft_static_cast(ws_sptrint_t, x));
+    return winstl__set_window_sptrint_(h, GWL_EXSTYLE, x);
 }
 
 /** Modifies the style of the window
@@ -221,12 +245,12 @@ STLSOFT_INLINE HINSTANCE winstl__GetWindowInstance(HWND hwnd)
 {
 #if defined(WINSTL_OS_IS_WIN64) || \
     defined(_Wp64)
-    LONG_PTR    l = STLSOFT_NS_GLOBAL(GetWindowLongPtr)(hwnd, GWLP_HINSTANCE);
+    const int index = GWLP_HINSTANCE;
 #else /* ? width */
-    LONG        l = STLSOFT_NS_GLOBAL(GetWindowLong)(hwnd, GWL_HINSTANCE);
+    const int index = GWL_HINSTANCE;
 #endif /* width */
 
-    return stlsoft_reinterpret_cast(HINSTANCE, l);
+    return stlsoft_reinterpret_cast(HINSTANCE, winstl__get_window_sptrint_(hwnd, index));
 }
 
 #endif /* !NOWINOFFSETS */
