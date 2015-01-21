@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     9th March 2008
+ * Updated:     15th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    0
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 3
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     111
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 4
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,8 +99,6 @@ namespace comstl_project
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
-
-/* VARIANT */
 
 /** \brief This class provides an intermediary object that may be returned by the
  * c_str_ptr_null() function, such that the text of a given variant
@@ -333,7 +331,7 @@ public:
             }
             else
             {
-                cs_size_t   cch =   ::SysStringLen((BSTR)w_value);
+                cs_size_t cch = ::SysStringLen((BSTR)w_value);
 
                 buffer_ = static_cast<cs_char_a_t *>(::CoTaskMemAlloc((1 + cch) * sizeof(cs_char_a_t)));
 
@@ -344,10 +342,13 @@ public:
                 else
                 {
 #ifdef WIN32
-                    ::WideCharToMultiByte(0, 0, w_value, -1, buffer_, static_cast<int>(cch + 1), NULL, NULL);
+                    if(0 == ::WideCharToMultiByte(0, 0, w_value, -1, buffer_, static_cast<int>(cch + 1), NULL, NULL))
 #else /* ? WIN32 */
 # error Not currently implemented for operating systems other than Win32
 #endif /* WIN32 */
+                    {
+                        // TODO: report failure to convert via exception
+                    }
                 }
             }
         }
@@ -490,7 +491,7 @@ inline c_str_VARIANT_proxy_a c_str_data_a(VARIANT const& v)
 
     ::VariantInit(&vs);
 
-    hr  =   ::VariantChangeTypeEx(&vs, const_cast<VARIANT *>(&v), LOCALE_USER_DEFAULT, 0, VT_BSTR);
+    hr  =   ::VariantChangeTypeEx(&vs, const_cast<VARIANT *>(&v), LOCALE_USER_DEFAULT, VARIANT_ALPHABOOL, VT_BSTR);
 
     if(FAILED(hr))
     {
@@ -545,49 +546,6 @@ inline c_str_VARIANT_proxy_a c_str_data(VARIANT const& v)
  * characters in the character string in the expression.
  */
 
-/* VARIANT */
-/** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
- *
- * \ingroup group__concept__shim__string_access
- *
- */
-inline cs_size_t c_str_len(VARIANT const& v)
-{
-    cs_size_t   len;
-
-    if(v.vt == VT_BSTR)
-    {
-        len = v.bstrVal != NULL ? ::SysStringLen(v.bstrVal) : 0;
-    }
-    else if(v.vt == VT_NULL ||
-            v.vt == VT_EMPTY)
-    {
-        len = 0;
-    }
-    else
-    {
-        VARIANT     vs;
-        HRESULT     hr;
-
-        ::VariantInit(&vs);
-
-        hr  =   ::VariantChangeTypeEx(&vs, const_cast<VARIANT *>(&v), LOCALE_USER_DEFAULT, 0, VT_BSTR);
-
-        if(FAILED(hr))
-        {
-            len = 0;
-        }
-        else
-        {
-            len = vs.bstrVal ? ::SysStringLen(vs.bstrVal) : 0;
-
-            ::VariantClear(&vs);
-        }
-    }
-
-    return len;
-}
-
 /** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
  *
  * \ingroup group__concept__shim__string_access
@@ -595,7 +553,15 @@ inline cs_size_t c_str_len(VARIANT const& v)
  */
 inline cs_size_t c_str_len_a(VARIANT const& v)
 {
-    return c_str_len(v);
+    if( v.vt == VT_NULL ||
+        v.vt == VT_EMPTY)
+    {
+        return 0;
+    }
+    else
+    {
+        return stlsoft_ns_qual(c_str_len_a)(c_str_data_a(v));
+    }
 }
 
 /** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
@@ -605,7 +571,33 @@ inline cs_size_t c_str_len_a(VARIANT const& v)
  */
 inline cs_size_t c_str_len_w(VARIANT const& v)
 {
-    return c_str_len(v);
+    if(v.vt == VT_BSTR)
+    {
+        return v.bstrVal != NULL ? ::SysStringLen(v.bstrVal) : 0;
+    }
+    else if(v.vt == VT_NULL ||
+            v.vt == VT_EMPTY)
+    {
+        return 0;
+    }
+    else
+    {
+        return stlsoft_ns_qual(c_str_len_w)(c_str_data_w(v));
+    }
+}
+
+/** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__concept__shim__string_access
+ *
+ */
+inline cs_size_t c_str_len(VARIANT const& v)
+{
+#ifdef UNICODE
+    return c_str_len_w(v);
+#else /* ? UNICODE */
+    return c_str_len_a(v);
+#endif /* UNICODE */
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -614,8 +606,6 @@ inline cs_size_t c_str_len_w(VARIANT const& v)
  * This can be applied to an expression, and the return value is either a
  * pointer to the character string or to an empty string.
  */
-
-/* VARIANT */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -656,7 +646,6 @@ inline c_str_VARIANT_proxy_a c_str_ptr(VARIANT const& v)
  * pointer to the character string or NULL.
  */
 
-/* VARIANT */
 /** \brief Returns the corresponding ANSI C-string pointer of the VARIANT \c v, or a null pointer
  *
  * \ingroup group__concept__shim__string_access
@@ -684,7 +673,7 @@ inline c_str_null_VARIANT_proxy c_str_ptr_null_w(VARIANT const& v)
 
         ::VariantInit(&vs);
 
-        hr  =   ::VariantChangeTypeEx(&vs, const_cast<VARIANT *>(&v), LOCALE_USER_DEFAULT, 0, VT_BSTR);
+        hr  =   ::VariantChangeTypeEx(&vs, const_cast<VARIANT *>(&v), LOCALE_USER_DEFAULT, VARIANT_ALPHABOOL, VT_BSTR);
 
         if(FAILED(hr))
         {

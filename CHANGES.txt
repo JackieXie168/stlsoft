@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  10th October 2008
+; Updated:  16th October 2008
 
 ============================================================================
 
@@ -16,6 +16,49 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.58 (16th October 2008)
+
+Summary:
+========
+
+ * fixed major defect introduced in 1.9.52 to WinSTL's time string access
+   shims
+ * fixed minor defects in COMSTL's VARIANT string access shims
+ * fixed defect in documentation generation whereby examples were omitted
+ * reduced compilation dependencies in STLSoft's time string access shims
+
+Changes:
+========
+
+ Documentation:
+ --------------
+
+  ~ fixed defect in documentation generation whereby examples were omitted
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/shims/access/string/time.hpp:
+     ~ reduced include dependencies
+
+ COMSTL:
+ -------
+
+  ~ comstl/shims/access/string/variant.hpp:
+     ~ passed VARIANT_ALPHABOOL to all variant conversion routines
+     ~ fixed defect whereby widestring and multibyte string lengths were
+	   assumed to be equal (by c_str_len_w() and c_str_len_a() being
+	   implemented in terms of c_str_len())
+
+ WinSTL:
+ -------
+
+  ~ winstl/shims/access/string/time.hpp:
+     ~ fixed defect whereby last character of converted date is truncated
+     ~ reduced include dependencies
 
 ============================================================================
 
