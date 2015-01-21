@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        comstl/comstl.h (formerly comstl.h)
  *
  * Purpose:     Root header for the COMSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
@@ -48,12 +48,12 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        85
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h \brief [C, C++] The root header for the \ref group__project__comstl "COMSTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * COMSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -125,7 +125,7 @@
 
 #define _COMSTL_VER             _COMSTL_VER_1_6_1
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -134,7 +134,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #include <objbase.h>    // COM types
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -143,7 +143,7 @@
 # error This version of the COMSTL libraries requires STLSoft version 1.5.1 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_5_1 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the COMSTL libraries are
@@ -212,7 +212,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler tag */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro comstl_assert provides standard debug-mode assert functionality.
@@ -242,7 +242,7 @@
 # define comstl_static_assert(expr)         COMSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler language feature support
  */
 
@@ -270,7 +270,7 @@
 # define __COMSTL_CF_DCOM_SUPPORT
 #endif /* _WIN32_WINNT >= 0x0400 || _WIN32_DCOM */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The COMSTL components are contained within the comstl namespace. This is
@@ -452,7 +452,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define COMSTL_REF_2_PTR(iid)        (iid)
 #endif /* __cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The COMSTL uses a number of typedefs to aid in compiler-independence in the
@@ -525,7 +525,7 @@ typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -539,7 +539,7 @@ typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  
 #define cs_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -576,7 +576,7 @@ typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  
  */
 #define comstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -589,7 +589,7 @@ namespace comstl = ::stlsoft::comstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -597,8 +597,8 @@ namespace comstl = ::stlsoft::comstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* COMSTL_INCL_COMSTL_H_COMSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

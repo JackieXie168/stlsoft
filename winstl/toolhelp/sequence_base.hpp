@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/toolhelp/sequence_base.hpp
  *
  * Purpose:     TOOLHELP sequence_base class template.
  *
  * Created:     21st May 2005
- * Updated:     23rd May 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -39,11 +39,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/toolhelp/sequence_base.hpp
-/// \brief [C++ only] Definition of the \link winstl::th_sequence_base th_sequence_base\endlink class. (\ref group__library__toolhelp "ToolHelp" Library.)
+/** \file winstl/toolhelp/sequence_base.hpp
+ *
+ * \brief [C++ only] Definition of the
+ *  \link winstl::th_sequence_base th_sequence_base\endlink class.
+ *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE
 #define WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE
@@ -52,10 +56,10 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  2
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      3
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +75,7 @@
 
 #include <tlhelp32.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -93,7 +97,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -118,7 +122,7 @@ struct th_sequence_value_traits;
 
 /// \brief Iterator class for the th_sequence_base class template and its specialisations.
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 template<ss_typename_param_k V>
 class th_sequence_const_iterator
     : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(input_iterator_tag)
@@ -227,7 +231,7 @@ private:
 /** \brief [IMPLEMENTATION] A utility class template that is used to
  *   to block the non-default constructor for specialisations of
  *   th_sequence_base that do not require the process Id.
- * \ingroup group__library__toolhelp
+ * \ingroup group__library__windows_toolhelp
  */
 template<typename V>
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -238,7 +242,7 @@ struct sequence_doesnt_use_pid {};
 
 /// \brief Class template for TOOLHELP STL collections.
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 template<   ss_typename_param_k V
         ,   ss_typename_param_k E = throw_exception_policy<toolhelp_exception>
         >
@@ -362,7 +366,7 @@ private:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -374,8 +378,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

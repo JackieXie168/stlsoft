@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        mfcstl/mfcstl.hpp (formerly mfcstl.h)
  *
  * Purpose:     Root header for the MFCSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
@@ -48,12 +48,12 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  1
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      78
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp \brief [C++ only; requires MFC library] The root header for the \ref group__project__mfcstl "MFCSTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * MFCSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -125,7 +125,7 @@
 
 #define _MFCSTL_VER             _MFCSTL_VER_1_5_1
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -145,7 +145,7 @@
 # pragma warn .8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -154,7 +154,7 @@
 # error This version of the MFCSTL libraries requires STLSoft version 1.9.1 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the MFCSTL libraries are
@@ -208,7 +208,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro mfcstl_assert provides standard debug-mode assert functionality.
@@ -238,7 +238,7 @@
 # define mfcstl_static_assert(expr)         MFCSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The MFCSTL components are contained within the mfcstl namespace. This is
@@ -376,7 +376,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define mfcstl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The MFCSTL uses a number of typedefs to aid in compiler-independence in the
@@ -413,7 +413,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -427,7 +427,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
 #define ms_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -464,7 +464,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
  */
 #define mfcstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -477,7 +477,7 @@ namespace mfcstl = ::stlsoft::mfcstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -485,8 +485,8 @@ namespace mfcstl = ::stlsoft::mfcstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

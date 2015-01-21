@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        unixstl/filesystem/current_directory.hpp (formerly unixstl/current_directory.hpp; originally unixstl_current_directory.h)
  *
  * Purpose:     Definition of the current_directory class.
  *
  * Created:     1st November 2003
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file unixstl/filesystem/current_directory.hpp
@@ -52,10 +52,10 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      42
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -69,7 +69,7 @@
 # include <unixstl/filesystem/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -91,7 +91,7 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * basic_current_directory
  *
  * This class wraps the GetCurrentDirectory() API function, and effectively acts
@@ -162,7 +162,7 @@ private:
     class_type &operator =(class_type const &);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
@@ -173,7 +173,7 @@ typedef basic_current_directory<us_char_w_t, filesystem_traits<us_char_w_t> >   
 /// Instantiation of the basic_current_directory template for the ANSI character type \c char
 typedef basic_current_directory<char, filesystem_traits<char> >                 current_directory;
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Support for PlatformSTL redefinition by inheritance+namespace, for confused
  * compilers (e.g. VC++ 6)
  */
@@ -201,7 +201,7 @@ typedef basic_current_directory<char, filesystem_traits<char> >                 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -258,7 +258,7 @@ inline S &operator <<(S & s, basic_current_directory<C, T> const &b)
     return s;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -266,7 +266,7 @@ inline S &operator <<(S & s, basic_current_directory<C, T> const &b)
 # include "./unittest/current_directory_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -318,7 +318,7 @@ inline ss_typename_type_k basic_current_directory<C, T>::size_type basic_current
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -330,8 +330,8 @@ inline ss_typename_type_k basic_current_directory<C, T>::size_type basic_current
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

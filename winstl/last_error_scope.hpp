@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/last_error_scope.hpp (formerly winstl_last_error_scope.h; originally MWTErrScp.h, ::SynesisWin)
  *
  * Purpose:     Win32 last error scoping class.
  *
  * Created:     27th November 1998
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/last_error_scope.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_HPP_LAST_ERROR_SCOPE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_LAST_ERROR_SCOPE_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_LAST_ERROR_SCOPE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_LAST_ERROR_SCOPE_EDIT        33
+# define WINSTL_VER_WINSTL_HPP_LAST_ERROR_SCOPE_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -82,21 +82,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_system System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for accessing system attributes
-
-/// \defgroup winstl_system_library System Library (WinSTL)
-/// \ingroup WinSTL libraries_system
-/// \brief This library provides facilities for accessing Win32 system attributes
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -158,11 +144,7 @@ private:
     last_error_scope &operator =(last_error_scope const &);
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_system_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -174,8 +156,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_HPP_LAST_ERROR_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

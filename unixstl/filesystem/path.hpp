@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        unixstl/filesystem/path.hpp (formerly unixstl_path.h; originally MLPath.h, ::SynesisStd)
  *
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file unixstl/filesystem/path.hpp
@@ -51,10 +51,10 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       202
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       204
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -87,7 +87,7 @@
 # include <ctype.h>
 #endif /* WIN32 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -109,7 +109,7 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * basic_path
  *
  * This class represents a path, and effectively acts as a C-string of its value.
@@ -340,18 +340,18 @@ private:
     size_type   m_len;
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_path template for the ANSI character type \c char
+/// \brief Instantiation of the basic_path template for the ANSI character type \c char
 typedef basic_path<us_char_a_t, filesystem_traits<us_char_a_t> >       path_a;
-/// Instantiation of the basic_path template for the Unicode character type \c wchar_t
+/// \brief Instantiation of the basic_path template for the Unicode character type \c wchar_t
 typedef basic_path<us_char_w_t, filesystem_traits<us_char_w_t> >       path_w;
-/// Instantiation of the basic_path template for the ANSI character type \c char
+/// \brief Instantiation of the basic_path template for the ANSI character type \c char
 typedef basic_path<us_char_a_t, filesystem_traits<us_char_a_t> >       path;
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Operators
  */
 
@@ -441,7 +441,7 @@ inline basic_path<C, T, A> operator /(basic_path<C, T, A> const &lhs, basic_path
     return basic_path<C, T, A>(lhs) /= rhs;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Helper functions
  */
 
@@ -458,7 +458,7 @@ inline basic_path<C> make_path(C const *path)
 
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
 
@@ -471,7 +471,7 @@ inline void swap(basic_path<C, T, A> &lhs, basic_path<C, T, A> &rhs)
     lhs.swap(rhs);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -588,14 +588,14 @@ inline S &operator <<(S & s, basic_path<C, T, A> const &b)
     return s;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/path_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Implementation
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -1351,7 +1351,7 @@ inline us_bool_t basic_path<C, T, A>::equal(ss_typename_type_k basic_path<C, T, 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -1384,7 +1384,7 @@ namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The string access shims exist either in the stlsoft namespace, or in the
@@ -1427,8 +1427,8 @@ using ::unixstl::c_str_size;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_PATH */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

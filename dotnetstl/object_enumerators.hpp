@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        dotnetstl/object_enumerators.hpp (formerly dotnetstl_object_enumerators.h)
  *
  * Purpose:     A simple object enumerator, based on ArrayList.
  *
  * Created:     24th June 2003
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file dotnetstl/object_enumerators.hpp
@@ -49,10 +49,10 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_OBJECT_ENUMERATORS_MAJOR       3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_OBJECT_ENUMERATORS_MINOR       1
 # define DOTNETSTL_VER_DOTNETSTL_HPP_OBJECT_ENUMERATORS_REVISION    1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_OBJECT_ENUMERATORS_EDIT        17
+# define DOTNETSTL_VER_DOTNETSTL_HPP_OBJECT_ENUMERATORS_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -60,7 +60,7 @@
 # include <dotnetstl/dotnetstl.hpp>
 #endif /* !DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef _STLSOFT_NO_NAMESPACE
 /* There is no stlsoft namespace, so must define ::dotnetstl */
@@ -77,21 +77,7 @@ namespace dotnetstl_project
 
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_container Container Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulation containers
-
-/// \defgroup dotnetstl_container_library Container Library (.netSTL)
-/// \ingroup dotnetSTL libraries_container
-/// \brief This library provides facilities for defining and manipulation containers in .NET
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -157,18 +143,14 @@ private:
 //  ArrayListEnumerator &operator =(ArrayListEnumerator const &);
 };
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/object_enumerators_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group dotnetstl_container_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef _STLSOFT_NO_NAMESPACE
 } // namespace dotnetstl
@@ -177,8 +159,8 @@ private:
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* DOTNETSTL_INCL_DOTNETSTL_HPP_OBJECT_ENUMERATORS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

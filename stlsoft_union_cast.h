@@ -1,14 +1,5 @@
-#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
-# include <stlsoft/stlsoft.h>
-#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/union_cast.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
-# include <stlsoft/union_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
+#error The union_cast component has changed with version 1.9. The union_cast class template has been renamed union_caster, and the creator function make_union_cast() has been renamed union_cast(). This change is NOT backwards compatible.
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

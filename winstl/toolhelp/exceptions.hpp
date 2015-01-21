@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/toolhelp/exceptions.hpp
  *
  * Purpose:     Exception classes for TOOLHELP components.
  *
  * Created:     21st May 2005
- * Updated:     22nd May 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -39,11 +39,14 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/toolhelp/exceptions.hpp
-/// \brief [C++ only] Exception classes for the \ref group__library__toolhelp "ToolHelp" Library.
+/** \file winstl/toolhelp/exceptions.hpp
+ *
+ * \brief [C++ only] Exception classes for the
+ *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION
 #define WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION
@@ -52,10 +55,10 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MAJOR    1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MINOR    1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_REVISION 1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     3
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +74,7 @@
 
 #include <tlhelp32.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -93,13 +96,13 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// \brief Root exception thrown by the \ref group__library__toolhelp "ToolHelp" Library.
+/// \brief Root exception thrown by the \ref group__library__windows_toolhelp "ToolHelp" Library.
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 struct toolhelp_exception
     : public windows_exception
 {
@@ -130,7 +133,7 @@ public:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -142,8 +145,8 @@ public:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif // WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

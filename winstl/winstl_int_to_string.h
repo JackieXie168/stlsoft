@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl_int_to_string.h
  *
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     6th June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl_int_to_string.h
@@ -49,10 +49,10 @@
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MAJOR    1
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MINOR    5
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_REVISION 2
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     26
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,11 +71,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE
 # include <stlsoft/synch/lock_scope.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+# include <stlsoft/conversion/sap_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -97,21 +97,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_conversion Conversion Library
-/// \ingroup libraries
-/// \brief This library provides conversion facilities
-
-/// \weakgroup winstl_libraries_conversion Conversion Library (WinSTL)
-/// \ingroup WinSTL libraries_performance
-/// \brief This library provides conversion facilities for the Win32 API
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Pre-processor options
  */
 
@@ -125,7 +111,7 @@ namespace winstl_project
 # endif /* dll */
 #endif /* _WINSTL_INT_TO_STRING_USE_DECLSPECTHREAD_FOR_EXES */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -433,11 +419,7 @@ inline C const *int_to_string(ws_uint64_t const &value)
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_libraries_conversion
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -449,8 +431,8 @@ inline C const *int_to_string(ws_uint64_t const &value)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_H_WINSTL_INT_TO_STRING */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

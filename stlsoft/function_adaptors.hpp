@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/function_adaptors.hpp (formerly comstl_functionals.h; originally ::SynesisStd)
  *
  * Purpose:     Contains the stlsoft::mem_fun and stlsoft::ptr_fun calling
  *              convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file stlsoft/function_adaptors.hpp
@@ -50,10 +50,10 @@
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_EDIT     54
+# define STLSOFT_VER_STLSOFT_HPP_FUNCTION_ADAPTORS_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,8 +71,8 @@
 # include <stlsoft/procedure_adaptors.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_PROCEDURE_ADAPTORS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_FUNCTION_ADAPTORS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

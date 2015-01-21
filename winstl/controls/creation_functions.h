@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/controls/creation_functions.h (formerly winstl/control_creation_functions.h, winstl_functions.h; formerly MWBase.h, ::SynesisWin)
  *
  * Purpose:     Control creation functions.
  *
  * Created:     7th May 2000
- * Updated:     30th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,12 +35,13 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/controls/creation_functions.h
  *
  * \brief [C, C++] Control creation functions.
+ *  (\ref group__library__windows_controls "Windows Controls" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_H_CREATION_FUNCTIONS
@@ -50,10 +51,10 @@
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        10
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -69,7 +70,7 @@
 # include <winstl/window_creation_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINDOW_CREATION_FUNCTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -91,7 +92,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -325,7 +326,7 @@ inline HWND CreateCheckbox(HWND hwndParent, S const &name, DWORD buttonStyle, RE
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -337,8 +338,8 @@ inline HWND CreateCheckbox(HWND hwndParent, S const &name, DWORD buttonStyle, RE
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_CONTROL_H_CREATION_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

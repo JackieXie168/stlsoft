@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/synch/atomic_functions.h
  *
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        13
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/atomic_functions.h
@@ -55,7 +55,7 @@
  *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -65,7 +65,7 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -85,7 +85,7 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -106,7 +106,7 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(__cplusplus)
     namespace implementation
@@ -265,7 +265,7 @@ namespace platformstl_project
 # endif /* global */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if !defined(__cplusplus)
  /* Nothing defined in C */
@@ -277,8 +277,8 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

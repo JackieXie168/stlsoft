@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/synch/process_mutex.hpp (formerly winstl/process_mutex.hpp; originally winstl_process_mutex.h)
  *
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     3rd June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/synch/process_mutex.hpp
@@ -50,11 +50,11 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     40
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -68,7 +68,7 @@
 # include <winstl/synch/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -90,7 +90,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -108,7 +108,7 @@ class process_mutex
 {
 public:
     typedef process_mutex   class_type;
-	typedef HANDLE			handle_type;
+    typedef HANDLE          handle_type;
 
 /// \name Construction
 /// @{
@@ -215,7 +215,7 @@ public:
             if(WAIT_OBJECT_0 != dwRes)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw synchronisation_exception("semaphore wait failed", ::GetLastError());
+                throw synchronisation_exception("mutex wait failed", ::GetLastError());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
@@ -246,7 +246,7 @@ public:
                 if(WAIT_OBJECT_0 != dwRes)
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    throw synchronisation_exception("semaphore wait failed", ::GetLastError());
+                    throw synchronisation_exception("mutex wait failed", ::GetLastError());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
 
@@ -266,7 +266,12 @@ public:
     {
         WINSTL_ASSERT(NULL != m_mx);
 
-        ::ReleaseMutex(m_mx);
+        if(!::ReleaseMutex(m_mx))
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw synchronisation_exception("mutex release failed", ::GetLastError());
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
     }
 /// @}
 
@@ -386,7 +391,7 @@ private:
     process_mutex &operator =(class_type const &rhs);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Control shims
  */
 
@@ -435,7 +440,7 @@ using ::stlsoft::unlock_instance;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * lock_traits (for the compilers that do not support Koenig Lookup)
  */
 
@@ -463,14 +468,14 @@ public:
     }
 };
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/process_mutex_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -482,8 +487,8 @@ public:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_PROCESS_MUTEX */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

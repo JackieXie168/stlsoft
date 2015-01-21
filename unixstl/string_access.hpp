@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        unixstl/string_access.hpp (formerly unixstl_string_access.h)
  *
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback from Mac
  *              builds
@@ -38,7 +38,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file unixstl/string_access.hpp
@@ -52,10 +52,10 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_EDIT     38
+# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -67,7 +67,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #include <dirent.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -89,23 +89,7 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-
-/// \defgroup unixstl_string_access_shims String Access Shims (UNIXSTL)
-/// \ingroup UNIXSTL concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary UNIX types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
@@ -134,7 +118,7 @@ inline us_char_a_t const *c_str_ptr_null_a(struct dirent const &d)
     return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
  *
  * This can be applied to an expression, and the return value is either a
@@ -163,7 +147,7 @@ inline us_char_a_t const *c_str_ptr_a(struct dirent const &d)
     return d.d_name;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
  * This can be applied to an expression, and the return value is either a
@@ -192,7 +176,7 @@ inline us_char_a_t const *c_str_data_a(struct dirent const &d)
     return d.d_name;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
  * This can be applied to an expression, and the return value is the number of
@@ -211,7 +195,7 @@ inline us_size_t c_str_len(struct dirent const &d)
     return stlsoft_ns_qual(c_str_len)(c_str_ptr(d));
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_size
  *
  * This can be applied to an expression, and the return value is the number of
@@ -235,18 +219,14 @@ inline us_size_t c_str_size(struct dirent const &d)
 }
 #endif /* 0 */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/string_access_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group unixstl_string_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -258,7 +238,7 @@ inline us_size_t c_str_size(struct dirent const &d)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The string access shims exist either in the stlsoft namespace, or in the
@@ -299,8 +279,8 @@ using ::unixstl::c_str_size;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        mfcstl/carray_adaptors.hpp (derived from mfcstl_array_adaptor.h)
  *
  * Purpose:     Contains the definition of the CArray_cadaptor and CArray_iadaptor
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file mfcstl/carray_adaptors.hpp
@@ -50,10 +50,10 @@
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MAJOR    3
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    8
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 1
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     62
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -63,7 +63,7 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -104,7 +104,7 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 # include <stlsoft/string/simple_string.hpp>
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -113,7 +113,7 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 # define MFCSTL_ARRAY_ADAPTORS_NO_TEMPLATE_RANGE_OPS
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -135,25 +135,7 @@ namespace mfcstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_container Container Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulation containers
-
-/// \weakgroup mfcstl_container_library Container Library (MFCSTL)
-/// \ingroup MFCSTL libraries_container
-/// \brief This library provides facilities for defining and manipulation containers for MFC types
-
-/// \defgroup mfcstl_container_library__carray_adaptors CArray Adaptors (MFCSTL)
-/// \brief Class templates for adapting MFC CArray family classes
-/// \ingroup mfcstl_container_library libraries__containers__adaptors
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -1425,7 +1407,7 @@ private:
 /// @}
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Comparison
  */
 
@@ -1489,18 +1471,14 @@ inline ms_bool_t operator !=(A const &lhs, CArray_adaptor_base<A, I, T> const &r
     return !rhs.equal(lhs);
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/carray_adaptors_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group mfcstl_container_library__carray_adaptors
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -1512,8 +1490,8 @@ inline ms_bool_t operator !=(A const &lhs, CArray_adaptor_base<A, I, T> const &r
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_CARRAY_ADAPTORS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        inetstl/filesystem_traits.hpp (formerly inetstl_filesystem_traits.h; originally MInetEnm.h)
  *
  * Purpose:     Contains the filesystem_traits template class, and ANSI and
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     5th February 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file inetstl/filesystem_traits.hpp
@@ -49,27 +49,27 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    3
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_REVISION 1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     52
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_REVISION 2
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
 #ifndef INETSTL_INCL_INETSTL_H_INETSTL
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ANY_CASTER
-# include <stlsoft/any_caster.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ANY_CASTER */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+# include <stlsoft/conversion/sap_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST
+# include <stlsoft/conversion/any_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST */
 #include <string.h>
 #include <wchar.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -91,21 +91,7 @@ namespace inetstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup inetstl_filesystem_library File-System Library (InetSTL)
-/// \ingroup InetSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the WinInet API
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -907,11 +893,7 @@ public:
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group inetstl_filesystem_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _INETSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -923,8 +905,8 @@ public:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/string_access.hpp (formerly winstl_string_access.h)
  *
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/string_access.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      3
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_REVISION   3
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       95
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -72,7 +72,7 @@
 # include <stlsoft/string/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,23 +94,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-
-/// \defgroup winstl_string_access_shims String Access Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary Win32 types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -241,7 +225,7 @@ inline ws_size_t GetWindowTextW__(HWND hwnd, ws_char_w_t *buffer, ws_size_t cchB
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -585,7 +569,7 @@ private:
 };
 #endif /* _NTSECAPI_ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * IOStream compatibility
  */
 
@@ -627,7 +611,7 @@ inline S &operator <<(S & s, c_str_ptr_null_LSA_UNICODE_STRING_proxy const &shim
 }
 #endif /* _NTSECAPI_ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
@@ -662,7 +646,7 @@ inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null(const LSA_UNICODE_
 }
 #endif /* _NTSECAPI_ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
  *
  * This can be applied to an expression, and the return value is either a
@@ -697,7 +681,7 @@ inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr(const LSA_UNICODE_STRING &s)
 }
 #endif /* _NTSECAPI_ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
  * This can be applied to an expression, and the return value is either a
@@ -731,7 +715,7 @@ inline LPCWSTR c_str_data(const LSA_UNICODE_STRING &s)
 }
 #endif /* _NTSECAPI_ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
  * This can be applied to an expression, and the return value is the number of
@@ -766,7 +750,7 @@ inline ws_size_t c_str_len(const LSA_UNICODE_STRING &s)
 }
 #endif /* _NTSECAPI_ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_size
  *
  * This can be applied to an expression, and the return value is the number of
@@ -810,18 +794,14 @@ inline ws_size_t c_str_size(const LSA_UNICODE_STRING &s)
 #endif /* 0 */
 #endif /* _NTSECAPI_ */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/string_access_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_string_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -833,7 +813,7 @@ inline ws_size_t c_str_size(const LSA_UNICODE_STRING &s)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The string access shims exist either in the stlsoft namespace, or in the
@@ -880,8 +860,8 @@ using ::winstl::c_str_size_w;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

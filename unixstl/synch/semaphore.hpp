@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        unixstl/synch/semaphore.hpp
  *
  * Purpose:     Semaphore class, based on POSIX semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     4th June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file unixstl/synch/semaphore.hpp
@@ -50,11 +50,11 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +71,7 @@
 #include <errno.h>
 #include <semaphore.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -93,7 +93,7 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -210,42 +210,11 @@ public:
         UNIXSTL_ASSERT(NULL != m_sem);
 
         if(::sem_post(m_sem) < 0)
-		{
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("semaphore release failed", errno);
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-		}
-    }
-    /// \brief Releases a number of aquired "locks" on the semaphore,
-    ///  increasing the semaphore's counter by the given value.
-    ///
-    /// \param numLocksToRelease The number by which to increment the
-    ///  semaphore's counter. If this is greater than the available
-    ///  value, the function fails. (It will throw an exception, if
-    ///  exception handling is enabled, or return -1 otherwise.)
-    ///
-    /// \return Returns the value of the semaphore's counter prior to the
-    ///  change effected by the call.
-    /// \retval -1 Indicates call failure (only if exception handling is not
-    ///  enabled).
-    us_long_t unlock(count_type numLocksToRelease)
-    {
-        UNIXSTL_ASSERT(NULL != m_sem);
-        UNIXSTL_ASSERT(numLocksToRelease > 0);
-        UNIXSTL_ASSERT(static_cast<LONG>(numLocksToRelease) > 0);
-
-        LONG    previousCount   =   0;
-
-        if(!::ReleaseSemaphore(m_sem, static_cast<LONG>(numLocksToRelease), &previousCount))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw synchronisation_exception("semaphore release failed", errno);
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            return -1;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
-
-        return static_cast<count_type>(previousCount);
     }
 /// @}
 
@@ -270,20 +239,20 @@ private:
     {
         UNIXSTL_ASSERT(initialCount <= maxCountValue);
 
-		handle_type sem;
+        handle_type sem;
 
-		if(::sem_init(internal, bInterProcessShared, initialCount) < 0)
-		{
+        if(::sem_init(internal, bInterProcessShared, initialCount) < 0)
+        {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw synchronisation_exception("Failed to create kernel semaphore object", errno);
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-			sem = NULL;
+            sem = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-		}
-		else
-		{
-			sem = internal;
-		}
+        }
+        else
+        {
+            sem = internal;
+        }
 
         return sem;
     }
@@ -300,7 +269,7 @@ private:
     semaphore &operator =(class_type const &rhs);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -361,7 +330,7 @@ using ::stlsoft::unlock_instance;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * lock_traits (for the compilers that do not support Koenig Lookup)
  */
 
@@ -389,14 +358,14 @@ public:
     }
 };
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/semaphore_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -408,8 +377,8 @@ public:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SEMAPHORE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

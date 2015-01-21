@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/window_functions.h (formerly winstl_window_functions.h; originally MWBase.h, ::SynesisWin)
  *
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/window_functions.h
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MINOR     3
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      45
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -65,7 +65,7 @@
 # endif /* !WINSTL_INCL_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS */
 #endif /* __cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -87,21 +87,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \defgroup winstl_window_library Window Library (WinSTL)
-/// \ingroup WinSTL libraries_window ccompilation functions
-/// \brief This library provides facilities for defining and manipulating Win32 GUI windows
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C functions
  */
 
@@ -194,7 +180,7 @@ STLSOFT_INLINE HINSTANCE winstl__GetWindowInstance(HWND hwnd)
     return stlsoft_reinterpret_cast(HINSTANCE, STLSOFT_NS_GLOBAL(GetWindowLong)(hwnd, GWL_HINSTANCE));
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -302,7 +288,7 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, int iconI
     return set_window_icon(hwnd, iconType, ::LoadIcon(hinst, MAKEINTRESOURCE(iconId)));
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1
@@ -461,11 +447,7 @@ inline HWND FindFirstChildById(HWND hwndParent, int id)
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_window_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -477,8 +459,8 @@ inline HWND FindFirstChildById(HWND hwndParent, int id)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

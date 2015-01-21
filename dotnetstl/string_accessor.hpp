@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        dotnetstl/string_accessors.hpp (formerly dotnetstl_string_accessor.h)
  *
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     21st March 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file dotnetstl/string_accessor.hpp
@@ -49,25 +49,25 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_MAJOR      3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_MINOR      2
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_REVISION   1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_EDIT       36
+# define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL
 # include <dotnetstl/dotnetstl.hpp>
 #endif /* !DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+# include <stlsoft/conversion/sap_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 #ifdef STLSOFT_UNITTEST
 # include <string.h>
 # include <wchar.h>
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef _STLSOFT_NO_NAMESPACE
 /* There is no stlsoft namespace, so must define ::dotnetstl */
@@ -84,21 +84,7 @@ namespace dotnetstl_project
 
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_string String Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating strings
-
-/// \defgroup dotnetstl_string_library String Library (.netSTL)
-/// \ingroup dotnetSTL libraries_string
-/// \brief This library provides facilities for defining and manipulating strings in .NET
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -170,7 +156,7 @@ private:
     c_string_accessor &operator =(class_type const &);
 };
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Implementation
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -189,18 +175,14 @@ inline c_string_accessor<ds_char_w_t>::pointer c_string_accessor<ds_char_w_t>::g
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/string_accessor_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group dotnetstl_string_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef _STLSOFT_NO_NAMESPACE
 } // namespace dotnetstl
@@ -209,8 +191,8 @@ inline c_string_accessor<ds_char_w_t>::pointer c_string_accessor<ds_char_w_t>::g
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* DOTNETSTL_INCL_DOTNETSTL_HPP_STRING_ACCESSOR */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

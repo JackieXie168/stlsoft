@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/static_string.hpp (originally MStkStr.h, ::SynesisDev)
  *
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/string/static_string.hpp
@@ -54,10 +54,10 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     171
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     173
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -69,7 +69,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -113,7 +113,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stdio.h>
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -122,16 +122,16 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // class static_string
 /** \brief Simple string class using fixed-size static-based storage
-///
-/// \param C The character type
-/// \param CCH The number of characters in the fixed-side buffer, not including the null-terminator
-/// \param T The traits type. On translators that support default template arguments this is defaulted to char_traits<C>
+ *
+ * \param C The character type
+ * \param CCH The number of characters in the fixed-side buffer, not including the null-terminator
+ * \param T The traits type. On translators that support default template arguments this is defaulted to char_traits<C>
  *
  * \ingroup group__library__string
  */
@@ -558,7 +558,7 @@ private:
 /// @}
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Operators
  */
 
@@ -784,7 +784,7 @@ inline ss_bool_t operator >=(C const *lhs, basic_static_string<C, CCH, T> const 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
 
@@ -797,7 +797,7 @@ inline void swap(basic_static_string<C, CCH, T> &lhs, basic_static_string<C, CCH
     lhs.swap(rhs);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -879,7 +879,7 @@ inline S &operator <<(S & s, basic_static_string<C, CCH, T> const &str)
     return s;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -887,7 +887,7 @@ inline S &operator <<(S & s, basic_static_string<C, CCH, T> const &str)
 # include "./unittest/static_string_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -2022,7 +2022,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::reverse_iterator basic
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -2049,8 +2049,8 @@ namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

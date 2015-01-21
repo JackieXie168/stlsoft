@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/toolhelp/module_sequence.hpp
  *
  * Purpose:     TOOLHELP module sequence class.
  *
  * Created:     21st May 2005
- * Updated:     22nd May 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -39,11 +39,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/toolhelp/module_sequence.hpp
-/// \brief [C++ only] Definition of the \link winstl::module_sequence module_sequence\endlink class. (\ref group__library__toolhelp "ToolHelp" Library.)
+/** \file winstl/toolhelp/module_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the
+ *  \link winstl::module_sequence module_sequence\endlink class.
+ *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE
 #define WINSTL_INCL_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE
@@ -52,10 +56,10 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MINOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        3
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -69,7 +73,7 @@
 # include <winstl/toolhelp/sequence_base.hpp>
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -91,12 +95,12 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // th_sequence_value_traits specialization for module_sequence
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_VALUE                           MODULEENTRY32
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_FIRST                           Module32First
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_NEXT                            Module32Next
@@ -106,7 +110,7 @@ namespace winstl_project
 
 /// \brief An STL collection for accessing module information for a given process.
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 typedef th_sequence_base<MODULEENTRY32>             module_sequence;
 
 /** \brief [IMPLEMENTATION] Specialisation of
@@ -120,7 +124,7 @@ struct sequence_doesnt_use_pid<MODULEENTRY32>
 
 /// \brief Attribute shim for retrieving the process id associated with the MODULEENTRY32 instance
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 ///
 /// \param me The MODULEENTRY32 instance
 inline DWORD get_pid(MODULEENTRY32 const& me)
@@ -128,7 +132,7 @@ inline DWORD get_pid(MODULEENTRY32 const& me)
     return me.th32ProcessID;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -140,8 +144,8 @@ inline DWORD get_pid(MODULEENTRY32 const& me)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif // WINSTL_INCL_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

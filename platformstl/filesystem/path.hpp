@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/filesystem/path.hpp
  *
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     4th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file platformstl/filesystem/path.hpp
@@ -53,10 +53,10 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       13
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -76,7 +76,7 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -95,9 +95,38 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+    /** \brief Class used for composing and decomposing file-system paths.
+     *
+     * The class is not actually defined in the
+     * \link ::platformstl platformstl\endlink namespace. Rather, it
+     * resolves to the appropriate type for the given platform, relying on
+     * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * of the resolved platform-specific types.
+     *
+     * When compiling on UNIX platforms, the platformstl::basic_path
+     * type resolves to the unixstl::basic_path class. On Windows
+     * platforms it resolves to the winstl::basic_path class. It
+     * is not defined for other platforms.
+     */
+    template<   ss_typename_param_k C
+            ,   ss_typename_param_k T = filesystem_traits<C>
+            ,   ss_typename_param_k A = stlsoft::allocator_selector<C>::allocator_type
+            >
+    class basic_path
+    {};
+
+    /// \brief Instantiation of the basic_path template for the ANSI character type \c char
+    typedef basic_path<char, filesystem_traits<char> >          path_a;
+    /// \brief Instantiation of the basic_path template for the Unicode character type \c wchar_t
+    typedef basic_path<wchar_t, filesystem_traits<wchar_t> >    path_w;
+    /// \brief Instantiation of the basic_path template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
+    typedef basic_path<tchar, filesystem_traits<tchar> >        path;
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef _UNIXSTL_NO_NAMESPACE
     using ::basic_path;
@@ -210,7 +239,7 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -220,8 +249,8 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_PATH */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

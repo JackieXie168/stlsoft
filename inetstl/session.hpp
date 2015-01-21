@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        inetstl/session.hpp (formerly inetstl_session.h; originally MIntSess.h)
  *
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     22nd January 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file inetstl/session.hpp
@@ -49,10 +49,10 @@
 # define INETSTL_VER_INETSTL_HPP_SESSION_MAJOR      4
 # define INETSTL_VER_INETSTL_HPP_SESSION_MINOR      3
 # define INETSTL_VER_INETSTL_HPP_SESSION_REVISION   1
-# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       48
+# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -72,7 +72,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,21 +94,7 @@ namespace inetstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup inetstl_filesystem_library File-System Library (InetSTL)
-/// \ingroup InetSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the WinInet API
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -212,7 +198,7 @@ private:
     class_type &operator =(class_type const&);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
@@ -223,7 +209,7 @@ typedef basic_session<is_char_w_t>  session_w;
 /// Instantiation of the basic_session template for the Win32 character type \c TCHAR
 typedef basic_session<TCHAR>        session;
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k X
@@ -369,7 +355,7 @@ inline basic_session<C, X, T>::operator HINTERNET ()
     return m_hConn;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k X
@@ -380,11 +366,7 @@ inline HINTERNET get_handle(basic_session<C, X, T> &s)
     return s;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group inetstl_filesystem_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _INETSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -396,8 +378,8 @@ inline HINTERNET get_handle(basic_session<C, X, T> &s)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* INETSTL_INCL_INETSTL_HPP_SESSION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

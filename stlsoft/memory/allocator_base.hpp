@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/memory/allocator_base.hpp (formerly stlsoft/allocator_base.hpp; originally stlsoft_allocator_base.h)
  *
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     3rd June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/memory/allocator_base.hpp
@@ -52,10 +52,10 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     32
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -66,9 +66,9 @@
 # include <stlsoft/memory/allocator_features.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
 #ifdef STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-#  include <stlsoft/sap_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+#  include <stlsoft/conversion/sap_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 #endif /* STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD */
 #if defined(STLSOFT_CF_THROW_BAD_ALLOC) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -76,7 +76,7 @@
 # include <new>         // for placement new, std::bad_alloc
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC || _MSC_VER < 1100) */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -85,7 +85,7 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -270,14 +270,14 @@ private:
 //    class_type const &operator =(class_type const &rhs);
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

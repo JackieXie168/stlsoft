@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/winstl.h (formerly winstl.h)
  *
  * Purpose:     Root header for the WinSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     26th May 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
@@ -47,13 +47,13 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        146
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        148
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h \brief [C, C++] The root header for the \ref group__project__winstl "WinSTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * WinSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -132,7 +132,7 @@
 
 #define _WINSTL_VER             _WINSTL_VER_1_8_1
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -159,12 +159,12 @@
 /* Intel is super pernickety about conversions, so we need to bring out the union_cast. */
 #if defined(STLSOFT_COMPILER_IS_INTEL) && \
     defined(__cplusplus)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
-#  include <stlsoft/union_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST
+#  include <stlsoft/conversion/union_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -173,7 +173,7 @@
 # error This version of the WinSTL libraries requires STLSoft version 1.9.1 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Proper C++ casting
  */
 
@@ -184,7 +184,7 @@
  *  avoid C-style cast warnings.
  */
 # if defined(STLSOFT_COMPILER_IS_INTEL)
-#  define   INVALID_HANDLE_VALUE        stlsoft_ns_qual(make_union_cast)<HANDLE>(-1)
+#  define   INVALID_HANDLE_VALUE        stlsoft_ns_qual(union_cast)<HANDLE>(-1)
 # else /* ? compiler */
 #  define   INVALID_HANDLE_VALUE        reinterpret_cast<HANDLE>(-1)
 # endif /* compiler */
@@ -216,7 +216,7 @@
 
 #endif /* __cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Sanity checks
  *
  * Win32    -   must be compiled in context of Win32 API
@@ -228,7 +228,7 @@
 # error The WinSTL libraries is currently only compatible with the Win32 API
 #endif /* !WIN32 && !_WIN32 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the WinSTL libraries are
@@ -304,7 +304,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro winstl_assert provides standard debug-mode assert functionality.
@@ -347,7 +347,7 @@
 # define winstl_static_assert(expr)         WINSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The WinSTL components are contained within the winstl namespace. This is
@@ -515,7 +515,7 @@ int main()
 # define winstl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The WinSTL uses a number of typedefs to aid in compiler-independence in the
@@ -590,7 +590,7 @@ typedef ws_streamoff_t      streamoff_t;        //!< streamoff
 # endif /* compiler */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Constants
  */
 
@@ -615,7 +615,7 @@ typedef ws_streamoff_t      streamoff_t;        //!< streamoff
 const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
 #endif /* __cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -629,7 +629,7 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
 #define ws_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -674,7 +674,7 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
  */
 #define winstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Macros
  */
 
@@ -732,7 +732,7 @@ inline BOOL bool2BOOL(bool bVal)
 # define bool2BOOL(bVal)            stlsoft_static_cast(BOOL, ((bVal) != false))
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -745,7 +745,7 @@ namespace winstl = ::stlsoft::winstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -753,8 +753,8 @@ namespace winstl = ::stlsoft::winstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_H_WINSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

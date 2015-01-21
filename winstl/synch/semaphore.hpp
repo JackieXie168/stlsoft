@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/synch/semaphore.hpp
  *
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     7th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/synch/semaphore.hpp
@@ -50,11 +50,11 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -68,7 +68,7 @@
 # include <winstl/synch/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -90,7 +90,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -240,7 +240,12 @@ public:
     {
         WINSTL_ASSERT(NULL != m_sem);
 
-        ::ReleaseSemaphore(m_sem, 1, NULL);
+        if(!::ReleaseSemaphore(m_sem, 1, NULL))
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw synchronisation_exception("semaphore release failed", ::GetLastError());
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
     }
     /// \brief Releases a number of aquired "locks" on the semaphore,
     ///  increasing the semaphore's counter by the given value.
@@ -334,7 +339,7 @@ private:
     semaphore &operator =(class_type const &rhs);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -382,7 +387,7 @@ using ::stlsoft::unlock_instance;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * lock_traits (for the compilers that do not support Koenig Lookup)
  */
 
@@ -410,14 +415,14 @@ public:
     }
 };
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/semaphore_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -429,8 +434,8 @@ public:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_SEMAPHORE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

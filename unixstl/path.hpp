@@ -6,9 +6,9 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/filesystem/path.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_path
+#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_PATH
 # include <unixstl/filesystem/path.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_path */
+#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_PATH */
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/toolhelp/sequence_value_traits.hpp
  *
  * Purpose:     Instantiations of th_sequence_value_traits<>.
  *
  * Created:     21st May 2005
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -39,12 +39,14 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/toolhelp/sequence_value_traits.hpp
-///
-/// Instantiations of th_sequence_value_traits<>.
+/** \file winstl/toolhelp/sequence_value_traits.hpp
+ *
+ * \brief [C++ only] Instantiations of th_sequence_value_traits<>.
+ *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ */
 
 // NO INCLUDE GUARDS
 // This file is meant to be included multiple times
@@ -53,7 +55,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_REVISION  3
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      4
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Compatibility

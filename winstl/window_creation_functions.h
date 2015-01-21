@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/window_creation_functions.h (formerly winstl_functions.h; formerly MWBase.h, ::SynesisWin)
  *
  * Purpose:     Window creation functions.
  *
  * Created:     7th May 2000
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/window_creation_functions.h
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_H_WINDOW_CREATION_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_H_WINDOW_CREATION_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_H_WINDOW_CREATION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_H_WINDOW_CREATION_FUNCTIONS_EDIT     7
+# define WINSTL_VER_WINSTL_H_WINDOW_CREATION_FUNCTIONS_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -65,7 +65,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
 #endif /* __cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -87,21 +87,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \weakgroup winstl_window_library Window Library (WinSTL)
-/// \ingroup WinSTL libraries_window ccompilation
-/// \brief This library provides facilities for defining and manipulating Win32 windows
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C functions
  */
 
@@ -198,7 +184,7 @@ STLSOFT_INLINE HWND winstl__CreateWindowEx( DWORD       dwExStyle
     return STLSOFT_NS_GLOBAL(CreateWindowEx)(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -300,11 +286,7 @@ inline HWND CreateWindowExW(DWORD       dwExStyle
 # endif /* !_WINSTL_NO_NAMESPACE */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_window_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -316,8 +298,8 @@ inline HWND CreateWindowExW(DWORD       dwExStyle
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_H_WINDOW_CREATION_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

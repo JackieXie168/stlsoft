@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        inetstl/inetstl.h (formerly inetstl.h)
  *
  * Purpose:     Root header for the InetSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef INETSTL_INCL_INETSTL_H_INETSTL
@@ -48,12 +48,12 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     28
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * InetSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -118,7 +118,7 @@
 
 #define _INETSTL_VER             _INETSTL_VER_1_2_1
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -139,7 +139,7 @@
 #include <windows.h>
 #include <wininet.h>    // Windows base header
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -148,7 +148,7 @@
 # error This version of the InetSTL libraries requires STLSoft version 1.9.1 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_7_1 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Sanity checks
  *
  * Win32    -   must be compiled in context of Win32 API
@@ -160,7 +160,7 @@
 # error The InetSTL libraries is currently only compatible with the Win32 API
 #endif /* !WIN32 && !_WIN32 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the InetSTL libraries are
@@ -238,7 +238,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro inetstl_assert provides standard debug-mode assert functionality.
@@ -268,7 +268,7 @@
 # define inetstl_static_assert(expr)        INETSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The InetSTL components are contained within the inetstl namespace. This is
@@ -400,7 +400,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define inetstl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The InetSTL uses a number of typedefs to aid in compiler-independence in the
@@ -471,7 +471,7 @@ typedef is_streamoff_t      streamoff_t;        //!< streamoff
 # endif /* compiler */
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -486,7 +486,7 @@ typedef is_streamoff_t      streamoff_t;        //!< streamoff
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -523,7 +523,7 @@ typedef is_streamoff_t      streamoff_t;        //!< streamoff
  */
 #define inetstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _INETSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -536,7 +536,7 @@ namespace inetstl = ::stlsoft::inetstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_INETSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -544,8 +544,8 @@ namespace inetstl = ::stlsoft::inetstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* INETSTL_INCL_INETSTL_H_INETSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

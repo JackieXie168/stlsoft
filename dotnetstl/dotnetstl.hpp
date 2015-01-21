@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        dotnetstl/dotnetstl.hpp (formerly dotnetstl.h)
  *
  * Purpose:     Root header for the .netSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL
@@ -48,12 +48,12 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     35
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp \brief [C++ only; requires C++.NET compiler] The root header for the \ref group__project__dotnetstl ".netSTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * .netSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -117,7 +117,7 @@
 
 #define DOTNETSTL_VER             DOTNETSTL_VER_1_2_3
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -125,7 +125,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -134,7 +134,7 @@
 # error This version of the .netSTL libraries requires STLSoft version 1.9.1 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the .netSTL libraries are
@@ -164,7 +164,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * More includes
  */
 
@@ -174,7 +174,7 @@
 //# using <system.dll>
 //#endif /* _MSC_VER */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro dotnetstl_assert provides standard debug-mode assert functionality.
@@ -203,7 +203,7 @@
 # define dotnetstl_static_assert(expr)          DOTNETSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The .netSTL components are contained within the dotnetstl namespace. This is
@@ -283,7 +283,7 @@ namespace dotnetstl_project
 # define dotnetstl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * CLR / VC++ versions
  */
 
@@ -293,7 +293,7 @@ namespace dotnetstl_project
 #else /* ? _MSC_VER */
 #endif /* _MSC_VER */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The .netSTL uses a number of typedefs to aid in compiler-independence in the
@@ -329,7 +329,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -343,7 +343,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
 #define ds_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -380,7 +380,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
  */
 #define dotnetstl_gen_opaque(_htype)                        STLSOFT_GEN_OPAQUE(_htype)
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef DOTNETSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -393,7 +393,7 @@ namespace dotnetstl = ::stlsoft::dotnetstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !DOTNETSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -401,8 +401,8 @@ namespace dotnetstl = ::stlsoft::dotnetstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

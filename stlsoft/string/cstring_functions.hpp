@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/cstring_functions.hpp (originally stlsoft/cstring_functions.hpp)
  *
  * Purpose:     String duplication functions.
  *
  * Created:     26th May 2005
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/string/cstring_functions.hpp
@@ -51,10 +51,10 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     17
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -64,7 +64,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -87,7 +87,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <string.h>
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -96,19 +96,19 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /** \brief Allocates a copy of the string, using the given allocator
-///
-/// \param str The string to copy
-/// \param cch The number of elements in str to copy
-/// \param ator The allocator to use to allocate the memory
-///
-/// \note The caller is responsible for the allocated memory, and should free it
-/// with ator (or a compatible allocator or memory function).
+ *
+ * \param str The string to copy
+ * \param cch The number of elements in str to copy
+ * \param ator The allocator to use to allocate the memory
+ *
+ * \note The caller is responsible for the allocated memory, and should free it
+ * with ator (or a compatible allocator or memory function).
  *
  * \ingroup group__library__string
  */
@@ -127,13 +127,13 @@ inline C *string_dup_impl(C const *str, size_t cch, A &ator)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \brief Allocates a copy of the string, using the given allocator
-///
-/// \param str The string to copy
-/// \param cch The number of elements in str to copy
-/// \param ator The allocator to use to allocate the memory
-///
-/// \note The caller is responsible for the allocated memory, and should free it
-/// with ator (or a compatible allocator or memory function).
+ *
+ * \param str The string to copy
+ * \param cch The number of elements in str to copy
+ * \param ator The allocator to use to allocate the memory
+ *
+ * \note The caller is responsible for the allocated memory, and should free it
+ * with ator (or a compatible allocator or memory function).
  *
  * \ingroup group__library__string
  */
@@ -157,12 +157,12 @@ inline C *string_dup(C const *str, size_t cch, A &ator)
 }
 
 /** \brief Allocates a copy of the string, using the given allocator
-///
-/// \param str The string to copy
-/// \param ator The allocator to use to allocate the memory
-///
-/// \note The caller is responsible for the allocated memory, and should free it
-/// with ator (or a compatible allocator or memory function).
+ *
+ * \param str The string to copy
+ * \param ator The allocator to use to allocate the memory
+ *
+ * \note The caller is responsible for the allocated memory, and should free it
+ * with ator (or a compatible allocator or memory function).
  *
  * \ingroup group__library__string
  */
@@ -174,7 +174,7 @@ inline C *string_dup(C const *str, A &ator)
     return string_dup(str, c_str_len(str), ator);
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
@@ -253,14 +253,14 @@ namespace unittest
 
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

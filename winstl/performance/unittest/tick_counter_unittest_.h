@@ -1,8 +1,8 @@
 
-// Updated: 30th May 2006
+// Updated: 10th June 2006
 
 #if !defined(WINSTL_INCL_WINSTL_PERFORMANCE_HPP_TICK_COUNTER)
-# error This file cannot be directly included, and should only be included within winstl/tick_counter.hpp
+# error This file cannot be directly included, and should only be included within winstl/performance/tick_counter.hpp
 #endif /* !WINSTL_INCL_WINSTL_PERFORMANCE_HPP_TICK_COUNTER */
 
 #if !defined(STLSOFT_UNITTEST)
@@ -13,13 +13,13 @@ namespace unittest
 {
     namespace
     {
-        ss_bool_t test_winstl_tick_counter(unittest_reporter *r)
+        ss_bool_t test_winstl_performance_tick_counter(unittest_reporter *r)
         {
             using stlsoft::unittest::unittest_initialiser;
 
             ss_bool_t               bSuccess    =   true;
 
-            unittest_initialiser    init(r, "WinSTL", "tick_counter", __FILE__);
+            unittest_initialiser    init(r, "WinSTL", "performance/tick_counter", __FILE__);
 
             tick_counter counter_1;
             tick_counter counter_2;
@@ -55,7 +55,7 @@ namespace unittest
             return bSuccess;
         }
 
-        unittest_registrar    unittest_winstl_tick_counter(test_winstl_tick_counter);
+        unittest_registrar    unittest_winstl_performance_tick_counter(test_winstl_performance_tick_counter);
     } // anonymous namespace
 
 } // namespace unittest

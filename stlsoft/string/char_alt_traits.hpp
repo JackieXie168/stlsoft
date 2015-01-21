@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/char_alt_traits.hpp (originally stlsoft_char_alt_traits.h)
  *
  * Purpose:     char_alt_traits traits class.
  *
  * Created:     19th November 1998
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/string/char_alt_traits.hpp
@@ -52,10 +52,10 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS_EDIT     28
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -63,7 +63,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -72,17 +72,17 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Constraints
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /** \brief Traits for determining the alternate character type
-///
-/// char_alt_traits is a traits class for acquiring the opposite character type
-/// eg. char_alt_traits<char>::alt_char_type == wchar_t, and vice versa
-///
-/// \param C The char type
+ *
+ * char_alt_traits is a traits class for acquiring the opposite character type
+ * eg. char_alt_traits<char>::alt_char_type == wchar_t, and vice versa
+ *
+ * \param C The char type
  *
  * \ingroup group__library__string
  */
@@ -114,14 +114,14 @@ struct char_alt_traits<ss_char_w_t>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_CHAR_ALT_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

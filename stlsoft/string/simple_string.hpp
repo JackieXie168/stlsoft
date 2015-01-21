@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/simple_string.hpp (originally MSString.h, ::SynesisDev)
  *
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     6th June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/string/simple_string.hpp
@@ -54,10 +54,10 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     218
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     220
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -67,7 +67,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -104,9 +104,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MINMAX
 # include <stlsoft/minmax.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MINMAX */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+# include <stlsoft/conversion/sap_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 
 
 #ifdef STLSOFT_UNITTEST
@@ -117,7 +117,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stdexcept>                       // for std::out_of_range
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  *
  */
 
@@ -126,7 +126,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # define STLSOFT_SIMPLE_STRING_ITERATOR_METHODS_INLINE
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -135,16 +135,16 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // class basic_simple_string
 /** \brief Simple string class
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments this is defaulted to char_traits<C>
-/// \param A The allocator type. On translators that support default template arguments this is defaulted to allocator_selector<C>::allocator_type
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments this is defaulted to char_traits<C>
+ * \param A The allocator type. On translators that support default template arguments this is defaulted to allocator_selector<C>::allocator_type
  *
  * \ingroup group__library__string
  */
@@ -660,7 +660,7 @@ private:
 /// @}
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  */
 
@@ -678,7 +678,7 @@ typedef basic_simple_string<ss_char_w_t
                         >                                                   simple_wstring;
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Traits
  */
 
@@ -816,7 +816,7 @@ struct string_traits<simple_wstring>
 };
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Operators
  */
 
@@ -1097,7 +1097,7 @@ inline basic_simple_string<C, T, A> operator +(C lhs, basic_simple_string<C, T, 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -1243,7 +1243,7 @@ inline S &operator <<(S & s, basic_simple_string<C, T, A> const &str)
     return s;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
 
@@ -1256,7 +1256,7 @@ inline void swap(basic_simple_string<C, T, A> &lhs, basic_simple_string<C, T, A>
     lhs.swap(rhs);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -1264,7 +1264,7 @@ inline void swap(basic_simple_string<C, T, A> &lhs, basic_simple_string<C, T, A>
 # include "./unittest/simple_string_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -2620,7 +2620,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::empty() const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -2647,8 +2647,8 @@ namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

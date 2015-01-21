@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string_access.hpp (formerly stlsoft_string_access.h)
  *
  * Purpose:     Contains the c_str_ptr, c_str_ptr_null, c_str_len, and
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -39,7 +39,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file stlsoft/string_access.hpp
@@ -53,10 +53,10 @@
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MINOR       5
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        79
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -129,7 +129,7 @@
 # include <stdio.h>
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Pre-processor control
  *
  * By default, conversions from non-const strings, or rather from pointers to
@@ -143,7 +143,7 @@
  * representing null-terminated strings.
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -152,23 +152,7 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-
-/// \defgroup stlsoft_string_access_shims String Access Shims (STLSoft)
-/// \ingroup STLSoft concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  */
 
@@ -193,7 +177,7 @@ namespace stlsoft
  */
 struct cannot_use_untyped_0_or_NULL_with_shims;
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
@@ -359,7 +343,7 @@ inline ss_char_w_t const *c_str_ptr_null_w(S const &s)
 }
 #endif /* 0 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
  *
  * This can be applied to an expression, and the return value is either a
@@ -501,7 +485,7 @@ inline C const *c_str_ptr(stlport::basic_string<C> const &s)
 }
 #endif /* _STLP_USE_NAMESPACES && _STLP_USE_OWN_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
  * This can be applied to an expression, and the return value is either a
@@ -666,7 +650,7 @@ inline ss_char_w_t const *c_str_data_w(S const &s)
 }
 #endif /* 0 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
  * This can be applied to an expression, and the return value is the number of
@@ -818,7 +802,7 @@ inline ss_size_t c_str_len(stlport::basic_string<C> const &s)
 }
 #endif /* _STLP_USE_NAMESPACES && _STLP_USE_OWN_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_size
  *
  * This can be applied to an expression, and the return value is the number of
@@ -985,25 +969,21 @@ inline cannot_use_untyped_0_or_NULL_with_shims &c_str_size(int deny_literal_NULL
 
 #endif /* 0 */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/string_access_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group stlsoft_string_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

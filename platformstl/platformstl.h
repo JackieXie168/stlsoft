@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/platformstl.h
  *
  * Purpose:     Root header for the PlatformSTL C/C++ libraries. Performs
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL
@@ -47,12 +47,17 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     18
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file platformstl/platformstl.h \brief [C, C++] Root header for the \ref group__project__platformstl "PlatformSTL" project. */
+/** \file platformstl/platformstl.h
+ *
+ * \brief [C, C++] Root header for the
+ *  \ref group__project__platformstl "PlatformSTL" project for C
+ *  compilation.
+ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * PlatformSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -116,7 +121,7 @@
 
 #define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_4_1
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -124,7 +129,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -133,7 +138,7 @@
 # error This version of the PlatformSTL libraries requires STLSoft version 1.8.9 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_8_9 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Operating system identification
  */
 
@@ -150,7 +155,7 @@
 # error Operating system not discriminated. Only UNIX and Win32 are currently recognised by PlatformSTL
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Platform-specific includes
  */
 
@@ -162,7 +167,7 @@
 # error Operating system not discriminated. Only UNIX and Win32 are currently recognised by PlatformSTL
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The PLATFORMSTL components are contained within the platformstl namespace. This is
@@ -266,7 +271,7 @@ namespace platformstl_project
 # define platformstl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -328,7 +333,7 @@ typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; //!< streamoff
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if !defined(__cplusplus)
  /* Nothing defined in C */
@@ -341,7 +346,7 @@ typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; //!< streamoff
 namespace platformstl = ::stlsoft::platformstl_project;
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -349,8 +354,8 @@ namespace platformstl = ::stlsoft::platformstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

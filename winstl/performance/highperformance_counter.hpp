@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/performance/highperformance_counter.hpp (formerly winstl/highperformance_counter.hpp, winstl_highperformance_counter.h, originally MWPrfCnt.h, ::SynesisWin)
  *
  * Purpose:     WinSTL high performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     30th May 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/performance/highperformance_counter.hpp
@@ -52,10 +52,10 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MINOR    0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     74
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -65,7 +65,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -84,11 +84,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS
 # include <stlsoft/static_initialisers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+# include <stlsoft/conversion/sap_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -110,7 +110,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -188,7 +188,7 @@ private:
     epoch_type  m_end;      // End of measurement period
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # if !defined(STLSOFT_COMPILER_IS_DMC) && \
@@ -198,7 +198,7 @@ static stlsoft_ns_qual(class_constructor)<highperformance_counter>  s_highperfor
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -206,7 +206,7 @@ static stlsoft_ns_qual(class_constructor)<highperformance_counter>  s_highperfor
 # include "./unittest/highperformance_counter_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -312,7 +312,7 @@ inline highperformance_counter::interval_type highperformance_counter::get_micro
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -324,8 +324,8 @@ inline highperformance_counter::interval_type highperformance_counter::get_micro
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/system/system_directory.hpp (originally winstl_system_directory.h)
  *
  * Purpose:     Simple class that gets, and makes accessible, the system
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/system/system_directory.hpp
@@ -53,10 +53,10 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_DIRECTORY_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_DIRECTORY_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_DIRECTORY_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_DIRECTORY_EDIT     55
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_DIRECTORY_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -73,7 +73,7 @@
 # include <stlsoft/constraints.hpp>       // for stlsoft::not_implicitly_comparable
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -95,7 +95,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * basic_system_directory
  *
  * This class wraps the GetSystemDirectory() API function, and effectively acts
@@ -195,7 +195,7 @@ private:
 #endif /* compiler */
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
@@ -206,7 +206,7 @@ typedef basic_system_directory<ws_char_w_t, filesystem_traits<ws_char_w_t> >    
 /// Instantiation of the basic_system_directory template for the Win32 character type \c TCHAR
 typedef basic_system_directory<TCHAR, filesystem_traits<TCHAR> >                system_directory;
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -254,34 +254,16 @@ inline ss_typename_type_k basic_system_directory<C, T>::size_type basic_system_d
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/system_directory_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_filesystem_library
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-
-/// \weakgroup winstl_string_access_shims String Access Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" accessing string attributes for Win32 types
-/// @{
 
 /// \brief Returns the corresponding C-string pointer of the basic_system_directory \c sd, or a null pointer
 template<   ss_typename_param_k C
@@ -330,7 +312,7 @@ inline ws_size_t c_str_size(basic_system_directory<C, T> const &sd)
 }
 #endif /* 0 */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -342,7 +324,7 @@ inline ws_size_t c_str_size(basic_system_directory<C, T> const &sd)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The string access shims exist either in the stlsoft namespace, or in the
@@ -379,8 +361,8 @@ using ::winstl::c_str_size;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_DIRECTORY */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/typefixer/typefixers.hpp
  *
  * Purpose:     Combined header file for STLSoft's TypeFixer utility components.
  *
  * Created:     24th April 2005
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file stlsoft/typefixer/typefixers.hpp
@@ -49,10 +49,10 @@
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_TYPEFIXERS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_TYPEFIXERS_MINOR     1
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_TYPEFIXERS_REVISION  1
-# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_TYPEFIXERS_EDIT      5
+# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_TYPEFIXERS_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
 
@@ -63,7 +63,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 [Incompatibilies-end]
 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -115,8 +115,8 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 # include <stlsoft/typefixer/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_TYPEFIXERS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

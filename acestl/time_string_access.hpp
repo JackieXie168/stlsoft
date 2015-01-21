@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        acestl/time_string_access.hpp
  *
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file acestl/time_string_access.hpp
@@ -49,10 +49,10 @@
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MINOR     3
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      20
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +71,7 @@
 #include <ace/Time_Value.h>                 // for ACE_Time_Value
 #include <ace/ace_wchar.h>                  // for ACE_Wide_To_Ascii, ACE_Ascii_To_Wide
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -93,23 +93,7 @@ namespace acestl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ACESTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-
-/// \defgroup acestl_string_access_shims String Access Shims (ACESTL)
-/// \ingroup ACESTL concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" retrieve the C-string for ACE time types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -133,7 +117,7 @@ void stream_insert(S &s, ACE_Time_Value const &t)
     s.write(&s2[0], len);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -252,9 +236,7 @@ inline S &operator <<(S &s, ACE_Time_Value const &t)
     return s;
 }
 
-/// @} // end of group winstl_sync_control_shims
-
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
@@ -293,7 +275,7 @@ namespace unittest
 
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _ACESTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -330,8 +312,8 @@ namespace stlsoft
 
 #endif /* !_ACESTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !ACESTL_INCL_ACESTL_HPP_TIME_STRING_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        atlstl/ccombstr_veneer.hpp (formerly atlstl_ccombstr_veneer.h)
  *
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     6th June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file atlstl/ccombstr_veneer.hpp
@@ -49,10 +49,10 @@
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MAJOR    4
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MINOR    2
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 4
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     49
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -62,7 +62,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -79,16 +79,16 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #if defined(STLSOFT_COMPILER_IS_DMC)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-#  include <stlsoft/sap_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+#  include <stlsoft/conversion/sap_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 #endif /* compiler */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 #include <wchar.h>              // for wcscmp(), _wcsnset()
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -110,21 +110,7 @@ namespace atlstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_container Container Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulation containers
-
-/// \defgroup atlstl_container_library Container Library (ATLSTL)
-/// \ingroup ATLSTL libraries_container
-/// \brief This library provides facilities for defining and manipulation containers for ATL types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -231,7 +217,7 @@ public:
     const_pointer   data() const;
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Helper functions
  */
 
@@ -310,7 +296,7 @@ bool CComBSTR::operator==(LPCSTR pszSrc) const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Operators
  */
 
@@ -405,7 +391,7 @@ inline as_bool_t operator !=(ccombstr_veneer const &lhs, LPCWSTR rhs)
     return !operator ==(lhs, rhs);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
 
@@ -414,7 +400,7 @@ inline void swap(ccombstr_veneer &lhs, ccombstr_veneer &rhs)
     lhs.swap(rhs);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -453,7 +439,7 @@ inline S &operator <<(S &s, ccombstr_veneer const &str)
     return s;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -461,7 +447,7 @@ inline S &operator <<(S &s, ccombstr_veneer const &str)
 # include "./unittest/ccombstr_veneer_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -653,11 +639,7 @@ inline ccombstr_veneer::const_pointer ccombstr_veneer::data() const
     return empty() ? L"" : static_cast<const_pointer>(*this);
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group atlstl_container_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _ATLSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -679,8 +661,8 @@ namespace stlsoft
 } // namespace stlsoft
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_CCOMBSTR_VENEER */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

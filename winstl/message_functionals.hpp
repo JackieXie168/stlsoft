@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/message_functionals.hpp (formerly winstl_window_functionals.h)
  *
  * Purpose:     Window messaging function objects and predicates.
  *
  * Created:     19th January 2001
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/message_functionals.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     25
+# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -68,7 +68,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_WINDOW_FUNCTIONALS_NO_STD */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -90,21 +90,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \defgroup winstl_window_library Window Library (WinSTL)
-/// \ingroup WinSTL libraries_window
-/// \brief This library provides facilities for defining and manipulating Win32 GUI windows
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functor classes
  */
 
@@ -194,11 +180,7 @@ private:
     class_type &operator =(class_type const&);
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_window_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -210,8 +192,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_HPP_MESSAGE_FUNCTIONALS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,4 +1,4 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/reg_value_sequence.hpp (formerly winstl_reg_value_sequence.h)
  *
  * Purpose:     Contains the basic_reg_value_sequence class template, and ANSI
@@ -14,7 +14,7 @@
  *              basic_reg_value_sequence).
  *
  * Created:     19th January 2002
- * Updated:     31st May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/registry/reg_value_sequence.hpp
@@ -58,10 +58,10 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    4
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     100
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -102,7 +102,7 @@
 # include <stlsoft/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -124,7 +124,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 // class basic_reg_value_sequence
 /// \brief Presents an STL-like sequence interface over the values of a given registry key
@@ -471,14 +471,14 @@ private:
 /// @}
 };
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/reg_value_sequence_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Implementation
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -1123,7 +1123,7 @@ inline ws_bool_t basic_reg_value_sequence_iterator<C, T, V, A>::operator !=(clas
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -1135,8 +1135,8 @@ inline ws_bool_t basic_reg_value_sequence_iterator<C, T, V, A>::operator !=(clas
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

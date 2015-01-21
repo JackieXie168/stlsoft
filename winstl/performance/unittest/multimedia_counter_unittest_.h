@@ -1,8 +1,8 @@
 
-// Updated: 30th May 2006
+// Updated: 10th June 2006
 
 #if !defined(WINSTL_INCL_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER)
-# error This file cannot be directly included, and should only be included within winstl/multimedia_counter.hpp
+# error This file cannot be directly included, and should only be included within winstl/performance/multimedia_counter.hpp
 #endif /* !WINSTL_INCL_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER */
 
 #if !defined(STLSOFT_UNITTEST)
@@ -13,13 +13,13 @@ namespace unittest
 {
     namespace
     {
-        ss_bool_t test_winstl_multimedia_counter(unittest_reporter *r)
+        ss_bool_t test_winstl_performance_multimedia_counter(unittest_reporter *r)
         {
             using stlsoft::unittest::unittest_initialiser;
 
             ss_bool_t               bSuccess    =   true;
 
-            unittest_initialiser    init(r, "WinSTL", "multimedia_counter", __FILE__);
+            unittest_initialiser    init(r, "WinSTL", "performance/multimedia_counter", __FILE__);
 
             multimedia_counter counter_1;
             multimedia_counter counter_2;
@@ -55,7 +55,7 @@ namespace unittest
             return bSuccess;
         }
 
-        unittest_registrar    unittest_winstl_multimedia_counter(test_winstl_multimedia_counter);
+        unittest_registrar    unittest_winstl_performance_multimedia_counter(test_winstl_performance_multimedia_counter);
     } // anonymous namespace
 
 } // namespace unittest

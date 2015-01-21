@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/shell/file_operations.hpp (formerly ::SynesisWin, ShellFileOp.h)
  *
  * Purpose:     Shell file operations.
  *
  * Created:     12th December 1996
- * Updated:     20th May 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -38,12 +38,14 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/shell/file_operations.hpp
-///
-/// Shell browsing functions.
+/** \file winstl/shell/file_operations.hpp
+ *
+ * \brief [C++ only] Definition of Windows Shell file operation functions.
+ *  (\ref group__library__windows_shell "Windows Shell" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_SHELL_HPP_FILE_OPERATIONS
 #define WINSTL_INCL_WINSTL_SHELL_HPP_FILE_OPERATIONS
@@ -51,11 +53,11 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MINOR      1
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   1
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       78
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   2
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes.
  */
 
@@ -65,6 +67,9 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR
 # include <winstl/memory/shell_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 //#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 //# include <stlsoft/string_access.hpp>
 //#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -75,7 +80,7 @@
 # include <winstl/winstl.h>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -97,7 +102,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -203,6 +208,8 @@ inline int shell_delete_w_(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param from The file to delete
 ///
 /// \note Throws std::bad_alloc on allocation failure on translators that support it
@@ -218,6 +225,8 @@ inline int shell_delete(ws_char_a_t const *from)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param bAborted A Boolean that will indicate whether the operation was aborted
@@ -235,6 +244,8 @@ inline int shell_delete(ws_char_a_t const *from, ws_bool_t &bAborted)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param flags One or more of the FILEOP_FLAGS values.
@@ -254,6 +265,8 @@ inline int shell_delete(ws_char_a_t const *from, FILEOP_FLAGS flags)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param flags One or more of the FILEOP_FLAGS values.
@@ -275,6 +288,8 @@ inline int shell_delete(ws_char_a_t const *from, FILEOP_FLAGS flags, ws_bool_t &
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
 ///
@@ -293,6 +308,8 @@ inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitl
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -314,6 +331,8 @@ inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitl
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
 /// \param flags One or more of the FILEOP_FLAGS values.
@@ -333,6 +352,8 @@ inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitl
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -355,6 +376,8 @@ inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitl
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
 ///
@@ -371,6 +394,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -389,6 +414,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_bool_t &bAborted)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -409,6 +436,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, FILEOP_FLAGS flags)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -431,6 +460,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, FILEOP_FLAGS flags, 
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -450,6 +481,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *p
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -472,6 +505,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *p
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -492,6 +527,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *p
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -517,6 +554,8 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *p
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param from The file to delete
 ///
 /// \note Throws std::bad_alloc on allocation failure on translators that support it
@@ -532,6 +571,8 @@ inline int shell_delete(ws_char_w_t const *from)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param bAborted A Boolean that will indicate whether the operation was aborted
@@ -549,6 +590,8 @@ inline int shell_delete(ws_char_w_t const *from, ws_bool_t &bAborted)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param flags One or more of the FILEOP_FLAGS values.
@@ -568,6 +611,8 @@ inline int shell_delete(ws_char_w_t const *from, FILEOP_FLAGS flags)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param flags One or more of the FILEOP_FLAGS values.
@@ -589,6 +634,8 @@ inline int shell_delete(ws_char_w_t const *from, FILEOP_FLAGS flags, ws_bool_t &
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
 ///
@@ -607,6 +654,8 @@ inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitl
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -628,6 +677,8 @@ inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitl
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
 /// \param flags One or more of the FILEOP_FLAGS values.
@@ -647,6 +698,8 @@ inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitl
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -669,6 +722,8 @@ inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitl
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
 ///
@@ -685,6 +740,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -703,6 +760,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_bool_t &bAborted)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -723,6 +782,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, FILEOP_FLAGS flags)
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -745,6 +806,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, FILEOP_FLAGS flags, 
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -764,6 +827,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *p
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -786,6 +851,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *p
 
 /// \brief Requests the shell to delete the given file
 ///
+/// \ingroup group__library__windows_shell
+///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
 /// \param progressTitle String to be displayed describing the operation
@@ -806,6 +873,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *p
 }
 
 /// \brief Requests the shell to delete the given file
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
 /// \param from The file to delete
@@ -828,18 +897,14 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *p
 }
 
 
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/file_operations_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -851,8 +916,8 @@ inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *p
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_SHELL_HPP_FILE_OPERATIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        setcursor_scope.hpp (formerly winstl_setcursor_scope.h)
  *
  * Purpose:     Cursor scoping class.
  *
  * Created:     12th May 2003
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/setcursor_scope.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_REVISION   3
-# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       33
+# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -66,7 +66,7 @@
 # include <winstl/string_access.hpp>      // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -88,21 +88,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \defgroup winstl_window_library Window Library (WinSTL)
-/// \ingroup WinSTL libraries_window
-/// \brief This library provides facilities for defining and manipulating Win32 GUI windows
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -178,11 +164,7 @@ private:
     setcursor_scope &operator =(setcursor_scope const &);
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_window_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -194,8 +176,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_HPP_SETCURSOR_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

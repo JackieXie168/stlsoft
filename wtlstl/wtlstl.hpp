@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        wtlstl/wtlstl.hpp (formerly wtlstl.h)
  *
  * Purpose:     Root header for the WTLSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef WTLSTL_INCL_WTLSTL_HPP_WTLSTL
@@ -48,12 +48,12 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 1
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     30
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp \brief [C++ only; requires WTL library] The root header for the \ref group__project__wtlstl "WTLSTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * WTLSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -113,7 +113,7 @@
 
 #define _WTLSTL_VER             _WTLSTL_VER_1_2_1
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -169,7 +169,7 @@
 # error WTLSTL supports WTL version 3.1 and above only
 #endif /* _WTL_VER < 0x0310 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -178,7 +178,7 @@
 # error This version of the WTLSTL libraries requires STLSoft version 1.9.1 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the WTLSTL libraries are
@@ -232,7 +232,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro wtlstl_assert provides standard debug-mode assert functionality.
@@ -262,7 +262,7 @@
 # define wtlstl_static_assert(expr)         WTLSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The WTLSTL components are contained within the wtlstl namespace. This is
@@ -418,7 +418,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define wtlstl_ns_using_atl(x)
 #endif /* !ATL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The WTLSTL uses a number of typedefs to aid in compiler-independence in the
@@ -455,7 +455,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -469,7 +469,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 #define ws_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -506,7 +506,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
  */
 #define wtlstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WTLSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -519,7 +519,7 @@ namespace wtlstl = ::stlsoft::wtlstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WTLSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -527,8 +527,8 @@ namespace wtlstl = ::stlsoft::wtlstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WTLSTL_INCL_WTLSTL_HPP_WTLSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
