@@ -4,11 +4,11 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     22nd November 2009
+ * Updated:     28th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        58
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    3
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,6 +81,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
 # include <stlsoft/util/exception_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
+# include <stlsoft/smartptr/scoped_handle.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -127,6 +135,8 @@ public:
     typedef ws_dword_t                          error_code_type;
     /// The class type
     typedef windows_exception                   class_type;
+    /// The size type
+    typedef ws_size_t                           size_type;
 /// @}
 
 /// \name Construction
@@ -255,18 +265,37 @@ private:
         }
         else
         {
-            string_type r(reason);
-            char        *s;
+#if 0
+            size_type const                             len = ::strlen(reason);
+            stlsoft_ns_qual(exception_string_creator)   creator(len + 100u);
+
+            creator.append(reason);
+
+            char* s;
 
             if(0 != format_message(err, NULL, &s))
             {
-                r += ": ";
-                r += s;
+                stlsoft_ns_qual(scoped_handle)<char*> scoper(s, format_message_free_buff);
 
-                format_message_free_buff(s);
+                creator.append(": ").append(s);
             }
 
-            return r;
+            return creator.create();
+#else /* ? 0 */
+            string_type r(reason);
+            char*       s;
+
+            if(0 != format_message(err, NULL, &s))
+            {
+                stlsoft_ns_qual(scoped_handle)<char*> scoper(s, format_message_free_buff);
+
+                return r + ": " + s;
+            }
+            else
+            {
+                return r;
+            }
+#endif /* 0 */
         }
     }
 /// @}
@@ -306,7 +335,7 @@ public:
 /// \name Construction
 /// @{
 public:
-    resource_exception( char const          *reason
+    resource_exception( char const*         reason
                     ,   error_code_type     err
                     ,   LPCTSTR             resourceId      =   NULL
                     ,   LPCTSTR             resourceType    =   NULL)
@@ -361,7 +390,7 @@ public:
 /// \name Construction
 /// @{
 public:
-    access_exception(   char const          *reason
+    access_exception(   char const*         reason
                     ,   error_code_type     err)
         : parent_class_type(reason, err)
     {}

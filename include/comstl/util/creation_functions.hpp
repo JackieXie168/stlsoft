@@ -4,7 +4,7 @@
  * Purpose:     COM instance creation helper functions
  *
  * Created:     21st September 2005
- * Updated:     10th August 2009
+ * Updated:     6th June 2010
  *
  * Thanks:      To Adi Shavit for demanding more usability in these
  *              functions, which led to the adoption of stlsoft::ref_ptr<X>
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MAJOR    2
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MINOR    3
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     21
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ namespace comstl_project
 \code
 const CLSID CLSID_pantheios_COM_LoggerManager  = { 0x4E7D5C47, 0x8F96, 0x45DE, { 0x90, 0x5D, 0xAA, 0x3E, 0x9E, 0x59, 0x2D, 0xE3 } };
 
-IDispatch *logmgr;
+IDispatch* logmgr;
 if(SUCCEEDED(comstl::co_create_instance(CLSID_pantheios_COM_LoggerManager, &logmgr)))
 {
   logmgr->Release();
@@ -121,9 +121,11 @@ if(SUCCEEDED(comstl::co_create_instance(CLSID_pantheios_COM_LoggerManager, &logm
 \endcode
  */
 template <ss_typename_param_k I>
-inline HRESULT co_create_instance(  REFCLSID    clsid
-                                ,   I           **ppi
-                                ,   DWORD       dwClsContext = CLSCTX_ALL)
+inline HRESULT co_create_instance(
+    REFCLSID    clsid
+,   I**         ppi
+,   DWORD       dwClsContext = CLSCTX_ALL
+)
 {
     return ::CoCreateInstance(clsid, NULL, dwClsContext, IID_traits<I>::iid(), reinterpret_cast<void**>(ppi));
 }
@@ -144,7 +146,7 @@ inline HRESULT co_create_instance(  REFCLSID    clsid
  * string form of its CLSID, and requesting the <code>IDispatch</code>
  * interface:
 \code
-IDispatch *logmgr;
+IDispatch* logmgr;
 if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", &logmgr)))
 {
   logmgr->Release();
@@ -156,7 +158,7 @@ if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}
  * Programmatic Identifier (ProgID), and requesting the <code>IDispatch</code>
  * interface:
 \code
-IDispatch *logmgr;
+IDispatch* logmgr;
 if(SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", &logmgr)))
 {
   logmgr->Release();
@@ -164,12 +166,14 @@ if(SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", &logmgr)
 \endcode
  */
 template <ss_typename_param_k I>
-inline HRESULT co_create_instance(  LPCOLESTR   id
-                                ,   I           **ppi
-                                ,   DWORD       dwClsContext = CLSCTX_ALL)
+inline HRESULT co_create_instance(
+    LPCOLESTR   id
+,   I**         ppi
+,   DWORD       dwClsContext = CLSCTX_ALL
+)
 {
     CLSID   clsid;
-    HRESULT hr  =   ::CLSIDFromProgID(id, &clsid);
+    HRESULT hr = ::CLSIDFromProgID(id, &clsid);
 
     if(FAILED(hr))
     {
@@ -203,7 +207,7 @@ inline HRESULT co_create_instance(  LPCOLESTR   id
 \code
 const CLSID CLSID_pantheios_COM_LoggerManager  = { 0x4E7D5C47, 0x8F96, 0x45DE, { 0x90, 0x5D, 0xAA, 0x3E, 0x9E, 0x59, 0x2D, 0xE3 } };
 
-stlsoft::ref_ptr<IDispatch>   logmgr;
+stlsoft::ref_ptr<IDispatch> logmgr;
 if(SUCCEEDED(comstl::co_create_instance(CLSID_pantheios_COM_LoggerManager, logmgr)))
 {
   . . .
@@ -214,12 +218,14 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k I
         ,   ss_typename_param_k U
         >
-inline HRESULT co_create_instance(  REFCLSID                            clsid
-                                ,   stlsoft_ns_qual(ref_ptr)<T, I, U>   &wi
-                                ,   DWORD                               dwClsContext = CLSCTX_ALL)
+inline HRESULT co_create_instance(
+    REFCLSID                            clsid
+,   stlsoft_ns_qual(ref_ptr)<T, I, U>&  wi
+,   DWORD                               dwClsContext = CLSCTX_ALL
+)
 {
-    I       *pi;
-    HRESULT hr  =   co_create_instance(clsid, &pi, dwClsContext);
+    I*      pi;
+    HRESULT hr = co_create_instance(clsid, &pi, dwClsContext);
 
     if(FAILED(hr))
     {
@@ -250,7 +256,7 @@ inline HRESULT co_create_instance(  REFCLSID                            clsid
  * string form of its CLSID, and requesting the <code>IDispatch</code>
  * interface:
 \code
-stlsoft::ref_ptr<IDispatch>   logmgr;
+stlsoft::ref_ptr<IDispatch> logmgr;
 if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", logmgr)))
 {
   . . .
@@ -262,7 +268,7 @@ if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}
  * Programmatic Identifier (ProgID), and requesting the <code>IDispatch</code>
  * interface:
 \code
-stlsoft::ref_ptr<IDispatch>   logmgr;
+stlsoft::ref_ptr<IDispatch> logmgr;
 if(SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", logmgr)))
 {
   . . .
@@ -273,12 +279,14 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k I
         ,   ss_typename_param_k U
         >
-inline HRESULT co_create_instance(  LPCOLESTR                           id
-                                ,   stlsoft_ns_qual(ref_ptr)<T, I, U>   &wi
-                                ,   DWORD                               dwClsContext = CLSCTX_ALL)
+inline HRESULT co_create_instance(
+    LPCOLESTR                           id
+,   stlsoft_ns_qual(ref_ptr)<T, I, U>&  wi
+,   DWORD                               dwClsContext = CLSCTX_ALL
+)
 {
-    I       *pi;
-    HRESULT hr  =   co_create_instance(id, &pi, dwClsContext);
+    I*      pi;
+    HRESULT hr = co_create_instance(id, &pi, dwClsContext);
 
     if(FAILED(hr))
     {

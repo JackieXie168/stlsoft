@@ -5,11 +5,11 @@
  *              information about the host system version.
  *
  * Created:     10th February 2002
- * Updated:     10th August 2009
+ * Updated:     6th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MAJOR      4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MINOR      0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_REVISION   2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_EDIT       54
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,13 +101,13 @@ namespace winstl_project
  */
 class system_version
 {
-public: /// Member Types
+public: // Member Types
     /// This type
     typedef system_version class_type;
 
-public: /// Accessors
+public: // Accessors
 
-public: /// Accessors:Operating System Type
+public: // Accessors:Operating System Type
 
     /// Returns \c true if the operating system is one of the NT family (NT, 2000, XP, .NET)
     static ws_bool_t winnt();
@@ -118,7 +118,7 @@ public: /// Accessors:Operating System Type
     /// Returns \c true if the operating system is Win32s
     static ws_bool_t win32s();
 
-public: /// Accessors:Operating System Version
+public: // Accessors:Operating System Version
     /// Returns the operating system major version
     static ws_uint_t major();
 
@@ -130,7 +130,7 @@ public: /// Accessors:Operating System Version
     /// Returns the operating system build number
     static ws_uint32_t build_number();
 
-public: /// Accessors
+public: // Accessors
     /// Provides a non-mutable (const) reference to the \c OSVERSIONINFO instance
     static OSVERSIONINFO const& get_versioninfo();
 

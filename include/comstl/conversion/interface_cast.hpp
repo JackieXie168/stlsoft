@@ -4,11 +4,11 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     10th August 2009
+ * Updated:     6th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,7 +61,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   4
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       116
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -465,7 +465,7 @@ template<   ss_typename_param_k I
 class interface_cast_noaddref
     : protected interface_cast_base<I, noaddref_release<I>, X>
 {
-private: /// Member Types
+private: // Member Types
     typedef interface_cast_base<I, noaddref_release<I>, X>                  parent_class_type;
 public:
     /// The type of the current parameterisation
@@ -480,7 +480,7 @@ public:
     typedef interface_pointer_type                                          protected_interface_pointer_type;
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-public: /// Construction
+public: // Construction
     /// Constructor that attempts the speculative cast
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
@@ -547,7 +547,7 @@ template<   ss_typename_param_k I
 class interface_cast_addref
     : protected interface_cast_base<I, addref_release<I>, X>
 {
-private: /// Member Types
+private: // Member Types
     typedef interface_cast_base<I, addref_release<I>, X>                    parent_class_type;
 public:
     /// The type of the current parameterisation
@@ -555,7 +555,7 @@ public:
     /// The interface pointer type
     typedef ss_typename_type_k parent_class_type::interface_pointer_type    interface_pointer_type;
 
-public: /// Construction
+public: // Construction
     /// Constructor that attempts the speculative cast
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
@@ -605,7 +605,7 @@ template<   ss_typename_param_k I
 class interface_cast_tester
     : protected interface_cast_base<I, noaddref_release<I>, ignore_interface_cast_exception>
 {
-private: /// Member Types
+private: // Member Types
     typedef interface_cast_base<I, noaddref_release<I>, ignore_interface_cast_exception>    parent_class_type;
 public:
     /// The type of the current parameterisation
@@ -620,7 +620,7 @@ public:
     typedef interface_pointer_type                                                          protected_interface_pointer_type;
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-public: /// Construction
+public: // Construction
     /// Constructor that attempts the speculative cast
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>

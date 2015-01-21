@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     27th March 2010
+ * Updated:     7th June 2010
  *
  * Thanks:      To Pablo Aguilar for requesting multibyte / wide string
  *              ambivalence. To Joe Mariadassou for requesting swap().
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      89
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -243,6 +243,15 @@ private:
                 DWORD   maxSizeHi   =   0;
                 DWORD   maxSizeLo   =   0;
 
+                if(0 == requestSize)
+                {
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+                    requestSize =   ws_uint32_t((size_type(fileSizeHigh) << 32) | fileSizeLow);
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+                    requestSize =   fileSizeLow;
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+                }                 
+
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
                 if( /* 0 != offset && \
                      */0 != requestSize)
@@ -263,45 +272,49 @@ private:
                 }
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
 
-                scoped_handle<HANDLE>   hmap(
-                                            ::CreateFileMappingA(
-                                                hFile
-                                            ,   NULL
-                                            ,   PAGE_READONLY
-                                            ,   maxSizeHi
-                                            ,   maxSizeLo
-                                            ,   NULL
-                                            )
-                                        ,   CloseHandle
-                                        ,   NULL
-                                        );
-
-                if(hmap.empty())
+                if(0 == requestSize)
                 {
-                    on_error_("Failed to open file mapping");
+                    m_memory    =   NULL;
+                    m_cb        =   0;
                 }
                 else
                 {
-                    void* memory = ::MapViewOfFile(
-                                        hmap.get()
-                                    ,   FILE_MAP_READ
-                                    ,   static_cast<ws_uint32_t>(offset >> 32)
-                                    ,   static_cast<ws_uint32_t>(offset)
-                                    ,   requestSize
-                                    );
+                    scoped_handle<HANDLE>   hmap(
+                                                ::CreateFileMappingA(
+                                                    hFile
+                                                ,   NULL
+                                                ,   PAGE_READONLY
+                                                ,   maxSizeHi
+                                                ,   maxSizeLo
+                                                ,   NULL
+                                                )
+                                            ,   CloseHandle
+                                            ,   NULL
+                                            );
 
-                    if(NULL == memory)
+                    if(hmap.empty())
                     {
-                        on_error_("Failed to map view of file");
+                        on_error_("Failed to open file mapping");
                     }
                     else
                     {
-                        m_memory    =   memory;
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-                        m_cb        =   (0 == requestSize) ? (size_type(fileSizeHigh) << 32) | fileSizeLow : requestSize;
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-                        m_cb        =   fileSizeLow;
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+                        void* memory = ::MapViewOfFile(
+                                            hmap.get()
+                                        ,   FILE_MAP_READ
+                                        ,   static_cast<ws_uint32_t>(offset >> 32)
+                                        ,   static_cast<ws_uint32_t>(offset)
+                                        ,   requestSize
+                                        );
+
+                        if(NULL == memory)
+                        {
+                            on_error_("Failed to map view of file");
+                        }
+                        else
+                        {
+                            m_memory    =   memory;
+                            m_cb        =   requestSize;
+                        }
                     }
                 }
             }
@@ -313,6 +326,14 @@ private:
 /// @{
 public:
     /// Maps an entire file into memory
+    ///
+    /// \param fileName The name of the file to map into memory
+    ///
+    /// \exception winstl::windows_exception Thrown if the map cannot be
+    ///   created. May be any value returned by the Windows API; known
+    ///   values include ERROR_NOT_ENOUGH_MEMORY (when the map size is
+    ///   too large to fit into memory) and ERROR_INVALID_PARAMETER (when
+    ///   the allocated size is too large to be valid 
     ss_explicit_k memory_mapped_file(ws_char_a_t const* fileName)
         : m_cb(0)
         , m_memory(NULL)

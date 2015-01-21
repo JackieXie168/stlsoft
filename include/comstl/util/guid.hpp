@@ -4,11 +4,11 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     10th August 2009
+ * Updated:     12th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       45
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   2
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,6 +69,9 @@
 #  include <comstl/error/exceptions.hpp>
 # endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

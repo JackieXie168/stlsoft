@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  4th April 2010
+; Updated:  7th June 2010
 
 ============================================================================
 
@@ -24,11 +24,13 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     Bjorn Karlsson
     Brad Cox
     Carlos Santander Bernal
+    Carston Schmidt
     chenchang
     Chris Newcombe
     Christian Roessel
     Christopher Diggins
     Cláudio Albuquerque
+    Colin Gravell
     Dave Brooks
     David Wang
     Diego Chanoux

@@ -4,11 +4,11 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     10th August 2009
+ * Updated:     29th April 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  4
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      202
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     4
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      203
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,9 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_TYPES
+# include <winstl/synch/atomic_types.h>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_TYPES */
 #ifdef __cplusplus
 # ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX
 #  include <winstl/synch/spin_mutex.hpp>
@@ -210,18 +213,6 @@ namespace winstl_project
 #  endif /* __cplusplus */
 # endif /* STSLSOFT_INLINE_ASM_SUPPORTED */
 #endif /* declaration / definition */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Typedefs
- */
-
-#if defined(WINSTL_OS_IS_WIN64)
-typedef ws_sint64_t     atomic_int_t;
-#elif defined(WINSTL_OS_IS_WIN32)
-typedef ws_sint32_t     atomic_int_t;
-#else /* ? arch */
-# error Not valid for operating systems other than Win32 and Win64
-#endif /* Win32 || Win64 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Atomic function declarations

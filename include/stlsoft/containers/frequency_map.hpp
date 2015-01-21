@@ -4,11 +4,11 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     10th August 2009
+ * Updated:     6th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     22
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ template<   ss_typename_param_k T
 class frequency_map
     : public stl_collection_tag
 {
-private: /// Member Types
+private: // Member Types
     typedef stlsoft_ns_qual_std(map)<T, N>                  map_type_;
 public:
     /// This type
@@ -138,14 +138,14 @@ public:
     /// The boolean type
     typedef ss_bool_t                                       bool_type;
 
-public: /// Construction
+public: // Construction
     /// Creates an instance of the map
     frequency_map()
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<N>::value);
     }
 
-public: /// Modifiers
+public: // Modifiers
     /// Pushes an entry onto the map
     ///
     /// If the entry already exists in the map, its count will be increased
@@ -206,7 +206,7 @@ public: /// Modifiers
         std_swap(m_map, rhs.m_map);
     }
 
-public: /// Search
+public: // Search
     /// Returns an iterator for the entry representing the given key, or
     /// <code>end()</code> if no such entry exists.
     const_iterator find(key_type const& key) const
@@ -214,7 +214,7 @@ public: /// Search
         return m_map.find(key);
     }
 
-public: /// Element Access
+public: // Element Access
     /// Returns the count associated with the entry representing the given
     /// key, or 0 if no such entry exists.
     count_type operator [](key_type const& key) const
@@ -231,7 +231,7 @@ public: /// Element Access
         return (m_map.end() != it) ? (*it).second : 0;
     }
 
-public: /// Size
+public: // Size
     /// Indicates whether the map is empty
     bool_type empty() const
     {
@@ -247,7 +247,7 @@ public: /// Size
         return m_map.size();
     }
 
-public: /// Iteration
+public: // Iteration
     /// A non-mutating (const) iterator representing the start of the sequence
     const_iterator begin() const
     {
@@ -259,7 +259,7 @@ public: /// Iteration
         return m_map.end();
     }
 
-private: /// Member Variables
+private: // Member Variables
     map_type_   m_map;
 };
 

@@ -4,11 +4,11 @@
  * Purpose:     COM memory functions.
  *
  * Created:     20th December 2003
- * Updated:     10th August 2009
+ * Updated:     26th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MAJOR     2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     1
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      32
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,6 +143,9 @@ inline unsigned long& transfer_resource(unsigned long& r, unsigned long v)      
 inline float& transfer_resource(float& r, float v)                              { return ((r = v), r); }
 inline double& transfer_resource(double& r, double v)                           { return ((r = v), r); }
 inline long double& transfer_resource(long double& r, long double v)            { return ((r = v), r); }
+
+
+inline bool& transfer_resource(bool& r, VARIANT_BOOL v)                         { return ((r = VARIANT_FALSE != v), r); }
 
 template<   ss_typename_param_k R
         ,   ss_typename_param_k V

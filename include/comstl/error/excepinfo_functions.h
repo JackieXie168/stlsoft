@@ -4,11 +4,11 @@
  * Purpose:     EXCEPINFO functions.
  *
  * Created:     11th August 2007
- * Updated:     10th August 2009
+ * Updated:     27th April 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MINOR    0
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     3
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 3
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS
-# include <comstl/string/bstr_functions.h>
+# include <comstl/string/BSTR_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////

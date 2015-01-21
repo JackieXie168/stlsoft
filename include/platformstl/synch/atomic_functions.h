@@ -4,11 +4,11 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     10th August 2009
+ * Updated:     7th June 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,14 +44,14 @@
  *   (\ref group__library__synch "Synchronisation" Library).
  */
 
-#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS
-#define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS
+#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS
+#define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        26
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     3
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,9 @@
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL
 # include <platformstl/platformstl.h>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
+#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES
+# include <platformstl/synch/atomic_types.h>
+#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_ATOMIC_TYPES */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
@@ -150,11 +153,17 @@ namespace platformstl_project
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 # if defined(PLATFORMSTL_OS_IS_UNIX)
 
+#  ifndef PLATFORSL_DEFINED_platform_stl_
+#   define PLATFORSL_DEFINED_platform_stl_
         namespace platform_stl_ =   ::unixstl;
+#  endif /* !PLATFORSL_DEFINED_platform_stl_ */
 
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
+#  ifndef PLATFORSL_DEFINED_platform_stl_
+#   define PLATFORSL_DEFINED_platform_stl_
         namespace platform_stl_ =   ::winstl;
+#  endif /* !PLATFORSL_DEFINED_platform_stl_ */
 
 # else /* ? operating system */
 #  error Operating system not discriminated
@@ -168,8 +177,6 @@ namespace platformstl_project
      (   defined(PLATFORMSTL_OS_IS_WINDOWS) && \
          defined(_WINSTL_NO_NAMESPACE))
  /* Source atomic functions are defined within a namespace, either unixstl or winstl. */
-
-    using atomic_int_t;
 
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
 
@@ -270,8 +277,6 @@ namespace platformstl_project
 #  endif /* operating system */
 # else /* ? global */
  /* Source atomic functions are defined within the global namespace. */
-
-    using implementation::platform_stl_::atomic_int_t;
 
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
 
@@ -387,6 +392,6 @@ namespace platformstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS */
+#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
