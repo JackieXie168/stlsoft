@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  28th December 2008
+; Updated:  1st January 2009
 
 ============================================================================
 
@@ -16,6 +16,28 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.65 (1st January 2009)
+
+Summary:
+========
+
+ * "Safe String" library compatibility changes
+
+Changes:
+========
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/filesystem_traits.hpp:
+    - removal of dependency of str(n)cpy()/wcs(n)cpy(), which causes VC++ 8+ to carp about "safety"
+    - removal of dependency of strcpy()/wcscpy(), which causes VC++ 8+ to carp about "safety"
+
+ ~ include/winstl/synch/process_mutex.hpp:
+    ~ trivial documentation modification
 
 ============================================================================
 
