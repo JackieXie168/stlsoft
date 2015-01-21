@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/exceptions.hpp
+ * File:        stlsoft/error/project_exception.hpp
  *
- * Purpose:     Obsolete header for common exception classes.
+ * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
  * Updated:     13th April 2008
@@ -39,21 +39,30 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/error/exceptions.hpp
+/** \file stlsoft/error/project_exception.hpp
  *
- * \brief [C++ only] Obsolete header for common exception classes.
+ * \brief [C++ only] Definition of the stlsoft::project_exception root
+ *   exception class
  *   (\ref group__library__error "Error" Library).
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
-#define STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION
+#define STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MAJOR     5
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      49
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION_MAJOR      5
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION_MINOR      0
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION_REVISION   1
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -62,18 +71,75 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_OS_EXCEPTION
-# include <stlsoft/error/os_exception.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_OS_EXCEPTION */
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION
-# include <stlsoft/error/project_exception.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION */
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_THROW_POLICIES
-# include <stlsoft/error/throw_policies.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_THROW_POLICIES */
+
+#ifndef STLSOFT_INCL_EXCEPTION
+# define STLSOFT_INCL_EXCEPTION
+# include <exception>
+#endif /* !STLSOFT_INCL_EXCEPTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifndef _STLSOFT_NO_NAMESPACE
+namespace stlsoft
+{
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Classes
+ */
+
+/** \brief Root exception class for sub-project platform-specific
+ *    exceptions.
+ *
+ * \ingroup group__library__error
+ *
+ */
+class project_exception
+#if defined(STLSOFT_COMPILER_IS_DMC)
+    : public std::exception
+#else /* ? compiler */
+    : public stlsoft_ns_qual_std(exception)
+#endif /* compiler */
+{
+/// \name Types
+/// @{
+public:
+    /// The type of the current instantiation
+    typedef project_exception               class_type;
+    /// The parent type
+#if defined(STLSOFT_COMPILER_IS_DMC)
+    typedef std::exception                  parent_class_type;
+#else /* ? compiler */
+    typedef stlsoft_ns_qual_std(exception)  parent_class_type;
+#endif /* compiler */
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    /// Default constructor
+    project_exception()
+    {}
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    /// Returns a human-readable string describing the exception condition
+    virtual char const* what() const stlsoft_throw_0() = 0;
+/// @}
+};
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
+#ifndef _STLSOFT_NO_NAMESPACE
+} // namespace stlsoft
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
