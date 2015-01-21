@@ -6,11 +6,11 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     22nd November 2009
+ * Updated:     19th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    21
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 8
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     395
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 9
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     396
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -251,13 +251,14 @@
 # define _STLSOFT_VER_1_9_85    0x010955ff  /*!< Version 1.9.85 (16th June 2009) */
 # define _STLSOFT_VER_1_9_86    0x010956ff  /*!< Version 1.9.86 (21st July 2009) */
 # define _STLSOFT_VER_1_9_87    0x010957ff  /*!< Version 1.9.87 (10th August 2009) */
-# define _STLSOFT_VER_1_9_88    0x010958ff  /*!< Version 1.9.88 (22nd November 2009) */
+# define _STLSOFT_VER_1_9_88    0x010958ff  /*!< Version 1.9.88 (12th January 2010) */
+# define _STLSOFT_VER_1_9_89    0x010959ff  /*!< Version 1.9.89 (19th January 2010) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   88
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_88
+#define _STLSOFT_VER_REVISION   89
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_89
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros

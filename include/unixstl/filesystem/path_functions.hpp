@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     13th June 2006
- * Updated:     10th August 2009
+ * Updated:     12th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     10
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ namespace unixstl_project
  */
 
 template <ss_typename_param_k C>
-us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C *buffer, us_size_t cchBuffer)
+us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C* buffer, us_size_t cchBuffer)
 {
     typedef C                       char_t;
     typedef filesystem_traits<C>    traits_t;
@@ -114,15 +114,16 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C *buffer, us_size
     if(NULL != buffer)
     {
         basic_path<char_t>  p(path, pathLen);
-        char_t const        *file_ptr   =   p.get_file();
-        char_t const        *path_ptr   =   p.c_str();
+        char_t const*               file_ptr        =   p.get_file();
+        char_t const*               path_ptr        =   p.c_str();
         const us_size_t     fileLen     =   p.size() - (file_ptr - path_ptr);
 
         if(cchBuffer >= pathLen)
         {
             // Room for all
 
-            traits_t::str_n_copy(buffer, path_ptr, cchBuffer);
+            traits_t::char_copy(buffer, path_ptr, cchBuffer);
+            buffer[cchBuffer] = '\0';
 
             cchBuffer = pathLen;
         }
@@ -145,7 +146,7 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C *buffer, us_size
                     {
                         // 1. UNC
 
-                        char_t const    *p1 =   traits_t::str_chr(path_ptr + 2, '\\');
+                        char_t const* p1 = traits_t::str_chr(path_ptr + 2, '\\');
 
                         rootLen = 1 + static_cast<us_size_t>(p1 - path_ptr);
                     }
@@ -180,7 +181,8 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C *buffer, us_size
             {
                 // File (name + ext) only
 
-                traits_t::str_n_copy(buffer, file_ptr, cchBuffer);
+                traits_t::char_copy(buffer, path_ptr, cchBuffer);
+                buffer[cchBuffer] = '\0';
 
                 if(cchBuffer > fileLen)
                 {
@@ -193,11 +195,12 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C *buffer, us_size
                 us_size_t   rightLen    =   1 + fileLen;
                 us_size_t   leftLen     =   cchBuffer - (3 + rightLen);
 
-                traits_t::str_n_copy(buffer, path_ptr, leftLen);
+                traits_t::char_copy(buffer, path_ptr, leftLen);
                 buffer[leftLen + 0] = '.';
                 buffer[leftLen + 1] = '.';
                 buffer[leftLen + 2] = '.';
-                traits_t::str_n_copy(buffer + leftLen + 3, file_ptr - 1, rightLen);
+                traits_t::char_copy(buffer + leftLen + 3, file_ptr - 1, rightLen);
+                (buffer + leftLen + 3)[rightLen] = '\0';
             }
         }
     }
@@ -207,20 +210,20 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C *buffer, us_size
 
 
 template<ss_typename_param_k S>
-us_size_t path_squeeze_impl2(S const& path, us_char_a_t *buffer, us_size_t cchBuffer)
+us_size_t path_squeeze_impl2(S const& path, us_char_a_t* buffer, us_size_t cchBuffer)
 {
     return path_squeeze_impl(stlsoft_ns_qual(c_str_ptr_a)(path), stlsoft_ns_qual(c_str_len)(path), buffer, cchBuffer);
 }
 
 template<ss_typename_param_k S>
-us_size_t path_squeeze_impl2(S const& path, us_char_w_t *buffer, us_size_t cchBuffer)
+us_size_t path_squeeze_impl2(S const& path, us_char_w_t* buffer, us_size_t cchBuffer)
 {
     return path_squeeze_impl(stlsoft_ns_qual(c_str_ptr_w)(path), stlsoft_ns_qual(c_str_len)(path), buffer, cchBuffer);
 }
 
 #if 0
 template <ss_typename_param_k C>
-us_size_t path_squeeze(C const* path, C *buffer, us_size_t cchBuffer)
+us_size_t path_squeeze(C const* path, C* buffer, us_size_t cchBuffer)
 {
     typedef filesystem_traits<C>    traits_t;
 
@@ -231,7 +234,7 @@ us_size_t path_squeeze(C const* path, C *buffer, us_size_t cchBuffer)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-us_size_t path_squeeze(S const& path, C *buffer, us_size_t cchBuffer)
+us_size_t path_squeeze(S const& path, C* buffer, us_size_t cchBuffer)
 {
     return path_squeeze_impl2(path, buffer, cchBuffer);
 }

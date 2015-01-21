@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     6th June 2006
- * Updated:     5th January 2010
+ * Updated:     12th January 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       15
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,8 +116,8 @@ ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C* buffer, ws_size
     else if(0 != cchBuffer)
     {
         basic_path<char_t>  p(path, pathLen);
-        char_t const*		file_ptr   =   p.get_file();
-        char_t const*		path_ptr   =   p.c_str();
+        char_t const*       file_ptr   =   p.get_file();
+        char_t const*       path_ptr   =   p.c_str();
         const ws_size_t     fileLen     =   p.size() - (file_ptr - path_ptr);
 
         if(cchBuffer > pathLen)
