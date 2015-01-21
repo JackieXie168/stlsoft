@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -102,9 +102,9 @@ typedef stlsoft_ns_qual(basic_simple_string)<   TCHAR
                                             ,   winstl_ns_qual(processheap_allocator)<TCHAR>
                                             >       lvs_string_t;
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-#ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>        // for string access shims
-#endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
+# include <winstl/shims/access/string.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      205
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      206
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,9 +87,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>        // for iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>   // for c_str_data(), c_str_len()
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
@@ -496,8 +496,8 @@ public:
  * \htmlonly
  * <pre>
  *
- * #include &lt;stlsoft/<b>string_tokeniser</b>.hpp&gt;
- * #include &lt;winstl/string_access.hpp&gt;
+ * #include &lt;<b>stlsoft/string/string_tokeniser</b>.hpp&gt;
+ * #include &lt;winstl/shims/access/string.hpp&gt;
  *
  * #include &lt;iostream&gt;
  * #include &lt;iterator&gt;

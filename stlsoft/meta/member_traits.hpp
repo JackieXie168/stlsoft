@@ -5,7 +5,7 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     7th July 2006
+ * Updated:     15th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       0
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    2
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        29
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    1
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,13 +80,18 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 
 #ifndef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
 # error This file is not compatible with compilers that do not support member type detection
 #endif /* !STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
+
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_DETECTORS
+# include <stlsoft/meta/detectors.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_DETECTORS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

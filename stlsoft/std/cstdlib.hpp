@@ -4,7 +4,7 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      4
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      5
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       16
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STD_HPP_CBASE_
 # include <stlsoft/std/cbase_.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STD_HPP_CBASE_ */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////

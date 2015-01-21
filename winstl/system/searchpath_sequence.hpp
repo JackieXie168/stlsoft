@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    0
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     78
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    1
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 1
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -333,11 +333,11 @@ private:
     {
         ws_size_t   cch =   0;
 
-        cch += 1 + traits_type::str_len(get_application_directory());       // Application directory
-        cch += 1 + traits_type::get_current_directory(0, NULL);             // Current directory
-        cch += 1 + traits_type::str_len(get_system_directory());            // System directory
-        cch += 1 + traits_type::str_len(get_system16_directory());          // 16-bit System directory
-        cch += 1 + traits_type::str_len(get_windows_directory());           // Windows directory
+        cch += 1 + traits_type::str_len(get_application_directory());               // Application directory
+        cch += 1 + traits_type::get_current_directory(static_cast<char*>(NULL), 0); // Current directory
+        cch += 1 + traits_type::str_len(get_system_directory());                    // System directory
+        cch += 1 + traits_type::str_len(get_system16_directory());                  // 16-bit System directory
+        cch += 1 + traits_type::str_len(get_windows_directory());                   // Windows directory
         cch += 1 + traits_type::get_environment_variable(_disgusting_hack("PATH", L"PATH"), NULL, 0);  // PATH
 
         return cch;

@@ -4,7 +4,7 @@
  * Purpose:     Pre-processor abilities for the meta library.
  *
  * Created:     5th March 2006
- * Updated:     2nd July 2006
+ * Updated:     15th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    0
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 2
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     6
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    1
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 1
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,6 +68,9 @@
  */
 
 /** \def STLSOFT_META_HAS_IS_SAME_TYPE
+ *
+ * \ingroup group__library__meta
+ *
  * \brief If defined, this indicates that the <code>stlsoft::is_same_type</code>
  * is supported <code>and stlsoft/meta/is_same_type.hpp</code> can be included.
  */
@@ -89,6 +92,9 @@
 
 
 /** \def STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
+ *
+ * \ingroup group__library__meta
+ *
  * \brief If defined, this indicates that the <code>stlsoft::select_first_type_if</code>
  * is supported <code>and stlsoft/meta/select_first_type_if.hpp</code> can be included.
  */
@@ -107,6 +113,36 @@
 #  define STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
 # endif /* compiler */
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
+
+/** \def STLSOFT_META_HAS_MEMBER_TYPE_DETECTION
+ *
+ * \ingroup group__library__meta
+ *
+ * \brief If defined, this indicates that the member type detection is
+ *   supported.
+ */
+
+#ifdef STLSOFT_META_HAS_MEMBER_TYPE_DETECTION
+# undef STLSOFT_META_HAS_MEMBER_TYPE_DETECTION
+#endif /* STLSOFT_META_HAS_MEMBER_TYPE_DETECTION */
+
+#ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
+# undef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
+#endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
+
+#if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    (   !defined(STLSOFT_COMPILER_IS_DMC) || \
+        __DMC__ >= 0x0845) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER >= 1310) && \
+    !defined(STLSOFT_COMPILER_IS_VECTORC) && \
+    !defined(STLSOFT_COMPILER_IS_WATCOM)
+
+# define STLSOFT_META_HAS_MEMBER_TYPE_DETECTION
+# define STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
+
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

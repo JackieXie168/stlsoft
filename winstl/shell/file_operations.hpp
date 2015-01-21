@@ -4,7 +4,7 @@
  * Purpose:     Shell file operations.
  *
  * Created:     12th December 1996
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -73,9 +73,9 @@
 //#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 //# include <stlsoft/string_access.hpp>
 //#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-//#ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-//# include <winstl/string_access.hpp>      // for string access shims
-//#endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+//#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
+//# include <winstl/shims/access/string.hpp>
+//#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <winstl/winstl.h>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */

@@ -4,7 +4,7 @@
  * Purpose:     Contains the c_str_ptr_insert_iterator template class and c_str_ptr_inserter creator function.
  *
  * Created:     12th October 2004
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Thanks to:   Pablo Aguilar for spotting missing inclusions.
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MINOR       3
+# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MINOR       4
 # define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_EDIT        18
+# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */

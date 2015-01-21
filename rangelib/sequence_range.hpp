@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     7th July 2006
+ * Updated:     15th July 2006
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    11
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     53
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,18 +81,18 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_DIFFERENCE_TYPE
-#  include <stlsoft/typefixer/difference_type.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_DIFFERENCE_TYPE */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE
-#  include <stlsoft/typefixer/reference.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR
-#  include <stlsoft/typefixer/iterator.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER
-#  include <stlsoft/typefixer/pointer.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_DIFFERENCE_TYPE
+#  include <stlsoft/meta/typefixer/difference_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_DIFFERENCE_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE
+#  include <stlsoft/meta/typefixer/reference.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_ITERATOR
+#  include <stlsoft/meta/typefixer/iterator.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_ITERATOR */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER
+#  include <stlsoft/meta/typefixer/pointer.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER */
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
 #  include <stlsoft/meta/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */

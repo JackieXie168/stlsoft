@@ -4,7 +4,7 @@
  * Purpose:     Window icon scoping class.
  *
  * Created:     30th June 1999
- * Updated:     7th July 2006
+ * Updated:     12th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MINOR      2
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       42
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
+#ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
+# include <winstl/shims/attribute/get_hwnd.hpp>
+#endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 #ifndef WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS
 # include <winstl/window_functions.h>   // for set_window_icon()
 #endif /* !WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS */

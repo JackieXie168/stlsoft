@@ -4,7 +4,7 @@
  * Purpose:     File-system functionals.
  *
  * Created:     19th January 2002
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MAJOR       3
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       2
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        23
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef INETSTL_INCL_INETSTL_H_INETSTL
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS
 # include <inetstl/filesystem_traits.hpp>
 #endif /* !INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS */

@@ -5,7 +5,7 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     7th July 2006
+ * Updated:     15th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MAJOR     4
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     3
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  6
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      93
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     4
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  1
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,18 +77,18 @@ STLSOFT_COMPILER_IS_WATCOM:
 #include <iterator>    // for std::iterator, std::reverse_iterator, std::reverse_bidirectional_iterator
 
 #ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED_XXXX
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER
-#  include <stlsoft/typefixer/pointer.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER_TYPE
-#  include <stlsoft/typefixer/pointer_type.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER_TYPE */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE
-#  include <stlsoft/typefixer/reference.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE_TYPE
-#  include <stlsoft/typefixer/reference_type.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER
+#  include <stlsoft/meta/typefixer/pointer.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE
+#  include <stlsoft/meta/typefixer/pointer_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE
+#  include <stlsoft/meta/typefixer/reference.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE
+#  include <stlsoft/meta/typefixer/reference_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,14 +1,10 @@
-#ifndef DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL
-# include <dotnetstl/dotnetstl.h>
-#endif /* !DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL */
+#include <stlsoft/stlsoft.h>
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include dotnetstl/dispose_functions.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef DOTNETSTL_INCL_DOTNETSTL_HPP_DISPOSE_FUNCTIONS
-# include <dotnetstl/dispose_functions.hpp>
-#endif /* !DOTNETSTL_INCL_DOTNETSTL_HPP_DISPOSE_FUNCTIONS */
+#include <dotnetstl/dispose_functions.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

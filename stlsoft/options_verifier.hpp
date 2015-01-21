@@ -4,7 +4,7 @@
  * Purpose:     Options verification.
  *
  * Created:     9th November 2004
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MAJOR     1
-# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MINOR     4
+# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MINOR     5
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      30
+# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,9 +79,9 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
     _MSC_VER == 1300
 # pragma warning("Inclusion of this header can lead to ambiguities with the sequence operator (comma) with Visual C++ 7.0")
 #endif /* compiler */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #include <exception>                    // for uncaught_exception
 #include <stdexcept>                    // for std::runtime_error
 

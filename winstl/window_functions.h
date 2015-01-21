@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     18th June 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MAJOR     3
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      50
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MINOR     4
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -327,7 +327,7 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, int iconI
 
 #if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
 /* declare the template function */
-template <int i>
+template <int N>
 inline HWND FindFirstChildById_N(HWND hwndParent, int id);
 # endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 */
 
@@ -337,7 +337,7 @@ inline HWND FindFirstChildById(HWND hwndParent, int id)
     return FindFirstChildById_N<1>(hwndParent, id);
 }
 
-template <int i>
+template <int N>
 inline HWND FindFirstChildById_N(HWND hwndParent, int id)
 # endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 */
 {

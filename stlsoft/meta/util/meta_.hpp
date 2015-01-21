@@ -4,7 +4,7 @@
  * Purpose:     Basic meta programming constructs.
  *
  * Created:     19th November 1998
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MAJOR      4
-# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MINOR      0
+# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MINOR      1
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__REVISION   1
-# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       121
+# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,6 +110,10 @@ namespace stlsoft
  * Typedefs and basic support types
  */
 
+#if (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER != 1200) || \
+    defined(STLSOFT_META_ALLOW_INT_TO_TYPE)
+
 /** \brief Converts compile time constants to type.
  *
  * \ingroup group__library__meta
@@ -117,6 +121,8 @@ namespace stlsoft
 template <int N>
 struct int_to_type
 {};
+
+#endif /* _MSC_VER == 1200 */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

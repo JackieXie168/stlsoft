@@ -4,7 +4,7 @@
  * Purpose:     Window messaging function objects and predicates.
  *
  * Created:     19th January 2001
- * Updated:     7th July 2006
+ * Updated:     12th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MINOR    1
-# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     28
+# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>  // for get_hwnd()
-#endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
+#ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
+# include <winstl/shims/attribute/get_hwnd.hpp>
+#endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 #ifndef _WINSTL_WINDOW_FUNCTIONALS_NO_STD
 # include <functional>
 #else /* ? _WINSTL_WINDOW_FUNCTIONALS_NO_STD */

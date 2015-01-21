@@ -4,7 +4,7 @@
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     18th June 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        40
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       1
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    1
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 # include <winstl/message_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_H_MESSAGE_FUNCTIONS */
 #ifdef __cplusplus
-# ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-#  include <stlsoft/string_access.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+# ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+#  include <stlsoft/shims/access/string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////

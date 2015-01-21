@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     3
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  1
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      93
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  2
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp \brief [C++ only; requires ATL library] The root header for the \ref group__project__atlstl "ATLSTL" project. */
@@ -105,7 +105,7 @@
 
 #define _ATLSTL_VER_MAJOR       1
 #define _ATLSTL_VER_MINOR       5
-#define _ATLSTL_VER_REVISION    1
+#define _ATLSTL_VER_REVISION    2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _ATLSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _ATLSTL_VER_1_1_1      0x00010101  /*!< Version 1.1.1 */
@@ -123,9 +123,10 @@
 # define _ATLSTL_VER_1_4_3      0x00010403  /*!< Version 1.4.3 */
 # define _ATLSTL_VER_1_4_4      0x00010404  /*!< Version 1.4.4 */
 # define _ATLSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 */
+# define _ATLSTL_VER_1_5_2      0x00010502  /*!< Version 1.5.2 */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _ATLSTL_VER             _ATLSTL_VER_1_5_1
+#define _ATLSTL_VER             _ATLSTL_VER_1_5_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -157,10 +158,10 @@ extern CComModule _Module;
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_5_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_5_1
-# error This version of the ATLSTL libraries requires STLSoft version 1.5.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_5_1 */
+#if !defined(_STLSOFT_VER_1_9_1) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1
+# error This version of the ATLSTL libraries requires STLSoft version 1.9.1 or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility

@@ -1,7 +1,12 @@
-/** \file winstl_resource_string.h Redirects inclusion to winstl/string/resource_string.hpp. */
-#ifndef WINSTL_INCL_H_WINSTL_RESOURCE_STRING
-#define WINSTL_INCL_H_WINSTL_RESOURCE_STRING
+#include <stlsoft/stlsoft.h>
+
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/string/resource_string.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #include <winstl/string/resource_string.hpp>
 
-#endif /* !WINSTL_INCL_H_WINSTL_RESOURCE_STRING */
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/

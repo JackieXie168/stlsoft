@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     18th June 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,11 +47,14 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        149
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    5
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file winstl/winstl.h \brief [C, C++] The root header for the \ref group__project__winstl "WinSTL" project. */
+/** \file winstl/winstl.h
+ *
+ * \brief [C, C++] The root header for the \ref group__project__winstl "WinSTL" project.
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * WinSTL version
@@ -105,7 +108,7 @@
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       8
-#define _WINSTL_VER_REVISION    1
+#define _WINSTL_VER_REVISION    2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WINSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _WINSTL_VER_1_0_2      0x00010002  /*!< Version 1.0.2 */
@@ -128,9 +131,10 @@
 # define _WINSTL_VER_1_6_5      0x00010605  /*!< Version 1.6.5 */
 # define _WINSTL_VER_1_7_1      0x00010701  /*!< Version 1.7.1 */
 # define _WINSTL_VER_1_8_1      0x00010801  /*!< Version 1.8.1 */
+# define _WINSTL_VER_1_8_2      0x00010802  /*!< Version 1.8.2 */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _WINSTL_VER             _WINSTL_VER_1_8_1
+#define _WINSTL_VER             _WINSTL_VER_1_8_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

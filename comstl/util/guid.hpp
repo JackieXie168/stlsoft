@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     9th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,9 +61,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_HPP_COMSTL_STRING_ACCESS
-# include <comstl/string_access.hpp>
-#endif /* !COMSTL_INCL_HPP_COMSTL_STRING_ACCESS */
+#ifndef COMSTL_INCL_COMSTL_SHIMS_ACCESS_HPP_STRING
+# include <comstl/shims/access/string.hpp>
+#endif /* !COMSTL_INCL_COMSTL_SHIMS_ACCESS_HPP_STRING */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef COMSTL_INCL_COMSTL_HPP_EXCEPTIONS
 #  include <comstl/exceptions.hpp>
