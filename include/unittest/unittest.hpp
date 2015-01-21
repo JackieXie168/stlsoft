@@ -5,11 +5,11 @@
  *              unit-test framework.
  *
  * Created:     26th February 2004
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MAJOR    4
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MINOR    0
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_REVISION 1
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     29
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ namespace unittest
 
 /** \brief Interface for the unit test reporter
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__unittest
  */
 struct unittest_reporter
 {
@@ -128,7 +128,7 @@ typedef ss_bool_t (*unittest_function)(unittest_reporter *);
 
 /** \brief Interface for the unit test host
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__unittest
  */
 struct unittest_host
 {
@@ -145,7 +145,7 @@ public:
 /** \brief This function must be defined by the test program, and should return
  * an instance of a class implementing the unittest_host interface (protocol)
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__unittest
  *
  * \note Because the STLSoft components use a scoping initialiser (Schwarz
  * counter) it is important that the implementing object is a heap instance, to
@@ -161,7 +161,7 @@ extern "C" unittest_host *get_unittest_host(void);
 /** \brief This class is used to automatically register the unit-tests for a
  * given compilation unit with the unit test host.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__unittest
  *
  * To use it you simply declare an instance of it, inside a
  */
@@ -197,7 +197,7 @@ private:
  * process of registering the test information, and calling
  * \c start() and \c stop() on the reporter.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__unittest
  *
  */
 class unittest_initialiser

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     3rd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        54
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       8
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,12 +87,19 @@
  */
 
 /* bool */
-# if __option(bool)
-#  define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
-#  define STLSOFT_CF_NATIVE_BOOL_SUPPORT
-# else
+#if __option(bool)
+# define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#else
   /* Not defined */
-# endif /* __option(bool) */
+#endif /* __option(bool) */
+
+/* char (sign) */
+#if 0 /* Does not seem to work ?? */
+#if __option(chars_unsigned)
+# define STLSOFT_CF_CHAR_IS_UNSIGNED
+#endif /* _CHAR_UNSIGNED */
+#endif /* 0 */
 
 /* wchar_t */
 # if __option(wchar_type)

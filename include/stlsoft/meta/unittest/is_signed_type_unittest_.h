@@ -1,5 +1,5 @@
 
-// Updated: 3rd July 2006
+// Updated: 5th January 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE)
 # error This file cannot be directly included, and should only be included within stlsoft/meta/is_signed_type.hpp
@@ -88,7 +88,11 @@ namespace unittest
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 
+#ifdef STLSOFT_CF_CHAR_IS_UNSIGNED
 			STLSOFT_TEST_IS_SIGNED_TYPE(char, 0)
+#else /* ? STLSOFT_CF_CHAR_IS_UNSIGNED */
+			STLSOFT_TEST_IS_SIGNED_TYPE(char, 1)
+#endif /* STLSOFT_CF_CHAR_IS_UNSIGNED */
 			STLSOFT_TEST_IS_SIGNED_TYPE(wchar_t, 0)
 
 			STLSOFT_TEST_IS_SIGNED_TYPE(bool, 0)

@@ -4,11 +4,11 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     13th September 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    5
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     42
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@ namespace rangelib_project
 
 /** \brief Error policy class for integral_range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 struct invalid_integral_range_policy
 {
@@ -214,7 +214,7 @@ public:
 
 /** \brief This range class represents an integral range.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * It is categoried as a Notional Range
  *

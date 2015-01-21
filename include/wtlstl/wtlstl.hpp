@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 2
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     35
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp \brief [C++ only; requires WTL library] The root header for the \ref group__project__wtlstl "WTLSTL" project. */
@@ -240,7 +240,7 @@
 
 /** \brief Defines a runtime assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param _x Must be non-zero, or an assertion will be fired
  */
@@ -248,7 +248,7 @@
 
 /** \brief Defines a runtime assertion, with message
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param _x Must be non-zero, or an assertion will be fired
  * \param _m The literal character string message to be included in the assertion
@@ -257,7 +257,7 @@
 
 /** \brief Defines a compile-time assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param _x Must be non-zero, or compilation will fail
  */
@@ -372,7 +372,6 @@ namespace stlsoft
 /** \brief The WTLSTL namespace - \c wtlstl (aliased to \c stlsoft::wtlstl_project) - is
  * the namespace for the WTLSTL project.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
  */
 namespace wtlstl_project
 {

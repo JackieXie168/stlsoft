@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     29th December 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  2
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      31
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  3
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ void stream_insert(S &s, ACE_Time_Value const &t)
     const long          s   =   t.sec();
     const long          us  =   t.usec();
     struct tm   *const  tm  =   ACE_OS::localtime(&static_cast<time_t const&>(s));
-    size_t              len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
+    as_size_t           len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
 
     ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s1));
 
@@ -174,7 +174,7 @@ namespace acestl_time_access_string_util
         const long          s   =   t.sec();
         const long          us  =   t.usec();
         struct tm   *const  tm  =   ACE_OS::localtime(&static_cast<time_t const&>(s));
-        size_t              len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
+        as_size_t           len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
 
         ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s1));
 
@@ -306,39 +306,7 @@ inline S &operator <<(S &s, ACE_Time_Value const &t)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_acestl_time_string_access(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "ACESTL", "time_string_access", __FILE__);
-
-#if 0
-            typedef message_queue_sequence<as_char_a_t>    env_var_t;
-
-            env_var_t   path("PATH");
-
-            if(0 != strcmp(getenv("PATH"), path))
-            {
-                r->report("message_queue_sequence<as_char_a_t> failed ", __LINE__);
-                bSuccess = false;
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_acestl_time_string_access(test_acestl_time_string_access);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/time_value_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

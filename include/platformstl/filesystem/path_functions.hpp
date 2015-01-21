@@ -4,7 +4,7 @@
  * Purpose:     Path manipulation functions.
  *
  * Created:     12th June 2006
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ namespace platformstl_project
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline size_t path_squeeze(S const &path, C *buffer, size_t cchBuffer)
+inline stlsoft_ns_qual(ss_size_t) path_squeeze(S const &path, C *buffer, stlsoft_ns_qual(ss_size_t) cchBuffer)
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
     return unixstl_ns_qual(path_squeeze)(path, buffer, cchBuffer);

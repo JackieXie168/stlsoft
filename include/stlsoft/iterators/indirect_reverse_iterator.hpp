@@ -4,7 +4,7 @@
  * Purpose:     indirect_reverse_iterator class template.
  *
  * Created:     7th June 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MINOR      2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       24
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ template<   ss_typename_param_k I
 #endif /* compiler */
         ,   ss_typename_param_k R = T&
         ,   ss_typename_param_k P = T*
-        ,   ss_typename_param_k D = ptrdiff_t
+        ,   ss_typename_param_k D = ss_ptrdiff_t
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND) && \
     (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \

@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class using char-sets.
  *
  * Created:     17th October 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      19
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ public:
         return !equal_(delimiter, it);
     }
 
-    static size_t length(delimiter_type const &/* delimiter */)
+    static ss_size_t length(delimiter_type const &/* delimiter */)
     {
         return 1;
     }

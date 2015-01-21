@@ -5,7 +5,7 @@
  *              module filename.
  *
  * Created:     31st March 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MAJOR     4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MINOR     1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_REVISION  1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      69
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_REVISION  2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ public:
     typedef C                           char_type;
     typedef HINSTANCE                   argument_0_type;
     typedef processheap_allocator<C>    allocator_type;
-    typedef size_t                      size_type;
+    typedef ws_size_t                   size_type;
     typedef size_type                   (*pfn_type)(argument_0_type, char_type *, size_type);
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type

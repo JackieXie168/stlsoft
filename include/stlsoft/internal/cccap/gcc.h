@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     3rd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       58
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      8
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,6 +95,11 @@
 # define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
 # define STLSOFT_CF_NATIVE_BOOL_SUPPORT
 #endif /* __cplusplus */
+
+/* char (sign) */
+#ifdef __CHAR_UNSIGNED__
+# define STLSOFT_CF_CHAR_IS_UNSIGNED
+#endif /* __CHAR_UNSIGNED__ */
 
 /* wchar_t */
 

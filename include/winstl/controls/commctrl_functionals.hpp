@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to common controls.
  *
  * Created:     8th October 2002
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -342,35 +342,7 @@ private:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_winstl_commctrl_functionals(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "WinSTL", "commctrl_functionals", __FILE__);
-
-    #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_winstl_commctrl_functionals(test_winstl_commctrl_functionals);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/commctrl_functionals_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

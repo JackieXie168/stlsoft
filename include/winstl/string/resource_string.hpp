@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 1
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     74
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 2
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -306,7 +306,7 @@ private:
                         }
 
                         const LPCWSTR   ptr =   res_str + 1;
-                        const size_t    cch =   static_cast<size_t>(*res_str);
+                        const ws_size_t cch =   static_cast<ws_size_t>(*res_str);
 
                         if(cch < cchBuffer)
                         {

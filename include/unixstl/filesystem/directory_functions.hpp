@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        33
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -308,7 +308,7 @@ inline us_int_t remove_directory_recurse_impl(C const *dir, us_int_t (*pfn)(void
 
                         file_path_buffer_t          sz;
                         DIR                         *hSrch;
-                        size_t                      n;
+                        us_size_t                   n;
 
                         traits_t::str_copy(&sz[0], dir);
                         traits_t::ensure_dir_end(&sz[0]);

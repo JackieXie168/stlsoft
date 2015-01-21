@@ -4,11 +4,11 @@
  * Purpose:     Explicit inheritance veneer class.
  *
  * Created:     13th January 2003
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR      0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION   2
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       34
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,39 +118,6 @@ protected:
         return *this;
     }
 };
-
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_stlsoft_explicit_inheritance_veneer(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "explicit_inheritance_veneer", __FILE__);
-
-#if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_explicit_inheritance_veneer(test_stlsoft_explicit_inheritance_veneer);
-    } // anonymous namespace
-
-} // namespace unittest
-
-#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

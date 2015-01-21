@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/util/must_init.hpp
  *
  * Purpose:     Simple class that .
  *
  * Created:     18th June 2006
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,12 +49,12 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -62,7 +62,11 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+#ifdef STLSOFT_UNITTEST
+# include <string>
+#endif /* STLSOFT_UNITTEST */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -71,16 +75,51 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Algorithms
  */
 
-/** \brief Class template that forces an instance of a (fundamental) type to
- *    be initialised.
+/* \brief Wraps a variable and forces its explicit initialisation by the
+ *   user.
+ *
+ * \param T The base type, e.g. \c int, \c std::wstring
  *
  * \ingroup group__library__utility
+ *
+ * <b>Problem:</b>
+ *
+\htmlonly
+<pre>
+  int             i1; // Not initialised. Compiler doesn't care!
+
+  int             res = 2 * i1; // Result is undefined
+</pre>
+\endhtmlonly
+ *
+ * <b>Solution:</b>
+ *
+\htmlonly
+<pre>
+  must_init&lt;int>  i1; // Not initialised. Compiler error
+
+  int             res = 2 * i1.get(); // Result is undefined
+</pre>
+\endhtmlonly
+ *
+ * The user is required to explicitly initialise <code>i1</code>:
+ *
+\htmlonly
+<pre>
+  must_init&lt;int>  i1(0); // Initialised. Everybody's happy
+
+  int             res = 2 * i1.get(); // Result is undefined
+</pre>
+\endhtmlonly
  */
-template <typename T>
+
+//STLSOFT_PRAGMA_PACK_PUSH(1)
+
+template <ss_typename_param_k T>
 class must_init
 {
 /// \name Member Types
@@ -90,6 +129,10 @@ public:
     typedef T               value_type;
     /// \brief The current instantiation of the type
     typedef must_init<T>    class_type;
+    /// The reference type
+    typedef T				&reference;
+    /// The non-mutating (const) reference type
+    typedef T const			&const_reference;
 /// @}
 
 /// \name Construction
@@ -116,6 +159,32 @@ public:
 /// \name Members
 /// @{
 public:
+    /// Provides non-mutating (const) access to the base type value
+    const_reference base_type_value() const
+    {
+        return value;
+    }
+    /// Provides mutating access to the base type value
+    reference       base_type_value()
+    {
+        return value;
+    }
+
+    /// Provides non-mutating (const) access to the base type value
+    const_reference get() const
+    {
+        return base_type_value();
+    }
+    /// Provides mutating access to the base type value
+    reference       get()
+    {
+        return base_type_value();
+    }
+/// @}
+
+/// \name Members
+/// @{
+public:
     /// \brief The underlying value
     ///
     ///  \remarks Since the purpose of must_init is to guard against a
@@ -129,7 +198,9 @@ public:
 /// @}
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//STLSOFT_PRAGMA_PACK_POP()
+
+////////////////////////////////////////////////////////////////////////////
 // Specialisations
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>bool</code>.
@@ -198,6 +269,22 @@ typedef must_init<long>                 long_init_t;
  */
 typedef must_init<unsigned long>        unsigned_long_init_t;
 
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+
+/** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>ss_sint64_t</code>.
+ *
+ * \ingroup group__library__utility
+ */
+typedef must_init<ss_sint64_t>          sint64_init_t;
+
+/** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>ss_uint64_t</code>.
+ *
+ * \ingroup group__library__utility
+ */
+typedef must_init<ss_uint64_t>          uint64_init_t;
+
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>float</code>.
  *
  * \ingroup group__library__utility
@@ -216,29 +303,872 @@ typedef must_init<double>               double_init_t;
  */
 typedef must_init<long double>          long_double_init_t;
 
-
+/* /////////////////////////////////////////////////////////////////////////
+ * Operators
+ */
 
 inline bool operator !(bool_init_t const &b)
 {
     return !b.value;
 }
 
+// Pre-increment
 
-////////////////////////////////////////////////////////////////////////////////
+template<   ss_typename_param_k T
+        >
+inline must_init<T> &operator ++(must_init<T> &v)
+{
+    ++v.base_type_value();
+
+    return v;
+}
+
+// Post-increment
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const operator ++(must_init<T> &v, int)
+{
+    must_init<T>  r(v);
+
+    v.base_type_value()++;
+
+    return r;
+}
+
+// Pre-decrement
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> &operator --(must_init<T> &v)
+{
+    --v.base_type_value();
+
+    return v;
+}
+
+// Post-decrement
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const operator --(must_init<T> &v, int)
+{
+    must_init<T>  r(v);
+
+    v.base_type_value()--;
+
+    return r;
+}
+
+// operator ==
+
+template<   ss_typename_param_k T
+        >
+inline ss_bool_t operator ==(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return lhs.base_type_value() == rhs.base_type_value();
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator ==(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator ==(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs.base_type_value() == rhs;
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator ==(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator ==(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs == rhs.base_type_value();
+}
+
+
+// operator !=
+
+template<   ss_typename_param_k T
+        >
+inline ss_bool_t operator !=(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return ! operator ==(lhs, rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator !=(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator !=(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return ! operator ==(lhs, rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator !=(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator !=(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return ! operator ==(lhs, rhs);
+}
+
+// operator <
+
+template<   ss_typename_param_k T
+        >
+inline ss_bool_t operator <(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return lhs.base_type_value() < rhs.base_type_value();
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator <(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator <(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs.base_type_value() < rhs;
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator <(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator <(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs < rhs.base_type_value();
+}
+
+// operator <=
+
+template<   ss_typename_param_k T
+        >
+inline ss_bool_t operator <=(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return lhs.base_type_value() <= rhs.base_type_value();
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator <=(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator <=(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs.base_type_value() <= rhs;
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator <=(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator <=(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs <= rhs.base_type_value();
+}
+
+// operator >
+
+template<   ss_typename_param_k T
+        >
+inline ss_bool_t operator >(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return lhs.base_type_value() > rhs.base_type_value();
+}
+
+
+#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
+# pragma message(_sscomp_fileline_message("This had to be changed to T + T2, so as to allow comparison between different integral types"))
+#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
+
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k T2
+        >
+inline ss_bool_t operator >(must_init<T> const &lhs, T2 const &rhs)
+{
+    return lhs.base_type_value() > rhs;
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator >(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator >(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs > rhs.base_type_value();
+}
+
+// operator >=
+
+template<   ss_typename_param_k T
+        >
+inline ss_bool_t operator >=(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return lhs.base_type_value() >= rhs.base_type_value();
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator >=(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator >=(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs.base_type_value() >= rhs;
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline ss_bool_t operator >=(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline ss_bool_t operator >=(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return lhs >= rhs.base_type_value();
+}
+
+// operator +
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator +(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() + rhs.base_type_value());
+}
+
+#if 0
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator +(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator +(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() + rhs);
+}
+#else /* ? 0 */
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k T2
+        >
+inline must_init<T> operator +(must_init<T> const &lhs, T2 const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() + rhs);
+}
+
+#endif /* 0 */
+
+#if 0
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator +(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator +(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs + rhs.base_type_value());
+}
+#else /* ? 0 */
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k T2
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator +(T2 const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator +(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs + rhs.base_type_value());
+}
+#endif /* 0 */
+
+// operator -
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator -(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() - rhs.base_type_value());
+}
+
+#if 0
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator -(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator -(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() - rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator -(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator -(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs - rhs.base_type_value());
+}
+
+#else /* ? 0 */
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k T2
+        >
+inline must_init<T> operator -(must_init<T> const &lhs, T2 const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() - rhs);
+}
+
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k T2
+        >
+inline must_init<T> operator -(T2 const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs - rhs.base_type_value());
+}
+
+#endif /* 0 */
+
+// operator *
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator *(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() * rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator *(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator *(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() * rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator *(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator *(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs * rhs.base_type_value());
+}
+
+// operator /
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator /(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() / rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator /(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator /(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() / rhs);
+}
+
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator /(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator /(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs / rhs.base_type_value());
+}
+
+// operator %
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator %(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() % rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator %(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator %(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() % rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator %(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator %(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs % rhs.base_type_value());
+}
+
+// operator ^
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator ^(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() ^ rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator ^(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator ^(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() ^ rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator ^(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator ^(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs ^ rhs.base_type_value());
+}
+
+// operator ~
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator ~(must_init<T> const &v)
+{
+    return must_init<T>(~v.base_type_value());
+}
+
+// operator <<
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator <<(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() << rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator <<(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator <<(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() << rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator <<(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator <<(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs << rhs.base_type_value());
+}
+
+// operator >>
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator >>(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() >> rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator >>(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator >>(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() >> rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator >>(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator >>(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs >> rhs.base_type_value());
+}
+
+// operator &
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator &(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() & rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator &(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator &(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() & rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator &(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator &(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs & rhs.base_type_value());
+}
+
+// operator |
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> operator |(must_init<T> const &lhs, must_init<T> const &rhs)
+{
+    return must_init<T>(lhs.base_type_value() | rhs.base_type_value());
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator |(must_init<T> const &lhs, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator |(must_init<T> const &lhs, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs.base_type_value() | rhs);
+}
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> operator |(ss_typename_type_k must_init<T>::value_type const &lhs, must_init<T> const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> operator |(T const &lhs, must_init<T> const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    return must_init<T>(lhs | rhs.base_type_value());
+}
+
+// operator +=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator +=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator +=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() += rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator +=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() += rhs.base_type_value();
+
+    return v;
+}
+
+// operator -=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator -=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator -=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() -= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator -=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() -= rhs.base_type_value();
+
+    return v;
+}
+
+// operator *=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator *=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator *=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() *= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator *=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() *= rhs.base_type_value();
+
+    return v;
+}
+
+// operator /=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator /=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator /=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() /= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator /=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() /= rhs.base_type_value();
+
+    return v;
+}
+
+// operator %=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator %=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator %=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() %= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator %=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() %= rhs.base_type_value();
+
+    return v;
+}
+
+// operator ^=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator ^=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator ^=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() ^= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator ^=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() ^= rhs.base_type_value();
+
+    return v;
+}
+
+// operator <<=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator <<=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator <<=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() <<= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator <<=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() <<= rhs.base_type_value();
+
+    return v;
+}
+
+// operator >>=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator >>=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator >>=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() >>= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator >>=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() >>= rhs.base_type_value();
+
+    return v;
+}
+
+// operator &=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator &=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator &=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() &= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator &=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() &= rhs.base_type_value();
+
+    return v;
+}
+
+// operator |=
+
+template<   ss_typename_param_k T
+        >
+#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+inline must_init<T> const &operator |=(must_init<T> &v, ss_typename_type_k must_init<T>::value_type const &rhs)
+#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+inline must_init<T> const &operator |=(must_init<T> &v, T const &rhs)
+#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+{
+    v.base_type_value() |= rhs;
+
+    return v;
+}
+
+template<   ss_typename_param_k T
+        >
+inline must_init<T> const &operator |=(must_init<T> &v, must_init<T> const &rhs)
+{
+    v.base_type_value() |= rhs.base_type_value();
+
+    return v;
+}
+
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/must_init_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MUST_INIT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     30th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       4
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    6
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        26
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ namespace rangelib_project
 
 /** \brief Traits class for determining the attributes of range-adapted associative container types
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template<   ss_typename_param_k S
         ,   bool                B_CONST
@@ -268,7 +268,7 @@ public:
 
 /** \brief This class adapts an STL associative instance into a Range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param S The associative class
  * \param T The associative range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type

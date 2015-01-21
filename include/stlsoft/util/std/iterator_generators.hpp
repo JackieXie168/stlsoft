@@ -4,11 +4,11 @@
  * Purpose:     Iterator generator classes, and helper macros.
  *
  * Created:     2nd January 2000
- * Updated:     30th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,9 +38,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/util/std/iterator_generators.hpp
-///
-/// Iterator generator classes, and helper macros.
+/** \file stlsoft/util/std/iterator_generators.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::reverse_iterator_generator
+ *   and stlsoft::const_reverse_iterator_generator iterator
+ *   \ref group__pattern__type_generator "generator" templates.
+ * (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 #define STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
@@ -49,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MINOR     1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_REVISION  5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      88
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

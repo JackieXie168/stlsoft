@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  2
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      84
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp \brief [C++ only; requires MFC library] The root header for the \ref group__project__mfcstl "MFCSTL" project. */
@@ -216,7 +216,7 @@
 
 /** \brief Defines a runtime assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
@@ -224,7 +224,7 @@
 
 /** \brief Defines a runtime assertion, with message
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
@@ -233,7 +233,7 @@
 
 /** \brief Defines a compile-time assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or compilation will fail
  */

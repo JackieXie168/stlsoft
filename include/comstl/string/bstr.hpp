@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     3rd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        42
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    2
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -222,19 +222,19 @@ inline bstr::const_pointer c_str_data_o(comstl_ns_qual(bstr) const &b)
  *
  * \ingroup group__concept__shim__string_access
  */
-inline size_t c_str_len(comstl_ns_qual(bstr) const &b)
+inline cs_size_t c_str_len(comstl_ns_qual(bstr) const &b)
 {
     return b.length();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline size_t c_str_len_w(comstl_ns_qual(bstr) const &b)
+inline cs_size_t c_str_len_w(comstl_ns_qual(bstr) const &b)
 {
     return b.length();
 }
 
-inline size_t c_str_len_o(comstl_ns_qual(bstr) const &b)
+inline cs_size_t c_str_len_o(comstl_ns_qual(bstr) const &b)
 {
     return b.length();
 }

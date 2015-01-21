@@ -4,7 +4,7 @@
  * Purpose:     Simple class that converts a relative path to an absolute one.
  *
  * Created:     20th December 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        60
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,7 +122,7 @@ public:
     typedef C                           char_type;
     typedef char_type const             *argument_0_type;
     typedef processheap_allocator<C>    allocator_type;
-    typedef size_t                      size_type;
+    typedef ws_size_t                   size_type;
     typedef size_type                   (*pfn_type)(argument_0_type, char_type *, size_type);
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type

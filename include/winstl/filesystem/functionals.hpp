@@ -4,7 +4,7 @@
  * Purpose:     File-system related functions and predicates.
  *
  * Created:     19th January 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      75
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -482,8 +482,8 @@ private:
         typedef filesystem_traits<char_type>            traits_t;
         typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
 
-        const size_t    cchDirectory    =   traits_t::str_len(directory);
-        const size_t    cchFile         =   traits_t::str_len(file);
+        const ws_size_t cchDirectory    =   traits_t::str_len(directory);
+        const ws_size_t cchFile         =   traits_t::str_len(file);
         buffer_t        path(1 + cchDirectory + 1 + cchFile + 1);
 
         traits_t::str_copy(&path[0], directory);

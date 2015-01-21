@@ -4,11 +4,11 @@
  * Purpose:     Raw conversion veneer class.
  *
  * Created:     30th July 2002
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_REVISION   2
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       43
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ namespace stlsoft
 // class invalid_conversion
 /** \brief Prevents any conversion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__obsolete
  *
  * \param T The value type
  * \param C The conversion type
@@ -148,7 +148,7 @@ public:
 // class static_conversion
 /** \brief Implements conversion via C++'s <code>static_cast</code>
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__obsolete
  *
  * \param T The value type
  * \param C The conversion type
@@ -230,7 +230,7 @@ public:
 // class dynamic_conversion
 /** \brief Implements conversion via C++'s <code>dynamic_cast</code>
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__obsolete
  *
  * \param T The value type
  * \param C The conversion type
@@ -312,7 +312,7 @@ public:
 // class reinterpret_conversion
 /** \brief Implements conversion via C++'s <code>reinterpret_cast</code>
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__obsolete
  *
  * \param T The value type
  * \param C The conversion type
@@ -394,7 +394,7 @@ public:
 // class c_conversion
 /** \brief Implements conversion via C-style casts
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__obsolete
  *
  * \param T The value type
  * \param C The conversion type

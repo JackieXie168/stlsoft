@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     3rd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       8
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    2
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        61
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       9
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,6 +101,11 @@
 #else
  /* Not defined */
 #endif /* __BOOL_DEFINED */
+
+/* char (sign) */
+#ifdef _CHAR_UNSIGNED
+# define STLSOFT_CF_CHAR_IS_UNSIGNED
+#endif /* _CHAR_UNSIGNED */
 
 /* wchar_t */
 #if defined(_MSC_VER)

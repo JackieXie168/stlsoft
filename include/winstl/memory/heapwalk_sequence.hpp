@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        54
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -224,7 +224,7 @@ private:
 // class heapwalk_sequence_const_iterator
 /** \brief Iterator for the heapwalk_sequence class
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__memory
  *
  */
 class heapwalk_sequence_const_iterator

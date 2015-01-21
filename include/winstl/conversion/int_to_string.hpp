@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MAJOR      2
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      0
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   1
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       32
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   2
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -145,7 +145,7 @@ public:
     thread_mx_()
     {}
 
-    void *operator new(size_t , void *p)
+    void *operator new(ws_size_t , void *p)
     {
         return p;
     }
@@ -185,7 +185,7 @@ struct Slot
     // 5. Want a C++-exception free solution, so use the Win32-system
     //    out-of-memory exception, and not have to worry about any
     //    linkage pains.
-    void *operator new(size_t cb)
+    void *operator new(ws_size_t cb)
     {
         return ::HeapAlloc(::GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, cb);
     }

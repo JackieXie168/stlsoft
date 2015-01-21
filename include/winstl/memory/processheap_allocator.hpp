@@ -4,7 +4,7 @@
  * Purpose:     processheap_allocator class.
  *
  * Created:     25th February 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MINOR       1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_REVISION    1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        75
+# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_REVISION    2
+# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -208,7 +208,7 @@ public:
     typedef processheap_allocator<void>     class_type;
     typedef void                            *pointer;
     typedef void const                      *const_pointer;
-    typedef ptrdiff_t                       difference_type;
+    typedef ws_ptrdiff_t                    difference_type;
     typedef ws_size_t                       size_type;
 
 #ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT

@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     226
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     227
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1176,7 +1176,7 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::pop_ext()
 {
-    { for(size_t len = m_len; 0 != len; --len)
+    { for(ws_size_t len = m_len; 0 != len; --len)
     {
         char_type   *last = &m_buffer[len - 1];
 

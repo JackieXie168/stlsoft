@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        99
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -668,7 +668,7 @@ public:
 
             // ... 1. the only other double quote is at the end of the string, and ...
             if( NULL != closing &&
-                closing - fileName == static_cast<ptrdiff_t>(len - 1))
+                closing - fileName == static_cast<ws_ptrdiff_t>(len - 1))
             {
                 ws_dword_t  res = class_type::get_full_path_name(fileName + 1, cchBuffer, buffer, ppFile);
 
@@ -682,7 +682,7 @@ public:
 
                     // ... 3. the front-quote skipped converted string contains a single trailing quote
                     if( NULL != closing2 &&
-                        closing2 - buffer == static_cast<ptrdiff_t>(res - 1))
+                        closing2 - buffer == static_cast<ws_ptrdiff_t>(res - 1))
                     {
                         buffer[res-- - 1] = '\0';
 

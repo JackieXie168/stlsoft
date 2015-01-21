@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     4th January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +62,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR      5
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR      1
-# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION   3
-# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       48
+# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION   4
+# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -497,35 +497,7 @@ private:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_inetstl_searchspec_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "searchspec_sequence", __FILE__);
-
-    #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_inetstl_searchspec_sequence(test_inetstl_searchspec_sequence);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/searchspec_sequence_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 ////////////////////////////////////////////////////////////////////////////

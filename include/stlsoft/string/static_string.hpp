@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     181
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     182
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -980,7 +980,7 @@ inline ss_bool_t basic_static_string<C, CCH, T>::is_valid() const
     if(b == e)
     {
 #ifdef STLSOFT_UNITTEST
-        printf("%08x: string contents have been overwritten! Contents=[%*s]\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<int>(max_size()), &m_buffer[0]);
+        printf("%08x: string contents have been overwritten! Contents=[%*s]\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<int>(max_size()), &m_buffer[0]);
 #endif /* STLSOFT_UNITTEST */
 
         return false;
@@ -989,7 +989,7 @@ inline ss_bool_t basic_static_string<C, CCH, T>::is_valid() const
             m_length > max_size())
     {
 #ifdef STLSOFT_UNITTEST
-        printf("%08x: length (%ld) greater than maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
+        printf("%08x: length (%ld) greater than maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
 #endif /* STLSOFT_UNITTEST */
 
         return false;
@@ -998,7 +998,7 @@ inline ss_bool_t basic_static_string<C, CCH, T>::is_valid() const
             '\0' != m_buffer[m_length])
     {
 #ifdef STLSOFT_UNITTEST
-        printf("%08x: string not nul-terminated at index (%ld); maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
+        printf("%08x: string not nul-terminated at index (%ld); maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
 #endif /* STLSOFT_UNITTEST */
 
         return false;

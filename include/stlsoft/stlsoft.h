@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     31st December 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     293
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     294
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -157,27 +157,17 @@
 # define _STLSOFT_VER_1_8_9     0x00010809  /*!< Version 1.8.9 */
 # define _STLSOFT_VER_1_9_1_B13 0x0109010d  /*!< Version 1.9.1 beta 13 (10th Jul 2006) */
 # define _STLSOFT_VER_1_9_1_B20 0x01090114  /*!< Version 1.9.1 beta 20 (28th Aug 2006) */
-# define _STLSOFT_VER_1_9_1_B21 0x01090115  /*!< Version 1.9.1 beta 21 (7th Sep 2006) */
 # define _STLSOFT_VER_1_9_1_B22 0x01090116  /*!< Version 1.9.1 beta 22 (13th Sep 2006) */
-# define _STLSOFT_VER_1_9_1_B23 0x01090117  /*!< Version 1.9.1 beta 23 (17th Sep 2006) */
-# define _STLSOFT_VER_1_9_1_B24 0x01090118  /*!< Version 1.9.1 beta 24 (24th Sep 2006) */
-# define _STLSOFT_VER_1_9_1_B25 0x01090119  /*!< Version 1.9.1 beta 25 (5th Oct 2006) */
-# define _STLSOFT_VER_1_9_1_B26 0x0109011a  /*!< Version 1.9.1 beta 26 (21st Oct 2006) */
-# define _STLSOFT_VER_1_9_1_B27 0x0109011b  /*!< Version 1.9.1 beta 27 (22nd Oct 2006) */
 # define _STLSOFT_VER_1_9_1_B28 0x0109011c  /*!< Version 1.9.1 beta 28 (29th Oct 2006) */
 # define _STLSOFT_VER_1_9_1_B29 0x0109011d  /*!< Version 1.9.1 beta 29 (27th Nov 2006) */
-# define _STLSOFT_VER_1_9_1_B30 0x0109011e  /*!< Version 1.9.1 beta 30 (2nd Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B31 0x0109011f  /*!< Version 1.9.1 beta 31 (6th Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B32 0x01090120  /*!< Version 1.9.1 beta 32 (6th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B33 0x01090121  /*!< Version 1.9.1 beta 33 (13th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B34 0x01090122  /*!< Version 1.9.1 beta 34 (24th Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B35 0x01090123  /*!< Version 1.9.1 beta 35 (27th Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B36 0x01090124  /*!< Version 1.9.1 beta 36 (28th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B37 0x01090125  /*!< Version 1.9.1 beta 37 (30th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B40 0x01090128  /*!< Version 1.9.1 beta 39 (6th Jan 2007) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B37
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B40
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -1314,8 +1304,10 @@ typedef ss_byte_t           byte_t;             /*!< \brief Byte                
 typedef ss_bool_t           bool_t;             /*!< \brief bool                    */
 #endif /* __cplusplus */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
+#if 0
 typedef ss_size_t           size_t;             /*!< \brief size                    */
 typedef ss_ptrdiff_t        ptrdiff_t;          /*!< \brief ptr diff                */
+#endif /* 0 */
 typedef ss_streampos_t      streampos_t;        /*!< \brief streampos               */
 typedef ss_streamoff_t      streamoff_t;        /*!< \brief streamoff               */
 # endif /* compiler */
@@ -1575,12 +1567,12 @@ private:
 template <ss_typename_param_k X>
 inline void throw_x(X const &x) /* throw(X) */
 {
-    X	x2(x);
+    X   x2(x);
 
-	throw x2;
+    throw x2;
 }
 
-#  define STLSOFT_THROW_X(x)	stlsoft_ns_qual(throw_x)(x)
+#  define STLSOFT_THROW_X(x)    stlsoft_ns_qual(throw_x)(x)
 
 # else 
 
@@ -1599,7 +1591,7 @@ inline void throw_x(X const &x)
 }
 #  endif /* compiler */
 
-#  define STLSOFT_THROW_X(x)	stlsoft_ns_qual(throw_x)(x)
+#  define STLSOFT_THROW_X(x)    stlsoft_ns_qual(throw_x)(x)
 
 # endif /* compiler */
 

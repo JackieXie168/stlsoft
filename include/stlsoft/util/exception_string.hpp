@@ -4,7 +4,7 @@
  * Purpose:     Contains the exception_string limited functionality string class.
  *
  * Created:     26th December 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     11
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ public:
     typedef stlsoft_char_traits<char>                       traits_type;
     typedef allocator_selector<char>::allocator_type        allocator_type;
     typedef exception_string                                class_type;
-    typedef size_t                                          size_type;
+    typedef ss_size_t                                       size_type;
 private:
     typedef auto_buffer_old<char_type, allocator_type, 96>  buffer_type_;
 /// @}

@@ -4,7 +4,7 @@
  * Purpose:     Field-based properties.
  *
  * Created:     6th October 2003
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   1
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       22
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   2
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -326,9 +326,9 @@ private:
 };
 #else /* ? 1 */
 
-template<   ss_typename_param_k V   /* The actual property value type */
-        ,   ss_typename_param_k R   /* The reference type */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset from value to property */
+template<   ss_typename_param_k V       /* The actual property value type */
+        ,   ss_typename_param_k R       /* The reference type */
+        ,   ss_ptrdiff_t (*PFnOff)()    /* Pointer to function providing offset from value to property */
         >
 class field_property_get_external
 {
@@ -342,17 +342,17 @@ public:
     /// Provides read-only access to the property
     operator reference_type() const
     {
-        ptrdiff_t   offset  =   (*PFnOff)();
-        value_type  *pV     =   (value_type*)((ss_byte_t*)this - offset);
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
+        value_type      *pV     =   (value_type*)((ss_byte_t*)this - offset);
 
         return *pV;
     }
 };
 
 
-template<   ss_typename_param_k V   /* The actual property value type */
-        ,   ss_typename_param_k R   /* The reference type */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset from value to property */
+template<   ss_typename_param_k V       /* The actual property value type */
+        ,   ss_typename_param_k R       /* The reference type */
+        ,   ss_ptrdiff_t   (*PFnOff)()  /* Pointer to function providing offset from value to property */
         >
 class field_property_set_external
 {
@@ -366,8 +366,8 @@ public:
     /// Provides write-only access to the property
     field_property_set_external &operator =(reference_type value)
     {
-        ptrdiff_t   offset  =   (*PFnOff)();
-        value_type  *pV     =   (value_type*)((ss_byte_t*)this - offset);
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
+        value_type      *pV     =   (value_type*)((ss_byte_t*)this - offset);
 
         *pV = value;
 

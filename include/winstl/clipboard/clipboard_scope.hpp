@@ -4,7 +4,7 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   4
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       24
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   5
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -233,12 +233,12 @@ public:
     /// \brief Sets the given text to the clipboard with CF_TEXT format.
     void    set_data(char const *str) stlsoft_throw_1(clipboard_scope_exception );
     /// \brief Sets the given text to the clipboard with CF_TEXT format.
-    void    set_data(char const *str, size_t n) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(char const *str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception );
 
     /// \brief Sets the given text to the clipboard with CF_UNICODETEXT format.
     void    set_data(wchar_t const *str) stlsoft_throw_1(clipboard_scope_exception );
     /// \brief Sets the given text to the clipboard with CF_UNICODETEXT format.
-    void    set_data(wchar_t const *str, size_t n) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(wchar_t const *str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception );
 
     /// \brief Sets the bitmap to the clipboard with CF_BITMAP format.
     void    set_data(HBITMAP hBmp) stlsoft_throw_1(clipboard_scope_exception );
@@ -360,7 +360,7 @@ inline void clipboard_scope::set_data(char const *str) stlsoft_throw_1(clipboard
     set_data(CF_TEXT, stlsoft_ns_qual(string_dup)(str, ator));
 }
 
-inline void clipboard_scope::set_data(char const *str, size_t n) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(char const *str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception )
 {
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     allocator_type::rebind<char>::other     ator(*this);
@@ -382,7 +382,7 @@ inline void clipboard_scope::set_data(wchar_t const *str) stlsoft_throw_1(clipbo
     set_data(CF_UNICODETEXT, stlsoft_ns_qual(string_dup)(str, ator));
 }
 
-inline void clipboard_scope::set_data(wchar_t const *str, size_t n) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(wchar_t const *str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception )
 {
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     allocator_type::rebind<wchar_t>::other  ator(*this);

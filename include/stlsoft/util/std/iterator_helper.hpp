@@ -5,7 +5,7 @@
  *              abstracting away standard library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      98
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  2
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -836,7 +836,7 @@ namespace std
                 >
         class _Ptrit_tdkw
         {
-            typedef _Ptrit<V, ptrdiff_t, P, R, P, R>    _Ptrit_type;
+            typedef _Ptrit<V, stlsoft_ns_qual(ss_ptrdiff_t), P, R, P, R>    _Ptrit_type;
 
         public:
             typedef ss_typename_type_k select_type<_Ptrit_type, P, sizeof(_Ptrit_type) < 1024>::selected_type  iterator_type;
@@ -878,7 +878,7 @@ struct pointer_iterator
       !defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT) && \
       defined(_XUTILITY_) && \
       _MSC_VER == 1300
-    typedef std::_Ptrit<V, ptrdiff_t, P, R, P, R>                       type;
+    typedef std::_Ptrit<V, stlsoft_ns_qual(ss_ptrdiff_t), P, R, P, R>   type;
 #else
     typedef P                                                           type;
 #endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
@@ -907,9 +907,9 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k P
         ,   ss_typename_param_k R
         >
-inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::type const &)
+inline stlsoft_ns_qual(ss_ptrdiff_t) *distance_type(pointer_iterator<V, P, R>::type const &)
 {
-    return static_cast<ptrdiff_t*>(0);
+    return static_cast<stlsoft_ns_qual(ss_ptrdiff_t)*>(0);
 }
 #endif /* STLSOFT_COMPILER_IS_DMC  && !STLSOFT_CF_STD_LIBRARY_IS_STLPORT */
 

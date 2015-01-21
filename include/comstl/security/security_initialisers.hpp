@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     1st February 1998
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_MAJOR      4
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_MINOR      1
 # define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_REVISION   2
-# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_EDIT       41
+# define COMSTL_VER_COMSTL_SECURITY_HPP_SECURITY_INITIALISERS_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ const DWORD _EOAC_SECURITY_MASK     =   (   _EOAC_SEC_DESC |
 
 /** \brief Initialises the COM security libraries with an IAccessControl instance
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__security
  *
  */
 #ifdef __IAccessControl_INTERFACE_DEFINED__
@@ -161,7 +161,7 @@ inline HRESULT CoInitSecurity(  LPUNKNOWN                   punkAccessControl,
 
 /** \brief Initialises the COM security libraries with an APPID
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__security
  *
  */
 inline HRESULT CoInitSecurity(  const GUID                  &appid,
@@ -184,7 +184,7 @@ inline HRESULT CoInitSecurity(  const GUID                  &appid,
 
 /** \brief Initialises the COM security libraries with a security descriptor
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__security
  *
  */
 inline HRESULT CoInitSecurity(  SECURITY_DESCRIPTOR         *psd,

@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 2
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     41
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp \brief [C++ only; requires C++.NET compiler] The root header for the \ref group__project__dotnetstl ".netSTL" project. */
@@ -182,7 +182,7 @@
 
 /** \brief Defines a runtime assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
@@ -190,7 +190,7 @@
 
 /** \brief Defines a runtime assertion, with message
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
@@ -199,7 +199,7 @@
 
 /** \brief Defines a compile-time assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or compilation will fail
  */
@@ -252,8 +252,6 @@
 /* There is no stlsoft namespace, so must define ::dotnetstl */
 /** \brief The dotnetstl namespace - \c dotnetstl (aliased to \c stlsoft::dotnetstl_project) - is
  * the namespace for the .netSTL project.
- *
- * \ingroup group__library__<<LIBRARY-ID>>
  */
 namespace dotnetstl
 {

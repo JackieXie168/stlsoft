@@ -4,11 +4,11 @@
  * Purpose:     basic_indirect_range_adaptor.
  *
  * Created:     4th November 2003
- * Updated:     7th July 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MINOR      1
 # define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_REVISION   1
-# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_EDIT       25
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -435,7 +435,7 @@ namespace
 
 /** \brief Runtime adaptor that adapts a Basic Indirect range to an Indirect range.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template <ss_typename_param_k R>
 class indirect_range_adaptor

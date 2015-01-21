@@ -4,11 +4,11 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     19th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/smartptr/interface_ptr.hpp
-///
-/// Interface management helper classes.
+/** \file comstl/smartptr/interface_ptr.hpp
+ *
+ * \brief [C++ only] Definition of the comstl::interface_ptr smart
+ *   pointer class template.
+ * (\ref group__library__smart_pointers "Smart Pointers" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_SMARTPTR_HPP_INTERFACE_PTR
 #define COMSTL_INCL_COMSTL_SMARTPTR_HPP_INTERFACE_PTR
@@ -49,7 +52,7 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      1
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       487
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       488
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        34
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ public:
     /// The current parameterisation of the type
     typedef basic_shim_string<C, N, U, A, T>                class_type;
     /// The size type
-    typedef size_t                                          size_type;
+    typedef ss_size_t                                       size_type;
     /// The buffer type
     typedef auto_buffer_old<char_type, allocator_type, N>   buffer_type;
 

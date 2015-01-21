@@ -4,7 +4,7 @@
  * Purpose:     stlsoft_new_allocator class - use new & delete operators.
  *
  * Created:     2nd January 2001
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      75
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_REVISION  2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ public:
     typedef new_allocator<void>     class_type;
     typedef void                    *pointer;
     typedef void const              *const_pointer;
-    typedef ptrdiff_t               difference_type;
+    typedef ss_ptrdiff_t            difference_type;
     typedef ss_size_t               size_type;
 
 #ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT

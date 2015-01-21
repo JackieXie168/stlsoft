@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -65,8 +65,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        195
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        196
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1502,7 +1502,7 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
                         --cch; // Directory is always trailing a path name separator
                         traits_type::ensure_dir_end(&search[(cch > 1) ? (cch - 2) : 0]);
                     }
-                    traits_type::str_n_cat(&search[0] + cch, m_pattern0, static_cast<size_t>(m_pattern1 - m_pattern0));
+                    traits_type::str_n_cat(&search[0] + cch, m_pattern0, static_cast<ws_size_t>(m_pattern1 - m_pattern0));
 
                     // Note: At this point, cch may be 1 under, because ensure_dir_end() may have added
                     // a character that we've not counted. But that's ok, because we don't use it as an
@@ -1537,7 +1537,7 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
                             slash = bslash;
                         }
 
-                        const size_t    n   =   static_cast<size_t>(slash - &search[0]);
+                        const ws_size_t n   =   static_cast<ws_size_t>(slash - &search[0]);
 
                         traits_type::str_n_copy(&m_subpath[0], &search[0], n);
                         m_subPathLen = n;
@@ -1556,7 +1556,7 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
                                 (   '.' == m_pattern0[1] &&
                                     m_pattern1 == m_pattern0 + 2)))
                         {
-                            const size_t    n   =   static_cast<size_t>(m_pattern1 - m_pattern0);
+                            const ws_size_t n   =   static_cast<ws_size_t>(m_pattern1 - m_pattern0);
 
                             traits_type::str_n_copy(&m_data.cFileName[0], m_pattern0, n);
                             m_data.cFileName[n] = '\0';

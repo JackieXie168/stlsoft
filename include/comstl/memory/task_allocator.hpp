@@ -4,7 +4,7 @@
  * Purpose:     task_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MAJOR      4
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MINOR      0
-# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_REVISION   1
-# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       78
+# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_REVISION   3
+# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -189,7 +189,7 @@ public:
     typedef task_allocator<void>    class_type;
     typedef void                    *pointer;
     typedef void const              *const_pointer;
-    typedef ptrdiff_t               difference_type;
+    typedef cs_ptrdiff_t            difference_type;
     typedef cs_size_t               size_type;
 
 #ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT

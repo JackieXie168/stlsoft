@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     4th January 2007
+ * Updated:     5th January 2007
  *
  * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
  *              time pictures.
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_REVISION 3
-# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     50
+# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_REVISION 4
+# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -219,8 +219,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
     {
         static const char_t s1159[] =   { 's', '1', '1', '5', '9', '\0' };
         static const char_t s2359[] =   { 's', '2', '3', '5', '9', '\0' };
-        size_t              cchAM   =   0;
-        size_t              cchPM   =   0;
+        ws_size_t           cchAM   =   0;
+        ws_size_t           cchPM   =   0;
         LONG                r;
 
         if( ERROR_SUCCESS != (r = reg_get_string_value(hkey, s1159, static_cast<char_t*>(NULL), cchAM)) ||
@@ -250,10 +250,10 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
     }
 
     char_t const    *timeMarker =   (lpTime->wHour < 12) ? &am[0] : &pm[0];
-    const size_t    cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
-    const size_t    cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
+    const ws_size_t cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
+    const ws_size_t cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
     buffer_t        buffer(1 + cchTimeMax);
-    size_t          len         =   0;
+    ws_size_t       len         =   0;
 
     if(!buffer.empty())
     {
@@ -347,7 +347,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
     // If 0 was specified, or
 
     if( 0 == cchTime ||
-        len <= size_t(cchTime))
+        len <= ws_size_t(cchTime))
     {
         if(0 != cchTime)
         {
@@ -417,9 +417,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
 
     if(ERROR_SUCCESS == res)
     {
-        size_t  cchAM   =   0;
-        size_t  cchPM   =   0;
-        LONG    r;
+        ws_size_t   cchAM   =   0;
+        ws_size_t   cchPM   =   0;
+        LONG        r;
 
         if( ERROR_SUCCESS != (r = reg_get_string_value(hkey, "s1159", static_cast<ws_char_a_t*>(NULL), cchAM)) ||
             ERROR_SUCCESS != (r = (am.resize(cchAM), cchAM = am.size(), reg_get_string_value(hkey, "s1159", &am[0], cchAM))))
@@ -445,10 +445,10 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
     }
 
     ws_char_a_t const   *timeMarker =   (lpTime->wHour < 12) ? &am[0] : &pm[0];
-    const size_t        cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
-    const size_t        cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
+    const ws_size_t     cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
+    const ws_size_t     cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
     buffer_t            buffer(1 + cchTimeMax);
-    size_t              len         =   0;
+    ws_size_t           len         =   0;
 
     if(!buffer.empty())
     {
@@ -541,7 +541,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
     // If 0 was specified, or
 
     if( 0 == cchTime ||
-        len <= size_t(cchTime))
+        len <= ws_size_t(cchTime))
     {
         if(0 != cchTime)
         {
@@ -610,9 +610,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
 
     if(ERROR_SUCCESS == res)
     {
-        size_t  cchAM;
-        size_t  cchPM;
-        LONG    r;
+        ws_size_t   cchAM;
+        ws_size_t   cchPM;
+        LONG        r;
 
         if( ERROR_SUCCESS != (r = reg_get_string_value(hkey, L"s1159", static_cast<ws_char_w_t*>(NULL), cchAM)) ||
             ERROR_SUCCESS != (r = (am.resize(cchAM), cchAM = am.size(), reg_get_string_value(hkey, L"s1159", &am[0], cchAM))))
@@ -638,8 +638,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
     }
 
     ws_char_w_t const   *timeMarker =   (lpTime->wHour < 12) ? &am[0] : &pm[0];
-    const size_t        cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
-    const size_t        cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
+    const ws_size_t     cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
+    const ws_size_t     cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
     buffer_t            buffer(1 + cchTimeMax);
 
     if(!buffer.empty())
@@ -728,10 +728,10 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
         }
     }
 
-    const size_t    len =   static_cast<ss_size_t>(::lstrlenW(&buffer[0]));
+    const ws_size_t len =   static_cast<ss_size_t>(::lstrlenW(&buffer[0]));
 
     if( 0 == cchTime ||
-        size_t(cchTime) <= len + 1)
+        ws_size_t(cchTime) <= len + 1)
     {
         if(0 != cchTime)
         {

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for CodePlay Vector C.
  *
  * Created:     3rd October 2003
- * Updated:     3rd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MINOR      7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_REVISION   3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       42
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MINOR      8
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,6 +93,11 @@
 # define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
 # define STLSOFT_CF_NATIVE_BOOL_SUPPORT
 #endif /* __cplusplus */
+
+/* char (sign) */
+#ifdef _CHAR_UNSIGNED
+# define STLSOFT_CF_CHAR_IS_UNSIGNED
+#endif /* _CHAR_UNSIGNED */
 
 /* wchar_t */
 /* #define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
