@@ -5,11 +5,11 @@
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     8th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       14
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.hpp
@@ -63,7 +63,7 @@
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL
 # include <platformstl/platformstl.h>
-# endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
+#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 
 #if !defined(__cplusplus)
 # error platformstl/platformstl.hpp is only valid within C++ compilation units

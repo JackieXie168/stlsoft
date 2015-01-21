@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     20th February 2008
+ * Updated:     8th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    13
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 8
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     330
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 9
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     331
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -189,12 +189,13 @@
 # define _STLSOFT_VER_1_9_21    0x010915ff  /*!< Version 1.9.21 (5th Feb 2008) */
 # define _STLSOFT_VER_1_9_22    0x010916ff  /*!< Version 1.9.22 (8th Feb 2008) */
 # define _STLSOFT_VER_1_9_23    0x010917ff  /*!< Version 1.9.23 (21st Feb 2008) */
+# define _STLSOFT_VER_1_9_24    0x010918ff  /*!< Version 1.9.24 (8th Mar 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   23
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_23
+#define _STLSOFT_VER_REVISION   24
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_24
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -939,8 +940,14 @@
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef _STLSOFT_NO_STD_INCLUDES
-# include <stddef.h>    /* standard types */
-# include <stdlib.h>    /* standard constants */
+# ifndef STLSOFT_INCL_H_STDDEF
+#  define STLSOFT_INCL_H_STDDEF
+#  include <stddef.h>    /* standard types */
+# endif /* !STLSOFT_INCL_H_STDDEF */
+# ifndef STLSOFT_INCL_H_STDLIB
+#  define STLSOFT_INCL_H_STDLIB
+#  include <stdlib.h>    /* standard constants */
+# endif /* !STLSOFT_INCL_H_STDLIB */
 #endif /* !_STLSOFT_NO_STD_INCLUDES */
 
 /* /////////////////////////////////////////////////////////////////////////

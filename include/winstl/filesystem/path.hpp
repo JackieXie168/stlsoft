@@ -4,11 +4,11 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     6th December 2007
+ * Updated:     8th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     238
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     239
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,6 +82,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 #include <stdexcept>                            // for std::logic_error
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -879,7 +882,7 @@ template<   ss_typename_param_k C
 inline void basic_path<C, T, A>::swap(basic_path<C, T, A>& rhs)
 {
     m_buffer.swap(rhs.m_buffer);
-    std::swap(m_len, rhs.m_len);
+    std_swap(m_len, rhs.m_len);
 }
 
 template<   ss_typename_param_k C

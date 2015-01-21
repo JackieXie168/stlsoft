@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     25th September 2007
+ * Updated:     8th March 2008
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *              To Nevin Liber for pressing upon me the need to lead by
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  9
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      137
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  10
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,6 +89,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+
 #include <sys/types.h>
 #include <sys/stat.h>                       // for stat()
 #include <errno.h>
@@ -96,7 +100,6 @@
 #include <algorithm>                        // for std::sort
 #include <exception>                        // for std::exception
 #include <stdexcept>                        // for std::runtime_error
-#include <utility>                          // for std::swap
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/string/simple_string.hpp>
@@ -999,7 +1002,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* direc
                     // Swap with whatever is at base[0]
                     if(begin != base)
                     {
-                        unixstl_ns_qual_std(swap)(*begin, *base);
+                        stlsoft_ns_qual(std_swap)(*begin, *base);
                     }
                     ++base;
                     --cItems;
@@ -1145,7 +1148,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* direc
                 // pessimisation
 
                 // Swap with whatever is at base[0]
-                unixstl_ns_qual_std(swap)(*begin, *base);
+                stlsoft_ns_qual(std_swap)(*begin, *base);
                 ++base;
                 --cItems;
             }

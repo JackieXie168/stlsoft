@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  20th February 2008
+; Updated:  8th March 2008
 
 ============================================================================
 
+
+8th February 2008 - 1.9.24 released
+-----------------------------------
+
+ * finishing up some missed std::swap refactoring
 
 20th February 2008 - 1.9.23 released
 ------------------------------------

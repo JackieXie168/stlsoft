@@ -1,12 +1,16 @@
 
 // Created: 13th December 2005
-// Updated: 6th December 2006
+// Updated: 8th March 2008
 
 #ifndef COMSTL_INCL_COMSTL_UNITTEST_H__RECLS_COM_DECL_
 #define COMSTL_INCL_COMSTL_UNITTEST_H__RECLS_COM_DECL_
 
-#include <comstl/comstl.h>
-#include <comstl/util/interface_traits.hpp>
+#ifndef COMSTL_INCL_COMSTL_H_COMSTL
+# include <comstl/comstl.h>
+#endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
+#ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
+# include <comstl/util/interface_traits.hpp>
+#endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
