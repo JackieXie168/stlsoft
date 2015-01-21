@@ -2,12 +2,12 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  20th December 2007
+; Updated:  23rd December 2007
 
 ============================================================================
 
 
-STLSoft 1.9.13 TODOs:
+STLSoft 1.9.14 TODOs:
 =====================
 
 
@@ -25,15 +25,17 @@ Priority: high
 
 
 
-? 3. Allocator constructor parameters for the fixed array classes
------------------------------------------------------------------
+# 3. Allocator constructor parameters for the fixed array classes [IMPLEMENTED]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Priority: medium
 
+Status: implemented; released in 1.9.13
 
 
-? 4. Interface pointers providing more succinct syntax for COM
---------------------------------------------------------------
+
+? 4. Interface pointers providing more succinct syntax for COM (rq by PA, AS)
+-----------------------------------------------------------------------------
 
 Priority: medium
 
@@ -46,15 +48,17 @@ Priority: medium
 
 
 
-? 6. CString header file #include bringing up to date
------------------------------------------------------
+? 6. CString header file #include bringing up to date (rq by CA)
+----------------------------------------------------------------
 
 Priority: low
 
+Status: partially complete; more required
 
 
-? 7. Implement scoped_method
------------------------------------------------------
+
+? 7. Implement scoped_method (rq by CA)
+---------------------------------------
 
 Priority: medium
 
@@ -69,19 +73,19 @@ Status: partially done; more to come
 
 
 
-? 9. scoped_method smart pointer class
------------------------------------------------------
-
-Priority: medium
-
-
-
-? 10. fixed array class modifications (as desc on NG)
------------------------------------------------------
+? 9. fixed array class modifications (as requested by TO; described on NG)
+--------------------------------------------------------------------------
 
 Priority: medium
 
 Status: largely complete; more to come
+
+
+
+? 10. custom radix in integer_to_string conversions (rq by PA)
+--------------------------------------------------------------
+
+Priority: medium
 
 
 

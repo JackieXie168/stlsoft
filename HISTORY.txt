@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  20th December 2007
+; Updated:  23rd December 2007
 
 ============================================================================
 
+
+23rd December 2007 - 1.9.14 released
+------------------------------------
+
+ * updated stlsoft version (_STLSOFT_VER) missing in 1.9.13
 
 20th December 2007 - 1.9.13 released
 ------------------------------------
