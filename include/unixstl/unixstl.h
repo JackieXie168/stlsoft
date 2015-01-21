@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     13th April 2008
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    5
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     82
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -121,12 +121,13 @@
 # define _UNIXSTL_VER_1_6_5     0x00010605  /*!< Version 1.6.5 (with STLSoft 1.9.25) */
 # define _UNIXSTL_VER_1_6_6     0x00010606  /*!< Version 1.6.6 (with STLSoft 1.9.29) */
 # define _UNIXSTL_VER_1_6_7     0x010607ff  /*!< Version 1.6.7 (with STLSoft 1.9.31) */
+# define _UNIXSTL_VER_1_6_8     0x010608ff  /*!< Version 1.6.8 (with STLSoft 1.9.32) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      6
-#define _UNIXSTL_VER_REVISION   7	
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_6_7
+#define _UNIXSTL_VER_REVISION   8	
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_6_8
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -140,8 +141,8 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B41) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
+#if !defined(_STLSOFT_VER) || \
+    _STLSOFT_VER < 0x010920ff
 # error This version of the UNIXSTL libraries requires STLSoft version 1.9.1 beta 41, or later
 #endif /* _STLSOFT_VER */
 
@@ -242,7 +243,7 @@
     defined(__svr4__) || \
     defined(_SYSTYPE_SVR4)
 # define UNIXSTL_OSFAMILY_IS_SVR4
-#endif /* bsd */
+#endif /* SVR4 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Operating system

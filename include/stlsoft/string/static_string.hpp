@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     7th December 2007
+ * Updated:     15th April 2008
  *
  * Thanks:      To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     192
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     193
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1921,6 +1921,8 @@ inline void basic_static_string<C, CCH, T>::reserve(ss_typename_type_k basic_sta
     STLSOFT_ASSERT(is_valid());
 
     STLSOFT_MESSAGE_ASSERT("reserve request out of range in static_string", !(max_size() < n));
+
+    STLSOFT_SUPPRESS_UNUSED(n);
 }
 
 template<   ss_typename_param_k C

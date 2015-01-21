@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     17th March 2008
+ * Updated:     22nd April 2008
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      102
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1064,6 +1064,9 @@ public:
 #if defined(_WIN32) && \
     (   defined(STLSOFT_COMPILER_IS_INTEL) || \
         defined(STLSOFT_COMPILER_IS_MSVC))
+
+        STLSOFT_SUPPRESS_UNUSED(permissions);
+
         return 0 == ::mkdir(dir);
 #else /* ? _WIN32 */
         return 0 == ::mkdir(dir, permissions);

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd March 2007
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MAJOR     4
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MINOR     0
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MINOR     1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_REVISION  1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      109
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,11 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+
+#ifndef _NTSECAPI_
+# error This file can only be used when the Windows NT Security API has already been included (#include <ntsecapi.h>)
+#endif /* !_NTSECAPI_ */
+
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
@@ -102,7 +107,6 @@ namespace winstl_project
  */
 
 /* Windows Policy Management LSA_UNICODE_STRING string */
-#ifdef _NTSECAPI_
 /** \brief This class provides an intermediary object that may be returned by the
  * c_str_ptr_null() function, such that the text of a given LSA_UNICODE_STRING
  * string may be accessed as a null-terminated string.
@@ -175,9 +179,7 @@ private:
 private:
     void operator =(class_type const& rhs);
 };
-#endif /* _NTSECAPI_ */
 
-#ifdef _NTSECAPI_
 /** \brief This class provides an intermediary object that may be returned by the
  * c_str_ptr_null() function, such that the text of a given LSA_UNICODE_STRING
  * string may be accessed as a null-terminated string.
@@ -250,13 +252,11 @@ private:
 private:
     void operator =(class_type const& rhs);
 };
-#endif /* _NTSECAPI_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * IOStream compatibility
  */
 
-#ifdef _NTSECAPI_
 template<ss_typename_param_k S>
 inline S& operator <<(S& s, c_str_ptr_LSA_UNICODE_STRING_proxy const& shim)
 {
@@ -272,7 +272,6 @@ inline S& operator <<(S& s, c_str_ptr_null_LSA_UNICODE_STRING_proxy const& shim)
 
     return s;
 }
-#endif /* _NTSECAPI_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
@@ -282,7 +281,6 @@ inline S& operator <<(S& s, c_str_ptr_null_LSA_UNICODE_STRING_proxy const& shim)
  */
 
 /* LSA_UNICODE_STRING */
-#ifdef _NTSECAPI_
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline LPCWSTR c_str_data_w(LSA_UNICODE_STRING const& s)
 {
@@ -299,7 +297,6 @@ inline LPCWSTR c_str_data(LSA_UNICODE_STRING const& s)
 {
     return s.Buffer;    /
 }
-#endif /* _NTSECAPI_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
@@ -309,7 +306,6 @@ inline LPCWSTR c_str_data(LSA_UNICODE_STRING const& s)
  */
 
 /* LSA_UNICODE_STRING */
-#ifdef _NTSECAPI_
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline ws_size_t c_str_len_w(LSA_UNICODE_STRING const& s)
 {
@@ -326,7 +322,6 @@ inline ws_size_t c_str_len(LSA_UNICODE_STRING const& s)
 {
     return s.Length;
 }
-#endif /* _NTSECAPI_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -336,7 +331,6 @@ inline ws_size_t c_str_len(LSA_UNICODE_STRING const& s)
  */
 
 /* LSA_UNICODE_STRING */
-#ifdef _NTSECAPI_
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr_w(LSA_UNICODE_STRING const& s)
 {
@@ -353,7 +347,6 @@ inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr(LSA_UNICODE_STRING const& s)
 {
     return c_str_ptr_LSA_UNICODE_STRING_proxy(s);
 }
-#endif /* _NTSECAPI_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
@@ -363,7 +356,6 @@ inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr(LSA_UNICODE_STRING const& s)
  */
 
 /* LSA_UNICODE_STRING */
-#ifdef _NTSECAPI_
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null_w(LSA_UNICODE_STRING const& s)
 {
@@ -380,7 +372,6 @@ inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null(LSA_UNICODE_STRING
 {
     return c_str_ptr_null_LSA_UNICODE_STRING_proxy(s);
 }
-#endif /* _NTSECAPI_ */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

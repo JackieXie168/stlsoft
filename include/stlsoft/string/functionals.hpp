@@ -4,7 +4,7 @@
  * Purpose:     String function classes
  *
  * Created:     22nd April 2005
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        30
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ public:
 public:
     string_begins_with_function(C const* prefix)
         : m_prefix(prefix)
-        , m_prefixLen(::strlen(m_prefix))
+        , m_prefixLen(stlsoft::c_str_len(m_prefix))
     {}
 
 public:

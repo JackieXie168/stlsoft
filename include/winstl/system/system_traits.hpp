@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     3rd April 2008
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        108
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -194,7 +194,9 @@ public:
 /// @{
 public:
     /// \brief Returns the locale information
+#ifndef NONLS
     static int_type     get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData);
+#endif /* !NONLS */
 /// @}
 
 /// \name Module Paths
@@ -434,10 +436,12 @@ public:
     }
 
 public:
+#ifndef NONLS
     static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData)
     {
         return ::GetLocaleInfoA(locale, type, data, cchData);
     }
+#endif /* !NONLS */
 
 public:
     static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
@@ -760,10 +764,12 @@ public:
     }
 
 public:
+#ifndef NONLS
     static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData)
     {
         return ::GetLocaleInfoW(locale, type, data, cchData);
     }
+#endif /* !NONLS */
     
 public:
     static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
