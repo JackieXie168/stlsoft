@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     27th March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/memory/allocator_base.hpp
-///
-/// Allocator commmon features.
+/** \file stlsoft/memory/allocator_base.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::allocator_base class
+ *  template.
+ *  (\ref group__library__memory "Memory" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
 #define STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     30
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,12 +62,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
 # include <stlsoft/memory/allocator_features.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
+#ifdef STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD
+# ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
+#  include <stlsoft/sap_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+#endif /* STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD */
 #if defined(STLSOFT_CF_THROW_BAD_ALLOC) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1100)
@@ -80,26 +85,14 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup stlsoft_allocator_library Allocator Library (STLSoft)
-/// \ingroup STLSoft libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// STL Allocator base class adaptor, providing much of the boilerplate
+/// \brief STL Allocator base class adaptor, providing much of the boilerplate
 /// functionality of an STL-compliant Allocator class.
+///
+/// \ingroup group__library__memory
 ///
 /// \note This uses the SCTP/CRTP (Simulated Compile-time Polymorphism / Curiously
 /// Recurring Template Pattern) technique, such that derived classes inherit from
@@ -276,10 +269,6 @@ public:
 private:
 //    class_type const &operator =(class_type const &rhs);
 };
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group stlsoft_allocator_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

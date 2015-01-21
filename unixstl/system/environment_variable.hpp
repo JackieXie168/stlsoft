@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     30th May 2006
+ * Updated:     4th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       52
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -226,7 +226,7 @@ private:
 typedef basic_environment_variable<us_char_a_t, filesystem_traits<us_char_a_t> >    environment_variable_a;
 /// Instantiation of the basic_environment_variable template for the Unicode character type \c wchar_t
 typedef basic_environment_variable<us_char_w_t, filesystem_traits<us_char_w_t> >    environment_variable_w;
-/// Instantiation of the basic_environment_variable template for the Win32 character type \c TCHAR
+/// Instantiation of the basic_environment_variable template for the 'default' character type \c char
 typedef basic_environment_variable<char, filesystem_traits<char> >                  environment_variable;
 
 /* /////////////////////////////////////////////////////////////////////////////

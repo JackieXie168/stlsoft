@@ -4,7 +4,7 @@
  * Purpose:     Platform header for directory manipulation functions.
  *
  * Created:     30th May 2006
- * Updated:     30th May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,6 +38,12 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
+/** \file platformstl/synch/semaphore.hpp
+ *
+ * \brief [C++ only] Definition of the platformstl::semaphore type.
+ *  (\ref group__library__synch "Synchronisation" Library.)
+ */
+
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_SEMAPHORE
 #define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_SEMAPHORE
 
@@ -46,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

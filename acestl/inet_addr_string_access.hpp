@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MAJOR      1
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MINOR      6
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_REVISION   2
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       22
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_REVISION   3
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,10 +65,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
-# include <stlsoft/shim_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
+# include <stlsoft/string/shim_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 #include <ace/INET_Addr.h>                      // for ACE_INET_Addr
+#include <ace/ace_wchar.h>                      // for ACE_Wide_To_Ascii, ACE_Ascii_To_Wide
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -132,15 +133,78 @@ void stream_insert(S &s, ACE_INET_Addr const &addr)
  * Shims
  */
 
-/// String access shim
-inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_INET_Addr const &addr)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace access_string_util
 {
-    typedef ::stlsoft::basic_shim_string<ACE_TCHAR>::buffer_type    buffer_t;
+    inline int invoke_addr_to_string(ACE_TCHAR const *, ACE_INET_Addr const &addr, ACE_TCHAR buffer[], as_size_t size, int fmt)
+    {
+        return addr.addr_to_string(buffer, size, fmt);
+    }
 
-    ::stlsoft::basic_shim_string<ACE_TCHAR> retVal(buffer_t::internal_size());
+# ifdef ACE_USES_WCHAR
+    inline int invoke_addr_to_string(as_char_w_t const *, ACE_INET_Addr const &addr, as_char_a_t buffer[], as_size_t size, int fmt)
+# else /* ? ACE_USES_WCHAR */
+    inline int invoke_addr_to_string(as_char_a_t const *, ACE_INET_Addr const &addr, as_char_w_t buffer[], as_size_t size, int fmt)
+# endif /* ACE_USES_WCHAR */
+    {
+# ifdef ACE_USES_WCHAR
+        stlsoft::auto_buffer<as_char_w_t>   buff(1 + size);
+# else /* ? ACE_USES_WCHAR */
+        stlsoft::auto_buffer<as_char_a_t>   buff(1 + size);
+# endif /* ACE_USES_WCHAR */
+        int                                 res =   addr.addr_to_string(&buff[0], buff.size(), fmt);
+
+        if(0 == res)
+        {
+            ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
+
+            buff[size] = '\0';
+
+# ifdef ACE_USES_WCHAR
+            ::strncpy(&buffer[0], ACE_TEXT_ALWAYS_CHAR(buff.data()), size);
+# else /* ? ACE_USES_WCHAR */
+            ::wcsncpy(&buffer[0], ACE_TEXT_ALWAYS_WCHAR(buff.data()), size);
+# endif /* ACE_USES_WCHAR */
+        }
+
+        return res;
+    }
+
+
+#if 0
+    template<   ss_typename_param_k C1
+            ,   ss_typename_param_k C2
+            >
+    inline int invoke_addr_to_string(C1 const*, ACE_INET_Addr const &addr, C2 buffer[], as_size_t size, int fmt)
+    {
+    }
+#endif /* 0 */
+
+
+    inline int invoke_addr_to_string(ACE_INET_Addr const &addr, as_char_a_t buffer[], as_size_t size, int fmt = 1)
+    {
+        return invoke_addr_to_string(static_cast<ACE_TCHAR const*>(0), addr, buffer, size, fmt);
+    }
+    inline int invoke_addr_to_string(ACE_INET_Addr const &addr, as_char_w_t buffer[], as_size_t size, int fmt = 1)
+    {
+        return invoke_addr_to_string(static_cast<ACE_TCHAR const*>(0), addr, buffer, size, fmt);
+    }
+
+} // namespace access_string_util
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/// String access shim
+template <typename C> 
+inline ::stlsoft::basic_shim_string<C> c_str_ptr_(ACE_INET_Addr const &addr)
+{
+    typedef C                                                   char_t;
+    typedef ::stlsoft::basic_shim_string<char_t>::buffer_type   buffer_t;
+
+    ::stlsoft::basic_shim_string<char_t>    retVal(buffer_t::internal_size());
     buffer_t                                &buffer =   retVal.get_buffer();
 
-    for(;0 != addr.addr_to_string(&buffer[0], buffer.size()); buffer.resize((3 * buffer.size()) / 2))
+    for(;0 != access_string_util::invoke_addr_to_string(addr, &buffer[0], buffer.size()); buffer.resize((3 * buffer.size()) / 2))
     {}
 
     buffer.resize(buffer.size() + 1);
@@ -149,6 +213,27 @@ inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_INET_Addr const &ad
     return retVal;
 }
 
+inline ::stlsoft::basic_shim_string<as_char_a_t> c_str_ptr_a(ACE_INET_Addr const &addr)
+{
+    return c_str_ptr_<as_char_a_t>(addr);
+}
+inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_ptr_w(ACE_INET_Addr const &addr)
+{
+    return c_str_ptr_<as_char_w_t>(addr);
+}
+inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_INET_Addr const &addr)
+{
+    return c_str_ptr_<ACE_TCHAR>(addr);
+}
+
+inline ::stlsoft::basic_shim_string<as_char_a_t> c_str_data_a(ACE_INET_Addr const &addr)
+{
+    return c_str_ptr_a(addr);
+}
+inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_data_w(ACE_INET_Addr const &addr)
+{
+    return c_str_ptr_w(addr);
+}
 inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_data(ACE_INET_Addr const &addr)
 {
     return c_str_ptr(addr);
@@ -203,7 +288,13 @@ namespace stlsoft
 {
 
     using ::acestl::c_str_ptr;
+    using ::acestl::c_str_ptr_a;
+    using ::acestl::c_str_ptr_w;
+
     using ::acestl::c_str_data;
+    using ::acestl::c_str_data_a;
+    using ::acestl::c_str_data_w;
+
     using ::acestl::c_str_len;
 
 } // namespace stlsoft

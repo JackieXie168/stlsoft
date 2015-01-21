@@ -9,3 +9,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS
 # include <comstl/olestring_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS */
+
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
+

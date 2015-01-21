@@ -4,7 +4,7 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     1st June 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file winstl/synch/atomic_functions.h
  *
  * \brief [C++ only] Definition of the atomic functions.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS
@@ -50,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      188
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +72,9 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifdef __cplusplus
-# ifndef WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX
-#  include <winstl/spin_mutex.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX */
+# ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX
+#  include <winstl/synch/spin_mutex.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX */
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -134,21 +135,6 @@ namespace winstl_project
 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_threading Threading Library
-/// \ingroup libraries
-/// \brief This library provides synchronisation and threading facilities
-
-/// \weakgroup winstl_threading_library Threading Library (WinSTL)
-/// \ingroup WinSTL libraries_threading
-/// \ingroup functions
-/// \brief This library provides synchronisation and threading facilities for the Win32 API
-/// @{
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Implementation options
@@ -1764,10 +1750,6 @@ STLSOFT_INLINE ws_sint32_t atomic_preadd(ws_sint32_t volatile *pl, ws_sint32_t n
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_threading_library
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Unit-testing

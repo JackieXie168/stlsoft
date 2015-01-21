@@ -4,7 +4,7 @@
  * Purpose:     Contains string_traits for MFC.
  *
  * Created:     25th April 2005
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,9 +59,9 @@
 #ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS_FWD
-# include <stlsoft/string_traits_fwd.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS_FWD */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD
+# include <stlsoft/string/string_traits_fwd.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

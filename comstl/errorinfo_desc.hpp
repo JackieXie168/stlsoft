@@ -4,7 +4,7 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     5th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_MAJOR     0
 # define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_MINOR     3
-# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_EDIT      10
+# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_REVISION  2
+# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -296,21 +296,28 @@ inline cs_size_t c_str_len(errorinfo_desc const &eid)
     return eid.length();
 }
 
+#if 0
 inline cs_size_t c_str_size_a(errorinfo_desc const &eid)
 {
     return static_cast<cs_size_t>(::WideCharToMultiByte(0, 0, eid.c_str_w(), static_cast<int>(eid.length()), NULL, 0, NULL, NULL));
 }
+#endif /* 0 */
 
+#if 0
 inline cs_size_t c_str_size_w(errorinfo_desc const &eid)
 {
     return eid.length() * sizeof(cs_char_w_t);
 }
+#endif /* 0 */
 
+#if 0
 inline cs_size_t c_str_size_o(errorinfo_desc const &eid)
 {
     return eid.length() * sizeof(cs_char_o_t);
 }
+#endif /* 0 */
 
+#if 0
 inline cs_size_t c_str_size(errorinfo_desc const &eid)
 {
 #ifdef UNICODE
@@ -319,6 +326,7 @@ inline cs_size_t c_str_size(errorinfo_desc const &eid)
     return c_str_size_a(eid);
 #endif /* UNICODE */
 }
+#endif /* 0 */
 
 inline cs_char_a_t const *c_str_ptr_a(errorinfo_desc const &eid)
 {
@@ -429,10 +437,12 @@ using ::comstl::c_str_len_w;
 using ::comstl::c_str_len_o;
 using ::comstl::c_str_len;
 
+#if 0
 using ::comstl::c_str_size_a;
 using ::comstl::c_str_size_w;
 using ::comstl::c_str_size_o;
 using ::comstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

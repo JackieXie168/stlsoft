@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       5
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    7
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        65
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    9
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -345,43 +345,64 @@ typedef w2a                             w2t;
  * Shims
  */
 
-template<   ws_size_t           CCH
+template<   ws_size_t   CCH
         >
 inline ws_char_w_t const *c_str_ptr_null(ansi2Unicode<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
+template<   ws_size_t   CCH
+        >
+inline ws_char_w_t const *c_str_ptr_null_w(ansi2Unicode<CCH> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
 
-template<   ws_size_t           CCH
+
+template<   ws_size_t   CCH
         >
 inline ws_char_w_t const *c_str_ptr(ansi2Unicode<CCH> const &b)
 {
     return b.c_str();
 }
+template<   ws_size_t   CCH
+        >
+inline ws_char_w_t const *c_str_ptr_w(ansi2Unicode<CCH> const &b)
+{
+    return b.c_str();
+}
 
-template<   ws_size_t           CCH
+template<   ws_size_t   CCH
         >
 inline ws_char_w_t const *c_str_data(ansi2Unicode<CCH> const &b)
 {
     return b.c_str();
 }
+template<   ws_size_t   CCH
+        >
+inline ws_char_w_t const *c_str_data_w(ansi2Unicode<CCH> const &b)
+{
+    return b.c_str();
+}
 
-template<   ws_size_t           CCH
+template<   ws_size_t   CCH
         >
 inline ws_size_t c_str_len(ansi2Unicode<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
-template<   ws_size_t           CCH
+#if 0
+template<   ws_size_t   CCH
         >
 inline ws_size_t c_str_size(ansi2Unicode<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.c_str());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
-        ,   ws_size_t           CCH
+        ,   ws_size_t   CCH
         >
 inline S &operator <<(S & s, ansi2Unicode<CCH> const &b)
 {
@@ -390,43 +411,63 @@ inline S &operator <<(S & s, ansi2Unicode<CCH> const &b)
     return s;
 }
 
-template<   ws_size_t           CCH
+template<   ws_size_t   CCH
         >
 inline ws_char_a_t const *c_str_ptr_null(unicode2Ansi<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_ptr_null_a(unicode2Ansi<CCH> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
 
-template<   ws_size_t           CCH
+template<   ws_size_t   CCH
         >
 inline ws_char_a_t const *c_str_ptr(unicode2Ansi<CCH> const &b)
 {
     return b.c_str();
 }
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_ptr_a(unicode2Ansi<CCH> const &b)
+{
+    return b.c_str();
+}
 
-template<   ws_size_t           CCH
+template<   ws_size_t   CCH
         >
 inline ws_char_a_t const *c_str_data(unicode2Ansi<CCH> const &b)
 {
     return b.c_str();
 }
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_data_a(unicode2Ansi<CCH> const &b)
+{
+    return b.c_str();
+}
 
-template<   ws_size_t           CCH
+template<   ws_size_t   CCH
         >
 inline ws_size_t c_str_len(unicode2Ansi<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
-template<   ws_size_t           CCH
+#if 0
+template<   ws_size_t   CCH
         >
 inline ws_size_t c_str_size(unicode2Ansi<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.c_str());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
-        ,   ws_size_t           CCH
+        ,   ws_size_t   CCH
         >
 inline S &operator <<(S & s, unicode2Ansi<CCH> const &b)
 {
@@ -474,12 +515,18 @@ namespace stlsoft
 using ::winstl::c_str_ptr_null;
 
 using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
 
 using ::winstl::c_str_data;
+using ::winstl::c_str_data_a;
+using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
 
+#if 0
 using ::winstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

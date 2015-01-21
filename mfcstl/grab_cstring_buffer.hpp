@@ -4,7 +4,7 @@
  * Purpose:     CString Get/ReleaseBuffer scoping class.
  *
  * Created:     12th February 1999
- * Updated:     21st March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_MINOR      1
 # define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_EDIT       49
+# define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@ private:
 // Not implemented
 private:
     grab_cstring_buffer(class_type const &rhs);
-    const class_type &operator =(class_type const &rhs);
+    class_type &operator =(class_type const &rhs);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

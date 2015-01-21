@@ -3,12 +3,12 @@
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/spin_mutex.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/synch/spin_mutex.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef UNIXSTL_INCL_UNIXSTL_HPP_SPIN_MUTEX
-# include <unixstl/spin_mutex.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_SPIN_MUTEX */
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SPIN_MUTEX
+# include <unixstl/synch/spin_mutex.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SPIN_MUTEX */
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

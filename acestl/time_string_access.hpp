@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     20th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MINOR     3
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_REVISION  1
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      19
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_REVISION  2
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,10 +62,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
-# include <stlsoft/shim_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
+# include <stlsoft/string/shim_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #include <ace/Time_Value.h>                 // for ACE_Time_Value
+#include <ace/ace_wchar.h>                  // for ACE_Wide_To_Ascii, ACE_Ascii_To_Wide
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -112,8 +116,8 @@ namespace acestl_project
 template <ss_typename_param_k S>
 void stream_insert(S &s, ACE_Time_Value const &t)
 {
-    ACE_TEXT        s1[20];
-    ACE_TEXT        s2[24];
+    char                s1[20];
+    ACE_TCHAR           s2[24];
 
     const long          s   =   t.sec();
     const long          us  =   t.usec();
@@ -122,7 +126,7 @@ void stream_insert(S &s, ACE_Time_Value const &t)
 
     ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s1));
 
-    len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
+    len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), ACE_TEXT_CHAR_TO_TCHAR(s1), us / 1000);
 
     ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s2));
 
@@ -133,11 +137,55 @@ void stream_insert(S &s, ACE_Time_Value const &t)
  * Shims
  */
 
-/// String access shim
-inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_Time_Value const &t)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace access_string_util
 {
-    ACE_TCHAR           s1[20];
-    ACE_TCHAR           s2[24];
+
+    inline int invoke_ACE_OS_snprintf(ACE_TCHAR s2[], as_size_t size, ACE_TCHAR const *fmt, as_char_a_t const *s1, long ms)
+    {
+        return ACE_OS::snprintf(s2, size, fmt, ACE_TEXT_CHAR_TO_TCHAR(s1), ms);
+    }
+
+# ifdef ACE_USES_WCHAR
+    inline int invoke_ACE_OS_snprintf(as_char_a_t s2[], as_size_t size, as_char_w_t const *fmt, as_char_a_t const *s1, long ms)
+    {
+        return ACE_OS::snprintf(s2, size, ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+    }
+# else /* ? ACE_USES_WCHAR */
+    inline int invoke_ACE_OS_snprintf(as_char_w_t s2[], as_size_t size, as_char_a_t const *fmt, as_char_a_t const *s1, long ms)
+    {
+        stlsoft::auto_buffer<as_char_a_t>   buff(1 + size);
+        int                                 res;
+
+        s2[0] = '\0';
+
+        res = ACE_OS::snprintf(&buff[0], buff.size(), ACE_TEXT_ALWAYS_CHAR(fmt), s1, ms);
+
+        if(0 < res)
+        {
+            ACESTL_ASSERT(static_cast<ss_size_t>(res) < buff.size());
+
+            ::mbstowcs(&s2[2], buff.data(), res);
+            s2[res] = '\0';
+        }
+
+        return res;
+    }
+# endif /* ACE_USES_WCHAR */
+
+
+} // namespace access_string_util
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/// String access shim
+template <ss_typename_param_k C>
+inline ::stlsoft::basic_shim_string<C> c_str_ptr_(ACE_Time_Value const &t)
+{
+    typedef C                       char_t;
+
+    as_char_a_t         s1[20];
+    char_t              s2[24];
     const long          s   =   t.sec();
     const long          us  =   t.usec();
     struct tm   *const  tm  =   ACE_OS::localtime(&static_cast<time_t const&>(s));
@@ -145,13 +193,34 @@ inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_Time_Value const &t
 
     ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s1));
 
-    len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
+    len = access_string_util::invoke_ACE_OS_snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
 
     ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s2));
 
-    return ::stlsoft::basic_shim_string<ACE_TCHAR>(&s2[0], len);
+    return ::stlsoft::basic_shim_string<char_t>(&s2[0], len);
 }
 
+inline ::stlsoft::basic_shim_string<as_char_a_t> c_str_ptr_a(ACE_Time_Value const &t)
+{
+    return c_str_ptr_<as_char_a_t>(t);
+}
+inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_ptr_w(ACE_Time_Value const &t)
+{
+    return c_str_ptr_<as_char_w_t>(t);
+}
+inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_Time_Value const &t)
+{
+    return c_str_ptr_<ACE_TCHAR>(t);
+}
+
+inline ::stlsoft::basic_shim_string<as_char_a_t> c_str_data_a(ACE_Time_Value const &t)
+{
+    return c_str_ptr_a(t);
+}
+inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_data_w(ACE_Time_Value const &t)
+{
+    return c_str_ptr_w(t);
+}
 inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_data(ACE_Time_Value const &t)
 {
     return c_str_ptr(t);
@@ -167,16 +236,18 @@ inline as_size_t c_str_len(ACE_Time_Value const &/* t */)
     return 23;
 }
 
+#if 0
 inline as_size_t c_str_size(ACE_Time_Value const &t)
 {
     return sizeof(ACE_TCHAR) * c_str_len(t);
 }
+#endif /* 0 */
 
 /// An inserter function for ACE_Time_Value into output streams
 template <ss_typename_param_k S>
-inline S &operator <<(S &s, ACE_Time_Value const &addr)
+inline S &operator <<(S &s, ACE_Time_Value const &t)
 {
-    stream_insert(s, addr);
+    stream_insert(s, t);
 
     return s;
 }
@@ -201,13 +272,13 @@ namespace unittest
             unittest_initialiser    init(r, "ACESTL", "time_string_access", __FILE__);
 
 #if 0
-            typedef message_queue_sequence<char>    env_var_t;
+            typedef message_queue_sequence<as_char_a_t>    env_var_t;
 
             env_var_t   path("PATH");
 
             if(0 != strcmp(getenv("PATH"), path))
             {
-                r->report("message_queue_sequence<char> failed ", __LINE__);
+                r->report("message_queue_sequence<as_char_a_t> failed ", __LINE__);
                 bSuccess = false;
             }
 #endif /* 0 */
@@ -235,9 +306,9 @@ namespace unittest
 
 /// An inserter function for ACE_Time_Value into output streams
 template <ss_typename_param_k S>
-inline S &operator <<(S &s, ACE_Time_Value const &addr)
+inline S &operator <<(S &s, ACE_Time_Value const &t)
 {
-    ::acestl::stream_insert(s, addr);
+    ::acestl::stream_insert(s, t);
 
     return s;
 }
@@ -246,7 +317,14 @@ namespace stlsoft
 {
 
     using ::acestl::c_str_ptr;
+    using ::acestl::c_str_ptr_a;
+    using ::acestl::c_str_ptr_w;
+
     using ::acestl::c_str_data;
+    using ::acestl::c_str_data_a;
+    using ::acestl::c_str_data_w;
+
+    using ::acestl::c_str_len;
 
 } // namespace stlsoft
 

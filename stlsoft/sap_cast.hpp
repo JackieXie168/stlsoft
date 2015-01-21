@@ -5,7 +5,7 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     4th April 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_MINOR     3
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_REVISION  4
-# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      33
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_REVISION  5
+# define STLSOFT_VER_STLSOFT_HPP_SAP_CAST_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,8 @@
 # define STLSOFT_NO_SAP_CAST
 #endif /* compiler */
 
-#if !defined(STLSOFT_NO_SAP_CAST)
+#if !defined(STLSOFT_NO_SAP_CAST) && \
+    defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 #  include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
@@ -79,7 +80,7 @@
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
 #  include <stlsoft/meta/select_first_type_if.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
-#endif /* !STLSOFT_NO_SAP_CAST */
+#endif /* !STLSOFT_NO_SAP_CAST && STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

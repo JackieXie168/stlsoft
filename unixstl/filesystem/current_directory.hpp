@@ -4,7 +4,7 @@
  * Purpose:     Definition of the current_directory class.
  *
  * Created:     1st November 2003
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      40
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -158,8 +158,8 @@ private:
 
 // Not to be implemented
 private:
-    basic_current_directory(const class_type &);
-    basic_current_directory &operator =(const class_type &);
+    basic_current_directory(class_type const &);
+    class_type &operator =(class_type const &);
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -237,6 +237,7 @@ inline us_size_t c_str_len(basic_current_directory<C, T> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -244,6 +245,7 @@ inline us_size_t c_str_size(basic_current_directory<C, T> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.c_str());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

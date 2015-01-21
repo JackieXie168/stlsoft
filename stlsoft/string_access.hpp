@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        string_access.hpp (formerly stlsoft_string_access.h)
+ * File:        stlsoft/string_access.hpp (formerly stlsoft_string_access.h)
  *
  * Purpose:     Contains the c_str_ptr, c_str_ptr_null, c_str_len, and
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     8th February 2006
+ * Updated:     6th June 2006
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -44,16 +44,16 @@
 
 /// \file stlsoft/string_access.hpp
 ///
-/// Contains the c_str_ptr, c_str_ptr_null, c_str_len, and c_str_size accessors.
+/// \brief [C++ only] Contains the c_str_ptr, c_str_ptr_null, c_str_len, and c_str_size accessors.
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 #define STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MINOR       3
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        76
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MINOR       5
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    1
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -116,9 +116,9 @@
  * is not available.
  */
 #if !defined(STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-#  include <stlsoft/char_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
+#  include <stlsoft/string/char_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 #endif /* !STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
 
 #if defined(STLSOFT_COMPILER_IS_GCC)
@@ -185,6 +185,13 @@ namespace stlsoft
 #endif /* STLSOFT_STRING_ACCESS_NO_STD_STRING */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief Inert class that connotes an invalid use of a string access shim
+ *   function by forcing a compile-time error.
+ *
+ * \ingroup group__library__string__string_access_shims
+ */
+struct cannot_use_untyped_0_or_NULL_with_shims;
 
 /* /////////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
@@ -322,12 +329,35 @@ inline ss_char_w_t const *c_str_ptr_null_w(stlport::wstring const &s)
 }
 
 /// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
-template <class C>
+template <ss_typename_param_k C>
 inline C const *c_str_ptr_null(stlport::basic_string<C> const &s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
 }
 #endif /* _STLP_USE_NAMESPACES && _STLP_USE_OWN_NAMESPACE */
+
+#if 0
+/** \brief Function template that provide generic implementations of
+ *   c_str_ptr_null_a for any type for which c_str_ptr_a is defined.
+ *
+ * \ingroup group__shims__string_access
+ */
+template <ss_typename_param_k S>
+inline ss_char_a_t const *c_str_ptr_null_a(S const &s)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_a)(static_cast<ss_char_a_t const *>(stlsoft_ns_qual(c_str_ptr_a)(s))));
+}
+/** \brief Function template that provide generic implementations of
+ *   c_str_ptr_null_w for any type for which c_str_ptr_w is defined.
+ *
+ * \ingroup group__shims__string_access
+ */
+template <ss_typename_param_k S>
+inline ss_char_w_t const *c_str_ptr_null_w(S const &s)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_w)(static_cast<ss_char_w_t const *>(stlsoft_ns_qual(c_str_ptr_w)(s))));
+}
+#endif /* 0 */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -464,7 +494,7 @@ inline ss_char_w_t const *c_str_ptr_w(stlport::wstring const &s)
 }
 
 /// \brief Returns the corresponding C-string pointer of \c s
-template <class C>
+template <ss_typename_param_k C>
 inline C const *c_str_ptr(stlport::basic_string<C> const &s)
 {
     return s.c_str();
@@ -606,12 +636,35 @@ inline ss_char_w_t const *c_str_data_w(stlport::wstring const &s)
 }
 
 /// \brief Returns the corresponding C-string pointer of \c s
-template <class C>
+template <ss_typename_param_k C>
 inline C const *c_str_data(stlport::basic_string<C> const &s)
 {
     return s.data();
 }
 #endif /* _STLP_USE_NAMESPACES && _STLP_USE_OWN_NAMESPACE */
+
+#if 0
+/** \brief Function template that provide generic implementations of
+ *   c_str_data_a for any type for which c_str_ptr_a is defined.
+ *
+ * \ingroup group__shims__string_access
+ */
+template <ss_typename_param_k S>
+inline ss_char_a_t const *c_str_data_a(S const &s)
+{
+    return stlsoft_ns_qual(c_str_data_a)(static_cast<ss_char_a_t const*>(stlsoft_ns_qual(c_str_ptr_a)(s))));
+}
+/** \brief Function template that provide generic implementations of
+ *   c_str_data_w for any type for which c_str_ptr_w is defined.
+ *
+ * \ingroup group__shims__string_access
+ */
+template <ss_typename_param_k S>
+inline ss_char_w_t const *c_str_data_w(S const &s)
+{
+    return stlsoft_ns_qual(c_str_data_w)(static_cast<ss_char_w_t const*>(stlsoft_ns_qual(c_str_ptr_w)(s))));
+}
+#endif /* 0 */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * c_str_len
@@ -758,7 +811,7 @@ inline ss_size_t c_str_len_w(stlport::wstring const &s)
 }
 
 /// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
-template <class C>
+template <ss_typename_param_k C>
 inline ss_size_t c_str_len(stlport::basic_string<C> const &s)
 {
     return s.length();
@@ -827,6 +880,7 @@ inline ss_size_t c_str_size(ss_char_w_t *s)
 }
 #endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
 
+#if 0
 /* std::basic_string */
 #ifndef STLSOFT_STRING_ACCESS_NO_STD_STRING
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -901,12 +955,35 @@ inline ss_size_t c_str_size_w(stlport::wstring const &s)
 }
 
 /// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
-template <class C>
+template <ss_typename_param_k C>
 inline ss_size_t c_str_size(stlport::basic_string<C> const &s)
 {
     return c_str_len(s) * sizeof(C);
 }
 #endif /* _STLP_USE_NAMESPACES && _STLP_USE_OWN_NAMESPACE */
+#else /* ? 0 */
+
+template <ss_typename_param_k S>
+inline ss_size_t c_str_size_a(S const &s)
+{
+    return sizeof(ss_char_a_t) * c_str_len(s);
+}
+
+template <ss_typename_param_k S>
+inline ss_size_t c_str_size_w(S const &s)
+{
+    return sizeof(ss_char_w_t) * c_str_len(s);
+}
+
+template <ss_typename_param_k S>
+inline ss_size_t c_str_size(S const &s)
+{
+    return sizeof(*c_str_ptr(s)) * c_str_len(s);
+}
+
+inline cannot_use_untyped_0_or_NULL_with_shims &c_str_size(int deny_literal_NULL);
+
+#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

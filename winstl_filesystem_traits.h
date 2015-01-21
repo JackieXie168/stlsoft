@@ -3,12 +3,12 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/filesystem_traits.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/filesystem/filesystem_traits.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+# include <winstl/filesystem/filesystem_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

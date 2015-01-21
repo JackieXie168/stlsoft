@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st October 2002
- * Updated:     25th March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -91,9 +91,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
 # include <stlsoft/util/std/library_discriminator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS_FWD
-# include <stlsoft/string_traits_fwd.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS_FWD */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD
+# include <stlsoft/string/string_traits_fwd.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

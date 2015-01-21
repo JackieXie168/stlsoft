@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      4
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   3
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       54
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   5
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,24 +71,27 @@ STLSOFT_COMPILER_IS_BORLAND:
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
+# include <stlsoft/string/shim_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+# include <stlsoft/string/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS
 # include <winstl/commctrl_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
-# include <stlsoft/shim_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 typedef stlsoft_ns_qual(basic_simple_string)<TCHAR> lvs_string_t;
 #else
@@ -100,9 +103,6 @@ typedef stlsoft_ns_qual(basic_simple_string)<   TCHAR
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -463,73 +463,18 @@ private:
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Backwards compatiblity typedefs
- */
-
-#if 0
-typedef listview_sequence<lvs_string_t>         listview_sequence_old;
-typedef listview_sequence_item<lvs_string_t>    listview_sequence_item_old;
-#endif /* 0 */
-
-/* /////////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline C const *c_str_ptr_null(basic_current_directory<C, T> const &lvi)
-{
-    return stlsoft_ns_qual(c_str_ptr_null)(lvi.c_str());
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline C const *c_str_ptr(basic_current_directory<C, T> const &lvi)
-{
-    return lvi.c_str();
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline C const *c_str_data(basic_current_directory<C, T> const &lvi)
-{
-    return lvi.c_str();
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_size_t c_str_len(basic_current_directory<C, T> const &lvi)
-{
-    return stlsoft_ns_qual(c_str_len)(lvi.c_str());
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_size_t c_str_size(basic_current_directory<C, T> const &lvi)
-{
-    return stlsoft_ns_qual(c_str_size)(lvi.c_str());
-}
-
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline S &operator <<(S & s, basic_current_directory<C, T> const &lvi)
-{
-    s << lvi.c_str();
-
-    return s;
-}
-#endif /* 0 */
-
-
 inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, true, processheap_allocator<TCHAR> > c_str_ptr_null(listview_sequence_item const &lvi)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(lvi.text());
+}
+#ifdef UNICODE
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, true, processheap_allocator<TCHAR> > c_str_ptr_null_w(listview_sequence_item const &lvi)
+#else /* ? UNICODE */
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, true, processheap_allocator<TCHAR> > c_str_ptr_null_a(listview_sequence_item const &lvi)
+#endif /* UNICODE */
 {
     return stlsoft_ns_qual(c_str_ptr_null)(lvi.text());
 }
@@ -538,8 +483,24 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, false, processheap_allocato
 {
     return stlsoft_ns_qual(c_str_ptr)(lvi.text());
 }
+#ifdef UNICODE
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, true, processheap_allocator<TCHAR> > c_str_ptr_w(listview_sequence_item const &lvi)
+#else /* ? UNICODE */
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, true, processheap_allocator<TCHAR> > c_str_ptr_a(listview_sequence_item const &lvi)
+#endif /* UNICODE */
+{
+    return stlsoft_ns_qual(c_str_ptr)(lvi.text());
+}
 
 inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, false, processheap_allocator<TCHAR> > c_str_data(listview_sequence_item const &lvi)
+{
+    return stlsoft_ns_qual(c_str_data)(lvi.text());
+}
+#ifdef UNICODE
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, true, processheap_allocator<TCHAR> > c_str_data_w(listview_sequence_item const &lvi)
+#else /* ? UNICODE */
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR, 64, true, processheap_allocator<TCHAR> > c_str_data_a(listview_sequence_item const &lvi)
+#endif /* UNICODE */
 {
     return stlsoft_ns_qual(c_str_data)(lvi.text());
 }
@@ -549,10 +510,12 @@ inline ws_size_t c_str_len(listview_sequence_item const &lvi)
     return stlsoft_ns_qual(c_str_len)(lvi.text());
 }
 
+#if 0
 inline ws_size_t c_str_size(listview_sequence_item const &lvi)
 {
     return stlsoft_ns_qual(c_str_size)(lvi.text());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
         >
@@ -597,14 +560,22 @@ namespace stlsoft
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
 using ::winstl::c_str_ptr_null;
+using ::winstl::c_str_ptr_null_a;
+using ::winstl::c_str_ptr_null_w;
 
 using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
 
 using ::winstl::c_str_data;
+using ::winstl::c_str_data_a;
+using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
 
+#if 0
 using ::winstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

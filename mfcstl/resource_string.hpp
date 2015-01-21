@@ -4,7 +4,7 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     5th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MINOR      3
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       64
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   3
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -192,15 +192,39 @@ inline LPCTSTR c_str_ptr_null(resource_string const &s)
 {
     return s.empty() ? NULL : s.c_str();
 }
+#ifdef UNICODE
+inline LPCTSTR c_str_ptr_null_w(resource_string const &s)
+#else /* ? UNICODE */
+inline LPCTSTR c_str_ptr_null_a(resource_string const &s)
+#endif /* UNICODE */
+{
+    return c_str_ptr_null(s);
+}
 
 inline LPCTSTR c_str_ptr(resource_string const &s)
 {
     return s.c_str();
 }
+#ifdef UNICODE
+inline LPCTSTR c_str_ptr_w(resource_string const &s)
+#else /* ? UNICODE */
+inline LPCTSTR c_str_ptr_a(resource_string const &s)
+#endif /* UNICODE */
+{
+    return c_str_ptr(s);
+}
 
 inline LPCTSTR c_str_data(resource_string const &s)
 {
     return s.data();
+}
+#ifdef UNICODE
+inline LPCTSTR c_str_data_w(resource_string const &s)
+#else /* ? UNICODE */
+inline LPCTSTR c_str_data_a(resource_string const &s)
+#endif /* UNICODE */
+{
+    return c_str_data(s);
 }
 
 inline ms_size_t c_str_len(resource_string const &s)
@@ -208,10 +232,12 @@ inline ms_size_t c_str_len(resource_string const &s)
     return s.length();
 }
 
+#if 0
 inline ms_size_t c_str_size(resource_string const &s)
 {
     return c_str_len(s) * sizeof(TCHAR);
 }
+#endif /* 0 */
 
 template<ss_typename_param_k S>
 inline S &operator <<(S &s, resource_string const &str)
@@ -350,14 +376,31 @@ namespace stlsoft
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
 using ::mfcstl::c_str_ptr_null;
+#if defined(UNICODE)
+using ::mfcstl::c_str_ptr_null_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_ptr_null_a;
+#endif /* UNICODE */
 
 using ::mfcstl::c_str_ptr;
+#if defined(UNICODE)
+using ::mfcstl::c_str_ptr_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_ptr_a;
+#endif /* UNICODE */
 
 using ::mfcstl::c_str_data;
+#if defined(UNICODE)
+using ::mfcstl::c_str_data_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_data_a;
+#endif /* UNICODE */
 
 using ::mfcstl::c_str_len;
 
+#if 0
 using ::mfcstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

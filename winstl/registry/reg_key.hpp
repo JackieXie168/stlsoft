@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     31st May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    10
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        101
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -416,6 +416,8 @@ public:
 
     /** \brief Deletes the named sub-key of this key
      *
+     * \param subKeyName The name of the sub-key to be deleted.
+     *
      * \return Indicates whether the sub-key was deleted.
      * \retval true The sub-key existed and was successfully deleted.
      * \retval false The sub-key does not exist. (<b>Note</b>:
@@ -430,6 +432,8 @@ public:
     bool_type   delete_sub_key(char_type const *subKeyName);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /** \brief Deletes the named sub-key of this key
+     *
+     * \param subKeyName The name of the sub-key to be deleted.
      *
      * \return Indicates whether the sub-key was deleted.
      * \retval true The sub-key existed and was successfully deleted.
@@ -615,6 +619,8 @@ public:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     /** \brief Deletes the named value.
      *
+     * \param valueName The name of the value to be deleted.
+     *
      * \return Indicates whether the value was deleted.
      * \retval true The value existed and was successfully deleted.
      * \retval false The value does not exist. (<b>Note</b>:
@@ -629,6 +635,8 @@ public:
     bool_type   delete_value(char_type const *valueName);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /** \brief Deletes the named value.
+     *
+     * \param valueName The name of the value to be deleted.
      *
      * \return Indicates whether the value was deleted.
      * \retval true The value existed and was successfully deleted.

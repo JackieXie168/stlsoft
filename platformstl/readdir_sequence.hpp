@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the readdir_sequence components.
  *
  * Created:     29th April 2006
- * Updated:     29th April 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -67,12 +67,12 @@
 #  include <unixstl/readdir_sequence.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_READDIR_SEQUENCE */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_WINSTL_HPP_FINDFILE_SEQUENCE
-#  include <winstl/findfile_sequence.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_FINDFILE_SEQUENCE */
-# ifndef WINSTL_INCL_WINSTL_HPP_FINDSYSTEM_TRAITS
-#  include <winstl/filesystem_traits.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_FINDSYSTEM_TRAITS */
+# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE
+#  include <winstl/filesystem/findfile_sequence.hpp>
+# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE */
+# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+#  include <winstl/filesystem/filesystem_traits.hpp>
+# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */

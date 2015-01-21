@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,18 +38,20 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/file_functions.hpp
-///
-/// Helper functions for file handling.
+/** \file winstl/filesystem/file_functions.hpp
+ *
+ * \brief [C++ only] Helper functions for (text) file handling.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR		2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT		28
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -78,15 +80,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE
 # include <stlsoft/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
-# include <stlsoft/string_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
+# include <stlsoft/string/string_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS
 # include <stlsoft/tokenising/tokeniser_functions.hpp> // for find_next_token
 #endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS */
 
 #ifdef STLSOFT_UNITTEST
-# include <stlsoft/simple_string.hpp>
+# include <stlsoft/string/simple_string.hpp>
 #endif // STLSOFT_UNITTEST
 
 /* /////////////////////////////////////////////////////////////////////////////

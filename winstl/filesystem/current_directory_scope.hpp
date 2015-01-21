@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/current_directory_scope.hpp
-///
-/// Current working directory scoping class.
+/** \file winstl/filesystem/current_directory_scope.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_current_directory_scope
+ *  class template.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR		5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT		102
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION	2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT		104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +75,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-# error winstl_file_path_buffer.h is not compatible with Visual C++ 5.0 or earlier
+# error winstl/filesystem/current_directory_scope.hpp is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
@@ -118,20 +121,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * basic_current_directory_scope
  *
@@ -140,6 +129,8 @@ namespace winstl_project
  */
 
 /// \brief Current directory scoping class
+///
+/// \ingroup group__library__file_system
 ///
 /// This class scopes the process's current directory, by changing to the path
 /// given in the constructor, and then, if that succeeded, changing back in the
@@ -270,6 +261,7 @@ inline ws_size_t c_str_len(basic_current_directory_scope<C, T> const &b)
     return stlsoft_ns_qual(c_str_len)(b.get_previous());
 }
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -277,6 +269,7 @@ inline ws_size_t c_str_size(basic_current_directory_scope<C, T> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.get_previous());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -368,10 +361,6 @@ inline basic_current_directory_scope<C, T>::operator ss_typename_type_k basic_cu
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group winstl_filesystem_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -407,7 +396,9 @@ using ::winstl::c_str_data;
 
 using ::winstl::c_str_len;
 
+#if 0
 using ::winstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

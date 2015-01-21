@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     6th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MINOR      3
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       70
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   3
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 # include <stlsoft/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER
-# include <stlsoft/cstring_maker.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER
+# include <stlsoft/string/cstring_maker.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
 # include <stlsoft/util/std/library_discriminator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
@@ -470,10 +470,26 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CWnd &w)
 {
     return c_str_ptr_null_CWnd_proxy(w);
 }
+#if defined(UNICODE)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CWnd &w)
+#else /* ? UNICODE */
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CWnd &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr_null(w);
+}
 
 inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CListBox &w)
 {
     return c_str_ptr_null_CWnd_proxy(w);
+}
+#if defined(UNICODE)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CListBox &w)
+#else /* ? UNICODE */
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListBox &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr_null(w);
 }
 
 #ifdef __AFXCMN_H__
@@ -481,11 +497,27 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CListCtrl &w)
 {
     return c_str_ptr_null_CWnd_proxy(w);
 }
+#if defined(UNICODE)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CListCtrl &w)
+#else /* ? UNICODE */
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListCtrl &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr_null(w);
+}
 
 # ifdef __AFXCVIEW_H__
 inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CListView &w)
 {
     return c_str_ptr_null(w.GetListCtrl());
+}
+#if defined(UNICODE)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CListView &w)
+#else /* ? UNICODE */
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListView &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr_null(w);
 }
 # endif /* __AFXCVIEW_H__ */
 #endif /* __AFXCMN_H__ */
@@ -498,6 +530,14 @@ inline LPCTSTR c_str_ptr_null(const CString &s)
      * CStringData or afxEmptyString.m_pchData
      */
     return s.IsEmpty() ? NULL : (LPCTSTR)s;
+}
+#if defined(UNICODE)
+inline LPCTSTR c_str_ptr_null_w(const CString &s)
+#else /* ? UNICODE */
+inline LPCTSTR c_str_ptr_null_w(const CString &s)
+#endif /* UNICODE */
+{
+    return c_str_ptr_null(s);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -513,10 +553,26 @@ inline c_str_ptr_CWnd_proxy c_str_ptr(const CWnd &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CWnd &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CWnd &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr(w);
+}
 
 inline c_str_ptr_CWnd_proxy c_str_ptr(const CListBox &w)
 {
     return c_str_ptr_CWnd_proxy(w);
+}
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CListBox &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListBox &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr(w);
 }
 
 #ifdef __AFXCMN_H__
@@ -524,11 +580,27 @@ inline c_str_ptr_CWnd_proxy c_str_ptr(const CListCtrl &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CListCtrl &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListCtrl &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr(w);
+}
 
 # ifdef __AFXCVIEW_H__
 inline c_str_ptr_CWnd_proxy c_str_ptr(const CListView &w)
 {
     return c_str_ptr(w.GetListCtrl());
+}
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CListView &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListView &w)
+#endif /* UNICODE */
+{
+    return c_str_ptr(w);
 }
 # endif /* __AFXCVIEW_H__ */
 #endif /* __AFXCMN_H__ */
@@ -541,6 +613,14 @@ inline LPCTSTR c_str_ptr(const CString &s)
      * CStringData or afxEmptyString.m_pchData
      */
     return s;
+}
+#if defined(UNICODE)
+inline LPCTSTR c_str_ptr_w(const CString &s)
+#else /* ? UNICODE */
+inline LPCTSTR c_str_ptr_a(const CString &s)
+#endif /* UNICODE */
+{
+    return c_str_ptr(s);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -556,10 +636,26 @@ inline c_str_ptr_CWnd_proxy c_str_data(const CWnd &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_data_w(const CWnd &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_data_a(const CWnd &w)
+#endif /* UNICODE */
+{
+    return c_str_data(w);
+}
 
 inline c_str_ptr_CWnd_proxy c_str_data(const CListBox &w)
 {
     return c_str_ptr_CWnd_proxy(w);
+}
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_data_w(const CListBox &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_data_a(const CListBox &w)
+#endif /* UNICODE */
+{
+    return c_str_data(w);
 }
 
 #ifdef __AFXCMN_H__
@@ -567,11 +663,27 @@ inline c_str_ptr_CWnd_proxy c_str_data(const CListCtrl &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_data_w(const CListCtrl &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_data_a(const CListCtrl &w)
+#endif /* UNICODE */
+{
+    return c_str_data(w);
+}
 
 # ifdef __AFXCVIEW_H__
 inline c_str_ptr_CWnd_proxy c_str_data(const CListView &w)
 {
     return c_str_data(w.GetListCtrl());
+}
+#if defined(UNICODE)
+inline c_str_ptr_CWnd_proxy c_str_data_w(const CListView &w)
+#else /* ? UNICODE */
+inline c_str_ptr_CWnd_proxy c_str_data_a(const CListView &w)
+#endif /* UNICODE */
+{
+    return c_str_data(w);
 }
 # endif /* __AFXCVIEW_H__ */
 #endif /* __AFXCMN_H__ */
@@ -584,6 +696,14 @@ inline LPCTSTR c_str_data(const CString &s)
      * CStringData or afxEmptyString.m_pchData
      */
     return s;
+}
+#if defined(UNICODE)
+inline LPCTSTR c_str_data_w(const CString &s)
+#else /* ? UNICODE */
+inline LPCTSTR c_str_data_a(const CString &s)
+#endif /* UNICODE */
+{
+    return c_str_data(s);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -635,37 +755,47 @@ inline ms_size_t c_str_len(const CString &s)
  */
 
 /* CWnd */
+#if 0
 /// \brief Returns the size (in bytes) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
 inline ms_size_t c_str_size(const CWnd &w)
 {
     return c_str_len(w) * sizeof(TCHAR);
 }
+#endif /* 0 */
 
+#if 0
 inline ms_size_t c_str_size(const CListBox &w)
 {
     return c_str_len(w) * sizeof(TCHAR);
 }
+#endif /* 0 */
 
 #ifdef __AFXCMN_H__
+#if 0
 inline ms_size_t c_str_size(const CListCtrl &w)
 {
     return c_str_len(w) * sizeof(TCHAR);
 }
+#endif /* 0 */
 
 # ifdef __AFXCVIEW_H__
+#if 0
 inline ms_size_t c_str_size(const CListView &w)
 {
     return c_str_size(w.GetListCtrl());
 }
+#endif /* 0 */
 # endif /* __AFXCVIEW_H__ */
 #endif /* __AFXCMN_H__ */
 
 /* CString */
+#if 0
 /// \brief Returns the size (in bytes) of the CString \c s, <b><i>not</i></b> including the null-terminating character
 inline ms_size_t c_str_size(const CString &s)
 {
     return c_str_len(s) * sizeof(TCHAR);
 }
+#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -708,14 +838,31 @@ namespace stlsoft
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
 using ::mfcstl::c_str_ptr_null;
+#if defined(UNICODE)
+using ::mfcstl::c_str_ptr_null_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_ptr_null_a;
+#endif /* UNICODE */
 
 using ::mfcstl::c_str_ptr;
+#if defined(UNICODE)
+using ::mfcstl::c_str_ptr_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_ptr_a;
+#endif /* UNICODE */
 
 using ::mfcstl::c_str_data;
+#if defined(UNICODE)
+using ::mfcstl::c_str_data_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_data_a;
+#endif /* UNICODE */
 
 using ::mfcstl::c_str_len;
 
+#if 0
 using ::mfcstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

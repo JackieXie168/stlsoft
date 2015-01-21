@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     19th January 2002
- * Updated:     25th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -76,12 +76,12 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* compiler */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/filesystem_functionals.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/filesystem/functionals.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_FUNCTIONALS
-# include <winstl/filesystem_functionals.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_FUNCTIONALS */
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FUNCTIONALS
+# include <winstl/filesystem/functionals.hpp>
+#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FUNCTIONALS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

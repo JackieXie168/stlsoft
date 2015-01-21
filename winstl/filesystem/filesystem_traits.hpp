@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/filesystem_traits.hpp (formerly winstl/filesystem_traits.hpp; originally winstl_filesystem_traits.h)
+ * File:        winstl/filesystem/filesystem_traits.hpp (originally winstl_filesystem_traits.h)
  *
  * Purpose:     Contains the filesystem_traits template class, and ANSI and
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     31st May 2006
+ * Updated:     1st June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,18 +39,21 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/filesystem_traits.hpp
-///
-/// Contains the filesystem_traits template class, and ANSI and Unicode specialisations thereof.
+/** \file winstl/filesystem/filesystem_traits.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::filesystem_traits traits
+ *  class.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR		4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT		88
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -84,6 +87,8 @@
      (_WIN32_WINNT < 0x0500) || \
      !defined(FindFirstVolume) || \
      !defined(FindNextVolume)
+
+#  define WINSTL_FINDVOLUME_API_NOT_DECLARED
 
 HANDLE WINAPI FindFirstVolumeA(
   LPSTR lpszVolumeName,   // output buffer
@@ -138,26 +143,14 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// Traits for accessing the correct file-system functions for a given character type
+/// \brief Traits for accessing the correct file-system functions for a given character type
+///
+/// \ingroup group__library__file_system
 ///
 /// filesystem_traits is a traits class for determining the correct file-system
 /// structures and functions for a given character type.
@@ -1872,10 +1865,6 @@ public:
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/filesystem_traits_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_filesystem_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

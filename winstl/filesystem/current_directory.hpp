@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,9 +39,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/current_directory.hpp
-///
-/// Simple class that gets, and makes accessible, the current directory.
+/** \file winstl/filesystem/current_directory.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_current_directory class template.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY
@@ -49,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR		4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT		55
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION	2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT		58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -103,20 +105,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * basic_current_directory
  *
@@ -124,7 +112,10 @@ namespace winstl_project
  * as a C-string of its value.
  */
 
-/// Represents the current directory
+/// \brief \ref group__pattern__special_string_instance "Special String Instance"
+///  that represents the current directory
+///
+/// \ingroup group__library__file_system
 ///
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
@@ -183,8 +174,8 @@ private:
 
 // Not to be implemented
 private:
-    basic_current_directory(const class_type &);
-    basic_current_directory &operator =(const class_type &);
+    basic_current_directory(class_type const &);
+    class_type &operator =(class_type const &);
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -262,6 +253,7 @@ inline ws_size_t c_str_len(basic_current_directory<C, T> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -269,6 +261,7 @@ inline ws_size_t c_str_size(basic_current_directory<C, T> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.c_str());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -346,10 +339,6 @@ inline ss_typename_type_k basic_current_directory<C, T>::size_type basic_current
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group winstl_filesystem_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -385,7 +374,9 @@ using ::winstl::c_str_data;
 
 using ::winstl::c_str_len;
 
+#if 0
 using ::winstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

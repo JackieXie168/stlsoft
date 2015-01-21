@@ -4,7 +4,7 @@
  * Purpose:     Mappings to string string functions
  *
  * Created:     2nd December 2004
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
@@ -68,9 +68,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
-# include <stlsoft/string_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
+# include <stlsoft/string/string_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
 #include <string.h>
 #include <wchar.h>
 #if defined(STLSOFT_COMPILER_IS_BORLAND)

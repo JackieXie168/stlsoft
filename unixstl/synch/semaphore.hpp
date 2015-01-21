@@ -1,10 +1,10 @@
 /* ////////////////////////////////////////////////////////////////////////////
  * File:        unixstl/synch/semaphore.hpp
  *
- * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
+ * Purpose:     Semaphore class, based on POSIX semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     30th May 2006
+ * Updated:     4th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file unixstl/synch/semaphore.hpp
  *
  * \brief [C++ only] Definition of unixstl::semaphore class.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SEMAPHORE
@@ -50,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -97,8 +98,8 @@ namespace unixstl_project
  */
 
 // class semaphore
-/** \brief This class acts as an semaphore based on the Win32
- *   kernel semaphore object
+/** \brief This class acts as an semaphore based on the POSIX
+ *   semaphore object
  *
  * \ingroup group__library__synch
  */
@@ -312,37 +313,28 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_sync_control Synchronisation Control Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" control the behaviour of synchronisation objects
-
-/// \defgroup unixstl_sync_control_shims Synchronisation Control Shims (UNIXSTL)
-/// \ingroup UNIXSTL concepts_shims_sync_control
-/// \brief These \ref concepts_shims "shims" control the behaviour of Win32 synchronisation objects
-/// @{
-
-/// This control ref concepts_shims "shim" aquires a lock on the given semaphore
-///
-/// \param sem The semaphore on which to aquire the lock
+/** \brief This \ref group__concept__shims "control shim" aquires a lock on the given semaphore
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param sem The semaphore on which to aquire the lock.
+ */
 inline void lock_instance(unixstl_ns_qual(semaphore) &sem)
 {
     sem.lock();
 }
 
-/// This control ref concepts_shims "shim" releases a lock on the given semaphore
-///
-/// \param sem The semaphore on which to release the lock
+/** \brief This \ref group__concept__shims "control shim" releases a lock on the given semaphore
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param sem The semaphore on which to release the lock
+ */
 inline void unlock_instance(unixstl_ns_qual(semaphore) &sem)
 {
     sem.unlock();
 }
 
-/// @} // end of group unixstl_sync_control_shims
 
 #if 0
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \

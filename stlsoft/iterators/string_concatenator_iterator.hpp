@@ -4,7 +4,7 @@
  * Purpose:     string_concatenator_iterator class template.
  *
  * Created:     12th May 1998
- * Updated:     25th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -75,9 +75,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
-# include <stlsoft/string_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
+# include <stlsoft/string/string_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
 #ifndef _STLSOFT_STRING_FUNCTIONALS_NO_STD
 # include <functional>
 #else /* ? _STLSOFT_STRING_FUNCTIONALS_NO_STD */

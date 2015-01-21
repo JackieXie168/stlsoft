@@ -4,7 +4,7 @@
  * Purpose:     WinSTL system-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     30th May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_MAJOR     4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_MINOR     0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_REVISION  1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_EDIT      35
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -85,25 +85,14 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_performance Performance Library
-/// \ingroup libraries
-/// \brief This library provides performance measuring facilities
-
-/// \weakgroup winstl_perf_library Performance Library (WinSTL)
-/// \ingroup WinSTL libraries_performance
-/// \brief This library provides performance measuring facilities for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// Performance counter that uses the Windows <code>GetSystemTime()</code> function
+/** \brief Performance counter that uses the Windows <code>GetSystemTime()</code> function
+ *
+ * \ingroup group__library__performance
+ */
 class systemtime_counter
 {
 public:
@@ -182,10 +171,6 @@ inline systemtime_counter::interval_type systemtime_counter::get_microseconds() 
 {
     return get_period_count() / interval_type(10);
 }
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_perf_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

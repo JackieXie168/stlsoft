@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     30th May 2006
+ * Updated:     7th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file winstl/synch/semaphore.hpp
  *
  * \brief [C++ only] Definition of winstl::semaphore class.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SEMAPHORE
@@ -50,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -270,7 +271,7 @@ public:
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
-        return static_cast<count_type>(previousCount);
+        return static_cast<ws_long_t>(previousCount);
     }
 /// @}
 
@@ -346,49 +347,27 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_sync_control Synchronisation Control Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" control the behaviour of synchronisation objects
-
-/// \defgroup winstl_sync_control_shims Synchronisation Control Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_sync_control
-/// \brief These \ref concepts_shims "shims" control the behaviour of Win32 synchronisation objects
-/// @{
-
-/// This control ref concepts_shims "shim" aquires a lock on the given semaphore
-///
-/// \param sem The semaphore on which to aquire the lock
+/** \brief This \ref group__concept__shims "control shim" aquires a lock on the given semaphore
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param sem The semaphore on which to aquire the lock.
+ */
 inline void lock_instance(winstl_ns_qual(semaphore) &sem)
 {
     sem.lock();
 }
 
-/// This control ref concepts_shims "shim" releases a lock on the given semaphore
-///
-/// \param sem The semaphore on which to release the lock
+/** \brief This \ref group__concept__shims "control shim" releases a lock on the given semaphore
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param sem The semaphore on which to release the lock
+ */
 inline void unlock_instance(winstl_ns_qual(semaphore) &sem)
 {
     sem.unlock();
 }
-
-/// @} // end of group winstl_sync_control_shims
-
-#if 0
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1310
-/** \brief Access shim
- */
-inline HANDLE get_handle(semaphore &sem)
-{
-    return sem.get();
-}
-#endif /* compiler */
-#endif /* 0 */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \

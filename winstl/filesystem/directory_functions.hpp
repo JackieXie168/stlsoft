@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/directory_functions.hpp (formerly winstl/directory_functions.hpp, winstl_filesystem_functions.h; originally MLFlMan.h, ::SynesisStd)
+ * File:        winstl/filesystem/directory_functions.hpp (originally MLFlMan.h, ::SynesisStd)
  *
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     31st May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,10 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/directory_functions.hpp
+/** \file winstl/filesystem/directory_functions.hpp
  *
  * \brief [C++ only] Functions for manipulating directories.
+ *  (\ref group__library__file_system "File System" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS
@@ -49,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      34
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -192,7 +193,7 @@ inline ws_bool_t create_directory_recurse_impl(C const *dir, LPSECURITY_ATTRIBUT
                 traits_t::remove_dir_end(&sz[0]);
 
                 if( traits_t::create_directory(sz.c_str(), lpsa) ||
-					ERROR_ALREADY_EXISTS == traits_t::get_last_error())
+                    ERROR_ALREADY_EXISTS == traits_t::get_last_error())
                 {
                     traits_t::set_last_error(ERROR_SUCCESS);
 
@@ -533,7 +534,7 @@ inline ws_bool_t remove_directory_recurse(  ws_char_a_t const   *dir
     return ERROR_SUCCESS == dwRet;
 }
 
-/// \brief 
+/// \brief Removes the given directory, and all its subdirectories.
 ///
 /// \ingroup group__library__file_system
 inline ws_bool_t remove_directory_recurse(ws_char_a_t const *dir)
@@ -541,7 +542,7 @@ inline ws_bool_t remove_directory_recurse(ws_char_a_t const *dir)
     return remove_directory_recurse(dir, NULL, NULL);
 }
 
-/// \brief 
+/// \brief Removes the given directory, and all its subdirectories.
 ///
 /// \ingroup group__library__file_system
 inline ws_bool_t remove_directory_recurse(  ws_char_w_t const   *dir
@@ -557,7 +558,7 @@ inline ws_bool_t remove_directory_recurse(  ws_char_w_t const   *dir
     return ERROR_SUCCESS == dwRet;
 }
 
-/// \brief 
+/// \brief Removes the given directory, and all its subdirectories.
 ///
 /// \ingroup group__library__file_system
 inline ws_bool_t remove_directory_recurse(ws_char_w_t const *dir)
@@ -565,7 +566,7 @@ inline ws_bool_t remove_directory_recurse(ws_char_w_t const *dir)
     return remove_directory_recurse(dir, NULL, NULL);
 }
 
-/// \brief 
+/// \brief Removes the given directory, and all its subdirectories.
 ///
 /// \ingroup group__library__file_system
 template <ss_typename_param_k S>

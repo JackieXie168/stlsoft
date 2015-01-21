@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for UNIX PThreads TSS key.
  *
  * Created:     21st January 1999
- * Updated:     1st June 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file unixstl/synch/tss_index.hpp
  *
  * \brief [C++ only] Definition of the unixstl::tss_index class.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_TSS_INDEX
@@ -50,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       32
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +65,7 @@
 # include <unixstl/synch/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS */
 #if !defined(_REENTRANT)
-# error unixstl/tss_index.hpp cannot be included in non-multithreaded compilation. _REENTRANT must be defined
+# error unixstl/synch/tss_index.hpp cannot be included in non-multithreaded compilation. _REENTRANT must be defined
 #endif /* !_REENTRANT */
 #include <pthread.h>
 

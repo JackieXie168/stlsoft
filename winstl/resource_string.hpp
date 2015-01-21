@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     21st May 2006
+ * Updated:     6th June 2006
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MINOR    3
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     65
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_REVISION 4
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-//#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
-//# include <stlsoft/string_traits.hpp>
-//#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
+//#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
+//# include <stlsoft/string/string_traits.hpp>
+//#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
 # include <stlsoft/exceptions.hpp>      // for stlsoft::null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
@@ -402,6 +402,7 @@ inline ss_size_t c_str_len(basic_resource_string<S, X> const &s)
 
 /* c_str_ptr_size */
 
+#if 0
 /// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
 template<   ss_typename_param_k S
         ,   ss_typename_param_k X
@@ -410,6 +411,7 @@ inline ss_size_t c_str_size(basic_resource_string<S, X> const &s)
 {
     return c_str_len(s) * sizeof(ss_typename_type_k basic_resource_string<S, X>::value_type);
 }
+#endif /* 0 */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,15 +62,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
 # include <stlsoft/integer_to_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING */
-#ifndef WINSTL_INCL_WINSTL_HPP_THREAD_MUTEX
-# include <winstl/thread_mutex.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_THREAD_MUTEX */
-#ifndef WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX
-# include <winstl/spin_mutex.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE
-# include <stlsoft/lock_scope.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_THREAD_MUTEX
+# include <winstl/synch/thread_mutex.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_THREAD_MUTEX */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX
+# include <winstl/synch/spin_mutex.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE
+# include <stlsoft/synch/lock_scope.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
 # include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */

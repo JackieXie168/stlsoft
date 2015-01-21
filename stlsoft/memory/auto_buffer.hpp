@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/memory/auto_buffer.hpp (formerly stlsoft/auto_buffer.hpp, stlsoft_auto_buffer.h; originally MTLocBfr.h, ::SynesisStl)
+ * File:        stlsoft/memory/auto_buffer.hpp (originally MTLocBfr.h, ::SynesisStl)
  *
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     29th May 2006
+ * Updated:     4th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file stlsoft/memory/auto_buffer.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::auto_buffer class template.
+ *  (\ref group__library__memory "Memory" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
@@ -49,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        136
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,9 +61,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
-# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
+# include <stlsoft/memory/allocator_features.hpp>   // for STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
@@ -190,7 +191,7 @@ struct auto_buffer_internal_size_calculator<ss_char_w_t>
  * \param A The allocator type. Defaults to allocator_selector<T>::allocator_type for translators
  *   that support default template arguments.
  *
- * \note auto_buffer works correctly whether the given allocator throws an
+ * \remarks auto_buffer works correctly whether the given allocator throws an
  *   exception on allocation failure, or returns NULL. In the latter case,
  *   construction failure to allocate results in the size() method returning
  *   0.
@@ -896,6 +897,8 @@ public:
     }
 
 #if defined(STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVEx)
+    /// \brief Returns an instance of the allocator used to specialise the
+    ///  instance.
     static allocator_type &get_allocator()
     {
 # if !defined(STLSOFT_STRICT) && \
@@ -916,6 +919,8 @@ public:
 # endif /* compiler */
     }
 #else /* ? STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
+    /// \brief Returns an instance of the allocator used to specialise the
+    ///  instance.
     allocator_type get_allocator() const
     {
 # if defined(STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE)
@@ -1008,6 +1013,9 @@ private:
     auto_buffer const &operator =(class_type const &rhs);
 };
 
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<   ss_typename_param_k T
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type
@@ -1072,6 +1080,8 @@ private:
     auto_buffer_old(class_type const &rhs);
     class_type &operator =(class_type const &rhs);
 };
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * swapping

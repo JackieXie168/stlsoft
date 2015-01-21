@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,18 +38,20 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/path.hpp
-///
-/// Simple class that represents a path
+/** \file winstl/filesystem/path.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_path class template.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PATH
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PATH
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     208
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     213
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -68,9 +70,9 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
-# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
+# include <stlsoft/memory/allocator_features.hpp>   // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -104,38 +106,27 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * basic_path
  *
  * This class represents a path, and effectively acts as a C-string of its value.
  */
 
-/// \brief Represents a path
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
-/// \param A The allocator type. On translators that support default template arguments, this defaults to processheap_allocator<C>
-///
-/// \note This class derives from the Synesis Software class Path, but has been influenced
-/// by other, later, ideas. The idea of using the / operator for path concatenation was
-/// sparked by the Boost implementation (although the details were not investigated prior
-/// to this implementation, so the two may have significant semantic differences). This
-/// has been added without requiring any major fundamental changes to the original
-/// <code>push/pop</code>-based interface
+/** \brief Class used for composing and decomposing file-system paths.
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
+ * \param A The allocator type. On translators that support default template arguments, this defaults to processheap_allocator<C>
+ *
+ * \note This class derives from the Synesis Software class Path, but has been influenced
+ * by other, later, ideas. The idea of using the / operator for path concatenation was
+ * sparked by the Boost implementation (although the details were not investigated prior
+ * to this implementation, so the two may have significant semantic differences). This
+ * has been added without requiring any major fundamental changes to the original
+ * <code>push/pop</code>-based interface
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
@@ -150,18 +141,18 @@ class basic_path
 /// \name Types
 /// @{
 public:
-    /// The char type
+    /// \brief The char type
     typedef C                           char_type;
-    /// The traits type
+    /// \brief The traits type
     typedef T                           traits_type;
-    /// The allocator type
+    /// \brief The allocator type
     typedef A                           allocator_type;
-    /// The current parameterisation of the type
+    /// \brief The current parameterisation of the type
     typedef basic_path<C, T, A>         class_type;
-    /// The size type
+    /// \brief The size type
     typedef ws_size_t                   size_type;
-	/// \brief The Boolean type
-	typedef ws_bool_t					bool_type;
+    /// \brief The Boolean type
+    typedef ws_bool_t                   bool_type;
 
 // TODO: Use the slice string, and provide iterators over the directory parts
 
@@ -170,12 +161,53 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// \brief Constructs an empty path
+    /// \brief Constructs an empty path.
+    ///
+    /// \htmlonly
+    /// <pre>
+    /// winstl::path  p;
+    ///
+    /// assert(0 == p.size());
+    /// assert("" == p);
+    /// </pre>
+    /// \endhtmlonly
     basic_path();
-    /// \brief Constructs a path from \c path
+    /// \brief Constructs a path from a nul-terminated character string.
+    ///
+    /// \htmlonly
+    /// <pre>
+    /// winstl::path  p("C:\\Windows");
+    ///
+    /// assert(10 == p.size());
+    /// assert("C:\\Windows" == p);
+    /// assert("C:\\WINDOWS" == p);
+    /// assert("c:\\windows" == p);
+    /// </pre>
+    /// \endhtmlonly
     ss_explicit_k basic_path(char_type const *path);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-    /// \brief Constructs a path from \c path
+    /// \brief Constructs a path from a string object.
+    ///
+    /// \remarks The string object may be any type for which the 
+    ///  <b>c_str_len</b> and <b>c_str_data</b> 
+    ///  \ref group__concept__string_access_shims "String Access Shims" are
+    ///  defined. The following example shows the use of a window handle
+    ///  (HWND). Other types supported are <code>std::exception</code>,
+    ///  <code>std::string</code>, <code>stlsoft::simple_string</code>,
+    ///  <code>winstl::error_desc</code>, and many more
+    ///
+    /// \htmlonly
+    /// <pre>
+    /// HWND          hwndParent = . . . 
+    /// HWND          hwnd       = winstl::CreateEdit(hwndParent, "C:\\Windows", ES_LEFT, 0, 0, 10, 10, 1001);
+    /// winstl::path  p(hwnd);
+    ///
+    /// assert(10 == p.size());
+    /// assert("C:\\Windows" == p);
+    /// assert("C:\\WINDOWS" == p);
+    /// assert("c:\\windows" == p);
+    /// </pre>
+    /// \endhtmlonly
     template<ss_typename_param_k S>
     ss_explicit_k basic_path(S const &s)
     {
@@ -185,7 +217,18 @@ public:
         m_buffer[m_len] = '\0';
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
-    /// \brief Constructs a path from \c cch characters in \c path
+    /// \brief Constructs a path from a slice of a character string.
+    ///
+    /// \htmlonly
+    /// <pre>
+    /// winstl::path  p("C:\\Windows\\system32", 10);
+    ///
+    /// assert(10 == p.size());
+    /// assert("C:\\Windows" == p);
+    /// assert("C:\\WINDOWS" == p);
+    /// assert("c:\\windows" == p);
+    /// </pre>
+    /// \endhtmlonly
     basic_path(char_type const *path, size_type cch);
 
 #ifndef STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD
@@ -223,13 +266,13 @@ public:
 /// \name Operations
 /// @{
 public:
-    /// \brief Appends the contents of \rhs to the path
+    /// \brief Appends the contents of \c rhs to the path
     class_type &push(class_type const &rhs, bool_type bAddPathNameSeparator = false);
-    /// \brief Appends the contents of \rhs to the path
+    /// \brief Appends the contents of \c rhs to the path
     class_type &push(char_type const *rhs, bool_type bAddPathNameSeparator = false);
-    /// \brief Appends the contents of \rhs to the path as an extension
+    /// \brief Appends the contents of \c rhs to the path as an extension
     class_type &push_ext(class_type const &rhs, bool_type bAddPathNameSeparator = false);
-    /// \brief Appends the contents of \rhs to the path as an extension
+    /// \brief Appends the contents of \c rhs to the path as an extension
     class_type &push_ext(char_type const *rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Ensures that the path has a trailing path name separator
     class_type &push_sep();
@@ -269,34 +312,63 @@ public:
 /// \name Attributes
 /// @{
 public:
-    /// Returns a pointer to the part of the path after the last path name separator
+    /// \brief Returns a pointer to the part of the path after the last path name separator
     ///
     /// \note If the path represents a directory, the name of the directory will be returned, except
     /// if the path is terminated by the path name separator
     ///
     /// \note If the path contains no path name separator, the full path will be returned
     char_type const *get_file() const;
-    /// Returns a pointer to the extension, or to the empty string if there is no extension
+    /// \brief Returns a pointer to the extension, or to the empty string if there is no extension
     char_type const *get_ext() const;
-    /// Returns the length of the converted path
+    /// \brief Returns the length of the converted path
     size_type       length() const;
-    /// Conversion to a non-mutable (const) pointer to the path
+    /// \brief Returns the length of the converted path
+    ///
+    /// \remarks Equivalent to length()
+    size_type       size() const;
+    /// \brief Conversion to a non-mutable (const) pointer to the path
     char_type const *c_str() const;
-    /// Indicates whether the path represents an existing file system entry
+    /// \brief Indicates whether the path represents an existing file system entry
     bool_type       exists() const;
-    /// Indicates whether the path is rooted
+    /// \brief Indicates whether the path is rooted
     bool_type       is_rooted() const;
-    /// Indicates whether the path is absolute
+    /// \brief Indicates whether the path is absolute
     bool_type       is_absolute() const;
 /// @}
 
 /// \name Comparison
 /// @{
 public:
+    /// \brief Determines whether the instance holds a string that refers to
+    ///  the same file-system entity as the given string.
+    ///
+    /// \htmlonly
+    /// <pre>
+    /// winstl::path  p("C:\\Windows\\system32\\..");
+    /// 
+    /// assert(p != "C:\\WINDOWS\\");
+    /// assert(!p.equal("C:\\WINDOWS\\"));
+    /// assert(p.equivalent("C:\\WINDOWS\\"));
+    /// </pre>
+    /// \endhtmlonly
     bool_type equivalent(char_type const *rhs) const;
+
+    /// \brief Evaluates whether the two instances hold strings that refer
+    ///  to the same file-system entity.
+    ///
+    /// \remarks See \link winstl::basic_path::equivalent(char_type const *) equivalent()\endlink for an example.
+    ///
+    /// \note The string comparison is case-insensitive.
     bool_type equivalent(class_type const &rhs) const;
 
+    /// \brief Evaluates whether the instance holds an identical string.
+    ///
+    /// \note The string comparison is case-insensitive.
     bool_type equal(char_type const *rhs) const;
+    /// \brief Evaluates whether the two instances hold identical strings.
+    ///
+    /// \note The string comparison is case-insensitive.
     bool_type equal(class_type const &rhs) const;
 /// @}
 
@@ -320,9 +392,9 @@ private:
 
 // Members
 private:
-    typedef basic_file_path_buffer<	char_type
-								,	allocator_type
-								>					buffer_type;
+    typedef basic_file_path_buffer< char_type
+                                ,   allocator_type
+                                >                   buffer_type;
 
     struct part
     {
@@ -641,6 +713,7 @@ inline ws_size_t c_str_len(basic_path<C, T, A> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -649,6 +722,7 @@ inline ws_size_t c_str_size(basic_path<C, T, A> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.c_str());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -743,7 +817,9 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A>::basic_path()
     : m_len(0)
-{}
+{
+    m_buffer[0] = '\0';
+}
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1305,6 +1381,15 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
+inline ss_typename_type_k basic_path<C, T, A>::size_type basic_path<C, T, A>::size() const
+{
+    return length();
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
 inline ss_typename_type_k basic_path<C, T, A>::char_type const *basic_path<C, T, A>::c_str() const
 {
     return stlsoft_ns_qual(c_str_ptr)(m_buffer);
@@ -1380,10 +1465,6 @@ inline ws_bool_t basic_path<C, T, A>::equal(ss_typename_type_k basic_path<C, T, 
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group winstl_filesystem_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -1446,7 +1527,9 @@ using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
 
+#if 0
 using ::winstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

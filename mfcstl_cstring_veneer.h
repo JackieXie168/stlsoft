@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the cstring_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     8th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       3
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       1
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    1
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        58
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    2
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -330,10 +330,12 @@ inline ms_size_t c_str_len(cstring_veneer const &s)
     return s.length();
 }
 
+#if 0
 inline ms_size_t c_str_size(cstring_veneer const &s)
 {
     return c_str_len(s) * sizeof(TCHAR);
 }
+#endif /* 0 */
 
 template<ss_typename_param_k S>
 inline S &operator <<(S &s, cstring_veneer const &str)

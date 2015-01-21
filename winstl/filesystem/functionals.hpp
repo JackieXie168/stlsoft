@@ -38,9 +38,13 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/functionals.hpp
-///
-/// File-system related functions and predicates.
+/** \file winstl/filesystem/functionals.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::path_compare, 
+ *  winstl::path_compare_env, winstl::path_exists, winstl::path_exists_env
+ *  and winstl::path_contains_file function classes.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FUNCTIONALS
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FUNCTIONALS
@@ -48,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      68
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -211,7 +215,7 @@ inline bool are_paths_equal_envx_(C const *s1, C const *s2, ws_bool_t bExpandEnv
  * Classes
  */
 
-/// Function object that compares two file-system paths
+/// \brief Binary predicate that compares two file-system paths.
 ///
 /// \note Does not expand environment variables in the argument passed to
 /// the function call operator
@@ -262,7 +266,8 @@ public:
 /// @}
 };
 
-/// Function object that compares two file-system paths
+/// \brief Binary predicate object that compares two file-system paths,
+/// after expanding environment variables in the compared path strings.
 ///
 /// \note Does not expand environment variables in the argument passed to
 /// the function call operator
@@ -313,7 +318,7 @@ public:
 /// @}
 };
 
-/// Predicate that indicates whether a given path exists
+/// \brief Unary predicate that indicates whether a given path exists.
 ///
 /// \note Does not expand environment variables in the argument passed to
 /// the function call operator
@@ -355,7 +360,8 @@ public:
 /// @}
 };
 
-/// Predicate that indicates whether a given path exists, expanding environment variables
+/// \brief Unary predicate that indicates whether a given path exists, after
+/// expanding environment variables in the path string.
 ///
 /// \note Expands environment variables in the argument passed to
 /// the function call operator
@@ -398,8 +404,16 @@ public:
 };
 
 
-/// \note The behaviour is undefined if the path passed to the function call operator
-///        is
+/// \brief Unary predicate that searches for the existance of a given file
+///  in the directory presented in its function call argument.
+///
+/// \param C The character type
+/// \param A The argument type; defaults to C const*
+
+/// \note The file-name passed to the constructor is retained as a pointer,
+///  rather than an instance of a string class. Consequently, the behaviour
+///  is undefined if the memory pointed to by the constructor argument does
+///  not persist for the lifetime of the function object.
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A = C const *
         >

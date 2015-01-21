@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     30th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,12 +46,13 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        12
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/atomic_functions.h
  *
  * \brief [C, C++] Definition of the atomic functions.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,13 +74,13 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 # endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# ifndef UNIXSTL_INCL_UNIXSTL_H_ATOMIC_FUNCTIONS
-#  include <unixstl/atomic_functions.h>
-# endif /* !UNIXSTL_INCL_UNIXSTL_H_ATOMIC_FUNCTIONS */
+# ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
+#  include <unixstl/synch/atomic_functions.h>
+# endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_WINSTL_H_ATOMIC_FUNCTIONS
-#  include <winstl/atomic_functions.h>
-# endif /* !WINSTL_INCL_WINSTL_H_ATOMIC_FUNCTIONS */
+# ifndef WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS
+#  include <winstl/synch/atomic_functions.h>
+# endif /* !WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */

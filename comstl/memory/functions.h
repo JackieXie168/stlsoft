@@ -4,7 +4,7 @@
  * Purpose:     COM memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     25th March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/memory/functions.h
-///
-/// COM memory functions.
+/** \file comstl/memory/functions.h
+ *
+ * \brief [C, C++] COM memory functions.
+ *  (\ref group__library__memory "Memory" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_MEMORY_H_FUNCTIONS
 #define COMSTL_INCL_COMSTL_MEMORY_H_FUNCTIONS
@@ -49,7 +51,7 @@
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     0
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  3
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      37
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -82,14 +84,6 @@ namespace comstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \defgroup comstl_memory_functions COM Memory Functions
-/// \ingroup COMSTL
-/// \ingroup functions
-/// \brief These functions expand on the COM API's <code>CoTaskMem*()</code> suite of functions
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * C functions
  */
@@ -97,13 +91,16 @@ namespace comstl_project
 /* CoTaskMemGetSize, CoTaskMemDidAlloc & CoTaskMemHeapMinimise
  */
 
-/// \brief Gives the size of a memory block
-///
-/// This function returns the size of a memory block relative to the COM task
-/// alloctor, as per IMalloc::GetSize()
-///
-/// \param pv Pointer to the memory block
-/// \return The size of the memory block (in bytes)
+/** \brief Gives the size of a memory block
+ *
+ * \ingroup group__library__memory
+ *
+ * This function returns the size of a memory block relative to the COM task
+ * alloctor, as per IMalloc::GetSize()
+ *
+ * \param pv Pointer to the memory block
+ * \return The size of the memory block (in bytes)
+ */
 STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
 {
     LPMALLOC    lpmalloc;
@@ -123,16 +120,19 @@ STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
     return ulRet;
 }
 
-/// \brief Determines allocation ownership of a memory block
-///
-/// This function returns a value indicating whether a memory block was allocated
-/// by the COM task allocator, as per IMalloc::DidAlloc()
-///
-/// \param pv Pointer to the memory block
-/// \return Result indicating ownership
-/// \retval 1 The memory block was allocated by the task allocator
-/// \retval 0 The memory block was <i>not</i> allocated by the task allocator
-/// \retval -1 CoTaskMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
+/** \brief Determines allocation ownership of a memory block
+ *
+ * \ingroup group__library__memory
+ *
+ * This function returns a value indicating whether a memory block was allocated
+ * by the COM task allocator, as per IMalloc::DidAlloc()
+ *
+ * \param pv Pointer to the memory block
+ * \return Result indicating ownership
+ * \retval 1 The memory block was allocated by the task allocator
+ * \retval 0 The memory block was <i>not</i> allocated by the task allocator
+ * \retval -1 CoTaskMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
+ */
 STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
 {
     LPMALLOC    lpmalloc;
@@ -152,11 +152,14 @@ STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
     return iRet;
 }
 
-/// \brief Minimises the heap
-///
-/// This function minimises the heap as much as possible by releasing unused
-/// memory to the operating system, coalescing adjacent free blocks and
-/// committing free pages, as as per IMalloc::HeapMinimize().
+/** \brief Minimises the heap
+ *
+ * \ingroup group__library__memory
+ *
+ * This function minimises the heap as much as possible by releasing unused
+ * memory to the operating system, coalescing adjacent free blocks and
+ * committing free pages, as as per IMalloc::HeapMinimize().
+ */
 STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
 {
     LPMALLOC    lpmalloc;
@@ -168,55 +171,66 @@ STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
     }
 }
 
-
 /* /////////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
 #ifdef __cplusplus
 
-/// \brief Gives the size of a memory block
-///
-/// This function returns the size of a memory block relative to the COM task
-/// alloctor, as per IMalloc::GetSize()
-///
-/// \param pv Pointer to the memory block
-/// \return The size of the memory block (in bytes)
+/** \brief Gives the size of a memory block
+ *
+ * \ingroup group__library__memory
+ *
+ * This function returns the size of a memory block relative to the COM task
+ * alloctor, as per IMalloc::GetSize()
+ *
+ * \param pv Pointer to the memory block
+ * \return The size of the memory block (in bytes)
+ */
 inline cs_size_t CoTaskMemGetSize(void *pv)
 {
     return comstl__CoTaskMemGetSize(pv);
 }
 
-/// \brief Determines allocation ownership of a memory block
-///
-/// This function returns a value indicating whether a memory block was allocated
-/// by the COM task allocator, as per IMalloc::DidAlloc()
-///
-/// \param pv Pointer to the memory block
-/// \return Result indicating ownership
-/// \retval 1 The memory block was allocated by the task allocator
-/// \retval 0 The memory block was <i>not</i> allocated by the task allocator
-/// \retval -1 CoTaskMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
+/** \brief Determines allocation ownership of a memory block
+ *
+ * \ingroup group__library__memory
+ *
+ * This function returns a value indicating whether a memory block was allocated
+ * by the COM task allocator, as per IMalloc::DidAlloc()
+ *
+ * \param pv Pointer to the memory block
+ * \return Result indicating ownership
+ * \retval 1 The memory block was allocated by the task allocator
+ * \retval 0 The memory block was <i>not</i> allocated by the task allocator
+ * \retval -1 CoTaskMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
+ */
 inline cs_sint_t CoTaskMemDidAlloc(void *pv)
 {
     return comstl__CoTaskMemDidAlloc(pv);
 }
 
-/// \brief Minimises the heap
-///
-/// This function minimises the heap as much as possible by releasing unused
-/// memory to the operating system, coalescing adjacent free blocks and
-/// committing free pages, as as per IMalloc::HeapMinimize().
+/** \brief Minimises the heap
+ *
+ * \ingroup group__library__memory
+ *
+ * This function minimises the heap as much as possible by releasing unused
+ * memory to the operating system, coalescing adjacent free blocks and
+ * committing free pages, as as per IMalloc::HeapMinimize().
+ */
 inline void CoTaskMemHeapMinimise()
 {
     comstl__CoTaskMemHeapMinimise();
 }
 
-/// \brief Minimises the heap
-///
-/// This function minimises the heap as much as possible by releasing unused
-/// memory to the operating system, coalescing adjacent free blocks and
-/// committing free pages, as as per IMalloc::HeapMinimize().
+/** \brief Minimises the heap
+ *
+ * \ingroup group__library__memory
+ *
+ * This function minimises the heap as much as possible by releasing unused
+ * memory to the operating system, coalescing adjacent free blocks and
+ * committing free pages, as as per IMalloc::HeapMinimize().
+ */
 inline void CoTaskMemHeapMinimize()
 {
     comstl__CoTaskMemHeapMinimise();
@@ -230,10 +244,6 @@ inline void CoTaskMemHeapMinimize()
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/functions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group comstl_memory_functions
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

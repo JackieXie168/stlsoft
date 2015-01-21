@@ -5,7 +5,7 @@
  *              c_str_ptr_null, c_str_data, c_str_len, c_str_size.
  *
  * Created:     11th April 2005
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_FWD_MAJOR    1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_FWD_MINOR    1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_FWD_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_FWD_EDIT     5
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_FWD_MINOR    2
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_FWD_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_FWD_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -99,6 +99,9 @@ inline ss_size_t            c_str_size_a(ss_char_a_t const *s);
 inline ss_size_t            c_str_size_w(ss_char_w_t const *s);
 inline ss_size_t            c_str_size(ss_char_a_t const *s);
 inline ss_size_t            c_str_size(ss_char_w_t const *s);
+
+template <ss_typename_param_k S>
+inline ss_size_t            c_str_size(S const &s);
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
