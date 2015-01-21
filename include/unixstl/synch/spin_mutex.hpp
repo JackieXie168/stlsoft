@@ -4,10 +4,13 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     27th November 2006
+ * Updated:     2nd December 2006
  *
- * Thanks:		To Rupert Kittinger, for pointing out that prior
+ * Thanks:		To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
+ *
+ *              Brad Cox, for helping out in testing and fixing the
+ *              implementation for MAC OSX (Intel).
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      47
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +81,7 @@
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
 # include <asm/atomic.h> // Only works for Linux. For other OSs, use unixstl/synch/process_mutex.hpp
-#elif defined(UNIXSTL_ARCH_IS_POWERPC)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
 # include <libkern/OSAtomic.h>
 #else /* ? architecture */
 # include <unixstl/synch/atomic_functions.h>
@@ -146,7 +149,7 @@ public:
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
     typedef atomic_t            atomic_int_type;
-#elif defined(UNIXSTL_ARCH_IS_POWERPC)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
     typedef ::int32_t           atomic_int_type;
 #else /* ? architecture */
     typedef us_sint32_t         atomic_int_type;
@@ -224,7 +227,7 @@ public:
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
         for(m_spunCount = 1; 0 != ::atomic_inc_and_test(m_spinCount); ++m_spunCount)
-#elif defined(UNIXSTL_ARCH_IS_POWERPC)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
         for(m_spunCount = 1; !::OSAtomicCompareAndSwap32Barrier(0, 1, m_spinCount); ++m_spunCount)
 #elif defined(UNIXSTL_HAS_ATOMIC_WRITE)
         for(m_spunCount = 1; 0 != atomic_write(m_spinCount, 1); ++m_spunCount)
@@ -254,7 +257,7 @@ public:
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
         ::atomic_dec(m_spinCount);
-#elif defined(UNIXSTL_ARCH_IS_POWERPC)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
         ::OSAtomicDecrement32Barrier(m_spinCount);
 #else /* ? arch */
         atomic_write(m_spinCount, 0);

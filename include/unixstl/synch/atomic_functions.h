@@ -4,7 +4,10 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     23rd September 2006
+ * Updated:     2nd December 2006
+ *
+ * Thanks:      To Brad Cox, for helping out in testing and fixing the
+ *              implementation for MAC OSX (Intel).
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      190
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      191
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,7 +74,7 @@
 # else /* ? arch */
 #  include <asm/atomic.h>
 # endif /* arch */
-#elif defined(UNIXSTL_ARCH_IS_POWERPC)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
 # include <libkern/OSAtomic.h>
 #else /* ? arch */
 # error Currently only defined for Intel (Linux) and Power-PC architectures.
@@ -111,7 +114,7 @@ typedef us_sint32_t                 atomic_int_t;
 # else /* ? arch */
 typedef atomic_t                    atomic_int_t;
 # endif /* arch */
-#elif defined(UNIXSTL_ARCH_IS_POWERPC)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
 typedef ::int32_t                   atomic_int_t;
 #else /* ? architecture */
 typedef us_sint32_t                 atomic_int_t;
@@ -334,7 +337,7 @@ inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
 
 # endif /* arch */
 
-#elif defined(UNIXSTL_ARCH_IS_POWERPC)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
 
 /** \brief 
  *

@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta29
+File:     STLSoft-ReleaseNotes-1.9.1-beta30
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,21 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  27th November 2006
+Updated:  2nd December 2006
 
 ============================================================================
+
+
+============================================================================
+
+Changes for 1.9.1 beta 30 (2nd December 2006):
+
+Changes:
+========
+
+~ UNIXSTL components spin_mutex and the atomic_???() function suite are now
+  compatible with both architectures (PPC + Intel) on MAC OSX.
+
 
 
 ============================================================================
