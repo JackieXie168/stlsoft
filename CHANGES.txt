@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  4th January 2009
+; Updated:  17th January 2009
 
 ============================================================================
 
@@ -16,6 +16,31 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.67 (17th January 2009)
+
+Summary:
+========
+
+ * compatibility with GCC on Fedora on PPC
+ * correction of semantics of null_allocator
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/stlsoft.h:
+    ~ minor mods to documentation markup
+
+ ~ include/stlsoft/internal/cccap/gcc.h:
+    ~ PowerPC (Fedora Linux) compatibility fix (thanks to Sergey Nikulov)
+
+ ~ include/stlsoft/memory/null_allocator.hpp:
+    ~ when exception support is enabled it throws std::bad_alloc; otherwise, requesting memory from it is a contract violation
 
 ============================================================================
 

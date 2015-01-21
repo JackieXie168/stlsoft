@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  4th January 2009
+; Updated:  17th January 2009
 
 ============================================================================
+
+
+17th January 2009 - 1.9.67 released
+-----------------------------------
+
+ * compatibility with GCC on Fedora on PPC
+ * correction of semantics of null_allocator
 
 
 4th January 2009 - 1.9.66 released

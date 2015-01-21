@@ -4,11 +4,13 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd September 2008
+ * Updated:     17th January 2009
+ *
+ * Thanks:      To Sergey Nikulov, for PowerPC (BSD) compatibility fixes
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      18
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   4
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       78
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   5
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -419,7 +421,10 @@
       defined(__i386) || \
       defined(__POWERPC__) || \
       defined(__ppc)  || \
-      defined(__ppc__)
+      defined(__ppc__) || \
+      defined(_ARCH_PPC) || \
+      defined(__PPC__) || \
+      defined(__powerpc__)
  /* LLP64 */
 # define _STLSOFT_SIZEOF_SHORT          (2)
 # define _STLSOFT_SIZEOF_INT            (4)
