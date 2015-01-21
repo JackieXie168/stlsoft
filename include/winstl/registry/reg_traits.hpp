@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     25th April 2008
+ * Updated:     7th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     69
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ public:
     /// \brief The time type
     typedef FILETIME        time_type;
     /// \brief The API result type (LONG)
-    typedef ws_long_t       result_type;
+    typedef LONG           result_type;
 /// @}
 
 /// \name Operations
@@ -227,7 +227,7 @@ public:
     typedef HKEY                hkey_type;
     typedef reg_string_a_t      string_type;
     typedef FILETIME            time_type;
-    typedef ws_long_t           result_type;
+    typedef LONG                result_type;
 
 public:
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
@@ -354,7 +354,7 @@ public:
     typedef HKEY                hkey_type;
     typedef reg_string_w_t      string_type;
     typedef FILETIME            time_type;
-    typedef ws_long_t           result_type;
+    typedef LONG                result_type;
 
 public:
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)

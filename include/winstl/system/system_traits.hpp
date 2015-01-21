@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     30th April 2008
+ * Updated:     7th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    7
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        110
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    8
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,8 @@
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
-#ifdef WINSTL_OS_IS_WIN64
+#if defined(WINSTL_OS_IS_WIN64) || \
+    defined(_Wp64)
 # define _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
 #endif /* _WIN64 || _M_IA64 */
 
@@ -436,7 +437,7 @@ public:
 
 public:
 #ifndef NONLS
-    static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData)
+    static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int cchData)
     {
         return ::GetLocaleInfoA(locale, type, data, cchData);
     }
@@ -764,7 +765,7 @@ public:
 
 public:
 #ifndef NONLS
-    static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData)
+    static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int cchData)
     {
         return ::GetLocaleInfoW(locale, type, data, cchData);
     }

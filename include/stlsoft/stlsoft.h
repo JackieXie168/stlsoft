@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     4th May 2008
+ * Updated:     11th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    15
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     343
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     344
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -204,12 +204,13 @@
 # define _STLSOFT_VER_1_9_36    0x010924ff  /*!< Version 1.9.36 (30th Apr 2008) */
 # define _STLSOFT_VER_1_9_37    0x010925ff  /*!< Version 1.9.37 (3rd May 2008) */
 # define _STLSOFT_VER_1_9_38    0x010926ff  /*!< Version 1.9.38 (4th May 2008) */
+# define _STLSOFT_VER_1_9_39    0x010927ff  /*!< Version 1.9.39 (10th May 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   38
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_38
+#define _STLSOFT_VER_REVISION   39
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_39
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -1284,6 +1285,19 @@ namespace stlsoft
 #endif /* namespaces supported */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * 64-bit warning support
+ */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1310 && \
+    !defined(_WIN64) && \
+    defined(_Wp64)
+# define STLSOFT_WARN_64                    __w64
+#else /* ? compiler */
+# define STLSOFT_WARN_64
+#endif /* compiler */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The STLSoft uses a number of typedefs to aid in compiler-independence in the
@@ -1418,45 +1432,45 @@ namespace stlsoft
 
 /* Type definitions - proper */
 
-typedef char                        ss_char_a_t;        /*!< Ansi char type             */
-typedef STLSOFT_WCHAR_T_BASE_TYPE_  ss_char_w_t;        /*!< Unicode char type          */
-typedef STLSOFT_I_08_T_BASE_TYPE_   ss_int8_t;          /*!< 8-bit integer              */
-typedef STLSOFT_SI08_T_BASE_TYPE_   ss_sint8_t;         /*!< 8-bit signed integer       */
-typedef STLSOFT_UI08_T_BASE_TYPE_   ss_uint8_t;         /*!< 8-bit unsigned integer     */
-typedef STLSOFT_I_16_T_BASE_TYPE_   ss_int16_t;         /*!< 16-bit integer             */
-typedef STLSOFT_SI16_T_BASE_TYPE_   ss_sint16_t;        /*!< 16-bit signed integer      */
-typedef STLSOFT_UI16_T_BASE_TYPE_   ss_uint16_t;        /*!< 16-bit unsigned integer    */
-typedef STLSOFT_I_32_T_BASE_TYPE_   ss_int32_t;         /*!< 32-bit integer             */
-typedef STLSOFT_SI32_T_BASE_TYPE_   ss_sint32_t;        /*!< 32-bit signed integer      */
-typedef STLSOFT_UI32_T_BASE_TYPE_   ss_uint32_t;        /*!< 32-bit unsigned integer    */
+typedef char                            ss_char_a_t;        /*!< Ansi char type             */
+typedef STLSOFT_WCHAR_T_BASE_TYPE_      ss_char_w_t;        /*!< Unicode char type          */
+typedef STLSOFT_I_08_T_BASE_TYPE_       ss_int8_t;          /*!< 8-bit integer              */
+typedef STLSOFT_SI08_T_BASE_TYPE_       ss_sint8_t;         /*!< 8-bit signed integer       */
+typedef STLSOFT_UI08_T_BASE_TYPE_       ss_uint8_t;         /*!< 8-bit unsigned integer     */
+typedef STLSOFT_I_16_T_BASE_TYPE_       ss_int16_t;         /*!< 16-bit integer             */
+typedef STLSOFT_SI16_T_BASE_TYPE_       ss_sint16_t;        /*!< 16-bit signed integer      */
+typedef STLSOFT_UI16_T_BASE_TYPE_       ss_uint16_t;        /*!< 16-bit unsigned integer    */
+typedef STLSOFT_I_32_T_BASE_TYPE_       ss_int32_t;         /*!< 32-bit integer             */
+typedef STLSOFT_SI32_T_BASE_TYPE_       ss_sint32_t;        /*!< 32-bit signed integer      */
+typedef STLSOFT_UI32_T_BASE_TYPE_       ss_uint32_t;        /*!< 32-bit unsigned integer    */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef STLSOFT_I_64_T_BASE_TYPE_  ss_int64_t;         /*!< 64-bit integer             */
- typedef STLSOFT_SI64_T_BASE_TYPE_  ss_sint64_t;        /*!< 64-bit signed integer      */
- typedef STLSOFT_UI64_T_BASE_TYPE_  ss_uint64_t;        /*!< 64-bit unsigned integer    */
+ typedef STLSOFT_I_64_T_BASE_TYPE_      ss_int64_t;         /*!< 64-bit integer             */
+ typedef STLSOFT_SI64_T_BASE_TYPE_      ss_sint64_t;        /*!< 64-bit signed integer      */
+ typedef STLSOFT_UI64_T_BASE_TYPE_      ss_uint64_t;        /*!< 64-bit unsigned integer    */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef short                       ss_short_t;         /*!< short integer              */
-typedef int                         ss_int_t;           /*!< integer                    */
-typedef signed int                  ss_sint_t;          /*!< signed integer             */
-typedef unsigned int                ss_uint_t;          /*!< unsigned integer           */
-typedef long                        ss_long_t;          /*!< long integer               */
-typedef unsigned long               ss_ulong_t;         /*!< long integer               */
-typedef ss_uint8_t                  ss_byte_t;          /*!< Byte                       */
+typedef short                           ss_short_t;         /*!< short integer              */
+typedef int STLSOFT_WARN_64             ss_int_t;           /*!< integer                    */
+typedef signed int STLSOFT_WARN_64      ss_sint_t;          /*!< signed integer             */
+typedef unsigned int STLSOFT_WARN_64    ss_uint_t;          /*!< unsigned integer           */
+typedef long STLSOFT_WARN_64            ss_long_t;          /*!< long integer               */
+typedef unsigned long STLSOFT_WARN_64   ss_ulong_t;         /*!< long integer               */
+typedef ss_uint8_t                      ss_byte_t;          /*!< Byte                       */
 #if defined(__cplusplus)
 # ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
-typedef bool                        ss_bool_t;          /*!< Boolean type               */
+typedef bool                            ss_bool_t;          /*!< Boolean type               */
 # else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 typedef unsigned int                ss_bool_t;
 # endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 #endif /* __cplusplus */
 #ifndef _STLSOFT_NO_STD_INCLUDES
- typedef ptrdiff_t                  ss_ptrdiff_t;       /*!< ptr diff                   */
- typedef size_t                     ss_size_t;          /*!< size                       */
+ typedef ptrdiff_t                      ss_ptrdiff_t;       /*!< ptr diff                   */
+ typedef size_t STLSOFT_WARN_64         ss_size_t;          /*!< size                       */
 #else /* ? _STLSOFT_NO_STD_INCLUDES */
- typedef unsigned int               ss_size_t;
- typedef int                        ss_ptrdiff_t;
+ typedef unsigned int STLSOFT_WARN_64   ss_size_t;
+ typedef int                            ss_ptrdiff_t;
 #endif /* !_STLSOFT_NO_STD_INCLUDES */
-typedef long                        ss_streampos_t;     /*!< streampos                  */
-typedef long                        ss_streamoff_t;     /*!< streamoff                  */
+typedef long                            ss_streampos_t;     /*!< streampos                  */
+typedef long                            ss_streamoff_t;     /*!< streamoff                  */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 typedef ss_char_a_t                 char_a_t;           /*!< Ansi char type             */
@@ -1476,10 +1490,10 @@ typedef ss_sint64_t                 sint64_t;           /*!< 64-bit signed integ
 typedef ss_uint64_t                 uint64_t;           /*!< 64-bit unsigned integer    */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 typedef ss_short_t                  short_t;            /*!< short integer              */
-typedef ss_int_t                    int_t;              /*!< integer                    */
-typedef ss_sint_t                   sint_t;             /*!< signed integer             */
-typedef ss_uint_t                   uint_t;             /*!< unsigned integer           */
-typedef ss_long_t                   long_t;             /*!< long integer               */
+typedef ss_int_t STLSOFT_WARN_64    int_t;              /*!< integer                    */
+typedef ss_sint_t STLSOFT_WARN_64   sint_t;             /*!< signed integer             */
+typedef ss_uint_t STLSOFT_WARN_64   uint_t;             /*!< unsigned integer           */
+typedef ss_long_t STLSOFT_WARN_64   long_t;             /*!< long integer               */
 typedef ss_byte_t                   byte_t;             /*!< Byte                       */
 #if defined(__cplusplus)
 typedef ss_bool_t                   bool_t;             /*!< bool                       */

@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  4th May 2008
+; Updated:  11th May 2008
 
 ============================================================================
 
@@ -16,6 +16,54 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.39 (11th May 2008)
+
+Summary:
+========
+
+ * another tranche of changes for Win64 support
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  + added STLSOFT_WARN_64, to apply to variables whose sizes will be
+    different between Win32 and Win64, to elicit warnings from VC++
+	(stlsoft/stlsoft.h)
+
+  ~ stlsoft::truncation_test: suppression of 4267 warning in VC++ for the
+    final conversion, since it's already been determined by the test that
+	the conversion is valid
+	(stlsoft/conversion/truncation_test.hpp)
+
+ WinSTL:
+ -------
+
+  ~ adjustment of winstl::BOOL2bool() for -Wp64 compilation
+    (winstl/winstl.h)
+
+  ~ Windows Registry Library: change of result type from ws_long_t to LONG,
+    to avoid unnecessary conversions and Win32/64 warnings
+	(winstl/registry/reg_traits.hpp)
+
+  ~ winstl::system_traits<>::get_locale_info(): change of cchData param from
+    int_type to int to avoid unnecessary conversions and Win32/64 warnings
+	(winstl/system/system_traits.hpp)
+
+  ~ Windows Window Library: wholesale change from use of ws_long_t to
+    ws_sptrint_t to ensure that the window style functions are 32 and 64-bit
+	compatible
+	(winstl/window/functions.h)
+
+  ~ winstl::set_window_icon(): suppression of 4267 warning in VC++ for what
+    appears to be a compiler bug in interpretation of the conversion to
+	LPARAM in this function
+	(winstl/window/functions.h)
 
 ============================================================================
 

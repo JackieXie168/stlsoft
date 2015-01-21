@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       6
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        105
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -555,13 +555,13 @@ typedef stlsoft_ns_qual(ss_size_t)          cs_size_t;      /*!< size           
 typedef stlsoft_ns_qual(ss_ptrdiff_t)       cs_ptrdiff_t;   /*!< ptr diff                   */
 typedef stlsoft_ns_qual(ss_streampos_t)     cs_streampos_t; /*!< streampos                  */
 typedef stlsoft_ns_qual(ss_streamoff_t)     cs_streamoff_t; /*!< streamoff                  */
-#ifdef WIN64
+#ifdef _WIN64
 typedef stlsoft_ns_qual(ss_sint64_t)        cs_sptrint_t;
 typedef stlsoft_ns_qual(ss_uint64_t)        cs_uptrint_t;
-#else /* ? WIN64 */
+#else /* ? _WIN64 */
 typedef stlsoft_ns_qual(ss_sint32_t)        cs_sptrint_t;
 typedef stlsoft_ns_qual(ss_uint32_t)        cs_uptrint_t;
-#endif /* WIN64 */
+#endif /* _WIN64 */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 typedef cs_char_a_t         char_a_t;           /*!< Ansi char type             */
@@ -592,6 +592,8 @@ typedef cs_dword_t          dword_t;            /*!< dword                      
 typedef cs_streampos_t      streampos_t;        /*!< streampos                  */
 typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  */
 # endif /* compiler */
+typedef cs_sptrint_t        sptrint_t;
+typedef cs_uptrint_t        uptrint_t;
 #endif /* !_STLSOFT_NO_NAMESPACE */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
