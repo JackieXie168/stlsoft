@@ -4,7 +4,7 @@
  * Purpose:     Control creation functions.
  *
  * Created:     7th May 2000
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        20
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    4
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ namespace winstl_project
  * Functions
  */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -108,7 +108,7 @@ STLSOFT_INLINE void winstl__setchildfont_(HWND hwnd, HWND hwndParent)
     /* ::SendMessage(hwndParent, WM_SETFONT, ::SendMessage(hwnd, WM_GETFONT, 0, 0L), 1); */
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -121,7 +121,7 @@ STLSOFT_INLINE HWND winstl__CreateStaticA(HWND hwndParent, ws_char_a_t const* na
     return hwnd;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -134,7 +134,7 @@ STLSOFT_INLINE HWND winstl__CreateStaticW(HWND hwndParent, ws_char_w_t const* na
     return hwnd;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -151,7 +151,7 @@ STLSOFT_INLINE HWND winstl__CreateStaticFrame(HWND hwndParent, DWORD frameStyle,
     return hwnd;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -160,7 +160,7 @@ STLSOFT_INLINE HWND winstl__CreateEditA(HWND hwndParent, ws_char_a_t const* text
     return winstl__CreateWindowA("EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, stlsoft_reinterpret_cast(HMENU, id), NULL, NULL);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -169,7 +169,7 @@ STLSOFT_INLINE HWND winstl__CreateEditW(HWND hwndParent, ws_char_w_t const* text
     return winstl__CreateWindowW(L"EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, stlsoft_reinterpret_cast(HMENU, id), NULL, NULL);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -178,7 +178,7 @@ STLSOFT_INLINE HWND winstl__CreateCheckboxA(HWND hwndParent, ws_char_a_t const* 
     return winstl__CreateWindowA("BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, stlsoft_reinterpret_cast(HMENU, id), NULL, NULL);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -203,7 +203,7 @@ namespace winstl
 
 #ifdef __cplusplus
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -212,7 +212,7 @@ inline HWND winstl__CreateStatic(HWND hwndParent, ws_char_a_t const* name, int x
     return winstl__CreateStaticA(hwndParent, name, x, y, cx, cy, id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -222,7 +222,7 @@ inline HWND winstl__CreateStatic(HWND hwndParent, ws_char_w_t const* name, int x
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -231,7 +231,7 @@ inline HWND winstl__CreateEdit(HWND hwndParent, ws_char_a_t const* text, DWORD e
     return winstl__CreateEditA(hwndParent, text, editStyle, x, y, cx, cy, id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -241,7 +241,7 @@ inline HWND winstl__CreateEdit(HWND hwndParent, ws_char_w_t const* text, DWORD e
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -250,7 +250,7 @@ inline HWND winstl__CreateCheckbox(HWND hwndParent, ws_char_a_t const* name, DWO
     return winstl__CreateCheckboxA(hwndParent, name, buttonStyle, x, y, cx, cy, id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -260,7 +260,7 @@ inline HWND winstl__CreateCheckbox(HWND hwndParent, ws_char_w_t const* name, DWO
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -270,7 +270,7 @@ inline HWND CreateStatic(HWND hwndParent, S const& name, int x, int y, int cx, i
     return winstl__CreateStatic(hwndParent, stlsoft_ns_qual(c_str_ptr)(name), x, y, cx, cy, id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -281,7 +281,7 @@ inline HWND CreateStatic(HWND hwndParent, S const& name, RECT const& rc, int id)
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -291,7 +291,7 @@ inline HWND CreateEdit(HWND hwndParent, S const& text, DWORD editStyle, int x, i
     return winstl__CreateEdit(hwndParent, stlsoft_ns_qual(c_str_ptr)(text), editStyle, x, y, cx, cy, id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -302,7 +302,7 @@ inline HWND CreateEdit(HWND hwndParent, S const& text, DWORD editStyle, RECT con
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -311,7 +311,7 @@ inline HWND CreateStaticFrame(HWND hwndParent, DWORD frameStyle, int x, int y, i
     return winstl__CreateStaticFrame(hwndParent, frameStyle, x, y, cx, cy, id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -320,7 +320,7 @@ inline HWND CreateStaticFrame(HWND hwndParent, DWORD frameStyle, RECT const& rc,
     return CreateStaticFrame(hwndParent, frameStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */
@@ -330,7 +330,7 @@ inline HWND CreateCheckbox(HWND hwndParent, S const& name, DWORD buttonStyle, in
     return winstl__CreateCheckbox(hwndParent, stlsoft_ns_qual(c_str_ptr)(name), buttonStyle, x, y, cx, cy, id);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__windows_controls
  */

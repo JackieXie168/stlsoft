@@ -4,11 +4,13 @@
  * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     22nd March 2007
+ * Updated:     23rd September 2008
+ *
+ * Thanks:      To Austin Ziegler for fixes to defects evident on x64.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    3
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        26
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    5
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -258,7 +260,19 @@ namespace registry_util
         {
             try
             {
-                dl_call<LONG>("ADVAPI32.DLL", "S:RegNotifyChangeKeyValue", m_hkey, false, (int)m_eventType, m_monitor.handle(), true);
+                dl_call<LONG>(  "ADVAPI32.DLL"
+#if defined(WINSTL_OS_IS_WIN64)
+                            ,   "C:RegNotifyChangeKeyValue"
+#elif defined(WINSTL_OS_IS_WIN32)
+                            ,   "S:RegNotifyChangeKeyValue"
+#else /* ? WIN?? */
+# error Windows operating system not recognised
+#endif /* WIN?? */
+                            ,   m_hkey
+                            ,   false
+                            ,   (int)m_eventType
+                            ,   m_monitor.handle()
+                            ,   true);
             }
             catch(missing_entry_point_exception &)
             {

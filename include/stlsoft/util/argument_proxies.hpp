@@ -4,7 +4,7 @@
  * Purpose:     Const and non-const reference and pointer proxy classes.
  *
  * Created:     28th April 2000
- * Updated:     8th May 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file stlsoft/util/argument_proxies.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::ptr_proxy(), 
+ * \brief [C++ only] Definition of the stlsoft::ptr_proxy(),
  *   stlsoft::const_ptr_proxy(), stlsoft::ref_proxy(),
  *   stlsoft::const_ref_proxy() and stlsoft::val_proxy() argument
  *   proxy creator functions
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_REVISION  2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      127
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_REVISION  3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      128
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        37
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -524,7 +524,7 @@ inline us_bool_t remove_directory_recurse(  us_char_a_t const*  dir
     return 0 == dwRet;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__filesystem
  */
@@ -534,7 +534,7 @@ inline us_bool_t remove_directory_recurse(us_char_a_t const* dir)
 }
 
 #if 0
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__filesystem
  */
@@ -551,7 +551,7 @@ inline us_bool_t remove_directory_recurse(  us_char_w_t const*  dir
     return 0 == dwRet;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__filesystem
  */
@@ -561,7 +561,7 @@ inline us_bool_t remove_directory_recurse(us_char_w_t const* dir)
 }
 #endif /* 0 */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__filesystem
  */

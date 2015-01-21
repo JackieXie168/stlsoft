@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     43
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 6
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ namespace stlsoft
  *    <code>std::bad_alloc</code> if the allocation fails.
  * - <code>void do_deallocate(void *pv, size_type n);</code> - deallocates
  *    the memory block pointed to by <code>pv</code>, which is <code>n</code>
- *    bytes in size.  
+ *    bytes in size.
  * - <code>void do_deallocate(void *pv);</code> - deallocates the memory block
  *    pointed to by <code>pv</code>.
  *
@@ -244,7 +244,7 @@ public:
     ///
     /// The method is functionally identical to
     ///    <code>static_cast<char*>(allocate(n, NULL))</code>
-    /// 
+    ///
     /// \remarks This method is only defined when the symbol
     ///   \ref STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD is defined.
     char *_Charalloc(size_type n)

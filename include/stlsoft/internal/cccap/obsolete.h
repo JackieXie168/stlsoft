@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/internal/cccap/obsolete.h
  *
- * Purpose:     Obsolete 
+ * Purpose:     Obsolete
  *
  * Created:     11th May 2008
- * Updated:     11th May 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_MAJOR     1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_MINOR     0
-# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_EDIT      1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

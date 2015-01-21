@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     15th September 2008
+ * Updated:     27th September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    16
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 12
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     357
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    17
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 15
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     360
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -219,12 +219,13 @@
 # define _STLSOFT_VER_1_9_52    0x010934ff  /*!< Version 1.9.52 (11th Sep 2008) */
 # define _STLSOFT_VER_1_9_53    0x010935ff  /*!< Version 1.9.53 (15th Sep 2008) */
 # define _STLSOFT_VER_1_9_54    0x010936ff  /*!< Version 1.9.54 (15th Sep 2008) */
+# define _STLSOFT_VER_1_9_55    0x010937ff  /*!< Version 1.9.54 (23rd Sep 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
 #define _STLSOFT_VER_REVISION   52
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_54
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_55
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -238,21 +239,25 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-# define STLSOFT_STRINGIZE_a_(x)        #x
-# define STLSOFT_STRINGIZE_a(x)         STLSOFT_STRINGIZE_a_(x)
+# define STLSOFT_STRINGIZE_a_(x)            #x
+# define STLSOFT_STRINGIZE_a(x)             STLSOFT_STRINGIZE_a_(x)
 
 # if defined(__BORLANDC__) || \
      defined(__SUNPRO_C)
-#  define STLSOFT_STRINGIZE_w_(x)       L"" ## STLSOFT_STRINGIZE_a(x)
+#  define STLSOFT_STRINGIZE_w_(x)           L"" ## STLSOFT_STRINGIZE_a(x)
 # else /* ? compiler */
-#  define STLSOFT_STRINGIZE_w_(x)       L ## #x
+#  define STLSOFT_STRINGIZE_w_(x)           L ## #x
 # endif /* compiler */
-# define STLSOFT_STRINGIZE_w(x)         STLSOFT_STRINGIZE_w_(x)
+# define STLSOFT_STRINGIZE_w(x)             STLSOFT_STRINGIZE_w_(x)
 
-# define STLSOFT_STRINGIZE(x)           STLSOFT_STRINGIZE_a(x)
+# define STLSOFT_STRINGIZE(x)               STLSOFT_STRINGIZE_a(x)
 
 /* Simple macro indirection */
-# define STLSOFT_MACRO_INDIRECT(x)   x
+# define STLSOFT_MACRO_INDIRECT(x)          x
+
+/* Token pasting */
+# define STLSOFT_PP_PASTE_2_TOKENS(t1, t2)        t1 ## t2
+# define STLSOFT_PP_PASTE_3_TOKENS(t1, t2, t3)    t1 ## t2 ## t3
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -537,22 +542,24 @@
 # define STLSOFT_COMPILER_IS_WATCOM
 # define STLSOFT_COMPILER_LABEL_STRING          "Watcom C/C++"
 
-# if (__WATCOMC__ == 1100)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Watcom C/C++ 11.0"
-# elif (__WATCOMC__ == 1200)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.0 (Watcom 12.0)"
+# if (__WATCOMC__ == 1200)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.0"
 # elif (__WATCOMC__ == 1210)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.1 (Watcom 12.1)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.1"
 # elif (__WATCOMC__ == 1220)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.2 (Watcom 12.2)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.2"
 # elif (__WATCOMC__ == 1230)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.3 (Watcom 12.3)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.3"
 # elif (__WATCOMC__ == 1240)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.4 (Watcom 12.4)"
-# elif (__WATCOMC__ == 1260)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.4"
+# elif (__WATCOMC__ == 1250)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.5"
+# elif (__WATCOMC__ == 1260)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.6"
+# elif (__WATCOMC__ == 1270)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.7"
 # else /* ? __WATCOMC__ */
-#  error Currently only version 11 of Watcom C/C++ and versions 1.0-1.5 of Open Watcom C/C++ are recognised by the STLSoft libraries
+#  error Currently only versions 1.0-1.7 of Open Watcom C/C++ are recognised by the STLSoft libraries
 # endif /* __WATCOMC__ */
 
 #elif defined(_MSC_VER)
@@ -1054,11 +1061,11 @@
  *
  * \param ex Must be non-zero, or an assertion will be fired
  *
- * \note By default, the macro resolves to the standard macro 
+ * \note By default, the macro resolves to the standard macro
  *  <code>assert()</code> or the equivalent default assertion macro
  *  for the compiler (e.g. <code>_ASSERTE()</code> for Visual C++).
  *  This behaviour can be overriden by not defining: see the
- *  compiler capability file for your compiler (e.g. 
+ *  compiler capability file for your compiler (e.g.
  *  <code>include/stlsoft/internal/cccap/gcc.h</code>) for further
  *  details.
  */
@@ -1218,10 +1225,10 @@
  *   \ref group__projects "STLSoft sub-projects" reside.
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_STLSOFT_NO_NAMESPACE</code> are defined, all 
+ * and <code>_STLSOFT_NO_NAMESPACE</code> are defined, all
  * \ref group__project__stlsoft "STLSoft" components will be defined in the
  * global namespace. The difference between the two is that definition of
- * <code>_STLSOFT_NO_NAMESPACES</code> causes all STLSoft library 
+ * <code>_STLSOFT_NO_NAMESPACES</code> causes all STLSoft library
  * components (i.e. those of <b>all</b>
  * \ref group__projects "STLSoft sub-projects") to be defined in the
  * global namespace, whereas <code>_STLSOFT_NO_NAMESPACES</code> has this
@@ -1850,7 +1857,7 @@ inline void throw_x(X const& x) /* throw(X) */
 
 #  define STLSOFT_THROW_X(x)    stlsoft_ns_qual(throw_x)(x)
 
-# else 
+# else
 
 template <ss_typename_param_k X>
 inline void throw_x(X const& x)
@@ -2279,7 +2286,8 @@ private:
         /* defined(STLSOFT_COMPILER_IS_DMCx) || */ \
         (   defined(STLSOFT_COMPILER_IS_GCC) && \
             __GNUC__ >= 3) || \
-        defined(STLSOFT_COMPILER_IS_INTEL))
+        defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_WATCOM))
 template<ss_typename_param_k T>
 inline void suppress_unused_func(T const volatile &)
 {}

@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     11th September 2008
+ * Updated:     22nd September 2008
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    4
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        50
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    5
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ struct winstl_shims_access_string_time_impl
                                                     ,   ws_char_w_t         *lpTimeStr  // formatted string buffer
                                                     ,   int                 cchTime);   // size of string buffer
 
-    // 
+    //
     static ws_size_t calc_sizes(SYSTEMTIME const&       t
                             ,   pfnGetDateTimeFmtA_t    pfnGetDateFmtA
                             ,   pfnGetDateTimeFmtA_t    pfnGetTimeFmtA
@@ -157,7 +157,7 @@ struct winstl_shims_access_string_time_impl
 #endif /* STLSOFT_CF_REQUIRE_RETURN_ALWAYS */
     }
 
-    // 
+    //
     static ws_size_t calc_sizes(SYSTEMTIME const&       t
                             ,   pfnGetDateTimeFmtW_t    pfnGetDateFmtW
                             ,   pfnGetDateTimeFmtW_t    pfnGetTimeFmtW

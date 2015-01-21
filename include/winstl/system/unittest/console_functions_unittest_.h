@@ -1,5 +1,5 @@
 
-// Updated: 30th December 2006
+// Updated: 23rd September 2008
 
 #if !defined(WINSTL_INCL_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS)
 # error This file cannot be directly included, and should only be included within winstl/system/console_functions.h
@@ -21,7 +21,7 @@ namespace unittest
 
 			try
 			{
-				HWND	hwnd1	=	winstl::dl_call<HWND>("KERNEL32", "S:GetConsoleWindow");
+				HWND	hwnd1	=	winstl::dl_call<HWND>("KERNEL32", WINSTL_DL_CALL_WINx_STDCALL_LITERAL("GetConsoleWindow"));
 				HWND	hwnd2	=	winstl::get_console_window();
 
 				if(hwnd1 != hwnd2)

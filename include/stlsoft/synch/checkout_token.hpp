@@ -4,7 +4,7 @@
  * Purpose:     Scoped thread-safe access locking class.
  *
  * Created:     7th November 2004
- * Updated:     6th December 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      19
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  2
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ namespace stlsoft
  * Classes
  */
 
-/** \brief This class acts as a 
+/** \brief This class acts as a
  *
  * \ingroup group__library__synch
  *
@@ -120,7 +120,7 @@ class checkout_token
 public:
     /// \brief The type whose resources are to be protected
     typedef CT                      accessed_class_type;
-    /// \brief 
+    /// \brief
     typedef MT                      accessed_member_type;
     /// \brief The current instantation of the type
     typedef checkout_token<CT, MT>  class_type;
@@ -129,7 +129,7 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// \brief Locks 
+    /// \brief Locks
     checkout_token(accessed_class_type& ac, accessed_member_type am)
         : m_ac(ac)
         , m_am(am)

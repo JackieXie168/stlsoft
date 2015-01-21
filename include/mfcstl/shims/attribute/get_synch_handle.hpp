@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     24th December 2006
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    2
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        6
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    3
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ namespace winstl_project
  * \remarks We cannot simply define the shim overload in terms of
  *    <code>CEvent</code> for two reasons. First, the template
  *    mechanism requires a precise shim when the
- *   
+ *
  */
 inline HANDLE get_synch_handle(CEvent &ev)
 {
@@ -128,7 +128,7 @@ inline HANDLE get_synch_handle(CEvent &ev)
  * \remarks We cannot simply define the shim overload in terms of
  *    <code>CMutex</code> for two reasons. First, the template
  *    mechanism requires a precise shim when the
- *   
+ *
  */
 inline HANDLE get_synch_handle(CMutex &mx)
 {
@@ -147,7 +147,7 @@ inline HANDLE get_synch_handle(CMutex &mx)
  * \remarks We cannot simply define the shim overload in terms of
  *    <code>CSemaphore</code> for two reasons. First, the template
  *    mechanism requires a precise shim when the
- *   
+ *
  */
 inline HANDLE get_synch_handle(CSemaphore &sem)
 {

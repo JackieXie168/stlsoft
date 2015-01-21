@@ -549,7 +549,7 @@ namespace unittest
 			ss_bool_t		bSuccess	=	true;
 
 			// => char (success)
-			if( 
+			if(
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, char, CHAR_MAX - 1) ||
 
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(signed char, char, SCHAR_MAX - 1) ||
@@ -604,7 +604,7 @@ namespace unittest
 
 
 			// => signed short (success)
-			if( 
+			if(
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, signed short, 0) ||
 				(	sizeof(char) < sizeof(short) &&
 					!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, signed short, CHAR_MAX)) ||
@@ -643,7 +643,7 @@ namespace unittest
 			}
 
 			// => signed short (failure)
-			if( 
+			if(
 				(	sizeof(short) < sizeof(int) &&
 					(	STLSOFT_CONV_TRUNCATION_TEST_CASE(signed int, signed short, SHRT_MIN - 1) ||
 						STLSOFT_CONV_TRUNCATION_TEST_CASE(signed int, signed short, SHRT_MAX + 1) ||
@@ -667,7 +667,7 @@ namespace unittest
 
 
 			// => unsigned short (success)
-			if( 
+			if(
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, unsigned short, 0) ||
 				(	sizeof(char) < sizeof(short) &&
 					!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, unsigned short, CHAR_MAX)) ||
@@ -705,7 +705,7 @@ namespace unittest
 			}
 
 			// => unsigned short (failure)
-			if( 
+			if(
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(signed int, unsigned short, - 1) ||
 				(	sizeof(short) < sizeof(int) &&
 					(	STLSOFT_CONV_TRUNCATION_TEST_CASE(signed int, unsigned short, USHRT_MAX + 1) ||
@@ -729,7 +729,7 @@ namespace unittest
 
 
 			// => signed int (success)
-			if( 
+			if(
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, signed int, CHAR_MAX) ||
 
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(signed char, signed int, SCHAR_MIN) ||
@@ -766,7 +766,7 @@ namespace unittest
 			}
 
 			// => signed int (failure)
-			if( 
+			if(
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(ss_sint64_t, signed int, ss_sint64_t(INT_MIN) - 1) ||
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(ss_sint64_t, signed int, ss_sint64_t(INT_MAX) + 1) ||
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(ss_uint64_t, signed int, ss_uint64_t(INT_MAX) + 1) ||
@@ -781,7 +781,7 @@ namespace unittest
 
 
 			// => signed long (success)
-			if( 
+			if(
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, signed long, CHAR_MAX) ||
 
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(signed char, signed long, SCHAR_MIN) ||
@@ -818,7 +818,7 @@ namespace unittest
 			}
 
 			// => signed long (failure)
-			if( 
+			if(
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(ss_sint64_t, signed long, ss_sint64_t(LONG_MIN) - 1) ||
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(ss_sint64_t, signed long, ss_sint64_t(LONG_MAX) + 1) ||
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(ss_uint64_t, signed long, ss_uint64_t(LONG_MAX) + 1) ||
@@ -832,7 +832,7 @@ namespace unittest
 
 
 			// => unsigned long
-			if( 
+			if(
 				STLSOFT_CONV_TRUNCATION_TEST_CASE(signed short, unsigned long, - 1) ||
 
 				0)
@@ -844,7 +844,7 @@ namespace unittest
 
 
 			// => signed long long (success)
-			if( 
+			if(
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(char, ss_sint64_t, CHAR_MAX) ||
 
 				!STLSOFT_CONV_TRUNCATION_TEST_CASE(signed char, ss_sint64_t, SCHAR_MIN) ||

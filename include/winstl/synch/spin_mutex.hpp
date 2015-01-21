@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     22nd March 2007
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Rupert Kittinger, for pointing out that prior
  *              implementation that always yielded was not really "spinning".
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR       4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        52
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -152,7 +152,7 @@ public:
     /// \param p Pointer to an external counter variable. May be NULL, in
     ///  which case an internal member is used for the counter variable.
     ///
-    /// \note 
+    /// \note
     ss_explicit_k spin_mutex_base(atomic_int_type *p = NULL) stlsoft_throw_0()
         : m_spinCount((NULL != p) ? p : &m_internalCount)
         , m_internalCount(0)
@@ -191,10 +191,10 @@ public:
     /// \brief Acquires a lock on the mutex, pending the thread until the lock is aquired
     void lock() stlsoft_throw_0()
     {
-#ifdef WINSTL_SPINMUTEX_CHECK_INIT 
+#ifdef WINSTL_SPINMUTEX_CHECK_INIT
         // If the dynamic initialisation phase has been skipped, the
         // members will all be assigned to 0, which is correct for
-        // all except m_spinCount, which must be assigned to 
+        // all except m_spinCount, which must be assigned to
         // &m_internalCount
         if(NULL == m_spinCount)
         {

@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_MAJOR      4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_MINOR      0
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_REVISION   1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_EDIT       44
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_REVISION   2
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ namespace stlsoft
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER != 1200
 /* pointer to const. */
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
@@ -88,7 +88,7 @@ inline T const* get_ptr(T const* p)
 }
 
 /* pointer to const volatile. */
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
@@ -98,7 +98,7 @@ inline T const volatile* get_ptr(T const volatile* p)
 }
 
 /* pointer to volatile. */
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
@@ -109,7 +109,7 @@ inline T volatile* get_ptr(T volatile* p)
 #endif /* VC++ 6.0  */
 
 /* pointer to non-const. */
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>

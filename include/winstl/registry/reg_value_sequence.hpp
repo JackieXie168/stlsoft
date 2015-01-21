@@ -14,7 +14,7 @@
  *              basic_reg_value_sequence).
  *
  * Created:     19th January 2002
- * Updated:     25th April 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     123
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -533,7 +533,7 @@ inline registry_util::shared_handle* basic_reg_value_sequence<C, T, A>::create_s
     {
         // Pop it in a scoped handle for RAII
         scoped_handle<HKEY> sh(hkey2, ::RegCloseKey);
-        
+
         handle = registry_util::create_shared_handle(hkey2, m_bMonitorExternalInvalidation, REG_NOTIFY_CHANGE_LAST_SET);
 
         if(NULL == handle)

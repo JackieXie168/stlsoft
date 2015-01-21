@@ -4,7 +4,7 @@
  * Purpose:     Control Panel functions.
  *
  * Created:     1st April 2006
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   5
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       12
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   6
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -309,7 +309,7 @@ namespace winstl
 #ifdef __cplusplus
 
 /* /////////////////////////////////////////////////////////////////////////
- * 
+ *
  */
 
 /** \brief Initialises a control panel applet module.

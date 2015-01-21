@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     24th August 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        127
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        128
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -526,13 +526,13 @@ public:
 /// @}
 
     /// \brief Returns a duplicate of the key's handle, if any.
-    /// 
-    /// \param accessMask The access mask for the 
+    ///
+    /// \param accessMask The access mask for the
     /// \param res A pointer to a variable (of type result_type) into
     ///   which will be written the result of the underlying registry API
     ///   call.
     ///
-    /// \return 
+    /// \return
     ///
     /// \note The handle returned from this method <b>must</b> be closed with RegCloseKey()
     hkey_type   dup_key_handle( REGSAM      accessMask  =   KEY_ALL_ACCESS

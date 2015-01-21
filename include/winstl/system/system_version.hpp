@@ -5,7 +5,7 @@
  *              information about the host system version.
  *
  * Created:     10th February 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MAJOR      4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MINOR      0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_REVISION   2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_EDIT       50
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_REVISION   3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,11 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+
+#ifdef STLSOFT_COMPILER_IS_WATCOM
+# undef major
+# undef minor
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

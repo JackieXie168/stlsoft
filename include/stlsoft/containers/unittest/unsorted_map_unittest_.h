@@ -58,4 +58,3 @@ namespace unittest
 #endif /* compiler */
 
 } // namespace unittest
-

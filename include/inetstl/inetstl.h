@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     24th June 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    4
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     44
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -354,10 +354,10 @@
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_INETSTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_INETSTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__inetstl "InetSTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_INETSTL_NO_NAMESPACE</code>

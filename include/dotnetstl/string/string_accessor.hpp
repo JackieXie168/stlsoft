@@ -4,7 +4,7 @@
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     22nd March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file dotnetstl/string/string_accessor.hpp
  *
- * \brief [C++ only; requires .NET] Definition of the 
+ * \brief [C++ only; requires .NET] Definition of the
  *   dotnetstl::c_string_accessor class template
  *   (\ref group__library__string "String" Library).
  */
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_MAJOR    4
 #define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_MINOR    0
-#define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_REVISION 1
-#define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_EDIT     44
+#define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_REVISION 2
+#define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

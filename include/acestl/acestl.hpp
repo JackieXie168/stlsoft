@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     7
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      36
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  4
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -280,10 +280,10 @@
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_ACESTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_ACESTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__acestl "ACESTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_ACESTL_NO_NAMESPACE</code>

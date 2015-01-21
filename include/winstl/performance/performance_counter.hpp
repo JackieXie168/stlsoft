@@ -6,7 +6,7 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     20th January 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
 
 /** \file winstl/performance/performance_counter.hpp
  *
- * \brief [C++ only] Definition of the 
+ * \brief [C++ only] Definition of the
  *  \link winstl::performance_counter performance_counter\endlink class
  *   (\ref group__library__performance "Performance" Library).
  */
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 4
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     29
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 5
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,7 +170,7 @@ public:
     ///
     /// The type of the epoch measurement. This will be a 64-bit signed
     /// integer for compilers that such types, or a 32-bit integer
-    /// otherwise. 
+    /// otherwise.
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     typedef ws_sint64_t                 epoch_type;
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
@@ -180,7 +180,7 @@ public:
     ///
     /// The type of the interval measurement. This will be a 64-bit signed
     /// integer for compilers that such types, or a 32-bit integer
-    /// otherwise. 
+    /// otherwise.
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     typedef ws_sint64_t                 interval_type;
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */

@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     25th April 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        157
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        158
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -307,7 +307,7 @@ struct auto_buffer_internal_size_calculator<ss_char_w_t>
  *   latter case, construction failure to allocate is reflected by the size()
  *   method returning 0.
  *
- * \remarks The design of auto_buffer is described in Chapter 32 of 
+ * \remarks The design of auto_buffer is described in Chapter 32 of
  *   <a href = "http://imperfectcplusplus.com">Imperfect C++</a>, and its
  *   interface is discussed in detail in Section 16.2 of
  *   <a href = "http://extendedstl.com">Extended STL, volume 1</a>.

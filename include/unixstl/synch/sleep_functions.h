@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL time functions.
  *
  * Created:     2nd September 2005
- * Updated:     20th January 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       14
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   4
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ namespace unixstl_project
  *
  * \param microseconds The number of microseconds to wait
  *
- * \return A boolean value indicating whether the operation was 
+ * \return A boolean value indicating whether the operation was
  *   successful. If not, <code>errno</code> will contain an error code
  *   representing the reason for failure.
  *
@@ -148,7 +148,7 @@ namespace unixstl
  *
  * \param microseconds The number of microseconds to wait
  *
- * \return A boolean value indicating whether the operation was 
+ * \return A boolean value indicating whether the operation was
  *   successful. If not, <code>errno</code> will contain an error code
  *   representing the reason for failure.
  */

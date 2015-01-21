@@ -4,7 +4,7 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     11th August 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  4
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      53
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  5
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ namespace winstl_project
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -118,7 +118,7 @@ STLSOFT_INLINE ws_char_a_t *winstl__fmtmsg_find_last_good_a__(ws_char_a_t *first
     return last;
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -145,7 +145,7 @@ STLSOFT_INLINE ws_char_w_t *winstl__fmtmsg_find_last_good_w__(ws_char_w_t *first
     return last;
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -172,7 +172,7 @@ STLSOFT_INLINE ws_dword_t winstl__FormatMessageA__buff_inst(int flags, HINSTANCE
                                             ,   NULL);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -199,7 +199,7 @@ STLSOFT_INLINE ws_dword_t winstl__FormatMessageW__buff_inst(int flags, HINSTANCE
                                             ,   NULL);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -226,7 +226,7 @@ STLSOFT_INLINE ws_dword_t winstl__FormatMessageA__alloc_inst(int flags, HINSTANC
                                             ,   NULL);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -253,7 +253,7 @@ STLSOFT_INLINE ws_dword_t winstl__FormatMessageW__alloc_inst(int flags, HINSTANC
                                             ,   NULL);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -290,7 +290,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_buff_inst_a(DWORD error, HINSTA
     return res;
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -312,7 +312,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_buff_inst_w(DWORD error, HINSTA
     return res;
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -321,7 +321,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_buff_a(DWORD error, ws_char_a_t
     return winstl__format_message_buff_inst_a(error, NULL, buffer, cchBuffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -330,7 +330,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_buff_w(DWORD error, ws_char_w_t
     return winstl__format_message_buff_inst_w(error, NULL, buffer, cchBuffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -352,7 +352,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_alloc_a(DWORD error, HINSTANCE 
     return res;
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -374,7 +374,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_alloc_w(DWORD error, HINSTANCE 
     return res;
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -383,7 +383,7 @@ STLSOFT_INLINE void winstl__format_message_free_buff_a(ws_char_a_t *buffer)
     winstl__fmtmsg_LocalFree__(buffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -407,7 +407,7 @@ namespace winstl
 
 #if defined(__cplusplus)
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -416,7 +416,7 @@ inline ws_dword_t format_message(ws_dword_t error, HINSTANCE hinst, ws_char_a_t 
     return winstl__format_message_buff_inst_a(error, hinst, buffer, cchBuffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -425,7 +425,7 @@ inline ws_dword_t format_message(ws_dword_t error, HINSTANCE hinst, ws_char_w_t 
     return winstl__format_message_buff_inst_w(error, hinst, buffer, cchBuffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -434,7 +434,7 @@ inline ws_dword_t format_message(ws_dword_t error, ws_char_a_t *buffer, ws_uint_
     return winstl__format_message_buff_a(error, buffer, cchBuffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -443,7 +443,7 @@ inline ws_dword_t format_message(ws_dword_t error, ws_char_w_t *buffer, ws_uint_
     return winstl__format_message_buff_w(error, buffer, cchBuffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -452,7 +452,7 @@ inline ws_dword_t format_message(ws_dword_t error, HINSTANCE hinst, ws_char_a_t 
     return winstl__format_message_alloc_a(error, hinst, buffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -461,7 +461,7 @@ inline ws_dword_t format_message(ws_dword_t error, HINSTANCE hinst, ws_char_w_t 
     return winstl__format_message_alloc_w(error, hinst, buffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */
@@ -470,7 +470,7 @@ inline void format_message_free_buff(ws_char_a_t *buffer)
     winstl__format_message_free_buff_a(buffer);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__error
  */

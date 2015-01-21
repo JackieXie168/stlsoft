@@ -1,6 +1,6 @@
 
 /*
- * Created: 
+ * Created:
  * Updated: 31st March 2007
  */
 
@@ -39,4 +39,3 @@ namespace unittest
 	} // anonymous namespace
 
 } // namespace unittest
-

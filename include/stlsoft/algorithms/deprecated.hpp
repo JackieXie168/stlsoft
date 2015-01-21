@@ -4,7 +4,7 @@
  * Purpose:     Deprecated algorithms.
  *
  * Created:     17th January 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEPRECATED_MAJOR    3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEPRECATED_MINOR    0
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEPRECATED_REVISION 3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEPRECATED_EDIT     67
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEPRECATED_REVISION 4
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEPRECATED_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ namespace stlsoft
  *
  * \param first The start of the range to count
  * \param last The end of the range to count
- * \param pred The predicate 
+ * \param pred The predicate
  */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k P
@@ -111,7 +111,7 @@ inline ss_size_t for_each_count_success(I first, I last, P pred)
  * \ingroup group__library__algorithms
  *
  * \note This function is identical in semantics to std::fill(), except that
- * it returns the value. If you are compiling in the context of a standard 
+ * it returns the value. If you are compiling in the context of a standard
  * compliant library, and do not need the value returned, you should prefer
  * std::fill().
  *
@@ -135,7 +135,7 @@ inline V const& for_each_set_value(I begin, I end, V const& value)
  *
  * \ingroup group__library__algorithms
  *
- * \deprecated This is the old name for fill_if(). 
+ * \deprecated This is the old name for fill_if().
  *
  * \param begin The start of the sequence
  * \param end The end of the sequence
@@ -162,7 +162,7 @@ inline V const& for_each_set_value_if(O begin, O end, V const& value, P pred)
  *
  * \ingroup group__library__algorithms
  *
- * \deprecated This is the old name for unordered_unique(). 
+ * \deprecated This is the old name for unordered_unique().
  *
  * \param container The container
  * \param pred The predicate

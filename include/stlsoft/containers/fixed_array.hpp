@@ -5,7 +5,7 @@
  *              fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     12th August 2008
+ * Updated:     22nd September 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode,
  *              requesting the function call operator, and for requesting
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       188
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -429,7 +429,7 @@ public:
 #ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
     reference               operator ()(index_type i0, index_type i1);
     const_reference         operator ()(index_type i0, index_type i1) const;
-#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */    
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
     dimension_element_type          at(index_type i0);
     const dimension_element_type    at(index_type i0) const;
@@ -477,7 +477,7 @@ public:
 private:
     pointer         allocate_(size_type n);
     void            deallocate_(pointer p, size_type n);
-                    
+
     pointer         data_();
     index_type      calc_index_(index_type i0, index_type i1) const;
     void            range_check_(index_type i0, index_type i1) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
@@ -594,7 +594,7 @@ public:
 #ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
     reference               operator ()(index_type i0, index_type i1, index_type i2);
     const_reference         operator ()(index_type i0, index_type i1, index_type i2) const;
-#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */    
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
     dimension_element_type          at(index_type i0);
     const dimension_element_type    at(index_type i0) const;
@@ -642,7 +642,7 @@ public:
 private:
     pointer         allocate_(size_type n);
     void            deallocate_(pointer p, size_type n);
-                    
+
     pointer         data_();
     index_type      calc_index_(index_type i0, index_type i1, index_type i2) const;
     void            range_check_(index_type i0, index_type i1, index_type i2) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
@@ -759,7 +759,7 @@ public:
 #ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
     reference               operator ()(index_type i0, index_type i1, index_type i2, index_type i3);
     const_reference         operator ()(index_type i0, index_type i1, index_type i2, index_type i3) const;
-#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */ 
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
     dimension_element_type          at(index_type i0);
     const dimension_element_type    at(index_type i0) const;
@@ -808,7 +808,7 @@ public:
 private:
     pointer         allocate_(size_type n);
     void            deallocate_(pointer p, size_type n);
-                    
+
     pointer         data_();
     index_type      calc_index_(index_type i0, index_type i1, index_type i2, index_type i3) const;
     void            range_check_(index_type i0, index_type i1, index_type i2, index_type i3) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
@@ -989,7 +989,7 @@ inline void fixed_array_1d<T, A, P, R>::swap(ss_typename_type_k fixed_array_1d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(get_allocator_(), rhs.get_allocator_()); 
+    std_swap(get_allocator_(), rhs.get_allocator_());
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
 }
@@ -1351,7 +1351,7 @@ inline void fixed_array_2d<T, A, P, R>::swap(ss_typename_type_k fixed_array_2d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(get_allocator_(), rhs.get_allocator_()); 
+    std_swap(get_allocator_(), rhs.get_allocator_());
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);
@@ -1745,7 +1745,7 @@ inline void fixed_array_3d<T, A, P, R>::swap(ss_typename_type_k fixed_array_3d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(get_allocator_(), rhs.get_allocator_()); 
+    std_swap(get_allocator_(), rhs.get_allocator_());
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);
@@ -2151,7 +2151,7 @@ inline void fixed_array_4d<T, A, P, R>::swap(ss_typename_type_k fixed_array_4d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(get_allocator_(), rhs.get_allocator_()); 
+    std_swap(get_allocator_(), rhs.get_allocator_());
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);

@@ -9,12 +9,13 @@
  *              6 both had either compilation or linking problems so these are
  *              regretably now implemented as independent classes.
  *
+ * Created:     19th January 2002
+ * Updated:     23rd September 2008
+ *
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
- *              To Austin Ziegler for the value_multi_sz() method
- *
- * Created:     19th January 2002
- * Updated:     29th April 2008
+ *              To Austin Ziegler for the value_multi_sz() method, and for
+ *              fixes to defects evident on x64.
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,8 +62,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      98
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -489,7 +490,7 @@ inline ws_dword_t basic_reg_value<C, T, A>::get_type_() const
 {
     if(!m_bTypeRetrieved)
     {
-        size_type   data_size;
+        size_type   data_size = 0;
 
 #ifndef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
         /* A little-known trick, but a useful one for dealing with translators
@@ -562,8 +563,8 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
 {
     // Does not expand environment strings
     string_type ret;
-    size_type   data_size;
-    ws_long_t   res =   traits_type::reg_query_info(m_hkey, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &data_size, NULL, NULL);
+    size_type   data_size   =   0;
+    ws_long_t   res         =   traits_type::reg_query_info(m_hkey, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &data_size, NULL, NULL);
 
     if(ERROR_SUCCESS != res)
     {
@@ -697,9 +698,9 @@ inline ws_dword_t basic_reg_value<C, T, A>::value_dword_bigendian() const
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_ret_k basic_reg_value<C, T, A>::blob_type basic_reg_value<C, T, A>::value_binary() const
 {
-    size_type   data_size;
+    size_type   data_size   =   0;
     ws_dword_t  dw;
-    ws_long_t   res =   traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, NULL, data_size);
+    ws_long_t   res         =   traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, NULL, data_size);
 
     if(ERROR_SUCCESS != res)
     {
@@ -751,8 +752,8 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_ret_k basic_reg_value<C, T, A>::strings_type basic_reg_value<C, T, A>::value_multi_sz() const
 {
     strings_type    ret;
-    size_type       data_size;
-    ws_long_t       res = traits_type::reg_query_info(m_hkey, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &data_size, NULL, NULL);
+    size_type       data_size   =   0;
+    ws_long_t       res         =   traits_type::reg_query_info(m_hkey, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &data_size, NULL, NULL);
 
     if(ERROR_SUCCESS != res)
     {

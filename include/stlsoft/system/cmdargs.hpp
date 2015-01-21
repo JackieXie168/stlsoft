@@ -4,7 +4,7 @@
  * Purpose:     Command-line sequences class.
  *
  * Created:     25th June 2005
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    2
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        28
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    3
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -248,7 +248,7 @@ public:
     /// \param optionName The name of the option to search for
     /// \param type The type of the option (i.e the number of hyphens). The
     ///    caller can specify -1 to indicate that it does not care.
-    /// \param opt The instance into which the 
+    /// \param opt The instance into which the
     template <ss_typename_param_k S>
     bool_type   has_option(S const& optionName, int type, option& opt) const
     {

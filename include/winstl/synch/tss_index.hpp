@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for Win32 TSS key.
  *
  * Created:     20th January 1999
- * Updated:     22nd March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     34
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 4
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -190,7 +190,7 @@ public:
 /// \name Accessors
 /// @{
 public:
-    /// \brief Implicit conversion operator to the 
+    /// \brief Implicit conversion operator to the
     operator key_type () const
     {
         return m_index;

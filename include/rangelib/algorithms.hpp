@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
@@ -76,8 +76,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     43
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 5
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -618,7 +618,7 @@ inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, iterable_range_tag const&, iterabl
  *
  * \param r1 The first range to compare
  * \param r2 The second range to compare
- * \retval true if the first N elements in the second range match the N 
+ * \retval true if the first N elements in the second range match the N
  *   elements in the first range. If the first range contains more
  *   elements than the second, then this function always returns false.
  *

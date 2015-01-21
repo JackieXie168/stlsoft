@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     3rd May 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    12
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     35
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -255,7 +255,7 @@
 # endif /* WINSTL_ARCH_IS_X64 */
 #else /* ? operating system */
 #endif /* operating system */
- 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
@@ -300,10 +300,10 @@
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_PLATFORMSTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_PLATFORMSTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__platformstl "PlatformSTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_PLATFORMSTL_NO_NAMESPACE</code>

@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     25th April 2008
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     194
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1912,7 +1912,7 @@ inline void basic_static_string<C, CCH, T>::pop_back()
     if (m_length != 0) {
         m_buffer[--m_length] = 0;
     }
-    
+
 }
 
 template<   ss_typename_param_k C

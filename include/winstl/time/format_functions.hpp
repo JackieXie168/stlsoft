@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     29th December 2007
+ * Updated:     22nd September 2008
  *
  * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
  *              time pictures.
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       56
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   4
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -372,10 +372,10 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
 /** \brief Analogue to the Win32 API <code>GetTimeFormat()</code>, but also
  *    provides milliseconds as part of the time picture.
  *
- * \param locale 
- * \param dwFlags 
- * \param lpTime 
- * \param lpFormat 
+ * \param locale
+ * \param dwFlags
+ * \param lpTime
+ * \param lpFormat
  * \param lpTimeStr The buffer into which the result will be written
  * \param cchTime Number of character spaces available in
  *   <code>lpTimeStr</code>. If 0, the required length is returned, and

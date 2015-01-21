@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     19th January 2008
+ * Updated:     27th September 2008
  *
  * Thanks to:   Pablo Aguilar for requesting multibyte / Unicode ambivalence.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      80
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,11 +133,12 @@ public:
 /// \name Implementation
 /// @{
 private:
+    void open_( ws_char_a_t const*  fileName
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    void open_(ws_char_a_t const* fileName, offset_type offset, ws_uint32_t requestSize)
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-    void open_(ws_char_a_t const* fileName)
+            ,   offset_type         offset
+            ,   ws_uint32_t         requestSize
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+            )
     {
         scoped_handle<HANDLE>   hfile(  ::CreateFileA(  fileName
                                                     ,   GENERIC_READ
@@ -146,8 +147,9 @@ private:
                                                     ,   OPEN_EXISTING
                                                     ,   FILE_FLAG_RANDOM_ACCESS
                                                     ,   NULL)
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1200) || \
+    defined(STLSOFT_COMPILER_IS_WATCOM)
                             ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
                             ,   ::CloseHandle
@@ -155,14 +157,19 @@ private:
                             ,   INVALID_HANDLE_VALUE);
 
 
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
         open_helper_(hfile.get(), offset, requestSize);
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+        open_helper_(hfile.get());
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     }
 
+    void open_( ws_char_w_t const*  fileName
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    void open_(ws_char_w_t const* fileName, offset_type offset, ws_uint32_t requestSize)
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-    void open_(ws_char_w_t const* fileName)
+            ,   offset_type         offset
+            ,   ws_uint32_t         requestSize
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+            )
     {
         scoped_handle<HANDLE>   hfile(  ::CreateFileW(  fileName
                                                     ,   GENERIC_READ
@@ -171,8 +178,9 @@ private:
                                                     ,   OPEN_EXISTING
                                                     ,   FILE_FLAG_RANDOM_ACCESS
                                                     ,   NULL)
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1200) || \
+    defined(STLSOFT_COMPILER_IS_WATCOM)
                             ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
                             ,   ::CloseHandle
@@ -180,7 +188,11 @@ private:
                             ,   INVALID_HANDLE_VALUE);
 
 
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
         open_helper_(hfile.get(), offset, requestSize);
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+        open_helper_(hfile.get());
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     }
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
@@ -238,8 +250,9 @@ private:
                                                                     ,   maxSizeHi
                                                                     ,   maxSizeLo
                                                                     ,   NULL)
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1200) || \
+    defined(STLSOFT_COMPILER_IS_WATCOM)
                                     ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
                                     ,   ::CloseHandle

@@ -8,4 +8,3 @@
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
 #endif /* !STLSOFT_UNITTEST */
-

@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     20th May 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       8
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        170
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        171
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -501,10 +501,10 @@
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_WINSTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_WINSTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__winstl "WinSTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_WINSTL_NO_NAMESPACE</code>
@@ -534,13 +534,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /** \def winstl_ns_qual(x)
- * \brief Namespace qualification macro for 
+ * \brief Namespace qualification macro for
  *  \ref group__project__winstl "WinSTL" components that generates correct
  *  code regardless of whether the <code>winstl</code> namespace is being
  *  suppressed or enabled.
  *
  * If the <span class="code">winstl</span> namespace is being suppressed - by the
- * definition of <code>_WINSTL_NO_NAMESPACE</code> or 
+ * definition of <code>_WINSTL_NO_NAMESPACE</code> or
  * <code>_WINSTL_NO_NAMESPACES</code> or
  * <code>_STLSOFT_NO_NAMESPACES</code>; detectable by the presence of the
  * symbol <code>_WINSTL_NO_NAMESPACE</code> - then
@@ -606,7 +606,7 @@ int main()
 /** \def WINSTL_ITF_CALL(p)
  *
  * \ingroup group__project__comstl__language_agnostic_macros
- * 
+ *
  * \brief Resolves to <b>p->lpVtbl</b> for C compilation, and to <b>p</b> in C++
  *
  * \see WINSTL_ITF_THIS, WINSTL_ITF_THIS0, WINSTL_IID_2_REF, WINSTL_REF_2_PTR
@@ -774,7 +774,7 @@ typedef ws_uptrint_t        uptrint_t;
  * maximum length of a long name is 32767, and a long name must be prefixed
  * with the 4-character sequence <code>\\\\\?\\</code>. This constant can be
  * used when there is a need to allocate the maximum possible size for a
- * file system path. 
+ * file system path.
  */
 #define WINSTL_CONST_NT_MAX_PATH            (4 + 32767)
 
@@ -846,7 +846,7 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
  *
  * \note In C compilation, this is defined as a functionally equivalent macro.
  *
- * \remark Because all compilers (that we know about) represent a 
+ * \remark Because all compilers (that we know about) represent a
  *  <code>bool</code> as one byte and <code>BOOL</code> (which is a typedef
  *  from <code>int</code>) as more than one byte, safely converting from
  *  <code>BOOL</code> to <code>bool</code> has to involve a runtime test

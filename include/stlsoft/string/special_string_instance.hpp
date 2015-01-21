@@ -4,7 +4,7 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     6th November 2007
+ * Updated:     22nd September 2008
  *
  * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
  *              for special_string_instance_1.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        16
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -385,7 +385,7 @@ private:
  *   size of the SSI's internal
  *   \link stlsoft::auto_buffer auto_buffer\endlink's internal buffer size.
  * - A static method <code>get_value(char_type *buffer, size_type cchBuffer)</code>
- *   that has the 
+ *   that has the
  * - A member constant <code>allowImplicitConversion</code> that determines
  *   whether an implicit conversion operator (to
  *   <code>char_type const*</code>) is to be provided.
@@ -566,7 +566,7 @@ private:
  *   size of the SSI's internal
  *   \link stlsoft::auto_buffer auto_buffer\endlink's internal buffer size.
  * - A static method <code>get_value(char_type *buffer, size_type cchBuffer)</code>
- *   that has the 
+ *   that has the
  * - A member constant <code>allowImplicitConversion</code> that determines
  *   whether an implicit conversion operator (to
  *   <code>char_type const*</code>) is to be provided.

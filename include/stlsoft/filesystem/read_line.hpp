@@ -4,7 +4,7 @@
  * Purpose:     Definition of stlsoft::read_line() function template.
  *
  * Created:     2nd January 2007
- * Updated:     12th August 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MAJOR     2
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MINOR     0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      7
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  2
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -242,7 +242,7 @@ struct read_line_impl
                     // - recognising CR     -   handle
                     // - recognising CRLF   -   handle
 
-                    // If we're recognising either 
+                    // If we're recognising either
 
                     if(0 != ((read_line_flags::recogniseCrAsEOL | read_line_flags::recogniseCrLfAsEOL) & flags))
                     {
@@ -276,7 +276,7 @@ struct read_line_impl
                     // - recognising CR     -   ignore
                     // - recognising LF     -   handle
                     // - recognising CRLF   -   handle
-                    // 
+                    //
                     //  We check CRLF first
 
                     if( numCr > 0 &&

@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     4
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  2
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      102
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  3
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -338,10 +338,10 @@ extern CComModule _Module;
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_ATLSTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_ATLSTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__atlstl "ATLSTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_ATLSTL_NO_NAMESPACE</code>

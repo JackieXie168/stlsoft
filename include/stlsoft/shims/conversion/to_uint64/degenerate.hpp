@@ -4,7 +4,7 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     4th July 2007
- * Updated:     4th July 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file stlsoft/shims/conversion/to_uint64/degenerate.hpp
  *
- * \brief [C++] Degenerate case for the 
+ * \brief [C++] Degenerate case for the
  *   \ref group__concept__shim__integer_conversion__to_uint64 "to_uint64 Integer Attribute Shim".
  */
 
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_MINOR    0
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_REVISION 1
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_EDIT     1
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_REVISION 2
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

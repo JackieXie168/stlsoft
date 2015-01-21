@@ -4,7 +4,7 @@
  * Purpose:     String container slice functions.
  *
  * Created:     25th April 2005
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MINOR    1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     20
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 3
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,7 +147,7 @@ inline ss_size_t left_len(S const& s, ss_size_t n)
  * String class functions
  */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -159,7 +159,7 @@ inline S left(S const& s, ss_size_t n)
     return traits_t::construct(s, 0, left_len(s, n));
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -178,7 +178,7 @@ inline S right(S const& s, ss_size_t n)
     return traits_t::construct(s, len - n, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -216,7 +216,7 @@ inline S mid(S const& s, ss_size_t pos, ss_size_t n)
 #endif /* !STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE */
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -227,7 +227,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> le
     return string_t(s, left_len(s, n));
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -236,7 +236,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> le
     return left(const_cast<ss_char_a_t const*>(s), n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -247,7 +247,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> le
     return string_t(s, left_len(s, n));
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -257,7 +257,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> le
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -275,7 +275,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> ri
     return string_t(s + (len - n), n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -284,7 +284,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> ri
     return right(const_cast<ss_char_a_t const*>(s), n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -302,7 +302,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> ri
     return string_t(s + (len - n), n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -312,7 +312,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> ri
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -335,7 +335,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> mi
     return string_t(s + pos, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -344,7 +344,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> mi
     return mid(const_cast<ss_char_a_t const*>(s), pos, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */
@@ -367,7 +367,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> mi
     return string_t(s + pos, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__string
  */

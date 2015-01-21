@@ -4,7 +4,7 @@
  * Purpose:     Process functions.
  *
  * Created:     12th March 2006
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 4
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     15
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 5
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ namespace winstl_project
  * C functions
  */
 
-/** 
+/**
  *
  * \ingroup group__library__system
  */
@@ -116,7 +116,7 @@ STLSOFT_INLINE BOOL winstl__CreateProcessFEA(ws_char_a_t const* cmdLine, DWORD f
     return b;
 }
 
-/** 
+/**
  *
  * \ingroup group__library__system
  */
@@ -125,7 +125,7 @@ STLSOFT_INLINE BOOL winstl__CreateProcessEA(ws_char_a_t const* cmdLine, void con
     return winstl__CreateProcessFEA(cmdLine, 0, envBlock);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__system
  */
@@ -149,7 +149,7 @@ namespace winstl
 
 #ifdef __cplusplus
 
-/** 
+/**
  *
  * \ingroup group__library__system
  */
@@ -158,7 +158,7 @@ inline BOOL CreateProcess(ws_char_a_t const* cmdLine, DWORD flags, void const* e
     return winstl__CreateProcessFEA(cmdLine, flags, envBlock);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__system
  */
@@ -167,7 +167,7 @@ inline BOOL CreateProcess(ws_char_a_t const* cmdLine, void const* envBlock)
     return winstl__CreateProcessEA(cmdLine, envBlock);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__system
  */

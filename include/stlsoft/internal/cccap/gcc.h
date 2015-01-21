@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     23rd August 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      18
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       77
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -229,9 +229,9 @@
  * - argument-dependent lookup
  * - static array-size determination
  * - empty-derived optimisation
- *    - 
+ *    -
  * - empty-base optimisation
- *    - 
+ *    -
  * - move constructor support
  * - operators
  *    - operator bool implemented as pointer-to-member

@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Cláudio Albuquerque for suggesting the inclusion of
  *              atlstr.h.
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     4
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  2
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      89
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  3
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -337,10 +337,10 @@
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_MFCSTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_MFCSTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__mfcstl "MFCSTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_MFCSTL_NO_NAMESPACE</code>

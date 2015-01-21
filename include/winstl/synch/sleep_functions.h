@@ -4,7 +4,7 @@
  * Purpose:     WinSTL time functions.
  *
  * Created:     11th June 2006
- * Updated:     20th January 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       13
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   4
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ winstl__micro_sleep(100);     // Sleep for 0.1 milliseconds
  *
  * \param microseconds The number of microseconds to wait
  *
- * \return A boolean value indicating whether the operation was 
+ * \return A boolean value indicating whether the operation was
  *   successful. If not, <code>::GetLastError()</code> will contain an error code
  *   representing the reason for failure.
  *
@@ -132,7 +132,7 @@ winstl::micro_sleep(100);     // Sleep for 0.1 milliseconds
  *
  * \param microseconds The number of microseconds to wait
  *
- * \return A boolean value indicating whether the operation was 
+ * \return A boolean value indicating whether the operation was
  *   successful. If not, <code>::GetLastError()</code> will contain an error code
  *   representing the reason for failure.
  */
