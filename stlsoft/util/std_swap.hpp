@@ -4,7 +4,7 @@
  * Purpose:     Contains the std_swap() function.
  *
  * Created:     27th June 2005
- * Updated:     13th September 2006
+ * Updated:     23rd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     13
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,8 +117,8 @@ namespace stlsoft_nostd_util
 #endif /* STLSOFT_STD_SWAP_NO_USE_STD */
 
 
-/** \brief Calls std::swap on the arguments, but may also use Koenig Lookup (Argument
- * Dependent Lookup) to use a specialised form
+/** \brief Calls std::swap on the arguments, but may also use
+ *    Argument-Dependent Lookup) to use a specialised form.
  *
  * \ingroup group__library__utility
  *
@@ -133,7 +133,7 @@ template<ss_typename_param_k T>
 inline void std_swap(T &lhs, T &rhs)
 {
     // Here we introduce the 'std' implementation, via a using namespace 'std'
-    // directive, so that Koenig lookup can have the best grab
+    // directive, so that Argument-Dependent Lookup can have the best grab
 
 #ifdef STLSOFT_STD_SWAP_NO_USE_STD
 # ifndef _STLSOFT_NO_NAMESPACE
@@ -170,8 +170,8 @@ inline void std_swap(T &lhs, T &rhs)
 #ifndef _STLSOFT_NO_NAMESPACE
 namespace stlsoft
 {
-    /// Calls std::swap on the arguments, but may also use Koenig Lookup (Argument
-    /// Dependent Lookup) to use a specialised form
+    /// Calls std::swap on the arguments, but may also use Argument-Dependent
+    /// Lookup to use a specialised form
     ///
     /// \note For compilers, such as Open Watcom, that do not have a functional
     /// standard library implementation, the swap() implementation from

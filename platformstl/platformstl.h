@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     27th August 2006
+ * Updated:     23rd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 3
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     23
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 4
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -296,7 +296,9 @@ typedef unixstl_ns_qual(us_int_t)           int_t;       //!< integer
 typedef unixstl_ns_qual(us_sint_t)          sint_t;      //!< signed integer
 typedef unixstl_ns_qual(us_uint_t)          uint_t;      //!< unsigned integer
 typedef unixstl_ns_qual(us_long_t)          long_t;      //!< long
+#ifdef __cplusplus
 typedef unixstl_ns_qual(us_bool_t)          bool_t;      //!< bool
+#endif /* __cplusplus */
 typedef unixstl_ns_qual(us_size_t)          size_t;      //!< size
 typedef unixstl_ns_qual(us_ptrdiff_t)       ptrdiff_t;   //!< ptr diff
 typedef unixstl_ns_qual(us_streampos_t)     streampos_t; //!< streampos

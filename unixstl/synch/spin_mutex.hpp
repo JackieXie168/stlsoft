@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     7th July 2006
+ * Updated:     23rd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      45
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -194,9 +194,11 @@ public:
 #elif defined(UNIXSTL_ARCH_IS_POWERPC)
         for(m_spunCount = 1; !::OSAtomicCompareAndSwap32Barrier(0, 1, m_spinCount); ++m_spunCount, ::sched_yield())
         {}
-#else /* ? arch */
+#elif defined(UNIXSTL_HAS_ATOMIC_WRITE)
         for(m_spunCount = 1; 0 != atomic_write(m_spinCount, 1); ++m_spunCount, ::sched_yield())
         {}
+#else /* ? arch */
+# error Your platform does not support atomic_write(), or has provides it in a manner unknown to the authors of UNIXSTL. If you know of the correct implementation, please send a patch.
 #endif /* arch */
 
 #ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
@@ -314,11 +316,11 @@ using ::stlsoft::unlock_instance;
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * lock_traits (for the compilers that do not support Koenig Lookup)
+ * lock_traits
  */
 
 // class lock_traits
-/** \brief Traits for the spin_mutex class (for compilers that do not support Koenig Lookup)
+/** \brief Traits for the spin_mutex class
  *
  * \ingroup group__library__synch
  */

@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta23
+File:     STLSoft-ReleaseNotes-1.9.1-beta24
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,57 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  17th September 2006
+Updated:  24th September 2006
 
 ============================================================================
+
+
+============================================================================
+
+Changes for 1.9.1 beta 24 (24th September 2006):
+
+Additions:
+==========
+
++ stlsoft::basic_shim_string::internal_size()
+
++ unixstl::process_mutex now allows for wrapping of an externally created
+  pthread_mutex_t*
+
++ unixstl::thread_mutex now allows for wrapping of an externally created
+  pthread_mutex_t*
+
+
+Changes:
+========
+
+~ fix minor bug in stlsoft::c_str_data_a(struct tm const *t) (located in 
+  stlsoft/shims/access/string/std/time.hpp) that resulted in heap allocation
+  every time.
+
+~ fixed bug that prevented C-only compilation of platformstl/platformstl.h
+
+
+~ unixstl/synch/atomic_functions.h now contains various feature
+  detection symbols, e.g. UNIXSTL_HAS_ATOMIC_PREINCREMENT, 
+  UNIXSTL_HAS_ATOMIC_PREADD
+
+~ tidying up of exception-safety in unixstl::process_mutex
+
+~ introduction of exception throwing in unixstl::thread_mutex, to be
+  conformant with unixstl::process_mutex
+
+~ unixstl::spin_mutex now discriminates on the (new) symbol
+  UNIXSTL_HAS_ATOMIC_WRITE
+
+
+~ platformstl/synch/atomic_functions.h now contains various feature
+  detection symbols, e.g. PLATFORMSTL_HAS_ATOMIC_PREINCREMENT, 
+  PLATFORMSTL_HAS_ATOMIC_PREADD
+
+
+
+
 
 
 ============================================================================

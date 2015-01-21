@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     16th July 2006
+ * Updated:     24th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       54
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      4
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,12 +66,15 @@
 #  include <unixstl/error/exceptions.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
+# include <stlsoft/smartptr/scoped_handle.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 #if !defined(_REENTRANT) && \
     !defined(_POSIX_THREADS)
-# error unixstl_process_mutex.h must be compiled in the context of PTHREADS
+# error unixstl/synch/process_mutex.hpp must be compiled in the context of PTHREADS
 #endif /* !_REENTRANT && !_POSIX_THREADS */
 #include <errno.h>
 #include <pthread.h>
@@ -121,6 +124,7 @@ class process_mutex
 /// @{
 public:
     typedef process_mutex       class_type;
+    typedef us_bool_t           bool_type;
 /// @}
 
 /// \name Construction
@@ -134,23 +138,39 @@ public:
     /// \note On systems that support shared mutexes, this will be not shared. Use
     ///  the other constructor to obtain a shared mutex
     process_mutex()
+        : m_mx(&m_mx_)
 #if defined(_POSIX_THREAD_PROCESS_SHARED)
-        : m_error(create_(&m_mx, PTHREAD_PROCESS_PRIVATE, true))
+        , m_error(create_(&m_mx_, PTHREAD_PROCESS_PRIVATE, true))
 #else /* ? _POSIX_THREAD_PROCESS_SHARED */
-        : m_error(create_(&m_mx, 0, true))
+        , m_error(create_(&m_mx_, 0, true))
 #endif /* _POSIX_THREAD_PROCESS_SHARED */
+        , m_bOwnHandle(true)
     {}
+
+    /// \brief Conversion constructor
+    ///
+    /// \param mx The raw mutex object handle that this instance will use
+    /// \param bTakeOwnership If true, the handle is closed when this instance is destroyed
+    process_mutex(pthread_mutex_t *mx, bool_type bTakeOwnership)
+        : m_mx(mx)
+        , m_error(0)
+        , m_bOwnHandle(bTakeOwnership)
+    {
+        UNIXSTL_ASSERT(NULL != mx);
+    }
 
     /// \brief Creates an instance of the mutex
     ///
     /// \note On systems that support shared mutexes, this will be not shared. Use
     /// the two-parameter constructor to obtain a shared mutex
-    ss_explicit_k process_mutex(us_bool_t bRecursive)
+    ss_explicit_k process_mutex(bool_type bRecursive)
+        : m_mx(&m_mx_)
 #if defined(_POSIX_THREAD_PROCESS_SHARED)
-        : m_error(create_(&m_mx, PTHREAD_PROCESS_PRIVATE, bRecursive))
+        , m_error(create_(&m_mx_, PTHREAD_PROCESS_PRIVATE, bRecursive))
 #else /* ? _POSIX_THREAD_PROCESS_SHARED */
-        : m_error(create_(&m_mx, 0, bRecursive))
+        , m_error(create_(&m_mx_, 0, bRecursive))
 #endif /* _POSIX_THREAD_PROCESS_SHARED */
+        , m_bOwnHandle(true)
     {}
 #if defined(_POSIX_THREAD_PROCESS_SHARED)
     /// \brief Creates an instance of the mutex, optionally recursive and/or shared between processes
@@ -158,16 +178,19 @@ public:
     /// \param pshared A value from the PTHREADS_PROCESS_* group that determines the sharing
     ///  characteristics of the mutex.
     /// \param bRecursive A boolean value denoting whether the mutex should be recursive or not
-    process_mutex(int pshared, us_bool_t bRecursive)
-        : m_error(create_(&m_mx, pshared, bRecursive))
+    process_mutex(int pshared, bool_type bRecursive)
+        : m_mx(&m_mx_)
+        , m_error(create_(&m_mx_, pshared, bRecursive))
+        , m_bOwnHandle(true)
     {}
 #endif /* _POSIX_THREAD_PROCESS_SHARED */
     /// \brief Destroys an instance of the mutex
     ~process_mutex() stlsoft_throw_0()
     {
-        if(0 == m_error)
+        if( 0 == m_error &&
+            m_bOwnHandle)
         {
-            ::pthread_mutex_destroy(&m_mx);
+            ::pthread_mutex_destroy(m_mx);
         }
     }
 /// @}
@@ -176,9 +199,14 @@ public:
 /// @{
 public:
     /// \brief Acquires a lock on the mutex, pending the thread until the lock is aquired
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// unixstl::unix_exception if the lock cannot be acquired. When
+    /// compiling absent exception support, failure to acquire the lock
+    /// will be reflected in a non-zero return from get_error().
     void lock()
     {
-        m_error = ::pthread_mutex_lock(&m_mx);
+        m_error = ::pthread_mutex_lock(m_mx);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(0 != m_error)
@@ -189,10 +217,16 @@ public:
     }
     /// \brief Attempts to lock the mutex
     ///
-    /// \return <b>true</b> if the mutex was aquired, or <b>false</b> if not
+    /// \return <b>true</b> if the mutex was aquired, or <b>false</b> if not.
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// unixstl::unix_exception if the lock cannot be acquired for a reason
+    /// other than a timeout (<code>EBUSY</code>). When compiling absent
+    /// exception support, failure to acquire the lock (for any other
+    /// reason) will be reflected in a non-zero return from get_error().
     bool try_lock()
     {
-        m_error = ::pthread_mutex_trylock(&m_mx);
+        m_error = ::pthread_mutex_trylock(m_mx);
 
         if(0 == m_error)
         {
@@ -211,9 +245,14 @@ public:
         }
     }
     /// \brief Releases an aquired lock on the mutex
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// unixstl::unix_exception if the lock cannot be released. When
+    /// compiling absent exception support, failure to release the lock
+    /// will be reflected in a non-zero return from get_error().
     void unlock()
     {
-        m_error = ::pthread_mutex_unlock(&m_mx);
+        m_error = ::pthread_mutex_unlock(m_mx);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(0 != m_error)
@@ -236,25 +275,27 @@ public:
     /// \brief The underlying kernel object handle
     pthread_mutex_t *handle() stlsoft_throw_0()
     {
-        return &m_mx;
+        return m_mx;
     }
     /// \brief The underlying kernel object handle
     pthread_mutex_t *get() stlsoft_throw_0()
     {
-        return &m_mx;
+        return m_mx;
     }
 /// @}
 
 /// \name Implementation
 /// @{
 private:
-    static int create_(pthread_mutex_t *mx, int pshared, us_bool_t bRecursive)
+    static int create_(pthread_mutex_t *mx, int pshared, bool_type bRecursive)
     {
         pthread_mutexattr_t attr;
         int                 res = 0;
 
         if(0 == (res = ::pthread_mutexattr_init(&attr)))
         {
+            stlsoft::scoped_handle<pthread_mutexattr_t*>    attr_(&attr, ::pthread_mutexattr_destroy);
+
             if( !bRecursive ||
                 0 == (res = ::pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE)))
             {
@@ -287,12 +328,6 @@ private:
                 throw unix_exception("Failed to set recursive attribute to PTHREADS mutex", res);
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-
-            int res2 = res;
-
-            ::pthread_mutexattr_destroy(&attr);
-
-            res = res2;
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         else
@@ -308,8 +343,10 @@ private:
 /// \name Members
 /// @{
 private:
-    pthread_mutex_t m_mx;       // The mutex
-    int             m_error;    // The last PThreads error
+    pthread_mutex_t         m_mx_;          // The mutex used when created and owned by the instance
+    pthread_mutex_t *const  m_mx;           // The mutex "handle"
+    int                     m_error;        // The last PThreads error
+    const bool_type         m_bOwnHandle;   // Does the instance own the handle?
 /// @}
 
 /// \name Not to be implemented
@@ -368,11 +405,11 @@ namespace unixstl_project
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * lock_traits (for the compilers that do not support Koenig Lookup)
+ * lock_traits
  */
 
 // class lock_traits
-/** \brief Traits for the process_mutex class (for compilers that do not support Koenig Lookup)
+/** \brief Traits for the process_mutex class
  *
  * \ingroup group__library__synch
  */

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     2nd September 2006
+ * Updated:     23rd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        18
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/atomic_functions.h
@@ -106,6 +106,41 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Features
+ */
+
+#ifdef PLATFORMSTL_HAS_ATOMIC_PREINCREMENT
+# undef PLATFORMSTL_HAS_ATOMIC_PREINCREMENT
+#endif /* PLATFORMSTL_HAS_ATOMIC_PREINCREMENT */
+#ifdef PLATFORMSTL_HAS_ATOMIC_PREDECREMENT
+# undef PLATFORMSTL_HAS_ATOMIC_PREDECREMENT
+#endif /* PLATFORMSTL_HAS_ATOMIC_PREDECREMENT */
+#ifdef PLATFORMSTL_HAS_ATOMIC_POSTINCREMENT
+# undef PLATFORMSTL_HAS_ATOMIC_POSTINCREMENT
+#endif /* PLATFORMSTL_HAS_ATOMIC_POSTINCREMENT */
+#ifdef PLATFORMSTL_HAS_ATOMIC_POSTDECREMENT
+# undef PLATFORMSTL_HAS_ATOMIC_POSTDECREMENT
+#endif /* PLATFORMSTL_HAS_ATOMIC_POSTDECREMENT */
+#ifdef PLATFORMSTL_HAS_ATOMIC_INCREMENT
+# undef PLATFORMSTL_HAS_ATOMIC_INCREMENT
+#endif /* PLATFORMSTL_HAS_ATOMIC_INCREMENT */
+#ifdef PLATFORMSTL_HAS_ATOMIC_DECREMENT
+# undef PLATFORMSTL_HAS_ATOMIC_DECREMENT
+#endif /* PLATFORMSTL_HAS_ATOMIC_DECREMENT */
+#ifdef PLATFORMSTL_HAS_ATOMIC_READ
+# undef PLATFORMSTL_HAS_ATOMIC_READ
+#endif /* PLATFORMSTL_HAS_ATOMIC_READ */
+#ifdef PLATFORMSTL_HAS_ATOMIC_WRITE
+# undef PLATFORMSTL_HAS_ATOMIC_WRITE
+#endif /* PLATFORMSTL_HAS_ATOMIC_WRITE */
+#ifdef PLATFORMSTL_HAS_ATOMIC_PREADD
+# undef PLATFORMSTL_HAS_ATOMIC_PREADD
+#endif /* PLATFORMSTL_HAS_ATOMIC_PREADD */
+#ifdef PLATFORMSTL_HAS_ATOMIC_POSTADD
+# undef PLATFORMSTL_HAS_ATOMIC_POSTADD
+#endif /* PLATFORMSTL_HAS_ATOMIC_POSTADD */
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(__cplusplus)
@@ -138,42 +173,48 @@ namespace platformstl_project
     using atomic_int_t;
 
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
-   /* OS: UNIX */
-#   if defined(_WIN32)
-    /* OS (flavour): emulating Unix (via UNIXEm) on Win32 */
+
+#   ifdef UNIXSTL_HAS_ATOMIC_PREINCREMENT
     using atomic_preincrement;
+#    define PLATFORMSTL_HAS_ATOMIC_PREINCREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_PREINCREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_PREDECREMENT
     using atomic_predecrement;
+#    define PLATFORMSTL_HAS_ATOMIC_PREDECREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_PREDECREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_POSTINCREMENT
     using atomic_postincrement;
+#    define PLATFORMSTL_HAS_ATOMIC_POSTINCREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_POSTINCREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_POSTDECREMENT
     using atomic_postdecrement;
+#    define PLATFORMSTL_HAS_ATOMIC_POSTDECREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_POSTDECREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_INCREMENT
     using atomic_increment;
+#    define PLATFORMSTL_HAS_ATOMIC_INCREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_INCREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_DECREMENT
     using atomic_decrement;
+#    define PLATFORMSTL_HAS_ATOMIC_DECREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_DECREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_READ
+    using atomic_read;
+#    define PLATFORMSTL_HAS_ATOMIC_READ
+#   endif /* UNIXSTL_HAS_ATOMIC_READ */
+#   ifdef UNIXSTL_HAS_ATOMIC_WRITE
     using atomic_write;
-    using atomic_read;
+#    define PLATFORMSTL_HAS_ATOMIC_WRITE
+#   endif /* UNIXSTL_HAS_ATOMIC_WRITE */
+#   ifdef UNIXSTL_HAS_ATOMIC_PREADD
     using atomic_preadd;
+#    define PLATFORMSTL_HAS_ATOMIC_PREADD
+#   endif /* UNIXSTL_HAS_ATOMIC_PREADD */
+#   ifdef UNIXSTL_HAS_ATOMIC_POSTADD
     using atomic_postadd;
-#   elif defined(UNIXSTL_OS_IS_LINUX)
-    /* OS (flavour): Linux */
-#    if defined(UNIXSTL_ARCH_IS_INTEL)
-     /* Arch: i386 */
-    using atomic_read;
-    using atomic_write;
-#    else /* ? arch */
-#     error Currently only defined for Intel Linuxen; If you would like to contribute for your platform, you would be most welcome.
-#    endif /* arch */
-#   elif defined(UNIXSTL_ARCH_IS_POWERPC)
-    /* Arch: PowerPC */
-    using atomic_preincrement;
-    using atomic_predecrement;
-    using atomic_postincrement;
-    using atomic_postdecrement;
-    using atomic_increment;
-    using atomic_decrement;
-    using atomic_read;
-    using atomic_preadd;
-    using atomic_postadd;
-#   else /* ? architecture */
-#    error Currently only defined for Intel (Linux-only) and Power-PC architectures; If you would like to contribute for your platform, you would be most welcome.
-#   endif /* architecture */
+#    define PLATFORMSTL_HAS_ATOMIC_POSTADD
+#   endif /* UNIXSTL_HAS_ATOMIC_POSTADD */
+
 #  elif defined(PLATFORMSTL_OS_IS_WIN32)
    /* OS: Win32 */
 #   if defined(_M_IX86) /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */
@@ -208,6 +249,18 @@ namespace platformstl_project
     using atomic_read;
     using atomic_postadd;
     using atomic_preadd;
+
+#    define PLATFORMSTL_HAS_ATOMIC_PREINCREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_PREDECREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_POSTINCREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_POSTDECREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_INCREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_DECREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_READ
+#    define PLATFORMSTL_HAS_ATOMIC_WRITE
+#    define PLATFORMSTL_HAS_ATOMIC_PREADD
+#    define PLATFORMSTL_HAS_ATOMIC_POSTADD
+
 #   else /* ? arch */
 #    error Not valid for processors other than Intel
 #   endif /* arch */
@@ -220,42 +273,48 @@ namespace platformstl_project
     using implementation::platform_stl_::atomic_int_t;
 
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
-   /* OS: UNIX */
-#   if defined(_WIN32)
-    /* OS (flavour): emulating Unix (via UNIXEm) on Win32 */
+
+#   ifdef UNIXSTL_HAS_ATOMIC_PREINCREMENT
     using implementation::platform_stl_::atomic_preincrement;
+#    define PLATFORMSTL_HAS_ATOMIC_PREINCREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_PREINCREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_PREDECREMENT
     using implementation::platform_stl_::atomic_predecrement;
+#    define PLATFORMSTL_HAS_ATOMIC_PREDECREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_PREDECREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_POSTINCREMENT
     using implementation::platform_stl_::atomic_postincrement;
+#    define PLATFORMSTL_HAS_ATOMIC_POSTINCREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_POSTINCREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_POSTDECREMENT
     using implementation::platform_stl_::atomic_postdecrement;
+#    define PLATFORMSTL_HAS_ATOMIC_POSTDECREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_POSTDECREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_INCREMENT
     using implementation::platform_stl_::atomic_increment;
+#    define PLATFORMSTL_HAS_ATOMIC_INCREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_INCREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_DECREMENT
     using implementation::platform_stl_::atomic_decrement;
+#    define PLATFORMSTL_HAS_ATOMIC_DECREMENT
+#   endif /* UNIXSTL_HAS_ATOMIC_DECREMENT */
+#   ifdef UNIXSTL_HAS_ATOMIC_READ
+    using implementation::platform_stl_::atomic_read;
+#    define PLATFORMSTL_HAS_ATOMIC_READ
+#   endif /* UNIXSTL_HAS_ATOMIC_READ */
+#   ifdef UNIXSTL_HAS_ATOMIC_WRITE
     using implementation::platform_stl_::atomic_write;
-    using implementation::platform_stl_::atomic_read;
+#    define PLATFORMSTL_HAS_ATOMIC_WRITE
+#   endif /* UNIXSTL_HAS_ATOMIC_WRITE */
+#   ifdef UNIXSTL_HAS_ATOMIC_PREADD
     using implementation::platform_stl_::atomic_preadd;
+#    define PLATFORMSTL_HAS_ATOMIC_PREADD
+#   endif /* UNIXSTL_HAS_ATOMIC_PREADD */
+#   ifdef UNIXSTL_HAS_ATOMIC_POSTADD
     using implementation::platform_stl_::atomic_postadd;
-#   elif defined(UNIXSTL_OS_IS_LINUX)
-    /* OS (flavour): Linux */
-#    if defined(UNIXSTL_ARCH_IS_INTEL)
-     /* Arch: i386 */
-    using implementation::platform_stl_::atomic_read;
-    using implementation::platform_stl_::atomic_write;
-#    else /* ? arch */
-#     error Currently only defined for Intel Linuxen; If you would like to contribute for your platform, you would be most welcome.
-#    endif /* arch */
-#   elif defined(UNIXSTL_ARCH_IS_POWERPC)
-    /* Arch: PowerPC */
-    using implementation::platform_stl_::atomic_preincrement;
-    using implementation::platform_stl_::atomic_predecrement;
-    using implementation::platform_stl_::atomic_postincrement;
-    using implementation::platform_stl_::atomic_postdecrement;
-    using implementation::platform_stl_::atomic_increment;
-    using implementation::platform_stl_::atomic_decrement;
-    using implementation::platform_stl_::atomic_read;
-    using implementation::platform_stl_::atomic_preadd;
-    using implementation::platform_stl_::atomic_postadd;
-#   else /* ? architecture */
-#    error Currently only defined for Intel (Linux-only) and Power-PC architectures; If you would like to contribute for your platform, you would be most welcome.
-#   endif /* architecture */
+#    define PLATFORMSTL_HAS_ATOMIC_POSTADD
+#   endif /* UNIXSTL_HAS_ATOMIC_POSTADD */
+
 #  elif defined(PLATFORMSTL_OS_IS_WIN32)
    /* OS: Win32 */
 #   if defined(_M_IX86) /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */
@@ -290,6 +349,17 @@ namespace platformstl_project
     using implementation::platform_stl_::atomic_read;
     using implementation::platform_stl_::atomic_postadd;
     using implementation::platform_stl_::atomic_preadd;
+
+#    define PLATFORMSTL_HAS_ATOMIC_PREINCREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_PREDECREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_POSTINCREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_POSTDECREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_INCREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_DECREMENT
+#    define PLATFORMSTL_HAS_ATOMIC_READ
+#    define PLATFORMSTL_HAS_ATOMIC_WRITE
+#    define PLATFORMSTL_HAS_ATOMIC_PREADD
+#    define PLATFORMSTL_HAS_ATOMIC_POSTADD
 
 #   else /* ? arch */
 #    error Not valid for processors other than Intel

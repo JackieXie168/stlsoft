@@ -286,7 +286,7 @@ namespace unittest
 
 			{ // CStringArray & CList<CString>
 				typedef CStringArray							array_type_1;
-				typedef CList<CString, LPCTSTR>				array_type_2;
+				typedef CList<CString, LPCTSTR> 			array_type_2;
 				typedef CList_specific_traits< CString
 											,	CString const&
 											,	CStringArray
