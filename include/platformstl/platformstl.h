@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 5
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     25
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 6
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -274,7 +274,8 @@ namespace platformstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
+    defined(__cplusplus)
 
 # if defined(PLATFORMSTL_OS_IS_UNIX)
 typedef unixstl_ns_qual(us_char_a_t)        char_a_t;    /*!< Ansi char type */
@@ -334,7 +335,7 @@ typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 # error Operating system not discriminated. Only UNIX and Win32 are currently recognised by PlatformSTL
 # endif /* operating system */
 
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION && __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

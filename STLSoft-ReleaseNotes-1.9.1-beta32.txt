@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta31
+File:     STLSoft-ReleaseNotes-1.9.1-beta32
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,10 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  6th December 2006
+Updated:  7th December 2006
 
 ============================================================================
+
 
     ************************************
     * Change key:                      *
@@ -25,6 +26,17 @@ Updated:  6th December 2006
     *                                  *
     ************************************
 
+
+============================================================================
+
+Changes for 1.9.1 beta 31 (6th December 2006):
+
+Changes:
+========
+
+~ fixed unixstl/unixstl.h (in)compatibility with C compilation
+
+~ fixed platformstl/platformstl.h (in)compatibility with C compilation
 
 ============================================================================
 

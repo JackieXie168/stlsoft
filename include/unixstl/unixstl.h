@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     31st August 2006
+ * Updated:     6th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     68
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 4
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -495,64 +495,64 @@ stlsoft_ns_using(move_lhs_from_rhs)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-typedef stlsoft_ns_qual(ss_char_a_t)        us_char_a_t;    //!< Ansi char type
-typedef stlsoft_ns_qual(ss_char_w_t)        us_char_w_t;    //!< Unicode char type
-typedef stlsoft_ns_qual(ss_sint8_t)         us_sint8_t;     //!< 8-bit signed integer
-typedef stlsoft_ns_qual(ss_uint8_t)         us_uint8_t;     //!< 8-bit unsigned integer
-typedef stlsoft_ns_qual(ss_int16_t)         us_int16_t;     //!< 16-bit integer
-typedef stlsoft_ns_qual(ss_sint16_t)        us_sint16_t;    //!< 16-bit signed integer
-typedef stlsoft_ns_qual(ss_uint16_t)        us_uint16_t;    //!< 16-bit unsigned integer
-typedef stlsoft_ns_qual(ss_int32_t)         us_int32_t;     //!< 32-bit integer
-typedef stlsoft_ns_qual(ss_sint32_t)        us_sint32_t;    //!< 32-bit signed integer
-typedef stlsoft_ns_qual(ss_uint32_t)        us_uint32_t;    //!< 32-bit unsigned integer
+typedef stlsoft_ns_qual(ss_char_a_t)        us_char_a_t;    /*!< Ansi char type */
+typedef stlsoft_ns_qual(ss_char_w_t)        us_char_w_t;    /*!< Unicode char type */
+typedef stlsoft_ns_qual(ss_sint8_t)         us_sint8_t;     /*!< 8-bit signed integer */
+typedef stlsoft_ns_qual(ss_uint8_t)         us_uint8_t;     /*!< 8-bit unsigned integer */
+typedef stlsoft_ns_qual(ss_int16_t)         us_int16_t;     /*!< 16-bit integer */
+typedef stlsoft_ns_qual(ss_sint16_t)        us_sint16_t;    /*!< 16-bit signed integer */
+typedef stlsoft_ns_qual(ss_uint16_t)        us_uint16_t;    /*!< 16-bit unsigned integer */
+typedef stlsoft_ns_qual(ss_int32_t)         us_int32_t;     /*!< 32-bit integer */
+typedef stlsoft_ns_qual(ss_sint32_t)        us_sint32_t;    /*!< 32-bit signed integer */
+typedef stlsoft_ns_qual(ss_uint32_t)        us_uint32_t;    /*!< 32-bit unsigned integer */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef stlsoft_ns_qual(ss_int64_t)         us_int64_t;     //!< 64-bit integer
-typedef stlsoft_ns_qual(ss_sint64_t)        us_sint64_t;    //!< 64-bit signed integer
-typedef stlsoft_ns_qual(ss_uint64_t)        us_uint64_t;    //!< 64-bit unsigned integer
+typedef stlsoft_ns_qual(ss_int64_t)         us_int64_t;     /*!< 64-bit integer */
+typedef stlsoft_ns_qual(ss_sint64_t)        us_sint64_t;    /*!< 64-bit signed integer */
+typedef stlsoft_ns_qual(ss_uint64_t)        us_uint64_t;    /*!< 64-bit unsigned integer */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef stlsoft_ns_qual(ss_int_t)           us_int_t;       //!< integer
-typedef stlsoft_ns_qual(ss_sint_t)          us_sint_t;      //!< signed integer
-typedef stlsoft_ns_qual(ss_uint_t)          us_uint_t;      //!< unsigned integer
-typedef stlsoft_ns_qual(ss_long_t)          us_long_t;      //!< long
+typedef stlsoft_ns_qual(ss_int_t)           us_int_t;       /*!< integer */
+typedef stlsoft_ns_qual(ss_sint_t)          us_sint_t;      /*!< signed integer */
+typedef stlsoft_ns_qual(ss_uint_t)          us_uint_t;      /*!< unsigned integer */
+typedef stlsoft_ns_qual(ss_long_t)          us_long_t;      /*!< long */
 #if defined(__cplusplus)
-typedef stlsoft_ns_qual(ss_bool_t)          us_bool_t;      //!< bool
+typedef stlsoft_ns_qual(ss_bool_t)          us_bool_t;      /*!< bool */
 #endif /* __cplusplus */
-typedef stlsoft_ns_qual(ss_size_t)          us_size_t;      //!< size
-typedef stlsoft_ns_qual(ss_ptrdiff_t)       us_ptrdiff_t;   //!< ptr diff
-typedef stlsoft_ns_qual(ss_streampos_t)     us_streampos_t; //!< streampos
-typedef stlsoft_ns_qual(ss_streamoff_t)     us_streamoff_t; //!< streamoff
+typedef stlsoft_ns_qual(ss_size_t)          us_size_t;      /*!< size */
+typedef stlsoft_ns_qual(ss_ptrdiff_t)       us_ptrdiff_t;   /*!< ptr diff */
+typedef stlsoft_ns_qual(ss_streampos_t)     us_streampos_t; /*!< streampos */
+typedef stlsoft_ns_qual(ss_streamoff_t)     us_streamoff_t; /*!< streamoff */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
-typedef us_char_a_t         char_a_t;           //!< Ansi char type
-typedef us_char_w_t         char_w_t;           //!< Unicode char type
-//typedef us_int8_t           int8_t;             //!< 8-bit integer
-typedef us_sint8_t          sint8_t;            //!< 8-bit signed integer
-typedef us_uint8_t          uint8_t;            //!< 8-bit unsigned integer
-typedef us_int16_t          int16_t;            //!< 16-bit integer
-typedef us_sint16_t         sint16_t;           //!< 16-bit signed integer
-typedef us_uint16_t         uint16_t;           //!< 16-bit unsigned integer
-typedef us_int32_t          int32_t;            //!< 32-bit integer
-typedef us_sint32_t         sint32_t;           //!< 32-bit signed integer
-typedef us_uint32_t         uint32_t;           //!< 32-bit unsigned integer
+typedef us_char_a_t         char_a_t;           /*!< Ansi char type */
+typedef us_char_w_t         char_w_t;           /*!< Unicode char type */
+/* typedef us_int8_t           int8_t; */             /*!< 8-bit integer */
+typedef us_sint8_t          sint8_t;            /*!< 8-bit signed integer */
+typedef us_uint8_t          uint8_t;            /*!< 8-bit unsigned integer */
+typedef us_int16_t          int16_t;            /*!< 16-bit integer */
+typedef us_sint16_t         sint16_t;           /*!< 16-bit signed integer */
+typedef us_uint16_t         uint16_t;           /*!< 16-bit unsigned integer */
+typedef us_int32_t          int32_t;            /*!< 32-bit integer */
+typedef us_sint32_t         sint32_t;           /*!< 32-bit signed integer */
+typedef us_uint32_t         uint32_t;           /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef us_int64_t         int64_t;            //!< 64-bit integer
- typedef us_sint64_t        sint64_t;           //!< 64-bit signed integer
- typedef us_uint64_t        uint64_t;           //!< 64-bit unsigned integer
+ typedef us_int64_t         int64_t;            /*!< 64-bit integer */
+ typedef us_sint64_t        sint64_t;           /*!< 64-bit signed integer */
+ typedef us_uint64_t        uint64_t;           /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-//typedef us_short_t          short_t;            //!< short integer
-typedef us_int_t            int_t;              //!< integer
-typedef us_sint_t           sint_t;             //!< signed integer
-typedef us_uint_t           uint_t;             //!< unsigned integer
-typedef us_long_t           long_t;             //!< long integer
-//typedef us_byte_t           byte_t;             //!< Byte
-typedef us_bool_t           bool_t;             //!< bool
+/* typedef us_short_t          short_t; */            /*!< short integer */
+typedef us_int_t            int_t;              /*!< integer */
+typedef us_sint_t           sint_t;             /*!< signed integer */
+typedef us_uint_t           uint_t;             /*!< unsigned integer */
+typedef us_long_t           long_t;             /*!< long integer */
+/* typedef us_byte_t           byte_t; */             /*!< Byte */
+typedef us_bool_t           bool_t;             /*!< bool */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-typedef us_size_t           size_t;             //!< size
-typedef us_ptrdiff_t        ptrdiff_t;          //!< ptr diff
-typedef us_streampos_t      streampos_t;        //!< streampos
-typedef us_streamoff_t      streamoff_t;        //!< streamoff
+typedef us_size_t           size_t;             /*!< size */
+typedef us_ptrdiff_t        ptrdiff_t;          /*!< ptr diff */
+typedef us_streampos_t      streampos_t;        /*!< streampos */
+typedef us_streamoff_t      streamoff_t;        /*!< streamoff */
 # endif /* compiler */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
