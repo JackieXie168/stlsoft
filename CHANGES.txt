@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  17th January 2009
+; Updated:  19th January 2009
 
 ============================================================================
 
@@ -16,6 +16,25 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.68 (18th January 2009)
+
+Summary:
+========
+
+ * fix defect, and updated docs, for stlsoft::must_init utility class template
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/util/must_init.hpp:
+    ~ fixed ambiguous operator +() bug
+    ~ documentation fixes
 
 ============================================================================
 

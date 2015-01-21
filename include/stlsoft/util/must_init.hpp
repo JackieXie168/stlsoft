@@ -4,12 +4,16 @@
  * Purpose:     Simple class that wraps a fundamental type and forces its
  *              explicit initialisation.
  *
+ * Thanks:      To Josh Kelley, whose blog prompted me to fix docs, and
+ *              newsgroup request prompted me to put it under test and
+ *              code coverage.
+ *
  * Created:     18th June 2006
- * Updated:     10th October 2008
+ * Updated:     17th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        15
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,15 +96,13 @@ namespace stlsoft
 \code
   int             i1; // Not initialised. Compiler doesn't care!
 
-  int             res = 2 * i1; // Result is undefined
+  int             res = 2 * i1; // Result is undefined!
 \endcode
  *
  * <b>Solution:</b>
  *
 \code
   must_init<int>  i1; // Not initialised. Compiler error
-
-  int             res = 2 * i1.get(); // Result is undefined
 \endcode
  *
  * The user is required to explicitly initialise <code>i1</code>:
@@ -108,7 +110,7 @@ namespace stlsoft
 \code
   must_init<int>  i1(0); // Initialised. Everybody's happy
 
-  int             res = 2 * i1.get(); // Result is undefined
+  int             res = 2 * i1.get(); // Result is defined
 \endcode
  */
 
@@ -635,12 +637,14 @@ inline ss_bool_t operator >=(T const& lhs, must_init<T> const& rhs)
 
 // operator +
 
+#if 0
 template<   ss_typename_param_k T
         >
 inline must_init<T> operator +(must_init<T> const& lhs, must_init<T> const& rhs)
 {
     return must_init<T>(lhs.base_type_value() + rhs.base_type_value());
 }
+#endif /* 0 */
 
 #if 0
 template<   ss_typename_param_k T
