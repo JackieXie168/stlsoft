@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  17th March 2008
+; Updated:  3rd April 2008
 
 ============================================================================
 
@@ -43,6 +43,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     Javier Estrada
     John Abney
     Jon Papaioannou
+    Jonathan Wakeley
     Joseph McCay
     Julio César Carrascal Urquijo
     Luoyi
