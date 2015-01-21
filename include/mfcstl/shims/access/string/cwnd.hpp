@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    3
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        88
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    4
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -398,14 +398,6 @@ public:
         static char_type    s_ch[1] = { '\0' };
 
         return (NULL == m_buffer) ? s_ch : m_buffer;
-    }
-
-// Implementation
-private:
-    // \note Does not need to worry about operator new() returning NULL
-    static LPTSTR dup_(LPCTSTR s)
-    {
-        return lstrcpy(new TCHAR[1 + lstrlen(s)], s);
     }
 
 // Members

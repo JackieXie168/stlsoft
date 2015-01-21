@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     24th August 2003
- * Updated:     12th March 2007
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_MAJOR    4
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_MINOR    0
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_MINOR    1
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_EDIT     29
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,6 +69,9 @@
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
 # include <winstl/shims/access/string.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -106,6 +109,7 @@ namespace winstl_project
  */
 template <ss_typename_param_k C>
 struct window_traits
+    : public system_traits<C>
 {
 /// \name Member Types
 /// @{
@@ -116,19 +120,6 @@ public:
     typedef ws_size_t       size_type;
     /// The difference type
     typedef ws_ptrdiff_t    difference_type;
-/// @}
-
-/// \name General string handling
-/// @{
-public:
-    /// Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type *dest, char_type const* src);
-    /// Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type *dest, char_type const* src);
-    /// Comparies the contents of \c src and \c dest
-    static ws_int_t     str_compare(char_type *dest, char_type const* src);
-    /// Evaluates the length of \c src
-    static size_type    str_len(char_type const* src);
 /// @}
 
 /// \name Window functions
@@ -152,33 +143,15 @@ struct window_traits;
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct window_traits<ws_char_a_t>
+    : public system_traits<ws_char_a_t>
 {
 public:
-    typedef ws_char_a_t         char_type;
-    typedef ws_size_t           size_type;
-    typedef ws_ptrdiff_t        difference_type;
+    typedef window_traits<ws_char_a_t>  class_type;
+    typedef ws_char_a_t                 char_type;
+    typedef ws_size_t                   size_type;
+    typedef ws_ptrdiff_t                difference_type;
 
 public:
-    static char_type *str_copy(char_type *dest, char_type const* src)
-    {
-        return ::lstrcpyA(dest, src);
-    }
-
-    static char_type *str_cat(char_type *dest, char_type const* src)
-    {
-        return ::lstrcatA(dest, src);
-    }
-
-    static ws_int_t str_compare(char_type const* s1, char_type const* s2)
-    {
-        return ::lstrcmpA(s1, s2);
-    }
-
-    static size_type str_len(char_type const* src)
-    {
-        return static_cast<size_type>(::lstrlenA(src));
-    }
-
     static ws_int_t get_window_text_length(HWND hwnd)
     {
         return ::GetWindowTextLength(hwnd);
@@ -198,40 +171,22 @@ public:
     template <ss_typename_param_k S>
     static ws_bool_t set_window_text(HWND hwnd, S const& s)
     {
-        return 0 != ::SetWindowTextA(hwnd, stlsoft_ns_qual(c_str_ptr_a)(s));
+        return class_type::set_window_text(hwnd, stlsoft_ns_qual(c_str_ptr_a)(s));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct window_traits<ws_char_w_t>
+    : public system_traits<ws_char_w_t>
 {
 public:
-    typedef ws_char_w_t         char_type;
-    typedef ws_size_t           size_type;
-    typedef ws_ptrdiff_t        difference_type;
+    typedef window_traits<ws_char_w_t>  class_type;
+    typedef ws_char_w_t                 char_type;
+    typedef ws_size_t                   size_type;
+    typedef ws_ptrdiff_t                difference_type;
 
 public:
-    static char_type *str_copy(char_type *dest, char_type const* src)
-    {
-        return ::lstrcpyW(dest, src);
-    }
-
-    static char_type *str_cat(char_type *dest, char_type const* src)
-    {
-        return ::lstrcatW(dest, src);
-    }
-
-    static ws_int_t str_compare(char_type const* s1, char_type const* s2)
-    {
-        return ::lstrcmpW(s1, s2);
-    }
-
-    static size_type str_len(char_type const* src)
-    {
-        return static_cast<size_type>(::lstrlenW(src));
-    }
-
     static ws_int_t get_window_text_length(HWND hwnd)
     {
         return ::GetWindowTextLength(hwnd);
@@ -251,7 +206,7 @@ public:
     template <ss_typename_param_k S>
     static ws_bool_t set_window_text(HWND hwnd, S const& s)
     {
-        return 0 != ::SetWindowTextW(hwnd, stlsoft_ns_qual(c_str_ptr_w)(s));
+        return class_type::set_window_text(hwnd, stlsoft_ns_qual(c_str_ptr_w)(s));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 };

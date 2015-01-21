@@ -2,16 +2,24 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  17th March 2008
+; Updated:  24th March 2008
 
 ============================================================================
 
+
+24th March 2008 - 1.9.28 released
+---------------------------------
+
+ * enhancement to winstl::reg_key class
+ * preparation for safe string library compatibility
+ * bug fix for C-compilation in winstl/controls/functions.h
 
 17th March 2008 - 1.9.27 released
 ---------------------------------
 
  * support for Visual C++ 9 (Visual C++ 2008)
  * fixed pre-processor typo that breaks GCC -pedantic
+ * added item-data functions for list-/combo-boxes
 
 15th March 2008 - 1.9.26 released
 ---------------------------------

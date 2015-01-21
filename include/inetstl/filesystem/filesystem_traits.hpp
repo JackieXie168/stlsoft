@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 4
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     66
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 5
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,6 +69,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST
 # include <stlsoft/conversion/any_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #ifndef STLSOFT_INCL_H_STRING
 # define STLSOFT_INCL_H_STRING
@@ -144,12 +147,14 @@ public:
 /// \name General string handling
 /// @{
 public:
+#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
     /// Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const* src);
     /// Copies the contents of \c src to \c dest, up to cch \c characters
     static char_type    *str_n_copy(char_type *dest, char_type const* src, is_size_t cch);
     /// Appends the contents of \c src to \c dest
     static char_type    *str_cat(char_type *dest, char_type const* src);
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
     /// Comparies the contents of \c src and \c dest
     static is_int_t     str_compare(char_type const* s1, char_type const* s2);
     /// Comparies the contents of \c src and \c dest in a case-insensitive fashion
@@ -290,9 +295,14 @@ public:
 
 public:
     // General string handling
+#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcpyA(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::strcpy(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
@@ -302,12 +312,21 @@ public:
 
     static char_type *str_cat(char_type *dest, char_type const* src)
     {
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcatA(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::strcat(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
     static is_int_t str_compare(char_type const* s1, char_type const* s2)
     {
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcmpA(s1, s2);
+#else /*? STLSOFT_MIN_CRT */
+        return ::strcmp(s1, s2);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static is_int_t str_compare_no_case(char_type const* s1, char_type const* s2)
@@ -317,29 +336,33 @@ public:
 
     static size_type str_len(char_type const* src)
     {
+#ifdef STLSOFT_MIN_CRT
         return static_cast<size_type>(::lstrlenA(src));
+#else /*? STLSOFT_MIN_CRT */
+        return ::strlen(src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type *str_chr(char_type const* s, char_type ch)
     {
-        return const_cast<char_type*>(strchr(s, ch));
+        return const_cast<char_type*>(::strchr(s, ch));
     }
 
     static char_type *str_rchr(char_type const* s, char_type ch)
     {
-        return const_cast<char_type*>(strrchr(s, ch));
+        return const_cast<char_type*>(::strrchr(s, ch));
     }
 
     static char_type *str_str(char_type const* s, char_type const* sub)
     {
-        return const_cast<char_type*>(strstr(s, sub));
+        return const_cast<char_type*>(::strstr(s, sub));
     }
 
     // File-system entry names
     static char_type *ensure_dir_end(char_type *dir)
     {
         char_type       *end;
-        char_type const separator = (NULL == strchr(dir, '/') && NULL != strchr(dir, '\\')) ? '\\' : '/';
+        char_type const separator = (NULL == str_chr(dir, '/') && NULL != str_chr(dir, '\\')) ? '\\' : '/';
 
         for(end = dir; *end != '\0'; ++end)
         {}
@@ -417,16 +440,17 @@ public:
     {
         INETSTL_ASSERT(0 == cchBuffer || NULL != buffer);
         INETSTL_ASSERT(NULL == buffer || 0 != cchBuffer);
+        INETSTL_ASSERT(NULL != fileName);
 
         // Deduce the separator
-        char_type const separator = (NULL == strchr(fileName, '/') && NULL != strchr(fileName, '\\')) ? '\\' : '/';
+        char_type const separator = (NULL == str_chr(fileName, '/') && NULL != str_chr(fileName, '\\')) ? '\\' : '/';
         char_type       fullPath[1 + _MAX_PATH];
 
         // If we're not rooted, then get the current directory and concatenate
         if(separator != *fileName)
         {
             is_size_t   cchBuffer   =   STLSOFT_NUM_ELEMENTS(fullPath);
-            int         isDot       =   0 == str_compare(fileName, ".");
+            const int   isDot       =   0 == str_compare(fileName, ".");
 
             if(!get_current_directory(hconn, cchBuffer, fullPath))
             {
@@ -450,12 +474,12 @@ public:
                 len = cchBuffer;
             }
 
-            ::strncpy(buffer, fileName, cchBuffer);
+            str_n_copy(buffer, fileName, cchBuffer);
 
             if(NULL != ppFile)
             {
-                char_type const* pRSlash        =   strrchr(buffer, '/');
-                char_type const* pRBackSlash    =   strrchr(buffer, '\\');
+                char_type const* pRSlash        =   str_rchr(buffer, '/');
+                char_type const* pRBackSlash    =   str_rchr(buffer, '\\');
 
                 if(pRSlash < pRBackSlash)
                 {
@@ -607,9 +631,14 @@ public:
 
 public:
     // General string handling
+#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcpyW(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcscpy(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
@@ -619,12 +648,21 @@ public:
 
     static char_type *str_cat(char_type *dest, char_type const* src)
     {
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcatW(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcscat(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
     static is_int_t str_compare(char_type const* s1, char_type const* s2)
     {
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcmpW(s1, s2);
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcscmp(s1, s2);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static is_int_t str_compare_no_case(char_type const* s1, char_type const* s2)
@@ -634,29 +672,33 @@ public:
 
     static size_type str_len(char_type const* src)
     {
+#ifdef STLSOFT_MIN_CRT
         return static_cast<size_type>(::lstrlenW(src));
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcslen(src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type *str_chr(char_type const* s, char_type ch)
     {
-        return const_cast<char_type*>(wcschr(s, ch));
+        return const_cast<char_type*>(::wcschr(s, ch));
     }
 
     static char_type *str_rchr(char_type const* s, char_type ch)
     {
-        return const_cast<char_type*>(wcsrchr(s, ch));
+        return const_cast<char_type*>(::wcsrchr(s, ch));
     }
 
     static char_type *str_str(char_type const* s, char_type const* sub)
     {
-        return const_cast<char_type*>(wcsstr(s, sub));
+        return const_cast<char_type*>(::wcsstr(s, sub));
     }
 
     // File-system entry names
     static char_type *ensure_dir_end(char_type *dir)
     {
         char_type       *end;
-        char_type const separator = (NULL == wcschr(dir, L'/') && NULL != wcschr(dir, L'\\')) ? L'\\' : L'/';
+        char_type const separator = (NULL == str_chr(dir, L'/') && NULL != str_chr(dir, L'\\')) ? L'\\' : L'/';
 
         for(end = dir; *end != L'\0'; ++end)
         {}
@@ -736,14 +778,14 @@ public:
         INETSTL_ASSERT(NULL == buffer || 0 != cchBuffer);
 
         // Deduce the separator
-        char_type const separator = (NULL == wcschr(fileName, L'/') && NULL != wcschr(fileName, L'\\')) ? L'\\' : L'/';
+        char_type const separator = (NULL == str_chr(fileName, L'/') && NULL != str_chr(fileName, L'\\')) ? L'\\' : L'/';
         char_type       fullPath[1 + _MAX_PATH];
 
         // If we're not rooted, then get the current directory and concatenate
         if(separator != *fileName)
         {
             is_size_t   cchBuffer   =   STLSOFT_NUM_ELEMENTS(fullPath);
-            int         isDot       =   0 == str_compare(fileName, L".");
+            const int   isDot       =   0 == str_compare(fileName, L".");
 
 #ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
 # pragma message(_sscomp_fileline_message("This looks a bit dodgy. Better to use an auto_buffer, and cycle the size, testing the return value from get_current_directory"))
@@ -768,12 +810,12 @@ public:
                 len = cchBuffer;
             }
 
-            ::wcsncpy(buffer, fileName, cchBuffer);
+            str_n_copy(buffer, fileName, cchBuffer);
 
             if(NULL != ppFile)
             {
-                char_type const* pRSlash        =   wcsrchr(buffer, L'/');
-                char_type const* pRBackSlash    =   wcsrchr(buffer, L'\\');
+                char_type const* pRSlash        =   str_rchr(buffer, L'/');
+                char_type const* pRBackSlash    =   str_rchr(buffer, L'\\');
 
                 if(pRSlash < pRBackSlash)
                 {

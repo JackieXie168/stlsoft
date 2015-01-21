@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MAJOR     3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MINOR     0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_REVISION  5
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      58
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_REVISION  6
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -533,9 +533,9 @@ public:
 #ifdef STLSOFT_META_HAS_IS_SAME_TYPE
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<list_type, A2>::value));
 #else /* ? STLSOFT_META_HAS_IS_SAME_TYPE */
-        ASSERT(0 == ::strcmp(list.GetRuntimeClass()->m_lpszClassName, list_type().GetRuntimeClass()->m_lpszClassName));
+        ASSERT(0 == ::lstrcmpA(list.GetRuntimeClass()->m_lpszClassName, list_type().GetRuntimeClass()->m_lpszClassName));
 # ifdef _CPPRTTI
-        ASSERT(0 == ::strcmp(typeid(A2).name(), typeid(list_type).name()));
+        ASSERT(0 == ::lstrcmpA(typeid(A2).name(), typeid(list_type).name()));
 # endif /* _CPPRTTI */
 #endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
     }
@@ -549,9 +549,9 @@ public:
 #ifdef STLSOFT_META_HAS_IS_SAME_TYPE
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<list_type, A2>::value));
 #else /* ? STLSOFT_META_HAS_IS_SAME_TYPE */
-        ASSERT(0 == ::strcmp(pList->GetRuntimeClass()->m_lpszClassName, list_type().GetRuntimeClass()->m_lpszClassName));
+        ASSERT(0 == ::lstrcmpA(pList->GetRuntimeClass()->m_lpszClassName, list_type().GetRuntimeClass()->m_lpszClassName));
 # ifdef _CPPRTTI
-        ASSERT(0 == ::strcmp(typeid(A2).name(), typeid(list_type).name()));
+        ASSERT(0 == ::lstrcmpA(typeid(A2).name(), typeid(list_type).name()));
 # endif /* _CPPRTTI */
 #endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
     }

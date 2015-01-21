@@ -4,7 +4,7 @@
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     16th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       2
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        48
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ STLSOFT_INLINE ws_int_t winstl__combobox_gettext(HWND hwnd, ws_int_t index, LPCS
  *
  * \ingroup group__library__windows_controls
  */
-inline ws_dword_t winstl__combobox_getitemdata(HWND hwnd, ws_int_t index)
+STLSOFT_INLINE ws_dword_t winstl__combobox_getitemdata(HWND hwnd, ws_int_t index)
 {
     return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, CB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
 }
@@ -290,7 +290,7 @@ STLSOFT_INLINE ws_int_t winstl__listbox_gettext(HWND hwnd, ws_int_t index, LPCST
  *
  * \ingroup group__library__windows_controls
  */
-inline ws_dword_t winstl__listbox_getitemdata(HWND hwnd, ws_int_t index)
+STLSOFT_INLINE ws_dword_t winstl__listbox_getitemdata(HWND hwnd, ws_int_t index)
 {
     return stlsoft_static_cast(ws_int_t, winstl__SendMessage(hwnd, LB_GETITEMDATA, stlsoft_static_cast(WPARAM, index), 0L));
 }
