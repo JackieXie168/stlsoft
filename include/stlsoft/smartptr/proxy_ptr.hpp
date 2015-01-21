@@ -4,7 +4,7 @@
  * Purpose:     Contains the proxy_ptr template class.
  *
  * Created:     17th January 1999
- * Updated:     22nd April 2007
+ * Updated:     28th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_MAJOR       5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_MINOR       0
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_MINOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_EDIT        69
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PROXY_PTR_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -162,38 +162,24 @@ public:
     }
 
     /// Returns the underlying pointer value
-    value_type* get_ptr()
+    ///
+    /// \deprecated This function will be removed in a future release. Users
+    ///   should instead invoke get()
+    value_type* get_ptr() const
     {
-        return m_value;
-    }
-    /// Returns the underlying pointer value
-    value_type const* get_ptr() const
-    {
-        return m_value;
+        return get();
     }
 
     /// Returns the underlying pointer value
-    value_type* get()
-    {
-        return m_value;
-    }
-    /// Returns the underlying pointer value
-    value_type const* get() const
+    value_type* get() const
     {
         return m_value;
     }
 
     /// Returns the underlying pointer value
     ///
-    /// \deprecated
-    value_type* GetPointer()
-    {
-        return m_value;
-    }
-    /// Returns the underlying pointer value
-    ///
-    /// \deprecated
-    value_type const* GetPointer() const
+    /// \deprecated This method will be removed in a future version
+    value_type* GetPointer() const
     {
         return m_value;
     }
@@ -219,17 +205,7 @@ private:
  * \ingroup group__library__smart_pointers
  */
 template <ss_typename_param_k T>
-inline T* get_ptr(proxy_ptr<T>& p)
-{
-    return p.get();
-}
-
-/** \brief get_ptr shim
- *
- * \ingroup group__library__smart_pointers
- */
-template <ss_typename_param_k T>
-inline T const* get_ptr(proxy_ptr<T> const& p)
+inline T* get_ptr(proxy_ptr<T> const& p)
 {
     return p.get();
 }

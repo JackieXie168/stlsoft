@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the module components.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MAJOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     15
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MINOR    1
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
 #  include <unixstl/dl/module.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_DL_HPP_MODULE
 #  include <winstl/dl/module.hpp>
 # endif /* !WINSTL_INCL_WINSTL_DL_HPP_MODULE */
@@ -124,7 +124,7 @@ namespace platformstl_project
     using ::unixstl::module;
 # endif /* _UNIXSTL_NO_NAMESPACE */
 
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef _WINSTL_NO_NAMESPACE
     using ::module;

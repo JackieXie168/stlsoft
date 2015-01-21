@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th December 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      15
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      16
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       85
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -156,6 +156,12 @@
  *
  * which indicate that a given type is not used in the size-specific types.
  */
+
+#define _STLSOFT_SIZEOF_CHAR            (1)
+#define _STLSOFT_SIZEOF_SHORT           (2)
+#define _STLSOFT_SIZEOF_INT             (4)
+#define _STLSOFT_SIZEOF_LONG            (4)
+#define _STLSOFT_SIZEOF_LONG_LONG       (8)
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT

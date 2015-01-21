@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     6th December 2007
+ * Updated:     28th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   2
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       493
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      2
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   1
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       494
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -167,8 +167,7 @@ public:
 /// \name Accessors
 /// @{
 public:
-    const_pointer   get_interface_ptr() const;
-    pointer         get_interface_ptr();
+    pointer get_interface_ptr() const;
 /// @}
 };
 
@@ -204,16 +203,7 @@ inline cs_bool_t is_empty(interface_ptr<T> const& p)
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T const* get_ptr(interface_ptr<T> const& p)
-{
-    return p.get_interface_ptr();
-}
-
-/** \brief 
- * \ingroup group__concept__shim__pointer_attribute__get_ptr
- */
-template <ss_typename_param_k T>
-inline T *get_ptr(interface_ptr<T> &p)
+inline T* get_ptr(interface_ptr<T> const& p)
 {
     return p.get_interface_ptr();
 }
@@ -331,13 +321,7 @@ inline interface_ptr<T>::operator ss_typename_type_k interface_ptr<T>::operator_
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k interface_ptr<T>::pointer interface_ptr<T>::get_interface_ptr()
-{
-    return parent_class_type::get();
-}
-
-template <ss_typename_param_k T>
-inline ss_typename_type_ret_k interface_ptr<T>::const_pointer interface_ptr<T>::get_interface_ptr() const
+inline ss_typename_type_ret_k interface_ptr<T>::pointer interface_ptr<T>::get_interface_ptr() const
 {
     return parent_class_type::get();
 }

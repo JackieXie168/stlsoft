@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     7th April 2007
+ * Updated:     28th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       2
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        31
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -296,13 +296,7 @@ public:
         return m_p;
     }
 
-    const_pointer get() const
-    {
-        STLSOFT_ASSERT(is_valid());
-
-        return m_p;
-    }
-    pointer get()
+    pointer get() const
     {
         STLSOFT_ASSERT(is_valid());
 
@@ -401,17 +395,7 @@ inline void swap(shared_ptr<T>& lhs, shared_ptr<T>& rhs)
  * \ingroup group__library__smart_pointers
  */
 template<ss_typename_param_k T>
-inline T* get_ptr(shared_ptr<T>& p)
-{
-    return p.get();
-}
-
-/** \brief get_ptr shim
- *
- * \ingroup group__library__smart_pointers
- */
-template<ss_typename_param_k T>
-inline T const* get_ptr(shared_ptr<T> const& p)
+inline T* get_ptr(shared_ptr<T> const& p)
 {
     return p.get();
 }

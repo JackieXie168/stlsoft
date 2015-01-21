@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     23rd December 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    12
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     321
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    13
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     323
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -181,12 +181,13 @@
 # define _STLSOFT_VER_1_9_13    0x01090dff  /*!< Version 1.9.13 (20th Dec 2007) */
 # define _STLSOFT_VER_1_9_14    0x01090eff  /*!< Version 1.9.14 (23rd Dec 2007) */
 # define _STLSOFT_VER_1_9_15    0x01090fff  /*!< Version 1.9.15 (24th Dec 2007) */
+# define _STLSOFT_VER_1_9_16    0x010910ff  /*!< Version 1.9.16 (29th Dec 2007) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   15
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_15
+#define _STLSOFT_VER_REVISION   16
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_16
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -200,8 +201,17 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-# define STLSOFT_STRINGIZE_(x)      #x
-# define STLSOFT_STRINGIZE(x)       STLSOFT_STRINGIZE_(x)
+# define STLSOFT_STRINGIZE_a_(x)        #x
+# define STLSOFT_STRINGIZE_a(x)         STLSOFT_STRINGIZE_a_(x)
+
+# if defined(STLSOFT_COMPILER_IS_BORLAND)
+#  define STLSOFT_STRINGIZE_w_(x)       L"" ## #x
+# else /* ? compiler */
+#  define STLSOFT_STRINGIZE_w_(x)       L ## #x
+# endif /* compiler */
+# define STLSOFT_STRINGIZE_w(x)         STLSOFT_STRINGIZE_w_(x)
+
+# define STLSOFT_STRINGIZE(x)           STLSOFT_STRINGIZE_a(x)
 
 /* Simple macro indirection */
 # define STLSOFT_MACRO_INDIRECT(x)   x
@@ -582,8 +592,33 @@
 /* /////////////////////////////////////////////////////////////////////////
  * Sanity checks - 2
  *
+ * Must have the sizes of basic integral types defined
  */
 
+#ifndef _STLSOFT_SIZEOF_CHAR
+# error _STLSOFT_SIZEOF_CHAR not defined
+#endif /* !_STLSOFT_SIZEOF_CHAR */
+
+#ifndef _STLSOFT_SIZEOF_SHORT
+# error _STLSOFT_SIZEOF_SHORT not defined
+#endif /* !_STLSOFT_SIZEOF_SHORT */
+
+#ifndef _STLSOFT_SIZEOF_INT
+# error _STLSOFT_SIZEOF_INT not defined
+#endif /* !_STLSOFT_SIZEOF_INT */
+
+#ifndef _STLSOFT_SIZEOF_LONG
+# error _STLSOFT_SIZEOF_LONG not defined
+#endif /* !_STLSOFT_SIZEOF_LONG */
+
+#ifndef _STLSOFT_SIZEOF_LONG_LONG
+# error _STLSOFT_SIZEOF_LONG_LONG not defined
+#endif /* !_STLSOFT_SIZEOF_LONG_LONG */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Sanity checks - 3
+ *
+ */
 
 /* Template support */
 #if defined(__cplusplus) && \

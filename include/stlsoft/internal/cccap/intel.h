@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th December 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       15
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       16
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        71
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -162,6 +162,23 @@
  *
  * which indicate that a given type is not used in the size-specific types.
  */
+
+#if defined(__LP64__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (8)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#elif defined(_WIN32) || \
+      defined(_WIN64)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#else /* ? data model */
+# error Use of Intel C/C++ has not been verified on any operation system other than Win32. Please contact STLSoft
+#endif /* data model */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT

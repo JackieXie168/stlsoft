@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for unknown compilers.
  *
  * Created:     7th February 2003
- * Updated:     23rd December 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      13
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       59
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      14
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,6 +121,20 @@
  *
  * which indicate that a given type is not used in the size-specific types.
  */
+
+#if defined(__LP64__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (8)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#else /* ? data model */
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#endif /* data model */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT

@@ -2,10 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  23rd December 2007
+; Updated:  29th December 2007
 
 ============================================================================
 
+
+29th December 2007 - 1.9.16 released
+------------------------------------
+
+ * bug fix in stlsoft::printf_traits
+ * bug fix in winstl::GetTimeFormat_msA/W
+ * other minor bug fixes
+ * minor feature enhancements & refactoring
 
 24th December 2007 - 1.9.15 released
 ------------------------------------

@@ -4,7 +4,7 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     7th April 2007
+ * Updated:     28th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       485
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       486
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -436,13 +436,7 @@ public:
     }
 
     /// \brief Provides raw-pointer access to the instance
-    counted_type* get()
-    {
-        return class_type::c_from_i(m_pi);
-    }
-
-    /// \brief Provides raw-pointer access to the instance
-    counted_type const* get() const
+    counted_type* get() const
     {
         return class_type::c_from_i(m_pi);
     }
@@ -559,20 +553,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k I /* = T */
         ,   ss_typename_param_k U /* = I */
         >
-inline T *get_ptr(ref_ptr<T, I, U> &p)
-{
-    return p.get();
-}
-
-/** \brief get_ptr shim
- *
- * \ingroup group__library__smart_pointers
- */
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k I /* = T */
-        ,   ss_typename_param_k U /* = I */
-        >
-inline T const* get_ptr(ref_ptr<T, I, U> const& p)
+inline T *get_ptr(ref_ptr<T, I, U> const& p)
 {
     return p.get();
 }

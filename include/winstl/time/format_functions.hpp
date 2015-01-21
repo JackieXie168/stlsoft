@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     12th March 2007
+ * Updated:     29th December 2007
  *
  * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
  *              time pictures.
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       55
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -198,11 +198,13 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
 
     const ss_size_t     cchPicture  =   1 + traits_t::lstrlen(lpFormat);
 
-    char_t         hours_[]    =   { '0', '0', '\0' };                      // "00"
+    char_t         hours12_[]  =   { '0', '0', '\0' };                      // "00"
+    char_t         hours24_[]  =   { '0', '0', '\0' };                      // "00"
     char_t         minutes_[]  =   { '0', '0', '\0' };                      // "00"
     char_t         seconds_[]  =   { '0', '0', '.', '0', '0', '0', '\0' };  // "00.000"
 
-    char_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], STLSOFT_NUM_ELEMENTS(hours_), lpTime->wHour);
+    char_t const   *hours12    =   stlsoft_ns_qual(integer_to_string)(&hours12_[0], STLSOFT_NUM_ELEMENTS(hours12_), (lpTime->wHour > 12) ? (lpTime->wHour - 12) : lpTime->wHour);
+    char_t const   *hours24    =   stlsoft_ns_qual(integer_to_string)(&hours24_[0], STLSOFT_NUM_ELEMENTS(hours24_), lpTime->wHour);
     char_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], STLSOFT_NUM_ELEMENTS(minutes_), lpTime->wMinute);
                                    stlsoft_ns_qual(integer_to_string)(&seconds_[3], 4, lpTime->wMilliseconds);
     char_t const   *seconds    =   stlsoft_ns_qual(integer_to_string)(&seconds_[0], 3, lpTime->wSecond);
@@ -269,12 +271,17 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
             switch(ch)
             {
                 case    'h':
-                case    'H':
-                    if( (   'h' == prev ||
-                            'H' == prev) &&
-                        hours != &hours_[0])
+                    if( 'h' == prev &&
+                        hours12 != &hours12_[0])
                     {
-                        --hours;
+                        --hours12;
+                    }
+                    break;
+                case    'H':
+                    if( 'H' == prev &&
+                        hours24 != &hours24_[0])
+                    {
+                        --hours24;
                     }
                     break;
                 case    'm':
@@ -304,8 +311,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
 
                         switch(prev)
                         {
-                            case    'h':
-                            case    'H':    p = hours;          break;
+                            case    'h':    p = hours12;        break;
+                            case    'H':    p = hours24;        break;
                             case    'm':    p = minutes;        break;
                             case    's':    p = seconds;        break;
                             case    't':
@@ -362,392 +369,6 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
     }
 }
 
-#if 0
-inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      // locale
-                                            ,   DWORD               dwFlags     // options
-                                            ,   CONST SYSTEMTIME    *lpTime     // time
-                                            ,   ws_char_a_t const   *lpFormat   // time format string
-                                            ,   ws_char_a_t         *lpTimeStr  // formatted string buffer
-                                            ,   const int           cchTime)    // size of string buffer
-{
-    typedef stlsoft_ns_qual(auto_buffer_old)<   ws_char_a_t
-                                            ,   processheap_allocator<ws_char_a_t>
-                                            >                       buffer_t;
-
-    if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
-    {
-        return ::GetTimeFormatA(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
-    }
-
-    if(dwFlags & LOCALE_NOUSEROVERRIDE)
-    {
-        locale = LOCALE_SYSTEM_DEFAULT;
-    }
-
-    buffer_t            timePicture(1 + ((NULL == lpFormat) ? static_cast<ss_size_t>(::GetLocaleInfoA(locale, LOCALE_STIMEFORMAT, NULL, 0)) : 0));
-
-    if(NULL == lpFormat)
-    {
-        int n = ::GetLocaleInfoA(LOCALE_USER_DEFAULT, LOCALE_STIMEFORMAT, &timePicture[0], static_cast<int>(timePicture.size()));
-        lpFormat = &timePicture[0];
-        if(n < timePicture.size())
-        {
-            timePicture[n] = '\0';
-        }
-    }
-
-    const ss_size_t     cchPicture  =   1 + static_cast<ss_size_t>(::lstrlenA(lpFormat));
-
-    ws_char_a_t         hours_[]    =   "00";
-    ws_char_a_t         minutes_[]  =   "00";
-    ws_char_a_t         seconds_[]  =   "00.000";
-
-    ws_char_a_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], STLSOFT_NUM_ELEMENTS(hours_), lpTime->wHour);
-    ws_char_a_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], STLSOFT_NUM_ELEMENTS(minutes_), lpTime->wMinute);
-                                        stlsoft_ns_qual(integer_to_string)(&seconds_[3], 4, lpTime->wMilliseconds);
-    ws_char_a_t const   *seconds    =   stlsoft_ns_qual(integer_to_string)(&seconds_[0], 3, lpTime->wSecond);
-
-    seconds_[2] = '.';
-
-    // Get the time markers
-    HKEY        hkey;
-    LONG        res =   ::RegOpenKey(HKEY_CURRENT_USER, "Control Panel\\International", &hkey);
-    buffer_t    am(0);
-    buffer_t    pm(0);
-
-    if(ERROR_SUCCESS == res)
-    {
-        ws_size_t   cchAM   =   0;
-        ws_size_t   cchPM   =   0;
-        LONG        r;
-
-        if( ERROR_SUCCESS != (r = reg_get_string_value(hkey, "s1159", static_cast<ws_char_a_t*>(NULL), cchAM)) ||
-            ERROR_SUCCESS != (r = (am.resize(cchAM), cchAM = am.size(), reg_get_string_value(hkey, "s1159", &am[0], cchAM))))
-        {
-            res = r;
-        }
-        else if(ERROR_SUCCESS != (r = reg_get_string_value(hkey, "s2359", static_cast<ws_char_a_t*>(NULL), cchPM)) ||
-                ERROR_SUCCESS != (r = (pm.resize(cchPM), cchPM = pm.size(), reg_get_string_value(hkey, "s2359", &pm[0], cchPM))))
-        {
-            res = r;
-        }
-
-        ::RegCloseKey(hkey);
-    }
-
-    if(ERROR_SUCCESS != res)
-    {
-        am.resize(3);
-        pm.resize(3);
-
-        ::lstrcpyA(&am[0], "AM");
-        ::lstrcpyA(&pm[0], "PM");
-    }
-
-    ws_char_a_t const   *timeMarker =   (lpTime->wHour < 12) ? &am[0] : &pm[0];
-    const ws_size_t     cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
-    const ws_size_t     cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
-    buffer_t            buffer(1 + cchTimeMax);
-    ws_size_t           len         =   0;
-
-    if(!buffer.empty())
-    {
-        ws_char_a_t const   *r;
-        ws_char_a_t         *w          =   &buffer[0];
-        ws_char_a_t         prev        =   '\0';
-        ws_bool_t           bMarker1    =   true;
-
-        for(r = lpFormat; r != lpFormat + cchPicture; ++r)
-        {
-            const ws_char_a_t   ch  =   *r;
-
-            switch(ch)
-            {
-                case    'h':
-                case    'H':
-                    if( (   'h' == prev ||
-                            'H' == prev) &&
-                        hours != &hours_[0])
-                    {
-                        --hours;
-                    }
-                    break;
-                case    'm':
-                    if( 'm' == prev &&
-                        minutes != &minutes_[0])
-                    {
-                        --minutes;
-                    }
-                    break;
-                case    's':
-                    if( 's' == prev &&
-                        seconds != &seconds_[0])
-                    {
-                        --seconds;
-                    }
-                    break;
-                case    't':
-                    if('t' == prev)
-                    {
-                        bMarker1 = false;
-                    }
-                    break;
-                default:
-                    {
-                        ws_char_a_t const* p;
-
-                        switch(prev)
-                        {
-                            case    'h':
-                            case    'H':    p = hours;          break;
-                            case    'm':    p = minutes;        break;
-                            case    's':    p = seconds;        break;
-                            case    't':
-                                if(0 == (dwFlags & TIME_NOTIMEMARKER))
-                                {
-                                    if(!bMarker1)
-                                    {
-                                        p = timeMarker;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        // Fall through
-                                        *w++ = *timeMarker;
-                                        ++len;
-                                    }
-                                }
-                                // Fall through
-                            default:        p = "";             break;
-                        }
-
-                        for(; '\0' != *p; *w++ = *p++, ++len)
-                        {}
-                    }
-                    *w++ = ch;
-                    ++len;
-                    break;
-            }
-
-            if('\0' == ch)
-            {
-                break;
-            }
-
-            prev = ch;
-        }
-    }
-
-    // If 0 was specified, or
-
-    if( 0 == cchTime ||
-        len <= ws_size_t(cchTime))
-    {
-        if(0 != cchTime)
-        {
-            ::lstrcpyA(lpTimeStr, &buffer[0]);
-        }
-
-        return static_cast<int>(len);
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      // locale
-                                            ,   DWORD               dwFlags     // options
-                                            ,   CONST SYSTEMTIME    *lpTime     // time
-                                            ,   ws_char_w_t const   *lpFormat   // time format string
-                                            ,   ws_char_w_t         *lpTimeStr  // formatted string buffer
-                                            ,   const int           cchTime)    // size of string buffer
-{
-    typedef stlsoft_ns_qual(auto_buffer_old)<   ws_char_w_t
-                                            ,   processheap_allocator<ws_char_w_t>
-                                            >                               buffer_t;
-
-    if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
-    {
-        return ::GetTimeFormatW(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
-    }
-
-    if(dwFlags & LOCALE_NOUSEROVERRIDE)
-    {
-        locale = LOCALE_SYSTEM_DEFAULT;
-    }
-
-    buffer_t            timePicture(1 + (NULL == lpFormat ? static_cast<ss_size_t>(::GetLocaleInfoW(locale, LOCALE_STIMEFORMAT, NULL, 0)) : 0));
-    ss_size_t           cchPicture;
-
-    if(NULL == lpFormat)
-    {
-        ::GetLocaleInfoW(LOCALE_USER_DEFAULT, LOCALE_STIMEFORMAT, &timePicture[0], static_cast<int>(timePicture.size()));
-        lpFormat = &timePicture[0];
-        cchPicture = timePicture.size() - 1;
-    }
-    else
-    {
-        cchPicture = static_cast<ss_size_t>(::lstrlenW(lpFormat));
-    }
-
-    ws_char_w_t         hours_[]    =   L"00";
-    ws_char_w_t         minutes_[]  =   L"00";
-    ws_char_w_t         seconds_[]  =   L"00.000";
-
-    ws_char_w_t const   *hours      =   stlsoft_ns_qual(integer_to_string)(&hours_[0], STLSOFT_NUM_ELEMENTS(hours_), lpTime->wHour);
-    ws_char_w_t const   *minutes    =   stlsoft_ns_qual(integer_to_string)(&minutes_[0], STLSOFT_NUM_ELEMENTS(minutes_), lpTime->wMinute);
-                                        stlsoft_ns_qual(integer_to_string)(&seconds_[3], 4, lpTime->wMilliseconds);
-    ws_char_w_t const   *seconds    =   stlsoft_ns_qual(integer_to_string)(&seconds_[0], 3, lpTime->wSecond);
-
-    seconds_[2] = '.';
-
-    // Get the time markers
-    HKEY        hkey;
-    LONG        res =   ::RegOpenKey(HKEY_CURRENT_USER, "Control Panel\\International", &hkey);
-    buffer_t    am(0);
-    buffer_t    pm(0);
-
-    if(ERROR_SUCCESS == res)
-    {
-        ws_size_t   cchAM;
-        ws_size_t   cchPM;
-        LONG        r;
-
-        if( ERROR_SUCCESS != (r = reg_get_string_value(hkey, L"s1159", static_cast<ws_char_w_t*>(NULL), cchAM)) ||
-            ERROR_SUCCESS != (r = (am.resize(cchAM), cchAM = am.size(), reg_get_string_value(hkey, L"s1159", &am[0], cchAM))))
-        {
-            res = r;
-        }
-        else if(ERROR_SUCCESS != (r = reg_get_string_value(hkey, L"s2359", static_cast<ws_char_w_t*>(NULL), cchPM)) ||
-                ERROR_SUCCESS != (r = (pm.resize(cchPM), cchPM = pm.size(), reg_get_string_value(hkey, L"s2359", &pm[0], cchPM))))
-        {
-            res = r;
-        }
-
-        ::RegCloseKey(hkey);
-    }
-
-    if(ERROR_SUCCESS != res)
-    {
-        am.resize(3);
-        pm.resize(3);
-
-        ::lstrcpyW(&am[0], L"AM");
-        ::lstrcpyW(&pm[0], L"PM");
-    }
-
-    ws_char_w_t const   *timeMarker =   (lpTime->wHour < 12) ? &am[0] : &pm[0];
-    const ws_size_t     cchMarker   =   (am.size() < pm.size()) ? pm.size() : am.size();
-    const ws_size_t     cchTimeMax  =   (cchPicture - 1) + (2 - 1) + (2 - 1) + (6 - 1) + 1 + cchMarker;
-    buffer_t            buffer(1 + cchTimeMax);
-
-    if(!buffer.empty())
-    {
-        ws_char_w_t const   *r;
-        ws_char_w_t         *w          =   &buffer[0];
-        ws_char_w_t         prev        =   '\0';
-        ws_bool_t           bMarker1    =   true;
-
-        for(r = lpFormat; r != lpFormat + cchPicture; ++r)
-        {
-            const ws_char_w_t   ch  =   *r;
-
-            switch(ch)
-            {
-                case    'h':
-                case    'H':
-                    if( (   'h' == prev ||
-                            'H' == prev) &&
-                        hours != &hours_[0])
-                    {
-                        --hours;
-                    }
-                    break;
-                case    'm':
-                    if( 'm' == prev &&
-                        minutes != &minutes_[0])
-                    {
-                        --minutes;
-                    }
-                    break;
-                case    's':
-                    if( 's' == prev &&
-                        seconds != &seconds_[0])
-                    {
-                        --seconds;
-                    }
-                    break;
-                case    't':
-                    if('t' == prev)
-                    {
-                        bMarker1 = false;
-                    }
-                    break;
-                default:
-                    {
-                        ws_char_w_t const* p;
-
-                        switch(prev)
-                        {
-                            case    'h':
-                            case    'H':    p = hours;          break;
-                            case    'm':    p = minutes;        break;
-                            case    's':    p = seconds;        break;
-                            case    't':
-                                if(0 == (dwFlags & TIME_NOTIMEMARKER))
-                                {
-                                    if(!bMarker1)
-                                    {
-                                        p = timeMarker;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        // Fall through
-                                        *w++ = *timeMarker;
-                                    }
-                                }
-                                // Fall through
-                            default:        p = L"";             break;
-                        }
-
-                        for(; '\0' != *p; *w++ = *p++)
-                        {}
-                    }
-                    *w++ = ch;
-                    break;
-            }
-
-            if('\0' == ch)
-            {
-                break;
-            }
-
-            prev = ch;
-        }
-    }
-
-    const ws_size_t len =   static_cast<ss_size_t>(::lstrlenW(&buffer[0]));
-
-    if( 0 == cchTime ||
-        ws_size_t(cchTime) <= len + 1)
-    {
-        if(0 != cchTime)
-        {
-            ::lstrcpyW(lpTimeStr, &buffer[0]);
-        }
-
-        return static_cast<int>(len + 1);
-    }
-    else
-    {
-        return 0;
-    }
-}
-#endif /* 0 */
-
-
 /** \brief Analogue to the Win32 API <code>GetTimeFormat()</code>, but also
  *    provides milliseconds as part of the time picture.
  *
@@ -773,11 +394,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA(   LCID                locale      
 {
     WINSTL_ASSERT(0 == cchTime || NULL != lpTimeStr);
 
-#if 0
-    return GetTimeFormat_msA_(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
-#else /* ? 0 */
     return GetTimeFormat_ms_<ws_char_a_t>(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
-#endif /* 0 */
 }
 
 inline int STLSOFT_STDCALL GetTimeFormat_msW(   LCID                locale      // locale
@@ -789,11 +406,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW(   LCID                locale      
 {
     WINSTL_ASSERT(0 == cchTime || NULL != lpTimeStr);
 
-#if 0
-    return GetTimeFormat_msW_(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
-#else /* ? 0 */
     return GetTimeFormat_ms_<ws_char_w_t>(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
-#endif /* 0 */
 }
 
 ////////////////////////////////////////////////////////////////////////////

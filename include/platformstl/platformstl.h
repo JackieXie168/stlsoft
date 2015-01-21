@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     12th March 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -13,28 +13,29 @@
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- * - Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
- *   any contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
+ * - Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
+ *   names of any contributors may be used to endorse or promote products
+ *   derived from this software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    10
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    11
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     32
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -107,9 +108,6 @@
  * The current composite version number of PlatformSTL
  */
 
-#define _PLATFORMSTL_VER_MAJOR      1
-#define _PLATFORMSTL_VER_MINOR      5
-#define _PLATFORMSTL_VER_REVISION   1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _PLATFORMSTL_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
 # define _PLATFORMSTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 */
@@ -119,9 +117,14 @@
 # define _PLATFORMSTL_VER_1_4_1     0x00010401  /*!< Version 1.4.1 */
 # define _PLATFORMSTL_VER_1_4_2     0x00010402  /*!< Version 1.4.2 */
 # define _PLATFORMSTL_VER_1_5_1     0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
+# define _PLATFORMSTL_VER_1_6_1     0x00010601  /*!< Version 1.5.1 (with STLSoft 1.9.16) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_5_1
+#define _PLATFORMSTL_VER_MAJOR      1
+#define _PLATFORMSTL_VER_MINOR      6
+#define _PLATFORMSTL_VER_REVISION   1
+
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_6_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -135,10 +138,9 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B41) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
-# error This version of the PlatformSTL libraries requires STLSoft version 1.9.1 beta 41, or later
-#endif /* _STLSOFT_VER */
+#if _STLSOFT_VER < 0x010910ff
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.16, or later. (www.stlsoft.org)
+#endif /* STLSoft version */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Operating system identification
@@ -149,13 +151,22 @@
     defined(__unix__) || \
     defined(__unix)
 # define PLATFORMSTL_OS_IS_UNIX
+#elif defined(WIN64) || \
+      defined(_WIN64) || \
+      defined(__WIN64__)
+# define PLATFORMSTL_OS_IS_WIN64
 #elif defined(WIN32) || \
       defined(_WIN32) || \
       defined(__WIN32__)
 # define PLATFORMSTL_OS_IS_WIN32
 #else /* ? operating system */
-# error Operating system not discriminated. Only UNIX and Win32 are currently recognised by PlatformSTL
+# error Operating system not discriminated. Only UNIX, Win32 and Win64 are currently recognised by PlatformSTL
 #endif /* operating system */
+
+#if defined(PLATFORMSTL_OS_IS_WIN32) || \
+    defined(PLATFORMSTL_OS_IS_WIN64)
+# define PLATFORMSTL_OS_IS_WINDOWS
+#endif /* PLATFORMSTL_OS_IS_WIN32 || PLATFORMSTL_OS_IS_WIN64 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Platform-specific includes
@@ -163,10 +174,10 @@
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # include <unixstl/unixstl.h>
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <winstl/winstl.h>
 #else /* ? operating system */
-# error Operating system not discriminated. Only UNIX and Win32 are currently recognised by PlatformSTL
+# error Operating system not discriminated. Only UNIX and Windows are currently recognised by PlatformSTL
 #endif /* operating system */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -303,7 +314,7 @@ typedef unixstl_ns_qual(us_bool_t)          bool_t;      /*!< bool */
 #endif /* __cplusplus */
 typedef unixstl_ns_qual(us_streampos_t)     streampos_t; /*!< streampos */
 typedef unixstl_ns_qual(us_streamoff_t)     streamoff_t; /*!< streamoff */
-# elif defined(PLATFORMSTL_OS_IS_WIN32)
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 typedef winstl_ns_qual(ws_char_a_t)         char_a_t;    /*!< Ansi char type */
 typedef winstl_ns_qual(ws_char_w_t)         char_w_t;    /*!< Unicode char type */
 typedef winstl_ns_qual(ws_sint8_t)          sint8_t;     /*!< 8-bit signed integer */

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     15th December 2007
+ * Updated:     29th December 2007
  *
  * Thanks:      To Cláudio Albuquerque for working on the
  *              Win64-compatibility.
@@ -63,9 +63,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     15
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     16
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      98
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -164,6 +164,12 @@
  *
  * which indicate that a given type is not used in the size-specific types.
  */
+
+#define _STLSOFT_SIZEOF_CHAR            (1)
+#define _STLSOFT_SIZEOF_SHORT           (2)
+#define _STLSOFT_SIZEOF_INT             (4)
+#define _STLSOFT_SIZEOF_LONG            (4)
+#define _STLSOFT_SIZEOF_LONG_LONG       (8)
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT
