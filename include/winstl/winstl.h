@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2010
+ * Updated:     19th January 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       10
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        177
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        178
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -139,13 +139,14 @@
 # define _WINSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.9.42) */
 # define _WINSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.9.82) */
 # define _WINSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.9.84) */
-# define _WINSTL_VER_1_10_5     0x010a05ff  /*!< Version 1.10.4 (with STLSoft 1.9.88) */
+# define _WINSTL_VER_1_10_5     0x010a05ff  /*!< Version 1.10.5 (with STLSoft 1.9.88) */
+# define _WINSTL_VER_1_10_6     0x010a06ff  /*!< Version 1.10.6 (with STLSoft 1.9.90) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       10
-#define _WINSTL_VER_REVISION    5
-#define _WINSTL_VER             _WINSTL_VER_1_10_5
+#define _WINSTL_VER_REVISION    6
+#define _WINSTL_VER             _WINSTL_VER_1_10_6
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -174,6 +175,15 @@
 	defined(_WIN32) && \
 	(	defined(WIN32) || \
 		defined(WIN64))
+
+# ifndef STLSOFT_INCL_H_BASETYPS
+#  define STLSOFT_INCL_H_BASETYPS
+#  include <basetyps.h>
+# endif /* !STLSOFT_INCL_H_BASETYPS */
+# ifndef STLSOFT_INCL_H_WTYPES
+#  define STLSOFT_INCL_H_WTYPES
+#  include <wtypes.h>
+# endif /* !STLSOFT_INCL_H_WTYPES */
 # ifndef STLSOFT_INCL_H_OLEAUTO
 #  define STLSOFT_INCL_H_OLEAUTO
 #  include <oleauto.h>

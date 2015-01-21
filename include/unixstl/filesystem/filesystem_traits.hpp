@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     12th January 2010
+ * Updated:     19th January 2010
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  9
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      108
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  10
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -702,7 +702,7 @@ private:
                 }
                 else
                 {
-                    if( 1 == len  &&
+                    if( 1 == len &&
                         '.' == fileName[0])
                     {
                         if(NULL == buffer)
@@ -719,8 +719,8 @@ private:
                             else
                             {
                                 // Given buffer is large enough, so copy
-                                char_copy(buffer, directory.data(), len);
-                                buffer[len] = '\0';
+                                char_copy(buffer, directory.data(), lenDir);
+                                buffer[lenDir] = '\0';
                                 len = lenDir;
                             }
                         }
