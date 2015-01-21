@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  30th September 2010
+; Updated:  8th November 2010
 
 ============================================================================
 
@@ -15,6 +15,34 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.102 (8th November 2010)
+
+Summary:
+========
+
+ * added wide string string access shims for std::exception
+ * fixed infinite-recursion defects in ambient shim function definitions
+ * other compatibility fixes
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/shims/access/string/std/exception.hpp:
+    + added wide string string access shims for std::exception
+    ~ fixed infinite-recursion defects in ambient shim function definitions
+
+ ~ include/stlsoft/util/std/library_discriminator.hpp:
+    ~ fixed VC9 (in)compatibility (which occurred only when including <functional> *before* STLSoft header files)
+
+ ~ include/winstl/error/error_functions.h:
+    ~ fixed incorrectly specified obsolete symbols
 
 
 ============================================================================

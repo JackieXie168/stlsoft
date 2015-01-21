@@ -4,14 +4,14 @@
  * Purpose:     String view slice functions.
  *
  * Created:     25th April 2005
- * Updated:     10th August 2009
+ * Updated:     12th October 2010
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions, and
  *              collaboration on their implementation.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * Copyright (c) 2005, Pablo Aguilar
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_MAJOR     2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_MINOR     1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_REVISION  4
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_EDIT      24
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_REVISION  5
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,14 +117,15 @@ struct string_view_helper_traits
     typedef basic_string_view<char_type>                view_type;
 };
 
-#if 0
+# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+     _MSC_VER >= 1310
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_view_helper_traits<ss_char_a_t*>
 {
     typedef ss_char_a_t                                 char_type;
     typedef basic_string_view<char_type>                view_type;
 };
-#endif /* 0 */
+# endif /* compiler */
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_view_helper_traits<ss_char_a_t const*>
@@ -133,14 +134,30 @@ struct string_view_helper_traits<ss_char_a_t const*>
     typedef basic_string_view<char_type>                view_type;
 };
 
-#if 0
+# ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+template <size_t N>
+struct string_view_helper_traits<ss_char_a_t [N]>
+{
+    typedef ss_char_a_t                                 char_type;
+    typedef basic_string_view<char_type>                view_type;
+};
+template <size_t N>
+struct string_view_helper_traits<ss_char_a_t const [N]>
+{
+    typedef ss_char_a_t                                 char_type;
+    typedef basic_string_view<char_type>                view_type;
+};
+# endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+
+# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+     _MSC_VER >= 1310
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_view_helper_traits<ss_char_w_t*>
 {
     typedef ss_char_w_t                                 char_type;
     typedef basic_string_view<char_type>                view_type;
 };
-#endif /* 0 */
+# endif /* compiler */
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_view_helper_traits<ss_char_w_t const*>
@@ -148,6 +165,21 @@ struct string_view_helper_traits<ss_char_w_t const*>
     typedef ss_char_w_t                                 char_type;
     typedef basic_string_view<char_type>                view_type;
 };
+
+# ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+template <size_t N>
+struct string_view_helper_traits<ss_char_w_t [N]>
+{
+    typedef ss_char_w_t                                 char_type;
+    typedef basic_string_view<char_type>                view_type;
+};
+template <size_t N>
+struct string_view_helper_traits<ss_char_w_t const [N]>
+{
+    typedef ss_char_w_t                                 char_type;
+    typedef basic_string_view<char_type>                view_type;
+};
+# endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -159,7 +191,7 @@ struct string_view_helper_traits<ss_char_w_t const*>
 template <ss_typename_param_k C>
 inline basic_string_view<C> left_view_helper(C const* s, ss_size_t n)
 {
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -195,7 +227,7 @@ inline ss_typename_type_ret_k string_view_helper_traits<S>::view_type left_view(
     typedef string_view_helper_traits<S>            traits_t;
     typedef ss_typename_type_k traits_t::view_type  view_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -210,7 +242,7 @@ inline ss_typename_type_ret_k string_view_helper_traits<S>::view_type left_view(
 template <ss_typename_param_k C>
 inline basic_string_view<C> right_view_helper(C const* s, ss_size_t n)
 {
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -251,7 +283,7 @@ inline ss_typename_type_ret_k string_view_helper_traits<S>::view_type right_view
     typedef string_view_helper_traits<S>            traits_t;
     typedef ss_typename_type_k traits_t::view_type  view_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
     ss_size_t       off =   0;
 
     if(n > len)
@@ -271,7 +303,7 @@ inline ss_typename_type_ret_k string_view_helper_traits<S>::view_type right_view
 template <ss_typename_param_k C>
 inline basic_string_view<C> mid_view_helper(C const* s, ss_size_t start, ss_size_t n)
 {
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
     ss_size_t       off =   0;
 
     if(start > len)
@@ -318,7 +350,7 @@ inline ss_typename_type_ret_k string_view_helper_traits<S>::view_type mid_view(S
     typedef string_view_helper_traits<S>            traits_t;
     typedef ss_typename_type_k traits_t::view_type  view_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
     ss_size_t       off =   0;
 
     if(start > len)
