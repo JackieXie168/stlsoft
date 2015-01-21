@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  18th November 2007
+; Updated:  19th November 2007
 
 ============================================================================
 
@@ -15,6 +15,28 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.9 (19th November 2007)
+
+Summary:
+==========
+
+ * shim fixes in UNIXSTL
+
+Changes:
+========
+
+ UNIXSTL:
+ -------
+
+ ~ added all missing string access shims to
+   unixstl/filesystem/current_directory_scope.hpp
+
+ ~ added all missing string access shims to
+   unixstl/filesystem/file_path_buffer.hpp
+
 
 ============================================================================
 

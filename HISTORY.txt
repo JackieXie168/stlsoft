@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  18th November 2007
+; Updated:  19th November 2007
 
 ============================================================================
 
+
+19th November 2007 - 1.9.9 released
+-----------------------------------
+
+ shim fixes in UNIXSTL
 
 18th November 2007 - 1.9.8 released
 -----------------------------------

@@ -2,7 +2,7 @@
 STLSoft - Install
 
 ; Created:  29th March 2002
-; Updated:  18th November 2007
+; Updated:  19th November 2007
 
 ============================================================================
 
@@ -17,8 +17,8 @@ STLSoft - Install
  this symbol, including:
 
   * b64             http://synesis.com.au/software/b64.html
-  * FastFormat      http://fastformat.org/
-  * flecxx          http://flecxx.org/
+  * FastFormat      http://fastformat.org/  -   to be released in Nov
+  * flecxx          http://flecxx.org/      -   to be released in Dec
   * Open-RJ         http://openrj.org/
   * Pantheios       http://pantheios.org/
   * recls           http://recls.org/

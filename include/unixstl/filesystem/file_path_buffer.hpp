@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     22nd March 2007
+ * Updated:     18th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       58
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -473,12 +473,12 @@ inline C const* c_str_ptr(unixstl_ns_qual(basic_file_path_buffer)<C, A> const& b
 template <ss_typename_param_k A>
 inline us_char_a_t const* c_str_ptr_null_a(unixstl_ns_qual(basic_file_path_buffer)<us_char_a_t, A> const& b)
 {
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+    return stlsoft_ns_qual(c_str_ptr_null_a)(b.c_str());
 }
 template <ss_typename_param_k A>
 inline us_char_w_t const* c_str_ptr_null_w(unixstl_ns_qual(basic_file_path_buffer)<us_char_w_t, A> const& b)
 {
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+    return stlsoft_ns_qual(c_str_ptr_null_w)(b.c_str());
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -570,19 +570,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::unixstl::c_str_ptr_null;
-using ::unixstl::c_str_ptr_null_a;
-using ::unixstl::c_str_ptr_null_w;
-
-using ::unixstl::c_str_ptr;
-using ::unixstl::c_str_ptr_a;
-using ::unixstl::c_str_ptr_w;
-
 using ::unixstl::c_str_data;
 using ::unixstl::c_str_data_a;
 using ::unixstl::c_str_data_w;
 
 using ::unixstl::c_str_len;
+using ::unixstl::c_str_len_a;
+using ::unixstl::c_str_len_w;
+
+using ::unixstl::c_str_ptr;
+using ::unixstl::c_str_ptr_a;
+using ::unixstl::c_str_ptr_w;
+
+using ::unixstl::c_str_ptr_null;
+using ::unixstl::c_str_ptr_null_a;
+using ::unixstl::c_str_ptr_null_w;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

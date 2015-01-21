@@ -2,7 +2,7 @@
 STLSoft - README
 
 ; Created:  29th March 2002
-; Updated:  18th November 2007
+; Updated:  19th November 2007
 
 ============================================================================
 
