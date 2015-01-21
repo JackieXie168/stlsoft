@@ -5,10 +5,11 @@
  *              fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     17th December 2007
+ * Updated:     20th December 2007
  *
- * Thanks to:   Neal Becker for suggesting the uninitialised mode; Neal
- *              again for requesting the function call operator.
+ * Thanks to:   Neal Becker for suggesting the uninitialised mode,
+ *              requesting the function call operator, and for requesting
+ *              the with-allocator constructor overloads.
  *
  *              Thorsten Ottosen for suggesting swap() and mutating data(),
  *              and for providing suggested implementations.
@@ -59,9 +60,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      7
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      8
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       182
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       184
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -244,9 +245,13 @@ private:
                   fixed_array_1d(T *data, index_type d0);
 public:
     ss_explicit_k fixed_array_1d(index_type d0);
+                  fixed_array_1d(index_type d0, allocator_type const& ator);
                   fixed_array_1d(index_type d0, value_type const& t);
+                  fixed_array_1d(index_type d0, value_type const& t, allocator_type const& ator);
                   fixed_array_1d(class_type const& rhs);
                  ~fixed_array_1d() stlsoft_throw_0();
+
+    allocator_type  get_allocator() const;
 
     void          swap(class_type& rhs) stlsoft_throw_0();
 
@@ -399,9 +404,13 @@ private:
     fixed_array_2d(T *data, index_type d0, index_type d1);
 public:
     fixed_array_2d(index_type d0, index_type d1);
+    fixed_array_2d(index_type d0, index_type d1, allocator_type const& ator);
     fixed_array_2d(index_type d0, index_type d1, value_type const& t);
+    fixed_array_2d(index_type d0, index_type d1, value_type const& t, allocator_type const& ator);
     fixed_array_2d(class_type const& rhs);
     ~fixed_array_2d() stlsoft_throw_0();
+
+    allocator_type  get_allocator() const;
 
     void swap(class_type& rhs) stlsoft_throw_0();
 
@@ -560,9 +569,13 @@ private:
     fixed_array_3d(pointer data, index_type d0, index_type d1, index_type d2);
 public:
     fixed_array_3d(index_type d0, index_type d1, index_type d2);
+    fixed_array_3d(index_type d0, index_type d1, index_type d2, allocator_type const& ator);
     fixed_array_3d(index_type d0, index_type d1, index_type d2, value_type const& t);
+    fixed_array_3d(index_type d0, index_type d1, index_type d2, value_type const& t, allocator_type const& ator);
     fixed_array_3d(class_type const& rhs);
     ~fixed_array_3d() stlsoft_throw_0();
+
+    allocator_type  get_allocator() const;
 
     void swap(class_type& rhs) stlsoft_throw_0();
 
@@ -721,9 +734,13 @@ private:
     fixed_array_4d(T *data, index_type d0, index_type d1, index_type d2, index_type d3);
 public:
     fixed_array_4d(index_type d0, index_type d1, index_type d2, index_type d3);
+    fixed_array_4d(index_type d0, index_type d1, index_type d2, index_type d3, allocator_type const& ator);
     fixed_array_4d(index_type d0, index_type d1, index_type d2, index_type d3, value_type const& t);
+    fixed_array_4d(index_type d0, index_type d1, index_type d2, index_type d3, value_type const& t, allocator_type const& ator);
     fixed_array_4d(class_type const& rhs);
     ~fixed_array_4d() stlsoft_throw_0();
+
+    allocator_type  get_allocator() const;
 
     void swap(class_type& rhs) stlsoft_throw_0();
 
@@ -883,8 +900,28 @@ inline fixed_array_1d<T, A, P, R>::fixed_array_1d(ss_typename_type_k fixed_array
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_1d<T, A, P, R>::fixed_array_1d(ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_1d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0))
+    , m_d0(d0)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size());
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline fixed_array_1d<T, A, P, R>::fixed_array_1d(ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type d0, value_type const& t)
     : m_data(allocate_(d0))
+    , m_d0(d0)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size(), t);
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_1d<T, A, P, R>::fixed_array_1d(ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type d0, value_type const& t, ss_typename_type_k fixed_array_1d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0))
     , m_d0(d0)
 {
     STLSOFT_STATIC_ASSERT(R);
@@ -928,13 +965,19 @@ inline fixed_array_1d<T, A, P, R>::~fixed_array_1d() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_1d<T, A, P, R>::allocator_type fixed_array_1d<T, A, P, R>::get_allocator() const
+{
+    return *this;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_1d<T, A, P, R>::swap(ss_typename_type_k fixed_array_1d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
 {
     // We don't need to do any construct and swap here, because all the
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
 }
@@ -1203,8 +1246,32 @@ inline fixed_array_2d<T, A, P, R>::fixed_array_2d(ss_typename_type_k fixed_array
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_2d<T, A, P, R>::fixed_array_2d(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d1, ss_typename_type_k fixed_array_2d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0 * d1))
+    , m_d0(d0)
+    , m_d1(d1)
+    , m_size(d0 * d1)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size());
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline fixed_array_2d<T, A, P, R>::fixed_array_2d(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d1, value_type const& t)
     : m_data(allocate_(d0 * d1))
+    , m_d0(d0)
+    , m_d1(d1)
+    , m_size(d0 * d1)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size(), t);
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_2d<T, A, P, R>::fixed_array_2d(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d1, value_type const& t, ss_typename_type_k fixed_array_2d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0 * d1))
     , m_d0(d0)
     , m_d1(d1)
     , m_size(d0 * d1)
@@ -1254,13 +1321,19 @@ inline fixed_array_2d<T, A, P, R>::~fixed_array_2d() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_2d<T, A, P, R>::allocator_type fixed_array_2d<T, A, P, R>::get_allocator() const
+{
+    return *this;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_2d<T, A, P, R>::swap(ss_typename_type_k fixed_array_2d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
 {
     // We don't need to do any construct and swap here, because all the
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);
@@ -1561,8 +1634,32 @@ inline fixed_array_3d<T, A, P, R>::fixed_array_3d(ss_typename_type_k fixed_array
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_3d<T, A, P, R>::fixed_array_3d(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d2, ss_typename_type_k fixed_array_3d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0 * d1 * d2))
+    , m_d0(d0)
+    , m_d1(d1)
+    , m_d2(d2)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size());
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline fixed_array_3d<T, A, P, R>::fixed_array_3d(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d2, ss_typename_type_k fixed_array_3d<T, A, P, R>::value_type const& t)
     : m_data(allocate_(d0 * d1 * d2))
+    , m_d0(d0)
+    , m_d1(d1)
+    , m_d2(d2)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size(), t);
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_3d<T, A, P, R>::fixed_array_3d(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type d2, ss_typename_type_k fixed_array_3d<T, A, P, R>::value_type const& t, ss_typename_type_k fixed_array_3d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0 * d1 * d2))
     , m_d0(d0)
     , m_d1(d1)
     , m_d2(d2)
@@ -1612,13 +1709,19 @@ inline fixed_array_3d<T, A, P, R>::~fixed_array_3d() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_3d<T, A, P, R>::allocator_type fixed_array_3d<T, A, P, R>::get_allocator() const
+{
+    return *this;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_3d<T, A, P, R>::swap(ss_typename_type_k fixed_array_3d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
 {
     // We don't need to do any construct and swap here, because all the
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);
@@ -1926,8 +2029,34 @@ inline fixed_array_4d<T, A, P, R>::fixed_array_4d(ss_typename_param_k fixed_arra
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_4d<T, A, P, R>::fixed_array_4d(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d3, ss_typename_param_k fixed_array_4d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0 * d1 * d2 * d3))
+    , m_d0(d0)
+    , m_d1(d1)
+    , m_d2(d2)
+    , m_d3(d3)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size());
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline fixed_array_4d<T, A, P, R>::fixed_array_4d(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d3, ss_typename_param_k fixed_array_4d<T, A, P, R>::value_type const& t)
     : m_data(allocate_(d0 * d1 * d2 * d3))
+    , m_d0(d0)
+    , m_d1(d1)
+    , m_d2(d2)
+    , m_d3(d3)
+{
+    STLSOFT_STATIC_ASSERT(R);
+    array_range_initialiser<T, A, P>::construct(*this, data_(), size(), t);
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline fixed_array_4d<T, A, P, R>::fixed_array_4d(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d3, ss_typename_param_k fixed_array_4d<T, A, P, R>::value_type const& t, ss_typename_param_k fixed_array_4d<T, A, P, R>::allocator_type const& ator)
+    : allocator_type(ator)
+    , m_data(allocate_(d0 * d1 * d2 * d3))
     , m_d0(d0)
     , m_d1(d1)
     , m_d2(d2)
@@ -1980,13 +2109,19 @@ inline fixed_array_4d<T, A, P, R>::~fixed_array_4d() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_4d<T, A, P, R>::allocator_type fixed_array_4d<T, A, P, R>::get_allocator() const
+{
+    return *this;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_4d<T, A, P, R>::swap(ss_typename_type_k fixed_array_4d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
 {
     // We don't need to do any construct and swap here, because all the
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);

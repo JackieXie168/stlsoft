@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th December 2007
+; Updated:  20th December 2007
 
 ============================================================================
 
@@ -15,6 +15,26 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.13 (20th December 2007)
+
+Summary:
+==========
+
+ * features enhancements to fixed array classes
+
+Additions:
+==========
+
+ STLSoft:
+ --------
+
+ + stlsoft::fixed_array_?d::get_allocator() method for all 4 classes
+
+ + stlsoft::fixed_array_?d::fixed_array_?d() overloads taking allocator
+
 
 ============================================================================
 

@@ -1,5 +1,5 @@
 
-// Updated: 17th December 2007
+// Updated: 20th December 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY)
 # error This file cannot be directly included, and should only be included within stlsoft/containers/fixed_array.hpp
@@ -33,6 +33,21 @@ namespace unittest
 			fa2d_t	a2d_2(a2d_1);
 			fa3d_t	a3d_2(a3d_1);
 			fa4d_t	a4d_2(a4d_1);
+
+			fa1d_t	a1d_3(10, 3);
+			fa2d_t	a2d_3(10, 20, 3);
+			fa3d_t	a3d_3(10, 20, 30, 3);
+			fa4d_t	a4d_3(10, 20, 30, 40, 3);
+
+			fa1d_t	a1d_4(10, a1d_1.get_allocator());
+			fa2d_t	a2d_4(10, 20, a2d_1.get_allocator());
+			fa3d_t	a3d_4(10, 20, 30, a3d_1.get_allocator());
+			fa4d_t	a4d_4(10, 20, 30, 40, a4d_1.get_allocator());
+
+			fa1d_t	a1d_5(10, 3, a1d_1.get_allocator());
+			fa2d_t	a2d_5(10, 20, 3, a2d_1.get_allocator());
+			fa3d_t	a3d_5(10, 20, 30, 3, a3d_1.get_allocator());
+			fa4d_t	a4d_5(10, 20, 30, 40, 3, a4d_1.get_allocator());
 
 			////////////////////////////////////////////////
 			// 1-dimension
