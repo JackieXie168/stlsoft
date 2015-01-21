@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     29th October 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    3
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        38
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -156,16 +156,28 @@ private:
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 
-/** \brief Policy tag type
+/** \brief Policy tag type that indicates an enumerator's Clone() method
+ *    will fail.
  *
  * \ingroup group__library__<<LIBRARY-ID>>
  */
 struct noncloneable_enumerator_tag
 {};
 
+/** \brief Policy tag type that indicates an enumerator's Clone() method
+ *    will succeed.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct cloneable_enumerator_tag
 {};
 
+/** \brief Policy tag type that indicates an enumerator's Clone() method
+ *    will succeed, and return an enumerator that will provide the same
+ *    sequence of items as the source instance.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct repeatable_enumerator_tag
     : public cloneable_enumerator_tag
 {};
@@ -407,7 +419,9 @@ public:
     };
 };
 
-/** \brief \deprecated Equivalent to value_policy_adaptor
+/** \brief Adapts a value policy to a function object based interface
+ *
+ * \deprecated Equivalent to value_policy_adaptor
  *
  * \ingroup group__library__<<LIBRARY-ID>>
  */

@@ -1,7 +1,7 @@
 
-#if !defined(COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_CAST)
-# error This file cannot be directly included, and should only be included within comstl/interface/interface_cast.hpp
-#endif /* !COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_CAST */
+#if !defined(COMSTL_INCL_COMSTL_CONVERSION_HPP_INTERFACE_CAST)
+# error This file cannot be directly included, and should only be included within comstl/conversion/interface_cast.hpp
+#endif /* !COMSTL_INCL_COMSTL_CONVERSION_HPP_INTERFACE_CAST */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
@@ -11,20 +11,22 @@ namespace unittest
 {
 	namespace
 	{
-		ss_bool_t test_comstl_interface_cast(unittest_reporter *r)
+		ss_bool_t test_comstl_conversion_interface_cast(unittest_reporter *r)
 		{
 			using stlsoft::unittest::unittest_initialiser;
 
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "COMSTL", "interface/interface_cast", __FILE__);
+			unittest_initialiser	init(r, "COMSTL", "conversion/interface_cast", __FILE__);
 
 			LPSTREAM	pstm;
 			HRESULT 	hr	=	::CreateStreamOnHGlobal(NULL, true, &pstm);
 
 			if(SUCCEEDED(hr))
 			{
-				if(!interface_cast_test<LPSTREAM>(pstm))
+				if(interface_cast_test<LPSTREAM>(pstm))
+				{}
+				else
 				{
 					r->report("interface_cast_test failed to detect same type ", __LINE__);
 					bSuccess = false;
@@ -81,7 +83,7 @@ namespace unittest
 			return bSuccess;
 		}
 
-		unittest_registrar	  unittest_comstl_interface_cast(test_comstl_interface_cast);
+		unittest_registrar	  unittest_comstl_conversion_interface_cast(test_comstl_conversion_interface_cast);
 	} // anonymous namespace
 
 } // namespace unittest

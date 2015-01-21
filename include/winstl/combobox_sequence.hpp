@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/controls/combobox_sequence.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE
-# include <winstl/controls/combobox_sequence.hpp>
-#endif /* !WINSTL_INCL_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE */
+#include <winstl/controls/combobox_sequence.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

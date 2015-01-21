@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/thread_marshal.hpp (originally comstl_thread_marshal.h)
+ * File:        comstl/util/thread_marshal.hpp (originally comstl_thread_marshal.h)
  *
  * Purpose:     Thread marshalling functions.
  *
  * Created:     25th May 2002
- * Updated:     7th July 2006
+ * Updated:     6th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file comstl/thread_marshal.hpp
+/** \file comstl/util/thread_marshal.hpp
  *
  * \brief [C++ only; requires COM] Thread marshalling functions.
  *  (\ref group__library__com_utility "COM Utility" Library.)
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MAJOR    4
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MINOR    0
-# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_REVISION 2
-# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     50
+# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_REVISION 3
+# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS
-# include <comstl/interface/interface_traits.hpp>
-#endif /* !COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS */
+#ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
+# include <comstl/util/interface_traits.hpp>
+#endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

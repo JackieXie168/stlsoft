@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta30
+File:     STLSoft-ReleaseNotes-1.9.1-beta31
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,69 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  2nd December 2006
+Updated:  6th December 2006
 
 ============================================================================
+
+    ************************************
+    * Change key:                      *
+    *                                  *
+    *  ~  means something has changed  *
+    *  +  means a new addition         *
+    *  -  means removal of something   *
+    *  *  means a general bullet-point *
+    *                                  *
+    ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 31 (6th December 2006):
+
+Changes:
+========
+
+~ comstl/interface/bad_interface_cast.hpp -> comstl/error/bad_interface_cast.hpp
+
+~ comstl/interface/interface_cast.hpp -> comstl/conversion/interface_cast.hpp
+
+~ comstl/interface/interface_traits.hpp -> comstl/util/interface_traits.hpp
+
+- comstl::interface_ptr is now deprecated, in favour of stlsoft::ref_ptr
+
++ comstl::co_create_instance() overloads now also take (a reference to) an
+  instance of stlsof::ref_ptr<I>
+
++ comstl::interface_cast<>() function templates that cast between instances
+  of the stlsoft::ref_ptr<> "smart pointer" wrappers.
+
+
++ stlsoft::ref_ptr now takes a third (defaulted) template parameter, which
+  defines the (intermediate) up-cast type when converting from concrete
+  type to interface type
+
++ stlsoft::ref_ptr::set() method, to facilitate modification of an already
+  constructed instance. (Previously the user was obliged to assign from a
+  temporary instance.)
+
+
++ winstl::get_kernel_handle shim 
+  (winstl/shims/attribute/get_kernel_handle.hpp)
+
++ winstl::get_synch_handle shim 
+  (winstl/shims/attribute/get_synch_handle.hpp)
+
+~ winstl::event's member type handle_type renamed to synch_handle_type 
+
+~ winstl::process_mutex's member type handle_type renamed to synch_handle_type 
+
+~ winstl::semaphore's member type handle_type renamed to synch_handle_type 
+
+~ winstl/synch/functions.hpp -> winstl/synch/wait_functions.hpp
+
+~ winstl::WaitForMultipleObjects() function suite renamed
+  winstl::wait_for_multiple_objects(), and now implemented in terms of new
+  winstl::get_synch_handle shim
 
 
 ============================================================================

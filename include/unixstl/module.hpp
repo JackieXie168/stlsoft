@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/dl/module.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
-# include <unixstl/dl/module.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE */
+#include <unixstl/dl/module.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

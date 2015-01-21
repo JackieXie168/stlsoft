@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     18th October 2006
+ * Updated:     4th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     47
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ class event
 {
 public:
     typedef event           class_type;
-    typedef HANDLE          handle_type;
+    typedef HANDLE          synch_handle_type;
 
 /// \name Construction
 /// @{
@@ -227,6 +227,23 @@ private:
     event(class_type const &rhs);
     event &operator =(class_type const &rhs);
 };
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Shims
+ */
+
+/** \brief Overload of the form of the winstl::get_synch_handle() shim for
+ *    the winstl::event type.
+ *
+ * \param ev The winstl::event instance
+ *
+ * \retval The synchronisation handle of \c ev
+ */
+inline HANDLE get_synch_handle(event &ev)
+{
+	return ev.get();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

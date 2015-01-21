@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     29th October 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/collections/enumerator_sequence.hpp
-///
-/// STL sequence for IEnumXXXX enumerator interfaces.
+/** \file comstl/collections/enumerator_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the comstl::enumerator_sequence
+ *   collection class template.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE
 #define COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE
@@ -49,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    0
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 5
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     221
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     222
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,7 +128,7 @@ namespace comstl_project
  * Classes
  */
 
-/** \brief A template for adapting COM enumeration to STL-compatible sequence iteration
+/** \brief A template for adapting COM enumerators to STL-compatible sequence iteration.
  *
  * \ingroup group__library__collections
  *
@@ -142,17 +145,17 @@ namespace comstl_project
  * For example, the following parameterisation defines a sequence operating
  * over an <b>IEnumGUID</b> enumerator instance.
  *
- * \htmlonly
- * <table border = 0 cellspacing = 0 cellpadding = 0 >
- *  <tr><td>&nbsp;&nbsp;</td><td><code>typedef enumerator_sequence</code></td><td><code>&lt;&nbsp;IEnumGUID</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;GUID</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;GUID_policy</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;GUID const &</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;forward_cloning_policy&lt;IEnumGUID&gt;</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;5</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>&gt;&nbsp;&nbsp;&nbsp;enum_sequence_t;</code></td></tr>
- * </table>
- * \endhtmlonly
+\htmlonly
+<pre>
+typedef enumerator_sequence&lt;IEnumGUID
+                          , GUID
+                          , GUID_policy
+                          , GUID const &
+                          , forward_cloning_policy&lt;IEnumGUID&gt;
+                          , 5
+                          &gt;    enum_sequence_t;
+</pre>
+\endhtmlonly
  *
  * The value type is <b>GUID</b> and it is returned as a reference, as
  * the <b>GUID const &</b> in fact.
@@ -167,24 +170,18 @@ namespace comstl_project
  * And the <b>5</b> indicates that the sequence should grab 5 values at a time,
  * to save round trips to the enumerator.
  *
- * So this would be used like the following:
+ * This would be used as follows:
  *
- * \htmlonly
- * <code>
- * &nbsp;&nbsp;void dump_GUID(GUID const &);
- * <br>
- *
- * <br>
- * &nbsp;&nbsp;LPENUMGUID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*penGUIDs = . . .;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create an instance from wherever
- * <br>
- * &nbsp;&nbsp;enum_sequence_t&nbsp;&nbsp;&nbsp;guids(penGUIDs, false); // Eat the reference
- * <br>
- *
- * <br>
- * &nbsp;&nbsp;std::for_each(guids.begin(), guids.end(), dump_GUID);
- * <br>
- * </code>
- * \endhtmlonly
+\htmlonly
+<pre>
+void dump_GUID(GUID const &);
+
+LPENUMGUID        *penGUIDs = . . .;      // Create an instance from wherever
+enum_sequence_t   guids(penGUIDs, false); // Eat the reference
+
+std::for_each(guids.begin(), guids.end(), dump_GUID);
+</pre>
+\endhtmlonly
  *
  * \note The iterator instances returned by begin() and end() are valid outside
  * the lifetime of the collection instance from which they are obtained

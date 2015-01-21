@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     3rd September 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,10 +46,10 @@
 #define COMSTL_INCL_COMSTL_SMARTPTR_HPP_INTERFACE_PTR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      6
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      0
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   4
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       481
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   1
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       482
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,15 +59,17 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS
-# include <comstl/util/refcount_functions.h>
-#endif /* !COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS */
+
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file (comstl/smartptr/interface_ptr.hpp) is now obsolete. Include stlsoft/smartptr/ref_ptr.hpp and use stlsoft::ref_ptr<>")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
 # include <stlsoft/util/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
-# include <stlsoft/util/std_swap.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
+# include <stlsoft/smartptr/ref_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -97,21 +99,26 @@ namespace comstl_project
 
 /** \brief Manages a COM interface pointer, ensuring that it is released
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \deprecated Instead use stlsoft::ref_ptr
+ *
+ * \ingroup group__library__smart_pointers
  */
 template <ss_typename_param_k T>
 class interface_ptr
+    : public stlsoft_ns_qual(ref_ptr)<T>
 {
 /// \name Types
 /// @{
+private:
+    typedef stlsoft_ns_qual(ref_ptr)<T> parent_class_type;
 public:
-    typedef interface_ptr<T>        class_type;
+    typedef interface_ptr<T>            class_type;
 
-    typedef T                       value_type;
-    typedef value_type              *pointer;
-    typedef value_type const        *const_pointer;
-    typedef value_type              &reference;
-    typedef value_type const        &const_reference;
+    typedef T                           value_type;
+    typedef value_type                  *pointer;
+    typedef value_type const            *const_pointer;
+    typedef value_type                  &reference;
+    typedef value_type const            &const_reference;
 /// @}
 
 /// \name Construction
@@ -157,17 +164,9 @@ public:
 /// \name Accessors
 /// @{
 public:
-    const_pointer   operator ->() const;
-    pointer         operator ->();
-    const_reference operator *() const;
-    reference       operator *();
-
     const_pointer   get_interface_ptr() const;
     pointer         get_interface_ptr();
 /// @}
-
-private:
-    pointer m_p;
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -225,62 +224,39 @@ inline T *get_ptr(interface_ptr<T> &p)
 template <ss_typename_param_k T>
 inline void interface_ptr<T>::swap(interface_ptr<T> &rhs)
 {
-    std_swap(m_p, rhs.m_p);
+    parent_class_type::swap(rhs);
 }
 
 template <ss_typename_param_k T>
 inline interface_ptr<T>::interface_ptr()
-    : m_p(NULL)
+    : parent_class_type()
 {}
 
 template <ss_typename_param_k T>
 inline interface_ptr<T>::interface_ptr(ss_typename_type_k interface_ptr<T>::pointer p, cs_bool_t bAddRef)
-    : m_p(p)
-{
-    if( bAddRef &&
-        NULL != m_p)
-    {
-        addref(m_p);
-    }
-}
+    : parent_class_type(p, bAddRef)
+{}
 
 template <ss_typename_param_k T>
 inline interface_ptr<T>::interface_ptr(ss_typename_type_k interface_ptr<T>::reference r, cs_bool_t bAddRef)
-    : m_p(&r)
-{
-    COMSTL_MESSAGE_ASSERT("Attempting to dereference a null pointer", NULL != m_p);
-
-    if(bAddRef)
-    {
-        addref(m_p);
-    }
-}
+    : parent_class_type(&r, bAddRef)
+{}
 
 template <ss_typename_param_k T>
 inline interface_ptr<T>::interface_ptr(ss_typename_type_k interface_ptr<T>::class_type const &rhs)
-    : m_p(rhs.m_p)
-{
-    safe_addref(m_p);
-}
+    : parent_class_type(rhs)
+{}
 
 template <ss_typename_param_k T>
 inline void interface_ptr<T>::release()
 {
-    release_set_null(m_p);
+    parent_class_type::close();
 }
 
 template <ss_typename_param_k T>
 inline void interface_ptr<T>::release(cs_bool_t bDecRef /* = true */)
 {
-    if(NULL != m_p)
-    {
-        if(bDecRef)
-        {
-            comstl__release(m_p);
-        }
-
-        m_p = NULL;
-    }
+    bDecRef ? parent_class_type::close() : static_cast<void>(parent_class_type::detach());
 }
 
 template <ss_typename_param_k T>
@@ -292,7 +268,7 @@ inline interface_ptr<T>::~interface_ptr() stlsoft_throw_0()
 template <ss_typename_param_k T>
 inline ss_typename_type_k interface_ptr<T>::class_type &interface_ptr<T>::operator =(ss_typename_type_k interface_ptr<T>::class_type const &rhs)
 {
-    class_type   t(const_cast<class_type&>(rhs).m_p, true);
+    class_type   t(rhs);
 
     swap(t);
 
@@ -320,81 +296,37 @@ inline void interface_ptr<T>::set(ss_typename_type_k interface_ptr<T>::reference
 template <ss_typename_param_k T>
 inline ss_typename_type_k interface_ptr<T>::pointer interface_ptr<T>::detach()
 {
-    pointer p = m_p;
-
-    m_p = NULL;
-
-    return p;
+    return parent_class_type::detach();
 }
 
 template <ss_typename_param_k T>
 inline cs_bool_t interface_ptr<T>::operator ==(ss_typename_type_k interface_ptr<T>::class_type const &rhs) const
 {
-    return m_p == rhs.m_p;
+    return parent_class_type::equal(rhs);
 }
 
 template <ss_typename_param_k T>
 inline cs_bool_t interface_ptr<T>::operator !=(ss_typename_type_k interface_ptr<T>::class_type const &rhs) const
 {
-    return m_p != rhs.m_p;
+    return !parent_class_type::equal(rhs);
 }
 
 template <ss_typename_param_k T>
 inline interface_ptr<T>::operator ss_typename_type_k interface_ptr<T>::operator_bool_type() const
 {
-    return operator_bool_generator_type::translate(NULL != m_p);
+    return operator_bool_generator_type::translate(parent_class_type::empty());
 }
 
 template <ss_typename_param_k T>
 inline ss_typename_type_k interface_ptr<T>::pointer interface_ptr<T>::get_interface_ptr()
 {
-    return m_p;
+    return parent_class_type::get();
 }
 
 template <ss_typename_param_k T>
 inline ss_typename_type_k interface_ptr<T>::const_pointer interface_ptr<T>::get_interface_ptr() const
 {
-    return m_p;
-}
-
-#if 0
-template <ss_typename_param_k T>
-inline cs_bool_t interface_ptr<T>::operator !() const
-{
-    return NULL == m_p;
-}
-#endif /* 0 */
-
-template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::const_pointer interface_ptr<T>::operator ->() const
-{
-    COMSTL_MESSAGE_ASSERT("Attempting to dereference a null pointer", NULL != m_p);
-
-    return m_p;
-}
-
-template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::pointer interface_ptr<T>::operator ->()
-{
-    COMSTL_MESSAGE_ASSERT("Attempting to dereference a null pointer", NULL != m_p);
-
-    return m_p;
-}
-
-template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::const_reference interface_ptr<T>::operator *() const
-{
-    COMSTL_MESSAGE_ASSERT("Attempting to dereference a null pointer", NULL != m_p);
-
-    return *m_p;
-}
-
-template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::reference interface_ptr<T>::operator *()
-{
-    COMSTL_MESSAGE_ASSERT("Attempting to dereference a null pointer", NULL != m_p);
-
-    return *m_p;
+    return parent_class_type::get();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

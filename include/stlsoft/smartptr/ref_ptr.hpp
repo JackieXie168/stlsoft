@@ -4,7 +4,7 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     7th July 2006
+ * Updated:     6th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      0
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       474
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       477
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,8 @@ namespace stlsoft
  * Helper shims
  */
 
-/** \brief Control shim for adding a reference on an RCI
+/** \brief Control shim for adding a reference on a reference-counted
+ *    interface (RCI)
  *
  * \ingroup group__library__smart_pointers
  *
@@ -94,7 +95,8 @@ inline void add_reference(I *pi)
     pi->AddRef();
 }
 
-/** \brief Control shim for releasing a reference on an RCI
+/** \brief Control shim for releasing a reference on a reference-counted
+ *    interface (RCI)
  *
  * \ingroup group__library__smart_pointers
  *
@@ -116,29 +118,36 @@ inline void release_reference(I *pi)
  * Classes
  */
 
-/** \brief This class provides RAII-safe handling of reference-counted interfaces. Its
- * notable feature is that it supports forward declaration of the leaf interface
- * so long as the base counting interface is visible in the scope of the
- * template parameterisation
+/** \brief This class provides RAII-safe handling of reference-counted
+ *    interfaces (RCIs). Its notable feature is that it supports forward
+ *    declaration of the leaf interface so long as the base counting
+ *    interface is visible in the scope of the template parameterisation.
  *
  * \ingroup group__library__smart_pointers
  *
- * \param T The value type
+ * \param T The counted type (i.e. a concrete class)
+ * \param I The interface type
+ * \param U The upcast intermediate type
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k I = T
+        ,   ss_typename_param_k U = I
         >
 class ref_ptr
 {
 /// \name Types
 /// @{
 public:
+    /// \brief The Boolean type
+    typedef bool_t              bool_type;
     /// \brief The interface type: the type of the RCI (Reference-Counted Interface)
-    typedef I               interface_type;
+    typedef I                   interface_type;
     /// \brief The counted type: the concrete type of the objects whose instances will be managed
-    typedef T               counted_type;
+    typedef T                   counted_type;
+    /// \brief The up-cast type: the type used to disambiguate upcasts between T and I
+    typedef U                   upcast_type;
     /// \brief The current instantiation of the type
-    typedef ref_ptr<T, I>   class_type;
+    typedef ref_ptr<T, I, U>    class_type;
 /// @}
 
 /// \name Implementation
@@ -147,17 +156,17 @@ private:
     /// \brief Helper function to effect downcast from interface type to counted type
     static counted_type *c_from_i(interface_type *i)
     {
-        return static_cast<counted_type*>(i);
+        return static_cast<counted_type*>(static_cast<upcast_type*>(i));
     }
     /// \brief Helper function to effect downcast from interface type to counted type
     static counted_type const *c_from_i(interface_type const *i)
     {
-        return static_cast<counted_type*>(i);
+        return static_cast<counted_type const*>(static_cast<upcast_type const*>(i));
     }
     /// \brief Helper function to effect upcast from counted type to interface type
     static interface_type *i_from_c(counted_type *c)
     {
-        return c;
+        return static_cast<upcast_type*>(c);
     }
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -165,9 +174,9 @@ private:
     /// \brief Helper function to effect upcast from const counted type to interface type
     static interface_type *i_from_const_c(counted_type const *cc)
     {
-        counted_type    *c  =   const_cast<counted_type *>(cc);
+        counted_type    *c  =   const_cast<counted_type*>(cc);
 
-        return c;
+        return i_from_c(c);
     }
 #endif /* compiler */
 /// @}
@@ -176,17 +185,24 @@ private:
 /// @{
 public:
     /// \brief Default constructor
+    ///
+    /// Constructs and empty instance
     ref_ptr()
         : m_pi(NULL)
     {}
     /// \brief Construct from a raw pointer to the counted type, and a boolean that
     /// indicates whether a reference should be taken on the instance.
     ///
+    /// \param c Pointer to a counted_type. May be NULL
+    /// \param bAddRef parameter that determines whether reference will be
+    ///   <i>consumed</i> (<code>false</code>) or <i>borrowed</i>
+    ///   (<code>true</code>).
+    ///
     /// \note It is usual that ref_ptr is used to "sink" an instance, i.e. to take
     /// ownership of it. In such a case, \c false should be specified as the second
     /// parameter. If, however, a reference is being "borrowed", then \c true should
     /// be specified.
-    ref_ptr(counted_type *c, ss_bool_t bAddRef)
+    ref_ptr(counted_type *c, bool_type bAddRef)
         : m_pi(i_from_c(c))
     {
         if( bAddRef &&
@@ -209,10 +225,22 @@ public:
         }
     }
 
-    template <ss_typename_param_k T2, ss_typename_param_k I2>
+    /// \brief Copy constructs from an instance with different interface and/or
+    ///   counted type
+    ///
+    /// \note The interface types of the copying and copied instance must be
+    ///   compatible
+    ///
+    /// \htmlonly
+    ///
+    /// \endhtmlonly
+    template<   ss_typename_param_k T2
+            ,   ss_typename_param_k I2
+            ,   ss_typename_param_k U2
+            >
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1300
-    ref_ptr(ref_ptr<T2, I2> const &rhs)
+    ref_ptr(ref_ptr<T2, I2, U2> const &rhs)
 # if 0
         // We cannot use this form, as it would lead to instances with different
         // counted_type being cross cast invisibly. This would be a *very bad thing*
@@ -227,7 +255,7 @@ public:
         }
     }
 #else /* ? compiler */
-    ref_ptr(ref_ptr<T2, I2> &rhs)
+    ref_ptr(ref_ptr<T2, I2, U2> &rhs)
 # if 0
         // We cannot use this form, as it would lead to instances with different
         // counted_type being cross cast invisibly. This would be a *very bad thing*
@@ -246,8 +274,10 @@ public:
 #if !defined(STLSOFT_COMPILER_IS_INTEL) && \
     !defined(STLSOFT_COMPILER_IS_MWERKS) && \
     0
-    template <ss_typename_param_k I2>
-    explicit ref_ptr(ref_ptr<T, I2> &rhs)
+    template<   ss_typename_param_k I2
+            ,   ss_typename_param_k U2
+            >
+    explicit ref_ptr(ref_ptr<T, I2, U2> &rhs)
         : m_pi(rhs.m_pi)
     {
         if(NULL != m_pi)
@@ -257,8 +287,10 @@ public:
     }
 #endif /* compiler */
 
-    /// \brief Destructor. If the ref_ptr instance is still holding a pointer to a
-    /// managed instance, it will be released.
+    /// \brief Destructor
+    ///
+    /// If the ref_ptr instance is still holding a pointer to a managed instance,
+    /// it will be released.
     ~ref_ptr() stlsoft_throw_0()
     {
         if(NULL != m_pi)
@@ -292,8 +324,10 @@ public:
     /// \note It is strongly exception-safe, as long as the implementations of the
     /// add-ref and release functions - as utilised in the \c add_reference() and
     /// \c release_reference() control shims - do not throw (which they must not).
-    template <ss_typename_param_k T2>
-    class_type &operator =(ref_ptr<T2, I> &rhs)
+    template<   ss_typename_param_k T2
+            ,   ss_typename_param_k U2
+            >
+    class_type &operator =(ref_ptr<T2, I, U2> &rhs)
     {
         class_type  t(rhs);
 
@@ -306,8 +340,10 @@ public:
 #if !defined(STLSOFT_COMPILER_IS_INTEL) && \
     !defined(STLSOFT_COMPILER_IS_MWERKS) && \
     0
-    template <ss_typename_param_k I2>
-    class_type &operator =(ref_ptr<T, I2> &rhs)
+    template<   ss_typename_param_k I2
+            ,   ss_typename_param_k U2
+            >
+    class_type &operator =(ref_ptr<T, I2, U2> &rhs)
     {
         class_type  t(rhs);
 
@@ -331,7 +367,20 @@ public:
                         m_pi        =   t;
     }
 
-    /// Closes the pointer
+    /// \brief Assigns a reference-counted type to the smart pointer.
+    ///
+    /// \param c Pointer to a counted_type. May be NULL
+    /// \param bAddRef parameter that determines whether reference will be
+    ///   <i>consumed</i> (<code>false</code>) or <i>borrowed</i>
+    ///   (<code>true</code>).
+    void set(counted_type *c, bool_type bAddRef)
+    {
+        class_type  t(c, bAddRef);
+
+        t.swap(*this);
+    }
+
+    /// Closes the instance, releasing the managed pointer.
     ///
     /// \note Calling this method more than once has no effect.
     void close()
@@ -358,7 +407,8 @@ public:
 /// \name Equality Comparison
 /// @{
 public:
-    ss_bool_t equal(class_type const &rhs) const
+    /// \brief Evaluates whether two instances are equal
+    bool_type equal(class_type const &rhs) const
     {
         return m_pi == rhs.m_pi;
     }
@@ -367,9 +417,16 @@ public:
 /// \name Accessors
 /// @{
 public:
-    ss_bool_t operator !() const
+    /// \brief Determines whether the instance is empty
+    bool_type empty() const
     {
         return NULL == m_pi;
+    }
+
+    /// \brief Determines whether the instance is empty
+    bool_type operator !() const
+    {
+        return empty();
     }
 
     /// \brief Provides raw-pointer access to the instance
@@ -384,6 +441,10 @@ public:
         return class_type::c_from_i(m_pi);
     }
 
+    /// \brief Returns the interface pointer
+    ///
+    /// \pre The instance must not be empty; otherwise behaviour is
+    ///   undefined
     counted_type *operator ->()
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);
@@ -391,6 +452,10 @@ public:
         return class_type::c_from_i(m_pi);
     }
 
+    /// \brief Returns the interface pointer
+    ///
+    /// \pre The instance must not be empty; otherwise behaviour is
+    ///   undefined
     counted_type const *operator ->() const
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);
@@ -398,6 +463,10 @@ public:
         return class_type::c_from_i(m_pi);
     }
 
+    /// \brief Returns a reference to the managed instance
+    ///
+    /// \pre The instance must not be empty; otherwise behaviour is
+    ///   undefined
     counted_type &operator *()
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);
@@ -405,6 +474,10 @@ public:
         return *class_type::c_from_i(m_pi);
     }
 
+    /// \brief Returns a reference to the managed instance
+    ///
+    /// \pre The instance must not be empty; otherwise behaviour is
+    ///   undefined
     counted_type const &operator *() const
     {
         STLSOFT_MESSAGE_ASSERT("Dereferencing a NULL pointer!", NULL != m_pi);
@@ -426,16 +499,18 @@ private:
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k I
+        ,   ss_typename_param_k U
         >
-inline ss_bool_t operator ==(ref_ptr<T, I> const &lhs, ref_ptr<T, I> const &rhs)
+inline ss_bool_t operator ==(ref_ptr<T, I, U> const &lhs, ref_ptr<T, I, U> const &rhs)
 {
     return lhs.equal(rhs);
 }
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k I
+        ,   ss_typename_param_k U
         >
-inline ss_bool_t operator !=(ref_ptr<T, I> const &lhs, ref_ptr<T, I> const &rhs)
+inline ss_bool_t operator !=(ref_ptr<T, I, U> const &lhs, ref_ptr<T, I, U> const &rhs)
 {
     return !lhs.equal(rhs);
 }
@@ -446,8 +521,9 @@ inline ss_bool_t operator !=(ref_ptr<T, I> const &lhs, ref_ptr<T, I> const &rhs)
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k I
+        ,   ss_typename_param_k U
         >
-inline void swap(ref_ptr<T, I> &lhs, ref_ptr<T, I> &rhs)
+inline void swap(ref_ptr<T, I, U> &lhs, ref_ptr<T, I, U> &rhs)
 {
     lhs.swap(rhs);
 }
@@ -462,8 +538,9 @@ inline void swap(ref_ptr<T, I> &lhs, ref_ptr<T, I> &rhs)
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k I /* = T */
+        ,   ss_typename_param_k U /* = I */
         >
-inline ss_bool_t is_empty(ref_ptr<T, I> const &p)
+inline ss_bool_t is_empty(ref_ptr<T, I, U> const &p)
 {
     return NULL == p.get();
 }
@@ -474,8 +551,9 @@ inline ss_bool_t is_empty(ref_ptr<T, I> const &p)
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k I /* = T */
+        ,   ss_typename_param_k U /* = I */
         >
-inline T *get_ptr(ref_ptr<T, I> &p)
+inline T *get_ptr(ref_ptr<T, I, U> &p)
 {
     return p.get();
 }
@@ -486,8 +564,9 @@ inline T *get_ptr(ref_ptr<T, I> &p)
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k I /* = T */
+        ,   ss_typename_param_k U /* = I */
         >
-inline T const *get_ptr(ref_ptr<T, I> const &p)
+inline T const *get_ptr(ref_ptr<T, I, U> const &p)
 {
     return p.get();
 }
@@ -499,8 +578,9 @@ inline T const *get_ptr(ref_ptr<T, I> const &p)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k T
         ,   ss_typename_param_k I /* = T */
+        ,   ss_typename_param_k U /* = I */
         >
-inline S &operator <<(S &s, ref_ptr<T, I> const &p)
+inline S &operator <<(S &s, ref_ptr<T, I, U> const &p)
 {
     return s << *p;
 }
@@ -530,8 +610,9 @@ namespace std
 {
     template<   ss_typename_param_k T
             ,   ss_typename_param_k I
+            ,   ss_typename_param_k U
             >
-    inline void swap(stlsoft_ns_qual(ref_ptr)<T, I> &lhs, stlsoft_ns_qual(ref_ptr)<T, I> &rhs)
+    inline void swap(stlsoft_ns_qual(ref_ptr)<T, I, U> &lhs, stlsoft_ns_qual(ref_ptr)<T, I, U> &rhs)
     {
         lhs.swap(rhs);
     }

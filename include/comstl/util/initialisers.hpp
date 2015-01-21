@@ -4,7 +4,9 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     18th October 2006
+ * Updated:     4th December 2006
+ *
+ * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +40,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/util/initialisers.hpp
-///
-/// Contains classes for initialising COM/OLE.
+/** \file comstl/util/initialisers.hpp
+ *
+ * \brief [C++ only; requires COM] Definition of the comstl::initialiser
+ *   class template, and its associated policies and specialisations.
+ *  (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_HPP_INITIALISERS
 #define COMSTL_INCL_COMSTL_HPP_INITIALISERS
@@ -49,7 +54,7 @@
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MAJOR       3
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MINOR       2
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    2
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        66
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,6 +175,47 @@ typedef stlsoft_ns_qual(null_exception_policy)  ignore_initialisation_exception_
  *
  * This class is used to initialise the COM libraries. It can respond to
  * CoInitializeEx argument flags when translated in a DCOM build.
+ *
+ * It is commonly used within <code>main()</code> (for a CLI program), or
+ * <code>WinMain()</code> (for a GUI program). A typical program structure
+ * is shown as follows:
+\htmlonly
+<pre>
+  #include <comstl/util/initialisers.hpp>
+
+  #include <stdlib.h>
+
+  static int main_(int argc, char **argv)
+  {
+    . . . // main application functionality
+  }
+
+  int main(int argc, char **argv)
+  {
+    try
+    {
+      comstl::com_init  init; // Initialise the COM libraries
+
+      return main_(argc, argv);
+    }
+    catch(comstl::com_initialisation_exception &x) // COM library initialisation failed
+    {
+      return EXIT_FAILURE;
+    }
+    catch(std::exception &x) // other failures from main_()
+    {
+      return EXIT_FAILURE;
+    }
+  }
+</pre>
+\endhtmlonly
+ *
+ * In practice, initialisation failure of the COM libraries is unheard of, so
+ * you can probably dispense with the specific catch clause shown above, and
+ * rely on  comstl::com_initialisation_exception being caught by the
+ * std::exception clause.
+ *
+ * \see comstl::
  */
 template<   ss_typename_param_k IP  /* Initialisation policy type */
         ,   ss_typename_param_k XP  /* Exception policy type */
@@ -230,8 +276,15 @@ private:
 ////////////////////////////////////////////////////////////////////////////
 // Value policies
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
+/** \brief A policy type, for use with comstl::initialiser, that causes
+ *    initialisation/uninitialisation of the COM libraries with
+ *    <code>CoInitialize()</code>/<code>CoInitializeEx()</code> and
+ *    <code>CoUninitialize()</code>.
+ *
+ * \ingroup group__library__utility
+ *
+ * \see comstl::initialiser
+ */
 struct CoInitialize_policy
 {
 public:
@@ -251,6 +304,14 @@ public:
     }
 };
 
+/** \brief A policy type, for use with comstl::initialiser, that causes
+ *    initialisation/uninitialisation of the COM libraries with
+ *    <code>OleInitialize()</code> and <code>OleUninitialize()</code>.
+ *
+ * \ingroup group__library__utility
+ *
+ * \see comstl::initialiser
+ */
 struct OleInitialize_policy
 {
 public:
@@ -264,41 +325,55 @@ public:
     }
 };
 
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
 ////////////////////////////////////////////////////////////////////////////
 // Typedefs for common instantiations
 
 /** \brief Instantiation that initialises via CoInitialize() but does not throw on failure.
  *
  * \ingroup group__library__utility
+ *
+ * \see comstl::initialiser
  */
 typedef initialiser<CoInitialize_policy, ignore_initialisation_exception_policy>    com_init_nothrow;
 /** \brief Instantiation that initialises via OleInitialize() but does not throw on failure.
  *
  * \ingroup group__library__utility
+ *
+ * \see comstl::initialiser
  */
 typedef initialiser<OleInitialize_policy, ignore_initialisation_exception_policy>   ole_init_nothrow;
 
 /** \brief Instantiation that initialises via CoInitialize() and throws on failure.
  *
  * \ingroup group__library__utility
+ *
+ * \see comstl::initialiser
  */
 typedef initialiser<CoInitialize_policy, com_initialisation_exception_policy>       com_init;
 /** \brief Instantiation that initialises via OleInitialize() and throws on failure.
  *
  * \ingroup group__library__utility
+ *
+ * \see comstl::initialiser
  */
 typedef initialiser<OleInitialize_policy, com_initialisation_exception_policy>      ole_init;
 
-/** \brief \deprecated
+/** \brief Instantiation that initialises via CoInitialize() but does not throw on failure.
  *
  * \ingroup group__library__utility
+ *
+ * \deprecated Use com_init_nothrow instead.
+ *
+ * \see comstl::initialiser
  */
 typedef com_init_nothrow                                                            com_initialiser;
-/** \brief \deprecated
+/** \brief Instantiation that initialises via OleInitialize() but does not throw on failure.
  *
  * \ingroup group__library__utility
+ *
+ * \deprecated Use ole_init_nothrow instead.
+ *
+ * \see comstl::initialiser
  */
 typedef ole_init_nothrow                                                            ole_initialiser;
 

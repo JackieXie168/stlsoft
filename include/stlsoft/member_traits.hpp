@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/meta/member_traits.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
-# include <stlsoft/meta/member_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
+#include <stlsoft/meta/member_traits.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

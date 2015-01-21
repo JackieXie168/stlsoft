@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include comstl/error/errorinfo_desc.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef COMSTL_INCL_COMSTL_ERROR_HPP_ERRORINFO_DESC
-# include <comstl/error/errorinfo_desc.hpp>
-#endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_ERRORINFO_DESC */
+#include <comstl/error/errorinfo_desc.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

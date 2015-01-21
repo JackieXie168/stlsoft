@@ -4,7 +4,7 @@
  * Purpose:     Type-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     15th July 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MAJOR    4
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MINOR    0
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_REVISION 1
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     58
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ namespace comstl_project
  * Functionals
  */
 
-/** \brief Closes BSTRs
+/** \brief A function class that closes BSTRs
  *
  * \ingroup group__library__functional
  *
@@ -120,7 +120,7 @@ struct BSTR_close
     }
 };
 
-/** \brief Close OLE strings
+/** \brief A function class that closes OLE strings
  *
  * \ingroup group__library__functional
  *
@@ -140,7 +140,7 @@ struct olestring_close
     }
 };
 
-/** \brief Close task memory blocks
+/** \brief A function class that closes task memory blocks
  *
  * \ingroup group__library__functional
  *
@@ -160,7 +160,7 @@ struct task_memory_close
     }
 };
 
-/** \brief Close VARIANTs
+/** \brief A function class that closes VARIANTs
  *
  * \ingroup group__library__functional
  *

@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/containers/static_array.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_UNRECOVERABLE
-# include <stlsoft/containers/static_array.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_UNRECOVERABLE */
+#include <stlsoft/containers/static_array.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

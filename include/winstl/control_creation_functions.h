@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/controls/creation_functions.h")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_SHELL_ALLOCATOR
-# include <winstl/controls/creation_functions.h>
-#endif /* !WINSTL_INCL_WINSTL_CONTROLS_HPP_SHELL_ALLOCATOR */
+#include <winstl/controls/creation_functions.h>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

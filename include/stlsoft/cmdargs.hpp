@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/system/cmdargs.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_SYSTEM_HPP_CMDARGS
-# include <stlsoft/system/cmdargs.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SYSTEM_HPP_CMDARGS */
+#include <stlsoft/system/cmdargs.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

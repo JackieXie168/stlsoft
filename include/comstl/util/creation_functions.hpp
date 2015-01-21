@@ -4,7 +4,11 @@
  * Purpose:     COM instance creation helper functions
  *
  * Created:     21st September 2005
- * Updated:     10th August 2006
+ * Updated:     6th December 2006
+ *
+ * Thanks:      To Adi Shavit for demanding more usability in these
+ *              functions, which led to the adoption of stlsoft::ref_ptr<X>
+ *              as the unit of currency throughout COMSTL.
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MAJOR    2
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MINOR    1
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     9
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MINOR    2
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_REVISION 2
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +65,12 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS
-# include <comstl/interface/interface_traits.hpp>
-#endif /* !COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS */
+#ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
+# include <comstl/util/interface_traits.hpp>
+#endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
+# include <stlsoft/smartptr/ref_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -95,6 +102,24 @@ namespace comstl_project
  *  interface pointer.
  *
  * \ingroup group__library__com_utility
+ *
+ * \param clsid The CLSID of the component to be created.
+ * \param ppi Pointer to the interface pointer.
+ *
+ * The following example demonstrates how to use the function to create an
+ * instance of the Pantheios.COM Logger Manager component by specifying its
+ * CLSID, and requesting the <code>IDispatch</code> interface:
+\htmlonly
+<pre>
+  const CLSID CLSID_pantheios_COM_LoggerManager  = { 0x4E7D5C47, 0x8F96, 0x45DE, { 0x90, 0x5D, 0xAA, 0x3E, 0x9E, 0x59, 0x2D, 0xE3 } };
+
+  IDispatch *logmgr;
+  if(SUCCEEDED(comstl::co_create_instance(CLSID_pantheios_COM_LoggerManager, &logmgr)))
+  {
+    logmgr->Release();
+  }
+</pre>
+\endhtmlonly
  */
 template <ss_typename_param_k I>
 inline HRESULT co_create_instance(  REFCLSID    clsid
@@ -108,10 +133,38 @@ inline HRESULT co_create_instance(  REFCLSID    clsid
  *
  * \ingroup group__library__com_utility
  *
- * \param id The Programatic Identifier (ProgId) - e.g.
+ * \param id Can be the Programatic Identifier (ProgId) - e.g.
  *    pantheios.com.LoggerManager - or the string form of the
  *    class id - e.g. {4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}
- * \param Pointer to the interface pointer.
+ * \param ppi Pointer to the interface pointer.
+ *
+ * The following example demonstrates how to use the function to create an
+ * instance of the Pantheios.COM Logger Manager component by specifying the
+ * string form of its CLSID, and requesting the <code>IDispatch</code>
+ * interface:
+\htmlonly
+<pre>
+  IDispatch *logmgr;
+  if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", &logmgr)))
+  {
+    logmgr->Release();
+  }
+</pre>
+\endhtmlonly
+ *
+ * The following example demonstrates how to use the function to create an
+ * instance of the Pantheios.COM Logger Manager component by specifying the
+ * Programmatic Identifier (ProgID), and requesting the <code>IDispatch</code>
+ * interface:
+\htmlonly
+<pre>
+  IDispatch *logmgr;
+  if(SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", &logmgr)))
+  {
+    logmgr->Release();
+  }
+</pre>
+\endhtmlonly
  */
 template <ss_typename_param_k I>
 inline HRESULT co_create_instance(  LPCOLESTR   id
@@ -129,6 +182,114 @@ inline HRESULT co_create_instance(  LPCOLESTR   id
     {
         hr = co_create_instance(clsid, ppi);
     }
+
+    return hr;
+}
+
+
+/** \brief Type-safe creation of a COM object, acquiring the requisite
+ *  interface pointer into an interface wrapper instance.
+ *
+ * \ingroup group__library__com_utility
+ *
+ * \param clsid The CLSID of the component to be created.
+ * \param wi A mutable (non-const) reference to an interface wrapper
+ *   instance. The wrapper's <code>interface_type</code> determines the
+ *   interface queried by the COM runtime's creation facilities on the
+ *   created instance.
+ *
+ * The following example demonstrates how to use the function to create an
+ * instance of the Pantheios.COM Logger Manager component by specifying its
+ * CLSID, and requesting the <code>IDispatch</code> interface:
+\htmlonly
+<pre>
+  const CLSID CLSID_pantheios_COM_LoggerManager  = { 0x4E7D5C47, 0x8F96, 0x45DE, { 0x90, 0x5D, 0xAA, 0x3E, 0x9E, 0x59, 0x2D, 0xE3 } };
+
+  stlsoft::ref_ptr<IDispatch>   logmgr;
+  if(SUCCEEDED(comstl::co_create_instance(CLSID_pantheios_COM_LoggerManager, &logmgr)))
+  {
+    . . .
+  } // Release() automatically invoked here
+</pre>
+\endhtmlonly
+ */
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k U
+        >
+inline HRESULT co_create_instance(  REFCLSID                            clsid
+                                ,   stlsoft_ns_qual(ref_ptr)<T, I, U>   &wi)
+{
+    I       *pi;
+    HRESULT hr  =   co_create_instance(clsid, &pi);
+
+    if(FAILED(hr))
+    {
+        pi = NULL;
+    }
+
+    wi = stlsoft_ns_qual(ref_ptr)<T, I, U>(pi, false); // Eat the reference
+
+    return hr;
+}
+
+/** \brief Type-safe creation of a COM object from a Programmatic Id,
+ *  acquiring the requisite interface wrapper instance.
+ *
+ * \ingroup group__library__com_utility
+ *
+ * \param id Can be the Programatic Identifier (ProgId) - e.g.
+ *    pantheios.com.LoggerManager - or the string form of the
+ *    class id - e.g. {4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}
+ * \param wi A mutable (non-const) reference to an interface wrapper
+ *   instance. The wrapper's <code>interface_type</code> determines the
+ *   interface queried by the COM runtime's creation facilities on the
+ *   created instance.
+ *
+ * The following example demonstrates how to use the function to create an
+ * instance of the Pantheios.COM Logger Manager component by specifying the
+ * string form of its CLSID, and requesting the <code>IDispatch</code>
+ * interface:
+\htmlonly
+<pre>
+  stlsoft::ref_ptr<IDispatch>   logmgr;
+  if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", &logmgr)))
+  {
+    . . .
+  } // Release() automatically invoked here
+</pre>
+\endhtmlonly
+ *
+ * The following example demonstrates how to use the function to create an
+ * instance of the Pantheios.COM Logger Manager component by specifying the
+ * Programmatic Identifier (ProgID), and requesting the <code>IDispatch</code>
+ * interface:
+\htmlonly
+<pre>
+  stlsoft::ref_ptr<IDispatch>   logmgr;
+  if(SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", &logmgr)))
+  {
+    . . .
+  } // Release() automatically invoked here
+</pre>
+\endhtmlonly
+ */
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k I
+        ,   ss_typename_param_k U
+        >
+inline HRESULT co_create_instance(  LPCOLESTR                           id
+                                ,   stlsoft_ns_qual(ref_ptr)<T, I, U>   &wi)
+{
+    I       *pi;
+    HRESULT hr  =   co_create_instance(id, &pi);
+
+    if(FAILED(hr))
+    {
+        pi = NULL;
+    }
+
+    wi = stlsoft_ns_qual(ref_ptr)<T, I, U>(pi, false); // Eat the reference
 
     return hr;
 }

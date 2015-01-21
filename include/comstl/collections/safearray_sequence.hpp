@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     18th October 2006
+ * Updated:     6th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MAJOR     4
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  2
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      45
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,9 +82,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
     #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_POLICIES
     # include <comstl/enumerator_policies.hpp> // for input_cloning_policy
     #endif /* !COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_POLICIES */
-    #ifndef COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS
-    # include <comstl/interface/interface_traits.hpp>
-    #endif /* !COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS */
+    #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
+    # include <comstl/util/interface_traits.hpp>
+    #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
 #endif /* 0 */
 #ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
 # include <comstl/error/exceptions.hpp>
