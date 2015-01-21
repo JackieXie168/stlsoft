@@ -6,11 +6,11 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     11th January 2006
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MINOR       3
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MINOR       5
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        46
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,9 +82,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                       // for std::out_of_range
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -130,7 +130,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
     /// The non-mutating (const) iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -139,7 +139,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
     /// The mutating (non-const) reverse iterator type
     typedef reverse_iterator_base       <   iterator
@@ -286,7 +286,7 @@ public:
         return const_cast<pointer>(m_base)[index];
     }
 
-# ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     /// Returns the element at the given index
     ///
     /// \param index The offset of the requested element
@@ -313,7 +313,7 @@ public:
 
         return const_cast<pointer>(m_base)[index];
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 ///  @}
 
 /// \name Iteration
@@ -392,7 +392,7 @@ public:
 ///  @{
 #ifdef STLSOFT_UNITTEST
 public:
-#else
+#else /* ? STLSOFT_UNITTEST */
 private:
 #endif /* STLSOFT_UNITTEST */
     ss_bool_t is_valid() const
@@ -414,7 +414,7 @@ private:
 /// \name Implementation
 ///  @{
 private:
-# ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     void range_check_(size_type index) const
     {
         if(!(index < size()))
@@ -429,7 +429,7 @@ private:
             }
         }
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 ///  @}
 
 /// \name Members

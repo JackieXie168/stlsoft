@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     13th January 2006
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MINOR      6
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   3
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       82
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MINOR      7
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   1
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -230,6 +230,8 @@ public:
     static char_type    *str_rchr(char_type const *s, char_type ch);
     /// Finds the given substring \c sub in \c s
     static char_type    *str_str(char_type const *s, char_type const *sub);
+    /// Finds one of a set of characters in \c s
+    static char_type    *str_pbrk(char_type const *s, char_type const *charSet);
 /// @}
 
 /// \name Locale management
@@ -642,6 +644,11 @@ public:
         return const_cast<char_type*>(::strstr(s, sub));
     }
 
+    static char_type *str_pbrk(char_type const *s, char_type const *charSet)
+    {
+        return const_cast<char_type*>(::strpbrk(s, charSet));
+    }
+
     // Locale management
     static int_type get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData)
     {
@@ -895,6 +902,13 @@ public:
 
         size_type       n   =   0;
         const size_type len =   class_type::str_len(fileName);
+
+        if(NULL != class_type::str_pbrk(fileName, "<>|*?"))
+        {
+            ::SetLastError(ERROR_INVALID_NAME);
+
+            return 0;
+        }
 
         if('"' == *fileName)
         {
@@ -1433,6 +1447,11 @@ public:
     static char_type *str_str(char_type const *s, char_type const *sub)
     {
         return const_cast<char_type*>(::wcsstr(s, sub));
+    }
+
+    static char_type *str_pbrk(char_type const *s, char_type const *charSet)
+    {
+        return const_cast<char_type*>(::wcspbrk(s, charSet));
     }
 
     // Locale management

@@ -1,0 +1,306 @@
+/* /////////////////////////////////////////////////////////////////////////////
+ * File:        stlsoft/tokenising/charset_tokeniser.hpp
+ *
+ * Purpose:     String token parsing class using char-sets.
+ *
+ * Created:     17th October 2005
+ * Updated:     31st January 2006
+ *
+ * Home:        http://stlsoft.org/
+ *
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
+ *   any contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * ////////////////////////////////////////////////////////////////////////// */
+
+
+/// \file stlsoft/tokenising/charset_tokeniser.hpp
+///
+/// String token parsing class using char-sets.
+
+#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER
+#define STLSOFT_INCL_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_MAJOR     1
+# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_MINOR     0
+# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_REVISION  3
+# define STLSOFT_VER_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER_EDIT      6
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_DMC:  __DMC__<0x0839
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
+STLSOFT_COMPILER_IS_WATCOM:
+[Incompatibilies-end]
+ */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
+
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_STRING_TOKENISER
+# include <stlsoft/string_tokeniser.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_STRING_TOKENISER */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifndef _STLSOFT_NO_NAMESPACE
+namespace stlsoft
+{
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/// \weakgroup libraries STLSoft Libraries
+/// \brief The individual libraries
+
+/// \weakgroup libraries_string String Library
+/// \ingroup libraries
+/// \brief This library provides facilities for defining and manipulating strings
+
+/// \weakgroup libraries_string_tokenising String Tokenising Library
+/// \ingroup STLSoft libraries_string
+/// \brief This library provides facilities for tokenising strings
+/// @{
+
+/* ////////////////////////////////////////////////////////////////////////////
+ * Classes
+ */
+
+template <typename S>
+struct charset_comparator
+{
+public:
+    typedef S                   delimiter_type;
+
+private:
+    template <typename const_iterator>
+    static bool equal_(delimiter_type const &delimiter, const_iterator &it)
+    {
+        return delimiter.end() != std::find(delimiter.begin(), delimiter.end(), *it);
+    }
+
+    template <typename const_iterator>
+    static const_iterator advance_(const_iterator it, delimiter_type const &delimiter)
+    {
+        return it + 1;  // TODO: This is actually wrong, and will only work for skipping specialisations
+    }
+
+public:
+    static size_t length(delimiter_type const &delimiter)
+    {
+        return 1;
+    }
+
+    template <typename const_iterator>
+    static bool test_start_token_advance(const_iterator &it, const_iterator end, delimiter_type const &delimiter)
+    {
+        return equal_(delimiter, it) ? (it = advance_(it, delimiter), true) : false;
+    }
+
+    template <typename const_iterator>
+    static bool test_end_token_advance(const_iterator &it, const_iterator end, delimiter_type const &delimiter)
+    {
+        return equal_(delimiter, it) ? (it = advance_(it, delimiter), true) : false;
+    }
+
+    template <typename const_iterator>
+    static const_iterator nonskip_move_to_start(const_iterator it, const_iterator end, delimiter_type const &delimiter)
+    {
+        return it;
+    }
+
+    template <typename const_iterator>
+    static bool test_end_token(const_iterator it, const_iterator end, delimiter_type const &delimiter)
+    {
+        return equal_(delimiter, it);
+    }
+
+    template <typename const_iterator>
+    static const_iterator find_next_start(const_iterator it, const_iterator end, delimiter_type const &delimiter)
+    {
+        return advance_(it, delimiter);
+    }
+};
+
+
+template<   ss_typename_param_k S
+#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+        ,   ss_typename_param_k B = skip_blank_tokens<true>
+        ,   ss_typename_param_k V = S
+        ,   ss_typename_param_k T = string_tokeniser_type_traits<S, V>
+        ,   ss_typename_param_k D = S
+        ,   ss_typename_param_k P = charset_comparator<S>
+#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+        ,   ss_typename_param_k B
+        ,   ss_typename_param_k V
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k D
+        ,   ss_typename_param_k P
+#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+        >
+class charset_tokeniser
+    : public string_tokeniser<S, D, B, V, T, P>
+{
+/// \name Member Types
+/// @{
+private:
+    typedef string_tokeniser<S, D, B, V, T, P>                          parent_class_type;
+public:
+    /// The current parameterisation of the type
+    typedef charset_tokeniser<S, B, V, T, D, P>                         class_type;
+    /// The sequence string type
+    typedef ss_typename_type_k parent_class_type::string_type           string_type;
+    /// The delimiter type
+    typedef ss_typename_type_k parent_class_type::delimiter_type        delimiter_type;
+    /// The blanks policy type
+    typedef ss_typename_type_k parent_class_type::blanks_policy_type    blanks_policy_type;
+    /// The value type
+    typedef ss_typename_type_k parent_class_type::value_type            value_type;
+    /// The traits type
+    typedef ss_typename_type_k parent_class_type::traits_type           traits_type;
+    /// The tokeniser comparator type
+    typedef ss_typename_type_k parent_class_type::comparator_type       comparator_type;
+    /// The character type
+    typedef ss_typename_type_k parent_class_type::char_type             char_type;
+    /// The size type
+    typedef ss_typename_type_k parent_class_type::size_type             size_type;
+    /// The difference type
+    typedef ss_typename_type_k parent_class_type::difference_type       difference_type;
+    /// The non-mutating (const) reference type
+    typedef ss_typename_type_k parent_class_type::const_reference       const_reference;
+    /// The non-mutating (const) iterator type
+    typedef ss_typename_type_k parent_class_type::const_iterator        const_iterator;
+/// @}
+
+public:
+/// \name Construction
+/// @{
+public:
+    /// Tokenise the given C-string with the given delimiter
+    ///
+    /// \param psz Pointer to C-string whose contents will be tokenised
+    /// \param charSet The delimiter to perform the tokenisation
+    ///
+    /// \note The tokeniser class takes a copy of \c psz. It does not alter the contents of \c psz
+    charset_tokeniser(char_type const *psz, delimiter_type const &charSet)
+        : parent_class_type(psz, charSet)
+    {}
+
+// Define the string_type overload if there member template ctors are not supported, or
+// they are correctly discriminated
+#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+    defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+    /// Tokenise the given string with the given delimiter
+    ///
+    /// \param str The string whose contents will be tokenised
+    /// \param charSet The delimiter to perform the tokenisation
+    ///
+    /// \note The tokeniser class takes a copy of \c str. It does not alter the contents of \c str
+    charset_tokeniser(string_type const &str, delimiter_type const &charSet)
+        : parent_class_type(str, charSet)
+    {}
+#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+
+// Define the template overload if member template ctors are supported
+#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+    /// Tokenise the given string with the given delimiter
+    ///
+    /// \param str The string whose contents will be tokenised
+    /// \param charSet The delimiter to perform the tokenisation
+    ///
+    /// \note The tokeniser class takes a copy of \c str. It does not alter the contents of \c str
+    template <ss_typename_param_k S1>
+    charset_tokeniser(S1 const &str, delimiter_type const &charSet)
+        : parent_class_type(str, charSet)
+    {}
+#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+
+    /// Tokenise the specified length of the given string with the given delimiter
+    ///
+    /// \param psz Pointer to C-string whose contents will be tokenised
+    /// \param cch The number of characters in \c psz to use
+    /// \param charSet The delimiter to perform the tokenisation
+    ///
+    /// \note The tokeniser class takes a copy of \c psz. It does not alter the contents of \c psz
+    charset_tokeniser(char_type const *psz, size_type cch, delimiter_type const &charSet)
+        : parent_class_type(psz, cch, charSet)
+    {}
+
+#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+    defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+    /// \brief Tokenise the given range with the given delimiter
+    ///
+    /// \param from The start of the asymmetric range to tokenise
+    /// \param to The start of the asymmetric range to tokenise
+    /// \param charSet The delimiter to use
+    charset_tokeniser(char_type const *from, char_type const *to, delimiter_type const &charSet)
+        : parent_class_type(from, to, charSet)
+    {}
+#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+
+#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+    /// Tokenise the given range with the given delimiter
+    ///
+    /// \param from The start of the asymmetric range to tokenise
+    /// \param to The start of the asymmetric range to tokenise
+    /// \param charSet The delimiter to use
+    template <ss_typename_param_k I>
+    charset_tokeniser(I from, I to, delimiter_type const &charSet)
+        : parent_class_type(from, to, charSet)
+    {}
+#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+/// @}
+};
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/// @} // end of group libraries_string_tokenising
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+#ifndef _STLSOFT_NO_NAMESPACE
+} // namespace stlsoft
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_CHARSET_TOKENISER */
+
+/* ////////////////////////////////////////////////////////////////////////// */

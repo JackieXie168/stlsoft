@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       2
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        80
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h The root header for the \ref COMSTL project */
@@ -242,14 +242,14 @@
 #  error Versions of Visual C++ prior to 4.2 are not supported by the COMSTL libraries
 # endif /* _MSC_VER */
 
-#else
+#else /* ? compiler */
 /* No recognised compiler */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _COMSTL_COMPILER_IS_UNKNOWN
 #  ifdef _STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to COMSTL")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
-# else
+# else /* ? _STLSOFT_FORCE_ANY_COMPILER */
 #  error Currently only Borland C++, Comeau, Digital Mars C/C++, Intel C/C++, Metrowerks CodeWarrior C/C++ and Visual C++ compilers are supported by the COMSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler tag */
@@ -393,7 +393,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifndef _COMSTL_NO_NAMESPACE
 # define comstl_ns_qual(x)          ::comstl::x
 # define comstl_ns_using(x)         using ::comstl::x;
-#else
+#else /* ? _COMSTL_NO_NAMESPACE */
 # define comstl_ns_qual(x)          x
 # define comstl_ns_using(x)
 #endif /* !_COMSTL_NO_NAMESPACE */
@@ -407,7 +407,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifdef __STLSOFT_CF_std_NAMESPACE
 # define comstl_ns_qual_std(x)      ::std::x
 # define comstl_ns_using_std(x)     using ::std::x;
-#else
+#else /* ? __STLSOFT_CF_std_NAMESPACE */
 # define comstl_ns_qual_std(x)      x
 # define comstl_ns_using_std(x)
 #endif /* !__STLSOFT_CF_std_NAMESPACE */

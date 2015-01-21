@@ -4,11 +4,11 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     31st December 2005
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    4
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     22
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -91,9 +91,9 @@ STLSOFT_COMPILER_IS_MWERKS:     (__MWERKS__ & 0xFF00) < 0x3000
 # ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR
 #  include <stlsoft/typefixer/iterator.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
-#  include <stlsoft/member_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
+#  include <stlsoft/meta/member_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR
 # include <stlsoft/iterators/filter_iterator.hpp>

@@ -4,11 +4,11 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MAJOR       4
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       2
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       3
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        88
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                           // for std::exception
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #include <wchar.h>
 
 #ifdef STLSOFT_UNITTEST
@@ -190,13 +190,13 @@ T *rounded_ptr(T *p, ss_ptrdiff_t byteOffset, ss_size_t n)
  * Classes
  */
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 /// Exception thrown by the version_info class
 class version_info_exception
     : public winstl_ns_qual_std(exception)
 {
 };
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /// Represents the fixed part of a version information block
 class fixed_file_info
@@ -308,7 +308,7 @@ private:
 
 /// Represents a string table
 class VsStringTable
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     typedef VsStringTable   class_type;
@@ -365,7 +365,7 @@ private:
 
 /// Represents a variable file info part of a version information block
 class VsVarFileInfo
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     typedef VsVarFileInfo   class_type;
@@ -423,7 +423,7 @@ private:
 
 /// Represents a variable string part of a version information block
 class VsStringFileInfo
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     typedef VsStringFileInfo    class_type;
@@ -926,7 +926,7 @@ inline version_info::~version_info() stlsoft_throw_0()
 
 inline ws_size_t version_info::Length() const
 {
-#if !defined(__STLSOFT_CF_EXCEPTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
     !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == m_hdr)
     {
@@ -934,14 +934,14 @@ inline ws_size_t version_info::Length() const
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != m_hdr);
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
 
     return *(sap_cast<WORD const*>(m_hdr) + 0);
 }
 
 inline ws_size_t version_info::ValueLength() const
 {
-#if !defined(__STLSOFT_CF_EXCEPTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
     !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == m_hdr)
     {
@@ -949,7 +949,7 @@ inline ws_size_t version_info::ValueLength() const
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != m_hdr);
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
 
     return *(sap_cast<WORD const*>(m_hdr) + 1);
 }
@@ -1032,11 +1032,11 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
     {
         allocator.deallocate(static_cast<ws_byte_t*>(pv), cb);
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw version_info_exception();
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return NULL;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     WINSTL_ASSERT(pv != NULL);
@@ -1071,11 +1071,11 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
     {
         allocator.deallocate(static_cast<ws_byte_t*>(pv), cb);
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw version_info_exception();
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         pv = NULL;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     return static_cast<VS_VERSIONINFO_hdr*>(pv);
@@ -1083,7 +1083,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
 
 inline /* static */ wchar_t const *version_info::calc_key_(void const *pv)
 {
-#if !defined(__STLSOFT_CF_EXCEPTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
     !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == pv)
     {
@@ -1091,7 +1091,7 @@ inline /* static */ wchar_t const *version_info::calc_key_(void const *pv)
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != pv);
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
 
     wchar_t const *key  =   reinterpret_cast<wchar_t const*>(static_cast<WORD const*>(pv) + 3);
 
@@ -1102,7 +1102,7 @@ inline /* static */ wchar_t const *version_info::calc_key_(void const *pv)
 
 inline /* static */ VS_FIXEDFILEINFO const *version_info::calc_ffi_(wchar_t const *key)
 {
-#if !defined(__STLSOFT_CF_EXCEPTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
     !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == key)
     {
@@ -1110,14 +1110,14 @@ inline /* static */ VS_FIXEDFILEINFO const *version_info::calc_ffi_(wchar_t cons
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != key);
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
 
     return sap_cast<VS_FIXEDFILEINFO const*>(rounded_ptr(&key[1 + wcslen(key)], 4));
 }
 
 inline /* static */ WORD const *version_info::calc_children_(VS_FIXEDFILEINFO const *ffi)
 {
-#if !defined(__STLSOFT_CF_EXCEPTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
     !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == ffi)
     {
@@ -1125,14 +1125,14 @@ inline /* static */ WORD const *version_info::calc_children_(VS_FIXEDFILEINFO co
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != ffi);
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
 
     return sap_cast<WORD const*>(rounded_ptr(&ffi[1], 4));
 }
 
 inline void version_info::init_()
 {
-#if !defined(__STLSOFT_CF_EXCEPTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
     !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == m_hdr)
     {
@@ -1140,7 +1140,7 @@ inline void version_info::init_()
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != m_hdr);
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
 
 #ifdef _DEBUG
     // Check that ffi is the same as the pointer returned from VerQueryValue("\\");

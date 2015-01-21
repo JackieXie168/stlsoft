@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        colours.h (formerly winstl_clrs.h, originally MWWinDef.h, ::SynesisWin)
+ * File:        winstl/colours.h (formerly winstl_clrs.h, originally MWWinDef.h, ::SynesisWin)
  *
  * Purpose:     Colour constants.
  *
  * Created:     20th February 1999
- * Updated:     18th December 2005
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl_clrs.h
+/// \file winstl/colours.h
 ///
 /// Colour constants.
 
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_COLOURS_MAJOR      3
 # define WINSTL_VER_H_WINSTL_COLOURS_MINOR      1
 # define WINSTL_VER_H_WINSTL_COLOURS_REVISION   1
-# define WINSTL_VER_H_WINSTL_COLOURS_EDIT       16
+# define WINSTL_VER_H_WINSTL_COLOURS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     16th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_MAJOR       2
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_MINOR       2
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_REVISION    2
-# define WINSTL_VER_H_WINSTL_REG_TRAITS_EDIT        46
+# define WINSTL_VER_H_WINSTL_REG_TRAITS_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ public:
 public:
     // General string handling
 
-#if 0
+# if 0
     /// Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const *src);
     /// Appends the contents of \c src to \c dest
@@ -133,14 +133,14 @@ public:
     static ws_int_t     str_compare(char_type *dest, char_type const *src);
     /// Evaluates the length of \c src
     static size_type    str_len(char_type const *src);
-#endif /* 0 */
+# endif /* 0 */
 
     // Registry names
 
-#if 0
+# if 0
     /// Appends a registry path separator to \c path if one does not exist
     static char_type    *ensure_subkey_end(char_type *path);
-#endif /* 0 */
+# endif /* 0 */
 
     /// Expands environment strings in \c src into \c dest, up to a maximum \c cchDest characters
     static size_type    expand_env_strings(char_type const *src, char_type *dest, size_type cch_dest);
@@ -199,7 +199,7 @@ public:
                                         size_type       &cb_data);
 }
 
-#else
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 template <ss_typename_param_k C>
 struct reg_traits;

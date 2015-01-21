@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Borland C/C++.
  *
  * Created:     7th February 2003
- * Updated:     16th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      6
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       52
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -151,10 +151,12 @@
 // asserts, so we only do them in debug mode
 #ifdef _DEBUG
 # define __STLSOFT_CF_STATIC_ASSERT_SUPPORT
+# define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 #endif /* _DEBUG */
 
 /* Exception support */
 #define __STLSOFT_CF_EXCEPTION_SUPPORT
+#define STLSOFT_CF_EXCEPTION_SUPPORT
 
 /*  */
 #define __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
@@ -165,6 +167,7 @@
 #endif /* __BORLANDC__ < 0x0550 */
 
 #define __STLSOFT_CF_NAMESPACE_SUPPORT
+#define STLSOFT_CF_NAMESPACE_SUPPORT
 
 #define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
 
@@ -173,6 +176,7 @@
 /* Template support */
 #ifdef __TEMPLATES__
 # define __STLSOFT_CF_TEMPLATE_SUPPORT
+# define STLSOFT_CF_TEMPLATE_SUPPORT
 #else
  /* Not defined */
 #endif /* __TEMPLATES__ */
@@ -230,6 +234,7 @@
  */
 
 #define __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
 #define __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 
@@ -248,8 +253,10 @@
 //#define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
 
 #define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
+#define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 
 #define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
 #if __BORLANDC__ >= 0x0560
 //# define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT

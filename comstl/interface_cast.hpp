@@ -4,11 +4,11 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     29th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MAJOR     3
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MINOR     2
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      83
+# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -292,7 +292,7 @@ protected:
     ss_explicit_k interface_cast_base(J &j)
         : m_pi(do_cast(simple_interface_cast(j)))
     {}
-#else
+#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_base(LPUNKNOWN punk)
         : m_pi(do_cast(punk))
     {}
@@ -393,7 +393,7 @@ public:
     /// The interface type
     typedef ss_typename_type_k parent_class_type::interface_type            interface_type;
     typedef protect_refcount<interface_type>                                *protected_interface_pointer_type;
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     typedef interface_pointer_type                                          protected_interface_pointer_type;
 #endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 

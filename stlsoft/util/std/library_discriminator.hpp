@@ -5,7 +5,7 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     2nd January 2006
+ * Updated:     29th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        86
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,11 +70,8 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-# include <iterator>    // for std::iterator, std::reverse_iterator, std::reverse_bidirectional_iterator
+# include <iterator>    // required for detecting header include guards
 #endif /* !STLSOFT_COMPILER_IS_WATCOM */
 
 /* /////////////////////////////////////////////////////////////////////////////

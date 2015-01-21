@@ -5,11 +5,11 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     13th January 2006
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MAJOR    3
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MINOR    3
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION 3
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     43
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION 4
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -210,7 +210,7 @@ struct array_adaptor_traits<CArray<V, A> >
     typedef A               arg_type;
 };
 
-# else
+# else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* ... otherwise you will need to provide your own traits class, e.g
  *
@@ -247,7 +247,7 @@ template<   class C                             // The container type
         ,   class T = array_adaptor_traits<C>   // The traits type
         >
 class array_adaptor
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The current parameterisation of the type
@@ -288,7 +288,6 @@ public:
         typedef int                                                 index_type;
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         typedef ss_typename_type_k array_adaptor<C, T>::value_type  value_type;
-#else
 #endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     // Construction
@@ -449,6 +448,7 @@ public:
             return m_c->GetAt(m_index + index);
         }
 
+        /// Calculate the distance between \c this and \c rhs
         difference_type distance(class_type const &rhs) const
         {
             return m_index - rhs.m_index;

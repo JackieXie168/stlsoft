@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st October 2002
- * Updated:     20th January 2006
+ * Updated:     27th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_CSTRING_ADAPTORS_MAJOR       3
-# define MFCSTL_VER_MFCSTL_HPP_CSTRING_ADAPTORS_MINOR       0
+# define MFCSTL_VER_MFCSTL_HPP_CSTRING_ADAPTORS_MINOR       1
 # define MFCSTL_VER_MFCSTL_HPP_CSTRING_ADAPTORS_REVISION    3
-# define MFCSTL_VER_MFCSTL_HPP_CSTRING_ADAPTORS_EDIT        57
+# define MFCSTL_VER_MFCSTL_HPP_CSTRING_ADAPTORS_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,17 +78,15 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 //# error mfcstl_cstring_veneer.h is not compatible with Visual C++ 5.0 or earlier
 #endif /* _MSC_VER < 1200 */
 
+#ifndef MFCSTL_INCL_MFCSTL_HPP_AFX_ALLOCATOR
+# include <mfcstl/afx_allocator.hpp>
+#endif /* !MFCSTL_INCL_MFCSTL_HPP_AFX_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 # include <stlsoft/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
-#if defined(STLSOFT_COMPILER_IS_DMC)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-#  include <stlsoft/sap_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
-#endif /* compiler */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
@@ -143,7 +141,7 @@ namespace mfcstl_project
 /// \ingroup concepts_veneer
 template<ss_typename_param_k I>
 class CString_adaptor_base
-    : public stlsoft::stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
@@ -181,7 +179,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
     /// The non-mutating (const) iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -190,7 +188,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
     /// The mutating (non-const) reverse iterator type
     typedef reverse_iterator_base       <   iterator

@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     1st June 2003
- * Updated:     2nd January 2006
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR       1
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR       2
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT        27
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -86,21 +86,21 @@ typedef stlsoft_ns_qual(union_cast)<LPARAM, char const *>       StrA2LPARAM;
 typedef stlsoft_ns_qual(union_cast)<LPARAM, wchar_t const *>    StrW2LPARAM;
 typedef stlsoft_ns_qual(union_cast)<LPARAM, TCHAR const *>      StrT2LPARAM;
 
-typedef stlsoft_ns_qual(union_cast)<HWND, WPARAM>               WPARAM2HWND;
-typedef stlsoft_ns_qual(union_cast)<HWND, LPARAM>               LPARAM2HWND;
+typedef stlsoft_ns_qual(union_cast)<HWND, WPARAM, false>        WPARAM2HWND;
+typedef stlsoft_ns_qual(union_cast)<HWND, LPARAM, false>        LPARAM2HWND;
 
-typedef stlsoft_ns_qual(union_cast)<WPARAM, HWND>               HWND2WPARAM;
-typedef stlsoft_ns_qual(union_cast)<LPARAM, HWND>               HWND2LPARAM;
-typedef stlsoft_ns_qual(union_cast)<UINT, HWND>                 HWND2UINT;
+typedef stlsoft_ns_qual(union_cast)<WPARAM, HWND, false>        HWND2WPARAM;
+typedef stlsoft_ns_qual(union_cast)<LPARAM, HWND, false>        HWND2LPARAM;
+typedef stlsoft_ns_qual(union_cast)<UINT, HWND, false>          HWND2UINT;
 
-typedef stlsoft_ns_qual(union_cast)<int, WPARAM>                WPARAM2int;
-typedef stlsoft_ns_qual(union_cast)<WPARAM, int>                int2WPARAM;
+typedef stlsoft_ns_qual(union_cast)<int, WPARAM, false>         WPARAM2int;
+typedef stlsoft_ns_qual(union_cast)<WPARAM, int, false>         int2WPARAM;
 
 #if defined(DragQueryFile) || \
     defined(HDROP_DEFINED) || \
     defined(WINSHELLAPI) || \
     defined(_INC_SHELLAPI)
-typedef stlsoft_ns_qual(union_cast)<HDROP, WPARAM>              WPARAM2HDROP;
+typedef stlsoft_ns_qual(union_cast)<HDROP, WPARAM, false>       WPARAM2HDROP;
 #endif /* HDROP is defined */
 
 typedef stlsoft_ns_qual(union_cast)<WPARAM, void*>              Ptr2WPARAM;
@@ -111,13 +111,13 @@ typedef stlsoft_ns_qual(union_cast)<char const *, int>          Id2StrA;
 typedef stlsoft_ns_qual(union_cast)<wchar_t const *, int>       Id2StrW;
 typedef stlsoft_ns_qual(union_cast)<TCHAR const *, int>         Id2StrT;
 
-typedef stlsoft_ns_qual(union_cast)<LPARAM, HICON>              HICON2LPARAM;
-typedef stlsoft_ns_qual(union_cast)<HICON, LONG>                LONG2HICON;
+typedef stlsoft_ns_qual(union_cast)<LPARAM, HICON, false>       HICON2LPARAM;
+typedef stlsoft_ns_qual(union_cast)<HICON, LONG, false>         LONG2HICON;
 
 #if defined(_INC_COMMCTRL) || \
     defined(_COMMCTRL_H)
  typedef union_cast<LPNMHDR, LPARAM>                            LPARAM2LPNMHDR;
- typedef union_cast<HTREEITEM, LONG>                            LONG2HTREEITEM;
+ typedef union_cast<HTREEITEM, LONG, false>                     LONG2HTREEITEM;
 #endif /* _INC_COMMCTRL || _COMMCTRL_H */
 
 /* ////////////////////////////////////////////////////////////////////////// */

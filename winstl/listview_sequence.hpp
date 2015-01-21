@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      3
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       47
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -228,7 +228,7 @@ private:
 
 /// Provides an STL-like sequence over the contents of a Windows List-view (<code>"SysListView32"</code>)
 class listview_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The value type

@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    2
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     259
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     261
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file stlsoft/stlsoft.h The root header for the \ref STLSoft project, and for all other \ref projects "projects" */
@@ -601,9 +601,9 @@
 
 /* Template support */
 #if defined(__cplusplus) && \
-    !defined(__STLSOFT_CF_TEMPLATE_SUPPORT)
+    !defined(STLSOFT_CF_TEMPLATE_SUPPORT)
 # error Template support not detected. STLSoft libraries are template-based and require this support.
-#endif /* __STLSOFT_CF_TEMPLATE_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_SUPPORT */
 
 
 /* Native 64-bit integer support */
@@ -642,9 +642,9 @@
  * GCC/Metrowerks/Watcom from doing so.
  */
 
-#ifndef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
 # define __STLSOFT_CF_NOTHROW_BAD_ALLOC
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #ifdef __STLSOFT_CF_NOTHROW_BAD_ALLOC
 # ifdef __STLSOFT_CF_THROW_BAD_ALLOC
@@ -855,16 +855,16 @@
 # undef __STLSOFT_CF_ASSERT_SUPPORT
 #endif /* _STLSOFT_NO_ASSERT && __STLSOFT_CF_ASSERT_SUPPORT */
 
-/** \def STLSOFT_ASSERT(expr)
+/** \def STLSOFT_ASSERT(ex)
  * Defines a runtime assertion
  *
- * \param expr Must be non-zero, or an assertion will be fired
+ * \param ex Must be non-zero, or an assertion will be fired
  */
 #ifdef __STLSOFT_CF_ASSERT_SUPPORT
 # ifdef __STLSOFT_CF_USE_cassert
   /* Using the standard assertion mechanism, located in <cassert> */
 #  include <cassert>
-#  define STLSOFT_ASSERT(expr)                  assert(expr)
+#  define STLSOFT_ASSERT(ex)                    assert(ex)
 # else /* ? __STLSOFT_CF_USE_cassert */
   /* Using either a custom or proprietary assertion mechanism, so must
    * provide the header include name
@@ -892,11 +892,11 @@
 # undef stlsoft_assert
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \def stlsoft_assert(expr)
+/** \def stlsoft_assert(ex)
  *
  * Defines a runtime assertion
  *
- * \param expr Must be non-zero, or an assertion will be fired
+ * \param ex Must be non-zero, or an assertion will be fired
  *
  * \deprecated
  *
@@ -907,31 +907,31 @@
 #endif /* !stlsoft_assert */
 
 
-/** \def STLSOFT_MESSAGE_ASSERT(msg, expr)
+/** \def STLSOFT_MESSAGE_ASSERT(msg, ex)
  * Defines a runtime assertion, with message
  *
- * \param expr Must be non-zero, or an assertion will be fired
+ * \param ex Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
 #if defined(__STLSOFT_CF_ASSERT_SUPPORT)
 # if defined(__WATCOMC__)
-#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT(expr)
+#  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT(ex)
 # elif defined(__COMO__) || \
        defined(__GNUC__) || \
        defined(__MWERKS__)
-#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT((msg && expr))
+#  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT((msg && ex))
 # else /* ? compiler */
-#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT((msg, expr))
+#  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT((msg, ex))
 # endif /* __WATCOMC__ */
 #else /* ? __STLSOFT_CF_ASSERT_SUPPORT */
-# define STLSOFT_MESSAGE_ASSERT(msg, expr)
+# define STLSOFT_MESSAGE_ASSERT(msg, ex)
 #endif /* __STLSOFT_CF_ASSERT_SUPPORT */
 
-/** \def stlsoft_message_assert(expr)
+/** \def stlsoft_message_assert(ex)
  *
  * Defines a runtime assertion, with message
  *
- * \param expr Must be non-zero, or an assertion will be fired
+ * \param ex Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  *
  * \deprecated
@@ -941,13 +941,13 @@
 #define stlsoft_message_assert(msg, ex)         STLSOFT_MESSAGE_ASSERT(msg, ex)
 
 
-/** \def STLSOFT_STATIC_ASSERT(expr)
+/** \def STLSOFT_STATIC_ASSERT(ex)
  *
  * Defines a compile-time assertion
  *
- * \param expr Must be non-zero, or compilation will fail
+ * \param ex Must be non-zero, or compilation will fail
  */
-#if defined(__STLSOFT_CF_STATIC_ASSERT_SUPPORT)
+#if defined(STLSOFT_CF_STATIC_ASSERT_SUPPORT)
 # if (  defined(STLSOFT_COMPILER_IS_GCC) && \
         (   __GNUC__ < 3 || \
             (   __GNUC__ == 3 && \
@@ -955,23 +955,23 @@
      defined(STLSOFT_COMPILER_IS_INTEL)
 #   define STLSOFT_STATIC_ASSERT(ex)        do { typedef int ai[(ex) ? 1 : -1]; } while(0)
 #  else /* ? compiler */
-#   define STLSOFT_STATIC_ASSERT(expr)          do { typedef int ai[(expr) ? 1 : 0]; } while(0)
+#   define STLSOFT_STATIC_ASSERT(ex)        do { typedef int ai[(ex) ? 1 : 0]; } while(0)
 # endif /* compiler */
-#else /* ? __STLSOFT_CF_STATIC_ASSERT_SUPPORT */
+#else /* ? STLSOFT_CF_STATIC_ASSERT_SUPPORT */
 # define STLSOFT_STATIC_ASSERT(ex)          STLSOFT_MESSAGE_ASSERT("Static assertion failed: ", (ex))
-#endif /* __STLSOFT_CF_STATIC_ASSERT_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ASSERT_SUPPORT */
 
-/** \def stlsoft_static_assert(expr)
+/** \def stlsoft_static_assert(ex)
  *
  * Defines a compile-time assertion
  *
- * \param expr Must be non-zero, or compilation will fail
+ * \param ex Must be non-zero, or compilation will fail
  *
  * \deprecated
  *
  * \note This is a simple \#define for STLSOFT_STATIC_ASSERT()
  */
-#define stlsoft_static_assert(expr)             STLSOFT_STATIC_ASSERT(expr)
+#define stlsoft_static_assert(ex)           STLSOFT_STATIC_ASSERT(ex)
 
 /** @} */
 

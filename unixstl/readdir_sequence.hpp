@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     19th January 2006
+ * Updated:     27th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MINOR     6
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      95
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MINOR     7
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -164,7 +164,7 @@ public:
 /// iteration over the contents of a directory.
 
 class readdir_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
@@ -186,6 +186,8 @@ public:
 #else /* ? UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
     typedef char_type const                                     *value_type;
 #endif /* UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
+    /// The flags type
+    typedef us_int_t                                            flags_type;
 
 //    typedef const_iterator::pointer            pointer;
 //    typedef const_iterator::pointer const      const_pointer;
@@ -231,10 +233,10 @@ public:
     /// this reflects the default behaviour of \c readdir(), and also because it is the
     /// most efficient.
 #if 0
-    readdir_sequence(char_type const *directory, us_int_t flags = directories | files);
+    readdir_sequence(char_type const *directory, flags_type flags = directories | files);
 #else /* ? 0 */
     template <ss_typename_param_k S>
-    readdir_sequence(S const &directory, us_int_t flags = directories | files)
+    readdir_sequence(S const &directory, flags_type flags = directories | files)
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_(stlsoft_ns_qual(c_str_ptr)(directory), flags))
     {}
@@ -273,23 +275,23 @@ public:
     /// determination of defaults, be different from those specified in its constructor. In
     /// other words, if <code>includeDots</code> is specified, this function
     /// will return <code>includeDots | directories | files</code>
-    us_int_t            get_flags() const;
+    flags_type          get_flags() const;
 /// @}
 
 /// \name Implementation
 /// @{
 private:
     /// \brief Ensures that the flags are correct
-    static us_int_t     validate_flags_(us_int_t flags);
+    static flags_type   validate_flags_(flags_type flags);
 
     /// \brief Prepares the directory, according to the given flags
-    static string_type  prepare_directory_(char_type const *directory, us_int_t flags);
+    static string_type  prepare_directory_(char_type const *directory, flags_type flags);
 /// @}
 
 /// \name Members
 /// @{
 private:
-    const us_int_t      m_flags;
+    const flags_type    m_flags;
     const string_type   m_directory;
 /// @}
 
@@ -314,6 +316,8 @@ class readdir_sequence::const_iterator
                                         ,   readdir_sequence::value_type    // By-Value Temporary reference
                                         >
 {
+/// \name Members
+/// @{
 private:
     typedef readdir_sequence::string_type           string_type;
 public:
@@ -321,15 +325,19 @@ public:
     typedef const_iterator                          class_type;
     /// The value type
     typedef readdir_sequence::value_type            value_type;
+    /// The flags type
+    typedef readdir_sequence::flags_type            flags_type;
 //    typedef value_type                            *pointer;
 //    typedef value_type                            &reference;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 private:
     friend class readdir_sequence;
 
     /// Construct an instance and begin a sequence iteration on the given dir.
-    const_iterator(DIR *dir, string_type const &directory, us_int_t flags);
+    const_iterator(DIR *dir, string_type const &directory, flags_type flags);
 public:
     /// Default constructor
     const_iterator();
@@ -340,8 +348,10 @@ public:
 
     /// Copy assignment operator
     class_type const &operator =(class_type const &rhs);
+/// @}
 
-// Accessors
+/// \name Input Iterator Methods
+/// @{
 public:
     /// Returns the value representative
     value_type operator *() const;
@@ -363,33 +373,44 @@ public:
     /// \retval true if the iterators are equivalent
     /// \retval false if the iterators are not equivalent
     bool equal(class_type const &rhs) const;
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     struct shared_handle;
 
     shared_handle   *m_handle;  // The DIR handle, shared with other iterator instances
     struct dirent   *m_entry;   // The current entry
-    us_int_t        m_flags;    // flags. (Only non-const, to allow copy assignment)
+    flags_type      m_flags;    // flags. (Only non-const, to allow copy assignment)
     string_type     m_scratch;  // Holds the directory, and is a scratch area
     size_type       m_dirLen;   // The length of the directory
+/// @}
 };
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 struct readdir_sequence::const_iterator::shared_handle
 {
+/// \name Member Types
+/// @{
 public:
     typedef shared_handle   class_type;
+    typedef DIR             *handle_type;
+/// @}
 
-// Members
+/// \name Members
+/// @{
 public:
-    DIR         *m_dir;
+    handle_type m_dir;
 private:
     ss_sint32_t m_refCount;
+/// @}
 
+/// \name Construction
+/// @{
 public:
-    ss_explicit_k shared_handle(DIR *d)
-        : m_dir(d)
+    ss_explicit_k shared_handle(handle_type h)
+        : m_dir(h)
         , m_refCount(1)
     {}
     ss_sint32_t AddRef()
@@ -421,10 +442,14 @@ private:
             ::closedir(m_dir);
         }
     }
+/// @}
 
+/// \name Not to be implemented
+/// @{
 private:
     shared_handle(class_type const &);
     class_type &operator =(class_type const &);
+/// @}
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -458,15 +483,15 @@ inline us_bool_t operator !=(   readdir_sequence::const_iterator const &lhs
 
 // readdir_sequence
 
-inline /* static */ us_int_t readdir_sequence::validate_flags_(us_int_t flags)
+inline /* static */ readdir_sequence::flags_type readdir_sequence::validate_flags_(readdir_sequence::flags_type flags)
 {
-    const us_int_t  validFlags  =   0
-                                |   includeDots
-                                |   directories
-                                |   files       
-                                |   fullPath
-                                |   absolutePath
-                                |   0;
+    const flags_type    validFlags  =   0
+                                    |   includeDots
+                                    |   directories
+                                    |   files       
+                                    |   fullPath
+                                    |   absolutePath
+                                    |   0;
 
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
@@ -479,7 +504,7 @@ inline /* static */ us_int_t readdir_sequence::validate_flags_(us_int_t flags)
     return flags;
 }
 
-inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_directory_(char_type const *directory, us_int_t flags)
+inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_directory_(char_type const *directory, readdir_sequence::flags_type flags)
 {
     if( NULL == directory ||
         '\0' == *directory)
@@ -498,11 +523,11 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
 
         if(0 == n)
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw readdir_sequence_exception("Failed to enumerate directory", errno);
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             traits_type::str_n_copy(&path[0], directory, path.size());
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
     else
@@ -518,7 +543,7 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
 }
 
 #if 0
-inline readdir_sequence::readdir_sequence(char_type const *directory, us_int_t flags /* = directories | files */)
+inline readdir_sequence::readdir_sequence(char_type const *directory, readdir_sequence::flags_type flags /* = directories | files */)
     : m_flags(validate_flags_(flags))
     , m_directory(prepare_directory_(stlsoft_ns_qual(c_str_ptr)(directory), flags))
 {}
@@ -530,14 +555,27 @@ inline readdir_sequence::const_iterator readdir_sequence::begin() const
 
     if(NULL == dir)
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw readdir_sequence_exception("Failed to enumerate directory", errno);
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return const_iterator();
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
-    return const_iterator(dir, m_directory, m_flags);
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    try
+    {
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        return const_iterator(dir, m_directory, m_flags);
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    }
+    catch(...)
+    {
+        ::closedir(dir);
+
+        throw;
+    }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 inline readdir_sequence::const_iterator readdir_sequence::end() const
@@ -555,7 +593,7 @@ inline readdir_sequence::string_type const &readdir_sequence::get_directory() co
     return m_directory;
 }
 
-inline us_int_t readdir_sequence::get_flags() const
+inline readdir_sequence::flags_type readdir_sequence::get_flags() const
 {
     return m_flags;
 }
@@ -563,7 +601,7 @@ inline us_int_t readdir_sequence::get_flags() const
 
 // readdir_sequence::const_iterator;
 
-inline readdir_sequence::const_iterator::const_iterator(DIR *dir, readdir_sequence::string_type const &directory, us_int_t flags)
+inline readdir_sequence::const_iterator::const_iterator(DIR *dir, readdir_sequence::string_type const &directory, readdir_sequence::flags_type flags)
     : m_handle(new shared_handle(dir))
     , m_entry(NULL)
     , m_flags(flags)
@@ -572,7 +610,11 @@ inline readdir_sequence::const_iterator::const_iterator(DIR *dir, readdir_sequen
 {
     UNIXSTL_ASSERT(traits_type::has_dir_end(m_scratch.c_str()));
 
-    if(NULL != m_handle)
+    if(NULL == m_handle)
+    {
+        ::closedir(dir);
+    }
+    else
     {
         operator ++();
     }
@@ -609,10 +651,7 @@ inline readdir_sequence::const_iterator::~const_iterator() stlsoft_throw_0()
 
 inline readdir_sequence::const_iterator::class_type const &readdir_sequence::const_iterator::operator =(readdir_sequence::const_iterator::class_type const &rhs)
 {
-    if(NULL != m_handle)
-    {
-        m_handle->Release();
-    }
+    shared_handle   *this_handle    =   m_handle;
 
     m_handle  =   rhs.m_handle;
     m_entry   =   rhs.m_entry;
@@ -623,6 +662,11 @@ inline readdir_sequence::const_iterator::class_type const &readdir_sequence::con
     if(NULL != m_handle)
     {
         m_handle->AddRef();
+    }
+
+    if(NULL != this_handle)
+    {
+        this_handle->Release();
     }
 
     return *this;
@@ -653,9 +697,9 @@ inline readdir_sequence::const_iterator::class_type &readdir_sequence::const_ite
         {
             if(0 != errno)
             {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 throw readdir_sequence_exception("Partial failure of directory enumeration", errno);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
         else

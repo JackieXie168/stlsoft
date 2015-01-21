@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PATH_MAJOR       5
 # define WINSTL_VER_WINSTL_HPP_PATH_MINOR       4
-# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        191
+# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        192
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,9 +77,6 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>            // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
-# include <stlsoft/string_tokeniser.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */

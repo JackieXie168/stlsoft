@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     26th December 2005
+ * Updated:     29th January 2006
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MINOR       2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        72
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    3
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,9 @@
 # include <stlsoft/string_access_fwd.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
 
-#ifdef __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
-# undef __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
-#endif /* __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
+#ifdef STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
+# undef STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
+#endif /* STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
 
 /* No currently supported Watcom version can handle std::string. */
 #ifdef STLSOFT_COMPILER_IS_WATCOM
@@ -82,14 +82,14 @@
  * (ii) for std::char_traits
  *
  * If STLSOFT_STRING_ACCESS_NO_STD_STRING is defined, then <string> is not
- * included, and __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits is not
+ * included, and STLSOFT_CF_STRING_ACCESS_USE_std_char_traits is not
  * defined.
  *
  * If _STLSOFT_NO_NAMESPACE is defined then
- * __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits is not defined.
+ * STLSOFT_CF_STRING_ACCESS_USE_std_char_traits is not defined.
  *
  * If __STLSOFT_CF_std_char_traits_AVAILABLE is not defined then
- * __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits is not defined.
+ * STLSOFT_CF_STRING_ACCESS_USE_std_char_traits is not defined.
  *
  */
 
@@ -98,13 +98,13 @@
 #endif /* _STLSOFT_STRING_ACCESS_NO_STD_STRING */
 
 #if defined(STLSOFT_STRING_ACCESS_NO_STD_STRING)
-# undef __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
+# undef STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
 #elif defined(_STLSOFT_NO_NAMESPACE)
-# undef __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
+# undef STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
 #elif !defined(__STLSOFT_CF_std_char_traits_AVAILABLE)
-# undef __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
+# undef STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
 #else /* ? Use char_traits? */
-# define __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
+# define STLSOFT_CF_STRING_ACCESS_USE_std_char_traits
 #endif /* Use char_traits? */
 
 /* Are we going to cater for std::(w)string? */
@@ -115,11 +115,11 @@
 /* Include stlsoft_char_traits if not using std::string, or std::char_traits
  * is not available.
  */
-#if !defined(__STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
+#if !defined(STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 #  include <stlsoft/char_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
-#endif /* !__STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
+#endif /* !STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
 
 #if defined(STLSOFT_COMPILER_IS_GCC)
 # include <wchar.h>
@@ -624,9 +624,9 @@ inline C const *c_str_data(stlport::basic_string<C> const &s)
 /// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
 inline ss_size_t c_str_len_a(ss_char_a_t const *s)
 {
-#if !defined(__STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
+#if !defined(STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
     return (s == 0) ? 0 : stlsoft_char_traits<ss_char_a_t>::length(s);
-#else /* ? __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
+#else /* ? STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
     return (s == 0) ? 0 : stlsoft_ns_qual_std(char_traits)<ss_char_a_t>::length(s);
 #endif /* !__STLSOFT_CF_std_char_traits_AVAILABLE */
 }
@@ -643,11 +643,11 @@ inline ss_size_t c_str_len_w(ss_char_w_t const *s)
 {
 #if defined(STLSOFT_COMPILER_IS_GCC)
     return (s == 0) ? 0 : wcslen(s);
-#elif !defined(__STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
+#elif !defined(STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
     return (s == 0) ? 0 : stlsoft_char_traits<ss_char_w_t>::length(s);
-#else /* ? __STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
+#else /* ? STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
     return (s == 0) ? 0 : stlsoft_ns_qual_std(char_traits)<ss_char_w_t>::length(s);
-#endif /* !__STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
+#endif /* !STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
 }
 
 /// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character

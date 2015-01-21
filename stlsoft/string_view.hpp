@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     11th January 2006
+ * Updated:     22nd January 2006
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for 
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MAJOR      2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MINOR      11
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MINOR      13
 # define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       56
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -90,9 +90,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                   // for std::out_of_range
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -187,7 +187,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
 #endif /* 0 */
     /// The non-mutating (const) iterator type
     typedef
@@ -197,7 +197,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 #if 0
@@ -315,12 +315,12 @@ public:
     /// block constituting the string's viewed area.
     const_reference         operator [](size_type index) const;
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     /// Returns non-mutable (const) reference at the given index
     ///
     /// \note Throws std::out_of_range if index >= size()
     const_reference         at(size_type index) const;
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
     /// Returns null-terminated non-mutable (const) pointer to string data
     ///
@@ -1299,7 +1299,7 @@ inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_stri
     return (index == size()) ? *empty_string_() : m_base[index];
 }
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1324,7 +1324,7 @@ inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_stri
 
     return m_base[index];
 }
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

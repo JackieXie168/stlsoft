@@ -4,7 +4,7 @@
  * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     11th January 2006
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MINOR      4
+# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MINOR      6
 # define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_EDIT       153
+# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_EDIT       155
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -194,7 +194,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -202,7 +202,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -338,7 +338,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -346,7 +346,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -488,7 +488,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -496,7 +496,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -639,7 +639,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -647,7 +647,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -796,7 +796,7 @@ inline ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type fixed_array_1d<
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_1d<T, A, P, R>::range_check_(ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < m_d0))
     {
         stlsoft_ns_qual_std(out_of_range)   x("fixed array index out of range");
@@ -810,7 +810,7 @@ inline void fixed_array_1d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1060,7 +1060,7 @@ inline ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type fixed_array_2d<
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i1) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if( !(i0 < m_d0) ||
         !(i1 < m_d1))
     {
@@ -1075,13 +1075,13 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < m_d0))
     {
         stlsoft_ns_qual_std(out_of_range)   x("fixed array index out of range");
@@ -1095,7 +1095,7 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1378,7 +1378,7 @@ inline ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type fixed_array_3d<
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i2) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if( !(i0 < m_d0) ||
         !(i1 < m_d1) ||
         !(i2 < m_d2))
@@ -1394,13 +1394,13 @@ inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < m_d0))
     {
         stlsoft_ns_qual_std(out_of_range)   x("fixed array index out of range");
@@ -1414,7 +1414,7 @@ inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1701,7 +1701,7 @@ inline ss_typename_type_k fixed_array_4d<T, A, P, R>::index_type fixed_array_4d<
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i3) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if( !(i0 < m_d0) ||
         !(i1 < m_d1) ||
         !(i2 < m_d2) ||
@@ -1718,13 +1718,13 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < m_d0))
     {
         stlsoft_ns_qual_std(out_of_range)   x("fixed array index out of range");
@@ -1738,7 +1738,7 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
     }
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>

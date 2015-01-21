@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MAJOR      3
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      4
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   1
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       64
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      5
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   2
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -141,7 +141,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_searchpath_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The character type
@@ -167,12 +167,12 @@ public:
     /// The non-mutating (const) iterator type
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     typedef                   stlsoft_ns_qual(pointer_iterator)<   value_type
-#else
+#else /* ? compiler */
     typedef ss_typename_type_k stlsoft_ns_qual(pointer_iterator)<   value_type
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
                                                                 ,   const_pointer
                                                                 ,   const_reference
-                                                                >::iterator_type    const_iterator;
+                                                                >::type             const_iterator;
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator

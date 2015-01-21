@@ -1,5 +1,5 @@
 
-// Updated: 17th January 2006
+// Updated: 23rd January 2006
 
 #if !defined(INETSTL_INCL_INETSTL_HPP_FINDFILE_SEQUENCE)
 # error This file cannot be directly included, and should only be included within inetstl/findfile_sequence.hpp
@@ -49,6 +49,16 @@ namespace unittest
                         findfile_sequence::const_iterator   b   =   ffs.begin();
                         findfile_sequence::const_iterator   e   =   ffs.end();
                         int                                 n   =   0;
+
+                        {
+                            findfile_sequence::const_iterator   b   =   ffs.begin();
+                            findfile_sequence::const_iterator   b2;
+
+                            b2  =   b2;
+                            b2  =   b;
+                            b   =   b;
+                            b2  =   ffs.begin();
+                        }
 
                         for(; b != e; ++b, ++n)
                         {

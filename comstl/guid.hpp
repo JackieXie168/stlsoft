@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     2nd January 2006
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_HPP_COMSTL_GUID_MAJOR      3
-# define _COMSTL_VER_HPP_COMSTL_GUID_MINOR      2
-# define _COMSTL_VER_HPP_COMSTL_GUID_REVISION   2
-# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       23
+# define _COMSTL_VER_HPP_COMSTL_GUID_MINOR      3
+# define _COMSTL_VER_HPP_COMSTL_GUID_REVISION   1
+# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,11 +60,11 @@
 #ifndef COMSTL_INCL_HPP_COMSTL_STRING_ACCESS
 # include <comstl/string_access.hpp>
 #endif /* !COMSTL_INCL_HPP_COMSTL_STRING_ACCESS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef COMSTL_INCL_COMSTL_HPP_EXCEPTIONS
 #  include <comstl/exceptions.hpp>
 # endif /* !COMSTL_INCL_COMSTL_HPP_EXCEPTIONS */
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -108,7 +108,7 @@ public:
     ///
     /// \note If a new value cannot be aquired, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (__STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
     ///   instance GUID is set to GUID_NULL otherwise.
     guid();
     /// \brief Constructs with a GUID value equivalent to the given ANSI string
@@ -121,7 +121,7 @@ public:
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (__STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
     ///   instance GUID is set to GUID_NULL otherwise.
     ss_explicit_k guid(cs_char_a_t const *s);
     /// \brief Constructs with a GUID value equivalent to the given Unicode string
@@ -134,7 +134,7 @@ public:
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (__STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
     ///   instance GUID is set to GUID_NULL otherwise.
     ss_explicit_k guid(cs_char_w_t const *s);
     /// \brief Copy constructs from the given GUID
@@ -156,7 +156,7 @@ public:
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (__STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
     ///   instance GUID is set to GUID_NULL otherwise.
     guid &operator =(cs_char_a_t const *s);
     /// \brief Assigns to a GUID value equivalent to the given string
@@ -171,7 +171,7 @@ public:
     ///
     /// \note If a new value cannot be determined, then an instance of
     ///   com_exception is thrown if compiled under conditions where exceptions
-    ///   are supported (__STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
+    ///   are supported (STLSOFT_CF_EXCEPTION_SUPPORT is defined), or the 
     ///   instance GUID is set to GUID_NULL otherwise.
     guid &operator =(cs_char_w_t const *s);
     /// \brief Copies the given GUID value
@@ -344,11 +344,11 @@ inline guid::guid()
 
     if(FAILED(hr))
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw com_exception("Could not allocate GUID", hr);
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_guid = GUID_NULL;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 
@@ -373,11 +373,11 @@ inline /* ss_explicit_k */ guid::guid(cs_char_a_t const *s)
 
     if(FAILED(hr))
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw com_exception("Could not convert string to valid GUID", hr);
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_guid = GUID_NULL;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 
@@ -387,11 +387,11 @@ inline /* ss_explicit_k */ guid::guid(cs_char_w_t const *s)
 
     if(FAILED(hr))
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw com_exception("Could not convert string to valid GUID", hr);
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_guid = GUID_NULL;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 

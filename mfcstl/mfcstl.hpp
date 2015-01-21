@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     2
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  1
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      73
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp The root header for the \ref MFCSTL project */
@@ -233,14 +233,14 @@
 #  error Versions of Visual C++ prior to 4.2 are not supported by the MFCSTL libraries
 # endif /* _MSC_VER */
 
-#else
+#else /* ? compiler */
 /* No recognised compiler */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _MFCSTL_COMPILER_IS_UNKNOWN
 #  ifdef _STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to MFCSTL")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
-# else
+# else /* ? _STLSOFT_FORCE_ANY_COMPILER */
 #  error Currently only Borland C++, Digital Mars C/C++, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the MFCSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
@@ -362,7 +362,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifndef _MFCSTL_NO_NAMESPACE
 # define mfcstl_ns_qual(x)          ::mfcstl::x
 # define mfcstl_ns_using(x)         using ::mfcstl::x;
-#else
+#else /* ? _MFCSTL_NO_NAMESPACE */
 # define mfcstl_ns_qual(x)          x
 # define mfcstl_ns_using(x)
 #endif /* !_MFCSTL_NO_NAMESPACE */
@@ -376,7 +376,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifdef __STLSOFT_CF_std_NAMESPACE
 # define mfcstl_ns_qual_std(x)      ::std::x
 # define mfcstl_ns_using_std(x)     using ::std::x;
-#else
+#else /* ? __STLSOFT_CF_std_NAMESPACE */
 # define mfcstl_ns_qual_std(x)      x
 # define mfcstl_ns_using_std(x)
 #endif /* !__STLSOFT_CF_std_NAMESPACE */

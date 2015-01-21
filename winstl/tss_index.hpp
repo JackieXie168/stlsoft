@@ -4,11 +4,11 @@
  * Purpose:     Win32 TLS slot index.
  *
  * Created:     20th January 1999
- * Updated:     22nd December 2005
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_TSS_INDEX_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_TSS_INDEX_MINOR      1
+# define WINSTL_VER_WINSTL_HPP_TSS_INDEX_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_TSS_INDEX_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_TSS_INDEX_EDIT       21
+# define WINSTL_VER_WINSTL_HPP_TSS_INDEX_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,11 +59,11 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -105,7 +105,7 @@ namespace winstl_project
  * Classes
  */
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 class tss_exception
     : public windows_exception
 {
@@ -133,7 +133,7 @@ public:
     }
 /// @}
 };
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 
 /// A TLS index
@@ -192,11 +192,11 @@ private:
 
         if(0xFFFFFFFF == index)
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw_exception_(tss_exception(::GetLastError()));
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::RaiseException(STATUS_NO_MEMORY, EXCEPTION_NONCONTINUABLE, 0, 0);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
         return index;

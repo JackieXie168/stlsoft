@@ -4,11 +4,11 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     22nd December 2005
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR    4
-# define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_MINOR    1
+# define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_EDIT     96
+# define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -87,11 +87,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
 # include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
 # include <stlsoft/operator_bool.hpp>     // for operator_bool_generator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
@@ -313,19 +313,19 @@ inline void basic_current_directory_scope<C, T>::init_(ss_typename_type_k basic_
 {
     if(0 == traits_type::get_current_directory(m_previous.size(), &m_previous[0]))
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw windows_exception("could not determine current directory", ::GetLastError());
-#else /* ?__STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
         m_previous[0] = '\0';
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     else if(!traits_type::set_current_directory(dir))
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw windows_exception("could not change current directory", ::GetLastError());
-#else /* ?__STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
         m_previous[0] = '\0';
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 

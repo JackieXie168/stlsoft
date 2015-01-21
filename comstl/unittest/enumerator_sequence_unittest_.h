@@ -1,5 +1,5 @@
 
-// Updated: 13th January 2006
+// Updated: 31st January 2006
 
 #if !defined(COMSTL_INCL_COMSTL_HPP_ENUMERATOR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/enumerator_sequence.hpp
@@ -181,6 +181,11 @@ namespace unittest
                             }
                             else
                             {
+                                typedef enumerator_sequence<IEnumFileEntry_
+                                                        ,   IFileEntry_*
+                                                        ,   interface_policy<IFileEntry_>
+                                                        >           enumerator_t;
+
                                 IEnumFileEntry_ *penFile;
 
                                 hr = punkEnum->QueryInterface(IID_IEnumFileEntry_, reinterpret_cast<void**>(&penFile));
@@ -192,11 +197,6 @@ namespace unittest
                                 }
                                 else
                                 {
-                                    typedef enumerator_sequence<IEnumFileEntry_
-                                                            ,   IFileEntry_*
-                                                            ,   interface_policy<IFileEntry_>
-                                                            >           enumerator_t;
-
                                     enumerator_t            en(penFile, false); // Eat the reference
 
 // For some reason, calling begin() *in this context* causes an ICE for VC++ (pre 7.1), so we skip it
@@ -273,54 +273,60 @@ namespace unittest
             }
             else
             {
-                LPENUMSTRING    lpenStr;
+                typedef enumerator_sequence<IEnumString
+                                        ,   LPOLESTR
+                                        ,   LPOLESTR_policy
+                                        >           enumerator_t;
 
-                hr = punkEnum->QueryInterface(IID_IEnumString, reinterpret_cast<void**>(&lpenStr));
-
-                if(FAILED(hr))
+                { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
                 {
-                    r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
-                    bSuccess = false;
-                }
-                else
-                {
-                    typedef enumerator_sequence<IEnumString
-                                            ,   LPOLESTR
-                                            ,   LPOLESTR_policy
-                                            >           enumerator_t;
+                    LPENUMSTRING    lpenStr;
 
-                    enumerator_t            en(lpenStr, false); // Eat the reference
+                    hr = punkEnum->QueryInterface(IID_IEnumString, reinterpret_cast<void**>(&lpenStr));
 
-                    r->report(  "Enumerating strings using IEnumString", -1, NULL);
-
-                    enumerator_t::iterator  b   =   en.begin();
-                    enumerator_t::iterator  e   =   en.end();
-
-                    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(strings); ++i)
+                    if(FAILED(hr))
                     {
-                        if(en.end() == b)
+                        r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                        bSuccess = false;
+                    }
+                    else
+                    {
+                        enumerator_t            en(lpenStr, false, q); // Eat the reference
+                        char                    msg[101];
+
+                        ::sprintf(&msg[0], "Enumerating strings using IEnumString; quanta=%u", q);
+
+                        r->report(msg, -1, NULL);
+
+                        enumerator_t::iterator  b   =   en.begin();
+                        enumerator_t::iterator  e   =   en.end();
+
+                        { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(strings); ++i)
+                        {
+                            if(en.end() == b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                            else
+                            {
+                                if(0 != ::wcscmp(*b, strings[i]))
+                                {
+                                    r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                    bSuccess = false;
+                                }
+
+                                ++b;
+                            }
+                        }}
+
+                        if(en.end() != b)
                         {
                             r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
                             bSuccess = false;
                         }
-                        else
-                        {
-                            if(0 != ::wcscmp(*b, strings[i]))
-                            {
-                                r->report("Enumerator sequence element contains the wrong value", __LINE__);
-                                bSuccess = false;
-                            }
-
-                            ++b;
-                        }
-                    }}
-
-                    if(en.end() != b)
-                    {
-                        r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
-                        bSuccess = false;
                     }
-                }
+                }}
 
                 punkEnum->Release();
             }
@@ -332,15 +338,26 @@ namespace unittest
         {
             using namespace Synesis_COM;
 
-            GUID   guids[3];
+            GUID        guids[14];
 
-            guids[0] = IID_IUnknown;
-            guids[1] = IID_IClassFactory;
-            guids[2] = IID_IMarshal;
+            guids[0]    =   IID_IUnknown;
+            guids[1]    =   IID_IClassFactory;
+            guids[2]    =   IID_IMarshal;
+            guids[3]    =   IID_IMalloc;
+            guids[4]    =   IID_IMallocSpy;
+            guids[5]    =   IID_IStdMarshalInfo;
+            guids[6]    =   IID_IExternalConnection;
+            guids[7]    =   /* IID_IMultiQI; */IID_IEnumUnknown;
+            guids[8]    =   IID_IEnumUnknown;
+            guids[9]    =   IID_IBindCtx;
+            guids[10]   =   IID_IEnumMoniker;
+            guids[11]   =   IID_IRunnableObject;
+            guids[12]   =   IID_IRunningObjectTable;
+            guids[13]   =   IID_IPersist;
 
-            ss_bool_t               bSuccess    =   true;
-            LPUNKNOWN               punkEnum    =   NULL;
-            HRESULT                 hr          =   winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(146)), guids, STLSOFT_NUM_ELEMENTS(guids), reinterpret_cast<void**>(&punkEnum));
+            ss_bool_t   bSuccess    =   true;
+            LPUNKNOWN   punkEnum    =   NULL;
+            HRESULT     hr          =   winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(146)), guids, STLSOFT_NUM_ELEMENTS(guids), reinterpret_cast<void**>(&punkEnum));
 
             if(FAILED(hr))
             {
@@ -349,53 +366,419 @@ namespace unittest
             }
             else
             {
-                LPENUMGUID    lpenStr;
-
-                hr = punkEnum->QueryInterface(IID_IEnumGUID_(), reinterpret_cast<void**>(&lpenStr));
-
-                if(FAILED(hr))
+                // 1. input_cloning_policy
                 {
-                    r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
-                    bSuccess = false;
-                }
-                else
-                {
+                    r->report("input_cloning_policy", -1, NULL);
+
                     typedef enumerator_sequence<IEnumGUID
                                             ,   GUID
                                             ,   GUID_policy
+                                            ,   GUID
+                                            ,   input_cloning_policy<IEnumGUID>
+                                            ,   10
                                             >           enumerator_t;
 
-                    enumerator_t            en(lpenStr, false); // Eat the reference
-
-                    r->report(  "Enumerating GUIDs using IEnumGUID", -1, NULL);
-
-                    enumerator_t::iterator  b   =   en.begin();
-                    enumerator_t::iterator  e   =   en.end();
-
-                    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(guids); ++i)
+                    { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
                     {
-                        if(en.end() == b)
+                        LPENUMGUID    lpenStr;
+
+                        hr = punkEnum->QueryInterface(IID_IEnumGUID_(), reinterpret_cast<void**>(&lpenStr));
+
+                        if(FAILED(hr))
                         {
-                            r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                            r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
                             bSuccess = false;
                         }
                         else
                         {
-                            if(*b != guids[i])
+                            enumerator_t            en(lpenStr, false, q); // Eat the reference
+                            char                    msg[101];
+
+                            ::sprintf(&msg[0], "Enumerating GUIDs using IEnumGUID; quanta=%u", q);
+
+                            r->report(msg, -1, NULL);
+
+                            enumerator_t::iterator  b   =   en.begin();
+                            enumerator_t::iterator  e   =   en.end();
+
+                            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(guids); ++i)
                             {
-                                r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                if(en.end() == b)
+                                {
+                                    r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                    bSuccess = false;
+                                }
+                                else
+                                {
+                                    if(*b != guids[i])
+                                    {
+                                        r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                        bSuccess = false;
+                                    }
+
+                                    ++b;
+                                }
+                            }}
+
+                            if(en.end() != b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
                                 bSuccess = false;
                             }
-
-                            ++b;
                         }
                     }}
+                }
 
-                    if(en.end() != b)
+                // 2. input_cloning_policy with copying
+                {
+                    r->report("input_cloning_policy with copying", -1, NULL);
+
+                    typedef enumerator_sequence<IEnumGUID
+                                            ,   GUID
+                                            ,   GUID_policy
+                                            ,   GUID
+                                            ,   input_cloning_policy<IEnumGUID>
+                                            ,   10
+                                            >           enumerator_t;
+
+                    { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
                     {
-                        r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
-                        bSuccess = false;
-                    }
+                        LPENUMGUID    lpenStr;
+
+                        hr = punkEnum->QueryInterface(IID_IEnumGUID_(), reinterpret_cast<void**>(&lpenStr));
+
+                        if(FAILED(hr))
+                        {
+                            r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                            bSuccess = false;
+                        }
+                        else
+                        {
+                            enumerator_t            en(lpenStr, false, q); // Eat the reference
+                            char                    msg[101];
+
+                            ::sprintf(&msg[0], "Enumerating GUIDs using IEnumGUID; quanta=%u", q);
+
+                            r->report(msg, -1, NULL);
+
+                            enumerator_t::iterator  b   =   en.begin();
+                            enumerator_t::iterator  e   =   en.end();
+
+                            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(guids); ++i)
+                            {
+                                enumerator_t::iterator  b2  =   b;
+
+                                b = b2;
+
+                                if(en.end() == b)
+                                {
+                                    r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                    bSuccess = false;
+                                }
+                                else
+                                {
+                                    if(*b != guids[i])
+                                    {
+                                        r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                        bSuccess = false;
+                                    }
+
+                                    b2  =   b;
+                                    ++b2;
+                                    b   =   b2;
+                                }
+                            }}
+
+                            if(en.end() != b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                        }
+                    }}
+                }
+
+                // 3. cloneable_cloning_policy
+                {
+                    r->report("cloneable_cloning_policy", -1, NULL);
+
+                    typedef enumerator_sequence<IEnumGUID
+                                            ,   GUID
+                                            ,   GUID_policy
+                                            ,   GUID
+                                            ,   cloneable_cloning_policy<IEnumGUID>
+                                            ,   10
+                                            >           enumerator_t;
+
+                    { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+                    {
+                        LPENUMGUID    lpenStr;
+
+                        hr = punkEnum->QueryInterface(IID_IEnumGUID_(), reinterpret_cast<void**>(&lpenStr));
+
+                        if(FAILED(hr))
+                        {
+                            r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                            bSuccess = false;
+                        }
+                        else
+                        {
+                            enumerator_t            en(lpenStr, false, q); // Eat the reference
+                            char                    msg[101];
+
+                            ::sprintf(&msg[0], "Enumerating GUIDs using IEnumGUID; quanta=%u", q);
+
+                            r->report(msg, -1, NULL);
+
+                            enumerator_t::iterator  b   =   en.begin();
+                            enumerator_t::iterator  e   =   en.end();
+
+                            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(guids); ++i)
+                            {
+                                if(en.end() == b)
+                                {
+                                    r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                    bSuccess = false;
+                                }
+                                else
+                                {
+                                    if(*b != guids[i])
+                                    {
+                                        r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                        bSuccess = false;
+                                    }
+
+                                    ++b;
+                                }
+                            }}
+
+                            if(en.end() != b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                        }
+                    }}
+                }
+
+                // 4. cloneable_cloning_policy with copying
+                {
+                    r->report("cloneable_cloning_policy with copying", -1, NULL);
+
+                    typedef enumerator_sequence<IEnumGUID
+                                            ,   GUID
+                                            ,   GUID_policy
+                                            ,   GUID
+                                            ,   cloneable_cloning_policy<IEnumGUID>
+                                            ,   10
+                                            >           enumerator_t;
+
+                    { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+                    {
+                        LPENUMGUID    lpenStr;
+
+                        hr = punkEnum->QueryInterface(IID_IEnumGUID_(), reinterpret_cast<void**>(&lpenStr));
+
+                        if(FAILED(hr))
+                        {
+                            r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                            bSuccess = false;
+                        }
+                        else
+                        {
+                            enumerator_t            en(lpenStr, false, q); // Eat the reference
+                            char                    msg[101];
+
+                            ::sprintf(&msg[0], "Enumerating GUIDs using IEnumGUID; quanta=%u", q);
+
+                            r->report(msg, -1, NULL);
+
+                            enumerator_t::iterator  b   =   en.begin();
+                            enumerator_t::iterator  e   =   en.end();
+
+                            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(guids); ++i)
+                            {
+                                enumerator_t::iterator  b2  =   b;
+
+                                b = b2;
+
+                                if(en.end() == b)
+                                {
+                                    r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                    bSuccess = false;
+                                }
+                                else
+                                {
+                                    if(*b != guids[i])
+                                    {
+                                        r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                        bSuccess = false;
+                                    }
+
+                                    b2  =   b;
+                                    ++b2;
+                                    b   =   b2;
+                                }
+                            }}
+
+                            if(en.end() != b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                        }
+                    }}
+                }
+
+                // 5. forward_cloning_policy with copying
+                {
+                    r->report("forward_cloning_policy with copying", -1, NULL);
+
+                    typedef enumerator_sequence<IEnumGUID
+                                            ,   GUID
+                                            ,   GUID_policy
+                                            ,   GUID
+                                            ,   forward_cloning_policy<IEnumGUID>
+                                            ,   10
+                                            >           enumerator_t;
+
+                    { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+                    {
+                        LPENUMGUID    lpenStr;
+
+                        hr = punkEnum->QueryInterface(IID_IEnumGUID_(), reinterpret_cast<void**>(&lpenStr));
+
+                        if(FAILED(hr))
+                        {
+                            r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                            bSuccess = false;
+                        }
+                        else
+                        {
+                            enumerator_t            en(lpenStr, false, q); // Eat the reference
+                            char                    msg[101];
+
+                            ::sprintf(&msg[0], "Enumerating GUIDs using IEnumGUID; quanta=%u", q);
+
+                            r->report(msg, -1, NULL);
+
+                            enumerator_t::iterator  b   =   en.begin();
+                            enumerator_t::iterator  e   =   en.end();
+
+                            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(guids); ++i)
+                            {
+                                enumerator_t::iterator  b2  =   b;
+
+                                b = b2;
+
+                                if(en.end() == b)
+                                {
+                                    r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                    bSuccess = false;
+                                }
+                                else
+                                {
+                                    if(*b != guids[i])
+                                    {
+                                        r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                        bSuccess = false;
+                                    }
+
+                                    b2  =   b;
+                                    ++b2;
+                                    b   =   b2;
+                                }
+                            }}
+
+                            if(en.end() != b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                        }
+                    }}
+                }
+
+                // 6. forward_cloning_policy with comparison
+                {
+                    r->report("forward_cloning_policy with comparison", -1, NULL);
+
+                    typedef enumerator_sequence<IEnumGUID
+                                            ,   GUID
+                                            ,   GUID_policy
+                                            ,   GUID
+                                            ,   forward_cloning_policy<IEnumGUID>
+                                            ,   10
+                                            >           enumerator_t;
+
+                    { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+                    {
+                        LPENUMGUID    lpenStr;
+
+                        hr = punkEnum->QueryInterface(IID_IEnumGUID_(), reinterpret_cast<void**>(&lpenStr));
+
+                        if(FAILED(hr))
+                        {
+                            r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                            bSuccess = false;
+                        }
+                        else
+                        {
+                            enumerator_t            en(lpenStr, false, q); // Eat the reference
+                            char                    msg[101];
+
+                            ::sprintf(&msg[0], "Enumerating GUIDs using IEnumGUID; quanta=%u", q);
+
+                            r->report(msg, -1, NULL);
+
+                            enumerator_t::iterator  b1  =   en.begin();
+                            enumerator_t::iterator  e1  =   en.end();
+                            enumerator_t::iterator  b2  =   en.begin();
+                            enumerator_t::iterator  e2  =   en.end();
+
+                            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(guids); ++i)
+                            {
+                                if(b1 != b2)
+                                {
+                                    r->report("iterators do not follow forward requirements: b1 != b2", __LINE__);
+                                    bSuccess = false;
+                                }
+                                if(*b1 != *b2)
+                                {
+                                    r->report("iterators do not follow forward requirements: *b1 != *b2", __LINE__);
+                                    bSuccess = false;
+                                }
+
+                                if(en.end() == b1)
+                                {
+                                    r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                    bSuccess = false;
+                                }
+                                else
+                                {
+                                    if(*b1 != guids[i])
+                                    {
+                                        r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                        bSuccess = false;
+                                    }
+
+                                    ++b1;
+                                    ++b2;
+                                }
+                            }}
+
+                            if(en.end() != b1)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                            if(en.end() != b2)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                        }
+                    }}
                 }
 
                 punkEnum->Release();
@@ -408,11 +791,31 @@ namespace unittest
         {
             using namespace Synesis_COM;
 
-            BSTR    bstrs[3] =
+            BSTR    bstrs[23] =
             {
-                    ::SysAllocString(L"BSTR-1")
-                ,   ::SysAllocString(L"BSTR-2")
-                ,   ::SysAllocString(L"BSTR-3")
+                    ::SysAllocString(L"BSTR-01")
+                ,   ::SysAllocString(L"BSTR-02")
+                ,   ::SysAllocString(L"BSTR-03")
+                ,   ::SysAllocString(L"BSTR-04")
+                ,   ::SysAllocString(L"BSTR-05")
+                ,   ::SysAllocString(L"BSTR-06")
+                ,   ::SysAllocString(L"BSTR-07")
+                ,   ::SysAllocString(L"BSTR-08")
+                ,   ::SysAllocString(L"BSTR-09")
+                ,   ::SysAllocString(L"BSTR-10")
+                ,   ::SysAllocString(L"BSTR-11")
+                ,   ::SysAllocString(L"BSTR-12")
+                ,   ::SysAllocString(L"BSTR-13")
+                ,   ::SysAllocString(L"BSTR-14")
+                ,   ::SysAllocString(L"BSTR-15")
+                ,   ::SysAllocString(L"BSTR-16")
+                ,   ::SysAllocString(L"BSTR-17")
+                ,   ::SysAllocString(L"BSTR-18")
+                ,   ::SysAllocString(L"BSTR-19")
+                ,   ::SysAllocString(L"BSTR-20")
+                ,   ::SysAllocString(L"BSTR-21")
+                ,   ::SysAllocString(L"BSTR-22")
+                ,   ::SysAllocString(L"BSTR-23")
             };
 
             ss_bool_t               bSuccess    =   true;
@@ -426,61 +829,68 @@ namespace unittest
             }
             else
             {
-                LPENUMBSTR  lpenStr;
+                typedef enumerator_sequence<IEnumBSTR
+                                        ,   BSTR
+                                        ,   BSTR_policy
+                                        >           enumerator_t;
 
-                hr = punkEnum->QueryInterface(IID_IEnumBSTR_(), reinterpret_cast<void**>(&lpenStr));
-
-                if(FAILED(hr))
+                { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
                 {
-                    r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
-                    bSuccess = false;
-                }
-                else
-                {
-                    typedef enumerator_sequence<IEnumBSTR
-                                            ,   BSTR
-                                            ,   BSTR_policy
-                                            >           enumerator_t;
+                    LPENUMBSTR  lpenStr;
 
-                    enumerator_t            en(lpenStr, false); // Eat the reference
+                    hr = punkEnum->QueryInterface(IID_IEnumBSTR_(), reinterpret_cast<void**>(&lpenStr));
 
-                    r->report(  "Enumerating BSTRs using IEnumBSTR", -1, NULL);
-
-                    enumerator_t::iterator  b   =   en.begin();
-                    enumerator_t::iterator  e   =   en.end();
-
-                    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bstrs); ++i)
+                    if(FAILED(hr))
                     {
-                        if(en.end() == b)
+                        r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                        bSuccess = false;
+                    }
+                    else
+                    {
+                        enumerator_t            en(lpenStr, false, q); // Eat the reference
+                        char                    msg[101];
+
+                        ::sprintf(&msg[0], "Enumerating BSTRs using IEnumBSTR; quanta=%u", q);
+
+                        r->report(msg, -1, NULL);
+
+                        enumerator_t::iterator  b   =   en.begin();
+                        enumerator_t::iterator  e   =   en.end();
+
+                        { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bstrs); ++i)
+                        {
+                            if(en.end() == b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                            else
+                            {
+                                if(0 != ::wcscmp(*b, bstrs[i]))
+                                {
+                                    r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                    bSuccess = false;
+                                }
+
+                                ++b;
+                            }
+                        }}
+
+                        if(en.end() != b)
                         {
                             r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
                             bSuccess = false;
                         }
-                        else
-                        {
-                            if(0 != ::wcscmp(*b, bstrs[i]))
-                            {
-                                r->report("Enumerator sequence element contains the wrong value", __LINE__);
-                                bSuccess = false;
-                            }
-
-                            ++b;
-                        }
-                    }}
-
-                    if(en.end() != b)
-                    {
-                        r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
-                        bSuccess = false;
                     }
-                }
+                }}
 
                 punkEnum->Release();
             }
 
-            ::SysFreeString(bstrs[0]);
-            ::SysFreeString(bstrs[1]);
-            ::SysFreeString(bstrs[2]);
+            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bstrs); ++i)
+            {
+                ::SysFreeString(bstrs[i]);
+            }}
 
             return bSuccess;
         }
@@ -512,63 +922,73 @@ namespace unittest
             }
             else
             {
-                LPENUMVARIANT   lpenStr;
+                typedef enumerator_sequence<IEnumVARIANT
+                                        ,   VARIANT
+                                        ,   VARIANT_policy
+                                        ,   VARIANT const&
+                                        ,   input_cloning_policy<IEnumVARIANT>
+                                        ,   1
+                                        >           enumerator_t;
 
-                hr = punkEnum->QueryInterface(IID_IEnumVARIANT, reinterpret_cast<void**>(&lpenStr));
-
-                if(FAILED(hr))
+                { for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
                 {
-                    r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
-                    bSuccess = false;
-                }
-                else
-                {
-                    typedef enumerator_sequence<IEnumVARIANT
-                                            ,   VARIANT
-                                            ,   VARIANT_policy
-                                            >           enumerator_t;
+                    LPENUMVARIANT   lpenStr;
 
-                    enumerator_t            en(lpenStr, false); // Eat the reference
+                    hr = punkEnum->QueryInterface(IID_IEnumVARIANT, reinterpret_cast<void**>(&lpenStr));
 
-                    r->report(  "Enumerating VARIANTs using IEnumVARIANT", -1, NULL);
-
-                    enumerator_t::iterator  b   =   en.begin();
-                    enumerator_t::iterator  e   =   en.end();
-
-                    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(variants); ++i)
+                    if(FAILED(hr))
                     {
-                        if(en.end() == b)
+                        r->report("Failed to retrieve required enumerator interface from enumerator object", __LINE__);
+                        bSuccess = false;
+                    }
+                    else
+                    {
+                        enumerator_t            en(lpenStr, false, q); // Eat the reference
+                        char                    msg[101];
+
+                        ::sprintf(&msg[0], "Enumerating VARIANTs using IEnumVARIANT; quanta=%u", q);
+
+                        r->report(msg, -1, NULL);
+
+                        enumerator_t::iterator  b   =   en.begin();
+                        enumerator_t::iterator  e   =   en.end();
+
+                        { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(variants); ++i)
+                        {
+                            if(en.end() == b)
+                            {
+                                r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
+                                bSuccess = false;
+                            }
+                            else
+                            {
+//                              b->wReserved1   =   0;
+
+                                if((*b).vt != variants[i].vt)
+                                {
+                                    r->report("Enumerator sequence element contains the wrong value", __LINE__);
+                                    bSuccess = false;
+                                }
+
+                                ++b;
+                            }
+                        }}
+
+                        if(en.end() != b)
                         {
                             r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
                             bSuccess = false;
                         }
-                        else
-                        {
-//                            b->wReserved1   =   0;
-
-                            if((*b).vt != variants[i].vt)
-                            {
-                                r->report("Enumerator sequence element contains the wrong value", __LINE__);
-                                bSuccess = false;
-                            }
-
-                            ++b;
-                        }
-                    }}
-
-                    if(en.end() != b)
-                    {
-                        r->report("Enumerator sequence contains the wrong number of elements", __LINE__);
-                        bSuccess = false;
                     }
-                }
+                }}
 
                 punkEnum->Release();
             }
 
-            ::VariantClear(&variants[0]);
-            ::VariantClear(&variants[1]);
-            ::VariantClear(&variants[2]);
+            { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(variants); ++i)
+            {
+                ::VariantClear(&variants[0]);
+            }}
 
             return bSuccess;
         }
@@ -589,15 +1009,15 @@ namespace unittest
                 {
                     bSuccess = false;
                 }
-                if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumGUID(module.get_handle(), r))
-                {
-                    bSuccess = false;
-                }
                 if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumBSTR(module.get_handle(), r))
                 {
                     bSuccess = false;
                 }
                 if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumVARIANT(module.get_handle(), r))
+                {
+                    bSuccess = false;
+                }
+                if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumGUID(module.get_handle(), r))
                 {
                     bSuccess = false;
                 }

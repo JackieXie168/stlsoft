@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     4th September 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_EDIT      9
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PATH_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/path.hpp Platform header for the path components */
@@ -121,7 +121,7 @@ namespace platformstl_project
 #  ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k T = winstl_ns_qual(filesystem_traits)<C>
             ,   ss_typename_param_k A = winstl_ns_qual(processheap_allocator)<C>
-#  else
+#  else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k T /* = filesystem_traits<C> */
             ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #  endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */

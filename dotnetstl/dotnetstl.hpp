@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     6th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    2
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     30
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp The root header for the \ref dotnetSTL ".netSTL" project */
@@ -189,14 +189,14 @@
 #  error Versions of Visual C++ prior to 7.0 are not supported by the .netSTL libraries
 # endif /* _MSC_VER */
 
-#else
+#else /* ? compiler */
 /* No recognised compiler */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define DOTNETSTL_COMPILER_IS_UNKNOWN
 #  ifdef _STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to .netSTL")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
-# else
+# else /* ? _STLSOFT_FORCE_ANY_COMPILER */
 #  error Currently only Visual C++ compilers are supported by the .netSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
@@ -311,7 +311,7 @@ namespace dotnetstl_project
 #ifdef __STLSOFT_CF_std_NAMESPACE
 # define dotnetstl_ns_qual_std(x)       ::std::x
 # define dotnetstl_ns_using_std(x)      using ::std::x;
-#else
+#else /* ? __STLSOFT_CF_std_NAMESPACE */
 # define dotnetstl_ns_qual_std(x)       x
 # define dotnetstl_ns_using_std(x)
 #endif /* !__STLSOFT_CF_std_NAMESPACE */

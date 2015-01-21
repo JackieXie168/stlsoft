@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     26th December 2005
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_ERROR_DESC_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_EDIT      47
+# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -135,7 +135,7 @@ public:
 
     /// Constructor
     ///
-    /// \param ht The COM error whose string equivalent will be searched
+    /// \param hr The COM error whose string equivalent will be searched
     /// \param modulePath The module in which the string will be searched
     ///
     /// \note If the error string is not found in the given module, the standard

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     16th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       4
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       6
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        51
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -189,12 +189,14 @@
 
 /* Static assertions */
 #define __STLSOFT_CF_STATIC_ASSERT_SUPPORT
+#define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 #define __STLSOFT_CF_STATIC_ASSERT_RELEASE_OPTIMISATION_SUPPORT
 
 /* Exception support */
 #ifdef _CPPUNWIND
 # define __STLSOFT_CF_EXCEPTION_SUPPORT
+# define STLSOFT_CF_EXCEPTION_SUPPORT
 #else
  /* Not defined */
 #endif /* _CPPUNWIND */
@@ -206,6 +208,7 @@
 //#define _STLSOFT_NO_NAMESPACES
 
 #define __STLSOFT_CF_NAMESPACE_SUPPORT
+#define STLSOFT_CF_NAMESPACE_SUPPORT
 
 #define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
 
@@ -213,6 +216,7 @@
 
 /* Template support */
 #define __STLSOFT_CF_TEMPLATE_SUPPORT
+#define STLSOFT_CF_TEMPLATE_SUPPORT
 
 //#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
 
@@ -266,6 +270,7 @@
  */
 
 #define __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
 #define __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 
@@ -288,9 +293,11 @@
 #if defined(STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1) || \
     __INTEL_COMPILER >= 800
 # define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
+# define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 #endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1  || __INTEL_COMPILER >= 800 */
 
 #define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
 #define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 

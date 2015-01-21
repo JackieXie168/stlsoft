@@ -1,5 +1,5 @@
 
-// Updated: 16th January 2006
+// Updated: 22nd January 2006
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_HPP_PROCESS_MUTEX)
 # error This file cannot be directly included, and should only be included within unixstl/process_mutex.hpp
@@ -21,10 +21,10 @@ namespace unittest
 
             unittest_initialiser    init(r, "UNIXSTL", "process_mutex", __FILE__);
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             try
             {
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 process_mutex   mx_r(true);
 
                 mx_r.lock();
@@ -50,7 +50,7 @@ namespace unittest
                     bSuccess = false;
                 }
                 mx_nr.unlock();
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             }
             catch(unix_exception &x)
             {
@@ -62,7 +62,7 @@ namespace unittest
                 r->report(sz, __LINE__);
                 bSuccess = false;
             }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             return bSuccess;
         }
 

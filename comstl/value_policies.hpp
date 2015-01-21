@@ -5,11 +5,11 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     22nd December 2005
+ * Updated:     25th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_MAJOR     4
-# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_MINOR     1
+# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_MINOR     2
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_EDIT      149
+# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_EDIT      151
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,9 +60,6 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h>    // for safe_release(), etc.
-#endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS
 # include <comstl/olestring_functions.h>   // for olestring_dup(), etc.
 #endif /* !COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS */
@@ -111,7 +108,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *)
+    static void init(value_type *) stlsoft_throw_0()
     {}
     /// Initialises an instance from another
     static void copy(value_type *dest, value_type const *src)
@@ -119,7 +116,7 @@ public:
         *dest = *src;
     }
     /// Releases an instance
-    static void clear(value_type *)
+    static void clear(value_type *) stlsoft_throw_0()
     {}
 };
 
@@ -132,7 +129,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *p)
+    static void init(value_type *p) stlsoft_throw_0()
     {
         *p = NULL;
     }
@@ -142,7 +139,7 @@ public:
         *dest = ::SysAllocString(*src);
     }
     /// Releases an instance
-    static void clear(value_type *p)
+    static void clear(value_type *p) stlsoft_throw_0()
     {
         ::SysFreeString(*p);
     }
@@ -157,7 +154,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *p)
+    static void init(value_type *p) stlsoft_throw_0()
     {
         *p = NULL;
     }
@@ -167,7 +164,7 @@ public:
         *dest = olestring_dup(*src);
     }
     /// Releases an instance
-    static void clear(value_type *p)
+    static void clear(value_type *p) stlsoft_throw_0()
     {
         olestring_destroy(*p);
     }
@@ -182,7 +179,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *p)
+    static void init(value_type *p) stlsoft_throw_0()
     {
         ::VariantInit(p);
     }
@@ -192,7 +189,7 @@ public:
         ::VariantCopy(dest, const_cast<VARIANT*>(src));
     }
     /// Releases an instance
-    static void clear(value_type *p)
+    static void clear(value_type *p) stlsoft_throw_0()
     {
         ::VariantClear(p);
     }
@@ -211,7 +208,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *p)
+    static void init(value_type *p) stlsoft_throw_0()
     {
         *p = NULL;
     }
@@ -219,12 +216,19 @@ public:
     static void copy(value_type *dest, value_type const *src)
     {
         *dest = *src;
-        safe_addref(*dest);
+        if(NULL != *dest)
+        {
+            (*dest)->AddRef();
+        }
     }
     /// Releases an instance
-    static void clear(value_type *p)
+    static void clear(value_type *p) stlsoft_throw_0()
     {
-        release_set_null(*p);
+        if(NULL != *p)
+        {
+            (*p)->Release();
+            *p = NULL;
+        }
     }
 };
 
@@ -237,7 +241,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *p)
+    static void init(value_type *p) stlsoft_throw_0()
     {
         *p = NULL;
     }
@@ -245,12 +249,19 @@ public:
     static void copy(value_type *dest, value_type const *src)
     {
         *dest = *src;
-        safe_addref(*dest);
+        if(NULL != *dest)
+        {
+            (*dest)->AddRef();
+        }
     }
     /// Releases an instance
-    static void clear(value_type *p)
+    static void clear(value_type *p) stlsoft_throw_0()
     {
-        release_set_null(*p);
+        if(NULL != *p)
+        {
+            (*p)->Release();
+            *p = NULL;
+        }
     }
 };
 
@@ -263,7 +274,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *p)
+    static void init(value_type *p) stlsoft_throw_0()
     {
         p->pwcsName = NULL;
     }
@@ -277,7 +288,7 @@ public:
         };
     }
     /// Releases an instance
-    static void clear(value_type *p)
+    static void clear(value_type *p) stlsoft_throw_0()
     {
         olestring_destroy(p->pwcsName);
     }
@@ -292,7 +303,7 @@ public:
 
 public:
     /// Initialises an instance
-    static void init(value_type *p)
+    static void init(value_type *p) stlsoft_throw_0()
     {
         p->ptd  =   NULL;
     }
@@ -318,7 +329,7 @@ public:
         }
     }
     /// Releases an instance
-    static void clear(value_type *p)
+    static void clear(value_type *p) stlsoft_throw_0()
     {
         ::CoTaskMemFree(p->ptd);
     }

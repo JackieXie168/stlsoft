@@ -4,11 +4,11 @@
  * Purpose:     Header for limits.
  *
  * Created:     14th November 2002
- * Updated:     15th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_LIMITS_MAJOR     3
 # define UNIXSTL_VER_H_UNIXSTL_LIMITS_MINOR     1
 # define UNIXSTL_VER_H_UNIXSTL_LIMITS_REVISION  1
-# define UNIXSTL_VER_H_UNIXSTL_LIMITS_EDIT      22
+# define UNIXSTL_VER_H_UNIXSTL_LIMITS_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -122,7 +122,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define UNIXSTL_NAME_MAX       NAME_MAX
 #elif defined(PATH_MAX)
 # define UNIXSTL_NAME_MAX       PATH_MAX
-#else
+#else /* ? NAME_MAX / PATH_MAX */
 # define UNIXSTL_NAME_MAX       (512)
 #endif /* NAME_MAX */
 
@@ -135,7 +135,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 
 #ifdef PATH_MAX
 # define UNIXSTL_PATH_MAX       PATH_MAX
-#else
+#else /* ? PATH_MAX */
 # define UNIXSTL_PATH_MAX       (512)
 #endif /* NAME_MAX */
 

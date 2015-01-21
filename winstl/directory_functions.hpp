@@ -4,7 +4,7 @@
  * Purpose:     Contains some Win32 file-system functions.
  *
  * Created:     7th February 2002
- * Updated:     22nd December 2005
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_EDIT     25
+# define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -442,7 +442,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const *dir, ws_int_t (*pfn)(vo
 /// the given mode.
 ///
 /// \param dir The path of the directory to create
-/// \mode The permissions with which each directory is to be created
+/// \param lpsa The security attributes with which each directory is to be created
 inline ws_bool_t create_directory_recurse(ws_char_a_t const *dir, LPSECURITY_ATTRIBUTES lpsa = NULL)
 {
     return create_directory_recurse_impl(dir, lpsa);
@@ -452,7 +452,7 @@ inline ws_bool_t create_directory_recurse(ws_char_a_t const *dir, LPSECURITY_ATT
 /// the given mode.
 ///
 /// \param dir The path of the directory to create
-/// \param mode The permissions with which each directory is to be created
+/// \param lpsa The security attributes with which each directory is to be created
 inline ws_bool_t create_directory_recurse(ws_char_w_t const *dir, LPSECURITY_ATTRIBUTES lpsa = NULL)
 {
     return create_directory_recurse_impl(dir, lpsa);
@@ -462,7 +462,7 @@ inline ws_bool_t create_directory_recurse(ws_char_w_t const *dir, LPSECURITY_ATT
 /// the given mode.
 ///
 /// \param dir The path of the directory to create
-/// \param mode The permissions with which each directory is to be created
+/// \param lpsa The security attributes with which each directory is to be created
 template <ss_typename_param_k S>
 inline ws_bool_t create_directory_recurse(S const &dir, LPSECURITY_ATTRIBUTES lpsa = NULL)
 {

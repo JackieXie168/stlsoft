@@ -4,11 +4,11 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     29th December 2005
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    1
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    2
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     12
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,12 +73,12 @@
 
 /* Template support.
  *
- * Discriminated symbol is __STLSOFT_CF_TEMPLATE_SUPPORT
+ * Discriminated symbol is STLSOFT_CF_TEMPLATE_SUPPORT
  */
 
-#ifdef __STLSOFT_CF_TEMPLATE_SUPPORT
-# undef __STLSOFT_CF_TEMPLATE_SUPPORT
-#endif /* __STLSOFT_CF_TEMPLATE_SUPPORT */
+#ifdef STLSOFT_CF_TEMPLATE_SUPPORT
+# undef STLSOFT_CF_TEMPLATE_SUPPORT
+#endif /* STLSOFT_CF_TEMPLATE_SUPPORT */
 
 /* Exception signature support.
  *
@@ -250,11 +250,11 @@
 
 /* Compiler supports static assert.
  *
- * Discriminated symbol is __STLSOFT_CF_STATIC_ASSERT_SUPPORT
+ * Discriminated symbol is STLSOFT_CF_STATIC_ASSERT_SUPPORT
  */
-#ifdef __STLSOFT_CF_STATIC_ASSERT_SUPPORT
-# undef __STLSOFT_CF_STATIC_ASSERT_SUPPORT
-#endif /* __STLSOFT_CF_STATIC_ASSERT_SUPPORT */
+#ifdef STLSOFT_CF_STATIC_ASSERT_SUPPORT
+# undef STLSOFT_CF_STATIC_ASSERT_SUPPORT
+#endif /* STLSOFT_CF_STATIC_ASSERT_SUPPORT */
 
 /* Function signature requires full-qualification.
  *
@@ -266,11 +266,11 @@
 
 /* Exception support.
  *
- * Discriminated symbol is __STLSOFT_CF_EXCEPTION_SUPPORT
+ * Discriminated symbol is STLSOFT_CF_EXCEPTION_SUPPORT
  */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-# undef __STLSOFT_CF_EXCEPTION_SUPPORT
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# undef STLSOFT_CF_EXCEPTION_SUPPORT
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* Template class default fundamental type argument support
  *
@@ -461,19 +461,19 @@
 
 /* Koening Lookup support
  *
- * Discriminated symbol is __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
+ * Discriminated symbol is STLSOFT_CF_ADL_LOOKUP_SUPPORT
  */
-#ifdef __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
-# undef __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
-#endif /* __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT */
+#ifdef STLSOFT_CF_ADL_LOOKUP_SUPPORT
+# undef STLSOFT_CF_ADL_LOOKUP_SUPPORT
+#endif /* STLSOFT_CF_ADL_LOOKUP_SUPPORT */
 
 /* Template template support
  *
- * Discriminated symbol is __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+ * Discriminated symbol is STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
  */
-#ifdef __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
-# undef __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
-#endif /* __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT */
+#ifdef STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+# undef STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+#endif /* STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT */
 
 
 #ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT

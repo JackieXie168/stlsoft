@@ -4,14 +4,14 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     13th January 2006
+ * Updated:     22nd January 2006
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_MINOR       4
+# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_MINOR       5
 # define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_EDIT        49
+# define STLSOFT_VER_STLSOFT_HPP_POD_VECTOR_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -355,7 +355,7 @@ inline void pod_vector<T, A, SPACE>::range_check_(ss_typename_type_k pod_vector<
 inline void pod_vector<T, A, SPACE>::range_check_(size_type index) const /* stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) ) */
 #endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
-# ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(index < size()))
     {
         stlsoft_ns_qual_std(out_of_range)   x("pod vector index out of range");
@@ -367,9 +367,9 @@ inline void pod_vector<T, A, SPACE>::range_check_(size_type index) const /* stls
             throw x;
         }
     }
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
     STLSOFT_MESSAGE_ASSERT("w index out of range", index < size());
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template<   ss_typename_param_k T

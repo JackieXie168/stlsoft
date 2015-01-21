@@ -4,11 +4,11 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     31st December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       3
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    1
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        14
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    2
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,13 +82,13 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
  // This stuff's needed for type fixing 'referent_type' => 'mapped_type' 
-# ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
-#  include <stlsoft/member_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
+#  include <stlsoft/meta/member_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR
 #  include <stlsoft/associative_mapped_type_detector.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR */
-#else
+#else /* ? STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 # if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC)
 #  if STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION <= STLSOFT_CF_DINKUMWARE_VC_VERSION_6_0
 #   pragma message("associative_range<> assumes that the adapted type has a 'mapped_type' member type. std::map in the Dinkumware library that ships with Visual C++ 5 & 6 uses the non-standard 'referent_type', so adapting a parameterisation of it will not compile")

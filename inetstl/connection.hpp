@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_connection class.
  *
  * Created:     30th April 1999
- * Updated:     17th January 2006
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_MAJOR       4
-# define INETSTL_VER_INETSTL_HPP_CONNECTION_MINOR       2
+# define INETSTL_VER_INETSTL_HPP_CONNECTION_MINOR       3
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        53
+# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,15 +65,15 @@
 #ifndef INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS
 # include <inetstl/filesystem_traits.hpp>
 #endif /* !INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef INETSTL_INCL_INETSTL_HPP_EXCEPTIONS
 #  include <inetstl/exceptions.hpp>           // for throw_internet_exception_policy
 # endif /* !INETSTL_INCL_INETSTL_HPP_EXCEPTIONS */
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
 #  include <stlsoft/exceptions.hpp>           // for stlsoft::null_exception_policy
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -117,11 +117,11 @@ namespace inetstl_project
 
 /// Represents an internet connection
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ,   ss_typename_param_k X   =   throw_internet_exception_policy
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k X   =   stlsoft_ns_qual(null_exception_policy)
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k T   =   filesystem_traits<C>
         >
 class basic_connection

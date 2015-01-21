@@ -5,11 +5,11 @@
  *              version 1.5.1.
  *
  * Created:     24th December 2002
- * Updated:     18th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # error stlsoft_cc_obsolete.h can only be included from within stlsoft/stlsoft.h, and should not be included directly
-#else 
+#else /* ? STLSOFT_INCL_STLSOFT_H_STLSOFT */
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("This file is now obsolete. It will be removed in a future version")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_MINOR     0
 # define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_EDIT      11
+# define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_EDIT      12
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility

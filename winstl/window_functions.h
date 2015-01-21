@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     18th December 2005
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /// \file winstl/window_functions.h
 ///
-/// Window functions..
+/// Window functions.
 
 #ifndef WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS
 #define WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MINOR     2
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      41
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

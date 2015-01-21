@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     11th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MAJOR      4
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      3
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   1
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       31
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   2
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ inline void call_set_null(T *&pt, void (T::*F)())
 /// Provides multi-pattern functionality over a file-system search sequence class
 template <ss_typename_param_k S>
 class searchspec_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The underlying find sequence type

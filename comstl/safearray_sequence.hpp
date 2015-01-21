@@ -4,11 +4,11 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     11th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MAJOR     3
-# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MINOR     2
-# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_EDIT      34
+# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_MINOR     3
+# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_REVISION  2
+# define COMSTL_VER_COMSTL_HPP_SAFEARRAY_SEQUENCE_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ namespace comstl_project
 /// Provides an STL-iterable view over a COM SAFEARRAY
 template <ss_typename_param_k T>
 class safearray_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 private:
     typedef SAFEARRAY const                                                 *LPCSAFEARRAY;
@@ -165,7 +165,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type                    iterator;
+                                        >::type                             iterator;
     /// The non-mutating (const) iterator type
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -174,7 +174,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type                    const_iterator;
+                                        >::type                             const_iterator;
 
     /// The non-mutating (const) reverse iterator type
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)

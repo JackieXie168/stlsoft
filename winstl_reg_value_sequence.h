@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     18th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_MAJOR       2
 # define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_MINOR       5
-# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_REVISION    2
-# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_EDIT        77
+# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_REVISION    3
+# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_EDIT        79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -163,13 +163,13 @@ template<   ss_typename_param_k C
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = reg_traits<C>
         ,   ss_typename_param_k A = processheap_allocator<C>
-#else
+#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = reg_traits<C> */
         ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_reg_value_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The character type
@@ -197,9 +197,9 @@ public:
     _MSC_VER == 1100
     /* WSCB: VC5 has an unresolved external linker error if use traits_type::hkey_type */
     typedef HKEY                                                                    hkey_type;
-#else
+#else /* ? compiler */
     typedef ss_typename_type_k traits_type::hkey_type                               hkey_type;
-#endif /* 0 */
+#endif /* compiler */
     /// The difference type
     typedef ws_ptrdiff_t                                                            difference_type;
     /// The non-mutating (const) reverse iterator type
@@ -643,7 +643,7 @@ inline ss_typename_type_k basic_reg_value_sequence_const_iterator<C, T, V, A>::c
 
         m_hEvent = hCopy;
     }
-#else
+#else /* ? 0 */
     m_hEvent    =   rhs.m_hEvent;
 #endif /* 0 */
 #endif /* 0 */

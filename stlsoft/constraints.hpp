@@ -4,7 +4,7 @@
  * Purpose:     Compile-time template constraints templates.
  *
  * Created:     19th November 1998
- * Updated:     22nd December 2005
+ * Updated:     21st January 2006
  *
  * Thanks:      To Peter Bannister for having the clear thinking to see the 
  *              obvious (but only in hindsight) tactic of overloading the
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       81
+# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -88,10 +88,10 @@ namespace stlsoft
 #elif defined(STLSOFT_COMPILER_IS_DMC)
 # define stlsoft_constraint_must_be_pod(T)          do { int i = sizeof(stlsoft_ns_qual(must_be_pod)<T>::constraint()); } while(0)
 # define stlsoft_constraint_must_be_pod_or_void(T)  do { int i = sizeof(stlsoft_ns_qual(must_be_pod_or_void)<T>::constraint()); } while(0)
-#else
+#else /* ? compiler */
 # define stlsoft_constraint_must_be_pod(T)          STLSOFT_STATIC_ASSERT(sizeof(stlsoft_ns_qual(must_be_pod)<T>::constraint()) != 0)
 # define stlsoft_constraint_must_be_pod_or_void(T)  STLSOFT_STATIC_ASSERT(sizeof(stlsoft_ns_qual(must_be_pod_or_void)<T>::constraint()) != 0)
-#endif /* STLSOFT_COMPILER_IS_DMC */
+#endif /* compiler */
 
 # define stlsoft_constraint_must_be_same_size(T1, T2)   stlsoft_ns_qual(must_be_same_size)<T1, T2>()
 # define stlsoft_constraint_must_be_subscriptable(T)    stlsoft_ns_qual(must_be_subscriptable)<T>()

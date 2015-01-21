@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     13th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MAJOR     1
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MINOR     5
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      21
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -345,7 +345,7 @@ C &readlines(S const &fileName, C &container)
                             >           tokens(contents, delim);
 
     std::transform(tokens.begin(), tokens.end(), std::back_inserter(container), trim_trailing_carriage_return</* ss_typename_type_k */ C::value_type>());
-#else 
+#else /* ? 0 */
 
     readlines_impl(contents.c_str(), contents.size(), container);
 #endif /* 0 */

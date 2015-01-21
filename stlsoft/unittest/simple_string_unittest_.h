@@ -1,5 +1,5 @@
 
-// Updated: 19th January 2006
+// Updated: 22nd January 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING)
 # error This file cannot be directly included, and should only be included within stlsoft/simple_string.hpp
@@ -290,7 +290,7 @@ namespace unittest
 #endif /* 0 */
 
             // substr
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             {
                 const string_t  s0;
                 const string_t  s1("abcdefghijklm");
@@ -336,7 +336,7 @@ namespace unittest
                     bSuccess = false;
                 }
             }
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
             return bSuccess;
         }

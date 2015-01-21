@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     11th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MINOR      2
-# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_EDIT       44
+# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ class heapwalk_sequence_const_iterator;
 /// An STL-like sequence for walking heap allocated blocks
 ///
 class heapwalk_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
     typedef PROCESS_HEAP_ENTRY                  entry_type;
 public:

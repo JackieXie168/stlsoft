@@ -4,11 +4,11 @@
  * Purpose:     Definition of the associative_mapped_type_detector type.
  *
  * Created:     26th February 2005
- * Updated:     11th January 2006
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MINOR     4
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      13
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  3
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -88,9 +88,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1310
 #ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENT_TYPE
 # include <stlsoft/typefixer/referent_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENT_TYPE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
-# include <stlsoft/member_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
+# include <stlsoft/meta/member_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

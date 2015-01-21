@@ -4,7 +4,7 @@
  * Purpose:     Collection of the peers of a given window.
  *
  * Created:     11th July 2005
- * Updated:     18th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MAJOR       1
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MINOR       0
-# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        2
+# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_REVISION    3
+# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
 class zorder_sequence_base
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{

@@ -19,6 +19,52 @@ namespace unittest
 
             unittest_initialiser    init(r, "ACESTL", "message_queue_sequence", __FILE__);
 
+            typedef ACE_DEFAULT_MESSAGE_QUEUE_TYPE      mq_t;
+            typedef message_queue_sequence<ACE_SYNCH>   mqs_t;
+
+            mq_t    mq;
+            mqs_t   mqs(mq);
+
+            {
+                mqs_t::iterator  b   =   mqs.begin();
+                mqs_t::iterator  b2;
+
+                b2  =   b2;
+                b   =   b;
+                b2  =   b;
+                b2  =   mqs.begin();
+            }
+            {
+                mqs_t::iterator  b   =   mqs.begin();
+                mqs_t::iterator  e   =   mqs.end();
+
+                for(; b != e; ++b)
+                {}
+            }
+
+            ACE_Message_Block   *block1 =   make_copied_Message_Block("some contents.", 14);
+            ACE_Message_Block   *block2 =   make_copied_Message_Block("some more contents.", 19);
+
+            mq.enqueue(block1);
+            mq.enqueue(block2);
+
+            {
+                mqs_t::iterator  b   =   mqs.begin();
+                mqs_t::iterator  b2;
+
+                b2  =   b2;
+                b   =   b;
+                b2  =   b;
+                b2  =   mqs.begin();
+            }
+            {
+                mqs_t::iterator  b   =   mqs.begin();
+                mqs_t::iterator  e   =   mqs.end();
+
+                for(; b != e; ++b)
+                {}
+            }
+
 #if 0
             typedef message_queue_sequence<char>    env_var_t;
 

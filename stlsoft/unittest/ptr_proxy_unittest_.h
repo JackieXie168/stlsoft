@@ -18,34 +18,34 @@ namespace unittest
             ss_bool_t               bSuccess    =   true;
             unittest_initialiser    init(r, "STLSoft", "ptr_proxy", __FILE__);
 
-			int				i		=	1;
-			int				*pi		=	&i;
-			int				*pi2;
+            int             i       =   1;
+            int             *pi     =   &i;
+            int             *pi2;
 
-			ptr_proxy<int>	ppi1(pi);
-			ptr_proxy<int>	ppi2	=	ppi1;
-			ptr_proxy<int>	ppi3(NULL);
+            ptr_proxy<int>  ppi1(pi);
+            ptr_proxy<int>  ppi2    =   ppi1;
+            ptr_proxy<int>  ppi3(NULL);
 
-			ppi3 = ppi1;
+            ppi3 = ppi1;
 
-			pi2 = ppi1;
-			if(pi2 != pi)
-			{
+            pi2 = ppi1;
+            if(pi2 != pi)
+            {
                 r->report("implicit conversion operator failed", __LINE__);
                 bSuccess = false;
-			}
-			pi2 = ppi1;
-			if(pi2 != pi)
-			{
+            }
+            pi2 = ppi1;
+            if(pi2 != pi)
+            {
                 r->report("implicit conversion operator failed", __LINE__);
                 bSuccess = false;
-			}
-			pi2 = ppi2;
-			if(pi2 != pi)
-			{
+            }
+            pi2 = ppi2;
+            if(pi2 != pi)
+            {
                 r->report("implicit conversion operator failed", __LINE__);
                 bSuccess = false;
-			}
+            }
 
             return bSuccess;
         }

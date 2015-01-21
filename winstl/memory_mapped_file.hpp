@@ -4,11 +4,11 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     18th December 2005
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MINOR     2
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MINOR     3
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      56
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,11 +62,11 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
 # include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE
 # include <stlsoft/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
@@ -203,11 +203,11 @@ public:
     }
     ~memory_mapped_file() stlsoft_throw_0()
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         WINSTL_ASSERT(NULL != m_memory);
-#else /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* !STLSOFT_CF_EXCEPTION_SUPPORT */
         if(NULL != m_memory)
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
         {
             ::UnmapViewOfFile(m_memory);
         }
@@ -226,37 +226,37 @@ public:
         return m_cb;
     }
 
-#ifndef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
     ws_dword_t lastError() const
     {
         return m_lastError;
     }
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 /// @}
 
 /// \name Implementation
 private:
     void on_error_(char const *message, ws_dword_t error = ::GetLastError())
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         // The exception policy is used because VC++ 5 has a cow when it is
         // asked to throw a windows_exception, and this special case is
         // handled by windows_exception_policy
         windows_exception_policy    xp;
 
         xp(message, error);
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_lastError = error;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
 /// Members
 private:
     size_type   m_cb;
     void        *m_memory;
-#ifndef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
     ws_dword_t  m_lastError;
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 // Not to be implemented
 private:

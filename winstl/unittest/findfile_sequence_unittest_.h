@@ -1,5 +1,5 @@
 
-// Updated: 17th January 2006
+// Updated: 23rd January 2006
 
 #if !defined(WINSTL_INCL_WINSTL_HPP_FINDFILE_SEQUENCE)
 # error This file cannot be directly included, and should only be included within winstl/findfile_sequence.hpp
@@ -198,6 +198,16 @@ namespace unittest
             findfile_sequence_a                 ffs(".", ".", findfile_sequence_a::directories);
             findfile_sequence_a::const_iterator b   =   ffs.begin();
             findfile_sequence_a::const_iterator e   =   ffs.end();
+
+            {
+                findfile_sequence_a::const_iterator b   =   ffs.begin();
+                findfile_sequence_a::const_iterator b2;
+
+                b2  =   b;
+                b2  =   b2;
+                b   =   b;
+                b2  =   ffs.begin();
+            }
 
             if(b == e)
             {

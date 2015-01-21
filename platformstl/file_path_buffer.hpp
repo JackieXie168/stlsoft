@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the file_path_buffer components.
  *
  * Created:     20th March 2005
- * Updated:     15th September 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_REVISION  2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_EDIT      11
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/file_path_buffer.hpp Platform header for the file_path_buffer components */
@@ -167,7 +167,7 @@ namespace platformstl_project
     template<   ss_typename_param_k C
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k A = winstl_ns_qual(processheap_allocator)<C>
-#else
+#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >

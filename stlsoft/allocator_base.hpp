@@ -4,11 +4,11 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     22nd December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_MINOR       4
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_EDIT        23
+# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -188,9 +188,9 @@
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_SGI_GNU)
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_RW)
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH
-# else
+# else /* ? library */
 #  error Standard library not recognised
-# endif /* STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH */
+# endif /* library */
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////

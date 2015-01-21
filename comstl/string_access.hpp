@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     15th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MAJOR      4
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MINOR      1
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_REVISION   1
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       87
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -128,9 +128,9 @@ inline cs_size_t guid2string_a(GUID const &guid, cs_char_a_t buff[1 + COMSTL_CCH
 #ifdef STLSOFT_COMPILER_IS_BORLAND
     int         __buff[COMSTL_CCH_GUID_AND_NULL];
     cs_char_w_t *_buff  =   (wchar_t *)__buff;
-#else
+#else /* ? compiler */
     cs_char_w_t _buff[COMSTL_CCH_GUID_AND_NULL];
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
     cs_size_t   cch =   guid2string_w(guid, _buff);
 
     ::WideCharToMultiByte(0, 0, _buff, COMSTL_CCH_GUID_AND_NULL, buff, COMSTL_CCH_GUID_AND_NULL, 0, 0);
@@ -445,9 +445,9 @@ public:
                 {
 #ifdef WIN32
                     ::WideCharToMultiByte(0, 0, w_value, -1, buffer_, static_cast<int>(cch + 1), NULL, NULL);
-#else
+#else /* ? WIN32 */
 # error Not currently implemented for operating systems other than Win32
-#endif /* __SYNSOFT_DBS_DEBUG */
+#endif /* WIN32 */
                 }
             }
         }

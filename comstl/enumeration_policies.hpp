@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     12th January 2006
+ * Updated:     25th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MAJOR       5
-# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MINOR       5
+# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MINOR       9
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_REVISION    1
-# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        26
+# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -69,17 +69,14 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h> // for safe_release(), release_set_null()
-#endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef COMSTL_INCL_COMSTL_HPP_EXCEPTIONS
 #  include <comstl/exceptions.hpp>
 # endif /* !COMSTL_INCL_COMSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -114,7 +111,7 @@ namespace comstl_project
  * Classes
  */
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
 /// Exception class thrown when Clone() method fails
 // [[synesis:class:exception: comstl::clone_failure]]
@@ -160,13 +157,28 @@ private:
 /// @}
 };
 
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+
+/// Policy tag type
+struct noncloneable_enumerator_tag
+{};
+
+struct cloneable_enumerator_tag
+{};
+
+struct repeatable_enumerator_tag
+    : public cloneable_enumerator_tag
+{};
+
+
 
 /// Policy type that causes COM enumerator cloning according the STL Input Iterator concept
 ///
 /// \param I The enumeration interface
 template<ss_typename_param_k I>
 struct input_cloning_policy
+    : public noncloneable_enumerator_tag
 {
 public:
     typedef I                                       interface_type;
@@ -174,20 +186,102 @@ public:
     typedef comstl_ns_qual_std(input_iterator_tag)  iterator_tag_type;
 
 public:
-    /// "Clones" the given COM enumerator interface according to the Input Iterator concept
-    static interface_type *clone(interface_type *src)
+    /// Gets a working "copy" of the given enumerator root
+    ///
+    /// \note For this policy, this simply calls AddRef()
+    static interface_type *get_working_instance(interface_type *root)
     {
-        interface_type *ret =   src;
+        COMSTL_ASSERT(NULL != root);
 
-        safe_addref(ret);
+        root->AddRef();
+
+        return root;
+    }
+
+    /// "Clones" the given COM enumerator interface according to the Input Iterator concept
+    static interface_type *share(interface_type *src)
+    {
+        COMSTL_ASSERT(NULL != src);
+
+        src->AddRef();
+
+        return src;
+    }
+    static cs_bool_t clone(interface_type *src, interface_type **pdest)
+    {
+        COMSTL_ASSERT(NULL != src);
+        COMSTL_ASSERT(NULL != pdest);
+        STLSOFT_SUPPRESS_UNUSED(src);
+
+        *pdest = NULL;
+
+        return false;
+    }
+};
+
+/// Policy type that causes COM enumerator cloning according the STL Input Iterator concept
+///
+/// \param I The enumeration interface
+template<ss_typename_param_k I>
+struct cloneable_cloning_policy
+    : public cloneable_enumerator_tag
+{
+public:
+    typedef I                                       interface_type;
+    typedef interface_type                          *value_type;
+    typedef comstl_ns_qual_std(input_iterator_tag)  iterator_tag_type;
+
+public:
+    /// Gets a working "copy" of the given enumerator root
+    ///
+    /// \note For this policy, this simply calls AddRef()
+    static interface_type *get_working_instance(interface_type *root)
+    {
+        COMSTL_ASSERT(NULL != root);
+
+        interface_type  *ret;
+        HRESULT         hr  =   const_cast<interface_type*>(root)->Clone(&ret);
+
+        if(FAILED(hr))
+        {
+            ret = NULL;
+        }
+
+        return ret;
+    }
+
+    static interface_type *share(interface_type *src)
+    {
+        COMSTL_ASSERT(NULL != src);
+
+        interface_type  *ret;
+        HRESULT         hr  =   const_cast<interface_type*>(src)->Clone(&ret);
+
+        if(FAILED(hr))
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw clone_failure(hr);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+            ret = NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
 
         return ret;
     }
     static cs_bool_t clone(interface_type *src, interface_type **pdest)
     {
-        *pdest = NULL;
+        COMSTL_ASSERT(NULL != src);
+        COMSTL_ASSERT(NULL != pdest);
 
-        return false;
+        *pdest = share(src);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        COMSTL_ASSERT(NULL != *pdest);
+
+        return true;
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        return NULL != *pdest;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 };
 
@@ -196,6 +290,7 @@ public:
 /// \param I The enumeration interface
 template<ss_typename_param_k I>
 struct forward_cloning_policy
+    : public repeatable_enumerator_tag
 {
 public:
     typedef I                                           interface_type;
@@ -203,92 +298,61 @@ public:
     typedef comstl_ns_qual_std(forward_iterator_tag)    iterator_tag_type;
 
 public:
-    /// "Clones" the given COM enumerator interface according to the Forward Iterator concept
-    static interface_type *clone(interface_type const *src)
+    /// Gets a working "copy" of the given enumerator root
+    ///
+    /// \note For this policy, this simply calls AddRef()
+    static interface_type *get_working_instance(interface_type *root)
     {
+        COMSTL_ASSERT(NULL != root);
+
         interface_type  *ret;
+        HRESULT         hr  =   const_cast<interface_type*>(root)->Clone(&ret);
 
-        if(NULL == src)
+        if(FAILED(hr))
         {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw clone_failure(hr);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ret = NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
-        else
-        {
-            HRESULT hr  =   const_cast<interface_type*>(src)->Clone(&ret);
 
-            if(FAILED(hr))
-            {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-                throw clone_failure(hr);
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
-                ret = NULL;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
-            }
+        return ret;
+    }
+
+    /// "Clones" the given COM enumerator interface according to the Forward Iterator concept
+    static interface_type *share(interface_type *src)
+    {
+        COMSTL_ASSERT(NULL != src);
+
+        interface_type  *ret;
+        HRESULT         hr  =   const_cast<interface_type*>(src)->Clone(&ret);
+
+        if(FAILED(hr))
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw clone_failure(hr);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+            ret = NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
         return ret;
     }
     static cs_bool_t clone(interface_type *src, interface_type **pdest)
     {
-        *pdest = clone(src);
+        COMSTL_ASSERT(NULL != src);
+        COMSTL_ASSERT(NULL != pdest);
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+        *pdest = share(src);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         COMSTL_ASSERT(NULL != *pdest);
 
         return true;
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return NULL != *pdest;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
-    }
-};
-
-/// Policy type that causes COM enumerator cloning according the best available STL Iterator concept
-///
-/// \param I The enumeration interface
-///
-/// \deprecated This is no longer recommended, since it does not provide any benefit to algorithms
-template<ss_typename_param_k I>
-struct degenerate_cloning_policy
-{
-public:
-    typedef I                                       interface_type;
-    typedef interface_type                          *value_type;
-    typedef comstl_ns_qual_std(input_iterator_tag)  iterator_tag_type;
-
-public:
-    /// "Clones" the given COM enumerator interface according to the best available concept
-    static interface_type *clone(interface_type *src)
-    {
-        interface_type  *ret;
-
-        if(NULL == src)
-        {
-            ret = NULL;
-        }
-        else if(FAILED(src->Clone(&ret)))
-        {
-            ret = src;
-
-            safe_addref(ret);
-        }
-
-        return ret;
-    }
-    static cs_bool_t clone(interface_type *src, interface_type **pdest)
-    {
-        COMSTL_ASSERT(NULL != pdest);
-
-        if( NULL == src ||
-            FAILED(src->Clone(pdest)))
-        {
-            *pdest = NULL;
-
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 };
 

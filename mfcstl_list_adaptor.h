@@ -5,11 +5,11 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MAJOR     2
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MINOR     4
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  2
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      40
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  3
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -178,7 +178,7 @@ struct list_adaptor_traits<CList<V, A> >
     typedef A               arg_type;
 };
 
-# else
+# else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* ... otherwise you will need to provide your own traits class, e.g
  *
@@ -215,7 +215,7 @@ template<   class C                             // The container type
         ,   class T = list_adaptor_traits<C>    // The traits type
         >
 class list_adaptor
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     typedef list_adaptor<C, T>                          class_type;
@@ -250,7 +250,6 @@ public:
         // with the member type 'value_type' defined.
 # ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         typedef ss_typename_type_k list_adaptor<C, T>::value_type   value_type;
-# else
 # endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 # ifndef _MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR
         typedef stlsoft_define_move_rhs_type(class_type)            rhs_type;
@@ -277,7 +276,7 @@ public:
         // description of _MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR given for
         // a discussion of the ramifications of this choice.
 
-# else
+# else /* ? _MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR */
         /// <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">Move constructor</a>
         const_iterator(rhs_type rhs)
             : m_c(rhs.m_c)
@@ -328,7 +327,7 @@ public:
         /// \brief Post-increment operator
 # ifdef _MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR
         const_iterator operator ++(int)
-# else
+# else /* ? _MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR */
         void operator ++(int)
 # endif /* _MFCSTL_LIST_ADAPTOR_ENABLE_FWD_ITERATOR */
         {

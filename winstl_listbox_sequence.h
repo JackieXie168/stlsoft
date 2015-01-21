@@ -4,11 +4,11 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     23rd December 2005
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_MAJOR     3
-# define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_MINOR     12
+# define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_MINOR     13
 # define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_REVISION  1
-# define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_EDIT      39
+# define WINSTL_VER_H_WINSTL_LISTBOX_SEQUENCE_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,12 +61,12 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include winstl/listbox_sequence.hpp")
+# pragma message("This file is now obsolete. Instead include winstl/controls/listbox_sequence.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_LISTBOX_SEQUENCE
-# include <winstl/listbox_sequence.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_LISTBOX_SEQUENCE */
+#ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE
+# include <winstl/controls/listbox_sequence.hpp>
+#endif /* !WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
