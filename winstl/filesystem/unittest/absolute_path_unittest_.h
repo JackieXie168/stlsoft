@@ -29,6 +29,12 @@ namespace unittest
 				bSuccess = false;
 			}
 
+			if(0 != ::lstrcmp(cwd, stlsoft::c_str_ptr(absolute_path("."))))
+			{
+				r->report("absolute path for \".\" failed", __LINE__);
+				bSuccess = false;
+			}
+
 			return bSuccess;
 		}
 
