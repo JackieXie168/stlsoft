@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  23rd August 2008
+; Updated:  2nd September 2008
 
 ============================================================================
 
@@ -16,6 +16,32 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.49 (2nd September 2008)
+
+Summary:
+========
+
+ * fix for DMC++ defect in winstl::reg_value function template definition
+ * added winstl character conversion typedefs m2w, w2m, t2m, m2t
+
+Changes:
+========
+
+ WinSTL:
+ -------
+
+  ~ winstl/conversion/char_conversions.hpp:
+     + added typedefs m2w, w2m, t2m, m2t
+
+  + winstl/conversion/w2m.hpp
+     * includes winstl/conversion/char_conversions.hpp
+
+  ~ winstl/registry/reg_key.hpp:
+     ~ fix for DMC++ defect in winstl::reg_value function template
+	   definition
 
 ============================================================================
 

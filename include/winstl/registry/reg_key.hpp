@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     26th April 2008
+ * Updated:     24th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        126
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,11 @@
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
 # include <winstl/registry/reg_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
+#if defined(STLSOFT_COMPILER_IS_DMC)
+# ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE
+#  include <winstl/registry/reg_value.hpp>
+# endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE */
+#endif /* compiler */
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS
 # include <winstl/registry/error/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS */
