@@ -4,13 +4,13 @@
  * Purpose:     Exception classes for TOOLHELP components.
  *
  * Created:     21st May 2005
- * Updated:     16th July 2006
+ * Updated:     2nd January 2007
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Pablo Aguilar
+ * Copyright (c) 2005-2007, Pablo Aguilar
  * Copyright (c) 2006, Matthew Wilson
  * All rights reserved.
  *
@@ -45,7 +45,7 @@
 /** \file winstl/toolhelp/exceptions.hpp
  *
  * \brief [C++ only] Exception classes for the
- *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ * (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MAJOR    1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MINOR    2
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_REVISION 1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     7
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,8 @@ namespace winstl_project
  * Classes
  */
 
-/** \brief Root exception thrown by the \ref group__library__windows_toolhelp "ToolHelp" Library.
+/** \brief Root exception thrown by
+ *   the \ref group__library__windows_toolhelp "ToolHelp" Library.
  *
  * \ingroup group__library__windows_toolhelp
  */

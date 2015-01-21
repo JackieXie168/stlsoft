@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     29th December 2006
+ * Updated:     31st December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       4
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        94
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -194,7 +194,7 @@
 /* Digital Mars C/C++ */
 # if __GNUC__ < 3
 #  error Versions of GNU C/C++ prior to 3 are not supported by the COMSTL libraries
-# endif /* __DMC__ */
+# endif /* __GNUC__ */
 
 #elif defined(STLSOFT_COMPILER_IS_INTEL)
 /* Intel C++ */

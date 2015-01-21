@@ -4,11 +4,11 @@
  * Purpose:     Pre-processor abilities for the meta library.
  *
  * Created:     5th March 2006
- * Updated:     15th July 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
  *
  * \brief [C++ only] Pre-processor discrimination of meta programming
  *   support.
- *  (\ref group__library__meta "Template Meta-programming" Library.)
+ * (\ref group__library__meta "Template Meta-programming" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     7
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

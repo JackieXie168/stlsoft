@@ -5,11 +5,11 @@
  *              abstracting away standard library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
  *
  * \brief [C++ only] Definition of iterator class templates and macros for
  *    abstracting away standard library inconsistencies.
- *  (\ref group__library__utility "Utility" Library.)
+ * (\ref group__library__utility "Utility" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      96
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -426,14 +426,14 @@ namespace stlsoft
 // class iterator_base
 /** \brief Base type for <b><code>iterator</code></b> types
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  */
 //
 /** \brief This class abstract std::iterator functionality for deriving classes, hiding
  * the inconsistencies and incompatibilities of the various compilers and/or
  * libraries supported by the STLSoft libraries.
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  *
  * \param C The iterator category
  * \param V The value type
@@ -556,14 +556,14 @@ public:
 // class reverse_iterator_base
 /** \brief Base type for <b><code>reverse_iterator</code></b> types
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  */
 //
 /** \brief This class acts as the base for reverse iterators, insulating deriving
  * classes from the inconsistencies and incompatibilities of the various
  * compilers and/or libraries supported by the STLSoft libraries.
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  *
  * \param I The iterator type
  * \param V The value type
@@ -612,14 +612,14 @@ public:
 // class const_reverse_iterator_base
 /** \brief Base type for <b><code>const_reverse_iterator</code></b> types
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  */
 //
 /** \brief This class acts as the base for const reverse iterators, insulating deriving
  * classes from the inconsistencies and incompatibilities of the various
  * compilers and/or libraries supported by the STLSoft libraries.
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  *
  * \param I The iterator type
  * \param V The value type
@@ -669,14 +669,14 @@ public:
 // class reverse_bidirectional_iterator_base
 /** \brief Base type for <b><code>reverse_bidirectional_iterator</code></b> types
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  */
 //
 /** \brief This class acts as the base for reverse bidirectional iterators,
  * insulating deriving classes from the inconsistencies and incompatibilities
  * of the various compilers and/or libraries supported by the STLSoft libraries.
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  *
  * \param I The iterator type
  * \param V The value type
@@ -726,14 +726,14 @@ public:
 // class const_reverse_bidirectional_iterator_base
 /** \brief Base type for <b><code>const_reverse_bidirectional_iterator</code></b> types
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  */
 //
 /** \brief This class acts as the base for const reverse bidirectional iterators,
  * insulating deriving classes from the inconsistencies and incompatibilities
  * of the various compilers and/or libraries supported by the STLSoft libraries.
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  *
  * \param I The iterator type
  * \param V The value type
@@ -855,7 +855,7 @@ namespace stlsoft
 
 /** \brief Pointer iterator type
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  *
  * \param V The value type
  * \param P The pointer type
@@ -917,7 +917,7 @@ inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::type const &)
 
 /** \brief Iterator category obtainer
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  *
  * \param I The iterator type
  * \param i The iterator instance

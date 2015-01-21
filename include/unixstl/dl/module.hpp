@@ -4,11 +4,11 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     24th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file unixstl/dl/module.hpp
  *
  * \brief [C++ only] Definition of the unixstl::module class.
- *  (\ref group__library__dl "DL" Library.)
+ * (\ref group__library__dl "DL" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     208
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     209
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

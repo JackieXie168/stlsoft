@@ -1,17 +1,17 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta37
+File:     STLSoft-ReleaseNotes-1.9.1-beta38
 
 Purpose:  Release notes for beta release of STLSoft.
 
 Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
-          Copyright (c) 2002-2006, Synesis Software Pty Ltd.
+          Copyright (c) 2002-2007, Synesis Software Pty Ltd.
           All rights reserved.
 
 www:      http://www.stlsoft.org/
 
-Updated:  30th December 2006
+Updated:  3rd January 2007
 
 ============================================================================
 
@@ -25,6 +25,65 @@ Updated:  30th December 2006
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 38 (3rd January 2006):
+
+Additions:
+==========
+
+ + stlsoft/filesystem/io_functions.hpp, which defines the function template
+   read_line, used to read a line of text from a FILE* stream, e.g.
+
+    FILE          *stm = . . .;
+    std::string   str;
+
+    while(stlsoft::read_line(stm, str))
+    {
+      ::fprintf(stdout, "line: %.*s\n", int(str.size()), str.data());
+    }
+
+ ~ stlsoft::ptr_ifun() indirection function pointer adaptor creator
+   functions - used with std::for_each if you are storing a sequence
+   of X but your function acts on X*, e.g.
+
+    class X;
+
+    void modX(X *);
+    
+    std::vector<X>    vecx;
+
+    std::for_each(vecx.begin(), vecx.end(), stlsoft::ptr_ifun(modX));
+
+ + reinstatement of the "remove from scope" technique, in the guise of the
+   STLSOFT_REMOVE_FROM_SCOPE(name) macro, which removes a name from the
+   current scope (and any enclosed scopes). Defined in
+   stlsoft/util/remove_from_scope.hpp
+
+ + added winstl::listview_sequence_item::state()
+
+Changes:
+========
+
+ ~ stlsoft/function_adaptors/ref2ptr.hpp => stlsoft/functional/indirect_function_adaptors.hpp
+
+ ~ winstl/clipboard/exceptions.hpp => winstl/clipboard/error/exceptions.hpp
+
+ ~ 360+ other files are modified in comments only - for auto-documentation
+   purposes only
+
+
+
+ ~ stlsoft::error_desc now works with stream inserters with all compilers
+
+ ~ stlsoft::ref2ptr() indirection function pointer adaptor creator functions
+   are deprecated, in favour of stlsoft::ptr_ifun() creator functions.
+
+ ~ comstl::errorinfo_desc now works with stream inserters with all compilers
+
+ ~ fixed compilation problem with unixstl/dl/dl_call.hpp with GCC 4.x
 
 
 ============================================================================

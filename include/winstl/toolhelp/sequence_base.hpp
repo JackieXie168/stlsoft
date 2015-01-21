@@ -4,13 +4,13 @@
  * Purpose:     TOOLHELP sequence_base class template.
  *
  * Created:     21st May 2005
- * Updated:     30th December 2006
+ * Updated:     2nd January 2007
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Pablo Aguilar
+ * Copyright (c) 2005-2007, Pablo Aguilar
  * Copyright (c) 2006, Matthew Wilson
  * All rights reserved.
  *
@@ -46,7 +46,7 @@
  *
  * \brief [C++ only] Definition of the
  *  \link winstl::th_sequence_base th_sequence_base\endlink class.
- *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ * (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  3
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      7
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

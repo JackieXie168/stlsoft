@@ -5,11 +5,11 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
 /** \file stlsoft/meta/member_traits.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::member_traits component.
- *  (\ref group__library__meta "Template Meta-programming" Library.)
+ * (\ref group__library__meta "Template Meta-programming" Library.)
  */
 
 // An amalgamation of meta traits that's been pending reification for too long.
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        31
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

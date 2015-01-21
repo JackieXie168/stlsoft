@@ -4,11 +4,11 @@
  * Purpose:     Size determination.
  *
  * Created:     19th November 1998
- * Updated:     2nd July 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
  *
  * \brief [C++ only] Definition of the void-compatible sizeof() operator
  *  template: stlsoft::size_of.
- *  (\ref group__library__meta "Template Meta-programming" Library.)
+ * (\ref group__library__meta "Template Meta-programming" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_REVISION  1
-# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      121
+# define STLSOFT_VER_STLSOFT_META_HPP_SIZE_OF_EDIT      122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

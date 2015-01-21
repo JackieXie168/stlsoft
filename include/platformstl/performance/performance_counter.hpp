@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the performance_counter components.
  *
  * Created:     20th March 2005
- * Updated:     11th July 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,13 +46,14 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       12
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/performance/performance_counter.hpp
  *
  * \brief [C++ only] Definition of the platformstl::performance_counter
- *  type. (\ref group__library__performance "Performance" Library.)
+ *  type.
+ * (\ref group__library__performance "Performance" Library.)
  *
  * When compiling on UNIX platforms, the platformstl::performance_counter
  * type resolves to the unixstl::performance_counter class. On Windows

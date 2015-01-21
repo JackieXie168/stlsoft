@@ -4,11 +4,11 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     18th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
  *
  * \brief [C++ only] Definition of the stlsoft::basic_error_desc class
  *  template.
- *  (\ref group__library__error "Error" Library.)
+ * (\ref group__library__error "Error" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_ERROR_DESC
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  2
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      5
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  3
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -210,7 +210,7 @@ typedef basic_error_desc<ss_char_a_t>   error_desc_a;
  *
  * \ingroup group__library__error
  */
-typedef basic_error_desc<char>         error_desc;
+typedef basic_error_desc<char>          error_desc;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Implementation
@@ -375,6 +375,27 @@ inline S &operator <<(S &s, stlsoft_ns_qual(basic_error_desc)<C> const &e)
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Global namespace shims
+ */
+
+/* This defines stream inserter shim function templates for the converters
+ * for use with the Visual C++ <7.1 standard library.
+ */
+
+#if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+    STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
+
+# include <iosfwd>
+
+template <ss_typename_param_k C>
+inline stlsoft_ns_qual_std(basic_ostream)<C> &operator <<(stlsoft_ns_qual_std(basic_ostream)<C> &stm, stlsoft_ns_qual(basic_error_desc)<C> const &desc)
+{
+    return stm << desc.c_str();
+}
+
+#endif /* library */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,11 +4,11 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     29th December 2006
+ * Updated:     3rd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 /** \file comstl/error/errorinfo_desc.hpp
  *
  * \brief [C++ only] Definition of the comstl::errorinfo_desc class.
- *  (\ref group__library__error "Error" Library.)
+ * (\ref group__library__error "Error" Library.)
  *
  * \note The contents of this file are not a final form, and <b>will</b>
  *  change in a future release.
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       5
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    4
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        22
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    5
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -387,6 +387,20 @@ inline cs_char_o_t const *c_str_ptr_null_o(comstl_ns_qual(errorinfo_desc) const 
 inline LPCTSTR c_str_ptr_null(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return (0 != eid.length()) ? eid.c_str() : NULL;
+}
+
+
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for comstl::errorinfo_desc
+ *
+ * \ingroup group__concept__shim__stream_insertion
+ */
+template<   ss_typename_param_k S
+        >
+inline S &operator <<(S &s, comstl_ns_qual(errorinfo_desc) const &eid)
+{
+    s << eid.c_str();
+
+    return s;
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     is_bool_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     2nd July 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
  *
  * \brief [C++ only] Definition of the stlsoft::is_bool_type meta class
  *  template.
- *  (\ref group__library__meta "Template Meta-programming" Library.)
+ * (\ref group__library__meta "Template Meta-programming" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_BOOL_TYPE
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_EDIT     3
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_BOOL_TYPE_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
