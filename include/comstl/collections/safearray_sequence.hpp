@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     25th April 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MAJOR     4
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     2
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      58
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ class safearray_sequence
 /// \name Member Types
 /// @{
 private:
-    typedef SAFEARRAY const                                 *LPCSAFEARRAY;
+    typedef SAFEARRAY const*                                LPCSAFEARRAY;
 public:
     /// \brief The value type
     typedef T                                               value_type;
@@ -140,13 +140,13 @@ public:
     /// \brief The difference type
     typedef cs_ptrdiff_t                                    difference_type;
     /// \brief The reference type
-    typedef value_type                                      &reference;
+    typedef value_type&                                     reference;
     /// \brief The non-mutable (const) reference type
-    typedef value_type const                                &const_reference;
+    typedef value_type const&                               const_reference;
     /// \brief The pointer type
-    typedef value_type                                      *pointer;
+    typedef value_type*                                     pointer;
     /// \brief The non-mutable (const) pointer type
-    typedef value_type const                                *const_pointer;
+    typedef value_type const*                               const_pointer;
     /// \brief The iterator type
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)

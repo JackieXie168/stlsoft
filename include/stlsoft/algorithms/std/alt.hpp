@@ -5,7 +5,7 @@
  *              do or do not have a standard library.
  *
  * Created:     17th January 2002
- * Updated:     22nd September 2008
+ * Updated:     10th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MINOR       4
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        75
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    2
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,10 +75,6 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #if defined(STLSOFT_CF_std_NAMESPACE)
-# if defined(STLSOFT_COMPILER_IS_WATCOM)
-#  undef min
-#  undef max
-# endif /* compiler */
 # include <algorithm>
 #endif /* STLSOFT_CF_std_NAMESPACE */
 #if !defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)

@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     9th March 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 3
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     35
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,7 +147,7 @@ public:
     /// \brief The current instantiation of the type
     typedef basic_commandline_parser<C, T, A>                                       class_type;
 private:
-    typedef char_type                                                               *pointer_type;
+    typedef char_type*                                                              pointer_type;
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     typedef ss_typename_type_k A::ss_template_qual_k rebind<pointer_type>::other    pointers_allocator_type;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */

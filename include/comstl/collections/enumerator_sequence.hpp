@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
  *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 3
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     245
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     246
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -232,7 +232,7 @@ public:
                                                                     ,   stlsoft_ns_qual(base_type_traits)<R>::is_const
                                                                     >::type     pointer;
 #else /* ? STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
-    typedef value_type                                                          *pointer;
+    typedef value_type*                                                         pointer;
 #endif /* !STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
     /// \brief The non-mutating (const) pointer type
     typedef value_type const*                                                   const_pointer;

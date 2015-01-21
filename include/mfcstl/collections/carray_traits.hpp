@@ -4,7 +4,7 @@
  * Purpose:     Definition of the CArray_traits traits class.
  *
  * Created:     1st December 2002
- * Updated:     12th March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_MAJOR      2
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_MINOR      0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_REVISION   1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_EDIT       9
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,16 +161,16 @@ struct CArray_traits<CWordArray>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct CArray_traits<CPtrArray>
 {
-    typedef void            *value_type;
-    typedef void            *arg_type;
+    typedef void*           value_type;
+    typedef void*           arg_type;
     typedef CPtrArray       array_type;
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct CArray_traits<CObArray>
 {
-    typedef CObject         *value_type;
-    typedef CObject         *arg_type;
+    typedef CObject*        value_type;
+    typedef CObject*        arg_type;
     typedef CObArray        array_type;
 };
 
@@ -179,7 +179,7 @@ struct CArray_traits<CStringArray>
 {
     typedef CString         value_type;
 # if 0
-    typedef CString const   &arg_type;
+    typedef CString const&  arg_type;
 # else /* ? 0 */
     typedef LPCTSTR         arg_type;
 # endif /* 0 */

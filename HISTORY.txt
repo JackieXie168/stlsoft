@@ -2,10 +2,22 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  1st October 2008
+; Updated:  10th October 2008
 
 ============================================================================
 
+
+10th October 2008 - 1.9.57 released
+-----------------------------------
+
+ * addition of missing const_reference member type in various Windows
+   controls collection classes
+ * C / C++ compatibility fixes for COMSTL
+ * fix of minor non-standard name in winstl::int_to_string() supporting
+   class
+ * a large number of files were altered in minor ways, to do with whitespace
+   and the placement of * and & symbols
+ * several files' documentation markup was cleaned up
 
 1st October 2008 - 1.9.56 released
 ----------------------------------

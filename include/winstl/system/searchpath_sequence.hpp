@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     25th April 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 1
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     90
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,15 +143,15 @@ public:
     /// The current parameterisation of the type
     typedef basic_searchpath_sequence<C, T>                                         class_type;
     /// The value type
-    typedef char_type const                                                         *value_type;
+    typedef char_type const*                                                        value_type;
     /// The pointer type
-    typedef value_type                                                              *pointer;
+    typedef value_type*                                                             pointer;
     /// The non-mutable (const) pointer type
-    typedef value_type const                                                        *const_pointer;
+    typedef value_type const*                                                       const_pointer;
     /// The reference type
-    typedef value_type                                                              &reference;
+    typedef value_type&                                                             reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                                                        &const_reference;
+    typedef value_type const&                                                       const_reference;
     /// The size type
     typedef ws_size_t                                                               size_type;
     /// The difference type

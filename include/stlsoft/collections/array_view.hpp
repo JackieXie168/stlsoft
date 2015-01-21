@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     25th April 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       1
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        67
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,17 +115,17 @@ class array_view
 public:
     typedef T                                               value_type;
     typedef array_view<T>                                   class_type;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
+    typedef value_type*                                     pointer;
+    typedef value_type const*                               const_pointer;
+    typedef value_type&                                     reference;
+    typedef value_type const&                               const_reference;
     typedef ss_size_t                                       size_type;
     typedef ss_ptrdiff_t                                    difference_type;
 #if !defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The iterator type
-    typedef value_type                                      *iterator;
+    typedef value_type*                                     iterator;
     /// The non-mutable (const) iterator type
-    typedef value_type const                                *const_iterator;
+    typedef value_type const*                               const_iterator;
 #else /* ? !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The iterator type
     typedef

@@ -4,7 +4,7 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     6th December 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       4
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    6
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        31
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ public:
     /// The associative type
     typedef S                                                       associative_type;
     /// The associative reference type
-    typedef S                                                       &associative_reference_type;
+    typedef S&                                                      associative_reference_type;
     /// The key type
     typedef ss_typename_type_k associative_type::key_type           key_type;
     /// The mapped type
@@ -177,7 +177,7 @@ struct associative_range_traits<S, true>
 {
 public:
     typedef S                                                       associative_type;
-    typedef S                                                       &associative_reference_type;
+    typedef S&                                                      associative_reference_type;
     typedef ss_typename_type_k associative_type::key_type           key_type;
     typedef ss_typename_type_k associative_mapped_type_detector<S>::mapped_type mapped_type;
 //    typedef ss_typename_type_k associative_type::referent_type      mapped_type;
@@ -199,7 +199,7 @@ struct associative_range_traits
 {
 public:
     typedef S                                                       associative_type;
-    typedef S                                                       &associative_reference_type;
+    typedef S&                                                      associative_reference_type;
     typedef ss_typename_type_k associative_type::key_type           key_type;
     typedef ss_typename_type_k associative_type::mapped_type        mapped_type;
     typedef ss_typename_type_k associative_type::value_type         value_type;
@@ -217,7 +217,7 @@ struct associative_range_traits_dinkumware_early
 {
 public:
     typedef S                                                       associative_type;
-    typedef S                                                       &associative_reference_type;
+    typedef S&                                                      associative_reference_type;
     typedef ss_typename_type_k associative_type::key_type           key_type;
     typedef ss_typename_type_k associative_type::referent_type      mapped_type;
     typedef ss_typename_type_k associative_type::value_type         value_type;
@@ -235,7 +235,7 @@ struct const_associative_range_traits
 {
 public:
     typedef S                                                       associative_type;
-    typedef S const                                                 &associative_reference_type;
+    typedef S const&                                                associative_reference_type;
     typedef ss_typename_type_k associative_type::key_type           key_type;
     typedef ss_typename_type_k associative_type::mapped_type        mapped_type;
     typedef ss_typename_type_k associative_type::value_type         value_type;
@@ -253,7 +253,7 @@ struct const_associative_range_traits_dinkumware_early
 {
 public:
     typedef S                                                       associative_type;
-    typedef S const                                                 &associative_reference_type;
+    typedef S const&                                                associative_reference_type;
     typedef ss_typename_type_k associative_type::key_type           key_type;
     typedef ss_typename_type_k associative_type::referent_type      mapped_type;
     typedef ss_typename_type_k associative_type::value_type         value_type;

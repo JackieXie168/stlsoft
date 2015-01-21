@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      101
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@ public:
     /// \brief The Boolean type
     typedef us_bool_t                               bool_type;
     /// \brief The type of a handle to a dynamically loaded module
-    typedef void                                    *module_type;
+    typedef void*                                   module_type;
     /// \brief The type of a handle to a kernel object
     typedef int                                     handle_type;
     /// \brief The type of system error codes
@@ -277,7 +277,7 @@ public:
     typedef system_traits<us_char_a_t>  class_type;
     typedef us_int_t                    int_type;
     typedef us_bool_t                   bool_type;
-    typedef void                        *module_type;
+    typedef void*                       module_type;
     typedef int                         handle_type;
     typedef int                         error_type;
 
@@ -424,7 +424,7 @@ public:
     typedef system_traits<us_char_a_t>  class_type;
     typedef us_int_t                    int_type;
     typedef us_bool_t                   bool_type;
-    typedef void                        *module_type;
+    typedef void*                       module_type;
     typedef int                         handle_type;
     typedef int                         error_type;
 

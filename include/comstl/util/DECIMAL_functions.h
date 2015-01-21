@@ -4,7 +4,7 @@
  * Purpose:     DECIMAL helper functions.
  *
  * Created:     23rd August 2008
- * Updated:     23rd August 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_REVISION    1
-# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        1
+# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_REVISION    2
+# define COMSTL_VER_COMSTL_UTIL_H_DECIMAL_FUNCTIONS_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,15 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
+
+#ifndef STLSOFT_INCL_H_OAIDL
+# define STLSOFT_INCL_H_OAIDL
+# include <oaidl.h>
+#endif /* !STLSOFT_INCL_H_OAIDL */
+#ifndef STLSOFT_INCL_H_WTYPES
+# define STLSOFT_INCL_H_WTYPES
+# include <wtypes.h>
+#endif /* !STLSOFT_INCL_H_WTYPES */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -150,20 +159,20 @@ STLSOFT_INLINE int comstl__DECIMAL_compare(DECIMAL const* lhs, DECIMAL const* rh
             VariantClear(&vdblL);
             VariantClear(&vdblR);
 
-            vdecL.vt        =   VT_DECIMAL;
-            vdecL.decVal    =   *lhs;
+            COMSTL_ACCESS_VARIANT_vt_BYREF(vdecL)       =   VT_DECIMAL;
+            COMSTL_ACCESS_VARIANT_decVal_BYREF(vdecL)   =   *lhs;
 
-            vdecR.vt        =   VT_DECIMAL;
-            vdecR.decVal    =   *rhs;
+            COMSTL_ACCESS_VARIANT_vt_BYREF(vdecR)       =   VT_DECIMAL;
+            COMSTL_ACCESS_VARIANT_decVal_BYREF(vdecR)   =   *rhs;
 
             VariantChangeType(&vdblL, &vdecL, 0, VT_R8);
             VariantChangeType(&vdblR, &vdecR, 0, VT_R8);
 
-            if(vdblL.dblVal == vdblR.dblVal)
+            if(COMSTL_ACCESS_VARIANT_MEM_BYREF(vdblL, dblVal) == COMSTL_ACCESS_VARIANT_MEM_BYREF(vdblR, dblVal))
             {
                 return 0;
             }
-            else if(vdblL.dblVal < vdblR.dblVal)
+            else if(COMSTL_ACCESS_VARIANT_MEM_BYREF(vdblL, dblVal) < COMSTL_ACCESS_VARIANT_MEM_BYREF(vdblR, dblVal))
             {
                 return -1;
             }

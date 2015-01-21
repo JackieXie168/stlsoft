@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_const_iterator class.
  *
  * Created:     10th November 2002
- * Updated:     11th August 2008
+ * Updated:     10th October 2008
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     70
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -146,9 +146,9 @@ public:
     /// The difference type
     typedef ws_ptrdiff_t                                                    difference_type;
     /// The non-mutating (const) reference type
-    typedef value_type const                                                &const_reference;
+    typedef value_type const&                                               const_reference;
     /// The non-mutating (const) pointer type
-    typedef value_type const                                                *const_pointer;
+    typedef value_type const*                                               const_pointer;
     /// The allocator type
     typedef processheap_allocator<char_type>                                allocator_type;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)

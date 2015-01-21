@@ -4,7 +4,7 @@
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 #define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_MAJOR    4
 #define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_MINOR    0
 #define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_REVISION 2
-#define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_EDIT     45
+#define DOTNETSTL_VER_DOTNETSTL_STRING_HPP_STRING_ACCESSOR_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,15 +100,15 @@ class c_string_accessor
 {
 public:
     typedef C                       char_type;
-    typedef C                       *pointer;
-    typedef C const                 *const_pointer;
+    typedef C*                      pointer;
+    typedef C const*                const_pointer;
     typedef c_string_accessor<C>    class_type;
 #if defined(DOTNETSTL_HAT_SYNTAX_SUPPORT)
     typedef System::String const    ^string_pointer_const_type_;
     typedef System::String          ^string_pointer_type_;
 #else /* ? DOTNETSTL_HAT_SYNTAX_SUPPORT */
-    typedef System::String const    *string_pointer_const_type_;
-    typedef System::String          *string_pointer_type_;
+    typedef System::String const*   string_pointer_const_type_;
+    typedef System::String*         string_pointer_type_;
 #endif /* DOTNETSTL_HAT_SYNTAX_SUPPORT */
 
 // Construction

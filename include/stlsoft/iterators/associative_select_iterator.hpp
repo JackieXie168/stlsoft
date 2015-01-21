@@ -5,7 +5,7 @@
  *              iterator in order to obtain the value_type.
  *
  * Created:     28th January 2005
- * Updated:     22nd March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     21
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,8 +100,8 @@ struct select_first
 {
 public:
     typedef ss_typename_type_k P::first_type    value_type;
-    typedef value_type                          &reference;
-    typedef value_type const                    &const_reference;
+    typedef value_type&                         reference;
+    typedef value_type const&                   const_reference;
 
 public:
     reference operator ()(P const& p)
@@ -124,8 +124,8 @@ struct select_second
 {
 public:
     typedef ss_typename_type_k P::second_type   value_type;
-    typedef value_type                          &reference;
-    typedef value_type const                    &const_reference;
+    typedef value_type&                         reference;
+    typedef value_type const&                   const_reference;
 
 public:
     reference operator ()(P const& p)
@@ -145,8 +145,8 @@ struct select_second_const
 {
 public:
     typedef const ss_typename_type_k P::second_type value_type;
-    typedef value_type                              &reference;
-    typedef value_type                              &const_reference;
+    typedef value_type&                             reference;
+    typedef value_type&                             const_reference;
 
 public:
     const_reference operator ()(P const& p) const
@@ -175,10 +175,10 @@ public:
     typedef ss_typename_type_k I::distance_type     distance_type;
     typedef associative_select_iterator<I, F>                           class_type;
 
-    typedef value_type                                                  &reference;
-    typedef value_type const                                            &const_reference;
-    typedef value_type                                                  *pointer;
-    typedef value_type const                                            *const_pointer;
+    typedef value_type&                                                 reference;
+    typedef value_type const&                                           const_reference;
+    typedef value_type*                                                 pointer;
+    typedef value_type const*                                           const_pointer;
 
 public:
     ss_explicit_k associative_select_iterator(  adapted_iterator_type   i

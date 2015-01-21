@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     11th August 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 9
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     134
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -201,9 +201,9 @@ public:
     /// The non-mutating (const) iterator type
     typedef const_input_iterator                                                const_iterator;
     /// The reference type
-    typedef value_type                                                          &reference;
+    typedef value_type&                                                         reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                                                    &const_reference;
+    typedef value_type const&                                                   const_reference;
     /// The find-data type
     typedef ss_typename_type_k traits_type::find_data_type                      find_data_type;
     /// The difference type

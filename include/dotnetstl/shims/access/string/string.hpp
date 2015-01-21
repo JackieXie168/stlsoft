@@ -4,7 +4,7 @@
  * Purpose:     String access shims for .net.
  *
  * Created:     24th June 2003
- * Updated:     9th March 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_MAJOR       2
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_MINOR       0
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_REVISION    4
-# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_EDIT        18
+# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,8 +108,8 @@ namespace impl
     typedef System::String const        ^string_pointer_const_type;
     typedef System::String              ^string_pointer_type;
 #else /* DOTNETSTL_HAT_SYNTAX_SUPPORT */
-    typedef System::String const        *string_pointer_const_type;
-    typedef System::String              *string_pointer_type;
+    typedef System::String const*       string_pointer_const_type;
+    typedef System::String*             string_pointer_type;
 #endif /* DOTNETSTL_HAT_SYNTAX_SUPPORT */
 
 } // namespace impl

@@ -4,7 +4,7 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     24th April 2008
+ * Updated:     10th October 2008
  *
  * Thanks to:   Felix Gartsman for spotting a bug in (lack of) operator <()
  *              when building Pantheios.
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    6
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        52
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,6 +113,7 @@ namespace stlsoft
  * Classes
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template<   ss_typename_param_k I
         ,   ss_typename_param_k C
         ,   ss_typename_param_k M
@@ -126,54 +127,55 @@ struct msi_parent_type
 // - Intel 6/7/7.1/8, which may be used with Visual C++ 6 or 7.0 Dinkumware
 //    libraries
 //
-#if defined(STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT) && \
-    defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
-    (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
-        STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1) && \
-    !defined(STLSOFT_COMPILER_IS_BORLAND) && \
-    !defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
+# if defined(STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT) && \
+     defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+     (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
+         STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1) && \
+     !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+     !defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
     : public iterator_base< ss_typename_type_k stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category
                         ,   M
                         ,   ss_ptrdiff_t
                         ,   M*
                         ,   M&
                         >
-#elif defined(STLSOFT_ITERATOR_ITERATOR_FORM2_SUPPORT) || \
-      (   defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
-          STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0) || \
-      (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-          _MSC_VER == 1300) || \
-    defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
+# elif defined(STLSOFT_ITERATOR_ITERATOR_FORM2_SUPPORT) || \
+       (   defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+           STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0) || \
+       (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+           _MSC_VER == 1300) || \
+     defined(STLSOFT_COMPILER_IS_BORLAND) || \
+     defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
     : public iterator_base< stlsoft_ns_qual_std(input_iterator_tag)
                         ,   M
                         ,   ss_ptrdiff_t
                         ,   M*
                         ,   M&
                         >
-#elif defined(STLSOFT_ITERATOR_ITERATOR_FORM3_SUPPORT)
+# elif defined(STLSOFT_ITERATOR_ITERATOR_FORM3_SUPPORT)
   // do not derive
-#else /* ? STLSOFT_ITERATOR_ITERATOR_FORM??????_SUPPORT */
-# error iterator support type not discriminated
-#endif /* !STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT */
+# else /* ? STLSOFT_ITERATOR_ITERATOR_FORM??????_SUPPORT */
+#  error iterator support type not discriminated
+# endif /* !STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT */
 {
 /// \name Member Types
 /// @{
 public:
-#if defined(STLSOFT_ITERATOR_ITERATOR_FORM3_SUPPORT)
+# if defined(STLSOFT_ITERATOR_ITERATOR_FORM3_SUPPORT)
     typedef stlsoft_ns_qual_std(input_iterator_tag) iterator_category;
-#endif /* form ? */
+# endif /* form ? */
     typedef I                                       base_iterator_type;
     typedef C                                       selected_class_type;
     typedef M                                       value_type;
-    typedef value_type                              *pointer;
-    typedef value_type const                        *const_pointer;
-    typedef value_type                              &reference;
-    typedef value_type const                        &const_reference;
+    typedef value_type*                             pointer;
+    typedef value_type const*                       const_pointer;
+    typedef value_type&                             reference;
+    typedef value_type const&                       const_reference;
     typedef ss_size_t                               size_type;
     typedef ss_ptrdiff_t                            difference_type;
 /// @}
 };
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 // class member_selector_iterator
 /** \brief An iterator adaptor class template that presents a member of the underlying

@@ -4,7 +4,7 @@
  * Purpose:     Class template that allows built-in & aggregate types to be treated as 1st-class types.
  *
  * Created:     8th September 2002
- * Updated:     9th March 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_REVISION  4
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      48
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -182,13 +182,13 @@ public:
     /// The type of the current parameterisation
     typedef first_class_promoter<T> class_type;
     /// The pointer type
-    typedef T                       *pointer;
+    typedef T*                      pointer;
     /// The non-mutating (const) pointer type
-    typedef T const                 *const_pointer;
+    typedef T const*                const_pointer;
     /// The reference type
-    typedef T                       &reference;
+    typedef T&                      reference;
     /// The non-mutating (const) reference type
-    typedef T const                 &const_reference;
+    typedef T const&                const_reference;
 
 // Construction
 public:

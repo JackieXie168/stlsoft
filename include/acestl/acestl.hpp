@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     22nd September 2008
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     7
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  4
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      37
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -149,6 +149,12 @@
  * ACE version
  */
 
+/** \def ACESTL_ACE_VERSION
+ *
+ * Composite version describing the version of ACE being compiled. The
+ * upper 16 bits correspond to ACE_MAJOR_VERSION. The lower 16 bits
+ * correspond to ACE_MINOR_VERSION.
+ */
 #define ACESTL_ACE_VERSION  ((ACE_MAJOR_VERSION << 16) | ACE_MINOR_VERSION)
 
 /* /////////////////////////////////////////////////////////////////////////

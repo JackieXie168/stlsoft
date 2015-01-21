@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     9th March 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       122
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -190,9 +190,9 @@ public:
     class                                                       const_iterator;
     /// \brief The value type
 #if defined(UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE)
-    typedef struct dirent const                                 *value_type;
+    typedef struct dirent const*                                value_type;
 #else /* ? UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
-    typedef char_type const                                     *value_type;
+    typedef char_type const*                                    value_type;
 #endif /* UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
     /// \brief The flags type
     typedef us_int_t                                            flags_type;
@@ -328,8 +328,8 @@ public:
     typedef readdir_sequence::value_type            value_type;
     /// \brief The flags type
     typedef readdir_sequence::flags_type            flags_type;
-//    typedef value_type                            *pointer;
-//    typedef value_type                            &reference;
+//    typedef value_type*                           pointer;
+//    typedef value_type&                           reference;
 /// @}
 
 /// \name Construction
@@ -396,7 +396,7 @@ struct readdir_sequence::const_iterator::shared_handle
 /// @{
 public:
     typedef shared_handle   class_type;
-    typedef DIR             *handle_type;
+    typedef DIR*            handle_type;
 /// @}
 
 /// \name Members

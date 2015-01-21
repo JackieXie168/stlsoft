@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     44
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,13 +153,13 @@ public:
     /// \brief The type of the current parameterisation
     typedef allocator_base<T, A>                class_type;
     /// \brief The pointer type
-    typedef value_type                          *pointer;
+    typedef value_type*                         pointer;
     /// \brief The non-mutating (const) pointer type
-    typedef value_type const                    *const_pointer;
+    typedef value_type const*                   const_pointer;
     /// \brief The reference type
-    typedef value_type                          &reference;
+    typedef value_type&                         reference;
     /// \brief The non-mutating (const) reference type
-    typedef value_type const                    &const_reference;
+    typedef value_type const&                   const_reference;
     /// \brief The difference type
     typedef ss_ptrdiff_t                        difference_type;
     /// \brief The size type
@@ -169,7 +169,7 @@ private:
 #ifdef STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER
     typedef pointer                             deallocate_pointer;
 #else /* ? STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER */
-    typedef void                                *deallocate_pointer;
+    typedef void*                               deallocate_pointer;
 #endif /* STLSOFT_CF_ALLOCATOR_TYPED_DEALLOCATE_POINTER */
 private:
 #if defined(STLSOFT_CF_COMPILER_SUPPORTS_CRTP)

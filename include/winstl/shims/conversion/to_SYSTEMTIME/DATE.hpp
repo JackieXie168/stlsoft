@@ -121,16 +121,16 @@ namespace winstl_project
  */
 inline const SYSTEMTIME to_SYSTEMTIME(DATE const& rhs)
 {
-	SYSTEMTIME	st;
+    SYSTEMTIME  st;
 
-	if(!::VariantTimeToSystemTime(rhs, &st))
-	{
+    if(!::VariantTimeToSystemTime(rhs, &st))
+    {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         STLSOFT_THROW_X(conversion_error("failed to convert time value", ::GetLastError()));
 #else /* STLSOFT_CF_EXCEPTION_SUPPORT */
         zero_struct(ud);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-	}
+    }
 
     return st;
 }

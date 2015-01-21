@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     25th April 2008
+ * Updated:     10th October 2008
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MINOR       2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        60
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,6 +153,8 @@ public:
     typedef ss_typename_type_k const_iterator::char_type                    char_type;
     /// The value type
     typedef ss_typename_type_k const_iterator::value_type                   value_type;
+    /// The non-mutable (const) reference type
+    typedef ss_typename_type_k const_iterator::const_reference              const_reference;
     /// The size type
     typedef ss_typename_type_k const_iterator::size_type                    size_type;
     /// The difference type
