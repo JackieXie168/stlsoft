@@ -4,7 +4,7 @@
  * Purpose:     A component for relating two COM objects without cycles.
  *
  * Created:     25th March 2006
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MAJOR     1
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MINOR     2
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  6
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      18
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -272,7 +272,7 @@ private:
 /// \name Implementation
 /// @{
 private:
-    class_type &get_this_();
+    class_type& get_this_();
 /// @}
 
 /// \name Construction
@@ -423,7 +423,7 @@ inline acyclic_connector<MX>::~acyclic_connector() stlsoft_throw_0()
 {}
 
 template <ss_typename_param_k MX>
-inline ss_typename_type_ret_k acyclic_connector<MX>::class_type &acyclic_connector<MX>::get_this_()
+inline ss_typename_type_ret_k acyclic_connector<MX>::class_type& acyclic_connector<MX>::get_this_()
 {
     return *this;
 }

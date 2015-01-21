@@ -4,7 +4,7 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     6th January 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    5
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     29
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -240,7 +240,7 @@ public:
         return m_range.current();
     }
     /// Advances the current position in the range
-    class_type &advance()
+    class_type& advance()
     {
         STLSOFT_MESSAGE_ASSERT("Attempting to increment the range past its end point", is_open());
 

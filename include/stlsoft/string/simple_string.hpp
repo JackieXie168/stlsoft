@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     16th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 12
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     238
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     239
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -269,21 +269,21 @@ public:
 /// @{
 public:
     /// Assigns from the given character string
-    class_type &assign(char_type const* s);
+    class_type& assign(char_type const* s);
     /// Assigns with \c cch characters from the given character string
-    class_type &assign(char_type const* s, size_type cch);
+    class_type& assign(char_type const* s, size_type cch);
     /// Assigns with \c cch characters from the given character string at the specified position
-    class_type &assign(class_type const& str, size_type pos, size_type cch);
+    class_type& assign(class_type const& str, size_type pos, size_type cch);
     /// Assigns from the given string
-    class_type &assign(class_type const& str);
+    class_type& assign(class_type const& str);
     /// Assigns \c cch characters with the value \c ch
-    class_type &assign(size_type cch, char_type ch);
+    class_type& assign(size_type cch, char_type ch);
     /// Assigns from the range [first:last)
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
-    class_type &assign(const_iterator first, const_iterator last);
+    class_type& assign(const_iterator first, const_iterator last);
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     template <ss_typename_param_k II>
-    class_type &assign(II first, II last)
+    class_type& assign(II first, II last)
     {
 # if (  defined(STLSOFT_COMPILER_IS_GCC) && \
         __GNUC__ < 3) || \
@@ -313,21 +313,21 @@ public:
 /// @{
 public:
     /// Appends the given character string
-    class_type &append(char_type const* s);
+    class_type& append(char_type const* s);
     /// Appends \c cch characters from the given character string
-    class_type &append(char_type const* s, size_type cch);
+    class_type& append(char_type const* s, size_type cch);
     /// Assigns \c cch characters from the given character string at the specified position
-    class_type &append(class_type const& str, size_type pos, size_type cch);
+    class_type& append(class_type const& str, size_type pos, size_type cch);
     /// Appends the given string
-    class_type &append(class_type const& str);
+    class_type& append(class_type const& str);
     /// Appends \c cch characters with the value \c ch
-    class_type &append(size_type cch, char_type ch);
+    class_type& append(size_type cch, char_type ch);
     /// Appends the range [first:last)
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
-    class_type &append(const_iterator first, const_iterator last);
+    class_type& append(const_iterator first, const_iterator last);
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     template <ss_typename_param_k II>
-    class_type &append(II first, II last)
+    class_type& append(II first, II last)
     {
 # if (  defined(STLSOFT_COMPILER_IS_GCC) && \
         __GNUC__ < 3) || \
@@ -362,7 +362,7 @@ public:
     /// Reserves at least cch characters
     void reserve(size_type cch);
     /// Swaps the contents between \c this and \c other
-    void swap(class_type &other);
+    void swap(class_type& other);
 
     /// Resizes the string
     ///
@@ -590,9 +590,9 @@ private:
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
 # endif /* compiler */
     {
         stlsoft_ns_qual_std(copy)(first, last, stlsoft_ns_qual_std(back_inserter)(*this));
@@ -604,9 +604,9 @@ private:
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
         const ss_size_t n   =   static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last));
@@ -626,9 +626,9 @@ private:
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
 # endif /* compiler */
     {
         stlsoft_ns_qual_std(copy)(first, last, stlsoft_ns_qual_std(back_inserter)(*this));
@@ -639,9 +639,9 @@ private:
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
         buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
@@ -2124,7 +2124,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type cch)
 {
     STLSOFT_ASSERT(is_valid());
@@ -2189,7 +2189,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
 {
     return assign(s, (NULL == s) ? 0 : traits_type::length(s));
 }
@@ -2198,7 +2198,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch)
 {
@@ -2231,7 +2231,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs)
 {
     return assign(char_pointer_from_member_pointer_(rhs.m_buffer), rhs.length());
 }
@@ -2240,7 +2240,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch)
 {
     buffer_type_    buffer(cch);
@@ -2255,7 +2255,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator     first
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator     first
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator     last)
 {
     // We have to use this strange appearing this, because of Visual C++ .NET's
@@ -2299,7 +2299,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type cch)
 {
     STLSOFT_ASSERT(is_valid());
@@ -2368,7 +2368,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
 {
     return append(s, (NULL == s) ? 0 : traits_type::length(s));
 }
@@ -2377,7 +2377,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch)
 {
@@ -2410,7 +2410,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s)
 {
     return append(char_pointer_from_member_pointer_(s.m_buffer), s.length());
 }
@@ -2419,7 +2419,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch)
 {
     if(NULL == m_buffer)
@@ -2443,7 +2443,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator first
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator first
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator last)
 {
     // We have to use this strange appearing this, because of Visual C++ .NET's
@@ -2456,7 +2456,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::operator +=(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::operator +=(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
 {
     return append(1, ch);
 }
@@ -2465,7 +2465,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::char_type* s)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::char_type* s)
 {
     return append(s);
 }
@@ -2474,7 +2474,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::class_type& rhs)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::class_type& rhs)
 {
     return append(rhs);
 }
@@ -2519,7 +2519,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline void basic_simple_string<C, T, A>::swap(ss_typename_type_k basic_simple_string<C, T, A>::class_type &other)
+inline void basic_simple_string<C, T, A>::swap(ss_typename_type_k basic_simple_string<C, T, A>::class_type& other)
 {
     STLSOFT_ASSERT(is_valid());
     STLSOFT_ASSERT(other.is_valid());

@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        85
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ public:
 /// @{
 public:
     /// Swaps the contents between \c this and \c other
-    void swap(class_type &other) stlsoft_throw_0();
+    void swap(class_type& other) stlsoft_throw_0();
 
     /// Empties the string
     void clear() stlsoft_throw_0();

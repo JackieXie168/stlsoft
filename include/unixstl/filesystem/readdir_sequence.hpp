@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     22nd March 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       119
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -663,7 +663,7 @@ inline readdir_sequence::const_iterator::value_type readdir_sequence::const_iter
 #endif /* UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
 }
 
-inline readdir_sequence::const_iterator::class_type &readdir_sequence::const_iterator::operator ++()
+inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_iterator::operator ++()
 {
     UNIXSTL_MESSAGE_ASSERT( "Incrementing invalid iterator", NULL != m_handle);
 

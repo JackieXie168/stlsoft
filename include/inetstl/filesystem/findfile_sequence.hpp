@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 7
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     130
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1257,7 +1257,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, X, V>::basic_findfile_
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X, ss_typename_param_k V>
 #ifndef STLSOFT_COMPILER_IS_WATCOM
-inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(ss_typename_param_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type& basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(ss_typename_param_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type const& rhs)
 #else /* ? compiler */
 inline basic_findfile_sequence_const_input_iterator<C, T, X, V> &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(basic_findfile_sequence_const_input_iterator<C, T, X, V> const& rhs)
 #endif /* compiler */
@@ -1297,7 +1297,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, X, V>::~basic_findfile
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X, ss_typename_param_k V>
-inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator ++()
+inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type& basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator ++()
 {
     INETSTL_ASSERT(NULL != m_pattern0);
     INETSTL_ASSERT(NULL != m_pattern1);

@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      1
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   2
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       492
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       493
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -279,7 +279,7 @@ inline interface_ptr<T>::~interface_ptr() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k interface_ptr<T>::class_type &interface_ptr<T>::operator =(ss_typename_type_k interface_ptr<T>::class_type const& rhs)
+inline ss_typename_type_ret_k interface_ptr<T>::class_type& interface_ptr<T>::operator =(ss_typename_type_k interface_ptr<T>::class_type const& rhs)
 {
     class_type   t(rhs);
 

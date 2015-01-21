@@ -2,10 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  19th November 2007
+; Updated:  10th December 2007
 
 ============================================================================
 
+
+10th December 2007 - 1.9.10 released
+------------------------------------
+
+ * bug fix for recls (http://recls.org/)
+ * minor feature enhancements
 
 19th November 2007 - 1.9.9 released
 -----------------------------------
@@ -68,7 +74,7 @@ STLSoft - History
 30th April 2007 - 1.9.1 released (for Extended STL, volume 1: CD)
 -----------------------------------------------------------------
 
- There has been an enormous amount of changes in STLSoft from the last
+ There has been an enormous amount of change in STLSoft from the last
  release, 1.8.9 (October 2005), to the new release, 1.9.1 (April/May 2007).
 
  Consequently, I just can't muster the effort at this time to detail the

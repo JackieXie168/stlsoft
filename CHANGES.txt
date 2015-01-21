@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th November 2007
+; Updated:  10th December 2007
 
 ============================================================================
 
@@ -15,6 +15,39 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.10 (10th December 2007)
+
+Summary:
+==========
+
+ * bug fix for recls (http://recls.org/)
+ * minor feature enhancements
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ + basic_static_string::pop_back()
+
+ ~ fixed bug, that manifests in widestring compilation, in
+   stlsoft/filesystem/searchspec_sequence.hpp
+
+ MFCSTL:
+ -------
+
+ + mfcstl/mfcstl.hpp now #includes atlstr.h if _MFC_VER >= 0x0700
+
+ MFCSTL:
+ -------
+
+ ~ platformstl::environment_variable_traits now works on Win32 when
+   synthesising UNIX
+
 
 ============================================================================
 

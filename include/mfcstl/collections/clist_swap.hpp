@@ -4,7 +4,7 @@
  * Purpose:     Contains the CList_swap utility function.
  *
  * Created:     15th September 2006
- * Updated:     8th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_MAJOR      1
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_MINOR      0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_REVISION   1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_EDIT       6
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,7 +119,7 @@ public:
 /// \name Operations
 /// @{
 public:
-    static void swap(class_type &lhs, class_type& rhs)
+    static void swap(class_type& lhs, class_type& rhs)
     {
         std_swap(lhs.m_pNodeHead, rhs.m_pNodeHead);
         std_swap(lhs.m_pNodeTail, rhs.m_pNodeTail);

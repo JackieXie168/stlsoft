@@ -1,11 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        mfcstl/mfcstl.hpp
  *
- * Purpose:     Root header for the MFCSTL libraries. Performs various compiler
- *              and platform discriminations, and definitions of types.
+ * Purpose:     Root header for the MFCSTL libraries. Performs various
+ *              compiler and platform discriminations, and definitions of
+ *              types.
  *
  * Created:     15th January 2002
- * Updated:     12th March 2007
+ * Updated:     7th December 2007
+ *
+ * Thanks:      To Cláudio Albuquerque for suggesting the inclusion of
+ *              atlstr.h.
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +50,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     3
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  2
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      87
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     4
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  1
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -108,7 +112,7 @@
 
 #define _MFCSTL_VER_MAJOR       1
 #define _MFCSTL_VER_MINOR       5
-#define _MFCSTL_VER_REVISION    1
+#define _MFCSTL_VER_REVISION    2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _MFCSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _MFCSTL_VER_1_1_1      0x00010101  /*!< Version 1.1.1 */
@@ -124,9 +128,10 @@
 # define _MFCSTL_VER_1_4_2      0x00010402  /*!< Version 1.4.2 */
 # define _MFCSTL_VER_1_4_3      0x00010403  /*!< Version 1.4.3 */
 # define _MFCSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
+# define _MFCSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.10) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _MFCSTL_VER             _MFCSTL_VER_1_5_1
+#define _MFCSTL_VER             _MFCSTL_VER_1_5_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -142,6 +147,10 @@
 #endif /* compiler */
 
 #include <afx.h>        // MFC base header
+
+#if _MFC_VER >= 0x0700
+# include <atlstr.h>
+#endif /* _MFC_VER */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn .8022 /* Suppresses "'f()' hides virtual function 'g()'" */

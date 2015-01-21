@@ -4,7 +4,7 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       148
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       149
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -400,7 +400,7 @@ inline variant::variant(VARIANT const& rhs)
     }
 }
 
-inline variant::class_type &variant::operator =(variant::class_type const& rhs)
+inline variant::class_type& variant::operator =(variant::class_type const& rhs)
 {
     class_type  r(rhs);
 
@@ -577,7 +577,7 @@ inline HRESULT variant::try_convert(VARTYPE vt)
     return try_conversion_copy(*this, vt);
 }
 
-inline variant::class_type &variant::convert(VARTYPE vt)
+inline variant::class_type& variant::convert(VARTYPE vt)
 {
     HRESULT hr  =   try_convert(vt);
 

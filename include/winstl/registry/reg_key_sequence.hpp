@@ -13,7 +13,7 @@
  *              basic_reg_key_sequence class interface.
  *
  * Created:     19th January 2002
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,7 +61,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      7
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       126
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -891,7 +891,7 @@ inline basic_reg_key_sequence_iterator<C, T, V, A>::basic_reg_key_sequence_itera
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator =(ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type& basic_reg_key_sequence_iterator<C, T, V, A>::operator =(ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type const& rhs)
 {
     registry_util::shared_handle   *this_handle;
 
@@ -931,7 +931,7 @@ inline const ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::str
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator ++()
+inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type& basic_reg_key_sequence_iterator<C, T, V, A>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", NULL != m_handle);
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", sentinel_() != m_index);
@@ -1007,7 +1007,7 @@ inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator --()
+inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type& basic_reg_key_sequence_iterator<C, T, V, A>::operator --()
 {
     WINSTL_MESSAGE_ASSERT("Attempting to decrement an invalid iterator", NULL != m_handle);
 

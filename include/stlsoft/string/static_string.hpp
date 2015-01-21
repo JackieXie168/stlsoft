@@ -4,7 +4,9 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     6th November 2007
+ * Updated:     7th December 2007
+ *
+ * Thanks:      To Cláudio Albuquerque for supplying the pop_back() member.
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +42,7 @@
 
 /** \file stlsoft/string/static_string.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::basic_static_string class
+ * [C++ only] Definition of the stlsoft::basic_static_string class
  *  template
  *   (\ref group__library__string "String" Library).
  */
@@ -50,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     190
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     192
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,7 +126,7 @@ namespace stlsoft
  * Classes
  */
 
-/** \brief Simple string class using fixed-size static-based storage
+/** Simple string class using fixed-size static-based storage
  *
  * \param C The character type
  * \param CCH The number of characters in the fixed-side buffer, not including the null-terminator
@@ -261,21 +263,21 @@ public:
 /// @{
 public:
     /// Assigns from the given character string
-    class_type &assign(char_type const* s);
+    class_type& assign(char_type const* s);
     /// Assigns with \c n characters from the given character string
-    class_type &assign(char_type const* s, size_type n);
+    class_type& assign(char_type const* s, size_type n);
     /// Assigns with \c n characters from the given character string at the specified position
-    class_type &assign(class_type const& str, size_type pos, size_type n);
+    class_type& assign(class_type const& str, size_type pos, size_type n);
     /// Assigns from the given string
-    class_type &assign(class_type const& str);
+    class_type& assign(class_type const& str);
     /// Assigns \c n characters with the value \c ch
-    class_type &assign(size_type n, char_type c);
+    class_type& assign(size_type n, char_type c);
     /// Assigns from the range [first:last)
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
-    class_type &assign(const_iterator first, const_iterator last);
+    class_type& assign(const_iterator first, const_iterator last);
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     template <ss_typename_param_k II>
-    class_type &assign(II first, II last)
+    class_type& assign(II first, II last)
     {
 # if defined(STLSOFT_COMPILER_IS_GCC) && \
      __GNUC__ < 3
@@ -303,21 +305,21 @@ public:
 /// @{
 public:
     /// Appends the given character string
-    class_type &append(char_type const* s);
+    class_type& append(char_type const* s);
     /// Appends \c cch characters from the given character string
-    class_type &append(char_type const* s, size_type cch);
+    class_type& append(char_type const* s, size_type cch);
     /// Assigns \c cch characters from the given character string at the specified position
-    class_type &append(class_type const& str, size_type pos, size_type cch);
+    class_type& append(class_type const& str, size_type pos, size_type cch);
     /// Appends the given string
-    class_type &append(class_type const& str);
+    class_type& append(class_type const& str);
     /// Appends \c cch characters with the value \c ch
-    class_type &append(size_type cch, char_type ch);
+    class_type& append(size_type cch, char_type ch);
     /// Appends the range [first:last)
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
-    class_type &append(const_iterator first, const_iterator last);
+    class_type& append(const_iterator first, const_iterator last);
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     template <ss_typename_param_k II>
-    class_type &append(II first, II last)
+    class_type& append(II first, II last)
     {
 # if defined(STLSOFT_COMPILER_IS_GCC) && \
      __GNUC__ < 3
@@ -342,6 +344,8 @@ public:
 
     /// Appends a single character
     void push_back(char_type ch);
+    /// Removes the last character
+    void pop_back();
 /// @}
 
 /// \name Operations
@@ -350,7 +354,7 @@ public:
     /// Reserves at least n characters
     void reserve(size_type n);
     /// Swaps the contents between \c this and \c other
-    void swap(class_type &other);
+    void swap(class_type& other);
 
     /// Resizes the string
     ///
@@ -480,9 +484,9 @@ private:
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
 # endif /* compiler */
     {
         stlsoft_ns_qual_std(copy)(first, last, stlsoft_ns_qual_std(back_inserter)(*this));
@@ -493,9 +497,9 @@ private:
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
     // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
+    class_type& assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
         buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
@@ -512,9 +516,9 @@ private:
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(input_iterator_tag))
 # endif /* compiler */
     {
         stlsoft_ns_qual_std(copy)(first, last, stlsoft_ns_qual_std(back_inserter)(*this));
@@ -525,9 +529,9 @@ private:
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag) const*)
 # else /* ? compiler */
-    class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
+    class_type& append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
         buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
@@ -809,7 +813,7 @@ inline ss_char_w_t const* c_str_ptr_null_w(stlsoft_ns_qual(basic_static_string)<
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::basic_static_string
+/** \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::basic_static_string
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -837,7 +841,7 @@ inline ss_char_w_t const* c_str_ptr_w(stlsoft_ns_qual(basic_static_string)<ss_ch
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::basic_static_string
+/** \ref group__concept__shim__string_access__c_str_ptr for stlsoft::basic_static_string
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -865,7 +869,7 @@ inline ss_char_w_t const* c_str_data_w(stlsoft_ns_qual(basic_static_string)<ss_c
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::basic_static_string
+/** \ref group__concept__shim__string_access__c_str_data for stlsoft::basic_static_string
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -895,7 +899,7 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual(basic_static_string)<ss_char_w_t, C
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::basic_static_string
+/** \ref group__concept__shim__string_access__c_str_len for stlsoft::basic_static_string
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -912,7 +916,7 @@ inline ss_size_t c_str_len(stlsoft_ns_qual(basic_static_string)<C, CCH, T> const
 
 
 
-/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for stlsoft::basic_static_string
+/** \ref group__concept__shim__stream_insertion "stream insertion shim" for stlsoft::basic_static_string
  *
  * \ingroup group__concept__shim__stream_insertion
  */
@@ -1151,7 +1155,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::assign(const ss_typename_type_k basic_static_string<C, CCH, T>::char_type *s)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::assign(const ss_typename_type_k basic_static_string<C, CCH, T>::char_type *s)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1173,7 +1177,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::assign(const ss_typename_type_k basic_static_string<C, CCH, T>::char_type *s, ss_typename_type_k basic_static_string<C, CCH, T>::size_type n)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::assign(const ss_typename_type_k basic_static_string<C, CCH, T>::char_type *s, ss_typename_type_k basic_static_string<C, CCH, T>::size_type n)
 {
     STLSOFT_MESSAGE_ASSERT("incident string too large for static_string assignment", !(max_size() < n));
 
@@ -1199,7 +1203,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::assign(   ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& rhs
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::assign(   ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& rhs
                                                                                                             ,   ss_typename_type_k basic_static_string<C, CCH, T>::size_type        pos
                                                                                                             ,   ss_typename_type_k basic_static_string<C, CCH, T>::size_type        n)
 {
@@ -1227,7 +1231,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::assign(ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::assign(ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& rhs)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1270,7 +1274,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::assign(   ss_typename_type_k basic_static_string<C, CCH, T>::size_type n
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::assign(   ss_typename_type_k basic_static_string<C, CCH, T>::size_type n
                                                                                                                 ,   ss_typename_type_k basic_static_string<C, CCH, T>::char_type c)
 {
     STLSOFT_MESSAGE_ASSERT("incident string too large for static_string assignment", !(max_size() < n));
@@ -1298,7 +1302,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::assign(ss_typename_type_k basic_static_string<C, CCH, T>::const_iterator first, ss_typename_type_k basic_static_string<C, CCH, T>::const_iterator last)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::assign(ss_typename_type_k basic_static_string<C, CCH, T>::const_iterator first, ss_typename_type_k basic_static_string<C, CCH, T>::const_iterator last)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1727,7 +1731,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::char_type const* s
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::char_type const* s
                                                                                                             ,   ss_typename_type_k basic_static_string<C, CCH, T>::size_type n)
 {
     STLSOFT_MESSAGE_ASSERT("resize request too large for static_string", !(max_size() < n + length()));
@@ -1751,7 +1755,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::append(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const* s)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::append(ss_typename_type_k basic_static_string<C, CCH, T>::char_type const* s)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1762,7 +1766,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& rhs
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& rhs
                                                                                                             ,   ss_typename_type_k basic_static_string<C, CCH, T>::size_type        pos
                                                                                                             ,   ss_typename_type_k basic_static_string<C, CCH, T>::size_type        cch)
 {
@@ -1799,7 +1803,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::append(ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& s)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::append(ss_typename_type_k basic_static_string<C, CCH, T>::class_type const& s)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1810,7 +1814,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::size_type    n
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::size_type    n
                                                                                                             ,   ss_typename_type_k basic_static_string<C, CCH, T>::char_type    ch)
 {
     STLSOFT_MESSAGE_ASSERT("resize request too large for static_string", !(max_size() < n + length()));
@@ -1839,7 +1843,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::const_iterator first
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::append(   ss_typename_type_k basic_static_string<C, CCH, T>::const_iterator first
                                                                                                             ,   ss_typename_type_k basic_static_string<C, CCH, T>::const_iterator last)
 {
     STLSOFT_ASSERT(is_valid());
@@ -1854,7 +1858,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::operator +=(ss_typename_type_k basic_static_string<C, CCH, T>::char_type ch)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::operator +=(ss_typename_type_k basic_static_string<C, CCH, T>::char_type ch)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1865,7 +1869,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::operator +=(const ss_typename_type_k basic_static_string<C, CCH, T>::char_type *s)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::operator +=(const ss_typename_type_k basic_static_string<C, CCH, T>::char_type *s)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1876,7 +1880,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type &basic_static_string<C, CCH, T>::operator +=(const ss_typename_type_k basic_static_string<C, CCH, T>::class_type& rhs)
+inline ss_typename_type_ret_k basic_static_string<C, CCH, T>::class_type& basic_static_string<C, CCH, T>::operator +=(const ss_typename_type_k basic_static_string<C, CCH, T>::class_type& rhs)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1898,6 +1902,20 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
+inline void basic_static_string<C, CCH, T>::pop_back()
+{
+    STLSOFT_ASSERT(is_valid());
+
+    if (m_length != 0) {
+        m_buffer[--m_length] = 0;
+    }
+    
+}
+
+template<   ss_typename_param_k C
+        ,   ss_size_t           CCH
+        ,   ss_typename_param_k T
+        >
 inline void basic_static_string<C, CCH, T>::reserve(ss_typename_type_k basic_static_string<C, CCH, T>::size_type n)
 {
     STLSOFT_ASSERT(is_valid());
@@ -1909,7 +1927,7 @@ template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline void basic_static_string<C, CCH, T>::swap(ss_typename_type_k basic_static_string<C, CCH, T>::class_type &other)
+inline void basic_static_string<C, CCH, T>::swap(ss_typename_type_k basic_static_string<C, CCH, T>::class_type& other)
 {
 //printf("swap-1\n");
 

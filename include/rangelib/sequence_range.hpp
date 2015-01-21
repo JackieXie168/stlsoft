@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     22nd March 2007
+ * Updated:     6th December 2007
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     59
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -432,7 +432,7 @@ public:
         return *m_position;
     }
     /// Advances the current position in the range
-    class_type &advance()
+    class_type& advance()
     {
         STLSOFT_MESSAGE_ASSERT("Attempting to increment the range past its end point", is_open());
 

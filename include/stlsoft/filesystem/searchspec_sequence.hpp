@@ -4,8 +4,11 @@
  * Purpose:     Contains the searchspec_sequence template class, and ANSI
  *              and Unicode specialisations thereof.
  *
+ * Thanks to:   Jon Papaioannou for spotting a character encoding error in
+ *              one of the typedefs
+ *
  * Created:     1st May 2004
- * Updated:     22nd March 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    4
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        54
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    5
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -165,7 +168,7 @@ private:
     // TODO: Have all filesystem_traits that have a fixed length derive from a tag type, so that we can parameterise
     // based on that. Then reinstate the string type discrimination based on the traits
 //    typedef basic_static_string<char_type, traits_type::maxPathLength>  string_type;
-    typedef string_tokeniser<string_type, char>                         tokeniser_type;
+    typedef string_tokeniser<string_type, char_type>                    tokeniser_type;
 /// @}
 
 /// \name Construction
