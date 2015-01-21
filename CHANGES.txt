@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  3rd September 2008
+; Updated:  7th September 2008
 
 ============================================================================
 
@@ -16,6 +16,35 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.51 (7th September 2008)
+
+Summary:
+========
+
+ * workaround for defective exception-throwing behaviour of
+   stlsoft::conversion_error with VC6
+ * fixed defect in WinSTL string access shims for SYSTEMTIME that faults
+   when asked to process an invalid time value
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/error/conversion_error.hpp
+     ~ fixed defect whereby the VC++ 6 compiler that causes the throwing of
+	   any derived class to cause an ICE
+
+ WinSTL:
+ -------
+
+  ~ winstl/shims/access/string/time.hpp
+     ~ fixed defect whereby failure to convert, due to invalid date, results
+	   in fault in shim string
 
 ============================================================================
 

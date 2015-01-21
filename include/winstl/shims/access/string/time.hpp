@@ -4,14 +4,14 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     22nd March 2007
+ * Updated:     5th September 2008
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    2
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        48
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    3
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,18 +65,21 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_CONVERSION_ERROR
+# include <winstl/error/conversion_error.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_CONVERSION_ERROR */
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME
 # include <winstl/shims/conversion/to_SYSTEMTIME/FILETIME.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME */
-#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
-# include <stlsoft/string/shim_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 #ifndef WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS
 # include <winstl/time/format_functions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
+# include <stlsoft/string/shim_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 #ifdef WINSTL_UDATE_DEFINED
 # include <objbase.h>
 # include <oleauto.h>
@@ -105,6 +108,87 @@ namespace winstl_project
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Helper Classes
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+struct winstl_shims_access_string_time_impl
+{
+    typedef int (STLSOFT_STDCALL *pfnGetDateTimeFmtA_t)(LCID                Locale      // locale
+                                                    ,   DWORD               dwFlags     // options
+                                                    ,   CONST SYSTEMTIME    *lpTime     // time
+                                                    ,   ws_char_a_t const   *lpFormat   // time format string
+                                                    ,   ws_char_a_t         *lpTimeStr  // formatted string buffer
+                                                    ,   int                 cchTime);   // size of string buffer
+
+    typedef int (STLSOFT_STDCALL *pfnGetDateTimeFmtW_t)(LCID                Locale      // locale
+                                                    ,   DWORD               dwFlags     // options
+                                                    ,   CONST SYSTEMTIME    *lpTime     // time
+                                                    ,   ws_char_w_t const   *lpFormat   // time format string
+                                                    ,   ws_char_w_t         *lpTimeStr  // formatted string buffer
+                                                    ,   int                 cchTime);   // size of string buffer
+
+    // 
+    static ws_size_t calc_sizes(SYSTEMTIME const&       t
+                            ,   pfnGetDateTimeFmtA_t    pfnGetDateFmtA
+                            ,   pfnGetDateTimeFmtA_t    pfnGetTimeFmtA
+                            ,   ws_size_t&              cchDate
+                            ,   ws_size_t&              cchTime)
+    {
+        cchDate = static_cast<ws_size_t>(pfnGetDateFmtA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0));
+
+        if(0 != cchDate)
+        {
+            cchTime = static_cast<ws_size_t>(pfnGetTimeFmtA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0));
+
+            if(0 != cchTime)
+            {
+                return (cchDate - 1) + 1 + (cchTime - 1);
+            }
+        }
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        throw conversion_error("failed to convert date/time", ::GetLastError());
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
+    defined(STLSOFT_CF_REQUIRE_RETURN_ALWAYS)
+        return 0;
+#endif /* STLSOFT_CF_REQUIRE_RETURN_ALWAYS */
+    }
+
+    // 
+    static ws_size_t calc_sizes(SYSTEMTIME const&       t
+                            ,   pfnGetDateTimeFmtW_t    pfnGetDateFmtW
+                            ,   pfnGetDateTimeFmtW_t    pfnGetTimeFmtW
+                            ,   ws_size_t&              cchDate
+                            ,   ws_size_t&              cchTime)
+    {
+        cchDate = static_cast<ws_size_t>(pfnGetDateFmtW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0));
+
+        if(0 != cchDate)
+        {
+            cchTime = static_cast<ws_size_t>(pfnGetTimeFmtW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0));
+
+            if(0 != cchTime)
+            {
+                return (cchDate - 1) + 1 + (cchTime - 1);
+            }
+        }
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        throw conversion_error("failed to convert date/time", ::GetLastError());
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
+    defined(STLSOFT_CF_REQUIRE_RETURN_ALWAYS)
+        return 0;
+#endif /* STLSOFT_CF_REQUIRE_RETURN_ALWAYS */
+    }
+};
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Helper Functions
  */
 
@@ -131,20 +215,29 @@ template <ss_typename_param_k S>
 inline void stream_insert(S &stm, SYSTEMTIME const& t)
 {
     typedef stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>     string_t;
+    typedef winstl_shims_access_string_time_impl                impl_t;
 
-    const int       cchDate     =   ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const int       cchTime     =   ::GetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
-    string_t        s(cchTotal);
+    ws_size_t       cchDate     =   0;
+    ws_size_t       cchTime     =   0;
+    const ws_size_t cchTotal    =   impl_t::calc_sizes(t, ::GetDateFormatA, ::GetTimeFormatA, cchDate, cchTime);
 
-    if(cchTotal == s.size())
+#ifdef STLSOFT_CD_EXCEPTION_SUPPORT
+    WINSTL_ASSERT(0 != cchTotal);
+#else /* ? STLSOFT_CD_EXCEPTION_SUPPORT */
+    if(0 != cchTotal)
+#endif /* STLSOFT_CD_EXCEPTION_SUPPORT */
     {
-        ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
-        s.data()[cchDate - 1] = ' ';
-        ::GetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, cchTime);
-    }
+        string_t s(cchTotal);
 
-    stm << s.data();
+        if(cchTotal == s.size())
+        {
+            ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
+            s.data()[cchDate - 1] = ' ';
+            ::GetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0] + cchDate, cchTime);
+        }
+
+        stm << s.data();
+    }
 }
 
 template <ss_typename_param_k S>
@@ -176,6 +269,7 @@ inline void stream_insert(S &stm, UDATE const& ud)
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 {
     typedef stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>     string_t;
+    typedef winstl_shims_access_string_time_impl                impl_t;
 
     int (STLSOFT_STDCALL *pfnGetTimeFormatA)(   LCID                Locale      // locale
                                             ,   DWORD               dwFlags     // options
@@ -186,12 +280,13 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME co
 
                                             =   bMilliseconds ? GetTimeFormat_msA : ::GetTimeFormatA;
 
-    const int       cchDate     =   ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const int       cchTime     =   pfnGetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    ws_size_t       cchDate     =   0;
+    ws_size_t       cchTime     =   0;
+    const ws_size_t cchTotal    =   impl_t::calc_sizes(t, ::GetDateFormatA, pfnGetTimeFormatA, cchDate, cchTime);
     string_t        s(cchTotal);
 
-    if(cchTotal == s.size())
+    if( 0 != cchTotal &&
+        cchTotal == s.size())
     {
         ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
         s.data()[cchDate - 1] = ' ';
@@ -208,6 +303,7 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME co
 inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 {
     typedef stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>     string_t;
+    typedef winstl_shims_access_string_time_impl                impl_t;
 
     int (STLSOFT_STDCALL *pfnGetTimeFormatW)(   LCID                Locale      // locale
                                             ,   DWORD               dwFlags     // options
@@ -218,12 +314,13 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME co
 
                                             =   bMilliseconds ? GetTimeFormat_msW : ::GetTimeFormatW;
 
-    const int       cchDate     =   ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const int       cchTime     =   pfnGetTimeFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    ws_size_t       cchDate     =   0;
+    ws_size_t       cchTime     =   0;
+    const ws_size_t cchTotal    =   impl_t::calc_sizes(t, ::GetDateFormatW, pfnGetTimeFormatW, cchDate, cchTime);
     string_t        s(cchTotal);
 
-    if(cchTotal == s.size())
+    if( 0 != cchTotal &&
+        cchTotal == s.size())
     {
         ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, &s.data()[0], cchDate);
         s.data()[cchDate - 1] = ' ';
@@ -535,6 +632,8 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(UDATE const& t)
 
 inline ws_size_t c_str_len_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 {
+    typedef winstl_shims_access_string_time_impl impl_t;
+
     int (STLSOFT_STDCALL *pfnGetTimeFormatA)(   LCID                Locale      // locale
                                             ,   DWORD               dwFlags     // options
                                             ,   CONST SYSTEMTIME    *lpTime     // time
@@ -544,11 +643,10 @@ inline ws_size_t c_str_len_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 
                                             =   bMilliseconds ? GetTimeFormat_msA : ::GetTimeFormatA;
 
-    const int       cchDate     =   ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const int       cchTime     =   pfnGetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    ws_size_t cchDate = 0;
+    ws_size_t cchTime = 0;
 
-    return cchTotal;
+    return impl_t::calc_sizes(t, ::GetDateFormatA, pfnGetTimeFormatA, cchDate, cchTime);
 }
 inline ws_size_t c_str_len_a(SYSTEMTIME const& t)
 {
@@ -557,6 +655,8 @@ inline ws_size_t c_str_len_a(SYSTEMTIME const& t)
 
 inline ws_size_t c_str_len_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 {
+    typedef winstl_shims_access_string_time_impl impl_t;
+
     int (STLSOFT_STDCALL *pfnGetTimeFormatW)(   LCID                Locale      // locale
                                             ,   DWORD               dwFlags     // options
                                             ,   CONST SYSTEMTIME    *lpTime     // time
@@ -566,11 +666,10 @@ inline ws_size_t c_str_len_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 
                                             =   bMilliseconds ? GetTimeFormat_msW : ::GetTimeFormatW;
 
-    const int       cchDate     =   ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const int       cchTime     =   pfnGetTimeFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    ws_size_t cchDate = 0;
+    ws_size_t cchTime = 0;
 
-    return cchTotal;
+    return impl_t::calc_sizes(t, ::GetDateFormatW, pfnGetTimeFormatW, cchDate, cchTime);
 }
 inline ws_size_t c_str_len_w(SYSTEMTIME const& t)
 {

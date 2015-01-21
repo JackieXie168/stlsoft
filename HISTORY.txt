@@ -2,10 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  3rd September 2008
+; Updated:  7th September 2008
 
 ============================================================================
 
+
+7th September 2008 - 1.9.51 released
+------------------------------------
+
+ * workaround for defective exception-throwing behaviour of
+   stlsoft::conversion_error with VC6
+ * fixed defect in WinSTL string access shims for SYSTEMTIME that faults
+   when asked to process an invalid time value
 
 3rd September 2008 - 1.9.50 released
 ------------------------------------

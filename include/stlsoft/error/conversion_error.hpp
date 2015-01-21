@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_REVISION    4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        7
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_REVISION    5
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,12 @@ protected:
     ss_explicit_k conversion_error_base(char const* message)
         : parent_class_type(message)
     {}
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER > 1200
+    // There's a defect in the VC++ 6 compiler that causes the throwing of
+    // any derived class to cause an ICE
     virtual ~conversion_error_base() stlsoft_throw_0() = 0;
+#endif /* compiler */
 /// @}
 };
 
@@ -193,8 +198,11 @@ private:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
+# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER > 1200
 inline /* virtual */ conversion_error_base::~conversion_error_base() stlsoft_throw_0()
 {}
+# endif /* compiler */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
