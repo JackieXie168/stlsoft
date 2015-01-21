@@ -265,7 +265,13 @@ namespace unittest
 			};
 			ss_bool_t				bSuccess	=	true;
 			LPUNKNOWN				punkEnum	=	NULL;
+#if defined(WINSTL_OS_IS_WIN64)
+			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(144), strings, STLSOFT_NUM_ELEMENTS(strings), reinterpret_cast<void**>(&punkEnum));
+#elif defined(WINSTL_OS_IS_WIN32)
 			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(144)), strings, STLSOFT_NUM_ELEMENTS(strings), reinterpret_cast<void**>(&punkEnum));
+#else /* ? OS */
+# error Only defined for Win32 or Win64
+#endif /* OS */
 
 			if(FAILED(hr))
 			{
@@ -358,7 +364,13 @@ namespace unittest
 
 			ss_bool_t	bSuccess	=	true;
 			LPUNKNOWN	punkEnum	=	NULL;
+#if defined(WINSTL_OS_IS_WIN64)
+			HRESULT 	hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(146), guids, STLSOFT_NUM_ELEMENTS(guids), reinterpret_cast<void**>(&punkEnum));
+#elif defined(WINSTL_OS_IS_WIN32)
 			HRESULT 	hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(146)), guids, STLSOFT_NUM_ELEMENTS(guids), reinterpret_cast<void**>(&punkEnum));
+#else /* ? OS */
+# error Only defined for Win32 or Win64
+#endif /* OS */
 
 			if(FAILED(hr))
 			{
@@ -821,7 +833,13 @@ namespace unittest
 
 			ss_bool_t				bSuccess	=	true;
 			LPUNKNOWN				punkEnum	=	NULL;
+#if defined(WINSTL_OS_IS_WIN64)
+			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(147), bstrs, STLSOFT_NUM_ELEMENTS(bstrs), reinterpret_cast<void**>(&punkEnum));
+#elif defined(WINSTL_OS_IS_WIN32)
 			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(147)), bstrs, STLSOFT_NUM_ELEMENTS(bstrs), reinterpret_cast<void**>(&punkEnum));
+#else /* ? OS */
+# error Only defined for Win32 or Win64
+#endif /* OS */
 
 			if(FAILED(hr))
 			{
@@ -914,7 +932,13 @@ namespace unittest
 
 			ss_bool_t				bSuccess	=	true;
 			LPUNKNOWN				punkEnum	=	NULL;
+#if defined(WINSTL_OS_IS_WIN64)
+			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(158), variants, STLSOFT_NUM_ELEMENTS(variants), reinterpret_cast<void**>(&punkEnum));
+#elif defined(WINSTL_OS_IS_WIN32)
 			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(158)), variants, STLSOFT_NUM_ELEMENTS(variants), reinterpret_cast<void**>(&punkEnum));
+#else /* ? OS */
+# error Only defined for Win32 or Win64
+#endif /* OS */
 
 			if(FAILED(hr))
 			{

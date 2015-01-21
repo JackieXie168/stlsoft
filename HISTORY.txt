@@ -2,10 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  17th May 2008
+; Updated:  31st May 2008
 
 ============================================================================
 
+
+31st May 2008 - 1.9.43 released
+-------------------------------
+
+ * more Win64-compatibility modifications
+ * more Safe String library modifications
+ * expanded the stlsoft::get_FILE_ptr attribute shim for MFC's CStdioFile
 
 17th May 2008 - 1.9.42 released
 -------------------------------

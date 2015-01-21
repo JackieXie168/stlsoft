@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        55
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    2
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,6 +86,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -134,6 +138,7 @@ public:
     typedef char_type const&                                const_reference;
     typedef cs_ptrdiff_t                                    difference_type;
     typedef cs_size_t                                       size_type;
+    typedef cs_ptrdiff_t                                    ssize_type;
     typedef cs_bool_t                                       bool_type;
     typedef pointer                                         iterator;
     typedef const_pointer                                   const_iterator;
@@ -160,8 +165,8 @@ public:
 /// @{
 public:
     bstr();
-    ss_explicit_k bstr(cs_char_a_t const* s, int len = -1);
-    ss_explicit_k bstr(cs_char_w_t const* s, int len = -1);
+    ss_explicit_k bstr(cs_char_a_t const* s, ssize_type len = -1);
+    ss_explicit_k bstr(cs_char_w_t const* s, ssize_type len = -1);
     bstr(size_type n, char_type ch);
     /// \brief Copy constructor
     bstr(class_type const& rhs);
@@ -171,8 +176,8 @@ public:
     /// \brief Copies the given instance
     class_type& operator =(class_type const& rhs);
 
-    class_type  &assign(cs_char_a_t const* s, int len = -1);
-    class_type  &assign(cs_char_w_t const* s, int len = -1);
+    class_type  &assign(cs_char_a_t const* s, ssize_type len = -1);
+    class_type  &assign(cs_char_w_t const* s, ssize_type len = -1);
 
     class_type  &assign(const_iterator from, const_iterator to);
 
@@ -189,8 +194,8 @@ public:
 /// \name Operations
 /// @{
 public:
-    class_type& append(class_type const& s, int len = -1);
-    class_type& append(cs_char_w_t const* s, int len = -1);
+    class_type& append(class_type const& s, ssize_type len = -1);
+    class_type& append(cs_char_w_t const* s, ssize_type len = -1);
 
     class_type& operator +=(class_type const& s);
     class_type& operator +=(cs_char_w_t const* s);
@@ -441,7 +446,7 @@ inline bstr::bstr()
     : m_bstr(NULL)
 {}
 
-inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
+inline /* explicit */ bstr::bstr(cs_char_a_t const* s, ssize_type len /* = -1 */)
 {
     // Precondition tests
     COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", len >= 0 || len == -1);
@@ -453,7 +458,7 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
     // the underlying SysAllocStringLen() to walk into invalid
     // memory while searching s.
 
-    int actualLen = static_cast<int>(stlsoft_ns_qual(c_str_len)(s));
+    ssize_type actualLen = static_cast<ssize_type>(stlsoft_ns_qual(c_str_len)(s));
 
     if( NULL != s &&
         len > actualLen)
@@ -462,7 +467,13 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
 
         if(NULL != m_bstr)
         {
-            ::MultiByteToWideChar(0, 0, s, actualLen + 1, m_bstr, actualLen + 1);
+# ifdef _WIN64
+            int buffLen = static_cast<int>(actualLen + 1);
+# else /* ? _WIN64 */
+            int buffLen = actualLen + 1;
+# endif /* _WIN64 */
+
+            ::MultiByteToWideChar(0, 0, s, buffLen, m_bstr, buffLen);
         }
     }
     else
@@ -486,7 +497,7 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline /* explicit */ bstr::bstr(cs_char_w_t const* s, int len /* = -1 */)
+inline /* explicit */ bstr::bstr(cs_char_w_t const* s, ssize_type len /* = -1 */)
 {
     // Precondition tests
     COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", len >= 0 || len == -1);
@@ -498,7 +509,7 @@ inline /* explicit */ bstr::bstr(cs_char_w_t const* s, int len /* = -1 */)
     // the underlying SysAllocStringLen() to walk into invalid
     // memory while searching s.
 
-    int actualLen = static_cast<int>(stlsoft_ns_qual(c_str_len)(s));
+    ssize_type actualLen = static_cast<ssize_type>(stlsoft_ns_qual(c_str_len)(s));
 
     if( NULL != s &&
         len > actualLen)
@@ -507,7 +518,11 @@ inline /* explicit */ bstr::bstr(cs_char_w_t const* s, int len /* = -1 */)
 
         if(NULL != m_bstr)
         {
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+            ::wcscpy_s(m_bstr, static_cast<cs_size_t>(actualLen), s);
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
             ::wcscpy(m_bstr, s);
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
         }
     }
     else
@@ -606,7 +621,7 @@ inline bstr::class_type& bstr::operator =(bstr::class_type const& rhs)
     return *this;
 }
 
-inline bstr::class_type& bstr::assign(cs_char_a_t const* s, int len /* = -1 */)
+inline bstr::class_type& bstr::assign(cs_char_a_t const* s, ssize_type len /* = -1 */)
 {
     class_type  t(s, len);
 
@@ -615,7 +630,7 @@ inline bstr::class_type& bstr::assign(cs_char_a_t const* s, int len /* = -1 */)
     return *this;
 }
 
-inline bstr::class_type& bstr::assign(cs_char_w_t const* s, int len /* = -1 */)
+inline bstr::class_type& bstr::assign(cs_char_w_t const* s, ssize_type len /* = -1 */)
 {
     class_type  t(s, len);
 
@@ -662,12 +677,12 @@ inline void bstr::clear()
     m_bstr = NULL;
 }
 
-inline bstr::class_type& bstr::append(bstr::class_type const& s, int len /* = -1 */)
+inline bstr::class_type& bstr::append(bstr::class_type const& s, ssize_type len /* = -1 */)
 {
     return append(s.data(), len);
 }
 
-inline bstr::class_type& bstr::append(cs_char_w_t const* s, int len /* = -1 */)
+inline bstr::class_type& bstr::append(cs_char_w_t const* s, ssize_type len /* = -1 */)
 {
     if(empty())
     {
@@ -679,15 +694,19 @@ inline bstr::class_type& bstr::append(cs_char_w_t const* s, int len /* = -1 */)
     {
         if(len < 0)
         {
-            len = (NULL == s) ? 0 : static_cast<int>(::wcslen(s));
+            len = (NULL == s) ? 0 : static_cast<ssize_type>(::wcslen(s));
         }
 
         if(0 != len)
         {
             size_type   totalLen = size() + len;
-            bstr        rhs(data(), static_cast<int>(totalLen));
+            bstr        rhs(data(), static_cast<ssize_type>(totalLen));
 
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+            ::wcsncpy_s(&rhs[0] + size(), static_cast<cs_size_t>(totalLen), s, static_cast<cs_size_t>(len));
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
             ::wcsncpy(&rhs[0] + size(), s, static_cast<cs_size_t>(len));
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
             rhs.swap(*this);
         }

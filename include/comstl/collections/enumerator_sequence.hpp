@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     242
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 2
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     243
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -412,7 +412,7 @@ public:
                 : m_enumerator(bFirst ? (i->AddRef(), i) : cloning_policy_type::share(i))
                 , m_acquired(0)
                 , m_current(0)
-                , m_quanta(quanta)
+                , m_quanta(static_cast<ULONG>(quanta))
                 , m_refCount(1)
                 , m_previousBlockTotal(0)
             {
@@ -685,7 +685,7 @@ public:
             interface_type  *m_enumerator;
             size_type       m_acquired;
             size_type       m_current;
-            size_type const m_quanta;
+            ULONG const     m_quanta;
             value_type      m_values[retrievalQuanta];
             long            m_refCount;
             size_type       m_previousBlockTotal;

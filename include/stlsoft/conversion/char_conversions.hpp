@@ -4,7 +4,7 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     9th March 2008
+ * Updated:     26th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     86
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 11
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,6 +95,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_CONVERSION_ERROR */
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #ifdef STLSOFT_UNITTEST
 # include <wchar.h>
@@ -143,10 +146,10 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     ss_explicit_k multibyte2wide(S const& s)
-#else
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k multibyte2wide(alt_char_type const* s)
-#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-        : parent_class_type(stlsoft_ns_qual(c_str_len)(s) + 1)
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+        : parent_class_type(calc_length_(s) + 1)
     {
         prepare_(stlsoft_ns_qual(c_str_ptr_a)(s));
     }
@@ -159,7 +162,7 @@ public:
 #endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         : parent_class_type(cch + 1)
     {
-        prepare_(stlsoft_ns_qual(c_str_ptr_a)(s));
+        prepare_(stlsoft_ns_qual(c_str_data_a)(s), cch);
     }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -168,10 +171,20 @@ public:
 /// \name Implementation
 /// @{
 private:
+    template <ss_typename_param_k S>
+    static size_type calc_length_(S const& s)
+    {
+        return stlsoft_ns_qual(c_str_len_a)(s);
+    }
+
     void prepare_(alt_char_type const* s)
     {
-        const size_type size    =   parent_class_type::size();
-        const pointer   data    =   parent_class_type::data();
+        prepare_(s, parent_class_type::size() - 1);
+    }
+
+    void prepare_(alt_char_type const* s, size_type size)
+    {
+        const pointer data = parent_class_type::data();
 
         // If the auto_buffer failed to allocate the required memory, and
         // we're not in an exception-environment, then size() will be zero
@@ -183,17 +196,29 @@ private:
         }
         else
         {
+            int         err;
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+            ss_size_t   numConverted;
+
+            err = ::mbstowcs_s(&numConverted, data, size + 1, s, size);
+
+            if(0 != err)
+            {
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
             if(static_cast<ss_size_t>(-1) == ::mbstowcs(data, s, size))
             {
+                err = errno;
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                STLSOFT_THROW_X(conversion_error("failed to convert multibyte string to wide string", errno));
+                STLSOFT_THROW_X(conversion_error("failed to convert multibyte string to wide string", err));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
             else
             {
-                data[size - 1] = '\0';
+                data[size] = '\0';
             }
         }
     }
@@ -273,7 +298,7 @@ public:
 #endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         : parent_class_type(cch + 1)
     {
-        prepare_(stlsoft_ns_qual(c_str_ptr_w)(s));
+        prepare_(stlsoft_ns_qual(c_str_data_w)(s), cch);
     }
 /// @}
 
@@ -283,8 +308,12 @@ public:
 private:
     void prepare_(alt_char_type const* s)
     {
-        const size_type size    =   parent_class_type::size();
-        const pointer   data    =   parent_class_type::data();
+        prepare_(s, parent_class_type::size() - 1);
+    }
+
+    void prepare_(alt_char_type const* s, size_type size)
+    {
+        const pointer data = parent_class_type::data();
 
         // If the auto_buffer failed to allocate the required memory, and
         // we're not in an exception-environment, then size() will be zero
@@ -296,17 +325,29 @@ private:
         }
         else
         {
+            int         err;
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+            ss_size_t   numConverted;
+
+            err = ::wcstombs_s(&numConverted, data, size + 1, s, size);
+
+            if(0 != err)
+            {
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
             if(static_cast<ss_size_t>(-1) == ::wcstombs(data, s, size))
             {
+                err = errno;
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                STLSOFT_THROW_X(conversion_error("failed to convert wide string to multibyte string", errno));
+                STLSOFT_THROW_X(conversion_error("failed to convert wide string to multibyte string", err));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
             else
             {
-                data[size - 1] = '\0';
+                data[size] = '\0';
             }
         }
     }
