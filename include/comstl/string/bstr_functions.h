@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     10th August 2009
+ * Updated:     4th March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 7
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     83
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ STLSOFT_INLINE BSTR comstl__bstr_create_len_w(cs_char_w_t const* s, cs_size_t le
  */
 STLSOFT_INLINE BSTR comstl__bstr_create_a(cs_char_a_t const* s)
 {
-    BSTR    bstr = NULL;
+    BSTR bstr = NULL;
 
     if(s != NULL)
     {
@@ -147,7 +147,7 @@ STLSOFT_INLINE BSTR comstl__bstr_create_a(cs_char_a_t const* s)
 
         if(NULL != pwsz)
         {
-            int n   =   STLSOFT_NS_GLOBAL(MultiByteToWideChar)(0, 0, s, -1, pwsz, stlsoft_static_cast(int, 1 + len));
+            int n = STLSOFT_NS_GLOBAL(MultiByteToWideChar)(0, 0, s, -1, pwsz, stlsoft_static_cast(int, 1 + len));
 
             if(0 != n)
             {
@@ -183,11 +183,11 @@ STLSOFT_INLINE BSTR comstl__bstr_create_len_a(cs_char_a_t const* s, cs_size_t le
 
     if(s != NULL)
     {
-        cs_char_w_t     *pwsz   =   stlsoft_static_cast(cs_char_w_t*, STLSOFT_NS_GLOBAL(CoTaskMemAlloc)((1 + len) * sizeof(cs_char_w_t)));
+        cs_char_w_t* pwsz = stlsoft_static_cast(cs_char_w_t*, STLSOFT_NS_GLOBAL(CoTaskMemAlloc)((1 + len) * sizeof(cs_char_w_t)));
 
         if(NULL != pwsz)
         {
-            int n   =   STLSOFT_NS_GLOBAL(MultiByteToWideChar)(0, 0, s, stlsoft_static_cast(int, len), pwsz, stlsoft_static_cast(int, 1 + len));
+            int n = STLSOFT_NS_GLOBAL(MultiByteToWideChar)(0, 0, s, stlsoft_static_cast(int, len), pwsz, stlsoft_static_cast(int, 1 + len));
 
 #ifdef _DEBUG
             if(0 == n)
