@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  1st February 2009
+; Updated:  3rd February 2009
 
 ============================================================================
 
@@ -16,6 +16,37 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.73 (3rd February 2009)
+
+Summary:
+========
+
+ * added partial support for Borland 5.9.x and 6.1.x; to support use of Borland with Pantheios
+ * re-applied VC++ 7.1 workaround eroneously removed in 1.9.70
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/stlsoft.h:
+    + support for Borland 5.9.x and 6.1.x
+
+ ~ include/stlsoft/smartptr/scoped_handle.hpp:
+    + proper support for Borland, via a separate implementation (in stlsoft/smartptr/scoped_handle_borland_.hpp)
+
+ ~ include/stlsoft/smartptr/scoped_handle_borland_.hpp:
+    + support for Borland 5.9.x and 6.1.x
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/findfile_sequence.hpp:
+    ~ workaround for VC++ 7.1 defect (requiring length() to return size_t, not member type size_type)
 
 ============================================================================
 

@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    19
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 11
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     375
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    20
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     377
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -236,12 +236,13 @@
 # define _STLSOFT_VER_1_9_70    0x010946ff  /*!< Version 1.9.70 (24th Jan 2009) */
 # define _STLSOFT_VER_1_9_71    0x010947ff  /*!< Version 1.9.71 (28th Jan 2009) */
 # define _STLSOFT_VER_1_9_72    0x010948ff  /*!< Version 1.9.72 (1st Feb 2009) */
+# define _STLSOFT_VER_1_9_73    0x010949ff  /*!< Version 1.9.73 (5th Feb 2009) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   72
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_72
+#define _STLSOFT_VER_REVISION   73
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_73
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -410,8 +411,12 @@
 #  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.6.4 (C++ BuilderX)"
 # elif (__BORLANDC__ == 0x0582)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.82 (Turbo C++)"
+# elif (0x0590 == (__BORLANDC__ & 0xfff0))
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.9.x"
+# elif (0x0610 == (__BORLANDC__ & 0xfff0))
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 6.1.x (C++ Builder)"
 # else /* ? __BORLANDC__ */
-#  error Currently only versions 5.51, 5.6, 5.6.4 and 5.82 of the Borland C++ compiler are supported by the STLSoft libraries
+#  error Currently only versions 5.51, 5.6, 5.6.4, 5.8.2, 5.9.x, and 6.1.x of the Borland C++ compiler are supported by the STLSoft libraries
 # endif /* __BORLANDC__ */
 
 #elif defined(__DMC__)
