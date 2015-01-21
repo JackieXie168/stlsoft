@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  8th February 2008
+; Updated:  20th February 2008
 
 ============================================================================
 
@@ -15,6 +15,24 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.23 (20th February 2008)
+
+Summary:
+==========
+
+ * fix for minor compiler compatibility issue
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ STLSOFT_CF_EXCEPTION_SUPPORT was being defined for Metrowerks CodeWarrior
+   in C compilation units. This is now corrected
 
 ============================================================================
 
@@ -56,7 +74,7 @@ Changes:
 ========
 
  ~ platformstl/synch/util/features.h was erroneously #including
-	unixstl/synch/sleep_functions.h,
+    unixstl/synch/sleep_functions.h,
    rather than
     unixstl/synch/util/features.h
 
