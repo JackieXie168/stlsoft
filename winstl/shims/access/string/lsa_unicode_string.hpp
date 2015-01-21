@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -65,12 +65,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#ifndef WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS
-# include <winstl/window_functions.h>
-#endif /* !WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS */
-#ifndef WINSTL_INCL_WINSTL_HPP_WINDOWS_IDENT
-# include <winstl/windows_ident.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_WINDOWS_IDENT */
+#ifndef WINSTL_INCL_WINSTL_WINDOW_H_FUNCTIONS
+# include <winstl/window/functions.h>
+#endif /* !WINSTL_INCL_WINSTL_WINDOW_H_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_WINDOW_UTIL_HPP_IDENT_
+# include <winstl/window/util/ident_.hpp>
+#endif /* !WINSTL_INCL_WINSTL_WINDOW_UTIL_HPP_IDENT_ */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER
 # include <stlsoft/string/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */

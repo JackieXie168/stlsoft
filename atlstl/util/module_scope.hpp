@@ -4,7 +4,7 @@
  * Purpose:     Scoping class for ATL _Module
  *
  * Created:     8th December 2004
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MAJOR       2
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       0
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       1
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_REVISION    1
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        17
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_ERROR_EXCEPTIONS
+# include <stlsoft/error/exceptions.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_ERROR_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

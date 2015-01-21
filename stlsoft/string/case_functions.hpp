@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for manipulating case.
  *
  * Created:     1st April 2005
- * Updated:     14th June 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_MINOR       0
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_REVISION    1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_EDIT        12
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_REVISION    2
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
 # include <stlsoft/string/string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM
-# include <stlsoft/util/std/algorithm.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM */
+#ifndef STLSOFT_INCL_STLSOFT_ALGORITHM_STD_HPP_ALT
+# include <stlsoft/algorithms/std/alt.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ALGORITHM_STD_HPP_ALT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

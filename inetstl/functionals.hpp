@@ -1,9 +1,13 @@
-/** \file inetstl/functionals.hpp Redirects inclusion to inetstl_functionals.h. This will be changed in a subsequent release, such that this file will contain the component definitions, and inetstl_functionals.h will contain redirect */
-#ifndef INETSTL_INCL_INETSTL_HPP_FUNCTIONALS
-#define INETSTL_INCL_INETSTL_HPP_FUNCTIONALS
+#include <stlsoft/stlsoft.h>
 
-#ifndef INETSTL_INCL_H_INETSTL_FUNCTIONALS
-# include <inetstl_functionals.h>
-#endif /* !INETSTL_INCL_H_INETSTL_FUNCTIONALS */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include inetstl/filesystem/functionals.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#endif /* !INETSTL_INCL_INETSTL_HPP_FUNCTIONALS */
+#include <inetstl/filesystem/functionals.hpp>
+
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
+

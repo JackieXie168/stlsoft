@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -82,9 +82,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
-# include <winstl/shims/access/string.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 #include <stdexcept>                            // for std::logic_error
 
 /* /////////////////////////////////////////////////////////////////////////

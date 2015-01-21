@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     10th July 2006
+ * Updated:     18th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 7
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     276
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 9
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     278
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -1301,15 +1301,15 @@ typedef size_traits<sizeof(void*)>::unsigned_type   uintp_t;
 struct native_wchar_t_checker
 {
     void check_for_native_wchar_t(char);
-    void check_for_native_wchar_t(sint8_t);
-    void check_for_native_wchar_t(uint8_t);
-    void check_for_native_wchar_t(sint16_t);
-    void check_for_native_wchar_t(uint16_t);
-    void check_for_native_wchar_t(sint32_t);
-    void check_for_native_wchar_t(uint32_t);
+    void check_for_native_wchar_t(ss_sint8_t);
+    void check_for_native_wchar_t(ss_uint8_t);
+    void check_for_native_wchar_t(ss_sint16_t);
+    void check_for_native_wchar_t(ss_uint16_t);
+    void check_for_native_wchar_t(ss_sint32_t);
+    void check_for_native_wchar_t(ss_uint32_t);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    void check_for_native_wchar_t(sint64_t);
-    void check_for_native_wchar_t(uint64_t);
+    void check_for_native_wchar_t(ss_sint64_t);
+    void check_for_native_wchar_t(ss_uint64_t);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 #if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
@@ -2346,9 +2346,16 @@ inline void *operator new(ss_size_t /* si */, void *pv)
  */
 
 #ifdef STLSOFT_UNITTEST
+
 # ifndef STLSOFT_INCL_STLSOFT_HPP_UNITTEST
 #  include <stlsoft/unittest.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_UNITTEST */
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER == 1200
+#  include <stlsoft/synch/concepts.hpp> /* Avoids a VC6 ICE. */
+# endif /* compiler */
+
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -4,7 +4,7 @@
  * Purpose:     Exception classes for TOOLHELP components.
  *
  * Created:     21st May 2005
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MAJOR    1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MINOR    1
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_MINOR    2
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_REVISION 1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     6
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,9 @@
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-#ifndef WINSTL_INCL_WINSTL_HPP_WINSTL_EXCEPTIONS
-# include <winstl/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_WINSTL_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 
 #include <tlhelp32.h>
 

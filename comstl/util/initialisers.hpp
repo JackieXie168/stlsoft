@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MAJOR       3
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_MINOR       1
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    2
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        63
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_MINOR       2
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    1
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_HPP_EXCEPTIONS
-# include <comstl/exceptions.hpp>
-#endif /* !COMSTL_INCL_COMSTL_HPP_EXCEPTIONS */
+#ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
+# include <comstl/error/exceptions.hpp>
+#endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

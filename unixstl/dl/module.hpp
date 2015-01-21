@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    1
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     204
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     205
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
-#ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS
-# include <unixstl/exceptions.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS */
+#ifndef UNIXSTL_INCL_UNIXSTL_HPP_ERROR_UNIX_EXCEPTIONS
+# include <unixstl/error/exceptions.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
 #ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING
 # include <unixstl/shims/access/string.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING */

@@ -145,7 +145,7 @@
  * ACE version
  */
 
-#define	ACESTL_ACE_VERSION	((ACE_MAJOR_VERSION << 16) | ACE_MINOR_VERSION)
+#define ACESTL_ACE_VERSION  ((ACE_MAJOR_VERSION << 16) | ACE_MINOR_VERSION)
 
 /* /////////////////////////////////////////////////////////////////////////
  * Proper C++ casting

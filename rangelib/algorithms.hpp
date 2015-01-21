@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range.
@@ -74,9 +74,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    2
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     36
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,9 +100,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
-#ifndef RANGELIB_INCL_RANGELIB_HPP_EXCEPTIONS
-# include <rangelib/exceptions.hpp>
-#endif /* !RANGELIB_INCL_RANGELIB_HPP_EXCEPTIONS */
+#ifndef RANGELIB_INCL_RANGELIB_ERROR_HPP_EXCEPTIONS
+# include <rangelib/error/exceptions.hpp>
+#endif /* !RANGELIB_INCL_RANGELIB_ERROR_HPP_EXCEPTIONS */
 #ifndef RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
 # include <rangelib/basic_indirect_range_adaptor.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR */

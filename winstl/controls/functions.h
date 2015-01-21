@@ -4,7 +4,7 @@
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,9 +61,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_H_MESSAGE_FUNCTIONS
-# include <winstl/message_functions.h>
-#endif /* !WINSTL_INCL_WINSTL_H_MESSAGE_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS
+# include <winstl/window/message_functions.h>
+#endif /* !WINSTL_INCL_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS */
 #ifdef __cplusplus
 # ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 #  include <stlsoft/shims/access/string.hpp>

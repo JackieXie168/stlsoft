@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     39
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    4
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
 # include <stlsoft/util/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>        // for null_exception_policy
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+# include <stlsoft/error/exceptions.hpp>      // for null_exception_policy
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 # include <stlsoft/constraints.hpp>       // for not_implicitly_comparable
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */

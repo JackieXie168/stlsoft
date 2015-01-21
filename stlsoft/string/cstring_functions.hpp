@@ -4,7 +4,7 @@
  * Purpose:     String duplication functions.
  *
  * Created:     26th May 2005
- * Updated:     14th July 2006
+ * Updated:     18th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MAJOR    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MINOR    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MINOR    2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     21
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,9 +117,9 @@ namespace stlsoft
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline C *string_dup_impl(C const *str, size_t cch, A &ator)
+inline C *string_dup_impl(C const *str, ss_size_t cch, A &ator)
 {
-    C   *r  =   ator.allocate(1 + cch);
+    C   *r  =   ator.allocate(1 + cch, NULL);
 
     char_traits<C>::copy(r, str, cch);
     r[cch] = '\0';
@@ -144,7 +144,7 @@ inline C *string_dup_impl(C const *str, size_t cch, A &ator)
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline C *string_dup(C const *str, size_t cch, A &ator)
+inline C *string_dup(C const *str, ss_size_t cch, A &ator)
 {
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     typedef C                                                           char_t;
@@ -166,6 +166,7 @@ inline C *string_dup(C const *str, size_t cch, A &ator)
  *
  * \param str The string to copy
  * \param ator The allocator to use to allocate the memory
+ * \param psize Pointer to receive the size of the allocated string. May be NULL.
  *
  * \note The caller is responsible for the allocated memory, and should free it
  * with ator (or a compatible allocator or memory function).
@@ -175,9 +176,16 @@ inline C *string_dup(C const *str, size_t cch, A &ator)
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline C *string_dup(C const *str, A &ator)
+inline C *string_dup(C const *str, A &ator, ss_size_t *psize = NULL)
 {
-    return string_dup(str, c_str_len(str), ator);
+    ss_size_t   dummy;
+
+    if(NULL == psize)
+    {
+        psize = &dummy;
+    }
+
+    return string_dup(str, *psize = c_str_len(str), ator);
 }
 
 ////////////////////////////////////////////////////////////////////////////

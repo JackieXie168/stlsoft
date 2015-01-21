@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     10th June 2006
+ * Updated:     18th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      47
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -263,8 +263,8 @@
 #define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 
-#define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
-#define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+//#define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+//#define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 
 #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 

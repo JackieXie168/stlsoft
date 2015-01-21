@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    0
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    1
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 1
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     71
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,12 +80,12 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 //#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
 //# include <stlsoft/string/string_traits.hpp>
 //#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>      // for stlsoft::null_exception_policy
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>       // for winstl::resource_exception_policy
-#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+# include <stlsoft/error/exceptions.hpp>      // for null_exception_policy
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 #ifdef STLSOFT_UNITTEST
 # include <iostream>                    // for std::cout, std::endl
 # include <string>                      // for std::string, std::wstring

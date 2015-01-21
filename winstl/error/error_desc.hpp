@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     14th July 2006
+ * Updated:     18th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       2
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       3
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        60
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -149,6 +149,8 @@ public:
     typedef T                       traits_type;
     /// \brief The current parameterisation of the type
     typedef basic_error_desc<C, T>  class_type;
+    /// \brief The error type
+    typedef ws_dword_t              error_type;
     /// \brief The size type
     typedef ws_size_t               size_type;
 /// @}
@@ -163,7 +165,7 @@ public:
     ///
     /// \note If the error string is not found in the given module, the standard
     /// system libraries will be searched
-    ss_explicit_k basic_error_desc(ws_dword_t error = GetLastError(), char_type const *modulePath = NULL);
+    ss_explicit_k basic_error_desc(error_type error = GetLastError(), char_type const *modulePath = NULL);
 
     /// \brief Loads the error string associated with the given code.
     ///
@@ -185,7 +187,7 @@ public:
     /// \note If the error string is not found in any of the given modules, the
     /// standard system libraries will be searched
     template <ss_typename_param_k S>
-    basic_error_desc(ws_dword_t error, S const &modulePaths)
+    basic_error_desc(error_type error, S const &modulePaths)
         : m_length(0)
         , m_message(NULL)
     {
@@ -231,7 +233,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    char_type   *find_message_(ws_dword_t error, char_type const *modulePath, size_type *length);
+    char_type   *find_message_(error_type error, char_type const *modulePath, size_type *length);
 /// @}
 
 /// \name Members
@@ -243,7 +245,7 @@ private:
 
 /// \name Not to be implemented
 /// @{
-public:
+private:
     basic_error_desc(class_type const &);
     basic_error_desc &operator =(class_type const &);
 /// @}
@@ -275,7 +277,7 @@ typedef basic_error_desc<TCHAR>         error_desc;
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_error_desc<C, T>::char_type *basic_error_desc<C, T>::find_message_(ws_dword_t error, ss_typename_type_k basic_error_desc<C, T>::char_type const *modulePath, ss_typename_type_k basic_error_desc<C, T>::size_type *length)
+inline ss_typename_type_k basic_error_desc<C, T>::char_type *basic_error_desc<C, T>::find_message_(ss_typename_type_k basic_error_desc<C, T>::error_type error, ss_typename_type_k basic_error_desc<C, T>::char_type const *modulePath, ss_typename_type_k basic_error_desc<C, T>::size_type *length)
 {
     WINSTL_ASSERT(NULL != length);
     WINSTL_MESSAGE_ASSERT("Constructor initialisation order error", 0 == *length);
@@ -315,7 +317,7 @@ inline ss_typename_type_k basic_error_desc<C, T>::char_type *basic_error_desc<C,
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline basic_error_desc<C, T>::basic_error_desc(ws_dword_t error /* = ::GetLastError() */, char_type const *modulePath /* = NULL */)
+inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_desc<C, T>::error_type error /* = ::GetLastError() */, char_type const *modulePath /* = NULL */)
     : m_length(0)
     , m_message(find_message_(error, modulePath, &m_length))
 {
