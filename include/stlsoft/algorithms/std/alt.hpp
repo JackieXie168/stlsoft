@@ -5,11 +5,11 @@
  *              do or do not have a standard library.
  *
  * Created:     17th January 2002
- * Updated:     12th March 2007
+ * Updated:     10th August 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MINOR       4
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        72
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    2
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,6 +82,10 @@
 #  include <stlsoft/meta/yesno.hpp> // yes_type, no_type
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -259,7 +263,8 @@ template<   ss_typename_param_k O
 // [[synesis:function:algorithm: std_fill_n(T<O> dest, ss_size_t n, T<V> const& value)]]
 inline void std_fill_n(O dest, ss_size_t n, V const& value)
 {
-#ifdef STLSOFT_CF_std_NAMESPACE
+#if defined(STLSOFT_CF_std_NAMESPACE) && \
+    !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
     stlsoft_ns_qual_std(fill_n)(dest, n, value);
 #else /* ? STLSOFT_CF_std_NAMESPACE */
     for(; 0 != n; ++dest, --n)

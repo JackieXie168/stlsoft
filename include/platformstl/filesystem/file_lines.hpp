@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     9th March 2008
+ * Updated:     10th June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     11
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
@@ -168,25 +168,27 @@ public:
             m_strings.reserve(static_cast<size_type>(mmf.size() / 40));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
+    (   defined(PLATFORMSTL_OS_IS_UNIX) && \
+        defined(_WIN32))
+
+            typedef stlsoft::string_tokeniser<  value_type
+                                            ,   value_type
+                                            ,   stlsoft::skip_blank_tokens<false>
+                                            ,   value_type
+                                            >       tokeniser_t;
+
+            static const char_type  sep[] = { '\r', '\n', '\0' };
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
             typedef stlsoft::string_tokeniser<  value_type
                                             ,   char
                                             ,   stlsoft::skip_blank_tokens<false>
                                             ,   value_type
-                                            >   tokeniser_t;
+                                            >       tokeniser_t;
 
             static const char_type  sep = '\n';
-
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-
-            typedef stlsoft::string_tokeniser<  value_type
-                                            ,   value_type
-                                            ,   stlsoft::skip_blank_tokens<false>
-                                            ,   value_type
-                                            >   tokeniser_t;
-
-            static const char_type  sep[] = { '\r', '\n', '\0' };
 
 #else /* ? OS */
 # error Platform not discriminated

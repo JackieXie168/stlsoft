@@ -129,11 +129,11 @@ namespace stlsoft
 
 inline char const* strchr_select(char const* s, char ch)
 {
-	return ::strchr(s, ch);
+    return ::strchr(s, ch);
 }
 inline wchar_t const* strchr_select(wchar_t const* s, wchar_t ch)
 {
-	return ::wcschr(s, ch);
+    return ::wcschr(s, ch);
 }
 
 template <ss_typename_param_k C>
@@ -353,9 +353,9 @@ inline S& trim_all_impl(S& str, ss_typename_type_k string_traits<S>::char_type c
     using namespace std;
 #endif /* STLSOFT_CF_std_NAMESPACE */
     // 2. typedef the string traits
-    typedef string_traits<S>											string_traits_t;
+    typedef string_traits<S>                                            string_traits_t;
     // 3. typedef the char_t
-    typedef ss_typename_type_k string_traits_t::char_type				char_t;
+    typedef ss_typename_type_k string_traits_t::char_type               char_t;
     // 4. typedef the iterator type(s)
     typedef ss_typename_type_k string_traits_t::const_iterator          iterator_t;
     typedef ss_typename_type_k string_traits_t::const_reverse_iterator  reverse_iterator_t;

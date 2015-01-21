@@ -4,11 +4,11 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     12th March 2007
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 
 /** \file winstl/error/error_functions.h
  *
- * \brief [C++ only] Windows error manipulation and representation
+ * \brief [C, C++] Windows error manipulation and representation
  *   functions
  *   (\ref group__library__error "Error" Library).
  */
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      51
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  4
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,7 +168,7 @@ STLSOFT_INLINE ws_dword_t winstl__FormatMessageA__buff_inst(int flags, HINSTANCE
                                             ,   error
                                             ,   MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT)
                                             ,   buffer
-                                            ,   cchBuffer
+                                            ,   stlsoft_static_cast(DWORD, cchBuffer)
                                             ,   NULL);
 }
 
@@ -195,7 +195,7 @@ STLSOFT_INLINE ws_dword_t winstl__FormatMessageW__buff_inst(int flags, HINSTANCE
                                             ,   error
                                             ,   MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT)
                                             ,   buffer
-                                            ,   cchBuffer
+                                            ,   stlsoft_static_cast(DWORD, cchBuffer)
                                             ,   NULL);
 }
 

@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     9th March 2008
+ * Updated:     24th June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 7
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     43
+# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    4
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -112,12 +112,13 @@
 # define _INETSTL_VER_1_1_4      0x00010104  /*!< Version 1.1.4 */
 # define _INETSTL_VER_1_2_1      0x00010201  /*!< Version 1.2.1 (with STLSoft 1.9.1) */
 # define _INETSTL_VER_1_2_2      0x00010202  /*!< Version 1.2.2 (with STLSoft 1.9.25) */
+# define _INETSTL_VER_1_2_3      0x010203ff  /*!< Version 1.2.3 (with STLSoft 1.9.46) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       2
-#define _INETSTL_VER_REVISION    2
-#define _INETSTL_VER             _INETSTL_VER_1_2_2
+#define _INETSTL_VER_REVISION    3
+#define _INETSTL_VER             _INETSTL_VER_1_2_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

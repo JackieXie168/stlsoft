@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  8th June 2008
+; Updated:  11th August 2008
 
 ============================================================================
 
@@ -15,6 +15,46 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.46 (11th August 2008)
+
+Summary:
+========
+
+ * defect fixes to stlsoft::pod_vector
+ * reduced coupling, and increased functionality, of stlsoft::format_bytes()
+ * sundry compatibility improvements
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft::file_lines() changed slightly to ensure correct behaviour on
+    Windows platforms when emulating UNIX
+
+  ~ stlsoft::std_fill_n() now eschews use of std::fill_n() when used with
+    Microsoft's Safe String library
+
+  ~ stlsoft::pod_vector<> defects fixed:
+     ~ fix for assert in copy-ctor when copying empty object
+	 ~ fix for failure to write value_type() into 1-parameter resize()
+	 ~ fixed defect in resize() when moving from 0 != size() to 0 == size()
+	 ~ fixed defect in range insert
+	 ~ fixed defect in erase()
+	 ~ renamed internal type buffer_type to buffer_type_
+
+  ~ stlsoft::format_bytes() rewritten to use custom hex formatting
+    instead of stdio formatting functions
+
+ WinSTL:
+ -------
+
+  + winstl__FormatMessageA/W__buff_inst() altered for 64-bit compatibility
 
 
 ============================================================================
