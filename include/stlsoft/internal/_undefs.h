@@ -4,7 +4,7 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     6th November 2007
+ * Updated:     15th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    6
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    7
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     24
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -220,6 +220,14 @@
 #ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 # undef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+
+/* RTTI support.
+ *
+ * Discriminated symbol is STLSOFT_CF_RTTI_SUPPORT
+ */
+#ifdef STLSOFT_CF_RTTI_SUPPORT
+# undef STLSOFT_CF_RTTI_SUPPORT
+#endif /* STLSOFT_CF_RTTI_SUPPORT */
 
 /* Exception support.
  *

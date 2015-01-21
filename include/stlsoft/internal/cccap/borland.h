@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Borland C/C++.
  *
  * Created:     7th February 2003
- * Updated:     6th November 2007
+ * Updated:     15th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      13
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      15
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       71
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -182,6 +182,9 @@
 #ifdef _DEBUG
 # define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 #endif /* _DEBUG */
+
+/* RTTI support */
+#define STLSOFT_CF_RTTI_SUPPORT
 
 /* Exception support */
 #define STLSOFT_CF_EXCEPTION_SUPPORT

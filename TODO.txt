@@ -2,12 +2,12 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  10th December 2007
+; Updated:  17th December 2007
 
 ============================================================================
 
 
-STLSoft 1.9.10 TODOs:
+STLSoft 1.9.11 TODOs:
 =====================
 
 
@@ -64,6 +64,8 @@ Priority: medium
 ----------------------------------
 
 Priority: high
+
+Status: partially done; more to come
 
 
 

@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  10th December 2007
+; Updated:  17th December 2007
 
 ============================================================================
 
@@ -15,6 +15,39 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.11 (17th December 2007)
+
+Summary:
+==========
+
+ * minor modifications and bug-fixes
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ + discrimination of RTTI support, in the form of the symbol
+   STLSOFT_CF_RTTI_SUPPORT, which will be defined when support is enabled.
+   This is required for the new xTests project (which will be released in
+   January 2008)
+
+ + stlsoft::cmdargs class has significant breaking changes:
+    + added has_option() method
+    + added has_value() method
+    ~ removed m_ from public fields of cmdargs::option class
+    ~ removed m_ from public fields of cmdargs::value class
+    ~ renamed m_value member of cmdargs::value to name
+
+ ~ stlsoft::must_init has had numerous fixes
+
+ ~ fixed bug, that manifests in widestring compilation, in
+   stlsoft/filesystem/searchspec_sequence.hpp
+
 
 ============================================================================
 
@@ -42,8 +75,8 @@ Changes:
 
  + mfcstl/mfcstl.hpp now #includes atlstr.h if _MFC_VER >= 0x0700
 
- MFCSTL:
- -------
+ PlatformSTL:
+ ------------
 
  ~ platformstl::environment_variable_traits now works on Win32 when
    synthesising UNIX

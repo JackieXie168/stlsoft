@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     6th November 2007
+ * Updated:     15th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      13
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      14
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       67
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,6 +168,9 @@
 
 /* Static assertions */
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
+
+/* RTTI support */
+#define STLSOFT_CF_RTTI_SUPPORT
 
 /* Exception support */
 #define STLSOFT_CF_EXCEPTION_SUPPORT
