@@ -4,7 +4,7 @@
  * Purpose:     winstl::to_SYSTEMTIME(DATE const&) overload.
  *
  * Created:     15th January 2007
- * Updated:     15th September 2008
+ * Updated:     20th November 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MINOR    0
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_REVISION 4
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     6
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_REVISION 5
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,14 +121,14 @@ namespace winstl_project
  */
 inline const SYSTEMTIME to_SYSTEMTIME(DATE const& rhs)
 {
-    SYSTEMTIME  st;
+    SYSTEMTIME st;
 
     if(!::VariantTimeToSystemTime(rhs, &st))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         STLSOFT_THROW_X(conversion_error("failed to convert time value", ::GetLastError()));
 #else /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        zero_struct(ud);
+        zero_struct(st);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 

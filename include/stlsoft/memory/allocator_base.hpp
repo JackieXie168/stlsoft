@@ -4,11 +4,11 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     10th October 2008
+ * Updated:     1st December 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     46
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -178,8 +178,8 @@ private:
     typedef class_type                          concrete_allocator_type;
 private:
     virtual void    *do_allocate(size_type n, void const* hint) = 0;
-    virtual void    do_deallocate(void *pv, size_type n) = 0;
-    virtual void    do_deallocate(void *pv) = 0;
+    virtual void    do_deallocate(void* pv, size_type n) = 0;
+    virtual void    do_deallocate(void* pv) = 0;
 #endif /* !STLSOFT_CF_COMPILER_SUPPORTS_CRTP */
 /// @}
 
@@ -223,7 +223,7 @@ public:
     ///   translator does not support throwing exceptions upon memory exhaustion)
     pointer allocate(size_type n, void const* hint = NULL)
     {
-        void    *p  =   static_cast<concrete_allocator_type*>(this)->do_allocate(n, hint);
+        void* p = static_cast<concrete_allocator_type*>(this)->do_allocate(n, hint);
 
 #if !defined(STLSOFT_FORCE_ATORS_RETURN_NULL) && \
     (   defined(STLSOFT_FORCE_ATORS_THROW_BAD_ALLOC) || \
@@ -247,7 +247,7 @@ public:
     ///
     /// \remarks This method is only defined when the symbol
     ///   \ref STLSOFT_CF_ALLOCATOR_CHARALLOC_METHOD is defined.
-    char *_Charalloc(size_type n)
+    char* _Charalloc(size_type n)
     {
         return sap_cast<char*>(allocate(n, NULL));
     }

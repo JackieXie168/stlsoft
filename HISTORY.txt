@@ -2,9 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  19th November 2008
+; Updated:  1st December 2008
 
 ============================================================================
+
+
+1st December 2008 - 1.9.62 released
+-----------------------------------
+
+ * fixed defect in interface_cast<> and try_interface_cast<>
+ * improved compatibility with Visual C++ 9
+ * speculative support for Intel C/C++ 11.0
+ * fixed defect in winstl::to_SYSTEMTIME(DATE) overload
 
 
 19th November 2008 - 1.9.61 released

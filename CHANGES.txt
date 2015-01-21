@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th November 2008
+; Updated:  1st December 2008
 
 ============================================================================
 
@@ -16,6 +16,43 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.62 (1st December 2008)
+
+Summary:
+========
+
+ * fixed defect in interface_cast<> and try_interface_cast<>
+ * improved compatibility with Visual C++ 9
+ * speculative support for Intel C/C++ 11.0
+ * fixed defect in winstl::to_SYSTEMTIME(DATE) overload
+
+Changes:
+========
+
+ COMSTL:
+ -------
+
+ ~ comstl/conversion/interface_cast.hpp:
+    ~ fixed reference leak in smart pointer forms of interface_cast() and try_interface_cast()
+ ~ comstl/conversion/method_cast.hpp:
+    ~ minor tidying
+
+ STLSoft:
+ --------
+
+ ~ stlsoft/internal/cccap/msvc.h:
+    ~ now correctly determines that VC++ 9 requires STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+ ~ stlsoft/stlsoft.h:
+    ~ speculatively supports Intel C/C++ 11.0
+
+ WinSTL:
+ -------
+
+ ~ winstl/shims/conversion/to_SYSTEMTIME/DATE.hpp:
+    ~ fixed defect - initialising unknown name - in non-exception mode
 
 ============================================================================
 

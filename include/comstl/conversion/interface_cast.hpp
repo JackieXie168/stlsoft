@@ -4,11 +4,11 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     10th October 2008
+ * Updated:     1st December 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   3
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       114
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   4
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ namespace comstl_project
 // It explicitly takes and returns pointer so that it disambiguates from any
 // overload that takes an interface wrapper instance by value/reference.
 template <ss_typename_param_k I>
-inline I *simple_interface_cast(I *pi)
+inline I* simple_interface_cast(I* pi)
 {
     return pi;
 }
@@ -277,13 +277,13 @@ interface protect_refcount
 private:
     STDMETHOD_(ULONG, AddRef)()
     {
-        I   *pi = static_cast<I*>(this);
+        I* pi = static_cast<I*>(this);
 
         return pi->AddRef();
     }
     STDMETHOD_(ULONG, Release)()
     {
-        I   *pi = static_cast<I*>(this);
+        I* pi = static_cast<I*>(this);
 
         return pi->Release();
     }
@@ -465,7 +465,7 @@ template<   ss_typename_param_k I
 class interface_cast_noaddref
     : protected interface_cast_base<I, noaddref_release<I>, X>
 {
-private:
+private: /// Member Types
     typedef interface_cast_base<I, noaddref_release<I>, X>                  parent_class_type;
 public:
     /// The type of the current parameterisation
@@ -480,8 +480,7 @@ public:
     typedef interface_pointer_type                                          protected_interface_pointer_type;
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-// Construction
-public:
+public: /// Construction
     /// Constructor that attempts the speculative cast
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
@@ -526,8 +525,8 @@ private:
     class_type const& operator =(class_type const& rhs);
 
     // These are defined to placate Borland C/C++
-    void *operator new(cs_size_t /* si */) { return 0; }
-    void operator delete(void * /* pv */) {}
+    void* operator new(cs_size_t /* si */) { return 0; }
+    void operator delete(void* /* pv */) {}
 };
 
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -548,7 +547,7 @@ template<   ss_typename_param_k I
 class interface_cast_addref
     : protected interface_cast_base<I, addref_release<I>, X>
 {
-private:
+private: /// Member Types
     typedef interface_cast_base<I, addref_release<I>, X>                    parent_class_type;
 public:
     /// The type of the current parameterisation
@@ -556,8 +555,7 @@ public:
     /// The interface pointer type
     typedef ss_typename_type_k parent_class_type::interface_pointer_type    interface_pointer_type;
 
-// Construction
-public:
+public: /// Construction
     /// Constructor that attempts the speculative cast
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
@@ -575,6 +573,11 @@ public:
         : parent_class_type(pi, parent_class_type::allowNull)
     {}
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    ~interface_cast_addref() stlsoft_throw_0()
+    {} // We need to provide this to persuade VC6 to call the parent class dtor
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 // Accessors
 public:
     /// A pointer to the acquired interface
@@ -589,8 +592,8 @@ private:
     class_type const& operator =(class_type const& rhs);
 
     // These are defined to placate Borland C/C++
-    void *operator new(cs_size_t /* si */) { return 0; }
-    void operator delete(void * /* pv */) {}
+    void* operator new(cs_size_t /* si */) { return 0; }
+    void operator delete(void* /* pv */) {}
 };
 
 
@@ -602,7 +605,7 @@ template<   ss_typename_param_k I
 class interface_cast_tester
     : protected interface_cast_base<I, noaddref_release<I>, ignore_interface_cast_exception>
 {
-private:
+private: /// Member Types
     typedef interface_cast_base<I, noaddref_release<I>, ignore_interface_cast_exception>    parent_class_type;
 public:
     /// The type of the current parameterisation
@@ -617,8 +620,7 @@ public:
     typedef interface_pointer_type                                                          protected_interface_pointer_type;
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-// Construction
-public:
+public: /// Construction
     /// Constructor that attempts the speculative cast
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
@@ -670,8 +672,8 @@ private:
     class_type const& operator =(class_type const& rhs);
 
     // These are defined to placate Borland C/C++
-    void *operator new(cs_size_t /* si */) { return 0; }
-    void operator delete(void * /* pv */) {}
+    void* operator new(cs_size_t /* si */) { return 0; }
+    void operator delete(void* /* pv */) {}
 };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -683,7 +685,7 @@ private:
  * \param src The object whose capabilities will be tested. May be NULL
  *
 \code
-IStream   *stm = . . .
+IStream* stm = . . .
 
 if(comstl::interface_cast_test<IStorage*>(stm))
 {
@@ -702,12 +704,12 @@ template<   ss_typename_param_k IDest
     _MSC_VER < 1300
 // This workaround is required to stop the poor dear from instantiating
 // interface_cast_tester on ISrc rather than IDest.
-inline cs_bool_t interface_cast_test(ISrc *src, IDest * = NULL)
+inline cs_bool_t interface_cast_test(ISrc* src, IDest* = NULL)
 #else /* ? compiler */
-inline cs_bool_t interface_cast_test(ISrc *src)
+inline cs_bool_t interface_cast_test(ISrc* src)
 #endif /* compiler */
 {
-    interface_cast_tester<IDest>    b(src);
+    interface_cast_tester<IDest>  b(src);
 
     return !!b;
 }
@@ -739,7 +741,7 @@ template<   ss_typename_param_k IDest
     _MSC_VER < 1300
 // This workaround is required to stop the poor dear from instantiating
 // interface_cast_tester on ISrc rather than IDest.
-inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src, IDest * = NULL)
+inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src, IDest* = NULL)
 #else /* ? compiler */
 inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src)
 #endif /* compiler */
@@ -755,7 +757,7 @@ inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src)
  * \ingroup group__library__conversion
  *
 \code
-IStream   *stm = . . .
+IStream* stm = . . .
 
 try
 {
@@ -785,11 +787,11 @@ catch(comstl::bad_interface_cast &)
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc
         >
-inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(ISrc *src)
+inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(ISrc* src)
 {
     interface_cast_addref<IDest*, throw_bad_interface_cast_exception> ptr(src);   // This has to be separate, otherwise G++ has a spit
 
-    return stlsoft_ns_qual(ref_ptr)<IDest>(static_cast<IDest*>(ptr), true);
+    return stlsoft_ns_qual(ref_ptr)<IDest>(static_cast<IDest*>(ptr), false);
 }
 
 /** \brief Casts between instances of wrapped instances
@@ -840,7 +842,7 @@ inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(stlsoft_ns_qual(ref_ptr)<I
  * \ingroup group__library__conversion
  *
 \code
-IStream                     *pstm = . . .
+IStream*                    pstm  = . . .
 stlsoft::ref_ptr<IStorage>  stg   = comstl::interface_cast<IStorage>(pstm);
 
 if(!stg.empty())
@@ -860,11 +862,11 @@ if(!stg.empty())
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc
         >
-inline stlsoft_ns_qual(ref_ptr)<IDest> try_interface_cast(ISrc *src)
+inline stlsoft_ns_qual(ref_ptr)<IDest> try_interface_cast(ISrc* src)
 {
     interface_cast_addref<IDest*>   ptr(src);  // This has to be separate, otherwise G++ has a spit
 
-    return stlsoft_ns_qual(ref_ptr)<IDest>(static_cast<IDest*>(ptr), true);
+    return stlsoft_ns_qual(ref_ptr)<IDest>(static_cast<IDest*>(ptr), false);
 }
 
 /** \brief Attempts to cast between instances of wrapped instances

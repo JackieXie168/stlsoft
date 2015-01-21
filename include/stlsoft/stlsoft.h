@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     27th October 2008
+ * Updated:     1st December 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    18
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    19
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     364
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     365
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -225,12 +225,13 @@
 # define _STLSOFT_VER_1_9_58    0x01093aff  /*!< Version 1.9.58 (15th Oct 2008) */
 # define _STLSOFT_VER_1_9_59    0x01093bff  /*!< Version 1.9.59 (24th Oct 2008) */
 # define _STLSOFT_VER_1_9_60    0x01093cff  /*!< Version 1.9.60 (27th Oct 2008) */
+# define _STLSOFT_VER_1_9_62    0x01093eff  /*!< Version 1.9.62 (1st Dec 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   60
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_60
+#define _STLSOFT_VER_REVISION   62
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_62
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -477,8 +478,10 @@
 #  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 9.0"
 # elif (__INTEL_COMPILER == 1000)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 10.0"
+# elif (__INTEL_COMPILER == 1100)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 11.0"
 # else /* ? __INTEL_COMPILER */
-#  error Only Intel C++ Compiler versions 6.0, 7.0(/7.1), 8.0, 9.0 and 10.0 currently supported by the STLSoft libraries
+#  error Only Intel C++ Compiler versions 6.0, 7.0(/7.1), 8.0, 9.0, 10.0 and 11.0 currently supported by the STLSoft libraries
 # endif /* __INTEL_COMPILER */
 
 #elif defined(__MWERKS__)
