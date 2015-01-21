@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     10th August 2009
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     94
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 3
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -275,7 +275,7 @@ private:
 
     static char_type const* get_application_directory()
     {
-        static char_type                        s_application_directory[_MAX_PATH + 1];
+        static char_type                        s_application_directory[WINSTL_CONST_MAX_PATH + 1];
         static sint32_t                         s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
@@ -283,7 +283,7 @@ private:
 
         if(!s_init)
         {
-            char_type   dummy[_MAX_PATH + 1];
+            char_type   dummy[WINSTL_CONST_MAX_PATH + 1];
             char_type*  file_part;
 
             traits_type::get_module_filename(NULL, s_application_directory, STLSOFT_NUM_ELEMENTS(s_application_directory));
@@ -297,7 +297,7 @@ private:
 
     static char_type const* get_system_directory()
     {
-        static char_type                        s_system_directory[_MAX_PATH + 1];
+        static char_type                        s_system_directory[WINSTL_CONST_MAX_PATH + 1];
         static sint32_t                         s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
@@ -308,7 +308,7 @@ private:
 
     static char_type const* get_windows_directory()
     {
-        static char_type                        s_windows_directory[_MAX_PATH + 1];
+        static char_type                        s_windows_directory[WINSTL_CONST_MAX_PATH + 1];
         static sint32_t                         s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
@@ -319,7 +319,7 @@ private:
 
     static char_type const* get_system16_directory()
     {
-        static char_type                        s_system16_directory[_MAX_PATH + 1];
+        static char_type                        s_system16_directory[WINSTL_CONST_MAX_PATH + 1];
         static sint32_t                         s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
@@ -562,7 +562,7 @@ inline void basic_searchpath_sequence<C, T>::construct_(
                 cwd =   psz;
 
                 // 2. Current directory - GetCurrentDirectory
-                psz += traits_type::get_current_directory(_MAX_PATH + 1, psz);
+                psz += traits_type::get_current_directory(WINSTL_CONST_MAX_PATH + 1, psz);
 
                 if(!bIncludeCurrentDirectoryLast)
                 {
@@ -706,7 +706,7 @@ template<   ss_typename_param_k C
 inline /* static */ ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type basic_searchpath_sequence<C, T>::max_size()
 {
     // Kind of kludgy, sigh.
-    return static_cast<size_type>(-1) / _MAX_PATH;
+    return static_cast<size_type>(-1) / WINSTL_CONST_MAX_PATH;
 }
 
 template<   ss_typename_param_k C

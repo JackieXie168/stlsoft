@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  11th February 2010
+; Updated:  15th February 2010
 
 ============================================================================
 
@@ -16,6 +16,58 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.93 (15th February 2010)
+
+Summary:
+========
+
+ * STLSOFT_CF_NAMESPACE_SUPPORT is now only defined in C++ compilation units
+ * added WINSTL_CONST_MAX_PATH, which is now used instead of _MAX_PATH throughout winstl
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/internal/cccap/borland.h:
+ ~ include/stlsoft/internal/cccap/como.h:
+ ~ include/stlsoft/internal/cccap/dmc.h:
+ ~ include/stlsoft/internal/cccap/gcc.h:
+ ~ include/stlsoft/internal/cccap/intel.h:
+ ~ include/stlsoft/internal/cccap/msvc.h:
+ ~ include/stlsoft/internal/cccap/mwerks.h:
+ ~ include/stlsoft/internal/cccap/unknown.h:
+ ~ include/stlsoft/internal/cccap/vectorc.h:
+ ~ include/stlsoft/internal/cccap/watcom.h:
+    ~ STLSOFT_CF_NAMESPACE_SUPPORT is now only defined in C++ compilation units
+
+ COMSTL:
+ =======
+
+ ~ include/comstl/error/errorinfo_desc.hpp:
+    ~ cast change
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/winstl.h:
+    + added WINSTL_CONST_MAX_PATH
+
+ ~ include/winstl/filesystem/file_path_buffer.hpp:
+ ~ include/winstl/filesystem/filesystem_traits.hpp:
+ ~ include/winstl/filesystem/findvolume_sequence.hpp:
+ ~ include/winstl/filesystem/path.hpp:
+ ~ include/winstl/shell/browse_for_folder.hpp:
+ ~ include/winstl/shell/drophandle_sequence.hpp:
+ ~ include/winstl/shell/file_operations.hpp:
+ ~ include/winstl/system/searchpath_sequence.hpp:
+ ~ include/winstl/system/system_traits.hpp:
+ ~ include/winstl/system/version_info.hpp:
+    ~ now uses WINSTL_CONST_MAX_PATH
 
 ============================================================================
 

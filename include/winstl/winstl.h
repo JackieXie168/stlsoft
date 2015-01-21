@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     30th January 2010
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       10
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        179
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       11
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        180
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -142,12 +142,13 @@
 # define _WINSTL_VER_1_10_5     0x010a05ff  /*!< Version 1.10.5 (with STLSoft 1.9.88) */
 # define _WINSTL_VER_1_10_6     0x010a06ff  /*!< Version 1.10.6 (with STLSoft 1.9.90) */
 # define _WINSTL_VER_1_10_7     0x010a07ff  /*!< Version 1.10.7 (with STLSoft 1.9.91) */
+# define _WINSTL_VER_1_11_1     0x010b01ff  /*!< Version 1.11.1 (with STLSoft 1.9.93) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
-#define _WINSTL_VER_MINOR       10
-#define _WINSTL_VER_REVISION    7
-#define _WINSTL_VER             _WINSTL_VER_1_10_7
+#define _WINSTL_VER_MINOR       11
+#define _WINSTL_VER_REVISION    1
+#define _WINSTL_VER             _WINSTL_VER_1_11_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -173,9 +174,9 @@
 #endif /* compiler */
 
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
-	defined(_WIN32) && \
-	(	defined(WIN32) || \
-		defined(WIN64))
+    defined(_WIN32) && \
+    (   defined(WIN32) || \
+        defined(WIN64))
 
 # ifndef STLSOFT_INCL_H_BASETYPS
 #  define STLSOFT_INCL_H_BASETYPS
@@ -208,13 +209,18 @@
 # endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST */
 #endif /* compiler */
 
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h> /* for MAX_PATH (CygWin) */
+#endif /* !STLSOFT_INCL_H_STDLIB */
+
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x01095aff
-# error This version of the WinSTL libraries requires STLSoft version 1.9.91, or later
+    _STLSOFT_VER < 0x01095dff
+# error This version of the WinSTL libraries requires STLSoft version 1.9.93, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -831,10 +837,27 @@ typedef ws_uptrint_t        uptrint_t;
  */
 #define WINSTL_CONST_NT_MAX_PATH            (4 + 32767)
 
+/** \def WINSTL_CONST_MAX_PATH
+ *
+ */
+#if defined(_MAX_PATH)
+# define WINSTL_CONST_MAX_PATH              _MAX_PATH
+#elif defined(__CYGWIN__)
+# define WINSTL_CONST_MAX_PATH              (260)
+#else
+# error _MAX_PATH not defined, and not CygWin compiler
+#endif
+
 #ifdef __cplusplus
+
 /** \brief C++ constant equivalent to \ref WINSTL_CONST_NT_MAX_PATH.
  */
 const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
+
+/** \brief C++ constant equivalent to \ref WINSTL_CONST_MAX_PATH.
+ */
+const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
+
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     11th January 2010
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        118
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    10
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -229,7 +229,7 @@ public:
 public:
     enum
     {
-        maxPathLength   =   1 + _MAX_PATH       //!< The maximum length of a path for the current file system
+        maxPathLength = 1 + WINSTL_CONST_MAX_PATH	//!< The maximum length of a path for the current file system
     };
 /// @}
 
@@ -450,7 +450,7 @@ public:
 
     enum
     {
-        maxPathLength   =   1 + _MAX_PATH       //!< The maximum length of a path for the current file system
+        maxPathLength = 1 + WINSTL_CONST_MAX_PATH	//!< The maximum length of a path for the current file system
     };
 
 public:
@@ -519,7 +519,7 @@ public:
 
     enum
     {
-        maxPathLength   =   1 + _MAX_PATH       //!< The maximum length of a path for the current file system
+        maxPathLength = 1 + WINSTL_CONST_MAX_PATH	//!< The maximum length of a path for the current file system
     };
 
 public:
@@ -684,7 +684,7 @@ public:
 
     static size_type path_max()
     {
-        return 1 + _MAX_PATH;
+        return 1 + WINSTL_CONST_MAX_PATH;
     }
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -784,7 +784,7 @@ private:
 
             if( 0 == r &&
                 0 == dw &&
-                str_len(fileName) > _MAX_PATH)
+                str_len(fileName) > WINSTL_CONST_MAX_PATH)
             {
                 ::SetLastError(ERROR_FILENAME_EXCED_RANGE);
             }
@@ -927,11 +927,11 @@ public:
             n = get_full_path_name_impl(fileName, len, buffer, cchBuffer, ppFile);
         }
 
-        // Paths that exceed _MAX_PATH cause GetFullPathNameA() to fail, but it
+        // Paths that exceed _MAX_PATH (aka WINSTL_CONST_MAX_PATH) cause GetFullPathNameA() to fail, but it
         // does not (appear to) call SetLastError()
         if( 0 == n &&
             0 == ::GetLastError() &&
-            str_len(fileName) > _MAX_PATH)
+            str_len(fileName) > WINSTL_CONST_MAX_PATH)
         {
             ::SetLastError(ERROR_FILENAME_EXCED_RANGE);
         }
@@ -1548,7 +1548,7 @@ public:
 
     static size_type path_max()
     {
-        return (::GetVersion() & 0x80000000) ? (1 + _MAX_PATH) : (1 + CONST_NT_MAX_PATH);
+        return (::GetVersion() & 0x80000000) ? (1 + WINSTL_CONST_MAX_PATH) : (1 + CONST_NT_MAX_PATH);
     }
 
     static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)

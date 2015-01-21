@@ -10,11 +10,11 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     10th August 2009
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      113
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  6
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,10 +105,11 @@ namespace winstl_project
  */
 
 // The FindNextVolume API is not well documented so assume _MAX_PATH
+// (aka WINSTL_CONST_MAX_PATH)
 // is sufficient for volume names
 enum
 {
-    MAX_VOL_NAME    =   _MAX_PATH   //!< The maximum number of characters in a volume name
+    MAX_VOL_NAME = WINSTL_CONST_MAX_PATH   //!< The maximum number of characters in a volume name
 };
 
 /* /////////////////////////////////////////////////////////////////////////

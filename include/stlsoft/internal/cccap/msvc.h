@@ -4,14 +4,14 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     26th December 2009
+ * Updated:     14th February 2010
  *
  * Thanks:      To Cláudio Albuquerque for working on the
  *              Win64-compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     20
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      113
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -259,9 +259,11 @@
 # define STLSOFT_CF_RTTI_SUPPORT
 #endif /* _CPPRTTI */
 
-#if _MSC_VER >= 1020
-# define STLSOFT_CF_NAMESPACE_SUPPORT
-#endif /* compiler */
+#ifdef __cplusplus
+# if _MSC_VER >= 1020
+#  define STLSOFT_CF_NAMESPACE_SUPPORT
+# endif /* compiler */
+#endif /* __cplusplus */
 
 #if _MSC_VER < 1100
  /* Since Visual C++ 4.2 and earlier do not correctly support using declarations

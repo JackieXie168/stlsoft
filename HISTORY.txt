@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  11th February 2010
+; Updated:  15th February 2010
 
 ============================================================================
+
+
+15th February 2010 - 1.9.93 released
+------------------------------------
+
+ * STLSOFT_CF_NAMESPACE_SUPPORT is now only defined in C++ compilation units
+ * added WINSTL_CONST_MAX_PATH, which is now used instead of _MAX_PATH throughout winstl
 
 
 11th February 2010 - 1.9.92 released

@@ -5,14 +5,14 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     30th December 2009
+ * Updated:     15th February 2010
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     115
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,7 +161,7 @@ struct is_ansi<ws_char_a_t>
  *
  * \param C The character type
  * \param A The allocator type
- * \param CCH The size of the internal member path structure. On translators that support default template arguments this default to (\c 1 + \c _MAX_PATH)
+ * \param CCH The size of the internal member path structure. On translators that support default template arguments this default to (\c 1 + \c WINSTL_CONST_MAX_PATH)
  */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
@@ -177,13 +177,13 @@ class basic_file_path_buffer
 private:
     enum
     {
-        internalBufferSize  =   1 + _MAX_PATH
+        internalBufferSize = 1 + WINSTL_CONST_MAX_PATH
     };
 
     enum
     {
-            CCH_9x = _MAX_PATH
-        ,   CCH_NT = (is_ansi<C>::value ? _MAX_PATH : CONST_NT_MAX_PATH)
+            CCH_9x = WINSTL_CONST_MAX_PATH
+        ,   CCH_NT = (is_ansi<C>::value ? WINSTL_CONST_MAX_PATH : CONST_NT_MAX_PATH)
     };
 
     /// \brief The buffer type
@@ -192,7 +192,7 @@ private:
 # if defined(STLSOFT_COMPILER_IS_BORLAND)
     // This is necessary, since Borland will attempt an auto_buffer with what
     // seems like 0 size, or maybe it just can't define the type. Who can tell?
-                                            ,   1 + _MAX_PATH
+                                            ,   1 + WINSTL_CONST_MAX_PATH
 # else /* ? compiler */
                                             ,   internalBufferSize
 # endif /* compiler */
