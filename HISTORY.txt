@@ -2,13 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  25th April 2008
+; Updated:  29th April 2008
 
 ============================================================================
 
 
 
-26th April 2008 - 1.9.34 released
+29th April 2008 - 1.9.35 released
+---------------------------------
+
+ * added value_multi_sz() to winstl::reg_value
+
+25th April 2008 - 1.9.34 released
 ---------------------------------
 
  * renamed winstl::get_hwnd attribute shim to winstl::get_HWND

@@ -1,5 +1,5 @@
 
-// Updated: 12th March 2007
+// Updated: 28th April 2008
 
 #if !defined(WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE)
 # error This file cannot be directly included, and should only be included within winstl/registry/reg_value.hpp
@@ -47,6 +47,12 @@ namespace unittest
 //				  v1.value_dword_littleendian();
 //				  v1.value_dword_bigendian();
 				v1.value_binary();
+
+#ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
+				{
+					reg_value::strings_type	strings = v1.value_multi_sz();
+				}
+#endif /* !WINSTL_REG_VALUE_NO_MULTI_SZ */
 			}
 #endif /* !STLSOFT_COMPILER_IS_BORLAND */
 		}
