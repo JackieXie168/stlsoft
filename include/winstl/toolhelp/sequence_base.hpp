@@ -4,7 +4,7 @@
  * Purpose:     TOOLHELP sequence_base class template.
  *
  * Created:     21st May 2005
- * Updated:     12th March 2007
+ * Updated:     8th April 2007
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  3
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      10
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -208,7 +208,7 @@ public:
 
     bool equal(class_type const& rhs) const
     {
-        WINSTL_MESSAGE_ASSERT("Attempting to compare two non-end-point iterators from different ranges", NULL == m_snapshot || NULL == rhs.m_snapshot || m_snapshot == rhs.m_snapshot);
+        WINSTL_MESSAGE_ASSERT("Attempting to compare two non-endpoint iterators from different ranges", NULL == m_snapshot || NULL == rhs.m_snapshot || m_snapshot == rhs.m_snapshot);
 
         return m_snapshot == rhs.m_snapshot;
     }

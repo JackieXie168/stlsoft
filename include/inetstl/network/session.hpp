@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     22nd March 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      0
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      1
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       57
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,6 +124,7 @@ public:
     typedef T                                                       traits_type;
     typedef basic_session<C, X, T>                                  class_type;
 
+    typedef HINTERNET                                               resource_type;
 // Construction
 public:
     /// Default constructor

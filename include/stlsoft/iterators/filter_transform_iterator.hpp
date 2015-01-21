@@ -4,7 +4,7 @@
  * Purpose:     A combination of the filter_iterator and the transform_iterator.
  *
  * Created:     2nd January 2006
- * Updated:     1st February 2007
+ * Updated:     8th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_REVISION  3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_EDIT      11
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ namespace stlsoft
  * \ingroup group__library__iterators
  *
  * \param from The start of the iterator range to be transformed
- * \param to The end-point of the iterator range to be transformed
+ * \param to The endpoint of the iterator range to be transformed
  * \param pr The predicate used to filter the underlying range
  * \param fn The function object used to effect the transformation
  *
@@ -129,7 +129,7 @@ inline filter_iterator<transform_iterator<I, TF>, FP> make_filter_transform_iter
  * \ingroup group__library__iterators
  *
  * \param from The start of the iterator range to be transformed
- * \param to The end-point of the iterator range to be transformed
+ * \param to The endpoint of the iterator range to be transformed
  * \param pr The predicate used to filter the underlying range
  * \param fn The function object used to effect the transformation
  *

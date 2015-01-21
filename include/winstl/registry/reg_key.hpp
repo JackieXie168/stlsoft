@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     22nd March 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       5
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       6
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        116
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -183,6 +183,8 @@ public:
 private:
     /// \brief The results type of the Registry API
     typedef ss_typename_type_k traits_type::result_type result_type;
+public:
+    typedef hkey_type                                   resource_type;
 /// @}
 
 /// \name Construction

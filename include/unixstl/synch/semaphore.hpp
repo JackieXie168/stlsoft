@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on POSIX semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     22nd March 2007
+ * Updated:     8th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     16
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,17 +109,25 @@ class semaphore
                                             >
     , public stlsoft_ns_qual(synchronisable_object_tag)
 {
+/// \name Member Types
+/// @{
 public:
     typedef semaphore       class_type;
-    typedef sem_t           *handle_type;
+    typedef sem_t*			handle_type;
     typedef us_bool_t       bool_type;
     typedef us_size_t       count_type;
 
+    typedef sem_t*          resource_type;
+/// @}
+
+/// \name Member Constants
+/// @{
 public:
     enum
     {
         maxCountValue   =   _POSIX_SEM_VALUE_MAX    // Borrowed from PThreads-win32
     };
+/// @}
 
 /// \name Construction
 /// @{
@@ -220,12 +228,12 @@ public:
 /// @{
 public:
     /// \brief The underlying kernel object handle
-    handle_type handle()
+    handle_type handle() stlsoft_throw_0()
     {
         return m_sem;
     }
     /// \brief The underlying kernel object handle
-    handle_type get()
+    handle_type get() stlsoft_throw_0()
     {
         return m_sem;
     }
@@ -233,7 +241,7 @@ public:
 
 // Implementation
 private:
-    static handle_type create_semaphore_(sem_t *internal, count_type initialCount, bool_type bInterProcessShared)
+    static handle_type create_semaphore_(sem_t* internal, count_type initialCount, bool_type bInterProcessShared)
     {
         UNIXSTL_ASSERT(initialCount <= maxCountValue);
 

@@ -4,7 +4,7 @@
  * Purpose:     Contains the ptr_proxy template class.
  *
  * Created:     17th January 1999
- * Updated:     22nd March 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PTR_PROXY_MAJOR       4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PTR_PROXY_MINOR       0
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PTR_PROXY_MINOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PTR_PROXY_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PTR_PROXY_EDIT        67
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_PTR_PROXY_EDIT        68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,6 +107,9 @@ public:
     typedef T                       value_type;
     /// The current parameterisation of the type
     typedef ptr_proxy<T>            class_type;
+
+    typedef value_type*             resource_type;
+    typedef value_type const*       const_resource_type;
 
 // Construction
 public:

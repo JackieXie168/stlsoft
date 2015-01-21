@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta47
+File:     STLSoft-ReleaseNotes-1.9.1-beta48
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  6th April 2007
+Updated:  12th April 2007
 
 ============================================================================
 
@@ -29,13 +29,44 @@ Updated:  6th April 2007
 
 ============================================================================
 
+Changes for 1.9.1 beta 48 (12th April 2007):
+
+
+Additions:
+==========
+
+ + resource_type (and const_resource_type, for some) member type for:
+    stlsoft::ptr_proxy
+    stlsoft::ref_ptr
+    stlsoft::shared_ptr
+    comstl::bstr
+    comstl::guid
+    inetstl::connection
+    inetstl::session
+    unixstl::process_mutex
+    unixstl::semaphore
+    unixstl::thread_mutex
+    winstl::module
+    winstl::reg_key
+    winstl::reg_key_sequence
+    winstl::reg_value_sequence
+    winstl::event
+    winstl::process_mutex
+    winstl::semaphore
+
+ + added operator () to fixed arrays (stlsoft/container/fixed_array.hpp)
+   (as requested/persuaded by Neal Becker)
+
+
+Fixes:
+======
+
+ ~ fixed bug in rangelib::r_exists() (Thanks to Yakov Markovitch)
+
+
+============================================================================
+
 Changes for 1.9.1 beta 47 (6th April 2007):
-
-Summary:
-========
-
-  Purely documentation changes (of projects ACESTL, ATLSTL, COMSTL, .netSTL
-  and InetSTL)
 
 Additions:
 ==========
@@ -70,6 +101,10 @@ Changes:
   ~ comstl::variant::QueryInterfaceValue() fixed
 
   ~ inetstl::basic_findfile_sequence bug with VC++ 8 now fixed
+
+  ~ winstl::basic_findfile_sequence bug with VC++ 8 now fixed
+
+  ~ winstl::basic_findvolume_sequence bug with VC++ 8 now fixed
 
 ============================================================================
 

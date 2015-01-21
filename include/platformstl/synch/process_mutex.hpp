@@ -4,7 +4,7 @@
  * Purpose:     Definition of the process_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      0
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,6 +124,8 @@ public:
 # error Operating system not discriminated
 #endif /* OS */
     typedef process_mutex   class_type;
+
+    typedef handle_type     resource_type;
 /// @}
 
 /// \name Construction

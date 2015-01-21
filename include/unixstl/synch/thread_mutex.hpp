@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on PTHREADS pthread_mutex_t.
  *
  * Created:     17th December 1996
- * Updated:     22nd March 2007
+ * Updated:     8th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR       4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        50
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,6 +128,8 @@ class thread_mutex
 public:
     typedef thread_mutex        class_type;
     typedef us_bool_t           bool_type;
+
+	typedef pthread_mutex_t*	resource_type;
 /// @}
 
 /// \name Construction
@@ -144,7 +146,7 @@ public:
     ///
     /// \param mx The raw mutex object handle that this instance will use
     /// \param bTakeOwnership If true, the handle is closed when this instance is destroyed
-    thread_mutex(pthread_mutex_t *mx, bool_type bTakeOwnership)
+    thread_mutex(pthread_mutex_t* mx, bool_type bTakeOwnership)
         : m_mx(mx)
         , m_error(0)
         , m_bOwnHandle(bTakeOwnership)
@@ -241,12 +243,12 @@ public:
 /// @{
 public:
     /// \brief The underlying kernel object handle
-    pthread_mutex_t *handle() stlsoft_throw_0()
+    pthread_mutex_t* handle() stlsoft_throw_0()
     {
         return m_mx;
     }
     /// \brief The underlying kernel object handle
-    pthread_mutex_t *get() stlsoft_throw_0()
+    pthread_mutex_t* get() stlsoft_throw_0()
     {
         return m_mx;
     }
@@ -255,7 +257,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static int create_(pthread_mutex_t *mx, bool_type bRecursive)
+    static int create_(pthread_mutex_t* mx, bool_type bRecursive)
     {
         pthread_mutexattr_t attr;
         int                 res = 0;
@@ -299,7 +301,7 @@ private:
 /// @{
 private:
     pthread_mutex_t         m_mx_;          // The mutex used when created and owned by the instance
-    pthread_mutex_t *const  m_mx;           // The mutex "handle"
+    pthread_mutex_t* const  m_mx;           // The mutex "handle"
     int                     m_error;        // The last PThreads error
     const bool_type         m_bOwnHandle;   // Does the instance own the handle?
 /// @}

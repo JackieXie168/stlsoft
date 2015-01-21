@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     22nd March 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       0
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        30
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,6 +101,9 @@ public:
     typedef value_type          &reference;
     typedef value_type const    &const_reference;
     typedef shared_ptr<T>       class_type;
+
+    typedef pointer             resource_type;
+    typedef const_pointer       const_resource_type;
 /// @}
 
 /// \name Construction

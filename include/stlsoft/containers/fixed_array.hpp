@@ -4,9 +4,10 @@
  * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     12th March 2007
+ * Updated:     12th April 2007
  *
- * Thanks to:   Neal Becker for suggesting the uninitialised mode.
+ * Thanks to:   Neal Becker for suggesting the uninitialised mode; Neal
+ *              again for requesting the function call operator.
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       177
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       178
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -246,6 +247,11 @@ public:
     reference               at_unchecked(index_type i0);
     const_reference         at_unchecked(index_type i0) const;
 
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+    reference               operator ()(index_type i0);
+    const_reference         operator ()(index_type i0) const;
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
+
     reference               operator [](index_type i0);
     const_reference         operator [](index_type i0) const;
 
@@ -392,6 +398,11 @@ public:
 
     reference               at_unchecked(index_type i0, index_type i1);
     const_reference         at_unchecked(index_type i0, index_type i1) const;
+
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+    reference               operator ()(index_type i0, index_type i1);
+    const_reference         operator ()(index_type i0, index_type i1) const;
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */	
 
     dimension_element_type          at(index_type i0);
     const dimension_element_type    at(index_type i0) const;
@@ -546,6 +557,11 @@ public:
     reference               at_unchecked(index_type i0, index_type i1, index_type i2);
     const_reference         at_unchecked(index_type i0, index_type i1, index_type i2) const;
 
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+    reference               operator ()(index_type i0, index_type i1, index_type i2);
+    const_reference         operator ()(index_type i0, index_type i1, index_type i2) const;
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */	
+
     dimension_element_type          at(index_type i0);
     const dimension_element_type    at(index_type i0) const;
 
@@ -698,6 +714,11 @@ public:
 
     reference               at_unchecked(index_type i0, index_type i1, index_type i2, index_type i3);
     const_reference         at_unchecked(index_type i0, index_type i1, index_type i2, index_type i3) const;
+
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+    reference               operator ()(index_type i0, index_type i1, index_type i2, index_type i3);
+    const_reference         operator ()(index_type i0, index_type i1, index_type i2, index_type i3) const;
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */ 
 
     dimension_element_type          at(index_type i0);
     const dimension_element_type    at(index_type i0) const;
@@ -916,6 +937,24 @@ inline ss_typename_type_k fixed_array_1d<T, A, P, R>::const_reference fixed_arra
 
     return m_data[i0];
 }
+
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_1d<T, A, P, R>::reference fixed_array_1d<T, A, P, R>::operator ()(ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type i0)
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
+
+    return m_data[i0];
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_1d<T, A, P, R>::const_reference fixed_array_1d<T, A, P, R>::operator ()(ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type i0) const
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
+
+    return m_data[i0];
+}
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_1d<T, A, P, R>::reference fixed_array_1d<T, A, P, R>::operator [](ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type i0)
@@ -1214,6 +1253,24 @@ inline ss_typename_type_k fixed_array_2d<T, A, P, R>::const_reference fixed_arra
 
     return *(m_data + calc_index_(i0, i1));
 }
+
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_2d<T, A, P, R>::reference fixed_array_2d<T, A, P, R>::operator ()(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i1)
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1);
+
+    return *(m_data + calc_index_(i0, i1));
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_2d<T, A, P, R>::const_reference fixed_array_2d<T, A, P, R>::operator ()(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i1) const
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1);
+
+    return *(m_data + calc_index_(i0, i1));
+}
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_2d<T, A, P, R>::dimension_element_type fixed_array_2d<T, A, P, R>::at(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0)
@@ -1538,6 +1595,24 @@ inline ss_typename_type_k fixed_array_3d<T, A, P, R>::const_reference fixed_arra
 
     return *(m_data + calc_index_(i0, i1, i2));
 }
+
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_3d<T, A, P, R>::reference fixed_array_3d<T, A, P, R>::operator ()(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i2)
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2);
+
+    return *(m_data + calc_index_(i0, i1, i2));
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_3d<T, A, P, R>::const_reference fixed_array_3d<T, A, P, R>::operator ()(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i2) const
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2);
+
+    return *(m_data + calc_index_(i0, i1, i2));
+}
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_3d<T, A, P, R>::dimension_element_type fixed_array_3d<T, A, P, R>::at(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0)
@@ -1872,6 +1947,24 @@ inline ss_typename_type_k fixed_array_4d<T, A, P, R>::const_reference fixed_arra
 
     return *(m_data + calc_index_(i0, i1, i2, i3));
 }
+
+#ifndef STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_4d<T, A, P, R>::reference fixed_array_4d<T, A, P, R>::operator ()(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i3)
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3);
+
+    return *(m_data + calc_index_(i0, i1, i2, i3));
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_4d<T, A, P, R>::const_reference fixed_array_4d<T, A, P, R>::operator ()(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i3) const
+{
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3);
+
+    return *(m_data + calc_index_(i0, i1, i2, i3));
+}
+#endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_k fixed_array_4d<T, A, P, R>::dimension_element_type fixed_array_4d<T, A, P, R>::at(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0)
