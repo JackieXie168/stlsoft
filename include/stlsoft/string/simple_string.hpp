@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     1st October 2008
+ * Updated:     9th December 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     242
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     243
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -2508,13 +2508,20 @@ inline void basic_simple_string<C, T, A>::reserve(ss_typename_type_k basic_simpl
         }
         else
         {
-            // Allocate a new buffer of sufficient size
-            member_pointer  new_buffer =   alloc_buffer_(c_str(), cch, length());
-
-            if(NULL != new_buffer) // Some allocators do not throw on failure!
+            if(cch <= string_buffer_from_member_pointer_(m_buffer)->capacity)
             {
-                destroy_buffer_(m_buffer);
-                m_buffer = new_buffer;
+                ; // Nothing to do
+            }
+            else
+            {
+                // Allocate a new buffer of sufficient size
+                member_pointer  new_buffer =   alloc_buffer_(c_str(), cch, length());
+
+                if(NULL != new_buffer) // Some allocators do not throw on failure!
+                {
+                    destroy_buffer_(m_buffer);
+                    m_buffer = new_buffer;
+                }
             }
         }
     }
