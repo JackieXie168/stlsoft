@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  7th June 2010
+; Updated:  21st June 2010
 
 ============================================================================
 
@@ -15,6 +15,81 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.99 (21st June 2010)
+
+Summary:
+========
+
+	* added filesystem_traits::str_fs_compare() (UNIXSTL & WinSTL)
+	* added filesystem_traits::str_fs_n_compare() (UNIXSTL & WinSTL)
+	* added str_n_compare_no_case declaration to system_traits (UNIXSTL & WinSTL)
+ * added assoc_select_first() and assoc_select_second() creator functions for associative_select_iterator
+ * incorporated Manfred Ehrhart's fixes for associative_select_iterator
+ * Borland/GCC-compatibility fixes
+ * GCC-compatibility fixes
+	* nullptr support correction for VC++
+ * various minor fixes
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/error/error_desc.hpp:
+ ~ stlsoft/string/special_string_instance.hpp:
+    ~ GCC-compatibility fixes
+
+ ~ stlsoft/filesystem/read_line.hpp:
+    ~ required disambiguation, via separating readers from implementation
+
+ ~ stlsoft/internal/cccap/msvc.h:
+    ~ nullptr support correction for VC++
+
+ ~ stlsoft/iterators/associative_select_iterator.hpp:
+    ~ Borland/GCC-compatibility fixes
+    + added assoc_select_first() function
+    + added assoc_select_second() function
+    - removed the need to be explicit, to allow for assignment-syntax initialisation
+    + incorporate (after inexcusable delay) Manfred Ehrhart's fixes, addressing inappropriate member type and defect in select_second()
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/filesystem/directory_functions.hpp:
+    ~ improved documentation for remove_directory_recurse()
+
+ ~ unixstl/filesystem/filesystem_traits.hpp:
+    + added filesystem_traits::str_fs_compare()
+    + added filesystem_traits::str_fs_n_compare()
+
+ ~ unixstl/system/system_traits.hpp:
+    + added str_n_compare_no_case declaration to system_traits
+
+ WinSTL:
+ =======
+
+ ~ winstl/conversion/char_conversions.hpp:
+    ~ GCC-compatibility fixes
+
+ ~ winstl/filesystem/directory_functions.hpp:
+    ~ improved documentation for remove_directory_recurse()
+
+ ~ winstl/filesystem/filesystem_traits.hpp:
+    + added filesystem_traits::str_fs_compare()
+    + added filesystem_traits::str_fs_n_compare()
+
+ ~ winstl/filesystem/findvolume_sequence.hpp:
+    ~ adds missing inclusion of shims header file(s)
+
+ ~ winstl/system/system_traits.hpp:
+    + added str_n_compare_no_case declaration to system_traits
+    ~ documentation markup
+
 
 
 ============================================================================

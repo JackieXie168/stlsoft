@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     30th January 2010
+ * Updated:     10th June 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      46
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -512,41 +512,47 @@ inline ws_bool_t create_directory_recurse(S const& dir, LPSECURITY_ATTRIBUTES lp
  *
  * \ingroup group__library__filesystem
  *
- * \param dir The path of the directory to remove
- * \param pfn Pointer to a callback function, which will receive notifications
- *         and requests for file/directory deletion. The semantics of the
- *         parameters are specified in the note below
- * \param param Caller-supplied parameter, passed through to the callback
- *         function
+ * \param dir The path of the directory to remove.
+ * \param pfn Pointer to a callback function, which will receive
+ *   notifications and requests for file/directory deletion. The semantics
+ *   of the parameters are specified in the note below.
+ * \param param Caller-supplied parameter, always passed through to the
+ *   callback function \c pfn.
  *
  * \note If no callback function is specified, then the function will remove
- *        only empty subdirectories, i.e. no files will be removed. To remove
- *        files, a function must be
+ *   only empty subdirectories, i.e. no files will be removed. To remove
+ *   files, a function must be supplied, and may take additional measures
+ *   (such as changing file attributes) before the deletion is attempted by
+ *   <code>remove_directory_recurse()</code>. Do not delete the file in the
+ *   callback, otherwise the attempt within
+ *   <code>remove_directory_recurse()</code> will fail, and the function
+ *   will report overall failure of the operation.
  *
  * \note The semantics of the callback function's parameters are as follows:
- * \li If the err param is ~0 (-1 on UNIX), then the dir param specifies
- *      the name of the current directory being traversed. All other params
- *      are unspecified. The return value is ignored.
- * \li If the err param is 0 and the st param is NULL, then dir specifies
- *      the name of a directory that has been successfully removed. All
- *      other params are unspecified. The return value is ignored.
- * \li If the err param is 0 and the st param is not NULL, then dir specifies
- *      the name of the currently traversing directory, st specifies the
- *      stat information and the name of the entry within directory dir that
- *      is a candidate for removal. Return >0 to enable removal of this
- *      entry, or 0 to prevent removal and cancel the overall operation, or
- *      <0 to prevent removal and continue.
- *      All other params are unspecified. The return value is ignored.
- * \li If the err param is any other value, and the st param is NULL, then
- *      the dir param specifies the name of a directory that could not be
- *      deleted and err specifies the errno value associated with the failure.
- *      All other params are unspecified. The return value is ignored.
- * \li If the err param is any other value, and the st param is not NULL, then
- *      the dir param specifies the name of a directory within which an entry
- *      could not be deleted, st specifies the stat information and the name
- *      of the entry that could not be deleted, and err specifies the errno
- *      value associated with the failure. All other params are unspecified.
- *      The return value is ignored.
+ * \li If the err param is ~0 (-1 on UNIX), then the \c dir param specifies
+ *   the name of the current directory being traversed. All other params are
+ *   unspecified (except \c param). The return value is ignored.
+ * \li If the err param is 0 and the \c st param is NULL, then \c dir
+ *   specifies the name of a directory that has been successfully removed.
+ *   All other params are unspecified (except \c param). The return value is
+ *   ignored.
+ * \li If the err param is 0 and the \c st param is not NULL, then \c dir
+ *   specifies the name of the currently traversing directory, and \c st
+ *   specifies the stat information for the entry to be deleted. Return true
+ *   to enable removal of this entry, or false to prevent removal (and
+ *   cancel the overall operation). All other params are unspecified (except
+ *   \c param). The return value is ignored.
+ * \li If the err param is any other value, and the \c st param is NULL,
+ *   then the \c dir param specifies the name of a directory that could not
+ *   be deleted and err specifies the errno value associated with the
+ *   failure. All other params are unspecified (except \c param). The return
+ *   value is ignored.
+ * \li If the err param is any other value, and the \c st param is not NULL,
+ *   then the \c dir param specifies the name of a directory within which an
+ *   entry could not be deleted, \c st specifies the stat information of the
+ *   entry that could not be deleted, and err specifies the errno value
+ *   associated with the failure. All other params are unspecified (except
+ *   \c param). The return value is ignored.
  */
 inline ws_bool_t remove_directory_recurse(  ws_char_a_t const*  dir
                                         ,   ws_int_t            (*pfn)(void* param, ws_char_a_t const* subDir, WIN32_FIND_DATAA const* st, DWORD err)
@@ -574,9 +580,11 @@ inline ws_bool_t remove_directory_recurse(ws_char_a_t const* dir)
  *
  * \ingroup group__library__filesystem
  */
-inline ws_bool_t remove_directory_recurse(  ws_char_w_t const*  dir
-                                        ,   ws_int_t            (*pfn)(void* param, ws_char_w_t const* subDir, WIN32_FIND_DATAW const* st, DWORD err)
-                                        ,   void*               param)
+inline ws_bool_t remove_directory_recurse(
+    ws_char_w_t const*  dir
+,   ws_int_t            (*pfn)(void* param, ws_char_w_t const* subDir, WIN32_FIND_DATAW const* st, DWORD err)
+,   void*               param
+)
 {
     typedef filesystem_traits<ws_char_w_t>  traits_t;
 

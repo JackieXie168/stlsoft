@@ -4,39 +4,40 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     10th August 2009
+ * Updated:     21st June 2010
  *
  * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
  *              for special_string_instance_1.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- * - Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
- *   any contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
+ * - Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
+ *   names of any contributors may be used to endorse or promote products
+ *   derived from this software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        19
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,15 +119,27 @@ struct ssi_buffer
 /// \name Member Types
 /// @{
 public:
-    typedef C                                                   char_type;
-    typedef A                                                   allocator_type;
-    typedef ss_size_t                                           size_type;
-    typedef A0                                                  argument_0_type;
+    /// The character type
+    typedef C                               char_type;
+    /// The allocator type
+    typedef A                               allocator_type;
+    /// The size type
+    typedef ss_size_t                       size_type;
+    /// The argument type
+    typedef A0                              argument_0_type;
+    /// The class type
+    typedef ssi_buffer<C, N, A, A0>         class_type;
+private:
+    /// The buffer type
+    typedef stlsoft::auto_buffer<
+        char_type
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
-    typedef stlsoft::auto_buffer<char_type, 128, allocator_type>  buffer_type;
+    ,   128
 #else /* ? compiler */
-    typedef stlsoft::auto_buffer<char_type, N, allocator_type>  buffer_type;
+    ,   N
 #endif /* compiler */
+    ,   allocator_type
+    >										buffer_type_;
 /// @}
 
 /// \name Construction
@@ -136,6 +149,14 @@ public:
         : m_len(0)
         , m_buffer(0)
     {}
+#ifdef STLSOFT_COMPILER_IS_GCC
+    ssi_buffer(class_type const& rhs)
+		: m_len(rhs.m_len)
+		, m_buffer(rhs.m_len + 1)
+	{
+		::memcpy(&m_buffer[0], &rhs.m_buffer[0], sizeof(char_type) * (1u + m_len));
+	}
+#endif /* compiler */
 
     void init(size_type (*pfn)(char_type*, size_type))
     {
@@ -213,7 +234,7 @@ public:
 /// @{
 private:
     size_type       m_len;
-    buffer_type     m_buffer;
+    buffer_type_    m_buffer;
 /// @}
 };
 
@@ -247,6 +268,11 @@ public:
     {
         parent_class_type::init(a0, pfn);
     }
+#ifdef STLSOFT_COMPILER_IS_GCC
+    ssi_buffer_non_static(class_type const& rhs)
+		: parent_class_type(rhs)
+	{}
+#endif /* compiler */
 /// @}
 
 /// \name Accessors
@@ -265,7 +291,9 @@ public:
 /// \name Not to be implemented
 /// @{
 private:
+#ifndef STLSOFT_COMPILER_IS_GCC
     ssi_buffer_non_static(class_type const&);
+#endif /* compiler */
     class_type& operator =(class_type const&);
 /// @}
 };
@@ -300,6 +328,11 @@ public:
     ssi_buffer_static(A0 a0, size_type (*pfn)(A0, char_type*, size_type))
         : m_buffer(a0, get_buffer(a0, pfn))
     {}
+#ifdef STLSOFT_COMPILER_IS_GCC
+    ssi_buffer_static(class_type const& rhs)
+		: m_buffer(rhs.m_buffer)
+	{}
+#endif /* compiler */
 /// @}
 
 /// \name Accessors
@@ -359,13 +392,15 @@ private:
 /// \name Members
 /// @{
 private:
-    ssi_buffer_type     &m_buffer;
+    ssi_buffer_type&	m_buffer;
 /// @}
 
 /// \name Not to be implemented
 /// @{
 private:
+#ifndef STLSOFT_COMPILER_IS_GCC
     ssi_buffer_static(class_type const&);
+#endif /* compiler */
     class_type& operator =(class_type const&);
 /// @}
 };
@@ -490,7 +525,7 @@ private:
         ssi_buffer_static_type
     ,   ssi_buffer_non_static_type
     ,   policy_indicates_shared_state
-    >::type                                                                     buffer_type;
+    >::type                                                                     buffer_type_;
 /// @}
 
 /// \name Construction
@@ -557,7 +592,7 @@ public:
 /// \name Members
 /// @{
 private:
-    buffer_type     m_buffer;
+    buffer_type_ m_buffer;
 /// @}
 };
 
@@ -678,7 +713,7 @@ private:
         ssi_buffer_static_type
     ,   ssi_buffer_non_static_type
     ,   policy_indicates_shared_state
-    >::type                                                                     buffer_type;
+    >::type                                                                     buffer_type_;
 
 /// @}
 
@@ -745,7 +780,7 @@ public:
 /// \name Member Types
 /// @{
 private:
-    buffer_type     m_buffer;
+    buffer_type_ m_buffer;
 /// @}
 };
 

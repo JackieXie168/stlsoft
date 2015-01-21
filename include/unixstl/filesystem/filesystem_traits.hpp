@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     5th February 2010
+ * Updated:     21st June 2010
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
@@ -16,28 +16,29 @@
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- * - Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
- *   any contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
+ * - Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
+ *   names of any contributors may be used to endorse or promote products
+ *   derived from this software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  11
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      110
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,8 +216,29 @@ public:
     {
         maxPathLength   =   1 + PATH_MAX    //!< The maximum length of a path for the current file system
     };
+
+    enum
+    {
+#ifdef _WIN32
+        pathComparisonIsCaseSensitive   =   false
+#else
+        pathComparisonIsCaseSensitive   =   true
+#endif
+    };
 /// @}
 #endif /* PATH_MAX */
+
+/// \name General string handling
+/// @{
+public:
+    /// Compares the contents of \c src and \c dest, according to the
+      /// lexicographical ordering on the host operating system.
+    static int_type     str_fs_compare(char_type const* s1, char_type const* s2);
+    /// Compares the contents of \c src and \c dest up to \c cch
+    /// characters. according to the lexicographical ordering on the host
+    /// operating system.
+    static int_type     str_fs_n_compare(char_type const* s1, char_type const* s2, size_type cch);
+/// @}
 
 /// \name File-system entry names
 /// @{
@@ -422,6 +444,24 @@ public:
 #endif /* PATH_MAX */
 
 public:
+    static int_type str_fs_compare(char_type const* s1, char_type const* s2)
+    {
+#ifdef _WIN32
+        return str_compare_no_case(s1, s2);
+#else
+        return str_compare(s1, s2);
+#endif
+    }
+
+    static int_type str_fs_n_compare(char_type const* s1, char_type const* s2, size_type cch)
+    {
+#ifdef _WIN32
+        return str_n_compare_no_case(s1, s2, cch);
+#else
+        return str_n_compare(s1, s2, cch);
+#endif
+    }
+
     static char_type* ensure_dir_end(char_type* dir)
     {
         UNIXSTL_ASSERT(NULL != dir);
@@ -1160,6 +1200,24 @@ public:
 #endif /* PATH_MAX */
 
 public:
+    static int_type str_fs_compare(char_type const* s1, char_type const* s2)
+    {
+#ifdef _WIN32
+        return str_compare_no_case(s1, s2);
+#else
+        return str_compare(s1, s2);
+#endif
+    }
+
+    static int_type str_fs_n_compare(char_type const* s1, char_type const* s2, size_type cch)
+    {
+#ifdef _WIN32
+        return str_n_compare_no_case(s1, s2, cch);
+#else
+        return str_n_compare(s1, s2, cch);
+#endif
+    }
+
     static char_type* ensure_dir_end(char_type* dir)
     {
         UNIXSTL_ASSERT(NULL != dir);
