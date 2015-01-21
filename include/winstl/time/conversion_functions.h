@@ -4,11 +4,11 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     17th March 2012
+ * Updated:     7th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     53
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,7 +150,6 @@ winstl_C_UNIXTimeToFILETIME_us(
  * \note This follows the algorithm provided in MSDN Q167296
  *
  * \pre (NULL != ft)
- * \pre (NULL != microseconds)
  */
 STLSOFT_INLINE
 time_t
@@ -160,6 +159,8 @@ winstl_C_FILETIMEToUNIXTime(
 )
 {
     ws_sint64_t i;
+
+    WINSTL_ASSERT(NULL != ft);
 
     i = ft->dwHighDateTime;
     i <<= 32;

@@ -4,14 +4,14 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     30th July 2012
+ * Updated:     22nd November 2013
  *
  * Thanks:      To Cláudio Albuquerque for working on the
  *              Win64-compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,14 +64,15 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     25
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      121
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      123
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Structure:
  *
  * - auto-generation and compatibility
+ * - predefined macros extensions
  * - preprocessor features
  * - support for built-in types
  * - built-in type characteristics
@@ -86,6 +87,7 @@
  * - still to-be-determined features
  * - assertions
  * - compiler warning suppression
+ * - quality assurance features
  * - obsolete features
  */
 
@@ -99,7 +101,7 @@
 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Custom macros
+ * Predefined macros extensions
  */
 
 /*
@@ -111,13 +113,13 @@
 
 #ifdef _MSC_FULL_VER
 # define STLSOFT_MSVC_VER                   _MSC_FULL_VER
-#else /* ? __GNUC_PATCHLEVEL__ */
+#else /* ? _MSC_FULL_VER */
 # if _MSC_VER < 1200
 #  define STLSOFT_MSVC_VER                  (_MSC_VER * 10000)
 # else
 #  define STLSOFT_MSVC_VER                  (_MSC_VER * 100000)
 # endif
-#endif /* __GNUC_PATCHLEVEL__ */
+#endif /* _MSC_FULL_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Preprocessor features
@@ -723,18 +725,18 @@
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *   #define MY_ASSERT(expr) ((void)((!(expr)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #expr))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
   *
-  *  #define _STLSOFT_CUSTOM_ASSERT(_x)    MY_ASSERT(_x)
+  *  #define _STLSOFT_CUSTOM_ASSERT(expr)    MY_ASSERT(expr)
   *
   * where
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
-# define STLSOFT_ASSERT(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
+# define STLSOFT_ASSERT(expr)                   _STLSOFT_CUSTOM_ASSERT(expr)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME    _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else /* ? _STLSOFT_CUSTOM_ASSERT_INCLUDE */
@@ -745,7 +747,7 @@
 # define STLSOFT_CF_ASSERT_SUPPORT
  /* #define   __STLSOFT_CF_USE_cassert */
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME       <crtdbg.h>
-# define STLSOFT_ASSERT(_x)                     _ASSERTE(_x)
+# define STLSOFT_ASSERT(expr)                   _ASSERTE(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
 /* /////////////////////////////////////////////////////////////////////////

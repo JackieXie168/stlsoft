@@ -4,11 +4,11 @@
  * Purpose:     String split functions.
  *
  * Created:     28th January 2005
- * Updated:     26th June 2012
+ * Updated:     8th April 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MINOR      3
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_REVISION   2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       42
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,15 @@ STLSOFT_OPEN_WORKER_NS_(ximpl_split_functions)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >
-inline ss_bool_t split_impl(C const* s, ss_size_t n, C delim, S& s0, S& s1)
+inline
+ss_bool_t
+split_impl(
+    C const*    s
+,   ss_size_t   n
+,   C           delim
+,   S&          s0
+,   S&          s1
+)
 {
     C const* const  b   =   s;
     C const* const  e   =   s + n;
@@ -141,7 +149,16 @@ inline ss_bool_t split_impl(C const* s, ss_size_t n, C delim, S& s0, S& s1)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >
-inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2)
+inline
+ss_uint_t
+split_impl(
+    C const*    s
+,   ss_size_t   cch
+,   C           delim
+,   S&          s0
+,   S&          s1
+,   S&          s2
+)
 {
     C const* const  b   =   s;
     C const* const  e   =   s + cch;
@@ -183,7 +200,17 @@ inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S&
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >
-inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2, S& s3)
+inline
+ss_uint_t
+split_impl(
+    C const*    s
+,   ss_size_t   cch
+,   C           delim
+,   S&          s0
+,   S&          s1
+,   S&          s2
+,   S&          s3
+)
 {
     C const* const  b   =   s;
     C const* const  e   =   s + cch;
@@ -238,7 +265,18 @@ inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S&
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >
-inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2, S& s3, S& s4)
+inline
+ss_uint_t
+split_impl(
+    C const*    s
+,   ss_size_t   cch
+,   C           delim
+,   S&          s0
+,   S&          s1
+,   S&          s2
+,   S&          s3
+,   S&          s4
+)
 {
     C const* const  b   =   s;
     C const* const  e   =   s + cch;
@@ -306,7 +344,19 @@ inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S&
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >
-inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2, S& s3, S& s4, S& s5)
+inline
+ss_uint_t
+split_impl(
+    C const*    s
+,   ss_size_t   cch
+,   C           delim
+,   S&          s0
+,   S&          s1
+,   S&          s2
+,   S&          s3
+,   S&          s4
+,   S&          s5
+)
 {
     C const* const  b   =   s;
     C const* const  e   =   s + cch;
@@ -403,7 +453,14 @@ template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
         >
-inline ss_bool_t split(S1 const& s, C delim, S2& s0, S2& s1)
+inline
+ss_bool_t
+split(
+    S1 const&   s
+,   C           delim
+,   S2&         s0
+,   S2&         s1
+)
 {
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
@@ -422,7 +479,15 @@ template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
         >
-inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2)
+inline
+ss_uint_t
+split(
+    S1 const&   s
+,   C           delim
+,   S2&         s0
+,   S2&         s1
+,   S2&         s2
+)
 {
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
@@ -442,7 +507,16 @@ template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
         >
-inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2, S2& s3)
+inline
+ss_uint_t
+split(
+    S1 const&   s
+,   C           delim
+,   S2&         s0
+,   S2&         s1
+,   S2&         s2
+,   S2&         s3
+)
 {
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
@@ -463,7 +537,17 @@ template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
         >
-inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2, S2& s3, S2& s4)
+inline
+ss_uint_t
+split(
+    S1 const&   s
+,   C           delim
+,   S2&         s0
+,   S2&         s1
+,   S2&         s2
+,   S2&         s3
+,   S2&         s4
+)
 {
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
@@ -485,7 +569,18 @@ template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
         >
-inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2, S2& s3, S2& s4, S2& s5)
+inline
+ss_uint_t
+split(
+    S1 const&   s
+,   C           delim
+,   S2&         s0
+,   S2&         s1
+,   S2&         s2
+,   S2&         s3
+,   S2&         s4
+,   S2&         s5
+)
 {
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
@@ -505,10 +600,11 @@ inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2, S2& s3, S2&
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >
+inline
 #ifndef STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY
-inline static_array_1d<S, 2>
+static_array_1d<S, 2>
 #else /* ? STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY */
-inline stlsoft_ns_qual_std_(vector)<S>
+stlsoft_ns_qual_std_(vector)<S>
 #endif /* STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY */
     split(S const& s, C delim)
 {

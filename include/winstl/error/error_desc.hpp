@@ -4,11 +4,11 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     12th October 2012
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       5
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    6
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        85
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       6
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    3
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,12 +76,36 @@
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
 # include <winstl/system/system_traits.hpp>    // for load_library()
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE
+# include <stlsoft/meta/is_character_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
+# include <stlsoft/meta/is_integral_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
+# include <stlsoft/meta/is_same_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE
+# include <stlsoft/meta/is_signed_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS
 # include <stlsoft/string/char_alt_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Feature discrimination
+ */
+
+#ifndef WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_
+# if 0 || \
+     defined(STLSOFT_COMPILER_IS_MSVC) || \
+     0
+#  define WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_
+# endif /* compiler */
+#endif /* !WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -168,11 +192,78 @@ public:
     typedef ws_size_t               size_type;
     /// The boolean type
     typedef ws_bool_t               bool_type;
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# if !defined(WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_)
+    class param
+    {
+    public:
+        template <typename I>
+        param(I const& v)
+            : value(v)
+        {
+            // NOTE: If any of these fired, you have written code that
+            // passes a non-integer type or a too-large-integer type
+            // to the constructor of error_desc
+
+            // Must be of an integral type ...
+            STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<I>::value);
+            // ... that is not a character, and ...
+            STLSOFT_STATIC_ASSERT(0 == stlsoft::is_character_type<I>::value);
+            // ... that is not bool.
+            STLSOFT_STATIC_ASSERT((0 == stlsoft::is_same_type<I, bool>::value));
+
+            // Must be no larger
+            STLSOFT_STATIC_ASSERT(sizeof(I) <= sizeof(error_type));
+
+            // Finally, check signedness:
+            //
+            // 1. I can't be signed if error_type is unsigned
+            // 2. I must be smaller if it is unsigned and error_type is signed
+
+            enum { I_is_signed = stlsoft::is_signed_type<I>::value };
+            enum { error_type_is_signed = stlsoft::is_signed_type<error_type>::value };
+            enum { I_is_smaller_than_error_type = (sizeof(I) < sizeof(error_type)) };
+
+            // Must be same signed-ness (and no larger) ...
+            STLSOFT_STATIC_ASSERT((0 == error_type_is_signed) == (0 == I_is_signed));
+
+            // ... or error_type signed and smaller
+            STLSOFT_STATIC_ASSERT(error_type_is_signed && I_is_smaller_than_error_type);
+        }
+
+        // for 0
+        param(int v)
+            : value(v)
+        {}
+        // For ERROR_*
+        param(long v)
+            : value(v)
+        {}
+
+        param()
+            : value(static_cast<error_type>( ::GetLastError()))
+        {}
+    private:
+        param& operator =(param const&);
+
+    public:
+        operator error_type () const
+        {
+            return this->value;
+        }
+
+    public:
+        error_type const    value;
+    };
+    typedef class param             param_type;
+# endif /* !WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_ */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
 /// \name Construction
 /// @{
 public:
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
     /// Loads the error string associated with the given code.
     ///
     /// \param error The Win32 error whose string equivalent will be searched
@@ -184,6 +275,25 @@ public:
         error_type          error       =   ::GetLastError()
     ,   char_type const*    modulePath  =   NULL
     );
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
+    basic_error_desc(
+# ifdef WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_
+        error_type          error       =   get_last_error_()
+# else /* ? WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_ */
+        param_type          error       =   param_type()
+# endif /* WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_ */
+    ,   char_type const*    modulePath  =   NULL
+    )
+        : m_length(0)
+        , m_message(find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, error, modulePath, &m_length))
+    {
+        if( NULL == m_message &&
+            NULL != modulePath)
+        {
+            m_message = find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, error, NULL, &m_length);
+        }
+    }
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 private:
     /// This method is declared to remind users that using a different
@@ -194,6 +304,7 @@ private:
     );
 public:
 
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
     /// Loads the error string associated with the given code.
     ///
     /// \param hr The COM error whose string equivalent will be searched
@@ -205,6 +316,7 @@ public:
         HRESULT             hr
     ,   char_type const*    modulePath = NULL
     );
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 private:
     /// This method is defined to remind users that using a different
@@ -294,6 +406,11 @@ private:
     ,   char_type const*    modulePath
     ,   size_type*          length
     );
+
+    static DWORD get_last_error_()
+    {
+        return ::GetLastError();
+    }
 /// @}
 
 /// \name Members
@@ -384,49 +501,6 @@ basic_error_desc<C, T>::find_message_(
     return message;
 }
 
-
-template<
-    ss_typename_param_k C
-,   ss_typename_param_k T
->
-inline
-basic_error_desc<C, T>::basic_error_desc(
-    ss_typename_type_k basic_error_desc<C, T>::error_type   error /* = ::GetLastError() */
-,   char_type const*                                        modulePath /* = NULL */
-)
-    : m_length(0)
-    , m_message(find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, error, modulePath, &m_length))
-{
-    if(NULL == m_message)
-    {
-        if(0 == format_message(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, NULL, error, &m_message))
-        {
-            m_message = NULL;
-        }
-    }
-}
-
-template<
-    ss_typename_param_k C
-,   ss_typename_param_k T
->
-inline
-basic_error_desc<C, T>::basic_error_desc(
-    HRESULT             hr
-,   char_type const*    modulePath /* = NULL */
-)
-    : m_length(0)
-    , m_message(find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, static_cast<DWORD>(hr), modulePath, &m_length))
-{
-    if(NULL == m_message)
-    {
-        if(0 == format_message(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, NULL, static_cast<DWORD>(hr), &m_message))
-        {
-            m_message = NULL;
-        }
-    }
-}
-
 template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -440,7 +514,7 @@ basic_error_desc<C, T>::~basic_error_desc() stlsoft_throw_0()
 
     if(m_message != NULL)
     {
-        ::LocalFree(m_message);
+        format_message_free_buff(m_message);
     }
 }
 

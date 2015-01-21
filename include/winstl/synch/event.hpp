@@ -4,11 +4,11 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     10th August 2009
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     59
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -157,8 +157,14 @@ public:
 
         if(!::SetEvent(m_ev))
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("event set operation failed", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "event set operation failed", Synchronisation_EventSetFailed));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("event set operation failed", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -169,8 +175,14 @@ public:
 
         if(!::ResetEvent(m_ev))
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("event reset operation failed", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "event reset operation failed", Synchronisation_EventResetFailed));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("event reset operation failed", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -199,8 +211,14 @@ private:
 
         if(NULL == h)
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("Failed to create kernel event object", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_creation_exception(e, "failed to create kernel event object"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("failed to create kernel event object", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -212,8 +230,14 @@ private:
 
         if(NULL == h)
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("Failed to create kernel event object", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_creation_exception(e, "failed to create kernel event object"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("failed to create kernel event object", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 

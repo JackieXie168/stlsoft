@@ -4,11 +4,11 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     17th August 2012
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       134
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -571,7 +571,7 @@ readdir_sequence::prepare_directory_(
         if(0 == n)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno, directory));
+            STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", errno, directory));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             traits_type::char_copy(&path[0], directory, n);
             path[n] = \'0';
@@ -602,7 +602,7 @@ readdir_sequence::begin() const
     if(NULL == dir)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno, m_directory.c_str()));
+        STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", errno, m_directory.c_str()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return const_iterator();
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

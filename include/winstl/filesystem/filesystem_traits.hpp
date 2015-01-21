@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     13th August 2011
+ * Updated:     10th October 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        131
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       11
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -262,6 +262,13 @@ public:
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static char_type*   ensure_dir_end(char_type* dir);
+    /// \brief Appends a path name separator to \c dir if one does not exist
+    ///
+    /// \param dir Pointer to the buffer containing the path to be ensured
+    /// \param pLenToIncrease Pointer to variable that will be incremented
+    ///   if a path name separator is appended. May NOT be \c NULL.
+    /// \see \link #path_name_separator path_name_separator() \endlink
+    static char_type*   ensure_dir_end(char_type* dir, size_type* pLenToIncrease);
     /// \brief Removes the path name separator from the end of \c dir, if it has it
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
@@ -601,7 +608,15 @@ public:
 
     static char_type* ensure_dir_end(char_type* dir)
     {
+        size_type dummy = 0;
+
+        return ensure_dir_end(dir, &dummy);
+    }
+
+    static char_type* ensure_dir_end(char_type* dir, size_type* pLenToIncrease)
+    {
         WINSTL_ASSERT(NULL != dir);
+        WINSTL_ASSERT(NULL != pLenToIncrease);
 
         char_type* end = str_end(dir);
 
@@ -610,6 +625,8 @@ public:
         {
             *end        =   path_name_separator();
             *(end + 1)  =   '\0';
+
+            ++*pLenToIncrease;
         }
 
         return dir;
@@ -1585,7 +1602,15 @@ public:
 
     static char_type* ensure_dir_end(char_type* dir)
     {
+        size_type dummy = 0;
+
+        return ensure_dir_end(dir, &dummy);
+    }
+
+    static char_type* ensure_dir_end(char_type* dir, size_type* pLenToIncrease)
+    {
         WINSTL_ASSERT(NULL != dir);
+        WINSTL_ASSERT(NULL != pLenToIncrease);
 
         char_type* end = str_end(dir);
 
@@ -1594,6 +1619,8 @@ public:
         {
             *end        =   path_name_separator();
             *(end + 1)  =   L'\0';
+
+            ++*pLenToIncrease;
         }
 
         return dir;

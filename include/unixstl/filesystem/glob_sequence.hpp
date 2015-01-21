@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     4th June 2012
+ * Updated:     26th March 2013
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *              To Nevin Liber for pressing upon me the need to lead by
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      159
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      160
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -885,7 +885,12 @@ inline /* static */ us_bool_t glob_sequence::is_dots_maybe_slashed_(glob_sequenc
     return false;
 }
 
-inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* directory, glob_sequence::char_type const* pattern)
+inline
+us_size_t
+glob_sequence::init_glob_(
+    glob_sequence::char_type const* directory
+,   glob_sequence::char_type const* pattern
+)
 {
     UNIXSTL_MESSAGE_ASSERT("Null pattern given to glob_sequence", NULL != pattern);
 
@@ -923,7 +928,12 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* direc
     }
 }
 
-inline us_size_t glob_sequence::init_glob_1_(size_type bufferSize, char_type* combinedPath)
+inline
+us_size_t
+glob_sequence::init_glob_1_(
+    size_type   /* bufferSize */
+,   char_type*  combinedPath
+)
 {
     char_type const* const lastSlash = traits_type::find_last_path_name_separator(combinedPath);
 
@@ -937,7 +947,12 @@ inline us_size_t glob_sequence::init_glob_1_(size_type bufferSize, char_type* co
     return init_glob_2_(directory, pattern);
 }
 
-inline us_size_t glob_sequence::init_glob_2_(char_type const* directory, char_type const* pattern0)
+inline
+us_size_t
+glob_sequence::init_glob_2_(
+    char_type const*    directory
+,   char_type const*    pattern0
+)
 {
     // Preconditions:
     //
@@ -1022,7 +1037,12 @@ inline us_size_t glob_sequence::init_glob_2_(char_type const* directory, char_ty
     }
 }
 
-inline us_size_t glob_sequence::init_glob_3_(char_type const* pattern, bool isPattern0Wild)
+inline
+us_size_t
+glob_sequence::init_glob_3_(
+    char_type const*    pattern
+,   bool                isPattern0Wild
+)
 {
     us_int_t glob_flags = 0;
 

@@ -4,11 +4,11 @@
  * Purpose:     Wrapper class for Win32 TSS key.
  *
  * Created:     20th January 1999
- * Updated:     10th August 2009
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     37
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,11 @@ public:
 /// @{
 public:
     ss_explicit_k tss_exception(error_code_type err)
+# if STLSOFT_LEAD_VER >= 0x010a0000
+        : parent_class_type(err, "", Synchronisation_TssIndexCreationFailed)
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
         : parent_class_type("", err)
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
     {}
 /// @}
 
@@ -124,7 +128,7 @@ public:
 public:
     virtual char const* what() const stlsoft_throw_0()
     {
-        return "Failed to allocate a TSS key";
+        return "failed to allocate a TSS key";
     }
 /// @}
 
@@ -202,14 +206,16 @@ public:
 private:
     static key_type index_create_()
     {
-        key_type    key   =   ::TlsAlloc();
+        key_type const key = ::TlsAlloc();
 
         if(0xFFFFFFFF == key)
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(tss_exception(::GetLastError()));
+            STLSOFT_THROW_X(tss_exception(e));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            ::OutputDebugStringA("Fatal: Could not allocate a TSS key!\n");
+            ::OutputDebugStringA("fatal: could not allocate a TSS key!\n");
             ::RaiseException(STATUS_NO_MEMORY, EXCEPTION_NONCONTINUABLE, 0, 0);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }

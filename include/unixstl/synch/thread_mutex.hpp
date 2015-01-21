@@ -4,11 +4,11 @@
  * Purpose:     Intra-process mutex, based on PTHREADS pthread_mutex_t.
  *
  * Created:     17th December 1996
- * Updated:     10th August 2009
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -287,21 +287,21 @@ private:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 else
                 {
-                    STLSOFT_THROW_X(synchronisation_exception("Failed to set initialise PTHREADS mutex", res));
+                    STLSOFT_THROW_X(synchronisation_exception("failed to set initialise PTHREADS mutex", res));
                 }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             else
             {
-                STLSOFT_THROW_X(synchronisation_exception("Failed to set recursive attribute to PTHREADS mutex", res));
+                STLSOFT_THROW_X(synchronisation_exception("failed to set recursive attribute to PTHREADS mutex", res));
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         else
         {
-            STLSOFT_THROW_X(synchronisation_exception("Failed to initialise PTHREADS mutex attributes", res));
+            STLSOFT_THROW_X(synchronisation_exception("failed to initialise PTHREADS mutex attributes", res));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 

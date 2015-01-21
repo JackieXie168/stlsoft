@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     2nd March 2012
+ * Updated:     22nd November 2013
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        116
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -797,17 +797,17 @@ const cs_size_t COMSTL_CCH_GUID     =   38;
 # define comstl_num_elements(ar)                        COMSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define comstl_destroy_instance(t, _type, p)            STLSOFT_DESTROY_INSTANCE(t, _type, p)
+#define comstl_destroy_instance(t, type, p)             STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define comstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
+#define comstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
 /* ////////////////////////////////////////////////////////////////////// */
 

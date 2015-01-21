@@ -2,10 +2,21 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  16th February 2013
+; Updated:  31st May 2014
 
 ============================================================================
 
+
+31st May 2014 - 1.9.118 released
+--------------------------------
+
+ * added Visual C++ 12 (VS 2013) compatibility
+ * added struct initialisers for CONSOLE_SCREEN_BUFFER_INFO & CONSOLE_SCREEN_BUFFER_INFOEX
+ * added second overload of winstl::filesystem_traits::ensure_dir_end() that takes a pointer to a length-added counter variable
+ * added forward-compatibility with STLSoft 1.10's substantially enhanced and expanded synchronisation exception hierarchy to Synchronisation Library types
+ * added winstl::system_traits::get_home_directory() (although it's only operative in 1.10+ or when using 1.10 alpha with 1.9)
+ * various minor fixes
+ * various minor changes
 
 16th February 2013 - 1.9.117 released
 -------------------------------------

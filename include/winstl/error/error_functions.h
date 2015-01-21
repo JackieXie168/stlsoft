@@ -4,11 +4,11 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     3rd February 2012
+ * Updated:     7th April 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     4
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      68
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -620,11 +620,14 @@ winstl_C_format_message_from_module_to_allocated_buffer_a(
     if( 0 != r &&
         0 != elisionFlags)
     {
+        ws_char_a_t* newLast =
         winstl_C_fmtmsg_elide_message_a_(
             *ppBuffer
         ,   *ppBuffer + r
         ,   elisionFlags
         );
+
+        r = stlsoft_static_cast(ws_dword_t, newLast - *ppBuffer);
     }
 
     return r;
@@ -659,11 +662,14 @@ winstl_C_format_message_from_module_to_allocated_buffer_w(
     if( 0 != r &&
         0 != elisionFlags)
     {
+        ws_char_w_t* newLast =
         winstl_C_fmtmsg_elide_message_w_(
             *ppBuffer
         ,   *ppBuffer + r
         ,   elisionFlags
         );
+
+        r = stlsoft_static_cast(ws_dword_t, newLast - *ppBuffer);
     }
 
     return r;

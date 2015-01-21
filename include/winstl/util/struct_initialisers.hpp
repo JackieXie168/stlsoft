@@ -4,11 +4,11 @@
  * Purpose:     Functions for initialising Win32 structures.
  *
  * Created:     20th October 1994
- * Updated:     10th August 2009
+ * Updated:     29th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       0
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    4
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        220
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       1
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    1
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        221
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -253,6 +253,10 @@ WINSTL_The_structure_(WIN32_FIND_DATAA, has::no_init_member_type);
 WINSTL_The_structure_(WIN32_FIND_DATAW, has::no_init_member_type);
 WINSTL_The_structure_(WIN32_FILE_ATTRIBUTE_DATA, has::no_init_member_type);
 WINSTL_The_structure_(SYSTEM_POWER_STATUS, has::no_init_member_type);
+#ifdef _WINCON_
+WINSTL_The_structure_(CONSOLE_SCREEN_BUFFER_INFO, has::no_init_member_type);
+WINSTL_The_structure_(CONSOLE_SCREEN_BUFFER_INFOEX, has::cbSize_member_type);
+#endif /* _WINCON_ */
 #ifdef WINTRUST_H
 WINSTL_The_structure_(WIN_CERTIFICATE, has::no_init_member_type);
 WINSTL_The_structure_(WIN_TRUST_ACTDATA_CONTEXT_WITH_SUBJECT, has::no_init_member_type);

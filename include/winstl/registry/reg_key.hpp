@@ -5,14 +5,14 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     21st February 2012
+ * Updated:     22nd November 2013
  *
  * Thanks:      To Sam Fisher for spotting the defect in the set_value_()
  *              overload for REG_MULTI_SZ values (widestring only).
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        136
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    10
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1018,9 +1018,9 @@ inline void basic_reg_key<C, T, A>::swap(ss_typename_type_k basic_reg_key<C, T, 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type& basic_reg_key<C, T, A>::operator =(ss_typename_type_k basic_reg_key<C, T, A>::class_type const& rhs)
 {
-    class_type  _this(rhs);
+    class_type t(rhs);
 
-    swap(_this);
+    swap(t);
 
     return *this;
 }

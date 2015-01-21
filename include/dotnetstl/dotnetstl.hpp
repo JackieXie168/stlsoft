@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     2nd March 2012
+ * Updated:     22nd November 2013
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    5
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     51
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 2
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp
@@ -381,17 +381,17 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
 # define dotnetstl_num_elements(ar)                         DOTNETSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define dotnetstl_destroy_instance(t, _type, p)             STLSOFT_DESTROY_INSTANCE(t, _type, p)
+#define dotnetstl_destroy_instance(t, type, p)              STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define dotnetstl_gen_opaque(_htype)                        STLSOFT_GEN_OPAQUE(_htype)
+#define dotnetstl_gen_opaque(htype)                         STLSOFT_GEN_OPAQUE(htype)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
