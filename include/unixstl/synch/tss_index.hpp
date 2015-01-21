@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for UNIX PThreads TSS key.
  *
  * Created:     21st January 1999
- * Updated:     10th January 2007
+ * Updated:     15th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       41
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,12 +61,18 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
-#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS
-# include <unixstl/synch/exceptions.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS */
-#if !defined(_REENTRANT)
-# error unixstl/synch/tss_index.hpp cannot be included in non-multithreaded compilation. _REENTRANT must be defined
-#endif /* !_REENTRANT */
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES
+# include <unixstl/synch/util/features.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES */
+#ifndef UNIXSTL_USING_PTHREADS
+# error unixstl/synch/tss_index.hpp cannot be included in non-multithreaded compilation. _REENTRANT and/or _POSIX_THREADS must be defined
+#endif /* !UNIXSTL_USING_PTHREADS */
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+# error unixstl/synch/tss_index.hpp cannot be compiled without exception-support enabled
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+# include <unixstl/synch/error/exceptions.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 #include <pthread.h>
 
 /* /////////////////////////////////////////////////////////////////////////
