@@ -4,7 +4,7 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     9th March 2008
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  2
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      17
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -665,7 +665,7 @@ inline custom_event_handler::event_id custom_event_handler::schedule_event_(even
 {
     long timerId = m_callbackHook.reactor()->schedule_timer(&m_callbackHook, entry, delay);
 
-    ACESTL_MESSAGE_ASSERT("Unexpected negative value", timerId >= -1 || -1 == timerId);
+    ACESTL_MESSAGE_ASSERT("Unexpected negative value", (timerId >= -1 || -1 == timerId));
 
     return (-1 == timerId) ? NULL : reinterpret_cast<event_id>(static_cast<as_size_t>(1 + timerId));
 }

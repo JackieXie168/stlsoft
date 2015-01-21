@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     25th April 2008
+ * Updated:     11th August 2008
  *
  * Thanks:      To Gabor Fischer for requesting attach().
  *
@@ -53,7 +53,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        56
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -449,8 +449,8 @@ inline bstr::bstr()
 inline /* explicit */ bstr::bstr(cs_char_a_t const* s, ssize_type len /* = -1 */)
 {
     // Precondition tests
-    COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", len >= 0 || len == -1);
-    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and -1 (default) length", NULL != s || len >= 0);
+    COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", (len >= 0 || len == -1));
+    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and -1 (default) length", (NULL != s || len >= 0));
 
     // There's a potential problem here (which has actually occurred!):
     //
@@ -500,8 +500,8 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, ssize_type len /* = -1 */
 inline /* explicit */ bstr::bstr(cs_char_w_t const* s, ssize_type len /* = -1 */)
 {
     // Precondition tests
-    COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", len >= 0 || len == -1);
-    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and -1 (default) length", NULL != s || len >= 0);
+    COMSTL_MESSAGE_ASSERT("Default length must be specified by -1. No other -ve value allowed", (len >= 0 || len == -1));
+    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and -1 (default) length", (NULL != s || len >= 0));
 
     // There's a potential problem here (which has actually occurred!):
     //

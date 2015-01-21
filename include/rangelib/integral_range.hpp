@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     9th March 2008
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     52
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -317,7 +317,7 @@ public:
     class_type& advance()
     {
         STLSOFT_MESSAGE_ASSERT("Attempting to advance a closed range", is_open());
-        STLSOFT_MESSAGE_ASSERT("Attempting to increment the range past its end point", (m_increment > 0 && m_position < m_last) || (m_increment < 0 && m_position > m_last));
+        STLSOFT_MESSAGE_ASSERT("Attempting to increment the range past its end point", ((m_increment > 0 && m_position < m_last) || (m_increment < 0 && m_position > m_last)));
 
         m_position += m_increment;
 
@@ -396,7 +396,7 @@ private:
             }
         }
 
-//        STLSOFT_MESSAGE_ASSERT("The range you have specified will not close with the given increment", first == last || (increment > 0 && last > first) || (increment < 0 && last < first));
+//        STLSOFT_MESSAGE_ASSERT("The range you have specified will not close with the given increment", (first == last || (increment > 0 && last > first) || (increment < 0 && last < first)));
 //        STLSOFT_MESSAGE_ASSERT("The range you have specified will not close with the given increment", 0 == ((last - first) % increment));
 
         if(!bValid)

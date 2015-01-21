@@ -5,7 +5,7 @@
  *              fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     25th April 2008
+ * Updated:     12th August 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode,
  *              requesting the function call operator, and for requesting
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       186
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   3
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       188
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,7 @@ public:
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
-
+    typedef ss_bool_t                               bool_type;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
            ss_typename_type_k
@@ -229,7 +229,6 @@ public:
                                         ,   const_pointer
                                         ,   const_reference
                                         >::type     const_iterator;
-
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
@@ -237,7 +236,6 @@ public:
                                         ,   pointer
                                         ,   difference_type
                                         >           reverse_iterator;
-
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
@@ -291,7 +289,7 @@ public:
 public:
     index_type              dimension0() const;
     index_type              size() const;
-    ss_bool_t               empty() const;
+    bool_type               empty() const;
     static size_type        max_size();
 
 // Iteration
@@ -373,7 +371,7 @@ public:
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
-
+    typedef ss_bool_t                               bool_type;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
            ss_typename_type_k
@@ -390,7 +388,6 @@ public:
                                         ,   const_pointer
                                         ,   const_reference
                                         >::type     const_iterator;
-
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
@@ -398,7 +395,6 @@ public:
                                         ,   pointer
                                         ,   difference_type
                                         >           reverse_iterator;
-
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
@@ -455,7 +451,7 @@ public:
     index_type              dimension0() const;
     index_type              dimension1() const;
     index_type              size() const;
-    ss_bool_t               empty() const;
+    bool_type               empty() const;
     static size_type        max_size();
 
 // Iteration
@@ -540,7 +536,7 @@ public:
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
-
+    typedef ss_bool_t                               bool_type;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
            ss_typename_type_k
@@ -557,7 +553,6 @@ public:
                                         ,   const_pointer
                                         ,   const_reference
                                         >::type     const_iterator;
-
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
@@ -565,7 +560,6 @@ public:
                                         ,   pointer
                                         ,   difference_type
                                         >           reverse_iterator;
-
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
@@ -622,7 +616,7 @@ public:
     index_type              dimension1() const;
     index_type              dimension2() const;
     index_type              size() const;
-    ss_bool_t               empty() const;
+    bool_type               empty() const;
     static size_type        max_size();
 
 // Iteration
@@ -707,7 +701,7 @@ public:
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
-
+    typedef ss_bool_t                               bool_type;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
            ss_typename_type_k
@@ -724,7 +718,6 @@ public:
                                         ,   const_pointer
                                         ,   const_reference
                                         >::type     const_iterator;
-
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
@@ -732,7 +725,6 @@ public:
                                         ,   pointer
                                         ,   difference_type
                                         >           reverse_iterator;
-
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
@@ -790,7 +782,7 @@ public:
     index_type              dimension2() const;
     index_type              dimension3() const;
     index_type              size() const;
-    ss_bool_t               empty() const;
+    bool_type               empty() const;
     static size_type        max_size();
 
 // Iteration
@@ -1111,9 +1103,9 @@ inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::index_type fixed_array
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_bool_t fixed_array_1d<T, A, P, R>::empty() const
+inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::bool_type fixed_array_1d<T, A, P, R>::empty() const
 {
-    return false;
+    return 0 == size();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1227,7 +1219,7 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
         STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("fixed array index out of range"));
     }
 #else
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
@@ -1385,7 +1377,7 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_reference fixed_
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::reference fixed_array_2d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i1)
 {
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1));
 
     return *(m_data + calc_index_(i0, i1));
 }
@@ -1393,7 +1385,7 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::reference fixed_array_
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_reference fixed_array_2d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i1) const
 {
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1));
 
     return *(m_data + calc_index_(i0, i1));
 }
@@ -1505,9 +1497,9 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::index_type fixed_array
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_bool_t fixed_array_2d<T, A, P, R>::empty() const
+inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::bool_type fixed_array_2d<T, A, P, R>::empty() const
 {
-    return false;
+    return 0 == size();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1621,7 +1613,7 @@ inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
         STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("fixed array index out of range"));
     }
 #else
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
@@ -1779,7 +1771,7 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_reference fixed_
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::reference fixed_array_3d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i2)
 {
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2));
 
     return *(m_data + calc_index_(i0, i1, i2));
 }
@@ -1787,7 +1779,7 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::reference fixed_array_
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_reference fixed_array_3d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i1, ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i2) const
 {
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2));
 
     return *(m_data + calc_index_(i0, i1, i2));
 }
@@ -1903,9 +1895,9 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::index_type fixed_array
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_bool_t fixed_array_3d<T, A, P, R>::empty() const
+inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::bool_type fixed_array_3d<T, A, P, R>::empty() const
 {
-    return false;
+    return 0 == size();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -2020,7 +2012,7 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
         STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("fixed array index out of range"));
     }
 #else
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
@@ -2186,7 +2178,7 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_reference fixed_
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::reference fixed_array_4d<T, A, P, R>::at_unchecked(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i3)
 {
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3));
 
     return *(m_data + calc_index_(i0, i1, i2, i3));
 }
@@ -2194,7 +2186,7 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::reference fixed_array_
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_reference fixed_array_4d<T, A, P, R>::at_unchecked(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i3) const
 {
-    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3);
+    STLSOFT_MESSAGE_ASSERT("fixed array index out of range", (i0 < m_d0 && i1 < m_d1 && i2 < m_d2 && i3 < m_d3));
 
     return *(m_data + calc_index_(i0, i1, i2, i3));
 }
@@ -2316,9 +2308,9 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::index_type fixed_array
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_bool_t fixed_array_4d<T, A, P, R>::empty() const
+inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::bool_type fixed_array_4d<T, A, P, R>::empty() const
 {
-    return false;
+    return 0 == size();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>

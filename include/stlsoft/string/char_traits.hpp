@@ -4,7 +4,7 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     12th March 2007
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     68
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -165,7 +165,7 @@ public:
     {
         char_type * ret;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::assign called with NULL destination", 0 == cch || NULL != dest);
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::assign called with NULL destination", (0 == cch || NULL != dest));
 
         for(ret = dest; 0 < cch; --cch, ++dest)
         {
@@ -198,8 +198,8 @@ public:
     /// \retval >0 s1 is lexicographically more than s2
     static int_type compare(char_type const* s1, char_type const* s2, size_type cch)
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", 0 == cch || NULL != s1);
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", 0 == cch || NULL != s2);
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
 
         for(size_type n = 0; n < cch; ++n, ++s1, ++s2)
         {
@@ -214,8 +214,8 @@ public:
 
     static int_type compare_max(char_type const* s1, char_type const* s2, size_type cch)
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", 0 == cch || NULL != s1);
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", 0 == cch || NULL != s2);
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s1));
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s2));
 
         for(size_type n = 0; n < cch; ++n, ++s1, ++s2)
         {
@@ -321,8 +321,8 @@ public:
     {
         char_type   *ret;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL destination", 0 == cch || NULL != dest);
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL source", 0 == cch || NULL != src);
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL destination", (0 == cch || NULL != dest));
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL source", (0 == cch || NULL != src));
 
 #ifdef _DEBUG
         ::memset(dest, 0, cch * sizeof(char_type));
@@ -341,8 +341,8 @@ public:
     {
         char_type *const ret = dest;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL destination", 0 == cch || NULL != dest);
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL source", 0 == cch || NULL != src);
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL destination", (0 == cch || NULL != dest));
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL source", (0 == cch || NULL != src));
 
         if( src < dest &&
             dest < src + cch)
@@ -366,7 +366,7 @@ public:
     /// Finds the first \c c in \c cch elements in \c s, or \c NULL if not found
     static char_type const* find(char_type const* s, size_type cch, char_type const& c)
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::find called with NULL string", 0 == cch || NULL != s);
+        STLSOFT_MESSAGE_ASSERT("char_traits<X>::find called with NULL string", (0 == cch || NULL != s));
 
         for(; 0 < cch; --cch, ++s)
         {

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     25th April 2008
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      1
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       90
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -563,7 +563,7 @@ template<   ss_typename_param_k C
         >
 inline ws_bool_t basic_drophandle_sequence_const_iterator<C, T>::equal(ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type const& rhs) const
 {
-    WINSTL_MESSAGE_ASSERT("Comparing iterators from different sequences", m_hdrop == NULL || rhs.m_hdrop == NULL || rhs.m_hdrop);
+    WINSTL_MESSAGE_ASSERT("Comparing iterators from different sequences", (m_hdrop == NULL || rhs.m_hdrop == NULL || rhs.m_hdrop));
 
     return m_index == rhs.m_index;
 }

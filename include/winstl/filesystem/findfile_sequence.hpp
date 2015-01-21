@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     6th December 2007
+ * Updated:     11th August 2008
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
  *              example when writing books about good design/implementation.
@@ -69,7 +69,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        209
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        210
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1369,7 +1369,7 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
 inline basic_findfile_sequence_const_input_iterator<C, T, V> &basic_findfile_sequence_const_input_iterator<C, T, V>::operator =(basic_findfile_sequence_const_input_iterator<C, T, V> const& rhs)
 #endif /* compiler */
 {
-    WINSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", m_list == NULL || rhs.m_list == NULL || rhs.m_list);    // Should only be comparing iterators from same container
+    WINSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", (m_list == NULL || rhs.m_list == NULL || rhs.m_list));    // Should only be comparing iterators from same container
 
     shared_handle   *this_handle    =   m_handle;
 
@@ -1637,7 +1637,7 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 inline ws_bool_t basic_findfile_sequence_const_input_iterator<C, T, V>::equal(basic_findfile_sequence_const_input_iterator<C, T, V> const& rhs) const
 {
     // Should only be comparing iterators from same container
-    WINSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list);
+    WINSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", (m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list));
 
     return m_handle == rhs.m_handle;
 }
