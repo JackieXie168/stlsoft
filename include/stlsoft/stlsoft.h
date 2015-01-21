@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     11th May 2008
+ * Updated:     13th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    15
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     344
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    16
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     345
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -205,12 +205,13 @@
 # define _STLSOFT_VER_1_9_37    0x010925ff  /*!< Version 1.9.37 (3rd May 2008) */
 # define _STLSOFT_VER_1_9_38    0x010926ff  /*!< Version 1.9.38 (4th May 2008) */
 # define _STLSOFT_VER_1_9_39    0x010927ff  /*!< Version 1.9.39 (10th May 2008) */
+# define _STLSOFT_VER_1_9_40    0x010928ff  /*!< Version 1.9.40 (11th May 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   39
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_39
+#define _STLSOFT_VER_REVISION   40
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_40
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -685,9 +686,11 @@
 # error _STLSOFT_SIZEOF_LONG not defined
 #endif /* !_STLSOFT_SIZEOF_LONG */
 
-#ifndef _STLSOFT_SIZEOF_LONG_LONG
-# error _STLSOFT_SIZEOF_LONG_LONG not defined
-#endif /* !_STLSOFT_SIZEOF_LONG_LONG */
+#ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
+# ifndef _STLSOFT_SIZEOF_LONG_LONG
+#  error _STLSOFT_SIZEOF_LONG_LONG not defined
+# endif /* !_STLSOFT_SIZEOF_LONG_LONG */
+#endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Sanity checks - 3
@@ -1771,7 +1774,7 @@ private:
  * \brief Evaluates to <b>typename</b> on translators that support the keyword and its application in
  *   the context of member function/method return types, otherwise to nothing.
  *
- * Used for type disambiguation inside initialiser lists in class template constructors
+ * Used for type disambiguation the return types in templates
  */
 #if defined(STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -2429,6 +2432,50 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
 #endif /* __cplusplus */
 
 /** @} */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Sanity checks - 4
+ *
+ * This section checks that the discriminated sizes of various types are
+ * correct.
+ */
+
+#ifdef STLSOFT_CF_STATIC_ASSERT_SUPPORT
+# ifdef __cplusplus
+namespace internal_gcc
+{
+# endif /* __cplusplus */
+
+# if defined(__cplusplus) /* || defined(STLSOFT_CF_C99_INLINE) */
+
+STLSOFT_INLINE void _stlsoft_internal_verify_integral_type_sizes(void)
+{
+    STLSOFT_STATIC_ASSERT(_STLSOFT_SIZEOF_CHAR == sizeof(char));
+    STLSOFT_STATIC_ASSERT(_STLSOFT_SIZEOF_SHORT == sizeof(short));
+    STLSOFT_STATIC_ASSERT(_STLSOFT_SIZEOF_INT == sizeof(int));
+    STLSOFT_STATIC_ASSERT(_STLSOFT_SIZEOF_LONG == sizeof(long));
+#  ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
+    STLSOFT_STATIC_ASSERT(_STLSOFT_SIZEOF_LONG_LONG == sizeof(long long));
+#  endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
+
+    STLSOFT_STATIC_ASSERT(1 == sizeof(ss_sint8_t));
+    STLSOFT_STATIC_ASSERT(1 == sizeof(ss_uint8_t));
+    STLSOFT_STATIC_ASSERT(2 == sizeof(ss_sint16_t));
+    STLSOFT_STATIC_ASSERT(2 == sizeof(ss_uint16_t));
+    STLSOFT_STATIC_ASSERT(4 == sizeof(ss_sint32_t));
+    STLSOFT_STATIC_ASSERT(4 == sizeof(ss_uint32_t));
+#  ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    STLSOFT_STATIC_ASSERT(8 == sizeof(ss_sint64_t));
+    STLSOFT_STATIC_ASSERT(8 == sizeof(ss_uint64_t));
+#  endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+}
+
+# endif /* __cplusplus) || STLSOFT_CF_C99_INLINE */
+
+# ifdef __cplusplus
+} /* namespace internal_gcc */
+# endif /* __cplusplus */
+#endif /* STLSOFT_CF_STATIC_ASSERT_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Pointer manipulation functions(s)

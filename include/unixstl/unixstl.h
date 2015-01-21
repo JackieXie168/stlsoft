@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     30th April 2008
+ * Updated:     11th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    7
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     85
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -251,9 +251,9 @@
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_IA64
 #elif defined(__i386__) || \
-    defined(__i386) || \
-    defined(_X86_) || \
-    defined(_M_IX86)
+      defined(__i386) || \
+      defined(_X86_) || \
+      defined(_M_IX86)
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_X86
 #elif defined(__alpha__) || \

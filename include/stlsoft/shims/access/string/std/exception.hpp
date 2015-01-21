@@ -71,7 +71,7 @@
 
 #ifndef STLSOFT_INCL_EXCEPTION
 # define STLSOFT_INCL_EXCEPTION
-# include <exception>                // for std::exception
+#  include <exception>              // for std::exception
 #endif /* !STLSOFT_INCL_EXCEPTION */
 
 /* /////////////////////////////////////////////////////////////////////////
