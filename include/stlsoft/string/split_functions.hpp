@@ -4,7 +4,7 @@
  * Purpose:     String split functions.
  *
  * Created:     28th January 2005
- * Updated:     11th May 2008
+ * Updated:     17th November 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MINOR      1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_REVISION   3
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       35
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_REVISION   4
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,13 +120,13 @@ namespace stlsoft
  * Functions
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >
 inline ss_bool_t split_impl(C const* s, ss_size_t n, C delim, S& s0, S& s1)
 {
-    typedef ss_typename_type_k S::const_iterator    iterator_t;
-
     C const* const  b   =   s;
     C const* const  e   =   s + n;
     C const*        it  =   stlsoft_ns_qual_std(find)(b, e, delim);
@@ -136,11 +136,13 @@ inline ss_bool_t split_impl(C const* s, ss_size_t n, C delim, S& s0, S& s1)
     return (e == it) ? false : (++it, s1 = S(it, e), true);
 }
 
-/** \brief Splits a string into two, at the first incidence of a delimiter
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** Splits a string into two, at the first incidence of a delimiter
  *
  * \ingroup group__library__string
  *
- * \note The behaviour is undefined if the string instance being split is
+ * \warn The behaviour is undefined if the string instance being split is
  *        passed as one or both recipients
  */
 template<   ss_typename_param_k S1
@@ -155,6 +157,11 @@ inline ss_bool_t split(S1 const& s, C delim, S2& s0, S2& s1)
     return split_impl(c_str_data(s), c_str_len(s), delim, s0, s1);
 }
 
+/** Splits a string into two, at the first incidence of a delimiter
+ *
+ * \ingroup group__library__string
+ *
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
         >

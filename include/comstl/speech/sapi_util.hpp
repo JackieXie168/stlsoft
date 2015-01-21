@@ -4,7 +4,7 @@
  * Purpose:     Definition of SAPI types and constants.
  *
  * Created:     31st August 2006
- * Updated:     1st October 2008
+ * Updated:     18th November 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    3
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        4
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    4
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -256,6 +256,8 @@ inline HRESULT sapi_create(stlsoft_ns_qual(ref_ptr)<ISpVoice>& voice)
 } /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 
+# ifndef COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS
+
 using ::comstl::SPF_DEFAULT;
 using ::comstl::SPF_ASYNC;
 using ::comstl::SPF_PURGEBEFORESPEAK;
@@ -267,6 +269,8 @@ using ::comstl::SPF_NLP_SPEAK_PUNC;
 using ::comstl::SPF_NLP_MASK;
 using ::comstl::SPF_VOICE_MASK;
 using ::comstl::SPF_UNUSED_FLAGS;
+
+# endif /* !COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS */
 
 #endif /* !_COMSTL_NO_NAMESPACE */
 

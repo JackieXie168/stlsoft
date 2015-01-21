@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     24th December 2006
- * Updated:     22nd September 2008
+ * Updated:     18th November 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    3
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        7
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,14 +104,18 @@ namespace winstl_project
  *
  * \param ev The event instance
  *
- * \retval The handle \c h
+ * \retval The synchronisation handle associated with the event
  *
  * \remarks We cannot simply define the shim overload in terms of
- *    <code>CEvent</code> for two reasons. First, the template
- *    mechanism requires a precise shim when the
- *
+ *    <code>CSyncObject</code> for two reasons. First, the template
+ *    mechanism requires a precise type for the shim, not an
+ *    inheritance-related group of types. Second, the class
+ *    <code>CCriticalSection</code> also derives from
+ *    <code>CSyncObject</code>, and it is not a kernel synchronisation
+ *    object, and attempting to elicit a synchronisable handle from it
+ *    would result in a runtime error.
  */
-inline HANDLE get_synch_handle(CEvent &ev)
+inline HANDLE get_synch_handle(CEvent& ev)
 {
     return static_cast<HANDLE>(ev);
 }
@@ -123,14 +127,18 @@ inline HANDLE get_synch_handle(CEvent &ev)
  *
  * \param mx The mutex instance
  *
- * \retval The handle \c h
+ * \retval The synchronisation handle associated with the mutex
  *
  * \remarks We cannot simply define the shim overload in terms of
- *    <code>CMutex</code> for two reasons. First, the template
- *    mechanism requires a precise shim when the
- *
+ *    <code>CSyncObject</code> for two reasons. First, the template
+ *    mechanism requires a precise type for the shim, not an
+ *    inheritance-related group of types. Second, the class
+ *    <code>CCriticalSection</code> also derives from
+ *    <code>CSyncObject</code>, and it is not a kernel synchronisation
+ *    object, and attempting to elicit a synchronisable handle from it
+ *    would result in a runtime error.
  */
-inline HANDLE get_synch_handle(CMutex &mx)
+inline HANDLE get_synch_handle(CMutex& mx)
 {
     return static_cast<HANDLE>(mx);
 }
@@ -142,14 +150,18 @@ inline HANDLE get_synch_handle(CMutex &mx)
  *
  * \param sem The semaphore instance
  *
- * \retval The handle \c h
+ * \retval The synchronisation handle associated with the semaphore
  *
  * \remarks We cannot simply define the shim overload in terms of
- *    <code>CSemaphore</code> for two reasons. First, the template
- *    mechanism requires a precise shim when the
- *
+ *    <code>CSyncObject</code> for two reasons. First, the template
+ *    mechanism requires a precise type for the shim, not an
+ *    inheritance-related group of types. Second, the class
+ *    <code>CCriticalSection</code> also derives from
+ *    <code>CSyncObject</code>, and it is not a kernel synchronisation
+ *    object, and attempting to elicit a synchronisable handle from it
+ *    would result in a runtime error.
  */
-inline HANDLE get_synch_handle(CSemaphore &sem)
+inline HANDLE get_synch_handle(CSemaphore& sem)
 {
     return static_cast<HANDLE>(sem);
 }
