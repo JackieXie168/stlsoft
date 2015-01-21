@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  2nd February 2010
+; Updated:  11th February 2010
 
 ============================================================================
 
@@ -15,6 +15,26 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.92 (11th February 2010)
+
+Summary:
+========
+
+ * added inetstl::filesystem_traits<>::is_path_name_separator()
+
+Changes:
+========
+
+ InetSTL:
+ ========
+
+ ~ inetstl/filesystem/filesystem_traits.hpp:
+    + added is_path_name_separator()
+
 
 
 ============================================================================

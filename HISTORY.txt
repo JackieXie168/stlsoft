@@ -2,9 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  2nd February 2010
+; Updated:  11th February 2010
 
 ============================================================================
+
+
+11th February 2010 - 1.9.92 released
+------------------------------------
+
+ * added inetstl::filesystem_traits<>::is_path_name_separator()
 
 
 2nd February 2010 - 1.9.91 released

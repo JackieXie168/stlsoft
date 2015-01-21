@@ -4,7 +4,7 @@
  * Purpose:     Runtime checking for numeric conversions.
  *
  * Created:     10th August 2006
- * Updated:     12th January 2010
+ * Updated:     3rd February 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       46
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -388,9 +388,6 @@ inline bool truncation_test_helper_runtime_test(T, yes_type, ...)
     return true;
 }
 
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
 
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
@@ -485,6 +482,8 @@ private:
 };
 #else /* ? 0 */
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /** Indicates whether a given value can be cast to a given type without
  * truncation
  *
@@ -493,7 +492,7 @@ private:
  * Example:
 <pre>
   truncation_cast&lt;unsigned>(-1); // Will return false, since negatives cannot fit in unsigned
-  truncation_cast&lt;short>(30000); // Will return false, since 30000 will fit inside short (assuming short has >= 16-bits)
+  truncation_cast&lt;short>(30000); // Will return true, since 30000 will fit inside short (assuming short has >= 16-bits)
 </pre>
  *
  * \param from The value to be tested

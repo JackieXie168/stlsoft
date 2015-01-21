@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     10th August 2009
+ * Updated:     11th February 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    5
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     50
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 4
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -116,12 +116,14 @@
 # define _INETSTL_VER_1_3_1      0x010301ff  /*!< Version 1.3.1 (with STLSoft 1.9.79) */
 # define _INETSTL_VER_1_3_2      0x010302ff  /*!< Version 1.3.2 (with STLSoft 1.9.80) */
 # define _INETSTL_VER_1_3_3      0x010303ff  /*!< Version 1.3.3 (with STLSoft 1.9.86) */
+# define _INETSTL_VER_1_3_4      0x010304ff  /*!< Version 1.3.4 (with STLSoft 1.9.91) */
+# define _INETSTL_VER_1_3_5      0x010305ff  /*!< Version 1.3.5 (with STLSoft 1.9.92) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       3
-#define _INETSTL_VER_REVISION    3
-#define _INETSTL_VER             _INETSTL_VER_1_3_3
+#define _INETSTL_VER_REVISION    5
+#define _INETSTL_VER             _INETSTL_VER_1_3_5
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
