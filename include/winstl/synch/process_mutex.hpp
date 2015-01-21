@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     23rd September 2006
+ * Updated:     17th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     45
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 4
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,10 @@ class process_mutex
                                             >
     , public stlsoft_ns_qual(synchronisable_object_tag)
 {
+/// \name Member Types
+/// @{
 public:
+/// @}
     typedef process_mutex   class_type;
     typedef HANDLE          handle_type;
 
@@ -215,7 +218,7 @@ public:
             if(WAIT_OBJECT_0 != dwRes)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw synchronisation_exception("mutex wait failed", ::GetLastError());
+                throw_x(synchronisation_exception("mutex wait failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
@@ -246,7 +249,7 @@ public:
                 if(WAIT_OBJECT_0 != dwRes)
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    throw synchronisation_exception("mutex wait failed", ::GetLastError());
+                    throw_x(synchronisation_exception("mutex wait failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
 
@@ -269,7 +272,7 @@ public:
         if(!::ReleaseMutex(m_mx))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("mutex release failed", ::GetLastError());
+            throw_x(synchronisation_exception("mutex release failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -324,7 +327,7 @@ private:
         if(NULL == mx)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to create kernel mutex object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to create kernel mutex object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -339,7 +342,7 @@ private:
         if(NULL == mx)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to create kernel mutex object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to create kernel mutex object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -354,7 +357,7 @@ private:
         if(NULL == mx)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to open kernel mutex object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to open kernel mutex object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -369,7 +372,7 @@ private:
         if(NULL == mx)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to open kernel mutex object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to open kernel mutex object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 

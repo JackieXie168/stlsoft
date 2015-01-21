@@ -1,5 +1,5 @@
-STLSoft, beta release; http://stlsoft.org/
-==========================================
+STLSoft, http://stlsoft.org/
+============================
 
 For information on this release, please refer to the release notes
 included in the distribution.
@@ -9,9 +9,10 @@ visit the STLSoft newsgroup at:
 
   news://news.digitalmars.com/c++.stlsoft
 
-Note: the beta releases contain ALL the STLSoft libraries, but do not
-include the samples, documentation, extras, and test files that are included
-in full distributions.
+or email:
+
+  mailto:admin@stlsoft.org
+
 
 ----------------------------------------------------------------------------
 END OF FILE

@@ -4,7 +4,7 @@
  * Purpose:     shell_allocator class.
  *
  * Created:     2nd March 2002
- * Updated:     15th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_MAJOR     4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_MINOR     1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_REVISION  1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_EDIT      71
+# define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_REVISION  2
+# define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -214,7 +214,7 @@ private:
         if(FAILED(hr))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw stlsoft_ns_qual_std(runtime_error)("failed to retrieve the shell allocator");
+            throw_x(stlsoft_ns_qual_std(runtime_error)("failed to retrieve the shell allocator"));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             lpMalloc = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

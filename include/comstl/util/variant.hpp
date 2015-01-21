@@ -4,7 +4,7 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     13th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       135
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   4
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -229,7 +229,7 @@ inline void variant::handle_error_(char const *message, HRESULT hr)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-    throw com_exception(message, hr);
+    throw_x(com_exception(message, hr));
     
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 

@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     9th July 2006
+ * Updated:     18th October 2006
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        72
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1306,14 +1306,7 @@ inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_stri
 
     if(!(index < size()))
     {
-        stlsoft_ns_qual_std(out_of_range)   x("index out of range");
-
-# ifdef STLSOFT_COMPILER_IS_MSVC
-        if(1) // This is needed to avoid Visual C++ warning 4702: 'unreachable code'
-# endif /* compiler */
-        {
-            throw_x(x);
-        }
+        throw_x(stlsoft_ns_qual_std(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());

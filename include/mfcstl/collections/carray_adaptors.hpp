@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     16th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 2
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     68
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 3
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -530,7 +530,7 @@ public:
     {
         if(n >= size())
         {
-            throw mfcstl_ns_qual_std(out_of_range)("Invalid index specified");
+            throw_x(mfcstl_ns_qual_std(out_of_range)("Invalid index specified"));
         }
 
         return (*this)[n];
@@ -543,7 +543,7 @@ public:
     {
         if(n >= size())
         {
-            throw mfcstl_ns_qual_std(out_of_range)("Invalid index specified");
+            throw_x(mfcstl_ns_qual_std(out_of_range)("Invalid index specified"));
         }
         return (*this)[n];
     }

@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     24th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       56
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -211,7 +211,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(0 != m_error)
         {
-            throw unix_exception("Mutex lock failed", m_error);
+            throw_x(unix_exception("Mutex lock failed", m_error));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -237,7 +237,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             if(EBUSY != m_error)
             {
-                throw unix_exception("Mutex try-lock failed", m_error);
+                throw_x(unix_exception("Mutex try-lock failed", m_error));
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -257,7 +257,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(0 != m_error)
         {
-            throw unix_exception("Mutex unlock failed", m_error);
+            throw_x(unix_exception("Mutex unlock failed", m_error));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -303,7 +303,7 @@ private:
                 if(0 != (res = ::pthread_mutexattr_setpshared(&attr, pshared)))
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    throw unix_exception("Failed to set process-sharing attribute for PTHREADS mutex", res);
+                    throw_x(unix_exception("Failed to set process-sharing attribute for PTHREADS mutex", res));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
                 else
@@ -317,7 +317,7 @@ private:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                     else
                     {
-                        throw unix_exception("Failed to set initialise PTHREADS mutex", res);
+                        throw_x(unix_exception("Failed to set initialise PTHREADS mutex", res));
                     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
@@ -325,14 +325,14 @@ private:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             else
             {
-                throw unix_exception("Failed to set recursive attribute to PTHREADS mutex", res);
+                throw_x(unix_exception("Failed to set recursive attribute to PTHREADS mutex", res));
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         else
         {
-            throw unix_exception("Failed to initialise PTHREADS mutex attributes", res);
+            throw_x(unix_exception("Failed to initialise PTHREADS mutex attributes", res));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 

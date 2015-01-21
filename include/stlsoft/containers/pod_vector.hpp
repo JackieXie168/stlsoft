@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     10th July 2006
+ * Updated:     18th October 2006
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        60
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -364,14 +364,7 @@ inline void pod_vector<T, A, SPACE>::range_check_(size_type index) const /* stls
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(index < size()))
     {
-        stlsoft_ns_qual_std(out_of_range)   x("pod vector index out of range");
-
-# ifdef STLSOFT_COMPILER_IS_MSVC
-        if(1) // This is needed to avoid Visual C++ warning 4702: 'unreachable code'
-# endif /* compiler */
-        {
-            throw x;
-        }
+        throw_x(stlsoft_ns_qual_std(out_of_range)("pod vector index out of range"));
     }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
     STLSOFT_MESSAGE_ASSERT("w index out of range", index < size());

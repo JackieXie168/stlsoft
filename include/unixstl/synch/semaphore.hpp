@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on POSIX semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     23rd September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     7
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -172,7 +172,7 @@ public:
         if(::sem_wait(m_sem) < 0)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("semaphore wait failed", errno);
+            throw_x(synchronisation_exception("semaphore wait failed", errno));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -194,7 +194,7 @@ public:
             if(EAGAIN != res)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw synchronisation_exception("semaphore wait failed", errno);
+                throw_x(synchronisation_exception("semaphore wait failed", errno));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
@@ -210,7 +210,7 @@ public:
         if(::sem_post(m_sem) < 0)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("semaphore release failed", errno);
+            throw_x(synchronisation_exception("semaphore release failed", errno));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -242,7 +242,7 @@ private:
         if(::sem_init(internal, bInterProcessShared, initialCount) < 0)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to create kernel semaphore object", errno);
+            throw_x(synchronisation_exception("Failed to create kernel semaphore object", errno));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             sem = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

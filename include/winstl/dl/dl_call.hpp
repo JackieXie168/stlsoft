@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     16th September 2006
+ * Updated:     17th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     3
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  1
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      28
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  2
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,6 +117,15 @@ namespace winstl_project
 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compiler compatibility
+ */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# define WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes

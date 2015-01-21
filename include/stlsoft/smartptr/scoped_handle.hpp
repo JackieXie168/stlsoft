@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     7th July 2006
+ * Updated:     21st October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    0
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     649
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     650
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -149,6 +149,66 @@ public:
     }
 };
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
+
+
+
+template<   ss_typename_param_k R
+        >
+struct function_translator_cdecl_void
+{
+private:
+    typedef void    (STLSOFT_CDECL *degenerate_function_type)();    // C++-98; 5.2.10;6
+public:
+    typedef R       (STLSOFT_CDECL *function_type)(void);
+
+    static void translate(degenerate_function_type pv)
+    {
+        function_type   fn  =   reinterpret_cast<function_type>(pv);
+
+        fn();
+    }
+};
+
+# ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+template<   ss_typename_param_k R
+        >
+struct function_translator_fastcall_void
+{
+private:
+    typedef void    (STLSOFT_CDECL *degenerate_function_type)();
+public:
+    typedef R       (STLSOFT_FASTCALL *function_type)(void);
+
+    static void translate(degenerate_function_type pv)
+    {
+        function_type   fn  =   reinterpret_cast<function_type>(pv);
+
+        fn();
+    }
+};
+# endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
+
+# ifdef STLSOFT_CF_STDCALL_SUPPORTED
+template<   ss_typename_param_k R
+        >
+struct function_translator_stdcall_void
+{
+private:
+    typedef void    (STLSOFT_CDECL *degenerate_function_type)();
+public:
+    typedef R       (STLSOFT_STDCALL *function_type)(void);
+
+    static void translate(degenerate_function_type pv)
+    {
+        function_type   fn  =   reinterpret_cast<function_type>(pv);
+
+        fn();
+    }
+};
+# endif /* STLSOFT_CF_STDCALL_SUPPORTED */
+
+
+
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -395,6 +455,173 @@ private:
     scoped_handle(class_type const &);
     class_type &operator =(class_type const &);
 };
+
+
+
+// scoped_handle<void>
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+STLSOFT_TEMPLATE_SPECIALISATION
+class scoped_handle<void>
+{
+/// \name Types
+/// @{
+private:
+    typedef void (STLSOFT_CDECL *degenerate_function_type)();
+public:
+    /// \brief The resource type
+    typedef void                resource_type;
+    /// \brief The handle type
+    typedef void                handle_type;
+    /// \brief The instantiation of the type
+    typedef scoped_handle<void> class_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+    defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+    /// \brief Construct from a resource handle and a clean-up function with void return type
+    scoped_handle(  void            (STLSOFT_CDECL *f)())
+        : m_bInvoked(false)
+        , m_tfn(&function_translator_cdecl_void<void>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+    /// \brief Construct from a resource handle and a clean-up function with non-void return type
+    template <ss_typename_param_k R>
+    scoped_handle(  R               (STLSOFT_CDECL *f)())
+        : m_bInvoked(false)
+        , m_tfn(&function_translator_cdecl_void<R>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+
+#ifdef STLSOFT_CF_FASTCALL_SUPPORTED
+# if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+    /// \brief Construct from a resource handle and a clean-up "fastcall" function with void return type
+    scoped_handle(  void            (STLSOFT_FASTCALL *f)())
+        : m_bInvoked(false)
+        , m_tfn(&function_translator_fastcall_void<void>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+# endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+
+# if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+    /// \brief Construct from a resource handle and a clean-up "fastcall" function with non-void return type
+    template <ss_typename_param_k R>
+    scoped_handle(  R               (STLSOFT_FASTCALL *f)())
+        : m_bInvoked(false)
+        , m_tfn(&function_translator_fastcall_void<R>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
+
+
+#ifdef STLSOFT_CF_STDCALL_SUPPORTED
+# if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+    /// \brief Construct from a resource handle and a clean-up "stdcall" function with void return type
+    scoped_handle(  void            (STLSOFT_STDCALL *f)())
+        : m_bInvoked(false)
+        , m_tfn(&function_translator_stdcall_void<void>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+# endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+
+# if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+    /// \brief Construct from a resource handle and a clean-up "stdcall" function with non-void return type
+    template <ss_typename_param_k R>
+    scoped_handle(  R               (STLSOFT_STDCALL *f)())
+        : m_bInvoked(false)
+        , m_tfn(&function_translator_stdcall_void<R>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_STDCALL_SUPPORTED */
+
+    /// \brief "Releases" the managed resource.
+    ///
+    /// Invokes the cleanup function, unless close() or detach() have
+    /// already been called
+    ~scoped_handle()
+    {
+        close();
+    }
+/// @}
+
+/// \name Attributes
+/// @{
+public:
+    /// \brief Indicates whether the instance holds a non-"null" resource
+    bool empty() const
+    {
+        return m_bInvoked;
+    }
+/// @}
+
+/// \name Operations
+/// @{
+public:
+    /// \brief Closes the handle immediately
+    ///
+    /// \note Calling this method more than once has no effect.
+    void close()
+    {
+        if(!empty())
+        {
+            m_tfn(m_fn);
+            m_bInvoked = true;
+        }
+    }
+
+    /// \brief Detaches the resource, and returns it to the caller.
+    ///
+    /// \remarks Calling this method removes the resource from the managing
+    ///   instance, so it will not be automatically closed.
+    resource_type detach()
+    {
+    }
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    /// \brief Provides the bare resource handle to the caller. Does not
+    ///   detach the handle from the managing instance.
+    ///
+    /// \deprecated Deprecated in favour of get()
+    resource_type handle() const
+    {
+    }
+    /// \brief Provides the bare resource handle to the caller. Does not detach the
+    /// handle from the managing instance.
+    resource_type get() const
+    {
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    ss_bool_t                   m_bInvoked;                         //!< Indicates whether the cleanup function has been invoked
+    void                        (*m_tfn)(degenerate_function_type); //!< The function translator function
+    degenerate_function_type    m_fn;                               //!< The actual resource release function
+/// @}
+
+// Not to be implemented
+private:
+    scoped_handle(class_type const &);
+    class_type &operator =(class_type const &);
+};
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * swapping

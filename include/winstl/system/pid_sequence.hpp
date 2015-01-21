@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     16th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     36
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -321,7 +321,7 @@ inline pid_sequence::pid_sequence(ws_uint32_t flags)
 #endif /* psapi */
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw windows_exception("Failed to enumerate processes", ::GetLastError());
+            throw_x(windows_exception("Failed to enumerate processes", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             m_pids.resize(0);
 

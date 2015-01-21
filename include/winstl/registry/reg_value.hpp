@@ -12,7 +12,7 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     7th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      79
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -493,7 +493,7 @@ inline /* static */ ss_typename_type_k basic_reg_value<C, T, A>::hkey_type basic
     if(ERROR_SUCCESS != result)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not duplicate key", result);
+        throw_x(registry_exception("Could not duplicate key", result));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         hkeyDup = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

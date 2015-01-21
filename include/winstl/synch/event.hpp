@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     26th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     46
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ public:
         if(!::SetEvent(m_ev))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("event set operation failed", ::GetLastError());
+            throw_x(synchronisation_exception("event set operation failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -167,7 +167,7 @@ public:
         if(!::ResetEvent(m_ev))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("event reset operation failed", ::GetLastError());
+            throw_x(synchronisation_exception("event reset operation failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -197,7 +197,7 @@ private:
         if(NULL == h)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to create kernel event object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to create kernel event object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -210,7 +210,7 @@ private:
         if(NULL == h)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to create kernel event object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to create kernel event object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 

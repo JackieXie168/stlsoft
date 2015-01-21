@@ -13,7 +13,7 @@
  *              basic_reg_key_sequence class interface.
  *
  * Created:     19th January 2002
- * Updated:     7th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       112
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   5
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -509,7 +509,7 @@ inline registry_util::shared_handle *basic_reg_key_sequence<C, T, A>::create_sha
     if(NULL == hkey2)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res));
+        throw_x(registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
     ; // This will fall through to the end() call at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -523,7 +523,7 @@ inline registry_util::shared_handle *basic_reg_key_sequence<C, T, A>::create_sha
         if(NULL == handle)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw registry_exception("Failed to create shared enumeration context", ::GetLastError());
+            throw_x(registry_exception("Failed to create shared enumeration context", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ; // This will fall through to the end() call at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -536,10 +536,7 @@ inline registry_util::shared_handle *basic_reg_key_sequence<C, T, A>::create_sha
         }
     }
 
-#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    defined(STLSOFT_CF_REQUIRE_RETURN_ALWAYS)
     return NULL;
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT || STLSOFT_CF_REQUIRE_RETURN_ALWAYS */
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
@@ -564,7 +561,7 @@ inline /* static */ ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_typ
     if(ERROR_SUCCESS != result)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not duplicate key", result);
+        throw_x(registry_exception("Could not duplicate key", result));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         hkeyDup = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -586,7 +583,7 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type
     if(ERROR_SUCCESS != (result = traits_type::reg_open_key(hkey, sub_key_name, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not open key", result);
+        throw_x(registry_exception("Could not open key", result));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_hkey = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -607,7 +604,7 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type
     if(ERROR_SUCCESS != (result = traits_type::reg_open_key(hkey, sub_key_name, &m_hkey, accessMask)))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not open key", result);
+        throw_x(registry_exception("Could not open key", result));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_hkey = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -623,7 +620,7 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence(ss_typename_type_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        throw registry_exception("Failed to take duplicate of key", ::GetLastError());
+        throw_x(registry_exception("Failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -638,7 +635,7 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        throw registry_exception("Failed to take duplicate of key", ::GetLastError());
+        throw_x(registry_exception("Failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -654,7 +651,7 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        throw registry_exception("Failed to take duplicate of key", ::GetLastError());
+        throw_x(registry_exception("Failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -692,11 +689,11 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_ke
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+            throw_x(access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw registry_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+            throw_x(registry_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ; // This will fall through to the end() call at the end of the function
@@ -713,7 +710,7 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_ke
             if(NULL == handle)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw registry_exception("Failed to create shared enumeration context", static_cast<DWORD>(res));
+                throw_x(registry_exception("Failed to create shared enumeration context", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 ; // This will fall through to the end() call at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -747,11 +744,11 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_ke
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                         if(ERROR_ACCESS_DENIED == res)
                         {
-                            throw access_denied_exception("Could not enumerate sub-keys", static_cast<DWORD>(res));
+                            throw_x(access_denied_exception("Could not enumerate sub-keys", static_cast<DWORD>(res)));
                         }
                         else
                         {
-                            throw registry_exception("Could not enumerate sub-keys", static_cast<DWORD>(res));
+                            throw_x(registry_exception("Could not enumerate sub-keys", static_cast<DWORD>(res)));
                         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                         cchName = 0;
@@ -785,7 +782,7 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_ke
     if(NULL == handle)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res));
+        throw_x(registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         index = 0; // This will fall through to the constructor at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -825,11 +822,11 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::size_type basic_reg_k
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+            throw_x(access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw registry_exception("Could not elicit number of sub-keys", static_cast<DWORD>(res));
+            throw_x(registry_exception("Could not elicit number of sub-keys", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         numEntries = 0;
@@ -942,11 +939,11 @@ inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_typ
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+            throw_x(access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw registry_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+            throw_x(registry_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_index = sentinel_();
@@ -976,11 +973,11 @@ inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_typ
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 if(ERROR_ACCESS_DENIED == res)
                 {
-                    throw access_denied_exception("Could not enumerate sub-keys", static_cast<DWORD>(res));
+                    throw_x(access_denied_exception("Could not enumerate sub-keys", static_cast<DWORD>(res)));
                 }
                 else
                 {
-                    throw registry_exception("Could not enumerate sub-keys", static_cast<DWORD>(res));
+                    throw_x(registry_exception("Could not enumerate sub-keys", static_cast<DWORD>(res)));
                 }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 m_index = sentinel_();
@@ -1018,11 +1015,11 @@ inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_typ
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(ERROR_ACCESS_DENIED == res)
         {
-            throw access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+            throw_x(access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
         }
         else
         {
-            throw registry_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+            throw_x(registry_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_index = sentinel_();
@@ -1060,11 +1057,11 @@ inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_typ
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 if(ERROR_ACCESS_DENIED == res)
                 {
-                    throw access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res));
+                    throw_x(access_denied_exception("Could not elicit sub-key information", static_cast<DWORD>(res)));
                 }
                 else
                 {
-                    throw registry_exception("Could not enumerate sub-keys", static_cast<DWORD>(res));
+                    throw_x(registry_exception("Could not enumerate sub-keys", static_cast<DWORD>(res)));
                 }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 m_index = sentinel_();

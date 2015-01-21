@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     2nd September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    3
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        35
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    4
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -354,7 +354,7 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const *s, int len /* = -1 */)
         0 != len &&
         '\0' != 0[s])
     {
-        throw com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError()));
+        throw_x(com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError())));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -374,7 +374,7 @@ inline /* explicit */ bstr::bstr(cs_char_w_t const *s, int len /* = -1 */)
         0 != len &&
         '\0' != 0[s])
     {
-        throw com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError()));
+        throw_x(com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError())));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -387,7 +387,7 @@ inline bstr::bstr(bstr::size_type n, bstr::char_type ch)
         if(0 != n)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError()));
+            throw_x(com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError())));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -407,7 +407,7 @@ inline bstr::bstr(bstr::class_type const &rhs)
     if( NULL == m_bstr &&
         !rhs.empty())
     {
-        throw com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError()));
+        throw_x(com_exception("failed to allocate string", HRESULT_FROM_WIN32(::GetLastError())));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }

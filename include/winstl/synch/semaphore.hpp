@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     23rd September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     6
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 3
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -204,7 +204,7 @@ public:
         if(WAIT_OBJECT_0 != dwRes)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("semaphore wait failed", ::GetLastError());
+            throw_x(synchronisation_exception("semaphore wait failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -219,7 +219,7 @@ public:
             WAIT_TIMEOUT != dwRes)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("semaphore wait failed", ::GetLastError());
+            throw_x(synchronisation_exception("semaphore wait failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -243,7 +243,7 @@ public:
         if(!::ReleaseSemaphore(m_sem, 1, NULL))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("semaphore release failed", ::GetLastError());
+            throw_x(synchronisation_exception("semaphore release failed", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -270,7 +270,7 @@ public:
         if(!::ReleaseSemaphore(m_sem, static_cast<LONG>(numLocksToRelease), &previousCount))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("semaphore release failed", ::GetLastError());
+            throw_x(synchronisation_exception("semaphore release failed", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             return -1;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -307,7 +307,7 @@ private:
         if(NULL == sem)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to create kernel semaphore object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to create kernel semaphore object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -320,7 +320,7 @@ private:
         if(NULL == sem)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw synchronisation_exception("Failed to create kernel semaphore object", ::GetLastError());
+            throw_x(synchronisation_exception("Failed to create kernel semaphore object", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 

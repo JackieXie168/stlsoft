@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     3rd July 2003
- * Updated:     10th June 2006
+ * Updated:     17th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_MAJOR      1
 # define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_MINOR      3
-# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_EDIT       14
+# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ inline HANDLE get_handle(HANDLE h)
  * Traits specialisations
  */
 
-template <>
+STLSOFT_TEMPLATE_SPECIALISATION
 struct handle_traits<HANDLE>
 {
     typedef HANDLE      handle_type;

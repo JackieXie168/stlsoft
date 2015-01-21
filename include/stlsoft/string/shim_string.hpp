@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     19th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        31
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER < 1200
+# include <stlsoft/string/shim_string_vc5_.hpp>
+#else /* ? compiler */
+
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
@@ -336,6 +342,10 @@ inline std::basic_ostream<C> &operator <<(std::basic_ostream<C> &s, stlsoft::bas
 # endif /* compiler */
 
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+#endif /* ? compiler */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

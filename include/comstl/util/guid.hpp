@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     11th August 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       34
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   3
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -384,7 +384,7 @@ inline guid::guid()
     if(FAILED(hr))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw com_exception("Could not allocate GUID", hr);
+        throw_x(com_exception("Could not allocate GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_guid = GUID_NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -413,7 +413,7 @@ inline /* ss_explicit_k */ guid::guid(cs_char_a_t const *s)
     if(FAILED(hr))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw com_exception("Could not convert string to valid GUID", hr);
+        throw_x(com_exception("Could not convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_guid = GUID_NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -427,7 +427,7 @@ inline /* ss_explicit_k */ guid::guid(cs_char_w_t const *s)
     if(FAILED(hr))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw com_exception("Could not convert string to valid GUID", hr);
+        throw_x(com_exception("Could not convert string to valid GUID", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         m_guid = GUID_NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     15th September 2006
+ * Updated:     17th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     8
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     9
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      84
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -195,11 +195,14 @@
 # define STLSOFT_CF_EXTENDED_UINT64_T  unsigned __int64
 #endif /* _MSC_VER >= 1020 */
 
-/* Are integers a unique type (i.e. not int8/16/32/64)? */
+/* Are ints a unique type (i.e. not int8/16/32/64)? */
 #if _MSC_VER == 1200
 # define __STLSOFT_CF_INT_DISTINCT_TYPE
 # define STLSOFT_CF_INT_DISTINCT_TYPE
 #endif /* _MSC_VER */
+
+/* Are longs a unique type? */
+#define STLSOFT_CF_LONG_DISTINCT_TYPE
 
 
 /* Member constants */

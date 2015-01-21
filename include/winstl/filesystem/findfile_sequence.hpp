@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     17th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -65,8 +65,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        187
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        188
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -917,7 +917,7 @@ inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char
     if(0 == traits_type::get_full_path_name(directory, dir.size(), &dir[0]))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw windows_exception(::GetLastError());
+        throw_x(windows_exception(::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         dir[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
