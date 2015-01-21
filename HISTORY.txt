@@ -2,12 +2,19 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  25th October 2008
+; Updated:  27th October 2008
 
 ============================================================================
 
 
-25th October 2008 - 1.9.58 released
+27th October 2008 - 1.9.60 released
+-----------------------------------
+
+ * added stlsoft::apply_const()
+ * added stlsoft/conversion/m2w.hpp
+
+
+25th October 2008 - 1.9.59 released
 -----------------------------------
 
  * change in ATLSTL's property method helpers to avoid infinite loop in
