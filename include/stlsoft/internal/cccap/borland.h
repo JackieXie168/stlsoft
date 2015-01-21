@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Borland C/C++.
  *
  * Created:     7th February 2003
- * Updated:     7th May 2009
+ * Updated:     21st July 2009
  *
  * Thanks to:   markitus82 for pointing out overlooking of support for
  *              __FUNCTION__.
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      17
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       79
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      18
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -339,15 +339,15 @@
   * requires that you have defined _STLSOFT_CUSTOM_ASSERT() as a macro
   * taking 1 parameter (the condition to assert).
   *
-  * Suppose you have a function _DisplayAssert(), which has the
+  * Suppose you have a function DisplayAssert_(), which has the
   * following signature:
   *
-  *   void _DisplayAssert(char const* file, int line, char const* expression);
+  *   void DisplayAssert_(char const* file, int line, char const* expression);
   *
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *  #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(_DisplayAssert(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *  #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
@@ -376,6 +376,7 @@
  * Calling convention
  */
 
+#define STLSOFT_CF_THISCALL_SUPPORTED
 #define STLSOFT_CF_CDECL_SUPPORTED
 #define STLSOFT_CF_FASTCALL_SUPPORTED
 #define STLSOFT_CF_STDCALL_SUPPORTED
@@ -429,4 +430,4 @@
 
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

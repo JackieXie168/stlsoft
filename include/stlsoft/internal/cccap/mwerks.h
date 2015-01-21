@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     11th May 2008
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       16
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       18
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        69
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -335,15 +335,15 @@
   * requires that you have defined _STLSOFT_CUSTOM_ASSERT() as a macro
   * taking 1 parameter (the condition to assert).
   *
-  * Suppose you have a function _DisplayAssert(), which has the
+  * Suppose you have a function DisplayAssert_(), which has the
   * following signature:
   *
-  *   void _DisplayAssert(char const* file, int line, char const* expression);
+  *   void DisplayAssert_(char const* file, int line, char const* expression);
   *
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(_DisplayAssert(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
@@ -372,9 +372,9 @@
 
 #define STLSOFT_CF_CDECL_SUPPORTED
 
-#if !defined(unix) && \
-    !defined(__unix__)
+#if defined(_WIN32)
 
+# define STLSOFT_CF_THISCALL_SUPPORTED
 # define STLSOFT_CF_FASTCALL_SUPPORTED
 # define STLSOFT_CF_STDCALL_SUPPORTED
 
@@ -417,4 +417,4 @@
  * Compiler warning suppression
  */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

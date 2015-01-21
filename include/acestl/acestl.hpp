@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     9th October 2008
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     7
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  4
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      38
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -180,7 +180,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Debugging
+ * Contract Enforcement
  *
  * The macro acestl_assert provides standard debug-mode assert functionality.
  */

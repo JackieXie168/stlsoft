@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     16th June 2009
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    21
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     391
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     393
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -249,12 +249,13 @@
 # define _STLSOFT_VER_1_9_83    0x010953ff  /*!< Version 1.9.83 (19th May 2009) */
 # define _STLSOFT_VER_1_9_84    0x010954ff  /*!< Version 1.9.84 (22nd May 2009) */
 # define _STLSOFT_VER_1_9_85    0x010955ff  /*!< Version 1.9.85 (16th June 2009) */
+# define _STLSOFT_VER_1_9_86    0x010956ff  /*!< Version 1.9.86 (21st July 2009) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   85
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_85
+#define _STLSOFT_VER_REVISION   86
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_86
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -1093,7 +1094,7 @@
 #endif /* !_STLSOFT_NO_STD_INCLUDES */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Debugging
+ * Contract Enforcement
  *
  * The macro STLSOFT_ASSERT provides standard debug-mode assert functionality.
  */
@@ -2491,14 +2492,14 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
  * defined, or otherwise defaults to \c static
  */
 #if defined(__cplusplus)
-# define STLSOFT_INLINE                 inline
+# define STLSOFT_INLINE                     inline
 #else /* ? __cplusplus */
 # if defined(STLSOFT_CF_C99_INLINE)
-#  define STLSOFT_INLINE                inline
+#  define STLSOFT_INLINE                    inline
 # elif defined(STLSOFT_CUSTOM_C_INLINE)
-#  define STLSOFT_INLINE                STLSOFT_CUSTOM_C_INLINE
+#  define STLSOFT_INLINE                    STLSOFT_CUSTOM_C_INLINE
 # else /* ? C inline */
-#  define STLSOFT_INLINE                static
+#  define STLSOFT_INLINE                    static
 # endif /* C inline */
 #endif /* __cplusplus */
 
@@ -2795,4 +2796,4 @@ inline void *operator new(ss_size_t /* si */, void *pv)
 
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

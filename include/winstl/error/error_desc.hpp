@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       5
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        75
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -183,7 +183,7 @@ public:
     ss_explicit_k basic_error_desc(error_type error = GetLastError(), char_type const* modulePath = NULL);
 
 private:
-    /// This method is defined to remind users that using a different
+    /// This method is declared to remind users that using a different
     /// character encoding to specify the module path is not allowed
     basic_error_desc(error_type error, alt_char_type const* modulePath);
 public:

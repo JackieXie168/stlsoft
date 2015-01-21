@@ -5,11 +5,11 @@
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     22nd September 2008
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -110,4 +110,4 @@ namespace platformstl_project
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

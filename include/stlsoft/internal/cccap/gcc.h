@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     17th January 2009
+ * Updated:     21st July 2009
  *
  * Thanks:      To Sergey Nikulov, for PowerPC (BSD) compatibility fixes
  *
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      18
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   5
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       79
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      19
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,29 +103,31 @@
  * - variadic macros
  */
 
-/* #define STLSOFT_PPF_pragma_message_SUPPORT */
+/*
+#define STLSOFT_PPF_pragma_message_SUPPORT
+*/
 
 #if __GNUC__ > 3 || \
     (   __GNUC__ == 3 && \
         __GNUC_MINOR__ >= 4)
 # define STLSOFT_PPF_pragma_once_SUPPORT
-#endif /* __GNUC__ */
+#endif /* compiler */
 
 #if __GNUC__ > 4 || \
     (   __GNUC__ == 4 && \
         __GNUC_MINOR__ >= 3)
 # define STLSOFT_PPF_COUNTER_SYMBOL_SUPPORT
-#endif /* __GNUC__ */
+#endif /* compiler */
 
 #if __GNUC__ >= 3
 # define STLSOFT_PPF_FUNCTION_SYMBOL_SUPPORT
-#endif /* __GNUC__ */
+#endif /* compiler */
 
 #if __GNUC__ > 3 || \
     (   __GNUC__ == 3 && \
         __GNUC_MINOR__ >= 4)
 # define STLSOFT_PPF_VARIADIC_MACROS_SUPPORT
-#endif /* __GNUC__ */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for built-in types
@@ -204,9 +206,9 @@
 
 #if __GNUC__ >= 4
 # define STLSOFT_CF_C99_INLINE
-#else /* ? __GNUC__ */
+#else /* ? compiler */
 # define STLSOFT_CUSTOM_C_INLINE        __inline__
-#endif /* __GNUC__ */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for C++ language features - 1
@@ -264,7 +266,7 @@
     (   __GNUC__ == 3 && \
         __GNUC_MINOR__ >= 4)
 # define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
-#endif /* 3.4+ */
+#endif /* compiler */
 
 #define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
 
@@ -280,7 +282,7 @@
 
 #if __GNUC__ >= 3
 # define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-#endif /* 2.95+ */
+#endif /* compiler */
 
 /* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
@@ -330,7 +332,7 @@
 
 #if __GNUC__ >= 3
 # define STLSOFT_CF_TEMPLATE_MEMBER_RANGE_FUNCTION_TEMPLATE_SUPPORT
-#endif /* __GNUC__ */
+#endif /* compiler */
 
 #define STLSOFT_CF_TEMPLATE_CTOR_TEMPLATE_SUPPORT
 
@@ -352,7 +354,7 @@
 
 #if __GNUC__ >= 3
 # define STLSOFT_CF_TEMPLATE_CONSTRUCTOR_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_CONSTRUCTOR
-#endif /* __GNUC__ */
+#endif /* compiler */
 
 /* #define STLSOFT_CF_TEMPLATE_COPY_CONSTRUCTOR_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_COPY_CONSTRUCTOR */
 
@@ -370,6 +372,8 @@
 #define STLSOFT_CF_CDECL_SUPPORTED
 
 #if defined(WIN32)
+
+# define STLSOFT_CF_THISCALL_SUPPORTED
 
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 #  define STLSOFT_CDECL                 __cdecl
@@ -505,7 +509,7 @@
 
 #if __GNUC__ >= 3
 # define STLSOFT_CF_std_char_traits_AVAILABLE
-#endif /*  */
+#endif /* compiler */
 
 #define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_NON_TEMPLATE
 
@@ -513,7 +517,7 @@
 
 #if __GNUC__ >= 3
 # define STLSOFT_CF_VENEER_SUPPORT
-#endif /*  */
+#endif /* compiler */
 
 #define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 
@@ -533,15 +537,15 @@
   * requires that you have defined _STLSOFT_CUSTOM_ASSERT() as a macro
   * taking 1 parameter (the condition to assert).
   *
-  * Suppose you have a function _DisplayAssert(), which has the
+  * Suppose you have a function DisplayAssert_(), which has the
   * following signature:
   *
-  *   void _DisplayAssert(char const* file, int line, char const* expression);
+  *   void DisplayAssert_(char const* file, int line, char const* expression);
   *
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(_DisplayAssert(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
@@ -576,4 +580,4 @@
 
 #include <stlsoft/internal/cccap/obsolete.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

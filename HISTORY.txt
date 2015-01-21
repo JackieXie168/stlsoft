@@ -2,9 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  16th June 2009
+; Updated:  24th July 2009
 
 ============================================================================
+
+
+24th July 2009 - 1.9.86 released
+--------------------------------
+
+ * added STLSOFT_CF_THISCALL_SUPPORTED
+ * added thiscall overloads of mem_fun_ref() and mem_fun_ref_void()
+ * Borland compatibility for scoped_handle
+ * fix to unixstl::filesystem_traits::get_full_path_name() (to detect when path contains reserved characters)
 
 
 16th June 2009 - 1.9.85 released

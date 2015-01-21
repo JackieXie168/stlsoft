@@ -5,11 +5,11 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     13th December 2008
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    12
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 3
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     37
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    13
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -121,12 +121,13 @@
 # define _PLATFORMSTL_VER_1_6_2     0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.25) */
 # define _PLATFORMSTL_VER_1_7_1     0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.38) */
 # define _PLATFORMSTL_VER_1_7_2     0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.9.64) */
+# define _PLATFORMSTL_VER_1_8_1     0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.86) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
-#define _PLATFORMSTL_VER_MINOR      7
-#define _PLATFORMSTL_VER_REVISION   2
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_7_2
+#define _PLATFORMSTL_VER_MINOR      8
+#define _PLATFORMSTL_VER_REVISION   1
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_8_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -140,8 +141,8 @@
  * STLSoft version compatibility
  */
 
-#if _STLSOFT_VER < 0x010926ff
-# error This version of the PlatformSTL libraries requires STLSoft version 1.9.38, or later. (www.stlsoft.org)
+#if _STLSOFT_VER < 0x010956ff
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.86, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -256,6 +257,42 @@
 # endif /* WINSTL_ARCH_IS_X64 */
 #else /* ? operating system */
 #endif /* operating system */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Contract Enforcement
+ *
+ * The macro winstl_assert provides standard debug-mode assert functionality.
+ */
+
+/** \brief Defines an assertion construct for runtime verification.
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ *
+ * \remarks By default this is defined to \ref STLSOFT_ASSERT. However, this
+ *  can be overriden if a prior definition is encountered, allowing the
+ *  runtime assertion of WinSTL components to use a different mechanism to
+ *  those in the other \ref group__projects "projects".
+ */
+#ifndef PLATFORMSTL_ASSERT
+# define PLATFORMSTL_ASSERT(expr)             STLSOFT_ASSERT(expr)
+#endif /* !PLATFORMSTL_ASSERT */
+
+/** \brief Defines a runtime assertion, with message
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ */
+#define PLATFORMSTL_MESSAGE_ASSERT(msg, expr) STLSOFT_MESSAGE_ASSERT(msg, expr)
+
+/** \def PLATFORMSTL_STATIC_ASSERT(expr)
+ *
+ * \brief Defines an assertion construct for compile-time verification.
+ *
+ * \param expr A compile-time evaluatable condition that must be non-zero, or compilation will fail.
+ *
+ * \remarks This is defined to \ref STLSOFT_STATIC_ASSERT.
+ */
+#define PLATFORMSTL_STATIC_ASSERT(expr)       STLSOFT_STATIC_ASSERT(expr)
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -447,4 +484,4 @@ namespace platformstl = ::stlsoft::platformstl_project;
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     9th March 2008
+ * Updated:     9th July 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      50
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,6 +76,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
 # include <stlsoft/util/exception_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -167,7 +170,7 @@ public:
         }
         else
         {
-            char const  *s  =   this->strerror();
+            char const* s = this->strerror();
 
             UNIXSTL_ASSERT(NULL != s);
 
@@ -189,15 +192,34 @@ public:
         return get_error_code();
     }
 
+    /// [DEPRECATED] String form of the contained error code
+    ///
+    /// \deprecated This method <em>will</em> be removed in a future version.
     char const* strerror() const
     {
-        return ::strerror(m_errorCode);
+        return strerror_(m_errorCode);
     }
 /// @}
 
 /// \name Implementation
 /// @{
 private:
+    static char const* strerror_(int code)
+    {
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
+    defined(STLSOFT_COMPILER_IS_MSVC)
+# pragma warning(push)
+# pragma warning(disable : 4996 )
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS && STLSOFT_COMPILER_IS_MSVC */
+
+        return ::strerror(code);
+
+#if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
+    defined(STLSOFT_COMPILER_IS_MSVC)
+# pragma warning(pop)
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS && STLSOFT_COMPILER_IS_MSVC */
+    }
+
     static string_type create_reason_(char const* reason, error_code_type err)
     {
         if( err == ENOMEM ||
@@ -208,10 +230,10 @@ private:
         }
         else
         {
-            ::strerror(0);  // need to flush the errno
+            strerror_(0);  // need to flush the errno
 
             string_type r(reason);
-            char const  *s  =   ::strerror(err);
+            char const* s = strerror_(err);
 
             UNIXSTL_ASSERT(NULL != s);
 

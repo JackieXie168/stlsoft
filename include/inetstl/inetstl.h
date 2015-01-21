@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     3rd May 2009
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    5
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     48
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -113,14 +113,15 @@
 # define _INETSTL_VER_1_2_1      0x00010201  /*!< Version 1.2.1 (with STLSoft 1.9.1) */
 # define _INETSTL_VER_1_2_2      0x00010202  /*!< Version 1.2.2 (with STLSoft 1.9.25) */
 # define _INETSTL_VER_1_2_3      0x010203ff  /*!< Version 1.2.3 (with STLSoft 1.9.46) */
-# define _INETSTL_VER_1_3_1      0x00010301  /*!< Version 1.3.1 (with STLSoft 1.9.79) */
-# define _INETSTL_VER_1_3_2      0x00010302  /*!< Version 1.3.2 (with STLSoft 1.9.80) */
+# define _INETSTL_VER_1_3_1      0x010301ff  /*!< Version 1.3.1 (with STLSoft 1.9.79) */
+# define _INETSTL_VER_1_3_2      0x010302ff  /*!< Version 1.3.2 (with STLSoft 1.9.80) */
+# define _INETSTL_VER_1_3_3      0x010303ff  /*!< Version 1.3.3 (with STLSoft 1.9.86) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       3
-#define _INETSTL_VER_REVISION    2
-#define _INETSTL_VER             _INETSTL_VER_1_3_2
+#define _INETSTL_VER_REVISION    3
+#define _INETSTL_VER             _INETSTL_VER_1_3_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -251,7 +252,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Debugging
+ * Contract Enforcement
  *
  * The macro inetstl_assert provides standard debug-mode assert functionality.
  */

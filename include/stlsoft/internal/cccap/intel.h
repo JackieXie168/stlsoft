@@ -4,11 +4,14 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     11th May 2008
+ * Updated:     21st July 2009
+ *
+ * Thanks:      To Derek Baikie for working on the
+ *              Win64-compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,14 +55,39 @@
 # error This file cannot be included more than once in any compilation unit
 #endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL */
 
+#ifndef STLSOFT_COMPILER_IS_INTEL
+# error This file has been erroneously included for a compiler other than Intel C/C++
+#endif /* compiler */
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       17
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       18
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        75
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Structure:
+ *
+ * - auto-generation and compatibility
+ * - preprocessor features
+ * - support for built-in types
+ * - built-in type characteristics
+ * - support for C/C++ language features
+ * - support for C language features
+ * - support for C++ language features - 1
+ * - support for C++ language features - 2
+ * - inline assembler
+ * - calling convention
+ * - integer sizes
+ * - size-specific integer types
+ * - still to-be-determined features
+ * - assertions
+ * - compiler warning suppression
+ * - obsolete features
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -71,8 +99,13 @@
 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler features
+ * Compiler features / compatibility
  */
+
+#if defined(_MSC_VER) && \
+    _MSC_VER < 1200
+# error STLSoft does not support Intel C/C++ in compatibility mode with versions of Visual C++ less than 6.0
+#endif
 
 /* For this to work, -Qvc7.1 must be defined. */
 #if __INTEL_COMPILER == 700 && \
@@ -80,89 +113,366 @@
 # define STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1
 #endif /* __INTEL_COMPILER == 700 && _MSC_VER == 1310 */
 
-
-/* Messaging
+/* /////////////////////////////////////////////////////////////////////////
+ * Preprocessor features
+ *
+ * - #pragma message
+ * - #pragma once
+ * - __COUNTER__
+ * - __FUNCTION__
+ * - variadic macros
  */
 
-#define STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-
-/* Support for #pragma once
- */
+#define STLSOFT_PPF_pragma_message_SUPPORT
 
 #if __INTEL_COMPILER >= 700
-# define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
-#endif /* __INTEL_COMPILER */
-
-/* Support for __FUNCTION__
- */
+# define STLSOFT_PPF_pragma_once_SUPPORT
+#endif /* compiler */
 
 #if __INTEL_COMPILER >= 700
-# define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
-#endif /* __INTEL_COMPILER */
+# define STLSOFT_PPF_COUNTER_SYMBOL_SUPPORT
+#endif /* compiler */
 
-/* Variadic Macros
+#if __INTEL_COMPILER >= 700
+# define STLSOFT_PPF_FUNCTION_SYMBOL_SUPPORT
+#endif /* compiler */
+
+/* TODO: check this
+# define STLSOFT_PPF_VARIADIC_MACROS_SUPPORT
+*/
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Support for built-in types
+ *
+ * - bool
+ * - wchar_t
+ * - long long
+ * - __int8
+ * - __int16
+ * - __int32
+ * - __int64
+ * - long double
  */
 
-/* #define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS */
-
-/* Types:
- */
-
-/* bool */
 #if !defined(_MSC_VER) || \
     defined(__BOOL_DEFINED)
-# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
-#else
- /* Not defined */
-#endif /* __BOOL_DEFINED */
+# define STLSOFT_CF_BUILTIN_bool_SUPPORT
+#endif /* !_MSC_VER || __BOOL_DEFINED */
 
-/* char (sign) */
+#ifdef _NATIVE_WCHAR_T_DEFINED
+# define STLSOFT_CF_BUILTIN_wchar_t_SUPPORT
+#endif /* _NATIVE_WCHAR_T_DEFINED */
+
+/*
+# define STLSOFT_CF_BUILTIN_long_long_SUPPORT
+*/
+
+#define STLSOFT_CF_BUILTIN___int8_SUPPORT
+
+#define STLSOFT_CF_BUILTIN___int16_SUPPORT
+
+#define STLSOFT_CF_BUILTIN___int32_SUPPORT
+
+#if _MSC_VER >= 1020
+# define STLSOFT_CF_BUILTIN___int64_SUPPORT
+#endif /* _MSC_VER >= 1020 */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Built-in type characteristics
+ *
+ * - char is unsigned
+ * - wchar_t
+ *    - synthesised
+ *    - available
+ */
+
 #ifdef _CHAR_UNSIGNED
 # define STLSOFT_CF_CHAR_IS_UNSIGNED
 #endif /* _CHAR_UNSIGNED */
 
-/* wchar_t */
-#if defined(_MSC_VER)
-# if _MSC_VER >= 1300
-  /* Even though VC 7.0 and 7.1 provide a native wchar_t type, that is __wchar_t,
-   * it is not compatible with their libraries (which use the typedef wchar_t),
-   * so we cannot use it.
-   *
-   * wchar_t itself may be used, when _NATIVE_WCHAR_T_DEFINED is defined
-   */
-#  ifdef _NATIVE_WCHAR_T_DEFINED
-#   define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
-#  elif defined(_WCHAR_T_DEFINED)
-#   define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
-#  else
-   /* Not defined */
-#   define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
-#  endif /* _WCHAR_T_DEFINED */
-# else
-  /* Previous versions do not have a native type, but do have the typedef wchar_t
-   * when _WCHAR_T_DEFINED is defined
-   */
-#  if defined(_WCHAR_T_DEFINED)
-#   define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
-#  else
-   /* Not defined */
-#  endif /* _WCHAR_T_DEFINED */
-# endif /* _MSC_VER */
-#endif /* _MSC_VER */
-
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
+#if !defined(STLSOFT_CF_BUILTIN_wchar_t_SUPPORT) && \
+    defined(_WCHAR_T_DEFINED)
+# define STLSOFT_CF_wchar_t_IS_SYNTHESISED
+#endif /* !STLSOFT_CF_BUILTIN_wchar_t_SUPPORT && _WCHAR_T_DEFINED */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Integral types
+ * Support for C/C++ language features
+ *
+ * - return void
+ * - static assertions
+ * - anonymous unions
+ * - -ve % +ve => -ve result
+ */
+
+#if __INTEL_COMPILER >= 700
+# define STLSOFT_CF_return_void_SUPPORT
+#endif /* compiler */
+
+#define STLSOFT_CF_STATIC_ASSERT_SUPPORT
+
+#define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
+
+#define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Support for C language features
+ *
+ * - inline
+ *    - C99 inline keyword
+ *    - compiler-specific keyword
+ */
+
+/* #define STLSOFT_CF_C99_INLINE_SUPPORT */
+
+#define STLSOFT_CUSTOM_C_INLINE     __inline
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Support for C++ language features - 1
+ *
+ * - exceptions
+ *    - exception signatures
+ *    - exception signatures expense
+ *    - operator new throws bad_alloc
+ * - RTTI
+ * - namespaces
+ *    - STLSoft namespace(s)?
+ * - member constants
+ * - explicit keyword
+ * - mutable keyword
+ * - template keyword
+ * - typename keyword
+ *    - in a template parameter
+ *    - type disambiguation inside template bodies
+ *    - disambiguation in default template arguments
+ *    - type disambiguation inside initialiser lists in class template constructors
+ *    - type disambiguation the return types in templates
+ * - argument-dependent lookup
+ * - static array-size determination
+ * - empty-derived optimisation
+ *    -
+ * - empty-base optimisation
+ *    -
+ * - move constructor support
+ * - operators
+ *    - operator bool implemented as pointer-to-member
+ *    - operator ! implemented as pointer-to-member
+ */
+
+#ifdef _CPPUNWIND
+# define STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(_MSC_VER) && \
+     _MSC_VER >= 1100
+#  define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+# endif /* _MSC_VER */
+/* TODO: check this
+# define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
+*/
+# if (  defined(_MSC_VER) && \
+        _MSC_VER >= 1300) || \
+     (  !defined(_MSC_VER) && \
+        __INTEL_COMPILER >= 900)
+#  define STLSOFT_CF_EXCEPTION_OPERATOR_NEW_THROWS_BAD_ALLOC
+# endif /* VC++ 13+ / Intel C/C++ 9+ */
+#endif /* _CPPUNWIND */
+
+#ifdef _CPPRTTI
+# define STLSOFT_CF_RTTI_SUPPORT
+#endif /* _CPPRTTI */
+
+#define STLSOFT_CF_NAMESPACE_SUPPORT
+
+/*
+# define _STLSOFT_NO_NAMESPACES
+*/
+
+#define STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
+
+#define STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
+
+#define STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+
+/*
+# define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
+*/
+
+#define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
+
+#define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
+
+#define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+
+#define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+
+#define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
+
+#if defined(STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1) || \
+    __INTEL_COMPILER >= 800
+# define STLSOFT_CF_ADL_SUPPORT
+#endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1  || __INTEL_COMPILER >= 800 */
+
+#define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+
+#ifdef _MSC_EXTENSIONS
+# define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#endif /* _MSC_EXTENSIONS */
+
+#if !defined(_MSC_VER) || \
+    _MSC_VER >= 1300
+# define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+# define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+#endif /* !_MSC_VER || _MSC_VER >= 1300 */
+
+/*
+# define STLSOFT_CF_REQUIRE_RETURN_ALWAYS
+*/
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Support for C++ language features - 2
+ *
+ * - templates
+ *    - specialisation syntax (template <>)
+ *    - partial specialisation
+ *    - function template
+ *    - class template
+ *    - member class template
+ *    - member function template
+ *    - member range function template
+ *    - constructor template
+ *    - template template
+ *    - class template fundamental argument
+ *    - class template type argument
+ *    - class template member function argument
+ *    - class template default fundamental argument
+ *    - class template default type argument
+ *    - function template parameter list requires template parameter
+ *    - member function template overload is properly discriminated against
+ *      other non-template member function
+ *    - constructor template overload is properly discriminated against
+ *      other non-template constructor
+ *    - copy-constructor template overload is properly discriminated against
+ *      other non-template copy-constructor
+ */
+
+#define STLSOFT_CF_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_FUNCTION_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_CLASS_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_MEMBER_CLASS_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_MEMBER_FUNCTION_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_MEMBER_RANGE_FUNCTION_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_CTOR_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_FUNDAMENTAL_PARAMETER_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_TYPE_PARAMETER_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_MEMBER_FUNCTION_PARAMETER_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_DEFAULT_FUNDAMENTAL_PARAMETER_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_DEFAULT_TYPE_PARAMETER_SUPPORT
+
+#define STLSOFT_CF_TEMPLATE_FUNCTION_TEMPLATE_REQUIRES_TEMPLATE_PARAMETERS_IN_FUNCTION_PARAMETER_LIST
+
+#define STLSOFT_CF_TEMPLATE_MEMBER_FUNCTION_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_MEMBER_FUNCTION
+
+#define STLSOFT_CF_TEMPLATE_CONSTRUCTOR_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_CONSTRUCTOR
+
+/* TODO: check this
+# define STLSOFT_CF_TEMPLATE_COPY_CONSTRUCTOR_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_COPY_CONSTRUCTOR
+*/
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Inline assembler
+ */
+
+#if defined(_M_IX86)
+# define STSLSOFT_INLINE_ASM_SUPPORTED
+# define STSLSOFT_ASM_IN_INLINE_SUPPORTED
+#elif defined(_M_IA64) || \
+      defined(_M_X64)
+ /* Inline assembler not supported for Intel C/C++ 64-bit compilers */
+#endif /* arch */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Calling convention
+ *
+ * On x86 (Windows), the following are supported:
+ *   - cdecl
+ *   - fastcall
+ *   - stdcall
+ *
+ * On IA64/x64 there is only a single calling convention. Calling convention
+ * keywords are ignored.
+ */
+
+#if defined(_M_IX86)
+
+# define STLSOFT_CF_THISCALL_SUPPORTED
+# define STLSOFT_CF_CDECL_SUPPORTED
+# ifndef _MANAGED
+#  define STLSOFT_CF_FASTCALL_SUPPORTED
+# endif /* !_MANAGED */
+# define STLSOFT_CF_STDCALL_SUPPORTED
+
+# define STLSOFT_CDECL                  __cdecl
+# ifndef _MANAGED
+#  define STLSOFT_FASTCALL              __fastcall
+# endif /* !_MANAGED */
+# define STLSOFT_STDCALL                __stdcall
+
+#elif defined(_M_IA64) || \
+      defined(_M_X64)
+
+# define STLSOFT_CF_CDECL_SUPPORTED
+
+# define STLSOFT_CDECL
+
+#elif defined(unix) || \
+      defined(__unix__)
+
+# define STLSOFT_CF_CDECL_SUPPORTED
+
+# define STLSOFT_CDECL
+
+#else /* ? arch */
+# error Only defined for the Intel x86, IA64 and x64 architectures
+#endif /* arch */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Integer sizes
+ */
+
+#if defined(__LP64__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (8)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#elif defined(_WIN32) || \
+      defined(_WIN64)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#else /* ? data model */
+# error Use of Intel C/C++ has not been verified on any operation system other than Win32. Please contact Synesis Software
+#endif /* data model */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Size-specific integer types
  *
  * The purpose of this section is to define the following types:
  *
@@ -182,23 +492,6 @@
  *
  * which indicate that a given type is not used in the size-specific types.
  */
-
-#if defined(__LP64__)
-# define _STLSOFT_SIZEOF_CHAR           (1)
-# define _STLSOFT_SIZEOF_SHORT          (2)
-# define _STLSOFT_SIZEOF_INT            (4)
-# define _STLSOFT_SIZEOF_LONG           (8)
-# define _STLSOFT_SIZEOF_LONG_LONG      (8)
-#elif defined(_WIN32) || \
-      defined(_WIN64)
-# define _STLSOFT_SIZEOF_CHAR           (1)
-# define _STLSOFT_SIZEOF_SHORT          (2)
-# define _STLSOFT_SIZEOF_INT            (4)
-# define _STLSOFT_SIZEOF_LONG           (4)
-# define _STLSOFT_SIZEOF_LONG_LONG      (8)
-#else /* ? data model */
-# error Use of Intel C/C++ has not been verified on any operation system other than Win32. Please contact Synesis Software
-#endif /* data model */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT
@@ -231,78 +524,39 @@
 #define STLSOFT_SI64_T_BASE_TYPE    signed      __int64
 #define STLSOFT_UI64_T_BASE_TYPE    unsigned    __int64
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Still to-be-determined features
+ */
 
-
-/* Member constants */
-#define STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-
-/* Static assertions */
-#define STLSOFT_CF_STATIC_ASSERT_SUPPORT
-
-/* RTTI support */
-#ifdef _CPPRTTI
-# define STLSOFT_CF_RTTI_SUPPORT
-#else /* ? _CPPRTTI */
- /* Not defined */
-#endif /* _CPPRTTI */
-
-/* Exception support */
-#ifdef _CPPUNWIND
-# define STLSOFT_CF_EXCEPTION_SUPPORT
-#else
- /* Not defined */
-#endif /* _CPPUNWIND */
-
-/*  */
-#define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
-
-/* Namespace support */
-/* #define _STLSOFT_NO_NAMESPACES */
-
-#define STLSOFT_CF_NAMESPACE_SUPPORT
-
-#define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
-
-#define STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
-
-/* Template support */
-#define STLSOFT_CF_TEMPLATE_SUPPORT
-
-/* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
-
-#if defined(_MSC_VER) && \
-    _MSC_VER >= 1100
-# ifdef _CPPUNWIND
-#  define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
-# endif /* _CPPUNWIND */
+#if defined(_MSC_VER)
+# if _MSC_VER >= 1300
+  /* Even though VC 7.0 and 7.1 provide a native wchar_t type, that is __wchar_t,
+   * it is not compatible with their libraries (which use the typedef wchar_t),
+   * so we cannot use it.
+   *
+   * wchar_t itself may be used, when _NATIVE_WCHAR_T_DEFINED is defined
+   */
+#  ifdef _NATIVE_WCHAR_T_DEFINED
+#   define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#  elif defined(_WCHAR_T_DEFINED)
+#   define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  else
+   /* Not defined */
+#   define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  endif /* _WCHAR_T_DEFINED */
+# else
+  /* Previous versions do not have a native type, but do have the typedef wchar_t
+   * when _WCHAR_T_DEFINED is defined
+   */
+#  if defined(_WCHAR_T_DEFINED)
+#   define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  else
+   /* Not defined */
+#  endif /* _WCHAR_T_DEFINED */
+# endif /* _MSC_VER */
 #endif /* _MSC_VER */
 
-/* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
-
-
-/* # define STLSOFT_CF_THROW_BAD_ALLOC */
-
-#define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
-
-#define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-
-#define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
-
-#define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-
-#define STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED
-
-#define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-
-#define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED
-
-#define STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
-
-#define STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
-
-#define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
-
-#define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 
 #define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 
@@ -311,37 +565,7 @@
 #define STLSOFT_CF_std_char_traits_AVAILABLE
 
 #define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_NON_TEMPLATE
-
 #define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_TEMPLATE
-
-#define STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
-
-#define STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
-
-#define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
-
-#define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
-
-#define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
-
-#define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
-
-#define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
-
-/* #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT */
-
-#ifdef _MSC_EXTENSIONS
-# define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
-#endif /* _MSC_EXTENSIONS */
-
-#if defined(STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1) || \
-    __INTEL_COMPILER >= 800
-# define STLSOFT_CF_ADL_LOOKUP_SUPPORT
-#endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1  || __INTEL_COMPILER >= 800 */
-
-#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
-
-#define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
 #define STLSOFT_CF_VENEER_SUPPORT
 
@@ -349,18 +573,12 @@
 # define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 #endif /* !_ATL_MIN_CRT */
 
-/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
-
-/* Shims are supported. */
-/* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
-
-#define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
-
-#if !defined(_MSC_VER) || \
-    _MSC_VER >= 1300
-# define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-# define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-#endif /* !_MSC_VER || _MSC_VER >= 1300 */
+/*
+# define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+*/
+/*
+# define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+*/
 
 /* /////////////////////////////////////////////////////////////////////////
  * Quality assurance features
@@ -372,15 +590,15 @@
   * requires that you have defined _STLSOFT_CUSTOM_ASSERT() as a macro
   * taking 1 parameter (the condition to assert).
   *
-  * Suppose you have a function _DisplayAssert(), which has the
+  * Suppose you have a function DisplayAssert_(), which has the
   * following signature:
   *
-  *   void _DisplayAssert(char const* file, int line, char const* expression);
+  *   void DisplayAssert_(char const* file, int line, char const* expression);
   *
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(_DisplayAssert(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
@@ -394,7 +612,7 @@
 # define STLSOFT_ASSERT(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME    _STLSOFT_CUSTOM_ASSERT_INCLUDE
-# else
+# else /* ? _STLSOFT_CUSTOM_ASSERT_INCLUDE */
 #  error You must define _STLSOFT_CUSTOM_ASSERT_INCLUDE along with _STLSOFT_CUSTOM_ASSERT()
 # endif /* !_STLSOFT_CUSTOM_ASSERT_INCLUDE */
 #else /* ? _STLSOFT_CUSTOM_ASSERT */
@@ -417,49 +635,6 @@
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Calling convention
- */
-
-#define STLSOFT_CF_CDECL_SUPPORTED
-
-#if !defined(unix) && \
-    !defined(__unix__)
-
-# define STLSOFT_CF_FASTCALL_SUPPORTED
-# define STLSOFT_CF_STDCALL_SUPPORTED
-
-# ifdef STLSOFT_CF_CDECL_SUPPORTED
-#  define STLSOFT_CDECL             __cdecl
-# endif /* STLSOFT_CF_CDECL_SUPPORTED */
-# ifdef STLSOFT_CF_FASTCALL_SUPPORTED
-#  define STLSOFT_FASTCALL          __fastcall
-# endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
-# ifdef STLSOFT_CF_STDCALL_SUPPORTED
-#  define STLSOFT_STDCALL           __stdcall
-# endif /* STLSOFT_CF_STDCALL_SUPPORTED */
-
-#else /* ? UNIX */
-
-# ifdef STLSOFT_CF_CDECL_SUPPORTED
-#  define STLSOFT_CDECL
-# endif /* STLSOFT_CF_CDECL_SUPPORTED */
-
-#endif /* !unix && !__unix__ */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Inline assembler
- */
-
-#define STSLSOFT_INLINE_ASM_SUPPORTED
-#define STSLSOFT_ASM_IN_INLINE_SUPPORTED
-
-/* /////////////////////////////////////////////////////////////////////////
- * inline support
- */
-
-#define STLSOFT_CUSTOM_C_INLINE     __inline
-
-/* /////////////////////////////////////////////////////////////////////////
  * Compiler warning suppression
  */
 
@@ -479,4 +654,10 @@
 /* Suppresses: "operands are evaluated in unspecified order" */
 #pragma warning(disable : 981)
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * Obsolete features
+ */
+
+#include <stlsoft/internal/cccap/obsolete.h>
+
+/* ///////////////////////////// end of file //////////////////////////// */
