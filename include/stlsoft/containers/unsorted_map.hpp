@@ -4,7 +4,7 @@
  * Purpose:     An associative container that maintains the order of element insertion.
  *
  * Created:     12th February 2006
- * Updated:     25th April 2008
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_MINOR      3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_EDIT       18
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_REVISION   2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,8 +153,10 @@ public:
     typedef P                                                               key_compare;
     /// \brief The value type
     typedef stlsoft_ns_qual_std(pair)<const K, T>                           value_type;
-    /// \brief allocator type
+    /// \brief The allocator type
     typedef A                                                               allocator_type;
+    /// \brief This type
+    typedef unsorted_map<K, T, P, A>                                        class_type;
 private:
     typedef stlsoft_ns_qual_std(pair)<K, T>                                 internal_value_type_;
     typedef stlsoft_ns_qual_std(vector)<internal_value_type_

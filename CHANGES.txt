@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  12th August 2008
+; Updated:  23rd August 2008
 
 ============================================================================
 
@@ -16,6 +16,64 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.48 (23rd August 2008)
+
+Summary:
+========
+
+ * added comstl/util/CY_functions.h
+ * added comstl/util/DECIMAL_functions.h
+ * added comstl/util/VARIANT_functions.h
+ * added comstl::variant conversion constructor for DECIMAL
+ * fixed bug in stlsoft::trim_all()
+ * added winstl::basic_error_desc<>::empty()
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/containers/frequency_map.hpp
+     + addition of bool_type member type
+
+  ~ stlsoft/containers/unsorted_map.hpp
+     + addition of class_type member type
+
+  ~ stlsoft/string/shim_string.hpp
+     ~ increased internal memory buffer of basic_shim_string by 1, so
+	   that users do not need to specify a number inclusive of the
+	   terminating nul character
+
+  ~ stlsoft/string/trim_functions.hpp
+     ~ fixed bug in trim_all() whereby the right iterator could be before the
+	   left
+
+ COMSTL:
+ -------
+
+  ~ comstl/util/variant.hpp
+     + added conversion constructor for DECIMAL
+     + implemented equal()
+
+  + comstl/util/CY_functions.h
+     + CY_compare()
+
+  + comstl/util/DECIMAL_functions.h
+     + DECIMAL_compare()
+
+  + comstl/util/VARIANT_functions.h
+     + VARIANT_equal()
+
+ WinSTL:
+ -------
+
+  ~ winstl/error/error_desc.hpp
+     + added bool_type member type
+     + added empty() method
 
 ============================================================================
 

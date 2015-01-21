@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     11th August 2008
+ * Updated:     23rd August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    16
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     350
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     351
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -211,13 +211,14 @@
 # define _STLSOFT_VER_1_9_43    0x01092bff  /*!< Version 1.9.43 (31st May 2008) */
 # define _STLSOFT_VER_1_9_44    0x01092cff  /*!< Version 1.9.44 (1st Jun 2008) */
 # define _STLSOFT_VER_1_9_45    0x01092dff  /*!< Version 1.9.45 (8th Jun 2008) */
-# define _STLSOFT_VER_1_9_46    0x01092eff  /*!< Version 1.9.45 (11th Aug 2008) */
+# define _STLSOFT_VER_1_9_46    0x01092eff  /*!< Version 1.9.46 (11th Aug 2008) */
+# define _STLSOFT_VER_1_9_48    0x010930ff  /*!< Version 1.9.48 (23rd Aug 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   46
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_46
+#define _STLSOFT_VER_REVISION   48
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_48
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -1400,7 +1401,7 @@ namespace stlsoft
 #  define STLSOFT_WCHAR_T_BASE_TYPE_    wchar_t
 # else /* ? _STLSOFT_NO_STD_INCLUDES */
 #  define STLSOFT_WCHAR_T_BASE_TYPE_    unsigned short
-# endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+# endif /* _STLSOFT_NO_STD_INCLUDES */
 #endif /* !STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 /* 8-bit */

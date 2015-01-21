@@ -4,7 +4,7 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     6th December 2007
+ * Updated:     23rd August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       149
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,9 @@
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
 # include <comstl/util/interface_traits.hpp>
 #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
+#ifndef COMSTL_INCL_COMSTL_UTIL_H_VARIANT_FUNCTIONS
+# include <comstl/util/VARIANT_functions.h>
+#endif /* !COMSTL_INCL_COMSTL_UTIL_H_VARIANT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
 # include <stlsoft/util/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
@@ -240,6 +243,19 @@ public:
      * \exception - Does not throw an exception
      */
     variant(CY cy);
+
+    /** Conversion constructor
+     *
+     * Initialises the instance with the given DECIMAL value
+     *
+     * \post <code>assert(VT_DECIMAL == this->vt)</code>
+     * \post <code>assert(dec == this->decVal)</code>
+     *
+     * \exception - Does not throw an exception
+     */
+    variant(DECIMAL const& dec);
+
+
     variant(LPUNKNOWN punk, bool_type bAddRef);
     variant(LPDISPATCH pdisp, bool_type bAddRef);
     variant(cs_char_a_t const* s, int len = -1);
@@ -345,7 +361,7 @@ inline void variant::handle_error_(char const* message, HRESULT hr)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
     STLSOFT_THROW_X(com_exception(message, hr));
-    
+
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
     STLSOFT_SUPPRESS_UNUSED(message);
@@ -463,6 +479,18 @@ inline variant::variant(CY cy)
 
     this->vt    =   VT_CY;
     this->cyVal =   cy;
+}
+
+inline variant::variant(DECIMAL const& dec)
+{
+    ::VariantInit(this);
+
+    this->vt            =   VT_DECIMAL;
+    this->decVal.scale  =   dec.scale;
+    this->decVal.sign   =   dec.sign;
+    this->decVal.Hi32   =   dec.Hi32;
+    this->decVal.Mid32  =   dec.Mid32;
+    this->decVal.Lo32   =   dec.Lo32;
 }
 
 inline variant::variant(LPUNKNOWN punk, bool_type bAddRef)
@@ -609,17 +637,23 @@ inline void variant::swap(variant::class_type& rhs)
     swap_(*this, rhs);
 }
 
-#if 0
 inline variant::bool_type variant::equal(variant::class_type const& rhs) const
 {
-    ;
+    return equal(static_cast<VARIANT const&>(rhs));
 }
 
 inline variant::bool_type variant::equal(VARIANT const& rhs) const
 {
-    ;
+    HRESULT comparisonSucceeded;
+    int     areEqual = VARIANT_equal(*this, rhs, &comparisonSucceeded);
+
+    if(FAILED(comparisonSucceeded))
+    {
+        throw comstl::com_exception("support for comparison of variant type not currently supported", comparisonSucceeded);
+    }
+
+    return 0 != areEqual;
 }
-#endif /* 0 */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

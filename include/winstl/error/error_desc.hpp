@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     6th November 2007
+ * Updated:     23rd August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        73
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       5
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ namespace winstl_project
  * Classes
  */
 
-/** \brief Utility class that loads the system string representation
+/** Utility class that loads the system string representation
  *   corresponding to a given error code.
  *
  * \ingroup group__library__error
@@ -156,22 +156,24 @@ private:
 #endif /* compiler */
         stlsoft_ns_qual(char_alt_traits)<C>::alt_char_type  alt_char_type;
 public:
-    /// \brief The character type
+    /// The character type
     typedef C                       char_type;
-    /// \brief The traits_type
+    /// The traits_type
     typedef T                       traits_type;
-    /// \brief The current parameterisation of the type
+    /// The current parameterisation of the type
     typedef basic_error_desc<C, T>  class_type;
-    /// \brief The error type
+    /// The error type
     typedef ws_dword_t              error_type;
-    /// \brief The size type
+    /// The size type
     typedef ws_size_t               size_type;
+    /// The boolean type
+    typedef ws_bool_t               bool_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    /// \brief Loads the error string associated with the given code.
+    /// Loads the error string associated with the given code.
     ///
     /// \param error The Win32 error whose string equivalent will be searched
     /// \param modulePath The module in which the string will be searched
@@ -186,7 +188,7 @@ private:
     basic_error_desc(error_type error, alt_char_type const* modulePath);
 public:
 
-    /// \brief Loads the error string associated with the given code.
+    /// Loads the error string associated with the given code.
     ///
     /// \param hr The COM error whose string equivalent will be searched
     /// \param modulePath The module in which the string will be searched
@@ -202,7 +204,7 @@ private:
     basic_error_desc(HRESULT error, alt_char_type const* modulePath);
 public:
 
-    /// \brief Loads the error string associated with the given code from
+    /// Loads the error string associated with the given code from
     ///  the first module in the given container of paths that contains a
     ///  mapping.
     ///
@@ -228,12 +230,12 @@ public:
             m_message = find_message_(error, NULL, &m_length);
         }
     }
-    /// \brief Releases any resources.
+    /// Releases any resources.
     ~basic_error_desc() stlsoft_throw_0();
 
 #if defined(STLSOFT_COMPILER_IS_GCC) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-    /// \brief This move constructor satisfies GCC, which misunderstands
+    /// This move constructor satisfies GCC, which misunderstands
     ///   certain expressions containing non-mutating (const) references
     ///   to instances of the type.
     ///
@@ -245,25 +247,27 @@ public:
 /// \name Attributes
 /// @{
 public:
-    /// \brief The error description
+    /// The error description
     char_type const* get_description() const;
 /// @}
 
 /// \name Accessors
 /// @{
 public:
-    /// \brief The error description
+    /// The error description
     char_type const* c_str() const;
 #if !defined(WINSTL_ERROR_DESC_NO_IMPLICIT_CONVERSION)
-    /// \brief Implicit conversion operator that yields the error description
+    /// Implicit conversion operator that yields the error description
     ///
     /// \deprecated This will be removed in a future version.
     operator char_type const* () const;
 #endif /* !WINSTL_ERROR_DESC_NO_IMPLICIT_CONVERSION) */
-    /// \brief The length of the error description
+    /// The length of the error description
     size_type       length() const stlsoft_throw_0();
-    /// \brief The length of the error description
+    /// The length of the error description
     size_type       size() const stlsoft_throw_0();
+    /// Indicates whether the instance is empty
+    bool_type		empty() const stlsoft_throw_0();
 /// @}
 
 /// \name Implementation
@@ -290,17 +294,17 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Specialisation of the basic_error_desc template for the ANSI character type \c char
+/** Specialisation of the basic_error_desc template for the ANSI character type \c char
  *
  * \ingroup group__library__error
  */
 typedef basic_error_desc<ws_char_a_t>   error_desc_a;
-/** \brief Specialisation of the basic_error_desc template for the Unicode character type \c wchar_t
+/** Specialisation of the basic_error_desc template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__error
  */
 typedef basic_error_desc<ws_char_w_t>   error_desc_w;
-/** \brief Specialisation of the basic_error_desc template for the Win32 character type \c TCHAR
+/** Specialisation of the basic_error_desc template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__error
  */
@@ -460,6 +464,14 @@ inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc
     return length();
 }
 
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        >
+inline ss_typename_type_ret_k basic_error_desc<C, T>::bool_type basic_error_desc<C, T>::empty() const stlsoft_throw_0()
+{
+    return 0 == length();
+}
+
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -468,7 +480,7 @@ inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc
 
 #ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for winstl::basic_error_desc
+/** \ref group__concept__shim__string_access__c_str_ptr_null for winstl::basic_error_desc
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -498,7 +510,7 @@ inline ws_char_w_t const* c_str_ptr_null_w(winstl_ns_qual(basic_error_desc)<ws_c
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr for winstl::basic_error_desc
+/** \ref group__concept__shim__string_access__c_str_ptr for winstl::basic_error_desc
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -522,7 +534,7 @@ inline ws_char_w_t const* c_str_ptr_w(winstl_ns_qual(basic_error_desc)<ws_char_w
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_data for winstl::basic_error_desc
+/** \ref group__concept__shim__string_access__c_str_data for winstl::basic_error_desc
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -546,7 +558,7 @@ inline ws_char_w_t const* c_str_data_w(winstl_ns_qual(basic_error_desc)<ws_char_
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_len for winstl::basic_error_desc
+/** \ref group__concept__shim__string_access__c_str_len for winstl::basic_error_desc
  *
  * \ingroup group__concept__shim__string_access
  */
@@ -587,7 +599,7 @@ inline C const* get_ptr(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 }
 
 
-/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for winstl::basic_error_desc
+/** \ref group__concept__shim__stream_insertion "stream insertion shim" for winstl::basic_error_desc
  *
  * \ingroup group__concept__shim__stream_insertion
  */

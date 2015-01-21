@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for trimming and removing string contents.
  *
  * Created:     25th April 2005
- * Updated:     26th May 2008
+ * Updated:     13th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    7
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        35
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    8
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,6 +126,23 @@ namespace stlsoft
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+struct trim_functions_impl
+{
+    template <ss_typename_param_k I>
+    static bool is_in_range(I from, I to, I it)
+    {
+        for(; from != to; ++from)
+        {
+            if(from == it)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
 
 inline char const* strchr_select(char const* s, char ch)
 {
@@ -364,10 +381,31 @@ inline S& trim_all_impl(S& str, ss_typename_type_k string_traits<S>::char_type c
 
     // Get an iterator to the first element that
     const iterator_t            it_b    =   cstr.begin();
-//  const iterator_t            it_e    =   cstr.end();
-    const iterator_t            it_l    =   find_if(it_b, cstr.end(), not1(bind1st(ptr_fun(pfn), trimChars)));
-    const reverse_iterator_t    rit     =   find_if(cstr.rbegin(), cstr.rend(), not1(bind1st(ptr_fun(pfn), trimChars)));
-    const iterator_t            it_r    =   rit.base();
+    const iterator_t            it_e    =   cstr.end();
+    const iterator_t            it_l    =   find_if(it_b, it_e, not1(bind1st(ptr_fun(pfn), trimChars)));
+
+    STLSOFT_MESSAGE_ASSERT("iterator not in range", (it_e == it_l || trim_functions_impl::is_in_range(it_b, it_e, it_l)));
+
+    iterator_t                  it_r;
+
+    if(it_l == it_e)
+    {
+        it_r = it_e;
+    }
+    else
+    {
+        const reverse_iterator_t    itr_b   =   cstr.rbegin();
+        const reverse_iterator_t    itr_e   =   cstr.rend();
+        const reverse_iterator_t    rit     =   find_if(itr_b, itr_e, not1(bind1st(ptr_fun(pfn), trimChars)));
+
+        STLSOFT_MESSAGE_ASSERT("iterator not in range", (itr_e == rit || trim_functions_impl::is_in_range(itr_b, itr_e, rit)));
+
+                                    it_r    =   rit.base();
+
+        STLSOFT_MESSAGE_ASSERT("iterator not in range", (it_e == it_r || trim_functions_impl::is_in_range(it_b, it_e, it_r)));
+    }
+
+    STLSOFT_MESSAGE_ASSERT("right-hand iterator not in range [left-hand, end)", (it_e == it_r || trim_functions_impl::is_in_range(it_l, it_e, it_r)));
 
     return string_traits_t::assign_inplace(str, it_l, it_r);
 }

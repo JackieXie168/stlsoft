@@ -2,10 +2,20 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  12th August 2008
+; Updated:  23rd August 2008
 
 ============================================================================
 
+
+23rd August 2008 - 1.9.48 released
+----------------------------------
+
+ * added comstl/util/CY_functions.h
+ * added comstl/util/DECIMAL_functions.h
+ * added comstl/util/VARIANT_functions.h
+ * added comstl::variant conversion constructor for DECIMAL
+ * fixed bug in stlsoft::trim_all()
+ * added winstl::basic_error_desc<>::empty()
 
 12th August 2008 - 1.9.47 released
 ----------------------------------
