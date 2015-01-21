@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_uint64.hpp
+ * File:        winstl/shims/conversion/to_uint64/ULARGE_INTEGER.hpp
  *
- * Purpose:     Contains the to_uint64 conversion shim.
+ * Purpose:     Contains the to_uint64 access shim.
  *
- * Created:     4th July 2007
+ * Created:     6th June 2008
  * Updated:     6th June 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,45 +38,72 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/shims/conversion/to_uint64.hpp
+/** \file winstl/shims/conversion/to_uint64/ULARGE_INTEGER.hpp
  *
- * \brief [C++] Primary include file for integer conversion shims
- *   representing built-in and other standard class types
- *   (\ref group__concept__shim__integer_conversion__to_uint64 "Integer Attribute Shims").
+ * \brief [C++] Integer conversion shims for the Windows type ULARGE_INTEGER.
+ *   \ref group__concept__shim__integer_conversion__to_uint64 "to_uint64 Integer Attribute Shim".
  */
 
-#ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64
-#define WINSTL_INCL_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64
+#ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER
+#define WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_MAJOR       1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_MINOR       1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64_EDIT        2
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_MAJOR      1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_MINOR      0
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_REVISION   1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER_EDIT       1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+#ifndef WINSTL_INCL_WINSTL_H_STLSOFT
 # include <stlsoft/stlsoft.h>
-#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#endif /* !WINSTL_INCL_WINSTL_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE
 # include <stlsoft/shims/conversion/to_uint64/degenerate.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA
-# include <winstl/shims/conversion/to_uint64/WIN32_FIND_DATA.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER
-# include <winstl/shims/conversion/to_uint64/ULARGE_INTEGER.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER */
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64
-# include <stlsoft/shims/conversion/to_uint64.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64 */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifndef _WINSTL_NO_NAMESPACE
+namespace stlsoft
+{
+#endif /* _WINSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * to_uint64 functions
+ */
+
+/** \brief Converts a ULARGE_INTEGER instance to an unsigned
+ *    64-bit integer value.
+ * \ingroup group__concept__shim__integer_conversion__to_uint64
+ */
+inline stlsoft_ns_qual(ss_uint64_t) to_uint64(ULARGE_INTEGER const& uli)
+{
+    return uli.QuadPart;
+}
+
+/** \brief Converts a pointer to a ULARGE_INTEGER instance to an unsigned
+ *    64-bit integer value.
+ * \ingroup group__concept__shim__integer_conversion__to_uint64
+ */
+inline stlsoft_ns_qual(ss_uint64_t) to_uint64(ULARGE_INTEGER const* puli)
+{
+    return (NULL == puli) ? 0 : to_uint64(*puli);
+}
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_HPP_TO_UINT64 */
+#ifndef _WINSTL_NO_NAMESPACE
+} // namespace stlsoft
+#endif /* _WINSTL_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_ULARGE_INTEGER */
 
 /* ////////////////////////////////////////////////////////////////////// */

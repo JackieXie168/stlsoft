@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     3rd April 2008
+ * Updated:     8th June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 6
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     68
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 7
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -206,9 +206,9 @@ public:
     /// \note It is '*'
     static char_type const* pattern_all();
     /// Gets the full path name into the given buffer, returning a pointer to the file-part
-    static is_dword_t   get_full_path_name(HINTERNET hconn, char_type const* fileName, is_dword_t cchBuffer, char_type* buffer, char_type **ppFile);
+    static size_type    get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile);
     /// Gets the full path name into the given buffer
-    static is_dword_t   get_full_path_name(HINTERNET hconn, char_type const* fileName, is_dword_t cchBuffer, char_type* buffer);
+    static size_type    get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer);
 /// @}
 
 /// \name Internet connectivity
@@ -438,7 +438,7 @@ public:
         return "*";
     }
 
-    static is_dword_t get_full_path_name(HINTERNET hconn, char_type const* fileName, is_dword_t cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
     {
         INETSTL_ASSERT(0 == cchBuffer || NULL != buffer);
         INETSTL_ASSERT(NULL == buffer || 0 != cchBuffer);
@@ -467,7 +467,7 @@ public:
             fileName = fullPath;
         }
 
-        size_type       len =   str_len(fileName);
+        size_type len = str_len(fileName);
 
         if(NULL != buffer)
         {
@@ -502,7 +502,7 @@ public:
         return len;
     }
 
-    static is_dword_t get_full_path_name(HINTERNET hconn, char_type const* fileName, is_dword_t cchBuffer, char_type* buffer)
+    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer)
     {
         char_type *pFile;
 
@@ -530,7 +530,7 @@ public:
     // FindFile() API
     static HINTERNET find_first_file(HINTERNET hconn, char_type const* spec, find_data_type *findData, is_dword_t flags = 0, is_dword_t context = 0)
     {
-        HINTERNET   hfind   =   ::FtpFindFirstFileA(hconn, spec, stlsoft_ns_qual(any_caster)<find_data_type*, LPWIN32_FIND_DATAA, LPWIN32_FIND_DATAW>(findData), flags, context);
+        HINTERNET hfind = ::FtpFindFirstFileA(hconn, spec, stlsoft_ns_qual(any_caster)<find_data_type*, LPWIN32_FIND_DATAA, LPWIN32_FIND_DATAW>(findData), flags, context);
 
 #if 0
         if(NULL == hfind)
@@ -775,7 +775,7 @@ public:
         return L"*";
     }
 
-    static is_dword_t get_full_path_name(HINTERNET hconn, char_type const* fileName, is_dword_t cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
     {
         INETSTL_ASSERT(0 == cchBuffer || NULL != buffer);
         INETSTL_ASSERT(NULL == buffer || 0 != cchBuffer);
@@ -804,7 +804,7 @@ public:
             fileName = fullPath;
         }
 
-        size_type       len =   str_len(fileName);
+        size_type len = str_len(fileName);
 
         if(NULL != buffer)
         {
@@ -839,7 +839,7 @@ public:
         return len;
     }
 
-    static is_dword_t get_full_path_name(HINTERNET hconn, char_type const* fileName, is_dword_t cchBuffer, char_type* buffer)
+    static size_type get_full_path_name(HINTERNET hconn, char_type const* fileName, size_type cchBuffer, char_type* buffer)
     {
         char_type *pFile;
 
