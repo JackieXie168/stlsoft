@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  21st November 2010
+; Updated:  22nd November 2010
 
 ============================================================================
 
@@ -15,6 +15,28 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.104 (22nd November 2010)
+
+Summary:
+========
+
+ * refactored wide string exception string access shim functions, to avoid so-called "deprecated" (standard) functions when using VC++
+ * expanded internal buffers of shim strings for exception string access shims, from 10 to 100
+
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/shims/access/string/std/exception.hpp:
+    ~ refactored wide-string string access shim functions, to avoid so-called "deprecated" (standard) functions when using VC++
+    ~ expanded internal buffers of shim strings for exception string access shims, from 10 to 100
 
 
 ============================================================================

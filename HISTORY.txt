@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  21st November 2010
+; Updated:  22nd November 2010
 
 ============================================================================
+
+
+22nd November 2010 - 1.9.104 released
+-------------------------------------
+
+ * refactored wide string exception string access shim functions, to avoid so-called "deprecated" (standard) functions when using VC++
+ * expanded internal buffers of shim strings for exception string access shims, from 10 to 100
 
 
 21st November 2010 - 1.9.103 released
