@@ -1,9 +1,9 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/conversion/w2m.hpp
+ * File:        stlsoft/conversion/w2m.hpp
  *
- * Purpose:     Type conversions for Windows.
+ * Purpose:     Character-encoding scheme interconversion components.
  *
- * Created:     2nd September 2008
+ * Created:     3rd September 2008
  * Updated:     3rd September 2008
  *
  * Home:        http://stlsoft.org/
@@ -38,21 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/conversion/w2m.hpp
+/** \file stlsoft/conversion/w2m.hpp
  *
- * \brief [C++ only] Definition of the winstl::wide2multibyte class
+ * \brief [C++ only] Definition of the stlsoft::wide2multibyte class
  *  template
  *   (\ref group__library__conversion "Conversion" Library).
  */
 
-#ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_W2M
-#define WINSTL_INCL_WINSTL_CONVERSION_HPP_W2M
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_W2M
+#define STLSOFT_INCL_STLSOFT_CONVERSION_HPP_W2M
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_MAJOR    1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_MINOR    0
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_REVISION 1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_W2M_EDIT     2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_W2M_MAJOR		1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_W2M_MINOR		0
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_W2M_REVISION	1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_W2M_EDIT		1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,16 +70,25 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
  * Includes
  */
 
-#ifndef WINSTL_INCL_WINSTL_H_WINSTL
-# include <winstl/winstl.h>
-#endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS
-# include <winstl/conversion/char_conversions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS */
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    __GNUC__ < 3
+# error stlsoft/conversion/char_conversions.hpp is not compatible with GNU C++ prior to 3.0
+#endif /* compiler */
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1100
+# error stlsoft/conversion/char_conversions.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
+
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS
+# include <stlsoft/conversion/char_conversions.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* WINSTL_INCL_WINSTL_CONVERSION_HPP_W2M */
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_W2M */
 
 /* ////////////////////////////////////////////////////////////////////// */
