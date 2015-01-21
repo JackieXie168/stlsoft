@@ -4,7 +4,11 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     5th August 2007
+ * Updated:     18th November 2007
+ *
+ * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
+ *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
+ *              pre-processor hack around retrievalQuanta are the result. ;)
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    0
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 12
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     237
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 13
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     238
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -232,8 +236,12 @@ public:
     typedef CP                                                                  cloning_policy_type;
     /// \brief Iterator tag type
     typedef ss_typename_type_k cloning_policy_type::iterator_tag_type           iterator_tag_type;
+#ifdef STLSOFT_COMPILER_IS_BORLAND
+# define retrievalQuanta                                                        Q
+#else /* ? compiler */
     /// \brief Retrieval quanta
     enum                                                                      { retrievalQuanta = Q };
+#endif /* compiler */
     /// \brief Type of the current parameterisation
     typedef enumerator_sequence<I, V, VP, R, CP, Q>                             class_type;
     /// \brief Type of the current parameterisation
@@ -973,6 +981,13 @@ private:
     enumerator_sequence(class_type const&);
     class_type const& operator =(class_type const&);
 };
+
+////////////////////////////////////////////////////////////////////////////
+// Compiler compatibility
+
+#ifdef STLSOFT_COMPILER_IS_BORLAND
+# undef retrievalQuanta
+#endif /* compiler */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

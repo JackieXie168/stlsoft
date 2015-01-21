@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     9th November 2007
+ * Updated:     18th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        104
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,15 +63,23 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
-#  include <stlsoft/conversion/truncation_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST
-#  include <stlsoft/conversion/truncation_test.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+#if defined(_WIN64) || \
+    defined(_M_IA64)
+# define _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+#endif /* _WIN64 || _M_IA64 */
+
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#  ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
+#   include <stlsoft/conversion/truncation_cast.hpp>
+#  endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+#  ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST
+#   include <stlsoft/conversion/truncation_test.hpp>
+#  endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
 #include <string.h>
 #include <wchar.h>
@@ -509,57 +517,77 @@ public:
 private:
     static size_type GetModuleFileNameA(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetModuleFileNameA(hModule, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetModuleFileNameA(hModule, buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetModuleFileNameA(hModule, buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetSystemDirectoryA(char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetSystemDirectoryA(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetSystemDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetSystemDirectoryA(buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetWindowsDirectoryA(char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetWindowsDirectoryA(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetWindowsDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetWindowsDirectoryA(buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetEnvironmentVariableA(char_type const* name, char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetEnvironmentVariableA(name, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetEnvironmentVariableA(name, buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetEnvironmentVariableA(name, buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type ExpandEnvironmentStringsA(char_type const* src, char_type* dest, size_type cch_dest)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::ExpandEnvironmentStringsA(src, dest, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_dest));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_dest));
 
         return ::ExpandEnvironmentStringsA(src, dest, static_cast<DWORD>(cch_dest));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::ExpandEnvironmentStringsA(src, dest, cch_dest);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 };
 
@@ -805,57 +833,77 @@ public:
 private:
     static size_type GetModuleFileNameW(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetModuleFileNameW(hModule, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetModuleFileNameW(hModule, buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetModuleFileNameW(hModule, buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetSystemDirectoryW(char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetSystemDirectoryW(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetSystemDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetSystemDirectoryW(buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetWindowsDirectoryW(char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetWindowsDirectoryW(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetWindowsDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetWindowsDirectoryW(buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetEnvironmentVariableW(char_type const* name, char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetEnvironmentVariableW(name, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetEnvironmentVariableW(name, buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetEnvironmentVariableW(name, buffer, cchBuffer);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type ExpandEnvironmentStringsW(char_type const* src, char_type* dest, size_type cch_dest)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::ExpandEnvironmentStringsW(src, dest, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_dest));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_dest));
 
         return ::ExpandEnvironmentStringsW(src, dest, static_cast<DWORD>(cch_dest));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::ExpandEnvironmentStringsW(src, dest, cch_dest);
+#endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 };
 

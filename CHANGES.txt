@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  16th November 2007
+; Updated:  18th November 2007
 
 ============================================================================
 
@@ -15,6 +15,38 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.8 (18th November 2007)
+
+Summary:
+==========
+
+ * compatibility with Borland C/C++ 5.82 (Turbo C++); now supports VOLE
+
+Changes:
+========
+
+ COMSTL:
+ -------
+
+ ~ comstl/collections/collection_sequence.hpp has a #define hack, to make
+   retrievalQuanta a pre-processor replacement rather than a member constant,
+   which avoids the erroneous compiler error with Borland C/C++ 5.82
+
+ ~ comstl/collections/enumerator_sequence.hpp has a #define hack, to make
+   retrievalQuanta a pre-processor replacement rather than a member constant,
+   which avoids the erroneous compiler error with Borland C/C++ 5.82
+
+ WinSTL:
+ -------
+
+ ~ winstl/filesystem/filesystem_traits.hpp - only uses truncation testing in
+   64-bit compilations
+
+ ~ winstl/system/system_traits.hpp - only uses truncation testing in 64-bit
+   compilations
 
 ============================================================================
 

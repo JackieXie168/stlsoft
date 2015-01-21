@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     9th November 2007
+ * Updated:     18th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        105
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,15 +63,24 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
-#  include <stlsoft/conversion/truncation_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST
-#  include <stlsoft/conversion/truncation_test.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+#if defined(_WIN64) || \
+    defined(_M_IA64)
+# define _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+#endif /* _WIN64 || _M_IA64 */
+
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#  ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
+#   include <stlsoft/conversion/truncation_cast.hpp>
+#  endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+#  ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST
+#   include <stlsoft/conversion/truncation_test.hpp>
+#  endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
@@ -1220,56 +1229,76 @@ public:
 private:
     static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetFullPathNameA(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetFullPathNameA(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetFullPathNameA(fileName, cchBuffer, buffer, ppFile);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetShortPathNameA(char_type const* fileName, char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetShortPathNameA(fileName, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetShortPathNameA(fileName, buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetShortPathNameA(fileName, buffer, cchBuffer);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static HANDLE FindFirstVolumeA(char_type *volume_name, size_type cch_volume_name)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::FindFirstVolumeA(volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
 
         return ::FindFirstVolumeA(volume_name, static_cast<DWORD>(cch_volume_name));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::FindFirstVolumeA(volume_name, cch_volume_name);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
-    static bool_type FindNextVolumeA(HANDLE h, char_type *volume_name, size_type cch_volume_name)
+    static bool_type FindNextVolumeA(HANDLE h, char_type* volume_name, size_type cch_volume_name)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return FALSE != ::FindNextVolumeA(h, volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
 
         return FALSE != ::FindNextVolumeA(h, volume_name, static_cast<DWORD>(cch_volume_name));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return FALSE != ::FindNextVolumeA(h, volume_name, cch_volume_name);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
-    static size_type GetCurrentDirectoryA(size_type cchBuffer, char_type *buffer)
+    static size_type GetCurrentDirectoryA(size_type cchBuffer, char_type* buffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetCurrentDirectoryA(stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer);
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetCurrentDirectoryA(static_cast<DWORD>(cchBuffer), buffer);
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetCurrentDirectoryA(cchBuffer, buffer);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 };
 
@@ -1781,58 +1810,78 @@ public:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 private:
-    static size_type GetFullPathNameW(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type GetFullPathNameW(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetFullPathNameW(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetFullPathNameW(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetFullPathNameW(fileName, cchBuffer, buffer, ppFile);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
     static size_type GetShortPathNameW(char_type const* fileName, char_type* buffer, size_type cchBuffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetShortPathNameW(fileName, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetShortPathNameW(fileName, buffer, static_cast<DWORD>(cchBuffer));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetShortPathNameW(fileName, buffer, cchBuffer);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
-    static HANDLE FindFirstVolumeW(char_type *volume_name, size_type cch_volume_name)
+    static HANDLE FindFirstVolumeW(char_type* volume_name, size_type cch_volume_name)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::FindFirstVolumeW(volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
 
         return ::FindFirstVolumeW(volume_name, static_cast<DWORD>(cch_volume_name));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::FindFirstVolumeW(volume_name, cch_volume_name);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
-    static bool_type FindNextVolumeW(HANDLE h, char_type *volume_name, size_type cch_volume_name)
+    static bool_type FindNextVolumeW(HANDLE h, char_type* volume_name, size_type cch_volume_name)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return FALSE != ::FindNextVolumeW(h, volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
 
         return FALSE != ::FindNextVolumeW(h, volume_name, static_cast<DWORD>(cch_volume_name));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return FALSE != ::FindNextVolumeW(h, volume_name, cch_volume_name);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
-    static size_type GetCurrentDirectoryW(size_type cchBuffer, char_type *buffer)
+    static size_type GetCurrentDirectoryW(size_type cchBuffer, char_type* buffer)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         return ::GetCurrentDirectoryW(stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer);
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
         return ::GetCurrentDirectoryW(static_cast<DWORD>(cchBuffer), buffer);
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+        return ::GetCurrentDirectoryW(cchBuffer, buffer);
+#endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 };
 

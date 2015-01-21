@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  16th November 2007
+; Updated:  18th November 2007
 
 ============================================================================
 
+
+18th November 2007 - 1.9.8 released
+-----------------------------------
+
+ compatibility with Borland C/C++ 5.82 (Turbo C++); now supports VOLE
 
 16th November 2007 - 1.9.7 released
 -----------------------------------
