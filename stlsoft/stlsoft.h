@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     20th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     274
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     275
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file stlsoft/stlsoft.h \brief [C, C++] The root header for the \ref group__project__stlsoft "STLSoft" project, and for all other \ref group__projects "projects". */
@@ -867,7 +867,11 @@
 #elif defined(STLSOFT_CF_ASSERT_SUPPORT)
 # ifdef __STLSOFT_CF_USE_cassert
   /* Using the standard assertion mechanism, located in <cassert> */
-#  include <cassert>
+#  ifdef __cplusplus
+#   include <cassert>
+#  else /* ? __cplusplus */
+#   include <assert.h>
+#  endif /* __cplusplus */
 #  define STLSOFT_ASSERT(ex)                    assert(ex)
 # else /* ? __STLSOFT_CF_USE_cassert */
   /* Using either a custom or proprietary assertion mechanism, so must

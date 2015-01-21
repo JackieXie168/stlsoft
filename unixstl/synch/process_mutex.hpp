@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     10th June 2006
+ * Updated:     23rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      0
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       49
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,10 +117,14 @@ class process_mutex
                                             ,   STLSOFT_CRITICAL_SECTION_IS_TRYABLE
                                             >
 {
+/// \name Member Types
+/// @{
 public:
-    typedef process_mutex class_type;
+    typedef process_mutex		class_type;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
     /// Creates an instance of the mutex
     ///
@@ -151,8 +155,10 @@ public:
             ::pthread_mutex_destroy(&m_mx);
         }
     }
+/// @}
 
-// Operations
+/// \name Operations
+/// @{
 public:
     /// Acquires a lock on the mutex, pending the thread until the lock is aquired
     void lock() stlsoft_throw_0()
@@ -178,8 +184,25 @@ public:
     {
         return m_error;
     }
+/// @}
 
-// Implementation
+/// \name Accessors
+/// @{
+public:
+    /// \brief The underlying kernel object handle
+    pthread_mutex_t	*handle()
+    {
+        return &m_mx;
+    }
+    /// \brief The underlying kernel object handle
+    pthread_mutex_t	*get()
+    {
+        return &m_mx;
+    }
+/// @}
+
+/// \name Implementation
+/// @{
 private:
     static int create_(pthread_mutex_t *mx, int pshared, us_bool_t bRecursive)
     {
@@ -234,19 +257,23 @@ private:
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-
         return res;
     }
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     pthread_mutex_t m_mx;       // The mutex
-    int             m_error;    // The last PTHREADS error
+    int             m_error;    // The last PThreads error
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     process_mutex(class_type const &rhs);
     process_mutex &operator =(class_type const &rhs);
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////

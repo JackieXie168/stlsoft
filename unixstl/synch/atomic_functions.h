@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     18th June 2006
+ * Updated:     23rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      187
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      188
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
-#if defined(UNIXSTL_OS_IS_LINUX)
+#if defined(_WIN32)
+# include <windows.h>
+#elif defined(UNIXSTL_OS_IS_LINUX)
 # if defined(UNIXSTL_ARCH_IS_INTEL)
    /* Nothing needed in current version */
 # else /* ? arch */
@@ -70,7 +72,7 @@
 #elif defined(UNIXSTL_ARCH_IS_POWERPC)
 # include <libkern/OSAtomic.h>
 #else /* ? arch */
-# error Currently only defined for Intel and Power-PC architectures.
+# error Currently only defined for Intel (Linux) and Power-PC architectures.
 #endif /* ? arch */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,7 +101,9 @@ namespace unixstl_project
  * Typedefs
  */
 
-#if defined(UNIXSTL_OS_IS_LINUX)
+#if defined(_WIN32)
+typedef us_sint32_t                 atomic_int_t;
+#elif defined(UNIXSTL_OS_IS_LINUX)
 # if defined(UNIXSTL_ARCH_IS_INTEL)
 typedef us_sint32_t                 atomic_int_t;
 # else /* ? arch */
@@ -115,7 +119,64 @@ typedef us_sint32_t                 atomic_int_t;
  * Functions
  */
 
-#if defined(UNIXSTL_OS_IS_LINUX)
+#if defined(_WIN32)
+
+inline atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
+{
+    return STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
+}
+
+inline atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
+{
+    return STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
+}
+
+inline atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
+{
+    atomic_int_t pre = *pl;
+
+    STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
+
+    return pre;
+}
+
+inline atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
+{
+    atomic_int_t pre = *pl;
+
+    STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
+
+    return pre;
+}
+
+inline void atomic_increment(atomic_int_t volatile *pl)
+{
+    STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
+}
+
+inline void atomic_decrement(atomic_int_t volatile *pl)
+{
+    STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
+}
+
+inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
+{
+	return stlsoft_static_cast(atomic_int_t, STLSOFT_NS_GLOBAL(InterlockedExchange)(stlsoft_c_cast(LPLONG, pv), n));
+}
+
+inline atomic_int_t atomic_read(atomic_int_t volatile *pv)
+{
+	return *pv;
+}
+
+inline atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n);
+
+inline atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
+{
+    return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
+}
+
+#elif defined(UNIXSTL_OS_IS_LINUX)
 # if defined(UNIXSTL_ARCH_IS_INTEL)
 
 /** \brief 

@@ -1,6 +1,6 @@
 ================================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta10
+File:     STLSoft-ReleaseNotes-1.9.1-beta11
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,10 +11,20 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Date:     18th June 2006
+Date:     25th June 2006
 
 ================================================================================
 
+
+================================================================================
+
+Changes for 1.9.1 beta 11 (25th June 2006)
+
+
+Unfortunately, the release of beta 10 that was supposed to support recls
+1.8.1 was missing some features. Doh! (That'll teach me to release in a hurry.)
+
+Hopefully, this now corrects that.
 
 ================================================================================
 

@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     11th June 2006
+ * Updated:     22nd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       33
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,13 +115,13 @@ public:
 public:
     pipe()
     {
-#if defined(WIN32) && \
+#if defined(_WIN32) && \
     (   defined(_MSC_VER) || \
         defined(STLSOFT_COMPILER_IS_DMC))
         if(0 != ::_pipe(&m_handles[0], 10240, _O_TEXT))
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         if(0 != ::pipe(&m_handles[0]))
-#endif /* WIN32 */
+#endif /* _WIN32 */
         {
             exception_policy_type()(errno);
 

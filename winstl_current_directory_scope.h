@@ -3,12 +3,12 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/current_directory_scope.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/filesystem/current_directory_scope.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE
-# include <winstl/current_directory_scope.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE */
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
+# include <winstl/filesystem/current_directory_scope.hpp>
+#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE */
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

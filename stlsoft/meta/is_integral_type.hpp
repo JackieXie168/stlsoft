@@ -4,7 +4,7 @@
  * Purpose:     Tests whether a type is integral.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     20th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MINOR    0
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 2
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     120
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 3
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,15 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned long, 1, y
 #elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed int, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned int, 1, yes_type)
-#endif /* _MSC_VER == 1200 */
+#endif /* _MSC_VER */
+
+#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC)) && \
+    _MSC_VER > 1200
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed long, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned long, 1, yes_type)
+#endif /* _MSC_VER */
+
 #ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_bool_t, 1, yes_type)
 #endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */

@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     10th June 2006
+ * Updated:     22nd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        29
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,7 +110,7 @@ inline C *find_last_path_name_separator_(C const *s)
     typedef filesystem_traits<C>    traits_t;
 
     ss_typename_type_k traits_t::char_type const    *slash  =   traits_t::str_rchr(s, '/');
-#ifdef WIN32
+#ifdef _WIN32
     ss_typename_type_k traits_t::char_type const    *bslash =   traits_t::str_rchr(s, '\\');
 
     if(NULL == slash)
@@ -124,7 +124,7 @@ inline C *find_last_path_name_separator_(C const *s)
             slash = bslash;
         }
     }
-#endif /* WIN32 */
+#endif /* _WIN32 */
 
     return const_cast<C*>(slash);
 }

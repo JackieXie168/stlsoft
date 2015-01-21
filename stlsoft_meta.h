@@ -4,7 +4,7 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     18th June 2006
+ * Updated:     20th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_META_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_META_MINOR       21
-# define STLSOFT_VER_H_STLSOFT_META_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_META_EDIT        121
+# define STLSOFT_VER_H_STLSOFT_META_REVISION    2
+# define STLSOFT_VER_H_STLSOFT_META_EDIT        122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1051,6 +1051,204 @@ struct has_referent_type<void>
 # endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
 #endif /* compiler */
+
+////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+
+namespace unittest
+{
+    namespace
+    {
+        ss_bool_t test_stlsoft_meta_integral_type(unittest_reporter *r)
+        {
+            ss_bool_t               bSuccess    =   true;
+
+            if(stlsoft::is_integral_type<char>::value == 0)
+            {
+                r->report("is_integral_type<char> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<signed char>::value == 0)
+            {
+                r->report("is_integral_type<signed char> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<unsigned char>::value == 0)
+            {
+                r->report("is_integral_type<unsigned char> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<short>::value == 0)
+            {
+                r->report("is_integral_type<short> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<unsigned short>::value == 0)
+            {
+                r->report("is_integral_type<unsigned short> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<int>::value == 0)
+            {
+                r->report("is_integral_type<int> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<unsigned int>::value == 0)
+            {
+                r->report("is_integral_type<unsigned int> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<long>::value == 0)
+            {
+                r->report("is_integral_type<long> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<unsigned long>::value == 0)
+            {
+                r->report("is_integral_type<unsigned long> == 0", __LINE__);
+                bSuccess = false;
+            }
+
+            if(stlsoft::is_integral_type<bool>::value == 0)
+            {
+                r->report("is_integral_type<bool> == 0", __LINE__);
+                bSuccess = false;
+            }
+
+            if(stlsoft::is_integral_type<ss_uint8_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_uint8_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<ss_sint8_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_sint8_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<ss_uint16_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_uint16_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<ss_sint16_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_sint16_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<ss_uint32_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_uint32_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<ss_sint32_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_sint32_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+            if(stlsoft::is_integral_type<ss_uint64_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_uint64_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_integral_type<ss_sint64_t>::value == 0)
+            {
+                r->report("is_integral_type<ss_sint64_t> == 0", __LINE__);
+                bSuccess = false;
+            }
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+            return bSuccess;
+        }
+
+        ss_bool_t test_stlsoft_meta_fundamental_type(unittest_reporter *r)
+        {
+            ss_bool_t               bSuccess    =   true;
+
+            if(stlsoft::is_fundamental_type<char>::value != stlsoft::is_integral_type<char>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<signed char>::value != stlsoft::is_integral_type<signed char>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<unsigned char>::value != stlsoft::is_integral_type<unsigned char>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<short>::value != stlsoft::is_integral_type<short>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<unsigned short>::value != stlsoft::is_integral_type<unsigned short>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<int>::value != stlsoft::is_integral_type<int>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<unsigned int>::value != stlsoft::is_integral_type<unsigned int>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<long>::value != stlsoft::is_integral_type<long>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<unsigned long>::value != stlsoft::is_integral_type<unsigned long>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+            if(stlsoft::is_fundamental_type<bool>::value != stlsoft::is_integral_type<bool>::value)
+            {
+                r->report("is_fundamental_type<X> != is_integral_type<X>", __LINE__);
+                bSuccess = false;
+            }
+
+            return bSuccess;
+        }
+
+        ss_bool_t test_stlsoft_meta(unittest_reporter *r)
+        {
+            using stlsoft::unittest::unittest_initialiser;
+
+            ss_bool_t               bSuccess    =   true;
+
+            unittest_initialiser    init(r, "STLSoft", "meta", __FILE__);
+
+            if(!test_stlsoft_meta_integral_type(r))
+            {
+                bSuccess = false;
+            }
+
+            if(!test_stlsoft_meta_fundamental_type(r))
+            {
+                bSuccess = false;
+            }
+
+            return bSuccess;
+        }
+
+        unittest_registrar    unittest_stlsoft_meta(test_stlsoft_meta);
+    } // anonymous namespace
+
+} /* namespace unittest */
+
+
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/performance/performance_counter.hpp (formerly unixstl/performance/performance_counter.hpp; originally unixstl_performance_counter.h)
+ * File:        unixstl/performance/performance_counter.hpp (originally unixstl_performance_counter.h)
  *
  * Purpose:     performance_counter class.
  *
  * Created:     16th January 2002
- * Updated:     11th June 2006
+ * Updated:     22nd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      4
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       51
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      1
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifdef _WIN32
-# include <winsock2.h>	/* This required to forestall conflicting type definitions of timeval wrt WinSock. */
+# include <winsock2.h>  /* This required to forestall conflicting type definitions of timeval wrt WinSock. */
 #endif /* _WIN32 */
 #include <sys/time.h>
 
@@ -112,31 +112,57 @@ namespace unixstl_project
  */
 class performance_counter
 {
-private:
-    typedef us_sint64_t         epoch_type;
+/// \name Member Types
+/// @{
 public:
-    typedef performance_counter class_type;
+    /// \brief The epoch type
+    ///
+    /// The type of the epoch measurement, a 64-bit signed integer.
+    typedef struct timeval      epoch_type;
     /// \brief The interval type
     ///
     /// The type of the interval measurement, a 64-bit signed integer
     typedef us_sint64_t         interval_type;
+    /// \brief The class type
+    typedef performance_counter class_type;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
+/// @}
 
-// Operations
+/// \name Operations
+/// @{
 public:
     /// \brief Starts measurement
     ///
     /// Begins the measurement period
-    void start();
+    void    start();
     /// \brief Ends measurement
     ///
     /// Ends the measurement period
-    void stop();
+    void    stop();
+    /// \brief Ends the current measurement period and start the next
+    ///
+    /// \remarks This is equivalent to an atomic invocation of stop() and
+    /// start()
+    void    restart();
+/// @}
 
-// Attributes
+/// \name Attributes
+/// @{
 public:
+    /// \brief The current epoch
+    static epoch_type       get_epoch();
+
+    /// \brief The number of whole seconds in the given measurement period
+    static interval_type    get_seconds(epoch_type start, epoch_type end);
+    /// \brief The number of whole milliseconds in the given measurement period
+    static interval_type    get_milliseconds(epoch_type start, epoch_type end);
+    /// \brief The number of whole microseconds in the given measurement period
+    static interval_type    get_microseconds(epoch_type start, epoch_type end);
+
     /// \brief The elapsed count in the measurement period
     ///
     /// This represents the extent, in arbitrary units, of the measurement period
@@ -154,12 +180,35 @@ public:
     /// This represents the extent, in whole microseconds, of the measurement period
     interval_type   get_microseconds() const;
 
-// Members
-private:
-    typedef struct timeval timeval_t;
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  period count for the prior period.
+    interval_type   stop_get_period_count_and_restart();
 
-    timeval_t   m_start;
-    timeval_t   m_end;
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  interval, in seconds, for the prior period.
+    interval_type   stop_get_seconds_and_restart();
+
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  interval, in milliseconds, for the prior period.
+    interval_type   stop_get_milliseconds_and_restart();
+
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  interval, in microseconds, for the prior period.
+    interval_type   stop_get_microseconds_and_restart();
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+    static void measure_(epoch_type &epoch);
+/// @}
+
+/// \name Members
+/// @{
+private:
+    epoch_type  m_start;
+    epoch_type  m_end;
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -176,20 +225,74 @@ private:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline void performance_counter::start()
+inline /* static */ void performance_counter::measure_(performance_counter::epoch_type &epoch)
 {
     struct timezone tz;
 
-    ::gettimeofday(&m_start, &tz);
+    ::gettimeofday(&epoch, &tz);
+}
+
+inline void performance_counter::start()
+{
+    measure_(m_start);
 
     m_end   =   m_start;
 }
 
 inline void performance_counter::stop()
 {
-    struct timezone tz;
+    measure_(m_end);
+}
 
-    ::gettimeofday(&m_end, &tz);
+inline void performance_counter::restart()
+{
+    measure_(m_start);
+    m_end = m_start;
+}
+
+inline /* static */ performance_counter::epoch_type performance_counter::get_epoch()
+{
+    epoch_type      epoch;
+
+    measure_(epoch);
+
+    return epoch;
+}
+
+inline /* static */ performance_counter::interval_type performance_counter::get_seconds(performance_counter::epoch_type start, performance_counter::epoch_type end)
+{
+    UNIXSTL_MESSAGE_ASSERT("end before start: stop() must be called after start()", start.tv_sec <= end.tv_sec);
+
+    long    secs    =   end.tv_sec - start.tv_sec;
+    long    usecs   =   end.tv_usec - start.tv_usec;
+
+    UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
+
+    return secs + usecs / (1000 * 1000);
+}
+
+inline /* static */ performance_counter::interval_type performance_counter::get_milliseconds(performance_counter::epoch_type start, performance_counter::epoch_type end)
+{
+    UNIXSTL_MESSAGE_ASSERT("end before start: stop() must be called after start()", start.tv_sec <= end.tv_sec);
+
+    long    secs    =   end.tv_sec - start.tv_sec;
+    long    usecs   =   end.tv_usec - start.tv_usec;
+
+    UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
+
+    return secs * 1000 + usecs / 1000;
+}
+
+inline /* static */ performance_counter::interval_type performance_counter::get_microseconds(performance_counter::epoch_type start, performance_counter::epoch_type end)
+{
+    UNIXSTL_MESSAGE_ASSERT("end before start: stop() must be called after start()", start.tv_sec <= end.tv_sec);
+
+    long    secs    =   end.tv_sec - start.tv_sec;
+    long    usecs   =   end.tv_usec - start.tv_usec;
+
+    UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
+
+    return secs * (1000 * 1000) + usecs;
 }
 
 inline performance_counter::interval_type performance_counter::get_period_count() const
