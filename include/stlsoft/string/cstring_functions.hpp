@@ -4,7 +4,7 @@
  * Purpose:     String duplication functions.
  *
  * Created:     26th May 2005
- * Updated:     31st March 2010
+ * Updated:     26th September 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MINOR    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     29
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,8 +121,13 @@ inline C* string_dup_impl(C const* str, ss_size_t cch, A& ator)
 {
     C* r = ator.allocate(1 + cch, NULL);
 
-    char_traits<C>::copy(r, str, cch);
-    r[cch] = '\0';
+#ifndef STLSOFT_CF_EXCEPTION_OPERATOR_NEW_THROWS_BAD_ALLOC
+    if(NULL != r)
+#endif /* !STLSOFT_CF_EXCEPTION_OPERATOR_NEW_THROWS_BAD_ALLOC */
+    {
+        char_traits<C>::copy(r, str, cch);
+        r[cch] = '\0';
+    }
 
     return r;
 }

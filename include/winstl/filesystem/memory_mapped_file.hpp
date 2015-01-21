@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     7th June 2010
+ * Updated:     30th August 2010
  *
  * Thanks:      To Pablo Aguilar for requesting multibyte / wide string
  *              ambivalence. To Joe Mariadassou for requesting swap().
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      91
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     8
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_CF_64BIT_INT_SUPPORT
+# error This component no longer supports compilers that do not have native 64-bit integer types
+#endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
 #  include <winstl/error/exceptions.hpp>
@@ -122,17 +125,16 @@ public:
     /// This type
     typedef memory_mapped_file              class_type;
     /// The size type
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    typedef ws_uint64_t                     size_type;
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-    typedef ws_uint32_t                     size_type;
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    ///
+    /// This is an unsigned type that is capable of representing any
+    /// address on the operating system. On 64-bit systems, it will
+    /// be <code>uint64_t</code>; on 32-bit operating systems it will
+    /// be <code>uint32_t</code>.
+    typedef ws_uintptr_t                    size_type;
     /// The error type
     typedef ws_dword_t                      error_type;
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     /// The offset type
     typedef ws_uint64_t                     offset_type;
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     /// The boolean type
     typedef ws_bool_t                       bool_type;
 /// @}
@@ -151,10 +153,8 @@ private:
 
     void open_(
         ws_char_a_t const*  fileName
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     ,   offset_type         offset
-    ,   ws_uint32_t         requestSize
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    ,   size_type           requestSize
     )
     {
         scoped_handle<HANDLE>   hfile(  ::CreateFileA(  fileName
@@ -168,19 +168,13 @@ private:
                             ,   INVALID_HANDLE_VALUE);
 
 
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
         open_helper_(hfile.get(), offset, requestSize);
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-        open_helper_(hfile.get());
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     }
 
     void open_(
         ws_char_w_t const*  fileName
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     ,   offset_type         offset
-    ,   ws_uint32_t         requestSize
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    ,   size_type           requestSize
     )
     {
         scoped_handle<HANDLE>   hfile(  ::CreateFileW(  fileName
@@ -194,19 +188,13 @@ private:
                             ,   INVALID_HANDLE_VALUE);
 
 
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
         open_helper_(hfile.get(), offset, requestSize);
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-        open_helper_(hfile.get());
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     }
 
     void open_helper_(
         HANDLE      hFile
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     ,   offset_type offset
-    ,   ws_uint32_t requestSize
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    ,   size_type   requestSize
     )
     {
         if(INVALID_HANDLE_VALUE == hFile)
@@ -224,85 +212,107 @@ private:
             {
                 on_error_("Failed to determine mapped file size", error);
             }
-#ifndef STLSOFT_CF_64BIT_INT_SUPPORT
-            else if(0 != fileSizeHigh)
-            {
-                on_error_("Cannot map files with sizes larger than 4GB with compilers that do not support 64-bit integers", ERROR_SUCCESS);
-            }
-#endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
-            else if(0 == fileSizeHigh &&
-                    0 == fileSizeLow)
-            {
-                // Windows CreateFileMapping() does not support mapping
-                // zero-length files, so we catch this condition here
-                m_memory    =   NULL;
-                m_cb        =   0;
-            }
             else
             {
-                DWORD   maxSizeHi   =   0;
-                DWORD   maxSizeLo   =   0;
+                ws_uint64_t fileSize    =   (stlsoft_static_cast(ws_uint64_t, fileSizeHigh) << 32) | fileSizeLow;
+                ws_uint64_t mapSize     =   offset + requestSize;
 
-                if(0 == requestSize)
+                if(mapSize < offset) // Overflow?
                 {
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-                    requestSize =   ws_uint32_t((size_type(fileSizeHigh) << 32) | fileSizeLow);
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-                    requestSize =   fileSizeLow;
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-                }                 
+                    on_error_("Requested region exceeds the available address space", ERROR_INVALID_PARAMETER);
+                }
 
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-                if( /* 0 != offset && \
-                     */0 != requestSize)
+                if(offset > fileSize)
                 {
-                    offset_type maxSize     =   offset + requestSize;
-                    offset_type actualSize  =   (offset_type(fileSizeHigh) << 32) + fileSizeLow;
-
-                    if(maxSize > actualSize)
+                    if(0 == requestSize)
                     {
-                        WINSTL_ASSERT(actualSize >= offset);
+                        on_error_("Region out of range", ERROR_INVALID_PARAMETER);
+                    }
+                    else
+                    {
+                        // Do nothing, because MapViewOfFile() will fail for us
+                    }
+                }
+                else if(0 == requestSize)
+                {
+#ifdef WINSTL_OS_IS_WIN64
 
-                        requestSize = static_cast<ws_uint32_t>(actualSize - offset);
-                        maxSize = 0;
+                    // all 64-bit
+
+                    requestSize = fileSize - offset;
+
+#else /* ? WINSTL_OS_IS_WIN64 */
+
+                    // offset is 64-bit; file-size is 64-bit; request size is 32-bit
+
+                    ws_uint64_t requestSize2 = fileSize - offset;
+
+                    if(requestSize2 > stlsoft_static_cast(ws_uint64_t, 0xffffffff))
+                    {
+                        on_error_("Region size too large", ERROR_NOT_ENOUGH_MEMORY);
                     }
 
-                    maxSizeHi = static_cast<DWORD>(maxSize >> 32);
-                    maxSizeLo = static_cast<DWORD>(maxSize);
+                    requestSize =   stlsoft_static_cast(ws_uint32_t, requestSize2);
+#endif /* WINSTL_OS_IS_WIN64 */
+                    mapSize     =   offset + requestSize;
                 }
-#endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
+                else
+                {
+#ifndef WINSTL_MMF_DONT_TRIM_REQUEST_SIZE
+                    // Work out how large the file mapping object has to be
+                    // to cater to all the requested region. Also check if
+                    // have asked for too much, and reduce request if
+                    // necessary.
+                    //
+                    // NOTE: This request trimming is only appropriate
+                    // because we are providing only a read-only view. Even
+                    // so, it is possible that the map will cause the file
+                    // to increase in size. But that's caveat emptor for
+                    // the user of MMFs, and nothing per se to do with this
+                    // component.
+
+                    if(mapSize > fileSize)
+                    {
+                        WINSTL_ASSERT((mapSize - fileSize) <= stlsoft_static_cast(ws_uint64_t, 0xffffffff));
+                        WINSTL_ASSERT(offset <= fileSize);
+
+                        requestSize -= stlsoft_static_cast(size_type, (mapSize - fileSize));
+                        mapSize = 0;
+                    }
+#endif /* !WINSTL_MMF_DONT_TRIM_REQUEST_SIZE */
+                }
 
                 if(0 == requestSize)
                 {
+                    // Windows CreateFileMapping() does not support mapping
+                    // zero-length files, so we catch this condition here
                     m_memory    =   NULL;
                     m_cb        =   0;
                 }
                 else
                 {
-                    scoped_handle<HANDLE>   hmap(
-                                                ::CreateFileMappingA(
-                                                    hFile
-                                                ,   NULL
-                                                ,   PAGE_READONLY
-                                                ,   maxSizeHi
-                                                ,   maxSizeLo
-                                                ,   NULL
-                                                )
-                                            ,   CloseHandle
-                                            ,   NULL
-                                            );
+                    DWORD   mapSizeHi   =   stlsoft_static_cast(DWORD, mapSize >> 32);
+                    DWORD   mapSizeLo   =   stlsoft_static_cast(DWORD, mapSize);
 
-                    if(hmap.empty())
+                    HANDLE hMap = create_map_(
+                                        hFile
+                                    ,   PAGE_READONLY
+                                    ,   mapSizeHi
+                                    ,   mapSizeLo
+                                    );
+
+                    if(NULL == hMap)
                     {
                         on_error_("Failed to open file mapping");
                     }
                     else
                     {
-                        void* memory = ::MapViewOfFile(
-                                            hmap.get()
+                        scoped_handle<HANDLE> scoper2(hMap, ::CloseHandle, NULL);
+
+                        void* memory = create_view_(
+                                            hMap
                                         ,   FILE_MAP_READ
-                                        ,   static_cast<ws_uint32_t>(offset >> 32)
-                                        ,   static_cast<ws_uint32_t>(offset)
+                                        ,   offset
                                         ,   requestSize
                                         );
 
@@ -333,7 +343,7 @@ public:
     ///   created. May be any value returned by the Windows API; known
     ///   values include ERROR_NOT_ENOUGH_MEMORY (when the map size is
     ///   too large to fit into memory) and ERROR_INVALID_PARAMETER (when
-    ///   the allocated size is too large to be valid 
+    ///   the allocated size is too large to be valid
     ss_explicit_k memory_mapped_file(ws_char_a_t const* fileName)
         : m_cb(0)
         , m_memory(NULL)
@@ -356,7 +366,6 @@ public:
         open_(stlsoft_ns_qual(c_str_ptr)(fileName), 0, 0);
     }
 
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     /// Maps a portion of a file into memory
     ///
     /// \param fileName The name of the file to map into memory
@@ -369,7 +378,7 @@ public:
     memory_mapped_file(
         ws_char_a_t const*  fileName
     ,   offset_type         offset
-    ,   ws_uint32_t         requestSize
+    ,   size_type           requestSize
     )
         : m_cb(0)
         , m_memory(NULL)
@@ -388,7 +397,7 @@ public:
     memory_mapped_file(
         ws_char_w_t const*  fileName
     ,   offset_type         offset
-    ,   ws_uint32_t         requestSize
+    ,   size_type           requestSize
     )
         : m_cb(0)
         , m_memory(NULL)
@@ -408,14 +417,13 @@ public:
     memory_mapped_file(
         S const&    fileName
     ,   offset_type offset
-    ,   ws_uint32_t requestSize
+    ,   size_type   requestSize
     )
         : m_cb(0)
         , m_memory(NULL)
     {
         open_(stlsoft_ns_qual(c_str_ptr)(fileName), offset, requestSize);
     }
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
     /// Closes the view on the mapped file
     ~memory_mapped_file() stlsoft_throw_0()
@@ -469,6 +477,43 @@ public:
 /// \name Implementation
 /// @{
 private:
+    HANDLE create_map_(
+        HANDLE  hFile
+    ,   DWORD   protection
+    ,   DWORD   mapSizeHi
+    ,   DWORD   mapSizeLo
+    )
+    {
+        return ::CreateFileMappingA(
+                    hFile
+                ,   NULL
+                ,   protection
+                ,   mapSizeHi
+                ,   mapSizeLo
+                ,   NULL
+                );
+    }
+
+    void* create_view_(
+        HANDLE      hMap
+    ,   DWORD       access
+    ,   offset_type offset
+    ,   size_type   requestSize
+    )
+    {
+        return ::MapViewOfFile(
+                    hMap
+                ,   access
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+                ,   stlsoft_static_cast(DWORD, offset >> 32)
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+                ,   0
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+                ,   stlsoft_static_cast(DWORD, offset)
+                ,   requestSize
+                );
+    }
+
     void on_error_(
         char const* message
     ,   error_type  error = ::GetLastError()

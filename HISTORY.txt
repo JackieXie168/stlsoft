@@ -2,9 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  12th August 2010
+; Updated:  30th September 2010
 
 ============================================================================
+
+
+30th September 2010 - 1.9.101 released
+--------------------------------------
+
+ * stlsoft::transform_iterator can now support transformation to types that do not support default construction
+ * fixed defect in stlsoft::transform_iterator
+ * platformstl::basic_file_lines refactored, and exception-safety enhanced
+ * winstl::memory_mapped_file refactored in preparation for substantial enhancement in 1.10; also no longer supports compilers that do not have native 64-bit integers
 
 
 12th August 2010 - 1.9.100 released

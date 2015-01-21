@@ -4,7 +4,7 @@
  * Purpose:     Performance counter initialising class.
  *
  * Created:     30th July 2002
- * Updated:     29th July 2010
+ * Updated:     13th August 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_EDIT      36
+# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,11 +93,11 @@ class performance_counter_initialiser
 /// @{
 public:
     /// The counter type
-    typedef C                       counter_type;
+    typedef C                                               counter_type;
     /// The class type
-    typedef performance_counter_initialiser<C>        class_type;
-  /// The interval type
-  typedef ss_typename_type_k counter_type::interval_type  interval_type;
+    typedef performance_counter_initialiser<C>              class_type;
+    /// The interval type
+    typedef ss_typename_type_k counter_type::interval_type  interval_type;
 /// @}
 
 /// \name Construction

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        atlstl/window/about_dialog.hpp
  *
- * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
+ * Purpose:     Simple 'about' dialog, that shell-executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     10th August 2009
+ * Updated:     9th September 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR      4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR      0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION   3
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       53
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,9 +128,10 @@ struct IDD_to_type
  * \ingroup group__library__windows_window
  */
 // [[synesis:class:ui-window: atlstl::AboutDialog<T<T>, T<B>>]]
-template<   class   T
-        ,   class   B = CWindow
-        >
+template<
+    class   T
+,   class   B = CWindow
+>
 class AboutDialog
     : public CDialogImplBaseT<B>
 {
@@ -149,7 +150,7 @@ public:
         ATLASSERT(m_hWnd == NULL);
 
         // Borrow thunking logic from ATL's own CSimpleDialog
-        parent_class_type   *pThis  =   this;
+        parent_class_type* pThis = this;
         _Module.AddCreateWndData(&m_thunk.cd, pThis);
 
         int nRet = ::DialogBox(_Module.GetResourceInstance(), MAKEINTRESOURCE(T::IDD), hWndParent, (DLGPROC)StartDialogProc);
@@ -184,27 +185,28 @@ protected:
     {
         bHandled = false;
 
-        HWND    hwndCtrl    =   (HWND)lParam;
+        HWND hwndCtrl = (HWND)lParam;
 
         // 1. Must be a child control
         if(NULL != hwndCtrl)
         {
             //  2. Must be a button
-            LRESULT ctrlCode    =   ::SendMessage(hwndCtrl, WM_GETDLGCODE, 0, 0L);
+            LRESULT ctrlCode = ::SendMessage(hwndCtrl, WM_GETDLGCODE, 0, 0L);
 
             if(DLGC_BUTTON & ctrlCode)
             {
-                typedef ::stlsoft::auto_buffer_old< TCHAR
-                                                ,   ::stlsoft::malloc_allocator<TCHAR>
-                                                ,   512
-                                                >           buffer_t;
+                typedef ::stlsoft::auto_buffer_old<
+                    TCHAR
+                ,   ::stlsoft::malloc_allocator<TCHAR>
+                ,   512
+                >                               buffer_t;
 
                 // 3. Get text
                 //
                 // Note that this uses buffer.size(), so that it does not matter, if the buffer
                 // allocation fails, whether allocator throws exceptions or returns NULL.
                 buffer_t    buffer(1 + ::GetWindowTextLength(hwndCtrl));
-                const int   len =   ::GetWindowText(hwndCtrl, &buffer[0], buffer.size());
+                const int   len = ::GetWindowText(hwndCtrl, &buffer[0], buffer.size());
 
                 buffer[len] = '\0';
 
@@ -248,9 +250,10 @@ protected:
  *
  */
 // [[synesis:class:ui-window: atlstl::AboutDialogId<UINT, T<B>>]]
-template<   UINT    ID
-        ,   class   B = CWindow
-        >
+template<
+    UINT    ID
+,   class   B = CWindow
+>
 class AboutDialogId
     : public AboutDialog<IDD_to_type<ID>, B>
 {
