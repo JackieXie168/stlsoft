@@ -64,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     18
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      101
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -433,17 +433,7 @@
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1300
-# if defined(_M_IX86)
-#  define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
-# elif defined(_M_IA64)
- /* NOTE: The IA64 compiler version 13.10.2197.8 does not support this. This may not hold for other 64-bit compiler versions. */
-#  if _MSC_VER == 1310
-#  else ? _MSC_VER
-#   error 64-bit compilation has been tested only with version 13.10.2197.8. Other 64-bit MSVC compilers might not have the bug with qualifying return types with typename, so we break compilation here until further research/response is received
-#  endif /* _MSC_VER */
-# else /* ? arch */
-#  error Only defined for the Intel x86 and IA64 architectures
-# endif /* arch */
+# define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
@@ -558,7 +548,8 @@
 # endif /* !_MANAGED */
 # define STLSOFT_STDCALL            __stdcall
 
-#elif defined(_M_IA64)
+#elif defined(_M_IA64) || \
+      defined(_M_X64)
 
 # define STLSOFT_CF_CDECL_SUPPORTED
 
@@ -575,12 +566,9 @@
 #if defined(_M_IX86)
 # define STSLSOFT_INLINE_ASM_SUPPORTED
 # define STSLSOFT_ASM_IN_INLINE_SUPPORTED
-#elif defined(_M_IA64)
- /* Although inline asm is possible on 64-bit architectures, we don't yet
-  * know how to do it.
-  *
-  * This discrimination will be sorted properly later.
-  */
+#elif defined(_M_IA64) || \
+      defined(_M_X64)
+ /* VC++ 64-bit compilers do not support inline assembler for. */
 #endif /* arch */
 
 /* /////////////////////////////////////////////////////////////////////////

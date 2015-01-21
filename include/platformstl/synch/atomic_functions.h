@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     8th March 2008
+ * Updated:     30th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    3
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        24
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    4
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
 #  include <unixstl/synch/atomic_functions.h>
 # endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS
 #  include <winstl/synch/atomic_functions.h>
 # endif /* !WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS */
@@ -152,7 +152,7 @@ namespace platformstl_project
 
         namespace platform_stl_ =   ::unixstl;
 
-# elif defined(PLATFORMSTL_OS_IS_WIN32)
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
         namespace platform_stl_ =   ::winstl;
 
@@ -165,7 +165,7 @@ namespace platformstl_project
 
 # if (   defined(PLATFORMSTL_OS_IS_UNIX) && \
          defined(_UNIXSTL_NO_NAMESPACE)) || \
-     (   defined(PLATFORMSTL_OS_IS_WIN32) && \
+     (   defined(PLATFORMSTL_OS_IS_WINDOWS) && \
          defined(_WINSTL_NO_NAMESPACE))
  /* Source atomic functions are defined within a namespace, either unixstl or winstl. */
 
@@ -214,10 +214,11 @@ namespace platformstl_project
 #    define PLATFORMSTL_HAS_ATOMIC_POSTADD
 #   endif /* UNIXSTL_HAS_ATOMIC_POSTADD */
 
-#  elif defined(PLATFORMSTL_OS_IS_WIN32)
+#  elif defined(PLATFORMSTL_OS_IS_WINDOWS)
    /* OS: Win32 */
-#   if defined(_M_IX86) || /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */ \
-       defined(_M_IA64)
+#   if defined(UNIXSTL_ARCH_IS_X86) || \
+       defined(UNIXSTL_ARCH_IS_IA64) || \
+       defined(UNIXSTL_ARCH_IS_X64)
     /* Arch: i386 */
     using atomic_preincrement_up;
     using atomic_predecrement_up;
@@ -315,10 +316,11 @@ namespace platformstl_project
 #    define PLATFORMSTL_HAS_ATOMIC_POSTADD
 #   endif /* UNIXSTL_HAS_ATOMIC_POSTADD */
 
-#  elif defined(PLATFORMSTL_OS_IS_WIN32)
+#  elif defined(PLATFORMSTL_OS_IS_WINDOWS)
    /* OS: Win32 */
-#   if defined(_M_IX86) || /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */ \
-       defined(_M_IA64)
+#   if defined(WINSTL_ARCH_IS_X86) || \
+       defined(WINSTL_ARCH_IS_IA64) || \
+       defined(WINSTL_ARCH_IS_X64)
     /* Arch: i386 */
     using implementation::platform_stl_::atomic_preincrement_up;
     using implementation::platform_stl_::atomic_predecrement_up;

@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     13th April 2008
+ * Updated:     30th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       5
+# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       6
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        104
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -141,12 +141,13 @@
 # define _COMSTL_VER_1_7_2      0x00010702  /*!< Version 1.7.2 (with STLSoft 1.9.8) */
 # define _COMSTL_VER_1_7_3      0x00010703  /*!< Version 1.7.3 (with STLSoft 1.9.25) */
 # define _COMSTL_VER_1_7_4      0x010704ff  /*!< Version 1.7.4 (with STLSoft 1.9.31) */
+# define _COMSTL_VER_1_8_1      0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.37) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
-#define _COMSTL_VER_MINOR       7
-#define _COMSTL_VER_REVISION    4
-#define _COMSTL_VER             _COMSTL_VER_1_7_4
+#define _COMSTL_VER_MINOR       8
+#define _COMSTL_VER_REVISION    1
+#define _COMSTL_VER             _COMSTL_VER_1_8_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -165,9 +166,9 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B41) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
-# error This version of the COMSTL libraries requires STLSoft version 1.9.1 beta 41, or later
+#if !defined(_STLSOFT_VER) || \
+    _STLSOFT_VER < 0x010925ff
+# error This version of the COMSTL libraries requires STLSoft version 1.9.37, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -554,6 +555,13 @@ typedef stlsoft_ns_qual(ss_size_t)          cs_size_t;      /*!< size           
 typedef stlsoft_ns_qual(ss_ptrdiff_t)       cs_ptrdiff_t;   /*!< ptr diff                   */
 typedef stlsoft_ns_qual(ss_streampos_t)     cs_streampos_t; /*!< streampos                  */
 typedef stlsoft_ns_qual(ss_streamoff_t)     cs_streamoff_t; /*!< streamoff                  */
+#ifdef WIN64
+typedef stlsoft_ns_qual(ss_sint64_t)        cs_sptrint_t;
+typedef stlsoft_ns_qual(ss_uint64_t)        cs_uptrint_t;
+#else /* ? WIN64 */
+typedef stlsoft_ns_qual(ss_sint32_t)        cs_sptrint_t;
+typedef stlsoft_ns_qual(ss_uint32_t)        cs_uptrint_t;
+#endif /* WIN64 */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 typedef cs_char_a_t         char_a_t;           /*!< Ansi char type             */

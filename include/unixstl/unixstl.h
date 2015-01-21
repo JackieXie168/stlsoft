@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     24th April 2008
+ * Updated:     30th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    6
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    7
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     84
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -123,12 +123,13 @@
 # define _UNIXSTL_VER_1_6_7     0x010607ff  /*!< Version 1.6.7 (with STLSoft 1.9.31) */
 # define _UNIXSTL_VER_1_6_8     0x010608ff  /*!< Version 1.6.8 (with STLSoft 1.9.32) */
 # define _UNIXSTL_VER_1_7_1     0x010701ff  /*!< Version 1.7.1 (with STLSoft 1.9.33) */
+# define _UNIXSTL_VER_1_7_2     0x010702ff  /*!< Version 1.7.1 (with STLSoft 1.9.37) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      7
-#define _UNIXSTL_VER_REVISION   1   
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_7_1
+#define _UNIXSTL_VER_REVISION   2
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_7_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -143,8 +144,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010921ff
-# error This version of the UNIXSTL libraries requires STLSoft version 1.9.33, or later
+    _STLSOFT_VER < 0x010925ff
+# error This version of the UNIXSTL libraries requires STLSoft version 1.9.37, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -207,12 +208,28 @@
  * The UNIX architecture.
  */
 
+#ifdef UNIXSTL_ARCH_IS_X86
+# undef UNIXSTL_ARCH_IS_X86
+#endif /* UNIXSTL_ARCH_IS_X86 */
+#ifdef UNIXSTL_ARCH_IS_IA64
+# undef UNIXSTL_ARCH_IS_IA64
+#endif /* UNIXSTL_ARCH_IS_IA64 */
+#ifdef UNIXSTL_ARCH_IS_X64
+# undef UNIXSTL_ARCH_IS_X64
+#endif /* UNIXSTL_ARCH_IS_X64 */
+
 #ifdef UNIXSTL_ARCH_IS_INTEL
 # undef UNIXSTL_ARCH_IS_INTEL
 #endif /* UNIXSTL_ARCH_IS_INTEL */
 #ifdef UNIXSTL_ARCH_IS_POWERPC
 # undef UNIXSTL_ARCH_IS_POWERPC
 #endif /* UNIXSTL_ARCH_IS_POWERPC */
+#ifdef UNIXSTL_ARCH_IS_ALPHA
+# undef UNIXSTL_ARCH_IS_ALPHA
+#endif /* UNIXSTL_ARCH_IS_ALPHA */
+#ifdef UNIXSTL_ARCH_IS_HPPA
+# undef UNIXSTL_ARCH_IS_HPPA
+#endif /* UNIXSTL_ARCH_IS_HPPA */
 #ifdef UNIXSTL_ARCH_IS_SPARC
 # undef UNIXSTL_ARCH_IS_SPARC
 #endif /* UNIXSTL_ARCH_IS_SPARC */
@@ -220,18 +237,37 @@
 # undef UNIXSTL_ARCH_IS_UNKNOWN
 #endif /* UNIXSTL_ARCH_IS_UNKNOWN */
 
-#if defined(__i386__) || \
+#if defined(__amd64__) || \
+      defined(__amd64) || \
+      defined(_AMD64_) || \
+      defined(_M_AMD64) || \
+      defined(_M_X64)
+# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_X64
+#elif defined(__ia64__) || \
+      defined(__ia64) || \
+      defined(_IA64_) || \
+      defined(_M_IA64)
+# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_IA64
+#elif defined(__i386__) || \
     defined(__i386) || \
+    defined(_X86_) || \
     defined(_M_IX86)
 # define UNIXSTL_ARCH_IS_INTEL
-#elif defined(__amd64__) || \
-      defined(__amd64) || \
-      defined(_M_IA64)
-/* TODO: Separate out arch-family and archs (incl. x64 and x86) */
-# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_X86
+#elif defined(__alpha__) || \
+      defined(__alpha) || \
+      defined(_M_ALPHA)
+# define UNIXSTL_ARCH_IS_ALPHA
+#elif defined(__hppa__) || \
+      defined(__hppa)
+# define UNIXSTL_ARCH_IS_HPPA
 #elif defined(__ppc__) || \
       defined(__ppc) || \
-      defined(__POWERPC__)
+      defined(__POWERPC__) || \
+      defined(_POWER) || \
+      defined(_M_PPC)
 # define UNIXSTL_ARCH_IS_POWERPC
 #elif defined(__sparc__) || \
       defined(__sparc)
@@ -456,10 +492,10 @@
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_UNIXSTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_UNIXSTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__unixstl "UNIXSTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_UNIXSTL_NO_NAMESPACE</code>

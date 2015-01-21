@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  30th April 2008
+; Updated:  3rd May 2008
 
 ============================================================================
 
@@ -16,6 +16,58 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.37 (3rd May 2008)
+
+Summary:
+========
+
+ * first tranche of changes for Win64 support
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ COMSTL:
+ -------
+
+  + cs_sptrint_t and cs_uptrint_t integer types that are the same size as
+    the pointers of the ambient architecture
+
+ PlatformSTL:
+ ------------
+
+  ~ platformstl/synch/atomic_functions.h now discriminates on
+    PLATFORMSTL_OS_IS_WINDOWS instead of PLATFORMSTL_OS_IS_WINDOWS
+
+  ~ platformstl/synch/atomic_functions.h now discriminates on
+    WINSTL_ARCH_IS_X86, WINSTL_ARCH_IS_IA64 and WINSTL_ARCH_IS_X64 instead
+	of _M_IX86, _M_IA64 and _M_X64
+
+ UNIXSTL:
+ --------
+
+  + added UNIXSTL_ARCH_IS_X86, UNIXSTL_ARCH_IS_IA64 and UNIXSTL_ARCH_IS_X64
+    architecture discrimination symbols
+
+ WinSTL:
+ -------
+
+  + added WINSTL_OS_IS_WIN32 and WINSTL_OS_IS_WIN64 operating system
+    discrimination symbols
+
+  + added WINSTL_ARCH_IS_X86, WINSTL_ARCH_IS_IA64 and WINSTL_ARCH_IS_X64
+    architecture discrimination symbols
+
+  ~ winstl/synch/atomic_functions.h refactored to use new symbols
+
+  ~ winstl/filesystem/filesystem_traits.hpp refactored to use new symbols
+
+  ~ winstl/system/system_traits.hpp refactored to use new symbols
 
 ============================================================================
 
