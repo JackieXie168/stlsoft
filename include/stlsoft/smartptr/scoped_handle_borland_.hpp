@@ -5,7 +5,7 @@
  *              resource types; special implementation for Borland.
  *
  * Created:     1st November 1994
- * Updated:     1st February 2009
+ * Updated:     9th February 2009
  *
  * Thanks to:   Maciej Kaniewski, for requesting Borland compatibility (in
  *              order to use FastFormat and Pantheios)
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MAJOR      6
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MINOR      0
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MINOR      1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__EDIT       666
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__EDIT       668
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,393 +92,788 @@ namespace stlsoft
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-struct scoped_handle_borland_impl_
-{
-	template <ss_typename_param_k H>
-	struct function_type
-	{
-	public:
-		typedef	H		resource_type;
-
-	public:
-		virtual void destroy(resource_type h) = 0;
-		virtual void release() = 0;
-	};
-
-	struct function_type_void
-	{
-	public:
-		virtual void destroy() = 0;
-		virtual void release() = 0;
-	};
-
-
 # define USE_INTERNAL_MEMORY
 
+struct scoped_handle_borland_impl_
+{
+    template <ss_typename_param_k H>
+    struct function_type
+    {
+    public:
+        typedef H       resource_type;
 
-	template<	ss_typename_param_k H
-			,	ss_typename_param_k R
-			>
-	struct cdecl_function_type
-		: function_type<H>
-	{
-	public:
-		typedef	H							resource_type;
-		typedef cdecl_function_type<H, R>	class_type;
-		typedef R (STLSOFT_CDECL*			function_type)(H);
+    public:
+        virtual void destroy(resource_type h) = 0;
+        virtual void release() = 0;
+    };
 
-	private:
-		cdecl_function_type(function_type fn)
-			: m_fn(fn)
-		{}
-		cdecl_function_type(class_type const&);
-		class_type& operator =(class_type const&);
-	private:
-		void* operator new(size_t cb, void* p, size_t n)
-		{
-			STLSOFT_ASSERT(cb <= n);
-
-#ifdef USE_INTERNAL_MEMORY
-			return p;
-#else /* ? USE_INTERNAL_MEMORY */
-			return ::operator new(cb);
-#endif /* USE_INTERNAL_MEMORY */
-		}
-		void operator delete(void* pv)
-		{
-#ifndef USE_INTERNAL_MEMORY
-			::operator delete(pv);
-#endif /* USE_INTERNAL_MEMORY */
-		}
-#ifndef __BORLANDC__
-		void operator delete(void* pv, void* p, size_t n)
-		{
-			operator delete(pv);
-		}
-#endif /* compiler */
-
-	public:
-		static class_type* create(void* p, size_t n, function_type fn)
-		{
-			return new(p, n) class_type(fn);
-		}
-
-	public:
-		virtual void destroy(resource_type h)
-		{
-			m_fn(h);
-		}
-		virtual void release()
-		{
-			delete this;
-		}
+    struct void_function_type
+    {
+    public:
+        virtual void destroy() = 0;
+        virtual void release() = 0;
+    };
 
 
-	private:
-		function_type	m_fn;
-	};
+    /* Template for function of the form 
+     *
+     *  R (cdecl*)(H)
+     */
+    template<   ss_typename_param_k H
+            ,   ss_typename_param_k R
+            >
+    struct cdecl_function_type
+        : function_type<H>
+    {
+    public:
+        typedef H                           resource_type;
+        typedef cdecl_function_type<H, R>   class_type;
+        typedef R (STLSOFT_CDECL*           function_type)(H);
 
-	template<	ss_typename_param_k H
-			,	ss_typename_param_k R
-			>
-	struct fastcall_function_type
-		: function_type<H>
-	{
-	public:
-		typedef	H								resource_type;
-		typedef fastcall_function_type<H, R>	class_type;
-		typedef R (STLSOFT_FASTCALL*			function_type)(H);
-
-	private:
-		fastcall_function_type(function_type fn)
-			: m_fn(fn)
-		{}
-		fastcall_function_type(class_type const&);
-		class_type& operator =(class_type const&);
-	private:
-		void* operator new(size_t cb, void* p, size_t n)
-		{
-			STLSOFT_ASSERT(cb <= n);
+    private:
+        cdecl_function_type(function_type fn)
+            : m_fn(fn)
+        {}
+        cdecl_function_type(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
-			return p;
+            return p;
 #else /* ? USE_INTERNAL_MEMORY */
-			return ::operator new(cb);
+            return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
-		}
-		void operator delete(void* pv)
-		{
+        }
+        void operator delete(void* pv)
+        {
 #ifndef USE_INTERNAL_MEMORY
-			::operator delete(pv);
+            ::operator delete(pv);
 #endif /* USE_INTERNAL_MEMORY */
-		}
+        }
 #ifndef __BORLANDC__
-		void operator delete(void* pv, void* p, size_t n)
-		{
-			operator delete(pv);
-		}
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
 #endif /* compiler */
 
-	public:
-		static class_type* create(void* p, size_t n, function_type fn)
-		{
-			return new(p, n) class_type(fn);
-		}
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
 
-	public:
-		virtual void destroy(resource_type h)
-		{
-			m_fn(h);
-		}
-		virtual void release()
-		{
-			delete this;
-		}
+    public:
+        virtual void destroy(resource_type h)
+        {
+            m_fn(h);
+        }
+        virtual void release()
+        {
+            delete this;
+        }
 
 
-	private:
-		function_type	m_fn;
-	};
+    private:
+        function_type   m_fn;
+    };
 
-	template<	ss_typename_param_k H
-			,	ss_typename_param_k R
-			>
-	struct stdcall_function_type
-		: function_type<H>
-	{
-	public:
-		typedef	H							resource_type;
-		typedef stdcall_function_type<H, R>	class_type;
-		typedef R (STLSOFT_STDCALL*			function_type)(H);
+    /* Template for function of the form 
+     *
+     *  R (fastcall*)(H)
+     */
+    template<   ss_typename_param_k H
+            ,   ss_typename_param_k R
+            >
+    struct fastcall_function_type
+        : function_type<H>
+    {
+    public:
+        typedef H                               resource_type;
+        typedef fastcall_function_type<H, R>    class_type;
+        typedef R (STLSOFT_FASTCALL*            function_type)(H);
 
-	private:
-		stdcall_function_type(function_type fn)
-			: m_fn(fn)
-		{}
-		stdcall_function_type(class_type const&);
-		class_type& operator =(class_type const&);
-	private:
-		void* operator new(size_t cb, void* p, size_t n)
-		{
-			STLSOFT_ASSERT(cb <= n);
+    private:
+        fastcall_function_type(function_type fn)
+            : m_fn(fn)
+        {}
+        fastcall_function_type(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
-			return p;
+            return p;
 #else /* ? USE_INTERNAL_MEMORY */
-			return ::operator new(cb);
+            return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
-		}
-		void operator delete(void* pv)
-		{
+        }
+        void operator delete(void* pv)
+        {
 #ifndef USE_INTERNAL_MEMORY
-			::operator delete(pv);
+            ::operator delete(pv);
 #endif /* USE_INTERNAL_MEMORY */
-		}
+        }
 #ifndef __BORLANDC__
-		void operator delete(void* pv, void* p, size_t n)
-		{
-			operator delete(pv);
-		}
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
 #endif /* compiler */
 
-	public:
-		static class_type* create(void* p, size_t n, function_type fn)
-		{
-			return new(p, n) class_type(fn);
-		}
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
 
-	public:
-		virtual void destroy(resource_type h)
-		{
-			m_fn(h);
-		}
-		virtual void release()
-		{
-			delete this;
-		}
+    public:
+        virtual void destroy(resource_type h)
+        {
+            m_fn(h);
+        }
+        virtual void release()
+        {
+            delete this;
+        }
 
 
-	private:
-		function_type	m_fn;
-	};
+    private:
+        function_type   m_fn;
+    };
 
-	template <ss_typename_param_k H>
-	struct cdecl_function_type_v
-		: function_type<H>
-	{
-	public:
-		typedef	H							resource_type;
-		typedef cdecl_function_type_v<H>	class_type;
-		typedef void (STLSOFT_CDECL*		function_type)(H);
+    /* Template for function of the form 
+     *
+     *  R (stdcall*)(H)
+     */
+    template<   ss_typename_param_k H
+            ,   ss_typename_param_k R
+            >
+    struct stdcall_function_type
+        : function_type<H>
+    {
+    public:
+        typedef H                           resource_type;
+        typedef stdcall_function_type<H, R> class_type;
+        typedef R (STLSOFT_STDCALL*         function_type)(H);
 
-	public:
-		cdecl_function_type_v(function_type fn)
-			: m_fn(fn)
-		{}
-		cdecl_function_type_v(class_type const&);
-		class_type& operator =(class_type const&);
-	private:
-		void* operator new(size_t cb, void* p, size_t n)
-		{
-			STLSOFT_ASSERT(cb <= n);
+    private:
+        stdcall_function_type(function_type fn)
+            : m_fn(fn)
+        {}
+        stdcall_function_type(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
-			return p;
+            return p;
 #else /* ? USE_INTERNAL_MEMORY */
-			return ::operator new(cb);
+            return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
-		}
-		void operator delete(void* pv)
-		{
+        }
+        void operator delete(void* pv)
+        {
 #ifndef USE_INTERNAL_MEMORY
-			::operator delete(pv);
+            ::operator delete(pv);
 #endif /* USE_INTERNAL_MEMORY */
-		}
+        }
 #ifndef __BORLANDC__
-		void operator delete(void* pv, void* p, size_t n)
-		{
-			operator delete(pv);
-		}
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
 #endif /* compiler */
 
-	public:
-		static class_type* create(void* p, size_t n, function_type fn)
-		{
-			return new(p, n) class_type(fn);
-		}
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
 
-	public:
-		virtual void destroy(resource_type h)
-		{
-			m_fn(h);
-		}
-		virtual void release()
-		{
-			delete this;
-		}
+    public:
+        virtual void destroy(resource_type h)
+        {
+            m_fn(h);
+        }
+        virtual void release()
+        {
+            delete this;
+        }
 
-	private:
-		function_type m_fn;
-	};
 
-	template <ss_typename_param_k H>
-	struct fastcall_function_type_v
-		: function_type<H>
-	{
-	public:
-		typedef	H							resource_type;
-		typedef fastcall_function_type_v<H>	class_type;
-		typedef void (STLSOFT_FASTCALL*		function_type)(H);
+    private:
+        function_type   m_fn;
+    };
 
-	public:
-		fastcall_function_type_v(function_type fn)
-			: m_fn(fn)
-		{}
-		fastcall_function_type_v(class_type const&);
-		class_type& operator =(class_type const&);
-	private:
-		void* operator new(size_t cb, void* p, size_t n)
-		{
-			STLSOFT_ASSERT(cb <= n);
+    /* Template for function of the form 
+     *
+     *  void (cdecl*)(H)
+     */
+    template <ss_typename_param_k H>
+    struct cdecl_function_type_v
+        : function_type<H>
+    {
+    public:
+        typedef H                           resource_type;
+        typedef cdecl_function_type_v<H>    class_type;
+        typedef void (STLSOFT_CDECL*        function_type)(H);
+
+    public:
+        cdecl_function_type_v(function_type fn)
+            : m_fn(fn)
+        {}
+        cdecl_function_type_v(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
-			return p;
+            return p;
 #else /* ? USE_INTERNAL_MEMORY */
-			return ::operator new(cb);
+            return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
-		}
-		void operator delete(void* pv)
-		{
+        }
+        void operator delete(void* pv)
+        {
 #ifndef USE_INTERNAL_MEMORY
-			::operator delete(pv);
+            ::operator delete(pv);
 #endif /* USE_INTERNAL_MEMORY */
-		}
+        }
 #ifndef __BORLANDC__
-		void operator delete(void* pv, void* p, size_t n)
-		{
-			operator delete(pv);
-		}
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
 #endif /* compiler */
 
-	public:
-		static class_type* create(void* p, size_t n, function_type fn)
-		{
-			return new(p, n) class_type(fn);
-		}
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
 
-	public:
-		virtual void destroy(resource_type h)
-		{
-			m_fn(h);
-		}
-		virtual void release()
-		{
-			delete this;
-		}
+    public:
+        virtual void destroy(resource_type h)
+        {
+            m_fn(h);
+        }
+        virtual void release()
+        {
+            delete this;
+        }
 
-	private:
-		function_type m_fn;
-	};
+    private:
+        function_type m_fn;
+    };
 
-	template <ss_typename_param_k H>
-	struct stdcall_function_type_v
-		: function_type<H>
-	{
-	public:
-		typedef	H							resource_type;
-		typedef stdcall_function_type_v<H>	class_type;
-		typedef void (STLSOFT_STDCALL*		function_type)(H);
+    /* Template for function of the form 
+     *
+     *  void (fastcall*)(H)
+     */
+    template <ss_typename_param_k H>
+    struct fastcall_function_type_v
+        : function_type<H>
+    {
+    public:
+        typedef H                           resource_type;
+        typedef fastcall_function_type_v<H> class_type;
+        typedef void (STLSOFT_FASTCALL*     function_type)(H);
 
-	public:
-		stdcall_function_type_v(function_type fn)
-			: m_fn(fn)
-		{}
-		stdcall_function_type_v(class_type const&);
-		class_type& operator =(class_type const&);
-	private:
-		void* operator new(size_t cb, void* p, size_t n)
-		{
-			STLSOFT_ASSERT(cb <= n);
+    public:
+        fastcall_function_type_v(function_type fn)
+            : m_fn(fn)
+        {}
+        fastcall_function_type_v(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
-			return p;
+            return p;
 #else /* ? USE_INTERNAL_MEMORY */
-			return ::operator new(cb);
+            return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
-		}
-		void operator delete(void* pv)
-		{
+        }
+        void operator delete(void* pv)
+        {
 #ifndef USE_INTERNAL_MEMORY
-			::operator delete(pv);
+            ::operator delete(pv);
 #endif /* USE_INTERNAL_MEMORY */
-		}
+        }
 #ifndef __BORLANDC__
-		void operator delete(void* pv, void* p, size_t n)
-		{
-			operator delete(pv);
-		}
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
 #endif /* compiler */
 
-	public:
-		static class_type* create(void* p, size_t n, function_type fn)
-		{
-			return new(p, n) class_type(fn);
-		}
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
 
-	public:
-		virtual void destroy(resource_type h)
-		{
-			m_fn(h);
-		}
-		virtual void release()
-		{
-			delete this;
-		}
+    public:
+        virtual void destroy(resource_type h)
+        {
+            m_fn(h);
+        }
+        virtual void release()
+        {
+            delete this;
+        }
 
-	private:
-		function_type m_fn;
-	};
+    private:
+        function_type m_fn;
+    };
 
+    /* Template for function of the form 
+     *
+     *  void (stdcall*)(H)
+     */
+    template <ss_typename_param_k H>
+    struct stdcall_function_type_v
+        : function_type<H>
+    {
+    public:
+        typedef H                           resource_type;
+        typedef stdcall_function_type_v<H>  class_type;
+        typedef void (STLSOFT_STDCALL*      function_type)(H);
+
+    public:
+        stdcall_function_type_v(function_type fn)
+            : m_fn(fn)
+        {}
+        stdcall_function_type_v(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
+
+#ifdef USE_INTERNAL_MEMORY
+            return p;
+#else /* ? USE_INTERNAL_MEMORY */
+            return ::operator new(cb);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+        void operator delete(void* pv)
+        {
+#ifndef USE_INTERNAL_MEMORY
+            ::operator delete(pv);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+#ifndef __BORLANDC__
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
+#endif /* compiler */
+
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
+
+    public:
+        virtual void destroy(resource_type h)
+        {
+            m_fn(h);
+        }
+        virtual void release()
+        {
+            delete this;
+        }
+
+    private:
+        function_type m_fn;
+    };
+
+
+    /* Template for function of the form 
+     *
+     *  R (cdecl*)(void)
+     */
+    template <ss_typename_param_k R>
+    struct cdecl_void_function_type
+        : void_function_type
+    {
+    public:
+        typedef cdecl_void_function_type<R> class_type;
+        typedef R (STLSOFT_CDECL*           function_type)();
+
+    private:
+        cdecl_void_function_type(function_type fn)
+            : m_fn(fn)
+        {}
+        cdecl_void_function_type(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
+
+#ifdef USE_INTERNAL_MEMORY
+            return p;
+#else /* ? USE_INTERNAL_MEMORY */
+            return ::operator new(cb);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+        void operator delete(void* pv)
+        {
+#ifndef USE_INTERNAL_MEMORY
+            ::operator delete(pv);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+#ifndef __BORLANDC__
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
+#endif /* compiler */
+
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
+
+    public:
+        virtual void destroy()
+        {
+            m_fn();
+        }
+        virtual void release()
+        {
+            delete this;
+        }
+
+
+    private:
+        function_type m_fn;
+    };
+
+    /* Template for function of the form 
+     *
+     *  R (fastcall*)(void)
+     */
+    template <ss_typename_param_k R>
+    struct fastcall_void_function_type
+        : void_function_type
+    {
+    public:
+        typedef fastcall_void_function_type<R>  class_type;
+        typedef R (STLSOFT_FASTCALL*            function_type)();
+
+    private:
+        fastcall_void_function_type(function_type fn)
+            : m_fn(fn)
+        {}
+        fastcall_void_function_type(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
+
+#ifdef USE_INTERNAL_MEMORY
+            return p;
+#else /* ? USE_INTERNAL_MEMORY */
+            return ::operator new(cb);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+        void operator delete(void* pv)
+        {
+#ifndef USE_INTERNAL_MEMORY
+            ::operator delete(pv);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+#ifndef __BORLANDC__
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
+#endif /* compiler */
+
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
+
+    public:
+        virtual void destroy()
+        {
+            m_fn();
+        }
+        virtual void release()
+        {
+            delete this;
+        }
+
+
+    private:
+        function_type m_fn;
+    };
+
+    /* Template for function of the form 
+     *
+     *  R (stdcall*)(void)
+     */
+    template <ss_typename_param_k R>
+    struct stdcall_void_function_type
+        : void_function_type
+    {
+    public:
+        typedef stdcall_void_function_type<R>   class_type;
+        typedef R (STLSOFT_STDCALL*             function_type)();
+
+    private:
+        stdcall_void_function_type(function_type fn)
+            : m_fn(fn)
+        {}
+        stdcall_void_function_type(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
+
+#ifdef USE_INTERNAL_MEMORY
+            return p;
+#else /* ? USE_INTERNAL_MEMORY */
+            return ::operator new(cb);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+        void operator delete(void* pv)
+        {
+#ifndef USE_INTERNAL_MEMORY
+            ::operator delete(pv);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+#ifndef __BORLANDC__
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
+#endif /* compiler */
+
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
+
+    public:
+        virtual void destroy()
+        {
+            m_fn();
+        }
+        virtual void release()
+        {
+            delete this;
+        }
+
+
+    private:
+        function_type m_fn;
+    };
+
+    /* Template for function of the form 
+     *
+     *  void (cdecl*)(void)
+     */
+    struct cdecl_void_function_type_v
+        : void_function_type
+    {
+    public:
+        typedef cdecl_void_function_type_v  class_type;
+        typedef void (STLSOFT_CDECL*        function_type)();
+
+    public:
+        cdecl_void_function_type_v(function_type fn)
+            : m_fn(fn)
+        {}
+        cdecl_void_function_type_v(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
+
+#ifdef USE_INTERNAL_MEMORY
+            return p;
+#else /* ? USE_INTERNAL_MEMORY */
+            return ::operator new(cb);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+        void operator delete(void* pv)
+        {
+#ifndef USE_INTERNAL_MEMORY
+            ::operator delete(pv);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+#ifndef __BORLANDC__
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
+#endif /* compiler */
+
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
+
+    public:
+        virtual void destroy()
+        {
+            m_fn();
+        }
+        virtual void release()
+        {
+            delete this;
+        }
+
+    private:
+        function_type m_fn;
+    };
+
+    /* Template for function of the form 
+     *
+     *  void (fastcall*)(void)
+     */
+    struct fastcall_void_function_type_v
+        : void_function_type
+    {
+    public:
+        typedef fastcall_void_function_type_v   class_type;
+        typedef void (STLSOFT_FASTCALL*         function_type)();
+
+    public:
+        fastcall_void_function_type_v(function_type fn)
+            : m_fn(fn)
+        {}
+        fastcall_void_function_type_v(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
+
+#ifdef USE_INTERNAL_MEMORY
+            return p;
+#else /* ? USE_INTERNAL_MEMORY */
+            return ::operator new(cb);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+        void operator delete(void* pv)
+        {
+#ifndef USE_INTERNAL_MEMORY
+            ::operator delete(pv);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+#ifndef __BORLANDC__
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
+#endif /* compiler */
+
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
+
+    public:
+        virtual void destroy()
+        {
+            m_fn();
+        }
+        virtual void release()
+        {
+            delete this;
+        }
+
+    private:
+        function_type m_fn;
+    };
+
+    /* Template for function of the form 
+     *
+     *  void (stdcall*)(void)
+     */
+    struct stdcall_void_function_type_v
+        : void_function_type
+    {
+    public:
+        typedef stdcall_void_function_type_v    class_type;
+        typedef void (STLSOFT_STDCALL*          function_type)();
+
+    public:
+        stdcall_void_function_type_v(function_type fn)
+            : m_fn(fn)
+        {}
+        stdcall_void_function_type_v(class_type const&);
+        class_type& operator =(class_type const&);
+    private:
+        void* operator new(size_t cb, void* p, size_t n)
+        {
+            STLSOFT_ASSERT(cb <= n);
+
+#ifdef USE_INTERNAL_MEMORY
+            return p;
+#else /* ? USE_INTERNAL_MEMORY */
+            return ::operator new(cb);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+        void operator delete(void* pv)
+        {
+#ifndef USE_INTERNAL_MEMORY
+            ::operator delete(pv);
+#endif /* USE_INTERNAL_MEMORY */
+        }
+#ifndef __BORLANDC__
+        void operator delete(void* pv, void* p, size_t n)
+        {
+            operator delete(pv);
+        }
+#endif /* compiler */
+
+    public:
+        static class_type* create(void* p, size_t n, function_type fn)
+        {
+            return new(p, n) class_type(fn);
+        }
+
+    public:
+        virtual void destroy()
+        {
+            m_fn();
+        }
+        virtual void release()
+        {
+            delete this;
+        }
+
+    private:
+        function_type m_fn;
+    };
 
 };
 
@@ -496,30 +891,30 @@ public:
     typedef H                   handle_type;
     typedef scoped_handle<H>    class_type;
 private:
-	typedef scoped_handle_borland_impl_::function_type<H>			function_type;
+    typedef scoped_handle_borland_impl_::function_type<H>           function_type;
 
 public: // NOTE: These constants have to be public for the Borland compiler
-	enum
-	{
-			cdecl_function_type_v_size	=	sizeof(scoped_handle_borland_impl_::cdecl_function_type_v<H>)
-		,	cdecl_function_type_size	=	sizeof(scoped_handle_borland_impl_::cdecl_function_type<H, int>)
-	};
+    enum
+    {
+            cdecl_function_type_v_size  =   sizeof(scoped_handle_borland_impl_::cdecl_function_type_v<H>)
+        ,   cdecl_function_type_size    =   sizeof(scoped_handle_borland_impl_::cdecl_function_type<H, int>)
+    };
 
 public:
 #ifdef STLSOFT_CF_CDECL_SUPPORTED
 # if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
      defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     scoped_handle(
-		resource_type   h
+        resource_type   h
     ,   void            (STLSOFT_CDECL *fn)(resource_type)
     ,   resource_type   hNull = 0
-	)
-		: m_handle(h)
-		, m_hNull(hNull)
-		, m_fn(scoped_handle_borland_impl_::cdecl_function_type_v<H>::create(&m_bytes, sizeof(m_bytes), fn))
-	{}
+    )
+        : m_handle(h)
+        , m_hNull(hNull)
+        , m_fn(scoped_handle_borland_impl_::cdecl_function_type_v<H>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 
-    scoped_handle(  resource_type   *ph
+    scoped_handle(  resource_type*  ph
                 ,   void            (STLSOFT_CDECL *fn)(resource_type*)
                 ,   resource_type   hNull = 0);
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
@@ -527,16 +922,16 @@ public:
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     template <ss_typename_param_k R>
     scoped_handle(
-		resource_type   h
+        resource_type   h
     ,   R               (STLSOFT_CDECL *fn)(resource_type)
     ,   resource_type   hNull = 0
-	)
-		: m_handle(h)
-		, m_hNull(hNull)
-		, m_fn(scoped_handle_borland_impl_::cdecl_function_type<H, R>::create(&m_bytes, sizeof(m_bytes), fn))
-	{}
+    )
+        : m_handle(h)
+        , m_hNull(hNull)
+        , m_fn(scoped_handle_borland_impl_::cdecl_function_type<H, R>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
     template <ss_typename_param_k R>
-    scoped_handle(  resource_type   *ph
+    scoped_handle(  resource_type*  ph
                 ,   R               (STLSOFT_CDECL *fn)(resource_type*)
                 ,   resource_type   hNull = 0);
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -548,10 +943,10 @@ public:
     scoped_handle(  resource_type   h
                 ,   void            (STLSOFT_FASTCALL *fn)(resource_type)
                 ,   resource_type   hNull = 0)
-		: m_handle(h)
-		, m_hNull(hNull)
-		, m_fn(scoped_handle_borland_impl_::fastcall_function_type_v<H>::create(&m_bytes, sizeof(m_bytes), fn))
-	{}
+        : m_handle(h)
+        , m_hNull(hNull)
+        , m_fn(scoped_handle_borland_impl_::fastcall_function_type_v<H>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 
     scoped_handle(  resource_type   h
                 ,   void            (STLSOFT_FASTCALL *fn)(resource_type *)
@@ -563,12 +958,12 @@ public:
     scoped_handle(  resource_type   h
                 ,   R               (STLSOFT_FASTCALL *fn)(resource_type)
                 ,   resource_type   hNull = 0)
-		: m_handle(h)
-		, m_hNull(hNull)
-		, m_fn(scoped_handle_borland_impl_::fastcall_function_type<H, R>::create(&m_bytes, sizeof(m_bytes), fn))
-	{}
+        : m_handle(h)
+        , m_hNull(hNull)
+        , m_fn(scoped_handle_borland_impl_::fastcall_function_type<H, R>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
     template <ss_typename_param_k R>
-    scoped_handle(  resource_type   *ph
+    scoped_handle(  resource_type*  ph
                 ,   R               (STLSOFT_FASTCALL *fn)(resource_type*)
                 ,   resource_type   hNull = 0);
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -581,10 +976,10 @@ public:
     scoped_handle(  resource_type   h
                 ,   void            (STLSOFT_STDCALL *fn)(resource_type)
                 ,   resource_type   hNull = 0)
-		: m_handle(h)
-		, m_hNull(hNull)
-		, m_fn(scoped_handle_borland_impl_::stdcall_function_type_v<H>::create(&m_bytes, sizeof(m_bytes), fn))
-	{}
+        : m_handle(h)
+        , m_hNull(hNull)
+        , m_fn(scoped_handle_borland_impl_::stdcall_function_type_v<H>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 
     scoped_handle(  resource_type   *ph
                 ,   void            (STLSOFT_STDCALL *fn)(resource_type*)
@@ -596,13 +991,13 @@ public:
     scoped_handle(  resource_type   h
                 ,   R               (STLSOFT_STDCALL *fn)(resource_type)
                 ,   resource_type   hNull = 0)
-		: m_handle(h)
-		, m_hNull(hNull)
-		, m_fn(scoped_handle_borland_impl_::stdcall_function_type<H, R>::create(&m_bytes, sizeof(m_bytes), fn))
-	{}
+        : m_handle(h)
+        , m_hNull(hNull)
+        , m_fn(scoped_handle_borland_impl_::stdcall_function_type<H, R>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 
     template <ss_typename_param_k R>
-    scoped_handle(  resource_type   *ph
+    scoped_handle(  resource_type*  ph
                 ,   R               (STLSOFT_STDCALL *fn)(resource_type*)
                 ,   resource_type   hNull = 0);
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -617,7 +1012,7 @@ public:
             m_fn->destroy(m_handle);
         }
 
-		m_fn->release();
+        m_fn->release();
     }
 
 public:
@@ -671,13 +1066,13 @@ private:
 private:
     handle_type             m_handle;
     const resource_type     m_hNull;
-	function_type* const	m_fn;
-	union
-	{
-		long double	ld;
-		ss_byte_t	cdecl_R[cdecl_function_type_size];
+    function_type* const    m_fn;
+    union
+    {
+        long double ld;
+        ss_byte_t   cdecl_R[cdecl_function_type_size];
 
-	}						m_bytes;
+    }                       m_bytes;
 
 private:
     scoped_handle(class_type const&);
@@ -692,30 +1087,47 @@ public:
     typedef void                handle_type;
     typedef scoped_handle<void> class_type;
 private:
-	typedef scoped_handle_borland_impl_::function_type_void	function_type;
+    typedef scoped_handle_borland_impl_::void_function_type function_type;
+public:
+    enum
+    {
+            cdecl_function_type_size    =   sizeof(function_type)
+    };
 
 public:
 #ifdef STLSOFT_CF_CDECL_SUPPORTED
 # if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
      defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
-    scoped_handle(  void            (STLSOFT_CDECL *fn)());
+    scoped_handle(  void            (STLSOFT_CDECL *fn)())
+        : m_bInvoked(false)
+        , m_fn(scoped_handle_borland_impl_::cdecl_void_function_type_v::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     template <ss_typename_param_k R>
-    scoped_handle(  R               (STLSOFT_CDECL *fn)());
+    scoped_handle(  R               (STLSOFT_CDECL *fn)())
+        : m_bInvoked(false)
+        , m_fn(scoped_handle_borland_impl_::cdecl_void_function_type<R>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 # if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
      defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
-    scoped_handle(  void            (STLSOFT_FASTCALL *fn)());
+    scoped_handle(  void            (STLSOFT_FASTCALL *fn)())
+        : m_bInvoked(false)
+        , m_fn(scoped_handle_borland_impl_::fastcall_void_function_type_v::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     template <ss_typename_param_k R>
-    scoped_handle(  R               (STLSOFT_FASTCALL *fn)());
+    scoped_handle(  R               (STLSOFT_FASTCALL *fn)())
+        : m_bInvoked(false)
+        , m_fn(scoped_handle_borland_impl_::fastcall_void_function_type<R>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
@@ -723,12 +1135,18 @@ public:
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
 # if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
      defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
-    scoped_handle(  void            (STLSOFT_STDCALL *fn)());
+    scoped_handle(  void            (STLSOFT_STDCALL *fn)())
+        : m_bInvoked(false)
+        , m_fn(scoped_handle_borland_impl_::stdcall_void_function_type_v::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     template <ss_typename_param_k R>
-    scoped_handle(  R               (STLSOFT_STDCALL *fn)());
+    scoped_handle(  R               (STLSOFT_STDCALL *fn)())
+        : m_bInvoked(false)
+        , m_fn(scoped_handle_borland_impl_::stdcall_void_function_type<R>::create(&m_bytes, sizeof(m_bytes), fn))
+    {}
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
@@ -767,8 +1185,14 @@ public:
     }
 
 private:
-    ss_bool_t				m_bInvoked;
-    function_type* const	m_fn;
+    ss_bool_t               m_bInvoked;
+    function_type* const    m_fn;
+    union
+    {
+        long double ld;
+        ss_byte_t   cdecl_R[cdecl_function_type_size];
+
+    }                       m_bytes;
 
 private:
     scoped_handle(class_type const&);

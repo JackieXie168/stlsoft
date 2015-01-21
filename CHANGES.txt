@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  3rd February 2009
+; Updated:  13th February 2009
 
 ============================================================================
 
@@ -16,6 +16,34 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.73 (13th February 2009)
+
+Summary:
+========
+
+ * further implementation of special Borland version of stlsoft::scoped_handle
+ * further workarounds to Borland code generation defects in stlsoft::basic_simple_string and platformstl::basic_file_lines
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/smartptr/scoped_handle_borland_.hpp:
+    + implementation for scoped_handle<void>
+
+ ~ include/stlsoft/string/simple_string.hpp:
+    ~ insertion of non-functioning code to cause Borland 6.1.x to generate correct code (in Pantheios, amongst others)
+
+ PlatformSTL:
+ ============
+
+ ~ include/platformstl/filesystem/file_lines.hpp:
+    ~ workaround for Borland code generation defect
 
 ============================================================================
 
