@@ -2,9 +2,28 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  28th December 2010
+; Updated:  30th January 2011
 
 ============================================================================
+
+
+30th January 2011 - 1.9.107 released
+------------------------------------
+
+ * added data() member to stlsoft::multibyte2wide and stlsoft::wide2multibyte
+ * added data() member to winstl::multibyte2wide and winstl::wide2multibyte
+ * improved performance of of c_str_len(_a|_w)() shim overloads of stlsoft::multibyte2wide and stlsoft::wide2multibyte
+ * improved performance of of c_str_len(_a|_w)() shim overloads of winstl::multibyte2wide and winstl::wide2multibyte
+ * added equal() method and operator ==/!=() non-member functions to unixstl::memory_mapped_file
+ * added equal() method and operator ==/!=() non-member functions to winstl::memory_mapped_file
+ * added non-member unixstl::swap() function for unixstl::memory_mapped_file
+ * added non-member platformstl::swap() function for platformstl::memory_mapped_file
+ * changed definition of unixstl::memory_mapped_file::size_type to be size_t
+ * added invalid_handle_value() method to unixstl::filesystem_traits<>
+ * added invalid_handle_value() method to winstl::filesystem_traits<>
+ * added added get_file_size(stat_data_type const&) and get_file_size(stat_data_type const*) overloads to unixstl::filesystem_traits<>
+ * added added get_file_size(stat_data_type const&) and get_file_size(stat_data_type const*) overloads to winstl::filesystem_traits<>
+ * reduced dependencies on other string access shim overloads in winstl::error_desc
 
 
 28th December 2010 - 1.9.106 released

@@ -4,11 +4,11 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     10th August 2009
+ * Updated:     11th January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     70
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,9 +161,9 @@ public:
     }
 
     /// Assigns \c cch characters of value \c c to \c dest
-    static char_type *assign(char_type *dest, size_type cch, char_type const& c)
+    static char_type* assign(char_type* dest, size_type cch, char_type const& c)
     {
-        char_type * ret;
+        char_type* ret;
 
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::assign called with NULL destination", (0 == cch || NULL != dest));
 
@@ -317,9 +317,9 @@ public:
     }
 
     /// Copies \c cch characters from \c src to \c dest
-    static char_type *copy(char_type *dest, char_type const* src, size_type cch)
+    static char_type* copy(char_type* dest, char_type const* src, size_type cch)
     {
-        char_type   *ret;
+        char_type* ret;
 
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL destination", (0 == cch || NULL != dest));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL source", (0 == cch || NULL != src));
@@ -337,9 +337,9 @@ public:
     }
 
     /// Copies \c cch characters from \c src to \c dest, accounting for whether the ranges overlap
-    static char_type *move(char_type *dest, char_type const* src, size_type cch)
+    static char_type* move(char_type* dest, char_type const* src, size_type cch)
     {
-        char_type *const ret = dest;
+        char_type* const ret = dest;
 
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL destination", (0 == cch || NULL != dest));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL source", (0 == cch || NULL != src));
@@ -452,7 +452,7 @@ public:
     }
 
     /// Assigns \c cch characters of value \c c to \c dest
-    static char_type *assign(char_type *dest, size_type cch, char_type const& c)
+    static char_type* assign(char_type* dest, size_type cch, char_type const& c)
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::assign called with NULL destination", NULL != dest);
 
@@ -535,7 +535,7 @@ public:
     }
 
     /// Copies \c cch characters from \c src to \c dest
-    static char_type *copy(char_type *dest, char_type const* src, size_type cch)
+    static char_type* copy(char_type* dest, char_type const* src, size_type cch)
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL destination", NULL != dest);
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL source", NULL != src);
@@ -544,7 +544,7 @@ public:
     }
 
     /// Copies \c cch characters from \c src to \c dest, accounting for whether the ranges overlap
-    static char_type *move(char_type *dest, char_type const* src, size_type cch)
+    static char_type* move(char_type* dest, char_type const* src, size_type cch)
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL destination", NULL != dest);
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL source", NULL != src);
@@ -680,7 +680,7 @@ public:
 /* char */
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline char *stlsoft_char_traits<char>::assign(char *dest, ss_size_t cch, char const& c)
+inline char* stlsoft_char_traits<char>::assign(char* dest, ss_size_t cch, char const& c)
 {
     return static_cast<char*>(::memset(dest, c, cch * sizeof(char)));
 }
@@ -705,7 +705,7 @@ inline char const* stlsoft_char_traits<char>::find(char_type const* s, size_type
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline char *stlsoft_char_traits<char>::copy(char *dest, char const* src, ss_size_t cch)
+inline char* stlsoft_char_traits<char>::copy(char* dest, char const* src, ss_size_t cch)
 {
 #ifdef _DEBUG
     ::memset(dest, 0, cch * sizeof(char));
