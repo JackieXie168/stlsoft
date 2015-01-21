@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/string/string_traits.hpp (originally mfcstl/string_traits.hpp)
+ * File:        mfcstl/string/string_traits.hpp
  *
  * Purpose:     Contains string_traits for MFC.
  *
  * Created:     25th April 2005
- * Updated:     6th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_MAJOR    2
 # define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_MINOR    0
 # define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_REVISION 1
-# define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_EDIT     10
+# define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shell/browse_for_folder.hpp (formerly winstl/shell_browse.hpp; originally winstl_shell_browse.h)
+ * File:        winstl/shell/browse_for_folder.hpp
  *
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     9th December 2006
+ * Updated:     29th December 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 2
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     53
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/containers/util/array_policies.hpp (originally stlsoft_array_policies.h)
+ * File:        stlsoft/containers/util/array_policies.hpp
  *
  * Purpose:     Contains the construction policies for the array (fixed and
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     26th December 2006
+ * Updated:     29th December 2006
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        126
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

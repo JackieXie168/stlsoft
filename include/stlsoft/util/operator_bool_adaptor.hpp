@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/operator_bool_adaptor.hpp (originally stlsoft/operator_bool_adaptor.hpp)
+ * File:        stlsoft/util/operator_bool_adaptor.hpp
  *
  * Purpose:     Definition of the operator_bool_adaptor class.
  *
  * Created:     21st October 2004
- * Updated:     13th September 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_REVISION 2
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_EDIT     18
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

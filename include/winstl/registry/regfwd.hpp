@@ -4,7 +4,7 @@
  * Purpose:     Contains forward declarations for components in the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     10th June 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,8 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/registry/regfwd.hpp
-/// \brief [C++ only] Contains forward declarations for components in the \ref group__library__windows_registry "Windows Registry" Library.
+/** \file winstl/registry/regfwd.hpp
+ *
+ * \brief [C++ only] Contains forward declarations for components in
+ *   the \ref group__library__windows_registry "Windows Registry" Library.
+ */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD
@@ -48,7 +51,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_MINOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGFWD_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

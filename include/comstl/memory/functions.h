@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/memory/functions.h (formerly comstl/memory_functions.h; originally MOMemory.h/.c, ::SynesisCom)
+ * File:        comstl/memory/functions.h
  *
  * Purpose:     COM memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     1
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  2
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      44
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

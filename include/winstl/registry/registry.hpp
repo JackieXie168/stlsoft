@@ -4,7 +4,7 @@
  * Purpose:     Declares the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,8 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/registry/registry.hpp
-/// \brief [C++ only] Main include file for the \ref group__library__windows_registry "Windows Registry" Library.
+/** \file winstl/registry/registry.hpp
+ *
+ * \brief [C++ only] Main include file for
+ *   the \ref group__library__windows_registry "Windows Registry" Library.
+ */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REGISTRY
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REGISTRY
@@ -47,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_MAJOR      1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_MINOR      0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_REVISION   3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_EDIT       51
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_REVISION   4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +64,9 @@
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD
 # include <winstl/registry/regfwd.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD */
-#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
-# include <winstl/registry/defs.hpp>
-#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS
+# include <winstl/registry/util/defs.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

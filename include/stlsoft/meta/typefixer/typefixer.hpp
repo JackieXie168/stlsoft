@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/typefixer/typefixer.hpp (originally stlsoft/typefixer/typefixer.hpp)
+ * File:        stlsoft/meta/typefixer/typefixer.hpp
  *
  * Purpose:     Root header file for STLSoft's TypeFixer utility components.
  *
  * Created:     9th February 2004
- * Updated:     15th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_REVISION  1
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_EDIT      10
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

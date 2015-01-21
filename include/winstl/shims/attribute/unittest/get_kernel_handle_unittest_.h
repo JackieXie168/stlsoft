@@ -1,5 +1,5 @@
 
-// Updated: 4th December 2006
+// Updated: 29th December 2006
 
 #if !defined(WINSTL_INCL_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE)
 # error This file cannot be directly included, and should only be included within winstl/shims/attribute/get_kernel_handle.hpp
@@ -19,7 +19,7 @@ namespace unittest
 
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "WinSTL", "handle_access", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "shims/attribute/get_kernel_handle", __FILE__);
 
 			if(INVALID_HANDLE_VALUE != get_kernel_handle(INVALID_HANDLE_VALUE))
 			{

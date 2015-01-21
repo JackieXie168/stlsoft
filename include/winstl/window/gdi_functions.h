@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/gdi_functions.h (originally originally MWGdi.h / MWWinCmn, ::SynesisWin)
+ * File:        winstl/window/gdi_functions.h (originally MWGdi.h / MWWinCmn, ::SynesisWin)
  *
  * Purpose:     Error functions.
  *
  * Created:     20th October 1994
- * Updated:     16th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     131
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

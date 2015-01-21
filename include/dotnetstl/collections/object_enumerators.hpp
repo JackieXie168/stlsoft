@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        dotnetstl/collections/object_enumerators.hpp (originally dotnetstl_object_enumerators.h)
+ * File:        dotnetstl/collections/object_enumerators.hpp
  *
  * Purpose:     A simple object enumerator, based on ArrayList.
  *
  * Created:     24th June 2003
- * Updated:     26th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 #define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_MAJOR    4
 #define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_MINOR    0
 #define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_REVISION 1
-#define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_EDIT     21
+#define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

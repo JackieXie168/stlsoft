@@ -4,7 +4,7 @@
  * Purpose:     SupportErrorInfoImpl class.
  *
  * Created:     17th April 1999
- * Updated:     7th July 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,14 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file atlstl/error/support_error_info.hpp
-///
-/// SupportErrorInfoImpl class.
+/** \file atlstl/error/support_error_info.hpp
+ *
+ * \brief [C++ only] Definition of the atlstl::SupportErrorInfoImpl,
+ *   atlstl::SupportErrorInfoImpl2, atlstl::SupportErrorInfoImpl3
+ *   atlstl::SupportErrorInfoImpl4 and atlstl::SupportErrorInfoImpl5
+ *   class templates.
+ * (\ref group__library__error "Error" Library.)
+ */
 
 #ifndef ATLSTL_INCL_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO
 #define ATLSTL_INCL_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO
@@ -49,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MAJOR     5
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MINOR     0
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_REVISION  1
-# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT      61
+# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

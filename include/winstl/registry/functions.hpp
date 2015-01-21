@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/functions.hpp (formerly winstl/registry_functions.hpp; originally MWRegUtl.h, ::SynesisWin)
+ * File:        winstl/registry/functions.hpp
  *
  * Purpose:     Registry functions.
  *
  * Created:     20th November 1995
- * Updated:     15th August 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,8 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/registry/functions.hpp
-/// \brief [C++ only] Simple and discrete registry functions, used by the \ref group__library__windows_registry "Windows Registry" Library.
+/** \file winstl/registry/functions.hpp
+ *
+ * \brief [C++ only] Simple and discrete registry functions, used by
+ *   the \ref group__library__windows_registry "Windows Registry" Library.
+ */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_FUNCTIONS
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_FUNCTIONS
@@ -47,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      41
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -58,9 +61,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
-# include <winstl/registry/defs.hpp>
-#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS
+# include <winstl/registry/util/defs.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS */
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
 # include <winstl/registry/reg_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */

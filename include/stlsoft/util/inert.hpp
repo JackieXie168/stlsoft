@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/inert.hpp (originally stlsoft_inert.h)
+ * File:        stlsoft/util/inert.hpp
  *
  * Purpose:     Contains the inert class.
  *
  * Created:     16th January 2002
- * Updated:     13th September 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       33
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/console_functions.h (originally winstl/console_functions.h)
+ * File:        winstl/system/console_functions.h
  *
  * Purpose:     Console functions.
  *
  * Created:     3rd December 2005
- * Updated:     18th June 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      9
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     1
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,13 +72,19 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
+#if defined(STLSOFT_UNITTEST) && \
+	(	!defined(STLSOFT_COMPILER_IS_COMO) && \
+		!defined(STLSOFT_COMPILER_IS_WATCOM))
+# include <winstl/dl/dl_call.hpp>
+#endif /* STLSOFT_UNITTEST */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -116,6 +122,59 @@ STLSOFT_INLINE ws_size_t winstl__get_console_width(void)
     return ~(ws_size_t)(0);
 }
 
+#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
+    (   !defined(_WIN32_WINNT) || \
+        _WIN32_WINNT < 0x0500 || \
+        (   defined(STLSOFT_COMPILER_IS_BORLAND) && \
+            !defined(CONSOLE_NO_SELECTION)))
+
+inline HWND GetConsoleWindow()
+{
+    typedef HWND (WINAPI *GCW_t)();
+
+    HMODULE Kernel32    =   ::LoadLibraryA("KERNEL32");
+    GCW_t   pfn         =   stlsoft_reinterpret_cast(GCW_t, ::GetProcAddress(Kernel32, "GetConsoleWindow"));
+
+    if(NULL == pfn)
+    {
+        return NULL;
+    }
+    else
+    {
+        HWND    hwnd    =   (*pfn)();
+
+        ::FreeLibrary(Kernel32);
+
+        return hwnd;
+    }
+}
+
+#else /* ? _WIN32_WINNT */
+
+#endif /* _WIN32_WINNT */
+
+/** Returns the window handle of the current console, or NULL if it cannot
+ *    be found
+ *
+ * \ingroup group__library__system
+ *
+ * \warning This only works on Windows 2000, or later, operating systems. It
+ *    will return NULL on other operating systems.
+ */
+STLSOFT_INLINE HWND winstl__get_console_window(void)
+{
+    return GetConsoleWindow();
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ Function Overrides
  */
@@ -129,6 +188,19 @@ STLSOFT_INLINE ws_size_t winstl__get_console_width(void)
 inline ws_size_t get_console_width()
 {
     return winstl__get_console_width();
+}
+
+/** Returns the window handle of the current console, or NULL if it cannot
+ *    be found
+ *
+ * \ingroup group__library__system
+ *
+ * \warning This only works on Windows 2000, or later, operating systems. It
+ *    will return NULL on other operating systems.
+ */
+inline HWND get_console_window(void)
+{
+    return winstl__get_console_window();
 }
 
 #endif /* __cplusplus */

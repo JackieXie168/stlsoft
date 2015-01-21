@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/stlsoft.h (formerly stlsoft.h)
+ * File:        stlsoft/stlsoft.h
  *
  * Purpose:     Root header for the STLSoft libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     290
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     292
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -171,10 +171,13 @@
 # define _STLSOFT_VER_1_9_1_B32 0x01090120  /*!< Version 1.9.1 beta 32 (6th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B33 0x01090121  /*!< Version 1.9.1 beta 33 (13th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B34 0x01090122  /*!< Version 1.9.1 beta 34 (24th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B35 0x01090123  /*!< Version 1.9.1 beta 35 (27th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B36 0x01090124  /*!< Version 1.9.1 beta 36 (28th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B37 0x01090125  /*!< Version 1.9.1 beta 37 (30th Dec 2006) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B34
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B37
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -2415,9 +2418,9 @@ inline void *operator new(ss_size_t /* si */, void *pv)
 
 #ifdef STLSOFT_UNITTEST
 
-# ifndef STLSOFT_INCL_STLSOFT_HPP_UNITTEST
-#  include <stlsoft/unittest.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_UNITTEST */
+# ifndef STLSOFT_INCL_UNITTEST_HPP_UNITTEST
+#  include <unittest/unittest.hpp>
+# endif /* !STLSOFT_INCL_UNITTEST_HPP_UNITTEST */
 
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER == 1200

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/util/ident_.hpp (originally winstl_windows_ident.h)
+ * File:        winstl/window/util/ident_.hpp
  *
  * Purpose:     Windows identification.
  *
  * Created:     11th March 2004
- * Updated:     16th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__REVISION   1
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       38
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

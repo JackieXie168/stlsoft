@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/nulldef.h (originally stlsoft_nulldef.h)
+ * File:        stlsoft/util/nulldef.h
  *
  * Purpose:     Include for defining NULL to be the NULL_v template class.
  *
  * Created:     17th December 2002
- * Updated:     12th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_EDIT     23
+# define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/error/exceptions.hpp (originally comstl_exceptions.h)
+ * File:        comstl/error/exceptions.hpp
  *
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    5
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        36
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

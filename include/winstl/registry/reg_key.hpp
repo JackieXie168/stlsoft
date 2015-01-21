@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/reg_key.hpp (formerly winstl_reg_key.h)
+ * File:        winstl/registry/reg_key.hpp
  *
  * Purpose:     Contains the basic_reg_key class template, and ANSI
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,8 +39,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/registry/reg_key.hpp
-/// \brief [C++ only] Definition of the \link winstl::basic_reg_key basic_reg_key\endlink class template. (\ref group__library__windows_registry "Windows Registry" Library.)
+/** \file winstl/registry/reg_key.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_reg_keyclass template.
+ * (\ref group__library__windows_registry "Windows Registry" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        109
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,15 +65,15 @@
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD
 # include <winstl/registry/regfwd.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD */
-#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
-# include <winstl/registry/defs.hpp>
-#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS
+# include <winstl/registry/util/defs.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS */
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
 # include <winstl/registry/reg_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
-#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_EXCEPTIONS
-# include <winstl/registry/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS
+# include <winstl/registry/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */

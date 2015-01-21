@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/any_cast.hpp (originally stlsoft_any_caster.h)
+ * File:        stlsoft/conversion/any_cast.hpp
  *
  * Purpose:     A dangerous, but sometimes necessary, tool for handling bad
  *              libraries.
  *
  * Created:     12th May 2004
- * Updated:     12th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       27
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

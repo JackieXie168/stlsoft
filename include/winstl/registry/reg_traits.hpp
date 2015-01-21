@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/reg_traits.hpp (formerly winstl_reg_traits.h)
+ * File:        winstl/registry/reg_traits.hpp
  *
  * Purpose:     Contains the reg_traits class template, and ANSI
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     7th July 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,8 +39,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/registry/reg_traits.hpp
-/// \brief [C++ only] Definition of the \link winstl::reg_traits reg_traits\endlink class template used throughout the \ref group__library__windows_registry "Windows Registry" Library.
+/** \file winstl/registry/reg_traits.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::reg_traits class template.
+ * (\ref group__library__windows_registry "Windows Registry" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     60
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +62,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
-# include <winstl/registry/defs.hpp>             // The WinSTL reg API standard types
-#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS
+# include <winstl/registry/util/defs.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/process_mutex.hpp (originally winstl_process_mutex.h)
+ * File:        winstl/synch/process_mutex.hpp
  *
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     49
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -183,18 +183,6 @@ public:
             ::CloseHandle(m_mx);
         }
     }
-
-#if 0
-    void close() stlsoft_throw_0()
-    {
-        if( NULL != m_mx &&
-            m_bOwnHandle)
-        {
-            CloseHandleSetNull(m_mx);
-        }
-    }
-#endif /* 0 */
-
 /// @}
 
 /// \name Operations

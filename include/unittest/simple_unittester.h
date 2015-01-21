@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        simple_unittester.h
+ * File:        unittest/simple_unittester.h
  *
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     18th June 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,18 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file simple_unittester.h
-///
-/// Simple, command-line unit-testing client.
+/** \file unittest/simple_unittester.h
+ *
+ * \brief [C++ only] Definition of the stlsoft::unittest::simple_unittest_host
+ *   class, which is a simple command-line unit-testing host.
+ * (\ref group__library__unittest "Unit Test" Library.)
+ */
 
-#ifndef STLSOFT_INCL_H_SIMPLE_UNITTESTER
-#define STLSOFT_INCL_H_SIMPLE_UNITTESTER
+#ifndef STLSOFT_INCL_UNITTEST_H_SIMPLE_UNITTESTER
+#define STLSOFT_INCL_UNITTEST_H_SIMPLE_UNITTESTER
 
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MAJOR      1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MINOR      3
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_REVISION   1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       15
+# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_MAJOR     1
+# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_MINOR     3
+# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_REVISION  2
+# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_EDIT      16
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,6 +136,6 @@ extern "C" unittest_host *get_unittest_host(void);
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_H_SIMPLE_UNITTESTER */
+#endif /* !STLSOFT_INCL_UNITTEST_H_SIMPLE_UNITTESTER */
 
 /* ////////////////////////////////////////////////////////////////////// */

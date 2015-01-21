@@ -1,4 +1,6 @@
 
+// Updated:	30th December 2006
+
 #if !defined(WINSTL_INCL_WINSTL_UTIL_HPP_STRUCT_INITIALISERS)
 # error This file cannot be directly included, and should only be included within winstl/util/struct_initialisers.hpp
 #endif /* !WINSTL_INCL_WINSTL_UTIL_HPP_STRUCT_INITIALISERS */
@@ -150,7 +152,11 @@ namespace unittest
 				APPBARDATA		appbardata;
 				SHELLEXECUTEINFOA		shellexecuteinfoa;
 				SHELLEXECUTEINFOW		shellexecuteinfow;
-#if !defined(STLSOFT_COMPILER_IS_DMC)
+#if !defined(STLSOFT_COMPILER_IS_DMC) && \
+    (   !defined(STLSOFT_COMPILER_IS_GCC) || \
+        __GNUC__ > 3 || \
+        (   __GNUC__ == 3 && \
+            __GNUC_MINOR__ > 2))
 				SHQUERYRBINFO		shqueryrbinfo;
 #endif /* compiler */
 				NOTIFYICONDATAA 	notifyicondataa;
@@ -177,7 +183,11 @@ namespace unittest
 				winstl::init_struct(appbardata);
 				winstl::init_struct(shellexecuteinfoa);
 				winstl::init_struct(shellexecuteinfow);
-#if !defined(STLSOFT_COMPILER_IS_DMC)
+#if !defined(STLSOFT_COMPILER_IS_DMC) && \
+    (   !defined(STLSOFT_COMPILER_IS_GCC) || \
+        __GNUC__ > 3 || \
+        (   __GNUC__ == 3 && \
+            __GNUC_MINOR__ > 2))
 				winstl::init_struct(shqueryrbinfo);
 #endif /* compiler */
 				winstl::init_struct(notifyicondataa);

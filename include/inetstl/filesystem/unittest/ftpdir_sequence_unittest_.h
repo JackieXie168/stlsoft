@@ -1,5 +1,5 @@
 
-// Updated: 16th July 2006
+// Updated: 30th December 2006
 
 #if !defined(INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within inetstl/filesystem/ftpdir_sequence.hpp
@@ -67,7 +67,7 @@ namespace unittest
 								bSuccess = false;
 							}
 
-							*b;
+							static_cast<void>(*b);
 						}
 
 						char	sz[101];

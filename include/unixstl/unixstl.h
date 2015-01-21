@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/unixstl.h (formerly unixstl.h)
+ * File:        unixstl/unixstl.h
  *
  * Purpose:     Root header for the UNIXSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     12th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     71
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */

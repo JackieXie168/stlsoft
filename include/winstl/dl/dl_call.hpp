@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     3
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  4
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      31
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  5
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,9 @@
  */
 
 /*
+// Alas, Como experiences an ICE when compiling dl_call
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_COMO:
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -71,6 +73,15 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+
+#if defined(STLSOFT_COMPILER_IS_COMO)
+# error dl_call is not compatible with Como, which experienced an ICE
+#endif /* compiler */
+#if defined(STLSOFT_COMPILER_IS_WATCOM)
+# error dl_call is not compatible with Watcom, which does not have sufficient template support
+#endif /* compiler */
+
+
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
 # include <winstl/error/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */

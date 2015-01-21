@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        dotnetstl/util/dispose_functions.hpp (originally dotnetstl_dispose_functions.h)
+ * File:        dotnetstl/util/dispose_functions.hpp
  *
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     26th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_MAJOR       4
 # define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_MINOR       0
 # define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_REVISION    1
-# define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_EDIT        27
+# define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

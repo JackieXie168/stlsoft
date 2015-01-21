@@ -1,9 +1,9 @@
 
-// Updated: 20th January 2006
+// Updated: 29th December 2006
 
-#if !defined(STLSOFT_INCL_STLSOFT_HPP_PTR_PROXY)
-# error This file cannot be directly included, and should only be included within stlsoft/ptr_proxy.hpp
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_PTR_PROXY */
+#if !defined(STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_PTR_PROXY)
+# error This file cannot be directly included, and should only be included within stlsoft/smartptr/ptr_proxy.hpp
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_PTR_PROXY */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
@@ -13,10 +13,10 @@ namespace unittest
 {
 	namespace
 	{
-		ss_bool_t test_stlsoft_ptr_proxy(unittest_reporter *r)
+		ss_bool_t test_stlsoft_smartptr_ptr_proxy(unittest_reporter *r)
 		{
 			ss_bool_t				bSuccess	=	true;
-			unittest_initialiser	init(r, "STLSoft", "ptr_proxy", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "smartptr/ptr_proxy", __FILE__);
 
 			int 			i		=	1;
 			int 			*pi 	=	&i;
@@ -50,7 +50,7 @@ namespace unittest
 			return bSuccess;
 		}
 
-		unittest_registrar	  unittest_stlsoft_ptr_proxy(test_stlsoft_ptr_proxy);
+		unittest_registrar	  unittest_stlsoft_smartptr_ptr_proxy(test_stlsoft_smartptr_ptr_proxy);
 	} // anonymous namespace
 
 } // namespace unittest

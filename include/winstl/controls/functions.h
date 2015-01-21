@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/controls/functions.h (formerly control_functions.h; originally winstl_control_functions.h)
+ * File:        winstl/controls/functions.h
  *
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     16th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       1
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        41
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
