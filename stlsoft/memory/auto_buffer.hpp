@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    4
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        143
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    5
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,9 +95,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
-# ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-#  include <stlsoft/constraints.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+# ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+#  include <stlsoft/util/constraints.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>

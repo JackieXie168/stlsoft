@@ -1,12 +1,10 @@
 #include <stlsoft/stlsoft.h>
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/limit_traits.h")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/util/limit_traits.h")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>
-#endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
+#include <stlsoft/util/limit_traits.h>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

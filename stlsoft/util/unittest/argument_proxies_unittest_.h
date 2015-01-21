@@ -1,7 +1,7 @@
 
-#if !defined(STLSOFT_INCL_STLSOFT_HPP_ARGUMENT_PROXIES)
-# error This file cannot be directly included, and should only be included within stlsoft/argument_proxies.hpp
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ARGUMENT_PROXIES */
+#if !defined(STLSOFT_INCL_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES)
+# error This file cannot be directly included, and should only be included within stlsoft/util/argument_proxies.hpp
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
@@ -15,7 +15,7 @@ namespace unittest
 		{
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "STLSoft", "argument_proxies", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "util/argument_proxies", __FILE__);
 
 	#if 0
 			if(<<TODO>>)

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/placement_aid.hpp (originally stlsoft_placement_aid.h)
+ * File:        stlsoft/obsolete/explicit_inheritance_veneer.hpp (originally stlsoft_explicit_inheritance_veneer.h)
  *
- * Purpose:     A scoping class to aid in placement new-ing.
+ * Purpose:     Explicit inheritance veneer class.
  *
- * Created:     9th January 2002
+ * Created:     13th January 2003
  * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,20 +38,18 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/util/placement_aid.hpp
- *
- * \brief [C++ only] Definition of the stlsoft::placement_aid class template.
- *  (\ref group__library__utility "Utility" Library.)
- */
+/// \file stlsoft/obsolete/explicit_inheritance_veneer.hpp (formerly stlsoft_explicit_inheritance_veneer.h)
+///
+/// Explicit inheritance veneer class.
 
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_PLACEMENT_AID
-#define STLSOFT_INCL_STLSOFT_UTIL_HPP_PLACEMENT_AID
+#ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER
+#define STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MAJOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     27
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR      4
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR      0
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION   2
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,7 +59,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <new>
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -76,73 +76,81 @@ namespace stlsoft
  * Classes
  */
 
-// class placement_aid
 
-/** \brief Scopes the lifetime of an object created by placement new
+// class explicit_inheritance_veneer
+
+/** \brief Applies a \c protected veneer over a type, which can be accessed only
+ * through conversions to the veneered type
  *
- * \ingroup group__library__utility
+ * \param T The type to be subject to the veneer
  *
+ * \ingroup group__library__obsolete
  *
- *
- * \param T The type of the object created by placement new
  */
 template <ss_typename_param_k T>
-class placement_aid
+struct explicit_inheritance_veneer
+    : protected T
 {
 public:
-    /// The value type
-    typedef T                   value_type;
-    /// The type of the current parameterisation
-    typedef placement_aid<T>    class_type;
+    /// The base class type
+    typedef T   base_type;
 
-// Construction
+// Conversion
 public:
-    /// Create an instance of the \c value_type at the given location
-    ///
-    /// \param pv The location at which to in-place construct the object instance
-    ss_explicit_k placement_aid(void *pv)
-        : m_t(*new(pv) T())
-    {}
-
-    /// In-place destroy the object instance
-    ~placement_aid() stlsoft_throw_0()
+    /// The conversion operator that provides access to the base type
+    base_type const *operator &() const
     {
-        m_t.~T();
+        stlsoft_constraint_must_be_same_size(T, explicit_inheritance_veneer<T>);
+
+        return this;
     }
 
-// Accessors
-public:
-    /// Implicit conversion operator to a reference to the in-place object instance
-    operator T &()
+// Implementation
+protected:
+    /// Access a mutable reference to the base type
+    base_type &base_type_value()
     {
-        return m_t;
+        return *this;
     }
-    /// Implicit conversion operator to a non-mutable (const) reference to the in-place object instance
-    operator T const &() const
+    /// Access a non-mutable reference to the base type
+    base_type const &base_type_value() const
     {
-        return m_t;
+        return *this;
     }
-
-    /// Address-of operator, providing pointer access to the in-place object instance
-    T *operator &()
-    {
-        return &m_t;
-    }
-    /// Address-of operator, providing non-mutable (const) pointer access to the in-place object instance
-    T const *operator &() const
-    {
-        return &m_t;
-    }
-
-// Members
-private:
-    T   &m_t;
-
-// Not to be implemented
-private:
-    placement_aid(class_type const &);
-    class_type const &operator =(class_type const &);
 };
+
+////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+
+namespace unittest
+{
+    namespace
+    {
+        ss_bool_t test_stlsoft_explicit_inheritance_veneer(unittest_reporter *r)
+        {
+            ss_bool_t               bSuccess    =   true;
+
+            unittest_initialiser    init(r, "STLSoft", "explicit_inheritance_veneer", __FILE__);
+
+#if 0
+            if(<<TODO>>)
+            {
+                r->report("<<TODO>> failed", __LINE__);
+                bSuccess = false;
+            }
+#endif /* 0 */
+
+            return bSuccess;
+        }
+
+        unittest_registrar    unittest_stlsoft_explicit_inheritance_veneer(test_stlsoft_explicit_inheritance_veneer);
+    } // anonymous namespace
+
+} // namespace unittest
+
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -152,6 +160,6 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_PLACEMENT_AID */
+#endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_EXPLICIT_INHERITANCE_VENEER */
 
 /* ////////////////////////////////////////////////////////////////////// */

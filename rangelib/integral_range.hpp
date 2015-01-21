@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     5th August 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    5
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     41
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,9 +77,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
 # include <stlsoft/error/exceptions.hpp>      // for null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>       // for not_implicitly_comparable
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE
 # include <stlsoft/meta/is_character_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE */
@@ -89,9 +89,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_NUMERIC_TYPE
 # include <stlsoft/meta/is_numeric_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_NUMERIC_TYPE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS
-# include <stlsoft/printf_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS
+# include <stlsoft/util/printf_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */

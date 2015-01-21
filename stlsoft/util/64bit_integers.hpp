@@ -4,7 +4,7 @@
  * Purpose:     Byte-order independent large integer (aggregate) classes.
  *
  * Created:     15th October 2000
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT      121
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT      122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ namespace sinteger64_util
 
 /** \brief Signed 64-bit integer class
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 class sinteger64
 {

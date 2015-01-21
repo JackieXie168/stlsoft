@@ -4,7 +4,7 @@
  * Purpose:     Definition of minimum() and maximum() template functions.
  *
  * Created:     11th April 2005
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_MAJOR       2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_EDIT        9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MINMAX_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ namespace stlsoft
 
 /** \brief Determines the minimum of two values
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * \note This is supplied to avoid problems with libraries that \#define \c min
  */
@@ -90,7 +90,7 @@ inline T const &minimum(T const &lhs, T const &rhs)
 
 /** \brief Determines the maximum of two values
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * \note This is supplied to avoid problems with libraries that \#define \c min
  */

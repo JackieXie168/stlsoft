@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     4th September 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      70
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  3
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,20 +62,20 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
-# ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-#  include <stlsoft/limit_traits.h>
-# endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS
-#  include <stlsoft/sign_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS
+#  include <stlsoft/util/limit_traits.h>
+# endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIGN_TRAITS
+#  include <stlsoft/util/sign_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_SIGN_TRAITS */
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 #  include <stlsoft/meta/is_same_type.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
 #endif /* !STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
 #ifdef STLSOFT_UNITTEST
-# ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-#  include <stlsoft/limit_traits.h>
-# endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS
+#  include <stlsoft/util/limit_traits.h>
+# endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
 # include <stdio.h>
 # include <string.h>
 #endif /* STLSOFT_UNITTEST */

@@ -4,7 +4,7 @@
  * Purpose:     Simple class that .
  *
  * Created:     18th June 2006
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -134,85 +134,85 @@ public:
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>bool</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<bool>                 bool_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>char</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<char>                 char_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>wchar_t</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<wchar_t>              wchar_t_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>signed char</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<signed char>          signed_char_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned char</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<unsigned char>        unsigned_char_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>short</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<short>                short_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned short</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<unsigned short>       unsigned_short_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>int</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<int>                  int_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned int</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<unsigned int>         unsigned_int_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>long</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<long>                 long_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned long</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<unsigned long>        unsigned_long_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>float</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<float>                float_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>double</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<double>               double_init_t;
 
 /** \brief Specialisation of \link stlsoft::must_init must_init\endlink for <code>long double</code>.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 typedef must_init<long double>          long_double_init_t;
 

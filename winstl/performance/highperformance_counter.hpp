@@ -4,7 +4,7 @@
  * Purpose:     WinSTL high performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MINOR    0
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     76
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_REVISION 2
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,12 +78,12 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # error winstl_highperformance_counter.h is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
-#ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>          // for stlsoft::limit_traits<ss_uint64_t>::maximum()
-#endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS
-# include <stlsoft/static_initialisers.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS
+# include <stlsoft/util/limit_traits.h>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STATIC_INITIALISERS
+# include <stlsoft/util/static_initialisers.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STATIC_INITIALISERS */
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
 # include <stlsoft/conversion/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */

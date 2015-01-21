@@ -4,7 +4,7 @@
  * Purpose:     Contains the std_swap() function.
  *
  * Created:     27th June 2005
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     12
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ namespace stlsoft_nostd_util
 /** \brief Calls std::swap on the arguments, but may also use Koenig Lookup (Argument
  * Dependent Lookup) to use a specialised form
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * \note For compilers, such as Open Watcom, that do not have a functional
  * standard library implementation, the swap() implementation from

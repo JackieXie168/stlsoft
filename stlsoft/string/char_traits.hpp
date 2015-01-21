@@ -4,7 +4,7 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     62
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,9 +92,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS
-# include <stlsoft/sign_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIGN_TRAITS
+# include <stlsoft/util/sign_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_SIGN_TRAITS */
 #if defined(STLSOFT_CF_std_char_traits_AVAILABLE) && \
     defined(_STLSOFT_NO_NAMESPACE) && \
     !defined(STLSOFT_CF_std_NAMESPACE)

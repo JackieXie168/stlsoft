@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     53
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 3
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,9 +63,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 #  include <stlsoft/meta/base_type_traits.hpp>

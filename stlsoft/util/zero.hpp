@@ -4,7 +4,7 @@
  * Purpose:     ZERO_v template class.
  *
  * Created:     29th July 2003
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        38
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ public:
 
 /** \brief Static creation
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 public:
     static ZERO_v create()
@@ -198,7 +198,7 @@ private:
 
 /** \brief operator == for ZERO_v and integral types
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, ss_sint8_t i)         { return i == 0; }
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, ss_uint8_t i)         { return i == 0; }
@@ -220,7 +220,7 @@ inline ss_bool_t operator ==(ZERO_v const &/* lhs */, long double const &i) { re
 
 /** \brief operator == for an integral type and ZERO_v
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 inline ss_bool_t operator ==(ss_sint8_t i, ZERO_v const &/* lhs */)         { return i == 0; }
 inline ss_bool_t operator ==(ss_uint8_t i, ZERO_v const &/* lhs */)         { return i == 0; }
@@ -242,7 +242,7 @@ inline ss_bool_t operator ==(long double const &i, ZERO_v const &/* lhs */) { re
 
 /** \brief operator != for ZERO_v and an integral type
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, ss_sint8_t i)         { return i != 0; }
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, ss_uint8_t i)         { return i != 0; }
@@ -264,7 +264,7 @@ inline ss_bool_t operator !=(ZERO_v const &/* lhs */, long double const &i) { re
 
 /** \brief operator != for an integral type and ZERO_v
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 inline ss_bool_t operator !=(ss_sint8_t i, ZERO_v const &/* lhs */)         { return i != 0; }
 inline ss_bool_t operator !=(ss_uint8_t i, ZERO_v const &/* lhs */)         { return i != 0; }

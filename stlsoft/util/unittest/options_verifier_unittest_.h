@@ -1,9 +1,9 @@
 
-// Updated: 20th December 2005
+// Updated: 13th September 2006
 
-#if !defined(STLSOFT_INCL_STLSOFT_HPP_OPTIONS_VERIFIER)
-# error This file cannot be directly included, and should only be included within stlsoft/options_verifier.hpp
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPTIONS_VERIFIER */
+#if !defined(STLSOFT_INCL_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER)
+# error This file cannot be directly included, and should only be included within stlsoft/util/options_verifier.hpp
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
@@ -17,7 +17,7 @@ namespace unittest
 		{
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "STLSoft", "stlsoft/options_verifier", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "util/stlsoft/options_verifier", __FILE__);
 
 #if 0
 			try

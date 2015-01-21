@@ -4,7 +4,7 @@
  * Purpose:     Contains the pair template.
  *
  * Created:     19th November 1998
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      48
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ namespace stlsoft
 
 /** \brief Represents a pair
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * \param T1 The type of the \c first member
  * \param T2 The type of the \c second member
