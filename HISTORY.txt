@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  19th January 2009
+; Updated:  23rd January 2009
 
 ============================================================================
+
+
+23rd January 2009 - 1.9.69 released
+-----------------------------------
+
+ * improved robustness of winstl::path_squeeze
+ * more "Safe String" library compatibility changes
 
 
 19th January 2009 - 1.9.68 released

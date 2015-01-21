@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     22nd September 2008
+ * Updated:     20th January 2009
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in seource and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    10
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        113
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    11
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -165,13 +165,13 @@ public:
 #if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
     defined(_CRT_SECURE_NO_DEPRECATE)
     /// \brief Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type* dest, char_type const* src);
+    static char_type*   str_copy(char_type* dest, char_type const* src);
     /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_copy(char_type* dest, char_type const* src, size_type cch);
+    static char_type*   str_n_copy(char_type* dest, char_type const* src, size_type cch);
     /// \brief Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type* dest, char_type const* src);
+    static char_type*   str_cat(char_type* dest, char_type const* src);
     /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_cat(char_type* dest, char_type const* src, size_type cch);
+    static char_type*   str_n_cat(char_type* dest, char_type const* src, size_type cch);
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
     /// \brief Comparies the contents of \c src and \c dest
     static int_type     str_compare(char_type const* s1, char_type const* s2);
@@ -182,15 +182,15 @@ public:
     /// \brief Evaluates the length of \c src
     static size_type    str_len(char_type const* src);
     /// \brief Finds the given character \c ch in \c s
-    static char_type    *str_chr(char_type const* s, char_type ch);
+    static char_type*   str_chr(char_type const* s, char_type ch);
     /// \brief Finds the rightmost instance \c ch in \c s
-    static char_type    *str_rchr(char_type const* s, char_type ch);
+    static char_type*   str_rchr(char_type const* s, char_type ch);
     /// \brief Finds the given substring \c sub in \c s
-    static char_type    *str_str(char_type const* s, char_type const* sub);
+    static char_type*   str_str(char_type const* s, char_type const* sub);
     /// \brief Finds one of a set of characters in \c s
-    static char_type    *str_pbrk(char_type const* s, char_type const* charSet);
+    static char_type*   str_pbrk(char_type const* s, char_type const* charSet);
     /// \brief \brief Returns a pointer to the end of the string
-    static char_type    *str_end(char_type const* s);
+    static char_type*   str_end(char_type const* s);
 /// @}
 
 /// \name Locale management
@@ -341,6 +341,7 @@ public:
 
     static char_type* str_cat(char_type* dest, char_type const* src)
     {
+        WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
 
 # ifdef STLSOFT_MIN_CRT

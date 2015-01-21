@@ -4,11 +4,11 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     22nd September 2008
+ * Updated:     23rd January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     242
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 8
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     243
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -421,8 +421,10 @@ public:
 private:
     class_type              &push_sep_(char_type sep);
     void                    swap(class_type& rhs);
-    class_type              &concat_(char_type const* rhs);
-    class_type              &concat_(class_type const& rhs);
+    class_type              &concat_(char_type const* rhs, size_type cch);
+#if 0
+    class_type              &concat_(class_type const& rhs, size_type cch);
+#endif /* 0 */
 
     static char_type const  *next_slash_or_end(char_type const* p);
     static char_type const  *next_part_or_end(char_type const* p);
@@ -920,23 +922,28 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs)
+inline ss_typename_param_k basic_path<C, T, A>::class_type&
+basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs, ss_typename_param_k basic_path<C, T, A>::size_type cch)
 {
-    m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs));
+    ::memcpy(&m_buffer[0] + m_len, rhs, sizeof(char_type) * cch);
+    m_len += cch;
+    m_buffer[m_len] = '\0';
 
     return *this;
 }
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
 inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
 {
-    m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs.c_str()));
+	return concat_(rhs.data(), rhs.size());
 
     return *this;
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -991,18 +998,16 @@ inline /* ss_explicit_k */ basic_path<C, T, A>::basic_path(ss_typename_type_k ba
 {
     if(NULL != path)
     {
-        size_type   cch =   traits_type::str_len(path);
+        size_type cch = traits_type::str_len(path);
 
         WINSTL_ASSERT(cch < m_buffer.size());
 
-        traits_type::str_copy(&m_buffer[0], path);
+        ::memcpy(&m_buffer[0], path, sizeof(char_type) * cch);
 
         m_len = cch;
     }
-    else
-    {
-        m_buffer[0] = '\0';
-    }
+
+    m_buffer[m_len] = '\0';
 }
 
 template<   ss_typename_param_k C
@@ -1018,7 +1023,7 @@ inline basic_path<C, T, A>::basic_path(ss_typename_type_k basic_path<C, T, A>::c
     {
         WINSTL_ASSERT(cch < m_buffer.size());
 
-        traits_type::str_n_copy(&m_buffer[0], path, cch);
+        ::memcpy(&m_buffer[0], path, sizeof(char_type) * cch);
     }
     m_buffer[cch] = '\0';
 }
@@ -1031,7 +1036,7 @@ template<   ss_typename_param_k C
 inline basic_path<C, T, A>::basic_path(basic_path<C, T, A> const& rhs)
     : m_len(rhs.m_len)
 {
-    traits_type::str_copy(&m_buffer[0], stlsoft_ns_qual(c_str_ptr)(rhs.m_buffer));
+    ::memcpy(&m_buffer[0], rhs.m_buffer.data(), sizeof(char_type) * m_len);
 }
 #endif /* !STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD */
 
@@ -1093,7 +1098,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push(char_type const* rhs, ws_b
     {
         if(traits_type::is_path_rooted(rhs))
         {
-            class_type  newPath(rhs);
+            class_type newPath(rhs);
 
             swap(newPath);
         }
@@ -1103,11 +1108,12 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push(char_type const* rhs, ws_b
             // locate the next slash to help guide the push_sep_() method.
 
             class_type          newPath(*this);
-            char_type const*    psep   =   next_slash_or_end(c_str());
-            char_type           sep    =   ('\0' == *psep) ? char_type(0) : psep[0];
+            char_type const*    psep	=   next_slash_or_end(c_str());
+            char_type           sep		=   ('\0' == *psep) ? char_type(0) : psep[0];
+			const size_type		cch		=	traits_type::str_len(rhs);
 
             newPath.push_sep_(sep);
-            newPath.concat_(rhs);
+            newPath.concat_(rhs, cch);
             if(bAddPathNameSeparator)
             {
                 newPath.push_sep();
@@ -1143,9 +1149,9 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push_ext(char_type const* rhs, 
     newPath.pop_sep();
     if('.' != *rhs)
     {
-        newPath.concat_(".");
+        newPath.concat_(".", 1);
     }
-    newPath.concat_(rhs);
+    newPath.concat_(rhs, traits_type::str_len(rhs));
     if(bAddPathNameSeparator)
     {
         newPath.push_sep();
@@ -1549,7 +1555,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
 
         for(size_type i = 0; i < parts.size(); ++i)
         {
-            traits_type::str_n_copy(dest, parts[i].p, parts[i].len);
+            ::memcpy(dest, parts[i].p, sizeof(char_type) * parts[i].len);
 
             dest += parts[i].len;
         }

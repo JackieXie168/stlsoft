@@ -5,14 +5,14 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     12th March 2007
+ * Updated:     20th January 2009
  *
- * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
- *              character support on GCC 3.3.3.
+ * Thanks to:   Robert Kreger for spotting a defect in the discrimination of
+ *              wide character support on GCC 3.3.3.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MINOR     0
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      90
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_REVISION  3
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,9 +168,9 @@ namespace stlsoft
 # if defined(STLSOFT_COMPILER_IS_GCC) && \
      (   __GNUC__ < 3 /* TODO: This is probably not needed now, so may remove it in a future version ... */ || \
          !defined(_GLIBCPP_USE_WCHAR_T)) // Thanks to Robert Kreger for suggesting this fix for GCC 3.3.3 on HP UX
-  typedef stlsoft_ns_qual_std(basic_string)<ss_char_w_t>    _stlsoft_wstring_t;
+  typedef stlsoft_ns_qual_std(basic_string)<ss_char_w_t>    stlsoft_wstring_t_;
 # else /* ? GCC */
-  typedef stlsoft_ns_qual_std(wstring)                      _stlsoft_wstring_t;
+  typedef stlsoft_ns_qual_std(wstring)                      stlsoft_wstring_t_;
 # endif /* STLSOFT_COMPILER_IS_GCC) && __GNUC__ < 3 */
 #endif /* STLSOFT_STRING_ACCESS_NO_STD_STRING */
 
@@ -238,7 +238,7 @@ inline ss_char_a_t const* c_str_data_a(stlsoft_ns_qual_std(string) const& s)
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_data_w(_stlsoft_wstring_t const& s)
+inline ss_char_w_t const* c_str_data_w(stlsoft_wstring_t_ const& s)
 {
     return s.data();
 }
@@ -403,7 +403,7 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(string) const& s)
  *
  * \return Length (in characters) of the string <code>s</code>.
  */
-inline ss_size_t c_str_len_w(_stlsoft_wstring_t const& s)
+inline ss_size_t c_str_len_w(stlsoft_wstring_t_ const& s)
 {
     return s.length();
 }
@@ -540,7 +540,7 @@ inline ss_char_a_t const* c_str_ptr_a(stlsoft_ns_qual_std(string) const& s)
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr_w(_stlsoft_wstring_t const& s)
+inline ss_char_w_t const* c_str_ptr_w(stlsoft_wstring_t_ const& s)
 {
     return s.c_str();
 }
@@ -680,7 +680,7 @@ inline ss_char_a_t const* c_str_ptr_null_a(stlsoft_ns_qual_std(string) const& s)
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr_null_w(_stlsoft_wstring_t const& s)
+inline ss_char_w_t const* c_str_ptr_null_w(stlsoft_wstring_t_ const& s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
 }
