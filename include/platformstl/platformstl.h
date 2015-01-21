@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     9th March 2008
+ * Updated:     3rd May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    11
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     34
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    12
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -119,12 +119,13 @@
 # define _PLATFORMSTL_VER_1_5_1     0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
 # define _PLATFORMSTL_VER_1_6_1     0x00010601  /*!< Version 1.6.1 (with STLSoft 1.9.16) */
 # define _PLATFORMSTL_VER_1_6_2     0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.25) */
+# define _PLATFORMSTL_VER_1_7_1     0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.38) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
-#define _PLATFORMSTL_VER_MINOR      6
-#define _PLATFORMSTL_VER_REVISION   2
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_6_2
+#define _PLATFORMSTL_VER_MINOR      7
+#define _PLATFORMSTL_VER_REVISION   1
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_7_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -138,8 +139,8 @@
  * STLSoft version compatibility
  */
 
-#if _STLSOFT_VER < 0x010910ff
-# error This version of the PlatformSTL libraries requires STLSoft version 1.9.16, or later. (www.stlsoft.org)
+#if _STLSOFT_VER < 0x010926ff
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.38, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -180,6 +181,81 @@
 # error Operating system not discriminated. Only UNIX and Windows are currently recognised by PlatformSTL
 #endif /* operating system */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Architecture
+ */
+
+#ifdef PLATFORMSTL_ARCH_IS_X86
+# undef PLATFORMSTL_ARCH_IS_X86
+#endif /* PLATFORMSTL_ARCH_IS_X86 */
+#ifdef PLATFORMSTL_ARCH_IS_IA64
+# undef PLATFORMSTL_ARCH_IS_IA64
+#endif /* PLATFORMSTL_ARCH_IS_IA64 */
+#ifdef PLATFORMSTL_ARCH_IS_X64
+# undef PLATFORMSTL_ARCH_IS_X64
+#endif /* PLATFORMSTL_ARCH_IS_X64 */
+
+#ifdef PLATFORMSTL_ARCH_IS_INTEL
+# undef PLATFORMSTL_ARCH_IS_INTEL
+#endif /* PLATFORMSTL_ARCH_IS_INTEL */
+#ifdef PLATFORMSTL_ARCH_IS_POWERPC
+# undef PLATFORMSTL_ARCH_IS_POWERPC
+#endif /* PLATFORMSTL_ARCH_IS_POWERPC */
+#ifdef PLATFORMSTL_ARCH_IS_ALPHA
+# undef PLATFORMSTL_ARCH_IS_ALPHA
+#endif /* PLATFORMSTL_ARCH_IS_ALPHA */
+#ifdef PLATFORMSTL_ARCH_IS_HPPA
+# undef PLATFORMSTL_ARCH_IS_HPPA
+#endif /* PLATFORMSTL_ARCH_IS_HPPA */
+#ifdef PLATFORMSTL_ARCH_IS_SPARC
+# undef PLATFORMSTL_ARCH_IS_SPARC
+#endif /* PLATFORMSTL_ARCH_IS_SPARC */
+#ifdef PLATFORMSTL_ARCH_IS_UNKNOWN
+# undef PLATFORMSTL_ARCH_IS_UNKNOWN
+#endif /* PLATFORMSTL_ARCH_IS_UNKNOWN */
+
+
+#if defined(PLATFORMSTL_OS_IS_UNIX)
+# ifdef UNIXSTL_ARCH_IS_X86
+#  define PLATFORMSTL_ARCH_IS_X86
+# endif /* UNIXSTL_ARCH_IS_X86 */
+# ifdef UNIXSTL_ARCH_IS_IA64
+#  define PLATFORMSTL_ARCH_IS_IA64
+# endif /* UNIXSTL_ARCH_IS_IA64 */
+# ifdef UNIXSTL_ARCH_IS_X64
+#  define PLATFORMSTL_ARCH_IS_X64
+# endif /* UNIXSTL_ARCH_IS_X64 */
+# ifdef UNIXSTL_ARCH_IS_INTEL
+#  define PLATFORMSTL_ARCH_IS_INTEL
+# endif /* UNIXSTL_ARCH_IS_INTEL */
+# ifdef UNIXSTL_ARCH_IS_POWERPC
+#  define PLATFORMSTL_ARCH_IS_POWERPC
+# endif /* UNIXSTL_ARCH_IS_POWERPC */
+# ifdef UNIXSTL_ARCH_IS_ALPHA
+#  define PLATFORMSTL_ARCH_IS_ALPHA
+# endif /* UNIXSTL_ARCH_IS_ALPHA */
+# ifdef UNIXSTL_ARCH_IS_HPPA
+#  define PLATFORMSTL_ARCH_IS_HPPA
+# endif /* UNIXSTL_ARCH_IS_HPPA */
+# ifdef UNIXSTL_ARCH_IS_SPARC
+#  define PLATFORMSTL_ARCH_IS_SPARC
+# endif /* UNIXSTL_ARCH_IS_SPARC */
+# ifdef UNIXSTL_ARCH_IS_UNKNOWN
+#  define PLATFORMSTL_ARCH_IS_UNKNOWN
+# endif /* UNIXSTL_ARCH_IS_UNKNOWN */
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# ifdef WINSTL_ARCH_IS_X86
+#  define PLATFORMSTL_ARCH_IS_X86
+# endif /* WINSTL_ARCH_IS_X86 */
+# ifdef WINSTL_ARCH_IS_IA64
+#  define PLATFORMSTL_ARCH_IS_IA64
+# endif /* WINSTL_ARCH_IS_IA64 */
+# ifdef WINSTL_ARCH_IS_X64
+#  define PLATFORMSTL_ARCH_IS_X64
+# endif /* WINSTL_ARCH_IS_X64 */
+#else /* ? operating system */
+#endif /* operating system */
+ 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
