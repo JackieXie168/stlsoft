@@ -2,9 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  21st January 2010
+; Updated:  2nd February 2010
 
 ============================================================================
+
+
+2nd February 2010 - 1.9.91 released
+-----------------------------------
+
+ * introducing unixstl::/winstl::remove_directory_recurse() into platformstl namespace
+ * removal of dependency on so-called "unsafe" string functions
+ * elimination of calls to memcpy() in path classes
+ * throwing of exception in make_absolute() if failed to get full path
 
 
 21st January 2010 - 1.9.90 released

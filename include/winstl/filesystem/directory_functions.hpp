@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     11th January 2010
+ * Updated:     30th January 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      45
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,12 +110,12 @@ namespace winstl_project
  */
 
 template <ss_typename_param_k C>
-inline C *find_last_path_name_separator_(C const* s)
+inline C* find_last_path_name_separator_(C const* s)
 {
     typedef filesystem_traits<C>    traits_t;
 
-    ss_typename_type_k traits_t::char_type const    *slash  =   traits_t::str_rchr(s, '/');
-    ss_typename_type_k traits_t::char_type const    *bslash =   traits_t::str_rchr(s, '\\');
+    ss_typename_type_k traits_t::char_type const*   slash  =   traits_t::str_rchr(s, '/');
+    ss_typename_type_k traits_t::char_type const*   bslash =   traits_t::str_rchr(s, '\\');
 
     if(NULL == slash)
     {
@@ -189,7 +189,9 @@ inline ws_bool_t create_directory_recurse_impl(C const* dir, LPSECURITY_ATTRIBUT
             }
             else
             {
-                traits_t::str_copy(&sz[0], dir);
+                ws_size_t dirLen = traits_t::str_len(dir);
+                traits_t::char_copy(&sz[0], dir, dirLen);
+                sz[dirLen] = '\0';
                 traits_t::remove_dir_end(&sz[0]);
 
                 if( traits_t::create_directory(sz.c_str(), lpsa) ||
@@ -202,9 +204,11 @@ inline ws_bool_t create_directory_recurse_impl(C const* dir, LPSECURITY_ATTRIBUT
                 else
                 {
                     // Trim previous directory
-                    traits_t::str_copy(&szParent[0], sz.c_str());
+                    ws_size_t szLen = traits_t::str_len(dir);
+                    traits_t::char_copy(&szParent[0], sz.c_str(), szLen);
+                    szParent[szLen] = '\0';
 
-                    char_type   *pszSlash = find_last_path_name_separator_<C>(szParent.c_str());
+                    char_type* pszSlash = find_last_path_name_separator_<C>(szParent.c_str());
                     if(pszSlash == NULL)
                     {
                         traits_t::set_last_error(ERROR_DIRECTORY);
@@ -335,12 +339,16 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                         file_path_buffer_t                          sz;
                         HANDLE                                      hSrch;
                         ws_size_t                                   n;
+                        ws_size_t                                   dirLen = traits_t::str_len(dir);
+                        ws_size_t                                   allLen = traits_t::str_len(traits_t::pattern_all());
 
-                        traits_t::str_copy(&sz[0], dir);
+                        traits_t::char_copy(&sz[0], dir, dirLen);
+                        sz[dirLen] = '\0';
                         traits_t::ensure_dir_end(&sz[0]);
                         n = traits_t::str_len(sz.c_str());
                         WINSTL_ASSERT(n + traits_t::str_len(traits_t::pattern_all()) < traits_t::maxPathLength);
-                        traits_t::str_cat(&sz[0], traits_t::pattern_all());
+                        traits_t::char_copy(&sz[n], traits_t::pattern_all(), allLen);
+                        sz[n + allLen] = '\0';
 
                         hSrch = traits_t::find_first_file(sz.c_str(), &st);
                         if(INVALID_HANDLE_VALUE == hSrch)
@@ -355,7 +363,9 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                             {
                                 if(!traits_t::is_dots(st.cFileName))
                                 {
-                                    traits_t::str_copy(&sz[n], st.cFileName);
+                                    ws_size_t filenameLen = traits_t::str_len(st.cFileName);
+                                    traits_t::char_copy(&sz[n], st.cFileName, filenameLen);
+                                    sz[n + filenameLen] = '\0';
 
                                     if(traits_t::is_file(sz.c_str()))
                                     {
@@ -544,7 +554,7 @@ inline ws_bool_t remove_directory_recurse(  ws_char_a_t const*  dir
 {
     typedef filesystem_traits<ws_char_a_t>  traits_t;
 
-    ws_dword_t  dwRet   =   remove_directory_recurse_impl<ws_char_a_t, WIN32_FIND_DATAA>(dir, pfn, param);
+    ws_dword_t dwRet = remove_directory_recurse_impl<ws_char_a_t, WIN32_FIND_DATAA>(dir, pfn, param);
 
     traits_t::set_last_error(dwRet);
 
@@ -570,7 +580,7 @@ inline ws_bool_t remove_directory_recurse(  ws_char_w_t const*  dir
 {
     typedef filesystem_traits<ws_char_w_t>  traits_t;
 
-    ws_dword_t  dwRet   =   remove_directory_recurse_impl<ws_char_w_t, WIN32_FIND_DATAW>(dir, pfn, param);
+    ws_dword_t dwRet = remove_directory_recurse_impl<ws_char_w_t, WIN32_FIND_DATAW>(dir, pfn, param);
 
     traits_t::set_last_error(dwRet);
 
@@ -597,7 +607,7 @@ inline ws_bool_t remove_directory_recurse(S const& dir)
 {
     typedef filesystem_traits<ws_char_w_t>  traits_t;
 
-    ws_dword_t  dwRet   =   remove_directory_recurse(stlsoft_ns_qual(c_str_ptr)(dir), NULL, NULL);
+    ws_dword_t dwRet = remove_directory_recurse(stlsoft_ns_qual(c_str_ptr)(dir), NULL, NULL);
 
     traits_t::set_last_error(dwRet);
 
