@@ -4,7 +4,7 @@
  * Purpose:     Contains the exception_string limited functionality string class.
  *
  * Created:     26th December 2005
- * Updated:     22nd March 2007
+ * Updated:     5th September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     15
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -166,6 +166,23 @@ public:
             m_message[m_message.size() - 1] = '\0';
         }
     }
+
+    /// Truncates the string to the given length
+    ///
+    /// \param n The length to which the string's contents will be truncated
+    ///
+    /// \remarks This method is a no-op if the length specified is greater
+    ///  than the current length
+    void truncate(size_type n)
+    {
+        if(n < m_message.size() - 1)
+        {
+            if(m_message.resize(n + 1))
+            {
+                m_message[m_message.size() - 1] = '\0';
+            }
+        }
+    }
 /// @}
 
 /// \name Attributes
@@ -185,7 +202,7 @@ public:
         return m_message.size() - 1;
     }
     /// \brief Indicates whether or not the message is blank
-    ss_bool_t    empty() const
+    ss_bool_t   empty() const
     {
         return 0 == this->length();
     }
