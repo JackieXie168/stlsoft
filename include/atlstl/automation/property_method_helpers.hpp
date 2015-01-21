@@ -5,11 +5,11 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     12th March 2007
+ * Updated:     17th October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_REVISION 2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     67
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_REVISION 3
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -312,7 +312,7 @@ inline HRESULT put_MemberValue(C *const cls, CComBSTR const& newVal, CComBSTR C:
 template <ss_typename_param_k C>
 inline HRESULT put_MemberValue(C *const cls, CComVariant const& newVal, CComVariant C::*mem)
 {
-    return put_MemberValue(cls, (VARIANT const&)newVal, mem);
+    return (cls->*mem = newVal, (VT_ERROR == (cls->*mem).vt) ? (cls->*mem).scode : S_OK);
 }
 
 

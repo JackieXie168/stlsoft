@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  16th October 2008
+; Updated:  25th October 2008
 
 ============================================================================
 
@@ -16,6 +16,34 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.59 (25th October 2008)
+
+Summary:
+========
+
+ * change in ATLSTL's property method helpers to avoid infinite loop in
+   Visual C++ 6 problem when implementing property puts to CComBSTR
+ * fixed compile error with GCC when using VARIANTs in C compilation units
+
+Changes:
+========
+
+ ATLSTL:
+ -------
+
+  ~ atlsoft/automation/property_method_helpers.hpp:
+     ~ fixed infinite loop defect in put_MemberValue(..., CComVariant const&, ...); 
+       now assigns directly and handles case whereby assignment fail
+
+ COMSTL:
+ -------
+
+  ~ comstl/comstl.h:
+     ~ refactored way in which VARIANT-manipulation macros are defined for C
+       compilation to fix compile errors with GCC
 
 ============================================================================
 
@@ -50,8 +78,8 @@ Changes:
   ~ comstl/shims/access/string/variant.hpp:
      ~ passed VARIANT_ALPHABOOL to all variant conversion routines
      ~ fixed defect whereby widestring and multibyte string lengths were
-	   assumed to be equal (by c_str_len_w() and c_str_len_a() being
-	   implemented in terms of c_str_len())
+       assumed to be equal (by c_str_len_w() and c_str_len_a() being
+       implemented in terms of c_str_len())
 
  WinSTL:
  -------
@@ -100,7 +128,7 @@ Changes:
   ~ comstl/util/DECIMAL_functions.h:
   ~ comstl/util/VARIANT_functions.h:
      ~ compatibility with Standard-C compilation (where anonymous unions and
-	   structures are not valid)
+       structures are not valid)
 
  WinSTL:
  -------

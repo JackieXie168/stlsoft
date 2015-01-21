@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     10th October 2008
+ * Updated:     25th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       7
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        108
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -142,13 +142,14 @@
 # define _COMSTL_VER_1_7_3      0x00010703  /*!< Version 1.7.3 (with STLSoft 1.9.25) */
 # define _COMSTL_VER_1_7_4      0x010704ff  /*!< Version 1.7.4 (with STLSoft 1.9.31) */
 # define _COMSTL_VER_1_8_1      0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.37) */
-# define _COMSTL_VER_1_8_2      0x010802ff  /*!< Version 1.8.1 (with STLSoft 1.9.57) */
+# define _COMSTL_VER_1_8_2      0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.57) */
+# define _COMSTL_VER_1_8_3      0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.9.59) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       8
-#define _COMSTL_VER_REVISION    2
-#define _COMSTL_VER             _COMSTL_VER_1_8_2
+#define _COMSTL_VER_REVISION    3
+#define _COMSTL_VER             _COMSTL_VER_1_8_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -168,8 +169,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010939ff
-# error This version of the COMSTL libraries requires STLSoft version 1.9.57, or later
+    _STLSOFT_VER < 0x01093bff
+# error This version of the COMSTL libraries requires STLSoft version 1.9.59, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -519,23 +520,52 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define COMSTL_REF_2_PTR(iid)        (iid)
 #endif /* __cplusplus */
 
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
+#  undef COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
+# endif /* COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+#if !defined(COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES) && \
+    defined(_FORCENAMELESSUNION) && \
+    !defined(NONAMELESSUNION)
+# define COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES
+#endif /* !COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES) && _FORCENAMELESSUNION */
+
+
+#if defined(COMSTL_ASSUME_VARIANT_UNION_FORCE_ARMS_HAVE_NAMES)
+# define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
+#elif defined(STLSOFT_COMPILER_IS_GCC)
+   /* GCC has different definitions to the other compilers, so have to treat
+    * differently
+    */
+# if defined(NONAMELESSUNION)
+#  define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
+# endif /* NONAMELESSUNION */
+#else /* ? compiler */
+   /* Other compilers use the MS headers, which test against __STDC__, 
+    * _FORCENAMELESSUNION and NONAMELESSUNION
+    */
+# if (  __STDC__ && \
+        !defined(_FORCENAMELESSUNION)) || \
+     defined(NONAMELESSUNION)
+#  define COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_
+# endif /* (  __STDC__ && !_FORCENAMELESSUNION) || NONAMELESSUNION */
+#endif /* compiler */
+
 /** \def COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)
  *
  * \ingroup group__project__comstl__language_agnostic_macros
  *
  * \brief 
  */
-#ifdef __cplusplus
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+     !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 # define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)     (pvar)->mem
-#else /* ? __cplusplus */
-# if (  __STDC__ && \
-        !defined(_FORCENAMELESSUNION)) || \
-    defined(NONAMELESSUNION)
+# else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
 #  define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)    (pvar)->__VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.mem
-# else /* ? __STDC__ */
-#  define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)    (pvar)->mem
-# endif /* __STDC__ */
-#endif /* __cplusplus */
+# endif /* COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
 
 /** \def COMSTL_ACCESS_VARIANT_MEM_BYREF(var, mem)
  *
@@ -552,17 +582,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
  *
  * \brief 
  */
-#ifdef __cplusplus
-# define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)           (pvar)->vt
-#else /* ? __cplusplus */
-# if (  __STDC__ && \
-        !defined(_FORCENAMELESSUNION)) || \
-    defined(NONAMELESSUNION)
-#  define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)          (pvar)->__VARIANT_NAME_1.__VARIANT_NAME_2.vt
-# else /* ? __STDC__ */
+
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+     !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 #  define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)          (pvar)->vt
-# endif /* __STDC__ */
-#endif /* __cplusplus */
+# else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
+#  define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)          (pvar)->__VARIANT_NAME_1.__VARIANT_NAME_2.vt
+# endif /* COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
 
 /** \def COMSTL_ACCESS_VARIANT_vt_BYREF(var)
  *
@@ -579,17 +605,12 @@ stlsoft_ns_using(move_lhs_from_rhs)
  *
  * \brief 
  */
-#ifdef __cplusplus
+# if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+     !defined(COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_)
 # define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)       (pvar)->decVal
-#else /* ? __cplusplus */
-# if (  __STDC__ && \
-        !defined(_FORCENAMELESSUNION)) || \
-    defined(NONAMELESSUNION)
+# else /* ? COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
 #  define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)      (pvar)->__VARIANT_NAME_1.decVal
-# else /* ? __STDC__ */
-#  define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)      (pvar)->decVal
-# endif /* __STDC__ */
-#endif /* __cplusplus */
+# endif /* COMSTL_VARIANT_UNION_ARMS_HAVE_NAMES_ */
 
 /** \def COMSTL_ACCESS_VARIANT_decVal_BYREF(var, mem)
  *
