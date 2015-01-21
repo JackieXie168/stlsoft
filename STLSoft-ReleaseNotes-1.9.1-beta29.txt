@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta28
+File:     STLSoft-ReleaseNotes-1.9.1-beta29
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,10 +11,35 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  29th October 2006
+Updated:  27th November 2006
 
 ============================================================================
 
+
+============================================================================
+
+Changes for 1.9.1 beta 29 (27th November 2006):
+
+Additions:
+==========
+
++ atlstl::Window class - a string access shim-aware enhancement to ATLs'
+  Window class
+
+Changes:
+========
+
+~ COMSTL value policies throw exceptions if fail to copy
+
+~ UNIXSTL and WinSTL spin_mutex is made into a template, and takes a policy
+  that determines whether it yields on the spin. Use spin_mutex_yield for
+  yielding, spin_mutex_no_yield for no yielding. spin_mutex is now a typedef
+  for spin_mutex_no_yield. The old behaviour can be obtained by #define-ing
+  the symbol STLSOFT_OLD_SPIN_MUTEX_BEHAVIOUR, in which case spin_mutex is
+  a typedef for spin_mutex_yield.
+
+~ WinSTL's pid_sequence and process_module_sequence classes have been
+  rendered slightly more efficient.
 
 ============================================================================
 

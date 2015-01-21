@@ -4,7 +4,7 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     15th September 2006
+ * Updated:     26th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,9 +42,10 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/// \file stlsoft/internal/_undefs.h
-///
-/// The \#undefs for stlsoft/stlsoft.h.
+/** \file stlsoft/internal/_undefs.h
+ *
+ * The \#undefs for stlsoft/stlsoft.h.
+ */
 
 #ifdef STLSOFT_INCL_H_STLSOFT__UNDEFS
 # error This file cannot be included more than once in any compilation unit
@@ -55,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    3
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     18
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 2
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -239,7 +240,7 @@
 # undef STLSOFT_CF_INT_DISTINCT_TYPE
 #endif /* STLSOFT_CF_INT_DISTINCT_TYPE */
 
-//#ifdef STLSOFT_CF_NATIVE_INT_8_
+/* #ifdef STLSOFT_CF_NATIVE_INT_8_ */
 
 /* Compiler supports member constants.
  *

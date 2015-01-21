@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     26th July 2006
+ * Updated:     1st November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     15
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -298,22 +298,22 @@ namespace registry_util
     /// Used by basic_reg_key_sequence and basic_reg_value_sequence.
     ///
     /// \param hkey The registry key handle to be owned
-    /// \param bMonitorExternalInterruption If non-zero, the given \c eventType event is monitored.
+    /// \param bMonitorExternalInvalidation If non-zero, the given \c eventType event is monitored.
     /// \param eventType The type of the event to monitor. One of REG_NOTIFY_CHANGE_NAME or REG_NOTIFY_CHANGE_LAST_SET
     ///
-    /// \note The <code>bMonitorExternalInterruption</code> and
+    /// \note The <code>bMonitorExternalInvalidation</code> and
     ///   <code>eventType</code> parameters are ignored in compilation
     ///   modes that do not support exception throwing/handling.
-    static shared_handle *create_shared_handle(HKEY hkey, ws_bool_t bMonitorExternalInterruption, int eventType)
+    static shared_handle *create_shared_handle(HKEY hkey, ws_bool_t bMonitorExternalInvalidation, int eventType)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        if(bMonitorExternalInterruption)
+        if(bMonitorExternalInvalidation)
         {
             return new monitored_shared_handle(hkey, eventType);
         }
         else
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        STLSOFT_SUPPRESS_UNUSED(bMonitorExternalInterruption);
+        STLSOFT_SUPPRESS_UNUSED(bMonitorExternalInvalidation);
         STLSOFT_SUPPRESS_UNUSED(eventType);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         {

@@ -4,7 +4,11 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     18th October 2006
+ * Updated:     7th November 2006
+ *
+ * Thanks to:   Adi Shavit for spotting a small inefficiency in the
+ *              resize()-ing, during the review of Extended STL volume 1
+ *              (see http://extendedstl.com/).
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     37
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -330,7 +334,7 @@ inline pid_sequence::pid_sequence(ws_uint32_t flags)
         }
         else
         {
-            const size_t    n   =   cbReturned / sizeof(value_type);
+            const size_type	n = cbReturned / sizeof(value_type);
 
             if(n < m_pids.size())
             {
@@ -340,7 +344,11 @@ inline pid_sequence::pid_sequence(ws_uint32_t flags)
             }
             else
             {
-                if(!m_pids.resize(2 * m_pids.size()))
+                const size_type size = m_pids.size();
+
+                m_pids.resize(1); // Read "Extended STL, volume 1" to find out what this is for
+
+                if(!m_pids.resize(2 * size))
                 {
                     // This will only ever be executed when compiled in the
                     // absence of throwing bad_alloc on memory exhaustion

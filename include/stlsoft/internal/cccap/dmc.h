@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th September 2006
+ * Updated:     26th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,9 +42,10 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/// \file stlsoft/internal/cccap/dmc.h
-///
-/// Compiler feature discrimination for Digital Mars C/C++.
+/** \file stlsoft/internal/cccap/dmc.h
+ *
+ * Compiler feature discrimination for Digital Mars C/C++.
+ */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_DMC
 # error This file cannot be included more than once in any compilation unit
@@ -55,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      8
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       73
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,7 +149,7 @@
 #define STLSOFT_CF_64BIT_INT_SUPPORT
 #define STLSOFT_CF_64BIT_INT_IS_EXTENDED_TYPE
 #define STLSOFT_CF_64BIT_INT_IS_long_long
-//#define STLSOFT_CF_64BIT_INT_IS___int64 - DMC++ also supports
+/* #define STLSOFT_CF_64BIT_INT_IS___int64 - DMC++ also supports */
 #define STLSOFT_CF_EXTENDED_INT64_T             long long
 #define STLSOFT_CF_EXTENDED_SINT64_T     signed long long
 #define STLSOFT_CF_EXTENDED_UINT64_T   unsigned long long
@@ -199,7 +200,7 @@
 #define __STLSOFT_CF_TEMPLATE_SUPPORT
 #define STLSOFT_CF_TEMPLATE_SUPPORT
 
-//#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
+/* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
 
 #if __DMC__ >= 0x0838 && \
     defined(_STLPORT_VERSION)
@@ -207,10 +208,10 @@
 # define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 #endif /* __DMC__ >= 0x0838 */
 
-//#define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
+/* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
 
-//#define __STLSOFT_CF_THROW_BAD_ALLOC
-//#define STLSOFT_CF_THROW_BAD_ALLOC
+/* #define __STLSOFT_CF_THROW_BAD_ALLOC */
+/* #define STLSOFT_CF_THROW_BAD_ALLOC */
 
 #define __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
@@ -332,8 +333,8 @@
 #define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 
-//#define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
-//#define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+/* #define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+/* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 
 #if __DMC__ >= 0x0840
 # define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
@@ -347,12 +348,12 @@
 # define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 #endif /* __DMC__ */
 
-//#define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
-//#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+/* #define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT */
+/* #define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT */
 
 #if __DMC__ >= 0x0846
-//# define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-//# define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+/* # define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+/* # define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #else
  /* Not defined */
 #endif /* __DMC__ */
@@ -362,11 +363,11 @@
 
 #define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 
-//#define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
 
-// Shims are supported
-//# define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
-//#define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+/* Shims are supported. */
+/* # define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+/* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
 #define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT

@@ -5,7 +5,7 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     7th July 2006
+ * Updated:     31st October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    0
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 2
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     156
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 1
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     157
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,6 +68,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
 # include <stlsoft/conversion/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
+#  include <comstl/error/exceptions.hpp>
+# endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -138,6 +144,15 @@ public:
     static void copy(value_type *dest, value_type const *src)
     {
         *dest = ::SysAllocString(*src);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if( NULL == *dest &&
+            NULL != *src &&
+            L'\0' != (*src)[0])
+        {
+            throw com_exception("failed to copy BSTR", E_OUTOFMEMORY);
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     /// Releases an instance
     static void clear(value_type *p) stlsoft_throw_0()
@@ -166,6 +181,14 @@ public:
     static void copy(value_type *dest, value_type const *src)
     {
         *dest = olestring_dup(*src);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if( NULL == *dest &&
+            NULL != *src)
+        {
+            throw com_exception("failed to copy OLE string", E_OUTOFMEMORY);
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     /// Releases an instance
     static void clear(value_type *p) stlsoft_throw_0()
@@ -193,7 +216,14 @@ public:
     /// Initialises an instance from another
     static void copy(value_type *dest, value_type const *src)
     {
-        ::VariantCopy(dest, const_cast<VARIANT*>(src));
+        HRESULT hr = ::VariantCopy(dest, const_cast<VARIANT*>(src));
+
+        if(FAILED(hr))
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw com_exception("failed to copy VARIANT", hr);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
     }
     /// Releases an instance
     static void clear(value_type *p) stlsoft_throw_0()
@@ -301,6 +331,13 @@ public:
         if(NULL != src->pwcsName)
         {
             dest->pwcsName = olestring_dup(src->pwcsName);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            if(NULL == dest->pwcsName)
+            {
+                throw com_exception("failed to copy OLE string when copying STATSTG", E_OUTOFMEMORY);
+            }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         };
     }
     /// Releases an instance
@@ -334,7 +371,13 @@ public:
         {
             dest->ptd = static_cast<DVTARGETDEVICE*>(::CoTaskMemAlloc(src->ptd->tdSize));
 
-            if(NULL != dest->ptd)
+            if(NULL == dest->ptd)
+            {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                throw com_exception("failed to copy DVTARGETDEVICE when copying FORMATETC", E_OUTOFMEMORY);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            }
+            else
             {
                 BYTE const  *src_begin  =   stlsoft_ns_qual(sap_cast)<BYTE const*>(&src->ptd);
                 BYTE const  *src_end    =   src_begin + src->ptd->tdSize;

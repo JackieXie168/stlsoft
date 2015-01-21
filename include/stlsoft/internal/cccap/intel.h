@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     21st October 2006
+ * Updated:     26th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,9 +42,10 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/// \file stlsoft/internal/cccap/intel.h
-///
-/// Compiler feature discrimination for Intel C/C++.
+/** \file stlsoft/internal/cccap/intel.h
+ *
+ * Compiler feature discrimination for Intel C/C++.
+ */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL
 # error This file cannot be included more than once in any compilation unit
@@ -55,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       8
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        59
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    2
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -217,7 +218,7 @@
 #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 
 /* Namespace support */
-//#define _STLSOFT_NO_NAMESPACES
+/* #define _STLSOFT_NO_NAMESPACES */
 
 #define __STLSOFT_CF_NAMESPACE_SUPPORT
 #define STLSOFT_CF_NAMESPACE_SUPPORT
@@ -230,7 +231,7 @@
 #define __STLSOFT_CF_TEMPLATE_SUPPORT
 #define STLSOFT_CF_TEMPLATE_SUPPORT
 
-//#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
+/* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
 
 #if defined(_MSC_VER) && \
     _MSC_VER >= 1100
@@ -240,11 +241,11 @@
 # endif /* _CPPUNWIND */
 #endif /* _MSC_VER */
 
-//#define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
+/* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
 
 
-//# define __STLSOFT_CF_THROW_BAD_ALLOC
-//# define STLSOFT_CF_THROW_BAD_ALLOC
+/* # define __STLSOFT_CF_THROW_BAD_ALLOC */
+/* # define STLSOFT_CF_THROW_BAD_ALLOC */
 
 #define __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
@@ -318,7 +319,7 @@
 #define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 
-//#define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
+/* #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT */
 
 #ifdef _MSC_EXTENSIONS
 # define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
@@ -344,11 +345,11 @@
 # define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 #endif /* !_ATL_MIN_CRT */
 
-//#define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
 
-// Shims are supported
-//# define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
-//#define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+/* Shims are supported. */
+/* # define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+/* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
 #define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT

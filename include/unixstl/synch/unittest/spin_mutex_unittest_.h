@@ -1,5 +1,5 @@
 
-// Updated: 1st June 2006
+// Updated: 25th November 2006
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SPIN_MUTEX)
 # error This file cannot be directly included, and should only be included within unixstl/synch/spin_mutex.hpp
@@ -22,7 +22,7 @@ namespace unittest
 			unittest_initialiser	init(r, "UNIXSTL", "synch/spin_mutex", __FILE__);
 
 			spin_mutex::atomic_int_type i	=	0;
-			spin_mutex					mx(&i);
+			spin_mutex					mx(&i, false);
 
 			mx.lock();
 			if(1 != mx.spun_count())

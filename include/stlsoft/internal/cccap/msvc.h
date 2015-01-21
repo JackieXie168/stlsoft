@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     17th October 2006
+ * Updated:     26th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,9 +42,10 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/// \file stlsoft/internal/cccap/msvc.h
-///
-/// Compiler feature discrimination for Visual C++.
+/** \file stlsoft/internal/cccap/msvc.h
+ *
+ * Compiler feature discrimination for Visual C++.
+ */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_MSVC
 # error This file cannot be included more than once in any compilation unit
@@ -59,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     9
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      85
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -266,7 +267,7 @@
 # endif /* _CPPUNWIND */
 #endif /* _MSC_VER */
 
-//#define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
+/* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
 
 #if _MSC_VER >= 1300
 # define __STLSOFT_CF_THROW_BAD_ALLOC
@@ -439,8 +440,8 @@
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1310
-//#  define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
-//#  define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+/* #  define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+/* #  define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 #else
  /* Not defined */
 #endif /* _MSC_VER */
@@ -481,7 +482,7 @@
 # define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 #endif /* !_ATL_MIN_CRT */
 
-//#define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
 
 #if _MSC_VER < 1100
 # define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED

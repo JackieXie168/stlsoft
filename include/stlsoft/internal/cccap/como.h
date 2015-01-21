@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th September 2006
+ * Updated:     26th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,9 +42,10 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/// \file stlsoft/internal/cccap/como.h
-///
-/// Compiler feature discrimination for Comeau C/C++.
+/** \file stlsoft/internal/cccap/como.h
+ *
+ * Compiler feature discrimination for Comeau C/C++.
+ */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_COMO
 # error This file cannot be included more than once in any compilation unit
@@ -55,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      50
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,7 +171,7 @@
 #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 
 /* Namespace support */
-//#define _STLSOFT_NO_NAMESPACES
+/* #define _STLSOFT_NO_NAMESPACES */
 
 #define __STLSOFT_CF_NAMESPACE_SUPPORT
 #define STLSOFT_CF_NAMESPACE_SUPPORT
@@ -185,7 +186,7 @@
 #define __STLSOFT_CF_TEMPLATE_SUPPORT
 #define STLSOFT_CF_TEMPLATE_SUPPORT
 
-//#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
+/* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
 
 #define __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 #define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
@@ -264,13 +265,13 @@
 #define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 
-//#define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
-//#define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+/* #define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+/* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 
 #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 
-//#define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
-//#define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+/* #define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+/* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
 #define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
 #define STLSOFT_CF_ADL_LOOKUP_SUPPORT
@@ -286,11 +287,11 @@
 
 #define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 
-//#define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
 
-// Shims are supported
-//# define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
-//#define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+/* Shims are supported */
+/* # define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+/* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
 #define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
@@ -344,76 +345,84 @@
  * Calling convention
  */
 
-#if defined(STLSOFT_CF_COMO_BACKEND_IS_BORLAND)
+#ifdef __STDC__
 
-# define STLSOFT_CF_FASTCALL_SUPPORTED
-# define STLSOFT_CF_STDCALL_SUPPORTED
+ /* Neither fastcall nor stdcall are supported in strict mode. */
 
-# define STLSOFT_CDECL              __cdecl
-# define STLSOFT_FASTCALL           __msfastcall
-# define STLSOFT_STDCALL            __stdcall
+#else /* ? std C */
 
-#elif defined(STLSOFT_CF_COMO_BACKEND_IS_DMC)
-
-# define STLSOFT_CF_STDCALL_SUPPORTED
-
-# define STLSOFT_CDECL              __cdecl
-# define STLSOFT_STDCALL            __stdcall
-
-#elif defined(STLSOFT_CF_COMO_BACKEND_IS_GCC)
-
-# if defined(WIN32) || \
-     defined(WIN64)
+# if defined(STLSOFT_CF_COMO_BACKEND_IS_BORLAND)
 
 #  define STLSOFT_CF_FASTCALL_SUPPORTED
 #  define STLSOFT_CF_STDCALL_SUPPORTED
 
-#  define    STLSOFT_CDECL               __cdecl
-#  define    STLSOFT_FASTCALL            __fastcall
-#  define    STLSOFT_STDCALL             __stdcall
+#  define STLSOFT_CDECL                     __cdecl
+#  define STLSOFT_FASTCALL                  __msfastcall
+#  define STLSOFT_STDCALL                   __stdcall
 
-# endif /* Windows */
+# elif defined(STLSOFT_CF_COMO_BACKEND_IS_DMC)
 
-#elif defined(STLSOFT_CF_COMO_BACKEND_IS_INTEL)
+#  define STLSOFT_CF_STDCALL_SUPPORTED
 
-# if defined(WIN32) || \
-     defined(WIN64)
+#  define STLSOFT_CDECL                     __cdecl
+#  define STLSOFT_STDCALL                   __stdcall
+
+# elif defined(STLSOFT_CF_COMO_BACKEND_IS_GCC)
+
+#  if defined(WIN32) || \
+      defined(WIN64)
+
+#   define STLSOFT_CF_FASTCALL_SUPPORTED
+#   define STLSOFT_CF_STDCALL_SUPPORTED
+
+#   define    STLSOFT_CDECL                 __cdecl
+#   define    STLSOFT_FASTCALL              __fastcall
+#   define    STLSOFT_STDCALL               __stdcall
+
+#  endif /* Windows */
+
+# elif defined(STLSOFT_CF_COMO_BACKEND_IS_INTEL)
+
+#  if defined(WIN32) || \
+      defined(WIN64)
+
+#   define STLSOFT_CF_FASTCALL_SUPPORTED
+#   define STLSOFT_CF_STDCALL_SUPPORTED
+
+#   define    STLSOFT_CDECL                 __cdecl
+#   define    STLSOFT_FASTCALL              __fastcall
+#   define    STLSOFT_STDCALL               __stdcall
+
+#  endif /* Windows */
+
+# elif defined(STLSOFT_CF_COMO_BACKEND_IS_MWERKS)
+
+#  if defined(WIN32) || \
+      defined(WIN64)
+
+#   define STLSOFT_CF_FASTCALL_SUPPORTED
+#   define STLSOFT_CF_STDCALL_SUPPORTED
+
+#   define    STLSOFT_CDECL                 __cdecl
+#   define    STLSOFT_FASTCALL              __fastcall
+#   define    STLSOFT_STDCALL               __stdcall
+
+#  endif /* Windows */
+
+# elif defined(STLSOFT_CF_COMO_BACKEND_IS_MSVC)
 
 #  define STLSOFT_CF_FASTCALL_SUPPORTED
 #  define STLSOFT_CF_STDCALL_SUPPORTED
 
-#  define    STLSOFT_CDECL               __cdecl
-#  define    STLSOFT_FASTCALL            __fastcall
-#  define    STLSOFT_STDCALL             __stdcall
+#  define    STLSOFT_CDECL                  __cdecl
+#  define    STLSOFT_FASTCALL               __fastcall
+#  define    STLSOFT_STDCALL                __stdcall
 
-# endif /* Windows */
+# else
+#  error Unrecognised compiler
+# endif /* ? compiler */
 
-#elif defined(STLSOFT_CF_COMO_BACKEND_IS_MWERKS)
-
-# if defined(WIN32) || \
-     defined(WIN64)
-
-#  define STLSOFT_CF_FASTCALL_SUPPORTED
-#  define STLSOFT_CF_STDCALL_SUPPORTED
-
-#  define    STLSOFT_CDECL               __cdecl
-#  define    STLSOFT_FASTCALL            __fastcall
-#  define    STLSOFT_STDCALL             __stdcall
-
-# endif /* Windows */
-
-#elif defined(STLSOFT_CF_COMO_BACKEND_IS_MSVC)
-
-# define STLSOFT_CF_FASTCALL_SUPPORTED
-# define STLSOFT_CF_STDCALL_SUPPORTED
-
-# define    STLSOFT_CDECL               __cdecl
-# define    STLSOFT_FASTCALL            __fastcall
-# define    STLSOFT_STDCALL             __stdcall
-
-#else
-# error Unrecognised compiler
-#endif /* ? compiler */
+#endif /* std C */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Inline assembler

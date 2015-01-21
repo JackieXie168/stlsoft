@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/synchfwd.hpp
+ * File:        stlsoft/synch/spin_policies.hpp
  *
- * Purpose:     Forward declarations for the WinSTL components in the
- *              Synchronisation library.
+ * Purpose:     Policies for spin mutexes.
  *
- * Created:     9th June 2006
+ * Created:     25th November 2006
  * Updated:     25th November 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,88 +38,82 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/synch/synchfwd.hpp
+/** \file stlsoft/synch/spin_policies.hpp
  *
- * \brief [C++ only] Definition of the winstl::event class.
+ * \brief [C++ only] Definition of stlsoft::spin_yield and
+ *    stlsoft::spin_no_yield policy classes.
  *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
-#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SYNCHFWD
-#define WINSTL_INCL_WINSTL_SYNCH_HPP_SYNCHFWD
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES
+#define STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MAJOR     1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MINOR     0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      2
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_MAJOR      1
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_MINOR      0
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_REVISION   1
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_EDIT       1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
-#ifndef WINSTL_INCL_WINSTL_H_WINSTL
-# include <winstl/winstl.h>
-#endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
-#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
-# include <winstl/synch/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
-{
-# else
-/* Define stlsoft::winstl_project */
-
+#ifndef _STLSOFT_NO_NAMESPACE
 namespace stlsoft
 {
-
-namespace winstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Functions
- */
-
+#endif /* _STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-class event;
-class process_mutex;
-class semaphore;
-//class spin_mutex;
-class thread_mutex;
-class tss_index;
+/** \brief This policy causes spin mutex types default behaviour to be to
+ *    yield the current time slice when the spin variable cannot be acquired.
+ *
+ * \ingroup group__library__synch
+ */
+struct spin_yield
+{
+    enum
+    {
+        value = true
+    };
+};
+
+/** \brief This policy causes spin mutex types default behaviour to be to
+ *    <b>not</b> yield the current time slice when the spin variable cannot
+ *    be acquired.
+ *
+ * \ingroup group__library__synch
+ */
+struct spin_no_yield
+{
+    enum
+    {
+        value = false
+    };
+};
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
-# else
-} // namespace winstl_project
+#ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+#endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_SYNCHFWD */
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES */
 
 /* ////////////////////////////////////////////////////////////////////// */

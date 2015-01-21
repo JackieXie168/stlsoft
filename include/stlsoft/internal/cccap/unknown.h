@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for unknown compilers.
  *
  * Created:     7th February 2003
- * Updated:     15th September 2006
+ * Updated:     26th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,9 +42,10 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/// \file stlsoft/internal/cccap/unknown.h
-///
-/// Compiler feature discrimination for unknown compilers.
+/** \file stlsoft/internal/cccap/unknown.h
+ *
+ * Compiler feature discrimination for unknown compilers.
+ */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_UNKNOWN
 # error This file cannot be included more than once in any compilation unit
@@ -55,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       48
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,10 +118,10 @@
 #define STLSOFT_CF_STANDARD_UINT32_T    unsigned long
 
 /* 64-bit integer */
-//#define __STLSOFT_CF_NATIVE___int64_SUPPORT
+/* #define __STLSOFT_CF_NATIVE___int64_SUPPORT */
 
 /* long long */
-//#define __STLSOFT_CF_NATIVE_LONG_LONG_SUPPORT
+/* #define __STLSOFT_CF_NATIVE_LONG_LONG_SUPPORT */
 
 /* distinct int type */
 #define __STLSOFT_CF_INT_DISTINCT_TYPE
@@ -138,7 +139,7 @@
 #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 
 /* Namespace support */
-//#define _STLSOFT_NO_NAMESPACES
+/* #define _STLSOFT_NO_NAMESPACES */
 
 #define __STLSOFT_CF_NAMESPACE_SUPPORT
 #define STLSOFT_CF_NAMESPACE_SUPPORT
@@ -151,12 +152,12 @@
 #define __STLSOFT_CF_TEMPLATE_SUPPORT
 #define STLSOFT_CF_TEMPLATE_SUPPORT
 
-//#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
+/* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
 
 #define __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 #define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 
-//#define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
+/* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
 
 #define __STLSOFT_CF_THROW_BAD_ALLOC
 #define STLSOFT_CF_THROW_BAD_ALLOC
@@ -235,8 +236,8 @@
 
 #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 
-//#define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
-//#define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+/* #define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+/* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
 #define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
 #define STLSOFT_CF_ADL_LOOKUP_SUPPORT
@@ -250,58 +251,60 @@
 #define __STLSOFT_CF_VENEER_SUPPORT
 #define STLSOFT_CF_VENEER_SUPPORT
 
-//#define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
+/* #define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
 
-//#define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
 
 
 
-// Shims are assumed to be supported
-// #define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
-//#define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+/* Shims are assumed to be supported. */
+/* #define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+/* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
-// This cannot be assumed
-// #define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
-// #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
+/* This cannot be assumed. */
+/* #define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
+/* #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
 
-// class X
-// {
-// #ifdef STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-// private:
-//   struct boolean { int i; };
-// public:
-//   operator int boolean::* () const
-//   {
-//     return <internal condition> ? &boolean::i : NULL;
-//   }
-// #else /* ? STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
-// public:
-//   operator bool() const
-//   {
-//     return <internal condition>;
-//   }
-// #endif /* STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
-// #if !defined(STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT) || \
-//     !defined(STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT)
-// public:
-//   bool operator !() const
-//   {
-// # ifdef STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-//     return NULL == operator int boolean::*();
-// # else /* ? STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
-//     return !operator bool();
-// # endif /* STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
-//   }
-// #endif /* !STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT || !STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
-//
+/* 
+ * class X
+ * {
+ * #ifdef STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+ * private:
+ *   struct boolean { int i; };
+ * public:
+ *   operator int boolean::* () const
+ *   {
+ *     return <internal condition> ? &boolean::i : NULL;
+ *   }
+ * #else // ? STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+ * public:
+ *   operator bool() const
+ *   {
+ *     return <internal condition>;
+ *   }
+ * #endif // STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+ * #if !defined(STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT) || \
+ *     !defined(STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT)
+ * public:
+ *   bool operator !() const
+ *   {
+ * # ifdef STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+ *     return NULL == operator int boolean::*();
+ * # else // ? STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+ *     return !operator bool();
+ * # endif // STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+ *   }
+ * #endif // !STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT || !STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+ *
+ */
 
-// These cannot be assumed
+/* These cannot be assumed. */
 
-//#define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-//#define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+/* #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
+/* #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
 
 #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-//#define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+/* #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
 
 
 #if defined(_STLSOFT_CUSTOM_ASSERT)
@@ -345,19 +348,19 @@
  * Calling convention
  */
 
-// #define STLSOFT_CF_FASTCALL_SUPPORTED
-// #define STLSOFT_CF_STDCALL_SUPPORTED
+/* #define STLSOFT_CF_FASTCALL_SUPPORTED */
+/* #define STLSOFT_CF_STDCALL_SUPPORTED */
 
-//#define   STLSOFT_CDECL               __cdecl
-//#define   STLSOFT_FASTCALL            __fastcall
-//#define   STLSOFT_STDCALL             __stdcall
+/* #define   STLSOFT_CDECL               __cdecl */
+/* #define   STLSOFT_FASTCALL            __fastcall */
+/* #define   STLSOFT_STDCALL             __stdcall */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Inline assembler
  */
 
-//#define STSLSOFT_INLINE_ASM_SUPPORTED
-//#define STSLSOFT_ASM_IN_INLINE_SUPPORTED
+/* #define STSLSOFT_INLINE_ASM_SUPPORTED */
+/* #define STSLSOFT_ASM_IN_INLINE_SUPPORTED */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler warning suppression

@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     18th October 2006
+ * Updated:     29th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    2
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        37
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    3
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -265,7 +265,7 @@ public:
         if(FAILED(hr))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(clone_failure(hr));
+            stlsoft_ns_qual(throw_x)(clone_failure(hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ret = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -319,7 +319,7 @@ public:
         if(FAILED(hr))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(clone_failure(hr));
+            stlsoft_ns_qual(throw_x)(clone_failure(hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ret = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -339,7 +339,7 @@ public:
         if(FAILED(hr))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(clone_failure(hr));
+            stlsoft_ns_qual(throw_x)(clone_failure(hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ret = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        atlstl/window/enhanced_window.hpp (originally atlstl/enhanced_window.hpp)
  *
- * Purpose:     ATL ActiveX control (OCX) container window functions.
+ * Purpose:     Mixin class providing enhanced functions for ATL windows.
  *
  * Created:     30th November 2000
- * Updated:     18th July 2006
+ * Updated:     25th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MINOR    0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     23
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -181,16 +181,6 @@ public:
 
         return ::SetFocus(hwndChild);
     }
-
-#if 0
-    template <ss_typename_param_k S>
-    BOOL SetDlgItemText(int nID, S const &s)
-    {
-        HWND    hwndThis    =   *this_();
-
-        return ::SetDlgItemText(hwndThis, nID, stlsoft_ns_qual(c_str_ptr)(s));
-    }
-#endif /* 0 */
 /// @}
 
 /// \name Implementation

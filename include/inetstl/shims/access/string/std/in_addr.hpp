@@ -4,7 +4,7 @@
  * Purpose:     .
  *
  * Created:     
- * Updated:     21st October 2006
+ * Updated:     27th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,78 +38,174 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+#ifndef INETSTL_INCL_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR
+#define INETSTL_INCL_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_MAJOR      1
+# define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_MINOR      0
+# define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_REVISION   2
+# define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_EDIT       2
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#include <inetstl/inetstl.h>
+/* /////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
 
-#include <inetstl/includes/std/in_addr.h>
+#ifndef INETSTL_INCL_INETSTL_H_INETSTL
+# include <inetstl/inetstl.h>
+#endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
+#ifndef INETSTL_INCL_INETSTL_INCLUDES_STD_H_IN_ADDR
+# include <inetstl/includes/std/in_addr.h>
+#endif /* !INETSTL_INCL_INETSTL_INCLUDES_STD_H_IN_ADDR */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
+# include <stlsoft/string/shim_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 
-#include <stlsoft/string/shim_string.hpp>
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifndef _INETSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+/* There is no stlsoft namespace, so must define ::inetstl */
+namespace inetstl
+{
+# else
+/* Define stlsoft::inetstl_project */
 
 namespace stlsoft
 {
+
 namespace inetstl_project
 {
 
-    inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_data_a(struct in_addr const &addr)
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_INETSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Functions
+ */
+
+inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_data_a(struct in_addr const &addr)
+{
+    stlsoft::basic_shim_string<is_char_a_t, 16>    s(15);
+
+    unsigned    b0  =   (addr.s_addr & 0x000000ff) >> 0;
+    unsigned    b1  =   (addr.s_addr & 0x0000ff00) >> 8;
+    unsigned    b2  =   (addr.s_addr & 0x00ff0000) >> 16;
+    unsigned    b3  =   (addr.s_addr & 0xff000000) >> 24;
+    int         cch =   ::sprintf(s.data(), "%u.%u.%u.%u", b0, b1, b2, b3);
+
+    if(cch < 0)
     {
-        stlsoft::basic_shim_string<is_char_a_t, 16>    s(15);
-
-        unsigned    b0  =   (addr.s_addr & 0x000000ff) >> 0;
-        unsigned    b1  =   (addr.s_addr & 0x0000ff00) >> 8;
-        unsigned    b2  =   (addr.s_addr & 0x00ff0000) >> 16;
-        unsigned    b3  =   (addr.s_addr & 0xff000000) >> 24;
-        int         cch =   ::sprintf(s.data(), "%u.%u.%u.%u", b0, b1, b2, b3);
-
-        if(cch < 0)
-        {
-            cch = 0;
-        }
-
-        s.truncate(static_cast<is_size_t>(cch));
-
-        return s;
-    }
-    inline ss_size_t c_str_len_a(struct in_addr const &addr)
-    {
-        unsigned    b0  =   (addr.s_addr & 0x000000ff) >> 0;
-        unsigned    b1  =   (addr.s_addr & 0x0000ff00) >> 8;
-        unsigned    b2  =   (addr.s_addr & 0x00ff0000) >> 16;
-        unsigned    b3  =   (addr.s_addr & 0xff000000) >> 24;
-
-        int         cch =   3   // The dot separators
-                        +   1 + (b0 > 9) + (b0 > 99)
-                        +   1 + (b1 > 9) + (b1 > 99)
-                        +   1 + (b2 > 9) + (b2 > 99)
-                        +   1 + (b3 > 9) + (b3 > 99)
-                        ;
-
-        return static_cast<is_size_t>(cch);
-    }
-    inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_ptr_a(struct in_addr const &addr)
-    {
-        return c_str_data_a(addr);
+        cch = 0;
     }
 
-    inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_data_a(struct in_addr const *addr)
-    {
-        return (NULL != addr) ? c_str_data_a(*addr) : stlsoft::basic_shim_string<is_char_a_t, 16>(is_size_t(0));
-    }
-    inline ss_size_t c_str_len_a(struct in_addr const *addr)
-    {
-        return (NULL != addr) ? c_str_len_a(*addr) : stlsoft::basic_shim_string<is_char_a_t, 16>(is_size_t(0));
-    }
-    inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_ptr_a(struct in_addr const *addr)
-    {
-        return c_str_data_a(addr);
-    }
+    s.truncate(static_cast<is_size_t>(cch));
 
+    return s;
+}
 
+inline is_size_t c_str_len_a(struct in_addr const &addr)
+{
+    unsigned    b0  =   (addr.s_addr & 0x000000ff) >> 0;
+    unsigned    b1  =   (addr.s_addr & 0x0000ff00) >> 8;
+    unsigned    b2  =   (addr.s_addr & 0x00ff0000) >> 16;
+    unsigned    b3  =   (addr.s_addr & 0xff000000) >> 24;
+
+    int         cch =   3   // The dot separators
+                    +   1 + (b0 > 9) + (b0 > 99)
+                    +   1 + (b1 > 9) + (b1 > 99)
+                    +   1 + (b2 > 9) + (b2 > 99)
+                    +   1 + (b3 > 9) + (b3 > 99)
+                    ;
+
+    return static_cast<is_size_t>(cch);
+}
+
+inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_ptr_a(struct in_addr const &addr)
+{
+    return c_str_data_a(addr);
+}
+
+inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_data_a(struct in_addr const *addr)
+{
+    typedef stlsoft::basic_shim_string<is_char_a_t, 16>     shim_string_t;
+
+    if(NULL != addr)
+    {
+        return c_str_data_a(*addr);
+    }
+    else
+    {
+        return shim_string_t(is_size_t(0));
+    }
+}
+
+inline is_size_t c_str_len_a(struct in_addr const *addr)
+{
+    typedef stlsoft::basic_shim_string<is_char_a_t, 16>     shim_string_t;
+
+    if(NULL != addr)
+    {
+        return c_str_len_a(*addr);
+    }
+    else
+    {
+        return shim_string_t(is_size_t(0));
+    }
+}
+
+inline stlsoft::basic_shim_string<is_char_a_t, 16> c_str_ptr_a(struct in_addr const *addr)
+{
+    return c_str_data_a(addr);
+}
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+#ifndef _INETSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+} // namespace inetstl
+# else
 } // namespace inetstl_project
+} // namespace stlsoft
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_INETSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ *
+ * The string access shims exist either in the stlsoft namespace, or in the
+ * global namespace. This is required by the lookup rules.
+ *
+ */
+
+#ifndef _INETSTL_NO_NAMESPACE
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+namespace stlsoft
+{
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
 
 using ::inetstl::c_str_data_a;
 using ::inetstl::c_str_len_a;
 using ::inetstl::c_str_ptr_a;
 
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace stlsoft
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
+#endif /* !_INETSTL_NO_NAMESPACE */
 
+/* ////////////////////////////////////////////////////////////////////// */
+
+#endif /* INETSTL_INCL_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR */
+
+/* ////////////////////////////////////////////////////////////////////// */
