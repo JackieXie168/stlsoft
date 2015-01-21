@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     5th January 2010
+ * Updated:     9th February 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       64
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,7 +95,6 @@ namespace unixstl
 
 namespace stlsoft
 {
-
 namespace unixstl_project
 {
 
@@ -234,11 +233,11 @@ public:
 /// @{
 public:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    value_type const    *data() const
+    value_type const*   data() const
     {
         return m_buffer.data();
     }
-    value_type          *data()
+    value_type*         data()
     {
         return m_buffer.data();
     }
@@ -285,7 +284,7 @@ public:
     /// \param buffer Pointer to character buffer to receive the contents.
     ///  May be NULL, in which case the method returns size().
     /// \param cchBuffer Number of characters of available space in \c buffer.
-    size_type copy(char_type *buffer, size_type cchBuffer) const
+    size_type copy(char_type* buffer, size_type cchBuffer) const
     {
         return stlsoft_ns_qual(copy_contents)(buffer, cchBuffer, m_buffer.data(), m_buffer.size());
     }
@@ -304,7 +303,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static size_type    calc_path_max_()
+    static size_type calc_path_max_()
     {
 #ifdef PATH_MAX
         return PATH_MAX;
@@ -382,10 +381,16 @@ typedef basic_file_path_buffer<us_char_a_t, stlsoft_ns_qual(allocator_selector)<
  * swapping
  */
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k A
-        >
-inline void swap(basic_file_path_buffer<C, A>& lhs, basic_file_path_buffer<C, A>& rhs)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+>
+inline
+void
+swap(
+    basic_file_path_buffer<C, A>& lhs
+,   basic_file_path_buffer<C, A>& rhs
+)
 {
     lhs.swap(rhs);
 }

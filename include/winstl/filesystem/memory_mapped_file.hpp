@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     19th January 2011
+ * Updated:     5th June 2011
  *
  * Thanks:      To Pablo Aguilar for requesting multibyte / wide string
  *              ambivalence. To Joe Mariadassou for requesting swap().
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      99
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     11
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,11 @@ public:
     /// be <code>uint64_t</code>; on 32-bit operating systems it will
     /// be <code>uint32_t</code>.
     typedef ws_uintptr_t                    size_type;
+    /// The status code type
+    typedef ws_dword_t                      status_code_type;
     /// The error type
+    ///
+    /// \deprecated Instead use \c status_code_type
     typedef ws_dword_t                      error_type;
     /// The offset type
     typedef ws_uint64_t                     offset_type;
@@ -204,18 +208,26 @@ private:
     {
         if(INVALID_HANDLE_VALUE == hFile)
         {
-            on_error_("Failed to open file for mapping");
+            on_failure_("Failed to open file for mapping");
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+            return;
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
         {
             DWORD   fileSizeHigh;
             DWORD   fileSizeLow =   ::GetFileSize(hFile, &fileSizeHigh);
-            DWORD   error       =   ::GetLastError();
+            DWORD   scode       =   ::GetLastError();
 
             if( INVALID_FILE_SIZE == fileSizeLow &&
-                ERROR_SUCCESS != error)
+                ERROR_SUCCESS != scode)
             {
-                on_error_("Failed to determine mapped file size", error);
+                on_failure_("Failed to determine mapped file size", scode);
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+                return;
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
             }
             else
             {
@@ -224,14 +236,22 @@ private:
 
                 if(mapSize < offset) // Overflow?
                 {
-                    on_error_("Requested region exceeds the available address space", ERROR_INVALID_PARAMETER);
+                    on_failure_("Requested region exceeds the available address space", ERROR_INVALID_PARAMETER);
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+                    return;
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
 
                 if(offset > fileSize)
                 {
                     if(0 == requestSize)
                     {
-                        on_error_("Region out of range", ERROR_INVALID_PARAMETER);
+                        on_failure_("Region out of range", ERROR_INVALID_PARAMETER);
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+                        return;
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
                     }
                     else
                     {
@@ -254,7 +274,11 @@ private:
 
                     if(requestSize2 > stlsoft_static_cast(ws_uint64_t, 0xffffffff))
                     {
-                        on_error_("Region size too large", ERROR_NOT_ENOUGH_MEMORY);
+                        on_failure_("Region size too large", ERROR_NOT_ENOUGH_MEMORY);
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+                        return;
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
                     }
 
                     requestSize =   stlsoft_static_cast(ws_uint32_t, requestSize2);
@@ -308,7 +332,11 @@ private:
 
                     if(NULL == hMap)
                     {
-                        on_error_("Failed to open file mapping");
+                        on_failure_("Failed to open file mapping");
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+                        return;
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
                     }
                     else
                     {
@@ -323,7 +351,46 @@ private:
 
                         if(NULL == memory)
                         {
-                            on_error_("Failed to map view of file");
+                            // The following block of code attempts to provide
+                            // improved precision in status code, by using
+                            // ERROR_NOT_ENOUGH_MEMORY in the case where a too-large
+                            // view size is requested, instead of the usual
+                            // ERROR_INVALID_PARAMETER.
+
+                            status_code_type scode2 = ::GetLastError();
+
+#ifdef WINSTL_MEMORY_MAPPED_FILE_TRANSLATE_SC_EINVAL_2_EMEM
+
+                            if(ERROR_INVALID_PARAMETER == scode2)
+                            {
+                                SYSTEM_INFO si;
+
+                                ::GetSystemInfo(&si);
+
+                                if(0 == (offset % si.dwAllocationGranularity))
+                                {
+# ifndef WINSTL_OS_IS_WIN64
+                                    if(requestSize >= 0x7ffe0000)
+# endif /* !WINSTL_OS_IS_WIN64 */
+                                    {
+                                        scode2 = ERROR_NOT_ENOUGH_MEMORY;
+                                    }
+                                }
+                            }
+
+                            on_failure_("Failed to map view of file", scode2);
+
+#else /* ? WINSTL_MEMORY_MAPPED_FILE_TRANSLATE_SC_EINVAL_2_EMEM */
+
+                            STLSOFT_SUPPRESS_UNUSED(scode2);
+
+                            on_failure_("Failed to map view of file");
+
+#endif /* WINSTL_MEMORY_MAPPED_FILE_TRANSLATE_SC_EINVAL_2_EMEM */
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+                            return;
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
                         }
                         else
                         {
@@ -345,13 +412,20 @@ public:
     /// \param fileName The name of the file to map into memory
     ///
     /// \exception winstl::windows_exception Thrown if the map cannot be
-    ///   created. May be any value returned by the Windows API; known
-    ///   values include ERROR_NOT_ENOUGH_MEMORY (when the map size is
-    ///   too large to fit into memory) and ERROR_INVALID_PARAMETER (when
-    ///   the allocated size is too large to be valid
+    ///   created. May be any value returned by the Windows API. Known
+    ///   values include:
+    ///   - ERROR_NOT_ENOUGH_MEMORY, when the map size is too large to fit
+    ///     into memory
+    ///   - ERROR_INVALID_PARAMETER, when the allocated size is too large to
+    ///     be valid
+    ///   - ERROR_MAPPED_ALIGNMENT, when the offset is not a multiple of the
+    //      system allocation granularity
     ss_explicit_k memory_mapped_file(ws_char_a_t const* fileName)
         : m_cb(0)
         , m_memory(NULL)
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+        , m_lastStatusCode(ERROR_SUCCESS)
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
     {
         open_(fileName, 0, 0);
     }
@@ -359,6 +433,9 @@ public:
     ss_explicit_k memory_mapped_file(ws_char_w_t const* fileName)
         : m_cb(0)
         , m_memory(NULL)
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+        , m_lastStatusCode(ERROR_SUCCESS)
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
     {
         open_(fileName, 0, 0);
     }
@@ -367,6 +444,9 @@ public:
     ss_explicit_k memory_mapped_file(S const& fileName)
         : m_cb(0)
         , m_memory(NULL)
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+        , m_lastStatusCode(ERROR_SUCCESS)
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
     {
         open_(stlsoft_ns_qual(c_str_ptr)(fileName), 0, 0);
     }
@@ -387,6 +467,9 @@ public:
     )
         : m_cb(0)
         , m_memory(NULL)
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+        , m_lastStatusCode(ERROR_SUCCESS)
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
     {
         open_(fileName, offset, requestSize);
     }
@@ -406,6 +489,9 @@ public:
     )
         : m_cb(0)
         , m_memory(NULL)
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+        , m_lastStatusCode(ERROR_SUCCESS)
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
     {
         open_(fileName, offset, requestSize);
     }
@@ -426,6 +512,9 @@ public:
     )
         : m_cb(0)
         , m_memory(NULL)
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+        , m_lastStatusCode(ERROR_SUCCESS)
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
     {
         open_(stlsoft_ns_qual(c_str_ptr)(fileName), offset, requestSize);
     }
@@ -449,7 +538,7 @@ public:
         std_swap(m_cb, rhs.m_cb);
         std_swap(m_memory, rhs.m_memory);
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-        std_swap(m_lastError, rhs.m_lastError);
+        std_swap(m_lastStatusCode, rhs.m_lastStatusCode);
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
         WINSTL_ASSERT(is_valid());
@@ -471,10 +560,18 @@ public:
     }
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    /// The error associated with the attempted file operation
-    error_type lastError() const
+    /// The status code associated with the last attempted operation
+    status_code_type lastStatusCode() const
     {
-        return m_lastError;
+        return m_lastStatusCode;
+    }
+
+    /// The status code associated with the last attempted operation
+    ///
+    /// \deprecated Instead use \c status_code_type
+    status_code_type lastError() const
+    {
+        return m_lastStatusCode;
     }
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 /// @}
@@ -549,9 +646,9 @@ private:
                 );
     }
 
-    void on_error_(
-        char const* message
-    ,   error_type  error = ::GetLastError()
+    void on_failure_(
+        char const*         message
+    ,   status_code_type    scode = ::GetLastError()
     )
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -560,23 +657,28 @@ private:
         // handled by windows_exception_policy
         windows_exception_policy    xp;
 
-        xp(message, error);
+        xp(message, scode);
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         STLSOFT_SUPPRESS_UNUSED(message);
 
-        m_lastError = error;
+        m_lastStatusCode = scode;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     bool_type is_valid() const
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if((NULL != m_memory) != (0 != m_cb))
         {
             return false;
         }
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        if((0 != m_cb) && (0 != m_lastStatusCode))
+        {
+          return false;
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return true;
     }
@@ -585,10 +687,10 @@ private:
 /// \name Members
 /// @{
 private:
-    size_type   m_cb;
-    void*       m_memory;
+    size_type           m_cb;
+    void*               m_memory;
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    error_type  m_lastError;
+    status_code_type    m_lastStatusCode;
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 /// @}
 

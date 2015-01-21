@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     12th August 2010
+ * Updated:     26th February 2011
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        128
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ public:
     /// The Boolean type
     typedef ws_bool_t                               bool_type;
     /// The type of a handle to a dynamically loaded module
-    typedef HINSTANCE                               module_type;
+    typedef HMODULE                                 module_type;
     /// The type of a handle to a kernel object
     typedef HANDLE                                  handle_type;
     /// The type of system error codes
@@ -215,9 +215,9 @@ public:
 /// @{
 public:
     /// Gets the full path name of the given module
-    static size_type    get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer);
+    static size_type    get_module_filename(HMODULE hModule, char_type* buffer, size_type cchBuffer);
     /// Gets the full path name of the directory of the given module
-    static size_type    get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer);
+    static size_type    get_module_directory(HMODULE hModule, char_type* buffer, size_type cchBuffer);
     /// Gets the full path name of the system directory
     static size_type    get_system_directory(char_type* buffer, size_type cchBuffer);
     /// Gets the full path name of the windows directory
@@ -280,7 +280,7 @@ public:
     typedef system_traits_              class_type;
     typedef ws_int_t                    int_type;
     typedef ws_bool_t                   bool_type;
-    typedef HINSTANCE                   module_type;
+    typedef HMODULE                     module_type;
     typedef HANDLE                      handle_type;
     typedef DWORD                       error_type;
 
@@ -358,7 +358,7 @@ public:
     typedef system_traits<char_type>    class_type;
     typedef ws_int_t                    int_type;
     typedef ws_bool_t                   bool_type;
-    typedef HINSTANCE                   module_type;
+    typedef HMODULE                     module_type;
     typedef HANDLE                      handle_type;
     typedef DWORD                       error_type;
 
@@ -572,7 +572,7 @@ public:
 #endif /* !NONLS */
 
 public:
-    static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    static size_type get_module_filename(HMODULE hModule, char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
@@ -586,7 +586,7 @@ public:
         return class_type::GetModuleFileNameA(hModule, buffer, cchBuffer);
     }
 
-    static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    static size_type get_module_directory(HMODULE hModule, char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
@@ -723,7 +723,7 @@ public:
     }
 
 private:
-    static size_type GetModuleFileNameA(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    static size_type GetModuleFileNameA(HMODULE hModule, char_type* buffer, size_type cchBuffer)
     {
 #ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -809,7 +809,7 @@ public:
     typedef system_traits<char_type>    class_type;
     typedef ws_int_t                    int_type;
     typedef ws_bool_t                   bool_type;
-    typedef HINSTANCE                   module_type;
+    typedef HMODULE                     module_type;
     typedef HANDLE                      handle_type;
     typedef DWORD                       error_type;
 
@@ -1022,7 +1022,7 @@ public:
 #endif /* !NONLS */
 
 public:
-    static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    static size_type get_module_filename(HMODULE hModule, char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
@@ -1033,7 +1033,7 @@ public:
 
             if(0 == str_compare(L"\\\\?\\", buff))
             {
-                return 1 + CONST_NT_MAX_PATH;
+                return CONST_NT_MAX_PATH;
             }
             else
             {
@@ -1044,7 +1044,7 @@ public:
         return class_type::GetModuleFileNameW(hModule, buffer, cchBuffer);
     }
 
-    static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    static size_type get_module_directory(HMODULE hModule, char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
@@ -1182,7 +1182,7 @@ public:
     }
 
 private:
-    static size_type GetModuleFileNameW(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    static size_type GetModuleFileNameW(HMODULE hModule, char_type* buffer, size_type cchBuffer)
     {
 #ifdef _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT

@@ -4,14 +4,14 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     10th August 2009
+ * Updated:     10th March 2011
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    6
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        53
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    8
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,13 +148,10 @@ struct winstl_shims_access_string_time_impl
         }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw conversion_error("failed to convert date/time", ::GetLastError());
+        STLSOFT_THROW_X(conversion_error("failed to convert date/time", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    defined(STLSOFT_CF_REQUIRE_RETURN_ALWAYS)
         return 0;
-#endif /* STLSOFT_CF_REQUIRE_RETURN_ALWAYS */
     }
 
     //
@@ -177,13 +174,10 @@ struct winstl_shims_access_string_time_impl
         }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw conversion_error("failed to convert date/time", ::GetLastError());
+        STLSOFT_THROW_X(conversion_error("failed to convert date/time", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    defined(STLSOFT_CF_REQUIRE_RETURN_ALWAYS)
         return 0;
-#endif /* STLSOFT_CF_REQUIRE_RETURN_ALWAYS */
     }
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

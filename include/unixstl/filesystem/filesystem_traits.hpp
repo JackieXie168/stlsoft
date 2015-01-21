@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     31st January 2011
+ * Updated:     26th February 2011
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     8
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      116
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -208,21 +208,21 @@ public:
 #endif /* _WIN32 */
 /// @}
 
-#ifdef PATH_MAX
 /// \name Member Constants
 /// @{
 public:
+#ifdef PATH_MAX
     enum
     {
-        maxPathLength   =   1 + PATH_MAX    //!< The maximum length of a path for the current file system
+        maxPathLength = PATH_MAX //!< The maximum length of a path for the current file system
     };
+#endif /* PATH_MAX */
 
     enum
     {
-        pathComparisonIsCaseSensitive   =   true
+        pathComparisonIsCaseSensitive = true
     };
 /// @}
-#endif /* PATH_MAX */
 
 /// \name General string handling
 /// @{
@@ -260,17 +260,35 @@ public:
     /// necessary to detect the presence or absence of the operating system's
     /// root character sequence(s).
     static bool_type    is_path_rooted(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    is_path_rooted(
+        char_type const*    path
+    ,   size_t              cchPath
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// \brief Returns \c true if path is an absolute path
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
     /// absolute path character sequence(s).
     static bool_type    is_path_absolute(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    is_path_absolute(
+        char_type const*    path
+    ,   size_t              cchPath
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// \brief Returns \c true if path is a UNC path
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the UNC character sequence(s).
     static bool_type    is_path_UNC(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    is_path_UNC(
+        char_type const*    path
+    ,   size_t              cchPath
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// \brief Indicates whether the given path is the root designator.
     ///
     /// The root designator is one of the following:
@@ -450,7 +468,7 @@ public:
 #ifdef PATH_MAX
     enum
     {
-        maxPathLength   =   1 + PATH_MAX    //!< The maximum length of a path for the current file system
+        maxPathLength = PATH_MAX //!< The maximum length of a path for the current file system
     };
 #endif /* PATH_MAX */
 
@@ -458,9 +476,9 @@ public:
     {
 #ifdef _WIN32
         pathComparisonIsCaseSensitive   =   false
-#else
+#else /* ? _WIN32 */
         pathComparisonIsCaseSensitive   =   true
-#endif
+#endif /* _WIN32 */
     };
 
 public:
@@ -468,18 +486,18 @@ public:
     {
 #ifdef _WIN32
         return str_compare_no_case(s1, s2);
-#else
+#else /* ? _WIN32 */
         return str_compare(s1, s2);
-#endif
+#endif /* _WIN32 */
     }
 
     static int_type str_fs_n_compare(char_type const* s1, char_type const* s2, size_type cch)
     {
 #ifdef _WIN32
         return str_n_compare_no_case(s1, s2, cch);
-#else
+#else /* ? _WIN32 */
         return str_n_compare(s1, s2, cch);
-#endif
+#endif /* _WIN32 */
     }
 
     static char_type* ensure_dir_end(char_type* dir)
@@ -580,6 +598,45 @@ public:
         return is_path_name_separator(*path);
     }
 
+    static bool_type is_path_rooted(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+#ifdef _WIN32
+        if(cchPath >= 2)
+        {
+            // It might be a UNC path. This is handled by the second test below, but
+            // this is a bit clearer, and since this is a debug kind of thing, we're
+            // not worried about the cost
+            if( '\\' == path[0] &&
+                '\\' == path[1])
+            {
+                return true;
+            }
+        }
+
+        if(cchPath >= 2)
+        {
+            // If it's really on Windows, then we need to skip the drive, if present
+            if( isalpha(path[0]) &&
+                ':' == path[1])
+            {
+                path += 2;
+                cchPath -= 2;
+            }
+        }
+
+        // If it's really on Windows, then we need to account for the fact that
+        // the slash might be backwards, but that's taken care of for us by
+        // is_path_name_separator()
+#endif /* _WIN32 */
+
+        return 0 != cchPath && is_path_name_separator(*path);
+    }
+
     static bool_type is_path_absolute(char_type const* path)
     {
         UNIXSTL_ASSERT(NULL != path);
@@ -611,14 +668,78 @@ public:
 #endif /* _WIN32 */
     }
 
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        if(0 == cchPath)
+        {
+            return false;
+        }
+
+#ifdef _WIN32
+        // If it's really on Windows, then it can only be absolute if ...
+        //
+        // ... it's a UNC path, or ...
+        if(is_path_UNC(path, cchPath))
+        {
+            return true;
+        }
+        if(cchPath >= 3)
+        {
+            // ... it's got drive + root slash, or
+            if( isalpha(path[0]) &&
+                ':' == path[1] &&
+                is_path_name_separator(path[2]))
+            {
+                return true;
+            }
+        }
+        // ... it's got root forward slash
+        if('/' == path[0])
+        {
+            return true;
+        }
+
+        return false;
+#else /* ? _WIN32 */
+        return is_path_rooted(path, cchPath);
+#endif /* _WIN32 */
+    }
+
     static bool_type is_path_UNC(char_type const* path)
     {
         UNIXSTL_ASSERT(NULL != path);
 
 #ifdef _WIN32
-        return ('\\' == path[0] && '\\' == path[1]);
+        size_type const cchPath = str_len(path);
+
+        return is_path_UNC(path, cchPath);
 #else /* ? _WIN32 */
         STLSOFT_SUPPRESS_UNUSED(path);
+
+        return false;
+#endif /* _WIN32 */
+    }
+
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+#ifdef _WIN32
+        switch(cchPath)
+        {
+            case    0:
+            case    1:
+                return false;
+            default:
+                return '\\' == path[0] && '\\' == path[1];
+        }
+#else /* ? _WIN32 */
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(cchPath);
 
         return false;
 #endif /* _WIN32 */
@@ -681,10 +802,13 @@ public:
     static bool_type is_path_name_separator(char_type ch)
     {
 #ifdef _WIN32
-        return '\\' == ch || '/' == ch;
-#else /* ? _WIN32 */
-        return '/' == ch;
+        if('\\' == ch)
+        {
+            return true;
+        }
 #endif /* _WIN32 */
+
+        return '/' == ch;
     }
 
     static char_type path_separator()
@@ -705,7 +829,7 @@ public:
     static size_type path_max()
     {
 #if defined(PATH_MAX)
-        return 1 + PATH_MAX;
+        return PATH_MAX;
 #else /* ? PATH_MAX */
         return 1 + pathconf("/", _PC_PATH_MAX);
 #endif /* PATH_MAX */
@@ -991,7 +1115,7 @@ public:
 
     static bool_type is_directory(char_type const* path)
     {
-        stat_data_type  sd;
+        stat_data_type sd;
 
         return class_type::stat(path, &sd) && S_IFDIR == (sd.st_mode & S_IFMT);
     }
@@ -1013,13 +1137,13 @@ public:
         if(has_dir_end(path))
         {
             // Win32 impl does not like a trailing slash
-            size_type   len =   str_len(path);
+            size_type len = str_len(path);
 
             if( len > 3 ||
                 (   is_path_name_separator(*path) &&
                     len > 2))
             {
-                buffer_type_    directory(1 + len);
+                buffer_type_ directory(1 + len);
 
                 if(0 == directory.size())
                 {
@@ -1231,7 +1355,7 @@ public:
 #ifdef PATH_MAX
     enum
     {
-        maxPathLength   =   1 + PATH_MAX    //!< The maximum length of a path for the current file system
+        maxPathLength = PATH_MAX //!< The maximum length of a path for the current file system
     };
 #endif /* PATH_MAX */
 
@@ -1239,9 +1363,9 @@ public:
     {
 #ifdef _WIN32
         pathComparisonIsCaseSensitive   =   false
-#else
+#else /* ? _WIN32 */
         pathComparisonIsCaseSensitive   =   true
-#endif
+#endif /* _WIN32 */
     };
 
 public:
@@ -1249,18 +1373,18 @@ public:
     {
 #ifdef _WIN32
         return str_compare_no_case(s1, s2);
-#else
+#else /* ? _WIN32 */
         return str_compare(s1, s2);
-#endif
+#endif /* _WIN32 */
     }
 
     static int_type str_fs_n_compare(char_type const* s1, char_type const* s2, size_type cch)
     {
 #ifdef _WIN32
         return str_n_compare_no_case(s1, s2, cch);
-#else
+#else /* ? _WIN32 */
         return str_n_compare(s1, s2, cch);
-#endif
+#endif /* _WIN32 */
     }
 
     static char_type* ensure_dir_end(char_type* dir)
@@ -1285,7 +1409,7 @@ public:
 
 #ifdef _WIN32
         // Don't trim drive roots ...
-        if( isalpha(dir[0]) &&
+        if( iswalpha(dir[0]) &&
             L':' == dir[1] &&
             is_path_name_separator(dir[2]) &&
             L'\0' == dir[3])
@@ -1338,7 +1462,7 @@ public:
 
 #ifdef _WIN32
         // If it's really on Windows, then we need to skip the drive, if present
-        if( isalpha(path[0]) &&
+        if( iswalpha(path[0]) &&
             ':' == path[1])
         {
             path += 2;
@@ -1355,34 +1479,93 @@ public:
         return '/' == *path;
     }
 
+    static bool_type is_path_rooted(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+#ifdef _WIN32
+        if(cchPath >= 2)
+        {
+            // It might be a UNC path. This is handled by the second test below, but
+            // this is a bit clearer, and since this is a debug kind of thing, we're
+            // not worried about the cost
+            if( L'\\' == path[0] &&
+                L'\\' == path[1])
+            {
+                return true;
+            }
+        }
+
+        if(cchPath >= 2)
+        {
+            // If it's really on Windows, then we need to skip the drive, if present
+            if( iswalpha(path[0]) &&
+                L':' == path[1])
+            {
+                path += 2;
+                cchPath -= 2;
+            }
+        }
+
+        // If it's really on Windows, then we need to account for the fact that
+        // the slash might be backwards, but that's taken care of for us by
+        // is_path_name_separator()
+#endif /* _WIN32 */
+
+        return 0 != cchPath && is_path_name_separator(*path);
+    }
+
     static bool_type is_path_absolute(char_type const* path)
     {
         UNIXSTL_ASSERT(NULL != path);
 
 #ifdef _WIN32
+        return is_path_absolute(path, str_len(path));
+#else /* ? _WIN32 */
+        return is_path_rooted(path);
+#endif /* _WIN32 */
+    }
+
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        if(0 == cchPath)
+        {
+            return false;
+        }
+
+#ifdef _WIN32
         // If it's really on Windows, then it can only be absolute if ...
         //
         // ... it's a UNC path, or ...
-        if(is_path_UNC(path))
+        if(is_path_UNC(path, cchPath))
         {
             return true;
         }
-        // ... it's got drive + root slash, or
-        if( isalpha(path[0]) &&
-            ':' == path[1] &&
-            is_path_name_separator(path[2]))
+        if(cchPath >= 3)
         {
-            return true;
+            // ... it's got drive + root slash, or
+            if( iswalpha(path[0]) &&
+                L':' == path[1] &&
+                is_path_name_separator(path[2]))
+            {
+                return true;
+            }
         }
         // ... it's got root forward slash
-        if('/' == path[0])
+        if(L'/' == path[0])
         {
             return true;
         }
 
         return false;
 #else /* ? _WIN32 */
-        return is_path_rooted(path);
+        return is_path_rooted(path, cchPath);
 #endif /* _WIN32 */
     }
 
@@ -1391,9 +1574,33 @@ public:
         UNIXSTL_ASSERT(NULL != path);
 
 #ifdef _WIN32
-        return (L'\\' == path[0] && L'\\' == path[1]);
+        size_type const cchPath = str_len(path);
+
+        return is_path_UNC(path, cchPath);
 #else /* ? _WIN32 */
         STLSOFT_SUPPRESS_UNUSED(path);
+
+        return false;
+#endif /* _WIN32 */
+    }
+
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+#ifdef _WIN32
+        switch(cchPath)
+        {
+            case    0:
+            case    1:
+                return false;
+            default:
+                return L'\\' == path[0] && L'\\' == path[1];
+        }
+#else /* ? _WIN32 */
+        STLSOFT_SUPPRESS_UNUSED(path);
+        STLSOFT_SUPPRESS_UNUSED(cchPath);
 
         return false;
 #endif /* _WIN32 */
@@ -1402,10 +1609,13 @@ public:
     static bool_type is_path_name_separator(char_type ch)
     {
 #ifdef _WIN32
-        return L'\\' == ch || L'/' == ch;
-#else /* ? _WIN32 */
-        return L'/' == ch;
+        if(L'\\' == ch)
+        {
+            return true;
+        }
 #endif /* _WIN32 */
+
+        return L'/' == ch;
     }
 
     static char_type path_separator()
@@ -1426,7 +1636,7 @@ public:
     static size_type path_max()
     {
 #if defined(PATH_MAX)
-        return 1 + PATH_MAX;
+        return PATH_MAX;
 #else /* ? PATH_MAX */
         return 1 + pathconf("/", _PC_PATH_MAX);
 #endif /* PATH_MAX */

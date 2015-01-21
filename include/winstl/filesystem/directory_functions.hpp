@@ -4,11 +4,11 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     10th June 2010
+ * Updated:     26th February 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      47
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,6 +109,8 @@ namespace winstl_project
  * Helper functions
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template <ss_typename_param_k C>
 inline C* find_last_path_name_separator_(C const* s)
 {
@@ -133,7 +135,12 @@ inline C* find_last_path_name_separator_(C const* s)
 }
 
 template <ss_typename_param_k C>
-inline ws_bool_t create_directory_recurse_impl(C const* dir, LPSECURITY_ATTRIBUTES lpsa)
+inline
+ws_bool_t
+create_directory_recurse_impl(
+    C const*                dir
+,   LPSECURITY_ATTRIBUTES   lpsa
+)
 {
     typedef C                                   char_type;
     typedef filesystem_traits<C>                traits_t;
@@ -223,7 +230,7 @@ inline ws_bool_t create_directory_recurse_impl(C const* dir, LPSECURITY_ATTRIBUT
                         // or the recurse create fails, then return false;
                         if( (   szParent[1] == ':' &&
                                 (traits_t::set_last_error(ERROR_CANNOT_MAKE), traits_t::str_len(szParent.c_str()) < 4)) ||
-                            !create_directory_recurse(szParent.c_str(), lpsa))
+                            !create_directory_recurse_impl(szParent.c_str(), lpsa))
                         {
                             bRet = false;
                         }
@@ -240,10 +247,17 @@ inline ws_bool_t create_directory_recurse_impl(C const* dir, LPSECURITY_ATTRIBUT
     return bRet;
 }
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k FD  // This is need because VC++6 cannot deduce filesystem_traits<C>::find_data_type
-        >
-inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(void* param, C const* subDir, FD const* st, DWORD err), void* param)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k FD  // This is need because VC++6 cannot deduce filesystem_traits<C>::find_data_type
+>
+inline
+ws_dword_t
+remove_directory_recurse_impl(
+    C const*    dir
+,   ws_int_t (*pfn)(void* param, C const* subDir, FD const* st, DWORD err)
+,   void*       param
+)
 {
     typedef C                                   char_type;
     typedef filesystem_traits<C>                traits_t;
@@ -346,7 +360,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                         sz[dirLen] = '\0';
                         traits_t::ensure_dir_end(&sz[0]);
                         n = traits_t::str_len(sz.c_str());
-                        WINSTL_ASSERT(n + traits_t::str_len(traits_t::pattern_all()) < traits_t::maxPathLength);
+                        WINSTL_ASSERT(n + traits_t::str_len(traits_t::pattern_all()) <= file_path_buffer_t::max_size());
                         traits_t::char_copy(&sz[n], traits_t::pattern_all(), allLen);
                         sz[n + allLen] = '\0';
 
@@ -464,6 +478,8 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
     return dwRet;
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
@@ -554,9 +570,13 @@ inline ws_bool_t create_directory_recurse(S const& dir, LPSECURITY_ATTRIBUTES lp
  *   associated with the failure. All other params are unspecified (except
  *   \c param). The return value is ignored.
  */
-inline ws_bool_t remove_directory_recurse(  ws_char_a_t const*  dir
-                                        ,   ws_int_t            (*pfn)(void* param, ws_char_a_t const* subDir, WIN32_FIND_DATAA const* st, DWORD err)
-                                        ,   void*               param)
+inline
+ws_bool_t
+remove_directory_recurse(
+    ws_char_a_t const*  dir
+,   ws_int_t            (*pfn)(void* param, ws_char_a_t const* subDir, WIN32_FIND_DATAA const* st, DWORD err)
+,   void*               param
+)
 {
     typedef filesystem_traits<ws_char_a_t>  traits_t;
 

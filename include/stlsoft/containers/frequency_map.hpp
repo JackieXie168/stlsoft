@@ -4,7 +4,7 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     31st January 2011
+ * Updated:     27th June 2011
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    6
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     26
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,42 +102,44 @@ namespace stlsoft
  * \param T The value type of the container
  * \param N The count integer type. Defaults to uint32_t
  */
-template<   ss_typename_param_k T
+template<
+    ss_typename_param_k T
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1300
-        ,   ss_typename_param_k N = unsigned int
+,   ss_typename_param_k N = unsigned int
 #else
-        ,   ss_typename_param_k N = uint32_t
+,   ss_typename_param_k N = uint32_t
 #endif
-        ,   ss_typename_param_k P = stlsoft_ns_qual_std(less)<T>
-        >
+,   ss_typename_param_k P = stlsoft_ns_qual_std(less)<T>
+>
 class frequency_map
     : public stl_collection_tag
 {
 private: // Member Types
-    typedef stlsoft_ns_qual_std(map)<T, N, P>               map_type_;
+    typedef stlsoft_ns_qual_std(map)<T, N, P>                       map_type_;
 public:
     /// This type
-    typedef frequency_map<T, N, P>                          class_type;
+    typedef frequency_map<T, N, P>                                  class_type;
     /// The value type
-    typedef ss_typename_param_k map_type_::value_type       value_type;
+    typedef ss_typename_param_k map_type_::value_type               value_type;
     /// The non-mutating (const) iterator type
-    typedef ss_typename_param_k map_type_::const_iterator   const_iterator;
-//    typedef ss_typename_param_k map_type_::const_pointer    const_pointer;
+    typedef ss_typename_param_k map_type_::const_iterator           const_iterator;
+//    typedef ss_typename_param_k map_type_::const_pointer            const_pointer;
+    /// The non-mutating (const) reverse iterator type
+    typedef ss_typename_param_k map_type_::const_reverse_iterator   const_reverse_iterator;
     /// The non-mutating (const) reference type
-    typedef ss_typename_param_k map_type_::const_reference  const_reference;
-
+    typedef ss_typename_param_k map_type_::const_reference          const_reference;
     /// The key type
-    typedef ss_typename_param_k map_type_::key_type         key_type;
-//    typedef ss_typename_param_k map_type_::mapped_type      mapped_type
-    /// The count type
-    typedef N                                               count_type;
-    /// The size type
-    typedef ss_size_t                                       size_type;
-    /// The difference type
-    typedef ss_ptrdiff_t                                    difference_type;
-    /// The boolean type
-    typedef ss_bool_t                                       bool_type;
+    typedef ss_typename_param_k map_type_::key_type                 key_type;
+//    typedef ss_typename_param_k map_type_::mapped_type              mapped_type
+    /// The count type                                              
+    typedef N                                                       count_type;
+    /// The size type                                               
+    typedef ss_size_t                                               size_type;
+    /// The difference type                                         
+    typedef ss_ptrdiff_t                                            difference_type;
+    /// The boolean type                                            
+    typedef ss_bool_t                                               bool_type;
 
 public: // Construction
     /// Creates an instance of the map
@@ -167,11 +169,11 @@ public: // Modifiers
 
 #if 0
         // NOTE: Because the count type N must be an integer, the code above
-        // is equivalent to the following "full" thread-safe implementation.
+        // is equivalent to the following "full" exception-safe implementation.
         ss_typename_param_k map_type_::iterator it = m_map.find(key);
         if(m_map.end() == it)
         {
-            value_type  value(key, 1);
+            value_type value(key, 1);
 
             m_map.insert(value);
 
@@ -190,6 +192,18 @@ public: // Modifiers
         STLSOFT_ASSERT(is_valid());
 
         return r;
+    }
+
+    void push_n(
+        key_type const&     key
+    ,   count_type          n
+    )
+    {
+        // TODO: update this to a single action
+        { for(count_type i = 0; i != n; ++i)
+        {
+            push(key);
+        }}
     }
 
     /// Removes all entries from the map
@@ -317,6 +331,21 @@ public: // Iteration
         return m_map.end();
     }
 
+    /// A non-mutating (const) iterator representing the start of the reverse sequence
+    const_reverse_iterator rbegin() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        return m_map.rbegin();
+    }
+    /// A non-mutating (const) iterator representing the end of the reverse sequence
+    const_reverse_iterator rend() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        return m_map.rend();
+    }
+
 private:
     bool is_valid() const
     {
@@ -332,10 +361,11 @@ private: // Member Variables
  * Operators
  */
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k N
-        ,   ss_typename_param_k P
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k N
+,   ss_typename_param_k P
+>
 inline
 frequency_map<T, N, P>
 operator +(
@@ -356,10 +386,11 @@ operator +(
 
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k N
-        ,   ss_typename_param_k P
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k N
+,   ss_typename_param_k P
+>
 inline void swap(
     frequency_map<T, N, P>& lhs
 ,   frequency_map<T, N, P>& rhs
@@ -383,6 +414,29 @@ inline void swap(
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+#if defined(STLSOFT_CF_std_NAMESPACE)
+namespace std
+{
+
+# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+       _MSC_VER >= 1310
+    template<
+        ss_typename_param_k T
+    ,   ss_typename_param_k N
+    ,   ss_typename_param_k P
+    >
+    inline void swap(
+        stlsoft_ns_qual(frequency_map)<T, N, P>& lhs
+    ,   stlsoft_ns_qual(frequency_map)<T, N, P>& rhs
+    )
+    {
+        lhs.swap(rhs);
+    }
+# endif
+
+} /* namespace std */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     31st January 2011
+ * Updated:     17th February 2011
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    23
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 10
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     417
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    24
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     418
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -271,12 +271,13 @@
 # define _STLSOFT_VER_1_9_106   0x01096aff  /*!< Version 1.9.106 (28th December 2010) */
 # define _STLSOFT_VER_1_9_107   0x01096bff  /*!< Version 1.9.107 (30th January 2011) */
 # define _STLSOFT_VER_1_9_108   0x01096cff  /*!< Version 1.9.108 (31st January 2011) */
+# define _STLSOFT_VER_1_9_109   0x01096dff  /*!< Version 1.9.109 (17th February 2011) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   108
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_108
+#define _STLSOFT_VER_REVISION   109
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_109
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -1311,6 +1312,145 @@
 #define stlsoft_static_assert(ex)           STLSOFT_STATIC_ASSERT(ex)
 
 /** @} */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Deprecation
+ *
+ */
+
+/** \def STLSOFT_DECLARE_DEPRECATION()
+ *
+ * Marks the succeeding symbol as being deprecated in a compiler-dependent
+ * manner.
+ *
+ * \see STLSOFT_DECLARE_DEPRECATION_MESSAGE
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF
+ *
+ * \ingroup group__utility
+ */
+
+/** \def STLSOFT_DECLARE_DEPRECATION_MESSAGE(message)
+ *
+ * Used to attach a custom deprecation message to the succeeding symbol, for
+ * supporting compilers, in a compiler-dependent manner.
+ *
+ * \param message The custom deprecation message to attach to the symbol.
+ *
+ * \see STLSOFT_DECLARE_DEPRECATION
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF
+ *
+ * \ingroup group__utility
+ */
+
+/** \def STLSOFT_DECLARE_FUNCTION_DEPRECATION(fn)
+ *
+ * Used to attach a standard deprecation message to the succeeding function,
+ * for supporting compilers, in a compiler-dependent manner.
+ *
+ * \param fn The name of the symbol.
+ *
+ * \ingroup group__utility
+ *
+ * \see STLSOFT_DECLARE_DEPRECATION
+ * \see STLSOFT_DECLARE_DEPRECATION_MESSAGE
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF
+ */
+
+/** \def STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(oldfn, newfn)
+ *
+ * Used to attach a standard deprecation message to the succeeding function,
+ * stipulating a function to use instead, for supporting compilers, in a
+ * compiler-dependent manner.
+ *
+ * \param oldfn The name of the symbol being deprecated.
+ * \param newfn The name of the new symbol to be used instead.
+ *
+ * \ingroup group__utility
+ *
+ * \see STLSOFT_DECLARE_DEPRECATION
+ * \see STLSOFT_DECLARE_DEPRECATION_MESSAGE
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF
+ */
+
+/** \def STLSOFT_DECLARE_MACRO_DEPRECATION(mac)
+ *
+ * Used to attach a standard deprecation message to the succeeding macro,
+ * for supporting compilers, in a compiler-dependent manner.
+ *
+ * \param mac The name of the symbol.
+ *
+ * \ingroup group__utility
+ *
+ * \see STLSOFT_DECLARE_DEPRECATION
+ * \see STLSOFT_DECLARE_DEPRECATION_MESSAGE
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF
+ */
+
+/** \def STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(oldmac, newmac)
+ *
+ * Used to attach a standard deprecation message to the succeeding macro,
+ * stipulating a macro to use instead, for supporting compilers, in a
+ * compiler-dependent manner.
+ *
+ * \param oldmac The name of the symbol being deprecated.
+ * \param newmac The name of the new symbol to be used instead.
+ *
+ * \ingroup group__utility
+ *
+ * \see STLSOFT_DECLARE_DEPRECATION
+ * \see STLSOFT_DECLARE_DEPRECATION_MESSAGE
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION
+ * \see STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF
+ * \see STLSOFT_DECLARE_MACRO_DEPRECATION
+ */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    (   _MSC_VER >= 1500 || \
+        (   _MSC_VER >= 1400 && \
+            defined(_MSC_FULL_VER) && \
+            _MSC_FULL_VER >= 140050320))
+
+# define STLSOFT_DECLARE_DEPRECATION()                                      \
+                                                                            \
+    __declspec(deprecated)
+
+# define STLSOFT_DECLARE_DEPRECATION_MESSAGE(message)                       \
+                                                                            \
+    __declspec(deprecated(message))
+
+# define STLSOFT_DECLARE_FUNCTION_DEPRECATION(fn)                           \
+                                                                            \
+    STLSOFT_DECLARE_DEPRECATION_MESSAGE("The function " STLSOFT_STRINGIZE(fn) " is deprecated and will be removed from a future version of STLSoft")
+
+# define STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(oldfn, newfn)    \
+                                                                            \
+    STLSOFT_DECLARE_DEPRECATION_MESSAGE("The function " STLSOFT_STRINGIZE(oldfn) " is deprecated and will be removed from a future version of STLSoft; use " STLSOFT_STRINGIZE(newfn) " instead")
+
+# define STLSOFT_DECLARE_MACRO_DEPRECATION(fn)
+
+# define STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(oldfn, newfn)
+
+#else /* ? compiler */
+# define STLSOFT_DECLARE_DEPRECATION()
+# define STLSOFT_DECLARE_DEPRECATION_MESSAGE(message)
+# define STLSOFT_DECLARE_FUNCTION_DEPRECATION(fn)
+# define STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(oldfn, newfn)
+# define STLSOFT_DECLARE_MACRO_DEPRECATION(mac)
+# define STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(oldmac, newmac)
+#endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

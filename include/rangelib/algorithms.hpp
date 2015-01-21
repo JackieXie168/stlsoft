@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     10th August 2009
+ * Updated:     5th March 2011
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -76,8 +76,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 5
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     45
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 6
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1166,7 +1166,7 @@ inline I r_max_element_1_impl_iterable(I from, I to)
 {
     if(from == to)
     {
-        throw empty_range_exception("Cannot determine maximum element of empty range");
+        STLSOFT_THROW_X(empty_range_exception("Cannot determine maximum element of empty range"));
     }
 
     return std::max_element(from, to);
@@ -1218,7 +1218,7 @@ inline I r_max_element_2_impl_iterable(I from, I to, F f)
 {
     if(from == to)
     {
-        throw empty_range_exception("Cannot determine maximum element of empty range");
+        STLSOFT_THROW_X(empty_range_exception("Cannot determine maximum element of empty range"));
     }
 
     return std::max_element(from, to, f);
@@ -1322,7 +1322,7 @@ inline I r_min_element_1_impl_iterable(I from, I to)
 {
     if(from == to)
     {
-        throw empty_range_exception("Cannot determine minimum element of empty range");
+        STLSOFT_THROW_X(empty_range_exception("Cannot determine minimum element of empty range"));
     }
 
     return std::min_element(from, to);
@@ -1374,7 +1374,7 @@ inline I r_min_element_2_impl_iterable(I from, I to, F f)
 {
     if(from == to)
     {
-        throw empty_range_exception("Cannot determine minimum element of empty range");
+        STLSOFT_THROW_X(empty_range_exception("Cannot determine minimum element of empty range"));
     }
 
     return std::min_element(from, to, f);

@@ -4,11 +4,11 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     28th December 2010
+ * Updated:     2nd March 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       5
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    3
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        78
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    5
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,6 @@ namespace winstl
 
 namespace stlsoft
 {
-
 namespace winstl_project
 {
 
@@ -142,9 +141,10 @@ namespace winstl_project
  *   generically. (This is very handy when used with the
  *   <a href = "http://pantheios.org/">Pantheios</a> logging library.)
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T = system_traits<C>
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T = system_traits<C>
+>
 class basic_error_desc
 {
 /// \name Types
@@ -180,12 +180,18 @@ public:
     ///
     /// \note If the error string is not found in the given module, the standard
     /// system libraries will be searched
-    ss_explicit_k basic_error_desc(error_type error = GetLastError(), char_type const* modulePath = NULL);
+    ss_explicit_k basic_error_desc(
+        error_type          error       =   GetLastError()
+    ,   char_type const*    modulePath  =   NULL
+    );
 
 private:
     /// This method is declared to remind users that using a different
     /// character encoding to specify the module path is not allowed
-    basic_error_desc(error_type error, alt_char_type const* modulePath);
+    basic_error_desc(
+        error_type              error
+    ,   alt_char_type const*    modulePath
+    );
 public:
 
     /// Loads the error string associated with the given code.
@@ -195,13 +201,18 @@ public:
     ///
     /// \note If the error string is not found in the given module, the standard
     /// system libraries will be searched
-    basic_error_desc(HRESULT hr, char_type const* modulePath = NULL);
-
+    basic_error_desc(
+        HRESULT             hr
+    ,   char_type const*    modulePath = NULL
+    );
 
 private:
     /// This method is defined to remind users that using a different
     /// character encoding to specify the module path is not allowed
-    basic_error_desc(HRESULT error, alt_char_type const* modulePath);
+    basic_error_desc(
+        HRESULT                 error
+    ,   alt_char_type const*    modulePath
+    );
 public:
 
     /// Loads the error string associated with the given code from
@@ -215,21 +226,25 @@ public:
     /// \note If the error string is not found in any of the given modules, the
     /// standard system libraries will be searched
     template <ss_typename_param_k S>
-    basic_error_desc(error_type error, S const& modulePaths)
+    basic_error_desc(
+        error_type  error
+    ,   S const&    modulePaths
+    )
         : m_length(0)
         , m_message(NULL)
     {
         ss_typename_type_k S::const_iterator    b   =   modulePaths.begin();
         ss_typename_type_k S::const_iterator    e   =   modulePaths.end();
 
-        for(; b != e && NULL == (m_message = find_message_(error, stlsoft_ns_qual(c_str_ptr)(*b), &m_length)); ++b)
+        for(; b != e && NULL == (m_message = find_message_(FORMAT_MESSAGE_IGNORE_INSERTS, error, stlsoft_ns_qual(c_str_ptr)(*b), &m_length)); ++b)
         {}
 
         if(NULL == m_message)
         {
-            m_message = find_message_(error, NULL, &m_length);
+            m_message = find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, error, NULL, &m_length);
         }
     }
+public:
     /// Releases any resources.
     ~basic_error_desc() stlsoft_throw_0();
 
@@ -273,14 +288,19 @@ public:
 /// \name Implementation
 /// @{
 private:
-    char_type   *find_message_(error_type error, char_type const* modulePath, size_type *length);
+    char_type* find_message_(
+        DWORD               flags
+    ,   error_type          error
+    ,   char_type const*    modulePath
+    ,   size_type*          length
+    );
 /// @}
 
 /// \name Members
 /// @{
 private:
     size_type   m_length;
-    char_type   *m_message;
+    char_type*  m_message;
 /// @}
 
 /// \name Not to be implemented
@@ -316,33 +336,40 @@ typedef basic_error_desc<TCHAR>         error_desc;
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type *basic_error_desc<C, T>::find_message_(ss_typename_type_k basic_error_desc<C, T>::error_type error, ss_typename_type_k basic_error_desc<C, T>::char_type const* modulePath, ss_typename_type_k basic_error_desc<C, T>::size_type *length)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type* basic_error_desc<C, T>::find_message_(
+    DWORD                                                       flags
+,   ss_typename_type_k basic_error_desc<C, T>::error_type       error
+,   ss_typename_type_k basic_error_desc<C, T>::char_type const* modulePath
+,   ss_typename_type_k basic_error_desc<C, T>::size_type*       length
+)
 {
     WINSTL_ASSERT(NULL != length);
     WINSTL_MESSAGE_ASSERT("Constructor initialisation order error", 0 == *length);
 
-    ws_dword_t  cch         =   0;
-    char_type   *message    =   NULL;
+    ws_dword_t  cch     =   0;
+    char_type*  message =   NULL;
 
     STLSOFT_SUPPRESS_UNUSED(message);
 
-    if(NULL != modulePath)
+    if( NULL != modulePath &&
+        '\0' != modulePath[0])
     {
-        HINSTANCE   hinstSource =   traits_type::load_library(modulePath);
+        HINSTANCE hinstSource = traits_type::load_library(modulePath);
 
         if(NULL != hinstSource)
         {
-            cch = format_message(error, hinstSource, &message);
+            cch = format_message(FORMAT_MESSAGE_FROM_HMODULE | flags, hinstSource, error, &message);
 
             traits_type::free_library(hinstSource);
         }
     }
     else
     {
-        cch = format_message(error, NULL, &message);
+        cch = format_message(flags, NULL, error, &message);
     }
 
     if(0 == cch)
@@ -356,41 +383,44 @@ inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type *basic_error_des
 }
 
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_desc<C, T>::error_type error /* = ::GetLastError() */, char_type const* modulePath /* = NULL */)
     : m_length(0)
-    , m_message(find_message_(error, modulePath, &m_length))
+    , m_message(find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, error, modulePath, &m_length))
 {
     if(NULL == m_message)
     {
-        if(0 == format_message(error, NULL, &m_message))
+        if(0 == format_message(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, NULL, error, &m_message))
         {
             m_message = NULL;
         }
     }
 }
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline basic_error_desc<C, T>::basic_error_desc(HRESULT hr, char_type const* modulePath /* = NULL */)
     : m_length(0)
-    , m_message(find_message_(static_cast<DWORD>(hr), modulePath, &m_length))
+    , m_message(find_message_(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, static_cast<DWORD>(hr), modulePath, &m_length))
 {
     if(NULL == m_message)
     {
-        if(0 == format_message(static_cast<DWORD>(hr), NULL, &m_message))
+        if(0 == format_message(FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM, NULL, static_cast<DWORD>(hr), &m_message))
         {
             m_message = NULL;
         }
     }
 }
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline basic_error_desc<C, T>::~basic_error_desc() stlsoft_throw_0()
 {
 #ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
@@ -404,9 +434,10 @@ inline basic_error_desc<C, T>::~basic_error_desc() stlsoft_throw_0()
 }
 
 #if defined(STLSOFT_COMPILER_IS_GCC)
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_desc<C, T>::class_type& rhs) stlsoft_throw_0()
 {
     m_length        =   rhs.m_length;
@@ -416,9 +447,10 @@ inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_d
 }
 #endif /* compiler */
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::get_description() const
 {
     static const char_type s_nullMessage[1] = { '\0' };
@@ -426,18 +458,20 @@ inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type const* basic_err
     return (NULL != m_message) ? m_message : s_nullMessage;
 }
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::c_str() const
 {
     return get_description();
 }
 
 #if !defined(WINSTL_ERROR_DESC_NO_IMPLICIT_CONVERSION)
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 #if defined(STLSOFT_COMPILER_IS_GCC)
 inline basic_error_desc<C, T>::operator C const* () const
 #else /* ? compiler */
@@ -448,25 +482,28 @@ inline basic_error_desc<C, T>::operator ss_typename_type_k basic_error_desc<C, T
 }
 #endif /* !WINSTL_ERROR_DESC_NO_IMPLICIT_CONVERSION */
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::length() const stlsoft_throw_0()
 {
     return m_length;
 }
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::size() const stlsoft_throw_0()
 {
     return length();
 }
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ss_typename_type_ret_k basic_error_desc<C, T>::bool_type basic_error_desc<C, T>::empty() const stlsoft_throw_0()
 {
     return 0 == length();
@@ -484,9 +521,10 @@ inline ss_typename_type_ret_k basic_error_desc<C, T>::bool_type basic_error_desc
  *
  * \ingroup group__concept__shim__string_access
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline C const* c_str_ptr_null(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 {
     C const* p = e;
@@ -514,9 +552,10 @@ inline ws_char_w_t const* c_str_ptr_null_w(winstl_ns_qual(basic_error_desc)<ws_c
  *
  * \ingroup group__concept__shim__string_access
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline C const* c_str_ptr(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 {
     return e.c_str();
@@ -538,9 +577,10 @@ inline ws_char_w_t const* c_str_ptr_w(winstl_ns_qual(basic_error_desc)<ws_char_w
  *
  * \ingroup group__concept__shim__string_access
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline C const* c_str_data(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 {
     return e.c_str();
@@ -562,9 +602,10 @@ inline ws_char_w_t const* c_str_data_w(winstl_ns_qual(basic_error_desc)<ws_char_
  *
  * \ingroup group__concept__shim__string_access
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ws_size_t c_str_len(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 {
     return e.length();
@@ -590,10 +631,14 @@ inline ws_size_t c_str_len_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> co
  *
  * \deprecated get_ptr is for pointers and "smart pointers".
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline C const* get_ptr(winstl_ns_qual(basic_error_desc)<C, T> const& e)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+STLSOFT_DECLARE_DEPRECATION()
+inline
+C const*
+get_ptr(winstl_ns_qual(basic_error_desc)<C, T> const& e)
 {
     return e;
 }

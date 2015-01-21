@@ -4,11 +4,11 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     10th August 2009
+ * Updated:     3rd March 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        37
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       3
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -279,7 +279,7 @@ public:
         STLSOFT_ASSERT(is_valid());
     }
 
-#if 0 && !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if 1 && !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
     void reset()
     {
         close();

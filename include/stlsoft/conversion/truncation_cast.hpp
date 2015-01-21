@@ -4,11 +4,11 @@
  * Purpose:     Runtime checking for numeric conversions.
  *
  * Created:     10th August 2006
- * Updated:     10th August 2009
+ * Updated:     5th March 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_REVISION   3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_EDIT       41
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_REVISION   4
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ inline TO truncation_cast(FROM from)
 {
     if(!truncation_test<TO>(from))
     {
-        throw std::out_of_range("Cast would result in truncation");
+        STLSOFT_THROW_X(std::out_of_range("Cast would result in truncation"));
     }
 
     return static_cast<TO>(from);
