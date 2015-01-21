@@ -4,7 +4,7 @@
  * Purpose:     Reference-counting helper functions.
  *
  * Created:     25th June 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_H_REFCOUNT_FUNCTIONS_MAJOR       3
 # define COMSTL_VER_COMSTL_H_REFCOUNT_FUNCTIONS_MINOR       1
 # define COMSTL_VER_COMSTL_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define COMSTL_VER_COMSTL_H_REFCOUNT_FUNCTIONS_EDIT        48
+# define COMSTL_VER_COMSTL_H_REFCOUNT_FUNCTIONS_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -189,10 +189,10 @@ inline void release_set_null(T *&pt)
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
+} /* namespace comstl */
 # else
-} // namespace comstl_project
-} // namespace stlsoft
+} /* namespace comstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 

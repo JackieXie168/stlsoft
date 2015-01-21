@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     10th June 2006
+ * Updated:     17th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        91
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,44 +148,45 @@ namespace winstl_project
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for accessing the correct file-system functions for a given character type
-///
-/// \ingroup group__library__file_system
-///
-/// filesystem_traits is a traits class for determining the correct file-system
-/// structures and functions for a given character type.
-///
-/// \param C The character type
+/** \brief Traits for accessing the correct file-system functions for a given character type
+ *
+ * \ingroup group__library__file_system
+ *
+ * filesystem_traits is a traits class for determining the correct file-system
+ * structures and functions for a given character type.
+ *
+ * \param C The character type (e.g. \c char, \c wchar_t)
+ */
 template <ss_typename_param_k C>
 struct filesystem_traits
 {
 /// \name Types
 /// @{
 public:
-    /// The character type
+    /// \brief The character type
     typedef C                                       char_type;
-    /// The size type
+    /// \brief The size type
     typedef ws_size_t                               size_type;
-    /// The difference type
+    /// \brief The difference type
     typedef ws_ptrdiff_t                            difference_type;
-    /// The find data type
+    /// \brief The find data type
     typedef WIN32_FIND_DATA                         find_data_type;     // Placeholder only
-    /// The stat data type
+    /// \brief The stat data type
     typedef WIN32_FIND_DATA                         stat_data_type;
-    /// The fstat data type
+    /// \brief The fstat data type
     typedef BY_HANDLE_FILE_INFORMATION              fstat_data_type;
-    /// The current instantion of the type
+    /// \brief The current instantion of the type
     typedef filesystem_traits<C>                    class_type;
 
-    /// The (signed) integer type
+    /// \brief The (signed) integer type
     typedef ws_int_t                                int_type;
-    /// The Boolean type
+    /// \brief The Boolean type
     typedef ws_bool_t                               bool_type;
-    /// The type of a system file handle
+    /// \brief The type of a system file handle
     typedef HANDLE                                  file_handle_type;
-    /// The type of a handle to a dynamically loaded module
+    /// \brief The type of a handle to a dynamically loaded module
     typedef HINSTANCE                               module_type;
-    /// The type of system error codes
+    /// \brief The type of system error codes
     typedef DWORD                                   error_type;
 /// @}
 
@@ -201,30 +202,32 @@ public:
 /// \name General string handling
 /// @{
 public:
-    /// Copies the contents of \c src to \c dest
+    /// \brief Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const *src);
-    /// Copies the contents of \c src to \c dest, up to cch \c characters
+    /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
     static char_type    *str_n_copy(char_type *dest, char_type const *src, size_type cch);
-    /// Appends the contents of \c src to \c dest
+    /// \brief Appends the contents of \c src to \c dest
     static char_type    *str_cat(char_type *dest, char_type const *src);
-    /// Appends the contents of \c src to \c dest, up to cch \c characters
+    /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
     static char_type    *str_n_cat(char_type *dest, char_type const *src, size_type cch);
-    /// Comparies the contents of \c src and \c dest
+    /// \brief Comparies the contents of \c src and \c dest
     static int_type     str_compare(char_type const *s1, char_type const *s2);
-    /// Comparies the contents of \c src and \c dest in a case-insensitive fashion
+    /// \brief Comparies the contents of \c src and \c dest in a case-insensitive fashion
     static int_type     str_compare_no_case(char_type const *s1, char_type const *s2);
-    /// Comparies the contents of \c src and \c dest up to \c cch characters
+    /// \brief Comparies the contents of \c src and \c dest up to \c cch characters
     static int_type     str_n_compare(char_type const *s1, char_type const *s2, size_type cch);
-    /// Evaluates the length of \c src
+    /// \brief Evaluates the length of \c src
     static size_type    str_len(char_type const *src);
-    /// Finds the given character \c ch in \c s
+    /// \brief Finds the given character \c ch in \c s
     static char_type    *str_chr(char_type const *s, char_type ch);
-    /// Finds the rightmost instance \c ch in \c s
+    /// \brief Finds the rightmost instance \c ch in \c s
     static char_type    *str_rchr(char_type const *s, char_type ch);
-    /// Finds the given substring \c sub in \c s
+    /// \brief Finds the given substring \c sub in \c s
     static char_type    *str_str(char_type const *s, char_type const *sub);
-    /// Finds one of a set of characters in \c s
+    /// \brief Finds one of a set of characters in \c s
     static char_type    *str_pbrk(char_type const *s, char_type const *charSet);
+    /// \brief \brief Returns a pointer to the end of the string
+    static char_type    *str_end(char_type const *s);
 /// @}
 
 /// \name Locale management
@@ -236,66 +239,77 @@ public:
 /// \name File-system entry names
 /// @{
 public:
-    /// Appends a path name separator to \c dir if one does not exist
+    /// \brief Appends a path name separator to \c dir if one does not exist
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static char_type    *ensure_dir_end(char_type *dir);
-    /// Removes the path name separator from the end of \c dir, if it has it
+    /// \brief Removes the path name separator from the end of \c dir, if it has it
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static char_type    *remove_dir_end(char_type *dir);
-    /// Returns \c true if \c dir has trailing path name separator
+    /// \brief Returns \c true if \c dir has trailing path name separator
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
     static bool_type    has_dir_end(char_type const *dir);
 
-    /// Returns \c true if dir is \c "." or \c ".."
+    /// \brief Returns \c true if dir is \c "." or \c ".."
     static bool_type    is_dots(char_type const *dir);
-    /// Returns \c true if path is rooted, i.e. it begins with root directory
+    /// \brief Returns \c true if path is rooted, i.e. it begins with root directory
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
     /// root character sequence(s).
     static bool_type    is_path_rooted(char_type const *path);
-    /// Returns \c true if path is an absolute path
+    /// \brief Returns \c true if path is an absolute path
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
     /// absolute path character sequence(s).
     static bool_type    is_path_absolute(char_type const *path);
-    /// Returns \c true if path is a UNC path
+    /// \brief Returns \c true if path is a UNC path
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the UNC character sequence(s).
     static bool_type    is_path_UNC(char_type const *path);
-    /// Returns \c true if the character is a path-name separator
+    /// \brief Indicates whether the given path is the root designator.
+    ///
+    /// The root designator is one of the following:
+    ///  - the slash character <code>/</code>
+    ///  - the backslash character <code>\\</code>
+    ///  - a drive specification, e.g. <code>H:\\</code> or <code>H:/</code>
+    ///  - a UNC host, e.g. <code>H:\\\\host</code> or <code>H:\\\\host\\</code>
+    ///
+    /// The function returns false if the path contains any part of a
+    /// file name (or extension), directory, or share.
+    static bool_type    is_root_designator(char_type const *path);
+    /// \brief Returns \c true if the character is a path-name separator
     ///
     /// \note Both \c / and \c \\ are interpreted as a path name separator
     static bool_type    is_path_name_separator(char_type ch);
 
-    /// Returns the path separator
+    /// \brief Returns the path separator
     ///
     /// This is the separator that is used to separate multiple paths on the operating system. On UNIX it is ':'
     static char_type    path_separator();
-    /// Returns the path name separator
+    /// \brief Returns the path name separator
     ///
     /// This is the separator that is used to separate parts of a path on the operating system. On UNIX it is '/'
     static char_type    path_name_separator();
-    /// Returns the wildcard pattern that represents all possible matches
+    /// \brief Returns the wildcard pattern that represents all possible matches
     ///
     /// \note On Win32 it is '*.*'
     static char_type const *pattern_all();
-    /// The maximum length of a path on the file-system
+    /// \brief The maximum length of a path on the file-system
     ///
     /// \note Because not all systems support fixed maximum path lengths, the value of this function is notionally dynamic
     static size_type    path_max();
-    /// Gets the full path name into the given buffer, returning a pointer to the file-part
+    /// \brief Gets the full path name into the given buffer, returning a pointer to the file-part
     static size_type    get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer, char_type **ppFile);
-    /// Gets the full path name into the given buffer
+    /// \brief Gets the full path name into the given buffer
     static size_type    get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer);
-    /// Gets the short path name into the given buffer
+    /// \brief Gets the short path name into the given buffer
     static size_type    get_short_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer);
-    /// Gets the short path name into the given buffer
+    /// \brief Gets the short path name into the given buffer
     ///
     /// \deprecated The other overload is now the preferred form
     static size_type    get_short_path_name(char_type const *fileName, char_type *buffer, size_type cchBuffer);
@@ -306,25 +320,25 @@ public:
 public:
     // FindFirstFile/FindNextFile API
 
-    /// Initiate a file-system search
+    /// \brief Initiate a file-system search
     static HANDLE       find_first_file(char_type const *spec, find_data_type *findData);
 #if _WIN32_WINNT >= 0x0400
-    /// Initiate a file-system search - NT4+-only
+    /// \brief Initiate a file-system search - NT4+-only
     static HANDLE       find_first_file_ex(char_type const *spec, FINDEX_SEARCH_OPS flags, find_data_type *findData);
 #endif /* _WIN32_WINNT >= 0x0400 */
-    /// Advance a given file-system search
+    /// \brief Advance a given file-system search
     static bool_type    find_next_file(HANDLE h, find_data_type *findData);
-    /// Closes the handle of the file-system search
+    /// \brief Closes the handle of the file-system search
     static void         find_file_close(HANDLE h);
 
     // FindFirstVolume/FindNextVolume API
 
 #ifndef _WINSTL_NO_FINDVOLUME_API
-    /// Initiate a file-system volume search
+    /// \brief Initiate a file-system volume search
     static HANDLE       find_first_volume(char_type *volume_name, size_type cch_volume_name);
-    /// Advance a given file-system volume search
+    /// \brief Advance a given file-system volume search
     static bool_type    find_next_volume(HANDLE h, char_type *volume_name, size_type cch_volume_name);
-    /// Closes the handle of the file-volume search
+    /// \brief Closes the handle of the file-volume search
     static void         find_volume_close(HANDLE h);
 #endif // !_WINSTL_NO_FINDVOLUME_API
 /// @}
@@ -332,64 +346,64 @@ public:
 /// \name Module Paths
 /// @{
 public:
-    /// Gets the full path name of the given module
+    /// \brief Gets the full path name of the given module
     static size_type    get_module_filename(HINSTANCE hModule, char_type *buffer, size_type cchBuffer);
-    /// Gets the full path name of the system directory
+    /// \brief Gets the full path name of the system directory
     static size_type    get_system_directory(char_type *buffer, size_type cchBuffer);
-    /// Gets the full path name of the windows directory
+    /// \brief Gets the full path name of the windows directory
     static size_type    get_windows_directory(char_type *buffer, size_type cchBuffer);
 /// @}
 
 /// \name Dynamic Loading
 /// @{
 public:
-    /// Loads the given executable module
+    /// \brief Loads the given executable module
     static module_type  load_library(char_type const *name);
-    /// Closes the given executable module
+    /// \brief Closes the given executable module
     static bool_type    free_library(module_type hModule);
-    /// Retrieves the given symbol from the library
+    /// \brief Retrieves the given symbol from the library
     static FARPROC      find_symbol(module_type hModule, char const *symbolName);
 /// @}
 
 /// \name File-system control
 /// @{
 public:
-    /// Sets the current directory to \c dir
+    /// \brief Sets the current directory to \c dir
     static bool_type    set_current_directory(char_type const *dir);
-    /// Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
+    /// \brief Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
     static size_type    get_current_directory(size_type cchBuffer, char_type *buffer);
 /// @}
 
 /// \name File-system state
 /// @{
 public:
-    /// Returns whether a file exists or not
+    /// \brief Returns whether a file exists or not
     static bool_type    file_exists(char_type const *path);
-    /// Returns whether the given path represents a file
+    /// \brief Returns whether the given path represents a file
     static bool_type    is_file(char_type const *path);
-    /// Returns whether the given path represents a directory
+    /// \brief Returns whether the given path represents a directory
     static bool_type    is_directory(char_type const *path);
-    /// Gets the information for a particular file system entry
+    /// \brief Gets the information for a particular file system entry
     static bool_type    stat(char_type const *path, stat_data_type *stat_data);
-    /// Gets the information for a particular open file
+    /// \brief Gets the information for a particular open file
     static bool_type    fstat(file_handle_type fd, fstat_data_type *fstat_data);
 
-    /// Returns whether the given stat info represents a file
+    /// \brief Returns whether the given stat info represents a file
     static bool_type    is_file(stat_data_type const *stat_data);
     static bool_type    is_file(fstat_data_type const *stat_data);
-    /// Returns whether the given stat info represents a directory
+    /// \brief Returns whether the given stat info represents a directory
     static bool_type    is_directory(stat_data_type const *stat_data);
     static bool_type    is_directory(fstat_data_type const *stat_data);
-    /// Returns whether the given stat info represents a link
+    /// \brief Returns whether the given stat info represents a link
     static bool_type    is_link(stat_data_type const *stat_data);
     static bool_type    is_link(fstat_data_type const *stat_data);
-    /// Returns whether the given stat info represents a read-only entry
+    /// \brief Returns whether the given stat info represents a read-only entry
     static bool_type    is_readonly(stat_data_type const *stat_data);
     static bool_type    is_readonly(fstat_data_type const *stat_data);
 
-    /// Indicates whether the given drive currently exists on the system
+    /// \brief Indicates whether the given drive currently exists on the system
     static bool_type    drive_exists(char_type driveLetter);
-    /// Returns a status code denoting the type of the drive
+    /// \brief Returns a status code denoting the type of the drive
     ///
     /// \return One of the return codes of the GetDriveType() API function
     static DWORD        get_drive_type(char_type driveLetter);
@@ -398,32 +412,32 @@ public:
 /// \name File-system control
 /// @{
 public:
-    /// Creates a directory
+    /// \brief Creates a directory
     static bool_type    create_directory(char_type const *dir);
-    /// Creates a directory, with the given security attributes
+    /// \brief Creates a directory, with the given security attributes
     static bool_type    create_directory(char_type const *dir, LPSECURITY_ATTRIBUTES lpsa);
-    /// Deletes a directory
+    /// \brief Deletes a directory
     static bool_type    remove_directory(char_type const *dir);
 
-    /// Delete a file
+    /// \brief Delete a file
     static bool_type    unlink_file(char_type const *file);
-    /// Delete a file
+    /// \brief Delete a file
     ///
     /// \deprecated Users should use unlink_file()
     static bool_type    delete_file(char_type const *file);
-    /// Rename a file
+    /// \brief Rename a file
     static bool_type    rename_file(char_type const *currentName, char_type const *newName);
-    /// Copy a file
+    /// \brief Copy a file
     static bool_type    copy_file(char_type const *sourceName, char_type const *newName, bool_type bFailIfExists = false);
 
-    /// Create / open a file
+    /// \brief Create / open a file
     static file_handle_type create_file(char_type const *fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, HANDLE hTemplateFile);
-    /// Closes the given operating system handle
+    /// \brief Closes the given operating system handle
     static bool_type        close_handle(HANDLE h);
-    /// Closes the given file handle
+    /// \brief Closes the given file handle
     static bool_type        close_file(file_handle_type h);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    /// Gets the size of the file
+    /// \brief Gets the size of the file
     static ws_uint64_t      get_file_size(file_handle_type h);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /// @}
@@ -431,16 +445,16 @@ public:
 /// \name Error
 /// @{
 public:
-    /// Gives the last error
+    /// \brief Gives the last error
     static error_type   get_last_error();
-    /// Sets the last error
+    /// \brief Sets the last error
     static void         set_last_error(error_type er = error_type());
 /// @}
 
 /// \name Environment
 /// @{
 public:
-    /// Gets an environment variable into the given buffer
+    /// \brief Gets an environment variable into the given buffer
     ///
     /// \param name The name of the variable to find
     /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
@@ -459,24 +473,15 @@ struct filesystem_traits;
 struct filesystem_traits_
 {
 public:
-    /// The size type
     typedef ws_size_t                   size_type;
-    /// The difference type
     typedef ws_ptrdiff_t                difference_type;
-    // The current instantion of the type
     typedef filesystem_traits_          class_type;
-    /// The fstat data type
     typedef BY_HANDLE_FILE_INFORMATION  fstat_data_type;
 
-    /// The (signed) integer type
     typedef ws_int_t                    int_type;
-    /// The Boolean type
     typedef ws_bool_t                   bool_type;
-    /// The type of a system file handle
     typedef HANDLE                      file_handle_type;
-    /// The type of a handle to a dynamically loaded module
     typedef HINSTANCE                   module_type;
-    /// The type of system error codes
     typedef DWORD                       error_type;
 
     enum
@@ -561,15 +566,10 @@ public:
     typedef WIN32_FIND_DATAA                        stat_data_type;
     typedef BY_HANDLE_FILE_INFORMATION              fstat_data_type;
     typedef filesystem_traits<char_type>            class_type;
-    /// The (signed) integer type
     typedef ws_int_t                                int_type;
-    /// The Boolean type
     typedef ws_bool_t                               bool_type;
-    /// The type of a system file handle
     typedef HANDLE                                  file_handle_type;
-    /// The type of a handle to a dynamically loaded module
     typedef HINSTANCE                               module_type;
-    /// The type of system error codes
     typedef DWORD                                   error_type;
 private:
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
@@ -645,6 +645,16 @@ public:
         return const_cast<char_type*>(::strpbrk(s, charSet));
     }
 
+    static char_type *str_end(char_type const *s)
+    {
+        WINSTL_ASSERT(NULL != s);
+
+        for(; *s != '\0'; ++s)
+        {}
+
+        return const_cast<char_type*>(s);
+    }
+
     // Locale management
     static int_type get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData)
     {
@@ -656,10 +666,7 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end;
-
-        for(end = dir; *end != '\0'; ++end)
-        {}
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -675,10 +682,24 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end;
+        char_type   *end    =   str_end(dir);
 
-        for(end = dir; *end != '\0'; ++end)
-        {}
+        // Don't trim drive roots ...
+        if( isalpha(dir[0]) &&
+            ':' == dir[1] &&
+            is_path_name_separator(dir[2]) &&
+            '\0' == dir[3])
+        {
+            return dir;
+        }
+
+        // ... or UNC roots
+        if( '\\' == dir[0] &&
+            '\\' == dir[1] &&
+            '\0' == dir[3])
+        {
+            return dir;
+        }
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -732,6 +753,52 @@ public:
         WINSTL_ASSERT(NULL != path);
 
         return ('\\' == path[0] && '\\' == path[1]);
+    }
+
+private:
+    static bool_type is_root_drive_(char_type const *path)
+    {
+        if( isalpha(path[0]) &&
+            ':' == path[1] &&
+            is_path_name_separator(path[2]) &&
+            '\0' == path[3])
+        {
+            return true;
+        }
+
+        return false;
+    }
+    static bool_type is_root_UNC_(char_type const *path)
+    {
+        if(is_path_UNC(path))
+        {
+            char_type const *sep    =   str_pbrk(path + 2, "\\/");
+
+            if( NULL == sep ||
+                '\0' == sep[1])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    static bool_type is_root_directory_(char_type const *path)
+    {
+        if( is_path_name_separator(path[0]) &&
+            '\0' == path[1])
+        {
+            return true;
+        }
+
+        return false;
+    }
+public:
+    static bool_type is_root_designator(char_type const *path)
+    {
+        WINSTL_ASSERT(NULL != path);
+
+        return is_root_directory_(path) || is_root_drive_(path) || is_root_UNC_(path);
     }
 
     static bool_type is_path_name_separator(char_type ch)
@@ -1003,7 +1070,16 @@ public:
 
     static size_type get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer)
     {
+        WINSTL_ASSERT(NULL != fileName);
+
         char_type *pFile;
+
+        if('\0' == *fileName)
+        {
+            static const char   s_dot[2] = { '.', '\0' };
+
+            fileName = s_dot;
+        }
 
         return get_full_path_name(fileName, cchBuffer, buffer, &pFile);
     }
@@ -1127,36 +1203,31 @@ public:
         return 0xFFFFFFFF != attr && 0 != (attr & FILE_ATTRIBUTE_DIRECTORY);
     }
 
-#if 0
-private:
-    static void root_stat_(char_type drive, stat_data_type *stat_data)
-    {
-        stat_data->dwFileAttributes                 =   FILE_ATTRIBUTE_DIRECTORY;
-        stat_data->ftCreationTime.dwLowDateTime     =   0;
-        stat_data->ftCreationTime.dwHighDateTime    =   0;
-        stat_data->ftLastAccessTime.dwLowDateTime   =   0;
-        stat_data->ftLastAccessTime.dwHighDateTime  =   0;
-        stat_data->ftLastWriteTime.dwLowDateTime    =   0;
-        stat_data->ftLastWriteTime.dwHighDateTime   =   0;
-        stat_data->nFileSizeHigh                    =   0;
-        stat_data->nFileSizeLow                     =   0;
-        stat_data->dwReserved0                      =   0;
-        stat_data->dwReserved1                      =   0;
-        stat_data->cFileName[0]                     =   /* drive;
-        stat_data->cFileName[1]                     =   ':';
-        stat_data->cFileName[2]                     =   '\\';
-        stat_data->cFileName[3]                     = */    '\0';
-        stat_data->cAlternateFileName[0]            =   0;
-    }
-
-public:
-#endif /* 0 */
-
 private:
     static bool_type stat_direct_(char_type const *path, stat_data_type *stat_data)
     {
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
+
+        if(is_root_drive_(path))
+        {
+            stat_data->dwFileAttributes                 =   ::GetFileAttributesA(path);
+            stat_data->ftCreationTime.dwLowDateTime     =   0;
+            stat_data->ftCreationTime.dwHighDateTime    =   0;
+            stat_data->ftLastAccessTime.dwLowDateTime   =   0;
+            stat_data->ftLastAccessTime.dwHighDateTime  =   0;
+            stat_data->ftLastWriteTime.dwLowDateTime    =   0;
+            stat_data->ftLastWriteTime.dwHighDateTime   =   0;
+            stat_data->nFileSizeHigh                    =   0;
+            stat_data->nFileSizeLow                     =   0;
+            { for(ws_size_t i = 0; i < 4; ++i)
+            {
+                stat_data->cFileName[i]             =   path[i];
+                stat_data->cAlternateFileName[i]    =   path[i];
+            }}
+
+            return 0xFFFFFFFF != stat_data->dwFileAttributes;
+        }
 
         HANDLE  h   =   find_first_file(path, stat_data);
 
@@ -1168,18 +1239,24 @@ public:
         WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER >= 1200
         size_type   len         =   class_type::str_len(path);
         bool_type   bTryEndTest =   false;
 
-        if( is_path_absolute(path) &&
-            len > 4)
+        if(is_path_absolute(path))
         {
-            bTryEndTest = true;
+            if(len > 4)
+            {
+                bTryEndTest = true;
+            }
         }
-        else if(is_path_rooted(path) &&
-                len > 3)
+        else if(is_path_rooted(path))
         {
-            bTryEndTest = true;
+            if(len > 3)
+            {
+                bTryEndTest = true;
+            }
         }
         else if(len > 2)
         {
@@ -1189,12 +1266,11 @@ public:
         if( bTryEndTest &&
             class_type::has_dir_end(path + len - 2))
         {
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-    _MSC_VER >= 1200
-    typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
+            typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
+
             WINSTL_ASSERT(len > 2);
 
-            buffer_type_    buffer(1 + len);
+            buffer_t    buffer(1 + len);
 
             if(0 == buffer.size())
             {
@@ -1210,11 +1286,9 @@ public:
 
                 return class_type::stat_direct_(buffer.data(), stat_data);
             }
-#else /* ? compiler */
-            return class_type::stat_direct_(path, stat_data);
-#endif /* compiler */
         }
         else
+#endif /* compiler */
         {
             return stat_direct_(path, stat_data);
         }
@@ -1261,17 +1335,17 @@ public:
 
     static bool_type drive_exists(char_type driveLetter)
     {
-        WINSTL_ASSERT(IsCharAlphaA(driveLetter));
+        WINSTL_ASSERT(::IsCharAlphaA(driveLetter));
 
         const DWORD drivesBitmap    =   ::GetLogicalDrives();
-        const int   driveOrdinal    =   (driveLetter - (IsCharUpperA(driveLetter) ? 'A' : 'a'));
+        const int   driveOrdinal    =   (driveLetter - (::IsCharUpperA(driveLetter) ? 'A' : 'a'));
 
         return 0 != ((0x01 << driveOrdinal) & drivesBitmap);
     }
 
     static DWORD get_drive_type(char_type driveLetter)
     {
-        WINSTL_ASSERT(IsCharAlphaA(driveLetter));
+        WINSTL_ASSERT(::IsCharAlphaA(driveLetter));
 
         char_type   drive[] = { '?', ':', '\\', '\0' };
 
@@ -1375,15 +1449,10 @@ public:
     typedef WIN32_FIND_DATAW                        stat_data_type;
     typedef BY_HANDLE_FILE_INFORMATION              fstat_data_type;
     typedef filesystem_traits<char_type>            class_type;
-    /// The (signed) integer type
     typedef ws_int_t                                int_type;
-    /// The Boolean type
     typedef ws_bool_t                               bool_type;
-    /// The type of a system file handle
     typedef HANDLE                                  file_handle_type;
-    /// The type of a handle to a dynamically loaded module
     typedef HINSTANCE                               module_type;
-    /// The type of system error codes
     typedef DWORD                                   error_type;
 private:
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
@@ -1459,6 +1528,16 @@ public:
         return const_cast<char_type*>(::wcspbrk(s, charSet));
     }
 
+    static char_type *str_end(char_type const *s)
+    {
+        WINSTL_ASSERT(NULL != s);
+
+        for(; *s != L'\0'; ++s)
+        {}
+
+        return const_cast<char_type*>(s);
+    }
+
     // Locale management
     static int_type get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData)
     {
@@ -1470,10 +1549,7 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end;
-
-        for(end = dir; *end != L'\0'; ++end)
-        {}
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -1489,10 +1565,22 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end;
+        char_type   *end    =   str_end(dir);
 
-        for(end = dir; *end != L'\0'; ++end)
-        {}
+        if( isalpha(dir[0]) &&
+            L':' == dir[1] &&
+            is_path_name_separator(dir[2]) &&
+            L'\0' == dir[3])
+        {
+            return dir;
+        }
+
+        if( L'\\' == dir[0] &&
+            L'\\' == dir[1] &&
+            L'\0' == dir[3])
+        {
+            return dir;
+        }
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -1546,6 +1634,52 @@ public:
         WINSTL_ASSERT(NULL != path);
 
         return (L'\\' == path[0] && L'\\' == path[1]);
+    }
+
+private:
+    static bool_type is_root_drive_(char_type const *path)
+    {
+        if( isalpha(path[0]) &&
+            L':' == path[1] &&
+            is_path_name_separator(path[2]) &&
+            L'\0' == path[3])
+        {
+            return true;
+        }
+
+        return false;
+    }
+    static bool_type is_root_UNC_(char_type const *path)
+    {
+        if(is_path_UNC(path))
+        {
+            char_type const *sep    =   str_pbrk(path + 2, L"\\/");
+
+            if( NULL == sep ||
+                L'\0' == sep[1])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    static bool_type is_root_directory_(char_type const *path)
+    {
+        if( is_path_name_separator(path[0]) &&
+            L'\0' == path[1])
+        {
+            return true;
+        }
+
+        return false;
+    }
+public:
+    static bool_type is_root_designator(char_type const *path)
+    {
+        WINSTL_ASSERT(NULL != path);
+
+        return is_root_directory_(path) || is_root_drive_(path) || is_root_UNC_(path);
     }
 
     static bool_type is_path_name_separator(char_type ch)
@@ -1686,7 +1820,6 @@ public:
         return ::GetCurrentDirectoryW(cchBuffer, buffer);
     }
 
-    /// Returns whether a file exists or not
     static bool_type file_exists(char_type const *fileName)
     {
         return 0xFFFFFFFF != ::GetFileAttributesW(fileName);
@@ -1706,11 +1839,95 @@ public:
         return 0xFFFFFFFF != attr && 0 != (attr & FILE_ATTRIBUTE_DIRECTORY);
     }
 
-    static bool_type stat(char_type const *path, stat_data_type *stat_data)
+private:
+    static bool_type stat_direct_(char_type const *path, stat_data_type *stat_data)
     {
+        WINSTL_ASSERT(NULL != path);
+        WINSTL_ASSERT(NULL != stat_data);
+
+        if(is_root_drive_(path))
+        {
+            stat_data->dwFileAttributes                 =   ::GetFileAttributesW(path);
+            stat_data->ftCreationTime.dwLowDateTime     =   0;
+            stat_data->ftCreationTime.dwHighDateTime    =   0;
+            stat_data->ftLastAccessTime.dwLowDateTime   =   0;
+            stat_data->ftLastAccessTime.dwHighDateTime  =   0;
+            stat_data->ftLastWriteTime.dwLowDateTime    =   0;
+            stat_data->ftLastWriteTime.dwHighDateTime   =   0;
+            stat_data->nFileSizeHigh                    =   0;
+            stat_data->nFileSizeLow                     =   0;
+            { for(ws_size_t i = 0; i < 4; ++i)
+            {
+                stat_data->cFileName[i]             =   path[i];
+                stat_data->cAlternateFileName[i]    =   path[i];
+            }}
+
+            return 0xFFFFFFFF != stat_data->dwFileAttributes;
+        }
+
         HANDLE  h   =   find_first_file(path, stat_data);
 
         return (INVALID_HANDLE_VALUE == h) ? false : (find_file_close(h), true);
+    }
+public:
+    static bool_type stat(char_type const *path, stat_data_type *stat_data)
+    {
+        WINSTL_ASSERT(NULL != path);
+        WINSTL_ASSERT(NULL != stat_data);
+
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER >= 1200
+        size_type   len         =   class_type::str_len(path);
+        bool_type   bTryEndTest =   false;
+
+        if(is_path_absolute(path))
+        {
+            if(len > 4)
+            {
+                bTryEndTest = true;
+            }
+        }
+        else if(is_path_rooted(path))
+        {
+            if(len > 3)
+            {
+                bTryEndTest = true;
+            }
+        }
+        else if(len > 2)
+        {
+            bTryEndTest = true;
+        }
+
+        if( bTryEndTest &&
+            class_type::has_dir_end(path + len - 2))
+        {
+            typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
+
+            WINSTL_ASSERT(len > 2);
+
+            buffer_t    buffer(1 + len);
+
+            if(0 == buffer.size())
+            {
+                return false;
+            }
+            else
+            {
+                WINSTL_ASSERT(len > 0);
+
+                class_type::str_copy(&buffer[0], path);
+
+                buffer[len - 1] = L'\0';
+
+                return class_type::stat_direct_(buffer.data(), stat_data);
+            }
+        }
+        else
+#endif /* compiler */
+        {
+            return stat_direct_(path, stat_data);
+        }
     }
 
     static bool_type fstat(file_handle_type fd, fstat_data_type *fstat_data)

@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     10th June 2006
+ * Updated:     14th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    0
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     62
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 2
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,9 +94,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
 # include <winstl/window_access.hpp>        // for get_hwnd()
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
-#ifndef WINSTL_INCL_WINSTL_HPP_CHAR_CONVERSIONS
-# include <winstl/char_conversions.hpp>     // for winstl::a2w, w2a
-#endif /* !WINSTL_INCL_WINSTL_HPP_CHAR_CONVERSIONS */
+#ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS
+# include <winstl/conversion/char_conversions.hpp>	// for winstl::a2w, w2a
+#endif /* !WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS */
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS
 # include <winstl/controls/functions.h>     // for winstl::listbox_add_string, ...
 #endif /* !WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS */

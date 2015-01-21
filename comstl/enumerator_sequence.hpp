@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     10th June 2006
+ * Updated:     14th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MAJOR    5
 # define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MINOR    6
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 5
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     214
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 6
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     215
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # if !defined(STLSOFT_COMPILER_IS_DMC)
 #  include "./unittest/_recls_COM_decl_.h"
 # endif /* compiler */
-# include <winstl/dl_call.hpp>
+# include <winstl/dl/dl_call.hpp>
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////

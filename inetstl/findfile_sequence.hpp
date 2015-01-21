@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     10th June 2006
+ * Updated:     13th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MAJOR    2
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    11
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 5
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     107
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 6
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 
 #ifdef STLSOFT_UNITTEST
-# include <stlsoft/integer_to_string.hpp>
+# include <stlsoft/conversion/integer_to_string.hpp>
 # include <inetstl/connection.hpp>
 # include <inetstl/session.hpp>
 # include <stdio.h>

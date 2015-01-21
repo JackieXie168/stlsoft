@@ -4,7 +4,7 @@
  * Purpose:     Stream functions.
  *
  * Created:     22nd October 2005
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_H_STREAM_FUNCTIONS_MAJOR     1
 # define COMSTL_VER_COMSTL_H_STREAM_FUNCTIONS_MINOR     1
 # define COMSTL_VER_COMSTL_H_STREAM_FUNCTIONS_REVISION  1
-# define COMSTL_VER_COMSTL_H_STREAM_FUNCTIONS_EDIT      5
+# define COMSTL_VER_COMSTL_H_STREAM_FUNCTIONS_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -145,10 +145,10 @@ inline HRESULT get_stream_size(LPSTREAM pstm, cs_uint64_t &size)
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
+} /* namespace comstl */
 # else
-} // namespace comstl_project
-} // namespace stlsoft
+} /* namespace comstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 

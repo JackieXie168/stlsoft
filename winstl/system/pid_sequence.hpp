@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     10th June 2006
+ * Updated:     14th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     31
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ STLSOFT_COMPILER_IS_COMO:
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION
-# include <winstl/system_version.hpp>
+# include <winstl/system/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
@@ -96,9 +96,9 @@ STLSOFT_COMPILER_IS_COMO:
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #if !defined(_PSAPI_H_) && \
     !defined(_PSAPI_H)
-# ifndef WINSTL_INCL_WINSTL_HPP_DL_CALL
-#  include <winstl/dl_call.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_DL_CALL */
+# ifndef WINSTL_INCL_WINSTL_DL_HPP_DL_CALL
+#  include <winstl/dl/dl_call.hpp>
+# endif /* !WINSTL_INCL_WINSTL_DL_HPP_DL_CALL */
 #endif /* psapi */
 
 #if !defined(STLSOFT_UNITTEST)
@@ -109,11 +109,23 @@ STLSOFT_COMPILER_IS_COMO:
  * Namespace
  */
 
+#ifndef _WINSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+/* There is no stlsoft namespace, so must define ::winstl */
+namespace winstl
+{
+# else
+/* Define stlsoft::winstl_project */
+
 namespace stlsoft
 {
 
 namespace winstl_project
 {
+
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -430,9 +442,15 @@ inline pid_sequence::size_type pid_sequence::size() const
  * Namespace
  */
 
+#ifndef _WINSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+} // namespace winstl
+# else
 } // namespace winstl_project
-
 } // namespace stlsoft
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

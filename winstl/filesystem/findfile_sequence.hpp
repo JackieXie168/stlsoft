@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     17th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -64,9 +64,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        177
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        179
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,9 +98,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
 # include <winstl/filesystem/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION
-# include <winstl/system_version.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION
+# include <winstl/system/system_version.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
@@ -232,6 +232,8 @@ public:
         ,   directories     =   0x0010  //!< Causes the search to include directories
         ,   files           =   0x0020  //!< Causes the search to include files
         ,   skipReparseDirs =   0x0100  //!< Causes the search to skip directories that are reparse points
+        ,   skipHiddenFiles =   0x0200  //!< Causes the search to skip files marked hidden
+        ,   skipHiddenDirs  =   0x0400  //!< Causes the search to skip directories marked hidden
 //        ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
     };
 /// @}
@@ -784,6 +786,8 @@ inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T>::flags_type
                                     |   directories
                                     |   files
                                     |   skipReparseDirs
+                                    |   skipHiddenFiles
+                                    |   skipHiddenDirs
                                     |   0;
 
     WINSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
@@ -1202,7 +1206,9 @@ inline /* static */ HANDLE basic_findfile_sequence_const_input_iterator<C, T, V>
     // Now need to validate against the flags
     for(; INVALID_HANDLE_VALUE != hSrch; )
     {
-        if(traits_type::is_file(findData))
+        if( traits_type::is_file(findData) &&
+            (   0 == (flags & sequence_type::skipHiddenFiles) ||
+                0 == (findData->dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)))
         {
             // A file, and files requested, so break
             if(flags & sequence_type::files)
@@ -1212,22 +1218,26 @@ inline /* static */ HANDLE basic_findfile_sequence_const_input_iterator<C, T, V>
         }
         else
         {
-            if(traits_type::is_dots(findData->cFileName))
+            if( 0 == (flags & sequence_type::skipHiddenDirs) ||
+                0 == (findData->dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))
             {
-                if(flags & sequence_type::includeDots)
+                if(traits_type::is_dots(findData->cFileName))
                 {
-                    // A dots file, and dots are requested
-                    break;
+                    if(flags & sequence_type::includeDots)
+                    {
+                        // A dots file, and dots are requested
+                        break;
+                    }
                 }
-            }
-            else if(flags & sequence_type::directories)
-            {
-                // A directory, and directories requested
-                if( 0 == (flags & sequence_type::skipReparseDirs) ||
-                    0 == (findData->dwFileAttributes & reparsePointConstant))
+                else if(flags & sequence_type::directories)
                 {
-                    // Either not requested to skip reparse points, or not a reparse point
-                    break;
+                    // A directory, and directories requested
+                    if( 0 == (flags & sequence_type::skipReparseDirs) ||
+                        0 == (findData->dwFileAttributes & reparsePointConstant))
+                    {
+                        // Either not requested to skip reparse points, or not a reparse point
+                        break;
+                    }
                 }
             }
         }
@@ -1520,7 +1530,9 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
                 }
                 else
                 {
-                    if(traits_type::is_file(&m_data))
+                    if( traits_type::is_file(&m_data) &&
+                        (   0 == (m_flags & sequence_type::skipHiddenFiles) ||
+                            0 == (m_data.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)))
                     {
                         // A file, and files requested, so break
                         if(m_flags & sequence_type::files)
@@ -1530,22 +1542,26 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
                     }
                     else
                     {
-                        if(traits_type::is_dots(m_data.cFileName))
+                        if( 0 == (m_flags & sequence_type::skipHiddenDirs) ||
+                            0 == (m_data.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))
                         {
-                            if(m_flags & sequence_type::includeDots)
+                            if(traits_type::is_dots(m_data.cFileName))
                             {
-                                // A dots file, and dots are requested
-                                return *this;
+                                if(m_flags & sequence_type::includeDots)
+                                {
+                                    // A dots file, and dots are requested
+                                    return *this;
+                                }
                             }
-                        }
-                        else if(m_flags & sequence_type::directories)
-                        {
-                            // A directory, and directories requested
-                            if( 0 == (m_flags & sequence_type::skipReparseDirs) ||
-                                0 == (m_data.dwFileAttributes & reparsePointConstant))
+                            else if(m_flags & sequence_type::directories)
                             {
-                                // Either not requested to skip reparse points, or not a reparse point
-                                return *this;
+                                // A directory, and directories requested
+                                if( 0 == (m_flags & sequence_type::skipReparseDirs) ||
+                                    0 == (m_data.dwFileAttributes & reparsePointConstant))
+                                {
+                                    // Either not requested to skip reparse points, or not a reparse point
+                                    return *this;
+                                }
                             }
                         }
                     }

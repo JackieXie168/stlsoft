@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     214
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,15 +73,18 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
 # include <stlsoft/memory/allocator_features.hpp>   // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS
+# include <stlsoft/string/copy_functions.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>            // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
-# include <stlsoft/memory/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
 #include <stdexcept>                            // for std::logic_error
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -267,46 +270,54 @@ public:
 /// @{
 public:
     /// \brief Appends the contents of \c rhs to the path
-    class_type &push(class_type const &rhs, bool_type bAddPathNameSeparator = false);
+    class_type  &push(class_type const &rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path
-    class_type &push(char_type const *rhs, bool_type bAddPathNameSeparator = false);
+    class_type  &push(char_type const *rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path as an extension
-    class_type &push_ext(class_type const &rhs, bool_type bAddPathNameSeparator = false);
+    class_type  &push_ext(class_type const &rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path as an extension
-    class_type &push_ext(char_type const *rhs, bool_type bAddPathNameSeparator = false);
+    class_type  &push_ext(char_type const *rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Ensures that the path has a trailing path name separator
-    class_type &push_sep();
+    class_type  &push_sep();
     /// \brief Pops the last path element from the path
     ///
-    /// \note If the path has 0 or 1 components, this operation does nothing
-    class_type &pop(bool_type bRemoveTrailingPathNameSeparator = false);
+    /// \note In previous versions, this operation did not remove the
+    ///   left-most path component. That behaviour is no longer supported,
+    ///   and the method will now leave the path instance empty in that
+    ///   case.
+    class_type &pop(bool_type bRemoveTrailingPathNameSeparator = true);
     /// \brief Ensures that the path does not have a trailing path name separator
-    class_type &pop_sep();
+    ///
+    /// \note Does not trim the separator character from the root designator
+    class_type  &pop_sep();
     /// \brief Removes the extension, if any, from the file component of the path
-    class_type &pop_ext();
+    class_type  &pop_ext();
 
     /// \brief Equivalent to push()
-    class_type &operator /=(char_type const *rhs);
+    class_type  &operator /=(char_type const *rhs);
 
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED)
     /// \brief Equivalent to push()
-    class_type &operator /=(class_type const &rhs);
+    class_type  &operator /=(class_type const &rhs);
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     /// \brief Equivalent to push()
     template <ss_typename_param_k S>
-    class_type &operator /=(S const &rhs)
+    class_type  &operator /=(S const &rhs)
     {
         return operator /=(stlsoft_ns_qual(c_str_ptr)(rhs));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
+    /// \brief Removes all content
+    void        clear();
+
     /// \brief Converts the path to absolute form
-    class_type &make_absolute(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type  &make_absolute(bool_type bRemoveTrailingPathNameSeparator = true);
     /// \brief Canonicalises the path, removing all "./" parts and evaluating all "../" parts
-    class_type &canonicalise(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type  &canonicalise(bool_type bRemoveTrailingPathNameSeparator = true);
 /// @}
 
 /// \name Attributes
@@ -329,12 +340,24 @@ public:
     size_type       size() const;
     /// \brief Conversion to a non-mutable (const) pointer to the path
     char_type const *c_str() const;
+    /// \brief Returns a non-mutable (const) reference to the character at
+    ///  the given index
+    ///
+    /// \note The behaviour is undefined if <code>index >= size()</code>.
+    char_type const &operator [](size_type index) const;
     /// \brief Indicates whether the path represents an existing file system entry
     bool_type       exists() const;
     /// \brief Indicates whether the path is rooted
     bool_type       is_rooted() const;
     /// \brief Indicates whether the path is absolute
     bool_type       is_absolute() const;
+
+    /// \brief Copies the contents into a caller supplied buffer
+    ///
+    /// \param buffer Pointer to character buffer to receive the contents.
+    ///  May be NULL, in which case the method returns size().
+    /// \param cchBuffer Number of characters of available space in \c buffer.
+    size_type       copy(char_type *buffer, size_type cchBuffer) const;
 /// @}
 
 /// \name Comparison
@@ -383,6 +406,7 @@ public:
 
 // Implementation
 private:
+    class_type              &push_sep_(char_type sep);
     void                    swap(class_type &rhs);
     class_type              &concat_(char_type const *rhs);
     class_type              &concat_(class_type const &rhs);
@@ -928,24 +952,32 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push(char_type const *rhs, ws_b
 {
     WINSTL_ASSERT(NULL != rhs);
 
-    if(traits_type::is_path_rooted(rhs))
+    if('\0' != *rhs)
     {
-        class_type  newPath(rhs);
-
-        swap(newPath);
-    }
-    else
-    {
-        class_type  newPath(*this);
-
-        newPath.push_sep();
-        newPath.concat_(rhs);
-        if(bAddPathNameSeparator)
+        if(traits_type::is_path_rooted(rhs))
         {
-            newPath.push_sep();
-        }
+            class_type  newPath(rhs);
 
-        swap(newPath);
+            swap(newPath);
+        }
+        else
+        {
+            // In an attempt to maintain slash/backslash consistency, we
+            // locate the next slash to help guide the push_sep_() method.
+
+            class_type      newPath(*this);
+            char_type const *psep   =   next_slash_or_end(c_str());
+            char_type       sep     =   ('\0' == *psep) ? char_type(0) : psep[-1];
+
+            newPath.push_sep_(sep);
+            newPath.concat_(rhs);
+            if(bAddPathNameSeparator)
+            {
+                newPath.push_sep();
+            }
+
+            swap(newPath);
+        }
     }
 
     return *this;
@@ -993,6 +1025,22 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::push_sep()
 {
+    return push_sep_(traits_type::path_name_separator());
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline basic_path<C, T, A> &basic_path<C, T, A>::push_sep_(ss_typename_type_k basic_path<C, T, A>::char_type sep)
+{
+    if(0 == sep)
+    {
+        sep = traits_type::path_name_separator();
+    }
+
+    WINSTL_ASSERT(sep == traits_type::path_name_separator() || sep == path_name_separator_alt());
+
     if(0 != m_len)
     {
         if(traits_type::path_name_separator() != m_buffer[m_len - 1])
@@ -1001,7 +1049,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push_sep()
             {
                 WINSTL_ASSERT(m_len + 1 < m_buffer.size());
 
-                m_buffer[m_len]     =   traits_type::path_name_separator();
+                m_buffer[m_len]     =   sep;
                 m_buffer[m_len + 1] =   '\0';
                 ++m_len;
             }
@@ -1028,7 +1076,11 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop(ws_bool_t bRemoveTrailingPa
     if(NULL != slash)
     {
         *(slash + 1) = '\0';
-        m_len = (slash + 1) - stlsoft_ns_qual(c_str_ptr)(m_buffer);
+        m_len = static_cast<size_type>((slash + 1) - stlsoft_ns_qual(c_str_ptr)(m_buffer));
+    }
+    else
+    {
+        clear();
     }
 
     if(bRemoveTrailingPathNameSeparator)
@@ -1047,15 +1099,30 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop_sep()
 {
     if(0 != m_len)
     {
-        char_type *last = &m_buffer[m_len - 1];
-
-        if(*last == traits_type::path_name_separator())
+        if( 1 == m_len &&
+            traits_type::is_path_name_separator(m_buffer[0]))
         {
-            m_buffer[m_len-- - 1] = '\0';
+            // It's / or \ - ignore
         }
-        else if(*last == path_name_separator_alt())
+        else if(3 == m_len &&
+                ':' == m_buffer[1] &&
+                traits_type::is_path_name_separator(m_buffer[2]))
         {
-            m_buffer[m_len-- - 1] = '\0';
+            // It's drive rooted - ignore
+        }
+        else
+        {
+            // We can pop a separator off anything else, including a UNC host
+            char_type *last = &m_buffer[m_len - 1];
+
+            if(*last == traits_type::path_name_separator())
+            {
+                m_buffer[m_len-- - 1] = '\0';
+            }
+            else if(*last == path_name_separator_alt())
+            {
+                m_buffer[m_len-- - 1] = '\0';
+            }
         }
     }
 
@@ -1111,6 +1178,16 @@ template<   ss_typename_param_k C
 inline basic_path<C, T, A> &basic_path<C, T, A>::operator /=(ss_typename_type_k basic_path<C, T, A>::char_type const *path)
 {
     return push(path);
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline void basic_path<C, T, A>::clear()
+{
+    m_buffer[0] =   '\0';
+    m_len       =   0;
 }
 
 template<   ss_typename_param_k C
@@ -1399,6 +1476,17 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
+inline ss_typename_type_k basic_path<C, T, A>::char_type const &basic_path<C, T, A>::operator [](ss_typename_type_k basic_path<C, T, A>::size_type index) const
+{
+    WINSTL_MESSAGE_ASSERT("Index out of range", !(size() < index));
+
+    return c_str()[index];
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
 inline ws_bool_t basic_path<C, T, A>::exists() const
 {
     return traits_type::file_exists(this->c_str());
@@ -1420,6 +1508,15 @@ template<   ss_typename_param_k C
 inline ws_bool_t basic_path<C, T, A>::is_absolute() const
 {
     return traits_type::is_path_absolute(this->c_str());
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline ss_typename_type_k basic_path<C, T, A>::size_type basic_path<C, T, A>::copy(ss_typename_type_k basic_path<C, T, A>::char_type *buffer, ss_typename_type_k basic_path<C, T, A>::size_type cchBuffer) const
+{
+    return stlsoft_ns_qual(copy_contents)(buffer, cchBuffer, m_buffer.data(), m_len);
 }
 
 template<   ss_typename_param_k C

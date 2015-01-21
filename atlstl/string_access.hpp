@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     10th June 2006
+ * Updated:     13th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MINOR      2
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   3
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       84
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   4
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -499,21 +499,24 @@ namespace stlsoft
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
 using ::atlstl::c_str_ptr_null;
-#if !defined(UNICODE)
+#if defined(__ATLWIN_H__) && \
+    !defined(UNICODE)
 using ::atlstl::c_str_ptr_null_a;
-#endif /* UNICODE */
+#endif /* __ATLWIN_H__ && !UNICODE*/
 using ::atlstl::c_str_ptr_null_w;
 
 using ::atlstl::c_str_ptr;
-#if !defined(UNICODE)
+#if defined(__ATLWIN_H__) && \
+    !defined(UNICODE)
 using ::atlstl::c_str_ptr_a;
-#endif /* UNICODE */
+#endif /* __ATLWIN_H__ && !UNICODE*/
 using ::atlstl::c_str_ptr_w;
 
 using ::atlstl::c_str_data;
-#if !defined(UNICODE)
+#if defined(__ATLWIN_H__) && \
+    !defined(UNICODE)
 using ::atlstl::c_str_data_a;
-#endif /* UNICODE */
+#endif /* __ATLWIN_H__ && !UNICODE*/
 using ::atlstl::c_str_data_w;
 
 using ::atlstl::c_str_len;

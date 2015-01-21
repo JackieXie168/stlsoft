@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for manipulating case.
  *
  * Created:     1st April 2005
- * Updated:     10th June 2006
+ * Updated:     14th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_MINOR       0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_REVISION    1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_EDIT        11
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CASE_FUNCTIONS_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,6 +82,8 @@ namespace stlsoft
 
 /* ////////////////////////////////////////////////////////////////////// */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<   ss_typename_param_k S
         ,   ss_typename_param_k F
         >
@@ -92,7 +94,9 @@ inline S &transform_impl(S &s, F f)
     return s;
 }
 
-/** \brief 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief Converts all characters in the string to upper case.
  *
  * \ingroup group__library__string
  */
@@ -106,7 +110,7 @@ inline S &make_upper(S &s)
     return transform_impl(s, &ctype_traits_t::to_upper);
 }
 
-/** \brief 
+/** \brief Converts all characters in the string to lower case.
  *
  * \ingroup group__library__string
  */
@@ -120,7 +124,8 @@ inline S &make_lower(S &s)
     return transform_impl(s, &ctype_traits_t::to_lower);
 }
 
-/** \brief 
+/** \brief Returns a copy of the source string in which all characters have
+ *   been converted to upper case.
  *
  * \ingroup group__library__string
  */
@@ -134,7 +139,8 @@ inline S to_upper(S const &s)
     return r;
 }
 
-/** \brief 
+/** \brief Returns a copy of the source string in which all characters have
+ *   been converted to lower case.
  *
  * \ingroup group__library__string
  */

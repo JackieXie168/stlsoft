@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     6th June 2006
- * Updated:     10th June 2006
+ * Updated:     17th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,8 +109,8 @@ ws_size_t path_squeeze_impl(C const *path, ws_size_t pathLen, C *buffer, ws_size
     if(NULL != buffer)
     {
         basic_path<char_t>  p(path, pathLen);
-        const char_t        *file_ptr   =   p.get_file();
-        const char_t        *path_ptr   =   p.c_str();
+        char_t const        *file_ptr   =   p.get_file();
+        char_t const        *path_ptr   =   p.c_str();
         const ws_size_t     fileLen     =   p.size() - (file_ptr - path_ptr);
 
         if(cchBuffer >= pathLen)
@@ -136,7 +136,7 @@ ws_size_t path_squeeze_impl(C const *path, ws_size_t pathLen, C *buffer, ws_size
             {
                 if(p.is_absolute())
                 {
-                    if('\\' == 0[path_ptr])
+                    if(traits_t::is_path_UNC(path_ptr))
                     {
                         // 1. UNC
 

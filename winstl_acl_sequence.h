@@ -3,12 +3,12 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/acl_sequence.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/security/acl_sequence.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_ACL_SEQUENCE
-# include <winstl/acl_sequence.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_ACL_SEQUENCE */
+#ifndef WINSTL_INCL_WINSTL_SECURITY_HPP_ACL_SEQUENCE
+# include <winstl/security/acl_sequence.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SECURITY_HPP_ACL_SEQUENCE */
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

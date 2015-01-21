@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     11th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        148
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        149
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h \brief [C, C++] The root header for the \ref group__project__winstl "WinSTL" project. */
@@ -524,69 +524,69 @@ int main()
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-typedef stlsoft_ns_qual(ss_char_a_t)        ws_char_a_t;    //!< Ansi char type
-typedef stlsoft_ns_qual(ss_char_w_t)        ws_char_w_t;    //!< Unicode char type
-typedef stlsoft_ns_qual(ss_sint8_t)         ws_sint8_t;     //!< 8-bit signed integer
-typedef stlsoft_ns_qual(ss_uint8_t)         ws_uint8_t;     //!< 8-bit unsigned integer
-typedef stlsoft_ns_qual(ss_int16_t)         ws_int16_t;     //!< 16-bit integer
-typedef stlsoft_ns_qual(ss_sint16_t)        ws_sint16_t;    //!< 16-bit signed integer
-typedef stlsoft_ns_qual(ss_uint16_t)        ws_uint16_t;    //!< 16-bit unsigned integer
-typedef stlsoft_ns_qual(ss_int32_t)         ws_int32_t;     //!< 32-bit integer
-typedef stlsoft_ns_qual(ss_sint32_t)        ws_sint32_t;    //!< 32-bit signed integer
-typedef stlsoft_ns_qual(ss_uint32_t)        ws_uint32_t;    //!< 32-bit unsigned integer
+typedef stlsoft_ns_qual(ss_char_a_t)        ws_char_a_t;    /**!< Ansi char type. */
+typedef stlsoft_ns_qual(ss_char_w_t)        ws_char_w_t;    /**!< Unicode char type. */
+typedef stlsoft_ns_qual(ss_sint8_t)         ws_sint8_t;     /**!< 8-bit signed integer. */
+typedef stlsoft_ns_qual(ss_uint8_t)         ws_uint8_t;     /**!< 8-bit unsigned integer. */
+typedef stlsoft_ns_qual(ss_int16_t)         ws_int16_t;     /**!< 16-bit integer. */
+typedef stlsoft_ns_qual(ss_sint16_t)        ws_sint16_t;    /**!< 16-bit signed integer. */
+typedef stlsoft_ns_qual(ss_uint16_t)        ws_uint16_t;    /**!< 16-bit unsigned integer. */
+typedef stlsoft_ns_qual(ss_int32_t)         ws_int32_t;     /**!< 32-bit integer. */
+typedef stlsoft_ns_qual(ss_sint32_t)        ws_sint32_t;    /**!< 32-bit signed integer. */
+typedef stlsoft_ns_qual(ss_uint32_t)        ws_uint32_t;    /**!< 32-bit unsigned integer. */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef stlsoft_ns_qual(ss_int64_t)        ws_int64_t;     //!< 64-bit integer
- typedef stlsoft_ns_qual(ss_sint64_t)       ws_sint64_t;    //!< 64-bit signed integer
- typedef stlsoft_ns_qual(ss_uint64_t)       ws_uint64_t;    //!< 64-bit unsigned integer
+ typedef stlsoft_ns_qual(ss_int64_t)        ws_int64_t;     /**!< 64-bit integer. */
+ typedef stlsoft_ns_qual(ss_sint64_t)       ws_sint64_t;    /**!< 64-bit signed integer. */
+ typedef stlsoft_ns_qual(ss_uint64_t)       ws_uint64_t;    /**!< 64-bit unsigned integer. */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef stlsoft_ns_qual(ss_int_t)           ws_int_t;       //!< integer
-typedef stlsoft_ns_qual(ss_sint_t)          ws_sint_t;      //!< signed integer
-typedef stlsoft_ns_qual(ss_uint_t)          ws_uint_t;      //!< unsigned integer
-typedef stlsoft_ns_qual(ss_long_t)          ws_long_t;      //!< long
-typedef stlsoft_ns_qual(ss_byte_t)          ws_byte_t;      //!< Byte
+typedef stlsoft_ns_qual(ss_int_t)           ws_int_t;       /**!< integer. */
+typedef stlsoft_ns_qual(ss_sint_t)          ws_sint_t;      /**!< signed integer. */
+typedef stlsoft_ns_qual(ss_uint_t)          ws_uint_t;      /**!< unsigned integer. */
+typedef stlsoft_ns_qual(ss_long_t)          ws_long_t;      /**!< long. */
+typedef stlsoft_ns_qual(ss_byte_t)          ws_byte_t;      /**!< Byte. */
 #if defined(__cplusplus)
-typedef stlsoft_ns_qual(ss_bool_t)          ws_bool_t;      //!< bool
+typedef stlsoft_ns_qual(ss_bool_t)          ws_bool_t;      /**!< bool. */
 #endif /* __cplusplus */
-typedef DWORD                               ws_dword_t;     //!< dword
-typedef stlsoft_ns_qual(ss_size_t)          ws_size_t;      //!< size
-typedef stlsoft_ns_qual(ss_ptrdiff_t)       ws_ptrdiff_t;   //!< ptr diff
-typedef stlsoft_ns_qual(ss_streampos_t)     ws_streampos_t; //!< streampos
-typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
+typedef DWORD                               ws_dword_t;     /**!< dword. */
+typedef stlsoft_ns_qual(ss_size_t)          ws_size_t;      /**!< size. */
+typedef stlsoft_ns_qual(ss_ptrdiff_t)       ws_ptrdiff_t;   /**!< ptr diff. */
+typedef stlsoft_ns_qual(ss_streampos_t)     ws_streampos_t; /**!< streampos. */
+typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; /**!< streamoff. */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef _WINSTL_NO_NAMESPACE
-typedef ws_char_a_t         char_a_t;           //!< Ansi char type
-typedef ws_char_w_t         char_w_t;           //!< Unicode char type
-//typedef ws_int8_t           int8_t;             //!< 8-bit integer
-typedef ws_sint8_t          sint8_t;            //!< 8-bit signed integer
-typedef ws_uint8_t          uint8_t;            //!< 8-bit unsigned integer
-typedef ws_int16_t          int16_t;            //!< 16-bit integer
-typedef ws_sint16_t         sint16_t;           //!< 16-bit signed integer
-typedef ws_uint16_t         uint16_t;           //!< 16-bit unsigned integer
-typedef ws_int32_t          int32_t;            //!< 32-bit integer
-typedef ws_sint32_t         sint32_t;           //!< 32-bit signed integer
-typedef ws_uint32_t         uint32_t;           //!< 32-bit unsigned integer
+typedef ws_char_a_t         char_a_t;           /**!< Ansi char type. */
+typedef ws_char_w_t         char_w_t;           /**!< Unicode char type. */
+/* typedef ws_int8_t           int8_t; */             /**!< 8-bit integer. */
+typedef ws_sint8_t          sint8_t;            /**!< 8-bit signed integer. */
+typedef ws_uint8_t          uint8_t;            /**!< 8-bit unsigned integer. */
+typedef ws_int16_t          int16_t;            /**!< 16-bit integer. */
+typedef ws_sint16_t         sint16_t;           /**!< 16-bit signed integer. */
+typedef ws_uint16_t         uint16_t;           /**!< 16-bit unsigned integer. */
+typedef ws_int32_t          int32_t;            /**!< 32-bit integer. */
+typedef ws_sint32_t         sint32_t;           /**!< 32-bit signed integer. */
+typedef ws_uint32_t         uint32_t;           /**!< 32-bit unsigned integer. */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef ws_int64_t         int64_t;            //!< 64-bit integer
- typedef ws_sint64_t        sint64_t;           //!< 64-bit signed integer
- typedef ws_uint64_t        uint64_t;           //!< 64-bit unsigned integer
+ typedef ws_int64_t         int64_t;            /**!< 64-bit integer. */
+ typedef ws_sint64_t        sint64_t;           /**!< 64-bit signed integer. */
+ typedef ws_uint64_t        uint64_t;           /**!< 64-bit unsigned integer. */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-//typedef ws_short_t          short_t;            //!< short integer
-typedef ws_int_t            int_t;              //!< integer
-typedef ws_sint_t           sint_t;             //!< signed integer
-typedef ws_uint_t           uint_t;             //!< unsigned integer
-typedef ws_long_t           long_t;             //!< long integer
-typedef ws_byte_t           byte_t;             //!< Byte
+/* typedef ws_short_t          short_t; */            /**!< short integer. */
+typedef ws_int_t            int_t;              /**!< integer. */
+typedef ws_sint_t           sint_t;             /**!< signed integer. */
+typedef ws_uint_t           uint_t;             /**!< unsigned integer. */
+typedef ws_long_t           long_t;             /**!< long integer. */
+typedef ws_byte_t           byte_t;             /**!< Byte. */
 #if defined(__cplusplus)
-typedef ws_bool_t           bool_t;             //!< bool
+typedef ws_bool_t           bool_t;             /**!< bool. */
 #endif /* __cplusplus */
-typedef ws_dword_t          dword_t;            //!< dword
+typedef ws_dword_t          dword_t;            /**!< dword. */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-typedef ws_size_t           size_t;             //!< size
-typedef ws_ptrdiff_t        ptrdiff_t;          //!< ptr diff
-typedef ws_streampos_t      streampos_t;        //!< streampos
-typedef ws_streamoff_t      streamoff_t;        //!< streamoff
+typedef ws_size_t           size_t;             /**!< size. */
+typedef ws_ptrdiff_t        ptrdiff_t;          /**!< ptr diff. */
+typedef ws_streampos_t      streampos_t;        /**!< streampos. */
+typedef ws_streamoff_t      streamoff_t;        /**!< streamoff. */
 # endif /* compiler */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
@@ -606,7 +606,6 @@ typedef ws_streamoff_t      streamoff_t;        //!< streamoff
  * used when there is a need to allocate the maximum possible size for a
  * file system path. 
  */
-//
 #define WINSTL_CONST_NT_MAX_PATH            (4 + 32767)
 
 #ifdef __cplusplus
@@ -737,10 +736,10 @@ inline BOOL bool2BOOL(bool bVal)
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 namespace winstl = ::stlsoft::winstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */

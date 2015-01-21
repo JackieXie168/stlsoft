@@ -4,7 +4,7 @@
  * Purpose:     proxy_sequence template class.
  *
  * Created:     10th September 2003
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MAJOR       2
 # define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MINOR       5
 # define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_EDIT        26
+# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ private:
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

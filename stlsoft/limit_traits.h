@@ -7,7 +7,7 @@
  *              in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_EDIT     45
+# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -440,7 +440,7 @@ struct limit_traits<unsigned long>
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

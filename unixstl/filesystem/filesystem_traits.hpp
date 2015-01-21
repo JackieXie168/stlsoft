@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/filesystem_traits.hpp (formerly unixstl_filesystem_traits.h)
+ * File:        unixstl/filesystem/filesystem_traits.hpp (originally unixstl_filesystem_traits.h)
  *
  * Purpose:     Contains the filesystem_traits template class, and ANSI and
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     10th June 2006
+ * Updated:     14th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 
 /** \file unixstl/filesystem/filesystem_traits.hpp
  *
- * \brief [C++ only] Definition of the unixstl::filesystem_traits class
- *  template.
+ * \brief [C++ only] Definition of the unixstl::filesystem_traits traits
+ *  class.
  *  (\ref group__library__file_system "File System" Library.)
  */
 
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      87
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,17 +66,18 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
-#ifdef WIN32
+#ifdef _WIN32
 # include <ctype.h>
-#endif /* WIN32 */
+#endif /* _WIN32 */
 #include <errno.h>
 #include <fcntl.h>
-#ifdef WIN32
+#ifdef _WIN32
 # include <io.h>
-# if defined(STLSOFT_COMPILER_IS_INTEL)
+# if defined(STLSOFT_COMPILER_IS_INTEL) || \
+     defined(STLSOFT_COMPILER_IS_MSVC)
 #  include <direct.h>
 # endif /* os && compiler */
-#endif /* WIN32 */
+#endif /* _WIN32 */
 #include <dlfcn.h>
 #include <dirent.h>
 #include <limits.h>
@@ -153,11 +154,11 @@ public:
     /// \brief The type of system error codes
     typedef int                                     error_type;
     /// \brief The mode type
-#ifdef WIN32
+#ifdef _WIN32
     typedef unsigned short                          mode_type;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
     typedef mode_t                                  mode_type;
-#endif /* WIN32 */
+#endif /* _WIN32 */
 /// @}
 
 #ifdef PATH_MAX
@@ -196,6 +197,10 @@ public:
     static char_type    *str_rchr(char_type const *s, char_type ch);
     /// \brief Finds the given substring \c sub in \c s
     static char_type    *str_str(char_type const *s, char_type const *sub);
+    /// Finds one of a set of characters in \c s
+    static char_type    *str_pbrk(char_type const *s, char_type const *charSet);
+    /// \brief Returns a pointer to the end of the string
+    static char_type    *str_end(char_type const *s);
 /// @}
 
 /// \name File-system entry names
@@ -233,6 +238,14 @@ public:
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the UNC character sequence(s).
     static bool_type    is_path_UNC(char_type const *path);
+    /// \brief Indicates whether the given path is the root designator.
+    ///
+    /// The root designator is one of the following:
+    ///  - the slash character <code>/</code>
+    ///
+    /// The function returns false if the path contains any part of a
+    /// file name (or extension), directory, or share.
+    static bool_type    is_root_designator(char_type const *path);
     /// \brief Returns \c true if the character is a path-name separator
     static bool_type    is_path_name_separator(char_type ch);
 
@@ -395,22 +408,16 @@ public:
     typedef struct stat                                 stat_data_type;
     typedef struct stat                                 fstat_data_type;
     typedef filesystem_traits<us_char_a_t>              class_type;
-    /// \brief The (signed) integer type
     typedef us_int_t                                    int_type;
-    /// \brief The Boolean type
     typedef us_bool_t                                   bool_type;
-    /// \brief The type of a system file handle
     typedef int                                         file_handle_type;
-    /// \brief The type of a handle to a dynamically loaded module
     typedef void                                        *module_type;
-    /// \brief The type of system error codes
     typedef int                                         error_type;
-    /// \brief The mode type
-#ifdef WIN32
+#ifdef _WIN32
     typedef unsigned short                              mode_type;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
     typedef mode_t                                      mode_type;
-#endif /* WIN32 */
+#endif /* _WIN32 */
 private:
     typedef stlsoft_ns_qual(auto_buffer_old)<char_type> buffer_type_;
 public:
@@ -477,15 +484,27 @@ public:
         return const_cast<char_type*>(::strstr(s, sub));
     }
 
+    static char_type *str_pbrk(char_type const *s, char_type const *charSet)
+    {
+        return const_cast<char_type*>(::strpbrk(s, charSet));
+    }
+
+    static char_type *str_end(char_type const *s)
+    {
+        UNIXSTL_ASSERT(NULL != s);
+
+        for(; *s != '\0'; ++s)
+        {}
+
+        return const_cast<char_type*>(s);
+    }
+
     // File-system entry names
     static char_type *ensure_dir_end(char_type *dir)
     {
         UNIXSTL_ASSERT(NULL != dir);
 
-        char_type   *end;
-
-        for(end = dir; *end != '\0'; ++end)
-        {}
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -501,9 +520,7 @@ public:
     {
         UNIXSTL_ASSERT(NULL != dir);
 
-        char_type   *end;
-
-#ifdef WIN32
+#ifdef _WIN32
         if( isalpha(dir[0]) &&
             ':' == dir[1] &&
             is_path_name_separator(dir[2]) &&
@@ -511,10 +528,16 @@ public:
         {
             return dir;
         }
-#endif /* WIN32 */
 
-        for(end = dir; *end != '\0'; ++end)
-        {}
+        if( '\\' == dir[0] &&
+            '\\' == dir[1] &&
+            '\0' == dir[3])
+        {
+            return dir;
+        }
+#endif /* _WIN32 */
+
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -548,7 +571,7 @@ public:
     {
         UNIXSTL_ASSERT(NULL != path);
 
-#ifdef WIN32
+#ifdef _WIN32
         // It might be a UNC path. This is handled by the second test below, but
         // this is a bit clearer, and since this is a debug kind of thing, we're
         // not worried about the cost
@@ -568,7 +591,7 @@ public:
         // If it's really on Windows, then we need to account for the fact that
         // the slash might be backwards, but that's taken care of for us by
         // is_path_name_separator()
-#endif /* WIN32 */
+#endif /* _WIN32 */
 
         return is_path_name_separator(*path);
     }
@@ -577,7 +600,7 @@ public:
     {
         UNIXSTL_ASSERT(NULL != path);
 
-#ifdef WIN32
+#ifdef _WIN32
         // If it's really on Windows, then it can only be absolute if ...
         //
         // ... it's a UNC path, or ...
@@ -599,31 +622,85 @@ public:
         }
 
         return false;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         return is_path_rooted(path);
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
 
     static bool_type is_path_UNC(char_type const *path)
     {
         UNIXSTL_ASSERT(NULL != path);
 
-#ifdef WIN32
+#ifdef _WIN32
         return ('\\' == path[0] && '\\' == path[1]);
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         STLSOFT_SUPPRESS_UNUSED(path);
 
         return false;
-#endif /* WIN32 */
+#endif /* _WIN32 */
+    }
+
+private:
+    static bool_type is_root_drive_(char_type const *path)
+    {
+#ifdef _WIN32
+        if( isalpha(path[0]) &&
+            ':' == path[1] &&
+            is_path_name_separator(path[2]) &&
+            '\0' == path[3])
+        {
+            return true;
+        }
+#else /* ? _WIN32 */
+        STLSOFT_SUPPRESS_UNUSED(path);
+#endif /* _WIN32 */
+
+        return false;
+    }
+    static bool_type is_root_UNC_(char_type const *path)
+    {
+#ifdef _WIN32
+        if(is_path_UNC(path))
+        {
+            char_type const *sep    =   str_pbrk(path + 2, "\\/");
+
+            if( NULL == sep ||
+                '\0' == sep[1])
+            {
+                return true;
+            }
+        }
+#else /* ? _WIN32 */
+        STLSOFT_SUPPRESS_UNUSED(path);
+#endif /* _WIN32 */
+
+        return false;
+    }
+    static bool_type is_root_directory_(char_type const *path)
+    {
+        if( is_path_name_separator(path[0]) &&
+            '\0' == path[1])
+        {
+            return true;
+        }
+
+        return false;
+    }
+public:
+    static bool_type is_root_designator(char_type const *path)
+    {
+        UNIXSTL_ASSERT(NULL != path);
+
+        return is_root_directory_(path) || is_root_drive_(path) || is_root_UNC_(path);
     }
 
     static bool_type is_path_name_separator(char_type ch)
     {
-#ifdef WIN32
+#ifdef _WIN32
         return '\\' == ch || '/' == ch;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         return '/' == ch;
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
 
     static char_type path_separator()
@@ -808,7 +885,7 @@ public:
             {
                 // Now search for the file separator
                 char_type *pFile        =   str_rchr(buffer, path_name_separator());
-#if defined(WIN32)
+#if defined(_WIN32)
                 char_type *pFile2       =   str_rchr(buffer, '\\');
 
                 if(NULL == pFile)
@@ -822,7 +899,7 @@ public:
                         pFile = pFile2;
                     }
                 }
-#endif /* WIN32 */
+#endif /* _WIN32 */
 
                 if(NULL != (*ppFile = pFile))
                 {
@@ -838,6 +915,13 @@ public:
     {
         UNIXSTL_ASSERT(NULL != fileName);
         UNIXSTL_ASSERT(0 == cchBuffer || NULL != buffer);
+
+        if('\0' == *fileName)
+        {
+            static const char   s_dot[2] = { '.', '\0' };
+
+            fileName = s_dot;
+        }
 
 #if 1
         // Can't call realpath(), since that requires that the file exists
@@ -901,8 +985,6 @@ public:
         ::closedir(h);
     }
 
-/// @}
-
     // Dynamic Loading
 
     static module_type load_library(char_type const *name)
@@ -923,7 +1005,7 @@ public:
     // File-system state
     static bool_type set_current_directory(char_type const *dir)
     {
-        return chdir(dir) == 0;
+        return 0 == ::chdir(dir);
     }
 
     static size_type get_current_directory(size_type cchBuffer, char_type *buffer)
@@ -959,9 +1041,8 @@ public:
         UNIXSTL_ASSERT(NULL != path);
         UNIXSTL_ASSERT(NULL != stat_data);
 
-#ifdef WIN32
-        if( NULL != str_chr(path, '?') ||
-            NULL != str_chr(path, '*'))
+#ifdef _WIN32
+        if(NULL != class_type::str_pbrk(path, "*?"))
         {
             // Sometimes the VC6 CRT libs crash with a wildcard stat
             set_last_error(EBADF);
@@ -996,7 +1077,7 @@ public:
                 }
             }
         }
-#endif /* WIN32 */
+#endif /* _WIN32 */
 
         return 0 == ::stat(path, stat_data);
     }
@@ -1006,11 +1087,11 @@ public:
         UNIXSTL_ASSERT(NULL != path);
         UNIXSTL_ASSERT(NULL != stat_data);
 
-#ifdef WIN32
+#ifdef _WIN32
         return 0 == class_type::stat(path, stat_data);
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         return 0 == ::lstat(path, stat_data);
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
 
     static bool_type fstat(file_handle_type fd, fstat_data_type *fstat_data)
@@ -1031,21 +1112,21 @@ public:
     }
     static bool_type is_link(stat_data_type const *stat_data)
     {
-#ifdef WIN32
+#ifdef _WIN32
         STLSOFT_SUPPRESS_UNUSED(stat_data);
 
         return false;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         return S_IFLNK == (stat_data->st_mode & S_IFLNK);
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
     static bool_type is_readonly(stat_data_type const *stat_data)
     {
-#ifdef WIN32
+#ifdef _WIN32
         return S_IREAD == (stat_data->st_mode & (S_IREAD | S_IWRITE));
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         return S_IRUSR == (stat_data->st_mode & (S_IRUSR | S_IWUSR));
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
 
     // File-system control
@@ -1054,18 +1135,24 @@ public:
     {
         mode_type   mode = 0;
 
-#ifdef WIN32
+#ifdef _WIN32
         mode    =   S_IREAD | S_IWRITE | S_IEXEC;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         mode    =   S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
-#endif /* WIN32 */
+#endif /* _WIN32 */
 
         return create_directory(dir, 0);
     }
 
     static bool_type create_directory(char_type const *dir, mode_type permissions)
     {
+#if defined(_WIN32) && \
+    (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC))
+        return 0 == ::mkdir(dir);
+#else /* ? _WIN32 */
         return 0 == ::mkdir(dir, permissions);
+#endif /* _WIN32 */
     }
 
     static bool_type remove_directory(char_type const *dir)
@@ -1225,13 +1312,27 @@ public:
         return const_cast<char_type*>(::wcsstr(s, sub));
     }
 
+    static char_type *str_pbrk(char_type const *s, char_type const *charSet)
+    {
+        return const_cast<char_type*>(::wcspbrk(s, charSet));
+    }
+
+    static char_type *str_end(char_type const *s)
+    {
+        UNIXSTL_ASSERT(NULL != s);
+
+        for(; *s != L'\0'; ++s)
+        {}
+
+        return const_cast<char_type*>(s);
+    }
+
     // File-system entry names
     static char_type *ensure_dir_end(char_type *dir)
     {
-        char_type   *end;
+        UNIXSTL_ASSERT(NULL != dir);
 
-        for(end = dir; *end != L'\0'; ++end)
-        {}
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -1247,10 +1348,7 @@ public:
     {
         UNIXSTL_ASSERT(NULL != dir);
 
-        char_type   *end;
-
-        for(end = dir; *end != L'\0'; ++end)
-        {}
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -1284,7 +1382,7 @@ public:
     {
         UNIXSTL_ASSERT(NULL != path);
 
-#ifdef WIN32
+#ifdef _WIN32
         // If it's really on Windows, then we need to skip the drive, if present
         if( isalpha(path[0]) &&
             ':' == path[1])
@@ -1298,7 +1396,7 @@ public:
         {
             return true;
         }
-#endif /* WIN32 */
+#endif /* _WIN32 */
 
         return '/' == *path;
     }
@@ -1307,7 +1405,7 @@ public:
     {
         UNIXSTL_ASSERT(NULL != path);
 
-#ifdef WIN32
+#ifdef _WIN32
         // If it's really on Windows, then it can only be absolute if ...
         //
         // ... it's a UNC path, or ...
@@ -1329,31 +1427,31 @@ public:
         }
 
         return false;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         return is_path_rooted(path);
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
 
     static bool_type is_path_UNC(char_type const *path)
     {
         UNIXSTL_ASSERT(NULL != path);
 
-#ifdef WIN32
+#ifdef _WIN32
         return (L'\\' == path[0] && L'\\' == path[1]);
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         STLSOFT_SUPPRESS_UNUSED(path);
 
         return false;
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
 
     static bool_type is_path_name_separator(char_type ch)
     {
-#ifdef WIN32
+#ifdef _WIN32
         return L'\\' == ch || L'/' == ch;
-#else /* ? WIN32 */
+#else /* ? _WIN32 */
         return L'/' == ch;
-#endif /* WIN32 */
+#endif /* _WIN32 */
     }
 
     static char_type path_separator()

@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      47
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,9 +60,9 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #if defined(__cplusplus)
-# ifndef WINSTL_INCL_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS
-#  include <winstl/windows_type_conversions.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS */
+#ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS
+# include <winstl/conversion/windows_type_conversions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS */
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -452,10 +452,10 @@ inline HWND FindFirstChildById(HWND hwndParent, int id)
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 

@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     51
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,19 +103,24 @@ namespace stlsoft
  */
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    __GNUC__ < 3
+        ,   ss_bool_t           B_CHECK_ALIGN    /* =   true */
+#else /* ? compiler */
         ,   ss_bool_t           B_CHECK_ALIGN    =   true
+#endif /* compiler */
         >
 union union_caster
 {
 /// \name Member Types
 /// @{
 public:
-	/// \brief The type to cast to.
-    typedef TO										to_type;
-	/// \brief The type to cast from.
-    typedef FROM									from_type;
-	/// \brief The current instantiation of the type.
-    typedef union_caster<TO, FROM, B_CHECK_ALIGN>	class_type;
+    /// \brief The type to cast to.
+    typedef TO                                      to_type;
+    /// \brief The type to cast from.
+    typedef FROM                                    from_type;
+    /// \brief The current instantiation of the type.
+    typedef union_caster<TO, FROM, B_CHECK_ALIGN>   class_type;
 /// @}
 
 /// \name Construction

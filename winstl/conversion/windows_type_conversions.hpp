@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     1st June 2003
- * Updated:     11th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR    0
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION 1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     31
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION 2
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,46 +88,46 @@ namespace winstl_project
 /** \brief Checked conversion from <code>char const*</code> to <code>LPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<LPARAM, char const *>     StrA2LPARAM;
+typedef stlsoft_ns_qual(union_caster)<LPARAM, char const*, true>    StrA2LPARAM;
 /** \brief Checked conversion from <code>wchar_t const*</code> to <code>LPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<LPARAM, wchar_t const *>  StrW2LPARAM;
+typedef stlsoft_ns_qual(union_caster)<LPARAM, wchar_t const*, true> StrW2LPARAM;
 /** \brief Checked conversion from <code>TCHAR const*</code> to <code>LPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<LPARAM, TCHAR const *>    StrT2LPARAM;
+typedef stlsoft_ns_qual(union_caster)<LPARAM, TCHAR const*, true>   StrT2LPARAM;
 
 /** \brief Checked conversion from <code>WPARAM</code> to <code>HWND</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<HWND, WPARAM, false>      WPARAM2HWND;
+typedef stlsoft_ns_qual(union_caster)<HWND, WPARAM, false>          WPARAM2HWND;
 /** \brief Checked conversion from <code>LPARAM</code> to <code>HWND</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<HWND, LPARAM, false>      LPARAM2HWND;
+typedef stlsoft_ns_qual(union_caster)<HWND, LPARAM, false>          LPARAM2HWND;
 
 /** \brief Checked conversion from <code>HWND</code> to <code>WPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<WPARAM, HWND, false>      HWND2WPARAM;
+typedef stlsoft_ns_qual(union_caster)<WPARAM, HWND, false>          HWND2WPARAM;
 /** \brief Checked conversion from <code>HWND</code> to <code>LPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<LPARAM, HWND, false>      HWND2LPARAM;
+typedef stlsoft_ns_qual(union_caster)<LPARAM, HWND, false>          HWND2LPARAM;
 /** \brief Checked conversion from <code>HWND</code> to <code>UINT</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<UINT, HWND, false>        HWND2UINT;
+typedef stlsoft_ns_qual(union_caster)<UINT, HWND, false>            HWND2UINT;
 
 /** \brief Checked conversion from <code>WPARAM</code> to <code>int</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<int, WPARAM, false>       WPARAM2int;
+typedef stlsoft_ns_qual(union_caster)<int, WPARAM, false>           WPARAM2int;
 /** \brief Checked conversion from <code>int</code> to <code>WPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<WPARAM, int, false>       int2WPARAM;
+typedef stlsoft_ns_qual(union_caster)<WPARAM, int, false>           int2WPARAM;
 
 #if defined(DragQueryFile) || \
     defined(HDROP_DEFINED) || \
@@ -136,54 +136,54 @@ typedef stlsoft_ns_qual(union_caster)<WPARAM, int, false>       int2WPARAM;
 /** \brief Checked conversion from <code>WPARAM</code> to <code>HDROP</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<HDROP, WPARAM, false>     WPARAM2HDROP;
+typedef stlsoft_ns_qual(union_caster)<HDROP, WPARAM, false>         WPARAM2HDROP;
 #endif /* HDROP is defined */
 
 /** \brief Checked conversion from <code>void*</code> to <code>WPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<WPARAM, void*>            Ptr2WPARAM;
+typedef stlsoft_ns_qual(union_caster)<WPARAM, void*, true>          Ptr2WPARAM;
 /** \brief Checked conversion from <code>void*</code> to <code>LPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<LPARAM, void*>            Ptr2LPARAM;
+typedef stlsoft_ns_qual(union_caster)<LPARAM, void*, true>          Ptr2LPARAM;
 /** \brief Checked conversion from <code>void*</code> to <code>UINT</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<UINT, void*>              Ptr2UINT;
+typedef stlsoft_ns_qual(union_caster)<UINT, void*, true>            Ptr2UINT;
 
 /** \brief Checked conversion from <code>int</code> to <code>char const*</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<char const *, int>        Id2StrA;
+typedef stlsoft_ns_qual(union_caster)<char const *, int, true>      Id2StrA;
 /** \brief Checked conversion from <code>int</code> to <code>wchar_t const*</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<wchar_t const *, int>     Id2StrW;
+typedef stlsoft_ns_qual(union_caster)<wchar_t const *, int, true>   Id2StrW;
 /** \brief Checked conversion from <code>int</code> to <code>TCHAR const*</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<TCHAR const *, int>       Id2StrT;
+typedef stlsoft_ns_qual(union_caster)<TCHAR const *, int, true>     Id2StrT;
 
 /** \brief Checked conversion from <code>HICON</code> to <code>LPARAM</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<LPARAM, HICON, false>     HICON2LPARAM;
+typedef stlsoft_ns_qual(union_caster)<LPARAM, HICON, false>         HICON2LPARAM;
 /** \brief Checked conversion from <code>LONG</code> to <code>HICON</code>.
  * \ingroup group__library__conversion
  */
-typedef stlsoft_ns_qual(union_caster)<HICON, LONG, false>       LONG2HICON;
+typedef stlsoft_ns_qual(union_caster)<HICON, LONG, false>           LONG2HICON;
 
 #if defined(_INC_COMMCTRL) || \
     defined(_COMMCTRL_H)
 /** \brief Checked conversion from <code>LPARAM</code> to <code>LPNMHDR</code>.
  * \ingroup group__library__conversion
  */
- typedef union_caster<LPNMHDR, LPARAM>                          LPARAM2LPNMHDR;
+ typedef union_caster<LPNMHDR, LPARAM, true>                        LPARAM2LPNMHDR;
 /** \brief Checked conversion from <code>LONG</code> to <code>HTREEITEM</code>.
  * \ingroup group__library__conversion
  */
- typedef union_caster<HTREEITEM, LONG, false>                   LONG2HTREEITEM;
+ typedef union_caster<HTREEITEM, LONG, false>                       LONG2HTREEITEM;
 #endif /* _INC_COMMCTRL || _COMMCTRL_H */
 
 /* ////////////////////////////////////////////////////////////////////// */

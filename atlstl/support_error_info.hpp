@@ -4,7 +4,7 @@
  * Purpose:     SupportErrorInfoImpl class.
  *
  * Created:     17th April 1999
- * Updated:     10th June 2006
+ * Updated:     14th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_SUPPORT_ERROR_INFO_MAJOR     4
-# define ATLSTL_VER_ATLSTL_HPP_SUPPORT_ERROR_INFO_MINOR     2
+# define ATLSTL_VER_ATLSTL_HPP_SUPPORT_ERROR_INFO_MINOR     3
 # define ATLSTL_VER_ATLSTL_HPP_SUPPORT_ERROR_INFO_REVISION  1
-# define ATLSTL_VER_ATLSTL_HPP_SUPPORT_ERROR_INFO_EDIT      58
+# define ATLSTL_VER_ATLSTL_HPP_SUPPORT_ERROR_INFO_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -166,6 +166,30 @@ public:
                 InlineIsEqualGUID(riid, *piid2) ||
                 InlineIsEqualGUID(riid, *piid3) ||
                 InlineIsEqualGUID(riid, *piid4))
+                    ? S_OK
+                    : S_FALSE;
+    }
+};
+
+
+/// Provides implementation of ISupportErrorInfo for support for errors on five
+/// interfaces
+template <const IID *piid1, const IID *piid2, const IID *piid3, const IID *piid4, const IID *piid5>
+class ATL_NO_VTABLE SupportErrorInfoImpl5
+    : public ISupportErrorInfo
+{
+public:
+    typedef SupportErrorInfoImpl5<piid1, piid2, piid3, piid4, piid5>   class_type;
+
+// ISupportErrorInfo
+public:
+    STDMETHOD(InterfaceSupportsErrorInfo)(REFIID riid)
+    {
+        return (InlineIsEqualGUID(riid, *piid1) ||
+                InlineIsEqualGUID(riid, *piid2) ||
+                InlineIsEqualGUID(riid, *piid3) ||
+                InlineIsEqualGUID(riid, *piid4) ||
+                InlineIsEqualGUID(riid, *piid5))
                     ? S_OK
                     : S_FALSE;
     }

@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the cstring_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     11th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       3
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       1
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    2
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        61
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -460,7 +460,7 @@ namespace unittest
         unittest_registrar    unittest_mfcstl_cstring_veneer(test_mfcstl_cstring_veneer);
     } // anonymous namespace
 
-} // namespace unittest
+} /* namespace unittest */
 
 #endif /* STLSOFT_UNITTEST */
 
@@ -686,10 +686,10 @@ inline cstring_veneer::const_pointer cstring_veneer::data() const
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace mfcstl
+} /* namespace mfcstl */
 # else
-} // namespace mfcstl_project
-} // namespace stlsoft
+} /* namespace mfcstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 

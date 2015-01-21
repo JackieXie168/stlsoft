@@ -4,7 +4,7 @@
  * Purpose:     Contains various simple self-contained algorithms.
  *
  * Created:     17th January 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_MAJOR      2
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_MINOR      4
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_EDIT       68
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_ALGORITHMS_EDIT       69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -471,14 +471,14 @@ namespace unittest
         unittest_registrar    unittest_stlsoft_simple_algorithms(test_stlsoft_simple_algorithms);
     } // anonymous namespace
 
-} // namespace unittest
+} /* namespace unittest */
 
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

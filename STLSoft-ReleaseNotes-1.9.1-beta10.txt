@@ -1,6 +1,6 @@
 ================================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta8
+File:     STLSoft-ReleaseNotes-1.9.1-beta10
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,10 +11,180 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Date:     7th June 2006
+Date:     18th June 2006
 
 ================================================================================
 
+
+================================================================================
+
+Changes for 1.9.1 beta 10 (18th June 2006)
+
+necessary pre-requisite for recls 1.8.1 (released today) 
+
+Lots more separation into library-specific sub-directories, and a few
+changes, as follows:
+
+
++ stlsoft/string/copy_functions.hpp
+
++ atlstl::SupportErrorInfoImpl5 class template
+
++ platformstl/path_functions.hpp
++ unixstl/path_functions.hpp
++ winstl/path_functions.hpp
+
++ platformstl/sleep_functions.h
++ unixstl/sleep_functions.h
++ winstl/sleep_functions.h
+
++ unixstl::basic_file_path_buffer::copy() method
++ winstl::basic_file_path_buffer::copy() method
+
++ unixstl::filesystem_traits methods: str_pbrk(), str_end(), 
+  is_root_designator(), and various feature adjustments
+
++ unixstl::basic_path methods: clear(), operator [], copy()
++ winstl::basic_path methods: clear(), operator [], copy()
+
++ winstl::basic_findfile_sequence: new flags skipHiddenFiles and
+  skipHiddenDirs
+
+~ atlstl/string_access.hpp - bug fix in shim using declarations
+~ stlsoft/system/commandline_parser.hpp - minor bug fix
+
+Diffs:
+======
+
+  root-dir-1: H:\3Pty\stlsoft\1.9.1-beta9\include
+  root-dir-2: H:\STLSoft\Releases\current\STLSoft\include
+Items unchanged from H:\3Pty\stlsoft\1.9.1-beta9\include to H:\STLSoft\Releases\current\STLSoft\include:             1033
+Items changed from H:\3Pty\stlsoft\1.9.1-beta9\include to H:\STLSoft\Releases\current\STLSoft\include:               124
+Items changed (major) from H:\3Pty\stlsoft\1.9.1-beta9\include to H:\STLSoft\Releases\current\STLSoft\include:       0
+Items changed (minor) from H:\3Pty\stlsoft\1.9.1-beta9\include to H:\STLSoft\Releases\current\STLSoft\include:       8
+  atlstl\support_error_info.hpp                                           4.2.1.58     => 4.3.1.59    ; 10th June 2006      => 14th June 2006     
+  stlsoft\sign_traits.hpp                                                 3.2.2.36     => 3.3.1.37    ; 10th June 2006      => 15th June 2006     
+  unixstl\filesystem\filesystem_traits.hpp                                4.0.2.87     => 4.2.1.89    ; 10th June 2006      => 14th June 2006     
+  unixstl\filesystem\path.hpp                                             6.1.3.204    => 6.2.2.206   ; 10th June 2006      => 18th June 2006     
+  winstl\filesystem\file_path_buffer.hpp                                  4.0.2.99     => 4.1.1.100   ; 10th June 2006      => 13th June 2006     
+  winstl\filesystem\filesystem_traits.hpp                                 4.0.1.91     => 4.2.1.93    ; 10th June 2006      => 17th June 2006     
+  winstl\filesystem\findfile_sequence.hpp                                 4.0.3.177    => 4.1.1.179   ; 10th June 2006      => 17th June 2006     
+  winstl\filesystem\path.hpp                                              6.1.2.214    => 6.2.2.216   ; 10th June 2006      => 18th June 2006     
+Items changed (revision) from H:\3Pty\stlsoft\1.9.1-beta9\include to H:\STLSoft\Releases\current\STLSoft\include:    26
+  atlstl\string_access.hpp                                                3.2.3.84     => 3.2.4.85    ; 10th June 2006      => 13th June 2006     
+  comstl\enumerator_sequence.hpp                                          5.6.5.214    => 5.6.6.215   ; 10th June 2006      => 14th June 2006     
+  inetstl\findfile_sequence.hpp                                           2.11.5.107   => 2.11.6.108  ; 10th June 2006      => 13th June 2006     
+  platformstl\filesystem\path.hpp                                         2.0.1.15     => 2.0.2.17    ; 10th June 2006      => 13th June 2006     
+  stlsoft\conversion\union_cast.hpp                                       5.0.1.51     => 5.0.2.52    ; 10th June 2006      => 18th June 2006     
+  stlsoft\internal\cccap\dmc.h                                            3.8.1.70     => 3.8.2.71    ; 10th June 2006      => 16th June 2006     
+  stlsoft\iterators\transform_iterator.hpp                                2.0.12.105   => 2.0.13.106  ; 10th June 2006      => 13th June 2006     
+  stlsoft\memory\auto_buffer.hpp                                          5.0.2.140    => 5.0.3.141   ; 10th June 2006      => 18th June 2006     
+  stlsoft\system\commandline_parser.hpp                                   2.0.1.22     => 2.0.2.23    ; 11th June 2006      => 18th June 2006     
+  unixstl\performance\performance_counter.hpp                             4.0.1.50     => 4.0.2.51    ; 30th May 2006       => 11th June 2006     
+  unixstl\performance\processtimes_counter.hpp                            1.0.1.2      => 1.0.2.3     ; 10th June 2006      => 11th June 2006     
+  winstl\control_panel\applet_module.hpp                                  1.1.3.5      => 1.1.5.7     ; 6th June 2006       => 18th June 2006     
+  winstl\control_panel\exceptions.hpp                                     1.0.1.5      => 1.0.2.6     ; 27th May 2006       => 18th June 2006     
+  winstl\control_panel\functions.h                                        1.0.3.4      => 1.0.4.6     ; 27th May 2006       => 18th June 2006     
+  winstl\controls\functionals.hpp                                         4.0.1.62     => 4.0.2.63    ; 10th June 2006      => 14th June 2006     
+  winstl\conversion\windows_type_conversions.hpp                          4.0.1.31     => 4.0.2.32    ; 11th June 2006      => 18th June 2006     
+  winstl\filesystem\path_functions.hpp                                    1.0.2.3      => 1.0.3.5     ; 10th June 2006      => 17th June 2006     
+  winstl\registry\shared_handles.hpp                                      1.0.6.11     => 1.0.7.12    ; 10th June 2006      => 14th June 2006     
+  winstl\system\commandline_parser.hpp                                    2.0.1.22     => 2.0.2.23    ; 10th June 2006      => 18th June 2006     
+  winstl\system\console_functions.h                                       2.0.1.7      => 2.0.2.9     ; 10th June 2006      => 18th June 2006     
+  winstl\system\pid_sequence.hpp                                          2.0.1.31     => 2.0.3.34    ; 10th June 2006      => 14th June 2006     
+  winstl\system\process_module_sequence.hpp                               2.0.1.29     => 2.0.2.31    ; 10th June 2006      => 14th June 2006     
+  winstl\system\searchpath_sequence.hpp                                   4.0.1.76     => 4.0.2.77    ; 10th June 2006      => 13th June 2006     
+  winstl\time_format_functions.h                                          3.3.3.43     => 3.3.4.45    ; 10th June 2006      => 18th June 2006     
+  winstl\window_functions.h                                               3.3.1.47     => 3.3.2.50    ; 10th June 2006      => 18th June 2006     
+  winstl\winstl_int_to_string.h                                           1.5.2.28     => 1.5.3.30    ; 11th June 2006      => 18th June 2006     
+Items changed (edit) from H:\3Pty\stlsoft\1.9.1-beta9\include to H:\STLSoft\Releases\current\STLSoft\include:        59
+Items changed (unversioned) from H:\3Pty\stlsoft\1.9.1-beta9\include to H:\STLSoft\Releases\current\STLSoft\include: 31
+  comstl\bstr_functions.h                                                 3.1.1.63     => ...         ; 10th June 2006      =>                    
+  comstl\olestring.hpp                                                    ...          => ...         ;                     =>                    
+  comstl\olestring_functions.h                                            4.2.1.145    => ...         ; 10th June 2006      =>                    
+  platformstl\environment_map.hpp                                         1.7.5.33     => ...         ; 10th June 2006      =>                    
+  platformstl\environment_variable_traits.hpp                             1.3.2.11     => ...         ; 10th June 2006      =>                    
+  platformstl\file_path_buffer.hpp                                        1.2.2.15     => ...         ; 10th June 2006      =>                    
+  platformstl\module.hpp                                                  1.0.4.9      => ...         ; 10th June 2006      =>                    
+  platformstl\performance\performance_counter.hpp                         2.0.1.11     => 2.0.1.11    ; 10th June 2006      => 12th June 2006     
+  platformstl\performance\processtimes_counter.hpp                        1.0.1.2      => 1.0.1.2     ; 10th June 2006      => 12th June 2006     
+  platformstl\readdir_sequence.hpp                                        1.0.1.2      => ...         ; 10th June 2006      =>                    
+  platformstl\synch\process_mutex.hpp                                     2.0.1.12     => 2.0.1.12    ; 10th June 2006      => 12th June 2006     
+  platformstl\synch\semaphore.hpp                                         1.0.1.4      => 1.0.1.4     ; 10th June 2006      => 12th June 2006     
+  platformstl\synch\spin_mutex.hpp                                        2.0.2.13     => 2.0.2.13    ; 10th June 2006      => 12th June 2006     
+  platformstl\synch\thread_mutex.hpp                                      2.0.1.12     => 2.0.1.12    ; 10th June 2006      => 12th June 2006     
+  platformstl\synch\tss_index.hpp                                         2.0.1.12     => 2.0.1.12    ; 10th June 2006      => 12th June 2006     
+  stlsoft_integer_to_string.h                                             ...          => ...         ;                     =>                    
+  unixstl\dl_call.hpp                                                     1.4.1.17     => ...         ; 10th June 2006      =>                    
+  unixstl\filesystem\unittest\filesystem_traits_unittest_.h               ...          => ...         ; 31st May 2006       => 14th June 2006     
+  unixstl\module.hpp                                                      5.3.2.201    => ...         ; 10th June 2006      =>                    
+  unixstl\time_functions.h                                                1.1.1.5      => ...         ; 10th June 2006      =>                    
+  unixstl_module.h                                                        ...          => ...         ;                     =>                    
+  winstl\dl_call.hpp                                                      1.5.1.19     => ...         ; 10th June 2006      =>                    
+  winstl\filesystem\unittest\path_functions_unittest_.h                   ...          => ...         ; 10th June 2006      => 11th June 2006     
+  winstl\module.hpp                                                       5.4.2.209    => ...         ; 10th June 2006      =>                    
+  winstl\process_status.h                                                 ...          => ...         ;                     =>                    
+  winstl_acl_sequence.h                                                   ...          => ...         ;                     =>                    
+  winstl_char_conversions.h                                               ...          => ...         ;                     =>                    
+  winstl_module.h                                                         ...          => ...         ;                     =>                    
+  winstl_system_version.h                                                 ...          => ...         ;                     =>                    
+  winstl_token_information.h                                              ...          => ...         ;                     =>                    
+  winstl_windows_type_conversions.h                                       ...          => ...         ;                     =>                    
+Items deleted from H:\3Pty\stlsoft\1.9.1-beta9\include:                                                              8
+  H:\3Pty\stlsoft\1.9.1-beta9\include\STLSoft-ReleaseNotes-1.9.1-beta9.txt
+  H:\3Pty\stlsoft\1.9.1-beta9\include\comstl\unittest\bstr_functions_unittest_.h
+  H:\3Pty\stlsoft\1.9.1-beta9\include\comstl\unittest\olestring_functions_unittest_.h
+  H:\3Pty\stlsoft\1.9.1-beta9\include\readme.txt
+  H:\3Pty\stlsoft\1.9.1-beta9\include\unixstl\unittest\dl_call_unittest_.h
+  H:\3Pty\stlsoft\1.9.1-beta9\include\unixstl\unittest\module_unittest_.h
+  H:\3Pty\stlsoft\1.9.1-beta9\include\winstl\unittest\dl_call_unittest_.h
+  H:\3Pty\stlsoft\1.9.1-beta9\include\winstl\unittest\module_unittest_.h
+Items added to H:\STLSoft\Releases\current\STLSoft\include:                                                          38
+  H:\STLSoft\Releases\current\STLSoft\include\comstl\string\bstr_functions.h
+  H:\STLSoft\Releases\current\STLSoft\include\comstl\string\olestring_functions.h
+  H:\STLSoft\Releases\current\STLSoft\include\comstl\string\unittest\bstr_functions_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\comstl\string\unittest\olestring_functions_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\debug
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\debug
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\debugunix
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\dl\module.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\filesystem\file_path_buffer.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\filesystem\path_functions.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\filesystem\readdir_sequence.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\synch\sleep_functions.h
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\system\environment_map.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\system\environment_variable_traits.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\platformstl\system\unittest\environment_map_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\readme.html
+  H:\STLSoft\Releases\current\STLSoft\include\release
+  H:\STLSoft\Releases\current\STLSoft\include\releasemt
+  H:\STLSoft\Releases\current\STLSoft\include\stlsoft\string\copy_functions.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\stlsoft\string\unittest\copy_functions_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\stlsoft\string\unittest\cstring_functions_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\unixstl\dl\dl_call.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\unixstl\dl\module.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\unixstl\dl\unittest\dl_call_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\unixstl\dl\unittest\module_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\unixstl\filesystem\path_functions.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\unixstl\synch\sleep_functions.h
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\dl\dl_call.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\dl\module.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\dl\unittest\dl_call_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\dl\unittest\module_unittest_.h
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\nt\lm\share.h
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\nt\net\util.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\resources\resource_holders.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\winstl\synch\sleep_functions.h
+  H:\STLSoft\Releases\current\STLSoft\include\x\atlstl\about_dialog.hpp
+  H:\STLSoft\Releases\current\STLSoft\include\x\wtlstl_x_simple_help_window.h
+  H:\STLSoft\Releases\current\STLSoft\include\x\wtlstl_x_synesis_controls.h
+
+
+================================================================================
+
+Changes for 1.9.1 beta 9 (11th June 2006)
+
+not listed - just file/directory changes
 
 ================================================================================
 

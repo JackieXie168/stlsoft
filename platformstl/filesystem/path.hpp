@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     10th June 2006
+ * Updated:     13th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,10 +101,12 @@ namespace platformstl_project
 
     /** \brief Class used for composing and decomposing file-system paths.
      *
+     * \ingroup group__library__file_system
+     *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::basic_path
@@ -128,12 +130,106 @@ namespace platformstl_project
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
-# ifdef _UNIXSTL_NO_NAMESPACE
+    // Because early incarnations of Visual C++ are pretty stupid, we need to
+    // work around their inability to introduce a template via using by
+    // defining and deriving here
+    //
+    // This one required an *extra* degree of trickery, by defining a derivation
+    // of unixstl::basic_path _within_ unixstl, in the form of
+    // basic_path__, and then deriving from that. If we just try and
+    // derive from unixstl::basic_path directly, the compiler gets
+    // confused between the unixstl one and the local one, and fails and says that
+    // it cannot derive from itself (which happens to be incomplete).
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER < 1310
+
+    template<   ss_typename_param_k C
+#  ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+            ,   ss_typename_param_k T = unixstl_ns_qual(filesystem_traits)<C>
+            ,   ss_typename_param_k A = stlsoft::allocator_selector<C>::allocator_type
+#  else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+            ,   ss_typename_param_k T /* = filesystem_traits<C> */
+            ,   ss_typename_param_k A /* = processheap_allocator<C> */
+#  endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+            >
+    class basic_path
+        : public unixstl_ns_qual(basic_path__)<C, T, A>
+    {
+    private:
+        typedef unixstl_ns_qual(basic_path__)<C, T, A>                  parent_class_type;
+        typedef basic_path<C, T, A>                                     class_type;
+    public:
+        typedef ss_typename_type_k parent_class_type::char_type         char_type;
+        typedef ss_typename_type_k parent_class_type::traits_type       traits_type;
+        typedef ss_typename_type_k parent_class_type::allocator_type    allocator_type;
+        typedef ss_typename_type_k parent_class_type::size_type         size_type;
+
+    public:
+        basic_path()
+            : parent_class_type()
+        {}
+        ss_explicit_k basic_path(char_type const *path)
+            : parent_class_type(path)
+        {}
+        basic_path(parent_class_type const &s)
+            : parent_class_type(s)
+        {}
+#  ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+        /// Constructs a path from \c path
+        template<ss_typename_param_k S>
+        basic_path(S const &s)
+            : parent_class_type(s)
+        {}
+#  endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+        basic_path(char_type const *path, size_type cch)
+            : parent_class_type(path, cch)
+        {}
+        basic_path(class_type const &rhs)
+            : parent_class_type(rhs)
+        {}
+
+        class_type &operator =(class_type const &rhs)
+        {
+            parent_class_type::operator =(rhs);
+
+            return *this;
+        }
+        class_type &operator =(parent_class_type const &rhs)
+        {
+            parent_class_type::operator =(rhs);
+
+            return *this;
+        }
+        class_type &operator =(char_type const *rhs)
+        {
+            parent_class_type::operator =(rhs);
+
+            return *this;
+        }
+#  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+        template<ss_typename_param_k S>
+        class_type &operator =(S const &s)
+        {
+            parent_class_type::operator =(s);
+
+            return *this;
+        }
+#  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    };
+
+    typedef basic_path<TCHAR>   path;
+
+# else /* ? compiler */
+
+#  ifdef _UNIXSTL_NO_NAMESPACE
     using ::basic_path;
-# else /* ? _UNIXSTL_NO_NAMESPACE */
+#  else /* ? _UNIXSTL_NO_NAMESPACE */
     using ::unixstl::basic_path;
     using ::unixstl::path;
-# endif /* _UNIXSTL_NO_NAMESPACE */
+#  endif /* _UNIXSTL_NO_NAMESPACE */
+
+# endif /* compiler */
 
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
 
@@ -173,6 +269,9 @@ namespace platformstl_project
         typedef ss_typename_type_k parent_class_type::size_type         size_type;
 
     public:
+        basic_path()
+            : parent_class_type()
+        {}
         ss_explicit_k basic_path(char_type const *path)
             : parent_class_type(path)
         {}

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        14
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/atomic_functions.h
@@ -109,8 +109,11 @@ namespace platformstl_project
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(__cplusplus)
+
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     namespace implementation
     {
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 # if defined(PLATFORMSTL_OS_IS_UNIX)
 
         namespace platform_stl_ =   ::unixstl;
@@ -122,7 +125,9 @@ namespace platformstl_project
 # else /* ? operating system */
 #  error Operating system not discriminated
 # endif /* operating system */
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     }
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 # if (   defined(PLATFORMSTL_OS_IS_UNIX) && \
          defined(_UNIXSTL_NO_NAMESPACE)) || \
@@ -271,10 +276,10 @@ namespace platformstl_project
  /* Nothing defined in C */
 #elif defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace platformstl
+} /* namespace platformstl */
 #else
-} // namespace platformstl_project
-} // namespace stlsoft
+} /* namespace platformstl_project */
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

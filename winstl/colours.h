@@ -4,7 +4,7 @@
  * Purpose:     Colour constants.
  *
  * Created:     20th February 1999
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_COLOURS_MAJOR      3
 # define WINSTL_VER_H_WINSTL_COLOURS_MINOR      1
 # define WINSTL_VER_H_WINSTL_COLOURS_REVISION   1
-# define WINSTL_VER_H_WINSTL_COLOURS_EDIT       20
+# define WINSTL_VER_H_WINSTL_COLOURS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,10 +114,10 @@ const COLORREF  lightgrey       =   lightGrey;
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 

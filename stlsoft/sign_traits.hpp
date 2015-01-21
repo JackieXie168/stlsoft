@@ -4,7 +4,7 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     10th June 2006
+ * Updated:     15th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MINOR      2
-# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_REVISION   2
-# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       36
+# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MINOR      3
+# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_REVISION   1
+# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,8 +117,8 @@ struct sign_traits;
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_char_a_t>
 {
-    enum { bytes    =   1                   };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   1                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_char_a_t type;
     typedef ss_uint8_t  signed_type;
@@ -130,8 +130,8 @@ struct sign_traits<ss_char_a_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_char_w_t>
 {
-    enum { bytes   =   sizeof(ss_char_w_t)  };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   sizeof(ss_char_w_t)     };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_char_w_t                             type;
     typedef int_size_traits<bytes>::signed_type     signed_type;
@@ -143,8 +143,8 @@ struct sign_traits<ss_char_w_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_sint8_t>
 {
-    enum { bytes   =   1                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   1                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_sint8_t  type;
     typedef ss_sint8_t  signed_type;
@@ -155,8 +155,8 @@ struct sign_traits<ss_sint8_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_uint8_t>
 {
-    enum { bytes   =   1                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   1                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_uint8_t  type;
     typedef ss_sint8_t  signed_type;
@@ -168,8 +168,8 @@ struct sign_traits<ss_uint8_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_sint16_t>
 {
-    enum { bytes   =   2                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   2                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_sint16_t type;
     typedef ss_sint16_t signed_type;
@@ -180,8 +180,8 @@ struct sign_traits<ss_sint16_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_uint16_t>
 {
-    enum { bytes   =   2                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   2                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_uint16_t type;
     typedef ss_sint16_t signed_type;
@@ -193,8 +193,8 @@ struct sign_traits<ss_uint16_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_sint32_t>
 {
-    enum { bytes   =   4                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   4                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_sint32_t type;
     typedef ss_sint32_t signed_type;
@@ -205,8 +205,8 @@ struct sign_traits<ss_sint32_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_uint32_t>
 {
-    enum { bytes   =   4                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   4                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_uint32_t type;
     typedef ss_sint32_t signed_type;
@@ -219,8 +219,8 @@ struct sign_traits<ss_uint32_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_sint64_t>
 {
-    enum { bytes   =   8                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   8                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_sint64_t type;
     typedef ss_sint64_t signed_type;
@@ -231,8 +231,8 @@ struct sign_traits<ss_sint64_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_uint64_t>
 {
-    enum { bytes   =   8                    };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   8                       };
+    enum { bits     =   8 * bytes               };
 
     typedef ss_uint64_t type;
     typedef ss_sint64_t signed_type;
@@ -246,13 +246,25 @@ struct sign_traits<ss_uint64_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<int>
 {
-    enum { bytes   =   sizeof(int)          };
-    enum { bits     =   8 * bytes           };
+    enum { bytes    =   sizeof(int)             };
+    enum { bits     =   8 * bytes               };
 
     typedef int         type;
     typedef int         signed_type;
     typedef unsigned    unsigned_type;
     typedef unsigned    alt_sign_type;
+};
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct sign_traits<unsigned>
+{
+    enum { bytes    =   sizeof(unsigned)        };
+    enum { bits     =   8 * bytes               };
+
+    typedef unsigned    type;
+    typedef int         signed_type;
+    typedef unsigned    unsigned_type;
+    typedef int         alt_sign_type;
 };
 
 #endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */

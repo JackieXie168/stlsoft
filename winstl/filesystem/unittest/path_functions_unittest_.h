@@ -1,5 +1,5 @@
 
-// Updated: 10th June 2006
+// Updated: 11th June 2006
 
 #if !defined(WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS)
 # error This file cannot be directly included, and should only be included within winstl/filesystem/path_functions.hpp
@@ -21,7 +21,9 @@ namespace unittest
 			const size_t		PATH_LEN	=	STLSOFT_NUM_ELEMENTS(s_path) - 1;
 			char				sz[PATH_LEN + 1 + 10];
 
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
 			STLSOFT_SUPPRESS_UNUSED(&PATH_LEN); // Borland. Again!
+#endif /* compiler */
 
 			if(0 != winstl::path_squeeze(s_path, &sz[0], 0))
 			{
@@ -123,8 +125,9 @@ namespace unittest
 			const size_t		PATH_LEN	=	STLSOFT_NUM_ELEMENTS(s_path) - 1;
 			char				sz[PATH_LEN + 1 + 10];
 
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
 			STLSOFT_SUPPRESS_UNUSED(&PATH_LEN); // Borland. Again!
-
+#endif /* compiler */
 			if(0 != winstl::path_squeeze(s_path, &sz[0], 0))
 			{
 				r->report("path_squeeze failed: incorrect length", __LINE__);
@@ -225,8 +228,9 @@ namespace unittest
 			const size_t		PATH_LEN	=	STLSOFT_NUM_ELEMENTS(s_path) - 1;
 			char				sz[PATH_LEN + 1 + 10];
 
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
 			STLSOFT_SUPPRESS_UNUSED(&PATH_LEN); // Borland. Again!
-
+#endif /* compiler */
 			if(0 != winstl::path_squeeze(s_path, &sz[0], 0))
 			{
 				r->report("path_squeeze failed: incorrect length", __LINE__);
@@ -327,8 +331,9 @@ namespace unittest
 			const size_t		PATH_LEN	=	STLSOFT_NUM_ELEMENTS(s_path) - 1;
 			char				sz[PATH_LEN + 1 + 10];
 
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
 			STLSOFT_SUPPRESS_UNUSED(&PATH_LEN); // Borland. Again!
-
+#endif /* compiler */
 			if(0 != winstl::path_squeeze(s_path, &sz[0], 0))
 			{
 				r->report("path_squeeze failed: incorrect length", __LINE__);

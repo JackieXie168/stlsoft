@@ -4,7 +4,7 @@
  * Purpose:     compiler_traits classes.
  *
  * Created:     15th November 2003
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_MAJOR    3
 # define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_MINOR    3
 # define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_EDIT     18
+# define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ struct compiler_traits
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
