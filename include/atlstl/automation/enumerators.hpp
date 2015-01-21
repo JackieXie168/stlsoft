@@ -4,11 +4,11 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     18th July 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,8 +43,8 @@
  *  atlstl::copy_enumerator class template (and its supporting components),
  *  which provides a copying alternative to the stock <code>CComEnum</code>
  *  ATL component that may be initialised from any range and whose contents
- *  may be modified subsequent to initialisation.
- * (\ref group__library__automation "COM Automation" Library.)
+ *  may be modified subsequent to initialisation
+ *   (\ref group__library__com_automation "COM Automation" Library).
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_ENUMERATORS
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     52
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 2
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
 # include <stlsoft/smartptr/ref_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */
-#ifndef STLSOFT_INCL_STLSOFT_FUNCTION_ADAPTORS_HPP_REF2PTR
-# include <stlsoft/function_adaptors/ref2ptr.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_FUNCTION_ADAPTORS_HPP_REF2PTR */
+#ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS
+# include <stlsoft/functional/indirect_function_pointer_adaptors.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS */
 #include <atlcom.h>
 #include <algorithm>
 #include <list>
@@ -138,7 +138,7 @@ public:
 
 /** \brief Modifiable, copying enumerator class template
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * copy_enumerator_impl is the analogue to CComEnumImpl, but the advantages
  * over the ATL class is that it can be added to/removed from after

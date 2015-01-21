@@ -4,7 +4,7 @@
  * Purpose:     Reference-counting helper functions.
  *
  * Created:     2nd March 1996
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/util/object_functions.h
  *
- * \brief [C, C++] Definition of several interface and identity functions.
- * (\ref group__library__utility__com "COM Utility" Library.)
+ * \brief [C, C++] Definition of several interface and identity functions
+ *   (\ref group__library__utility__com "COM Utility" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_OBJECT_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MAJOR    3
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MINOR    1
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     62
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_REVISION 2
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -255,8 +255,9 @@ inline HRESULT is_interface_implemented(/* [in] */ LPUNKNOWN p, /* [in] */ REFII
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/object_functions_unittest_.h"

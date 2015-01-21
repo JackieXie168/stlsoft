@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -43,8 +43,8 @@
 /** \file winstl/controls/listbox_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::listbox_sequence class
- *  template.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ *  template
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        57
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

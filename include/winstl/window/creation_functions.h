@@ -4,11 +4,11 @@
  * Purpose:     Window creation functions.
  *
  * Created:     7th May 2000
- * Updated:     29th December 2006
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/creation_functions.h
  *
- * \brief [C, C++] Control creation functions.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] Control creation functions
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_CREATION_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     12
+# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -187,57 +187,66 @@ STLSOFT_INLINE HWND winstl__CreateWindowEx( DWORD       dwExStyle
 }
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
 #ifdef __cplusplus
 # ifndef _WINSTL_NO_NAMESPACE
+/* 
+inline HWND CreateWindowA(  LPCSTR      lpClassName
+                        ,   LPCSTR      lpWindowName
+                        ,   DWORD       dwStyle
+                        ,   int         X
+                        ,   int         Y
+                        ,   int         nWidth
+                        ,   int         nHeight
+                        ,   HWND        hWndParent
+                        ,   HMENU       hMenu
+                        ,   HINSTANCE   hInstance
+                        ,   LPVOID      lpParam)
+{
+    return winstl__CreateWindowA(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
 
-//inline HWND CreateWindowA(  LPCSTR      lpClassName
-//                        ,   LPCSTR      lpWindowName
-//                        ,   DWORD       dwStyle
-//                        ,   int         X
-//                        ,   int         Y
-//                        ,   int         nWidth
-//                        ,   int         nHeight
-//                        ,   HWND        hWndParent
-//                        ,   HMENU       hMenu
-//                        ,   HINSTANCE   hInstance
-//                        ,   LPVOID      lpParam)
-//{
-//    return winstl__CreateWindowA(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-//}
+inline HWND CreateWindowW(  LPCWSTR     lpClassName
+                        ,   LPCWSTR     lpWindowName
+                        ,   DWORD       dwStyle
+                        ,   int         X
+                        ,   int         Y
+                        ,   int         nWidth
+                        ,   int         nHeight
+                        ,   HWND        hWndParent
+                        ,   HMENU       hMenu
+                        ,   HINSTANCE   hInstance
+                        ,   LPVOID      lpParam)
+{
+    return winstl__CreateWindowW(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
 
-//inline HWND CreateWindowW(  LPCWSTR     lpClassName
-//                        ,   LPCWSTR     lpWindowName
-//                        ,   DWORD       dwStyle
-//                        ,   int         X
-//                        ,   int         Y
-//                        ,   int         nWidth
-//                        ,   int         nHeight
-//                        ,   HWND        hWndParent
-//                        ,   HMENU       hMenu
-//                        ,   HINSTANCE   hInstance
-//                        ,   LPVOID      lpParam)
-//{
-//    return winstl__CreateWindowW(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-//}
-
-//inline HWND CreateWindow(   LPCTSTR     lpClassName
-//                        ,   LPCTSTR     lpWindowName
-//                        ,   DWORD       dwStyle
-//                        ,   int         X
-//                        ,   int         Y
-//                        ,   int         nWidth
-//                        ,   int         nHeight
-//                        ,   HWND        hWndParent
-//                        ,   HMENU       hMenu
-//                        ,   HINSTANCE   hInstance
-//                        ,   LPVOID      lpParam)
-//{
-//    return winstl__CreateWindow(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-//}
-
+inline HWND CreateWindow(   LPCTSTR     lpClassName
+                        ,   LPCTSTR     lpWindowName
+                        ,   DWORD       dwStyle
+                        ,   int         X
+                        ,   int         Y
+                        ,   int         nWidth
+                        ,   int         nHeight
+                        ,   HWND        hWndParent
+                        ,   HMENU       hMenu
+                        ,   HINSTANCE   hInstance
+                        ,   LPVOID      lpParam)
+{
+    return winstl__CreateWindow(lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
+ */
 inline HWND CreateWindowExA(DWORD       dwExStyle
                         ,   LPCSTR      lpClassName
                         ,   LPCSTR      lpWindowName
@@ -270,21 +279,24 @@ inline HWND CreateWindowExW(DWORD       dwExStyle
     return winstl__CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 }
 
-//inline HWND CreateWindowEx( DWORD       dwExStyle
-//                        ,   LPCTSTR     lpClassName
-//                        ,   LPCTSTR     lpWindowName
-//                        ,   DWORD       dwStyle
-//                        ,   int         X
-//                        ,   int         Y
-//                        ,   int         nWidth
-//                        ,   int         nHeight
-//                        ,   HWND        hWndParent
-//                        ,   HMENU       hMenu
-//                        ,   HINSTANCE   hInstance
-//                        ,   LPVOID      lpParam)
-//{
-//    return winstl__CreateWindowEx(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-//}
+/* 
+inline HWND CreateWindowEx( DWORD       dwExStyle
+                        ,   LPCTSTR     lpClassName
+                        ,   LPCTSTR     lpWindowName
+                        ,   DWORD       dwStyle
+                        ,   int         X
+                        ,   int         Y
+                        ,   int         nWidth
+                        ,   int         nHeight
+                        ,   HWND        hWndParent
+                        ,   HMENU       hMenu
+                        ,   HINSTANCE   hInstance
+                        ,   LPVOID      lpParam)
+{
+    return winstl__CreateWindowEx(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+}
+ */
+
 # endif /* !_WINSTL_NO_NAMESPACE */
 #endif /* __cplusplus */
 

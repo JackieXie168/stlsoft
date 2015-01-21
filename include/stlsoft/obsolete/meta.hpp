@@ -4,7 +4,7 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/obsolete/meta.hpp
  *
- * \brief [C++ only; OBSOLETE] Contains obsolete Meta programming primitives.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ * \brief [C++ only; OBSOLETE] Contains obsolete Meta programming primitives
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_META
@@ -50,9 +50,19 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MAJOR    4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MINOR    0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     129
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 2
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
+[Incompatibilies-end]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -61,6 +71,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# error stlsoft/obsolete/meta.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
+
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */

@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta40
+File:     STLSoft-ReleaseNotes-1.9.1-beta41
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  6th January 2007
+Updated:  14th January 2007
 
 ============================================================================
 
@@ -26,6 +26,113 @@ Updated:  6th January 2007
     *                                  *
     ************************************
 
+
+============================================================================
+
+Changes for 1.9.1 beta 41 (14th January 2006):
+
+Changes
+=======
+
+ ~ refactored sized-integer detection:
+    - The symbols 
+        STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
+        STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
+        STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
+      are removed. Instead use
+        STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+        STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+        STLSOFT_CF_INT_DISTINCT_INT_TYPE
+    ~ The symbols
+        STLSOFT_CF_INT_DISTINCT_TYPE
+        STLSOFT_CF_LONG_DISTINCT_TYPE
+      are deprecated. Instead use
+        STLSOFT_CF_INT_DISTINCT_INT_TYPE
+        STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+    + The following symbols are added (and propagated through the codebase):
+        STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+        STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+        STLSOFT_CF_INT_DISTINCT_INT_TYPE
+        STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+        STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE
+
+ ~ A few last workarounds to ensure complete build/run of the
+   unit-tests with DMC++
+
+Additions:
+==========
+
+ + C compilation included in Unit-test builds
+
+ ~ ensuring that all .h files are C-compilation compatible
+
+ + stlsoft::limit_traits<bool> specialisation
+
+ + stlsoft::sign_traits<long> and <unsigned long> specialisations
+
+ + winstl::get_kernel_handle attribute shim overloads for
+   winstl::event, winstl::process_mutex and winstl::semaphore
+
+ + winstl::get_kernel_handle attribute shim overload for
+   MFC types (in mfcstl/shims/attribute/get_kernel_handle.hpp)
+
+ ~ winstl/time/format_functions.h => winstl/time/format_functions.hpp
+
+Removals:
+=========
+
+ - removed (almost) all of the previously deprecated __STLSOFT* symbols,
+   including the following:
+        __STLSOFT_COMPILER_IS_BORLAND
+        __STLSOFT_COMPILER_IS_COMO
+        __STLSOFT_COMPILER_IS_DMC
+        __STLSOFT_COMPILER_IS_INTEL
+        __STLSOFT_COMPILER_IS_GCC
+        __STLSOFT_COMPILER_IS_MSVC
+        __STLSOFT_COMPILER_IS_MWERKS
+        __STLSOFT_COMPILER_IS_VECTORC
+        __STLSOFT_COMPILER_IS_WATCOM
+        __STLSOFT_COMPILER_IS_UNKNOWN
+        __STLSOFT_COMPILER_LABEL_STRING
+        __STLSOFT_COMPILER_VERSION_STRING
+        __STLSOFT_DOCUMENTATION_SKIP_SECTION
+        __STLSOFT_CF_STATIC_ASSERT_SUPPORT
+        __STLSOFT_CF_EXCEPTION_SUPPORT
+        __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+        __STLSOFT_CF_NAMESPACE_SUPPORT
+        __STLSOFT_CF_TEMPLATE_SUPPORT
+        __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+        __STLSOFT_CF_THROW_BAD_ALLOC
+        __STLSOFT_CF_NOTHROW_BAD_ALLOC
+        __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+        __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+        __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+        __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+        __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+        __STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
+        __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
+        __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+        __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+        __STLSOFT_CF_std_NAMESPACE
+        __STLSOFT_CF_std_char_traits_AVAILABLE
+        __STLSOFT_CF_ALLOCATOR_ALLOCATE_HAS_HINT
+        __STLSOFT_CF_ALLOCATOR_DEALLOCATE_HAS_OBJECTCOUNT
+        __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+        __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
+        __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+        __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
+        __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
+        __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+        __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+        __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+        __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
+        __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+        __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+        __STLSOFT_CF_VENEER_SUPPORT
+        __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+        __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
+
+ 
 
 ============================================================================
 
@@ -302,13 +409,13 @@ Changes:
  -------
 
  - deprecation of stlsoft::cwd_stack::is_empty() method
- - removal of stlsoft::is_empty attribute shim for stlsoft::searchspec_sequence
+ - removal of stlsoft::is_empty logical shim for stlsoft::searchspec_sequence
 
  ACESTL
  ------
 
  ~ corrected bug in acestl::message_queue_sequence::empty()
- ~ corrections to stlsoft::is_empty attribute shim for ACE_Message_Queue
+ ~ corrections to stlsoft::is_empty logical shim for ACE_Message_Queue
 
  ATLSTL
  ------
@@ -321,20 +428,20 @@ Removals:
  COMSTL
  ------
 
- - deprecation of stlsoft::is_empty attribute shim for interface casts
- - deprecation of stlsoft::is_empty attribute shim for comstl::interface_ptr
+ - deprecation of stlsoft::is_empty logical shim for interface casts
+ - deprecation of stlsoft::is_empty logical shim for comstl::interface_ptr
 
  InetSTL
  -------
 
- - removal of stlsoft::is_empty attribute shim for inetstl::basic_findfile_sequence
- - removal of stlsoft::is_empty attribute shim for inetstl::searchspec_sequence
+ - removal of stlsoft::is_empty logical shim for inetstl::basic_findfile_sequence
+ - removal of stlsoft::is_empty logical shim for inetstl::searchspec_sequence
 
  WinSTL
  ------
 
- - deprecation of stlsoft::is_empty attribute shim for winstl::basic_findfile_sequence
- - deprecation of stlsoft::is_empty attribute shim for winstl::basic_findvolume_sequence
+ - deprecation of stlsoft::is_empty logical shim for winstl::basic_findfile_sequence
+ - deprecation of stlsoft::is_empty logical shim for winstl::basic_findvolume_sequence
 
 
 Additions:
@@ -343,14 +450,14 @@ Additions:
  ACESTL
  ------
 
- + stlsoft::is_empty attribute shim overloads for ACE_String_Base
+ + stlsoft::is_empty logical shim overloads for ACE_String_Base
 
  MFCSTL
  ------
 
- + stlsoft::is_empty attribute shim overloads for MFC array containers
- + stlsoft::is_empty attribute shim overloads for MFC list containers
- + stlsoft::is_empty attribute shim overloads for MFC CString
+ + stlsoft::is_empty logical shim overloads for MFC array containers
+ + stlsoft::is_empty logical shim overloads for MFC list containers
+ + stlsoft::is_empty logical shim overloads for MFC CString
 
  STLSoft
  -------
@@ -361,7 +468,7 @@ Additions:
  + stlsoft::wide2multibyte and stlsoft::multibyte2wide now throw an instance
    of stlsoft::conversion_error exception if the conversion fails (when
    exception handling support is on).
- + stlsoft::is_empty attribute shim overload for standard containers
+ + stlsoft::is_empty logical shim overload for standard containers
 
  WinSTL
  ------

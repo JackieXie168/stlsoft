@@ -4,7 +4,7 @@
  * Purpose:     RRID veneer for sequence containers
  *
  * Created:     2nd October 2002
- * Updated:     5th January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/collections/sequence_container_veneer.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::sequence_container_veneer
- *   class template.
- * (\ref group__library__collections "Collections" Library.)
+ *   class template
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_MINOR      0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_REVISION   3
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       46
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ namespace stlsoft
  * \ingroup group__library__collections
  *
  * \param T The sequence container type
- * \param F The function object type
+ * \param F The function class
  *
  * \ingroup concepts_veneer
  */
@@ -122,7 +122,7 @@ class sequence_container_veneer
 public:
     /// The container type
     typedef T                                                       container_type;
-    /// The function object type applied to the container's items
+    /// The function class applied to the container's items
     typedef F                                                       element_destruction_function_type;
     /// The current parameterisation of the type
     typedef sequence_container_veneer<T, F>                         class_type;

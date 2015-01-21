@@ -1,7 +1,5 @@
-
-#error mfcstl::array_adaptor is now obsolete. Please include mfcstl/carray_adaptors.hpp, and use mfcstl::CArray_iadaptor
+#error The mfcstl::array_adaptor component is now obsolete. Please include mfcstl/collections/carray_adaptors.hpp, and use mfcstl::CArray_iadaptor
 
 /*
-[<[STLSOFT-AUTO:OBSOLETE]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

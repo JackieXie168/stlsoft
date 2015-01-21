@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     6th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/string/string_tokeniser.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::string_tokeniser class
- *  template.
- * (\ref group__library__string "String" Library.)
+ *  template
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      213
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      215
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 /*
 [Incompatibilies-start]
 STLSOFT_COMPILER_IS_DMC:  __DMC__<0x0839
-STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -488,7 +488,7 @@ public:
  * </pre>
  * \endhtmlonly
  *
- * \note The tokeniser uses \ref concepts_shims_string_access "String Access Shims" to elicit the
+ * \note The tokeniser uses \ref group__concept__shim__string_access "String Access Shims" to elicit the
  * string from the given type, so any type that for which shims are defined can be passed to the
  * constructor, as in the following, which will output: <b>abc;def;ghi;jkl;</b>
  *

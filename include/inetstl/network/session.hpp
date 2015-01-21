@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     13th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file inetstl/network/session.hpp
  *
  * \brief [C++ only] Definition of the inetstl::basic_session class
- *   template.
- * (\ref group__library__network "Network" Library.)
+ *   template
+ *   (\ref group__library__network "Network" Library).
  */
 
 #ifndef INETSTL_INCL_INETSTL_NETWORK_HPP_SESSION
@@ -52,7 +52,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      0
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       54
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

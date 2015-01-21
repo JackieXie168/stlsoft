@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,17 +46,14 @@
 #if defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define STLSOFT_DOCUMENTATION_SKIP_SECTION
-#elif !defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
-      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-# define __STLSOFT_DOCUMENTATION_SKIP_SECTION
-#endif /* __STLSOFT_DOCUMENTATION_SKIP_SECTION && !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION? */
 
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     294
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    7
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     297
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -163,11 +160,12 @@
 # define _STLSOFT_VER_1_9_1_B33 0x01090121  /*!< Version 1.9.1 beta 33 (13th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B34 0x01090122  /*!< Version 1.9.1 beta 34 (24th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B37 0x01090125  /*!< Version 1.9.1 beta 37 (30th Dec 2006) */
-# define _STLSOFT_VER_1_9_1_B40 0x01090128  /*!< Version 1.9.1 beta 39 (6th Jan 2007) */
+# define _STLSOFT_VER_1_9_1_B40 0x01090128  /*!< Version 1.9.1 beta 40 (6th Jan 2007) */
+# define _STLSOFT_VER_1_9_1_B41 0x01090129  /*!< Version 1.9.1 beta 41 (14th Jan 2007) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B40
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B41
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -280,7 +278,6 @@
 #if defined(_STLSOFT_FORCE_CUSTOM_COMPILER)
 # define STLSOFT_COMPILER_LABEL_STRING          "Custom (forced) compiler"
 # define STLSOFT_COMPILER_VERSION_STRING        "Custom (forced) compiler"
-# define __STLSOFT_COMPILER_IS_CUSTOM
 # define STLSOFT_COMPILER_IS_CUSTOM
 # ifndef __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME
 #  error When using the custom compiler option you must define the symbol __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME, e.g. #define __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME <stlsoft/internal/cccap/my_compiler.h>
@@ -288,7 +285,6 @@
 
 #elif defined(__COMO__) /* Do Comeau next, so that no Comeau back-end server compilers are preferentially discriminated */
 /* Comeau C++ */
-# define __STLSOFT_COMPILER_IS_COMO
 # define STLSOFT_COMPILER_IS_COMO
 # define STLSOFT_COMPILER_LABEL_STRING          "Comeau C++"
 # if __COMO_VERSION__ < 4300
@@ -303,7 +299,6 @@
 
 #elif defined(__BORLANDC__)
 /* Borland C++ */
-# define __STLSOFT_COMPILER_IS_BORLAND
 # define STLSOFT_COMPILER_IS_BORLAND
 # define STLSOFT_COMPILER_LABEL_STRING          "Borland C/C++"
 # if 0 /* (__BORLANDC__ == 0x0460) */
@@ -323,7 +318,6 @@
 
 #elif defined(__DMC__)
 /* Digital Mars C/C++ */
-# define __STLSOFT_COMPILER_IS_DMC
 # define STLSOFT_COMPILER_IS_DMC
 # define STLSOFT_COMPILER_LABEL_STRING          "Digital Mars C/C++"
 # if (__DMC__ < 0x0826)
@@ -348,7 +342,6 @@
 
 #elif defined(__INTEL_COMPILER)
 /* Intel C++ */
-# define __STLSOFT_COMPILER_IS_INTEL
 # define STLSOFT_COMPILER_IS_INTEL
 # define STLSOFT_COMPILER_LABEL_STRING          "Intel C/C++"
 # if (__INTEL_COMPILER == 600)
@@ -363,7 +356,6 @@
 
 #elif defined(__GNUC__)
 /* GNU C/C++ */
-# define __STLSOFT_COMPILER_IS_GCC
 # define STLSOFT_COMPILER_IS_GCC
 # define STLSOFT_COMPILER_LABEL_STRING          "GNU C/C++"
 # if __GNUC__ != 2 && \
@@ -400,7 +392,6 @@
 
 #elif defined(__MWERKS__)
 /* Metrowerks C++ */
-# define __STLSOFT_COMPILER_IS_MWERKS
 # define STLSOFT_COMPILER_IS_MWERKS
 # define STLSOFT_COMPILER_LABEL_STRING          "Metrowerks CodeWarrior C/C++"
 # if ((__MWERKS__ & 0xFF00) == 0x2400)
@@ -415,7 +406,6 @@
 
 #elif defined(__VECTORC)
 /* CodePlay Vector C/C++ */
-# define __STLSOFT_COMPILER_IS_VECTORC
 # define STLSOFT_COMPILER_IS_VECTORC
 # define STLSOFT_COMPILER_LABEL_STRING          "CodePlay VectorC C/C++"
 # if (__VECTORC == 1)
@@ -426,7 +416,6 @@
 
 #elif defined(__WATCOMC__)
 /* Watcom C/C++ */
-# define __STLSOFT_COMPILER_IS_WATCOM
 # define STLSOFT_COMPILER_IS_WATCOM
 # define STLSOFT_COMPILER_LABEL_STRING          "Watcom C/C++"
 
@@ -450,7 +439,6 @@
 
 #elif defined(_MSC_VER)
 /* Visual C++ */
-# define __STLSOFT_COMPILER_IS_MSVC
 # define STLSOFT_COMPILER_IS_MSVC
 # define STLSOFT_COMPILER_LABEL_STRING          "Visual C++"
 # if defined(STLSOFT_FORCE_MSVC_4_2) && (_MSC_VER == 1020)
@@ -475,7 +463,6 @@
      defined(_STLSOFT_FORCE_ANY_COMPILER)
 #  define STLSOFT_COMPILER_LABEL_STRING         "Unknown (forced) compiler"
 #  define STLSOFT_COMPILER_VERSION_STRING       "Unknown (forced) compiler"
-#  define __STLSOFT_COMPILER_IS_UNKNOWN
 #  define STLSOFT_COMPILER_IS_UNKNOWN
 # else /* ? _STLSOFT_FORCE_UNKNOWN_COMPILER || _STLSOFT_FORCE_ANY_COMPILER */
 #  error Compiler is not recognised.
@@ -615,25 +602,43 @@
  * operator new will not throw exceptions in out of memory conditions.
  *
  * Define STLSOFT_CF_THROW_BAD_ALLOC to force Digital Mars/Microsoft to do so.
- * Define __STLSOFT_CF_NOTHROW_BAD_ALLOC to prevent Borland/Comeau/
+ * Define STLSOFT_CF_NOTHROW_BAD_ALLOC to prevent Borland/Comeau/
  * GCC/Metrowerks/Watcom from doing so.
  */
 
 
-/** \def STLSOFT_CF_NOTHROW_BAD_ALLOC
- * \brief Define if you've overridden <code>operator new</code> to return
- *   <code>NULL</code> on allocation failure (which is non-standard
- *   behaviour).
- */
+ /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+# if defined(__STLSOFT_CF_EXCEPTION_SUPPORT) && \
+     !defined(STLSOFT_CF_EXCEPTION_SUPPORT)
+#  error Configuration error: deprecated symbol __STLSOFT_CF_EXCEPTION_SUPPORT is defined when STLSOFT_CF_EXCEPTION_SUPPORT is not!
+# else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#  ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#   define __STLSOFT_CF_EXCEPTION_SUPPORT
+#  endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+ /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+# if defined(__STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT) && \
+     !defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT)
+#  error Configuration error: deprecated symbol __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT is defined when STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT is not!
+# else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#  ifdef STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+#   define __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+#  endif /* STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT */
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+ /** \def STLSOFT_CF_NOTHROW_BAD_ALLOC
+  * \brief Define if you've overridden <code>operator new</code> to return
+  *   <code>NULL</code> on allocation failure (which is non-standard
+  *   behaviour).
+  */
 # define STLSOFT_CF_NOTHROW_BAD_ALLOC
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #ifdef STLSOFT_CF_NOTHROW_BAD_ALLOC
-# ifdef __STLSOFT_CF_THROW_BAD_ALLOC
-#  undef __STLSOFT_CF_THROW_BAD_ALLOC
-# endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
 # ifdef STLSOFT_CF_THROW_BAD_ALLOC
 #  undef STLSOFT_CF_THROW_BAD_ALLOC
 # endif /* STLSOFT_CF_THROW_BAD_ALLOC */
@@ -641,14 +646,6 @@
  /* Leave it to whatever the compiler's capability discrimination has determined */
 #endif /* STLSOFT_CF_NOTHROW_BAD_ALLOC */
 
-
-
-/* Backwards compatible definitions. Do not use! */
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# ifdef STLSOFT_CF_NOTHROW_BAD_ALLOC
-#  define __STLSOFT_CF_NOTHROW_BAD_ALLOC
-# endif /* STLSOFT_CF_NOTHROW_BAD_ALLOC */
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* Template specialisation syntax support
@@ -864,6 +861,12 @@
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef _STLSOFT_NO_STD_INCLUDES
+#  undef _STLSOFT_NO_STD_INCLUDES
+# endif /* _STLSOFT_NO_STD_INCLUDES */
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef _STLSOFT_NO_STD_INCLUDES
 # include <stddef.h>    /* standard types */
@@ -1135,181 +1138,199 @@ namespace stlsoft
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/* ptrdiff_t
- */
-#if !defined(_STLSOFT_NO_STD_INCLUDES) || \
-    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
- typedef ptrdiff_t                  ss_ptrdiff_pr_t_;   /* ptr diff */
-#else /* ? _STLSOFT_NO_STD_INCLUDES */
- typedef int                        ss_ptrdiff_pr_t_;   /* ptr diff */
-#endif /* !_STLSOFT_NO_STD_INCLUDES */
+ /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
-/* size_t
- */
-#if !defined(_STLSOFT_NO_STD_INCLUDES) || \
-    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
- typedef size_t                     ss_size_pr_t_;      /* size */
-#else /* ? _STLSOFT_NO_STD_INCLUDES */
- typedef unsigned int               ss_size_pr_t_;      /* size */
-#endif /* !_STLSOFT_NO_STD_INCLUDES */
+# if defined(__STLSOFT_CF_NATIVE_BOOL_SUPPORT) && \
+     !defined(STLSOFT_CF_NATIVE_BOOL_SUPPORT)
+#  error Configuration error: deprecated symbol __STLSOFT_CF_NATIVE_BOOL_SUPPORT is defined when STLSOFT_CF_NATIVE_BOOL_SUPPORT is not!
+# else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#  ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#   define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#  endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+# endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+
+ /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+
+# if defined(__STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT) && \
+     !defined(STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT)
+#  error Configuration error: deprecated symbol __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT is defined when STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT is not!
+# else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#  ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#   define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#  endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+# endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+
+ /* STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT */
+
+# if defined(__STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT) && \
+     !defined(STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT)
+#  error Configuration error: deprecated symbol __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT is defined when STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT is not!
+# else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#  ifdef STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#   define __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  endif /* STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT */
+# endif /* STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT */
+
+ /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+
+# if (  defined(STLSOFT_CF_INT_DISTINCT_TYPE) || \
+        defined(__STLSOFT_CF_INT_DISTINCT_TYPE)) && \
+     !defined(STLSOFT_CF_INT_DISTINCT_INT_TYPE)
+#  error Configuration error: one or both of the deprecated symbols STLSOFT_CF_INT_DISTINCT_TYPE or __STLSOFT_CF_INT_DISTINCT_TYPE is defined when STLSOFT_CF_INT_DISTINCT_INT_TYPE is not!
+# else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#  ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+#   define STLSOFT_CF_INT_DISTINCT_TYPE
+#   define __STLSOFT_CF_INT_DISTINCT_TYPE
+#  endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+# endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+
+ /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
+# if (  defined(STLSOFT_CF_LONG_DISTINCT_TYPE) || \
+        defined(__STLSOFT_CF_LONG_DISTINCT_TYPE)) && \
+     !defined(STLSOFT_CF_LONG_DISTINCT_INT_TYPE)
+#  error Configuration error: one or both of the deprecated symbols STLSOFT_CF_LONG_DISTINCT_TYPE or __STLSOFT_CF_LONG_DISTINCT_TYPE is defined when STLSOFT_CF_LONG_DISTINCT_INT_TYPE is not!
+# else /* ? STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+#  ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+#   define STLSOFT_CF_LONG_DISTINCT_TYPE
+#   define __STLSOFT_CF_LONG_DISTINCT_TYPE
+#  endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+# endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
+
 
 /* wchar_t
  *
- * wchar_t is either a built-in type, or is defined to unsigned 16-bit value
+ * wchar_t is either a built-in type, or is defined to an unsigned 16-bit value
  */
 
 #ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
  /* It's some kind of compiler native type. */
 # ifndef STLSOFT_NATIVE_WCHAR_T
   /* either wchar_t itself */
-  typedef wchar_t                  ss_char_w_pr_t_;    /* Unicode char type */
+#  define STLSOFT_WCHAR_T_BASE_TYPE_    wchar_t
 # else /* ? STLSOFT_NATIVE_WCHAR_T */
   /* or a compiler-specific type */
-  typedef STLSOFT_NATIVE_WCHAR_T   ss_char_w_pr_t_;    /* Unicode char type */
+#  define STLSOFT_WCHAR_T_BASE_TYPE_    STLSOFT_NATIVE_WCHAR_T
 # endif /* !STLSOFT_NATIVE_WCHAR_T */
 #elif defined(STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT)
-  typedef wchar_t                  ss_char_w_pr_t_;    /* Unicode char type */
+#  define STLSOFT_WCHAR_T_BASE_TYPE_    wchar_t
 #else /* ? wchar_t support */
  /* It's some kind of library-defined type. */
 # ifndef _STLSOFT_NO_STD_INCLUDES
-  typedef wchar_t                   ss_char_w_pr_t_;    /* Unicode char type */
+#  define STLSOFT_WCHAR_T_BASE_TYPE_    wchar_t
 # else /* ? _STLSOFT_NO_STD_INCLUDES */
-  typedef unsigned short            ss_char_w_pr_t_;    /* Unicode char type */
+#  define STLSOFT_WCHAR_T_BASE_TYPE_    unsigned short
 # endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 #endif /* !STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 /* 8-bit */
 #ifdef STLSOFT_CF_8BIT_INT_SUPPORT
-# ifdef STLSOFT_CF_8BIT_INT_IS_EXTENDED_TYPE
- typedef STLSOFT_CF_EXTENDED_INT8_T     ss_int8_pr_t_;
- typedef STLSOFT_CF_EXTENDED_SINT8_T    ss_sint8_pr_t_;
- typedef STLSOFT_CF_EXTENDED_UINT8_T    ss_uint8_pr_t_;
-# else /* ? STLSOFT_CF_8BIT_INT_IS_EXTENDED_TYPE */
- typedef STLSOFT_CF_STANDARD_INT8_T     ss_int8_pr_t_;
- typedef STLSOFT_CF_STANDARD_SINT8_T    ss_sint8_pr_t_;
- typedef STLSOFT_CF_STANDARD_UINT8_T    ss_uint8_pr_t_;
-# endif /* STLSOFT_CF_8BIT_INT_IS_EXTENDED_TYPE */
+ typedef STLSOFT_SI08_T_BASE_TYPE       STLSOFT_I_08_T_BASE_TYPE_;
+ typedef STLSOFT_SI08_T_BASE_TYPE       STLSOFT_SI08_T_BASE_TYPE_;
+ typedef STLSOFT_UI08_T_BASE_TYPE       STLSOFT_UI08_T_BASE_TYPE_;
 #else /* ? STLSOFT_CF_8BIT_INT_SUPPORT */
 # error STLSoft requires 8-bit integer support
 #endif /* STLSOFT_CF_8BIT_INT_SUPPORT */
 
 /* 16-bit */
 #ifdef STLSOFT_CF_16BIT_INT_SUPPORT
-# ifdef STLSOFT_CF_16BIT_INT_IS_EXTENDED_TYPE
- typedef STLSOFT_CF_EXTENDED_INT16_T    ss_int16_pr_t_;
- typedef STLSOFT_CF_EXTENDED_SINT16_T   ss_sint16_pr_t_;
- typedef STLSOFT_CF_EXTENDED_UINT16_T   ss_uint16_pr_t_;
-# else /* ? STLSOFT_CF_16BIT_INT_IS_EXTENDED_TYPE */
- typedef STLSOFT_CF_STANDARD_INT16_T    ss_int16_pr_t_;
- typedef STLSOFT_CF_STANDARD_SINT16_T   ss_sint16_pr_t_;
- typedef STLSOFT_CF_STANDARD_UINT16_T   ss_uint16_pr_t_;
-# endif /* STLSOFT_CF_16BIT_INT_IS_EXTENDED_TYPE */
+ typedef STLSOFT_SI16_T_BASE_TYPE       STLSOFT_I_16_T_BASE_TYPE_;
+ typedef STLSOFT_SI16_T_BASE_TYPE       STLSOFT_SI16_T_BASE_TYPE_;
+ typedef STLSOFT_UI16_T_BASE_TYPE       STLSOFT_UI16_T_BASE_TYPE_;
 #else /* ? STLSOFT_CF_16BIT_INT_SUPPORT */
 # error STLSoft requires 16-bit integer support
 #endif /* STLSOFT_CF_16BIT_INT_SUPPORT */
 
 /* 32-bit */
 #ifdef STLSOFT_CF_32BIT_INT_SUPPORT
-# ifdef STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE
- typedef STLSOFT_CF_EXTENDED_INT32_T    ss_int32_pr_t_;
- typedef STLSOFT_CF_EXTENDED_SINT32_T   ss_sint32_pr_t_;
- typedef STLSOFT_CF_EXTENDED_UINT32_T   ss_uint32_pr_t_;
-# else /* ? STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE */
- typedef STLSOFT_CF_STANDARD_INT32_T    ss_int32_pr_t_;
- typedef STLSOFT_CF_STANDARD_SINT32_T   ss_sint32_pr_t_;
- typedef STLSOFT_CF_STANDARD_UINT32_T   ss_uint32_pr_t_;
-# endif /* STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE */
+ typedef STLSOFT_SI32_T_BASE_TYPE       STLSOFT_I_32_T_BASE_TYPE_;
+ typedef STLSOFT_SI32_T_BASE_TYPE       STLSOFT_SI32_T_BASE_TYPE_;
+ typedef STLSOFT_UI32_T_BASE_TYPE       STLSOFT_UI32_T_BASE_TYPE_;
 #else /* ? STLSOFT_CF_32BIT_INT_SUPPORT */
 # error STLSoft requires 32-bit integer support
 #endif /* STLSOFT_CF_32BIT_INT_SUPPORT */
 
 /* 64-bit */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-# ifdef STLSOFT_CF_64BIT_INT_IS_EXTENDED_TYPE
- typedef STLSOFT_CF_EXTENDED_INT64_T    ss_int64_pr_t_;
- typedef STLSOFT_CF_EXTENDED_SINT64_T   ss_sint64_pr_t_;
- typedef STLSOFT_CF_EXTENDED_UINT64_T   ss_uint64_pr_t_;
-# else /* ? STLSOFT_CF_64BIT_INT_IS_EXTENDED_TYPE */
- typedef STLSOFT_CF_STANDARD_INT64_T    ss_int64_pr_t_;
- typedef STLSOFT_CF_STANDARD_SINT64_T   ss_sint64_pr_t_;
- typedef STLSOFT_CF_STANDARD_UINT64_T   ss_uint64_pr_t_;
-# endif /* STLSOFT_CF_64BIT_INT_IS_EXTENDED_TYPE */
+ typedef STLSOFT_SI64_T_BASE_TYPE       STLSOFT_I_64_T_BASE_TYPE_;
+ typedef STLSOFT_SI64_T_BASE_TYPE       STLSOFT_SI64_T_BASE_TYPE_;
+ typedef STLSOFT_UI64_T_BASE_TYPE       STLSOFT_UI64_T_BASE_TYPE_;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
-/* bool */
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
- typedef bool               ss_bool_pr_t_;
-#else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
- typedef unsigned int       ss_bool_pr_t_;
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Type definitions - proper */
 
-typedef char                ss_char_a_t;        /*!< \brief Ansi char type          */
-typedef ss_char_w_pr_t_     ss_char_w_t;        /*!< \brief Unicode char type       */
-typedef ss_int8_pr_t_       ss_int8_t;          /*!< \brief 8-bit integer           */
-typedef ss_sint8_pr_t_      ss_sint8_t;         /*!< \brief 8-bit signed integer    */
-typedef ss_uint8_pr_t_      ss_uint8_t;         /*!< \brief 8-bit unsigned integer  */
-typedef ss_int16_pr_t_      ss_int16_t;         /*!< \brief 16-bit integer          */
-typedef ss_sint16_pr_t_     ss_sint16_t;        /*!< \brief 16-bit signed integer   */
-typedef ss_uint16_pr_t_     ss_uint16_t;        /*!< \brief 16-bit unsigned integer */
-typedef ss_int32_pr_t_      ss_int32_t;         /*!< \brief 32-bit integer          */
-typedef ss_sint32_pr_t_     ss_sint32_t;        /*!< \brief 32-bit signed integer   */
-typedef ss_uint32_pr_t_     ss_uint32_t;        /*!< \brief 32-bit unsigned integer */
+typedef char                        ss_char_a_t;        /*!< Ansi char type             */
+typedef STLSOFT_WCHAR_T_BASE_TYPE_  ss_char_w_t;        /*!< Unicode char type          */
+typedef STLSOFT_I_08_T_BASE_TYPE_   ss_int8_t;          /*!< 8-bit integer              */
+typedef STLSOFT_SI08_T_BASE_TYPE_   ss_sint8_t;         /*!< 8-bit signed integer       */
+typedef STLSOFT_UI08_T_BASE_TYPE_   ss_uint8_t;         /*!< 8-bit unsigned integer     */
+typedef STLSOFT_I_16_T_BASE_TYPE_   ss_int16_t;         /*!< 16-bit integer             */
+typedef STLSOFT_SI16_T_BASE_TYPE_   ss_sint16_t;        /*!< 16-bit signed integer      */
+typedef STLSOFT_UI16_T_BASE_TYPE_   ss_uint16_t;        /*!< 16-bit unsigned integer    */
+typedef STLSOFT_I_32_T_BASE_TYPE_   ss_int32_t;         /*!< 32-bit integer             */
+typedef STLSOFT_SI32_T_BASE_TYPE_   ss_sint32_t;        /*!< 32-bit signed integer      */
+typedef STLSOFT_UI32_T_BASE_TYPE_   ss_uint32_t;        /*!< 32-bit unsigned integer    */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef ss_int64_pr_t_     ss_int64_t;         /*!< \brief 64-bit integer          */
- typedef ss_sint64_pr_t_    ss_sint64_t;        /*!< \brief 64-bit signed integer   */
- typedef ss_uint64_pr_t_    ss_uint64_t;        /*!< \brief 64-bit unsigned integer */
+ typedef STLSOFT_I_64_T_BASE_TYPE_  ss_int64_t;         /*!< 64-bit integer             */
+ typedef STLSOFT_SI64_T_BASE_TYPE_  ss_sint64_t;        /*!< 64-bit signed integer      */
+ typedef STLSOFT_UI64_T_BASE_TYPE_  ss_uint64_t;        /*!< 64-bit unsigned integer    */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef short               ss_short_t;         /*!< \brief short integer           */
-typedef int                 ss_int_t;           /*!< \brief integer                 */
-typedef signed int          ss_sint_t;          /*!< \brief signed integer          */
-typedef unsigned int        ss_uint_t;          /*!< \brief unsigned integer        */
-typedef long                ss_long_t;          /*!< \brief long integer            */
-typedef ss_uint8_t          ss_byte_t;          /*!< \brief Byte                    */
+typedef short                       ss_short_t;         /*!< short integer              */
+typedef int                         ss_int_t;           /*!< integer                    */
+typedef signed int                  ss_sint_t;          /*!< signed integer             */
+typedef unsigned int                ss_uint_t;          /*!< unsigned integer           */
+typedef long                        ss_long_t;          /*!< long integer               */
+typedef unsigned long               ss_ulong_t;         /*!< long integer               */
+typedef ss_uint8_t                  ss_byte_t;          /*!< Byte                       */
 #if defined(__cplusplus)
-typedef ss_bool_pr_t_       ss_bool_t;          /*!< \brief bool                    */
+# ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+typedef bool                        ss_bool_t;          /*!< Boolean type               */
+# else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+typedef unsigned int                ss_bool_t;
+# endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 #endif /* __cplusplus */
-typedef ss_size_pr_t_       ss_size_t;          /*!< \brief size                    */
-typedef ss_ptrdiff_pr_t_    ss_ptrdiff_t;       /*!< \brief ptr diff                */
-typedef long                ss_streampos_t;     /*!< \brief streampos               */
-typedef long                ss_streamoff_t;     /*!< \brief streamoff               */
+#ifndef _STLSOFT_NO_STD_INCLUDES
+ typedef ptrdiff_t                  ss_ptrdiff_t;       /*!< ptr diff                   */
+ typedef size_t                     ss_size_t;          /*!< size                       */
+#else /* ? _STLSOFT_NO_STD_INCLUDES */
+ typedef unsigned int               ss_size_t;
+ typedef int                        ss_ptrdiff_t;
+#endif /* !_STLSOFT_NO_STD_INCLUDES */
+typedef long                        ss_streampos_t;     /*!< streampos                  */
+typedef long                        ss_streamoff_t;     /*!< streamoff                  */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-typedef ss_char_a_t         char_a_t;           /*!< \brief Ansi char type          */
-typedef ss_char_w_t         char_w_t;           /*!< \brief Unicode char type       */
-typedef ss_int8_t           int8_t;             /*!< \brief 8-bit integer           */
-typedef ss_sint8_t          sint8_t;            /*!< \brief 8-bit signed integer    */
-typedef ss_uint8_t          uint8_t;            /*!< \brief 8-bit unsigned integer  */
-typedef ss_int16_t          int16_t;            /*!< \brief 16-bit integer          */
-typedef ss_sint16_t         sint16_t;           /*!< \brief 16-bit signed integer   */
-typedef ss_uint16_t         uint16_t;           /*!< \brief 16-bit unsigned integer */
-typedef ss_int32_t          int32_t;            /*!< \brief 32-bit integer          */
-typedef ss_sint32_t         sint32_t;           /*!< \brief 32-bit signed integer   */
-typedef ss_uint32_t         uint32_t;           /*!< \brief 32-bit unsigned integer */
+typedef ss_char_a_t                 char_a_t;           /*!< Ansi char type             */
+typedef ss_char_w_t                 char_w_t;           /*!< Unicode char type          */
+typedef ss_int8_t                   int8_t;             /*!< 8-bit integer              */
+typedef ss_sint8_t                  sint8_t;            /*!< 8-bit signed integer       */
+typedef ss_uint8_t                  uint8_t;            /*!< 8-bit unsigned integer     */
+typedef ss_int16_t                  int16_t;            /*!< 16-bit integer             */
+typedef ss_sint16_t                 sint16_t;           /*!< 16-bit signed integer      */
+typedef ss_uint16_t                 uint16_t;           /*!< 16-bit unsigned integer    */
+typedef ss_int32_t                  int32_t;            /*!< 32-bit integer             */
+typedef ss_sint32_t                 sint32_t;           /*!< 32-bit signed integer      */
+typedef ss_uint32_t                 uint32_t;           /*!< 32-bit unsigned integer    */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef ss_int64_t          int64_t;            /*!< \brief 64-bit integer          */
-typedef ss_sint64_t         sint64_t;           /*!< \brief 64-bit signed integer   */
-typedef ss_uint64_t         uint64_t;           /*!< \brief 64-bit unsigned integer */
+typedef ss_int64_t                  int64_t;            /*!< 64-bit integer             */
+typedef ss_sint64_t                 sint64_t;           /*!< 64-bit signed integer      */
+typedef ss_uint64_t                 uint64_t;           /*!< 64-bit unsigned integer    */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef ss_short_t          short_t;            /*!< \brief short integer           */
-typedef ss_int_t            int_t;              /*!< \brief integer                 */
-typedef ss_sint_t           sint_t;             /*!< \brief signed integer          */
-typedef ss_uint_t           uint_t;             /*!< \brief unsigned integer        */
-typedef ss_long_t           long_t;             /*!< \brief long integer            */
-typedef ss_byte_t           byte_t;             /*!< \brief Byte                    */
+typedef ss_short_t                  short_t;            /*!< short integer              */
+typedef ss_int_t                    int_t;              /*!< integer                    */
+typedef ss_sint_t                   sint_t;             /*!< signed integer             */
+typedef ss_uint_t                   uint_t;             /*!< unsigned integer           */
+typedef ss_long_t                   long_t;             /*!< long integer               */
+typedef ss_byte_t                   byte_t;             /*!< Byte                       */
 #if defined(__cplusplus)
-typedef ss_bool_t           bool_t;             /*!< \brief bool                    */
+typedef ss_bool_t                   bool_t;             /*!< bool                       */
 #endif /* __cplusplus */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-#if 0
-typedef ss_size_t           size_t;             /*!< \brief size                    */
-typedef ss_ptrdiff_t        ptrdiff_t;          /*!< \brief ptr diff                */
-#endif /* 0 */
-typedef ss_streampos_t      streampos_t;        /*!< \brief streampos               */
-typedef ss_streamoff_t      streamoff_t;        /*!< \brief streamoff               */
+typedef ss_streampos_t              streampos_t;        /*!< streampos                  */
+typedef ss_streamoff_t              streamoff_t;        /*!< streamoff                  */
 # endif /* compiler */
 #endif /* !_STLSOFT_NO_NAMESPACE */
 
@@ -1336,37 +1357,94 @@ typedef size_traits<sizeof(void*)>::unsigned_type   uintp_t;
 
 struct native_wchar_t_checker
 {
-    void check_for_native_wchar_t(char);
-    void check_for_native_wchar_t(ss_sint8_t);
-    void check_for_native_wchar_t(ss_uint8_t);
-    void check_for_native_wchar_t(ss_sint16_t);
-    void check_for_native_wchar_t(ss_uint16_t);
-    void check_for_native_wchar_t(ss_sint32_t);
-    void check_for_native_wchar_t(ss_uint32_t);
+    /* Character types. */
+
+    void check(char)
+    {}
+#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+    void check(wchar_t)
+    {}
+#endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+
+    /* Sized integer types. */
+
+    void check(ss_sint8_t)
+    {}
+    void check(ss_uint8_t)
+    {}
+    void check(ss_sint16_t)
+    {}
+    void check(ss_uint16_t)
+    {}
+    void check(ss_sint32_t)
+    {}
+    void check(ss_uint32_t)
+    {}
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    void check_for_native_wchar_t(ss_sint64_t);
-    void check_for_native_wchar_t(ss_uint64_t);
+    void check(ss_sint64_t)
+    {}
+    void check(ss_uint64_t)
+    {}
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    _MSC_VER == 1200
-    void check_for_native_wchar_t(signed char);
-    void check_for_native_wchar_t(unsigned char);
-    void check_for_native_wchar_t(signed short);
-    void check_for_native_wchar_t(unsigned short);
-    void check_for_native_wchar_t(signed int);
-    void check_for_native_wchar_t(unsigned int);
-    void check_for_native_wchar_t(signed long);
-    void check_for_native_wchar_t(unsigned long);
-#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
-    void check_for_native_wchar_t(signed int);
-    void check_for_native_wchar_t(unsigned int);
-#endif /* _MSC_VER == 1200 */
+    /* Natural integer types. */
 
-#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
-    void check_for_native_wchar_t(wchar_t);
-#endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+#ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+    void check(signed char)
+    {}
+    void check(unsigned char)
+    {}
+#endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+    void check(signed short)
+    {}
+    void check(unsigned short)
+    {}
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+    void check(signed int)
+    {}
+    void check(unsigned int)
+    {}
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+    void check(signed long)
+    {}
+    void check(unsigned long)
+    {}
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
+    ~native_wchar_t_checker()
+    {
+        /* Character types. */
+        check(char());
+        check(wchar_t());
+
+        /* Sized integer types. */
+        check(ss_sint8_t());
+        check(ss_uint8_t());
+        check(ss_sint16_t());
+        check(ss_uint16_t());
+        check(ss_sint32_t());
+        check(ss_uint32_t());
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+        check(ss_sint64_t());
+        check(ss_uint64_t());
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+        /* Natural integer types. */
+        check(static_cast<signed char>(0));
+        check(static_cast<unsigned char>(0));
+        check(static_cast<signed short>(0));
+        check(static_cast<unsigned short>(0));
+        check(static_cast<signed int>(0));
+        check(static_cast<unsigned int>(0));
+        check(static_cast<signed long>(0));
+        check(static_cast<unsigned long>(0));
+    }
 };
 
 struct stlsoft_size_checker
@@ -1676,27 +1754,18 @@ inline void throw_x(X const &x)
  *
  * Is it used as follows:
  *
- * \htmlonly
- * <code>
- * int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ai[20];
- * <br>
- * int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;32;
- * <br>
- * int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*pi&nbsp;&nbsp;&nbsp;=&nbsp;&i;
- * <br>
- * std::vector&lt;int&gt;&nbsp;&nbsp;vi;
- * <br>
- * <br>
- * size_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_ai&nbsp;&nbsp;=&nbsp;STLSOFT_NUM_ELEMENTS(ai);&nbsp;&nbsp;&nbsp;//&nbsp;Ok
- * <br>
- * size_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_i&nbsp;&nbsp;&nbsp;=&nbsp;STLSOFT_NUM_ELEMENTS(i);&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Error
- * <br>
- * size_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_pi&nbsp;&nbsp;=&nbsp;STLSOFT_NUM_ELEMENTS(pi);&nbsp;&nbsp;&nbsp;//&nbsp;Error
- * <br>
- * size_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_vi&nbsp;&nbsp;=&nbsp;STLSOFT_NUM_ELEMENTS(vi);&nbsp;&nbsp;&nbsp;//&nbsp;Error
- * <br>
- * </code>
- * \endhtmlonly
+\htmlonly
+<pre>
+int               ai[20];
+int               i     = 32;
+int               *pi   = &i;
+std::vector&lt;int&gt;  vi;
+size_t            s_ai  = STLSOFT_NUM_ELEMENTS(ai);   // Ok
+size_t            s_i   = STLSOFT_NUM_ELEMENTS(i);    // Error
+size_t            s_pi  = STLSOFT_NUM_ELEMENTS(pi);   // Error
+size_t            s_vi  = STLSOFT_NUM_ELEMENTS(vi);   // Error
+</pre>
+\endhtmlonly
  *
  * \note For most of the supported compilers, this macro will reject application to pointer
  * types, or to class types providing <code>operator []</code>. This helps to avoid the common
@@ -1900,15 +1969,12 @@ inline void stlsoft_destroy_instance_fn(T *p)
  *
  * For example, the following defines two distinct opaque types:
  *
- * \htmlonly
- * <code>
- * STLSOFT_GEN_OPAQUE(HThread)
- * <br>
- * STLSOFT_GEN_OPAQUE(HProcess)
- * <br>
- * </code>
- * <br>
- * \endhtmlonly
+\htmlonly
+<pre>
+STLSOFT_GEN_OPAQUE(HThread)
+STLSOFT_GEN_OPAQUE(HProcess)
+</pre>
+\endhtmlonly
  *
  * The two types are incompatible with each other, and with any other types (except that
  * they are both convertible to <code>void const *</code>
@@ -1936,25 +2002,17 @@ inline void stlsoft_destroy_instance_fn(T *p)
  *
  * Is it used as follows:
  *
- * \htmlonly
- * <code>
- * template&lt;typename T&gt;
- * <br>
- * class Thing
- * <br>
- * {
- * <br>
- * &nbsp;&nbsp;STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T);
- * <br>
- * <br>
- * private:
- * <br>
- * &nbsp;&nbsp;int m_member; // Thing&lt;T&gt;::m_member visible to T
- * <br>
- * };
- * <br>
- * </code>
- * \endhtmlonly
+\htmlonly
+<pre>
+template&lt;typename T&gt;
+class Thing
+{
+  STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T);
+private:
+  int m_member; // Thing&lt;T&gt;::m_member visible to T
+};
+</pre>
+\endhtmlonly
  *
  * \note This is contrary to the C++-98 standard. Section 7.1.5.3(2) notes: <i>"...within a class
  * template with a template type-parameter T, the declaration ["]friend class T;["] is ill-formed."</i>

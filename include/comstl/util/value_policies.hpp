@@ -5,7 +5,7 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 
 /** \file comstl/util/value_policies.hpp
  *
- * \brief [C++ only; requires COM] Value policies for various COM types.
- * (\ref group__library__utility__com "COM Utility" Library.)
+ * \brief [C++ only; requires COM] Value policies for various COM types
+ *   (\ref group__library__utility__com "COM Utility" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_VALUE_POLICIES
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     159
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     160
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

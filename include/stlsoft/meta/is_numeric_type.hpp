@@ -4,7 +4,7 @@
  * Purpose:     is_numeric_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     2nd January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/meta/is_numeric_type.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::is_numeric_type meta class
- *  template.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ *  template
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_NUMERIC_TYPE
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_NUMERIC_TYPE_MAJOR     1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_NUMERIC_TYPE_MINOR     0
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_NUMERIC_TYPE_MINOR     2
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_NUMERIC_TYPE_REVISION  1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_NUMERIC_TYPE_EDIT      4
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_NUMERIC_TYPE_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,28 +107,24 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, ss_uint32_t, 1, yes_
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, ss_sint64_t, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, ss_uint64_t, 1, yes_type)
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    _MSC_VER == 1200
+
+#ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, signed char, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, unsigned char, 1, yes_type)
+#endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, signed short, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, unsigned short, 1, yes_type)
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, signed int, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, unsigned int, 1, yes_type)
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, signed long, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, unsigned long, 1, yes_type)
-#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, signed int, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, unsigned int, 1, yes_type)
-#endif /* _MSC_VER == 1200 */
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    _MSC_VER > 1200
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, signed long, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, unsigned long, 1, yes_type)
-#endif /* _MSC_VER */
 
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, float, 1, yes_type)
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_numeric_type, double, 1, yes_type)

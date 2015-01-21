@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/is_empty.hpp
+ * File:        stlsoft/shims/logical/is_empty.hpp
  *
- * Purpose:     Contains the is_empty access shim.
+ * Purpose:     Contains the is_empty attribute shim.
  *
  * Created:     18th December 2006
- * Updated:     18th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,21 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/shims/access/is_empty.hpp
+/** \file stlsoft/shims/logical/is_empty.hpp
  *
  * \brief [C++] Primary include file for is_empty collection attribute shim
- *   for standard and STLSoft types.
- *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
+ *   for standard and STLSoft types
+ *   (\ref group__concept__shim__collection_logical__is_empty "is_empty Collection Logical Shim").
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_IS_EMPTY
-#define STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_IS_EMPTY
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY
+#define STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MAJOR     1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MINOR     0
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_REVISION  1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_EDIT      2
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_MAJOR       2
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_MINOR       0
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_REVISION    1
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,12 +62,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_STD_HPP_CONTAINER
-# include <stlsoft/shims/attribute/is_empty/std/container.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_STD_HPP_CONTAINER */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER
+# include <stlsoft/shims/logical/is_empty/std/container.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_IS_EMPTY */
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY */
 
 /* ////////////////////////////////////////////////////////////////////// */

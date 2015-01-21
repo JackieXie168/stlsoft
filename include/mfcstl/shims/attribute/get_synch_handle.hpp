@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     24th December 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file mfcstl/shims/attribute/get_synch_handle.hpp
  *
  * \brief [C++ only] Definition of stlsoft::get_synch_handle attribute shim
- *   functions for MFC synchronisation types.
- * (\ref group__library__shims__synch_handle_attribute "Synchronisation Handle Attribute Shims".)
+ *   functions for MFC synchronisation types
+ *   (\ref group__library__shims__synch_handle_attribute "Synchronisation Handle Attribute Shims").
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       0
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        2
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,22 +94,60 @@ namespace winstl_project
  */
 
 /** \brief Overload of the WinSTL get_synch_handle() shim for MFC's
- *    CSyncObject.
+ *    CEvent.
  *
  * \ingroup group__library__shims__synch_handle_attribute
  *
- * \param so The synchronisation object
+ * \param ev The event instance
  *
  * \retval The handle \c h
  *
  * \remarks We cannot simply define the shim overload in terms of
- *    <code>CSyncObject</code> for two reasons. First, the template
+ *    <code>CEvent</code> for two reasons. First, the template
+ *    mechanism requires a precise shim when the
+ *   
+ */
+inline HANDLE get_synch_handle(CEvent &ev)
+{
+    return static_cast<HANDLE>(ev);
+}
+
+/** \brief Overload of the WinSTL get_synch_handle() shim for MFC's
+ *    CMutex.
+ *
+ * \ingroup group__library__shims__synch_handle_attribute
+ *
+ * \param mx The mutex instance
+ *
+ * \retval The handle \c h
+ *
+ * \remarks We cannot simply define the shim overload in terms of
+ *    <code>CMutex</code> for two reasons. First, the template
  *    mechanism requires a precise shim when the
  *   
  */
 inline HANDLE get_synch_handle(CMutex &mx)
 {
     return static_cast<HANDLE>(mx);
+}
+
+/** \brief Overload of the WinSTL get_synch_handle() shim for MFC's
+ *    CSemaphore.
+ *
+ * \ingroup group__library__shims__synch_handle_attribute
+ *
+ * \param sem The semaphore instance
+ *
+ * \retval The handle \c h
+ *
+ * \remarks We cannot simply define the shim overload in terms of
+ *    <code>CSemaphore</code> for two reasons. First, the template
+ *    mechanism requires a precise shim when the
+ *   
+ */
+inline HANDLE get_synch_handle(CSemaphore &sem)
+{
+    return static_cast<HANDLE>(sem);
 }
 
 ////////////////////////////////////////////////////////////////////////////

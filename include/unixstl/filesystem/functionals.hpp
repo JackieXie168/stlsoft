@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     6th January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file unixstl/filesystem/functionals.hpp
  *
  * \brief [C++ only] Definition of filesystem function classes, including
- *  unixstl::path_compare and unixstl::path_exists.
- * (\ref group__library__file_system "File System" Library.)
+ *  unixstl::path_compare and unixstl::path_exists
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     43
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,9 +106,9 @@ namespace unixstl_project
  * Classes
  */
 
-/** \brief Function object that compares two file-system paths
+/** \brief A function class that compares two file-system paths
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template <ss_typename_param_k C>
 // [[synesis:class:function-class:binary-predicate: path_compare<T<C>>]]
@@ -173,7 +173,7 @@ private:
 
 /** \brief Predicate that indicates whether a given path exists
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \note Does not expand environment variables in the argument passed to
  * the function call operator

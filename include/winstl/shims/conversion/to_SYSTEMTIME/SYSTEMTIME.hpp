@@ -4,11 +4,11 @@
  * Purpose:     winstl::to_SYSTEMTIME(SYSTEMTIME const&) overload.
  *
  * Created:     24th May 2002
- * Updated:     15th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file winstl/shims/conversion/to_SYSTEMTIME/SYSTEMTIME.hpp
  *
  * \brief [C++] Definition of the winstl::to_SYSTEMTIME(SYSTEMTIME const&)
- *   overload.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   overload
+ *   (\ref group__concept__shim__time_conversion__to_SYSTEMTIME "winstl::to_SYSTEMTIME" Time Conversion Shim).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_REVISION   1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_EDIT       1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_SYSTEMTIME_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,13 +89,19 @@ namespace winstl_project
  * Functions
  */
 
-/** 
+/** \brief Degenerate case of the \ref group__concept__shim__time_conversion__to_SYSTEMTIME.
  *
+ * \ingroup group__concept__shim__time_conversion__to_SYSTEMTIME
  *
+ * \param rhs An instance of type <code>SYSTEMTIME</code>
+ * \return An instance of type <code>SYSTEMTIME</code>
+ *
+ * \exception &lt;none&gt; No error checking is performed, and no exception
+ *   can be thrown.
  */
-inline SYSTEMTIME const &to_SYSTEMTIME(SYSTEMTIME const &st)
+inline SYSTEMTIME const &to_SYSTEMTIME(SYSTEMTIME const &rhs)
 {
-    return st;
+    return rhs;
 }
 
 ////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     File-system related functions and predicates.
  *
  * Created:     19th January 2002
- * Updated:     5th January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
  *
  * \brief [C++ only] Definition of the winstl::path_compare, 
  *  winstl::path_compare_env, winstl::path_exists, winstl::path_exists_env
- *  and winstl::path_contains_file function classes.
- * (\ref group__library__file_system "File System" Library.)
+ *  and winstl::path_contains_file function classes
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FUNCTIONALS
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      76
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -217,7 +217,7 @@ inline bool are_paths_equal_envx_(C const *s1, C const *s2, ws_bool_t bExpandEnv
 
 /** \brief Binary predicate that compares two file-system paths.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \note Does not expand environment variables in the argument passed to
  * the function call operator
@@ -272,7 +272,7 @@ public:
 /** \brief Binary predicate object that compares two file-system paths,
  * after expanding environment variables in the compared path strings.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \note Does not expand environment variables in the argument passed to
  * the function call operator
@@ -326,7 +326,7 @@ public:
 
 /** \brief Unary predicate that indicates whether a given path exists.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \note Does not expand environment variables in the argument passed to
  * the function call operator
@@ -372,7 +372,7 @@ public:
 /** \brief Unary predicate that indicates whether a given path exists, after
  * expanding environment variables in the path string.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \note Expands environment variables in the argument passed to
  * the function call operator
@@ -419,18 +419,18 @@ public:
 /** \brief Unary predicate that searches for the existance of a given file
  *  in the directory presented in its function call argument.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param A The argument type; defaults to C const*
  */
 
-/** \brief \note The file-name passed to the constructor is retained as a pointer,
- *  rather than an instance of a string class. Consequently, the behaviour
- *  is undefined if the memory pointed to by the constructor argument does
- *  not persist for the lifetime of the function object.
+/** \brief \note The file-name passed to the constructor is retained as a
+ *    pointer, rather than an instance of a string class. Consequently, the
+ *    behaviour is undefined if the memory pointed to by the constructor
+ *    argument does not persist for the lifetime of the function object.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A = C const *

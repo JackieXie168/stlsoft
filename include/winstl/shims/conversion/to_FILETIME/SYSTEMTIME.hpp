@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_FILETIME/FILETIME.hpp
+ * File:        winstl/shims/conversion/to_FILETIME/SYSTEMTIME.hpp
  *
  * Purpose:     winstl::to_FILETIME(SYSTEMTIME const&) overload.
  *
  * Created:     24th May 2002
- * Updated:     24th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,11 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/shims/conversion/to_FILETIME/FILETIME.hpp
+/** \file winstl/shims/conversion/to_FILETIME/SYSTEMTIME.hpp
  *
  * \brief [C++] Definition of the winstl::to_FILETIME(SYSTEMTIME const&)
- *   overload.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   overload
+ *   (\ref group__concept__shim__time_conversion__to_FILETIME "winstl::to_FILETIME" Time Conversion Shim).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_MINOR    0
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_REVISION 3
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_EDIT     3
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_REVISION 4
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,13 +96,20 @@ namespace winstl_project
  * Functions
  */
 
-/** Conversion shim
+/** \brief Converts an instance of SYSTEMTIME to an instance of FILETIME,
+ *    using the Windows API function <code>SystemTimeToFileTime()</code>.
  *
- * \param rhs A date SYSTEMTIME 
- * \return An instance of 
+ * \ingroup group__concept__shim__time_conversion__to_FILETIME
  *
+ * \param rhs A valid date, of type <code>SYSTEMTIME</code>
+ * \return A valid date, of type <code>FILETIME</code>
+ *
+ * \exception winstl::conversion_error If the conversion fails, e.g. the
+ *   <code>SYSTEMTIME</code> instance does not contain a valid date. When
+ *   compiling absent exception support, a zero-initialised instance of
+ *   <code>FILETIME</code> is returned.
  */
-inline FILETIME to_FILETIME(SYSTEMTIME const &rhs)
+inline const FILETIME to_FILETIME(SYSTEMTIME const &rhs)
 {
     FILETIME  st;
 

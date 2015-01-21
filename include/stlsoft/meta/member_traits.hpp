@@ -5,7 +5,7 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 
 /** \file stlsoft/meta/member_traits.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::member_traits component.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ * \brief [C++ only] Definition of the stlsoft::member_traits component
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 // An amalgamation of meta traits that's been pending reification for too long.
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        32
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

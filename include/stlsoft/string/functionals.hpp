@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/functionals.hpp
  *
- * Purpose:     String function objects
+ * Purpose:     String function classes
  *
  * Created:     22nd April 2005
- * Updated:     2nd January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/string/functionals.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::quoter and
- *  stlsoft::string_begins_with_function function class templates.
- * (\ref group__library__string "String" Library.)
+ *  stlsoft::string_begins_with_function function class templates
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_FUNCTIONALS
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        26
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ namespace stlsoft
  * Function classes
  */
 
-/** \brief Unary function object that returns a quoted form of its argument, if
+/** \brief Unary function class that returns a quoted form of its argument, if
  * the argument contains spaces
  *
  * \ingroup group__library__string

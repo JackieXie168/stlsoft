@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class using char-sets.
  *
  * Created:     17th October 2005
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/string/charset_tokeniser.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::charset_tokeniser class
- *  template.
- * (\ref group__library__string "String" Library.)
+ *  template
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHARSET_TOKENISER
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      20
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 /*
 [Incompatibilies-start]
 STLSOFT_COMPILER_IS_DMC:  __DMC__<0x0839
-STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -74,6 +74,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# error stlsoft/string/charset_tokeniser.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
+
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER
 # include <stlsoft/string/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER */

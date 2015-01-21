@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/string/static_string.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::basic_static_string class
- *  template.
- * (\ref group__library__string "String" Library.)
+ *  template
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     182
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     183
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

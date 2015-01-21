@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st October 2002
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file mfcstl/collections/cstring_adaptors.hpp
  *
  * \brief [C++ only] Definition of the mfcstl::CString_cadaptor and
- *   mfcstl::CString_iadaptor class templates.
- * (\ref group__library__collections "Collections" Library.)
+ *   mfcstl::CString_iadaptor class templates
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS
@@ -53,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    8
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        79
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

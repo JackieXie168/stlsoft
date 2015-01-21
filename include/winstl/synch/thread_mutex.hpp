@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on Windows CRITICAL_SECTION.
  *
  * Created:     17th December 1996
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/synch/thread_mutex.hpp
  *
- * \brief [C++ only] Definition of winstl::thread_mutex class.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of winstl::thread_mutex class
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_THREAD_MUTEX
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MINOR     0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      47
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

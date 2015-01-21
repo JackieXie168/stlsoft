@@ -1,5 +1,5 @@
 
-// Updated: 13th September 2006
+// Updated: 13th January 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS)
 # error This file cannot be directly included, and should only be included within stlsoft/util/printf_traits.hpp
@@ -231,7 +231,6 @@ namespace unittest
 				bSuccess = false;
 			}
 
-#ifdef STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 			// 16-bit signed
 			cch = sprintf(sz, printf_traits<ss_sint16_t>::format_a(), limit_traits<ss_sint16_t>::minimum());
 			if(printf_traits<ss_sint16_t>::size_min != 1 + cch)
@@ -257,7 +256,6 @@ namespace unittest
 				r->report("traits (16-bit, unsigned) format invalid", __LINE__);
 				bSuccess = false;
 			}
-#endif // STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
 			// int
 			cch = sprintf(sz, printf_traits<int>::format_a(), limit_traits<int>::minimum());
@@ -285,7 +283,6 @@ namespace unittest
 				bSuccess = false;
 			}
 
-#ifdef STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 			// 32-bit signed
 			cch = sprintf(sz, printf_traits<ss_sint32_t>::format_a(), limit_traits<ss_sint32_t>::minimum());
 			if(printf_traits<ss_sint32_t>::size_min != 1 + cch)
@@ -311,7 +308,6 @@ namespace unittest
 				r->report("traits (32-bit, unsigned) format invalid", __LINE__);
 				bSuccess = false;
 			}
-#endif // STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 			// 64-bit signed

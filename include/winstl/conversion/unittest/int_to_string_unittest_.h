@@ -1,4 +1,6 @@
 
+// Updated: 13th January 2007
+
 #if !defined(WINSTL_INCL_WINSTL_CONVERSION_HPP_INT_TO_STRING)
 # error This file cannot be directly included, and should only be included within winstl/conversion/int_to_string.hpp
 #endif /* !WINSTL_INCL_WINSTL_CONVERSION_HPP_INT_TO_STRING */

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the \c unrecoverable exception class.
  *
  * Created:     14th October 2004
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/error/unrecoverable.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::unrecoverable
- *   exception class.
- * (\ref group__library__error "Error" Library.)
+ *   exception class
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_UNRECOVERABLE
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MINOR      0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   2
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       25
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

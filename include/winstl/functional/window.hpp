@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/functional/window.hpp
  *
- * Purpose:     Window function objects and predicates.
+ * Purpose:     Window function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/functional/window.hpp
  *
- * \brief [C++ only] Window function objects and predicates.
- * (\ref group__library__functional "Functional" Library.)
+ * \brief [C++ only] Window function classes and predicates
+ *   (\ref group__library__functional "Functional" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FUNCTIONAL_HPP_WINDOW
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      0
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       33
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

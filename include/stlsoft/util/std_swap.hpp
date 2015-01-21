@@ -4,7 +4,7 @@
  * Purpose:     Contains the std_swap() function.
  *
  * Created:     27th June 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/util/std_swap.hpp
  *
- * \brief [C++ only] Swap utility functions.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Swap utility functions
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     15
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

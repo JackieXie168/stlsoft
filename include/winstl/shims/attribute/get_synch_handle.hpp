@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     3rd July 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/shims/attribute/get_synch_handle.hpp
  *
  * \brief [C++ only] Definition of stlsoft::get_synch_handle attribute shim
- *   functions for Win32 synchronisation types.
- * (\ref group__library__shims__synch_handle_attribute "Synchronisation Handle Attribute Shims".)
+ *   functions for Win32 synchronisation types
+ *   (\ref group__library__shims__synch_handle_attribute "Synchronisation Handle Attribute Shims").
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        19
+# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

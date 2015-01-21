@@ -4,14 +4,14 @@
  * Purpose:     TOOLHELP sequence_base class template.
  *
  * Created:     21st May 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2005-2007, Pablo Aguilar
- * Copyright (c) 2006, Matthew Wilson
+ * Copyright (c) 2006-2007, Matthew Wilson
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,8 +45,8 @@
 /** \file winstl/toolhelp/sequence_base.hpp
  *
  * \brief [C++ only] Definition of the
- *  \link winstl::th_sequence_base th_sequence_base\endlink class.
- * (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ *  \link winstl::th_sequence_base th_sequence_base\endlink class
+ *   (\ref group__library__windows_toolhelp "Windows ToolHelp" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  3
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      8
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,9 +69,9 @@
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-#ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION
-# include <winstl/toolhelp/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_EXCEPTION */
+#ifndef WINSTL_INCL_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION
+# include <winstl/toolhelp/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_TOOLHELP_ERROR_HPP_SEQUENCE_EXCEPTION */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */

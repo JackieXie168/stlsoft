@@ -1,5 +1,5 @@
 
-// Updated: 27th December 2006
+// Updated: 14th January 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE)
 # error This file cannot be directly included, and should only be included within stlsoft/smartptr/scoped_handle.hpp
@@ -75,7 +75,12 @@ namespace unittest
 			}
 
 			{
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER < 1200
+				scoped_handle<short>	sh1(12, (void (STLSOFT_CDECL *)(short ))test_stlsoft_scoped_handle__close_short_cdecl);
+#else /* ? compiler */
 				scoped_handle<short>	sh1(12, test_stlsoft_scoped_handle__close_short_cdecl);
+#endif /* compiler */
 
 				if(12 != stlsoft_ns_qual(get_handle)(sh1))
 				{
@@ -96,7 +101,12 @@ namespace unittest
 			}
 
 			{
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER < 1200
+				scoped_handle<short>	sh1(14, (void (STLSOFT_CDECL *)(short *))test_stlsoft_scoped_handle__close_short_cdecl_indirect);
+#else /* ? compiler */
 				scoped_handle<short>	sh1(14, test_stlsoft_scoped_handle__close_short_cdecl_indirect);
+#endif /* compiler */
 
 				if(14 != stlsoft_ns_qual(get_handle)(sh1))
 				{
@@ -118,7 +128,12 @@ namespace unittest
 			}
 
 			{
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER < 1200
+				scoped_handle<long>    sh1(22, (void (STLSOFT_FASTCALL *)(long ))test_stlsoft_scoped_handle__close_long_fastcall);
+#else /* ? compiler */
 				scoped_handle<long>    sh1(22, test_stlsoft_scoped_handle__close_long_fastcall);
+#endif /* compiler */
 
 				if(22 != stlsoft_ns_qual(get_handle)(sh1))
 				{
@@ -139,7 +154,12 @@ namespace unittest
 			}
 
 			{
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER < 1200
+				scoped_handle<long>    sh1(24, (void (STLSOFT_FASTCALL *)(long *))test_stlsoft_scoped_handle__close_long_fastcall_indirect);
+#else /* ? compiler */
 				scoped_handle<long>    sh1(24, test_stlsoft_scoped_handle__close_long_fastcall_indirect);
+#endif /* compiler */
 
 				if(24 != stlsoft_ns_qual(get_handle)(sh1))
 				{
@@ -162,7 +182,12 @@ namespace unittest
 			}
 
 			{
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER < 1200
+				scoped_handle<unsigned>    sh1(32, (void (STLSOFT_STDCALL *)(unsigned ))test_stlsoft_scoped_handle__close_unsigned_stdcall);
+#else /* ? compiler */
 				scoped_handle<unsigned>    sh1(32, test_stlsoft_scoped_handle__close_unsigned_stdcall);
+#endif /* compiler */
 
 				if(32 != stlsoft_ns_qual(get_handle)(sh1))
 				{
@@ -183,7 +208,12 @@ namespace unittest
 			}
 
 			{
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER < 1200
+				scoped_handle<unsigned>    sh1(34, (void (STLSOFT_STDCALL *)(unsigned *))test_stlsoft_scoped_handle__close_unsigned_stdcall_indirect);
+#else /* ? compiler */
 				scoped_handle<unsigned>    sh1(34, test_stlsoft_scoped_handle__close_unsigned_stdcall_indirect);
+#endif /* compiler */
 
 				if(34 != stlsoft_ns_qual(get_handle)(sh1))
 				{

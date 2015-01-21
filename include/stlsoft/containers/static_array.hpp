@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -44,8 +44,8 @@
  *
  * \brief [C++ only] Definition of the stlsoft::static_array_1d,
  *    stlsoft::static_array_2d, stlsoft::static_array_3d, and
- *    stlsoft::static_array_4d multidimensional array class templates.
- * (\ref group__library__containers "Containers" Library.)
+ *    stlsoft::static_array_4d multidimensional array class templates
+ *   (\ref group__library__containers "Containers" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      177
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      179
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,6 +67,7 @@
 STLSOFT_COMPILER_IS_BORLAND:  __BORLANDC__<0x0564
 STLSOFT_COMPILER_IS_DMC:  __DMC__<0x0844
 STLSOFT_COMPILER_IS_GCC:  __GNUC__<3
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -81,13 +82,16 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND) && \
     __BORLANDC__ < 0x0560
-# error stlsoft/static_array.hpp is not compatible with Borland C/C++ prior to 5.6
+# error stlsoft/containers/static_array.hpp is not compatible with Borland C/C++ prior to 5.6
 #elif defined(STLSOFT_COMPILER_IS_DMC) && \
     __DMC__ < 0x0844
-# error stlsoft/static_array.hpp is not compatible with Digital Mars C/C++ 8.43 or earlier
+# error stlsoft/containers/static_array.hpp is not compatible with Digital Mars C/C++ 8.43 or earlier
 #elif defined(STLSOFT_COMPILER_IS_GCC) && \
       __GNUC__ < 3
-# error stlsoft/static_array.hpp is not compatible with GNU C/C++ prior to 3.0
+# error stlsoft/containers/static_array.hpp is not compatible with GNU C/C++ prior to 3.0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# error stlsoft/containers/static_array.hpp is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR
@@ -106,7 +110,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    defined(__STLSOFT_CF_STL_IS_STLPORT)
+    defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
 # include <string>                      // for std::string - sigh!
 #endif /* compiler */
 #include <stdexcept>                    // for std::out_of_range

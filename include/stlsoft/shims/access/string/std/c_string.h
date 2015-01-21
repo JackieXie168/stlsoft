@@ -5,11 +5,11 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2006
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,8 +42,8 @@
 /** \file stlsoft/shims/access/string/std/c_string.h
  *
  * \brief [C, C++] Definition of the string access shims for C-style
- *   strings.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   strings
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MAJOR       4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MINOR       0
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        85
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_REVISION    3
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ inline ss_char_a_t const *c_str_data(ss_char_a_t const *s)
  */
 STLSOFT_INLINE ss_char_w_t const *c_str_data_w(ss_char_w_t const *s)
 {
-    return (NULL != s) ? s : L"";
+    return (NULL != s) ? s : stlsoft_static_cast(ss_char_w_t const*, L"");
 }
 
 #ifdef __cplusplus
@@ -436,7 +436,7 @@ inline ss_char_a_t const *c_str_ptr(ss_char_a_t const *s)
  */
 STLSOFT_INLINE ss_char_w_t const *c_str_ptr_w(ss_char_w_t const *s)
 {
-    return (NULL != s) ? s : L"";
+    return (NULL != s) ? s : stlsoft_static_cast(ss_char_w_t const*, L"");
 }
 
 #ifdef __cplusplus
@@ -862,8 +862,9 @@ inline cannot_use_untyped_0_or_NULL_with_shims c_str_size(int deny_literal_NULL)
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/c_string_unittest_.h"
@@ -872,7 +873,7 @@ inline cannot_use_untyped_0_or_NULL_with_shims c_str_size(int deny_literal_NULL)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

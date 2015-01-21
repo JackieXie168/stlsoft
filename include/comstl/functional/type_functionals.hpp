@@ -4,11 +4,11 @@
  * Purpose:     Type-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file comstl/functional/type_functionals.hpp
  *
  * \brief [C++ only] Function classes for releasing instances of
- *   COM-specific resource types.
- * (\ref group__library__functional "Functional" Library.)
+ *   COM-specific resource types
+ *   (\ref group__library__functional "Functional" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MAJOR    4
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MINOR    0
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_REVISION 1
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     60
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ namespace comstl_project
  *
  * \ingroup group__library__functional
  *
- * This function object closes BSTRs by applying
+ * This function class closes BSTRs by applying
  * SysFreeString() to them
  */
 // [[synesis:class:unary-functor: BSTR_close]]
@@ -124,7 +124,7 @@ struct BSTR_close
  *
  * \ingroup group__library__functional
  *
- * This function object closes OLE strings (LPOLESTR) by returning
+ * This function class closes OLE strings (LPOLESTR) by returning
  * their memory back to the COM task allocator
  */
 // [[synesis:class:unary-functor: olestring_close]]
@@ -144,7 +144,7 @@ struct olestring_close
  *
  * \ingroup group__library__functional
  *
- * This function object closes task memory blocks by returning
+ * This function class closes task memory blocks by returning
  * their memory back to the COM task allocator
  */
 // [[synesis:class:unary-functor: task_memory_close]]
@@ -164,7 +164,7 @@ struct task_memory_close
  *
  * \ingroup group__library__functional
  *
- * This function object closes VARIANTs by applying
+ * This function class closes VARIANTs by applying
  * VariantClear() to them
  */
 // [[synesis:class:unary-functor: VARIANT_close]]

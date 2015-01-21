@@ -4,7 +4,7 @@
  * Purpose:     Process functions.
  *
  * Created:     12th March 2006
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/process/functions.h
  *
- * \brief [C, C++] Process control functions.
- * (\ref group__library__system "System" Library.)
+ * \brief [C, C++] Process control functions
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_PROCESS_H_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     9
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -101,7 +101,7 @@ STLSOFT_INLINE BOOL winstl__CreateProcessFEA(ws_char_a_t const *cmdLine, DWORD f
 
     STLSOFT_NS_GLOBAL(memset)(&si, 0, sizeof(si));
 
-    b   =   STLSOFT_NS_GLOBAL(CreateProcessA)(NULL, stlsoft_const_cast(ws_char_a_t*, cmdLine), NULL, NULL, false, flags, stlsoft_const_cast(void*, envBlock), NULL, &si, &pi);
+    b   =   STLSOFT_NS_GLOBAL(CreateProcessA)(NULL, stlsoft_const_cast(ws_char_a_t*, cmdLine), NULL, NULL, FALSE, flags, stlsoft_const_cast(void*, envBlock), NULL, &si, &pi);
 
     if(b)
     {
@@ -129,6 +129,15 @@ STLSOFT_INLINE BOOL winstl__CreateProcess0A(ws_char_a_t const *cmdLine)
 {
     return winstl__CreateProcessEA(cmdLine, NULL);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

@@ -5,7 +5,7 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -46,8 +46,8 @@
  * \brief [C++ only] Definition of the stlsoft::do_construction,
  *    stlsoft::do_construction_always, stlsoft::do_construction_never and
  *    stlsoft::do_initialisation_never construction policy classes for
- *    the multidimensional arrays.
- * (\ref group__library__containers "Containers" Library.)
+ *    the multidimensional arrays
+ *   (\ref group__library__containers "Containers" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        128
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        129
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

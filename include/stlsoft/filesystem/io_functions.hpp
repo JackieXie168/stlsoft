@@ -4,7 +4,7 @@
  * Purpose:     File-system functions.
  *
  * Created:     2nd January 2007
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/filesystem/io_functions.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::read_line() function
- *   template.
- * (\ref group__library__file_system "File System" Library.)
+ *   template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       2
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

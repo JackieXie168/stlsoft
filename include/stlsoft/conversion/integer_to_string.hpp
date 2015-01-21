@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     2nd January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/conversion/integer_to_string.hpp
  *
- * \brief [C++ only] Very efficient integer to string conversion functions.
- * (\ref group__library__conversion "Conversion" Library.)
+ * \brief [C++ only] Very efficient integer to string conversion functions
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      74
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ namespace stlsoft
  */
 
 #ifdef __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
-# define STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+# error __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT is no longer supported. Instead, define STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
 #endif /* __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -493,7 +493,7 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, ss_uint64_t const &i
 }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 /** \brief Highly efficient conversion of integer to string.
  *
  * \ingroup group__library__conversion
@@ -513,10 +513,10 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned int i)
 {
     return unsigned_integer_to_string(buf, cchBuf, i);
 }
-#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 
-#ifdef STLSOFT_CF_LONG_DISTINCT_TYPE
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 /** \brief Highly efficient conversion of integer to string.
  *
  * \ingroup group__library__conversion
@@ -536,7 +536,7 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned long i)
 {
     return unsigned_integer_to_string(buf, cchBuf, i);
 }
-#endif /* !STLSOFT_CF_LONG_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
@@ -669,7 +669,7 @@ inline C const *integer_to_string(C (&buf)[N], ss_uint64_t const &i)
 }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 /** \brief Highly efficient conversion of integer to string.
  *
  * \ingroup group__library__conversion
@@ -693,9 +693,9 @@ inline C const *integer_to_string(C (&buf)[N], unsigned int i)
 {
     return signed_integer_to_string(buf, N, i);
 }
-#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
-#ifdef STLSOFT_CF_LONG_DISTINCT_TYPE
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 /** \brief Highly efficient conversion of integer to string.
  *
  * \ingroup group__library__conversion
@@ -719,7 +719,7 @@ inline C const *integer_to_string(C (&buf)[N], unsigned long i)
 {
     return signed_integer_to_string(buf, N, i);
 }
-#endif /* !STLSOFT_CF_LONG_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 #endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
@@ -830,7 +830,7 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, ss_uint64_t const &i
 }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 /** \brief Highly efficient conversion of integer to string.
  *
  * \ingroup group__library__conversion
@@ -850,9 +850,9 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned int i, ss_s
 {
     return unsigned_integer_to_string(buf, cchBuf, i, cchRes);
 }
-#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
-#ifdef STLSOFT_CF_LONG_DISTINCT_TYPE
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 /** \brief Highly efficient conversion of integer to string.
  *
  * \ingroup group__library__conversion
@@ -872,7 +872,7 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned long i, ss_
 {
     return unsigned_integer_to_string(buf, cchBuf, i, cchRes);
 }
-#endif /* !STLSOFT_CF_LONG_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 
 ////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/error/error_desc.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_error_desc class
- *  template.
- * (\ref group__library__error "Error" Library.)
+ *  template
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_ERROR_DESC
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        69
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

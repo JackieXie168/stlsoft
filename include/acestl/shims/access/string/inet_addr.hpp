@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file acestl/shims/access/string/inet_addr.hpp
  *
  * \brief [C++] Definition of the string access shims for
- *   <code>ACE_INET_Addr</code>.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   <code>ACE_INET_Addr</code>
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   1
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       31
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -325,7 +325,7 @@ inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_INET_Addr
+/** \brief The \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_INET_Addr.
  *
  * \ingroup group__concept__shim__stream_insertion
  *

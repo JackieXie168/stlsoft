@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Thanks:      To Brad Cox, for helping out in testing and fixing the
  *              implementation for MAC OSX (Intel).
@@ -43,8 +43,8 @@
 
 /** \file unixstl/synch/atomic_functions.h
  *
- * \brief [C++ only] Definition of the atomic functions.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of the atomic functions
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      193
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ typedef us_sint32_t                 atomic_int_t;
 typedef atomic_t                    atomic_int_t;
 # endif /* arch */
 #elif defined(UNIXSTL_OS_IS_MACOSX)
-typedef ::int32_t                   atomic_int_t;
+typedef STLSOFT_NS_GLOBAL(int32_t)  atomic_int_t;
 #else /* ? architecture */
 typedef us_sint32_t                 atomic_int_t;
 #endif /* architecture */
@@ -216,19 +216,19 @@ typedef us_sint32_t                 atomic_int_t;
 #elif defined(_WIN32)
 # if !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
 
-inline atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
 }
 #  define UNIXSTL_HAS_ATOMIC_PREINCREMENT
 
-inline atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
 }
 #  define UNIXSTL_HAS_ATOMIC_PREDECREMENT
 
-inline atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
 {
     atomic_int_t pre = *pl;
 
@@ -238,7 +238,7 @@ inline atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_POSTINCREMENT
 
-inline atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
 {
     atomic_int_t pre = *pl;
 
@@ -248,13 +248,13 @@ inline atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_POSTDECREMENT
 
-inline void atomic_increment(atomic_int_t volatile *pl)
+STLSOFT_INLINE void atomic_increment(atomic_int_t volatile *pl)
 {
     STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
 }
 #  define UNIXSTL_HAS_ATOMIC_INCREMENT
 
-inline void atomic_decrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE void atomic_decrement(atomic_int_t volatile *pl)
 {
     STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
 }
@@ -264,7 +264,7 @@ inline void atomic_decrement(atomic_int_t volatile *pl)
 
 /* NOTE: We allow atomic_write(), since on almost all platforms this'll be fine */
 
-inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
+STLSOFT_INLINE atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
 {
     return stlsoft_static_cast(atomic_int_t, STLSOFT_NS_GLOBAL(InterlockedExchange)(stlsoft_c_cast(LPLONG, pv), n));
 }
@@ -272,15 +272,15 @@ inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
 
 # if !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
 
-inline atomic_int_t atomic_read(atomic_int_t volatile *pv)
+STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile *pv)
 {
     return *pv;
 }
 #  define UNIXSTL_HAS_ATOMIC_READ
 
-inline atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n);
+/* STLSOFT_INLINE */ atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n);
 
-inline atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
+STLSOFT_INLINE atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
 {
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
 }
@@ -295,7 +295,7 @@ inline atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_read(atomic_int_t volatile *pv)
+STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile *pv)
 {
     /* STLSOFT_NS_GLOBAL(mb)(); */
 
@@ -307,7 +307,7 @@ inline atomic_int_t atomic_read(atomic_int_t volatile *pv)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
+STLSOFT_INLINE atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
 {
     atomic_int_t    oldval;
 
@@ -343,9 +343,9 @@ inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
 {
-    return STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(const_cast<atomic_int_t*>(pl));
+    return STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
 # define UNIXSTL_HAS_ATOMIC_PREINCREMENT
 
@@ -353,9 +353,9 @@ inline atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
 {
-    return STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(const_cast<atomic_int_t*>(pl));
+    return STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
 # define UNIXSTL_HAS_ATOMIC_PREDECREMENT
 
@@ -363,9 +363,9 @@ inline atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
 {
-    return STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(const_cast<atomic_int_t*>(pl)) - 1;
+    return STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl)) - 1;
 }
 # define UNIXSTL_HAS_ATOMIC_POSTINCREMENT
 
@@ -373,9 +373,9 @@ inline atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
 {
-    return STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(const_cast<atomic_int_t*>(pl)) + 1;
+    return STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl)) + 1;
 }
 # define UNIXSTL_HAS_ATOMIC_POSTDECREMENT
 
@@ -383,9 +383,9 @@ inline atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
  *
  * \ingroup group__library__synch
  */
-inline void atomic_increment(atomic_int_t volatile *pl)
+STLSOFT_INLINE void atomic_increment(atomic_int_t volatile *pl)
 {
-    STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(const_cast<atomic_int_t*>(pl));
+    STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
 # define UNIXSTL_HAS_ATOMIC_INCREMENT
 
@@ -393,9 +393,9 @@ inline void atomic_increment(atomic_int_t volatile *pl)
  *
  * \ingroup group__library__synch
  */
-inline void atomic_decrement(atomic_int_t volatile *pl)
+STLSOFT_INLINE void atomic_decrement(atomic_int_t volatile *pl)
 {
-    STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(const_cast<atomic_int_t*>(pl));
+    STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
 # define UNIXSTL_HAS_ATOMIC_DECREMENT
 
@@ -408,13 +408,13 @@ inline void atomic_decrement(atomic_int_t volatile *pl)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n);
+/* STLSOFT_INLINE */ atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n);
 
 /** \brief 
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_read(atomic_int_t volatile *pv)
+STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile *pv)
 {
     STLSOFT_NS_GLOBAL(OSMemoryBarrier)();
 
@@ -426,9 +426,9 @@ inline atomic_int_t atomic_read(atomic_int_t volatile *pv)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n)
+STLSOFT_INLINE atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n)
 {
-    return STLSOFT_NS_GLOBAL(OSAtomicAdd32Barrier)(n, const_cast<atomic_int_t*>(pl));
+    return STLSOFT_NS_GLOBAL(OSAtomicAdd32Barrier)(n, stlsoft_const_cast(atomic_int_t*, pl));
 }
 # define UNIXSTL_HAS_ATOMIC_PREADD
 
@@ -436,9 +436,9 @@ inline atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n)
  *
  * \ingroup group__library__synch
  */
-inline atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
+STLSOFT_INLINE atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
 {
-    return STLSOFT_NS_GLOBAL(OSAtomicAdd32Barrier)(n, const_cast<atomic_int_t*>(pl)) - n;
+    return STLSOFT_NS_GLOBAL(OSAtomicAdd32Barrier)(n, stlsoft_const_cast(atomic_int_t*, pl)) - n;
 }
 # define UNIXSTL_HAS_ATOMIC_POSTADD
 
@@ -448,8 +448,9 @@ inline atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
 
 #endif /* architecture */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/atomic_functions_unittest_.h"

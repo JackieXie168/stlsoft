@@ -1,13 +1,5 @@
-#include <stlsoft/stlsoft.h>
-
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include comstl/coll_sequence.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#include <comstl/coll_sequence.hpp>
+#error comstl_coll_sequence.h is now obsolete. Instead include comstl/collections/collection_sequence.hpp
 
 /* Compatibility
-[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
-

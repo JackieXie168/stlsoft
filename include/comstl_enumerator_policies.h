@@ -1,13 +1,5 @@
-#include <stlsoft/stlsoft.h>
-
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include comstl/enumerator_policies.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#include <comstl/enumerator_policies.hpp>
+#error comstl_enumerator_policies.h is now obsolete. Instead include comstl/collections/enumeration_policies.hpp
 
 /* Compatibility
-[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
-

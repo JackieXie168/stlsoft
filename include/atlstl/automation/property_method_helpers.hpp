@@ -5,11 +5,11 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     29th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,8 +43,8 @@
  * \brief [C++ only; requires ATL library] Definition of the
  *  atlstl::get_MemberValue(), atlstl::put_MemberValue() and
  *  atlstl::get_ConstantValue() function suites, which simplify the
- *  definition of property methods in ATL COM servers.
- * (\ref group__library__automation "COM Automation" Library.)
+ *  definition of property methods in ATL COM servers
+ *   (\ref group__library__com_automation "COM Automation" Library).
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_REVISION 2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     64
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ namespace atlstl_project
 
 /** \brief Inline retrieval of member variable value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a pointer to a return value
  * and a pointer to member of the given class, and retrieves the value
@@ -139,7 +139,7 @@ inline HRESULT get_MemberValue(C *const cls, T *ret, T C::*mem)
 
 /** \brief Ghost overload to prevent use of get_MemberValue with pointer types
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This version is overloaded to deal with pointer types, and is not
  * implemented so as to prevent the generic version being used with such types.
@@ -156,7 +156,7 @@ inline HRESULT get_MemberValue(C *const cls, T **ret, T *C::*mem);
 
 /** \brief Inline retrieval of a CComBSTR member variable value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a pointer to a return value
  * and a pointer to a CComBSTR member of the given class, and retrieves the
@@ -178,7 +178,7 @@ inline HRESULT get_MemberValue(C *const cls, BSTR *ret, CComBSTR C::*mem)
 
 /** \brief Inline retrieval of a VARIANT member variable value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a pointer to a return value
  * and a pointer to a VARIANT member of the given class, and retrieves the
@@ -205,7 +205,7 @@ inline HRESULT get_MemberValue(C *const cls, VARIANT *ret, CComVariant C::*mem)
 
 /** \brief Inline retrieval of method value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a pointer to a return value
  * and a pointer to method of the given class, and retrieves the return value
@@ -240,7 +240,7 @@ inline HRESULT get_MemberValue(C *const cls, T *ret, T2 (C::*pfn)() const)
 
 /** \brief Inline assignment of a member variable value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a new value and a pointer to
  * member of the given class, and assigns the new value to the member.
@@ -260,7 +260,7 @@ inline HRESULT put_MemberValue(C *const cls, T const &newVal, T C::*mem)
 
 /** \brief Inline assignment of a CComBSTR member variable value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a new BSTR value and a pointer to
  * CComBSTR  member of the given class, and assigns the new value to the
@@ -279,7 +279,7 @@ inline HRESULT put_MemberValue(C *const cls, BSTR newVal, CComBSTR C::*mem)
 
 /** \brief Inline assignment of a CComBSTR member variable value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a new CComBSTR value and a pointer
  * to CComBSTR  member of the given class, and assigns the new value to the
@@ -298,7 +298,7 @@ inline HRESULT put_MemberValue(C *const cls, CComBSTR const &newVal, CComBSTR C:
 
 /** \brief Inline assignment of a CComVariant member variable value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This function takes a pointer to a class, a new CComVariant value and a
  * pointer to CComVariant member of the given class, and assigns the new value
@@ -323,7 +323,7 @@ inline HRESULT put_MemberValue(C *const cls, CComVariant const &newVal, CComVari
 
 /** \brief Shorthand for implementing methods that return a constant value
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * This method is used to implement methods that return a value of a
  * known constant, e.g.

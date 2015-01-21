@@ -4,7 +4,7 @@
  * Purpose:     Scoping class for ATL _Module
  *
  * Created:     8th December 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file atlstl/util/module_scope.hpp
  *
- * \brief [C++ only] Definition of the atlstl::module_scope class template.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Definition of the atlstl::module_scope class template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_UTIL_HPP_MODULE_SCOPE
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MAJOR       2
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       1
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_REVISION    1
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        21
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

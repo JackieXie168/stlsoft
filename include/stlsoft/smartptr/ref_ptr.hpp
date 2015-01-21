@@ -4,7 +4,7 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/smartptr/ref_ptr.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::ref_ptr smart
- *   pointer class template.
- * (\ref group__library__smart_pointers "Smart Pointers" Library.)
+ *   pointer class template
+ *   (\ref group__library__smart_pointers "Smart Pointers" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       478
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       480
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -225,6 +225,8 @@ public:
         }
     }
 
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER > 1100
     /// \brief Copy constructs from an instance with different interface and/or
     ///   counted type
     ///
@@ -238,37 +240,38 @@ public:
             ,   ss_typename_param_k I2
             ,   ss_typename_param_k U2
             >
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER == 1300
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER == 1300
     ref_ptr(ref_ptr<T2, I2, U2> const &rhs)
-# if 0
+#  if 0
         // We cannot use this form, as it would lead to instances with different
         // counted_type being cross cast invisibly. This would be a *very bad thing*
         : m_pi(rhs.m_pi)
-# else /* ? 0 */
+#  else /* ? 0 */
         : m_pi(i_from_const_c(rhs.get()))
-# endif /* 0 */
+#  endif /* 0 */
     {
         if(NULL != m_pi)
         {
             add_reference(m_pi);
         }
     }
-#else /* ? compiler */
+# else /* ? compiler */
     ref_ptr(ref_ptr<T2, I2, U2> &rhs)
-# if 0
+#  if 0
         // We cannot use this form, as it would lead to instances with different
         // counted_type being cross cast invisibly. This would be a *very bad thing*
         : m_pi(rhs.m_pi)
-# else /* ? 0 */
+#  else /* ? 0 */
         : m_pi(i_from_c(rhs.get()))
-# endif /* 0 */
+#  endif /* 0 */
     {
         if(NULL != m_pi)
         {
             add_reference(m_pi);
         }
     }
+# endif /* compiler */
 #endif /* compiler */
 
 #if !defined(STLSOFT_COMPILER_IS_INTEL) && \
@@ -314,7 +317,8 @@ public:
     }
 
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-    _MSC_VER != 1300
+    (   _MSC_VER > 1100 && \
+        _MSC_VER != 1300)
     /// \brief Copy assignment from an instance of ref_ptr with a different counted_type (but
     /// the same interface type).
     ///

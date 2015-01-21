@@ -4,11 +4,11 @@
  * Purpose:     Interface-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file comstl/functional/interface_functionals.hpp
  *
- * \brief [C++ only] Function classes for manipulating interfaces pointers.
- * (\ref group__library__functional "Functional" Library.)
+ * \brief [C++ only] Function classes for manipulating interfaces pointers
+ *   (\ref group__library__functional "Functional" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS
@@ -51,7 +51,7 @@
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MAJOR     4
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MINOR     0
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  1
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      62
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,8 +106,8 @@ namespace comstl_project
  *
  * \ingroup group__library__functional
  *
- * This function object releases COM interfaces by calling Release()
- * on them. Note that the function object benignly ignores null interface
+ * This function class releases COM interfaces by calling Release()
+ * on them. Note that the function class benignly ignores null interface
  * pointers.
  *
  * \param I The COM interface on which to parameterise the template
@@ -133,8 +133,8 @@ public:
  *
  * \ingroup group__library__functional
  *
- * This function object adds a reference to COM interfaces by calling AddRef()
- * on them. Note that the function object benignly ignores null interface
+ * This function class adds a reference to COM interfaces by calling AddRef()
+ * on them. Note that the function class benignly ignores null interface
  * pointers.
  *
  * \param I The COM interface on which to parameterise the template

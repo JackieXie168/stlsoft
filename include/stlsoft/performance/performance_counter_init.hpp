@@ -4,7 +4,7 @@
  * Purpose:     Performance counter initialising class.
  *
  * Created:     30th July 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/performance/performance_counter_init.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::performance_counter_initialiser
- *  class template.
- * (\ref group__library__performance "Performance" Library.)
+ *  class template
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_MINOR     0
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_EDIT      32
+# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_INIT_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

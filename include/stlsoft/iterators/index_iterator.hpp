@@ -4,7 +4,7 @@
  * Purpose:     index_iterator class template.
  *
  * Created:     5th April 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/iterators/index_iterator.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::index_iterator iterator
- *   adaptor class template.
- * (\ref group__library__iterators "Iterators" Library.)
+ *   adaptor class template
+ *   (\ref group__library__iterators "Iterators" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      19
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

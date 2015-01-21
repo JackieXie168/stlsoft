@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/filesystem/directory_functions.hpp
  *
- * \brief [C++ only] Functions for manipulating directories.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Functions for manipulating directories
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        34
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -431,7 +431,7 @@ inline us_int_t remove_directory_recurse_impl(C const *dir, us_int_t (*pfn)(void
 /** \brief Creates the given directory, including all its parent directories, applying
  * the given mode.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to create
  * \param mode The permissions with which each directory is to be created
@@ -445,7 +445,7 @@ inline us_bool_t create_directory_recurse(us_char_a_t const *dir, unsigned short
 /** \brief Creates the given directory, including all its parent directories, applying
  * the given mode.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to create
  * \param mode The permissions with which each directory is to be created
@@ -459,7 +459,7 @@ inline us_bool_t create_directory_recurse(us_char_w_t const *dir, unsigned short
 /** \brief Creates the given directory, including all its parent directories, applying
  * the given mode.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to create
  * \param mode The permissions with which each directory is to be created
@@ -472,7 +472,7 @@ inline us_bool_t create_directory_recurse(S const &dir, unsigned short mode = 07
 
 /** \brief Removes the given directory, and all its subdirectories.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to remove
  * \param pfn Pointer to a callback function, which will receive notifications
@@ -526,7 +526,7 @@ inline us_bool_t remove_directory_recurse(  us_char_a_t const   *dir
 
 /** \brief 
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline us_bool_t remove_directory_recurse(us_char_a_t const *dir)
 {
@@ -536,7 +536,7 @@ inline us_bool_t remove_directory_recurse(us_char_a_t const *dir)
 #if 0
 /** \brief 
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline us_bool_t remove_directory_recurse(  us_char_w_t const   *dir
                                         ,   us_int_t            (*pfn)(void *param, us_char_w_t const *subDir, struct stat const *st, struct dirent const *de, int err)
@@ -553,7 +553,7 @@ inline us_bool_t remove_directory_recurse(  us_char_w_t const   *dir
 
 /** \brief 
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline us_bool_t remove_directory_recurse(us_char_w_t const *dir)
 {
@@ -563,7 +563,7 @@ inline us_bool_t remove_directory_recurse(us_char_w_t const *dir)
 
 /** \brief 
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template <ss_typename_param_k S>
 inline us_bool_t remove_directory_recurse(S const &dir)

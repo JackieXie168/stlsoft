@@ -4,11 +4,11 @@
  * Purpose:     Definition of the has_iterator member type detector.
  *
  * Created:     19th November 1998
- * Updated:     15th July 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file stlsoft/meta/detector/has_iterator.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::has_iterator member type
- *   detector class template.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ *   detector class template
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_EDIT        127
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_EDIT        128
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

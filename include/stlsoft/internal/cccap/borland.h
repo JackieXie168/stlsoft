@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Borland C/C++.
  *
  * Created:     7th February 2003
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,7 +44,8 @@
 
 /** \file stlsoft/internal/cccap/borland.h
  *
- * Compiler feature discrimination for Borland C/C++.
+ * Compiler feature discrimination for Borland C/C++
+ * (\ref group__library__internal).
  */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_BORLAND
@@ -55,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      8
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      9
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       63
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +89,6 @@
 
 /* bool */
 #ifdef __cplusplus
-# define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
 # define STLSOFT_CF_NATIVE_BOOL_SUPPORT
 #endif /* __cplusplus */
 
@@ -99,58 +99,72 @@
 
 /* wchar_t */
 #ifdef _WCHAR_T_DEFINED
-# define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 # define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 #else
  /* Not defined */
 #endif /* _WCHAR_T_DEFINED */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Integral types
+ *
+ * The purpose of this section is to define the following types:
+ *
+ *  - 8-bit signed and unsigned integers
+ *  - 16-bit signed and unsigned integers
+ *  - 32-bit signed and unsigned integers
+ *  - (optionally) 64-bit signed and unsigned integers
+ *
+ * and to define, where appropriate the following symbols (used for
+ * overloading):
+ *
+ *  - STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+ *  - STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+ *  - STLSOFT_CF_INT_DISTINCT_INT_TYPE
+ *  - STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+ *  - STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE
+ *
+ * which indicate that a given type is not used in the size-specific types.
+ */
+
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT
-#define STLSOFT_CF_8BIT_INT_IS_EXTENDED_TYPE
-#define STLSOFT_CF_EXTENDED_INT8_T              __int8
-#define STLSOFT_CF_EXTENDED_SINT8_T      signed __int8
-#define STLSOFT_CF_EXTENDED_UINT8_T    unsigned __int8
-#define STLSOFT_CF_STANDART_INT8_IS_char
-#define STLSOFT_CF_STANDARD_INT8_T              char
-#define STLSOFT_CF_STANDARD_SINT8_T      signed char
-#define STLSOFT_CF_STANDARD_UINT8_T    unsigned char
+#if 0
+#define STLSOFT_SI08_T_BASE_TYPE    signed      __int8
+#define STLSOFT_UI08_T_BASE_TYPE    unsigned    __int8
+#define STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+#else /* ? 0 */
+#define STLSOFT_SI08_T_BASE_TYPE    signed      char
+#define STLSOFT_UI08_T_BASE_TYPE    unsigned    char
+#endif /* 0 */
 
 /* 16-bit integer */
 #define STLSOFT_CF_16BIT_INT_SUPPORT
-#define STLSOFT_CF_16BIT_INT_IS_EXTENDED_TYPE
-#define STLSOFT_CF_EXTENDED_INT16_T             __int16
-#define STLSOFT_CF_EXTENDED_SINT16_T     signed __int16
-#define STLSOFT_CF_EXTENDED_UINT16_T   unsigned __int16
-#define STLSOFT_CF_STANDARD_INT16_IS_short
-#define STLSOFT_CF_STANDARD_INT16_T             short
-#define STLSOFT_CF_STANDARD_SINT16_T     signed short
-#define STLSOFT_CF_STANDARD_UINT16_T   unsigned short
+#if 0
+#define STLSOFT_SI16_T_BASE_TYPE    signed      __int16
+#define STLSOFT_UI16_T_BASE_TYPE    unsigned    __int16
+#define STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+#else /* ? 0 */
+#define STLSOFT_SI16_T_BASE_TYPE    signed      short
+#define STLSOFT_UI16_T_BASE_TYPE    unsigned    short
+#endif /* 0 */
 
 /* 32-bit integer */
 #define STLSOFT_CF_32BIT_INT_SUPPORT
-/* #define STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE */
-#define STLSOFT_CF_EXTENDED_INT32_T            __int32
-#define STLSOFT_CF_EXTENDED_SINT32_T    signed __int32
-#define STLSOFT_CF_EXTENDED_UINT32_T  unsigned __int32
-#define STLSOFT_CF_STANDARD_INT32_IS_long
-#define STLSOFT_CF_STANDARD_INT32_T            long
-#define STLSOFT_CF_STANDARD_SINT32_T    signed long
-#define STLSOFT_CF_STANDARD_UINT32_T  unsigned long
+#if 0
+#define STLSOFT_SI32_T_BASE_TYPE    signed      __int32
+#define STLSOFT_UI32_T_BASE_TYPE    unsigned    __int32
+#define STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+#else /* ? 0 */
+#define STLSOFT_SI32_T_BASE_TYPE    signed      int
+#define STLSOFT_UI32_T_BASE_TYPE    unsigned    int
+#define STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+#endif /* 0 */
 
 /* 64-bit integer */
 #define STLSOFT_CF_64BIT_INT_SUPPORT
-#define STLSOFT_CF_64BIT_INT_IS_EXTENDED_TYPE
 #define STLSOFT_CF_64BIT_INT_IS___int64
-#define STLSOFT_CF_EXTENDED_INT64_T             __int64
-#define STLSOFT_CF_EXTENDED_SINT64_T     signed __int64
-#define STLSOFT_CF_EXTENDED_UINT64_T   unsigned __int64
-
-/* distinct int type */
-#if !defined(STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE)
-# define __STLSOFT_CF_INT_DISTINCT_TYPE
-# define STLSOFT_CF_INT_DISTINCT_TYPE
-#endif /* !STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE */
+#define STLSOFT_SI64_T_BASE_TYPE    signed      __int64
+#define STLSOFT_UI64_T_BASE_TYPE    unsigned    __int64
 
 /* Member constants */
 #if __BORLANDC__ >= 0x0550
@@ -161,16 +175,13 @@
  *  asserts, so we only do them in debug mode.
  */
 #ifdef _DEBUG
-# define __STLSOFT_CF_STATIC_ASSERT_SUPPORT
 # define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 #endif /* _DEBUG */
 
 /* Exception support */
-#define __STLSOFT_CF_EXCEPTION_SUPPORT
 #define STLSOFT_CF_EXCEPTION_SUPPORT
 
 /*  */
-#define __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 
 /* Namespace support */
@@ -178,7 +189,6 @@
 # define _STLSOFT_NO_NAMESPACES
 #endif /* compiler */
 
-#define __STLSOFT_CF_NAMESPACE_SUPPORT
 #define STLSOFT_CF_NAMESPACE_SUPPORT
 
 #define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
@@ -187,7 +197,6 @@
 
 /* Template support */
 #ifdef __TEMPLATES__
-# define __STLSOFT_CF_TEMPLATE_SUPPORT
 # define STLSOFT_CF_TEMPLATE_SUPPORT
 #else
  /* Not defined */
@@ -195,105 +204,68 @@
 
 /* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
 
-#define __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 #define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 
 #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
 
-#define __STLSOFT_CF_THROW_BAD_ALLOC
 #define STLSOFT_CF_THROW_BAD_ALLOC
 
-#define __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 
-#define __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 #define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 
 /* #define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
 
-#define __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 #define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
 #define STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED
 
-#define __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 #define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
 #define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED
 
 #if __BORLANDC__ >= 0x0560
-# define __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
 # define STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
 #endif /* compiler */
 
-#define __STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
 #define STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
 
-#define __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 #define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 
-#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT    /* obsolete */
 #define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-#define __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 #define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 
-#define __STLSOFT_CF_std_NAMESPACE
 #define STLSOFT_CF_std_NAMESPACE
 
-#define __STLSOFT_CF_std_char_traits_AVAILABLE
 #define STLSOFT_CF_std_char_traits_AVAILABLE
 
-/* This is no longer supported here. Include stlsoft/allocator_base.hpp
-#define __STLSOFT_CF_ALLOCATOR_ALLOCATE_HAS_HINT
- */
-
-/* This is no longer supported here. Include stlsoft/allocator_base.hpp
-#define __STLSOFT_CF_ALLOCATOR_DEALLOCATE_HAS_OBJECTCOUNT
- */
-
-/* This is no longer supported here. Include stlsoft/memory/allocator_features.hpp
-# define STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
- */
-
-#define __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 #define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
-#define __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 #define STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 
-#define __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 #define STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 
-#define __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
 #define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
 
-#define __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 #define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 
-/* #define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
 /* #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
 
-/* #define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 /* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 
 #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 
-/* #define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 /* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
-#define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
 #define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 
-#define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 #define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
 #if __BORLANDC__ >= 0x0560
-/* # define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 /* # define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* compiler */
 
-/* #define __STLSOFT_CF_VENEER_SUPPORT */
 /* #define STLSOFT_CF_VENEER_SUPPORT */
 
 #define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
@@ -301,10 +273,8 @@
 /* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
 
 /* Shims are supported. */
-/* #define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 /* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
-#define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 
 /* #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
@@ -368,6 +338,12 @@
 # define STSLSOFT_INLINE_ASM_SUPPORTED
 #endif /* compiler */
 /* #define STSLSOFT_ASM_IN_INLINE_SUPPORTED */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inline support
+ */
+
+#define STLSOFT_CUSTOM_C_INLINE     __inline
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler warning suppression

@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the performance_counter components.
  *
  * Created:     20th March 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,14 +46,14 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       13
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/performance/performance_counter.hpp
  *
  * \brief [C++ only] Definition of the platformstl::performance_counter
- *  type.
- * (\ref group__library__performance "Performance" Library.)
+ *  type
+ *   (\ref group__library__performance "Performance" Library).
  *
  * When compiling on UNIX platforms, the platformstl::performance_counter
  * type resolves to the unixstl::performance_counter class. On Windows
@@ -109,7 +109,7 @@ namespace platformstl_project
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_conformance "Intersecting Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::performance_counter

@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -45,8 +45,8 @@
 /** \file winstl/string/resource_string.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_resource_string class
- *   template.
- * (\ref group__library__string "String" Library.)
+ *   template
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_STRING_HPP_RESOURCE_STRING
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 2
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     75
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Path manipulation functions.
  *
  * Created:     12th June 2006
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file platformstl/filesystem/path_functions.hpp
  *
- * \brief [C++ only] Path manipulation functions.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Path manipulation functions
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/controls/functions.h
  *
- * \brief [C, C++] Various Windows control functions.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ * \brief [C, C++] Various Windows control functions
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       1
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        43
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -329,6 +329,15 @@ STLSOFT_INLINE ws_int_t winstl__edit_getline_w(HWND hwnd, ws_int_t lineIndex, ws
 
     return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, EM_GETLINE, stlsoft_static_cast(WPARAM, lineIndex), stlsoft_reinterpret_cast(LPARAM, buffer)));
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -660,8 +669,9 @@ inline ws_int_t edit_getline(HWND hwnd, ws_int_t lineIndex, ws_char_w_t *buffer,
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/functions_unittest_.h"

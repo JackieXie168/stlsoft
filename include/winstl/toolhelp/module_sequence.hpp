@@ -4,14 +4,14 @@
  * Purpose:     TOOLHELP module sequence class.
  *
  * Created:     21st May 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2005-2007, Pablo Aguilar
- * Copyright (c) 2006, Matthew Wilson
+ * Copyright (c) 2006-2007, Matthew Wilson
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,8 +45,8 @@
 /** \file winstl/toolhelp/module_sequence.hpp
  *
  * \brief [C++ only] Definition of the
- *  \link winstl::module_sequence module_sequence\endlink class.
- * (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ *  \link winstl::module_sequence module_sequence\endlink class
+ *   (\ref group__library__windows_toolhelp "Windows ToolHelp" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MINOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        7
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

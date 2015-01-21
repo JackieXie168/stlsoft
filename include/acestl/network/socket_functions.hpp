@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE_SOCK (and derived) classes
  *
  * Created:     28th November 2004
- * Updated:     29th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file acestl/network/socket_functions.hpp
  *
- * \brief [C++ only; requires ACE] Socket helper functions.
- * (\ref group__library__network "Network" Library.)
+ * \brief [C++ only; requires ACE] Socket helper functions
+ *   (\ref group__library__network "Network" Library).
  */
 
 #ifndef ACESTL_INCL_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS
@@ -51,7 +51,7 @@
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_MINOR      0
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_REVISION   1
-# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_EDIT       19
+# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,6 @@
 
+// Updated: 14th January 2007
+
 #if !defined(STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP)
 # error This file cannot be directly included, and should only be included within stlsoft/containers/frequency_map.hpp
 #endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP */
@@ -9,6 +11,9 @@
 
 namespace unittest
 {
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+	_MSC_VER > 1100
+
 	namespace
 	{
 		ss_bool_t test_stlsoft_containers_frequency_map(unittest_reporter *r)
@@ -59,5 +64,7 @@ namespace unittest
 
 		unittest_registrar	  unittest_stlsoft_containers_frequency_map(test_stlsoft_containers_frequency_map);
 	} // anonymous namespace
+
+#endif /* compiler */
 
 } // namespace unittest

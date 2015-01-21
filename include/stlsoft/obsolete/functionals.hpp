@@ -4,11 +4,11 @@
  * Purpose:     Basic functionals.
  *
  * Created:     19th January 2002
- * Updated:     17th September 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -177,13 +177,13 @@ public:
         : m_f()
     {}
 
-    /// Constructs from the given function object, which it will then apply
+    /// Constructs from the given function class, which it will then apply
     /// via operator ()()
     ss_explicit_k selector1st(F f)
         : m_f(f)
     {}
 
-    /// Function call operator, which applies the parameterising function object
+    /// Function call operator, which applies the parameterising function class
     /// to the \c first part of the pair \c t
     ///
     /// \param t An instance of a \c pair like type, to whose \c first member will be applied the function F
@@ -255,13 +255,13 @@ public:
         : m_f()
     {}
 
-    /// Constructs from the given function object, which it will then apply
+    /// Constructs from the given function class, which it will then apply
     /// via operator ()()
     ss_explicit_k selector2nd(F f)
         : m_f(f)
     {}
 
-    /// Function call operator, which applies the parameterising function object
+    /// Function call operator, which applies the parameterising function class
     /// to the \c second part of the pair \c t
     ///
     /// \param t An instance of a \c pair like type, to whose \c second member will be applied the function F
@@ -316,13 +316,13 @@ public:
         : m_f()
     {}
 
-    /// Constructs from the given function object, which it will then apply
+    /// Constructs from the given function class, which it will then apply
     /// via operator ()()
     ss_explicit_k select_1st(F f)
         : m_f(f)
     {}
 
-    /// Function call operator, which applies the parameterising function object
+    /// Function call operator, which applies the parameterising function class
     /// to the \c first part of the pair \c t
     ///
     /// \param t An instance of a \c pair like type, to whose \c first member will be applied the function F
@@ -389,13 +389,13 @@ public:
         : m_f()
     {}
 
-    /// Constructs from the given function object, which it will then apply
+    /// Constructs from the given function class, which it will then apply
     /// via operator ()()
     ss_explicit_k select_2nd(F f)
         : m_f(f)
     {}
 
-    /// Function call operator, which applies the parameterising function object
+    /// Function call operator, which applies the parameterising function class
     /// to the \c second part of the pair \c t
     ///
     /// \param t An instance of a \c pair like type, to whose \c second member will be applied the function F
@@ -456,14 +456,14 @@ public:
         , m_f2()
     {}
 
-    /// Constructs from the given function objects, which it will then apply
+    /// Constructs from the given function classes, which it will then apply
     /// via operator ()()
     ss_explicit_k select_both(F1 f1, F2 f2)
         : m_f1(f1)
         , m_f2(f2)
     {}
 
-    /// Function call operator, which applies the parameterising function objects
+    /// Function call operator, which applies the parameterising function classes
     /// to the \c first and \c second parts of the pair \c t
     ///
     /// \param t An instance of a \c pair like type, to whose \c first and \c second members will be applied the functions F1 and F2

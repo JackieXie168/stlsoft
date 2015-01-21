@@ -5,7 +5,7 @@
  *              abstracting away standard library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     5th January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file stlsoft/util/std/iterator_helper.hpp
  *
  * \brief [C++ only] Definition of iterator class templates and macros for
- *    abstracting away standard library inconsistencies.
- * (\ref group__library__utility "Utility" Library.)
+ *    abstracting away standard library inconsistencies
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      99
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -785,7 +785,7 @@ public:
 //
 // The discriminators are determined in stlsoft/util/std/library_discriminator.hpp
 
-#ifdef __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
+#ifdef _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
@@ -851,7 +851,7 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-#endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
+#endif /* !_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
 
 /** \brief Pointer iterator type
  *
@@ -867,13 +867,13 @@ template<   ss_typename_param_k V
         >
 struct pointer_iterator
 {
-#if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES) && \
+#if defined(_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES) && \
     !defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
-# if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300)
+# if defined(_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300)
     typedef std::test_dinkumware::_Ptrit_tdkw<V, P, R>::iterator_type   type;
 # else
     typedef P                                                           type;
-# endif /* __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300 */
+# endif /* _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300 */
 #elif defined(STLSOFT_COMPILER_IS_MSVC) && \
       !defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT) && \
       defined(_XUTILITY_) && \
@@ -881,7 +881,7 @@ struct pointer_iterator
     typedef std::_Ptrit<V, stlsoft_ns_qual(ss_ptrdiff_t), P, R, P, R>   type;
 #else
     typedef P                                                           type;
-#endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
+#endif /* !_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 public:
@@ -955,7 +955,7 @@ inline stlsoft_ns_qual(ss_ptrdiff_t) *distance_type(pointer_iterator<V, P, R>::t
           defined(STLSOFT_COMPILER_IS_INTEL)
 #     if defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
 #      define stlsoft_iterator_query_category(I, i)     (stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category())
-#     elif defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES)
+#     elif defined(_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES)
 #      define stlsoft_iterator_query_category(I, i)     (stlsoft_ns_qual_std(_Iter_cat)(i))
 #     else
 #      error
@@ -967,7 +967,7 @@ inline stlsoft_ns_qual(ss_ptrdiff_t) *distance_type(pointer_iterator<V, P, R>::t
 #      else
 #       define stlsoft_iterator_query_category(I, i)    (stlsoft_ns_qual_std(iterator_category)(i))
 #      endif /* _MSC_VER < 1300 */
-#     elif defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES)
+#     elif defined(_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES)
 #      define stlsoft_iterator_query_category(I, i)     (stlsoft_ns_qual_std(_Iter_cat)(i))
 #     elif(_MSC_VER >= 1310)
 #      define stlsoft_iterator_query_category(I, i)     (stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category())
@@ -976,7 +976,7 @@ inline stlsoft_ns_qual(ss_ptrdiff_t) *distance_type(pointer_iterator<V, P, R>::t
 #     endif /*  */
 #    else
 #     define stlsoft_iterator_query_category(I, i)      (stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category())
-#    endif /* __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES && !STLSOFT_CF_STD_LIBRARY_IS_STLPORT */
+#    endif /* _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES && !STLSOFT_CF_STD_LIBRARY_IS_STLPORT */
 #endif /* 0 */
 
 #if 0

@@ -4,7 +4,7 @@
  * Purpose:     Control Panel functions.
  *
  * Created:     1st April 2006
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/control_panel/functions.h
  *
- * \brief [C, C++] Control Panel functions.
- * (\ref group__library__windows_control_panel "Windows Control Panel" Library.)
+ * \brief [C, C++] Control Panel functions
+ *   (\ref group__library__windows_control_panel "Windows Control Panel" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_PANEL_H_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       7
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,9 +77,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -288,6 +288,15 @@ STLSOFT_INLINE void winstl__control_panel_stop(control_panel_entry_t entry, HWND
 
     stlsoft_static_cast(void, (*entry)(hwnd, CPL_STOP, stlsoft_static_cast(LONG, index), data));
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

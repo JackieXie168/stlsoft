@@ -4,7 +4,7 @@
  * Purpose:     Shell file operations.
  *
  * Created:     12th December 1996
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -43,8 +43,8 @@
 
 /** \file winstl/shell/file_operations.hpp
  *
- * \brief [C++ only] Definition of Windows Shell file operation functions.
- * (\ref group__library__windows_shell "Windows Shell" Library.)
+ * \brief [C++ only] Definition of Windows Shell file operation functions
+ *   (\ref group__library__windows_shell "Windows Shell" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHELL_HPP_FILE_OPERATIONS
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   2
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       84
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

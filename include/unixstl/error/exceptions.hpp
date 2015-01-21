@@ -4,7 +4,7 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     2nd January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,9 +41,8 @@
 /** \file unixstl/error/exceptions.hpp
  *
  * \brief [C++ only] Definition of the unixstl::unix_exception and exception
- *   class and the unixstl::unix_exception_policy exception policy class.
- *
- * (\ref group__library__error "Error" Library.)
+ *   class and the unixstl::unix_exception_policy exception policy class
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_ERROR_HPP_EXCEPTIONS
@@ -53,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      45
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

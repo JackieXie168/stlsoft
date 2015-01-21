@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     5th January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/conversion/int_to_string.hpp
  *
  * \brief [C++ only] Very efficient integer to string conversion functions
- *   for the Windows platform.
- * (\ref group__library__conversion "Conversion" Library.)
+ *   for the Windows platform
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_INT_TO_STRING
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MAJOR      2
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      0
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   2
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       33
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      1
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   1
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -583,7 +583,7 @@ inline C const *int_to_string(ws_uint64_t const &value)
 }
 
 
-#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 
 template<ss_typename_param_k C>
 inline C const *int_to_string(int const &value)
@@ -603,9 +603,9 @@ inline C const *int_to_string(unsigned int const &value)
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
 
-#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
-#ifdef STLSOFT_CF_LONG_DISTINCT_TYPE
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 
 template<ss_typename_param_k C>
 inline C const *int_to_string(long const &value)
@@ -625,7 +625,7 @@ inline C const *int_to_string(unsigned long const &value)
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
 
-#endif /* !STLSOFT_CF_LONG_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

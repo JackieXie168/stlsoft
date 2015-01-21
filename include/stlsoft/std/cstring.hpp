@@ -4,7 +4,7 @@
  * Purpose:     Mappings to string string functions
  *
  * Created:     2nd December 2004
- * Updated:     6th January 2007
+ * Updated:     12th January 2007
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
@@ -41,11 +41,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/std/cstdlib.hpp
+/** \file stlsoft/std/cstring.hpp
  *
  * \brief [C++ only] Mappings of &lt;cstring> string functions that use
- *   \ref group__concept__shim__string_access string.
- * (\ref group__library__utility "Utility" Library.)
+ *   \ref group__concept__shim__string_access string
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STD_HPP_CSTRING
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   2
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       24
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,12 +96,13 @@ namespace stlsoft
 /// \name Copying and concatenation family
 /// @{
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 #ifndef _STLSOFT_NO_NAMESPACE
 namespace std_impl
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     inline ss_char_a_t *strcpy_a(ss_char_a_t *dest, ss_char_a_t const *src)
     {
         return ::strcpy(dest, src);
@@ -169,12 +170,12 @@ namespace std_impl
     {
         return strncat_w(dest, src, n);
     }
-# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace std_impl
 #endif /* _STLSOFT_NO_NAMESPACE */
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
@@ -275,12 +276,13 @@ inline ss_char_w_t *strncat(ss_char_w_t *dest, ss_char_w_t const *src, ss_size_t
 /// \name Length and comparison family
 /// @{
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 #ifndef _STLSOFT_NO_NAMESPACE
 namespace std_impl
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     inline int strcmp_a(ss_char_a_t const *s1, ss_char_a_t const *s2)
     {
         return ::strcmp(s1, s2);
@@ -314,11 +316,12 @@ namespace std_impl
     {
         return strncmp_w(s1, s2, n);
     }
-# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace std_impl
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 template <ss_typename_param_k S>
@@ -423,18 +426,13 @@ char *  __cdecl strpbrk(const char *, const char *);
 
 /// @}
 
-
-/** \brief strdup()
- *
- * \ingroup group__library__utility
- */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifndef _STLSOFT_NO_NAMESPACE
 namespace std_impl
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     inline ss_char_a_t *strdup_a(ss_char_a_t const *s)
     {
         return ::strdup(s);
@@ -466,11 +464,13 @@ namespace std_impl
     {
         return strdup_w(s);
     }
-# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace std_impl
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /** \brief Duplicates the given string
  *
@@ -487,10 +487,20 @@ inline ss_typename_type_k string_traits<S>::char_type *strdup(S const &s)
 }
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
+/** \brief Duplicates the multibyte C-string
+ *
+ * \ingroup group__library__utility
+ */
+
 inline ss_char_a_t *strdup(ss_char_a_t const *s)
 {
     return stlsoft_std_ns_qual(strdup_)(s);
 }
+
+/** \brief Duplicates the wide C-string
+ *
+ * \ingroup group__library__utility
+ */
 
 inline ss_char_w_t *strdup(ss_char_w_t const *s)
 {

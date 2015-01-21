@@ -1,5 +1,5 @@
 
-// Updated: 28th December 2006
+// Updated: 14th January 2007
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE)
 # error This file cannot be directly included, and should only be included within unixstl/filesystem/memory_mapped_file.hpp
@@ -62,12 +62,12 @@ namespace unittest
 						}
 					}
 				}
-				catch(unixstl::unix_exception &x)
+				catch(unixstl::unix_exception &/* x */)
 				{
 					r->report("memory_mapped_file threw an exception", __LINE__);
 					bSuccess = false;
 				}
-				catch(std::exception &x)
+				catch(std::exception &/* x */)
 				{
 					r->report("memory_mapped_file threw a std exception", __LINE__);
 					bSuccess = false;

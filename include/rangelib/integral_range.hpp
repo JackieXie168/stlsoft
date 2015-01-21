@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     6th January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    5
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     43
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -141,7 +141,7 @@ public:
     {
         char    message[101];
 
-        sprintf(message, "Invalid integral range [%ld, %ld), %ld", first, last, increment);
+        sprintf(message, "Invalid integral range [%ld, %ld), %ld", long(first), long(last), long(increment));
 
         throw thrown_type(message);
     }
@@ -150,11 +150,11 @@ public:
     {
         char    message[101];
 
-        sprintf(message, "Invalid integral range [%lu, %lu), %lu", first, last, increment);
+        sprintf(message, "Invalid integral range [%lu, %lu), %lu", ss_ulong_t(first), ss_ulong_t(last), ss_ulong_t(increment));
 
         throw thrown_type(message);
     }
-#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
     /// Function call operator, taking three 32-bit signed integer parameters
     void operator ()(int first, int last, int increment) const
     {
@@ -173,7 +173,7 @@ public:
 
         throw thrown_type(message);
     }
-#endif /* STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 private:

@@ -4,7 +4,7 @@
  * Purpose:     WinSTL system-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/performance/systemtime_counter.hpp
  *
  * \brief [C++ only] Definition of the 
- *  \link winstl::systemtime_counter systemtime_counter\endlink class.
- * (\ref group__library__performance "Performance" Library.)
+ *  \link winstl::systemtime_counter systemtime_counter\endlink class
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_MAJOR     4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_MINOR     0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_REVISION  1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_EDIT      39
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

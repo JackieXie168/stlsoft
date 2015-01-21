@@ -5,11 +5,11 @@
  *              built-in and standard string types.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,8 +42,8 @@
 /** \file stlsoft/shims/access/string.hpp
  *
  * \brief [C++] Primary include file for string access shims representing
- *   built-in and standard string types.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   built-in and standard string types
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_MAJOR       4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_MINOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_EDIT        87
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_EDIT        89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

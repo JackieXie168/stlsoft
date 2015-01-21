@@ -4,7 +4,7 @@
  * Purpose:     Basic support meta types.
  *
  * Created:     19th November 1998
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/meta/n_types.hpp
  *
- * \brief [C++ only] Definition of the different type size "constants".
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ * \brief [C++ only] Definition of the different type size "constants"
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MINOR     2
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  2
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      113
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

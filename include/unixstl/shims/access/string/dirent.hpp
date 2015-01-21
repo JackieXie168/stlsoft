@@ -4,14 +4,14 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback for Mac
  *              builds
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,11 +41,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/shims/access/string/std/dirent.hpp
+/** \file unixstl/shims/access/string/dirent.hpp
  *
  * \brief [C++] Definition of the string access shims for
- *   <code>struct dirent</code>.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   <code>struct dirent</code>
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        49
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

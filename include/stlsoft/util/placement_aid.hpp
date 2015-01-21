@@ -4,7 +4,7 @@
  * Purpose:     A scoping class to aid in placement new-ing.
  *
  * Created:     9th January 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/util/placement_aid.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::placement_aid class template.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Definition of the stlsoft::placement_aid class template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_PLACEMENT_AID
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     29
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

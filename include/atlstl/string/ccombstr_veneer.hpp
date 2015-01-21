@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file atlstl/string/ccombstr_veneer.hpp
  *
- * \brief [C++] Definition of the atlstl::ccombstr_veneer class.
- * (\ref group__library__string "String" Library.)
+ * \brief [C++] Definition of the atlstl::ccombstr_veneer class
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_STRING_HPP_CCOMBSTR_VENEER
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    1
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 3
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     61
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

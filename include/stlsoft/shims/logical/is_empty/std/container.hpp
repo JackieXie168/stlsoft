@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/attribute/is_empty/string_base.hpp
+ * File:        stlsoft/shims/logical/is_empty/std/container.hpp
  *
- * Purpose:     Helper functions for ACE_String_Base class.
+ * Purpose:     Generic adapted case of is_empty shim for standard(-like)
+ *              collections.
  *
- * Created:     16th December 2004
- * Updated:     20th December 2006
+ * Created:     18th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,34 +39,33 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file acestl/shims/attribute/is_empty/string_base.hpp
+/** \file stlsoft/shims/logical/is_empty/std/container.hpp
  *
- * \brief [C++] Primary include file for is_empty attribute shims
- *   for <code>ACE_String_Base</code>.
- *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
+ * \brief [C++] Primary include file for is_empty collection attribute shim
+ *   for standard collection types
+ *   (\ref group__concept__shim__collection_logical__is_empty "is_empty Collection Logical Shim").
  */
 
-#ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE
-#define ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER
+#define STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE_MAJOR       1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE_MINOR       0
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE_REVISION    2
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE_EDIT        3
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_MAJOR     2
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_MINOR     0
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_REVISION  1
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
-#ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
-# include <acestl/acestl.hpp>
-#endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES
-# include <stlsoft/shims/attribute/is_empty/util/features.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES */
-#include <ace/String_Base.h>        // for ACE_String_Base<>
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES
+# include <stlsoft/shims/logical/is_empty/util/features.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -80,58 +80,43 @@ namespace stlsoft
  * Shims
  */
 
-#ifdef STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP
-
-no_type is_empty_helper_assistant(ACE_String_Base<ss_char_a_t> const *, ACE_String_Base<ss_char_a_t> const *)
+#ifdef STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP
+yes_type is_empty_helper_assistant(...)
 {
-    return no_type();
+    return yes_type();
 }
 
-inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_a_t> const &s, no_type)
+template <ss_typename_param_k C>
+inline ss_bool_t is_empty_helper(C const &c, yes_type)
 {
-    return 0 != s.length();
+    return c.empty();
 }
+#endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
-
-no_type is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const *, ACE_String_Base<ss_char_w_t> const *)
-{
-    return no_type();
-}
-
-inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_w_t> const &s, no_type)
-{
-    return 0 != s.length();
-}
-
-#else /* ? STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP */
-
-/** \brief Indicates whether the string is empty
+/** Indicates whether the collection is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
-inline int is_empty(ACE_String_Base<ss_char_a_t> const &s)
+template <ss_typename_param_k C>
+inline ss_bool_t is_empty(C const &c)
 {
-    return 0 != s.length();
-}
+#ifdef STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP
 
-/** \brief Indicates whether the string is empty
- *
- * \ingroup group__concept__shim__collection_attribute__is_empty
- *
- */
-inline int is_empty(ACE_String_Base<ss_char_w_t> const &s)
-{
-    return 0 != s.length();
-}
+    return is_empty_helper(c, is_empty_helper_assistant(&c, &c));
 
-#endif /* STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP */
+#else /* ? STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
+
+    return c.empty();
+
+#endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
+}
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/string_base_unittest_.h"
+# include "./unittest/container_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -142,6 +127,6 @@ inline int is_empty(ACE_String_Base<ss_char_w_t> const &s)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE */
+#endif /* STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER */
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     Main header file for the STLSoft Algorithms library.
  *
  * Created:     23rd October 2004
- * Updated:     2nd September 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/algorithms.hpp
  *
- * \brief [C++ only] Main header file for the STLSoft Algorithms library.
- * (\ref group__library__algorithms "Algorithms" Library.)
+ * \brief [C++ only] Main header file for the STLSoft Algorithms library
+ *   (\ref group__library__algorithms "Algorithms" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MINOR       0
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        27
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

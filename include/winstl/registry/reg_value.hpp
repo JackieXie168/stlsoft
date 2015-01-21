@@ -12,11 +12,11 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     30th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 /** \file winstl/registry/reg_value.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_reg_value class
- *   template.
- * (\ref group__library__windows_registry "Windows Registry" Library.)
+ *   template
+ *   (\ref group__library__windows_registry "Windows Registry" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE
@@ -60,7 +60,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  11
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      86
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

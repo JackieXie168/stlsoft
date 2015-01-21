@@ -4,7 +4,7 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/error/error_functions.h
  *
  * \brief [C++ only] Windows error manipulation and representation
- *   functions.
- * (\ref group__library__error "Error" Library.)
+ *   functions
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      47
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -278,7 +278,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_buff_inst_a(DWORD error, HINSTA
 
     if(res != 0)
     {
-        // Now trim the trailing space
+        /* Now trim the trailing space */
         ws_char_a_t *last_good = winstl__fmtmsg_find_last_good_a__(buffer, buffer + res);
 
         WINSTL_ASSERT((last_good - buffer) >= 0);
@@ -300,7 +300,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_buff_inst_w(DWORD error, HINSTA
 
     if(res != 0)
     {
-        // Now trim the trailing space
+        /* Now trim the trailing space */
         ws_char_w_t *last_good = winstl__fmtmsg_find_last_good_w__(buffer, buffer + res);
 
         WINSTL_ASSERT((last_good - buffer) >= 0);
@@ -340,7 +340,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_alloc_a(DWORD error, HINSTANCE 
 
     if(res != 0)
     {
-        // Now trim the trailing space
+        /* Now trim the trailing space */
         ws_char_a_t *last_good = winstl__fmtmsg_find_last_good_a__(*buffer, *buffer + res);
 
         WINSTL_ASSERT((last_good - *buffer) >= 0);
@@ -362,7 +362,7 @@ STLSOFT_INLINE ws_dword_t winstl__format_message_alloc_w(DWORD error, HINSTANCE 
 
     if(res != 0)
     {
-        // Now trim the trailing space
+        /* Now trim the trailing space */
         ws_char_w_t *last_good = winstl__fmtmsg_find_last_good_w__(*buffer, *buffer + res);
 
         WINSTL_ASSERT((last_good - *buffer) >= 0);
@@ -391,6 +391,15 @@ STLSOFT_INLINE void winstl__format_message_free_buff_w(ws_char_w_t *buffer)
 {
     winstl__fmtmsg_LocalFree__(buffer);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

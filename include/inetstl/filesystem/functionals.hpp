@@ -4,7 +4,7 @@
  * Purpose:     File-system functionals.
  *
  * Created:     19th January 2002
- * Updated:     5th January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file inetstl/filesystem/functionals.hpp
  *
- * \brief [C++ only] File-system functionals.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] File-system functionals
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FUNCTIONALS
@@ -51,7 +51,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR       4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR       0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION    2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        28
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,9 +99,9 @@ namespace inetstl_project
  * Classes
  */
 
-/** \brief Function object that compares two file-system paths
+/** \brief A function class that compares two file-system paths
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param A1 The left-hand argument type; defaults to C const*
@@ -168,7 +168,7 @@ private:
 
 /** \brief Predicate that indicates whether a given path exists
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param A The argument type; defaults to C const*

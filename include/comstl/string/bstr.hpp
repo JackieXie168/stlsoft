@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/string/bstr.hpp
  *
- * \brief [C++ only; requires COM] Definition of the comstl::bstr class.
- * (\ref group__library__utility__com "COM Utility" Library.)
+ * \brief [C++ only; requires COM] Definition of the comstl::bstr class
+ *   (\ref group__library__utility__com "COM Utility" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_STRING_HPP_BSTR
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        43
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

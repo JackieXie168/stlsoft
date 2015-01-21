@@ -4,7 +4,7 @@
  * Purpose:     Definition of the CList_traits traits class.
  *
  * Created:     1st December 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file mfcstl/collections/clist_traits.hpp
  *
- * \brief [C++ only] Definition of the mfcstl::CList_traits traits class.
- * (\ref group__library__collections "Collections" Library.)
+ * \brief [C++ only] Definition of the mfcstl::CList_traits traits class
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_MAJOR       3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_MINOR       0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_REVISION    1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_EDIT        51
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

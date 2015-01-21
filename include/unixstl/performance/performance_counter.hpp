@@ -4,7 +4,7 @@
  * Purpose:     performance_counter class.
  *
  * Created:     16th January 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file unixstl/performance/performance_counter.hpp
  *
  * \brief [C++ only] Definition of the 
- *  \link unixstl::performance_counter performance_counter\endlink class.
- * (\ref group__library__performance "Performance" Library.)
+ *  \link unixstl::performance_counter performance_counter\endlink class
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       56
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -131,8 +131,8 @@ public:
 /// @{
 public:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-	performance_counter() // This is needed only to suppress compiler warnings about unused variables
-	{}
+    performance_counter() // This is needed only to suppress compiler warnings about unused variables
+    {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 

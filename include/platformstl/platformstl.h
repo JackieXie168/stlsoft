@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     5th January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 7
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     29
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    10
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -108,8 +108,8 @@
  */
 
 #define _PLATFORMSTL_VER_MAJOR      1
-#define _PLATFORMSTL_VER_MINOR      4
-#define _PLATFORMSTL_VER_REVISION   2
+#define _PLATFORMSTL_VER_MINOR      5
+#define _PLATFORMSTL_VER_REVISION   1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _PLATFORMSTL_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
 # define _PLATFORMSTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 */
@@ -118,9 +118,10 @@
 # define _PLATFORMSTL_VER_1_3_1     0x00010301  /*!< Version 1.3.1 */
 # define _PLATFORMSTL_VER_1_4_1     0x00010401  /*!< Version 1.4.1 */
 # define _PLATFORMSTL_VER_1_4_2     0x00010402  /*!< Version 1.4.2 */
+# define _PLATFORMSTL_VER_1_5_1     0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_4_2
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_5_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -134,10 +135,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B20) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
-# error This version of the PlatformSTL libraries requires STLSoft version 1.9.1 beta 20 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
+#if !defined(_STLSOFT_VER_1_9_1_B41) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.1 beta 41, or later
+#endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Operating system identification
@@ -300,10 +301,6 @@ typedef unixstl_ns_qual(us_long_t)          long_t;      /*!< long */
 #ifdef __cplusplus
 typedef unixstl_ns_qual(us_bool_t)          bool_t;      /*!< bool */
 #endif /* __cplusplus */
-#if 0
-typedef unixstl_ns_qual(us_size_t)          size_t;      /*!< size */
-typedef unixstl_ns_qual(us_ptrdiff_t)       ptrdiff_t;   /*!< ptr diff */
-#endif /* 0 */
 typedef unixstl_ns_qual(us_streampos_t)     streampos_t; /*!< streampos */
 typedef unixstl_ns_qual(us_streamoff_t)     streamoff_t; /*!< streamoff */
 # elif defined(PLATFORMSTL_OS_IS_WIN32)
@@ -329,10 +326,6 @@ typedef winstl_ns_qual(ws_long_t)           long_t;      /*!< long */
 #ifdef __cplusplus
 typedef winstl_ns_qual(ws_bool_t)           bool_t;      /*!< bool */
 #endif /* __cplusplus */
-#if 0
-typedef winstl_ns_qual(ws_size_t)           size_t;      /*!< size */
-typedef winstl_ns_qual(ws_ptrdiff_t)        ptrdiff_t;   /*!< ptr diff */
-#endif /* 0 */
 typedef winstl_ns_qual(ws_streampos_t)      streampos_t; /*!< streampos */
 typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 # else /* ? operating system */

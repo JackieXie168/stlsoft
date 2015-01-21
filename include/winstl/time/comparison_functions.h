@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/time/comparison_functions.h
  *
- * \brief [C, C++] Comparison functions for Windows time types.
- * (\ref group__library__time "Time" Library.)
+ * \brief [C, C++] Comparison functions for Windows time types
+ *   (\ref group__library__time "Time" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TIME_H_COMPARISON_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     40
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 4
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,23 +61,14 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-//#ifndef WINSTL_INCL_WINSTL_H_TIME_FUNCTIONS
-//# include <winstl/time/functions.h>
-//#endif /* !WINSTL_INCL_WINSTL_H_TIME_FUNCTIONS */
-//#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-//# include <stlsoft/string_access.hpp>
-//#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-//#ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
-//# include <stlsoft/shim_string.hpp>
-//#endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -142,7 +133,10 @@ STLSOFT_INLINE ws_sint_t winstl__compare_FILETIME_with_SYSTEMTIME(FILETIME const
     WINSTL_ASSERT(NULL != lhs);
     WINSTL_ASSERT(NULL != rhs);
 
-    STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(rhs, &ft2);
+    if(!STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(rhs, &ft2))
+    {
+        return -1;
+    }
 
     return winstl__compare_FILETIMEs(lhs, &ft2);
 }
@@ -158,7 +152,10 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIME_with_FILETIME(SYSTEMTIME con
     WINSTL_ASSERT(NULL != lhs);
     WINSTL_ASSERT(NULL != rhs);
 
-    STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(lhs, &ft1);
+    if(!STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(lhs, &ft1))
+    {
+        return +1;
+    }
 
     return winstl__compare_FILETIMEs(&ft1, rhs);
 }
@@ -175,11 +172,26 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const *lhs, SYST
     WINSTL_ASSERT(NULL != lhs);
     WINSTL_ASSERT(NULL != rhs);
 
-    STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(lhs, &ft1);
-    STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(rhs, &ft2);
+    if(!STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(lhs, &ft1))
+    {
+        return +1;
+    }
+    if(!STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(rhs, &ft2))
+    {
+        return -1;
+    }
 
     return winstl__compare_FILETIMEs(&ft1, &ft2);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -223,10 +235,11 @@ inline ws_sint_t compare(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)
     return winstl__compare_SYSTEMTIMEs(&lhs, &rhs);
 }
 
-////////////////////////////////////////////////////////////////////////////
-// Operators
+/* /////////////////////////////////////////////////////////////////////////
+ * Operators
+ */
 
-// operator ==
+/* operator == */
 
 /** 
  *
@@ -264,7 +277,7 @@ inline ws_bool_t operator ==(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)
     return 0 == compare(lhs, rhs);
 }
 
-// operator !=
+/* operator != */
 
 /** 
  *
@@ -302,7 +315,7 @@ inline ws_bool_t operator !=(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)
     return 0 != compare(lhs, rhs);
 }
 
-// operator <
+/* operator < */
 
 /** 
  *
@@ -340,7 +353,7 @@ inline ws_bool_t operator <(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)
     return 0 > compare(lhs, rhs);
 }
 
-// operator >
+/* operator > */
 
 /** 
  *
@@ -378,7 +391,7 @@ inline ws_bool_t operator >(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)
     return 0 < compare(lhs, rhs);
 }
 
-// operator <=
+/* operator <= */
 
 /** 
  *
@@ -416,7 +429,7 @@ inline ws_bool_t operator <=(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)
     return 0 >= compare(lhs, rhs);
 }
 
-// operator >=
+/* operator >= */
 
 /** 
  *
@@ -456,8 +469,9 @@ inline ws_bool_t operator >=(SYSTEMTIME const &lhs, SYSTEMTIME const &rhs)
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/comparison_functions_unittest_.h"

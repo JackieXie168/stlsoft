@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/dl/module.hpp
  *
- * \brief [C++ only] Definition of the unixstl::module class.
- * (\ref group__library__dl "DL" Library.)
+ * \brief [C++ only] Definition of the unixstl::module class
+ *   (\ref group__library__dl "DL" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     209
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     211
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,6 +123,7 @@ public:
     /// \brief Constructs by loading the named module
     ///
     /// \param moduleName The file name of the executable module to be loaded.
+    /// \param mode The loading mode (as used by <code>::dlopen()</code>).
     ///
     /// \note If exception-handling is being used, then this throws a
     ///  \link unixstl::unix_exception unix_exception\endlink
@@ -131,6 +132,7 @@ public:
     /// \brief Constructs by loading the named module
     ///
     /// \param moduleName The file name of the executable module to be loaded.
+    /// \param mode The loading mode (as used by <code>::dlopen()</code>).
     ///
     /// \note If exception-handling is being used, then this throws a
     ///  \link unixstl::unix_exception unix_exception\endlink
@@ -142,6 +144,7 @@ public:
     ///   loaded. The argument may be of any type for which the
     ///   \ref group__concept__shim__string_access "string access shim"
     ///   stlsoft::c_str_ptr is defined.
+    /// \param mode The loading mode (as used by <code>::dlopen()</code>).
     ///
     /// \note If exception-handling is being used, then this throws a
     ///  \link unixstl::unix_exception unix_exception\endlink

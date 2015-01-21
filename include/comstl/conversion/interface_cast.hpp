@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
  *
  * \brief [C++ only] Definition of the comstl::interface_cast_addref,
  *  comstl::interface_cast_noaddref and cast classes and the
- *  comstl::interface_cast_test cast test function.
- * (\ref group__library__conversion "Conversion" Library.)
+ *  comstl::interface_cast_test cast test function
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_CONVERSION_HPP_INTERFACE_CAST
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       108
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

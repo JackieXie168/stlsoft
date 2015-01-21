@@ -5,11 +5,11 @@
  *              do or do not have a standard library.
  *
  * Created:     17th January 2002
- * Updated:     29th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,8 +42,8 @@
 /** \file stlsoft/algorithms/std/alt.hpp
  *
  * \brief [C++ only] Contains various standard functions, or their
- *   equivalents.
- * (\ref group__library__algorithms "Algorithms" Library.)
+ *   equivalents
+ *   (\ref group__library__algorithms "Algorithms" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_STD_HPP_ALT
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MINOR       4
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        70
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

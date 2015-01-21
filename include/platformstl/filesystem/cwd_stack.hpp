@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the filesystem_traits components.
  *
  * Created:     16th July 2006
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file platformstl/filesystem/cwd_stack.hpp
  *
  * \brief [C++ only] Definition of the platformstl::cwd_stack
- *   class template.
- * (\ref group__library__file_system "File System" Library.)
+ *   class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      18
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ namespace platformstl_project
  *    the current working directory with <code>push()</code>, and resetting
  *    to its previous value with <code>pop()</code>.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   typename    C
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT

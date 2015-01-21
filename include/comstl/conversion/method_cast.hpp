@@ -4,11 +4,11 @@
  * Purpose:     COM memory functions.
  *
  * Created:     20th December 2003
- * Updated:     29th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file comstl/conversion/method_cast.hpp
  *
  * \brief [C++ only] Definition of the comstl::method_cast suite of
- *   cast functions.
- * (\ref group__library__conversion "Conversion" Library.)
+ *   cast functions
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_CONVERSION_HPP_METHOD_CAST
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MAJOR     2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     0
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     1
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      28
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,24 +122,24 @@ inline ss_uint32_t &transfer_resource(ss_uint32_t &r, ss_uint32_t v)            
 inline ss_sint64_t &transfer_resource(ss_sint64_t &r, ss_sint64_t v)            { return ((r = v), r); }
 inline ss_uint64_t &transfer_resource(ss_uint64_t &r, ss_uint64_t v)            { return ((r = v), r); }
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    _MSC_VER == 1200
+
+#ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
 inline signed char &transfer_resource(signed char &r, signed char v)            { return ((r = v), r); }
 inline unsigned char &transfer_resource(unsigned char &r, unsigned char v)      { return ((r = v), r); }
+#endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 inline signed short &transfer_resource(signed short &r, signed short v)         { return ((r = v), r); }
 inline unsigned short &transfer_resource(unsigned short &r, unsigned short v)   { return ((r = v), r); }
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 inline signed int &transfer_resource(signed int &r, signed int v)               { return ((r = v), r); }
 inline unsigned int &transfer_resource(unsigned int &r, unsigned int v)         { return ((r = v), r); }
-#endif /* compiler */
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    (   _MSC_VER == 1200 || \
-        _MSC_VER == 1300 || \
-        _MSC_VER == 1310)
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 inline signed long &transfer_resource(signed long &r, signed long v)            { return ((r = v), r); }
 inline unsigned long &transfer_resource(unsigned long &r, unsigned long v)      { return ((r = v), r); }
-#endif /* compiler */
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+
 inline float &transfer_resource(float &r, float v)                              { return ((r = v), r); }
 inline double &transfer_resource(double &r, double v)                           { return ((r = v), r); }
 inline long double &transfer_resource(long double &r, long double v)            { return ((r = v), r); }

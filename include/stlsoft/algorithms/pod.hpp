@@ -4,11 +4,11 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     29th December 2006
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/algorithms/pod.hpp
  *
- * \brief [C++ only] Algorithms for use with POD types.
- * (\ref group__library__algorithms "Algorithms" Library.)
+ * \brief [C++ only] Algorithms for use with POD types
+ *   (\ref group__library__algorithms "Algorithms" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       4
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        81
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    4
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -135,7 +135,8 @@ template<   ss_typename_param_k I
 // [[synesis:function:algorithm: pod_copy(T<I> *first, T<I> *last, T<O> *dest)]]
 inline void pod_copy(I *first, I *last, O *dest)
 {
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
+#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    defined(STLSOFT_COMPILER_IS_DMC)
     std_copy(&first[0], &last[0], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*first));
@@ -191,7 +192,8 @@ template<   ss_typename_param_k I
 // [[synesis:function:algorithm: pod_copy_n(T<O> *dest, T<I> *src, size_t n)]]
 inline void pod_copy_n(O *dest, I *src, ss_size_t n)
 {
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
+#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    defined(STLSOFT_COMPILER_IS_DMC)
     std_copy(&src[0], &src[n], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
@@ -236,7 +238,8 @@ template<   ss_typename_param_k I
 // [[synesis:function:algorithm: pod_move(T<I> *first, T<I> *last, T<O> *dest)]]
 inline void pod_move(I *first, I *last, O *dest)
 {
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
+#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    defined(STLSOFT_COMPILER_IS_DMC)
     std_copy(&first[0], &last[0], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*first) == sizeof(*dest));
@@ -282,7 +285,8 @@ template<   ss_typename_param_k I
 // [[synesis:function:algorithm: pod_move_n(T<O> *dest, T<I> *src, size_t n)]]
 inline void pod_move_n(O *dest, I *src, ss_size_t n)
 {
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
+#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    defined(STLSOFT_COMPILER_IS_DMC)
     std_copy(&src[0], &src[n], &dest[0]);
 #else /* ? compiler */
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));

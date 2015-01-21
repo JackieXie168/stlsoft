@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/format/number/grouping_functions.hpp
+ * File:        winstl/conversion/number/grouping_functions.hpp
  *
  * Purpose:     Number formatting functions.
  *
  * Created:     28th August 2005
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,11 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/format/number/grouping_functions.hpp
+/** \file winstl/conversion/number/grouping_functions.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::format_thousands() formatting
- *   function.
- * (\ref group__library__conversion "Conversion" Library.)
+ *   function
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT        5
+# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

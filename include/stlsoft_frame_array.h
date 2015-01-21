@@ -1,6 +1,6 @@
-/*
-[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+#error stlsoft_frame_array.h is now obsolete. The frame_array_* classes are renamed as static_array_* and are now located in stlsoft/containers/static_array.hpp
+
+/* Compatibility
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 
-#error This file is obsolete, and will be removed in a forthcoming release. The frame_array_* classes are renamed as static_array_* and are now located in stlsoft_static_array.h

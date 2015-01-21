@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/filesystem/directory_functions.hpp
  *
- * \brief [C++ only] Functions for manipulating directories.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Functions for manipulating directories
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      39
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -448,7 +448,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const *dir, ws_int_t (*pfn)(vo
 /** \brief Creates the given directory, including all its parent directories, applying
  * the given mode.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to create
  * \param lpsa The security attributes with which each directory is to be created
@@ -461,7 +461,7 @@ inline ws_bool_t create_directory_recurse(ws_char_a_t const *dir, LPSECURITY_ATT
 /** \brief Creates the given directory, including all its parent directories, applying
  * the given mode.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to create
  * \param lpsa The security attributes with which each directory is to be created
@@ -474,7 +474,7 @@ inline ws_bool_t create_directory_recurse(ws_char_w_t const *dir, LPSECURITY_ATT
 /** \brief Creates the given directory, including all its parent directories, applying
  * the given mode.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to create
  * \param lpsa The security attributes with which each directory is to be created
@@ -487,7 +487,7 @@ inline ws_bool_t create_directory_recurse(S const &dir, LPSECURITY_ATTRIBUTES lp
 
 /** \brief Removes the given directory, and all its subdirectories.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param dir The path of the directory to remove
  * \param pfn Pointer to a callback function, which will receive notifications
@@ -540,7 +540,7 @@ inline ws_bool_t remove_directory_recurse(  ws_char_a_t const   *dir
 
 /** \brief Removes the given directory, and all its subdirectories.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline ws_bool_t remove_directory_recurse(ws_char_a_t const *dir)
 {
@@ -549,7 +549,7 @@ inline ws_bool_t remove_directory_recurse(ws_char_a_t const *dir)
 
 /** \brief Removes the given directory, and all its subdirectories.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline ws_bool_t remove_directory_recurse(  ws_char_w_t const   *dir
                                         ,   ws_int_t            (*pfn)(void *param, ws_char_w_t const *subDir, WIN32_FIND_DATAW const *st, DWORD err)
@@ -566,16 +566,18 @@ inline ws_bool_t remove_directory_recurse(  ws_char_w_t const   *dir
 
 /** \brief Removes the given directory, and all its subdirectories.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline ws_bool_t remove_directory_recurse(ws_char_w_t const *dir)
 {
     return remove_directory_recurse(dir, NULL, NULL);
 }
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 /** \brief Removes the given directory, and all its subdirectories.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template <ss_typename_param_k S>
 inline ws_bool_t remove_directory_recurse(S const &dir)
@@ -588,6 +590,8 @@ inline ws_bool_t remove_directory_recurse(S const &dir)
 
     return ERROR_SUCCESS == dwRet;
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Unit-testing

@@ -1,9 +1,9 @@
 
-// Updated: 6th July 2006
+// Updated: 14th January 2007
 
-#if !defined(WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS)
-# error This file cannot be directly included, and should only be included within winstl/time/format_functions.h
-#endif /* !WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS */
+#if !defined(WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS)
+# error This file cannot be directly included, and should only be included within winstl/time/format_functions.hpp
+#endif /* !WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft

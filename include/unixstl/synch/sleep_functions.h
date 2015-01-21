@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL time functions.
  *
  * Created:     2nd September 2005
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/synch/sleep_functions.h
  *
- * \brief [C, C++] Various time functions.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C, C++] Various time functions
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       10
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,16 +62,20 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#include <sys/select.h>
-#include <sys/time.h>
+#if defined(_WIN32)
+# include <windows.h>
+#else /* ? real OS */
+# include <sys/select.h>
+# include <sys/time.h>
+#endif /* real OS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
-#ifndef _UNIXSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_UNIXSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::unixstl */
 namespace unixstl
 {
@@ -95,6 +99,52 @@ namespace unixstl_project
  *   microseconds.
 \htmlonly
 <pre>
+  unixstl__micro_sleep(100000); // Sleep for 0.1 seconds
+  unixstl__micro_sleep(100);    // Sleep for 0.1 milliseconds
+</pre>
+\endhtmlonly
+ *
+ * \param microseconds The number of microseconds to wait
+ *
+ * \return A boolean value indicating whether the operation was 
+ *   successful. If not, <code>errno</code> will contain an error code
+ *   representing the reason for failure.
+ *
+ * \see unixstl::micro_sleep
+ */
+STLSOFT_INLINE us_int_t unixstl__micro_sleep(us_uint_t microseconds)
+{
+#ifdef _WIN32
+    return (STLSOFT_NS_GLOBAL(Sleep)(microseconds / 1000), us_true_v);
+#else /* ? _WIN32 */
+    struct timeval  ts;
+
+    ts.tv_sec   =   stlsoft_static_cast(long, microseconds / 1000000);
+    ts.tv_usec  =   stlsoft_static_cast(long, microseconds % 1000000);
+
+    return -1 != STLSOFT_NS_GLOBAL(select)(0, NULL, NULL, NULL, &ts);
+#endif /* _WIN32 */
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace unixstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ functions
+ */
+
+#ifdef __cplusplus
+
+/** \brief [C++ only] Puts the calling thread to sleep for the given number of
+ *   microseconds.
+\htmlonly
+<pre>
   unixstl::micro_sleep(100000); // Sleep for 0.1 seconds
   unixstl::micro_sleep(100);    // Sleep for 0.1 milliseconds
 </pre>
@@ -106,19 +156,20 @@ namespace unixstl_project
  *   successful. If not, <code>errno</code> will contain an error code
  *   representing the reason for failure.
  */
-STLSOFT_INLINE us_bool_t micro_sleep(us_uint_t microseconds)
+inline us_int_t micro_sleep(us_uint_t microseconds)
 {
-#ifdef _WIN32
-    return (STLSOFT_NS_GLOBAL(Sleep)(microseconds / 1000), us_true_v);
-#else /* ? _WIN32 */
-    struct timeval  ts;
-
-    ts.tv_sec   =   static_cast<long>(microseconds / 1000000);
-    ts.tv_usec  =   static_cast<long>(microseconds % 1000000);
-
-    return -1 != STLSOFT_NS_GLOBAL(select)(0, NULL, NULL, NULL, &ts);
-#endif /* _WIN32 */
+    return unixstl__micro_sleep(microseconds);
 }
+
+#endif /* __cplusplus */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/sleep_functions_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file mfcstl/collections/carray_adaptors.hpp
  *
  * \brief [C++ only] Definition of the mfcstl::CArray_cadaptor and
- *   mfcstl::CArray_iadaptor traits class templates.
- * (\ref group__library__collections "Collections" Library.)
+ *   mfcstl::CArray_iadaptor traits class templates
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS
@@ -53,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     73
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

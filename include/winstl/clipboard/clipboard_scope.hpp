@@ -4,7 +4,7 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/clipboard/clipboard_scope.hpp
  *
- * \brief [C++ only] Definition of the winstl::clipboard_scope class.
- * (\ref group__library__windows_clipboard "Windows Clipboard" Library.)
+ * \brief [C++ only] Definition of the winstl::clipboard_scope class
+ *   (\ref group__library__windows_clipboard "Windows Clipboard" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   5
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       25
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

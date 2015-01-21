@@ -7,7 +7,7 @@
  *              in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,7 +44,8 @@
 /** \file stlsoft/util/limit_traits.h
  *
  * \brief [C, C++] Macros, constants and traits (stlsoft::limit_traits) for
- *  classes. 
+ *  classes
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS
@@ -52,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MINOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     50
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MINOR    2
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 3
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,32 +105,32 @@ namespace stlsoft
 # define STLSOFT_GEN_UINT64_SUFFIX(i)           (i ## UL)
 #else
 # error Compiler not discriminated
-#endif /* __STLSOFT_DVS_COMPILER_GNUC || __STLSOFT_DVS_COMPILER_DECCXX */
+#endif /* compiler */
 
 
-#define   STLSOFT_LIMIT_TRAITS__SINT8_MIN       (- __STLSOFT_GEN_SINT8_SUFFIX(127) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT8_MAX       (+ __STLSOFT_GEN_SINT8_SUFFIX(127))
+#define   STLSOFT_LIMIT_TRAITS__SINT8_MIN       (- STLSOFT_GEN_SINT8_SUFFIX(127) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT8_MAX       (+ STLSOFT_GEN_SINT8_SUFFIX(127))
 
-#define   STLSOFT_LIMIT_TRAITS__UINT8_MIN       (  __STLSOFT_GEN_UINT8_SUFFIX(0))
-#define   STLSOFT_LIMIT_TRAITS__UINT8_MAX       (  __STLSOFT_GEN_UINT8_SUFFIX(255))
+#define   STLSOFT_LIMIT_TRAITS__UINT8_MIN       (  STLSOFT_GEN_UINT8_SUFFIX(0))
+#define   STLSOFT_LIMIT_TRAITS__UINT8_MAX       (  STLSOFT_GEN_UINT8_SUFFIX(255))
 
-#define   STLSOFT_LIMIT_TRAITS__SINT16_MIN      (- __STLSOFT_GEN_SINT16_SUFFIX(32767) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT16_MAX      (+ __STLSOFT_GEN_SINT16_SUFFIX(32767))
+#define   STLSOFT_LIMIT_TRAITS__SINT16_MIN      (- STLSOFT_GEN_SINT16_SUFFIX(32767) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT16_MAX      (+ STLSOFT_GEN_SINT16_SUFFIX(32767))
 
-#define   STLSOFT_LIMIT_TRAITS__UINT16_MIN      (  __STLSOFT_GEN_UINT16_SUFFIX(0))
-#define   STLSOFT_LIMIT_TRAITS__UINT16_MAX      (  __STLSOFT_GEN_UINT16_SUFFIX(65535))
+#define   STLSOFT_LIMIT_TRAITS__UINT16_MIN      (  STLSOFT_GEN_UINT16_SUFFIX(0))
+#define   STLSOFT_LIMIT_TRAITS__UINT16_MAX      (  STLSOFT_GEN_UINT16_SUFFIX(65535))
 
-#define   STLSOFT_LIMIT_TRAITS__SINT32_MIN      (- __STLSOFT_GEN_SINT32_SUFFIX(2147483647) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT32_MAX      (+ __STLSOFT_GEN_SINT32_SUFFIX(2147483647))
+#define   STLSOFT_LIMIT_TRAITS__SINT32_MIN      (- STLSOFT_GEN_SINT32_SUFFIX(2147483647) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT32_MAX      (+ STLSOFT_GEN_SINT32_SUFFIX(2147483647))
 
-#define   STLSOFT_LIMIT_TRAITS__UINT32_MIN      (  __STLSOFT_GEN_UINT32_SUFFIX(0))
-#define   STLSOFT_LIMIT_TRAITS__UINT32_MAX      (  __STLSOFT_GEN_UINT32_SUFFIX(4294967295))
+#define   STLSOFT_LIMIT_TRAITS__UINT32_MIN      (  STLSOFT_GEN_UINT32_SUFFIX(0))
+#define   STLSOFT_LIMIT_TRAITS__UINT32_MAX      (  STLSOFT_GEN_UINT32_SUFFIX(4294967295))
 
-#define   STLSOFT_LIMIT_TRAITS__SINT64_MIN      (- __STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) - 1)
-#define   STLSOFT_LIMIT_TRAITS__SINT64_MAX      (+ __STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) )
+#define   STLSOFT_LIMIT_TRAITS__SINT64_MIN      (- STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) - 1)
+#define   STLSOFT_LIMIT_TRAITS__SINT64_MAX      (+ STLSOFT_GEN_SINT64_SUFFIX(9223372036854775807) )
 
-#define   STLSOFT_LIMIT_TRAITS__UINT64_MIN      (  __STLSOFT_GEN_UINT64_SUFFIX(0) )
-#define   STLSOFT_LIMIT_TRAITS__UINT64_MAX      (  __STLSOFT_GEN_UINT64_SUFFIX(18446744073709551615) )
+#define   STLSOFT_LIMIT_TRAITS__UINT64_MIN      (  STLSOFT_GEN_UINT64_SUFFIX(0) )
+#define   STLSOFT_LIMIT_TRAITS__UINT64_MAX      (  STLSOFT_GEN_UINT64_SUFFIX(18446744073709551615) )
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -198,13 +199,13 @@ template <ss_typename_param_k T>
 struct limit_traits
 {
 public:
-    /// \brief The value type
+    /* \brief The value type */
     typedef T   value_type;
 
 public:
-    /// \brief Returns the minimum value for the type
+    /* \brief Returns the minimum value for the type */
     static value_type       minimum();
-    /// \brief Returns the maximum value for the type
+    /* \brief Returns the maximum value for the type */
     static value_type       maximum();
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
@@ -215,10 +216,34 @@ public:
 
 # else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-// class limit_traits
+/* class limit_traits */
 
 template <ss_typename_param_k T>
 struct limit_traits;
+
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct limit_traits<ss_bool_t>
+{
+public:
+    typedef ss_bool_t  value_type;
+
+public:
+    static value_type       minimum() { return false; }
+    static value_type       maximum() { return true; }
+
+#  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
+    static const value_type minimum_value = false;
+    static const value_type maximum_value = true;
+#  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
+};
+
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+
+
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template <ss_typename_param_k T>
 struct limit_traits_fixed;
 
@@ -360,7 +385,10 @@ public:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 
-#ifdef STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+#ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<signed char>
@@ -372,7 +400,7 @@ struct limit_traits<unsigned char>
     : limit_traits_fixed<ss_uint8_t>
 {};
 
-#endif /* STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT */
+#endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
 
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -397,7 +425,6 @@ struct limit_traits<ss_uint8_t>
     : limit_traits_fixed<ss_uint8_t>
 {};
 
-#ifdef STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<ss_sint16_t>
     : limit_traits_fixed<ss_sint16_t>
@@ -407,9 +434,7 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<ss_uint16_t>
     : limit_traits_fixed<ss_uint16_t>
 {};
-#endif // STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
-#ifdef STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<ss_sint32_t>
     : limit_traits_fixed<ss_sint32_t>
@@ -419,7 +444,6 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<ss_uint32_t>
     : limit_traits_fixed<ss_uint32_t>
 {};
-#endif // STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -434,6 +458,7 @@ struct limit_traits<ss_uint64_t>
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<short>
     : limit_traits_fixed<int_size_traits<sizeof(short)>::signed_type>
@@ -443,7 +468,9 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<unsigned short>
     : limit_traits_fixed<int_size_traits<sizeof(unsigned short)>::unsigned_type>
 {};
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
 
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<int>
     : limit_traits_fixed<int_size_traits<sizeof(int)>::signed_type>
@@ -453,7 +480,9 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<unsigned int>
     : limit_traits_fixed<int_size_traits<sizeof(unsigned int)>::unsigned_type>
 {};
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<long>
     : limit_traits_fixed<int_size_traits<sizeof(long)>::signed_type>
@@ -463,10 +492,19 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits<unsigned long>
     : limit_traits_fixed<int_size_traits<sizeof(unsigned long)>::unsigned_type>
 {};
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #endif /* __cplusplus */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/limit_traits_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -1,4 +1,6 @@
 
+// Updated:	14th January 2007
+
 #if !defined(WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER)
 # error This file cannot be directly included, and should only be included within winstl/shell/browse_for_folder.hpp
 #endif /* !WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER */
@@ -45,7 +47,8 @@ namespace unittest
 				browse_for_folder(pcszTitle, displayName, flags);
 				browse_for_folder(strTitle, displayName, flags);
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS) && \
+#if !defined(STLSOFT_COMPILER_IS_DMC) && \
+	!defined(STLSOFT_COMPILER_IS_MWERKS) && \
 	(	!defined(STLSOFT_COMPILER_IS_MSVC) || \
 		_MSC_VER != 1300)
 				browse_for_folder(pcszTitle, displayName, flags, pcszDefaultFolder);

@@ -4,7 +4,7 @@
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file dotnetstl/util/dispose_functions.hpp
  *
- * \brief [C++ only] Utility functions for handling object disposal.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Utility functions for handling object disposal
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS
@@ -51,7 +51,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_MAJOR       4
 # define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_MINOR       0
 # define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_REVISION    1
-# define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_EDIT        29
+# define DOTNETSTL_VER_DOTNETSTL_UTIL_HPP_DISPOSE_FUNCTIONS_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file winstl/shell/drophandle_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_drophandle_sequence
- *  class template.
- * (\ref group__library__windows_shell "Windows Shell" Library.)
+ *  class template
+ *   (\ref group__library__windows_shell "Windows Shell" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      0
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   5
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       84
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

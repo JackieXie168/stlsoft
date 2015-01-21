@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/filesystem/path.hpp
  *
- * \brief [C++ only] Definition of the unixstl::basic_path class template.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the unixstl::basic_path class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_PATH
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       218
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       220
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ namespace unixstl_project
 
 /** \brief Represents a path
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param T The traits type. Defaults to filesystem_traits<C>. On translators that do not support default template arguments, it must be explicitly stipulated
@@ -369,17 +369,17 @@ private:
 
 /** \brief Specialisation of the basic_path template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_path<us_char_a_t, filesystem_traits<us_char_a_t> >       path_a;
 /** \brief Specialisation of the basic_path template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_path<us_char_w_t, filesystem_traits<us_char_w_t> >       path_w;
 /** \brief Specialisation of the basic_path template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_path<us_char_a_t, filesystem_traits<us_char_a_t> >       path;
 
@@ -519,7 +519,7 @@ inline us_bool_t operator !=(basic_path<C, T, A> const &lhs, basic_path<C, T, A>
 
 /** \brief Concatenates \c rhs to the path \c lhs
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -532,7 +532,7 @@ inline basic_path<C, T, A> operator /(basic_path<C, T, A> const &lhs, ss_typenam
 
 /** \brief Concatenates \c rhs to the path \c lhs
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -545,7 +545,7 @@ inline basic_path<C, T, A> operator /(ss_typename_type_k basic_path<C, T, A>::ch
 
 /** \brief Concatenates \c rhs to the path \c lhs
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -560,13 +560,14 @@ inline basic_path<C, T, A> operator /(basic_path<C, T, A> const &lhs, basic_path
  * Helper functions
  */
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-    _MSC_VER >= 1100
+#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+     _MSC_VER >= 1100
 
 /** \brief This helper function makes a path variable without needing to
  * qualify the template parameter.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<ss_typename_param_k C>
 inline basic_path<C> make_path(C const *path)
@@ -574,7 +575,8 @@ inline basic_path<C> make_path(C const *path)
     return basic_path<C>(path);
 }
 
-#endif /* compiler */
+# endif /* compiler */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * swapping

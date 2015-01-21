@@ -4,7 +4,7 @@
  * Purpose:     Simple class that .
  *
  * Created:     18th June 2006
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/util/must_init.hpp
  *
- * \brief [C++ only] Definition of stlsoft::must_init class template.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Definition of stlsoft::must_init class template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MUST_INIT
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        6
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,9 +130,9 @@ public:
     /// \brief The current instantiation of the type
     typedef must_init<T>    class_type;
     /// The reference type
-    typedef T				&reference;
+    typedef T               &reference;
     /// The non-mutating (const) reference type
-    typedef T const			&const_reference;
+    typedef T const         &const_reference;
 /// @}
 
 /// \name Construction

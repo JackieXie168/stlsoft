@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file unixstl/filesystem/current_directory_scope.hpp
  *
  * \brief [C++ only] Definition of the unixstl::basic_current_directory_scope
- *  class template.
- * (\ref group__library__file_system "File System" Library.)
+ *  class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        106
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ namespace unixstl_project
 
 /** \brief Current directory scoping class
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * This class scopes the process's current directory, by changing to the path
  * given in the constructor, and then, if that succeeded, changing back in the
@@ -200,17 +200,17 @@ private:
 
 /** \brief Specialisation of the basic_current_directory_scope template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_current_directory_scope<us_char_a_t, filesystem_traits<us_char_a_t> >     current_directory_scope_a;
 /** \brief Specialisation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_current_directory_scope<us_char_w_t, filesystem_traits<us_char_w_t> >     current_directory_scope_w;
 /** \brief Specialisation of the basic_current_directory_scope template for the ambient UNIX character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_current_directory_scope<char, filesystem_traits<char> >                   current_directory_scope;
 

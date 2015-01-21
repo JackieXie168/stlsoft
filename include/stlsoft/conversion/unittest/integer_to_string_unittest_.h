@@ -1,4 +1,6 @@
 
+// Updated: 13th January 2007
+
 #if !defined(STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING)
 # error This file cannot be directly included, and should only be included within stlsoft/conversion/integer_to_string.hpp
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING */

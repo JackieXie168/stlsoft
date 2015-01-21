@@ -4,11 +4,11 @@
  * Purpose:     Colour constants.
  *
  * Created:     20th February 1999
- * Updated:     16th July 2006
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/colour_constants.h
  *
- * \brief [C, C++] Colour constants.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] Colour constants
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_COLOUR_CONSTANTS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MINOR      0
-# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_REVISION   1
-# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       22
+# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_REVISION   2
+# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,11 +105,11 @@ const COLORREF  red             =   RGB(255,   0,   0);
 const COLORREF  yellow          =   RGB(255, 255,   0);
 const COLORREF  magenta         =   RGB(255,   0, 255);
 
-const COLORREF  darkblue        =   darkBlue;
-const COLORREF  darkgreen       =   darkGreen;
-const COLORREF  bluegreen       =   blueGreen;
-const COLORREF  darkgrey        =   darkGrey;
-const COLORREF  lightgrey       =   lightGrey;
+const COLORREF  darkblue        =   RGB(  0,   0, 128);
+const COLORREF  darkgreen       =   RGB(  0, 128,   0);
+const COLORREF  bluegreen       =   RGB(  0, 128, 128);
+const COLORREF  darkgrey        =   RGB(128, 128, 128);
+const COLORREF  lightgrey       =   RGB(192, 192, 192);
 
 /* ////////////////////////////////////////////////////////////////////// */
 

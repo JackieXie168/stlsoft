@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the platform_exceptions components.
  *
  * Created:     20th March 2005
- * Updated:     29th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,15 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file platformstl/error/exceptions.hpp Platform header for the platform_exceptions components */
+/** \file platformstl/error/exceptions.hpp
+ *
+ * \brief [C++ only] Definition of the platformstl::platform_exception
+ *   class
+ *   (\ref group__library__error "Error" Library).
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

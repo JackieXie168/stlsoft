@@ -4,7 +4,7 @@
  * Purpose:     is_function_pointer_type meta class.
  *
  * Created:     4th November 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/meta/is_function_pointer_type.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::is_function_pointer_type meta class
- *  template.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ *  template
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_REVISION 2
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_EDIT     7
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

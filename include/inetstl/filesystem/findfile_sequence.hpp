@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file inetstl/filesystem/findfile_sequence.hpp
  *
  * \brief [C++ only] Definition of the inetstl::findfile_sequence
- *   class template.
- * (\ref group__library__file_system "File System" Library.)
+ *   class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 5
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     123
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ class basic_findfile_sequence_const_input_iterator;
 // class basic_findfile_sequence
 /** \brief Presents an STL-like sequence interface over the items on the file-system
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
@@ -333,7 +333,7 @@ private:
 
 /** \brief Specialisation of the basic_findfile_sequence template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_findfile_sequence<is_char_a_t
                             ,   filesystem_traits<is_char_a_t>
@@ -345,7 +345,7 @@ typedef basic_findfile_sequence<is_char_a_t
                             >                                                   findfile_sequence_a;
 /** \brief Specialisation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_findfile_sequence<is_char_w_t
                             ,   filesystem_traits<is_char_w_t>
@@ -357,7 +357,7 @@ typedef basic_findfile_sequence<is_char_w_t
                             >                                                   findfile_sequence_w;
 /** \brief Specialisation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_findfile_sequence<TCHAR
                             ,   filesystem_traits<TCHAR>
@@ -373,7 +373,7 @@ typedef basic_findfile_sequence<TCHAR
 // class basic_findfile_sequence_value_type
 /** \brief Value type for the basic_findfile_sequence
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -430,7 +430,7 @@ private:
 
 /** \brief Accessors
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 // @{
 public:
@@ -479,7 +479,7 @@ private:
 // class basic_findfile_sequence_const_input_iterator
 /** \brief Iterator type for the basic_findfile_sequence supporting the Input Iterator concept
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

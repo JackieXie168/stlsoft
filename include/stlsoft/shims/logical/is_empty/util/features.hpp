@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/is_empty/util/features.hpp
+ * File:        stlsoft/shims/logical/is_empty/util/features.hpp
  *
  * Purpose:     Detects compiler features required by the is_empty shim.
  *
  * Created:     20th December 2006
- * Updated:     20th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,20 +38,20 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/shims/attribute/is_empty/util/features.hpp
+/** \file stlsoft/shims/logical/is_empty/util/features.hpp
  *
- * \brief [C++] Detects compiler features required by the is_empty shim.
- *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
+ * \brief [C++] Detects compiler features required by the is_empty shim
+ *   (\ref group__concept__shim__collection_logical__is_empty "is_empty Collection Logical Shim").
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES
-#define STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES
+#define STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES_MAJOR       1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES_MINOR       0
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES_EDIT        1
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_MAJOR     2
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_MINOR     0
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_REVISION  1
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,17 +64,17 @@
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1310
-# define STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP
+# define STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP
 #endif /* compiler */
 
-#ifdef STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP
+#ifdef STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 #  include <stlsoft/meta/yesno.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
-#endif /* STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP */
+#endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES */
+#endif /* STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES */
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -5,7 +5,7 @@
  *              unit-test framework.
  *
  * Created:     26th February 2004
- * Updated:     6th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file unittest/unittest.hpp
  *
  * \brief [C++ only] Defines various classes and functions used by the
- *    STLSoft unit-test framework.
- * (\ref group__library__unittest "Unit Test" Library.)
+ *    STLSoft unit-test framework
+ *   (\ref group__library__unittest "Unit Test" Library).
  */
 
 #ifndef STLSOFT_INCL_UNITTEST_HPP_UNITTEST
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MAJOR    4
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MINOR    0
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MINOR    1
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_REVISION 1
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     30
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,6 +122,8 @@ public:
     virtual void end_section(char const *message, int line = 0, char const *baseFile = __STLSOFT_UNITTEST_BASE_FILE) = 0;
 
     virtual void stop() = 0;
+
+    virtual int  verbosity() const = 0;
 };
 
 typedef ss_bool_t (*unittest_function)(unittest_reporter *);

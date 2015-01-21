@@ -4,11 +4,11 @@
  * Purpose:     TEXTMETRICS functions.
  *
  * Created:     20th October 1994
- * Updated:     16th July 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/textmetrics_functions.h
  *
- * \brief [C, C++] TEXTMETRICS functions.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] TEXTMETRICS functions
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT     35
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

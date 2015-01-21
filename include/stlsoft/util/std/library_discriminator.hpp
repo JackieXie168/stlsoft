@@ -4,7 +4,7 @@
  * Purpose:     
  *
  * Created:     2nd January 2000
- * Updated:     2nd January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/util/std/library_discriminator.hpp
  *
  * \brief [C++ only] Discrimination and identification of standard library
- *   implementations.
- * (\ref group__library__utility "Utility" Library.)
+ *   implementations
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       2
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        94
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -292,29 +292,29 @@ namespace stlsoft
 // failure to leave behind any definitive discriminatable vestige of its
 // presence.
 
-#ifdef __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
-# undef __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
-#endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
+#ifdef _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
+# undef _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
+#endif /* !_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
 
-#ifdef __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300
-# undef __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300
-#endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300 */
+#ifdef _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300
+# undef _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300
+#endif /* !_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300 */
 
 /* Detect whether Dinkumware "may" be present
  *
- * Discriminated symbol is __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
+ * Discriminated symbol is _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
  */
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
     (   STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_6_0 || \
         STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0)
-# define __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
+# define _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
 #endif /* _MSC_VER && _MSC_VER == 1300 */
 
-#if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES) && \
+#if defined(_STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES) && \
     defined(_DEPRECATED) && \
     defined(_HAS_TEMPLATE_PARTIAL_ORDERING) && \
     defined(_CPPLIB_VER)
-# define __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300
+# define _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300
 #endif /*  */
 
 /* ////////////////////////////////////////////////////////////////////// */

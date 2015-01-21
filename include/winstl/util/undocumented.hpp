@@ -4,11 +4,11 @@
  * Purpose:     Miscellaneous undocumented features.
  *
  * Created:     20th October 1994
- * Updated:     26th July 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/util/undocumented.hpp
  *
- * \brief [C++ only] Miscellaneous undocumented features.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Miscellaneous undocumented features
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_UTIL_HPP_UNDOCUMENTED
@@ -51,7 +51,7 @@
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MAJOR       4
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MINOR       0
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_REVISION    1
-#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        33
+#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

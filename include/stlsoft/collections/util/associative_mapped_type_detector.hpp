@@ -4,11 +4,11 @@
  * Purpose:     Definition of the associative_mapped_type_detector type.
  *
  * Created:     26th February 2005
- * Updated:     30th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file stlsoft/collections/util/associative_mapped_type_detector.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::associative_mapped_type_detector
- *   class template.
- * (\ref group__library__collections "Collections" Library.)
+ *   class template
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MAJOR    3
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT     23
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

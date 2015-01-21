@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     6th January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,12 +45,15 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     6
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  6
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      32
+# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     7
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  1
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file acestl/acestl.hpp \brief [C++ only] The root header for the \ref group__project__acestl "ACESTL" project. */
+/** \file acestl/acestl.hpp
+ *
+ * \brief [C++ only] The root header for the \ref group__project__acestl "ACESTL" project.
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * ACESTL version
@@ -103,17 +106,18 @@
  */
 
 #define _ACESTL_VER_MAJOR      1
-#define _ACESTL_VER_MINOR      0
-#define _ACESTL_VER_REVISION   4
+#define _ACESTL_VER_MINOR      1
+#define _ACESTL_VER_REVISION   1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _ACESTL_VER_0_9_1     0x00000901  /*!< Version 0.9.1 */
 # define _ACESTL_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
 # define _ACESTL_VER_1_0_2     0x00010002  /*!< Version 1.0.2 */
 # define _ACESTL_VER_1_0_3     0x00010003  /*!< Version 1.0.3 */
 # define _ACESTL_VER_1_0_4     0x00010004  /*!< Version 1.0.4 */
+# define _ACESTL_VER_1_1_1     0x00010001  /*!< Version 1.1.1 (STLSoft 1.9.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _ACESTL_VER            _ACESTL_VER_1_0_4
+#define _ACESTL_VER            _ACESTL_VER_1_1_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -136,10 +140,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B20) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
-# error This version of the ACESTL libraries requires STLSoft version 1.9.1 beta 20, or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
+#if !defined(_STLSOFT_VER_1_9_1_B41) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
+# error This version of the ACESTL libraries requires STLSoft version 1.9.1 beta 41, or later
+#endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * ACE version
@@ -401,10 +405,6 @@ typedef as_long_t           long_t;             //!< long integer
 //typedef as_byte_t           byte_t;             //!< Byte
 typedef as_bool_t           bool_t;             //!< bool
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-#if 0
-typedef as_size_t           size_t;             //!< size
-typedef as_ptrdiff_t        ptrdiff_t;          //!< ptr diff
-#endif /* 0 */
 typedef as_streampos_t      streampos_t;        //!< streampos
 typedef as_streamoff_t      streamoff_t;        //!< streamoff
 # endif /* compiler */
