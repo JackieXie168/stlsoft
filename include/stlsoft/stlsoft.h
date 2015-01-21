@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     18th August 2012
+ * Updated:     12th December 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    28
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    29
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     431
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     433
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -279,12 +279,13 @@
 # define _STLSOFT_VER_1_9_114   0x010972ff  /*!< Version 1.9.114 (4th June 2012) */
 # define _STLSOFT_VER_1_9_115   0x010973ff  /*!< Version 1.9.115 (30th July 2012) */
 # define _STLSOFT_VER_1_9_116   0x010974ff  /*!< Version 1.9.116 (18th August 2012) */
+# define _STLSOFT_VER_1_9_117   0x010975ff  /*!< Version 1.9.117 (12th December 2012) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   116
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_116
+#define _STLSOFT_VER_REVISION   117
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_117
 
 /* /////////////////////////////////////
  * Underlying version detection
@@ -664,8 +665,10 @@
 #  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 9.0"
 # elif (_MSC_VER == 1600)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 10.0"
+# elif (_MSC_VER == 1700)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 11.0"
 # else /* ? _MSC_VER */
-#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0 and 10.0 of the Visual C++ compiler are supported by the STLSoft libraries
+#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, and 11.0 of the Visual C++ compiler are supported by the STLSoft libraries
 # endif /* _MSC_VER */
 
 #else /* ? compiler */
@@ -2170,7 +2173,11 @@ private:
 # if defined(STLSOFT_COMPILER_IS_BORLAND)
 
 template <ss_typename_param_k X>
-inline void throw_x(X const& x) /* throw(X) */
+inline
+void
+throw_x(
+    X const& x
+) /* throw(X) */
 {
     X   x2(x);
 
@@ -2182,19 +2189,21 @@ inline void throw_x(X const& x) /* throw(X) */
 # else
 
 template <ss_typename_param_k X>
-inline void throw_x(X const& x)
+inline
+void
+throw_x(
+    X const& x
+)
+{
 #  if   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1200
-{
     X const* px =   &x;
 
     throw *px;
-}
 #  else /* ? compiler */
-{
     throw x;
-}
 #  endif /* compiler */
+}
 
 #  define STLSOFT_THROW_X(x)    stlsoft_ns_qual(throw_x)(x)
 
@@ -2444,7 +2453,11 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-inline void stlsoft_destroy_instance_fn(T *p)
+inline
+void
+stlsoft_destroy_instance_fn(
+    T *p
+)
 {
     p->~T();
 
@@ -3074,7 +3087,12 @@ inline T const* address(T const& t)
         __DMC__ < 0x0833) || \
       ( defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1300)
-inline void *operator new(ss_size_t /* si */, void *pv)
+inline
+void*
+operator new(
+    ss_size_t   /* si */
+,   void*       pv
+)
 {
     return pv;
 }

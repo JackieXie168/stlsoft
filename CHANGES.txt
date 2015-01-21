@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th August 2012
+; Updated:  16th February 2013
 
 ============================================================================
 
@@ -15,6 +15,47 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.117 (16th February 2013)
+
+Summary:
+========
+
+ * added Visual C++ 11 compatibility
+ * various minor changes
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/stlsoft.h:
+ ~ stlsoft/util/std/iterator_helper.hpp:
+ ~ stlsoft/util/std/library_discriminator.hpp:
+    + added Visual C++ 11 compatibility
+
+ ~ stlsoft/string/char_traits.hpp:
+    ~ defect fix
+
+ WinSTL:
+ =======
+
+ ~ winstl/error/error_desc.hpp:
+    ~ trivial correction
+
+ ~ winstl/filesystem/directory_functions.hpp:
+    ~ propagates failed sub-directory removal up to caller
+    ~ fixing up of documentation of callback function semantics
+
+ ~ winstl/system/console_functions.h:
+    ~ fixing doc
+
+ ~ winstl/system/environment_variable.hpp:
+    ~ trivial tightening of pointer null
+
 
 ============================================================================
 

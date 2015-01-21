@@ -4,7 +4,7 @@
  * Purpose:     Discriminates between standard library implementations
  *
  * Created:     2nd January 2000
- * Updated:     14th March 2012
+ * Updated:     13th December 2012
  *
  * Thanks:      To Gabor Fischer, for reporting problems with VC++ 9/10
  *              compatibility, and persisting in (re-)reporting it even when
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       7
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        106
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       8
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    1
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -289,6 +289,7 @@ namespace stlsoft
 #define STLSOFT_CF_DINKUMWARE_VC_VERSION_8_0            (0x0800)
 #define STLSOFT_CF_DINKUMWARE_VC_VERSION_9_0            (0x0900)
 #define STLSOFT_CF_DINKUMWARE_VC_VERSION_10_0           (0x0a00)
+#define STLSOFT_CF_DINKUMWARE_VC_VERSION_11_0           (0x0b00)
 
 #ifdef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC
 # if defined(STLSOFT_COMPILER_IS_INTEL) && \
@@ -338,6 +339,13 @@ namespace stlsoft
 #    pragma message("  Dinkumware version 10.0")
 #   endif /* STLSOFT_COMPILE_VERBOSE */
 #   define STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION      STLSOFT_CF_DINKUMWARE_VC_VERSION_10_0
+
+#  elif _CPPLIB_VER <= 540
+  /* Version 11.0 */
+#   ifdef STLSOFT_COMPILE_VERBOSE
+#    pragma message("  Dinkumware version 11.0")
+#   endif /* STLSOFT_COMPILE_VERBOSE */
+#   define STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION      STLSOFT_CF_DINKUMWARE_VC_VERSION_11_0
 
 #  else
 #   error Dinkumware C++ Library version unrecognised: are you using a version of VC++ later than 10.0?
