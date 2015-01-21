@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     1st August 2010
+ * Updated:     29th November 2010
  *
  * Thanks to:   Pablo Aguilar for reporting defect in push_ext() (which
  *              doesn't work for wide-string builds).
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 20
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     260
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     261
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -440,9 +440,6 @@ private:
     class_type&             push_sep_(char_type sep);
     void                    swap(class_type& rhs);
     class_type&             concat_(char_type const* rhs, size_type cch);
-#if 0
-    class_type&             concat_(class_type const& rhs, size_type cch);
-#endif /* 0 */
 
     bool_type               has_dir_end_() const;
 
@@ -986,8 +983,12 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_param_k basic_path<C, T, A>::class_type&
-basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs, ss_typename_param_k basic_path<C, T, A>::size_type cch)
+inline
+ss_typename_param_k basic_path<C, T, A>::class_type&
+basic_path<C, T, A>::concat_(
+    ss_typename_param_k basic_path<C, T, A>::char_type const*   rhs
+,   ss_typename_param_k basic_path<C, T, A>::size_type          cch
+)
 {
     traits_type::char_copy(&m_buffer[0] + m_len, rhs, cch);
     m_len += cch;
@@ -995,19 +996,6 @@ basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type 
 
     return *this;
 }
-
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
-{
-    return concat_(rhs.data(), rhs.size());
-
-    return *this;
-}
-#endif /* 0 */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

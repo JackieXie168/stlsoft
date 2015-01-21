@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  22nd November 2010
+; Updated:  27th December 2010
 
 ============================================================================
 
@@ -15,6 +15,58 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.105 (27th December 2010)
+
+Summary:
+========
+
+ * several new minor facilities in stlsoft::frequency_map
+ * improved compiler-compatibility in stlsoft::multibyte2wide and stlsoft::wide2multibyte
+ * WinSTL now recognises Win64 architecture when _WIN64 is defined even when WIN64 is not
+
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/containers/frequency_map.hpp:
+    + added member function operator +=()
+    + added non-member function operator +()
+    + added total() method
+    + added class invariant and enforcements
+
+ ~ stlsoft/conversion/char_conversions.hpp:
+    ~ GCC compatibility
+
+ ~ stlsoft/shims/access/string/std/exception.hpp:
+    ~ suppressed trivial unused warning
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/filesystem/path.hpp:
+    ~ minor refactoring, to avoid use of str_n_copy() and str_cat()
+
+ ~ unixstl/filesystem/readdir_sequence.hpp:
+    ~ refactored to remove use of str_n_copy()
+
+ WinSTL:
+ =======
+
+ ~ winstl/filesystem/path.hpp:
+    ~ trivial refactoring
+
+ ~ winstl/window/functions.h:
+    ~ VC++/-Wp64 warning suppression
+
+ ~ winstl/winstl.h:
+    ~ now recognises _WIN64 (without WIN64) when defining architecture as WINSTL_OS_IS_WIN64, and emits a pragma message nag (for supporting compilers)
 
 
 ============================================================================

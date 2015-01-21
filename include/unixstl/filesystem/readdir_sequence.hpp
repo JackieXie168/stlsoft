@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     12th January 2010
+ * Updated:     29th November 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       126
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   8
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -520,14 +520,15 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
 
     if(absolutePath & flags)
     {
-        n = traits_type::get_full_path_name(directory, path.size(), &path[0]);
+        n = traits_type::get_full_path_name(directory, path.size() - 1u, &path[0]);
 
         if(0 == n)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            traits_type::str_n_copy(&path[0], directory, path.size());
+            traits_type::char_copy(&path[0], directory, n);
+            path[n] = \'0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
