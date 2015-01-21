@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     25th January 2011
+ * Updated:     31st January 2011
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      115
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -384,7 +384,7 @@ public:
 
     /// The value returned by open_file() that indicates that the
     /// operation failed
-    static file_handle_type invalid_handle_value();
+    static file_handle_type invalid_file_handle_value();
     /// \brief Create / open a file
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode);
     /// \brief Closes the given operating system handle
@@ -1153,7 +1153,7 @@ public:
 # pragma warning(disable : 4996)
 #endif /* compiler */
 
-    static file_handle_type invalid_handle_value()
+    static file_handle_type invalid_file_handle_value()
     {
         return NULL;
     }

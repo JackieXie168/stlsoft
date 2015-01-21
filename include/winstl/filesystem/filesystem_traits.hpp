@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     25th January 2011
+ * Updated:     31st January 2011
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       8
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       9
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        124
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -433,7 +433,7 @@ public:
 
     /// The value returned by create_file() that indicates that the
     /// operation failed
-    static file_handle_type invalid_handle_value();
+    static file_handle_type invalid_file_handle_value();
     /// \brief Create / open a file
     static file_handle_type create_file(char_type const* fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, HANDLE hTemplateFile);
     /// \brief Closes the given file handle
@@ -1283,7 +1283,7 @@ public:
         return FALSE != ::CopyFileA(sourceName, newName, bFailIfExists);
     }
 
-    static file_handle_type invalid_handle_value()
+    static file_handle_type invalid_file_handle_value()
     {
         return INVALID_HANDLE_VALUE;
     }
@@ -1924,7 +1924,7 @@ public:
         return FALSE != ::CopyFileW(sourceName, newName, bFailIfExists);
     }
 
-    static file_handle_type invalid_handle_value()
+    static file_handle_type invalid_file_handle_value()
     {
         return INVALID_HANDLE_VALUE;
     }

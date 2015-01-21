@@ -4,11 +4,11 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     12th December 2010
+ * Updated:     31st January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    3
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     25
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,15 +109,16 @@ template<   ss_typename_param_k T
 #else
         ,   ss_typename_param_k N = uint32_t
 #endif
+        ,   ss_typename_param_k P = stlsoft_ns_qual_std(less)<T>
         >
 class frequency_map
     : public stl_collection_tag
 {
 private: // Member Types
-    typedef stlsoft_ns_qual_std(map)<T, N>                  map_type_;
+    typedef stlsoft_ns_qual_std(map)<T, N, P>               map_type_;
 public:
     /// This type
-    typedef frequency_map<T, N>                             class_type;
+    typedef frequency_map<T, N, P>                          class_type;
     /// The value type
     typedef ss_typename_param_k map_type_::value_type       value_type;
     /// The non-mutating (const) iterator type
@@ -333,13 +334,16 @@ private: // Member Variables
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k N
+        ,   ss_typename_param_k P
         >
-inline frequency_map<T, N> operator +(
-    frequency_map<T, N> const& lhs
-,   frequency_map<T, N> const& rhs
+inline
+frequency_map<T, N, P>
+operator +(
+    frequency_map<T, N, P> const& lhs
+,   frequency_map<T, N, P> const& rhs
 )
 {
-    frequency_map<T, N> r(lhs);
+    frequency_map<T, N, P> r(lhs);
 
     r += rhs;
 
@@ -354,10 +358,11 @@ inline frequency_map<T, N> operator +(
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k N
+        ,   ss_typename_param_k P
         >
 inline void swap(
-    frequency_map<T, N>& lhs
-,   frequency_map<T, N>& rhs
+    frequency_map<T, N, P>& lhs
+,   frequency_map<T, N, P>& rhs
 )
 {
     lhs.swap(rhs);

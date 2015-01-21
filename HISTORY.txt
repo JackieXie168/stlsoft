@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  30th January 2011
+; Updated:  31st January 2011
 
 ============================================================================
+
+
+31st January 2011 - 1.9.108 released
+------------------------------------
+
+ * changed erroneously named new unixstl::/winstl::filesystem_traits method's name from invalid_handle_value() to invalid_file_handle_value()
+ * added third, defaulted, template parameter to stlsoft::frequency_map for specification of predicate
 
 
 30th January 2011 - 1.9.107 released
