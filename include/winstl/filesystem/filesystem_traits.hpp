@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     14th February 2009
+ * Updated:     19th April 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        115
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -422,9 +422,9 @@ public:
     static ws_uint64_t  get_file_size(file_handle_type h);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
-	/// Not currently supported
+    /// Not currently supported
     static void         get_file_size(stat_data_type const*);
-	/// Not currently supported
+    /// Not currently supported
     static void         get_file_size(stat_data_type const&);
 /// @}
 };

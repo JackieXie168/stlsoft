@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     6th February 2009
+ * Updated:     19th April 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    3
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     14
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
@@ -156,7 +156,7 @@ public:
         , m_contents()
         , m_strings()
     {
-		m_mmf = (new memory_mapped_file(stlsoft_ns_qual(c_str_ptr)(path))); // See comment above for why we initialise intra-body
+        m_mmf = (new memory_mapped_file(stlsoft_ns_qual(c_str_ptr)(path))); // See comment above for why we initialise intra-body
 
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
         STLSOFT_ASSERT(NULL != m_mmf);

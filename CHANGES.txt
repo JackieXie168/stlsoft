@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  9th March 2009
+; Updated:  27th April 2009
 
 ============================================================================
 
@@ -16,6 +16,63 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.78 (27th March 2009)
+
+Summary:
+========
+
+ * fixed serious defect in atlstl::copy_enumerator_impl::Reset()
+ * stlsoft::shared_ptr now works correctly if fails to allocate counter
+   variable in conditions where exception handling is not supported
+ * stlsoft::c_str_data_a(struct fm const*) now correctly handles case where
+   tm pointer is NULL
+ * corrected behaviour of get_environment_variable for both UNIXSTL and
+   WinSTL system_traits traits classes
+ * various compiler compatibility fixes
+ * various documentation corrections
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/iterators/ostream_iterator.hpp:
+    ~ documentation corrections
+
+ ~ stlsoft/shims/access/string/std/time.hpp:
+    ~ c_str_data_a(struct tm const* t) now correctly handles NULL tm pointer
+
+ ~ stlsoft/smartptr/shared_ptr.hpp:
+    ~ now correctly handles failure to allocate the shared counter, even when compiling absent exceptions
+
+ ATLSTL:
+ =======
+
+ ~ atlstl/automation/enumerators.hpp:
+    ~ fixed defect in Reset() - which did nothing! - that was introduced in STLSoft 1.9.1 beta 5 (!) upon transcription from the original, correct, Synesis Software proprietary source
+    ~ minor documentation fixes
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/filesystem/filesystem_traits.hpp:
+    - removal of dependency of str(n)cpy()/wcs(n)cpy(), which causes VC++ 8+ to carp about "safety"
+
+ ~ unixstl/system/system_traits.hpp:
+    ~ corrected behaviour of get_environment_variable()
+
+ WinSTL:
+ =======
+
+ ~ winstl/filesystem/memory_mapped_file.hpp:
+    ~ CodeWarrior compatibility
+
+ ~ winstl/system/system_traits.hpp:
+    ~ corrected behaviour of get_environment_variable()
 
 ============================================================================
 

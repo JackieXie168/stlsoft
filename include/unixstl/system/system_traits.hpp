@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     28th January 2009
+ * Updated:     19th April 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      103
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -403,7 +403,7 @@ public:
         }
         else
         {
-            us_size_t var_len = ::strlen(var);
+            us_size_t var_len = str_len(var);
 
             if(NULL == buffer)
             {
@@ -411,7 +411,13 @@ public:
             }
             else
             {
-                str_n_copy(buffer, var, cchBuffer);
+                size_type writtenLen = (var_len < cchBuffer) ? var_len : cchBuffer;
+
+                char_copy(buffer, var, writtenLen);
+                if(writtenLen < cchBuffer)
+                {
+                    buffer[writtenLen] = '\0';
+                }
 
                 return (var_len < cchBuffer) ? var_len : cchBuffer;
             }

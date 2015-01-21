@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     9th March 2009
+ * Updated:     19th April 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        88
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,10 +218,10 @@ public:
         open_(stlsoft_ns_qual(c_str_ptr)(fileName), 0, 0);
     }
     memory_mapped_file(
-		char_type const*    fileName
+        char_type const*    fileName
     ,   offset_type         offset
     ,   size_type           requestSize
-	)
+    )
         : m_cb(0)
         , m_memory(NULL)
     {
@@ -229,10 +229,10 @@ public:
     }
     template <ss_typename_param_k S>
     memory_mapped_file(
-		S const&    fileName
-    ,   offset_type	offset
+        S const&    fileName
+    ,   offset_type offset
     ,   size_type   requestSize
-	)
+    )
         : m_cb(0)
         , m_memory(NULL)
     {

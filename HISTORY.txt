@@ -2,9 +2,23 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  9th March 2009
+; Updated:  27th April 2009
 
 ============================================================================
+
+
+27th March 2009 - 1.9.78 released
+---------------------------------
+
+ * fixed serious defect in atlstl::copy_enumerator_impl::Reset()
+ * stlsoft::shared_ptr now works correctly if fails to allocate counter
+   variable in conditions where exception handling is not supported
+ * stlsoft::c_str_data_a(struct fm const*) now correctly handles case where
+   tm pointer is NULL
+ * corrected behaviour of get_environment_variable for both UNIXSTL and
+   WinSTL system_traits traits classes
+ * various compiler compatibility fixes
+ * various documentation corrections
 
 
 9th March 2009 - 1.9.77 released

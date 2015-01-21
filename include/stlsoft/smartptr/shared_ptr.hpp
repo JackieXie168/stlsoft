@@ -4,11 +4,11 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     10th October 2008
+ * Updated:     26th April 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        34
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    3
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,10 +115,50 @@ public:
     {
         STLSOFT_ASSERT(is_valid());
     }
-    explicit shared_ptr(T *p)
+    /// 
+    ///
+    /// \note If exception handling is not enabled and memory cannot be
+    ///   acquired to hold the sharing resource the object represented
+    ///   by \c p will be deleted, and get() will return \c NULL
+    ///
+    /// \exception std::bad_alloc If exception support is enabled,
+    ///   an instance of <code>std::bad_alloc</code> will be thrown if
+    ///   memory cannot be acquired to hold the sharing resource. In this
+    ///   case, the object represented by \c p will be deleted
+    explicit shared_ptr(T* p)
         : m_p(p)
-        , m_pc((NULL != p) ? new long(1) : NULL)
+        , m_pc(NULL)
     {
+        // This code prevents leaks in the following case:
+        //
+        //   shared_ptr<Class>  p(new Class());
+        //
+        // if the count cannot be allocated
+
+        if(NULL != p)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            try
+            {
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+                m_pc = new long(1);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            }
+            catch(std::bad_alloc&)
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+            if(NULL == m_pc)
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            {
+                delete m_p;
+
+                m_p = NULL; // benign for X; necessary for NoX
+
+                throw;
+            }
+        }
+
         STLSOFT_ASSERT(is_valid());
     }
 
@@ -238,6 +278,13 @@ public:
 
         STLSOFT_ASSERT(is_valid());
     }
+
+#if 0 && !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+    void reset()
+    {
+		close();
+    }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
     pointer detach()
     {
@@ -377,9 +424,8 @@ private:
  * swapping
  */
 
-template<   ss_typename_param_k T
-        >
-inline void swap(shared_ptr<T>& lhs, shared_ptr<T>& rhs)
+template <ss_typename_param_k T>
+void swap(shared_ptr<T>& lhs, shared_ptr<T>& rhs)
 {
     lhs.swap(rhs);
 }
