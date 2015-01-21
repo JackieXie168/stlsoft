@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  4th June 2012
+; Updated:  31st July 2012
 
 ============================================================================
 
@@ -15,6 +15,85 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.115 (31st July 2012)
+
+Summary:
+========
+
+ * stlsoft::integer_to_string() new overloads with out-parameter as pointer; deprecated overloads with out-parameter as reference
+ * winstl::integral_printf_traits added octal_format_a/w(), hexadecimal_format_a/w(), decimal_format_a/w(); deprecated format_a/w() and hex_format_a/w() methods, and size_min, size_max, and size member constants
+ * Windows 7-compatibility for winstl::drophandle_sequence
+ * winstl::spin_mutex now uses SwitchToThread if _WIN32_WINNT >= 0x0400
+ * added winstl::added GetTimeFormat_msExA/W() by which custom time markers can be specified
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/conversion/integer_to_string.hpp:
+    + added overloads taking pointer out-parameter (for retrieval of written length)
+    ~ deprecated overloads taking reference out-parameter (for retrieval of written length)
+    ~ preparation for fwd-compatible changes
+
+ ~ stlsoft/internal/cccap/msvc.h:
+    + support for static_assert (VC++ 10+)
+    + added STLSOFT_MSVC_VER
+    ~ recognition of 'long long' support for VC++8+
+
+ + stlsoft/internal/head_version.h:
+ + stlsoft/internal/lead_version.h:
+    + added head and lead version for STLSoft 1.9
+
+ ~ stlsoft/stlsoft.h:
+    + added remove_const_ptr()
+    + added apply_const_ptr()
+    + added inclusions for stlsoft/internal/head_version.h, which defines STLSOFT_HEAD_VER
+    + added inclusions for stlsoft/internal/lead_version.h, which defines STLSOFT_LEAD_VER
+    ~ now uses static_assert (in STLSOFT_STATIC_ASSERT()), when supported
+
+ ~ stlsoft/string/split_functions.hpp:
+    ~ moved worker functions into nested namespace stlsoft::ximpl_split_functions
+
+ ~ stlsoft/string/view_slice_functions.hpp:
+    ~ GCC compatibility (because of duff shims/template handling)
+
+ ~ stlsoft/util/integral_printf_traits.hpp:
+    ~ size_min, size_max, and size member constants are now deprecated
+    ~ moved integral_printf_traits_base into internal namespace ximpl_integral_printf_traits
+    + added octal_format_a()
+    + added octal_format_w()
+    + added hexadecimal_format_a()
+    + added hexadecimal_format_w()
+    ~ deprecated hex_format_a()
+    ~ deprecated hex_format_w()
+    + added decimal_format_a()
+    + added decimal_format_w()
+    ~ deprecated format_a()
+    ~ deprecated format_w()
+
+ WinSTL:
+ =======
+
+ ~ winstl/conversion/char_conversions.hpp:
+    ~ workaround for compatibility with ATL::CComBSTR (and other types that do not precisely convert to C const*)
+
+ ~ winstl/shell/drophandle_sequence.hpp:
+    ~ changed to be compatible (and work!) with Windows 7(+)
+    ~ corrected formerly impotent contract enforcement
+
+ ~ winstl/synch/spin_mutex.hpp:
+    ~ now yields via SwitchToThread() if _WIN32_WINNT >= 0x0400
+
+ ~ winstl/time/format_functions.hpp:
+    + added GetTimeFormat_msExA/W() by which custom time markers can be specified
+    ~ forward compatibility with STLSoft 1.10+ integer to string conversions
+
+
 
 ============================================================================
 
