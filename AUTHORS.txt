@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  30th January 2011
+; Updated:  25th November 2011
 
 ============================================================================
 
@@ -59,6 +59,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     markitus82
     Martin J Moene
     Mateusz Loskot
+    Michal Makowski
     Mikael Pahmp
     Mike Batten
     Neal Becker
@@ -89,6 +90,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     W³odzimierz Skiba
     Yakov Markovitch
     yozara
+    Zar Eindl
     zer0god
 
     and many others whose posts and requests have been invaluable

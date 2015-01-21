@@ -2,9 +2,25 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  13th August 2011
+; Updated:  30th November 2011
 
 ============================================================================
+
+
+30th November 2011 - 1.9.111 released
+-------------------------------------
+
+ * fix for GCC 4.5+ unixstl::filesystem_traits
+
+
+25th November 2011 - 1.9.110 released
+-------------------------------------
+
+ * fix for GCC 4.5+ unixstl::filesystem_traits
+ * added result_code_type to both unixstl::system_traits and winstl::system_traits
+ * correction(s)/enhancement(s) to which of MFCSTL's string access shim headers are automatically included
+ * added discrimination of new pre-processor symbol PLATFORMSTL_NO_PLATFORM_NAMESPACE, to ease dependent library implementation
+ * avoidance of false memory-leak reports in use of stlsoft::truncation_test
 
 
 13th August 2011 - 1.9.109 released

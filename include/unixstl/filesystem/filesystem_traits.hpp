@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      120
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1216,9 +1216,9 @@ public:
 #endif /* _WIN32 */
     }
 
-    static bool_type    create_directory(char_type const* dir)
+    static bool_type create_directory(char_type const* dir)
     {
-        mode_type   mode = 0;
+        mode_type mode = 0;
 
 #ifdef _WIN32
         mode    =   S_IREAD | S_IWRITE | S_IEXEC;
@@ -1226,7 +1226,7 @@ public:
         mode    =   S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
 #endif /* _WIN32 */
 
-        return create_directory(dir, 0);
+        return create_directory(dir, mode);
     }
 
     static bool_type create_directory(char_type const* dir, mode_type permissions)
