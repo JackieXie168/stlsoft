@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     30th July 2012
+ * Updated:     18th August 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    28
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     430
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     431
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -278,12 +278,13 @@
 # define _STLSOFT_VER_1_9_113   0x010971ff  /*!< Version 1.9.113 (4th June 2012) */
 # define _STLSOFT_VER_1_9_114   0x010972ff  /*!< Version 1.9.114 (4th June 2012) */
 # define _STLSOFT_VER_1_9_115   0x010973ff  /*!< Version 1.9.115 (30th July 2012) */
+# define _STLSOFT_VER_1_9_116   0x010974ff  /*!< Version 1.9.116 (18th August 2012) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   115
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_115
+#define _STLSOFT_VER_REVISION   116
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_116
 
 /* /////////////////////////////////////
  * Underlying version detection

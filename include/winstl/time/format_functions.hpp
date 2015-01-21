@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     30th July 2012
+ * Updated:     7th August 2012
  *
  * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
  *              time pictures.
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       61
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   2
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,7 @@ STLSOFT_STDCALL GetTimeFormat_ms_(
     char_t          minutes_[]  =   { '\0', '\0', '\0', '0', '0', '\0' };                       // "...00"
     char_t          seconds_[]  =   { '\0', '\0', '\0', '0', '0', '.', '0', '0', '0', '\0' };   // "...00.000"
 
-    uint16_t const  hour12      =   (lpTime->wHour > 12) ? (lpTime->wHour - 12) : lpTime->wHour;
+    uint16_t const  hour12      =   (lpTime->wHour > 12) ? uint16_t(lpTime->wHour - 12) : lpTime->wHour;
 
 #if defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
     char_t const*   hours12    =   stlsoft_ns_qual(integer_to_string)(hours12_, hour12);
