@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     21st June 2010
+ * Updated:     7th July 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        121
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -471,6 +471,11 @@ public:
         maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
+    enum
+    {
+        pathComparisonIsCaseSensitive = false
+    };
+
 public:
     static bool_type fstat(file_handle_type fd, fstat_data_type* fstat_data)
     {
@@ -538,6 +543,11 @@ public:
     enum
     {
         maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
+    };
+
+    enum
+    {
+        pathComparisonIsCaseSensitive = false
     };
 
 public:

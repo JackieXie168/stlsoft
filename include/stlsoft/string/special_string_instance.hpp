@@ -4,7 +4,7 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     21st June 2010
+ * Updated:     12th August 2010
  *
  * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
  *              for special_string_instance_1.
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        20
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ private:
     ,   N
 #endif /* compiler */
     ,   allocator_type
-    >										buffer_type_;
+    >                                       buffer_type_;
 /// @}
 
 /// \name Construction
@@ -151,16 +151,18 @@ public:
     {}
 #ifdef STLSOFT_COMPILER_IS_GCC
     ssi_buffer(class_type const& rhs)
-		: m_len(rhs.m_len)
-		, m_buffer(rhs.m_len + 1)
-	{
-		::memcpy(&m_buffer[0], &rhs.m_buffer[0], sizeof(char_type) * (1u + m_len));
-	}
+        : m_len(rhs.m_len)
+        , m_buffer(rhs.m_len + 1)
+    {
+        ::memcpy(&m_buffer[0], &rhs.m_buffer[0], sizeof(char_type) * (1u + m_len));
+    }
 #endif /* compiler */
 
     void init(size_type (*pfn)(char_type*, size_type))
     {
-        size_type cch = pfn(NULL, 0);   // We don't pass NULL here, just in case
+        // We don't pass NULL here, just in case
+        char_type empty =   '\0';
+        size_type cch   =   pfn(&empty, 0);
 
         if(m_buffer.resize(1 + cch))
         {
@@ -270,8 +272,8 @@ public:
     }
 #ifdef STLSOFT_COMPILER_IS_GCC
     ssi_buffer_non_static(class_type const& rhs)
-		: parent_class_type(rhs)
-	{}
+        : parent_class_type(rhs)
+    {}
 #endif /* compiler */
 /// @}
 
@@ -317,6 +319,7 @@ public:
 private:
     typedef P                                               policy_type;
     typedef ss_typename_type_k policy_type::spin_mutex_type spin_mutex_type;
+    typedef ss_typename_type_k policy_type::atomic_int_type atomic_int_type;
 /// @}
 
 /// \name Construction
@@ -330,8 +333,8 @@ public:
     {}
 #ifdef STLSOFT_COMPILER_IS_GCC
     ssi_buffer_static(class_type const& rhs)
-		: m_buffer(rhs.m_buffer)
-	{}
+        : m_buffer(rhs.m_buffer)
+    {}
 #endif /* compiler */
 /// @}
 
@@ -351,9 +354,9 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static ssi_buffer_type &get_buffer(size_type (*pfn)(char_type*, size_type))
+    static ssi_buffer_type& get_buffer(size_type (*pfn)(char_type*, size_type))
     {
-        static ss_sint32_t                      s_count =   0;
+        static atomic_int_type                  s_count =   0;
         static bool                             s_bInit =   false;
         spin_mutex_type                         mx(&s_count);
         stlsoft::lock_scope<spin_mutex_type>    lock(mx);
@@ -369,9 +372,9 @@ private:
 
         return s_buffer;
     }
-    static ssi_buffer_type &get_buffer(A0 a0, size_type (*pfn)(A0, char_type*, size_type))
+    static ssi_buffer_type& get_buffer(A0 a0, size_type (*pfn)(A0, char_type*, size_type))
     {
-        static ss_sint32_t                      s_count =   0;
+        static atomic_int_type                  s_count =   0;
         static bool                             s_bInit =   false;
         spin_mutex_type                         mx(&s_count);
         stlsoft::lock_scope<spin_mutex_type>    lock(mx);
@@ -392,7 +395,7 @@ private:
 /// \name Members
 /// @{
 private:
-    ssi_buffer_type&	m_buffer;
+    ssi_buffer_type&    m_buffer;
 /// @}
 
 /// \name Not to be implemented

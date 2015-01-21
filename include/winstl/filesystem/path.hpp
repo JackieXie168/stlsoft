@@ -4,7 +4,10 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     15th February 2010
+ * Updated:     1st August 2010
+ *
+ * Thanks to:   Pablo Aguilar for reporting defect in push_ext() (which
+ *              doesn't work for wide-string builds).
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 18
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     258
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 20
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     260
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -488,7 +491,7 @@ private:
                                             >                                   part_buffer_type_;
 
 
-    static size_type coallesce_parts_(part_buffer_type_& parts);
+    static size_type coalesce_parts_(part_buffer_type_& parts);
 
 // Member Variables
 private:
@@ -1010,7 +1013,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_param_k basic_path<C, T, A>::size_type basic_path<C, T, A>::coallesce_parts_(ss_typename_param_k basic_path<C, T, A>::part_buffer_type_& parts)
+inline /* static */ ss_typename_param_k basic_path<C, T, A>::size_type basic_path<C, T, A>::coalesce_parts_(ss_typename_param_k basic_path<C, T, A>::part_buffer_type_& parts)
 {
     ss_typename_param_k part_buffer_type_::iterator src     =   parts.begin();
     ss_typename_param_k part_buffer_type_::iterator dest    =   parts.begin();
@@ -1241,7 +1244,9 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::push_ext(char_type const* rhs, 
     newPath.pop_sep();
     if('.' != *rhs)
     {
-        newPath.concat_(".", 1u);
+        static char_type const s_dot[] = { '.', '\0' };
+
+        newPath.concat_(s_dot, 1u);
     }
     newPath.concat_(rhs, traits_type::str_len(rhs));
     if(bAddPathNameSeparator)
@@ -1664,7 +1669,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
         }
     }}
 
-    coallesce_parts_(parts);
+    coalesce_parts_(parts);
 
     // 2.b Process the '..' parts
     { for(size_type i = 1; i < parts.size(); ++i)
@@ -1699,7 +1704,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
         }
     }}
 
-    coallesce_parts_(parts);
+    coalesce_parts_(parts);
 
     // 2.c "insert" a '.' if we've removed everything.
     if( !this->is_rooted() &&

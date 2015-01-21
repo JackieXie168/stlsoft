@@ -4,11 +4,11 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     10th August 2009
+ * Updated:     31st July 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      221
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  8
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      222
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -803,7 +803,7 @@ public:
         /// Dereference operator
         //
         // This has to be V, rather than value_type, because Visual C++ thinks that S is the value_type!!
-        V operator *() const
+        const V operator *() const
         {
             return traits_type::create(m_find0, m_find1);
         }

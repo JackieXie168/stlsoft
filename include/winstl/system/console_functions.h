@@ -4,11 +4,11 @@
  * Purpose:     Console functions.
  *
  * Created:     3rd December 2005
- * Updated:     10th August 2009
+ * Updated:     29th July 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      17
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     2
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ namespace winstl_project
  *
  * \ingroup group__library__system
  */
-STLSOFT_INLINE ws_size_t winstl__get_console_width(void)
+STLSOFT_INLINE ws_size_t winstl_C_get_console_width(void)
 {
     CONSOLE_SCREEN_BUFFER_INFO  csbi;
 
@@ -119,7 +119,7 @@ STLSOFT_INLINE ws_size_t winstl__get_console_width(void)
         return csbi.dwMaximumWindowSize.X;
     }
 
-    return ~(ws_size_t)(0);
+    return ~stlsoft_static_cast(ws_size_t, 0);
 }
 
 #if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
@@ -161,10 +161,37 @@ STLSOFT_INLINE HWND GetConsoleWindow()
  * \warning This only works on Windows 2000, or later, operating systems. It
  *    will return NULL on other operating systems.
  */
-STLSOFT_INLINE HWND winstl__get_console_window(void)
+STLSOFT_INLINE HWND winstl_C_get_console_window(void)
 {
     return GetConsoleWindow();
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Obsolete symbols
+ *
+ * NOTE: these are only defined if:
+ *
+ * - we're generating documentation, or
+ * - STLSOFT_OBSOLETE is specified, or
+ * - it's STLSoft 1.9 (or earlier)
+ */
+
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+    defined(STLSOFT_OBSOLETE) || \
+    _STLSOFT_VER < 0x010a0000
+
+/** \def winstl__get_console_window
+ *
+ * \deprecated Use winstl_C_get_console_window
+ */
+# define winstl__get_console_window         winstl_C_get_console_window
+/** \def winstl__get_console_width
+ *
+ * \deprecated Use winstl_C_get_console_width
+ */
+# define winstl__get_console_width          winstl_C_get_console_width
+
+#endif /* obsolete || 1.9 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -187,7 +214,7 @@ namespace winstl
  */
 inline ws_size_t get_console_width()
 {
-    return winstl__get_console_width();
+    return winstl_C_get_console_width();
 }
 
 /** Returns the window handle of the current console, or NULL if it cannot
@@ -200,7 +227,7 @@ inline ws_size_t get_console_width()
  */
 inline HWND get_console_window(void)
 {
-    return winstl__get_console_window();
+    return winstl_C_get_console_window();
 }
 
 #endif /* __cplusplus */

@@ -4,7 +4,7 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     21st June 2010
+ * Updated:     12th August 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     2
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      23
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  5
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,9 +92,10 @@
 # include <wchar.h>                     // for wcslen()
 #endif /* !STLSOFT_INCL_H_WCHAR */
 
-#ifdef STLSOFT_UNITTEST
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
-#endif /* STLSOFT_UNITTEST */
+#endif /* !STLSOFT_INCL_H_ERRNO */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compatibility
@@ -214,7 +215,7 @@ struct error_desc_traits<ss_char_w_t>
 
         if(size_t(-1) == n)
         {
-			return return_t(L"could not determine error");
+            return return_t(L"could not determine error");
         }
 
         return ss;

@@ -82,7 +82,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
-	!defined(STLSOFT_COMPILER_IS_BORLAND)
+    !defined(STLSOFT_COMPILER_IS_BORLAND)
 # ifndef STLSOFT_INCL_STLSOFT_ITERATOR_HPP_ADAPTED_ITERATOR_TRAITS
 #  include <stlsoft/iterators/adapted_iterator_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_ITERATOR_HPP_ADAPTED_ITERATOR_TRAITS */
@@ -314,7 +314,7 @@ inline associative_select_iterator<I, F> associative_select(I i, F f)
 }
 
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
-	!defined(STLSOFT_COMPILER_IS_BORLAND)
+    !defined(STLSOFT_COMPILER_IS_BORLAND)
 
 /** Creates an instance of associative_select_iterator that selects the
  * \c first member.

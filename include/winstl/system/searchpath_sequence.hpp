@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     15th February 2010
+ * Updated:     12th August 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 3
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     96
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 4
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -276,7 +276,7 @@ private:
     static char_type const* get_application_directory()
     {
         static char_type                        s_application_directory[WINSTL_CONST_MAX_PATH + 1];
-        static sint32_t                         s_mx;
+        static atomic_int_t                     s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
         static init_type                        s_init = ws_false_v;
@@ -298,7 +298,7 @@ private:
     static char_type const* get_system_directory()
     {
         static char_type                        s_system_directory[WINSTL_CONST_MAX_PATH + 1];
-        static sint32_t                         s_mx;
+        static atomic_int_t                     s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
         static init_type                        s_init = (traits_type::get_system_directory(s_system_directory, STLSOFT_NUM_ELEMENTS(s_system_directory)), ws_true_v);
@@ -309,7 +309,7 @@ private:
     static char_type const* get_windows_directory()
     {
         static char_type                        s_windows_directory[WINSTL_CONST_MAX_PATH + 1];
-        static sint32_t                         s_mx;
+        static atomic_int_t                     s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
         static init_type                        s_init = (traits_type::get_windows_directory(s_windows_directory, STLSOFT_NUM_ELEMENTS(s_windows_directory)), ws_true_v);
@@ -320,7 +320,7 @@ private:
     static char_type const* get_system16_directory()
     {
         static char_type                        s_system16_directory[WINSTL_CONST_MAX_PATH + 1];
-        static sint32_t                         s_mx;
+        static atomic_int_t                     s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
         static init_type                        s_init = ws_false_v;
