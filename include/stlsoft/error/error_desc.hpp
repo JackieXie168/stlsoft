@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  6
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      16
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  7
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -272,14 +272,14 @@ public:
 /// @{
 public:
     /// \brief The error description
-    char_type const* get_description() const;
+    char_type const* get_description() const stlsoft_throw_0();
 /// @}
 
 /// \name Accessors
 /// @{
 public:
     /// \brief The error description
-    char_type const*    c_str() const;
+    char_type const*    c_str() const stlsoft_throw_0();
     /// \brief The length of the error description
     size_type           length() const stlsoft_throw_0();
     /// \brief The length of the error description
@@ -394,7 +394,7 @@ inline basic_error_desc<C>::~basic_error_desc() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_ret_k basic_error_desc<C>::char_type const* basic_error_desc<C>::get_description() const
+inline ss_typename_type_ret_k basic_error_desc<C>::char_type const* basic_error_desc<C>::get_description() const stlsoft_throw_0()
 {
     static const char_type s_nullMessage[1] = { '\0' };
 
@@ -402,7 +402,7 @@ inline ss_typename_type_ret_k basic_error_desc<C>::char_type const* basic_error_
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_ret_k basic_error_desc<C>::char_type const* basic_error_desc<C>::c_str() const
+inline ss_typename_type_ret_k basic_error_desc<C>::char_type const* basic_error_desc<C>::c_str() const stlsoft_throw_0()
 {
     return get_description();
 }

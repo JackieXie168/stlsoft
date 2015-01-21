@@ -4,11 +4,11 @@
  * Purpose:     Mixin class providing enhanced functions for ATL windows.
  *
  * Created:     30th November 2000
- * Updated:     2nd June 2007
+ * Updated:     16th June 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MINOR    0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     27
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_REVISION 2
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,7 @@ public:
     /// \brief Returns the length of the window text of the child window with the given identifier
     int GetDlgItemTextLength(int idChild)
     {
-        HWND    hwndChild   =   this_()->GetDlgItem(idChild);
+        HWND hwndChild = GetDlgItem_(idChild);
 
         ATLSTL_ASSERT(::IsWindow(hwndChild));
 
@@ -124,7 +124,7 @@ public:
     /// \brief Changes the enable state of the child window with the given identifier
     BOOL    EnableDlgItem(int idChild, BOOL bEnable)
     {
-        HWND    hwndChild   =   this_()->GetDlgItem(idChild);
+        HWND hwndChild = GetDlgItem_(idChild);
 
         ATLSTL_ASSERT(::IsWindow(hwndChild));
 
@@ -134,7 +134,7 @@ public:
     /// \brief Indicates whether the child window with the given identifier is enabled
     BOOL    IsDlgItemEnabled(int idChild)
     {
-        HWND    hwndChild   =   this_()->GetDlgItem(idChild);
+        HWND hwndChild = GetDlgItem_(idChild);
 
         ATLSTL_ASSERT(::IsWindow(hwndChild));
 
@@ -144,7 +144,7 @@ public:
     /// \brief Changes the visible state of the child window with the given identifier
     BOOL    ShowDlgItem(int idChild, BOOL bShow)
     {
-        HWND    hwndChild   =   this_()->GetDlgItem(idChild);
+        HWND hwndChild = GetDlgItem_(idChild);
 
         ATLSTL_ASSERT(::IsWindow(hwndChild));
 
@@ -154,7 +154,7 @@ public:
     /// \brief Changes the enable and visible states of the child window with the given identifier
     BOOL    ShowAndEnableDlgItem(int idChild, BOOL bShowAndEnable, BOOL bHideIfDisabled)
     {
-        BOOL    bRet = true;
+        BOOL bRet = true;
 
         if( bShowAndEnable ||
             bHideIfDisabled)
@@ -176,7 +176,7 @@ public:
     /// \brief Sets the focus to the child window with the given identifier
     HWND    SetDlgItemFocus(int idChild)
     {
-        HWND    hwndChild   =   this_()->GetDlgItem(idChild);
+        HWND hwndChild = GetDlgItem_(idChild);
 
         ATLSTL_ASSERT(::IsWindow(hwndChild));
 
@@ -187,13 +187,18 @@ public:
 /// \name Implementation
 /// @{
 private:
-    dialog_window_type          *this_()
+    dialog_window_type*         this_()
     {
         return static_cast<dialog_window_type*>(this);
     }
-    dialog_window_type const    *this_() const
+    dialog_window_type const*   this_() const
     {
         return static_cast<dialog_window_type const*>(this);
+    }
+
+    HWND GetDlgItem_(int idChild) const
+    {
+        return this_()->GetDlgItem(idChild);
     }
 /// @}
 };
