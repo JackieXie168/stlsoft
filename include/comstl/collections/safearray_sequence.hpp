@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MAJOR     4
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  7
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      56
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  8
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -312,59 +312,59 @@ inline safearray_sequence<T>::safearray_sequence(LPCSAFEARRAY array) // throw va
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::const_iterator safearray_sequence<T>::begin() const
+inline ss_typename_type_ret_k safearray_sequence<T>::const_iterator safearray_sequence<T>::begin() const
 {
     return static_cast<pointer>(m_sa->pvData);
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::const_iterator safearray_sequence<T>::end() const
+inline ss_typename_type_ret_k safearray_sequence<T>::const_iterator safearray_sequence<T>::end() const
 {
     return static_cast<pointer>(m_sa->pvData) + size();
 }
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::const_reverse_iterator safearray_sequence<T>::rbegin() const
+inline ss_typename_type_ret_k safearray_sequence<T>::const_reverse_iterator safearray_sequence<T>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::const_reverse_iterator safearray_sequence<T>::rend() const
+inline ss_typename_type_ret_k safearray_sequence<T>::const_reverse_iterator safearray_sequence<T>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::iterator safearray_sequence<T>::begin()
+inline ss_typename_type_ret_k safearray_sequence<T>::iterator safearray_sequence<T>::begin()
 {
     return static_cast<pointer>(m_sa->pvData);
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::iterator safearray_sequence<T>::end()
+inline ss_typename_type_ret_k safearray_sequence<T>::iterator safearray_sequence<T>::end()
 {
     return static_cast<pointer>(m_sa->pvData) + size();
 }
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::reverse_iterator safearray_sequence<T>::rbegin()
+inline ss_typename_type_ret_k safearray_sequence<T>::reverse_iterator safearray_sequence<T>::rbegin()
 {
     return reverse_iterator(end());
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::reverse_iterator safearray_sequence<T>::rend()
+inline ss_typename_type_ret_k safearray_sequence<T>::reverse_iterator safearray_sequence<T>::rend()
 {
     return reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k safearray_sequence<T>::size_type safearray_sequence<T>::size() const
+inline ss_typename_type_ret_k safearray_sequence<T>::size_type safearray_sequence<T>::size() const
 {
     return m_cItems;
 }

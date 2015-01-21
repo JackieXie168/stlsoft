@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     4th August 2007
+ * Updated:     9th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        102
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,16 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
+#  include <stlsoft/conversion/truncation_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST
+#  include <stlsoft/conversion/truncation_test.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 #include <string.h>
 #include <wchar.h>
 
@@ -133,13 +143,13 @@ public:
 /// @{
 public:
     /// \brief Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type *dest, char_type const* src);
+    static char_type    *str_copy(char_type* dest, char_type const* src);
     /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_copy(char_type *dest, char_type const* src, size_type cch);
+    static char_type    *str_n_copy(char_type* dest, char_type const* src, size_type cch);
     /// \brief Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type *dest, char_type const* src);
+    static char_type    *str_cat(char_type* dest, char_type const* src);
     /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_cat(char_type *dest, char_type const* src, size_type cch);
+    static char_type    *str_n_cat(char_type* dest, char_type const* src, size_type cch);
     /// \brief Comparies the contents of \c src and \c dest
     static int_type     str_compare(char_type const* s1, char_type const* s2);
     /// \brief Comparies the contents of \c src and \c dest in a case-insensitive fashion
@@ -164,7 +174,7 @@ public:
 /// @{
 public:
     /// \brief Returns the locale information
-    static int_type     get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData);
+    static int_type     get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData);
 /// @}
 
 /// \name Module Paths
@@ -175,9 +185,9 @@ public:
     /// \brief Gets the full path name of the directory of the given module
     static size_type    get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer);
     /// \brief Gets the full path name of the system directory
-    static size_type    get_system_directory(char_type *buffer, size_type cchBuffer);
+    static size_type    get_system_directory(char_type* buffer, size_type cchBuffer);
     /// \brief Gets the full path name of the windows directory
-    static size_type    get_windows_directory(char_type *buffer, size_type cchBuffer);
+    static size_type    get_windows_directory(char_type* buffer, size_type cchBuffer);
 /// @}
 
 /// \name Dynamic Loading
@@ -282,7 +292,7 @@ public:
     typedef DWORD                       error_type;
 
 public:
-    static char_type *str_copy(char_type *dest, char_type const* src)
+    static char_type* str_copy(char_type* dest, char_type const* src)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
@@ -290,7 +300,7 @@ public:
         return ::lstrcpyA(dest, src);
     }
 
-    static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
@@ -298,14 +308,14 @@ public:
         return ::strncpy(dest, src, cch);
     }
 
-    static char_type *str_cat(char_type *dest, char_type const* src)
+    static char_type* str_cat(char_type* dest, char_type const* src)
     {
         WINSTL_ASSERT(NULL != src);
 
         return ::lstrcatA(dest, src);
     }
 
-    static char_type *str_n_cat(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_cat(char_type* dest, char_type const* src, size_type cch)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
@@ -344,21 +354,21 @@ public:
         return static_cast<size_type>(::lstrlenA(src));
     }
 
-    static char_type *str_chr(char_type const* s, char_type ch)
+    static char_type* str_chr(char_type const* s, char_type ch)
     {
         WINSTL_ASSERT(NULL != s);
 
         return const_cast<char_type*>(::strchr(s, ch));
     }
 
-    static char_type *str_rchr(char_type const* s, char_type ch)
+    static char_type* str_rchr(char_type const* s, char_type ch)
     {
         WINSTL_ASSERT(NULL != s);
 
         return const_cast<char_type*>(::strrchr(s, ch));
     }
 
-    static char_type *str_str(char_type const* s, char_type const* sub)
+    static char_type* str_str(char_type const* s, char_type const* sub)
     {
         WINSTL_ASSERT(NULL != s);
         WINSTL_ASSERT(NULL != sub);
@@ -366,7 +376,7 @@ public:
         return const_cast<char_type*>(::strstr(s, sub));
     }
 
-    static char_type *str_pbrk(char_type const* s, char_type const* charSet)
+    static char_type* str_pbrk(char_type const* s, char_type const* charSet)
     {
         WINSTL_ASSERT(NULL != s);
         WINSTL_ASSERT(NULL != charSet);
@@ -374,7 +384,7 @@ public:
         return const_cast<char_type*>(::strpbrk(s, charSet));
     }
 
-    static char_type *str_end(char_type const* s)
+    static char_type* str_end(char_type const* s)
     {
         WINSTL_ASSERT(NULL != s);
 
@@ -385,7 +395,7 @@ public:
     }
 
 public:
-    static int_type get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData)
+    static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData)
     {
         return ::GetLocaleInfoA(locale, type, data, cchData);
     }
@@ -402,7 +412,7 @@ public:
             return get_module_filename(hModule, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
         }
 
-        return ::GetModuleFileNameA(hModule, buffer, cchBuffer);
+        return class_type::GetModuleFileNameA(hModule, buffer, cchBuffer);
     }
 
     static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
@@ -429,18 +439,18 @@ public:
         return cch;
     }
 
-    static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
+    static size_type get_system_directory(char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return ::GetSystemDirectoryA(buffer, cchBuffer);
+        return class_type::GetSystemDirectoryA(buffer, cchBuffer);
     }
 
-    static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
+    static size_type get_windows_directory(char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return ::GetWindowsDirectoryA(buffer, cchBuffer);
+        return class_type::GetWindowsDirectoryA(buffer, cchBuffer);
     }
 
 public:
@@ -485,15 +495,71 @@ public:
         WINSTL_ASSERT(NULL != name);
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return ::GetEnvironmentVariableA(name, buffer, cchBuffer);
+        return class_type::GetEnvironmentVariableA(name, buffer, cchBuffer);
     }
 
-    static size_type expand_environment_strings(char_type const* src, char_type *dest, size_type cch_dest)
+    static size_type expand_environment_strings(char_type const* src, char_type* dest, size_type cch_dest)
     {
         WINSTL_ASSERT(NULL != src);
         WINSTL_ASSERT(NULL != dest);
 
-        return static_cast<size_type>(::ExpandEnvironmentStringsA(src, dest, cch_dest));
+        return class_type::ExpandEnvironmentStringsA(src, dest, cch_dest);
+    }
+
+private:
+    static size_type GetModuleFileNameA(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetModuleFileNameA(hModule, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetModuleFileNameA(hModule, buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetSystemDirectoryA(char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetSystemDirectoryA(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetSystemDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetWindowsDirectoryA(char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetWindowsDirectoryA(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetWindowsDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetEnvironmentVariableA(char_type const* name, char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetEnvironmentVariableA(name, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetEnvironmentVariableA(name, buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type ExpandEnvironmentStringsA(char_type const* src, char_type* dest, size_type cch_dest)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::ExpandEnvironmentStringsA(src, dest, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_dest));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_dest));
+
+        return ::ExpandEnvironmentStringsA(src, dest, static_cast<DWORD>(cch_dest));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 };
 
@@ -512,7 +578,7 @@ public:
     typedef DWORD                       error_type;
 
 public:
-    static char_type *str_copy(char_type *dest, char_type const* src)
+    static char_type* str_copy(char_type* dest, char_type const* src)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
@@ -520,7 +586,7 @@ public:
         return ::lstrcpyW(dest, src);
     }
 
-    static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
@@ -528,7 +594,7 @@ public:
         return ::wcsncpy(dest, src, cch);
     }
 
-    static char_type *str_cat(char_type *dest, char_type const* src)
+    static char_type* str_cat(char_type* dest, char_type const* src)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
@@ -536,7 +602,7 @@ public:
         return ::lstrcatW(dest, src);
     }
 
-    static char_type *str_n_cat(char_type *dest, char_type const* src, size_type cch)
+    static char_type* str_n_cat(char_type* dest, char_type const* src, size_type cch)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
@@ -575,21 +641,21 @@ public:
         return static_cast<size_type>(::lstrlenW(src));
     }
 
-    static char_type *str_chr(char_type const* s, char_type ch)
+    static char_type* str_chr(char_type const* s, char_type ch)
     {
         WINSTL_ASSERT(NULL != s);
 
         return const_cast<char_type*>(::wcschr(s, ch));
     }
 
-    static char_type *str_rchr(char_type const* s, char_type ch)
+    static char_type* str_rchr(char_type const* s, char_type ch)
     {
         WINSTL_ASSERT(NULL != s);
 
         return const_cast<char_type*>(::wcsrchr(s, ch));
     }
 
-    static char_type *str_str(char_type const* s, char_type const* sub)
+    static char_type* str_str(char_type const* s, char_type const* sub)
     {
         WINSTL_ASSERT(NULL != s);
         WINSTL_ASSERT(NULL != sub);
@@ -597,7 +663,7 @@ public:
         return const_cast<char_type*>(::wcsstr(s, sub));
     }
 
-    static char_type *str_pbrk(char_type const* s, char_type const* charSet)
+    static char_type* str_pbrk(char_type const* s, char_type const* charSet)
     {
         WINSTL_ASSERT(NULL != s);
         WINSTL_ASSERT(NULL != charSet);
@@ -605,7 +671,7 @@ public:
         return const_cast<char_type*>(::wcspbrk(s, charSet));
     }
 
-    static char_type *str_end(char_type const* s)
+    static char_type* str_end(char_type const* s)
     {
         WINSTL_ASSERT(NULL != s);
 
@@ -616,7 +682,7 @@ public:
     }
 
 public:
-    static int_type get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData)
+    static int_type get_locale_info(LCID locale, LCTYPE type, char_type* data, int_type cchData)
     {
         return ::GetLocaleInfoW(locale, type, data, cchData);
     }
@@ -641,7 +707,7 @@ public:
             }
         }
 
-        return ::GetModuleFileNameW(hModule, buffer, cchBuffer);
+        return class_type::GetModuleFileNameW(hModule, buffer, cchBuffer);
     }
 
     static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
@@ -668,18 +734,18 @@ public:
         return cch;
     }
 
-    static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
+    static size_type get_system_directory(char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return ::GetSystemDirectoryW(buffer, cchBuffer);
+        return class_type::GetSystemDirectoryW(buffer, cchBuffer);
     }
 
-    static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
+    static size_type get_windows_directory(char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return ::GetWindowsDirectoryW(buffer, cchBuffer);
+        return class_type::GetWindowsDirectoryW(buffer, cchBuffer);
     }
 
 public:
@@ -725,15 +791,71 @@ public:
         WINSTL_ASSERT(NULL != name);
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return ::GetEnvironmentVariableW(name, buffer, cchBuffer);
+        return class_type::GetEnvironmentVariableW(name, buffer, cchBuffer);
     }
 
-    static size_type expand_environment_strings(char_type const* src, char_type *dest, size_type cch_dest)
+    static size_type expand_environment_strings(char_type const* src, char_type* dest, size_type cch_dest)
     {
         WINSTL_ASSERT(NULL != src);
         WINSTL_ASSERT(NULL != dest);
 
-        return static_cast<size_type>(::ExpandEnvironmentStringsW(src, dest, cch_dest));
+        return class_type::ExpandEnvironmentStringsW(src, dest, cch_dest);
+    }
+
+private:
+    static size_type GetModuleFileNameW(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetModuleFileNameW(hModule, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetModuleFileNameW(hModule, buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetSystemDirectoryW(char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetSystemDirectoryW(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetSystemDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetWindowsDirectoryW(char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetWindowsDirectoryW(buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetWindowsDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetEnvironmentVariableW(char_type const* name, char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetEnvironmentVariableW(name, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetEnvironmentVariableW(name, buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type ExpandEnvironmentStringsW(char_type const* src, char_type* dest, size_type cch_dest)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::ExpandEnvironmentStringsW(src, dest, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_dest));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_dest));
+
+        return ::ExpandEnvironmentStringsW(src, dest, static_cast<DWORD>(cch_dest));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 };
 

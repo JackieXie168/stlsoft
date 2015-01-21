@@ -20,7 +20,7 @@ namespace unittest
 					: Index(0)
 				{}
 			public:
-				field_property_get<int, int const&, ClassWithProp> 	Index;
+				field_property_get<int, int const&, ClassWithProp>	Index;
 			};
 
 		} // namespace types

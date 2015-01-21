@@ -13,7 +13,7 @@
  *              basic_reg_key_sequence class interface.
  *
  * Created:     19th January 2002
- * Updated:     7th April 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       125
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -559,7 +559,7 @@ inline /* static */ REGSAM basic_reg_key_sequence<C, T, A>::validate_access_mask
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_type basic_reg_key_sequence<C, T, A>::dup_key_(ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_type hkey, REGSAM accessMask/* , ss_typename_type_k basic_reg_key_sequence<C, T, A>::result_type *result */)
+inline /* static */ ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::hkey_type basic_reg_key_sequence<C, T, A>::dup_key_(ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_type hkey, REGSAM accessMask/* , ss_typename_type_k basic_reg_key_sequence<C, T, A>::result_type *result */)
 {
     result_type result;
     HKEY        hkeyDup =   traits_type::key_dup(hkey, accessMask, &result);
@@ -672,7 +672,7 @@ inline basic_reg_key_sequence<C, T, A>::~basic_reg_key_sequence() stlsoft_throw_
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_key_sequence<C, T, A>::begin()
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_key_sequence<C, T, A>::begin()
 {
     // 1. Check that there are some items
     //
@@ -687,7 +687,7 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_ke
 
     // Grab enough for the first item
     size_type   cchName     =   0;
-    size_type   numEntries  =   0;
+    ws_uint32_t numEntries  =   0;
     result_type res         =   traits_type::reg_query_info(m_hkey, NULL, NULL, &numEntries, &cchName, NULL, NULL, NULL, NULL, NULL, NULL);
 
     if(ERROR_SUCCESS != res)
@@ -778,7 +778,7 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_ke
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_key_sequence<C, T, A>::end()
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_key_sequence<C, T, A>::end()
 {
     result_type                             res;
     registry_util::shared_handle            *handle =   create_shared_handle_(res);
@@ -799,28 +799,28 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::iterator basic_reg_ke
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::reverse_iterator basic_reg_key_sequence<C, T, A>::rbegin()
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::reverse_iterator basic_reg_key_sequence<C, T, A>::rbegin()
 {
     return reverse_iterator(end());
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::reverse_iterator basic_reg_key_sequence<C, T, A>::rend()
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::reverse_iterator basic_reg_key_sequence<C, T, A>::rend()
 {
     return reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::size_type basic_reg_key_sequence<C, T, A>::size() const
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::size_type basic_reg_key_sequence<C, T, A>::size() const
 {
     return current_size();
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::size_type basic_reg_key_sequence<C, T, A>::current_size() const
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::size_type basic_reg_key_sequence<C, T, A>::current_size() const
 {
-    ws_uint_t   numEntries;
+    ws_uint32_t numEntries;
     result_type res = traits_type::reg_query_info(m_hkey, NULL, NULL, &numEntries, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
     if(ERROR_SUCCESS != res)
@@ -849,13 +849,13 @@ inline ws_bool_t basic_reg_key_sequence<C, T, A>::empty() const
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_type basic_reg_key_sequence<C, T, A>::get_key_handle() const
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::hkey_type basic_reg_key_sequence<C, T, A>::get_key_handle() const
 {
     return m_hkey;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_type basic_reg_key_sequence<C, T, A>::get() const
+inline ss_typename_type_ret_k basic_reg_key_sequence<C, T, A>::hkey_type basic_reg_key_sequence<C, T, A>::get() const
 {
     return get_key_handle();
 }
@@ -864,7 +864,7 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_type basic_reg_k
 // basic_reg_key_sequence_iterator
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
-inline /* static */ ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::index_type basic_reg_key_sequence_iterator<C, T, V, A>::sentinel_() stlsoft_throw_0()
+inline /* static */ ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::index_type basic_reg_key_sequence_iterator<C, T, V, A>::sentinel_() stlsoft_throw_0()
 {
     return 0x7fffffff;
 }
@@ -891,7 +891,7 @@ inline basic_reg_key_sequence_iterator<C, T, V, A>::basic_reg_key_sequence_itera
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator =(ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator =(ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type const& rhs)
 {
     registry_util::shared_handle   *this_handle;
 
@@ -931,7 +931,7 @@ inline const ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::str
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator ++()
+inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", NULL != m_handle);
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", sentinel_() != m_index);
@@ -1007,13 +1007,13 @@ inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_typ
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator --()
+inline ss_typename_type_ret_k basic_reg_key_sequence_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_iterator<C, T, V, A>::operator --()
 {
     WINSTL_MESSAGE_ASSERT("Attempting to decrement an invalid iterator", NULL != m_handle);
 
     // Grab enough for the first item
     size_type   cchName     =   0;
-    size_type   numEntries  =   0;
+    ws_uint32_t numEntries  =   0;
     result_type res         =   traits_type::reg_query_info(m_handle->m_hkey, NULL, NULL, &numEntries, &cchName, NULL, NULL, NULL, NULL, NULL, NULL);
 
     if(ERROR_SUCCESS != res)

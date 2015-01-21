@@ -4,7 +4,7 @@
  * Purpose:     Collection manipulation functions.
  *
  * Created:     11th November 2004
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_MINOR    0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_EDIT     31
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_REVISION 2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,9 +127,9 @@ template<   ss_typename_param_k M
         ,   ss_typename_param_k K
         >
 # ifdef STLSOFT_CONTAINER_ACCESS_MAPPED_TYPE_IS_REFERENT_TYPE
-inline ss_typename_type_k M::referent_type &lookup(M &m, K const& key)
+inline ss_typename_type_ret_k M::referent_type &lookup(M &m, K const& key)
 # else /* ? STLSOFT_CONTAINER_ACCESS_MAPPED_TYPE_IS_REFERENT_TYPE */
-inline ss_typename_type_k M::mapped_type &lookup(M &m, K const& key)
+inline ss_typename_type_ret_k M::mapped_type &lookup(M &m, K const& key)
 # endif /* STLSOFT_CONTAINER_ACCESS_MAPPED_TYPE_IS_REFERENT_TYPE */
 {
     ss_typename_type_k M::iterator it = m.find(key);
@@ -160,9 +160,9 @@ template<   ss_typename_param_k M
         ,   ss_typename_param_k K
         >
 #ifdef STLSOFT_CONTAINER_ACCESS_MAPPED_TYPE_IS_REFERENT_TYPE
-inline ss_typename_type_k M::referent_type const& lookup(M const& m, K const& key)
+inline ss_typename_type_ret_k M::referent_type const& lookup(M const& m, K const& key)
 #else /* ? STLSOFT_CONTAINER_ACCESS_MAPPED_TYPE_IS_REFERENT_TYPE */
-inline ss_typename_type_k M::mapped_type const& lookup(M const& m, K const& key)
+inline ss_typename_type_ret_k M::mapped_type const& lookup(M const& m, K const& key)
 #endif /* STLSOFT_CONTAINER_ACCESS_MAPPED_TYPE_IS_REFERENT_TYPE */
 {
     ss_typename_type_k M::const_iterator it = m.find(key);

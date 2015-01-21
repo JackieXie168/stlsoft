@@ -4,7 +4,7 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     2nd June 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     58
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 3
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -562,7 +562,7 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
         >
-inline ss_typename_type_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::const_iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::begin() const
+inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::const_iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::begin() const
 {
     return m_values.begin();
 }
@@ -573,7 +573,7 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
         >
-inline ss_typename_type_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::begin()
+inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::begin()
 {
     return m_values.begin();
 }
@@ -584,7 +584,7 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
         >
-inline ss_typename_type_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::const_iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::end() const
+inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::const_iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::end() const
 {
     return m_values.end();
 }
@@ -595,7 +595,7 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
         >
-inline ss_typename_type_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::end()
+inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::iterator copy_enumerator_impl<I, piid, V, IV, I2ETx>::end()
 {
     return m_values.end();
 }

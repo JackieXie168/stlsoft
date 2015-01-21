@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     17th August 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      13
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       83
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      14
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -317,6 +317,8 @@
 #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 
 /* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+
+#define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
 
 #if __DMC__ >= 0x0840
 # define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT

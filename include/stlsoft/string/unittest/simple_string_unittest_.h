@@ -1,5 +1,5 @@
 
-// Updated: 6th June 2006
+// Updated: 16th November 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING)
 # error This file cannot be directly included, and should only be included within stlsoft/string/simple_string.hpp
@@ -28,7 +28,7 @@ namespace unittest
 			typedef stlsoft_ns_qual_std(basic_string)<char> 			alt_string_t;
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-1");
+			r->start_section("section-1");
 #endif /* 0 */
 
 			if(string_t("abc") != "abc")
@@ -38,7 +38,7 @@ namespace unittest
 			}
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-2");
+			r->start_section("section-2");
 #endif /* 0 */
 
 			if(string_t("abc") >= "def")
@@ -48,7 +48,7 @@ namespace unittest
 			}
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-3");
+			r->start_section("section-3");
 #endif /* 0 */
 
 			// Self assignment
@@ -64,7 +64,7 @@ namespace unittest
 			}
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-4");
+			r->start_section("section-4");
 #endif /* 0 */
 
 			s4 = s3;			// setup
@@ -98,7 +98,7 @@ namespace unittest
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-5");
+			r->start_section("section-5");
 #endif /* 0 */
 
 			if(ss1.c_str() != s4)
@@ -120,7 +120,7 @@ namespace unittest
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-6");
+			r->start_section("section-6");
 #endif /* 0 */
 
 			if(ss1.c_str() != s5)
@@ -136,7 +136,7 @@ namespace unittest
 			}
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-7");
+			r->start_section("section-7");
 #endif /* 0 */
 
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
@@ -155,7 +155,7 @@ namespace unittest
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-8");
+			r->start_section("section-8");
 #endif /* 0 */
 
 			/// Sub-string construction
@@ -193,7 +193,7 @@ namespace unittest
 			}
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-9");
+			r->start_section("section-9");
 #endif /* 0 */
 
 			{
@@ -239,7 +239,7 @@ namespace unittest
 			}
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-10");
+			r->start_section("section-10");
 #endif /* 0 */
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
@@ -266,7 +266,7 @@ namespace unittest
 				}
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-11");
+			r->start_section("section-11");
 #endif /* 0 */
 
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -286,7 +286,7 @@ namespace unittest
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
-		   r->start_section("section-12");
+			r->start_section("section-12");
 #endif /* 0 */
 
 			// substr

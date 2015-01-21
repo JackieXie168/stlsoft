@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     12th April 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        22
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    3
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -216,7 +216,8 @@ namespace platformstl_project
 
 #  elif defined(PLATFORMSTL_OS_IS_WIN32)
    /* OS: Win32 */
-#   if defined(_M_IX86) /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */
+#   if defined(_M_IX86) || /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */ \
+       defined(_M_IA64)
     /* Arch: i386 */
     using atomic_preincrement_up;
     using atomic_predecrement_up;
@@ -316,7 +317,8 @@ namespace platformstl_project
 
 #  elif defined(PLATFORMSTL_OS_IS_WIN32)
    /* OS: Win32 */
-#   if defined(_M_IX86) /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */
+#   if defined(_M_IX86) || /* TODO: Abstract this for WinSTL as has been done for UNIXSTL */ \
+       defined(_M_IA64)
     /* Arch: i386 */
     using implementation::platform_stl_::atomic_preincrement_up;
     using implementation::platform_stl_::atomic_predecrement_up;

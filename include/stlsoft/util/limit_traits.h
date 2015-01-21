@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MINOR    2
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 3
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     55
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 4
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,9 @@ namespace stlsoft
 #define STLSOFT_GEN_UINT16_SUFFIX(i)            (i ## U)
 #define STLSOFT_GEN_SINT32_SUFFIX(i)            (i ## L)
 #define STLSOFT_GEN_UINT32_SUFFIX(i)            (i ## UL)
-#if (   defined(STLSOFT_COMPILER_IS_DMC) || \
+#if (   (   defined(STLSOFT_COMPILER_IS_BORLAND) && \
+            __BORLANDC__ >= 0x0582) || \
+        defined(STLSOFT_COMPILER_IS_DMC) || \
         defined(STLSOFT_COMPILER_IS_COMO) || \
         defined(STLSOFT_COMPILER_IS_GCC) || \
         defined(STLSOFT_COMPILER_IS_MWERKS))

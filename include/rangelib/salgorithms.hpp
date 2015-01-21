@@ -4,7 +4,7 @@
  * Purpose:     Range-adapted Sequence algorithms.
  *
  * Created:     19th July 2005
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -68,8 +68,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MAJOR     1
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MINOR     1
-# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_REVISION  2
-# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      15
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_REVISION  3
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -270,7 +270,7 @@ inline void sr_generate(S &s, F f)
 }
 
 template <ss_typename_param_k S>
-inline ss_typename_type_k S::value_type sr_max_element(S &s)
+inline ss_typename_type_ret_k S::value_type sr_max_element(S &s)
 {
     STLSOFT_ASSERT(sr_distance(s) > 0);
 
@@ -279,7 +279,7 @@ inline ss_typename_type_k S::value_type sr_max_element(S &s)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k S::value_type sr_max_element(S &s, F f)
+inline ss_typename_type_ret_k S::value_type sr_max_element(S &s, F f)
 {
     STLSOFT_ASSERT(sr_distance(s) > 0);
 
@@ -287,7 +287,7 @@ inline ss_typename_type_k S::value_type sr_max_element(S &s, F f)
 }
 
 template <ss_typename_param_k S>
-inline ss_typename_type_k S::value_type sr_min_element(S &s)
+inline ss_typename_type_ret_k S::value_type sr_min_element(S &s)
 {
     STLSOFT_ASSERT(sr_distance(s) > 0);
 
@@ -296,7 +296,7 @@ inline ss_typename_type_k S::value_type sr_min_element(S &s)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k S::value_type sr_min_element(S &s, F f)
+inline ss_typename_type_ret_k S::value_type sr_min_element(S &s, F f)
 {
     STLSOFT_ASSERT(sr_distance(s) > 0);
 

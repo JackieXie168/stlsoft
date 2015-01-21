@@ -4,7 +4,7 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
  *              for special_string_instance_1.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        15
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -744,18 +744,18 @@ private:
  * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::char_type const* c_str_ptr_null(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::char_type const* c_str_ptr_null(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str() : NULL;
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_null_a(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::cstring_a_type c_str_ptr_null_a(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str_a() : NULL;
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_null_w(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::cstring_w_type c_str_ptr_null_w(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str_w() : NULL;
 }
@@ -766,18 +766,18 @@ inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr
  * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::char_type const* c_str_ptr(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::char_type const* c_str_ptr(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_a(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::cstring_a_type c_str_ptr_a(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return ssi.c_str_a();
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_w(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::cstring_w_type c_str_ptr_w(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return ssi.c_str_w();
 }
@@ -788,18 +788,18 @@ inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr
  * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::char_type const* c_str_data(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::char_type const* c_str_data(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_data_a(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::cstring_a_type c_str_data_a(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return ssi.c_str_a();
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_data_w(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_0<P>::cstring_w_type c_str_data_w(stlsoft_ns_qual(special_string_instance_0)<P> const& ssi)
 {
     return ssi.c_str_w();
 }
@@ -846,18 +846,18 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual(special_string_instance_0)<P> const
  * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::char_type const* c_str_ptr_null(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::char_type const* c_str_ptr_null(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str() : NULL;
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::cstring_a_type c_str_ptr_null_a(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::cstring_a_type c_str_ptr_null_a(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str_a() : NULL;
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr_null_w(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::cstring_w_type c_str_ptr_null_w(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str_w() : NULL;
 }
@@ -868,18 +868,18 @@ inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr
  * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::char_type const* c_str_ptr(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::char_type const* c_str_ptr(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::cstring_a_type c_str_ptr_a(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::cstring_a_type c_str_ptr_a(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return ssi.c_str_a();
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr_w(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::cstring_w_type c_str_ptr_w(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return ssi.c_str_w();
 }
@@ -890,18 +890,18 @@ inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr
  * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::char_type const* c_str_data(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::char_type const* c_str_data(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::cstring_a_type c_str_data_a(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::cstring_a_type c_str_data_a(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return ssi.c_str_a();
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_data_w(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
+inline ss_typename_type_ret_k special_string_instance_1<P>::cstring_w_type c_str_data_w(stlsoft_ns_qual(special_string_instance_1)<P> const& ssi)
 {
     return ssi.c_str_w();
 }

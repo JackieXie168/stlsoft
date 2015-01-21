@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st October 2002
- * Updated:     19th August 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    10
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        83
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    11
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1272,34 +1272,34 @@ namespace mfcstl_project
 // CString_adaptor_base
 
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::allocator_type CString_adaptor_base<I>::get_allocator() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::allocator_type CString_adaptor_base<I>::get_allocator() const
 {
     return allocator_type();
 }
 
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCSTR s)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCSTR s)
 {
     get_CString() = s;
 
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCWSTR s)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCWSTR s)
 {
     get_CString() = s;
 
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(unsigned char const* s)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(unsigned char const* s)
 {
     get_CString() = s;
 
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCSTR s, size_type n)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCSTR s, size_type n)
 {
 #ifdef UNICODE
     get_CString() = CString(s).Left(n);
@@ -1310,7 +1310,7 @@ inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_b
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCWSTR s, size_type n)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCWSTR s, size_type n)
 {
 #ifdef UNICODE
     get_CString() = CString(s, n);
@@ -1321,21 +1321,21 @@ inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_b
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(unsigned char const* s, size_type n)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(unsigned char const* s, size_type n)
 {
     get_CString() = CString(s).Left(n);
 
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(class_type const& s)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(class_type const& s)
 {
     get_CString() = s.get_CString();
 
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(class_type const& s, size_type pos, size_type index)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(class_type const& s, size_type pos, size_type index)
 {
     MFCSTL_MESSAGE_ASSERT("invalid index", index + pos <= s.size());
 
@@ -1344,7 +1344,7 @@ inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_b
     return *this;
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(size_type n, value_type ch)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(size_type n, value_type ch)
 {
     get_CString() = CString(ch, static_cast<int>(n));
 
@@ -1354,9 +1354,9 @@ inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_b
 template<ss_typename_param_k I>
 #if defined(STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION) && \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCTSTR first, LPCTSTR last)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(LPCTSTR first, LPCTSTR last)
 #else /* ? library */
-inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(const_iterator first, const_iterator last)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type &CString_adaptor_base<I>::assign(const_iterator first, const_iterator last)
 #endif /* library */
 {
     get_CString() = CString(first, static_cast<int>(last - first));
@@ -1365,44 +1365,44 @@ inline ss_typename_type_k CString_adaptor_base<I>::class_type &CString_adaptor_b
 }
 
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::iterator CString_adaptor_base<I>::begin()
+inline ss_typename_type_ret_k CString_adaptor_base<I>::iterator CString_adaptor_base<I>::begin()
 {
     return const_cast<pointer>(this->c_str());
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::iterator CString_adaptor_base<I>::end()
+inline ss_typename_type_ret_k CString_adaptor_base<I>::iterator CString_adaptor_base<I>::end()
 {
     return this->begin() + this->size();
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_iterator CString_adaptor_base<I>::begin() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_iterator CString_adaptor_base<I>::begin() const
 {
     return this->c_str();
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_iterator CString_adaptor_base<I>::end() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_iterator CString_adaptor_base<I>::end() const
 {
     return this->begin() + this->size();
 }
 
 #ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::reverse_iterator CString_adaptor_base<I>::rbegin()
+inline ss_typename_type_ret_k CString_adaptor_base<I>::reverse_iterator CString_adaptor_base<I>::rbegin()
 {
     return reverse_iterator(end());
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::reverse_iterator CString_adaptor_base<I>::rend()
+inline ss_typename_type_ret_k CString_adaptor_base<I>::reverse_iterator CString_adaptor_base<I>::rend()
 {
     return reverse_iterator(begin());
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_reverse_iterator  CString_adaptor_base<I>::rbegin() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reverse_iterator  CString_adaptor_base<I>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_reverse_iterator CString_adaptor_base<I>::rend() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reverse_iterator CString_adaptor_base<I>::rend() const
 {
     return const_reverse_iterator(begin());
 }
@@ -1411,21 +1411,21 @@ inline ss_typename_type_k CString_adaptor_base<I>::const_reverse_iterator CStrin
 
 
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::reference CString_adaptor_base<I>::subscript_(size_type index)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::reference CString_adaptor_base<I>::subscript_(size_type index)
 {
     MFCSTL_MESSAGE_ASSERT("invalid index", index < size());
 
     return const_cast<pointer>(this->data())[index];
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_reference CString_adaptor_base<I>::subscript_(size_type index) const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reference CString_adaptor_base<I>::subscript_(size_type index) const
 {
     MFCSTL_MESSAGE_ASSERT("invalid index", index < size());
 
     return this->data()[index];
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::reference CString_adaptor_base<I>::at(size_type index)
+inline ss_typename_type_ret_k CString_adaptor_base<I>::reference CString_adaptor_base<I>::at(size_type index)
 {
     if(index >= size())
     {
@@ -1435,7 +1435,7 @@ inline ss_typename_type_k CString_adaptor_base<I>::reference CString_adaptor_bas
     return subscript_(index);
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_reference CString_adaptor_base<I>::at(size_type index) const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reference CString_adaptor_base<I>::at(size_type index) const
 {
     if(index >= size())
     {
@@ -1445,28 +1445,28 @@ inline ss_typename_type_k CString_adaptor_base<I>::const_reference CString_adapt
     return subscript_(index);
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::size_type CString_adaptor_base<I>::length() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::size_type CString_adaptor_base<I>::length() const
 {
     return get_CString().GetLength();
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::size_type CString_adaptor_base<I>::size() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::size_type CString_adaptor_base<I>::size() const
 {
     return this->length();
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::bool_type CString_adaptor_base<I>::empty() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::bool_type CString_adaptor_base<I>::empty() const
 {
     return 0 == this->length();
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_pointer CString_adaptor_base<I>::c_str() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_pointer CString_adaptor_base<I>::c_str() const
 {
 //      return empty() ? _T("") : static_cast<const_pointer>(get_CString());
     return get_CString();
 }
 template<ss_typename_param_k I>
-inline ss_typename_type_k CString_adaptor_base<I>::const_pointer CString_adaptor_base<I>::data() const
+inline ss_typename_type_ret_k CString_adaptor_base<I>::const_pointer CString_adaptor_base<I>::data() const
 {
     return this->c_str();
 }

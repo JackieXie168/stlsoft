@@ -4,7 +4,7 @@
  * Purpose:     Collection of the peers of a given window.
  *
  * Created:     11th July 2005
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_EDIT     13
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_REVISION 3
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -207,7 +207,7 @@ inline /* ss_explicit_k */ zorder_sequence_base<B, E>::zorder_sequence_base(HWND
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::iterator zorder_sequence_base<B, E>::begin()
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::iterator zorder_sequence_base<B, E>::begin()
 {
     return iterator::create(m_hwnd, B);
 }
@@ -215,7 +215,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::iterator zorder_sequence_b
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::iterator zorder_sequence_base<B, E>::end()
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::iterator zorder_sequence_base<B, E>::end()
 {
     return iterator::create(m_hwnd, E);
 }
@@ -223,7 +223,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::iterator zorder_sequence_b
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::const_iterator zorder_sequence_base<B, E>::begin() const
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::const_iterator zorder_sequence_base<B, E>::begin() const
 {
     return const_iterator::create(m_hwnd, B);
 }
@@ -231,7 +231,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::const_iterator zorder_sequ
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::const_iterator zorder_sequence_base<B, E>::end() const
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::const_iterator zorder_sequence_base<B, E>::end() const
 {
     return const_iterator::create(m_hwnd, E);
 }
@@ -239,7 +239,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::const_iterator zorder_sequ
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::reverse_iterator zorder_sequence_base<B, E>::rbegin()
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::reverse_iterator zorder_sequence_base<B, E>::rbegin()
 {
     return reverse_iterator::create(m_hwnd, B);
 }
@@ -247,7 +247,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::reverse_iterator zorder_se
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::reverse_iterator zorder_sequence_base<B, E>::rend()
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::reverse_iterator zorder_sequence_base<B, E>::rend()
 {
     return reverse_iterator::create(m_hwnd, E);
 }
@@ -255,7 +255,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::reverse_iterator zorder_se
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::const_reverse_iterator zorder_sequence_base<B, E>::rbegin() const
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::const_reverse_iterator zorder_sequence_base<B, E>::rbegin() const
 {
     return const_reverse_iterator::create(m_hwnd, B);
 }
@@ -263,7 +263,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::const_reverse_iterator zor
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_typename_type_k zorder_sequence_base<B, E>::const_reverse_iterator zorder_sequence_base<B, E>::rend() const
+inline ss_typename_type_ret_k zorder_sequence_base<B, E>::const_reverse_iterator zorder_sequence_base<B, E>::rend() const
 {
     return const_reverse_iterator::create(m_hwnd, E);
 }

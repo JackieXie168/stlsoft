@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/collections/array_swap.hpp
+ * File:        mfcstl/collections/carray_swap.hpp
  *
  * Purpose:     Contains the CArray_swap utility function.
  *
  * Created:     4th August 2005
- * Updated:     12th March 2007
+ * Updated:     8th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_MAJOR     2
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_MINOR     0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_REVISION  1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_EDIT      9
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_ARRAY_SWAP_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

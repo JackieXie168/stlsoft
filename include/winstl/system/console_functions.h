@@ -4,7 +4,7 @@
  * Purpose:     Console functions.
  *
  * Created:     3rd December 2005
- * Updated:     14th January 2007
+ * Updated:     26th September 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      15
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -141,7 +141,7 @@ STLSOFT_INLINE HWND GetConsoleWindow()
     }
     else
     {
-        HWND    hwnd    =   (*pfn)();
+        HWND hwnd = (*pfn)();
 
         STLSOFT_NS_GLOBAL(FreeLibrary)(Kernel32);
 

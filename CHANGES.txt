@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  25th September 2007
+; Updated:  16th November 2007
 
 ============================================================================
 
@@ -15,6 +15,266 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.7 (16th November 2007)
+
+Additions:
+==========
+
+ general:
+ --------
+
+ + now supports x64 Windows 64-bit compilation (though it may not be
+   perfect)
+
+ + now supports Borland Turbo C++ v5.82, though it is known not to be
+   perfect
+
+ STLSoft:
+ --------
+
+ + the POD algorithms - stlsoft/algorithms/pod.hpp - can now be forced to
+   accept non-POD types. The symbols, and the algorithms they apply to, are:
+
+   _STLSOFT_POD_COPY_ALLOW_NON_POD      -   stlsoft::pod_copy()
+   _STLSOFT_POD_COPY_N_ALLOW_NON_POD    -   stlsoft::pod_copy_n()
+   _STLSOFT_POD_MOVE_ALLOW_NON_POD      -   stlsoft::pod_move()
+   _STLSOFT_POD_MOVE_N_ALLOW_NON_POD    -   stlsoft::pod_move_n()
+   _STLSOFT_POD_FILL_N_ALLOW_NON_POD    -   stlsoft::pod_fill_n()
+
+   This can be appropriate when, say, dealing with a struct that has
+   some simple constructors.
+
+ + stlsoft::get_FILE_ptr shim
+
+ UNIXSTL:
+ --------
+
+ + unixstl::memory_mapped_file now allows for specifying offset and
+   request size.
+
+ WinSTL:
+ -------
+
+ + winstl::to_DATE conversion shim, with overloads for DATE, UDATE,
+   FILETIME, and SYSTEMTIME
+
+ PlatformSTL:
+ ------------
+
+ + platformstl::file_lines class - provides efficient representation of all
+   the files in a text file; defaults to using string views for all the
+   lines, so there's at most one copy operation from the memory-mapped file
+   used to perform the initial load.
+
+Fixes:
+======
+
+ general:
+ --------
+
+  ~ introduction of ss_typename_type_ret_k pseudo-keyword, to cope with
+    different compilers' behaviour in the qualification of return types that
+    are member types in function templates
+
+ STLSoft
+ -------
+
+ ~ fix to stlsoft::unsorted_map for Borland
+
+ ~ stlsoft/conversion/truncation_cast.hpp now includes <new> rather than
+   <stdexcept>, which was wrong.
+
+ ~ stlsoft/string/trim_functions.hpp was fixed to work correctly with both
+   string views and bona fide string types
+
+ COMSTL
+ ------
+
+  + comstl/error/error_info.hpp includes <new> not <stdexcept> for bad_alloc
+
+  ~ fixed inclusion bug in comstl/error/excepinfo_functions.h
+
+ WinSTL
+ ------
+
+  ~ changes to winstl::filesystem_traits to be compatible with 64-bit
+    compilation
+
+  ~ changes to winstl::system_traits to be compatible with 64-bit
+    compilation
+
+  ~ winstl::basic_path has minor fix to suppress compilation warning
+
+  ~ winstl::basic_reg_value_sequence has minor fix to suppress compilation
+    warning for exceptions/unused-variables/missing-return-values
+
+  ~ preparation of change from get_hwnd() to get_HWND() shim, by changing
+    file names and documentation comments
+
+  ~ winstl/synch/atomic_functions.h adjusted for 64-bit compilation; further
+    work will be required
+
+Diffs:
+======
+
+  root-dir-1: H:\3Pty\STLSoft\stlsoft-1.9.6
+  root-dir-2: H:\3Pty\STLSoft\stlsoft-1.9.7
+Items unchanged from H:\3Pty\STLSoft\stlsoft-1.9.6 to H:\3Pty\STLSoft\stlsoft-1.9.7:             821
+Items changed from H:\3Pty\STLSoft\stlsoft-1.9.6 to H:\3Pty\STLSoft\stlsoft-1.9.7:               117
+Items changed (major) from H:\3Pty\STLSoft\stlsoft-1.9.6 to H:\3Pty\STLSoft\stlsoft-1.9.7:       0
+Items changed (minor) from H:\3Pty\STLSoft\stlsoft-1.9.6 to H:\3Pty\STLSoft\stlsoft-1.9.7:       20
+  include\stlsoft\algorithms\pod.hpp                                                 3.4.4.86     => 3.5.1.87    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\internal\_undefs.h                                                 2.5.1.23     => 2.6.1.24    ; 2nd August 2007     => 6th November 2007  
+  include\stlsoft\internal\cccap\borland.h                                           3.12.2.70    => 3.13.1.71   ; 17th August 2007    => 6th November 2007  
+  include\stlsoft\internal\cccap\como.h                                              3.11.1.58    => 3.12.1.59   ; 4th August 2007     => 6th November 2007  
+  include\stlsoft\internal\cccap\dmc.h                                               3.13.2.83    => 3.14.1.84   ; 17th August 2007    => 6th November 2007  
+  include\stlsoft\internal\cccap\gcc.h                                               3.12.2.66    => 3.13.1.67   ; 17th August 2007    => 6th November 2007  
+  include\stlsoft\internal\cccap\intel.h                                             3.13.2.69    => 3.14.1.70   ; 17th August 2007    => 6th November 2007  
+  include\stlsoft\internal\cccap\mwerks.h                                            3.12.2.62    => 3.13.1.63   ; 17th August 2007    => 6th November 2007  
+  include\stlsoft\internal\cccap\unknown.h                                           3.11.1.56    => 3.12.1.57   ; 4th August 2007     => 6th November 2007  
+  include\stlsoft\internal\cccap\vectorc.h                                           3.12.2.50    => 3.13.1.51   ; 17th August 2007    => 6th November 2007  
+  include\stlsoft\internal\cccap\watcom.h                                            3.12.2.67    => 3.13.1.68   ; 17th August 2007    => 6th November 2007  
+  include\stlsoft\memory\allocator_features.hpp                                      5.0.2.37     => 5.1.1.38    ; 10th January 2007   => 6th November 2007  
+  include\stlsoft\stlsoft.h                                                          3.10.2.312   => 3.11.1.314  ; 5th August 2007     => 6th November 2007  
+  include\stlsoft\util\std\iterator_helper.hpp                                       5.0.2.101    => 5.1.1.102   ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\util\std\library_discriminator.hpp                                 4.2.3.95     => 4.4.1.97    ; 13th January 2007   => 6th November 2007  
+  include\unixstl\filesystem\memory_mapped_file.hpp                                  4.1.7.79     => 4.3.1.81    ; 22nd March 2007     => 25th September 2007
+  include\winstl\filesystem\filesystem_traits.hpp                                    4.4.2.104    => 4.5.1.105   ; 12th March 2007     => 9th November 2007  
+  include\winstl\filesystem\memory_mapped_file.hpp                                   4.4.1.78     => 4.5.1.79    ; 17th August 2007    => 25th October 2007  
+  include\winstl\synch\atomic_functions.h                                            4.2.2.196    => 4.3.1.198   ; 12th March 2007     => 6th November 2007  
+  include\winstl\system\system_traits.hpp                                            5.1.3.102    => 5.2.1.104   ; 4th August 2007     => 9th November 2007  
+Items changed (revision) from H:\3Pty\STLSoft\stlsoft-1.9.6 to H:\3Pty\STLSoft\stlsoft-1.9.7:    69
+  include\atlstl\automation\enumerators.hpp                                          4.0.2.58     => 4.0.3.59    ; 2nd June 2007       => 6th November 2007  
+  include\comstl\collections\safearray_sequence.hpp                                  4.1.7.56     => 4.1.8.57    ; 22nd March 2007     => 6th November 2007  
+  include\comstl\error\errorinfo_desc.hpp                                            0.5.6.29     => 0.5.7.30    ; 8th May 2007        => 14th October 2007  
+  include\comstl\error\excepinfo_functions.h                                         1.0.0.1      => 1.0.2.2     ; 11th August 2007    => 6th November 2007  
+  include\comstl\smartptr\interface_ptr.hpp                                          7.1.1.491    => 7.1.2.492   ; 22nd March 2007     => 6th November 2007  
+  include\comstl\util\acyclic_connector.hpp                                          1.2.5.17     => 1.2.6.18    ; 22nd March 2007     => 6th November 2007  
+  include\inetstl\filesystem\findfile_sequence.hpp                                   3.0.6.129    => 3.0.7.130   ; 22nd March 2007     => 6th November 2007  
+  include\inetstl\network\connection.hpp                                             5.1.1.64     => 5.1.2.65    ; 7th April 2007      => 6th November 2007  
+  include\inetstl\network\session.hpp                                                5.1.1.58     => 5.1.2.59    ; 7th April 2007      => 6th November 2007  
+  include\mfcstl\collections\cstring_adaptors.hpp                                    4.0.10.83    => 4.0.11.84   ; 19th August 2007    => 6th November 2007  
+  include\platformstl\filesystem\cwd_stack.hpp                                       2.1.2.21     => 2.1.3.22    ; 12th March 2007     => 6th November 2007  
+  include\platformstl\synch\atomic_functions.h                                       2.2.1.22     => 2.2.3.23    ; 12th April 2007     => 6th November 2007  
+  include\rangelib\algorithms.hpp                                                    2.3.2.41     => 2.3.3.42    ; 12th April 2007     => 6th November 2007  
+  include\rangelib\salgorithms.hpp                                                   1.1.2.15     => 1.1.3.16    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\collections\associative_key_sequence.hpp                           2.0.2.20     => 2.0.3.21    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\collections\associative_value_sequence.hpp                         2.0.2.21     => 2.0.3.22    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\collections\functions.hpp                                          2.0.1.31     => 2.0.2.32    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\containers\fixed_array.hpp                                         4.5.2.179    => 4.5.3.180   ; 14th April 2007     => 6th November 2007  
+  include\stlsoft\containers\pod_vector.hpp                                          4.1.7.69     => 4.1.8.70    ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\containers\static_array.hpp                                        4.3.5.181    => 4.3.6.182   ; 8th May 2007        => 6th November 2007  
+  include\stlsoft\containers\unsorted_map.hpp                                        1.1.5.12     => 1.1.6.13    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\conversion\truncation_cast.hpp                                     1.0.1.38     => 1.0.2.39    ; 10th January 2007   => 7th November 2007  
+  include\stlsoft\error\error_desc.hpp                                               1.0.3.12     => 1.0.4.13    ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\internal\cccap\msvc.h                                              3.14.1.95    => 3.14.2.96   ; 4th August 2007     => 6th November 2007  
+  include\stlsoft\iterators\index_iterator.hpp                                       1.3.4.22     => 1.3.5.23    ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\iterators\member_selector_iterator.hpp                             2.4.4.50     => 2.4.5.51    ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\iterators\transform_iterator.hpp                                   2.0.15.114   => 2.0.16.115  ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\smartptr\scoped_handle.hpp                                         5.4.1.662    => 5.4.2.664   ; 4th August 2007     => 6th November 2007  
+  include\stlsoft\std\cstring.hpp                                                    1.5.2.28     => 1.5.3.29    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\string\cstring_maker.hpp                                           4.0.1.43     => 4.0.2.44    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\string\simple_string.hpp                                           4.0.10.236   => 4.0.11.237  ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\string\special_string_instance.hpp                                 1.2.3.15     => 1.2.4.16    ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\string\static_string.hpp                                           4.1.6.188    => 4.1.8.190   ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\string\string_view.hpp                                             3.2.1.84     => 3.2.2.85    ; 19th August 2007    => 6th November 2007  
+  include\stlsoft\string\trim_functions.hpp                                          2.1.4.32     => 2.1.5.33    ; 19th August 2007    => 6th November 2007  
+  include\stlsoft\string\view_slice_functions.hpp                                    2.1.2.21     => 2.1.3.22    ; 12th March 2007     => 6th November 2007  
+  include\stlsoft\util\limit_traits.h                                                4.2.3.55     => 4.2.4.56    ; 20th January 2007   => 20th January 2007  
+  include\unixstl\filesystem\current_directory_scope.hpp                             5.1.2.112    => 5.1.3.113   ; 22nd March 2007     => 6th November 2007  
+  include\unixstl\filesystem\path.hpp                                                6.5.2.224    => 6.5.3.225   ; 22nd March 2007     => 6th November 2007  
+  include\unixstl\unixstl.h                                                          3.3.6.76     => 3.3.7.77    ; 12th March 2007     => 8th November 2007  
+  include\winstl\controls\dialog_functionals.hpp                                     1.0.1.5      => 1.0.2.6     ; 22nd March 2007     => 6th November 2007  
+  include\winstl\controls\edit_line_sequence.hpp                                     1.0.4.10     => 1.0.5.11    ; 12th March 2007     => 6th November 2007  
+  include\winstl\controls\functionals.hpp                                            4.1.3.72     => 4.1.4.74    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\controls\treeview_sequence.hpp                                      4.0.4.67     => 4.0.5.68    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\error\error_desc.hpp                                                4.4.1.72     => 4.4.2.73    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\filesystem\current_directory_scope.hpp                              5.2.3.119    => 5.2.4.120   ; 22nd March 2007     => 6th November 2007  
+  include\winstl\filesystem\findfile_sequence.hpp                                    4.6.2.207    => 4.6.3.208   ; 22nd March 2007     => 6th November 2007  
+  include\winstl\filesystem\findvolume_sequence.hpp                                  4.3.3.107    => 4.3.4.108   ; 22nd March 2007     => 6th November 2007  
+  include\winstl\filesystem\path.hpp                                                 6.6.1.235    => 6.6.3.237   ; 12th August 2007    => 6th November 2007  
+  include\winstl\functional\message.hpp                                              4.0.1.35     => 4.0.2.36    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\functional\window.hpp                                               4.0.1.37     => 4.0.2.38    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\registry\reg_key.hpp                                                3.7.2.119    => 3.7.4.121   ; 4th August 2007     => 6th November 2007  
+  include\winstl\registry\reg_key_sequence.hpp                                       3.7.1.125    => 3.7.2.126   ; 7th April 2007      => 6th November 2007  
+  include\winstl\registry\reg_traits.hpp                                             3.2.5.66     => 3.2.6.67    ; 12th March 2007     => 6th November 2007  
+  include\winstl\registry\reg_value.hpp                                              3.1.1.90     => 3.1.2.92    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\registry\reg_value_sequence.hpp                                     3.5.1.117    => 3.5.5.121   ; 7th April 2007      => 10th November 2007 
+  include\winstl\shell\drophandle_sequence.hpp                                       4.0.5.87     => 4.0.6.88    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\system\environment_sequence.hpp                                     4.0.3.75     => 4.0.4.76    ; 12th March 2007     => 6th November 2007  
+  include\winstl\system\searchpath_sequence.hpp                                      4.1.3.88     => 4.1.4.89    ; 12th March 2007     => 6th November 2007  
+  include\winstl\window\functions.h                                                  4.0.4.59     => 4.0.7.62    ; 29th July 2007      => 6th November 2007  
+  include\winstl\window\window_enable_scope.hpp                                      4.0.1.86     => 4.0.2.87    ; 12th March 2007     => 6th November 2007  
+  include\winstl\window\window_icon_scope.hpp                                        4.0.1.46     => 4.0.2.47    ; 12th March 2007     => 6th November 2007  
+  include\winstl\window\window_redraw_scope.hpp                                      5.0.1.72     => 5.0.2.73    ; 12th March 2007     => 6th November 2007  
+  include\winstl\window\window_text_scope.hpp                                        4.0.1.36     => 4.0.2.37    ; 12th March 2007     => 6th November 2007  
+  include\winstl\window\window_update_scope.hpp                                      5.0.1.72     => 5.0.2.73    ; 12th March 2007     => 6th November 2007  
+  include\winstl\window\window_visible_scope.hpp                                     4.0.1.35     => 4.0.2.36    ; 12th March 2007     => 6th November 2007  
+  include\winstl\window\zorder_iterator.hpp                                          2.0.2.36     => 2.0.3.37    ; 8th April 2007      => 6th November 2007  
+  include\winstl\window\zorder_sequences.hpp                                         2.0.2.13     => 2.0.3.14    ; 22nd March 2007     => 6th November 2007  
+  include\winstl\winstl.h                                                            3.6.3.162    => 3.6.4.163   ; 12th March 2007     => 8th November 2007  
+Items changed (edit) from H:\3Pty\STLSoft\stlsoft-1.9.6 to H:\3Pty\STLSoft\stlsoft-1.9.7:        20
+  include\acestl\shims\logical\is_empty\message_queue.hpp                            3.0.4.25     => 3.0.4.27    ; 12th March 2007     => 6th November 2007  
+  include\acestl\shims\logical\is_empty\string_base.hpp                              2.0.2.8      => 2.0.2.10    ; 12th March 2007     => 6th November 2007  
+  include\comstl\util\variant.hpp                                                    2.2.2.146    => 2.2.2.148   ; 29th March 2007     => 6th November 2007  
+  include\mfcstl\collections\carray_swap.hpp                                         2.0.1.9      => 2.0.1.10    ; 12th March 2007     => 8th November 2007  
+  include\mfcstl\collections\clist_swap.hpp                                          1.0.1.5      => 1.0.1.6     ; 12th March 2007     => 8th November 2007  
+  include\stlsoft\iterators\c_str_inserter.hpp                                       2.0.1.26     => 2.0.1.27    ; 22nd March 2007     => 8th November 2007  
+  include\stlsoft\properties\field_properties.hpp                                    4.0.2.27     => 4.0.2.28    ; 22nd March 2007     => 6th November 2007  
+  include\stlsoft\shims\conversion\to_uint64\std\fundamental.hpp                     1.0.1.1      => 1.0.1.2     ; 4th July 2007       => 6th November 2007  
+  include\stlsoft\string\string_traits.hpp                                           4.0.3.74     => 4.0.3.75    ; 19th August 2007    => 17th October 2007  
+  include\unittest\unittest.hpp                                                      4.2.1.35     => 4.2.1.36    ; 22nd March 2007     => 6th November 2007  
+  include\unixstl\synch\process_mutex.hpp                                            4.6.1.68     => 4.6.1.69    ; 8th April 2007      => 6th November 2007  
+  include\unixstl\synch\semaphore.hpp                                                1.2.1.17     => 1.2.1.18    ; 8th April 2007      => 6th November 2007  
+  include\unixstl\synch\thread_mutex.hpp                                             4.3.1.51     => 4.3.1.52    ; 8th April 2007      => 6th November 2007  
+  include\winstl\controls\commctrl_functionals.hpp                                   4.1.3.70     => 4.1.3.71    ; 12th March 2007     => 6th November 2007  
+  include\winstl\shims\conversion\to_FILETIME\DATE.hpp                               1.0.1.2      => 1.0.1.3     ; 12th March 2007     => 6th November 2007  
+  include\winstl\shims\conversion\to_FILETIME\UDATE.hpp                              1.0.3.4      => 1.0.3.5     ; 12th March 2007     => 6th November 2007  
+  include\winstl\shims\conversion\to_SYSTEMTIME\DATE.hpp                             1.0.3.4      => 1.0.3.5     ; 12th March 2007     => 6th November 2007  
+  include\winstl\shims\conversion\to_uint64\WIN32_FIND_DATA.hpp                      1.0.1.1      => 1.0.1.2     ; 4th July 2007       => 6th November 2007  
+  include\winstl\system\console_functions.h                                          2.1.2.15     => 2.1.2.16    ; 14th January 2007   => 26th September 2007
+  include\winstl\system\version_info.hpp                                             5.2.5.117    => 5.2.5.118   ; 22nd March 2007     => 10th October 2007  
+Items changed (unversioned) from H:\3Pty\STLSoft\stlsoft-1.9.6 to H:\3Pty\STLSoft\stlsoft-1.9.7: 8
+  include\stlsoft\containers\unittest\fixed_array_unittest_.h                        ...          => ...         ;                     =>                    
+  include\stlsoft\conversion\unittest\truncation_test_unittest_.h                    ...          => ...         ; 14th January 2007   => 14th January 2007  
+  include\stlsoft\properties\unittest\field_properties_unittest_.h                   ...          => ...         ;                     =>                    
+  include\stlsoft\shims\logical\is_empty\std\unittest\container_unittest_.h          ...          => ...         ; 31st March 2007     => 31st March 2007    
+  include\stlsoft\smartptr\unittest\scoped_handle_unittest_.h                        ...          => ...         ; 4th August 2007     => 4th August 2007    
+  include\stlsoft\string\unittest\trim_functions_unittest_.h                         ...          => ...         ;                     =>                    
+  include\winstl\filesystem\unittest\path_unittest_.h                                ...          => ...         ; 12th August 2007    => 12th August 2007   
+  include\winstl\shell\unittest\browse_for_folder_unittest_.h                        ...          => ...         ; 14th January 2007   => 14th January 2007  
+Items deleted from H:\3Pty\STLSoft\stlsoft-1.9.6:                                                7
+  H:\3Pty\STLSoft\stlsoft-1.9.6\include\atlstl\shims\attribute\get_hwnd.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.6\include\atlstl\shims\attribute\unittest\get_hwnd_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.6\include\mfcstl\shims\attribute\get_hwnd.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.6\include\mfcstl\shims\attribute\unittest\get_hwnd_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.6\include\stlsoft\string\string_view_trim_functions.hpp-
+  H:\3Pty\STLSoft\stlsoft-1.9.6\include\winstl\shims\attribute\get_hwnd.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.6\include\winstl\shims\attribute\unittest\get_hwnd_unittest_.h
+Items added to H:\3Pty\STLSoft\stlsoft-1.9.7:                                                    20
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\atlstl\shims\attribute\get_HWND.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\atlstl\shims\attribute\unittest\get_HWND_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\mfcstl\shims\attribute\get_HWND.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\mfcstl\shims\attribute\unittest\get_HWND_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\platformstl\filesystem\file_lines.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\stlsoft\shims\attribute\get_FILE_ptr.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\stlsoft\shims\attribute\get_FILE_ptr\std\fundamental.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\stlsoft\shims\attribute\get_FILE_ptr\std\unittest\fundamental_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\stlsoft\shims\conversion\to_uint64\std\unittest\fundamental_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\attribute\get_HWND.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\attribute\unittest\get_HWND_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\DATE.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\FILETIME.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\SYSTEMTIME.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\UDATE.hpp
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\unittest\DATE_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\unittest\FILETIME_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\unittest\SYSTEMTIME_unittest_.h
+  H:\3Pty\STLSoft\stlsoft-1.9.7\include\winstl\shims\conversion\to_DATE\unittest\UDATE_unittest_.h
 
 ============================================================================
 

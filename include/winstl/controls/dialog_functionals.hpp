@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     2nd August 2006
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MAJOR     1
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MINOR     0
-# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_REVISION  1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      5
+# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_REVISION  2
+# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,7 +83,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #endif /* compiler */
 
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
-# include <winstl/shims/attribute/get_hwnd.hpp>
+# include <winstl/shims/attribute/get_HWND.hpp>
 #endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 #ifndef _WINSTL_CONTROL_FUNCTIONALS_NO_STD
 # include <functional>

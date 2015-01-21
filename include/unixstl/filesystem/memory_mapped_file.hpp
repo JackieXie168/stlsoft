@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     22nd March 2007
+ * Updated:     12th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        79
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,12 +132,14 @@ public:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     /// \brief The error type
     typedef int                             error_type;
+    /// \brief The offset type
+    typedef off_t                           offset_type;
 /// @}
 
 /// \name Implementation
 /// @{
 private:
-    void open_(char_type const* fileName)
+    void open_(char_type const* fileName, offset_type offset, size_type requestSize)
     {
         scoped_handle<int>  hfile(  traits_type::open(  fileName
                                                     ,   O_RDONLY
@@ -164,7 +166,13 @@ private:
             }
             else
             {
-                void    *memory = ::mmap(NULL, st.st_size, PROT_READ, MAP_PRIVATE, hfile.get(), 0);
+                if( 0 == requestSize ||
+                    requestSize > static_cast<size_type>(st.st_size))
+                {
+                    requestSize = static_cast<size_type>(st.st_size);
+                }
+
+                void    *memory = ::mmap(NULL, requestSize, PROT_READ, MAP_PRIVATE, hfile.get(), offset);
 
                 if(MAP_FAILED == memory)
                 {
@@ -173,7 +181,7 @@ private:
                 else
                 {
                     m_memory    =   memory;
-                    m_cb        =   st.st_size;
+                    m_cb        =   requestSize;
                 }
             }
         }
@@ -187,14 +195,31 @@ public:
         : m_cb(0)
         , m_memory(NULL)
     {
-        open_(fileName);
+        open_(fileName, 0, 0);
     }
     template <ss_typename_param_k S>
     ss_explicit_k memory_mapped_file(S const& fileName)
         : m_cb(0)
         , m_memory(NULL)
     {
-        open_(stlsoft_ns_qual(c_str_ptr)(fileName));
+        open_(stlsoft_ns_qual(c_str_ptr)(fileName), 0, 0);
+    }
+    memory_mapped_file( char_type const*    fileName
+                    ,   offset_type         offset
+                    ,   size_type           requestSize)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(fileName, offset, requestSize);
+    }
+    template <ss_typename_param_k S>
+    memory_mapped_file( S const&            fileName
+                    ,   offset_type         offset
+                    ,   size_type           requestSize)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(stlsoft_ns_qual(c_str_ptr)(fileName), offset, requestSize);
     }
     ~memory_mapped_file() stlsoft_throw_0()
     {

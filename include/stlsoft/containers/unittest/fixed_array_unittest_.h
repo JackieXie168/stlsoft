@@ -99,7 +99,7 @@ namespace unittest
 				{ for(size_t j = 0; j < a2d_1.dimension1(); ++j)
 				{
 #if !defined(STLSOFT_COMPILER_IS_GCC) || \
-    __GNUC__ < 4					
+	__GNUC__ < 4					
 					if(a2d_1.at_unchecked(i, j) != a2d_1[i][j])
 					{
 						r->report("at_unchecked() does not match []", __LINE__);
@@ -143,7 +143,7 @@ namespace unittest
 					{ for(size_t k = 0; k < a3d_1.dimension2(); ++k)
 					{
 #if !defined(STLSOFT_COMPILER_IS_GCC) || \
-    __GNUC__ < 4					
+	__GNUC__ < 4					
 						if(a3d_1.at_unchecked(i, j, k) != a3d_1[i][j][k])
 						{
 							r->report("at_unchecked() does not match []", __LINE__);
@@ -190,7 +190,7 @@ namespace unittest
 						{ for(size_t l = 0; l < a4d_1.dimension3(); ++l)
 						{
 #if !defined(STLSOFT_COMPILER_IS_GCC) || \
-    __GNUC__ < 4					
+	__GNUC__ < 4					
 							if(a4d_1.at_unchecked(i, j, k, l) != a4d_1[i][j][k][l])
 							{
 								r->report("at_unchecked() does not match []", __LINE__);

@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     10th January 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MAJOR    5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MINOR    0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     37
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MINOR    1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,8 @@
 
 #if defined(STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT)
  /* Now work out which libs _don't_ have it */
-# if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC)
+# if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND)
+# elif defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC)
 #  if STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
 #   undef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #  endif /* STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION */
@@ -221,7 +222,7 @@
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_SGI)
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_SGI_GNU)
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_RW)
-# elif defined(STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH
+# elif defined(STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH)
 # else /* ? library */
 #  error Standard library not recognised
 # endif /* library */

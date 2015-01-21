@@ -24,7 +24,7 @@ namespace unittest
 
 			{ // 1. deque
 
-				stlsoft_ns_qual_std(deque)<int>	cont;
+				stlsoft_ns_qual_std(deque)<int> cont;
 
 				if(!is_empty(cont))
 				{

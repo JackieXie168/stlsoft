@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     29th July 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  4
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      59
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  7
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -210,7 +210,7 @@ STLSOFT_INLINE HINSTANCE winstl__GetWindowInstance(HWND hwnd)
 {
 #if defined(_WIN64) || \
     defined(_Wp64)
-    return stlsoft_reinterpret_cast(HINSTANCE, STLSOFT_NS_GLOBAL(GetWindowLongPtr)(hwnd, GWL_HINSTANCE));
+    return stlsoft_reinterpret_cast(HINSTANCE, STLSOFT_NS_GLOBAL(GetWindowLongPtr)(hwnd, GWLP_HINSTANCE));
 #else /* ? width */
     return stlsoft_reinterpret_cast(HINSTANCE, STLSOFT_NS_GLOBAL(GetWindowLong)(hwnd, GWL_HINSTANCE));
 #endif /* width */
@@ -380,7 +380,8 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, int iconI
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1
-#elif defined(STLSOFT_COMPILER_IS_BORLAND)
+#elif defined(STLSOFT_COMPILER_IS_BORLAND) /* && \
+      __BORLANDC__ < 0x0582 */
 # define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3
 #elif defined(STLSOFT_COMPILER_IS_MSVC)
 # if _MSC_VER > 1200

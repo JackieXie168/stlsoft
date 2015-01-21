@@ -2,12 +2,12 @@
 STLSoft - Known Issues:
 
 ; Created:  29th March 2002
-; Updated:  25th September 2007
+; Updated:  16th November 2007
 
 ============================================================================
 
 
-STLSoft 1.9.6 Known Issues:
+STLSoft 1.9.7 Known Issues:
 ---------------------------
 
  * There are some problems with GCC 4.0 in compiling the fixed array classes
@@ -18,5 +18,9 @@ STLSoft 1.9.6 Known Issues:
 
  * The documentation is still hopeless. This will be addressed in the next
    few months.
+
+ * The Borland Turbo C++ v5.82 support is not perfect. Borland users are
+   encouraged to report problems on the STLSoft newsgroup at
+   news://news.digitalmars.com/c++.stlsoft
 
 =============================== End of file ================================

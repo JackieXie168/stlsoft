@@ -5,7 +5,7 @@
  *              unit-test framework.
  *
  * Created:     26th February 2004
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MAJOR    4
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MINOR    2
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_REVISION 1
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     35
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,8 +95,8 @@ namespace unittest
  * Globals
  */
 
-extern FILE	*err;
-extern FILE	*out;
+extern FILE *err;
+extern FILE *out;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Functions

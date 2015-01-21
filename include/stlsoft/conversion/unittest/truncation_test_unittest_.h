@@ -18,7 +18,7 @@ namespace unittest
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # define STLSOFT_CONV_TRUNCATION_TEST_CASE(fromType, toType, fromValue) stlsoft_ns_qual(truncation_test)<toType>(static_cast<fromType>(fromValue))
 #elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
+	  _MSC_VER < 1200
 # define STLSOFT_CONV_TRUNCATION_TEST_CASE(fromType, toType, fromValue) stlsoft_ns_qual(truncation_test)<toType>(static_cast<fromType>(fromValue), toType())
 #else /* ? compiler */
 # define STLSOFT_CONV_TRUNCATION_TEST_CASE(fromType, toType, fromValue) stlsoft_ns_qual(truncation_test)<toType, fromType>(static_cast<fromType>(fromValue))

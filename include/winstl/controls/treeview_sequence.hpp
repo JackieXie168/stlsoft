@@ -4,7 +4,7 @@
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MINOR     0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_REVISION  4
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT      67
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_REVISION  5
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -370,7 +370,7 @@ inline HTREEITEM treeview_sequence_const_iterator<N, P>::operator *() const
 }
 
 template <UINT N, UINT P>
-inline ss_typename_type_k treeview_sequence_const_iterator<N, P>::class_type &treeview_sequence_const_iterator<N, P>::operator ++()
+inline ss_typename_type_ret_k treeview_sequence_const_iterator<N, P>::class_type &treeview_sequence_const_iterator<N, P>::operator ++()
 {
     if(m_hitem != NULL)
     {
@@ -381,7 +381,7 @@ inline ss_typename_type_k treeview_sequence_const_iterator<N, P>::class_type &tr
 }
 
 template <UINT N, UINT P>
-inline ss_typename_type_k treeview_sequence_const_iterator<N, P>::class_type treeview_sequence_const_iterator<N, P>::operator ++(int)
+inline ss_typename_type_ret_k treeview_sequence_const_iterator<N, P>::class_type treeview_sequence_const_iterator<N, P>::operator ++(int)
 {
     class_type  ret(*this);
 
@@ -411,13 +411,13 @@ inline treeview_sequence_base<N, P>::treeview_sequence_base(HWND hwndTree, HTREE
 {}
 
 template <UINT N, UINT P>
-inline ss_typename_type_k treeview_sequence_base<N, P>::const_iterator treeview_sequence_base<N, P>::begin() const
+inline ss_typename_type_ret_k treeview_sequence_base<N, P>::const_iterator treeview_sequence_base<N, P>::begin() const
 {
     return const_iterator(m_hwnd, m_hitem);
 }
 
 template <UINT N, UINT P>
-inline ss_typename_type_k treeview_sequence_base<N, P>::const_iterator treeview_sequence_base<N, P>::end() const
+inline ss_typename_type_ret_k treeview_sequence_base<N, P>::const_iterator treeview_sequence_base<N, P>::end() const
 {
     return const_iterator();
 }

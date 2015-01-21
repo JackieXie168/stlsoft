@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on POSIX semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     8th April 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     17
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ class semaphore
 /// @{
 public:
     typedef semaphore       class_type;
-    typedef sem_t*			handle_type;
+    typedef sem_t*          handle_type;
     typedef us_bool_t       bool_type;
     typedef us_size_t       count_type;
 

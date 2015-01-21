@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/shims/attribute/get_hwnd.hpp
+ * File:        atlstl/shims/attribute/get_HWND.hpp
  *
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file atlstl/shims/attribute/get_hwnd.hpp
+/** \file atlstl/shims/attribute/get_HWND.hpp
  *
- * \brief [C++ only] Definition of stlsoft::get_hwnd attribute shim
+ * \brief [C++ only] Definition of stlsoft::get_HWND attribute shim
  *   functions for ATL types
  *   (\ref group__library__shims__window_attribute "Window Attribute Shims").
  */
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      0
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   1
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       37
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   2
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ namespace atlstl_project
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * get_hwnd
+ * get_HWND
  *
  * This can be applied to an expression, and the return value is the
  * corresponding HWND.
@@ -126,7 +126,7 @@ inline HWND get_hwnd(CWindow const& w)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/get_hwnd_unittest_.h"
+# include "./unittest/get_HWND_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

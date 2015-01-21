@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 6
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     129
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 7
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -893,7 +893,7 @@ inline /* static */ HINTERNET basic_findfile_sequence<C, T, X>::find_first_file_
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_type basic_findfile_sequence<C, T, X>::validate_flags_(ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_type flags)
+inline /* static */ ss_typename_type_ret_k basic_findfile_sequence<C, T, X>::flags_type basic_findfile_sequence<C, T, X>::validate_flags_(ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_type flags)
 {
     const flags_type    validFlags  =   0
                                     |   includeDots
@@ -980,7 +980,7 @@ inline basic_findfile_sequence<C, T, X>::~basic_findfile_sequence() stlsoft_thro
 
 // Iteration
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence<C, T, X>::const_iterator basic_findfile_sequence<C, T, X>::begin() const
+inline ss_typename_type_ret_k basic_findfile_sequence<C, T, X>::const_iterator basic_findfile_sequence<C, T, X>::begin() const
 {
     INETSTL_ASSERT(is_valid());
 
@@ -988,7 +988,7 @@ inline ss_typename_type_k basic_findfile_sequence<C, T, X>::const_iterator basic
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence<C, T, X>::const_iterator basic_findfile_sequence<C, T, X>::end() const
+inline ss_typename_type_ret_k basic_findfile_sequence<C, T, X>::const_iterator basic_findfile_sequence<C, T, X>::end() const
 {
     INETSTL_ASSERT(is_valid());
 
@@ -1007,7 +1007,7 @@ ss_typename_type_k basic_findfile_sequence<C, T, X>::char_type const* basic_find
 // State
 #ifdef STLSOFT_OBSOLETE
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence<C, T, X>::size_type basic_findfile_sequence<C, T, X>::size() const
+inline ss_typename_type_ret_k basic_findfile_sequence<C, T, X>::size_type basic_findfile_sequence<C, T, X>::size() const
 {
     INETSTL_ASSERT(is_valid());
 
@@ -1024,7 +1024,7 @@ inline is_bool_t basic_findfile_sequence<C, T, X>::empty() const
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T, X>::size_type basic_findfile_sequence<C, T, X>::max_size()
+inline /* static */ ss_typename_type_ret_k basic_findfile_sequence<C, T, X>::size_type basic_findfile_sequence<C, T, X>::max_size()
 {
     return static_cast<size_type>(-1);
 }
@@ -1041,39 +1041,39 @@ inline basic_findfile_sequence_value_type<C, T, X>::basic_findfile_sequence_valu
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::find_data_type const& basic_findfile_sequence_value_type<C, T, X>::get_find_data() const
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T, X>::find_data_type const& basic_findfile_sequence_value_type<C, T, X>::get_find_data() const
 {
     return m_data;
 }
 
 #ifdef STLSOFT_OBSOLETE
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::find_data_type const& basic_findfile_sequence_value_type<C, T, X>::GetFindData() const
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T, X>::find_data_type const& basic_findfile_sequence_value_type<C, T, X>::GetFindData() const
 {
     return get_find_data();
 }
 #endif /* STLSOFT_OBSOLETE */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::get_filename() const
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::get_filename() const
 {
     return m_data.cFileName;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::get_short_filename() const
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::get_short_filename() const
 {
     return m_data.cAlternateFileName[0] != '\0' ? m_data.cAlternateFileName : m_data.cFileName;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::get_path() const
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::get_path() const
 {
     return &m_path[0];
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::c_str() const
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T, X>::char_type const* basic_findfile_sequence_value_type<C, T, X>::c_str() const
 {
     return get_path();
 }
@@ -1257,7 +1257,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, X, V>::basic_findfile_
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X, ss_typename_param_k V>
 #ifndef STLSOFT_COMPILER_IS_WATCOM
-inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(ss_typename_param_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(ss_typename_param_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type const& rhs)
 #else /* ? compiler */
 inline basic_findfile_sequence_const_input_iterator<C, T, X, V> &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(basic_findfile_sequence_const_input_iterator<C, T, X, V> const& rhs)
 #endif /* compiler */
@@ -1297,7 +1297,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, X, V>::~basic_findfile
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X, ss_typename_param_k V>
-inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator ++()
+inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator ++()
 {
     INETSTL_ASSERT(NULL != m_pattern0);
     INETSTL_ASSERT(NULL != m_pattern1);
@@ -1408,7 +1408,7 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, 
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X, ss_typename_param_k V>
-inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator ++(int)
+inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator ++(int)
 {
     class_type  ret(*this);
 

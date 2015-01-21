@@ -1,5 +1,5 @@
 
-// Updated:	14th January 2007
+// Updated: 14th January 2007
 
 #if !defined(WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER)
 # error This file cannot be directly included, and should only be included within winstl/shell/browse_for_folder.hpp

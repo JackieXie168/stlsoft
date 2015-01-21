@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     12th April 2007
+ * Updated:     6th November 2007
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
@@ -76,8 +76,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     41
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 3
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1137,7 +1137,7 @@ inline void r_generate(R r, F f)
  */
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, notional_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1166,19 +1166,19 @@ inline I r_max_element_1_impl_iterable(I from, I to)
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, iterable_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, iterable_range_tag const&)
 {
     return *r_max_element_1_impl_iterable(r.begin(), r.end());
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, basic_indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).max_element();
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_1_impl(R r, indirect_range_tag const&)
 {
     return r.max_element();
 }
@@ -1193,7 +1193,7 @@ inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, indirect_range
  * \note: The behaviour is undefined if the range is closed
  */
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_max_element(R r)
+inline ss_typename_type_ret_k R::value_type r_max_element(R r)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 
@@ -1220,7 +1220,7 @@ inline I r_max_element_2_impl_iterable(I from, I to, F f)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, iterable_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, iterable_range_tag const&)
 {
     return *r_max_element_2_impl_iterable(r.begin(), r.end(), f);
 }
@@ -1228,7 +1228,7 @@ inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, iterable_
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, notional_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1248,7 +1248,7 @@ inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, notional_
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, basic_indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).max_element(f);
 }
@@ -1256,7 +1256,7 @@ inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, basic_ind
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_max_element_2_impl(R r, F f, indirect_range_tag const&)
 {
     return r.max_element(f);
 }
@@ -1274,7 +1274,7 @@ inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, indirect_
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_max_element(R r, F f)
+inline ss_typename_type_ret_k R::value_type r_max_element(R r, F f)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 
@@ -1286,7 +1286,7 @@ inline ss_typename_type_k R::value_type r_max_element(R r, F f)
  */
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, notional_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1322,19 +1322,19 @@ inline I r_min_element_1_impl_iterable(I from, I to)
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, iterable_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, iterable_range_tag const&)
 {
     return *r_min_element_1_impl_iterable(r.begin(), r.end());
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, basic_indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).min_element();
 }
 
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_1_impl(R r, indirect_range_tag const&)
 {
     return r.min_element();
 }
@@ -1349,7 +1349,7 @@ inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, indirect_range
  * \note: The behaviour is undefined if the range is closed
  */
 template <ss_typename_param_k R>
-inline ss_typename_type_k R::value_type r_min_element(R r)
+inline ss_typename_type_ret_k R::value_type r_min_element(R r)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 
@@ -1376,7 +1376,7 @@ inline I r_min_element_2_impl_iterable(I from, I to, F f)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, iterable_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, iterable_range_tag const&)
 {
     return *r_min_element_2_impl_iterable(r.begin(), r.end(), f);
 }
@@ -1384,7 +1384,7 @@ inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, iterable_
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, notional_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, notional_range_tag const&)
 {
     typedef ss_typename_type_k R::value_type    value_type_t;
 
@@ -1404,7 +1404,7 @@ inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, notional_
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, basic_indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, basic_indirect_range_tag const&)
 {
     return indirect_range_adaptor<R>(r).min_element(f);
 }
@@ -1412,7 +1412,7 @@ inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, basic_ind
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, indirect_range_tag const&)
+inline ss_typename_type_ret_k R::value_type r_min_element_2_impl(R r, F f, indirect_range_tag const&)
 {
     return r.min_element(f);
 }
@@ -1430,7 +1430,7 @@ inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, indirect_
 template<   ss_typename_param_k R
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k R::value_type r_min_element(R r, F f)
+inline ss_typename_type_ret_k R::value_type r_min_element(R r, F f)
 {
     STLSOFT_ASSERT(r_distance(r) > 0);
 

@@ -4,7 +4,7 @@
  * Purpose:     winstl::to_SYSTEMTIME(DATE const&) overload.
  *
  * Created:     15th January 2007
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MINOR    0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_REVISION 3
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     4
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,8 +124,8 @@ namespace winstl_project
  */
 inline const SYSTEMTIME to_SYSTEMTIME(DATE const& rhs)
 {
-    UDATE	ud;
-	HRESULT	hr;
+    UDATE   ud;
+    HRESULT hr;
 
     if(FAILED(hr = ::VarUdateFromDate(rhs, 0, &ud)))
     {

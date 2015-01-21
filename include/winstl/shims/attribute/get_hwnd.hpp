@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/attribute/get_hwnd.hpp
+ * File:        winstl/shims/attribute/get_HWND.hpp
  *
  * Purpose:     Contains access shims for windows.
  *
  * Created:     7th October 2002
- * Updated:     10th January 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/shims/attribute/get_hwnd.hpp
+/** \file winstl/shims/attribute/get_HWND.hpp
  *
- * \brief [C++ only] Definition of stlsoft::get_hwnd attribute shim
+ * \brief [C++ only] Definition of stlsoft::get_HWND attribute shim
  *   functions for Win32 types
  *   (\ref group__library__shims__window_attribute "Window Attribute Shims").
  */
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR     4
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR     0
-# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION  1
-# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT      43
+# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION  2
+# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ namespace winstl_project
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * get_hwnd
+ * get_HWND
  *
  * This can be applied to an expression, and the return value is the
  * corresponding HWND.
@@ -113,7 +113,7 @@ inline HWND get_hwnd(HWND h)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/get_hwnd_unittest_.h"
+# include "./unittest/get_HWND_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

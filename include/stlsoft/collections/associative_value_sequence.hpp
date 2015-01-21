@@ -4,7 +4,7 @@
  * Purpose:     Adapts associative containers into a sequence of their values.
  *
  * Created:     28th January 2005
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MAJOR       2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MINOR       0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_REVISION    2
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        21
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_REVISION    3
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -235,13 +235,13 @@ inline associative_value_sequence<A>::associative_value_sequence(ss_typename_typ
 // Attributes
 
 template <ss_typename_param_k A>
-inline ss_typename_type_k associative_value_sequence<A>::size_type associative_value_sequence<A>::size() const
+inline ss_typename_type_ret_k associative_value_sequence<A>::size_type associative_value_sequence<A>::size() const
 {
     return m_container.size();
 }
 
 template <ss_typename_param_k A>
-inline ss_typename_type_k associative_value_sequence<A>::size_type associative_value_sequence<A>::max_size() const
+inline ss_typename_type_ret_k associative_value_sequence<A>::size_type associative_value_sequence<A>::max_size() const
 {
     return m_container.max_size();
 }
@@ -255,26 +255,26 @@ inline ss_bool_t associative_value_sequence<A>::empty() const
 // Iteration
 
 template <ss_typename_param_k A>
-inline ss_typename_type_k associative_value_sequence<A>::const_iterator associative_value_sequence<A>::begin() const
+inline ss_typename_type_ret_k associative_value_sequence<A>::const_iterator associative_value_sequence<A>::begin() const
 {
     return const_iterator(m_container.begin());
 }
 
 template <ss_typename_param_k A>
-inline ss_typename_type_k associative_value_sequence<A>::const_iterator associative_value_sequence<A>::end() const
+inline ss_typename_type_ret_k associative_value_sequence<A>::const_iterator associative_value_sequence<A>::end() const
 {
     return const_iterator(m_container.end());
 }
 
 # if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k A>
-inline ss_typename_type_k associative_value_sequence<A>::const_reverse_iterator associative_value_sequence<A>::rbegin() const
+inline ss_typename_type_ret_k associative_value_sequence<A>::const_reverse_iterator associative_value_sequence<A>::rbegin() const
 {
     return const_reverse_iterator(m_container.rbegin());
 }
 
 template <ss_typename_param_k A>
-inline ss_typename_type_k associative_value_sequence<A>::const_reverse_iterator associative_value_sequence<A>::rend() const
+inline ss_typename_type_ret_k associative_value_sequence<A>::const_reverse_iterator associative_value_sequence<A>::rend() const
 {
     return const_reverse_iterator(m_container.rend());
 }

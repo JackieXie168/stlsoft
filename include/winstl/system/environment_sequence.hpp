@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     75
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -336,7 +336,7 @@ typedef basic_environment_sequence<TCHAR>           environment_sequence;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C>
-inline /* static */ ss_typename_type_k basic_environment_sequence<C>::size_type basic_environment_sequence<C>::calc_items_(ss_typename_type_k basic_environment_sequence<C>::char_type const* p, ss_typename_type_k basic_environment_sequence<C>::char_type const** q, ws_int_t flags)
+inline /* static */ ss_typename_type_ret_k basic_environment_sequence<C>::size_type basic_environment_sequence<C>::calc_items_(ss_typename_type_k basic_environment_sequence<C>::char_type const* p, ss_typename_type_k basic_environment_sequence<C>::char_type const** q, ws_int_t flags)
 {
     size_type           c;
     char_type const*    v;
@@ -499,33 +499,33 @@ inline basic_environment_sequence<C>::~basic_environment_sequence() stlsoft_thro
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::begin() const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::begin() const
 {
     return &*m_symbols.begin();
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::end() const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::end() const
 {
     return &*m_symbols.end();
 }
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::const_reverse_iterator basic_environment_sequence<C>::rbegin() const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::const_reverse_iterator basic_environment_sequence<C>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::const_reverse_iterator basic_environment_sequence<C>::rend() const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::const_reverse_iterator basic_environment_sequence<C>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::find(ss_typename_type_k basic_environment_sequence<C>::char_type const* name) const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::find(ss_typename_type_k basic_environment_sequence<C>::char_type const* name) const
 {
     const_iterator  b   =   this->begin();
     const_iterator  e   =   this->end();
@@ -542,7 +542,7 @@ inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_en
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::find(ss_typename_type_k basic_environment_sequence<C>::char_type const* name, ss_typename_type_k basic_environment_sequence<C>::char_type const* value) const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::find(ss_typename_type_k basic_environment_sequence<C>::char_type const* name, ss_typename_type_k basic_environment_sequence<C>::char_type const* value) const
 {
     const_iterator  b   =   this->begin();
     const_iterator  e   =   this->end();
@@ -562,7 +562,7 @@ inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_en
 
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::size_type basic_environment_sequence<C>::size() const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::size_type basic_environment_sequence<C>::size() const
 {
     return m_symbols.size();
 }
@@ -574,7 +574,7 @@ inline ws_bool_t basic_environment_sequence<C>::empty() const
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_environment_sequence<C>::value_type basic_environment_sequence<C>::operator [](ss_typename_type_k basic_environment_sequence<C>::size_type index) const
+inline ss_typename_type_ret_k basic_environment_sequence<C>::value_type basic_environment_sequence<C>::operator [](ss_typename_type_k basic_environment_sequence<C>::size_type index) const
 {
     WINSTL_MESSAGE_ASSERT("index access out of range in basic_environment_sequence", index < size() + 1);   // Has to be +1, since legitimate to take address of one-past-the-end
 

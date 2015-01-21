@@ -4,7 +4,7 @@
  * Purpose:     index_iterator class template.
  *
  * Created:     5th April 2005
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      22
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -472,7 +472,7 @@ inline index_iterator<I, T> operator -(index_iterator<I, T> const& lhs, ss_ptrdi
 template<   ss_typename_param_k I
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k index_iterator<I, T>::difference_type operator -(index_iterator<I, T> const& lhs, index_iterator<I, T> const& rhs)
+inline ss_typename_type_ret_k index_iterator<I, T>::difference_type operator -(index_iterator<I, T> const& lhs, index_iterator<I, T> const& rhs)
 {
     return lhs.distance(rhs);
 }
@@ -538,14 +538,14 @@ namespace std
     template<   ss_typename_param_k I
             ,   ss_typename_param_k T
             >
-    inline ss_typename_type_k stlsoft_ns_qual(index_iterator)<I, T>::iterator_category _Iter_cat(stlsoft_ns_qual(index_iterator)<I, T> const&)
+    inline ss_typename_type_ret_k stlsoft_ns_qual(index_iterator)<I, T>::iterator_category _Iter_cat(stlsoft_ns_qual(index_iterator)<I, T> const&)
     {
         return ss_typename_type_k stlsoft_ns_qual(index_iterator)<I, T>::iterator_category();
     }
     template<   ss_typename_param_k I
             ,   ss_typename_param_k T
             >
-    inline ss_typename_type_k stlsoft_ns_qual(index_iterator)<I, T>::value_type *_Val_type(stlsoft_ns_qual(index_iterator)<I, T> const&)
+    inline ss_typename_type_ret_k stlsoft_ns_qual(index_iterator)<I, T>::value_type *_Val_type(stlsoft_ns_qual(index_iterator)<I, T> const&)
     {
         return static_cast</* ss_typename_type_k  */stlsoft_ns_qual(index_iterator)<I, T>::value_type*>(0);
     }
@@ -554,7 +554,7 @@ namespace std
     template<   ss_typename_param_k I
             ,   ss_typename_param_k T
             >
-    inline ss_typename_type_k stlsoft_ns_qual(index_iterator)<I, T>::difference_type *_Dist_type(stlsoft_ns_qual(index_iterator)<I, T> const&)
+    inline ss_typename_type_ret_k stlsoft_ns_qual(index_iterator)<I, T>::difference_type *_Dist_type(stlsoft_ns_qual(index_iterator)<I, T> const&)
     {
         return static_cast</* ss_typename_type_k  */stlsoft_ns_qual(index_iterator)<I, T>::difference_type*>(0);
     }

@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     12th March 2007
+ * Updated:     9th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        104
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,15 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
+#  include <stlsoft/conversion/truncation_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST
+#  include <stlsoft/conversion/truncation_test.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
@@ -698,7 +707,7 @@ public:
 private:
     static size_type get_full_path_name_impl2(char_type const* fileName, size_type len, char_type* buffer, size_type cchBuffer, char_type **ppFile)
     {
-        size_type   r   =   ::GetFullPathNameA(fileName, cchBuffer, buffer, ppFile);
+        size_type r = class_type::GetFullPathNameA(fileName, cchBuffer, buffer, ppFile);
 
         if( 0 != r &&
             NULL != buffer &&
@@ -714,8 +723,8 @@ private:
             }
             else
             {
-                char_type   *pFile2;
-                size_type   r2  =   get_full_path_name_impl2(fileName, len, &buffer_[0], buffer_.size(), &pFile2);
+                char_type*  pFile2;
+                size_type   r2 = get_full_path_name_impl2(fileName, len, &buffer_[0], buffer_.size(), &pFile2);
 
                 if(0 == r2)
                 {
@@ -919,11 +928,11 @@ public:
 
     static size_type get_short_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer)
     {
-        return ::GetShortPathNameA(fileName, buffer, cchBuffer);
+        return class_type::GetShortPathNameA(fileName, buffer, cchBuffer);
     }
     static size_type get_short_path_name(char_type const* fileName, char_type* buffer, size_type cchBuffer)
     {
-        return ::GetShortPathNameA(fileName, buffer, cchBuffer);
+        return class_type::GetShortPathNameA(fileName, buffer, cchBuffer);
     }
 
     // File-system enumeration
@@ -956,12 +965,12 @@ public:
 #ifndef _WINSTL_NO_FINDVOLUME_API
     static HANDLE find_first_volume(char_type *volume_name, size_type cch_volume_name)
     {
-        return ::FindFirstVolumeA(volume_name, cch_volume_name);
+        return class_type::FindFirstVolumeA(volume_name, cch_volume_name);
     }
 
     static bool_type find_next_volume(HANDLE h, char_type *volume_name, size_type cch_volume_name)
     {
-        return ::FindNextVolumeA(h, volume_name, cch_volume_name) != FALSE;
+        return class_type::FindNextVolumeA(h, volume_name, cch_volume_name) != FALSE;
     }
 
     static void find_volume_close(HANDLE h)
@@ -980,7 +989,7 @@ public:
 
     static size_type get_current_directory(char_type *buffer, size_type cchBuffer)
     {
-        return ::GetCurrentDirectoryA(cchBuffer, buffer);
+        return class_type::GetCurrentDirectoryA(cchBuffer, buffer);
     }
 
     static size_type get_current_directory(size_type cchBuffer, char_type* buffer)
@@ -1191,7 +1200,7 @@ public:
         return FALSE != ::CopyFileA(sourceName, newName, bFailIfExists);
     }
 
-    static file_handle_type create_file(char_type const* fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, file_handle_type hTemplateFile)
+    static file_handle_type create_file(char_type const* fileName, ws_uint32_t desiredAccess, ws_uint32_t shareMode, LPSECURITY_ATTRIBUTES sa, ws_uint32_t creationDisposition, ws_uint32_t flagAndAttributes, file_handle_type hTemplateFile)
     {
         return ::CreateFileA(fileName, desiredAccess, shareMode, sa, creationDisposition, flagAndAttributes, hTemplateFile);
     }
@@ -1207,6 +1216,61 @@ public:
         return filesystem_traits_::get_file_size(h);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+private:
+    static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetFullPathNameA(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetFullPathNameA(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetShortPathNameA(char_type const* fileName, char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetShortPathNameA(fileName, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetShortPathNameA(fileName, buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static HANDLE FindFirstVolumeA(char_type *volume_name, size_type cch_volume_name)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::FindFirstVolumeA(volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
+
+        return ::FindFirstVolumeA(volume_name, static_cast<DWORD>(cch_volume_name));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+    static bool_type FindNextVolumeA(HANDLE h, char_type *volume_name, size_type cch_volume_name)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return FALSE != ::FindNextVolumeA(h, volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
+
+        return FALSE != ::FindNextVolumeA(h, volume_name, static_cast<DWORD>(cch_volume_name));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetCurrentDirectoryA(size_type cchBuffer, char_type *buffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetCurrentDirectoryA(stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetCurrentDirectoryA(static_cast<DWORD>(cchBuffer), buffer);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1408,7 +1472,7 @@ public:
     {
         WINSTL_MESSAGE_ASSERT("GetFullPathNameW() will crash when the file-name and buffer parameters are the same", fileName != buffer);
 
-        return ::GetFullPathNameW(fileName, cchBuffer, buffer, ppFile);
+        return class_type::GetFullPathNameW(fileName, cchBuffer, buffer, ppFile);
     }
 
     static size_type get_full_path_name(char_type const* fileName, char_type* buffer, size_type cchBuffer)
@@ -1425,11 +1489,11 @@ public:
 
     static size_type get_short_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer)
     {
-        return ::GetShortPathNameW(fileName, buffer, cchBuffer);
+        return class_type::GetShortPathNameW(fileName, buffer, cchBuffer);
     }
     static size_type get_short_path_name(char_type const* fileName, char_type* buffer, size_type cchBuffer)
     {
-        return ::GetShortPathNameW(fileName, buffer, cchBuffer);
+        return class_type::GetShortPathNameW(fileName, buffer, cchBuffer);
     }
 
     // FindFile() API
@@ -1462,12 +1526,12 @@ public:
 #ifndef _WINSTL_NO_FINDVOLUME_API
     static HANDLE find_first_volume(char_type *volume_name, size_type cch_volume_name)
     {
-        return ::FindFirstVolumeW(volume_name, cch_volume_name);
+        return class_type::FindFirstVolumeW(volume_name, cch_volume_name);
     }
 
     static bool_type find_next_volume(HANDLE h, char_type *volume_name, size_type cch_volume_name)
     {
-        return ::FindNextVolumeW(h, volume_name, cch_volume_name) != FALSE;
+        return class_type::FindNextVolumeW(h, volume_name, cch_volume_name) != FALSE;
     }
 
     static void find_volume_close(HANDLE h)
@@ -1486,7 +1550,7 @@ public:
 
     static size_type get_current_directory(char_type *buffer, size_type cchBuffer)
     {
-        return ::GetCurrentDirectoryW(cchBuffer, buffer);
+        return class_type::GetCurrentDirectoryW(cchBuffer, buffer);
     }
 
     static size_type get_current_directory(size_type cchBuffer, char_type* buffer)
@@ -1699,7 +1763,7 @@ public:
         return FALSE != ::CopyFileW(sourceName, newName, bFailIfExists);
     }
 
-    static file_handle_type create_file(char_type const* fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, file_handle_type hTemplateFile)
+    static file_handle_type create_file(char_type const* fileName, ws_uint32_t desiredAccess, ws_uint32_t shareMode, LPSECURITY_ATTRIBUTES sa, ws_uint32_t creationDisposition, ws_uint32_t flagAndAttributes, file_handle_type hTemplateFile)
     {
         return ::CreateFileW(fileName, desiredAccess, shareMode, sa, creationDisposition, flagAndAttributes, hTemplateFile);
     }
@@ -1715,6 +1779,61 @@ public:
         return filesystem_traits_::get_file_size(h);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+private:
+    static size_type GetFullPathNameW(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetFullPathNameW(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetFullPathNameW(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetShortPathNameW(char_type const* fileName, char_type* buffer, size_type cchBuffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetShortPathNameW(fileName, buffer, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetShortPathNameW(fileName, buffer, static_cast<DWORD>(cchBuffer));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static HANDLE FindFirstVolumeW(char_type *volume_name, size_type cch_volume_name)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::FindFirstVolumeW(volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
+
+        return ::FindFirstVolumeW(volume_name, static_cast<DWORD>(cch_volume_name));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+    static bool_type FindNextVolumeW(HANDLE h, char_type *volume_name, size_type cch_volume_name)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return FALSE != ::FindNextVolumeW(h, volume_name, stlsoft_ns_qual(truncation_cast)<DWORD>(cch_volume_name));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cch_volume_name));
+
+        return FALSE != ::FindNextVolumeW(h, volume_name, static_cast<DWORD>(cch_volume_name));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    static size_type GetCurrentDirectoryW(size_type cchBuffer, char_type *buffer)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return ::GetCurrentDirectoryW(stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
+
+        return ::GetCurrentDirectoryW(static_cast<DWORD>(cchBuffer), buffer);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
 };
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */

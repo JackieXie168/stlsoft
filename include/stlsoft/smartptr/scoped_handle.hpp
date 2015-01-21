@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     4th August 2007
+ * Updated:     6th November 2007
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     662
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     664
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -134,8 +134,8 @@ public:
 /// @}
 
 private:
-	H_holder(H_holder const&);
-	H_holder& operator =(H_holder const&);
+    H_holder(H_holder const&);
+    H_holder& operator =(H_holder const&);
 };
 
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
@@ -848,7 +848,7 @@ template<ss_typename_param_k H>
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
 inline H get_handle(scoped_handle<H> const& h)
 #else /* ? compiler */
-inline ss_typename_type_k scoped_handle<H>::handle_type get_handle(scoped_handle<H> const& h)
+inline ss_typename_type_ret_k scoped_handle<H>::handle_type get_handle(scoped_handle<H> const& h)
 #endif /* compiler */
 {
     return h.get();

@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_connection class.
  *
  * Created:     30th April 1999
- * Updated:     7th April 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MAJOR       5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        64
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    2
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k X
         ,   ss_typename_param_k T
         >
-inline /* static */ ss_typename_type_k basic_connection<C, X, T>::char_type const* basic_connection<C, X, T>::null_string_()
+inline /* static */ ss_typename_type_ret_k basic_connection<C, X, T>::char_type const* basic_connection<C, X, T>::null_string_()
 {
     static char_type    s_null[1] = { 0 };
 

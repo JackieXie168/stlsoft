@@ -4,7 +4,7 @@
  * Purpose:     EXCEPINFO functions.
  *
  * Created:     11th August 2007
- * Updated:     11th August 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MAJOR    1
 # define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_MINOR    0
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 0
-# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     1
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_REVISION 2
+# define COMSTL_VER_COMSTL_ERROR_H_EXCEPINFO_FUNCTIONS_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifdef COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS
+#ifndef COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS
 # include <comstl/string/bstr_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS */
 

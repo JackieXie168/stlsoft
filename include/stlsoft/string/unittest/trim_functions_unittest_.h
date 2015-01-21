@@ -22,7 +22,6 @@ namespace unittest
 			using ::stlsoft::trim_left;
 			using ::stlsoft::trim_right;
 			using ::stlsoft::trim_all;
-			using ::stlsoft::remove_all;
 #endif /* compiler */
 
 			const string_type	src1("	\t\vspaces on either side \r \n ");
@@ -88,6 +87,27 @@ namespace unittest
 				}
 			}
 
+			return bSuccess;
+		}
+
+#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
+# pragma message(_sscomp_fileline_message("Move remove_all to another file: stlsoft/string/remove_functions.hpp"))
+#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
+
+
+		template <ss_typename_param_k S>
+		ss_bool_t test_remove_functions(unittest_reporter *r)
+		{
+			ss_bool_t			bSuccess	=	true;
+
+			typedef S			string_type;
+
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+			using ::stlsoft::remove_all;
+#endif /* compiler */
+
+			const string_type	src1("	\t\vspaces on either side \r \n ");
+			const string_type	src2("no-spaces-anywhere");
 
 			{
 				string_type s1(src1);
@@ -108,6 +128,7 @@ namespace unittest
 					bSuccess = false;
 				}
 			}
+
 			return bSuccess;
 		}
 
@@ -119,6 +140,7 @@ namespace unittest
 
 			typedef stlsoft_ns_qual_std(string) 	std_string_t;
 			typedef simple_string					simple_string_t;
+			typedef string_view 					string_view_t;
 
 // There are bugs in some standard library string implementations that causes them to
 // fail to appropriately initialise from c-strings containing \r \n \v
@@ -133,11 +155,24 @@ namespace unittest
 			{
 				bSuccess = test_trim_functions<std_string_t>(r);
 			}
+			if(bSuccess)
+			{
+				bSuccess = test_remove_functions<std_string_t>(r);
+			}
 #endif /* compiler */
 
 			if(bSuccess)
 			{
 				bSuccess = test_trim_functions<simple_string_t>(r);
+			}
+			if(bSuccess)
+			{
+				bSuccess = test_remove_functions<simple_string_t>(r);
+			}
+
+			if(bSuccess)
+			{
+				bSuccess = test_trim_functions<string_view_t>(r);
 			}
 
 			return bSuccess;

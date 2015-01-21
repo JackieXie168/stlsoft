@@ -4,7 +4,7 @@
  * Purpose:     Contains the edit_line_sequence class.
  *
  * Created:     23rd March 2006
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 4
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     10
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 5
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -229,25 +229,25 @@ inline /* ss_explicit_k */ edit_line_sequence<C, A, S, Q>::edit_line_sequence(HW
 }
 
 template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
-inline ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator edit_line_sequence<C, A, S, Q>::begin() const
+inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_iterator edit_line_sequence<C, A, S, Q>::begin() const
 {
     return m_queue.begin();
 }
 
 template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
-inline ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator edit_line_sequence<C, A, S, Q>::end() const
+inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_iterator edit_line_sequence<C, A, S, Q>::end() const
 {
     return m_queue.end();
 }
 
 template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
-inline ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_reverse_iterator edit_line_sequence<C, A, S, Q>::rbegin() const
+inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_reverse_iterator edit_line_sequence<C, A, S, Q>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
-inline ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_reverse_iterator edit_line_sequence<C, A, S, Q>::rend() const
+inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_reverse_iterator edit_line_sequence<C, A, S, Q>::rend() const
 {
     return const_reverse_iterator(begin());
 }
