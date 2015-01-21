@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     8th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       6
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        163
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    5
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        164
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -106,9 +106,6 @@
  * \brief The current composite version number of the \ref group__project__winstl project "WinSTL" project
  */
 
-#define _WINSTL_VER_MAJOR       1
-#define _WINSTL_VER_MINOR       9
-#define _WINSTL_VER_REVISION    2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WINSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _WINSTL_VER_1_0_2      0x00010002  /*!< Version 1.0.2 */
@@ -134,9 +131,13 @@
 # define _WINSTL_VER_1_8_2      0x00010802  /*!< Version 1.8.2 */
 # define _WINSTL_VER_1_9_1      0x00010901  /*!< Version 1.9.1 (with STLSoft 1.9.1) */
 # define _WINSTL_VER_1_9_2      0x00010902  /*!< Version 1.9.2 (with STLSoft 1.9.7) */
+# define _WINSTL_VER_1_9_3      0x00010903  /*!< Version 1.9.3 (with STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _WINSTL_VER             _WINSTL_VER_1_9_2
+#define _WINSTL_VER_MAJOR       1
+#define _WINSTL_VER_MINOR       9
+#define _WINSTL_VER_REVISION    3
+#define _WINSTL_VER             _WINSTL_VER_1_9_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -160,7 +161,10 @@
     _MSC_VER == 1100
 # include <wtypes.h>    /* This is here to fix a thoroughly inexplicable VC 5 bug */
 #endif /* compiler */
-#include <windows.h>    /* Windows base header */
+#ifndef STLSOFT_INCL_H_WINDOWS
+# define STLSOFT_INCL_H_WINDOWS
+# include <windows.h>   /* Windows base header */
+#endif /* !STLSOFT_INCL_H_WINDOWS */
 
 /* Intel is super pernickety about conversions, so we need to bring out the union_cast. */
 #if defined(STLSOFT_COMPILER_IS_INTEL) && \

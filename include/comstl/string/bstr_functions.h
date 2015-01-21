@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     16th April 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 6
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     78
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 7
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,8 +62,14 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 
-#include <string.h>
-#include <wchar.h>
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

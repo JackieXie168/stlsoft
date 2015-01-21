@@ -2,13 +2,19 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  8th March 2008
+; Updated:  9th March 2008
 
 ============================================================================
 
 
-8th February 2008 - 1.9.24 released
------------------------------------
+9th March 2008 - 1.9.24 released
+--------------------------------
+
+ * wholesale increase of use of forward include guards, to reduce
+   compilation times
+
+8th March 2008 - 1.9.24 released
+--------------------------------
 
  * finishing up some missed std::swap refactoring
 

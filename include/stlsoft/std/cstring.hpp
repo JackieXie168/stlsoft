@@ -4,14 +4,14 @@
  * Purpose:     Mappings to string string functions
  *
  * Created:     2nd December 2004
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   3
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       29
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   4
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,8 +74,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
 # include <stlsoft/string/string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
-#include <string.h>
-#include <wchar.h>
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # include <malloc.h>
 #endif /* compiler */

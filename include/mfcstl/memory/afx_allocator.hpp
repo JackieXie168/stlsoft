@@ -4,11 +4,11 @@
  * Purpose:     afx_allocator class.
  *
  * Created:     5th August 2005
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MAJOR       2
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MINOR       0
-# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_REVISION    3
-# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        17
+# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_REVISION    4
+# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,8 +72,16 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
 # include <stlsoft/memory/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
-#include <stdexcept>                    // for std::runtime_error
-#include <afx.h>
+
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>                    // for std::runtime_error
+#endif /* !STLSOFT_INCL_STDEXCEPT */
+
+#ifndef STLSOFT_INCL_H_AFX
+# define STLSOFT_INCL_H_AFX
+# include <afx.h>
+#endif /* !STLSOFT_INCL_H_AFX */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

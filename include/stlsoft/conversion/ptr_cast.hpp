@@ -5,11 +5,11 @@
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   7
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       34
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   8
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 # include <stlsoft/meta/base_type_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
-#include <typeinfo>
+
+#ifndef STLSOFT_INCL_TYPEINFO
+# define STLSOFT_INCL_TYPEINFO
+# include <typeinfo>
+#endif /* !STLSOFT_INCL_TYPEINFO */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

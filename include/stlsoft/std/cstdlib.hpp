@@ -4,11 +4,11 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      5
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       21
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   2
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#include <stdlib.h>
+
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>
+#endif /* !STLSOFT_INCL_H_STDLIB */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler / library feature discrimination

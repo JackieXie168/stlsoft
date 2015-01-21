@@ -5,13 +5,13 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     20th December 2007
+ * Updated:     9th March 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MINOR       1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        132
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    3
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
 # include <stlsoft/meta/n_types.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
-#include <string.h>     // for memcpy(), memset()
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>                    // for memcpy(), memset()
+#endif /* !STLSOFT_INCL_H_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

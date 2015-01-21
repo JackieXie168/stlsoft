@@ -4,13 +4,13 @@
  * Purpose:     TOOLHELP sequence_base class template.
  *
  * Created:     21st May 2005
- * Updated:     8th April 2007
+ * Updated:     9th March 2008
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Pablo Aguilar
+ * Copyright (c) 2005-2008, Pablo Aguilar
  * Copyright (c) 2006-2007, Matthew Wilson
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  3
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      11
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  4
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,10 @@
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
-#include <tlhelp32.h>
+#ifndef STLSOFT_INCL_H_TLHELP32
+# define STLSOFT_INCL_H_TLHELP32
+# include <tlhelp32.h>
+#endif /* !STLSOFT_INCL_H_TLHELP32 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

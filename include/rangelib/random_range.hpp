@@ -4,11 +4,11 @@
  * Purpose:     Random number range class.
  *
  * Created:     31st May 2004
- * Updated:     6th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   2
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       27
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   3
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,11 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
 # include <stlsoft/util/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
-#include <stdlib.h>                     // for rand(), srand()
+
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>                     // for rand(), srand()
+#endif /* !STLSOFT_INCL_H_STDLIB */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -4,11 +4,11 @@
  * Purpose:     String token parsing class using char-sets.
  *
  * Created:     17th October 2005
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      23
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,7 +83,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER
 # include <stlsoft/string/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER */
-#include <algorithm>
+
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>
+#endif /* !STLSOFT_INCL_ALGORITHM */
 
 #ifdef STLSOFT_UNITTEST
 # ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING

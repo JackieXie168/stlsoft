@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    2
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        87
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    3
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,14 +80,23 @@
 # pragma warn -8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-#include <afxwin.h>     // for CWnd, CListBox
+#ifndef STLSOFT_INCL_H_AFXWIN
+# define STLSOFT_INCL_H_AFXWIN
+# include <afxwin.h>     // for CWnd, CListBox
+#endif /* !STLSOFT_INCL_H_AFXWIN */
 #if !defined(__AFXCMN_H__) && \
     !defined(MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCMN)
-# include <afxcmn.h>    // for CListCtrl
+# ifndef STLSOFT_INCL_H_AFXCMN
+#  define STLSOFT_INCL_H_AFXCMN
+#  include <afxcmn.h>    // for CListCtrl
+# endif /* !STLSOFT_INCL_H_AFXCMN */
 #endif /* !__AFXCMN_H__ && !MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCMN */
 #if !defined(__AFXCVIEW_H__) && \
     !defined(MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCVIEW)
-# include <afxcview.h> // for CListView
+# ifndef STLSOFT_INCL_H_AFXCVIEW
+#  define STLSOFT_INCL_H_AFXCVIEW
+#  include <afxcview.h> // for CListView
+# endif /* !STLSOFT_INCL_H_AFXCVIEW */
 #endif /* !__AFXCVIEW_H__ && !MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCMN */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)

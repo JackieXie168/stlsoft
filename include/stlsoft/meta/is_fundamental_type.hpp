@@ -4,11 +4,11 @@
  * Purpose:     is_fundamental_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     10th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_MAJOR     1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_MINOR     0
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_REVISION  2
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_EDIT      6
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_REVISION  3
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_VOID_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifdef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
 #  include <stlsoft/meta/select_first_type_if.hpp>
@@ -87,10 +87,10 @@
 #endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 #ifndef STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_
 # include <stlsoft/meta/util/meta_.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
+#endif /* !STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

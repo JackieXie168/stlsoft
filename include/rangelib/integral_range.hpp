@@ -4,11 +4,11 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     6th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 3
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     50
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 4
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,10 +94,17 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
-#include <stdexcept>                    // for std::out_of_range
-#include <stdio.h>                      // for sprintf
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>                    // for std::out_of_range
+#endif /* !STLSOFT_INCL_STDEXCEPT */
+
+#ifndef STLSOFT_INCL_H_STDIO
+# define STLSOFT_INCL_H_STDIO
+# include <stdio.h>                     // for sprintf
+#endif /* !STLSOFT_INCL_H_STDIO */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

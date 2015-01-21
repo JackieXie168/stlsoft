@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    4
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     45
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 2
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp
@@ -106,9 +106,6 @@
  * The current composite version number of .netSTL
  */
 
-#define DOTNETSTL_VER_MAJOR       1
-#define DOTNETSTL_VER_MINOR       3
-#define DOTNETSTL_VER_REVISION    1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define DOTNETSTL_VER_1_1_1      0x00010101  /*!< Version 1.1.1 */
@@ -117,9 +114,13 @@
 # define DOTNETSTL_VER_1_2_2      0x00010202  /*!< Version 1.2.2 */
 # define DOTNETSTL_VER_1_2_3      0x00010203  /*!< Version 1.2.3 */
 # define DOTNETSTL_VER_1_3_1      0x00010301  /*!< Version 1.3.1 (with STLSoft 1.9.1) */
+# define DOTNETSTL_VER_1_3_2      0x00010302  /*!< Version 1.3.2 (with STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define DOTNETSTL_VER             DOTNETSTL_VER_1_3_1
+#define DOTNETSTL_VER_MAJOR       1
+#define DOTNETSTL_VER_MINOR       3
+#define DOTNETSTL_VER_REVISION    2
+#define DOTNETSTL_VER             DOTNETSTL_VER_1_3_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

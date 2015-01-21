@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     18th November 2007
+ * Updated:     9th March 2008
  *
  * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
  *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 9
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     98
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 10
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
-#include <algorithm>
+
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>
+#endif /* !STLSOFT_INCL_ALGORITHM */
 
 #ifdef STLSOFT_UNITTEST
 # include <comstl/util/value_policies.hpp>

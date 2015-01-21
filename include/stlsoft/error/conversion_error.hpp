@@ -4,11 +4,11 @@
  * Purpose:     Definition of the stlsoft::conversion_error exception class.
  *
  * Created:     15th December 2006
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_REVISION    3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        6
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_REVISION    4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,8 +62,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <stdexcept>
-#include <string>
+
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>
+#endif /* !STLSOFT_INCL_STDEXCEPT */
+#ifndef STLSOFT_INCL_STRING
+# define STLSOFT_INCL_STRING
+# include <string>
+#endif /* !STLSOFT_INCL_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

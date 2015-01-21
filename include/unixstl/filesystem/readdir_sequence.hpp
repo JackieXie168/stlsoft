@@ -4,11 +4,11 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     6th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       120
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_ERROR_UNIX_EXCEPTIONS
 # include <unixstl/error/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
-#include <unistd.h>
+
 #if defined(PATH_MAX)
 # ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
 #  include <stlsoft/string/static_string.hpp>
@@ -86,9 +86,23 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
+
+#ifndef STLSOFT_INCL_H_UNISTD
+# define STLSOFT_INCL_H_UNISTD
+# include <unistd.h>
+#endif /* !STLSOFT_INCL_H_UNISTD */
+#ifndef STLSOFT_INCL_SYS_H_TYPES
+# define STLSOFT_INCL_SYS_H_TYPES
+# include <sys/types.h>
+#endif /* !STLSOFT_INCL_SYS_H_TYPES */
+#ifndef STLSOFT_INCL_SYS_H_STAT
+# define STLSOFT_INCL_SYS_H_STAT
+# include <sys/stat.h>
+#endif /* !STLSOFT_INCL_SYS_H_STAT */
+#ifndef STLSOFT_INCL_H_DIRENT
+# define STLSOFT_INCL_H_DIRENT
+# include <dirent.h>
+#endif /* !STLSOFT_INCL_H_DIRENT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

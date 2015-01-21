@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 6
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     41
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 7
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -103,9 +103,6 @@
  * The current composite version number of InetSTL
  */
 
-#define _INETSTL_VER_MAJOR       1
-#define _INETSTL_VER_MINOR       2
-#define _INETSTL_VER_REVISION    1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _INETSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _INETSTL_VER_1_0_2      0x00010002  /*!< Version 1.0.2 */
@@ -114,9 +111,13 @@
 # define _INETSTL_VER_1_1_3      0x00010103  /*!< Version 1.1.3 */
 # define _INETSTL_VER_1_1_4      0x00010104  /*!< Version 1.1.4 */
 # define _INETSTL_VER_1_2_1      0x00010201  /*!< Version 1.2.1 (with STLSoft 1.9.1) */
+# define _INETSTL_VER_1_2_2      0x00010202  /*!< Version 1.2.2 (with STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _INETSTL_VER             _INETSTL_VER_1_2_1
+#define _INETSTL_VER_MAJOR       1
+#define _INETSTL_VER_MINOR       2
+#define _INETSTL_VER_REVISION    2
+#define _INETSTL_VER             _INETSTL_VER_1_2_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -136,8 +137,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <windows.h>
-#include <wininet.h>
+
+#ifndef STLSOFT_INCL_H_WINDOWS
+# define STLSOFT_INCL_H_WINDOWS
+# include <windows.h>
+#endif /* !STLSOFT_INCL_H_WINDOWS */
+#ifndef STLSOFT_INCL_H_WININET
+# define STLSOFT_INCL_H_WININET
+# include <wininet.h>
+#endif /* !STLSOFT_INCL_H_WININET */
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility

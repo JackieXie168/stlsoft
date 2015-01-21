@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     8th March 2008
+ * Updated:     9th March 2008
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *              To Nevin Liber for pressing upon me the need to lead by
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      138
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  11
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,13 +93,35 @@
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
-#include <sys/types.h>
-#include <sys/stat.h>                       // for stat()
-#include <errno.h>
-#include <glob.h>                           // for glob(), globfree()
-#include <algorithm>                        // for std::sort
-#include <exception>                        // for std::exception
-#include <stdexcept>                        // for std::runtime_error
+#ifndef STLSOFT_INCL_SYS_H_TYPES
+# define STLSOFT_INCL_SYS_H_TYPES
+# include <sys/types.h>
+#endif /* !STLSOFT_INCL_SYS_H_TYPES */
+#ifndef STLSOFT_INCL_SYS_H_STAT
+# define STLSOFT_INCL_SYS_H_STAT
+# include <sys/stat.h>                      // for stat()
+#endif /* !STLSOFT_INCL_SYS_H_STAT */
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_GLOB
+# define STLSOFT_INCL_H_GLOB
+# include <glob.h>                           // for glob(), globfree()
+#endif /* !STLSOFT_INCL_H_GLOB */
+
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>                        // for std::sort
+#endif /* !STLSOFT_INCL_ALGORITHM */
+#ifndef STLSOFT_INCL_EXCEPTION
+# define STLSOFT_INCL_EXCEPTION
+# include <exception>                        // for std::exception
+#endif /* !STLSOFT_INCL_EXCEPTION */
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>                        // for std::runtime_error
+#endif /* !STLSOFT_INCL_STDEXCEPT */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/string/simple_string.hpp>

@@ -4,11 +4,11 @@
  * Purpose:     Control Panel functions.
  *
  * Created:     1st April 2006
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       10
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   5
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,11 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#include <cpl.h>
+
+#ifndef STLSOFT_INCL_H_CPL
+# define STLSOFT_INCL_H_CPL
+# include <cpl.h>
+#endif /* !STLSOFT_INCL_H_CPL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -4,11 +4,11 @@
  * Purpose:     Wrapper class for UNIX PThreads TSS key.
  *
  * Created:     21st January 1999
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       44
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,11 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_ERROR_HPP_EXCEPTIONS
 # include <unixstl/synch/error/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
-#include <pthread.h>
+
+#ifndef STLSOFT_INCL_H_PTHREAD
+# define STLSOFT_INCL_H_PTHREAD
+# include <pthread.h>
+#endif /* !STLSOFT_INCL_H_PTHREAD */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

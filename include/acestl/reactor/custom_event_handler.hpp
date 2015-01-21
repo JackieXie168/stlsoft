@@ -4,11 +4,11 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     2nd June 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  1
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      16
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  2
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,14 +62,24 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#include <ace/Event_Handler.h>              // for ACE_Event_Handler
-#include <ace/Reactor.h>                    // for ACE_Reactor
+
+#ifndef STLSOFT_INCL_ACE_H_EVENT_HANDLER
+# define STLSOFT_INCL_ACE_H_EVENT_HANDLER
+# include <ace/Event_Handler.h>             // for ACE_Event_Handler
+#endif /* !STLSOFT_INCL_ACE_H_EVENT_HANDLER */
+#ifndef STLSOFT_INCL_ACE_H_REACTOR
+# define STLSOFT_INCL_ACE_H_REACTOR
+# include <ace/Reactor.h>                   // for ACE_Reactor
+#endif /* !STLSOFT_INCL_ACE_H_REACTOR */
 
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR
 # include <stlsoft/smartptr/shared_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR */
 
-#include <map>
+#ifndef STLSOFT_INCL_MAP
+# define STLSOFT_INCL_MAP
+# include <map>
+#endif /* !STLSOFT_INCL_MAP */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compatibility

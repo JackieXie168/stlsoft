@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MAJOR       2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MINOR       0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_REVISION    1
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        28
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_REVISION    2
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#include <ace/String_Base.h>                // for ACE_String_Base
+
+#ifndef STLSOFT_INCL_ACE_H_STRING_BASE
+# define STLSOFT_INCL_ACE_H_STRING_BASE
+# include <ace/String_Base.h>               // for ACE_String_Base
+#endif /* !STLSOFT_INCL_ACE_H_STRING_BASE */
+
 #ifdef STLSOFT_UNITTEST
 # include <string.h>
 #endif /* STLSOFT_UNITTEST */

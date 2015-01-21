@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     18th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        106
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,8 +87,15 @@
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
 # include <winstl/system/system_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
-#include <string.h>
-#include <wchar.h>
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * FindVolume API declarations

@@ -4,11 +4,11 @@
  * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * Copyright (c) 2006, Pablo Aguilar
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      47
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <exception>
+
+#ifndef STLSOFT_INCL_EXCEPTION
+# define STLSOFT_INCL_EXCEPTION
+# include <exception>
+#endif /* !STLSOFT_INCL_EXCEPTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

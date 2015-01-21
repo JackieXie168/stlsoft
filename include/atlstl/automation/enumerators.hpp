@@ -4,11 +4,11 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 3
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     59
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 4
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -69,9 +69,19 @@
 #ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS
 # include <stlsoft/functional/indirect_function_pointer_adaptors.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS */
-#include <atlcom.h>
-#include <algorithm>
-#include <list>
+
+#ifndef STLSOFT_INCL_SYS_H_ATLCOM
+# define STLSOFT_INCL_SYS_H_ATLCOM
+# include <atlcom.h>
+#endif /* !STLSOFT_INCL_SYS_H_ATLCOM */
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>
+#endif /* !STLSOFT_INCL_ALGORITHM */
+#ifndef STLSOFT_INCL_LIST
+# define STLSOFT_INCL_LIST
+# include <list>
+#endif /* !STLSOFT_INCL_LIST */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -4,11 +4,11 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,8 +44,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     25
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp
@@ -111,18 +111,19 @@
  * \ingroup group__library__rangelib
  */
 
-#define _RANGELIB_VER_MAJOR     1
-#define _RANGELIB_VER_MINOR     1
-#define _RANGELIB_VER_REVISION  1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _RANGELIB_VER_1_0_1    0x00010001  /*!< Version 1.0.1 */
 # define _RANGELIB_VER_1_0_2    0x00010002  /*!< Version 1.0.2 */
 # define _RANGELIB_VER_1_0_3    0x00010003  /*!< Version 1.0.3 */
 # define _RANGELIB_VER_1_0_4    0x00010004  /*!< Version 1.0.4 */
 # define _RANGELIB_VER_1_1_1    0x00010101  /*!< Version 1.1.1 (with STLSoft 1.9.1) */
+# define _RANGELIB_VER_1_1_2    0x00010102  /*!< Version 1.1.2 (with STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _RANGELIB_VER             _RANGELIB_VER_1_1_1
+#define _RANGELIB_VER_MAJOR     1
+#define _RANGELIB_VER_MINOR     1
+#define _RANGELIB_VER_REVISION  2
+#define _RANGELIB_VER           _RANGELIB_VER_1_1_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility

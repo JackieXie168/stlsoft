@@ -6,7 +6,7 @@
  *              single-threaded contexts.
  *
  * Created:     3rd February 2008
- * Updated:     3rd February 2008
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MINOR      0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   1
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       1
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   2
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -146,6 +146,6 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* STLSOFT_INCL_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX */
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX */
 
 /* ////////////////////////////////////////////////////////////////////// */

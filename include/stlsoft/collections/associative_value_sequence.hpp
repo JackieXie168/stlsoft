@@ -4,11 +4,11 @@
  * Purpose:     Adapts associative containers into a sequence of their values.
  *
  * Created:     28th January 2005
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MAJOR       2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MINOR       0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_REVISION    3
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        22
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_REVISION    4
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
-#include <stdexcept>
+
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>
+#endif /* !STLSOFT_INCL_STDEXCEPT */
+
 #ifdef STLSOFT_UNITTEST
 # include <map>
 #endif /* STLSOFT_UNITTEST */

@@ -4,11 +4,11 @@
  * Purpose:     Options verification.
  *
  * Created:     9th November 2004
- * Updated:     6th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      41
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,8 +85,15 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#include <exception>                    // for uncaught_exception
-#include <stdexcept>                    // for std::runtime_error
+
+#ifndef STLSOFT_INCL_EXCEPTION
+# define STLSOFT_INCL_EXCEPTION
+# include <exception>                    // for uncaught_exception
+#endif /* !STLSOFT_INCL_EXCEPTION */
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>                    // for std::runtime_error
+#endif /* !STLSOFT_INCL_STDEXCEPT */
 
 #ifdef STLSOFT_UNITTEST
 # include <string>

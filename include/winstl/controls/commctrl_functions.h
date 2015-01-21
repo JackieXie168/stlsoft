@@ -4,11 +4,11 @@
  * Purpose:     Various Windows common control functions.
  *
  * Created:     13th November 2002
- * Updated:     14th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       41
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,11 @@
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS
 # include <winstl/window/message_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS */
-#include <commctrl.h>
+
+#ifndef STLSOFT_INCL_H_COMMCTRL
+# define STLSOFT_INCL_H_COMMCTRL
+# include <commctrl.h>
+#endif /* !STLSOFT_INCL_H_COMMCTRL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

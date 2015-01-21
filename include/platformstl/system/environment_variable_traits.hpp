@@ -4,11 +4,11 @@
  * Purpose:     Definition of the environment_variable_traits class.
  *
  * Created:     9th December 2005
- * Updated:     29th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MINOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     19
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,8 +84,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#include <errno.h>
-#include <stdlib.h> // for environ, getenv(), etc.
+
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h> // for environ, getenv(), etc.
+#endif /* !STLSOFT_INCL_H_STDLIB */
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
 # include <crtl.h>  // for _environ
 #endif /* compiler */

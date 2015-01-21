@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    0
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 2
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     108
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 3
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#include <wchar.h>
+
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

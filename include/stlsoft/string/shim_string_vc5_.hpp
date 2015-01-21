@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_shim_string template class for VC++ 5.
  *
  * Created:     16th October 2006
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5__MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        8
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,10 @@
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 
-#include <new>
+#ifndef STLSOFT_INCL_NEW
+# define STLSOFT_INCL_NEW
+# include <new>
+#endif /* !STLSOFT_INCL_NEW */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

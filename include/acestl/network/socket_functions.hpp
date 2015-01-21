@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE_SOCK (and derived) classes
  *
  * Created:     28th November 2004
- * Updated:     9th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_MINOR      0
-# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_REVISION   1
-# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_EDIT       22
+# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_REVISION   2
+# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,8 +61,15 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#include <ace/SOCK.h>
-#include <ace/Reactor.h>
+
+#ifndef STLSOFT_INCL_ACE_H_SOCK
+# define STLSOFT_INCL_ACE_H_SOCK
+# include <ace/SOCK.h>
+#endif /* !STLSOFT_INCL_ACE_H_SOCK */
+#ifndef STLSOFT_INCL_ACE_H_REACTOR
+# define STLSOFT_INCL_ACE_H_REACTOR
+# include <ace/Reactor.h>
+#endif /* !STLSOFT_INCL_ACE_H_REACTOR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -4,11 +4,11 @@
  * Purpose:     errno scoping class.
  *
  * Created:     28th November 1998
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MAJOR      3
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       36
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   2
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <errno.h>
+
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -162,6 +166,6 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* STLSOFT_INCL_STLSOFT_ERROR_HPP_ERRNO_SCOPE */
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_ERRNO_SCOPE */
 
 /* ////////////////////////////////////////////////////////////////////// */

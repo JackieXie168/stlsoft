@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for CString class.
  *
  * Created:     18th December 2006
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_MAJOR     2
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_MINOR     0
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_REVISION  1
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_EDIT      5
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_REVISION  2
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,11 @@
 #ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
-#include <afx.h>
+
+#ifndef STLSOFT_INCL_H_AFX
+# define STLSOFT_INCL_H_AFX
+# include <afx.h>
+#endif /* !STLSOFT_INCL_H_AFX */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

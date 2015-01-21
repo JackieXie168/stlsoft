@@ -5,11 +5,11 @@
  *              abstracting away standard library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      102
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  2
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/util/std/library_discriminator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
 
-#include <iterator>    // for std::iterator, std::reverse_iterator, std::reverse_bidirectional_iterator
+#ifndef STLSOFT_INCL_ITERATOR
+# define STLSOFT_INCL_ITERATOR
+# include <iterator>    // for std::iterator, std::reverse_iterator, std::reverse_bidirectional_iterator
+#endif /* !STLSOFT_INCL_ITERATOR */
 
 #ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED_XXXX
 # ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER
@@ -1002,6 +1005,6 @@ query_iterator_category
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
 /* ////////////////////////////////////////////////////////////////////// */

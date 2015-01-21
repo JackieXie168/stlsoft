@@ -4,11 +4,11 @@
  * Purpose:     stlsoft_malloc_allocator class - uses malloc()/free().
  *
  * Created:     2nd January 2001
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_MAJOR      4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_REVISION   5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_EDIT       82
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_REVISION   6
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_EDIT       84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
 # include <stlsoft/util/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
-#include <stdlib.h>                     // for malloc(), free()
+
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>                     // for malloc(), free()
+#endif /* !STLSOFT_INCL_H_STDLIB */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

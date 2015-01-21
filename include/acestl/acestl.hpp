@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     7
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      35
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -97,19 +97,20 @@
  * version symbol, e.g.# if _ACESTL_VER >= _ACESTL_VER_1_0_1
  */
 
-#define _ACESTL_VER_MAJOR      1
-#define _ACESTL_VER_MINOR      1
-#define _ACESTL_VER_REVISION   1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _ACESTL_VER_0_9_1     0x00000901  /*!< Version 0.9.1 */
 # define _ACESTL_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
 # define _ACESTL_VER_1_0_2     0x00010002  /*!< Version 1.0.2 */
 # define _ACESTL_VER_1_0_3     0x00010003  /*!< Version 1.0.3 */
 # define _ACESTL_VER_1_0_4     0x00010004  /*!< Version 1.0.4 */
-# define _ACESTL_VER_1_1_1     0x00010001  /*!< Version 1.1.1 (STLSoft 1.9.1) */
+# define _ACESTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 (STLSoft 1.9.1) */
+# define _ACESTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 (STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _ACESTL_VER            _ACESTL_VER_1_1_1
+#define _ACESTL_VER_MAJOR      1
+#define _ACESTL_VER_MINOR      1
+#define _ACESTL_VER_REVISION   2
+#define _ACESTL_VER            _ACESTL_VER_1_1_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -118,8 +119,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <ace/Log_Msg.h>
-#include <ace/Version.h>
+
+#ifndef STLSOFT_INCL_ACE_H_LOG_MSG
+# define STLSOFT_INCL_ACE_H_LOG_MSG
+# include <ace/Log_Msg.h>
+#endif /* !STLSOFT_INCL_ACE_H_LOG_MSG */
+#ifndef STLSOFT_INCL_ACE_H_VERSION
+# define STLSOFT_INCL_ACE_H_VERSION
+# include <ace/Version.h>
+#endif /* !STLSOFT_INCL_ACE_H_VERSION */
 
 /* Intel is super pernickety about conversions, so we need to bring out the union_cast. */
 #if defined(STLSOFT_COMPILER_IS_INTEL)

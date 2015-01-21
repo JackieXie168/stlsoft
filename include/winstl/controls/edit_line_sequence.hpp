@@ -4,11 +4,11 @@
  * Purpose:     Contains the edit_line_sequence class.
  *
  * Created:     23rd March 2006
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 5
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     11
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 6
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
-#include <vector>
+
+#ifndef STLSOFT_INCL_VECTOR
+# define STLSOFT_INCL_VECTOR
+# include <vector>
+#endif /* !STLSOFT_INCL_VECTOR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

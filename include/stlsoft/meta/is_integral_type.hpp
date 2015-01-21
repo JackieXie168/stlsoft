@@ -4,11 +4,11 @@
  * Purpose:     Tests whether a type is integral.
  *
  * Created:     19th November 1998
- * Updated:     13th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MINOR    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     125
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 2
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,10 +64,10 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifndef STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_
 # include <stlsoft/meta/util/meta_.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
+#endif /* !STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */

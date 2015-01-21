@@ -4,11 +4,11 @@
  * Purpose:     Shell memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     14th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MAJOR       6
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        50
+# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_REVISION    3
+# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,11 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#include <shlobj.h>
+
+#ifndef STLSOFT_INCL_H_SHLOBJ
+# define STLSOFT_INCL_H_SHLOBJ
+# include <shlobj.h>
+#endif /* !STLSOFT_INCL_H_SHLOBJ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

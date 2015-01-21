@@ -4,11 +4,11 @@
  * Purpose:     String access shims for .net.
  *
  * Created:     24th June 2003
- * Updated:     11th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_MAJOR       2
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_MINOR       0
-# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_REVISION    3
-# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_EDIT        15
+# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_REVISION    4
+# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_STRING_HPP_STRING_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,11 @@
 #ifndef DOTNETSTL_INCL_DOTNETSTL_STRING_HPP_STRING_ACCESSOR
 # include <dotnetstl/string/string_accessor.hpp>
 #endif /* !DOTNETSTL_INCL_DOTNETSTL_STRING_HPP_STRING_ACCESSOR */
-#include <string.h>
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

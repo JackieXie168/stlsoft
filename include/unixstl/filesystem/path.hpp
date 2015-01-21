@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     8th March 2008
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       227
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       228
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
-#include <stdexcept>                            // for std::logic_error
+
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>                            // for std::logic_error
+#endif /* !STLSOFT_INCL_STDEXCEPT */
 #ifdef _WIN32
 # include <ctype.h>
 #endif /* _WIN32 */

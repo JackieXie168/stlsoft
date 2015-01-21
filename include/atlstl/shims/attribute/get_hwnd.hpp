@@ -4,11 +4,11 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      0
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   2
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       38
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   3
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,10 @@
 # pragma warn -8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-#include <atlwin.h>
+#ifndef STLSOFT_INCL_SYS_H_ATLWIN
+# define STLSOFT_INCL_SYS_H_ATLWIN
+# include <atlwin.h>
+#endif /* !STLSOFT_INCL_SYS_H_ATLWIN */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn .8013 /* Suppresses "Possible use of 'f' before definition in '. . .'" */

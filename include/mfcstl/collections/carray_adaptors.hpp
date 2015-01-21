@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Thanks to:   Nevin Liber and Scott Meyers for kicking my lazy behind, and
  *              requiring that I implement the full complement of standard
@@ -13,7 +13,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     78
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 2
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifdef STLSOFT_META_HAS_IS_SAME_TYPE
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 #  include <stlsoft/meta/is_same_type.hpp>
@@ -103,11 +103,16 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT)
 # include <afxtempl.h>
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT */
-#include <algorithm>
+
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>
+#endif /* !STLSOFT_INCL_ALGORITHM */
 
 #ifdef STLSOFT_UNITTEST
 # include <afxtempl.h>

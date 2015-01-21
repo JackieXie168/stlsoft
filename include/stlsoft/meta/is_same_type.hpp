@@ -4,7 +4,7 @@
  * Purpose:     is_same_type class.
  *
  * Created:     19th November 1998
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Thanks to:   Pablo Aguilar for providing the basis for the version that
  *              works for the Borland compiler.
@@ -13,7 +13,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR       4
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        118
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_REVISION    2
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
