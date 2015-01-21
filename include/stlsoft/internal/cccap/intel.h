@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     29th December 2007
+ * Updated:     15th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -89,7 +89,16 @@
 /* Support for #pragma once
  */
 
-#define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#if __INTEL_COMPILER >= 700
+# define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#endif /* __INTEL_COMPILER */
+
+/* Support for __FUNCTION__
+ */
+
+#if __INTEL_COMPILER >= 700
+# define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
+#endif /* __INTEL_COMPILER */
 
 /* Variadic Macros
  */

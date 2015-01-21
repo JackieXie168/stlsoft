@@ -2,10 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  9th March 2008
+; Updated:  15th March 2008
 
 ============================================================================
 
+
+15th March 2008 - 1.9.26 released
+---------------------------------
+
+ * definition, where appropriate, of STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT,
+   denoting that a particular compiler supports the __FUNCTION__
+   pre-processor symbol
 
 9th March 2008 - 1.9.24 released
 --------------------------------
