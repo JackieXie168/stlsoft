@@ -1,5 +1,5 @@
 
-// Updated: 29th December 2007
+// Updated: 24th April 2008
 
 #if !defined(STLSOFT_INCL_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS)
 # error This file cannot be directly included, and should only be included within stlsoft/util/integral_printf_traits.hpp
@@ -194,6 +194,7 @@ namespace unittest
 
 			// 8-bit unsigned
 			cch = sprintf(sz, integral_printf_traits<ss_uint8_t>::format_a(), limit_traits<ss_uint8_t>::minimum());
+//fprintf(stderr, "cch=%d; l_t<>::minimum()=%u; i_p_t<>::size_min=%u; i_p_t<>::fmt_a=[%s]; sz=[%s]\n", cch, limit_traits<ss_uint8_t>::minimum(), integral_printf_traits<ss_uint8_t>::size_min, integral_printf_traits<ss_uint8_t>::format_a(), sz);
 			if(integral_printf_traits<ss_uint8_t>::size_min != 1 + cch)
 			{
 				r->report("traits (8-bit, unsigned) min invalid", __LINE__);

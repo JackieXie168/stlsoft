@@ -2,16 +2,30 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  13th April 2008
+; Updated:  25th April 2008
 
 ============================================================================
 
 
 
+25th April 2008 - 1.9.33 released
+---------------------------------
+
+  * added support for the SunPro C and C++ compilers
+  * various mods to ensure headers are self-contained when used with
+    Windows "lean and mean" suppression symbols
+
+22nd April 2008 - 1.9.32 released
+---------------------------------
+
+  * fix for VC++ 8/9 linker error in the allocator_selector
+  * refactoring of string access shim headers for lightweight compilation
+
 13th April 2008 - 1.9.31 released
 ---------------------------------
 
- * 
+ * exception hierarchy refactoring
+ * bug fix to stlsoft::must_init
 
 3rd April 2008 - 1.9.30 released
 --------------------------------

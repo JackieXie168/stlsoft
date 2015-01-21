@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     22nd April 2008
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    14
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     338
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    15
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     339
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -198,12 +198,13 @@
 # define _STLSOFT_VER_1_9_30    0x01091eff  /*!< Version 1.9.30 (3rd Apr 2008) */
 # define _STLSOFT_VER_1_9_31    0x01091fff  /*!< Version 1.9.31 (13th Apr 2008) */
 # define _STLSOFT_VER_1_9_32    0x010920ff  /*!< Version 1.9.32 (22nd Apr 2008) */
+# define _STLSOFT_VER_1_9_33    0x010921ff  /*!< Version 1.9.33 (24th Apr 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   32
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_32
+#define _STLSOFT_VER_REVISION   33
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_33
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -220,8 +221,9 @@
 # define STLSOFT_STRINGIZE_a_(x)        #x
 # define STLSOFT_STRINGIZE_a(x)         STLSOFT_STRINGIZE_a_(x)
 
-# if defined(STLSOFT_COMPILER_IS_BORLAND)
-#  define STLSOFT_STRINGIZE_w_(x)       L"" ## #x
+# if defined(__BORLANDC__) || \
+     defined(__SUNPRO_C)
+#  define STLSOFT_STRINGIZE_w_(x)       L"" ## STLSOFT_STRINGIZE_a(x)
 # else /* ? compiler */
 #  define STLSOFT_STRINGIZE_w_(x)       L ## #x
 # endif /* compiler */
@@ -285,6 +287,10 @@
 # undef STLSOFT_COMPILER_IS_MWERKS
 #endif /* STLSOFT_COMPILER_IS_MWERKS */
 
+#ifdef STLSOFT_COMPILER_IS_SUNPRO
+# undef STLSOFT_COMPILER_IS_SUNPRO
+#endif /* STLSOFT_COMPILER_IS_SUNPRO */
+
 #ifdef STLSOFT_COMPILER_IS_VECTORC
 # undef STLSOFT_COMPILER_IS_VECTORC
 #endif /* STLSOFT_COMPILER_IS_VECTORC */
@@ -306,13 +312,16 @@
  */
 
 #ifdef _MSC_VER
-# if defined(__BORLANDC__) ||      /* Borland C/C++ */ \
-     defined(__COMO__) ||          /* Comeau C/C++ */ \
-     defined(__DMC__) ||           /* Digital Mars C/C++ */ \
-     defined(__GNUC__) ||          /* GNU C/C++ */ \
-     defined(__INTEL_COMPILER) ||  /* Intel C/C++ */ \
-     defined(__MWERKS__) ||        /* Metrowerks C/C++ */ \
-     defined(__WATCOMC__)          /* Watcom C/C++ */
+# if defined(__BORLANDC__) ||      /* Borland */ \
+     defined(__COMO__) ||          /* Comeau */ \
+     defined(__DMC__) ||           /* Digital Mars */ \
+     defined(__GNUC__) ||          /* GNU */ \
+     defined(__INTEL_COMPILER) ||  /* Intel */ \
+     defined(__MWERKS__) ||        /* Metrowerks */ \
+     defined(__SUNPRO_C) ||        /* Sun Pro C */ \
+     defined(__SUNPRO_CC) ||       /* Sun Pro C++ */ \
+     defined(__VECTORC) ||         /* VectorC */ \
+     defined(__WATCOMC__)          /* Watcom */
   /* Handle Microsoft Visual C++ support. */
 #  if defined(_STLSOFT_NO_MSC_VER_SUPPORT) || \
      (   defined(STLSOFT_STRICT) && \
@@ -331,7 +340,7 @@
 # endif /* !__STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME */
 
 #elif defined(__COMO__) /* Do Comeau next, so that no Comeau back-end server compilers are preferentially discriminated */
-/* Comeau C++ */
+ /* ******************************* Comeau ****************************** */
 # define STLSOFT_COMPILER_IS_COMO
 # define STLSOFT_COMPILER_LABEL_STRING          "Comeau C++"
 # if __COMO_VERSION__ < 4300
@@ -345,7 +354,7 @@
 # endif /* __COMO_VERSION__ */
 
 #elif defined(__BORLANDC__)
-/* Borland C++ */
+ /* ******************************* Borland ***************************** */
 # define STLSOFT_COMPILER_IS_BORLAND
 # define STLSOFT_COMPILER_LABEL_STRING          "Borland C/C++"
 # if 0 /* (__BORLANDC__ == 0x0460) */
@@ -365,7 +374,7 @@
 # endif /* __BORLANDC__ */
 
 #elif defined(__DMC__)
-/* Digital Mars C/C++ */
+ /* **************************** Digital Mars *************************** */
 # define STLSOFT_COMPILER_IS_DMC
 # define STLSOFT_COMPILER_LABEL_STRING          "Digital Mars C/C++"
 # if (__DMC__ < 0x0826)
@@ -388,24 +397,8 @@
 #  endif /* __DMC__ */
 # endif /* version */
 
-#elif defined(__INTEL_COMPILER)
-/* Intel C++ */
-# define STLSOFT_COMPILER_IS_INTEL
-# define STLSOFT_COMPILER_LABEL_STRING          "Intel C/C++"
-# if (__INTEL_COMPILER == 600)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 6.0"
-# elif (__INTEL_COMPILER == 700)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 7.0"
-# elif (__INTEL_COMPILER == 800)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 8.0"
-# elif (__INTEL_COMPILER == 900)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 9.0"
-# else /* ? __INTEL_COMPILER */
-#  error Only Intel C++ Compiler versions 6.0, 7.0(/7.1), 8.0 and 9.0 currently supported by the STLSoft libraries
-# endif /* __INTEL_COMPILER */
-
 #elif defined(__GNUC__)
-/* GNU C/C++ */
+ /* ******************************** GCC ******************************** */
 # define STLSOFT_COMPILER_IS_GCC
 # define STLSOFT_COMPILER_LABEL_STRING          "GNU C/C++"
 # if __GNUC__ != 2 && \
@@ -440,8 +433,26 @@
 #  endif /* __GNUC__  */
 # endif /* __GNUC_MINOR__ */
 
+#elif defined(__INTEL_COMPILER)
+ /* ******************************* Intel ******************************* */
+# define STLSOFT_COMPILER_IS_INTEL
+# define STLSOFT_COMPILER_LABEL_STRING          "Intel C/C++"
+# if (__INTEL_COMPILER == 600)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 6.0"
+# elif (__INTEL_COMPILER == 700)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 7.0"
+# elif (__INTEL_COMPILER == 800)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 8.0"
+# elif (__INTEL_COMPILER == 900)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 9.0"
+# elif (__INTEL_COMPILER == 1000)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 10.0"
+# else /* ? __INTEL_COMPILER */
+#  error Only Intel C++ Compiler versions 6.0, 7.0(/7.1), 8.0, 9.0 and 10.0 currently supported by the STLSoft libraries
+# endif /* __INTEL_COMPILER */
+
 #elif defined(__MWERKS__)
-/* Metrowerks C++ */
+ /* ***************************** Metrowerks **************************** */
 # define STLSOFT_COMPILER_IS_MWERKS
 # define STLSOFT_COMPILER_LABEL_STRING          "Metrowerks CodeWarrior C/C++"
 # if ((__MWERKS__ & 0xFF00) == 0x2400)
@@ -454,8 +465,45 @@
 #  error Only Metrowerks C++ Compiler 2.4 (CodeWarrior 7), 3.0 (CodeWarrior 8) and 3.2 (CodeWarrior 9) currently supported by the STLSoft libraries
 # endif /* __MWERKS__ */
 
+#elif defined(__SUNPRO_C) || \
+      defined(__SUNPRO_CC)
+ /* ******************************* Sun Pro ***************************** */
+ /* Sanity check on language/compiler */
+# ifdef __cplusplus
+#  ifdef __SUNPRO_C
+#   error __SUNPRO_C should not be defined by the Sun C compiler in C++ compilation
+#  endif /* __SUNPRO_C */
+#  ifndef __SUNPRO_CC
+#   error __SUNPRO_CC should be defined by the Sun C++ compiler in C++ compilation
+#  endif /* !__SUNPRO_CC */
+# else /* ? __cplusplus */
+#  ifndef __SUNPRO_C
+#   error __SUNPRO_C should be defined by the Sun C compiler in C compilation
+#  endif /* !__SUNPRO_C */
+#  ifdef __SUNPRO_CC
+#   error __SUNPRO_CC should not be defined by the Sun C++ compiler in C compilation
+#  endif /* __SUNPRO_CC */
+# endif /* __cplusplus */
+
+# define STLSOFT_COMPILER_IS_SUNPRO
+# ifdef __cplusplus
+#  define STLSOFT_COMPILER_LABEL_STRING         "Sun Pro C++"
+#  if (0x0590 == (__SUNPRO_CC & 0xFFF0))
+#   define STLSOFT_COMPILER_VERSION_STRING      "Sun Pro C++ v5.9"
+#  else /* ? __SUNPRO_CC */
+#   error Currently only version v5.9 of the Sun Pro C++ compiler is supported by the STLSoft libraries
+#  endif /* __SUNPRO_CC */
+# else /* ? __cplusplus */
+#  define STLSOFT_COMPILER_LABEL_STRING         "Sun Pro C"
+#  if (0x0590 == (__SUNPRO_C & 0xFFF0))
+#   define STLSOFT_COMPILER_VERSION_STRING      "Sun Pro C v5.9"
+#  else /* ? __SUNPRO_CC */
+#   error Currently only version v5.9 of the Sun Pro C compiler is supported by the STLSoft libraries
+#  endif /* __SUNPRO_CC */
+# endif /* __cplusplus */
+
 #elif defined(__VECTORC)
-/* CodePlay Vector C/C++ */
+ /* ************************** CodePlay VectorC ************************* */
 # define STLSOFT_COMPILER_IS_VECTORC
 # define STLSOFT_COMPILER_LABEL_STRING          "CodePlay VectorC C/C++"
 # if (__VECTORC == 1)
@@ -465,7 +513,7 @@
 # endif /* __VECTORC */
 
 #elif defined(__WATCOMC__)
-/* Watcom C/C++ */
+ /* ******************************* Watcom ****************************** */
 # define STLSOFT_COMPILER_IS_WATCOM
 # define STLSOFT_COMPILER_LABEL_STRING          "Watcom C/C++"
 
@@ -488,7 +536,7 @@
 # endif /* __WATCOMC__ */
 
 #elif defined(_MSC_VER)
-/* Visual C++ */
+ /* ***************************** Visual C++ **************************** */
 # define STLSOFT_COMPILER_IS_MSVC
 # define STLSOFT_COMPILER_LABEL_STRING          "Visual C++"
 # if defined(STLSOFT_FORCE_MSVC_4_2) && (_MSC_VER == 1020)
@@ -510,7 +558,7 @@
 # endif /* _MSC_VER */
 
 #else /* ? compiler */
-/* No recognised compiler */
+ /* ********************** No recognised compiler *********************** */
 # if defined(_STLSOFT_FORCE_UNKNOWN_COMPILER) || \
      defined(_STLSOFT_FORCE_ANY_COMPILER)
 #  define STLSOFT_COMPILER_LABEL_STRING         "Unknown (forced) compiler"
@@ -585,6 +633,8 @@
 # include <stlsoft/internal/cccap/msvc.h>
 #elif defined(STLSOFT_COMPILER_IS_MWERKS)
 # include <stlsoft/internal/cccap/mwerks.h>
+#elif defined(STLSOFT_COMPILER_IS_SUNPRO)
+# include <stlsoft/internal/cccap/sunpro.h>
 #elif defined(STLSOFT_COMPILER_IS_VECTORC)
 # include <stlsoft/internal/cccap/vectorc.h>
 #elif defined(STLSOFT_COMPILER_IS_WATCOM)
@@ -2137,6 +2187,7 @@ private:
     defined(STLSOFT_COMPILER_IS_INTEL) || \
     defined(STLSOFT_COMPILER_IS_MSVC) || \
     defined(STLSOFT_COMPILER_IS_VECTORC) || \
+    defined(STLSOFT_COMPILER_IS_SUNPRO) || \
     defined(STLSOFT_COMPILER_IS_WATCOM)
 # define    STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T)     friend T
 #elif defined(STLSOFT_COMPILER_IS_MWERKS)

@@ -4,14 +4,14 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     6th November 2007
+ * Updated:     24th April 2008
  *
  * Thanks to:   Felix Gartsman for spotting a bug in (lack of) operator <()
  *              when building Pantheios.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        51
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    6
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,7 +130,8 @@ struct msi_parent_type
     defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
         STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1) && \
-    !defined(STLSOFT_COMPILER_IS_BORLAND)
+    !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    !defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
     : public iterator_base< ss_typename_type_k stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category
                         ,   M
                         ,   ss_ptrdiff_t
@@ -142,7 +143,8 @@ struct msi_parent_type
           STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0) || \
       (   defined(STLSOFT_COMPILER_IS_MSVC) && \
           _MSC_VER == 1300) || \
-    defined(STLSOFT_COMPILER_IS_BORLAND)
+    defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
     : public iterator_base< stlsoft_ns_qual_std(input_iterator_tag)
                         ,   M
                         ,   ss_ptrdiff_t
@@ -394,7 +396,8 @@ private:
 };
 
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
-    !defined(STLSOFT_COMPILER_IS_DMC)
+    !defined(STLSOFT_COMPILER_IS_DMC) && \
+    !defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
 
 # if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
      STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
@@ -477,10 +480,6 @@ private:
     };
 #endif /* dinkumware */
 public:
-
-#if 1
-
-#endif /* 1 */
 
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
@@ -568,9 +567,10 @@ inline ss_typename_type_ret_k msi_traits<I, C, M>::type member_selector(I it, M 
     return iterator_t(it, member);
 }
 
-# else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-# if 0 || defined(STLSOFT_COMPILER_IS_DMC)
+# if 0 || \
+     defined(STLSOFT_COMPILER_IS_DMC)
 template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
@@ -596,7 +596,10 @@ inline member_selector_iterator<I, C, const M> member_selector(I it, const M C::
 }
 #endif /* 0 */
 
-#if 0 || (defined(STLSOFT_COMPILER_IS_MSVC) && _MSC_VER < 1310)
+#if 0 || \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1310) || \
+    defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
 template<   class               C
         ,   ss_typename_param_k M
         >
@@ -606,7 +609,10 @@ inline member_selector_iterator<C*, C, M> member_selector(C *it, M C::*member)
 }
 #endif /* 0 */
 
-#if 0 /* || (defined(STLSOFT_COMPILER_IS_MSVC) && _MSC_VER < 1310) */
+# if 0 /* || \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1310) */ || \
+    defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
 template<   class               C
         ,   ss_typename_param_k M
         >

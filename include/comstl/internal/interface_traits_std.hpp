@@ -4,11 +4,11 @@
  * Purpose:     Standard interface traits.
  *
  * Created:     25th May 2002
- * Updated:     10th January 2007
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_MAJOR      3
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_MINOR      1
-# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_REVISION   4
-# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_EDIT       42
+# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_REVISION   5
+# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,10 @@
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
 # include <comstl/util/interface_traits.hpp>
 #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
+#ifndef STLSOFT_INCL_H_OAIDL
+# define STLSOFT_INCL_H_OAIDL
+# include <oaidl.h>
+#endif /* !STLSOFT_INCL_H_OAIDL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

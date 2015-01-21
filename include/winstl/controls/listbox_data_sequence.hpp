@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_data_sequence class.
  *
  * Created:     16th March 2008
- * Updated:     16th March 2008
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MAJOR     1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MINOR     0
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_MINOR     1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_REVISION  1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_EDIT      1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_SEQUENCE_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-struct listbox_operation_traits
+struct listbox_data_sequence_traits
 {
 public:
     static ws_int_t err_constant()
@@ -130,21 +130,21 @@ class listbox_data_sequence
 /// @{
 public:
     /// The current parameterisation of the type
-    typedef listbox_data_sequence                                   class_type;
+    typedef listbox_data_sequence                                       class_type;
     /// The non-mutating (const) iterator type
-    typedef listbox_data_const_iterator<listbox_operation_traits>   const_iterator;
+    typedef listbox_data_const_iterator<listbox_data_sequence_traits>   const_iterator;
     /// The value type
-    typedef const_iterator::value_type                              value_type;
+    typedef const_iterator::value_type                                  value_type;
     /// The size type
-    typedef const_iterator::size_type                               size_type;
+    typedef const_iterator::size_type                                   size_type;
     /// The difference type
-    typedef const_iterator::difference_type                         difference_type;
+    typedef const_iterator::difference_type                             difference_type;
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
-    typedef const_iterator::const_reverse_iterator_type             const_reverse_iterator;
+    typedef const_iterator::const_reverse_iterator_type                 const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 private:
-    typedef listbox_operation_traits                                control_traits_type;
+    typedef listbox_data_sequence_traits                                control_traits_type;
 /// @}
 
 /// \name Construction

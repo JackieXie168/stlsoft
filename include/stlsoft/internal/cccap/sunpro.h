@@ -1,14 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/gcc.h
+ * File:        stlsoft/internal/cccap/sunpro.h
  *
- * Purpose:     Compiler feature discrimination for GNU C/C++.
+ * Purpose:     Compiler feature discrimination for SunPro C / SunPro C++.
  *
- * Created:     7th February 2003
+ * Created:     24th April 2008
  * Updated:     24th April 2008
+ *
+ * Thanks:		To Jonathan Wakeley and Lars Ivar Igesund for help with
+ *              getting STLSoft (and Pantheios) compatible with Solaris.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,23 +45,23 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/** \file stlsoft/internal/cccap/gcc.h
+/** \file stlsoft/internal/cccap/sunpro.h
  *
- * Compiler feature discrimination for GNU C/C++
+ * Compiler feature discrimination for SunPro C / SunPro C++.
  * (\ref group__library__internal).
  */
 
-#ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_GCC
+#ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_SUNPRO
 # error This file cannot be included more than once in any compilation unit
-#endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_GCC */
+#endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_SUNPRO */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      16
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       72
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MAJOR      1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MINOR      0
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,7 +74,31 @@
 */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Helper definitions
+ *
+ * NOTE: These are #undef'd at the end of this file
+ */
+
+#ifdef __cplusplus
+# define _STLSOFT_SUNPRO_VER_   __SUNPRO_CC
+#else /* ? __cplusplus */
+# define _STLSOFT_SUNPRO_VER_   __SUNPRO_C
+#endif /* __cplusplus */
+
+#define _STLSOFT_SUNPRO_VER_MAJOR   ((_STLSOFT_SUNPRO_VER_ & 0xff00) >> 8)
+#define _STLSOFT_SUNPRO_VER_MINOR   ((_STLSOFT_SUNPRO_VER_ & 0x00f0) >> 4)
+
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler features
+ */
+
+#if (5 != _STLSOFT_SUNPRO_VER_MAJOR) || \
+    (9 != _STLSOFT_SUNPRO_VER_MINOR)
+# error The STLSoft libraries have only been verified with Sun Pro 5.9.x. Please contact Synesis Software
+#endif /* major.minor */
+
+/* ///////////////////////////////////////////////
+ * Pre-processor / compiler
  */
 
 /* Messaging
@@ -82,29 +109,20 @@
 /* Support for #pragma once
  */
 
-#if __GNUC__ > 3 || \
-    (   __GNUC__ == 3 && \
-        __GNUC_MINOR__ >= 4)
-# define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
-#endif /* __GNUC__ */
+/* #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* Support for __FUNCTION__
  */
 
-#if __GNUC__ >= 3
-# define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
-#endif /* __GNUC__ */
+/* #define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT */
 
 /* Variadic Macros
  */
 
-#if __GNUC__ > 3 || \
-    (   __GNUC__ == 3 && \
-        __GNUC_MINOR__ >= 4)
-# define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
-#endif /* __GNUC__ */
+#define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
 
-/* Types:
+/* ///////////////////////////////////////////////
+ * Types
  */
 
 /* bool */
@@ -113,19 +131,13 @@
 #endif /* __cplusplus */
 
 /* char (sign) */
-#ifdef __CHAR_UNSIGNED__
-# define STLSOFT_CF_CHAR_IS_UNSIGNED
-#endif /* __CHAR_UNSIGNED__ */
+/* #define STLSOFT_CF_CHAR_IS_UNSIGNED */
 
 /* wchar_t */
 
-#if __GNUC__ > 3 || \
-    (   __GNUC__ == 3 && \
-        __GNUC_MINOR__ >= 2)
-# define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
-#endif /* 3.4+ */
+#define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 
-/* /////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////
  * Integral types
  *
  * The purpose of this section is to define the following types:
@@ -147,28 +159,27 @@
  * which indicate that a given type is not used in the size-specific types.
  */
 
-#if defined(__LP64__)
+#if defined(__sparcv9)
+# error Use of Sun Pro has not yet been verified on 64-bit Sparc. Please contact Synesis Software
+#elif defined(__amd64)
+# error Use of Sun Pro has not yet been verified on x64. Please contact Synesis Software
+# ifndef __LP64__
+#  error LP64 memory model is assumed on x64. Please contact Synesis Software
+# endif /* __LP64__ */
 # define _STLSOFT_SIZEOF_CHAR           (1)
 # define _STLSOFT_SIZEOF_SHORT          (2)
 # define _STLSOFT_SIZEOF_INT            (4)
 # define _STLSOFT_SIZEOF_LONG           (8)
 # define _STLSOFT_SIZEOF_LONG_LONG      (8)
-#elif defined(__linux__) || \
-      defined(__APPLE__)
-# define _STLSOFT_SIZEOF_CHAR           (1)
-# define _STLSOFT_SIZEOF_SHORT          (2)
-# define _STLSOFT_SIZEOF_INT            (4)
-# define _STLSOFT_SIZEOF_LONG           (4)
-# define _STLSOFT_SIZEOF_LONG_LONG      (8)
-#elif defined(_WIN64) || \
-      defined(_WIN32)
+#elif defined(__sparc) || \
+      defined(__i386)
 # define _STLSOFT_SIZEOF_CHAR           (1)
 # define _STLSOFT_SIZEOF_SHORT          (2)
 # define _STLSOFT_SIZEOF_INT            (4)
 # define _STLSOFT_SIZEOF_LONG           (4)
 # define _STLSOFT_SIZEOF_LONG_LONG      (8)
 #else /* ? data model */
-# error Use of GCC has not been verified on any operation system other than Linux, Mac OS-X and Win32. Please contact Synesis Software
+# error Use of Sun Pro has not been verified on any operation system other than x86, x64 and Sparc. Please contact Synesis Software
 #endif /* data model */
 
 /* 8-bit integer */
@@ -193,12 +204,25 @@
 #define STLSOFT_SI64_T_BASE_TYPE    signed      long long
 #define STLSOFT_UI64_T_BASE_TYPE    unsigned    long long
 
+/* ///////////////////////////////////////////////
+ * Language features
+ */
+
+/* Anonymous unions */
+#ifdef __cplusplus
+# define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
+#endif /* __cplusplus */
 
 /* Member constants */
-#define STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
+#ifdef __cplusplus
+# define STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
+#endif /* __cplusplus */
 
 /* Static assertions */
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
+
+/* sign of modulus of negative numbers */
+#define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 
 /* RTTI support */
 #ifdef __cplusplus
@@ -210,113 +234,104 @@
 # define STLSOFT_CF_EXCEPTION_SUPPORT
 #endif /* __cplusplus */
 
-/*  */
-#define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef __cplusplus
+# define STLSOFT_CF_THROW_BAD_ALLOC
+#endif /* __cplusplus */
 
 /* Namespace support */
-/* #define _STLSOFT_NO_NAMESPACES */
+#ifdef __cplusplus
+# define STLSOFT_CF_NAMESPACE_SUPPORT
+#endif /* __cplusplus */
 
-#define STLSOFT_CF_NAMESPACE_SUPPORT
+#ifdef __cplusplus
+# define STLSOFT_CF_std_NAMESPACE
+#endif /* __cplusplus */
 
-#define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
-
-#define STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
+/* return void */
+#ifdef __cplusplus
+# define STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
+#endif /* __cplusplus */
 
 /* Template support */
-#define STLSOFT_CF_TEMPLATE_SUPPORT
+#ifdef __cplusplus
+# define STLSOFT_CF_TEMPLATE_SUPPORT
+#endif /* __cplusplus */
 
 /* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
 
-#define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+/*  */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 
-/* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 
-#define STLSOFT_CF_THROW_BAD_ALLOC
+/* !!! Assumed. Not yet verified !!! */ /* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
 
-#define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 
-#define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 
-#define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
-#define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
-#define STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED
 
-#define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
-#if __GNUC__ >= 3
-# define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED
-#endif /* __GNUC__ */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED
 
-#if __GNUC__ >= 3
-# define STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
-#endif /* __GNUC__ */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
 
-#define STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
 
-#define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 
-#define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-#define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 
-#define STLSOFT_CF_std_NAMESPACE
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_std_char_traits_AVAILABLE
 
-#if __GNUC__ >= 3
-# define STLSOFT_CF_std_char_traits_AVAILABLE
-#endif /*  */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_NON_TEMPLATE
 
-#define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_NON_TEMPLATE
-
-#define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_TEMPLATE
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_TEMPLATE
 
 #define STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 
 #define STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 
-#define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
 
-#define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 
-#define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 
-/* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+/* !!! Assumed. Not yet verified !!! */ /* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 
-#define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
 
-#if __GNUC__ > 3 || \
-    (   __GNUC__ == 3 && \
-        __GNUC_MINOR__ >= 4)
-# define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
-#endif /* 3.4+ */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 
-/* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+/* !!! Assumed. Not yet verified !!! */ /* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
-#define STLSOFT_CF_ADL_LOOKUP_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 
-#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
-#if __GNUC__ >= 3
-# define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-#endif /* 2.95+ */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
-#if __GNUC__ >= 3
-# define STLSOFT_CF_VENEER_SUPPORT
-#endif /*  */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_VENEER_SUPPORT
 
-#define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 
-#define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
 
 /* Shims are supported?
  */
 /* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
-#define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
-
-#define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-#define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 
 #if defined(_STLSOFT_CUSTOM_ASSERT)
  /* You have defined the pre-processor symbol _STLSOFT_CUSTOM_ASSERT,
@@ -363,34 +378,9 @@
 
 #define STLSOFT_CF_CDECL_SUPPORTED
 
-#if defined(WIN32)
-
-# ifdef STLSOFT_CF_CDECL_SUPPORTED
-#  define STLSOFT_CDECL                 __cdecl
-# endif /* STLSOFT_CF_CDECL_SUPPORTED */
-
-# if __GNUC__ > 2
-#  define STLSOFT_CF_FASTCALL_SUPPORTED
-#  define STLSOFT_FASTCALL              __fastcall
-# endif /* __GNUC__ > 2 */
-
-# define STLSOFT_CF_STDCALL_SUPPORTED
-# define STLSOFT_STDCALL                __stdcall
-
-
-# if (   __GNUC__ < 3 || \
-        (   __GNUC__ == 3 && \
-            __GNUC_MINOR__ < 4))
-#  define    STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-# endif /* version */
-
-#else /* ? OS */
-
-# ifdef STLSOFT_CF_CDECL_SUPPORTED
-#  define STLSOFT_CDECL
-# endif /* STLSOFT_CF_CDECL_SUPPORTED */
-
-#endif /* !unix && !__unix__ */
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
+# define STLSOFT_CDECL
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Inline assembler
@@ -403,14 +393,18 @@
  * inline support
  */
 
-#if __GNUC__ >= 4
-# define STLSOFT_CF_C99_INLINE
-#else /* ? __GNUC__ */
-# define STLSOFT_CUSTOM_C_INLINE        __inline__
-#endif /* __GNUC__ */
+#define STLSOFT_CF_C99_INLINE
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler warning suppression
  */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Helper definitions
+ */
+
+#undef _STLSOFT_SUNPRO_VER_
+#undef _STLSOFT_SUNPRO_VER_MAJOR
+#undef _STLSOFT_SUNPRO_VER_MINOR
 
 /* ////////////////////////////////////////////////////////////////////// */

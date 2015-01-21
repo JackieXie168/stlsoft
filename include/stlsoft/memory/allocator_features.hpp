@@ -4,11 +4,11 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     6th November 2007
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MAJOR    5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MINOR    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     38
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -188,6 +188,7 @@
       (   (   /* defined(STLSOFT_COMPILER_IS_INTEL) || */ \
               defined(STLSOFT_COMPILER_IS_MSVC)) && \
           _MSC_VER < 1300) || \
+    defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW) || \
     defined(STLSOFT_COMPILER_IS_WATCOM)
 # undef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
 #endif /* _MSC_VER */
@@ -222,6 +223,7 @@
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_SGI)
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_SGI_GNU)
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_RW)
+# elif defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
 # elif defined(STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH)
 # else /* ? library */
 #  error Standard library not recognised

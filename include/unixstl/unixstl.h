@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd April 2008
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    5
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    6
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     83
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -122,12 +122,13 @@
 # define _UNIXSTL_VER_1_6_6     0x00010606  /*!< Version 1.6.6 (with STLSoft 1.9.29) */
 # define _UNIXSTL_VER_1_6_7     0x010607ff  /*!< Version 1.6.7 (with STLSoft 1.9.31) */
 # define _UNIXSTL_VER_1_6_8     0x010608ff  /*!< Version 1.6.8 (with STLSoft 1.9.32) */
+# define _UNIXSTL_VER_1_7_1     0x010701ff  /*!< Version 1.7.1 (with STLSoft 1.9.33) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
-#define _UNIXSTL_VER_MINOR      6
-#define _UNIXSTL_VER_REVISION   8	
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_6_8
+#define _UNIXSTL_VER_MINOR      7
+#define _UNIXSTL_VER_REVISION   1   
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_7_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -142,8 +143,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010920ff
-# error This version of the UNIXSTL libraries requires STLSoft version 1.9.1 beta 41, or later
+    _STLSOFT_VER < 0x010921ff
+# error This version of the UNIXSTL libraries requires STLSoft version 1.9.33, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,12 +152,19 @@
  *
  * Currently the only compilers supported by the UNIXSTL libraries are
  *
- * GCC 2.95, 2.96, 3.2
- * Intel C/C++ 6.0 & 7.0
+ * GCC version 2.95 or later
+ * Intel C/C++ 6.0 or later
+ * Sun Pro C & Sun Pro C++ versions 5.9.x or later
  */
 
-#if defined(STLSOFT_COMPILER_IS_GCC)
-/* GNU C/C++ */
+#if defined(STLSOFT_COMPILER_IS_COMO)
+ /* ******************************* Comeau ****************************** */
+# if __COMO_VERSION__ < 4300
+#  error Versions of Comeau C++ prior to 4.3.0.1 are not supported by the UNIXSTL libraries
+# endif /* __COMO_VERSION__ */
+
+#elif defined(STLSOFT_COMPILER_IS_GCC)
+ /* ******************************** GCC ******************************** */
 # if __GNUC__ < 2 || \
      (  __GNUC__ == 2 && \
         __GNUC_MINOR__ < 95)
@@ -164,10 +172,22 @@
 # endif /* __GNUC__ */
 
 #elif defined(STLSOFT_COMPILER_IS_INTEL)
-/* Intel C++ */
+ /* ******************************* Intel ******************************* */
 # if (__INTEL_COMPILER < 700)
 #  error Versions of Intel C++ prior to 7.0 are not supported by the UNIXSTL libraries
 # endif /* __INTEL_COMPILER */
+
+#elif defined(STLSOFT_COMPILER_IS_SUNPRO)
+ /* ******************************* Sun Pro ***************************** */
+# ifdef __cplusplus
+#  if ((__SUNPRO_CC & 0xFFF0) < 0x0590)
+#   error Versions of Sun Pro C++ prior to 5.9 are not supported by the UNIXSTL libraries
+#  endif /* __SUNPRO_CC */
+# else /* ? __cplusplus */
+#  if ((__SUNPRO_C & 0xFFF0) < 0x0590)
+#   error Versions of Sun Pro C prior to 5.9 are not supported by the UNIXSTL libraries
+#  endif /* __SUNPRO_CC */
+# endif /* __cplusplus */
 
 #else
 /* No recognised compiler */
@@ -177,7 +197,7 @@
 #   pragma message("Compiler is unknown to UNIXSTL")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
 # else
-#  error Currently only GNU C/C++ compiler supported by the UNIXSTL libraries. To use other, possibly untested, compilers, define _STLSOFT_FORCE_ANY_COMPILER
+#  error Currently only the Comeau, GCC, Intel and Sun Pro C/C++ compilers are supported by the UNIXSTL libraries. To use other, possibly untested, compilers, define _STLSOFT_FORCE_ANY_COMPILER
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
@@ -204,11 +224,18 @@
     defined(__i386) || \
     defined(_M_IX86)
 # define UNIXSTL_ARCH_IS_INTEL
+#elif defined(__amd64__) || \
+      defined(__amd64) || \
+      defined(_M_IA64)
+/* TODO: Separate out arch-family and archs (incl. x64 and x86) */
+# define UNIXSTL_ARCH_IS_INTEL
 #elif defined(__ppc__) || \
       defined(__ppc) || \
       defined(__POWERPC__)
 # define UNIXSTL_ARCH_IS_POWERPC
-#elif defined(__sparc__)
+#elif defined(__sparc__) || \
+      defined(__sparc)
+/* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
 # define UNIXSTL_ARCH_IS_SPARC
 #else /* ? arch */
 # define UNIXSTL_ARCH_IS_UNKNOWN

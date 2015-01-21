@@ -4,11 +4,11 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     15th December 2007
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    7
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    8
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     25
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -336,12 +336,6 @@
 #ifdef STLSOFT_CF_std_char_traits_AVAILABLE
 # undef STLSOFT_CF_std_char_traits_AVAILABLE
 #endif /* STLSOFT_CF_std_char_traits_AVAILABLE */
-
-/* Bidirectional iterator support
- */
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
-# undef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* explicit keyword support
  *

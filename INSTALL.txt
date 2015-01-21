@@ -2,15 +2,15 @@
 STLSoft - Install
 
 ; Created:  29th March 2002
-; Updated:  13th April 2008
+; Updated:  25th April 2008
 
 ============================================================================
 
  STLSoft is a 100% header-only library, and so requires no building.
 
  It is recommended that you define an STLSOFT environment variable. For
- example, if you install to /usr/local/stlsoft/stlsoft-1.9.31, then you
- should set STLSOFT to /usr/local/stlsoft/stlsoft-1.9.31. In that case,
+ example, if you install to /usr/local/stlsoft/stlsoft-1.9.33, then you
+ should set STLSOFT to /usr/local/stlsoft/stlsoft-1.9.33. In that case,
  the file stlsoft/stlsoft.h will be located in
  $STLSOFT/include/stlsoft/stlsoft.h
 
@@ -18,12 +18,16 @@ STLSoft - Install
  this symbol, including:
 
   * b64             http://synesis.com.au/software/b64.html
-  * FastFormat      http://fastformat.org/  -   to be released in Apr '08
-  * flecxx          http://flecxx.org/      -   to be released in Apr '08
+  * FastFormat      http://fastformat.org/  -   to be released in May '08
+  * flecxx          http://flecxx.org/      -   to be released in May '08
   * Open-RJ         http://openrj.org/
   * Pantheios       http://pantheios.org/
   * recls           http://recls.org/
   * shwild          http://shwild.org/
   * xTests          http://xtests.org/
+
+ If you're using STLSoft on UNIX, you might want to apply dos2unix over all
+ the files before using it. You *must* do this if you're using the SunPro
+ C compiler.
 
 =============================== End of file ================================

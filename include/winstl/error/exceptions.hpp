@@ -4,11 +4,11 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     22nd March 2007
+ * Updated:     23rd April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        52
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    3
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -204,14 +204,13 @@ public:
     {
         if(NULL == m_strerror)
         {
-            if( m_errorCode == static_cast<error_code_type>(E_OUTOFMEMORY) ||
-                m_errorCode == static_cast<error_code_type>(ERROR_OUTOFMEMORY))
+            if(is_memory_error_(m_errorCode))
             {
                 return "Out of memory";
             }
             else
             {
-                char    *&s =   stlsoft_ns_qual(remove_const)(this->m_strerror);
+                char*& s = stlsoft_ns_qual(remove_const)(this->m_strerror);
 
                 if(0 == format_message(m_errorCode, NULL, &s))
                 {
@@ -227,10 +226,25 @@ public:
 /// \name Implementation
 /// @{
 private:
+    static bool is_memory_error_(error_code_type code)
+    {
+        switch(code)
+        {
+            default:
+                return false;
+#ifdef _HRESULT_DEFINED
+            case    E_OUTOFMEMORY:
+#else /* ? _HRESULT_DEFINED */
+            case    0x8007000EL:
+#endif /* _HRESULT_DEFINED */
+            case    ERROR_OUTOFMEMORY:
+                return true;
+        }
+    }
+
     static string_type create_reason_(char const* reason, error_code_type err)
     {
-        if( err == static_cast<error_code_type>(E_OUTOFMEMORY) ||
-            err == static_cast<error_code_type>(ERROR_OUTOFMEMORY) ||
+        if( is_memory_error_(err) ||
             NULL == reason ||
             '\0' == reason[0])
         {

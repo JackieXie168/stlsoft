@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Watcom C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th March 2008
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       15
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       16
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        71
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,7 +154,7 @@
 # define _STLSOFT_SIZEOF_LONG           (4)
 # define _STLSOFT_SIZEOF_LONG_LONG      (8)
 #else /* ? data model */
-# error Use of Watcom C/C++ has not been verified on any operation system other than Win32. Please contact STLSoft
+# error Use of Watcom C/C++ has not been verified on any operation system other than Win32. Please contact Synesis Software
 #endif /* data model */
 
 /* 8-bit integer */
@@ -269,8 +269,6 @@
 /* #define STLSOFT_CF_std_NAMESPACE */
 
 #define STLSOFT_CF_std_char_traits_AVAILABLE
-
-/* #define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* #define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_NON_TEMPLATE */
 
