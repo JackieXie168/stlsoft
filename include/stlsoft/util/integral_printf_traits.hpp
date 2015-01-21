@@ -4,11 +4,11 @@
  * Purpose:     integral_printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2007
+ * Updated:     27th January 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MAJOR      5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MINOR      0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       59
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -308,10 +308,15 @@ struct integral_printf_traits
         ,   size        //!< The maximum of \c size_min and \c size_max
     };
 
-    /// Returns the appropriate printf format for the type
+    /// Returns the appropriate integral printf format for the type
     static ss_char_a_t const* format_a();
-    /// Returns the appropriate wprintf format for the type
+    /// Returns the appropriate integral wprintf format for the type
     static ss_char_w_t const* format_w();
+
+    /// Returns the appropriate hexadecimal printf format for the type
+    static ss_char_a_t const* hex_format_a();
+    /// Returns the appropriate hexadecimal wprintf format for the type
+    static ss_char_w_t const* hex_format_w();
 };
 
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -338,9 +343,9 @@ struct integral_printf_traits_base<char>
     static ss_char_a_t const* format_a()
     {
 #  ifdef STLSOFT_CF_CHAR_IS_UNSIGNED
-        return "%u";
+        return  "%u";
 #  else /* ? STLSOFT_CF_CHAR_IS_UNSIGNED */
-        return "%d";
+        return  "%d";
 #  endif /* STLSOFT_CF_CHAR_IS_UNSIGNED */
     }
     static ss_char_w_t const* format_w()
@@ -350,6 +355,15 @@ struct integral_printf_traits_base<char>
 #  else /* ? STLSOFT_CF_CHAR_IS_UNSIGNED */
         return L"%d";
 #  endif /* STLSOFT_CF_CHAR_IS_UNSIGNED */
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%x";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%x";
     }
 };
 
@@ -365,11 +379,20 @@ struct integral_printf_traits_base<unsigned char>
 
     static ss_char_a_t const* format_a()
     {
-        return "%u";
+        return  "%u";
     }
     static ss_char_w_t const* format_w()
     {
         return L"%u";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%x";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%x";
     }
 };
 
@@ -385,11 +408,20 @@ struct integral_printf_traits_base<signed char>
 
     static ss_char_a_t const* format_a()
     {
-        return "%d";
+        return  "%d";
     }
     static ss_char_w_t const* format_w()
     {
         return L"%d";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%x";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%x";
     }
 };
 
@@ -408,11 +440,20 @@ struct integral_printf_traits_base<short>
 
     static ss_char_a_t const* format_a()
     {
-        return "%d";
+        return  "%d";
     }
     static ss_char_w_t const* format_w()
     {
         return L"%d";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%x";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%x";
     }
 };
 
@@ -428,11 +469,20 @@ struct integral_printf_traits_base<unsigned short>
 
     static ss_char_a_t const* format_a()
     {
-        return "%u";
+        return  "%u";
     }
     static ss_char_w_t const* format_w()
     {
         return L"%u";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%x";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%x";
     }
 };
 
@@ -451,11 +501,20 @@ struct integral_printf_traits_base<int>
 
     static ss_char_a_t const* format_a()
     {
-        return "%d";
+        return  "%d";
     }
     static ss_char_w_t const* format_w()
     {
         return L"%d";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%x";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%x";
     }
 };
 
@@ -471,11 +530,20 @@ struct integral_printf_traits_base<unsigned int>
 
     static ss_char_a_t const* format_a()
     {
-        return "%u";
+        return  "%u";
     }
     static ss_char_w_t const* format_w()
     {
         return L"%u";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%x";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%x";
     }
 };
 
@@ -494,11 +562,20 @@ struct integral_printf_traits_base<long>
 
     static ss_char_a_t const* format_a()
     {
-        return "%d";
+        return  "%ld";
     }
     static ss_char_w_t const* format_w()
     {
-        return L"%d";
+        return L"%ld";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%lx";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%lx";
     }
 };
 
@@ -514,11 +591,20 @@ struct integral_printf_traits_base<unsigned long>
 
     static ss_char_a_t const* format_a()
     {
-        return "%u";
+        return  "%lu";
     }
     static ss_char_w_t const* format_w()
     {
-        return L"%u";
+        return L"%lu";
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+        return  "%lx";
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+        return L"%lx";
     }
 };
 
@@ -540,9 +626,9 @@ struct integral_printf_traits_base<ss_sint64_t>
     static ss_char_a_t const* format_a()
     {
 #if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
-        return "%I64d";
+        return  "%I64d";
 #elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
-        return "%lld";
+        return  "%lld";
 #else
 # error Further compiler discrimination is required
 #endif /* printf-64 */
@@ -553,6 +639,27 @@ struct integral_printf_traits_base<ss_sint64_t>
         return L"%I64d";
 #elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
         return L"%lld";
+#else
+# error Further compiler discrimination is required
+#endif /* printf-64 */
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
+        return  "%I64x";
+#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
+        return  "%llx";
+#else
+# error Further compiler discrimination is required
+#endif /* printf-64 */
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
+        return L"%I64x";
+#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
+        return L"%llx";
 #else
 # error Further compiler discrimination is required
 #endif /* printf-64 */
@@ -572,9 +679,9 @@ struct integral_printf_traits_base<ss_uint64_t>
     static ss_char_a_t const* format_a()
     {
 #if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
-        return "%I64u";
+        return  "%I64u";
 #elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
-        return "%llu";
+        return  "%llu";
 #else
 # error Further compiler discrimination is required
 #endif /* printf-64 */
@@ -585,6 +692,27 @@ struct integral_printf_traits_base<ss_uint64_t>
         return L"%I64u";
 #elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
         return L"%llu";
+#else
+# error Further compiler discrimination is required
+#endif /* printf-64 */
+    }
+
+    static ss_char_a_t const* hex_format_a()
+    {
+#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
+        return  "%I64x";
+#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
+        return  "%llx";
+#else
+# error Further compiler discrimination is required
+#endif /* printf-64 */
+    }
+    static ss_char_w_t const* hex_format_w()
+    {
+#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
+        return L"%I64x";
+#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
+        return L"%llx";
 #else
 # error Further compiler discrimination is required
 #endif /* printf-64 */

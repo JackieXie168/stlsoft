@@ -2,7 +2,7 @@
 STLSoft - Known Issues:
 
 ; Created:  29th March 2002
-; Updated:  5th January 2008
+; Updated:  27th January 2008
 
 ============================================================================
 
