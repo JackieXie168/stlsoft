@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     14th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        103
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -198,17 +198,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_current_directory_scope template for the ANSI character type \c char
+/** \brief Specialisation of the basic_current_directory_scope template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
 typedef basic_current_directory_scope<us_char_a_t, filesystem_traits<us_char_a_t> >     current_directory_scope_a;
-/** \brief Instantiation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__file_system
  */
 typedef basic_current_directory_scope<us_char_w_t, filesystem_traits<us_char_w_t> >     current_directory_scope_w;
-/** \brief Instantiation of the basic_current_directory_scope template for the ambient UNIX character type \c char
+/** \brief Specialisation of the basic_current_directory_scope template for the ambient UNIX character type \c char
  *
  * \ingroup group__library__file_system
  */

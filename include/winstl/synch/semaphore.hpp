@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     4th December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     8
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -352,7 +352,7 @@ private:
  */
 inline HANDLE get_synch_handle(semaphore &sem)
 {
-	return sem.get();
+    return sem.get();
 }
 
 
@@ -367,7 +367,7 @@ inline HANDLE get_synch_handle(semaphore &sem)
 
 /** \brief This \ref group__concept__shims "control shim" aquires a lock on the given semaphore
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param sem The semaphore on which to aquire the lock.
  */
@@ -378,7 +378,7 @@ inline void lock_instance(winstl_ns_qual(semaphore) &sem)
 
 /** \brief This \ref group__concept__shims "control shim" releases a lock on the given semaphore
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param sem The semaphore on which to release the lock
  */

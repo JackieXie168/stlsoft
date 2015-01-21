@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     16th July 2006
+ * Updated:     12th December 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      3
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       214
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       215
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,7 +154,7 @@ public:
     ///
     /// \param moduleName The file name of the executable module to be
     ///   loaded. The argument may be of any type for which the
-    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   \ref group__concept__shim__string_access "string access shim"
     ///   stlsoft::c_str_ptr is defined.
     ///
     /// \note If exception-handling is being used, then this throws a
@@ -207,7 +207,7 @@ public:
     ///
     /// \param moduleName The file name of the executable module to be
     ///   loaded. The argument may be of any type for which the
-    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   \ref group__concept__shim__string_access "string access shim"
     ///   stlsoft::c_str_ptr is defined.
     ///
     /// \return The module handle, or NULL if no matching module found.
@@ -327,7 +327,7 @@ private:
 
 /** \brief Returns the module handle for the given module
  *
- * \ingroup group__concept__shims__module_attribute
+ * \ingroup group__concept__shim__module_attribute
  */
 inline HINSTANCE get_module_handle(winstl_ns_qual(module) const &m)
 {

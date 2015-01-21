@@ -5,7 +5,7 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     5th October 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       8
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   1
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -487,6 +487,200 @@ protected:
             DISP_E_MEMBERNOTFOUND == hr)
         {
             hr = dispatch_parent_2_type::Invoke(dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+        }
+
+        return hr;
+    }
+/// @}
+};
+
+/** \brief Class template that enables the methods and properties exhibited
+ *    through four IDispatch interfaces to be visible to scripting clients.
+ *
+ * \ingroup group__library__automation
+ *
+ * IDispatchImpl4 is used (and operates) in exactly the same way as
+ * IDispatchImpl3, except that it supports four dispinterfaces, rather than
+ *  three.
+ */
+template<   ss_typename_param_k I0
+        ,   IID const           *IID0
+        ,   ss_typename_param_k I1
+        ,   IID const           *IID1
+        ,   ss_typename_param_k I2
+        ,   IID const           *IID2
+        ,   ss_typename_param_k I3
+        ,   IID const           *IID3
+        ,   GUID const          *LibID
+        >
+class IDispatchImpl4
+    : public IDispatchImpl<I0, IID0, LibID>
+    , public IDispatchImpl<I1, IID1, LibID>
+    , public IDispatchImpl<I2, IID2, LibID>
+    , public IDispatchImpl<I3, IID3, LibID>
+{
+/// \name Member Types
+/// @{
+public:
+    typedef IDispatchImpl<I0, IID0, LibID>  dispatch_parent_0_type; //!< \brief The type of the first dispinterface
+    typedef IDispatchImpl<I1, IID1, LibID>  dispatch_parent_1_type; //!< \brief The type of the second dispinterface
+    typedef IDispatchImpl<I2, IID2, LibID>  dispatch_parent_2_type; //!< \brief The type of the third dispinterface
+    typedef IDispatchImpl<I3, IID3, LibID>  dispatch_parent_3_type; //!< \brief The type of the fourth dispinterface
+/// @}
+
+/// \name IDispatch methods
+/// @{
+protected:
+    /** \brief Provides the required behaviour of
+     *   <code>IDispatch::GetIDsOfNames()</code>, by querying the four
+     *   dispinterfaces, in order, to match the name(s).
+     *
+     * This method operates by first determining which, if any, of the
+     * four parent dispinterfaces can resolve the names. If successful, the
+     * resultant dispatch Ids are then striped with a bit in their
+     * most-significant byte(s) to record the index of the dispinterface
+     * which has thus undertaken to interpret them. This stripe is then
+     * detected 
+     *
+     * \remarks Names are matched en bloc: they are either all matched by one
+     *  interface, or all by the other. It is <b>never</b> the case that
+     *  some part are matched by one and the remainder by the other.
+     *
+     * \note If a dispid returned from a successful call to one of the
+     *  underlying dispinterfaces' <code>GetIDsOfNames()</code> already
+     *  uses the striping bit, it is left alone. Such methods will be
+     *  successfully called in Invoke(), in its post-stripe processing.
+     */
+    STDMETHOD(GetIDsOfNames)(   REFIID      riid
+                            ,   LPOLESTR    *rgszNames
+                            ,   UINT        cNames
+                            ,   LCID        lcid
+                            ,   DISPID      *rgdispid)
+    {
+        unsigned    index   =   1;
+        HRESULT     hr      =   dispatch_parent_0_type::GetIDsOfNames(riid, rgszNames, cNames, lcid, rgdispid);
+
+        if( FAILED(hr) &&
+            DISP_E_UNKNOWNNAME == hr)
+        {
+            ++index;
+
+            hr = dispatch_parent_1_type::GetIDsOfNames(riid, rgszNames, cNames, lcid, rgdispid);
+        }
+
+        if( FAILED(hr) &&
+            DISP_E_UNKNOWNNAME == hr)
+        {
+            ++index;
+
+            hr = dispatch_parent_2_type::GetIDsOfNames(riid, rgszNames, cNames, lcid, rgdispid);
+        }
+
+        if( FAILED(hr) &&
+            DISP_E_UNKNOWNNAME == hr)
+        {
+            ++index;
+
+            hr = dispatch_parent_3_type::GetIDsOfNames(riid, rgszNames, cNames, lcid, rgdispid);
+        }
+
+        // Encode interface info into the dispid
+        if(SUCCEEDED(hr))
+        {
+            DISPID  dispidFlag  =   DISPID(0x1) << (8 * sizeof(DISPID) - 2);
+
+            dispidFlag >>= (index - 1);
+
+            for(UINT i = 0; i < cNames; ++i)
+            {
+                if(rgdispid[i] < 0)
+                {
+                    // Leave these alone. They'll be processed on a first-come-first-serve
+                    // basis, which assumes that the GetIDsOfNames() and Invoke() of I0 and
+                    // I1 are faithfully inter-related.
+                }
+                else
+                {
+                    ATLSTL_MESSAGE_ASSERT("Dispatch Id is out of range!", 0 == (dispidFlag & rgdispid[i]));
+
+                    rgdispid[i] |= dispidFlag;
+                }
+            }
+        }
+
+        return hr;
+    }
+    /** \brief Provides the required behaviour of 
+     *  <code>IDispatch::Invoke()</code>, by invoking this method on the
+     *  requisite dispinterface.
+     *
+     * This method operates by detecting the striping bit on the dispid,
+     * from which the appropriate dispiniterface is determined. The
+     * stripe is then removed, and the method invoked.
+     *
+     * \remarks Names are matched en bloc: they are either all matched by one
+     *  interface, or all by the other. It is <b>never</b> the case that
+     *  some part are matched by one and the remainder by the other.
+     *
+     * \note If no striping is apparent, the invocation is conducted on
+     *  each interface in turn.
+     */
+    STDMETHOD(Invoke)(  DISPID      dispidMember
+                    ,   REFIID      riid
+                    ,   LCID        lcid
+                    ,   WORD        wFlags
+                    ,   DISPPARAMS  *pdispparams
+                    ,   VARIANT     *pvarResult
+                    ,   EXCEPINFO   *pexcepinfo
+                    ,   UINT        *puArgErr)
+    {
+        if(dispidMember >= 0)
+        {
+            DISPID  dispidFlag  =   DISPID(0x1) << (8 * sizeof(DISPID) - 2);
+
+            dispidFlag >>= 0;
+            if(dispidMember & dispidFlag)
+            {
+                return dispatch_parent_0_type::Invoke(dispidMember & ~dispidFlag, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+            }
+
+            dispidFlag >>= 1;
+            if(dispidMember & dispidFlag)
+            {
+                return dispatch_parent_1_type::Invoke(dispidMember & ~dispidFlag, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+            }
+
+            dispidFlag >>= 1;
+            if(dispidMember & dispidFlag)
+            {
+                return dispatch_parent_2_type::Invoke(dispidMember & ~dispidFlag, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+            }
+
+            dispidFlag >>= 1;
+            if(dispidMember & dispidFlag)
+            {
+                return dispatch_parent_3_type::Invoke(dispidMember & ~dispidFlag, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+            }
+        }
+
+        HRESULT hr = dispatch_parent_0_type::Invoke(dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+
+        if( FAILED(hr) &&
+            DISP_E_MEMBERNOTFOUND == hr)
+        {
+            hr = dispatch_parent_1_type::Invoke(dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+        }
+
+        if( FAILED(hr) &&
+            DISP_E_MEMBERNOTFOUND == hr)
+        {
+            hr = dispatch_parent_2_type::Invoke(dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
+        }
+
+        if( FAILED(hr) &&
+            DISP_E_MEMBERNOTFOUND == hr)
+        {
+            hr = dispatch_parent_3_type::Invoke(dispidMember, riid, lcid, wFlags, pdispparams, pvarResult, pexcepinfo, puArgErr);
         }
 
         return hr;

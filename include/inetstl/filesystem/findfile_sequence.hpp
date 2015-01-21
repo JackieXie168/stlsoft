@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     26th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     117
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -331,7 +331,7 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
+/** \brief Specialisation of the basic_findfile_sequence template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
@@ -343,7 +343,7 @@ typedef basic_findfile_sequence<is_char_a_t
                             ,   stlsoft_ns_qual(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             >                                                   findfile_sequence_a;
-/** \brief Instantiation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__file_system
  */
@@ -355,7 +355,7 @@ typedef basic_findfile_sequence<is_char_w_t
                             ,   stlsoft_ns_qual(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             >                                                   findfile_sequence_w;
-/** \brief Instantiation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__file_system
  */
@@ -759,9 +759,9 @@ inline is_char_w_t const *c_str_data_w(inetstl_ns_qual(basic_findfile_sequence_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for inetstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_data for inetstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
@@ -787,9 +787,9 @@ inline is_size_t c_str_len_w(inetstl_ns_qual(basic_findfile_sequence_value_type)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for inetstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_len for inetstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
 inline is_size_t c_str_len(inetstl_ns_qual(basic_findfile_sequence_value_type)<C, T, X> const &v)
@@ -814,9 +814,9 @@ inline is_char_w_t const *c_str_ptr_w(inetstl_ns_qual(basic_findfile_sequence_va
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for inetstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for inetstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
 inline C const *c_str_ptr(inetstl_ns_qual(basic_findfile_sequence_value_type)<C, T, X> const &v)
@@ -841,9 +841,9 @@ inline is_char_w_t const *c_str_ptr_null_w(inetstl_ns_qual(basic_findfile_sequen
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for inetstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for inetstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
 inline C const *c_str_ptr_null(inetstl_ns_qual(basic_findfile_sequence_value_type)<C, T, X> const &v)

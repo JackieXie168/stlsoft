@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     18th October 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -66,7 +66,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        188
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -333,17 +333,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
+/** \brief Specialisation of the basic_findfile_sequence template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
 typedef basic_findfile_sequence<ws_char_a_t, filesystem_traits<ws_char_a_t> >     findfile_sequence_a;
-/** \brief Instantiation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__file_system
  */
 typedef basic_findfile_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> >     findfile_sequence_w;
-/** \brief Instantiation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__file_system
  */
@@ -739,9 +739,9 @@ inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(basic_findfile_sequence_va
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_data for winstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline C const *c_str_data(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)
@@ -766,9 +766,9 @@ inline ws_size_t c_str_len_w(winstl_ns_qual(basic_findfile_sequence_value_type)<
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_len for winstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_size_t c_str_len(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)
@@ -793,9 +793,9 @@ inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(basic_findfile_sequence_val
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for winstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline C const *c_str_ptr(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)
@@ -820,9 +820,9 @@ inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(basic_findfile_sequenc
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::basic_findfile_sequence_value_type
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for winstl::basic_findfile_sequence_value_type
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline C const *c_str_ptr_null(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)

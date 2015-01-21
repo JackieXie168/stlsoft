@@ -241,7 +241,7 @@ private:
  */
 inline HANDLE get_synch_handle(event &ev)
 {
-	return ev.get();
+    return ev.get();
 }
 
 

@@ -4,7 +4,7 @@
  * Purpose:     Thread marshalling functions.
  *
  * Created:     25th May 2002
- * Updated:     6th December 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/util/thread_marshal.hpp
  *
  * \brief [C++ only; requires COM] Thread marshalling functions.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_THREAD_MARSHAL
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MAJOR    4
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MINOR    0
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_REVISION 3
-# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     52
+# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ namespace comstl_project
 
 /** \brief Marshal a interface to a stream
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * This function marshals the given interface into a new stream instance, which
  * is returned to the caller. The stream may then be passed directly to another
@@ -114,7 +114,7 @@ inline HRESULT MarshalInterThreadInterfaceInStream(I *pitf, LPSTREAM *ppstm)
 
 /** \brief Retrieve a marshaled interface pointer from a stream
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * This function loads a serialised marshalled interface pointer from the given
  * stream, queries for the interface of the given pointer, and returns the

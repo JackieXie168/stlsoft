@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     2nd March 1996
- * Updated:     7th July 2006
+ * Updated:     9th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MAJOR       5
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       0
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       1
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    1
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        148
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        149
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,9 +70,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -92,7 +92,7 @@ namespace comstl_project
  * C functions
  */
 
-/** \brief Creates an OLE string from an ANSI string
+/** \brief [C only] Creates an OLE string from an ANSI string
  *
  * \ingroup group__library__string
  *
@@ -130,7 +130,7 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_create_a(cs_char_a_t const *s)
     return posz;
 }
 
-/** \brief Creates an OLE string from a Unicode string
+/** \brief [C only] Creates an OLE string from a Unicode string
  *
  * \ingroup group__library__string
  *
@@ -160,7 +160,7 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_create_w(cs_char_w_t const *s)
     return posz;
 }
 
-/** \brief Destroys an OLE string
+/** \brief [C only] Destroys an OLE string
  *
  * \ingroup group__library__string
  *
@@ -173,7 +173,7 @@ STLSOFT_INLINE void comstl__olestring_destroy(LPOLESTR posz)
     STLSOFT_NS_GLOBAL(CoTaskMemFree)(stlsoft_static_cast(LPVOID, posz));
 }
 
-/** \brief Duplicates an OLE string
+/** \brief [C only] Duplicates an OLE string
  *
  * \ingroup group__library__string
  *
@@ -184,6 +184,15 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_dup(LPCOLESTR posz)
 {
     return comstl__olestring_create_w(posz);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

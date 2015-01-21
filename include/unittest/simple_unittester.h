@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:		simple_unittester.h
+ * File:        simple_unittester.h
  *
- * Purpose: 	Simple, command-line unit-testing client.
+ * Purpose:     Simple, command-line unit-testing client.
  *
- * Created: 	13th May 2004
- * Updated: 	18th June 2006
+ * Created:     13th May 2004
+ * Updated:     18th June 2006
  *
- * Home:		http://stlsoft.org/
+ * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
@@ -15,13 +15,13 @@
  * modification, are permitted provided that the following conditions are met:
  *
  * - Redistributions of source code must retain the above copyright notice, this
- *	 list of conditions and the following disclaimer.
+ *   list of conditions and the following disclaimer.
  * - Redistributions in binary form must reproduce the above copyright notice,
- *	 this list of conditions and the following disclaimer in the documentation
- *	 and/or other materials provided with the distribution.
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
  * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
- *	 any contributors may be used to endorse or promote products derived from
- *	 this software without specific prior written permission.
+ *   any contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -46,10 +46,10 @@
 #define STLSOFT_INCL_H_SIMPLE_UNITTESTER
 
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MAJOR		1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MINOR		3
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_REVISION	1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT		15
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MAJOR      1
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_MINOR      3
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_REVISION   1
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       15
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,38 +88,38 @@ namespace unittest
  */
 
 class simple_unittest_host
-	: public unittest_host
+    : public unittest_host
 {
 public:
-	simple_unittest_host();
-	virtual ~simple_unittest_host() stlsoft_throw_0();
+    simple_unittest_host();
+    virtual ~simple_unittest_host() stlsoft_throw_0();
 
 public:
-	virtual ss_uint32_t register_unittest_fn(unittest_function pfn);
-	virtual void deregister_unittest_fn(ss_uint32_t unittestId);
+    virtual ss_uint32_t register_unittest_fn(unittest_function pfn);
+    virtual void deregister_unittest_fn(ss_uint32_t unittestId);
 
 public:
-	static simple_unittest_host *get_host();
-	bool test(bool bVerbose);
+    static simple_unittest_host *get_host();
+    bool test(bool bVerbose);
 
 private:
-	static simple_unittest_host *make_host(void);
+    static simple_unittest_host *make_host(void);
 
 private:
-	size_t	size();
+    size_t  size();
 
 private:
 #ifdef STLSOFT_CF_std_NAMESPACE
-	typedef stlsoft_ns_qual_std(vector)<unittest_function>	functions_t;
+    typedef stlsoft_ns_qual_std(vector)<unittest_function>  functions_t;
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
-	typedef WCValVector<unittest_function>					functions_t;
+    typedef WCValVector<unittest_function>                  functions_t;
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
-	functions_t 	m_functions;
+    functions_t     m_functions;
 };
 
 extern "C" unittest_host *get_unittest_host(void);

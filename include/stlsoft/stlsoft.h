@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th December 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 16
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     286
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    6
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     289
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -166,10 +166,14 @@
 # define _STLSOFT_VER_1_9_1_B27 0x0109011b  /*!< Version 1.9.1 beta 27 (22nd Oct 2006) */
 # define _STLSOFT_VER_1_9_1_B28 0x0109011c  /*!< Version 1.9.1 beta 28 (29th Oct 2006) */
 # define _STLSOFT_VER_1_9_1_B29 0x0109011d  /*!< Version 1.9.1 beta 29 (27th Nov 2006) */
+# define _STLSOFT_VER_1_9_1_B30 0x0109011e  /*!< Version 1.9.1 beta 30 (2nd Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B31 0x0109011f  /*!< Version 1.9.1 beta 31 (6th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B32 0x01090120  /*!< Version 1.9.1 beta 32 (6th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B33 0x01090121  /*!< Version 1.9.1 beta 33 (13th Dec 2006) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B29
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B33
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -441,11 +445,13 @@
 # elif (__WATCOMC__ == 1220)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.2 (Watcom 12.2)"
 # elif (__WATCOMC__ == 1230)
-#  define STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.3 (Watcom 12.3)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.3 (Watcom 12.3)"
 # elif (__WATCOMC__ == 1240)
-#  define STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.3 (Watcom 12.4)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.4 (Watcom 12.4)"
+# elif (__WATCOMC__ == 1260)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.5"
 # else /* ? __WATCOMC__ */
-#  error Currently only versions 11.0 and 12.0 of the Watcom C/C++ compiler is supported by the STLSoft libraries
+#  error Currently only version 11 of Watcom C/C++ and versions 1.0-1.5 of Open Watcom C/C++ are recognised by the STLSoft libraries
 # endif /* __WATCOMC__ */
 
 #elif defined(_MSC_VER)
@@ -1443,7 +1449,8 @@ private:
  *
  * \brief Evaluates to <b>explicit</b> on translators that support the keyword, otherwise to nothing.
  */
-#ifdef STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
+#if defined(STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_explicit_k              explicit
 #else /* ? STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT */
 # define ss_explicit_k
@@ -1453,7 +1460,8 @@ private:
  *
  * \brief Evaluates to <b>mutable</b> on translators that support the keyword, otherwise to nothing.
  */
-#ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+#if defined(STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_mutable_k               mutable
 #else /* ? STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 # define ss_mutable_k
@@ -1465,7 +1473,8 @@ private:
  *
  * Used for template parameter declarations
  */
-#ifdef STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
+#if defined(STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_param_k        typename
 #else /* ? STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT */
 # define ss_typename_param_k        class
@@ -1477,7 +1486,8 @@ private:
  *
  * Used for type disambiguation inside template bodies
  */
-#ifdef STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
+#if defined(STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_type_k         typename
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT */
 # define ss_typename_type_k
@@ -1490,7 +1500,8 @@ private:
  *
  * Used for type disambiguation in default template arguments
  */
-#ifdef STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+#if defined(STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_type_def_k     typename
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
 # define ss_typename_type_def_k
@@ -1503,7 +1514,8 @@ private:
  *
  * Used for type disambiguation inside initialiser lists in class template constructors
  */
-#ifdef STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+#if defined(STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_typename_type_mil_k     typename
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 # define ss_typename_type_mil_k
@@ -1513,7 +1525,8 @@ private:
  *
  * \brief Evaluates to <b>template</b> on translators that support its use for type qualification
  */
-#ifdef STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
+#if defined(STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define ss_template_qual_k         template
 #else /* ? STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT */
 # define ss_template_qual_k
@@ -1570,7 +1583,7 @@ inline void throw_x(X const &x)
 
 #endif /* __cplusplus */
 
-/** \defgroup code_modification_macros Code Modification Macros
+/** \defgroup group__project__stlsoft__code_modification_macros Code Modification Macros
  * \ingroup group__project__stlsoft
  * \brief These macros are used to help out where compiler differences are
  * so great as to cause great disgusting messes in the class/function implementations
@@ -1903,7 +1916,7 @@ inline void stlsoft_destroy_instance_fn(T *p)
  */
 
 /** \def STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND
- * \ingroup code_modification_macros
+ * \ingroup group__project__stlsoft__code_modification_macros
  *
  * \brief Declares a template (class) parameter to be a friend of the template.
  *
@@ -1992,7 +2005,7 @@ inline void stlsoft_destroy_instance_fn(T *p)
  */
 
 /** \def STLSOFT_SUPPRESS_UNUSED
- * \ingroup code_modification_macros
+ * \ingroup group__project__stlsoft__code_modification_macros
  *
  * \brief Used to suppress unused variable warnings
  */
@@ -2035,7 +2048,7 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
 #endif /* compiler */
 
 /** \def STLSOFT_UNNAMED_PARAM
- * \ingroup code_modification_macros
+ * \ingroup group__project__stlsoft__code_modification_macros
  *
  * \brief Used to define an unused parameter for C compilation and/or documentation processing, but not for C++ compilation
  */
@@ -2047,7 +2060,7 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
 #endif /* __cplusplus */
 
 /** \def STLSOFT_SUPPRESS_UNNAMED_PARAM
- * \ingroup code_modification_macros
+ * \ingroup group__project__stlsoft__code_modification_macros
  *
  * \brief Used to suppress unused parameter warnings (in C compilation) for parameters defined by STLSOFT_UNNAMED_PARAM()
  */

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     31st October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>CString</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MAJOR    4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_REVISION 1
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     80
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,9 +96,9 @@ namespace mfcstl_project
  */
 
 /* CString */
-/** \brief \ref section__concept__shims__string_access__c_str_data for CString
+/** \brief \ref group__concept__shim__string_access__c_str_data for CString
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline LPCTSTR c_str_data(const CString &s)
@@ -125,9 +125,9 @@ inline LPCTSTR c_str_data_a(const CString &s)
  */
 
 /* CString */
-/** \brief \ref section__concept__shims__string_access__c_str_len for CString
+/** \brief \ref group__concept__shim__string_access__c_str_len for CString
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ms_size_t c_str_len(const CString &s)
@@ -152,9 +152,9 @@ inline ms_size_t c_str_len_a(const CString &s)
  */
 
 /* CString */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for CString
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for CString
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline LPCTSTR c_str_ptr(const CString &s)
@@ -181,9 +181,9 @@ inline LPCTSTR c_str_ptr_a(const CString &s)
  */
 
 /* CString */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CString
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for CString
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline LPCTSTR c_str_ptr_null(const CString &s)

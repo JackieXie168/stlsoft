@@ -4,7 +4,7 @@
  * Purpose:     String shims for standard time structures.
  *
  * Created:     25th July 2005
- * Updated:     21st October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   standard time structures.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_MINOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_REVISION  3
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_EDIT      12
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,10 +85,10 @@ namespace stlsoft
  * All the struct tm-related conversions assume a format of 20 characters
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -107,10 +107,10 @@ inline basic_shim_string<ss_char_a_t> c_str_data_a(struct tm const *t)
     return s;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style string.
  */
@@ -121,10 +121,10 @@ inline basic_shim_string<ss_char_a_t> c_str_data(struct tm const *t)
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the string <code>s</code>.
  */
@@ -133,10 +133,10 @@ inline ss_size_t c_str_len_a(struct tm const *t)
     return static_cast<ss_size_t>((NULL != t) ? 20 : 0);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length of the string <code>s</code>.
  */
@@ -147,10 +147,10 @@ inline ss_size_t c_str_len(struct tm const *t)
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -160,10 +160,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr_a(struct tm const *t)
     return c_str_data_a(t);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
  *   string.
@@ -175,10 +175,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr(struct tm const *t)
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -188,10 +188,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr_null_a(struct tm const *t)
     return c_str_data_a(t);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
  *   string.
@@ -206,10 +206,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr_null(struct tm const *t)
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -219,10 +219,10 @@ inline basic_shim_string<ss_char_a_t> c_str_data(struct tm const &t)
     return c_str_data(&t);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style string.
  */
@@ -232,10 +232,10 @@ inline basic_shim_string<ss_char_a_t> c_str_data_a(struct tm const &t)
 }
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the string <code>s</code>.
  */
@@ -244,10 +244,10 @@ inline ss_size_t c_str_len_a(struct tm const &t)
     return c_str_len_a(&t);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length of the string <code>s</code>.
  */
@@ -257,10 +257,10 @@ inline ss_size_t c_str_len(struct tm const &t)
 }
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -269,10 +269,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr_a(struct tm const &t)
 {
     return c_str_ptr_a(&t);
 }
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
  *   string.
@@ -283,10 +283,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr(struct tm const &t)
 }
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -295,10 +295,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr_null_a(struct tm const &t)
 {
     return c_str_ptr_null_a(&t);
 }
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct tm</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
  *   string.

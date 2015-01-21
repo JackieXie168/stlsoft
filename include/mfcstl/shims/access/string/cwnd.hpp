@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     13th September 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>CWnd</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    2
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        79
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -230,7 +230,7 @@ inline ms_size_t GetWindowText__(CListView const &w, LPTSTR buffer, ms_size_t cc
  * c_str_ptr_null() function, such that the window text of a given window
  * may be accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_ptr_null_CWnd_proxy
@@ -316,7 +316,7 @@ private:
  * c_str_ptr() function, such that the window text of a given window may be
  * accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_ptr_CWnd_proxy
@@ -460,9 +460,9 @@ inline S &operator <<(S & s, c_str_ptr_CWnd_proxy const &shim)
  */
 
 /* CWnd */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CWnd
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for CWnd
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CWnd const &w)
@@ -478,9 +478,9 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CWnd const &w)
     return c_str_ptr_null(w);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CListBox
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for CListBox
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CListBox const &w)
@@ -497,9 +497,9 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CListBox const &w)
 }
 
 #ifdef __AFXCMN_H__
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CListCtrl
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for CListCtrl
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CListCtrl const &w)
@@ -516,9 +516,9 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CListCtrl const &w)
 }
 
 # ifdef __AFXCVIEW_H__
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CListView
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for CListView
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CListView const &w)
@@ -544,9 +544,9 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CListView const &w)
  */
 
 /* CWnd */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for CWnd
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for CWnd
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_ptr(CWnd const &w)
@@ -562,9 +562,9 @@ inline c_str_ptr_CWnd_proxy c_str_ptr_a(CWnd const &w)
     return c_str_ptr(w);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for CListBox
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for CListBox
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_ptr(CListBox const &w)
@@ -581,9 +581,9 @@ inline c_str_ptr_CWnd_proxy c_str_ptr_a(CListBox const &w)
 }
 
 #ifdef __AFXCMN_H__
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for CListCtrl
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for CListCtrl
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_ptr(CListCtrl const &w)
@@ -600,9 +600,9 @@ inline c_str_ptr_CWnd_proxy c_str_ptr_a(CListCtrl const &w)
 }
 
 # ifdef __AFXCVIEW_H__
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for CListView
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for CListView
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_ptr(CListView const &w)
@@ -628,9 +628,9 @@ inline c_str_ptr_CWnd_proxy c_str_ptr_a(CListView const &w)
  */
 
 /* CWnd */
-/** \brief \ref section__concept__shims__string_access__c_str_data for CWnd
+/** \brief \ref group__concept__shim__string_access__c_str_data for CWnd
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_data(CWnd const &w)
@@ -646,9 +646,9 @@ inline c_str_ptr_CWnd_proxy c_str_data_a(CWnd const &w)
     return c_str_data(w);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for CListBox
+/** \brief \ref group__concept__shim__string_access__c_str_data for CListBox
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_data(CListBox const &w)
@@ -665,9 +665,9 @@ inline c_str_ptr_CWnd_proxy c_str_data_a(CListBox const &w)
 }
 
 #ifdef __AFXCMN_H__
-/** \brief \ref section__concept__shims__string_access__c_str_data for CListCtrl
+/** \brief \ref group__concept__shim__string_access__c_str_data for CListCtrl
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_data(CListCtrl const &w)
@@ -684,9 +684,9 @@ inline c_str_ptr_CWnd_proxy c_str_data_a(CListCtrl const &w)
 }
 
 # ifdef __AFXCVIEW_H__
-/** \brief \ref section__concept__shims__string_access__c_str_data for CListView
+/** \brief \ref group__concept__shim__string_access__c_str_data for CListView
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWnd_proxy c_str_data(CListView const &w)
@@ -712,9 +712,9 @@ inline c_str_ptr_CWnd_proxy c_str_data_a(CListView const &w)
  */
 
 /* CWnd */
-/** \brief \ref section__concept__shims__string_access__c_str_len for CWnd
+/** \brief \ref group__concept__shim__string_access__c_str_len for CWnd
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ms_size_t c_str_len(CWnd const &w)
@@ -732,9 +732,9 @@ inline ms_size_t c_str_len_a(CWnd const &w)
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for CListBox
+/** \brief \ref group__concept__shim__string_access__c_str_len for CListBox
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ms_size_t c_str_len(CListBox const &w)
@@ -754,9 +754,9 @@ inline ms_size_t c_str_len_a(CListBox const &w)
 
 
 #ifdef __AFXCMN_H__
-/** \brief \ref section__concept__shims__string_access__c_str_len for CListCtrl
+/** \brief \ref group__concept__shim__string_access__c_str_len for CListCtrl
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ms_size_t c_str_len(const CListCtrl &w)
@@ -776,9 +776,9 @@ inline ms_size_t c_str_len_a(CListCtrl const &w)
 
 
 # ifdef __AFXCVIEW_H__
-/** \brief \ref section__concept__shims__string_access__c_str_len for CListView
+/** \brief \ref group__concept__shim__string_access__c_str_len for CListView
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ms_size_t c_str_len(CListView const &w)

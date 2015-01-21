@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     15th September 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       3
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        64
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,11 +133,11 @@ namespace winstl_project
   assert(0 == ::strcmp("No Access!", ed1.c_str()));
 \endcode
  *
- * \note Naturally, \ref group__concepts__shims__string_access "String Access
- *  Shim" functions <b>c_str_ptr</b>, <b>c_str_data</b>, <b>c_str_len</b>
- *  are defined for the class template, so it may be manipulated
- *  generically. (This is very handy when used with the
- *  <a href = "http://pantheios.org/">Pantheios</a> logging library.)
+ * \note Naturally, \ref group__concept__shim__string_access "String Access Shim"
+ *   functions <b>c_str_ptr(_a/_w)</b>, <b>c_str_data(_a/_w)</b>, <b>c_str_len(_a/_w)</b>
+ *   are defined for the class template, so it may be manipulated
+ *   generically. (This is very handy when used with the
+ *   <a href = "http://pantheios.org/">Pantheios</a> logging library.)
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T = system_traits<C>
@@ -268,17 +268,17 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Instantiation of the basic_error_desc template for the ANSI character type \c char
+/** \brief Specialisation of the basic_error_desc template for the ANSI character type \c char
  *
  * \ingroup group__library__error
  */
 typedef basic_error_desc<ws_char_a_t>   error_desc_a;
-/** \brief Instantiation of the basic_error_desc template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_error_desc template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__error
  */
 typedef basic_error_desc<ws_char_w_t>   error_desc_w;
-/** \brief Instantiation of the basic_error_desc template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_error_desc template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__error
  */
@@ -446,9 +446,9 @@ inline ss_typename_type_k basic_error_desc<C, T>::size_type basic_error_desc<C, 
 
 #ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for winstl::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -476,9 +476,9 @@ inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(basic_error_desc)<ws_c
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for winstl::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -500,9 +500,9 @@ inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(basic_error_desc)<ws_char_w
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_data for winstl::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -524,9 +524,9 @@ inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(basic_error_desc)<ws_char_
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_len for winstl::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -552,9 +552,9 @@ inline ws_size_t c_str_len_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> co
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__pointer_access__get_ptr for winstl::basic_error_desc
+/** \brief \ref group__concept__shim__pointer_attribute__get_ptr for winstl::basic_error_desc
  *
- * \ingroup group__concept__shims__pointer_access
+ * \ingroup group__concept__shim__pointer_attribute
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -565,9 +565,9 @@ inline C const *get_ptr(winstl_ns_qual(basic_error_desc)<C, T> const &e)
 }
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::basic_error_desc
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for winstl::basic_error_desc
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

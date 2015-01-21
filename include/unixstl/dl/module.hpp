@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     18th October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     206
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     207
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -140,7 +140,7 @@ public:
     ///
     /// \param moduleName The file name of the executable module to be
     ///   loaded. The argument may be of any type for which the
-    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   \ref group__concept__shim__string_access "string access shim"
     ///   stlsoft::c_str_ptr is defined.
     ///
     /// \note If exception-handling is being used, then this throws a
@@ -185,7 +185,7 @@ public:
     ///
     /// \param moduleName The file name of the executable module to be
     ///   loaded. The argument may be of any type for which the
-    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   \ref group__concept__shim__string_access "string access shim"
     ///   stlsoft::c_str_ptr is defined.
     ///
     /// \return The module handle, or NULL if no matching module found.
@@ -273,7 +273,7 @@ private:
 
 /** \brief Returns the module handle for the given module
  *
- * \ingroup group__concept__shims__module_attribute
+ * \ingroup group__concept__shim__module_attribute
  */
 inline void *get_module_handle(unixstl_ns_qual(module) const &m)
 {

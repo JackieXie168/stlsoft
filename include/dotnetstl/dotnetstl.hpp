@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     7th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 2
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     38
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp \brief [C++ only; requires C++.NET compiler] The root header for the \ref group__project__dotnetstl ".netSTL" project. */
@@ -372,14 +372,8 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ds_streamoff_t; //!< streamoff
 # define dotnetstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)  stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param ar An array whose dimension is to be evaluated
- */
-#define DOTNETSTL_NUM_ELEMENTS(ar)                          STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define DOTNETSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 # define dotnetstl_num_elements(ar)                         DOTNETSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

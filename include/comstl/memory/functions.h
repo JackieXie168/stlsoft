@@ -4,7 +4,7 @@
  * Purpose:     COM memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     15th September 2006
+ * Updated:     9th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     0
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  3
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      42
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     1
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  1
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -96,10 +96,7 @@ namespace comstl_project
  * C functions
  */
 
-/* CoTaskMemGetSize, CoTaskMemDidAlloc & CoTaskMemHeapMinimise
- */
-
-/** \brief [C, C++] Gives the size of a memory block
+/** \brief [C only] Gives the size of a memory block
  *
  * \ingroup group__library__memory
  *
@@ -109,7 +106,8 @@ namespace comstl_project
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
  *
- * \note This function is C-compatible
+ * \note [C++] This function is wrapped by the comstl::CoTaskMemGetSize()
+ *   function.
  */
 STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
 {
@@ -124,13 +122,14 @@ STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
     }
     else
     {
+        STLSOFT_NS_GLOBAL(SetLastError)(hr);
         ulRet = 0;
     }
 
     return ulRet;
 }
 
-/** \brief [C, C++] Determines allocation ownership of a memory block
+/** \brief [C only] Determines allocation ownership of a memory block
  *
  * \ingroup group__library__memory
  *
@@ -143,7 +142,8 @@ STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
  * \retval 0 The memory block was <i>not</i> allocated by the task allocator
  * \retval -1 CoTaskMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
  *
- * \note This function is C-compatible
+ * \note [C++] This function is wrapped by the comstl::CoTaskMemDidAlloc()
+ *   function.
  */
 STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
 {
@@ -158,13 +158,14 @@ STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
     }
     else
     {
+        STLSOFT_NS_GLOBAL(SetLastError)(hr);
         iRet = -1;
     }
 
     return iRet;
 }
 
-/** \brief [C, C++] Minimises the heap
+/** \brief [C only] Minimises the heap
  *
  * \ingroup group__library__memory
  *
@@ -172,18 +173,33 @@ STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
  * memory to the operating system, coalescing adjacent free blocks and
  * committing free pages, as as per <code>IMalloc::HeapMinimize()</code>.
  *
- * \note This function is C-compatible
+ * \note [C++] This function is wrapped by the comstl::CoTaskMemHeapMinimise()
+ *   function.
  */
 STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
 {
     LPMALLOC    lpmalloc;
+    HRESULT     hr  =   STLSOFT_NS_GLOBAL(CoGetMalloc)(MEMCTX_TASK, &lpmalloc);
 
-    if(SUCCEEDED(STLSOFT_NS_GLOBAL(CoGetMalloc)(MEMCTX_TASK, &lpmalloc)))
+    if(SUCCEEDED(hr))
     {
         COMSTL_ITF_CALL(lpmalloc)->HeapMinimize(COMSTL_ITF_THIS0(lpmalloc));
         COMSTL_ITF_CALL(lpmalloc)->Release(COMSTL_ITF_THIS0(lpmalloc));
     }
+    else
+    {
+        STLSOFT_NS_GLOBAL(SetLastError)(hr);
+    }
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -195,8 +211,7 @@ STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
  *
  * \ingroup group__library__memory
  *
- * This function returns the size of a memory block relative to the COM task
- * alloctor, as per <code>IMalloc::GetSize()</code>
+ * This function is a wrapper for comstl__CoTaskMemGetSize().
  *
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
@@ -210,8 +225,7 @@ inline cs_size_t CoTaskMemGetSize(void *pv)
  *
  * \ingroup group__library__memory
  *
- * This function returns a value indicating whether a memory block was allocated
- * by the COM task allocator, as per <code>IMalloc::DidAlloc()</code>
+ * This function is a wrapper for comstl__CoTaskMemDidAlloc().
  *
  * \param pv Pointer to the memory block
  * \return Result indicating ownership
@@ -228,9 +242,7 @@ inline cs_sint_t CoTaskMemDidAlloc(void *pv)
  *
  * \ingroup group__library__memory
  *
- * This function minimises the heap as much as possible by releasing unused
- * memory to the operating system, coalescing adjacent free blocks and
- * committing free pages, as as per <code>IMalloc::HeapMinimize()</code>.
+ * This function is a wrapper for comstl__CoTaskMemHeapMinimise().
  */
 inline void CoTaskMemHeapMinimise()
 {
@@ -241,9 +253,7 @@ inline void CoTaskMemHeapMinimise()
  *
  * \ingroup group__library__memory
  *
- * This function minimises the heap as much as possible by releasing unused
- * memory to the operating system, coalescing adjacent free blocks and
- * committing free pages, as as per <code>IMalloc::HeapMinimize()</code>.
+ * This function is a wrapper for comstl__CoTaskMemHeapMinimise().
  */
 inline void CoTaskMemHeapMinimize()
 {

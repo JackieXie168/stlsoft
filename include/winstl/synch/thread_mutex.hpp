@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on Windows CRITICAL_SECTION.
  *
  * Created:     17th December 1996
- * Updated:     23rd September 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MINOR     0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      44
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -213,7 +213,7 @@ private:
 
 /** \brief This \ref group__concept__shims "control shim" aquires a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to aquire the lock.
  */
@@ -224,7 +224,7 @@ inline void lock_instance(winstl_ns_qual(thread_mutex) &mx)
 
 /** \brief This \ref group__concept__shims "control shim" releases a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to release the lock
  */

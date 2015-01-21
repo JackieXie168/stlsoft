@@ -4,7 +4,7 @@
  * Purpose:     Error info functions.
  *
  * Created:     5th Feburary 2004
- * Updated:     4th July 2006
+ * Updated:     9th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    1
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     33
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,9 +69,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -229,9 +229,11 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_a_(   cs_char_a_t const   *descrip
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Sets the description of the current error object to the given Unicode string
+/** \brief [C only] Sets the description of the current error object to the given Unicode string
  *
  * \ingroup group__library__error
+ *
+ * \see comstl::set_error_info_description
  */
 STLSOFT_INLINE HRESULT comstl__set_error_info_description_w(cs_char_w_t const *description)
 {
@@ -240,9 +242,11 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_w(cs_char_w_t const *d
     return comstl__set_error_info_w_(description, NULL, NULL, NULL, NULL);
 }
 
-/** \brief Sets the description of the current error object to the given ANSI string
+/** \brief [C only] Sets the description of the current error object to the given ANSI string
  *
  * \ingroup group__library__error
+ *
+ * \see comstl::set_error_info_description
  */
 STLSOFT_INLINE HRESULT comstl__set_error_info_description_a(cs_char_a_t const *description)
 {
@@ -251,9 +255,11 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_a(cs_char_a_t const *d
     return comstl__set_error_info_a_(description, NULL, NULL, NULL, NULL);
 }
 
-/** \brief Sets the description and source of the current error object to the given Unicode strings
+/** \brief [C only] Sets the description and source of the current error object to the given Unicode strings
  *
  * \ingroup group__library__error
+ *
+ * \see comstl::set_error_info_description_and_source
  */
 STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_w(cs_char_w_t const *description, cs_char_w_t const *source)
 {
@@ -263,9 +269,11 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_w(cs_char_w
     return comstl__set_error_info_w_(description, source, NULL, NULL, NULL);
 }
 
-/** \brief Sets the description and source of the current error object to the given ANSI strings
+/** \brief [C only] Sets the description and source of the current error object to the given ANSI strings
  *
  * \ingroup group__library__error
+ *
+ * \see comstl::set_error_info_description_and_source
  */
 STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_a(cs_char_a_t const *description, cs_char_a_t const *source)
 {
@@ -275,9 +283,11 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_a(cs_char_a
     return comstl__set_error_info_a_(description, source, NULL, NULL, NULL);
 }
 
-/** \brief Sets the description, source, interface ID and help information of the current error object
+/** \brief [C only] Sets the description, source, interface ID and help information of the current error object
  *
  * \ingroup group__library__error
+ *
+ * \see comstl::set_error_info
  */
 STLSOFT_INLINE HRESULT comstl__set_error_info_w(cs_char_w_t const   *description
                                             ,   cs_char_w_t const   *source
@@ -292,9 +302,11 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_w(cs_char_w_t const   *description
     return comstl__set_error_info_w_(description, source, COMSTL_REF_2_PTR(guid), helpFile, &helpContext);
 }
 
-/** \brief Sets the description, source, interface ID and help information of the current error object
+/** \brief [C only] Sets the description, source, interface ID and help information of the current error object
  *
  * \ingroup group__library__error
+ *
+ * \see comstl::set_error_info
  */
 STLSOFT_INLINE HRESULT comstl__set_error_info_a(cs_char_a_t const   *description
                                             ,   cs_char_a_t const   *source
@@ -308,6 +320,15 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_a(cs_char_a_t const   *description
 
     return comstl__set_error_info_a_(description, source, COMSTL_REF_2_PTR(guid), helpFile, &helpContext);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

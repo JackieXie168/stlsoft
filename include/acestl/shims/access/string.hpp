@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE classes.
  *
  * Created:     2nd December 2004
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Primary include file for string access shims representing
  *   ACE types.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef ACESTL_INCL_SHIMS_ACCESS_HPP_STRING
@@ -52,7 +52,7 @@
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_MAJOR      2
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_MINOR      0
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_REVISION   1
-# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_EDIT       7
+# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

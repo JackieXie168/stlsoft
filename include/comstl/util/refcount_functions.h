@@ -4,7 +4,7 @@
  * Purpose:     Reference-counting helper functions.
  *
  * Created:     25th June 2002
- * Updated:     7th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/util/refcount_functions.h
  *
  * \brief [C++ only; requires COM] Reference-counting helper functions.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MAJOR      4
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MINOR      0
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   2
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       52
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MINOR      1
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   1
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -88,9 +88,9 @@ namespace comstl_project
  * C functions
  */
 
-/** \brief Adds a reference on the interface pointer
+/** \brief [C only] Adds a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  */
@@ -99,9 +99,9 @@ STLSOFT_INLINE void comstl__addref(LPUNKNOWN punk)
     COMSTL_ITF_CALL(punk)->AddRef(COMSTL_ITF_THIS0(punk));
 }
 
-/** \brief Releases a reference on the interface pointer
+/** \brief [C only] Releases a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to release the reference. Cannot be null
  */
@@ -110,9 +110,9 @@ STLSOFT_INLINE void comstl__release(LPUNKNOWN punk)
     COMSTL_ITF_CALL(punk)->Release(COMSTL_ITF_THIS0(punk));
 }
 
-/** \brief Adds a reference on the interface pointer
+/** \brief [C only] Adds a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to add the reference. Can be null
  */
@@ -124,9 +124,9 @@ STLSOFT_INLINE void comstl__safe_addref(LPUNKNOWN punk)
     }
 }
 
-/** \brief Releases a reference on the interface pointer
+/** \brief [C only] Releases a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to release the reference. Can be null
  */
@@ -139,6 +139,15 @@ STLSOFT_INLINE void comstl__safe_release(LPUNKNOWN punk)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -146,7 +155,7 @@ STLSOFT_INLINE void comstl__safe_release(LPUNKNOWN punk)
 
 /** \brief Adds a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  */
@@ -157,7 +166,7 @@ inline void addref(LPUNKNOWN punk)
 
 /** \brief Releases a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to release the reference. Cannot be null
  */
@@ -168,7 +177,7 @@ inline void release(LPUNKNOWN punk)
 
 /** \brief Adds a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to add the reference. Can be null
  */
@@ -179,7 +188,7 @@ inline void safe_addref(LPUNKNOWN punk)
 
 /** \brief Releases a reference on the interface pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param punk The interface pointer on which to release the reference. Can be null
  */
@@ -190,7 +199,7 @@ inline void safe_release(LPUNKNOWN punk)
 
 /** \brief Releases a reference on the interface pointer, and resets the pointer
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param pt The interface pointer on which to release the reference. Can be null
  */

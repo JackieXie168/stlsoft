@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     31st October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     75
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -417,9 +417,9 @@ typedef w2a                             w2t;
  * Shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for winstl::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -440,9 +440,9 @@ inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(multibyte2wide)<CCH> c
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for winstl::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -462,9 +462,9 @@ inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(multibyte2wide)<CCH> const 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_data for winstl::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -484,9 +484,9 @@ inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(multibyte2wide)<CCH> const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_len for winstl::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -508,9 +508,9 @@ inline ws_size_t c_str_len_w(winstl_ns_qual(multibyte2wide)<CCH> const &b)
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for winstl::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -530,9 +530,9 @@ inline ws_char_a_t const *c_str_ptr_null_a(winstl_ns_qual(wide2multibyte)<CCH> c
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for winstl::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -552,9 +552,9 @@ inline ws_char_a_t const *c_str_ptr_a(winstl_ns_qual(wide2multibyte)<CCH> const 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_data for winstl::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -574,9 +574,9 @@ inline ws_char_a_t const *c_str_data_a(winstl_ns_qual(wide2multibyte)<CCH> const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_len for winstl::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ws_size_t   CCH
         >
@@ -599,9 +599,9 @@ inline ws_size_t c_str_len_a(winstl_ns_qual(wide2multibyte)<CCH> const &b)
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::multibyte2wide
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for winstl::multibyte2wide
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ws_size_t   CCH
@@ -613,9 +613,9 @@ inline S &operator <<(S & s, winstl_ns_qual(multibyte2wide)<CCH> const &b)
     return s;
 }
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::wide2multibyte
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for winstl::wide2multibyte
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ws_size_t   CCH

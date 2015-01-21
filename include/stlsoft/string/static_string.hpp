@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     18th October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     177
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     178
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -816,9 +816,9 @@ inline ss_char_w_t const *c_str_ptr_null_w(stlsoft_ns_qual(basic_static_string)<
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::basic_static_string
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::basic_static_string
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
@@ -844,9 +844,9 @@ inline ss_char_w_t const *c_str_ptr_w(stlsoft_ns_qual(basic_static_string)<ss_ch
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::basic_static_string
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::basic_static_string
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
@@ -872,9 +872,9 @@ inline ss_char_w_t const *c_str_data_w(stlsoft_ns_qual(basic_static_string)<ss_c
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::basic_static_string
+/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::basic_static_string
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
@@ -902,9 +902,9 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual(basic_static_string)<ss_char_w_t, C
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::basic_static_string
+/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::basic_static_string
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
@@ -919,9 +919,9 @@ inline ss_size_t c_str_len(stlsoft_ns_qual(basic_static_string)<C, CCH, T> const
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for stlsoft::basic_static_string
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for stlsoft::basic_static_string
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k     S
         ,   ss_typename_param_k     C

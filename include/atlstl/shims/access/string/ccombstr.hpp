@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>CComBSTR</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MAJOR       4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MINOR       0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_REVISION    1
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        90
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,9 +101,9 @@ namespace atlstl_project
  * pointer to the character string or to an empty string.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for CComBSTR
+/** \brief \ref group__concept__shim__string_access__c_str_data for CComBSTR
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline LPCOLESTR c_str_data(atlstl_ns_qual_atl(CComBSTR) const &s)
@@ -127,9 +127,9 @@ inline LPCOLESTR c_str_data_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 
 /* CComBSTR */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for CComBSTR
+/** \brief \ref group__concept__shim__string_access__c_str_len for CComBSTR
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline as_size_t c_str_len(atlstl_ns_qual_atl(CComBSTR) const &s)
@@ -153,9 +153,9 @@ inline as_size_t c_str_len_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 
 /* CComBSTR */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for CComBSTR
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for CComBSTR
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline LPCOLESTR c_str_ptr(atlstl_ns_qual_atl(CComBSTR) const &s)
@@ -180,9 +180,9 @@ inline LPCOLESTR c_str_ptr_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 
 /* CComBSTR */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CComBSTR
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for CComBSTR
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline LPCOLESTR c_str_ptr_null(atlstl_ns_qual_atl(CComBSTR) const &s)

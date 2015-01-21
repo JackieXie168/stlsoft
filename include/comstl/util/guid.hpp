@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     18th October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/util/guid.hpp
  *
  * \brief [C++ only; requires COM] Definition of the comstl::guid class.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_COMSTL_GUID
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       35
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ namespace comstl_project
 
 /** \brief Facade for the COM GUID type
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 class guid
 {
@@ -218,9 +218,9 @@ private:
  * String access shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for comstl::guid
+/** \brief \ref group__concept__shim__string_access__c_str_data for comstl::guid
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(comstl_ns_qual(guid) const &g)
 {
@@ -246,9 +246,9 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(comstl_ns_qual(guid) const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for comstl::guid
+/** \brief \ref group__concept__shim__string_access__c_str_len for comstl::guid
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline size_t c_str_len(comstl_ns_qual(guid) const &g)
 {
@@ -274,9 +274,9 @@ inline size_t c_str_len_o(comstl_ns_qual(guid) const &g)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for comstl::guid
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for comstl::guid
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(comstl_ns_qual(guid) const &g)
 {
@@ -302,9 +302,9 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_o(comstl_ns_qual(guid) const 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for comstl::guid
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for comstl::guid
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(comstl_ns_qual(guid) const &g)
 {

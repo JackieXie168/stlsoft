@@ -334,7 +334,7 @@ inline pid_sequence::pid_sequence(ws_uint32_t flags)
         }
         else
         {
-            const size_type	n = cbReturned / sizeof(value_type);
+            const size_type n = cbReturned / sizeof(value_type);
 
             if(n < m_pids.size())
             {

@@ -4,7 +4,7 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     13th September 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       36
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_REVISION   4
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,14 +86,15 @@ namespace stlsoft
  * Functions
  */
 
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 typedef ss_sint64_t         literal_cast_int_t;
 typedef ss_uint64_t         invalid_int_t;
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+# else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 typedef ss_sint32_t         literal_cast_int_t;
 typedef ss_uint32_t         invalid_int_t;
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
+# endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #if 0
 template<   ss_typename_param_k T
@@ -130,8 +131,8 @@ inline T literal_cast()
  *
 \htmlonly
 <pre>
-  short s1 = stlsoft::literal_cast<short, 10>();          // Ok: 10 fits into short
-  short s2 = stlsoft::literal_cast<short, 1000000000>();  // Compile error: value too large for short
+  short s1 = stlsoft::<b>literal_cast</b>&lt;short, 10>();          // Ok: 10 fits into short
+  short s2 = stlsoft::<b>literal_cast</b>&lt;short, 1000000000>();  // Compile error: value too large for short
 </pre>
 \endhtmlonly
  *

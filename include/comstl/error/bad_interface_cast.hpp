@@ -4,7 +4,7 @@
  * Purpose:     Exception thrown when interface casts fail.
  *
  * Created:     22nd December 2003
- * Updated:     6th December 2006
+ * Updated:     8th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MAJOR       5
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MINOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_REVISION    1
-# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        26
+# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,7 +147,7 @@ public:
         return m_riid;
     }
 
-    /// \brief Equivalent to hr()
+    /// \brief [DEPRECATED] Equivalent to hr()
     ///
     /// \deprecated
     HRESULT     hresult() const stlsoft_throw_0()

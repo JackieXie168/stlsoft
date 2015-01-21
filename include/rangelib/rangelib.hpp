@@ -4,7 +4,7 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     31st August 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,7 +45,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    2
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 3
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     19
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp

@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     13th September 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     54
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -240,8 +240,8 @@ private:
   // This assumes sizeof(int) == sizeof(short*)
 
   short  *ps;
-  int    i = stlsoft::union_cast&lt;int>(ps);    // Ok: same size
-  double d = stlsoft::union_cast&lt;double>(ps); // Compile error: different size
+  int    i = stlsoft::<b>union_cast</b>&lt;int>(ps);    // Ok: same size
+  double d = stlsoft::<b>union_cast</b>&lt;double>(ps); // Compile error: different size
 </pre>
 \endhtmlonly
  */
@@ -253,9 +253,7 @@ inline union_caster<TO, FROM, true> union_cast(FROM const from, ss_bool_t bCheck
     return union_caster<TO, FROM, true>(from, bCheckAlign);
 }
 
-/** \brief A powerful cast operator that limits the danger of
- *   reinterpret_cast, while avoiding the spurious warnings issued by some
- *   compilers.
+/** \brief [DEPRECATED] Synonym for stlsoft::union_cast().
  *
  * \ingroup group__library__conversion
  *

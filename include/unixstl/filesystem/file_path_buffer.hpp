@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     14th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       50
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -322,17 +322,17 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+/** \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
 typedef basic_file_path_buffer<us_char_a_t, stlsoft_ns_qual(allocator_selector)<us_char_a_t>::allocator_type>   file_path_buffer_a;
-/** \brief Instantiation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__file_system
  */
 typedef basic_file_path_buffer<us_char_w_t, stlsoft_ns_qual(allocator_selector)<us_char_w_t>::allocator_type>   file_path_buffer_w;
-/** \brief Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+/** \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
@@ -398,9 +398,9 @@ inline us_char_w_t const *c_str_data_w(unixstl_ns_qual(basic_file_path_buffer)<u
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for unixstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_data for unixstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -426,9 +426,9 @@ inline us_size_t c_str_len_w(unixstl_ns_qual(basic_file_path_buffer)<us_char_w_t
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for unixstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_len for unixstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -454,9 +454,9 @@ inline us_char_w_t const *c_str_ptr_w(unixstl_ns_qual(basic_file_path_buffer)<us
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for unixstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for unixstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -483,9 +483,9 @@ inline us_char_w_t const *c_str_ptr_null_w(unixstl_ns_qual(basic_file_path_buffe
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for unixstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for unixstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -498,9 +498,9 @@ inline C const *c_str_ptr_null(unixstl_ns_qual(basic_file_path_buffer)<C, A> con
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for unixstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for unixstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

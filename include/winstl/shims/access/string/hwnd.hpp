@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     16th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>HWND</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        101
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -273,7 +273,7 @@ inline ws_size_t GetWindowTextW__(HWND hwnd, ws_char_w_t *buffer, ws_size_t cchB
  * c_str_ptr_null() function, such that the window text of a given window may be
  * accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k C>
@@ -377,7 +377,7 @@ inline ws_size_t c_str_ptr_null_HWND_proxy<ws_char_w_t>::get_window_text(HWND h,
  * c_str_ptr() function, such that the window text of a given window may be
  * accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k C>
@@ -517,9 +517,9 @@ inline c_str_ptr_HWND_proxy<ws_char_w_t> c_str_data_w(HWND h)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for HWND
+/** \brief \ref group__concept__shim__string_access__c_str_data for HWND
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_HWND_proxy<TCHAR> c_str_data(HWND h)
@@ -549,9 +549,9 @@ inline ws_size_t c_str_len_w(HWND h)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for HWND
+/** \brief \ref group__concept__shim__string_access__c_str_len for HWND
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ws_size_t c_str_len(HWND h)
@@ -581,9 +581,9 @@ inline c_str_ptr_HWND_proxy<ws_char_w_t> c_str_ptr_w(HWND h)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for HWND
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for HWND
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_HWND_proxy<TCHAR> c_str_ptr(HWND h)
@@ -613,9 +613,9 @@ inline c_str_ptr_null_HWND_proxy<ws_char_w_t> c_str_ptr_null_w(HWND h)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for HWND
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for HWND
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_null_HWND_proxy<TCHAR> c_str_ptr_null(HWND h)

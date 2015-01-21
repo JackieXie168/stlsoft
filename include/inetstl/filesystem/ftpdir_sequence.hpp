@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     18th January 2006
- * Updated:     16th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MAJOR      2
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MINOR      0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_REVISION   1
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       13
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -267,7 +267,7 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
+/** \brief Specialisation of the basic_findfile_sequence template for the ANSI character type \c char
  *
  *
  */
@@ -279,7 +279,7 @@ typedef basic_ftpdir_sequence<is_char_a_t
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   filesystem_traits<is_char_a_t>
                             >                                                   ftpdir_sequence_a;
-/** \brief Instantiation of the basic_ftpdir_sequence template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_ftpdir_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__file_system
  */
@@ -291,7 +291,7 @@ typedef basic_ftpdir_sequence<is_char_w_t
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   filesystem_traits<is_char_w_t>
                             >                                                   ftpdir_sequence_w;
-/** \brief Instantiation of the basic_ftpdir_sequence template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_ftpdir_sequence template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__file_system
  */

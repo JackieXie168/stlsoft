@@ -4,7 +4,7 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     18th October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       5
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    2
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        18
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -292,9 +292,9 @@ inline cs_char_o_t const *c_str_data_o(comstl_ns_qual(errorinfo_desc) const &eid
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for errorinfo_desc
+/** \brief \ref group__concept__shim__string_access__c_str_data for errorinfo_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline LPCTSTR c_str_data(comstl_ns_qual(errorinfo_desc) const &eid)
 {
@@ -321,9 +321,9 @@ inline cs_size_t c_str_len_o(comstl_ns_qual(errorinfo_desc) const &eid)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for errorinfo_desc
+/** \brief \ref group__concept__shim__string_access__c_str_len for errorinfo_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline cs_size_t c_str_len(comstl_ns_qual(errorinfo_desc) const &eid)
 {
@@ -351,9 +351,9 @@ inline cs_char_o_t const *c_str_ptr_o(comstl_ns_qual(errorinfo_desc) const &eid)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for errorinfo_desc
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for errorinfo_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline LPCTSTR c_str_ptr(comstl_ns_qual(errorinfo_desc) const &eid)
 {
@@ -380,9 +380,9 @@ inline cs_char_o_t const *c_str_ptr_null_o(comstl_ns_qual(errorinfo_desc) const 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for errorinfo_desc
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for errorinfo_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline LPCTSTR c_str_ptr_null(comstl_ns_qual(errorinfo_desc) const &eid)
 {

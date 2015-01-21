@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     27th August 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,17 +41,25 @@
 
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 #define COMSTL_INCL_COMSTL_H_COMSTL
-#define COMSTL_INCL_H_COMSTL    /* Define the old header include guard */
+/** \brief Defined for backward-compatiblity
+ * 
+ * This is the old header include guard, from when comstl.h was in the
+ * STLSoft root include directory
+ */
+#define COMSTL_INCL_H_COMSTL
 
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    3
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        90
+# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       4
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file comstl/comstl.h \brief [C, C++] The root header for the \ref group__project__comstl "COMSTL" project. */
+/** \file comstl/comstl.h
+ *
+ * \brief [C, C++; requires COM] The root header for the \ref group__project__comstl "COMSTL" project.
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * COMSTL version
@@ -88,24 +96,34 @@
  */
 
 /** \def _COMSTL_VER_MAJOR
- * The major version number of COMSTL
+ *
+ * \brief The major version number of COMSTL
+ *
+ * This number is subject to increment when changes to COMSTL are so
+ * substantial as to require wholesale changes to application code.
  */
 
 /** \def _COMSTL_VER_MINOR
- * The minor version number of COMSTL
+ *
+ * \brief The minor version number of COMSTL
+ *
+ * This number is subject to increment when changes to COMSTL as so
+ * substantial as to require wholesale changes to application code.
  */
 
 /** \def _COMSTL_VER_REVISION
- * The revision version number of COMSTL
+ *
+ * \brief The revision version number of COMSTL
  */
 
 /** \def _COMSTL_VER
- * The current composite version number of COMSTL
+ *
+ * \brief The current composite version number of COMSTL
  */
 
 #define _COMSTL_VER_MAJOR       1
-#define _COMSTL_VER_MINOR       6
-#define _COMSTL_VER_REVISION    2
+#define _COMSTL_VER_MINOR       7
+#define _COMSTL_VER_REVISION    1
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _COMSTL_VER_1_1_1      0x00010101  /*!< Version 1.1.1 */
@@ -122,9 +140,10 @@
 # define _COMSTL_VER_1_5_4      0x00010504  /*!< Version 1.5.4 */
 # define _COMSTL_VER_1_6_1      0x00010601  /*!< Version 1.6.1 */
 # define _COMSTL_VER_1_6_2      0x00010602  /*!< Version 1.6.2 */
+# define _COMSTL_VER_1_7_1      0x00010701  /*!< Version 1.7.1 */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _COMSTL_VER             _COMSTL_VER_1_6_2
+#define _COMSTL_VER             _COMSTL_VER_1_7_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -221,7 +240,7 @@
 
 /** \brief Defines a runtime assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__project__comstl__assertion_macros
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
@@ -229,7 +248,7 @@
 
 /** \brief Defines a runtime assertion, with message
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__project__comstl__assertion_macros
  *
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
@@ -238,7 +257,7 @@
 
 /** \brief Defines a compile-time assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__project__comstl__assertion_macros
  *
  * \param expr Must be non-zero, or compilation will fail
  */
@@ -412,8 +431,17 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define comstl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Language agnostic macros.
+ */
+
 /** \def COMSTL_ITF_CALL(p)
- * Resolves to <b>p->lpVtbl</b> for C compilation, and to <b>p</b> in C++
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ * 
+ * \brief Resolves to <b>p->lpVtbl</b> for C compilation, and to <b>p</b> in C++
+ *
+ * \see COMSTL_ITF_THIS, COMSTL_ITF_THIS0, COMSTL_IID_2_REF, COMSTL_REF_2_PTR
  */
 
 #if defined(__cplusplus)
@@ -423,7 +451,12 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* __cplusplus */
 
 /** \def COMSTL_ITF_THIS(p)
- * Resolves to <b>p,</b> for C compilation, and to nothing in C++
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>p,</b> for C compilation, and to nothing in C++
+ *
+ * \see COMSTL_ITF_CALL, COMSTL_ITF_THIS0, COMSTL_IID_2_REF, COMSTL_REF_2_PTR
  */
 
 #if defined(__cplusplus)
@@ -433,7 +466,12 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* __cplusplus */
 
 /** \def COMSTL_ITF_THIS0(p)
- * Resolves to <b>p</b> for C compilation, and to nothing in C++
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>p</b> for C compilation, and to nothing in C++
+ *
+ * \see COMSTL_ITF_CALL, COMSTL_ITF_THIS, COMSTL_IID_2_REF, COMSTL_REF_2_PTR
  */
 
 #if defined(__cplusplus)
@@ -443,7 +481,12 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* __cplusplus */
 
 /** \def COMSTL_IID_2_REF(iid)
- * Resolves to <b>&iid</b> for C compilation, and to <b>iid</b> in C++
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>&iid</b> for C compilation, and to <b>iid</b> in C++
+ *
+ * \see COMSTL_ITF_CALL, COMSTL_ITF_THIS, COMSTL_ITF_THIS0, COMSTL_REF_2_PTR
  */
 
 #if defined(__cplusplus)
@@ -453,7 +496,12 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #endif /* __cplusplus */
 
 /** \def COMSTL_REF_2_PTR(iid)
- * Resolves to <b>iid</b> for C compilation, and to <b>&iid</b> in C++
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>iid</b> for C compilation, and to <b>&iid</b> in C++
+ *
+ * \see COMSTL_ITF_CALL, COMSTL_ITF_THIS, COMSTL_ITF_THIS0, COMSTL_REF_2_REF
  */
 
 #if defined(__cplusplus)
@@ -566,14 +614,8 @@ typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  
 #define comstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)  stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param ar An array whose dimension is to be evaluated
- */
-#define COMSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define COMSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
 # define comstl_num_elements(ar)                        COMSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

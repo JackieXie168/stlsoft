@@ -4,7 +4,7 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     31st October 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     75
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -396,9 +396,9 @@ typedef wide2multibyte<256>               w2a;
  * Shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -419,9 +419,9 @@ inline ss_char_w_t const *c_str_ptr_null_w(stlsoft_ns_qual(multibyte2wide)<CCH> 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -441,9 +441,9 @@ inline ss_char_w_t const *c_str_ptr_w(stlsoft_ns_qual(multibyte2wide)<CCH> const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -463,9 +463,9 @@ inline ss_char_w_t const *c_str_data_w(stlsoft_ns_qual(multibyte2wide)<CCH> cons
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::multibyte2wide
+/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::multibyte2wide
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -487,9 +487,9 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -509,9 +509,9 @@ inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual(wide2multibyte)<CCH> 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -531,9 +531,9 @@ inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual(wide2multibyte)<CCH> const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -553,9 +553,9 @@ inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual(wide2multibyte)<CCH> cons
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::wide2multibyte
+/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::wide2multibyte
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_size_t   CCH
         >
@@ -578,9 +578,9 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for stlsoft::multibyte2wide
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for stlsoft::multibyte2wide
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ss_size_t   CCH
@@ -592,9 +592,9 @@ inline S &operator <<(S & s, stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
     return s;
 }
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for stlsoft::wide2multibyte
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for stlsoft::wide2multibyte
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ss_size_t   CCH

@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     6th December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     26
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h

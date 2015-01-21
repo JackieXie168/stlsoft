@@ -4,7 +4,7 @@
  * Purpose:     Interface traits.
  *
  * Created:     25th May 2002
- * Updated:     6th December 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/util/interface_traits.hpp
  *
  * \brief [C++ only] Definition of the comstl::IID_traits traits class.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MAJOR      5
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MINOR      0
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_REVISION   1
-# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       51
+# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -135,7 +135,7 @@ namespace comstl_project
 
 /** \brief Interface identifier traits
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * This traits class takes an interface type and provides a specialisation that
  * has a statid iid() method which returns the interface identifier (IID) for

@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     26th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file stlsoft/shims/attribute/get_ptr/std/fundamental.hpp
  *
  * \brief [C, C++] Pointer attribute shims for built-in types.
- *  (\ref group__concept__shims__pointer_attribute "Pointer Attribute Shims".)
+ *  (\ref group__concept__shim__pointer_attribute "Pointer Attribute Shims".)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_MAJOR      4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_MINOR      0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_REVISION   1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_EDIT       38
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_FUNDAMENTAL_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ namespace stlsoft
     _MSC_VER != 1200
 /* pointer to const. */
 /** \brief 
- * \ingroup group__concept__shims__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute
  */
 template <ss_typename_param_k T>
 inline T const *get_ptr(T const *p)
@@ -89,7 +89,7 @@ inline T const *get_ptr(T const *p)
 
 /* pointer to const volatile. */
 /** \brief 
- * \ingroup group__concept__shims__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute
  */
 template <ss_typename_param_k T>
 inline T const volatile *get_ptr(T const volatile *p)
@@ -99,7 +99,7 @@ inline T const volatile *get_ptr(T const volatile *p)
 
 /* pointer to volatile. */
 /** \brief 
- * \ingroup group__concept__shims__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute
  */
 template <ss_typename_param_k T>
 inline T volatile *get_ptr(T volatile *p)
@@ -110,7 +110,7 @@ inline T volatile *get_ptr(T volatile *p)
 
 /* pointer to non-const. */
 /** \brief 
- * \ingroup group__concept__shims__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute
  */
 template <ss_typename_param_k T>
 inline T *get_ptr(T *p)

@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     31st July 2006
+ * Updated:     12th December 2006
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -46,7 +46,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   std::basic_string (and its related compiler/library-dependent forms).
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      84
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,10 +215,10 @@ inline ss_char_w_t const *c_str_data(wstring const &s)
   /* Compilers other than MSVC++ <5.
    */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>std::string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -230,10 +230,10 @@ inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>std::wstring</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
@@ -244,11 +244,11 @@ inline ss_char_w_t const *c_str_data_w(_stlsoft_wstring_t const &s)
 }
 #  endif /* compiler */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>char</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -261,11 +261,11 @@ inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(basic_string)<ss_char
     return s.data();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>wchar_t</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
@@ -278,10 +278,10 @@ inline ss_char_w_t const *c_str_data_w(stlsoft_ns_qual_std(basic_string)<ss_char
     return s.data();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for arbitrary specialisations of <code>std::basic_string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style string.
  */
@@ -326,7 +326,7 @@ inline C const *c_str_data(stlport::basic_string<C> const &s)
  *   c_str_data_a for any type for which c_str_ptr_a is defined.
  *
  * \ingroup group__shims__string_access
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k S>
@@ -338,7 +338,7 @@ inline ss_char_a_t const *c_str_data_a(S const &s)
  *   c_str_data_w for any type for which c_str_ptr_w is defined.
  *
  * \ingroup group__shims__string_access
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k S>
@@ -382,10 +382,10 @@ inline ss_size_t c_str_len(wstring const &s)
 
 # else /* ? compiler */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>std::string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the string <code>s</code>.
  */
@@ -396,10 +396,10 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>std::wstring</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in characters) of the string <code>s</code>.
  */
@@ -409,11 +409,11 @@ inline ss_size_t c_str_len_w(_stlsoft_wstring_t const &s)
 }
 #  endif /* compiler */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>char</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the string <code>s</code>.
  */
@@ -425,11 +425,11 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(basic_string)<ss_char_a_t, T, A
     return s.length();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>wchar_t</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in characters) of the string <code>s</code>.
  */
@@ -441,10 +441,10 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual_std(basic_string)<ss_char_w_t, T, A
     return s.length();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for arbitrary specialisations of <code>std::basic_string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length of the string <code>s</code>.
  */
@@ -517,10 +517,10 @@ inline ss_char_w_t const *c_str_ptr(wstring const &s)
 }
 
 # else /* ? compiler */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>std::string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -532,10 +532,10 @@ inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>std::wstring</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
@@ -546,11 +546,11 @@ inline ss_char_w_t const *c_str_ptr_w(_stlsoft_wstring_t const &s)
 }
 #  endif /* compiler */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>char</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -563,11 +563,11 @@ inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual_std(basic_string)<ss_char_
     return s.c_str();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>wchar_t</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
@@ -580,10 +580,10 @@ inline ss_char_w_t const *c_str_ptr_w(stlsoft_ns_qual_std(basic_string)<ss_char_
     return s.c_str();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for arbitrary specialisations of <code>std::basic_string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string.
@@ -657,10 +657,10 @@ inline ss_char_w_t const *c_str_ptr_null(wstring const &s)
 }
 
 # else /* ? compiler */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>std::string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -672,10 +672,10 @@ inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>std::wstring</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
@@ -686,11 +686,11 @@ inline ss_char_w_t const *c_str_ptr_null_w(_stlsoft_wstring_t const &s)
 }
 #  endif /* compiler */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>char</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -703,11 +703,11 @@ inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual_std(basic_string)<ss_
     return (0 == s.length()) ? 0 : s.c_str();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for specialisations of <code>std::basic_string</code> with
  *    <code>wchar_t</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
@@ -720,10 +720,10 @@ inline ss_char_w_t const *c_str_ptr_null_w(stlsoft_ns_qual_std(basic_string)<ss_
     return (0 == s.length()) ? 0 : s.c_str();
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for arbitrary specialisations of <code>std::basic_string</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string.
@@ -769,7 +769,7 @@ inline C const *c_str_ptr_null(stlport::basic_string<C> const &s)
 /** \brief Function template that provide generic implementations of
  *   c_str_ptr_null_a for any type for which c_str_ptr_a is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k S>
@@ -780,7 +780,7 @@ inline ss_char_a_t const *c_str_ptr_null_a(S const &s)
 /** \brief Function template that provide generic implementations of
  *   c_str_ptr_null_w for any type for which c_str_ptr_w is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k S>

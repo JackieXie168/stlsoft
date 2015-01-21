@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     13th September 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    1
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 2
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     56
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -409,9 +409,9 @@ inline void swap(ccombstr_veneer &lhs, ccombstr_veneer &rhs)
  * Shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for comstl::ccombstr_veneer
+/** \brief \ref group__concept__shim__string_access__c_str_data for comstl::ccombstr_veneer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline LPCOLESTR c_str_data(atlstl_ns_qual(ccombstr_veneer) const &str)
 {
@@ -423,9 +423,9 @@ inline LPCOLESTR c_str_data_w(atlstl_ns_qual(ccombstr_veneer) const &str)       
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for comstl::ccombstr_veneer
+/** \brief \ref group__concept__shim__string_access__c_str_len for comstl::ccombstr_veneer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline as_size_t c_str_len(atlstl_ns_qual(ccombstr_veneer) const &str)
 {
@@ -437,9 +437,9 @@ inline as_size_t c_str_len_w(atlstl_ns_qual(ccombstr_veneer) const &str)        
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for comstl::ccombstr_veneer
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for comstl::ccombstr_veneer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline LPCOLESTR c_str_ptr(atlstl_ns_qual(ccombstr_veneer) const &str)
 {
@@ -451,9 +451,9 @@ inline LPCOLESTR c_str_ptr_w(atlstl_ns_qual(ccombstr_veneer) const &str)        
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for comstl::ccombstr_veneer
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for comstl::ccombstr_veneer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline LPCOLESTR c_str_ptr_null(atlstl_ns_qual(ccombstr_veneer) const &str)
 {
@@ -467,9 +467,9 @@ inline LPCOLESTR c_str_ptr_null_w(atlstl_ns_qual(ccombstr_veneer) const &str)   
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for comstl::ccombstr_veneer
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for comstl::ccombstr_veneer
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<ss_typename_param_k S>
 inline S &operator <<(S &s, atlstl_ns_qual(ccombstr_veneer) const &str)

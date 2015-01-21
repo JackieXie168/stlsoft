@@ -4,7 +4,7 @@
  * Purpose:     COM ROT (Running Object Table) functions.
  *
  * Created:     21st October 1998
- * Updated:     7th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/util/rot_functions.h
  *
  * \brief [C++ only; requires COM] COM ROT (Running Object Table) functions.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_ROT_FUNCTIONS
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MAJOR       5
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        58
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MINOR       1
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    1
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -89,9 +89,9 @@ namespace comstl_project
  */
 
 
-/** \brief Registers an object in the Running Object Table
+/** \brief [C only] Registers an object in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Registers an object and its identifying moniker in the Running Object Table (ROT).
  *
@@ -119,9 +119,9 @@ STLSOFT_INLINE HRESULT comstl__Rot_Register(DWORD       grfFlags
     return hr;
 }
 
-/** \brief Removes an object from the Running Object Table
+/** \brief [C only] Removes an object from the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Removes from the Running Object Table (ROT) an entry that was previously
  * registered by a call to Rot_Register().
@@ -144,9 +144,9 @@ STLSOFT_INLINE HRESULT comstl__Rot_Revoke(DWORD dwRegister)
     return hr;
 }
 
-/** \brief Determines if object current in the Running Object Table
+/** \brief [C only] Determines if object current in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Determines whether the object identified by the specified moniker is
  * currently running. This method looks for the moniker in the Running Object
@@ -170,9 +170,9 @@ STLSOFT_INLINE HRESULT comstl__Rot_IsRunning(LPMONIKER pmkObjectName)
     return hr;
 }
 
-/** \brief Retrieves the object from the Running Object Table
+/** \brief [C only] Retrieves the object from the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Determines whether the object identified by the specified moniker is running,
  * and if it is, retrieves a pointer to that object. This method looks for the
@@ -199,9 +199,9 @@ STLSOFT_INLINE HRESULT comstl__Rot_GetObject(   LPMONIKER   pmkObjectName,
     return hr;
 }
 
-/** \brief Retrieves the last modification time of a running object in the Running Object Table
+/** \brief [C only] Retrieves the last modification time of a running object in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Records the time that a running object was last modified. The object must
  * have previously been registered with the Running Object Table (ROT). This
@@ -227,9 +227,9 @@ STLSOFT_INLINE HRESULT comstl__Rot_NoteChangeTime(  DWORD       dwRegister,
     return hr;
 }
 
-/** \brief Retrieves the last modification time of an object in the Running Object Table
+/** \brief [C only] Retrieves the last modification time of an object in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Returns the time that an object was last modified. The object must have
  * previously been registered with the Running Object Table (ROT). This method
@@ -255,9 +255,9 @@ STLSOFT_INLINE HRESULT comstl__Rot_GetTimeOfLastChange( LPMONIKER   pmkObjectNam
     return hr;
 }
 
-/** \brief Queries the current set of objects in the Running Object Table
+/** \brief [C only] Queries the current set of objects in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Creates and returns a pointer to an enumerator that can list the monikers of
  * all the objects currently registered in the Running Object Table (ROT).
@@ -281,6 +281,15 @@ STLSOFT_INLINE HRESULT comstl__Rot_EnumRunning(IEnumMoniker **ppenumMoniker)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -288,7 +297,7 @@ STLSOFT_INLINE HRESULT comstl__Rot_EnumRunning(IEnumMoniker **ppenumMoniker)
 
 /** \brief Registers an object in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Registers an object and its identifying moniker in the Running Object Table (ROT).
  *
@@ -308,7 +317,7 @@ inline HRESULT Rot_Register(DWORD       grfFlags,
 
 /** \brief Removes an object from the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Removes from the Running Object Table (ROT) an entry that was previously
  * registered by a call to Rot_Register().
@@ -323,7 +332,7 @@ inline HRESULT Rot_Revoke(DWORD dwRegister)
 
 /** \brief Determines if object current in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Determines whether the object identified by the specified moniker is
  * currently running. This method looks for the moniker in the Running Object
@@ -339,7 +348,7 @@ inline HRESULT Rot_IsRunning(LPMONIKER pmkObjectName)
 
 /** \brief Retrieves the object from the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Determines whether the object identified by the specified moniker is running,
  * and if it is, retrieves a pointer to that object. This method looks for the
@@ -358,7 +367,7 @@ inline HRESULT Rot_GetObject(   LPMONIKER   pmkObjectName,
 
 /** \brief Retrieves the last modification time of a running object in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Records the time that a running object was last modified. The object must
  * have previously been registered with the Running Object Table (ROT). This
@@ -376,7 +385,7 @@ inline HRESULT Rot_NoteChangeTime(  DWORD       dwRegister,
 
 /** \brief Retrieves the last modification time of an object in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Returns the time that an object was last modified. The object must have
  * previously been registered with the Running Object Table (ROT). This method
@@ -394,7 +403,7 @@ inline HRESULT Rot_GetTimeOfLastChange( LPMONIKER   pmkObjectName,
 
 /** \brief Queries the current set of objects in the Running Object Table
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * Creates and returns a pointer to an enumerator that can list the monikers of
  * all the objects currently registered in the Running Object Table (ROT).

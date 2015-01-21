@@ -4,7 +4,7 @@
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>std::exception</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION
@@ -52,7 +52,7 @@
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MINOR       1
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    1
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        26
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,10 +86,10 @@ namespace stlsoft
  * pointer to the character string or to an empty string.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -99,10 +99,10 @@ inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(exception) const &x)
     return c_str_data_a(x.what());
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style string.
  */
@@ -118,10 +118,10 @@ inline ss_char_a_t const *c_str_data(stlsoft_ns_qual_std(exception) const &x)
  * characters in the character string in the expression.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the string <code>s</code>.
  */
@@ -130,10 +130,10 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(exception) const &x)
     return c_str_len_a(x.what());
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length of the string <code>s</code>.
  */
@@ -149,10 +149,10 @@ inline ss_size_t c_str_len(stlsoft_ns_qual_std(exception) const &x)
  * pointer to the character string or to an empty string.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -162,10 +162,10 @@ inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual_std(exception) const &x)
     return c_str_ptr_a(x.what());
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string.
@@ -182,10 +182,10 @@ inline ss_char_a_t const *c_str_ptr(stlsoft_ns_qual_std(exception) const &x)
  * pointer to the character string or NULL.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -195,10 +195,10 @@ inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual_std(exception) const 
     return c_str_ptr_null_a(x.what());
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>std::exception</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string.

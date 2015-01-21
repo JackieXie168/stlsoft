@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -43,7 +43,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for C-style
  *   strings.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MAJOR       4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        83
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ namespace stlsoft
 /** \brief Inert class that connotes an invalid use of a string access shim
  *   function by forcing a compile-time error.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 struct cannot_use_untyped_0_or_NULL_with_shims;
@@ -119,10 +119,10 @@ struct cannot_use_untyped_0_or_NULL_with_shims;
  */
 
 /* C-style ANSI string */
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -133,10 +133,10 @@ STLSOFT_INLINE ss_char_a_t const *c_str_data_a(ss_char_a_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -148,10 +148,10 @@ inline ss_char_a_t const *c_str_data(ss_char_a_t const *s)
 #endif /* __cplusplus */
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
@@ -162,10 +162,10 @@ STLSOFT_INLINE ss_char_w_t const *c_str_data_w(ss_char_w_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
@@ -179,10 +179,10 @@ inline ss_char_w_t const *c_str_data(ss_char_w_t const *s)
 #ifdef __cplusplus
 /* C-style ANSI string */
 # ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>char*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -192,10 +192,10 @@ inline ss_char_a_t const *c_str_data_a(ss_char_a_t *s)
     return (NULL != s) ? s : "";
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>char*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -206,10 +206,10 @@ inline ss_char_a_t const *c_str_data(ss_char_a_t *s)
 }
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>wchar_t*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
@@ -219,10 +219,10 @@ inline ss_char_w_t const *c_str_data_w(ss_char_w_t *s)
     return (NULL != s) ? s : L"";
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data function
+/** \brief \ref group__concept__shim__string_access__c_str_data function
  *    for <code>wchar_t*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
@@ -234,10 +234,10 @@ inline ss_char_w_t const *c_str_data(ss_char_w_t *s)
 # endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
 
 # if 0 /* TODO: Try and make this work. Sometime. Maybe ... */
-/** \brief Generic implementation of \ref section__concept__shims__string_access__c_str_data
+/** \brief Generic implementation of \ref group__concept__shim__string_access__c_str_data
  *    function for any type for which c_str_ptr_a is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -247,10 +247,10 @@ inline ss_char_a_t const *c_str_data_a(S const &s)
 {
     return stlsoft_ns_qual(c_str_data_a)(static_cast<ss_char_a_t const*>(stlsoft_ns_qual(c_str_ptr_a)(s))));
 }
-/** \brief Generic implementation of \ref section__concept__shims__string_access__c_str_data
+/** \brief Generic implementation of \ref group__concept__shim__string_access__c_str_data
  *    function for any type for which c_str_ptr_w is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
@@ -272,10 +272,10 @@ inline ss_char_w_t const *c_str_data_w(S const &s)
  */
 
 /* C-style ANSI string */
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -286,10 +286,10 @@ STLSOFT_INLINE ss_size_t c_str_len_a(ss_char_a_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -301,10 +301,10 @@ inline ss_size_t c_str_len(ss_char_a_t const *s)
 #endif /* __cplusplus */
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -315,10 +315,10 @@ STLSOFT_INLINE ss_size_t c_str_len_w(ss_char_w_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -333,10 +333,10 @@ inline ss_size_t c_str_len(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 # ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -346,10 +346,10 @@ inline ss_size_t c_str_len_a(ss_char_a_t *s)
     return c_str_len_a(static_cast<ss_char_a_t const *>(s));
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -360,10 +360,10 @@ inline ss_size_t c_str_len(ss_char_a_t *s)
 }
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -373,10 +373,10 @@ inline ss_size_t c_str_len_w(ss_char_w_t *s)
     return c_str_len_w(static_cast<ss_char_w_t const *>(s));
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
@@ -397,10 +397,10 @@ inline ss_size_t c_str_len(ss_char_w_t *s)
  */
 
 /* C-style ANSI string */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -411,10 +411,10 @@ STLSOFT_INLINE ss_char_a_t const *c_str_ptr_a(ss_char_a_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -426,10 +426,10 @@ inline ss_char_a_t const *c_str_ptr(ss_char_a_t const *s)
 #endif /* __cplusplus */
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
@@ -440,7 +440,7 @@ STLSOFT_INLINE ss_char_w_t const *c_str_ptr_w(ss_char_w_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>wchar_t const*</code>.
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
@@ -455,7 +455,7 @@ inline ss_char_w_t const *c_str_ptr(ss_char_w_t const *s)
 #ifdef __cplusplus
 /* C-style ANSI string */
 # ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>char const*</code>.
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
@@ -466,10 +466,10 @@ inline ss_char_a_t const *c_str_ptr_a(ss_char_a_t *s)
     return (NULL != s) ? s : "";
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -480,10 +480,10 @@ inline ss_char_a_t const *c_str_ptr(ss_char_a_t *s)
 }
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
@@ -493,10 +493,10 @@ inline ss_char_w_t const *c_str_ptr_w(ss_char_w_t *s)
     return (NULL != s) ? s : L"";
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
@@ -516,10 +516,10 @@ inline ss_char_w_t const *c_str_ptr(ss_char_w_t *s)
  */
 
 /* C-style ANSI string */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
@@ -531,10 +531,10 @@ STLSOFT_INLINE ss_char_a_t const *c_str_ptr_null_a(ss_char_a_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
@@ -547,10 +547,10 @@ inline ss_char_a_t const *c_str_ptr_null(ss_char_a_t const *s)
 #endif /* __cplusplus */
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
@@ -562,10 +562,10 @@ STLSOFT_INLINE ss_char_w_t const *c_str_ptr_null_w(ss_char_w_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
@@ -581,10 +581,10 @@ inline ss_char_w_t const *c_str_ptr_null(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 # ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
@@ -595,10 +595,10 @@ inline ss_char_a_t const *c_str_ptr_null_a(ss_char_a_t *s)
     return (NULL == s || '\0' == *s) ? NULL : s;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
@@ -610,10 +610,10 @@ inline ss_char_a_t const *c_str_ptr_null(ss_char_a_t *s)
 }
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
@@ -624,10 +624,10 @@ inline ss_char_w_t const *c_str_ptr_null_w(ss_char_w_t *s)
     return (NULL == s || L'\0' == *s) ? NULL : s;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
@@ -640,10 +640,10 @@ inline ss_char_w_t const *c_str_ptr_null(ss_char_w_t *s)
 # endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
 
 # if 0 /* TODO: Try and make this work. Sometime. Maybe ... */
-/** \brief Generic implementation of \ref section__concept__shims__string_access__c_str_ptr_null
+/** \brief Generic implementation of \ref group__concept__shim__string_access__c_str_ptr_null
  *    function for any type for which c_str_ptr_a is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
@@ -654,10 +654,10 @@ inline ss_char_a_t const *c_str_ptr_null_a(S const &s)
 {
     return stlsoft_ns_qual(c_str_ptr_null_a)(static_cast<ss_char_a_t const *>(stlsoft_ns_qual(c_str_ptr_a)(s))));
 }
-/** \brief Generic implementation of \ref section__concept__shims__string_access__c_str_ptr_null
+/** \brief Generic implementation of \ref group__concept__shim__string_access__c_str_ptr_null
  *    function for any type for which c_str_ptr_w is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
@@ -681,10 +681,10 @@ inline ss_char_w_t const *c_str_ptr_null_w(S const &s)
  */
 
 /* C-style ANSI string */
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -696,10 +696,10 @@ STLSOFT_INLINE ss_size_t c_str_size_a(ss_char_a_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -712,10 +712,10 @@ inline ss_size_t c_str_size(ss_char_a_t const *s)
 #endif /* __cplusplus */
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -727,10 +727,10 @@ STLSOFT_INLINE ss_size_t c_str_size_w(ss_char_w_t const *s)
 }
 
 #ifdef __cplusplus
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -746,10 +746,10 @@ inline ss_size_t c_str_size(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 # ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -760,10 +760,10 @@ inline ss_size_t c_str_size_a(ss_char_a_t *s)
     return c_str_len(s) * sizeof(ss_char_a_t);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>char const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -775,10 +775,10 @@ inline ss_size_t c_str_size(ss_char_a_t *s)
 }
 
 /* C-style Unicode string */
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -789,10 +789,10 @@ inline ss_size_t c_str_size_w(ss_char_w_t *s)
     return c_str_len(s) * sizeof(ss_char_w_t);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_size function
+/** \brief \ref group__concept__shim__string_access__c_str_size function
  *    for <code>wchar_t const*</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -804,10 +804,10 @@ inline ss_size_t c_str_size(ss_char_w_t *s)
 }
 # endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
 
-/** \brief Generic implementation of \ref section__concept__shims__string_access__c_str_size
+/** \brief Generic implementation of \ref group__concept__shim__string_access__c_str_size
  *    function for any type for which c_str_len_a is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -819,10 +819,10 @@ inline ss_size_t c_str_size_a(S const &s)
     return sizeof(ss_char_a_t) * c_str_len_a(s);
 }
 
-/** \brief Generic implementation of \ref section__concept__shims__string_access__c_str_size
+/** \brief Generic implementation of \ref group__concept__shim__string_access__c_str_size
  *    function for any type for which c_str_len_w is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -834,10 +834,10 @@ inline ss_size_t c_str_size_w(S const &s)
     return sizeof(ss_char_w_t) * c_str_len_w(s);
 }
 
-/** \brief Generic implementation of \ref section__concept__shims__string_access__c_str_size
+/** \brief Generic implementation of \ref group__concept__shim__string_access__c_str_size
  *    function for any type for which c_str_len is defined.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The number of bytes required to represent the contents of the
  *   character string pointed to by <code>s</code>, excluding a
@@ -849,10 +849,10 @@ inline ss_size_t c_str_size(S const &s)
     return sizeof(*c_str_ptr(s)) * c_str_len(s);
 }
 
-/** \brief Implementation of \ref section__concept__shims__string_access__c_str_size
+/** \brief Implementation of \ref group__concept__shim__string_access__c_str_size
  *    for trapping use of literal <code>0</code> or <code>NULL</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return The return type is <code>cannot_use_untyped_0_or_NULL_with_shims</code>,
  *   which serves to remind users, via compilation error message, that
