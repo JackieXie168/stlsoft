@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta26
+File:     STLSoft-ReleaseNotes-1.9.1-beta27
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,10 +11,29 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  21st October 2006
+Updated:  22nd October 2006
 
 ============================================================================
 
+
+============================================================================
+
+Changes for 1.9.1 beta 27 (22nd October 2006):
+
+Additions:
+==========
+
++ stlsoft::trip_bool class template
+
+Changes:
+========
+
+~ stlsoft/functional/function_adaptors.hpp does not include 
+   stlsoft/functional/method_adaptors.hpp for GCC < 3.3
+
+~ minor general changes in makefile structure
+
+~ fixed for UNIX makefiles
 
 ============================================================================
 

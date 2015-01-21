@@ -5,7 +5,7 @@
  *              convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     14th July 2006
+ * Updated:     22nd October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MINOR    0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_REVISION 1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_EDIT     56
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_REVISION 2
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS
 # include <stlsoft/functional/function_pointer_adaptors.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS */
-#ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS
-# include <stlsoft/functional/method_adaptors.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS */
+
+#if !defined(STLSOFT_COMPILER_IS_GCC) || \
+    __GNUC__ > 3 || \
+    (   __GNUC__ == 3 && \
+        __GNUC_MINOR__ >= 3)
+# ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS
+#  include <stlsoft/functional/method_adaptors.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS */
+#endif /* compiler */
 #ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS
 # include <stlsoft/functional/procedure_adaptors.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS */
