@@ -4,11 +4,11 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     23rd October 1997
- * Updated:     10th August 2009
+ * Updated:     4th April 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     6
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,16 +85,17 @@
  *
  * Atomic integer operations are assumed on the following "UNIX" platforms:
  *
- * - 1. Mac OS-X (via OSAtomicIncrement32Barrier(), etc; &lt;libkern/OSAtomic.h>)
- * - 2. Win32 (via InterlockedIncrement(), etc; &lt;windows.h>)
+ * - Mac OS-X (via OSMemoryBarrier(), etc; &lt;libkern/OSAtomic.h>)
+ * - Win32 (via InterlockedIncrement(), etc; &lt;windows.h>)
  *
  * or:
  *
- * - 3. the symbol UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS is defined. In this
- *      case, you must also define UNIXSTL_FORCED_ATOMIC_INT_T (as the atomic
- *      integer type, e.g. int) and UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS
- *      (as the file to be included _inside_ the unixstl namespace in
- *      unixstl/synch/atomic_functions.h)
+ * - the symbol UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS is defined. In
+ *   this case, you must also define UNIXSTL_FORCED_ATOMIC_INT_T (as the
+ *   atomic integer type, e.g. int) and
+ *   UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS (as the file to be
+ *   included _inside_ the unixstl namespace in
+ *   unixstl/synch/atomic_functions.h)
  */
 # define UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 
@@ -104,11 +105,31 @@
 #  undef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 # endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
-# if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) || \
-     (  (   defined(_WIN32) || \
-            defined(_WIN64)) && \
-        !defined(UNIXSTL_NO_ATOMIC_INTEGER_OPERATIONS_ON_WINDOWS)) || \
-     defined(UNIXSTL_OS_IS_MACOSX)
+# ifdef UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_GCC_BUILTINS
+#  undef UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_GCC_BUILTINS
+# endif /* UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_GCC_BUILTINS */
+
+# ifdef UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX
+#  undef UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX
+# endif /* UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX */
+
+# ifdef UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED
+#  undef UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED
+# endif /* UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED */
+
+
+# if \
+    defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS)
+#  define UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
+# elif \
+    (   defined(_WIN32) || \
+        defined(_WIN64)) && \
+    !defined(UNIXSTL_NO_ATOMIC_INTEGER_OPERATIONS_ON_WINDOWS)
+#  define UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED
+#  define UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
+# elif \
+    defined(UNIXSTL_OS_IS_MACOSX)
+#  define UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX
 #  define UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 # endif
 

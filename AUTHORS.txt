@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  10th March 2010
+; Updated:  4th April 2010
 
 ============================================================================
 
@@ -80,13 +80,15 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     ShaChris23
     Steven (Kuaf Lee)
     Vivi Orunitia
+    Victor Gaydov
     Victor T
     Volker Lukas
     W³odzimierz Skiba
     Yakov Markovitch
     yozara
+    zer0god
 
-    and many others who's posts and requests have been invaluable
+    and many others whose posts and requests have been invaluable
 
 Contributions are welcomed.
 

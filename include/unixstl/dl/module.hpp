@@ -4,11 +4,11 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     10th August 2009
+ * Updated:     30th March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     217
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 5
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     218
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ public:
     ///  if the module cannot be loaded
     template <ss_typename_param_k S>
     ss_explicit_k module(S const& moduleName, int mode = RTLD_NOW)
-        : m_hmodule(load(moduleName))
+        : m_hmodule(load(moduleName, mode))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
@@ -183,10 +183,16 @@ public:
     /// \brief Loads the named module, returning its handle, which the
     ///   caller must close with unload().
     ///
+    /// \param moduleName The file name of the executable module to be loaded.
+    /// \param mode The loading mode (as used by <code>::dlopen()</code>).
+    ///
     /// \return The module handle, or NULL if no matching module found.
     static module_handle_type   load(us_char_a_t const* moduleName, int mode = RTLD_NOW);
     /// \brief Loads the named module, returning its handle, which the
     ///   caller must close with unload().
+    ///
+    /// \param moduleName The file name of the executable module to be loaded.
+    /// \param mode The loading mode (as used by <code>::dlopen()</code>).
     ///
     /// \return The module handle, or NULL if no matching module found.
     static module_handle_type   load(us_char_w_t const* moduleName, int mode = RTLD_NOW);
@@ -197,12 +203,13 @@ public:
     ///   loaded. The argument may be of any type for which the
     ///   \ref group__concept__shim__string_access "string access shim"
     ///   stlsoft::c_str_ptr is defined.
+    /// \param mode The loading mode (as used by <code>::dlopen()</code>).
     ///
     /// \return The module handle, or NULL if no matching module found.
     template <ss_typename_param_k S>
-    static module_handle_type   load(S const& moduleName)
+    static module_handle_type   load(S const& moduleName, int mode = RTLD_NOW)
     {
-        return class_type::load(stlsoft_ns_qual(c_str_ptr)(moduleName));
+        return class_type::load(stlsoft_ns_qual(c_str_ptr)(moduleName), mode);
     }
     /// \brief Closes the given module handle
     static void                 unload(module_handle_type hmodule);

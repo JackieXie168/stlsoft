@@ -159,14 +159,14 @@ public:
     }
 
     /// \brief The error code associated with the exception
-	HRESULT get_hr() const
-	{
-		return m_hr;
-	}
+    HRESULT get_hr() const
+    {
+        return m_hr;
+    }
 
-	/// [DEPRECATED]
-	///
-	/// \deprecated Use get_hr() instead
+    /// [DEPRECATED]
+    ///
+    /// \deprecated Use get_hr() instead
     HRESULT hr() const
     {
         return m_hr;

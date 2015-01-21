@@ -229,7 +229,7 @@ public:
 public:
     enum
     {
-        maxPathLength = 1 + WINSTL_CONST_MAX_PATH	//!< The maximum length of a path for the current file system
+        maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 /// @}
 
@@ -450,7 +450,7 @@ public:
 
     enum
     {
-        maxPathLength = 1 + WINSTL_CONST_MAX_PATH	//!< The maximum length of a path for the current file system
+        maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
 public:
@@ -519,7 +519,7 @@ public:
 
     enum
     {
-        maxPathLength = 1 + WINSTL_CONST_MAX_PATH	//!< The maximum length of a path for the current file system
+        maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
 public:

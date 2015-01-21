@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     12th January 2010
+ * Updated:     31st March 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      106
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -221,6 +221,10 @@ public:
     static char_type*   str_pbrk(char_type const* s, char_type const* charSet);
     /// Returns a pointer to the end of the string
     static char_type*   str_end(char_type const* s);
+    /// Sets each character in \c s to the character \c c
+    ///
+    /// \return s + n
+    static char_type*   str_set(char_type* s, size_type n, char_type c);
 /// @}
 
 /// \name Dynamic Loading
@@ -357,6 +361,18 @@ public:
         {}
 
         return const_cast<char_type*>(s);
+    }
+
+    static char_type* str_set(char_type* s, size_type n, char_type c)
+    {
+        UNIXSTL_ASSERT(NULL != s || 0u == n);
+
+        for(; 0u != n; --n, ++s)
+        {
+            *s = c;
+        }
+
+        return s;
     }
 
 public:
@@ -542,10 +558,30 @@ public:
         return const_cast<char_type*>(s);
     }
 
+    static char_type* str_set(char_type* s, size_type n, char_type c)
+    {
+        UNIXSTL_ASSERT(NULL != s || 0u == n);
+
+        for(; 0u != n; --n, ++s)
+        {
+            *s = c;
+        }
+
+        return s;
+    }
+
 public:
     static module_type load_library(char_type const* name);
-    static bool_type free_library(module_type hModule);
-    static void* find_symbol(module_type hModule, char const* symbolName);
+
+    static bool_type free_library(module_type hModule)
+    {
+        return 0 == ::dlclose(hModule);
+    }
+
+    static void* find_symbol(module_type hModule, char const* symbolName)
+    {
+        return ::dlsym(hModule, symbolName);
+    }
 
 public:
     static bool_type close_handle(handle_type h)

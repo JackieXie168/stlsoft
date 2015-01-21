@@ -4,11 +4,11 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     10th August 2009
+ * Updated:     25th March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  8
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      57
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,7 @@ public:
         // Members
         public:
             mq_iterator_type    m_mqi;
-            ACE_Message_Block   *m_entry;
+            ACE_Message_Block*  m_entry;
             as_size_t           m_entryLength;
             as_size_t           m_entryIndex;
         private:
@@ -425,9 +425,9 @@ public:
 
         // Implementation
         private:
-            ACE_Message_Block   *nextEntry()
+            ACE_Message_Block* nextEntry()
             {
-                ACE_Message_Block   *entry  =   NULL;
+                ACE_Message_Block* entry = NULL;
 
                 return m_mqi.advance() ? (m_mqi.next(entry), entry) : NULL;
             }
@@ -470,9 +470,9 @@ public:
 
         class_type& operator =(class_type const& rhs)
         {
-            shared_handle   *this_handle    =   m_handle;
+            shared_handle* this_handle = m_handle;
 
-            m_handle    =   rhs.m_handle;
+            m_handle = rhs.m_handle;
 
             if(NULL != m_handle)
             {
@@ -602,7 +602,7 @@ public:
         }
 
     private:
-        shared_handle   *m_handle;
+        shared_handle* m_handle;
     };
 /// @}
 
@@ -735,14 +735,14 @@ namespace std
 STLSOFT_TEMPLATE_SPECIALISATION
 inline char* copy(  acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    f
                 ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    l
-                ,   char                                                                *o)
+                ,   char*                                                               o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, l, o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
 inline char* copy(  acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      f
                 ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      l
-                ,   char                                                                *o)
+                ,   char*                                                               o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(f, l, o);
 }
@@ -750,14 +750,14 @@ inline char* copy(  acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterat
 STLSOFT_TEMPLATE_SPECIALISATION
 inline signed char* copy(   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    f
                         ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    l
-                        ,   signed char                                                         *o)
+                        ,   signed char*                                                        o)
 {
     return reinterpret_cast<signed char*>(acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, l, reinterpret_cast<char*>(o)));
 }
 STLSOFT_TEMPLATE_SPECIALISATION
 inline signed char* copy(   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      f
                         ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      l
-                        ,   signed char                                                         *o)
+                        ,   signed char*                                                        o)
 {
     return reinterpret_cast<signed char*>(acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(f, l, reinterpret_cast<char*>(o)));
 }
@@ -765,14 +765,14 @@ inline signed char* copy(   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>
 STLSOFT_TEMPLATE_SPECIALISATION
 inline unsigned char* copy( acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    f
                         ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    l
-                        ,   unsigned char                                                       *o)
+                        ,   unsigned char*                                                      o)
 {
     return reinterpret_cast<unsigned char*>(acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, l, reinterpret_cast<char*>(o)));
 }
 STLSOFT_TEMPLATE_SPECIALISATION
 inline unsigned char* copy( acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      f
                         ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      l
-                        ,   unsigned char                                                       *o)
+                        ,   unsigned char*                                                      o)
 {
     return reinterpret_cast<unsigned char*>(acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(f, l, reinterpret_cast<char*>(o)));
 }
@@ -780,45 +780,45 @@ inline unsigned char* copy( acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>
 
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy(   char                                                                *f
-                                                                            ,   char                                                                *l
+inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy(   char*                                                               f
+                                                                            ,   char*                                                               l
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, l, o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy(     char                                                                *f
-                                                                            ,   char                                                                *l
+inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy(     char*                                                               f
+                                                                            ,   char*                                                               l
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(f, l, o);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy(   signed char                                                         *f
-                                                                            ,   signed char                                                         *l
+inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy(   signed char*                                                        f
+                                                                            ,   signed char*                                                        l
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(stlsoft_ns_qual(sap_cast)<char const*>(f), stlsoft_ns_qual(sap_cast)<char const*>(l), o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy(     signed char                                                         *f
-                                                                            ,   signed char                                                         *l
+inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy(     signed char*                                                        f
+                                                                            ,   signed char*                                                        l
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(stlsoft_ns_qual(sap_cast)<char const*>(f), stlsoft_ns_qual(sap_cast)<char const*>(l), o);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy(   unsigned char                                                       *f
-                                                                            ,   unsigned char                                                       *l
+inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy(   unsigned char*                                                      f
+                                                                            ,   unsigned char*                                                      l
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(stlsoft_ns_qual(sap_cast)<char const*>(f), stlsoft_ns_qual(sap_cast)<char const*>(l), o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy(     unsigned char                                                       *f
-                                                                            ,   unsigned char                                                       *l
+inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy(     unsigned char*                                                      f
+                                                                            ,   unsigned char*                                                      l
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(stlsoft_ns_qual(sap_cast)<char const*>(f), stlsoft_ns_qual(sap_cast)<char const*>(l), o);
@@ -885,14 +885,14 @@ namespace stlsoft
 STLSOFT_TEMPLATE_SPECIALISATION
 inline char* copy_n(acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    f
                 ,   ss_size_t                                                           n
-                ,   char                                                                *o)
+                ,   char*                                                               o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, n, o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
 inline char* copy_n(acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      f
                 ,   ss_size_t                                                           n
-                ,   char                                                                *o)
+                ,   char*                                                               o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(f, n, o);
 }
@@ -900,14 +900,14 @@ inline char* copy_n(acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterat
 STLSOFT_TEMPLATE_SPECIALISATION
 inline signed char* copy_n( acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    f
                         ,   ss_size_t                                                           n
-                        ,   signed char                                                         *o)
+                        ,   signed char*                                                        o)
 {
     return reinterpret_cast<signed char*>(acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, n, reinterpret_cast<char*>(o)));
 }
 STLSOFT_TEMPLATE_SPECIALISATION
 inline signed char* copy_n( acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      f
                         ,   ss_size_t                                                           n
-                        ,   signed char                                                         *o)
+                        ,   signed char*                                                        o)
 {
     return reinterpret_cast<signed char*>(acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(f, n, reinterpret_cast<char*>(o)));
 }
@@ -915,14 +915,14 @@ inline signed char* copy_n( acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>
 STLSOFT_TEMPLATE_SPECIALISATION
 inline unsigned char* copy_n(   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    f
                             ,   ss_size_t                                                           n
-                            ,   unsigned char                                                       *o)
+                            ,   unsigned char*                                                      o)
 {
     return reinterpret_cast<unsigned char*>(acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, n, reinterpret_cast<char*>(o)));
 }
 STLSOFT_TEMPLATE_SPECIALISATION
 inline unsigned char* copy_n(   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      f
                             ,   ss_size_t                                                           n
-                            ,   unsigned char                                                       *o)
+                            ,   unsigned char*                                                      o)
 {
     return reinterpret_cast<unsigned char*>(acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::fast_copy(f, n, reinterpret_cast<char*>(o)));
 }
@@ -930,14 +930,14 @@ inline unsigned char* copy_n(   acestl_ns_qual(message_queue_sequence)<ACE_MT_SY
 
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy_n( char                                                                *f
+inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy_n( char*                                                               f
                                                                             ,   ss_size_t                                                           n
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(f, f + n, o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   char                                                                *f
+inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   char*                                                               f
                                                                             ,   ss_size_t                                                           n
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      o)
 {
@@ -945,14 +945,14 @@ inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy_n( signed char                                                         *f
+inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy_n( signed char*                                                        f
                                                                             ,   ss_size_t                                                           n
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(stlsoft_ns_qual(sap_cast)<char const*>(f), stlsoft_ns_qual(sap_cast)<char const*>(f) + n, o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   signed char                                                         *f
+inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   signed char*                                                        f
                                                                             ,   ss_size_t                                                           n
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      o)
 {
@@ -960,14 +960,14 @@ inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy_n( unsigned char                                                       *f
+inline acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator copy_n( unsigned char*                                                      f
                                                                             ,   ss_size_t                                                           n
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::iterator    o)
 {
     return acestl_ns_qual(message_queue_sequence)<ACE_NULL_SYNCH>::fast_copy(stlsoft_ns_qual(sap_cast)<char const*>(f), stlsoft_ns_qual(sap_cast)<char const*>(f) + n, o);
 }
 STLSOFT_TEMPLATE_SPECIALISATION
-inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   unsigned char                                                       *f
+inline acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy_n(   unsigned char*                                                      f
                                                                             ,   ss_size_t                                                           n
                                                                             ,   acestl_ns_qual(message_queue_sequence)<ACE_MT_SYNCH>::iterator      o)
 {

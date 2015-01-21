@@ -2,9 +2,27 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  10th March 2010
+; Updated:  4th April 2010
 
 ============================================================================
+
+
+4th April 2010 - 1.9.97 released
+--------------------------------
+
+ * added stlsoft::copy_preinc() and stlsoft::copy_postinc() algorithms
+ * added str_set() method to unixstl::/winstl::system_traits
+ * added unixstl/shims/conversion/to_uint64/stat.hpp
+ * added missing widestring specialisation of inetstl::filesystem_traits::is_path_name_separator()
+ * stlsoft::basic_error_desc synthesises widestring functionality if wcserror() is not available
+ * exposes widestring version of platformstl::system_traits from UNIXSTL
+ * comstl::variant compatibility with exception-support disabled
+ * removed erroneous definitions of strtol(), strtoul(), strtod()
+ * added missing 'mode' parameter to unixstl::module::load(), and uses 'mode' parameter passed to constructor template
+ * typename corrections to platformstl::basic_file_path_buffer and platformstl::basic_path
+ * improved discrimination of Visual C++ 9 / 10
+ * fixed defective arithmetic in unixstl::/winstl::memory_mapped_file
+ * refactored implementation of winstl::reg_key::create_key() to avoid infinite loop faults
 
 
 10th March 2010 - 1.9.96 released

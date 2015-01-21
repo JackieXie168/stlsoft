@@ -4,11 +4,11 @@
  * Purpose:     Debug algorithms.
  *
  * Created:     17th January 2002
- * Updated:     10th August 2009
+ * Updated:     26th March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_MAJOR     3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_MINOR     0
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_REVISION  3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_EDIT      67
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_MINOR     1
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_REVISION  1
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,6 +78,44 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////
  * Algorithms
  */
+
+template<   ss_typename_param_k I
+        ,   ss_typename_param_k O
+        >
+// [[synesis:function:algorithm: copy_preinc(T<I> first, T<I> last, T<O> o)]]
+inline O copy_preinc(
+    I   first
+,   I   last
+,   O   o
+)
+{
+    for(; first != last; ++o, ++first)
+    {
+        *o = *first;
+    }
+
+    return o;
+}
+
+// [[synesis:function:algorithm: copy_postinc(T<I> first, T<I> last, T<O> o)]]
+template<   ss_typename_param_k I
+        ,   ss_typename_param_k O
+        >
+inline O copy_postinc(
+    I   first
+,   I   last
+,   O   o
+)
+{
+    for(; first != last; o++, first++)
+    {
+        *o = *first;
+    }
+
+    return o;
+}
+
+
 
 /** \brief Carries out for_each on the range, using pre-increment on the iterator
  *

@@ -4,11 +4,11 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     10th August 2009
+ * Updated:     31st March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,10 +49,10 @@
 #define STLSOFT_INCL_STLSOFT_STD_HPP_CSTDLIB
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      5
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   2
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       24
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      2
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      0
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   1
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -202,22 +202,34 @@ inline double atof(S const& s)
 /// \name strtol family
 /// @{
 
-template <ss_typename_param_k S>
-inline long strtol(S const& s, char **endptr, int radix)
+inline long strtol(ss_char_a_t const* s, ss_char_a_t** endptr, int radix)
 {
-    return ::strtol(stlsoft_ns_qual(c_str_ptr)(s), endptr, radix);
+    return ::strtol(s, endptr, radix);
 }
 
-template <ss_typename_param_k S>
-inline unsigned long strtoul(S const& s, char **endptr, int radix)
+inline long strtol(ss_char_w_t const* s, ss_char_w_t** endptr, int radix)
 {
-    return ::strtoul(stlsoft_ns_qual(c_str_ptr)(s), endptr, radix);
+    return ::wcstol(s, endptr, radix);
 }
 
-template <ss_typename_param_k S>
-inline double strtod(S const& s, char **endptr)
+inline unsigned long strtoul(ss_char_a_t const* s, ss_char_a_t** endptr, int radix)
 {
-    return ::strtod(stlsoft_ns_qual(c_str_ptr)(s), endptr);
+    return ::strtoul(s, endptr, radix);
+}
+
+inline unsigned long strtoul(ss_char_w_t const* s, ss_char_w_t** endptr, int radix)
+{
+    return ::wcstoul(s, endptr, radix);
+}
+
+inline double strtod(ss_char_a_t const* s, ss_char_a_t** endptr)
+{
+    return ::strtod(s, endptr);
+}
+
+inline double strtod(ss_char_w_t const* s, ss_char_w_t** endptr)
+{
+    return ::wcstod(s, endptr);
 }
 
 /// @}

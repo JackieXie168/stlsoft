@@ -4,11 +4,11 @@
  * Purpose:     processheap_allocator class.
  *
  * Created:     25th February 2002
- * Updated:     10th August 2009
+ * Updated:     31st March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_MINOR       1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_REVISION    3
-# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        82
+# define WINSTL_VER_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,19 +173,19 @@ public:
 private:
     friend class allocator_base<T, processheap_allocator<T> >;
 
-    void *do_allocate(size_type n, void const* hint)
+    void* do_allocate(size_type n, void const* hint)
     {
         STLSOFT_SUPPRESS_UNUSED(hint);
 
         return ::HeapAlloc(m_processheap, 0, n * sizeof(value_type));
     }
-    void do_deallocate(void *pv, size_type n)
+    void do_deallocate(void* pv, size_type n)
     {
         STLSOFT_SUPPRESS_UNUSED(n);
 
         ::HeapFree(m_processheap, 0, pv);
     }
-    void do_deallocate(void *pv)
+    void do_deallocate(void* pv)
     {
         ::HeapFree(m_processheap, 0, pv);
     }

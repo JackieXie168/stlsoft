@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     13th June 2006
- * Updated:     12th January 2010
+ * Updated:     2nd April 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     11
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,31 +105,43 @@ namespace unixstl_project
  * Functions
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template <ss_typename_param_k C>
-us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C* buffer, us_size_t cchBuffer)
+us_size_t path_squeeze_impl(
+    C const*    path
+,   us_size_t   pathLen
+,   C*          buffer
+,   us_size_t   cchBuffer
+)
 {
     typedef C                       char_t;
     typedef filesystem_traits<C>    traits_t;
+    typedef us_size_t               size_t;
 
-    if(NULL != buffer)
+    if(NULL == buffer)
+    {
+        cchBuffer = pathLen + 1u;
+    }
+    else if(0 != cchBuffer)
     {
         basic_path<char_t>  p(path, pathLen);
-        char_t const*               file_ptr        =   p.get_file();
-        char_t const*               path_ptr        =   p.c_str();
-        const us_size_t     fileLen     =   p.size() - (file_ptr - path_ptr);
+        char_t const*       file_ptr    =   p.get_file();
+        char_t const*       path_ptr    =   p.c_str();
+        const size_t        fileLen     =   p.size() - (file_ptr - path_ptr);
 
-        if(cchBuffer >= pathLen)
+        if(cchBuffer > pathLen)
         {
             // Room for all
 
-            traits_t::char_copy(buffer, path_ptr, cchBuffer);
-            buffer[cchBuffer] = '\0';
+            traits_t::char_copy(buffer, path_ptr, pathLen);
+            buffer[pathLen] = '\0';
 
-            cchBuffer = pathLen;
+            cchBuffer = pathLen + 1u;
         }
         else
         {
-            us_size_t           rootLen;
+            size_t rootLen;
 
             // Need to handle:
             //
@@ -148,7 +160,7 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C* buffer, us_size
 
                         char_t const* p1 = traits_t::str_chr(path_ptr + 2, '\\');
 
-                        rootLen = 1 + static_cast<us_size_t>(p1 - path_ptr);
+                        rootLen = 1 + static_cast<size_t>(p1 - path_ptr);
                     }
 #if defined(_WIN32) || \
     defined(_WIN64)
@@ -177,30 +189,55 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C* buffer, us_size
                 rootLen = 0;
             }
 
-            if(cchBuffer < fileLen + rootLen + 3 + 1)
+            if(cchBuffer < 5 + 1)
             {
-                // File (name + ext) only
-
-                traits_t::char_copy(buffer, path_ptr, cchBuffer);
-                buffer[cchBuffer] = '\0';
+                traits_t::char_copy(buffer, file_ptr, cchBuffer - 1);
+                buffer[cchBuffer - 1] = '\0';
 
                 if(cchBuffer > fileLen)
                 {
-                    cchBuffer = fileLen;
+                    cchBuffer = fileLen + 1;
                 }
             }
-            else if(cchBuffer < pathLen)
+            else if(cchBuffer < fileLen + 1)
             {
+                // Squeezing just file+ext
+                size_t  leftLen     =   (cchBuffer - 3 - 1) / 2;
+                size_t  rightLen    =   (cchBuffer - 3 - 1) - leftLen;
+
+                traits_t::char_copy(buffer, file_ptr, leftLen);
+                buffer[leftLen + 0] = '.';
+                buffer[leftLen + 1] = '.';
+                buffer[leftLen + 2] = '.';
+                traits_t::char_copy(buffer + leftLen + 3, file_ptr + (fileLen - rightLen), rightLen);
+                buffer[leftLen + 3 + rightLen] = '\0';
+            }
+            else if(cchBuffer < rootLen + 3 + 1 + fileLen + 1)
+            {
+                // File (name + ext) only
+
+                traits_t::char_copy(buffer, file_ptr, fileLen);
+                buffer[fileLen] = '\0';
+
+                if(cchBuffer > fileLen)
+                {
+                    cchBuffer = fileLen + 1;
+                }
+            }
+            else
+            {
+                UNIXSTL_ASSERT(cchBuffer < pathLen + 1);
+
                 // Squeezing
-                us_size_t   rightLen    =   1 + fileLen;
-                us_size_t   leftLen     =   cchBuffer - (3 + rightLen);
+                size_t  rightLen    =   1 + fileLen;
+                size_t  leftLen     =   (cchBuffer - 3 - 1) - rightLen;
 
                 traits_t::char_copy(buffer, path_ptr, leftLen);
                 buffer[leftLen + 0] = '.';
                 buffer[leftLen + 1] = '.';
                 buffer[leftLen + 2] = '.';
                 traits_t::char_copy(buffer + leftLen + 3, file_ptr - 1, rightLen);
-                (buffer + leftLen + 3)[rightLen] = '\0';
+                buffer[leftLen + 3 + rightLen] = '\0';
             }
         }
     }
@@ -220,6 +257,8 @@ us_size_t path_squeeze_impl2(S const& path, us_char_w_t* buffer, us_size_t cchBu
 {
     return path_squeeze_impl(stlsoft_ns_qual(c_str_ptr_w)(path), stlsoft_ns_qual(c_str_len)(path), buffer, cchBuffer);
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #if 0
 template <ss_typename_param_k C>

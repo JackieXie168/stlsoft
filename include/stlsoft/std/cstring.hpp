@@ -4,14 +4,14 @@
  * Purpose:     Mappings to string string functions
  *
  * Created:     2nd December 2004
- * Updated:     10th August 2009
+ * Updated:     31st March 2010
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   4
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       32
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,70 +110,70 @@ namespace std_impl
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-    inline ss_char_a_t *strcpy_a(ss_char_a_t *dest, ss_char_a_t const* src)
+    inline ss_char_a_t* strcpy_a(ss_char_a_t* dest, ss_char_a_t const* src)
     {
         return ::strcpy(dest, src);
     }
-    inline ss_char_w_t *strcpy_w(ss_char_w_t *dest, ss_char_w_t const* src)
+    inline ss_char_w_t* strcpy_w(ss_char_w_t* dest, ss_char_w_t const* src)
     {
         return ::wcscpy(dest, src);
     }
-    inline ss_char_a_t *strcpy_(ss_char_a_t *dest, ss_char_a_t const* src)
+    inline ss_char_a_t* strcpy_(ss_char_a_t* dest, ss_char_a_t const* src)
     {
         return strcpy_a(dest, src);
     }
-    inline ss_char_w_t *strcpy_(ss_char_w_t *dest, ss_char_w_t const* src)
+    inline ss_char_w_t* strcpy_(ss_char_w_t* dest, ss_char_w_t const* src)
     {
         return strcpy_w(dest, src);
     }
 
-    inline ss_char_a_t *strcat_a(ss_char_a_t *dest, ss_char_a_t const* src)
+    inline ss_char_a_t* strcat_a(ss_char_a_t* dest, ss_char_a_t const* src)
     {
         return ::strcat(dest, src);
     }
-    inline ss_char_w_t *strcat_w(ss_char_w_t *dest, ss_char_w_t const* src)
+    inline ss_char_w_t* strcat_w(ss_char_w_t* dest, ss_char_w_t const* src)
     {
         return ::wcscat(dest, src);
     }
-    inline ss_char_a_t *strcat_(ss_char_a_t *dest, ss_char_a_t const* src)
+    inline ss_char_a_t* strcat_(ss_char_a_t* dest, ss_char_a_t const* src)
     {
         return strcat_a(dest, src);
     }
-    inline ss_char_w_t *strcat_(ss_char_w_t *dest, ss_char_w_t const* src)
+    inline ss_char_w_t* strcat_(ss_char_w_t* dest, ss_char_w_t const* src)
     {
         return strcat_w(dest, src);
     }
 
-    inline ss_char_a_t *strncpy_a(ss_char_a_t *dest, ss_char_a_t const* src, ss_size_t n)
+    inline ss_char_a_t* strncpy_a(ss_char_a_t* dest, ss_char_a_t const* src, ss_size_t n)
     {
         return ::strncpy(dest, src, n);
     }
-    inline ss_char_w_t *strncpy_w(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t n)
+    inline ss_char_w_t* strncpy_w(ss_char_w_t* dest, ss_char_w_t const* src, ss_size_t n)
     {
         return ::wcsncpy(dest, src, n);
     }
-    inline ss_char_a_t *strncpy_(ss_char_a_t *dest, ss_char_a_t const* src, ss_size_t n)
+    inline ss_char_a_t* strncpy_(ss_char_a_t* dest, ss_char_a_t const* src, ss_size_t n)
     {
         return strncpy_a(dest, src, n);
     }
-    inline ss_char_w_t *strncpy_(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t n)
+    inline ss_char_w_t* strncpy_(ss_char_w_t* dest, ss_char_w_t const* src, ss_size_t n)
     {
         return strncpy_w(dest, src, n);
     }
 
-    inline ss_char_a_t *strncat_a(ss_char_a_t *dest, ss_char_a_t const* src, ss_size_t n)
+    inline ss_char_a_t* strncat_a(ss_char_a_t* dest, ss_char_a_t const* src, ss_size_t n)
     {
         return ::strncat(dest, src, n);
     }
-    inline ss_char_w_t *strncat_w(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t n)
+    inline ss_char_w_t* strncat_w(ss_char_w_t* dest, ss_char_w_t const* src, ss_size_t n)
     {
         return ::wcsncat(dest, src, n);
     }
-    inline ss_char_a_t *strncat_(ss_char_a_t *dest, ss_char_a_t const* src, ss_size_t n)
+    inline ss_char_a_t* strncat_(ss_char_a_t* dest, ss_char_a_t const* src, ss_size_t n)
     {
         return strncat_a(dest, src, n);
     }
-    inline ss_char_w_t *strncat_(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t n)
+    inline ss_char_w_t* strncat_(ss_char_w_t* dest, ss_char_w_t const* src, ss_size_t n)
     {
         return strncat_w(dest, src, n);
     }
@@ -186,18 +186,18 @@ namespace std_impl
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_ret_k string_traits<S>::char_type *strcpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type* strcpy(ss_typename_type_k string_traits<S>::char_type* dest, S const& src)
 {
     return stlsoft_std_ns_qual(strcpy_)(dest, stlsoft_ns_qual(c_str_ptr)(src));
 }
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-inline ss_char_a_t *strcpy(ss_char_a_t *dest, ss_char_a_t const* src)
+inline ss_char_a_t* strcpy(ss_char_a_t* dest, ss_char_a_t const* src)
 {
     return stlsoft_std_ns_qual(strcpy_)(dest, src);
 }
 
-inline ss_char_w_t *strcpy(ss_char_w_t *dest, ss_char_w_t const* src)
+inline ss_char_w_t* strcpy(ss_char_w_t* dest, ss_char_w_t const* src)
 {
     return stlsoft_std_ns_qual(strcpy_)(dest, src);
 }
@@ -206,18 +206,18 @@ inline ss_char_w_t *strcpy(ss_char_w_t *dest, ss_char_w_t const* src)
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_ret_k string_traits<S>::char_type *strcat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type* strcat(ss_typename_type_k string_traits<S>::char_type* dest, S const& src)
 {
     return stlsoft_std_ns_qual(strcat_)(dest, stlsoft_ns_qual(c_str_ptr)(src));
 }
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-inline ss_char_a_t *strcat(ss_char_a_t *dest, ss_char_a_t const* src)
+inline ss_char_a_t* strcat(ss_char_a_t* dest, ss_char_a_t const* src)
 {
     return stlsoft_std_ns_qual(strcat_)(dest, src);
 }
 
-inline ss_char_w_t *strcat(ss_char_w_t *dest, ss_char_w_t const* src)
+inline ss_char_w_t* strcat(ss_char_w_t* dest, ss_char_w_t const* src)
 {
     return stlsoft_std_ns_qual(strcat_)(dest, src);
 }
@@ -225,7 +225,7 @@ inline ss_char_w_t *strcat(ss_char_w_t *dest, ss_char_w_t const* src)
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_ret_k string_traits<S>::char_type *strncpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type* strncpy(ss_typename_type_k string_traits<S>::char_type* dest, S const& src)
 {
     return stlsoft_std_ns_qual(strncpy_)(dest, stlsoft_ns_qual(c_str_data)(src), stlsoft_ns_qual(c_str_len)(src));
 }
@@ -234,7 +234,7 @@ inline ss_typename_type_ret_k string_traits<S>::char_type *strncpy(ss_typename_t
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_ret_k string_traits<S>::char_type *strncat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type* strncat(ss_typename_type_k string_traits<S>::char_type* dest, S const& src)
 {
     return stlsoft_std_ns_qual(strncat_)(dest, stlsoft_ns_qual(c_str_data)(src), stlsoft_ns_qual(c_str_len)(src));
 }
@@ -243,18 +243,18 @@ inline ss_typename_type_ret_k string_traits<S>::char_type *strncat(ss_typename_t
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_ret_k string_traits<S>::char_type *strncpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src, ss_size_t n)
+inline ss_typename_type_ret_k string_traits<S>::char_type* strncpy(ss_typename_type_k string_traits<S>::char_type* dest, S const& src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncpy_)(dest, stlsoft_ns_qual(c_str_data)(src), n);
 }
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-inline ss_char_a_t *strncpy(ss_char_a_t *dest, ss_char_a_t const* src, ss_size_t n)
+inline ss_char_a_t* strncpy(ss_char_a_t* dest, ss_char_a_t const* src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncpy_)(dest, src, n);
 }
 
-inline ss_char_w_t *strncpy(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t n)
+inline ss_char_w_t* strncpy(ss_char_w_t* dest, ss_char_w_t const* src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncpy_)(dest, src, n);
 }
@@ -262,18 +262,18 @@ inline ss_char_w_t *strncpy(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_ret_k string_traits<S>::char_type *strncat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src, ss_size_t n)
+inline ss_typename_type_ret_k string_traits<S>::char_type* strncat(ss_typename_type_k string_traits<S>::char_type* dest, S const& src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncat_)(dest, stlsoft_ns_qual(c_str_data)(src), n);
 }
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-inline ss_char_a_t *strncat(ss_char_a_t *dest, ss_char_a_t const* src, ss_size_t n)
+inline ss_char_a_t* strncat(ss_char_a_t* dest, ss_char_a_t const* src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncat_)(dest, src, n);
 }
 
-inline ss_char_w_t *strncat(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t n)
+inline ss_char_w_t* strncat(ss_char_w_t* dest, ss_char_w_t const* src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncat_)(dest, src, n);
 }
@@ -440,11 +440,11 @@ namespace std_impl
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-    inline ss_char_a_t *strdup_a(ss_char_a_t const* s)
+    inline ss_char_a_t* strdup_a(ss_char_a_t const* s)
     {
         return ::strdup(s);
     }
-    inline ss_char_w_t *strdup_w(ss_char_w_t const* s)
+    inline ss_char_w_t* strdup_w(ss_char_w_t const* s)
     {
 #  if defined(STLSOFT_COMPILER_IS_BORLAND) || \
       (   defined(STLSOFT_COMPILER_IS_GCC) && \
@@ -463,11 +463,11 @@ namespace std_impl
         return ::wcsdup(const_cast<ss_char_w_t*>(s));
 #  endif /* compiler */
     }
-    inline ss_char_a_t *strdup_(ss_char_a_t const* s)
+    inline ss_char_a_t* strdup_(ss_char_a_t const* s)
     {
         return strdup_a(s);
     }
-    inline ss_char_w_t *strdup_(ss_char_w_t const* s)
+    inline ss_char_w_t* strdup_(ss_char_w_t const* s)
     {
         return strdup_w(s);
     }
@@ -488,7 +488,7 @@ namespace std_impl
  */
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_ret_k string_traits<S>::char_type *strdup(S const& s)
+inline ss_typename_type_ret_k string_traits<S>::char_type* strdup(S const& s)
 {
     return stlsoft_std_ns_qual(strdup_)(stlsoft_ns_qual(c_str_ptr)(s));
 }
@@ -499,7 +499,7 @@ inline ss_typename_type_ret_k string_traits<S>::char_type *strdup(S const& s)
  * \ingroup group__library__utility
  */
 
-inline ss_char_a_t *strdup(ss_char_a_t const* s)
+inline ss_char_a_t* strdup(ss_char_a_t const* s)
 {
     return stlsoft_std_ns_qual(strdup_)(s);
 }
@@ -509,7 +509,7 @@ inline ss_char_a_t *strdup(ss_char_a_t const* s)
  * \ingroup group__library__utility
  */
 
-inline ss_char_w_t *strdup(ss_char_w_t const* s)
+inline ss_char_w_t* strdup(ss_char_w_t const* s)
 {
     return stlsoft_std_ns_qual(strdup_)(s);
 }
