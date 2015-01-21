@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on PTHREADS pthread_mutex_t.
  *
  * Created:     17th December 1996
- * Updated:     24th December 2006
+ * Updated:     25th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    5
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        43
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    6
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_ERROR_UNIX_EXCEPTIONS
-#  include <unixstl/error/exceptions.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
+# ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS
+#  include <unixstl/synch/exceptions.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
 # include <stlsoft/smartptr/scoped_handle.hpp>
@@ -72,9 +72,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
-#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS
-# include <unixstl/synch/exceptions.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS */
 #if !defined(_REENTRANT) && \
     !defined(_POSIX_THREADS)
 # error unixstl/synch/thread_mutex.hpp must be compiled in the context of PTHREADS

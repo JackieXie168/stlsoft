@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta34
+File:     STLSoft-ReleaseNotes-1.9.1-beta35
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  24th December 2006
+Updated:  27th December 2006
 
 ============================================================================
 
@@ -25,6 +25,51 @@ Updated:  24th December 2006
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 35 (27th December 2006):
+
+Additions:
+==========
+
+ STLSoft
+ -------
+
+ + stlsoft::do_initialisation_never array initialisation policy, which
+   stipulates that no initialisation whatsoever be performed on array
+   elements
+
+ + stlsoft::scoped_handle now supports indirect cleanup functions. In other
+   words, if you have a handle type handle_t, you can pass either a cleanup
+	 function taking handle_t - e.g. handle_close(handle_t ); - or a cleanup
+	 function taking a pointer to handle_t - e.g. handle_close_set_null(handle_t *)
+
+Changes:
+========
+
+ general
+ -------
+
+ ~ replacement of all stlsoft::throw_x() with STLSOFT_THROW_X()
+
+ STLSoft
+ -------
+
+ ~ stlsoft::fixed_array_1d/2d/3d/4d classes now capable of doing *no*
+   initialisation of their elements, by specifying the new policy
+   stlsoft::do_initialisation_never
+
+ ~ stlsoft::static_array_1d/2d/3d/4d classes now capable of doing *no*
+   initialisation of their elements, by specifying the new policy
+   stlsoft::do_initialisation_never
+
+ UNIXSTL
+ -------
+
+ ~ refactoring of #includes in unixstl/synch/thread_mutex.hpp
+
 
 
 ============================================================================

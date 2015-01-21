@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation functions.
  *
  * Created:     30th May 2006
- * Updated:     4th December 2006
+ * Updated:     26th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,52 +95,60 @@ namespace winstl_project
  * Functions
  */
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-#if 0
-/** \brief [IMPLEMENTATION]
- *
- * \ingroup group__library__synch
- */
+#ifndef WINSTL_WAIT_FUNCTIONS_NO_USE_SHIM_VERIFIER
 
-struct your_type_is_implicitly_convertible_to_HANDLE
-{};
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template <ss_typename_param_k T>
-inline your_type_is_implicitly_convertible_to_HANDLE WaitForMultipleObjects_verifier_helper_(T &, HANDLE h );
-
-template <ss_typename_param_k T>
-inline HANDLE WaitForMultipleObjects_verifier_helper_(T &t, ...)
+template <ss_typename_param_k H>
+inline HANDLE w4mo_verify_and_get_discriminator(H &h, H const *)
 {
-    return winstl_ns_qual(get_synch_handle)(t);
+    // If the compiler balks here with a message complaining about being
+    //
+    //     "unable to convert to HANDLE (*)(H &)",
+    //
+    // then it means that you're trying to pass an argument to
+    // wait_for_multiple_object() for which an overload of the
+    // winstl::get_synch_handle() attribute shim is not defined.
+    //
+    // This may confuse you if your type may be implicitly convertible to
+    // HANDLE, but use of such types without shims is dangerous, and is
+    // therefore disallowed.
+
+    HANDLE (*pfn)(H &)      =   &winstl_ns_qual(get_synch_handle);
+
+    return (*pfn)(h);
 }
 
-template <ss_typename_param_k T>
-inline HANDLE WaitForMultipleObjects_verifier_helper(T &t1, T const &t2)
-{
-    // If the compiler balks here with a message involving
-    // "your_type_is_implicitly_convertible_to_HANDLE", it means that the
-    // type of an argument passed to wait_for_multiple_objects() is
-    // implicitly convertible to HANDLE. This is dangerous and disallowed,
-    // and you must define a winstl::get_synch_handle() shim for it.
-
-    return WaitForMultipleObjects_verifier_helper_(t1, t2);
-
-//  return winstl_ns_qual(get_synch_handle)(t);
-}
-
-inline HANDLE WaitForMultipleObjects_verifier_helper(HANDLE h, HANDLE )
+inline HANDLE w4mo_verify_and_get_discriminator(HANDLE h, HANDLE const *)
 {
     return h;
 }
-#endif /* 0 */
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+template <ss_typename_param_k H>
+inline HANDLE w4mo_verify_and_get(H &h)
+{
+    return w4mo_verify_and_get_discriminator(h, &h);
+}
+
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+#else /* ? WINSTL_WAIT_FUNCTIONS_NO_USE_SHIM_VERIFIER */
+
+template <ss_typename_param_k H>
+inline HANDLE w4mo_verify_and_get(H &h)
+{
+    return winstl_ns_qual(get_synch_handle)(h);
+}
+
+#endif /* !WINSTL_WAIT_FUNCTIONS_NO_USE_SHIM_VERIFIER */
+
 
 
 /** \brief [IMPLEMENTATION]
  *
  * \ingroup group__library__synch
  */
-inline DWORD WaitForMultipleObjects_helper_8(   HANDLE      h0
+inline DWORD w4mo_helper_8(   HANDLE      h0
                                             ,   HANDLE      h1
                                             ,   HANDLE      h2
                                             ,   HANDLE      h3
@@ -202,15 +210,15 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l6));
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l7));
 
-    return WaitForMultipleObjects_helper_8(
-            winstl_ns_qual(get_synch_handle)(l0)
-        ,   winstl_ns_qual(get_synch_handle)(l1)
-        ,   winstl_ns_qual(get_synch_handle)(l2)
-        ,   winstl_ns_qual(get_synch_handle)(l3)
-        ,   winstl_ns_qual(get_synch_handle)(l4)
-        ,   winstl_ns_qual(get_synch_handle)(l5)
-        ,   winstl_ns_qual(get_synch_handle)(l6)
-        ,   winstl_ns_qual(get_synch_handle)(l7)
+    return w4mo_helper_8(
+            winstl_ns_qual(w4mo_verify_and_get)(l0)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l1)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l2)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l3)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l4)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l5)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l6)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l7)
         ,   bWaitAll
         ,   timeout);
 }
@@ -237,14 +245,14 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l5));
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l6));
 
-    return WaitForMultipleObjects_helper_8(
-            winstl_ns_qual(get_synch_handle)(l0)
-        ,   winstl_ns_qual(get_synch_handle)(l1)
-        ,   winstl_ns_qual(get_synch_handle)(l2)
-        ,   winstl_ns_qual(get_synch_handle)(l3)
-        ,   winstl_ns_qual(get_synch_handle)(l4)
-        ,   winstl_ns_qual(get_synch_handle)(l5)
-        ,   winstl_ns_qual(get_synch_handle)(l6)
+    return w4mo_helper_8(
+            winstl_ns_qual(w4mo_verify_and_get)(l0)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l1)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l2)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l3)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l4)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l5)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l6)
         ,   NULL
         ,   bWaitAll
         ,   timeout);
@@ -270,23 +278,13 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l4));
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l5));
 
-#if 0
-    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l0, l0));
-    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l1, l1));
-//  WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l2, l2));
-    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l3, l3));
-    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l4, l4));
-    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l5, l5));
-#endif /* 0 */
-
-
-    return WaitForMultipleObjects_helper_8(
-            winstl_ns_qual(get_synch_handle)(l0)
-        ,   winstl_ns_qual(get_synch_handle)(l1)
-        ,   winstl_ns_qual(get_synch_handle)(l2)
-        ,   winstl_ns_qual(get_synch_handle)(l3)
-        ,   winstl_ns_qual(get_synch_handle)(l4)
-        ,   winstl_ns_qual(get_synch_handle)(l5)
+    return w4mo_helper_8(
+            winstl_ns_qual(w4mo_verify_and_get)(l0)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l1)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l2)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l3)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l4)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l5)
         ,   NULL
         ,   NULL
         ,   bWaitAll
@@ -311,12 +309,12 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, w
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l3));
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l4));
 
-    return WaitForMultipleObjects_helper_8(
-            winstl_ns_qual(get_synch_handle)(l0)
-        ,   winstl_ns_qual(get_synch_handle)(l1)
-        ,   winstl_ns_qual(get_synch_handle)(l2)
-        ,   winstl_ns_qual(get_synch_handle)(l3)
-        ,   winstl_ns_qual(get_synch_handle)(l4)
+    return w4mo_helper_8(
+            winstl_ns_qual(w4mo_verify_and_get)(l0)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l1)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l2)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l3)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l4)
         ,   NULL
         ,   NULL
         ,   NULL
@@ -340,11 +338,11 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, ws_bool_t
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l2));
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l3));
 
-    return WaitForMultipleObjects_helper_8(
-            winstl_ns_qual(get_synch_handle)(l0)
-        ,   winstl_ns_qual(get_synch_handle)(l1)
-        ,   winstl_ns_qual(get_synch_handle)(l2)
-        ,   winstl_ns_qual(get_synch_handle)(l3)
+    return w4mo_helper_8(
+            winstl_ns_qual(w4mo_verify_and_get)(l0)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l1)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l2)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l3)
         ,   NULL
         ,   NULL
         ,   NULL
@@ -367,10 +365,10 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, L2 &l2, ws_bool_t bWaitAl
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l1));
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l2));
 
-    return WaitForMultipleObjects_helper_8(
-            winstl_ns_qual(get_synch_handle)(l0)
-        ,   winstl_ns_qual(get_synch_handle)(l1)
-        ,   winstl_ns_qual(get_synch_handle)(l2)
+    return w4mo_helper_8(
+            winstl_ns_qual(w4mo_verify_and_get)(l0)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l1)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l2)
         ,   NULL
         ,   NULL
         ,   NULL
@@ -392,9 +390,9 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, ws_bool_t bWaitAll, ws_dw
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l0));
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l1));
 
-    return WaitForMultipleObjects_helper_8(
-            winstl_ns_qual(get_synch_handle)(l0)
-        ,   winstl_ns_qual(get_synch_handle)(l1)
+    return w4mo_helper_8(
+            winstl_ns_qual(w4mo_verify_and_get)(l0)
+        ,   winstl_ns_qual(w4mo_verify_and_get)(l1)
         ,   NULL
         ,   NULL
         ,   NULL

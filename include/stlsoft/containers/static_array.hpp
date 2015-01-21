@@ -4,7 +4,9 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     24th December 2006
+ * Updated:     26th December 2006
+ *
+ * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  5
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      172
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     3
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      173
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,9 +96,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>          // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES
-# include <stlsoft/containers/array_policies.hpp>      // for stlsoft::do_construction()
-#endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES */
+#ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES
+# include <stlsoft/containers/util/array_policies.hpp>  // for stlsoft::do_construction()
+#endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
 # include <stlsoft/meta/is_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE */
