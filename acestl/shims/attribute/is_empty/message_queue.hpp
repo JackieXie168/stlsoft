@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Queue class.
  *
  * Created:     16th December 2004
- * Updated:     26th July 2006
+ * Updated:     3rd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_REVISION  1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT      13
+# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,8 @@ namespace acestl_project
 
 /** \brief Indicates whether the queue is empty
  *
- * \ingroup group__concept__shims__attribute
+ * \ingroup group__concept__shims__collection_attribute.
+ *
  */
 template <ACE_SYNCH_DECL>
 inline as_bool_t is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const &q)
