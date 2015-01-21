@@ -2,9 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  7th March 2010
+; Updated:  10th March 2010
 
 ============================================================================
+
+
+10th March 2010 - 1.9.96 released
+---------------------------------
+
+ * Visual C++ 10 compatibility
 
 
 7th March 2010 - 1.9.95 released

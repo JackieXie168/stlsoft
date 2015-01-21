@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  7th March 2010
+; Updated:  10th March 2010
 
 ============================================================================
 
@@ -16,6 +16,33 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.96 (10th March 2010)
+
+Summary:
+========
+
+ * Visual C++ 10 compatibility
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/internal/cccap/msvc.h:
+    + VC++ 10 compatibility
+
+ ~ include/stlsoft/stlsoft.h:
+    + Visual C++ 10 support
+
+ ~ include/stlsoft/util/std/iterator_helper.hpp:
+    + added support for Dinkumware 10 (as well as making explicit support for Dinkumware 8 & 9)
+
+ ~ include/stlsoft/util/std/library_discriminator.hpp:
+    ~ refactored Dinkumware detection, to discriminate 8, 9 and 10
 
 ============================================================================
 
