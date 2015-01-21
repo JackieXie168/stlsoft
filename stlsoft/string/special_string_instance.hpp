@@ -4,7 +4,7 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        7
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,10 +77,6 @@ STLSOFT_COMPILER_IS_MSVC:       _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-
-
-
-
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
@@ -729,81 +725,107 @@ private:
  * Shims
  */
 
-/** \brief Returns the corresponding C-string pointer of the
- *    special_string_instance_0 \c ssi, or a null pointer if the instance's
- *    contents are of zero length.
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::special_string_instance_0
+ *
+ * \ingroup group__concept__shims__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr_null(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr_null(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str() : NULL;
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_null_a(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_null_a(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str_a() : NULL;
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_null_w(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_null_w(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return (0 != ssi.length()) ? ssi.c_str_w() : NULL;
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Returns the corresponding C-string pointer of the special_string_instance_0 \c ssi
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::special_string_instance_0
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_a(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_ptr_a(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return ssi.c_str_a();
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_w(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr_w(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return ssi.c_str_w();
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Returns the corresponding C-string pointer of the special_string_instance_0 \c ssi
+/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::special_string_instance_0
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_data(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_data(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_data_a(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::cstring_a_type c_str_data_a(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return ssi.c_str_a();
 }
 template <ss_typename_param_k P>
-inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_data_w(special_string_instance_0<P> const &ssi)
+inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_data_w(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return ssi.c_str_w();
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Returns the length (in characters) of the special_string_instance_0 \c ssi, <b><i>not</i></b> including the null-terminating character
+/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::special_string_instance_0
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template <ss_typename_param_k P>
-inline ss_size_t c_str_len(special_string_instance_0<P> const &ssi)
+inline ss_size_t c_str_len(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
 {
     return ssi.length();
 }
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_size_t c_str_len_a(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
+{
+    // If this fires, you're trying to invoke c_str_len_w() on an SSI
+    // whose policy defines the character type to be something other
+    // than char.
+    ss_char_a_t const   *special_string_instance_must_use_narrow_character  =   ssi.c_str_a();
+
+    STLSOFT_SUPPRESS_UNUSED(special_string_instance_must_use_narrow_character);
+
+    return ssi.length();
+}
+template <ss_typename_param_k P>
+inline ss_size_t c_str_len_w(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
+{
+    // If this fires, you're trying to invoke c_str_len_w() on an SSI
+    // whose policy defines the character type to be something other
+    // than wchar_t.
+    ss_char_w_t const   *special_string_instance_must_use_wide_character    =   ssi.c_str_w();
+
+    STLSOFT_SUPPRESS_UNUSED(special_string_instance_must_use_wide_character);
+
+    return ssi.length();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

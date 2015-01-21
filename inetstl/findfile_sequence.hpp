@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MAJOR    2
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    11
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 8
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     111
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    13
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 1
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -751,83 +751,124 @@ inline is_bool_t operator != (  C const *lhs, basic_findfile_sequence_value_type
 ////////////////////////////////////////////////////////////////////////////
 // Shims
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline C const *c_str_ptr_null(basic_findfile_sequence_value_type<C, T, X> const &v)
-{
-    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
-}
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline is_char_a_t const *c_str_ptr_null_a(basic_findfile_sequence_value_type<is_char_a_t, T, X> const &v)
-{
-    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
-}
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline is_char_w_t const *c_str_ptr_null_w(basic_findfile_sequence_value_type<is_char_w_t, T, X> const &v)
-{
-    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
-}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline C const *c_str_ptr(basic_findfile_sequence_value_type<C, T, X> const &v)
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_char_a_t const *c_str_data_a(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_a_t, T, X> const &v)
 {
     return v.get_path();
 }
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline is_char_a_t const *c_str_ptr_a(basic_findfile_sequence_value_type<is_char_a_t, T, X> const &v)
-{
-    return v.get_path();
-}
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline is_char_w_t const *c_str_ptr_w(basic_findfile_sequence_value_type<is_char_w_t, T, X> const &v)
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_char_w_t const *c_str_data_w(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_w_t, T, X> const &v)
 {
     return v.get_path();
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for inetstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
-inline C const *c_str_data(basic_findfile_sequence_value_type<C, T, X> const &v)
-{
-    return v.get_path();
-}
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline is_char_a_t const *c_str_data_a(basic_findfile_sequence_value_type<is_char_a_t, T, X> const &v)
-{
-    return v.get_path();
-}
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k X
-        >
-inline is_char_w_t const *c_str_data_w(basic_findfile_sequence_value_type<is_char_w_t, T, X> const &v)
+inline C const *c_str_data(inetstl_ns_qual(basic_findfile_sequence_value_type)<C, T, X> const &v)
 {
     return v.get_path();
 }
 
+
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_size_t c_str_len_a(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_a_t, T, X> const &v)
+{
+    return stlsoft_ns_qual(c_str_len_a(v.get_path()));
+}
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_size_t c_str_len_w(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_w_t, T, X> const &v)
+{
+    return stlsoft_ns_qual(c_str_len_w(v.get_path()));
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for inetstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
-inline is_size_t c_str_len(basic_findfile_sequence_value_type<C, T, X> const &v)
+inline is_size_t c_str_len(inetstl_ns_qual(basic_findfile_sequence_value_type)<C, T, X> const &v)
 {
     return stlsoft_ns_qual(c_str_len(v.get_path()));
 }
+
+
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_char_a_t const *c_str_ptr_a(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_a_t, T, X> const &v)
+{
+    return v.get_path();
+}
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_char_w_t const *c_str_ptr_w(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_w_t, T, X> const &v)
+{
+    return v.get_path();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for inetstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline C const *c_str_ptr(inetstl_ns_qual(basic_findfile_sequence_value_type)<C, T, X> const &v)
+{
+    return v.get_path();
+}
+
+
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_char_a_t const *c_str_ptr_null_a(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_a_t, T, X> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
+}
+template <ss_typename_param_k T, ss_typename_param_k X>
+inline is_char_w_t const *c_str_ptr_null_w(inetstl_ns_qual(basic_findfile_sequence_value_type)<is_char_w_t, T, X> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for inetstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline C const *c_str_ptr_null(inetstl_ns_qual(basic_findfile_sequence_value_type)<C, T, X> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
+}
+
 
 
 
@@ -1611,19 +1652,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::inetstl::c_str_ptr_null;
-using ::inetstl::c_str_ptr_null_a;
-using ::inetstl::c_str_ptr_null_w;
-
-using ::inetstl::c_str_ptr;
-using ::inetstl::c_str_ptr_a;
-using ::inetstl::c_str_ptr_w;
-
 using ::inetstl::c_str_data;
 using ::inetstl::c_str_data_a;
 using ::inetstl::c_str_data_w;
 
 using ::inetstl::c_str_len;
+using ::inetstl::c_str_len_a;
+using ::inetstl::c_str_len_w;
+
+using ::inetstl::c_str_ptr;
+using ::inetstl::c_str_ptr_a;
+using ::inetstl::c_str_ptr_w;
+
+using ::inetstl::c_str_ptr_null;
+using ::inetstl::c_str_ptr_null_a;
+using ::inetstl::c_str_ptr_null_w;
 
 using ::inetstl::is_empty;
 

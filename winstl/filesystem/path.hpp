@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     218
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     219
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -668,104 +668,136 @@ inline void swap(basic_path<C, T, A> &lhs, basic_path<C, T, A> &rhs)
  * Shims
  */
 
+/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::basic_path
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline C const *c_str_ptr_null(basic_path<C, T, A> const &b)
+inline C const *c_str_data(winstl_ns_qual(basic_path)<C, T, A> const &b)
 {
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+    return b.c_str();
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_char_a_t const *c_str_ptr_null_a(basic_path<ws_char_a_t, T, A> const &b)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_char_a_t const *c_str_data_a(winstl_ns_qual(basic_path)<ws_char_a_t, T, A> const &b)
 {
-    return stlsoft_ns_qual(c_str_ptr_null_a)(b.c_str());
+    return b.c_str();
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(basic_path)<ws_char_w_t, T, A> const &b)
+{
+    return b.c_str();
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_char_w_t const *c_str_ptr_null_w(basic_path<ws_char_w_t, T, A> const &b)
-{
-    return stlsoft_ns_qual(c_str_ptr_null_w)(b.c_str());
-}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-
-
+/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::basic_path
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline C const *c_str_ptr(basic_path<C, T, A> const &b)
-{
-    return b.c_str();
-}
-
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_char_a_t const *c_str_ptr_a(basic_path<ws_char_a_t, T, A> const &b)
-{
-    return b.c_str();
-}
-
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_char_w_t const *c_str_ptr_w(basic_path<ws_char_w_t, T, A> const &b)
-{
-    return b.c_str();
-}
-
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline C const *c_str_data(basic_path<C, T, A> const &b)
-{
-    return b.c_str();
-}
-
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_char_a_t const *c_str_data_a(basic_path<ws_char_a_t, T, A> const &b)
-{
-    return b.c_str();
-}
-
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_char_w_t const *c_str_data_w(basic_path<ws_char_w_t, T, A> const &b)
-{
-    return b.c_str();
-}
-
-
-
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ws_size_t c_str_len(basic_path<C, T, A> const &b)
+inline ws_size_t c_str_len(winstl_ns_qual(basic_path)<C, T, A> const &b)
 {
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_size_t c_str_len_a(winstl_ns_qual(basic_path)<ws_char_a_t, T, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_len_a)(b.c_str());
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_size_t c_str_len_w(winstl_ns_qual(basic_path)<ws_char_w_t, T, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_len_w)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::basic_path
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline C const *c_str_ptr(winstl_ns_qual(basic_path)<C, T, A> const &b)
+{
+    return b.c_str();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_char_a_t const *c_str_ptr_a(winstl_ns_qual(basic_path)<ws_char_a_t, T, A> const &b)
+{
+    return b.c_str();
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(basic_path)<ws_char_w_t, T, A> const &b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::basic_path
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline C const *c_str_ptr_null(winstl_ns_qual(basic_path)<C, T, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_char_a_t const *c_str_ptr_null_a(winstl_ns_qual(basic_path)<ws_char_a_t, T, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_a)(b.c_str());
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(basic_path)<ws_char_w_t, T, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_w)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
+
+
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::basic_path
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline S &operator <<(S & s, basic_path<C, T, A> const &b)
+inline S &operator <<(S & s, winstl_ns_qual(basic_path)<C, T, A> const &b)
 {
     s << b.c_str();
 
@@ -1622,19 +1654,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::winstl::c_str_ptr_null;
-using ::winstl::c_str_ptr_null_a;
-using ::winstl::c_str_ptr_null_w;
-
-using ::winstl::c_str_ptr;
-using ::winstl::c_str_ptr_a;
-using ::winstl::c_str_ptr_w;
-
 using ::winstl::c_str_data;
 using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
+using ::winstl::c_str_len_a;
+using ::winstl::c_str_len_w;
+
+using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
+
+using ::winstl::c_str_ptr_null;
+using ::winstl::c_str_ptr_null_a;
+using ::winstl::c_str_ptr_null_w;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

@@ -4,7 +4,7 @@
  * Purpose:     String shims for standard time structures.
  *
  * Created:     25th July 2005
- * Updated:     10th June 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MINOR       2
+# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MINOR       3
 # define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_EDIT        7
+# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,6 +94,10 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr_a(struct tm const *t)
     return s;
 }
 
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for struct tm
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline basic_shim_string<ss_char_a_t> c_str_ptr(struct tm const *t)
 {
     return c_str_ptr_a(t);
@@ -104,15 +108,33 @@ inline basic_shim_string<ss_char_a_t> c_str_data_a(struct tm const *t)
     return c_str_ptr_a(t);
 }
 
+/** \brief \ref section__concept__shims__string_access__c_str_data for struct tm
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline basic_shim_string<ss_char_a_t> c_str_data(struct tm const *t)
 {
     return c_str_ptr_a(t);
 }
 
+/** \brief \ref section__concept__shims__string_access__c_str_len for struct tm
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline ss_size_t c_str_len(struct tm const *t)
 {
     return static_cast<ss_size_t>((NULL != t) ? 20 : 0);
 }
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline ss_size_t c_str_len_a(struct tm const *t)
+{
+    return c_str_len(t);
+}
+inline ss_size_t c_str_len_w(struct tm const *t)
+{
+    return c_str_len(t);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 
@@ -121,11 +143,19 @@ inline basic_shim_string<ss_char_a_t> c_str_ptr_a(struct tm const &t)
     return c_str_ptr_a(&t);
 }
 
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for struct tm
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline basic_shim_string<ss_char_a_t> c_str_ptr(struct tm const &t)
 {
     return c_str_ptr(&t);
 }
 
+/** \brief \ref section__concept__shims__string_access__c_str_data for struct tm
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline basic_shim_string<ss_char_a_t> c_str_data(struct tm const &t)
 {
     return c_str_data(&t);
@@ -136,10 +166,24 @@ inline basic_shim_string<ss_char_a_t> c_str_data_a(struct tm const &t)
     return c_str_data_a(&t);
 }
 
+/** \brief \ref section__concept__shims__string_access__c_str_len for struct tm
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline ss_size_t c_str_len(struct tm const &/* t */)
 {
     return 20;
 }
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline ss_size_t c_str_len_a(struct tm const &t)
+{
+    return c_str_len(t);
+}
+inline ss_size_t c_str_len_w(struct tm const &t)
+{
+    return c_str_len(t);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

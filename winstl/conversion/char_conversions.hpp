@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     71
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -385,117 +385,210 @@ typedef w2a                             w2t;
  * Shims
  */
 
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::ansi2Unicode
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ws_size_t   CCH
         >
-inline ws_char_w_t const *c_str_ptr_null(ansi2Unicode<CCH> const &b)
+inline ws_char_w_t const *c_str_ptr_null(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<   ws_size_t   CCH
         >
-inline ws_char_w_t const *c_str_ptr_null_w(ansi2Unicode<CCH> const &b)
+inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-template<   ws_size_t   CCH
-        >
-inline ws_char_w_t const *c_str_ptr(ansi2Unicode<CCH> const &b)
-{
-    return b.c_str();
-}
-template<   ws_size_t   CCH
-        >
-inline ws_char_w_t const *c_str_ptr_w(ansi2Unicode<CCH> const &b)
-{
-    return b.c_str();
-}
 
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::ansi2Unicode
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ws_size_t   CCH
         >
-inline ws_char_w_t const *c_str_data(ansi2Unicode<CCH> const &b)
-{
-    return b.c_str();
-}
-template<   ws_size_t   CCH
-        >
-inline ws_char_w_t const *c_str_data_w(ansi2Unicode<CCH> const &b)
+inline ws_char_w_t const *c_str_ptr(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
 {
     return b.c_str();
 }
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<   ws_size_t   CCH
         >
-inline ws_size_t c_str_len(ansi2Unicode<CCH> const &b)
+inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::ansi2Unicode
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ws_size_t   CCH
+        >
+inline ws_char_w_t const *c_str_data(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
+{
+    return b.c_str();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<   ws_size_t   CCH
+        >
+inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::ansi2Unicode
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ws_size_t   CCH
+        >
+inline ws_size_t c_str_len(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<   ws_size_t   CCH
+        >
+inline ws_size_t c_str_len_w(winstl_ns_qual(ansi2Unicode)<CCH> const &b)
+{
+    return stlsoft_ns_qual(c_str_len_w)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::unicode2Ansi
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_ptr_null(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_ptr_null_a(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::unicode2Ansi
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_ptr(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return b.c_str();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_ptr_a(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::unicode2Ansi
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_data(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return b.c_str();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<   ws_size_t   CCH
+        >
+inline ws_char_a_t const *c_str_data_a(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::unicode2Ansi
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ws_size_t   CCH
+        >
+inline ws_size_t c_str_len(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return stlsoft_ns_qual(c_str_len)(b.c_str());
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<   ws_size_t   CCH
+        >
+inline ws_size_t c_str_len_a(winstl_ns_qual(unicode2Ansi)<CCH> const &b)
+{
+    return stlsoft_ns_qual(c_str_len_a)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
+
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::ansi2Unicode
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<   ss_typename_param_k S
         ,   ws_size_t   CCH
         >
-inline S &operator <<(S & s, ansi2Unicode<CCH> const &b)
+inline S &operator <<(S & s, winstl_ns_qual(ansi2Unicode)<CCH> const &b)
 {
     s << b.c_str();
 
     return s;
 }
 
-template<   ws_size_t   CCH
-        >
-inline ws_char_a_t const *c_str_ptr_null(unicode2Ansi<CCH> const &b)
-{
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
-}
-template<   ws_size_t   CCH
-        >
-inline ws_char_a_t const *c_str_ptr_null_a(unicode2Ansi<CCH> const &b)
-{
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
-}
-
-template<   ws_size_t   CCH
-        >
-inline ws_char_a_t const *c_str_ptr(unicode2Ansi<CCH> const &b)
-{
-    return b.c_str();
-}
-template<   ws_size_t   CCH
-        >
-inline ws_char_a_t const *c_str_ptr_a(unicode2Ansi<CCH> const &b)
-{
-    return b.c_str();
-}
-
-template<   ws_size_t   CCH
-        >
-inline ws_char_a_t const *c_str_data(unicode2Ansi<CCH> const &b)
-{
-    return b.c_str();
-}
-template<   ws_size_t   CCH
-        >
-inline ws_char_a_t const *c_str_data_a(unicode2Ansi<CCH> const &b)
-{
-    return b.c_str();
-}
-
-template<   ws_size_t   CCH
-        >
-inline ws_size_t c_str_len(unicode2Ansi<CCH> const &b)
-{
-    return stlsoft_ns_qual(c_str_len)(b.c_str());
-}
-
-
-
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::unicode2Ansi
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<   ss_typename_param_k S
         ,   ws_size_t   CCH
         >
-inline S &operator <<(S & s, unicode2Ansi<CCH> const &b)
+inline S &operator <<(S & s, winstl_ns_qual(unicode2Ansi)<CCH> const &b)
 {
     s << b.c_str();
 
@@ -538,17 +631,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::winstl::c_str_ptr_null;
-
-using ::winstl::c_str_ptr;
-using ::winstl::c_str_ptr_a;
-using ::winstl::c_str_ptr_w;
-
 using ::winstl::c_str_data;
 using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
+using ::winstl::c_str_len_a;
+using ::winstl::c_str_len_w;
+
+using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
+
+using ::winstl::c_str_ptr_null;
+using ::winstl::c_str_ptr_null_a;
+using ::winstl::c_str_ptr_null_w;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

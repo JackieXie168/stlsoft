@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the cstring_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       3
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       1
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    2
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        63
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       2
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    1
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -297,30 +297,63 @@ inline ms_bool_t operator !=(cstring_veneer const &lhs, LPCWSTR rhs)
  * Shims
  */
 
-inline LPCTSTR c_str_ptr_null(cstring_veneer const &s)
-{
-    return s.empty() ? NULL : s.c_str();
-}
-
-inline LPCTSTR c_str_ptr(cstring_veneer const &s)
-{
-    return s.c_str();
-}
-
-inline LPCTSTR c_str_data(cstring_veneer const &s)
+/** \brief \ref section__concept__shims__string_access__c_str_data for mfcstl::cstring_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCTSTR c_str_data(mfcstl_ns_qual(cstring_veneer) const &s)
 {
     return s.data();
 }
 
-inline ms_size_t c_str_len(cstring_veneer const &s)
+/** \brief \ref section__concept__shims__string_access__c_str_len for mfcstl::cstring_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline ms_size_t c_str_len(mfcstl_ns_qual(cstring_veneer) const &s)
 {
     return s.length();
 }
 
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for mfcstl::cstring_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCTSTR c_str_ptr(mfcstl_ns_qual(cstring_veneer) const &s)
+{
+    return s.c_str();
+}
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for mfcstl::cstring_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCTSTR c_str_ptr_null(mfcstl_ns_qual(cstring_veneer) const &s)
+{
+    return s.empty() ? NULL : s.c_str();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef UNICODE
+inline LPCTSTR c_str_ptr_null_w(mfcstl_ns_qual(cstring_veneer) const &s)    { return c_str_ptr_null(s); }
+inline LPCTSTR c_str_ptr_w(mfcstl_ns_qual(cstring_veneer) const &s)         { return c_str_ptr(s); }
+inline LPCTSTR c_str_data_w(mfcstl_ns_qual(cstring_veneer) const &s)        { return c_str_data(s); }
+inline ms_size_t c_str_len_w(mfcstl_ns_qual(cstring_veneer) const &s)       { return c_str_len(s); }
+# else /* ? UNICODE */
+inline LPCTSTR c_str_ptr_null_a(mfcstl_ns_qual(cstring_veneer) const &s)    { return c_str_ptr_null(s); }
+inline LPCTSTR c_str_ptr_a(mfcstl_ns_qual(cstring_veneer) const &s)         { return c_str_ptr(s); }
+inline LPCTSTR c_str_data_a(mfcstl_ns_qual(cstring_veneer) const &s)        { return c_str_data(s); }
+inline ms_size_t c_str_len_a(mfcstl_ns_qual(cstring_veneer) const &s)       { return c_str_len(s); }
+# endif /* UNICODE */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for mfcstl::cstring_veneer
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<ss_typename_param_k S>
-inline S &operator <<(S &s, cstring_veneer const &str)
+inline S &operator <<(S &s, mfcstl_ns_qual(cstring_veneer) const &str)
 {
     s << str.c_str();
 
@@ -463,6 +496,8 @@ namespace unittest
 /* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline cstring_veneer::cstring_veneer()
     : parent_class_type()
@@ -677,6 +712,8 @@ inline cstring_veneer::const_pointer cstring_veneer::data() const
     return empty() ? _T("") : static_cast<const_pointer>(*this);
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _MFCSTL_NO_NAMESPACE
@@ -687,6 +724,48 @@ inline cstring_veneer::const_pointer cstring_veneer::data() const
 } /* namespace mfcstl_project */
 } /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_MFCSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ *
+ * The string access shims exist either in the stlsoft namespace, or in the
+ * global namespace. This is required by the lookup rules.
+ *
+ */
+
+#ifndef _MFCSTL_NO_NAMESPACE
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+namespace stlsoft
+{
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
+
+using ::mfcstl::c_str_data;
+using ::mfcstl::c_str_len;
+using ::mfcstl::c_str_ptr;
+using ::mfcstl::c_str_ptr_null;
+
+#ifdef UNICODE
+using ::mfcstl::c_str_data_w;
+using ::mfcstl::c_str_len_w;
+using ::mfcstl::c_str_ptr_w;
+using ::mfcstl::c_str_ptr_null_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_data_a;
+using ::mfcstl::c_str_len_a;
+using ::mfcstl::c_str_ptr_a;
+using ::mfcstl::c_str_ptr_null_a;
+#endif /* UNICODE */
+
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+} // namespace stlsoft
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

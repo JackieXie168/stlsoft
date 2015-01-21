@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -64,9 +64,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        183
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        184
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -722,48 +722,112 @@ inline ws_bool_t operator != (  C const *lhs, basic_findfile_sequence_value_type
 ////////////////////////////////////////////////////////////////////////////
 // Shims
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline C const *c_str_ptr_null(basic_findfile_sequence_value_type<C, T> const &v)
-{
-    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
-}
+// c_str_data
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline C const *c_str_ptr(basic_findfile_sequence_value_type<C, T> const &v)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T>
+inline ws_char_a_t const *c_str_data(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
 {
     return v.get_path();
 }
 template <ss_typename_param_k T>
-inline ws_char_a_t const *c_str_ptr(basic_findfile_sequence_value_type<ws_char_a_t, T> const &v)
-{
-    return v.get_path();
-}
-template <ss_typename_param_k T>
-inline ws_char_w_t const *c_str_ptr(basic_findfile_sequence_value_type<ws_char_w_t, T> const &v)
+inline ws_char_w_t const *c_str_data(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
 {
     return v.get_path();
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline C const *c_str_data(basic_findfile_sequence_value_type<C, T> const &v)
-{
-    return v.get_path();
-}
-template <ss_typename_param_k T>
-inline ws_char_a_t const *c_str_data(basic_findfile_sequence_value_type<ws_char_a_t, T> const &v)
-{
-    return v.get_path();
-}
-template <ss_typename_param_k T>
-inline ws_char_w_t const *c_str_data(basic_findfile_sequence_value_type<ws_char_w_t, T> const &v)
+inline C const *c_str_data(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)
 {
     return v.get_path();
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ws_size_t c_str_len(basic_findfile_sequence_value_type<C, T> const &v)
+// c_str_len
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T>
+inline ws_size_t c_str_len_a(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
 {
     return v.length();
+}
+template <ss_typename_param_k T>
+inline ws_size_t c_str_len_w(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
+{
+    return v.length();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline ws_size_t c_str_len(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)
+{
+    return v.length();
+}
+
+// c_str_ptr
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T>
+inline ws_char_a_t const *c_str_ptr(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
+{
+    return v.get_path();
+}
+template <ss_typename_param_k T>
+inline ws_char_w_t const *c_str_ptr(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
+{
+    return v.get_path();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline C const *c_str_ptr(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)
+{
+    return v.get_path();
+}
+
+// c_str_ptr_null
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T>
+inline ws_char_a_t const *c_str_ptr_null_a(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_a(v.get_path()));
+}
+template <ss_typename_param_k T>
+inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_w(v.get_path()));
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::basic_findfile_sequence_value_type
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline C const *c_str_ptr_null(winstl_ns_qual(basic_findfile_sequence_value_type)<C, T> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
 }
 
 
@@ -1654,17 +1718,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::winstl::c_str_ptr_null;
-
-using ::winstl::c_str_ptr;
-using ::winstl::c_str_ptr_a;
-using ::winstl::c_str_ptr_w;
+using ::winstl::c_str_len;
+using ::winstl::c_str_len_a;
+using ::winstl::c_str_len_w;
 
 using ::winstl::c_str_data;
 using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
-using ::winstl::c_str_len;
+using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
+
+using ::winstl::c_str_ptr_null;
+using ::winstl::c_str_ptr_null_a;
+using ::winstl::c_str_ptr_null_w;
 
 using ::winstl::is_empty;
 

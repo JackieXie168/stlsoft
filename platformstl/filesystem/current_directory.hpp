@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the current_directory components.
  *
  * Created:     13th June 2005
- * Updated:     3rd July 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      11
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ namespace platformstl_project
      * The notional class template platformstl::basic_current_directory
      * used to be a placeholder for the appropriate type for the given
      * platform, relying on
-     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::basic_current_directory

@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     7th July 2006
+ * Updated:     8th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    0
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     203
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     204
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,29 +110,45 @@ namespace unixstl_project
 class module
 {
 public:
+    /// \brief The handle type
     typedef void        *module_handle_type;
+    /// \brief The class type
     typedef module      class_type;
+    /// \brief The entry point type
+    typedef void        *proc_pointer_type;
 
 /// \name Construction
 /// @{
 public:
     /// \brief Constructs by loading the named module
     ///
-    /// \note If exception-handling is being used, then this throws a
-    /// \c unix_exception if the module cannot be loaded
-    ss_explicit_k module(us_char_a_t const *modName, int mode = RTLD_NOW);
-    /// \brief Constructs by loading the named module
+    /// \param moduleName The file name of the executable module to be loaded.
     ///
     /// \note If exception-handling is being used, then this throws a
-    /// \c unix_exception if the module cannot be loaded
-    ss_explicit_k module(us_char_w_t const *modName, int mode = RTLD_NOW);
+    ///  \link unixstl::unix_exception unix_exception\endlink
+    ///  if the module cannot be loaded
+    ss_explicit_k module(us_char_a_t const *moduleName, int mode = RTLD_NOW);
     /// \brief Constructs by loading the named module
     ///
+    /// \param moduleName The file name of the executable module to be loaded.
+    ///
     /// \note If exception-handling is being used, then this throws a
-    /// \c windows_exception if the module cannot be loaded
+    ///  \link unixstl::unix_exception unix_exception\endlink
+    ///  if the module cannot be loaded
+    ss_explicit_k module(us_char_w_t const *moduleName, int mode = RTLD_NOW);
+    /// \brief Constructs by loading the named module
+    ///
+    /// \param moduleName The file name of the executable module to be
+    ///   loaded. The argument may be of any type for which the
+    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   stlsoft::c_str_ptr is defined.
+    ///
+    /// \note If exception-handling is being used, then this throws a
+    ///  \link unixstl::unix_exception unix_exception\endlink
+    ///  if the module cannot be loaded
     template <ss_typename_param_k S>
-    ss_explicit_k module(S const &modName, int mode = RTLD_NOW)
-        : m_hmodule(load(modName))
+    ss_explicit_k module(S const &moduleName, int mode = RTLD_NOW)
+        : m_hmodule(load(moduleName))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
@@ -144,7 +160,8 @@ public:
     /// \brief Constructs by taking ownership of the given handle
     ///
     /// \note If exception-handling is being used, then this throws a
-    /// \c unix_exception if the module handle is NULL
+    ///  \link unixstl::unix_exception unix_exception\endlink
+    ///  if the handle is NULL.
     ss_explicit_k module(module_handle_type hmodule);
     /// \brief Closes the module handle
     ~module() stlsoft_throw_0();
@@ -153,10 +170,48 @@ public:
 /// \name Static operations
 /// @{
 public:
-    static module_handle_type   load(us_char_a_t const *modName, int mode = RTLD_NOW);
-    static module_handle_type   load(us_char_w_t const *modName, int mode = RTLD_NOW);
+    /// \brief Loads the named module, returning its handle, which the
+    ///   caller must close with unload().
+    ///
+    /// \return The module handle, or NULL if no matching module found.
+    static module_handle_type   load(us_char_a_t const *moduleName, int mode = RTLD_NOW);
+    /// \brief Loads the named module, returning its handle, which the
+    ///   caller must close with unload().
+    ///
+    /// \return The module handle, or NULL if no matching module found.
+    static module_handle_type   load(us_char_w_t const *moduleName, int mode = RTLD_NOW);
+    /// \brief Loads the named module, returning its handle, which the
+    ///   caller must close with unload().
+    ///
+    /// \param moduleName The file name of the executable module to be
+    ///   loaded. The argument may be of any type for which the
+    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   stlsoft::c_str_ptr is defined.
+    ///
+    /// \return The module handle, or NULL if no matching module found.
+    template <ss_typename_param_k S>
+    static module_handle_type   load(S const &moduleName)
+    {
+        return class_type::load(stlsoft_ns_qual(c_str_ptr)(moduleName));
+    }
+    /// \brief Closes the given module handle
     static void                 unload(module_handle_type hmodule);
-    static void                 *get_symbol(module_handle_type hmodule, us_char_a_t const *symbolName);
+    /// \brief Looks up the named symbol from the given module
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found
+    static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const *symbolName);
+    /// \brief Looks up a named symbol from the given module into a typed function pointer variable.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
+    template <ss_typename_param_k F>
+    static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const *symbolName, F &f)
+    {
+        proc_pointer_type proc = class_type::get_symbol(hmodule, symbolName);
+
+        f = reinterpret_cast<F>(proc);
+
+        return proc;
+    }
 /// @}
 
 /// \name Operations
@@ -172,14 +227,25 @@ public:
 /// \name Lookup Operations
 /// @{
 public:
-    void *get_symbol(us_char_a_t const *symbolName);
+    /// \brief Looks up the named symbol.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found
+    proc_pointer_type   get_symbol(us_char_a_t const *symbolName);
+    /// \brief Looks up a named symbol into a typed function pointer variable.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
+    template <ss_typename_param_k F>
+    proc_pointer_type   get_symbol(us_char_a_t const *symbolName, F &f)
+    {
+        return class_type::get_symbol(m_hmodule, symbolName, f);
+    }
 /// @}
 
 /// \name Accessors
 /// @{
 public:
     /// \brief Provides access to the underlying module handle
-    module_handle_type  get_handle() const;
+    module_handle_type  get_module_handle() const;
 /// @}
 
 /// \name Implementation
@@ -205,13 +271,13 @@ private:
  * Access shims
  */
 
-/** \brief Returns the handle for the given module
+/** \brief Returns the module handle for the given module
  *
- * \ingroup group__library__dl
+ * \ingroup group__concept__shims__module_attribute
  */
-inline void *get_handle(module const &m)
+inline void *get_module_handle(unixstl_ns_qual(module) const &m)
 {
-    return m.get_handle();
+    return m.get_module_handle();
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -228,8 +294,8 @@ inline void *get_handle(module const &m)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline module::module(us_char_a_t const *modName, int mode)
-    : m_hmodule(load(modName, mode))
+inline module::module(us_char_a_t const *moduleName, int mode)
+    : m_hmodule(load(moduleName, mode))
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
@@ -239,8 +305,8 @@ inline module::module(us_char_a_t const *modName, int mode)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline module::module(us_char_w_t const *modName, int mode)
-    : m_hmodule(load(modName, mode))
+inline module::module(us_char_w_t const *moduleName, int mode)
+    : m_hmodule(load(moduleName, mode))
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
@@ -285,9 +351,9 @@ inline module::module_handle_type module::detach()
     return h;
 }
 
-inline /* static */ module::module_handle_type module::load(us_char_a_t const *modName, int mode)
+inline /* static */ module::module_handle_type module::load(us_char_a_t const *moduleName, int mode)
 {
-    return ::dlopen(modName, mode);
+    return ::dlopen(moduleName, mode);
 }
 
 inline /* static */ void module::unload(module::module_handle_type hmodule)
@@ -298,17 +364,17 @@ inline /* static */ void module::unload(module::module_handle_type hmodule)
     }
 }
 
-inline /* static */ void *module::get_symbol(module::module_handle_type hmodule, us_char_a_t const *symbolName)
+inline /* static */ module::proc_pointer_type module::get_symbol(module::module_handle_type hmodule, us_char_a_t const *symbolName)
 {
     return ::dlsym(hmodule, symbolName);
 }
 
-inline void *module::get_symbol(us_char_a_t const *symbolName)
+inline module::proc_pointer_type module::get_symbol(us_char_a_t const *symbolName)
 {
     return get_symbol(m_hmodule, symbolName);
 }
 
-inline module::module_handle_type module::get_handle() const
+inline module::module_handle_type module::get_module_handle() const
 {
     return m_hmodule;
 }

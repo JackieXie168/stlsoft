@@ -4,7 +4,7 @@
  * Purpose:     is_compound_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     2nd July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MINOR    0
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     3
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_REVISION 2
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE
 # include <stlsoft/meta/is_fundamental_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE */
-#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
-# include <stlsoft/meta/select_first_type_if.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#ifdef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+#  include <stlsoft/meta/select_first_type_if.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */

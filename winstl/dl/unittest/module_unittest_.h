@@ -1,5 +1,5 @@
 
-// Updated: 11th June 2006
+// Updated: 10th July 2006
 
 #if !defined(WINSTL_INCL_WINSTL_DL_HPP_MODULE)
 # error This file cannot be directly included, and should only be included within winstl/dl/module.hpp
@@ -25,14 +25,14 @@ namespace unittest
 			module					m2(L"KERNEL32");
 			module					m3(m1);
 
-			if(m1.get_handle() != m2.get_handle())
+			if(m1.get_module_handle() != m2.get_module_handle())
 			{
 				r->report("copy construction failed", __LINE__);
 				bSuccess = false;
 			}
 
-			module::proc_pointer	pfnCloseHandle1 =	m1.get_symbol("CloseHandle");
-			module::proc_pointer	pfnCloseHandle2 =	m1.get_symbol(1);
+			module::proc_pointer_type	pfnCloseHandle1 =	m1.get_symbol("CloseHandle");
+			module::proc_pointer_type	pfnCloseHandle2 =	m1.get_symbol(1);
 
 			typedef BOOL (WINAPI *Pfn)(HANDLE);
 
@@ -53,7 +53,7 @@ namespace unittest
 
 			m2.unload();
 
-			if(NULL != m2.get_handle())
+			if(NULL != m2.get_module_handle())
 			{
 				r->report("unload() failed", __LINE__);
 				bSuccess = false;

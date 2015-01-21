@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     7th July 2006
+ * Updated:     8th July 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      1
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      2
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       212
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       213
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,36 +121,48 @@ public:
     /// \brief The handle type
     ///
     /// \note This member type is required to make it compatible with
-    ///  the STLSoft get_handle access shim
+    ///  the STLSoft get_module_handle access shim
     typedef HINSTANCE   handle_type;
     /// \brief The class type
     typedef module      class_type;
     /// \brief The entry point type
-    typedef void        (*proc_pointer)();
+    typedef void        (*proc_pointer_type)();
 
 /// \name Construction
 /// @{
 public:
     /// \brief Constructs by loading the named module
     ///
-    /// \note If exception-handling is being used, then this throws a
-    /// \c windows_exception if the module cannot be loaded
-    ss_explicit_k module(ws_char_a_t const *modName);
-    /// \brief Constructs by loading the named module
+    /// \param moduleName The file name of the executable module to be loaded.
     ///
     /// \note If exception-handling is being used, then this throws a
-    /// \c windows_exception if the module cannot be loaded
-    ss_explicit_k module(ws_char_w_t const *modName);
+    ///  \link winstl::windows_exception windows_exception\endlink
+    ///  if the module cannot be loaded
+    ss_explicit_k module(ws_char_a_t const *moduleName);
     /// \brief Constructs by loading the named module
     ///
+    /// \param moduleName The file name of the executable module to be loaded.
+    ///
     /// \note If exception-handling is being used, then this throws a
-    /// \c windows_exception if the module cannot be loaded
+    ///  \link winstl::windows_exception windows_exception\endlink
+    ///  if the module cannot be loaded
+    ss_explicit_k module(ws_char_w_t const *moduleName);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
+    /// \brief Constructs by loading the named module
+    ///
+    /// \param moduleName The file name of the executable module to be
+    ///   loaded. The argument may be of any type for which the
+    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   stlsoft::c_str_ptr is defined.
+    ///
+    /// \note If exception-handling is being used, then this throws a
+    ///  \link winstl::windows_exception windows_exception\endlink
+    ///  if the module cannot be loaded
     template <ss_typename_param_k S>
-    ss_explicit_k module(S const &modName)
-        : m_hmodule(load(modName))
+    ss_explicit_k module(S const &moduleName)
+        : m_hmodule(load(moduleName))
     {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
@@ -163,11 +175,12 @@ public:
     /// \brief Constructs by taking ownership of the given handle
     ///
     /// \note If exception-handling is being used, then this throws a
-    /// \c windows_exception if the module handle is NULL
+    ///  \link winstl::windows_exception windows_exception\endlink
+    ///  if the handle is NULL.
     ss_explicit_k module(module_handle_type hmodule);
     /// \brief Copy constructor
     ///
-    /// \note Both copies hold independent handles to the underlying link unit
+    /// \note Both copies hold independent handles to the underlying module.
     module(class_type const &rhs);
     /// \brief Closes the module handle
     ~module() stlsoft_throw_0();
@@ -176,37 +189,67 @@ public:
 /// \name Static operations
 /// @{
 public:
-    static module_handle_type   load(ws_char_a_t const *modName);
-    static module_handle_type   load(ws_char_w_t const *modName);
+    /// \brief Loads the named module, returning its handle, which the
+    ///   caller must close with unload().
+    ///
+    /// \return The module handle, or NULL if no matching module found.
+    static module_handle_type   load(ws_char_a_t const *moduleName);
+    /// \brief Loads the named module, returning its handle, which the
+    ///   caller must close with unload().
+    ///
+    /// \return The module handle, or NULL if no matching module found.
+    static module_handle_type   load(ws_char_w_t const *moduleName);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
+    /// \brief Loads the named module, returning its handle, which the
+    ///   caller must close with unload().
+    ///
+    /// \param moduleName The file name of the executable module to be
+    ///   loaded. The argument may be of any type for which the
+    ///   \ref group__concept__shims__string_access "string access shim"
+    ///   stlsoft::c_str_ptr is defined.
+    ///
+    /// \return The module handle, or NULL if no matching module found.
     template <ss_typename_param_k S>
-    static module_handle_type   load(S const &modName)
+    static module_handle_type   load(S const &moduleName)
     {
-        return class_type::load(stlsoft_ns_qual(c_str_ptr)(modName));
+        return class_type::load(stlsoft_ns_qual(c_str_ptr)(moduleName));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    /// \brief Closes the given module handle
     static void                 unload(module_handle_type hmodule) stlsoft_throw_0();
-    static proc_pointer         get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName);
-    static proc_pointer         get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal);
+    /// \brief Looks up a named symbol from the given module.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
+    static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName);
+    /// \brief Looks up a symbol by ordinal from the given module.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
+    static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal);
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
+    /// \brief Looks up a named symbol from the given module into a typed function pointer variable.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
     template <ss_typename_param_k F>
-    static proc_pointer         get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName, F &f)
+    static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName, F &f)
     {
-        proc_pointer    proc  =   class_type::get_symbol(hmodule, symbolName);
+        proc_pointer_type proc = class_type::get_symbol(hmodule, symbolName);
 
         f = reinterpret_cast<F>(proc);
 
         return proc;
     }
+    /// \brief Looks up a symbol by ordinal from the given module into a typed function pointer variable.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
     template <ss_typename_param_k F>
-    static proc_pointer         get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal, F &f)
+    static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal, F &f)
     {
-        proc_pointer    proc  =   class_type::get_symbol(hmodule, symbolOrdinal);
+        proc_pointer_type proc = class_type::get_symbol(hmodule, symbolOrdinal);
 
         f = reinterpret_cast<F>(proc);
 
@@ -228,19 +271,31 @@ public:
 /// \name Lookup Operations
 /// @{
 public:
-    proc_pointer    get_symbol(ws_char_a_t const *symbolName);
-    proc_pointer    get_symbol(ws_uint32_t symbolOrdinal);
+    /// \brief Looks up a named symbol.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
+    proc_pointer_type   get_symbol(ws_char_a_t const *symbolName);
+    /// \brief Looks up a symbol by ordinal.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
+    proc_pointer_type   get_symbol(ws_uint32_t symbolOrdinal);
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
+    /// \brief Looks up a named symbol into a typed function pointer variable.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
     template <ss_typename_param_k F>
-    proc_pointer    get_symbol(ws_char_a_t const *symbolName, F &f)
+    proc_pointer_type   get_symbol(ws_char_a_t const *symbolName, F &f)
     {
         return class_type::get_symbol(m_hmodule, symbolName, f);
     }
+    /// \brief Looks up a symbol by ordinal into a typed function pointer variable.
+    ///
+    /// \return A pointer to the named symbol, or NULL if not found.
     template <ss_typename_param_k F>
-    proc_pointer    get_symbol(ws_uint32_t symbolOrdinal, F &f)
+    proc_pointer_type   get_symbol(ws_uint32_t symbolOrdinal, F &f)
     {
         return class_type::get_symbol(m_hmodule, symbolOrdinal, f);
     }
@@ -251,7 +306,7 @@ public:
 /// @{
 public:
     /// \brief Provides access to the underlying module handle
-    module_handle_type  get_handle() const;
+    module_handle_type  get_module_handle() const;
 
     /// \brief Provides access to the underlying module handle
     module_handle_type  get() const;
@@ -270,13 +325,13 @@ private:
  * Access shims
  */
 
-/** \brief Returns the handle for the given module
+/** \brief Returns the module handle for the given module
  *
- * \ingroup group__library__dl
+ * \ingroup group__concept__shims__module_attribute
  */
-inline HINSTANCE get_handle(module const &m)
+inline HINSTANCE get_module_handle(winstl_ns_qual(module) const &m)
 {
-    return m.get_handle();
+    return m.get_module_handle();
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -293,8 +348,8 @@ inline HINSTANCE get_handle(module const &m)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline module::module(ws_char_a_t const *modName)
-    : m_hmodule(load(modName))
+inline module::module(ws_char_a_t const *moduleName)
+    : m_hmodule(load(moduleName))
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
@@ -304,8 +359,8 @@ inline module::module(ws_char_a_t const *modName)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline module::module(ws_char_w_t const *modName)
-    : m_hmodule(load(modName))
+inline module::module(ws_char_w_t const *moduleName)
+    : m_hmodule(load(moduleName))
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
@@ -328,14 +383,14 @@ inline module::module(module::module_handle_type hmodule)
 
 inline module::module(module const &rhs)
 {
-    if(NULL == rhs.get_handle())
+    if(NULL == rhs.get_module_handle())
     {
         m_hmodule = NULL;
     }
     else
     {
         basic_file_path_buffer<ws_char_a_t> buffer;
-        ws_size_t                           cch =   system_traits<ws_char_a_t>::get_module_filename(rhs.get_handle(), &buffer[0], buffer.size());
+        ws_size_t                           cch =   system_traits<ws_char_a_t>::get_module_filename(rhs.get_module_handle(), &buffer[0], buffer.size());
 
         if(0 == cch)
         {
@@ -376,14 +431,14 @@ inline module::module_handle_type module::detach()
     return h;
 }
 
-inline /* static */ module::module_handle_type module::load(ws_char_a_t const *modName)
+inline /* static */ module::module_handle_type module::load(ws_char_a_t const *moduleName)
 {
-    return ::LoadLibraryA(modName);
+    return ::LoadLibraryA(moduleName);
 }
 
-inline /* static */ module::module_handle_type module::load(ws_char_w_t const *modName)
+inline /* static */ module::module_handle_type module::load(ws_char_w_t const *moduleName)
 {
-    return ::LoadLibraryW(modName);
+    return ::LoadLibraryW(moduleName);
 }
 
 inline /* static */ void module::unload(module::module_handle_type hmodule) stlsoft_throw_0()
@@ -394,29 +449,29 @@ inline /* static */ void module::unload(module::module_handle_type hmodule) stls
     }
 }
 
-inline /* static */ module::proc_pointer module::get_symbol(module::module_handle_type hmodule, ws_char_a_t const *symbolName)
+inline /* static */ module::proc_pointer_type module::get_symbol(module::module_handle_type hmodule, ws_char_a_t const *symbolName)
 {
-    return reinterpret_cast<proc_pointer>(GetProcAddress(hmodule, symbolName));
+    return reinterpret_cast<proc_pointer_type>(GetProcAddress(hmodule, symbolName));
 }
 
-inline /* static */ module::proc_pointer module::get_symbol(module::module_handle_type hmodule, ws_uint32_t symbolOrdinal)
+inline /* static */ module::proc_pointer_type module::get_symbol(module::module_handle_type hmodule, ws_uint32_t symbolOrdinal)
 {
-    ws_char_a_t const *s    =   MAKEINTRESOURCEA(symbolOrdinal);
+    ws_char_a_t const *s = MAKEINTRESOURCEA(symbolOrdinal);
 
     return get_symbol(hmodule, s);
 }
 
-inline module::proc_pointer module::get_symbol(ws_char_a_t const *symbolName)
+inline module::proc_pointer_type module::get_symbol(ws_char_a_t const *symbolName)
 {
     return get_symbol(m_hmodule, symbolName);
 }
 
-inline module::proc_pointer module::get_symbol(ws_uint32_t symbolOrdinal)
+inline module::proc_pointer_type module::get_symbol(ws_uint32_t symbolOrdinal)
 {
     return get_symbol(m_hmodule, symbolOrdinal);
 }
 
-inline module::module_handle_type module::get_handle() const
+inline module::module_handle_type module::get_module_handle() const
 {
     return m_hmodule;
 }

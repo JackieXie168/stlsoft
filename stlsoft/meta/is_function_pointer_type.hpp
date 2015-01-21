@@ -4,7 +4,7 @@
  * Purpose:     is_function_pointer_type meta class.
  *
  * Created:     4th November 2005
- * Updated:     2nd July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_MINOR    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_EDIT     5
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_REVISION 2
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
 # include <stlsoft/meta/n_types.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
-#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
-# include <stlsoft/meta/select_first_type_if.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#ifdef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+#  include <stlsoft/meta/select_first_type_if.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */

@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     103
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,21 +129,30 @@ namespace winstl_project
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template <int N>
-struct hdr_
-{
-    WORD    wLength;
-    WORD    wValueLength;
-    WORD    wType;
-    WCHAR   szKey[1];
-};
+// The following bizarre construction is solely to avoid an ICE in VC6
+// that only raises its ugly head in large, non-trivial, compilation
+// contexts.
 
-typedef hdr_<1> VS_VERSIONINFO_hdr;
-typedef hdr_<2> StringFileInfo_hdr;
-typedef hdr_<3> VarFileInfo_hdr;
-typedef hdr_<4> Var_hdr;
-typedef hdr_<5> StringTable_hdr;
-typedef hdr_<6> String_hdr;
+template<ss_typename_param_k T>
+struct hdr
+{
+    template<int N>
+    struct hdr_
+    {
+        WORD    wLength;
+        WORD    wValueLength;
+        WORD    wType;
+        WCHAR   szKey[1];
+    };
+
+}; // namespace hdr
+
+typedef hdr<int>::hdr_<1> VS_VERSIONINFO_hdr;
+typedef hdr<int>::hdr_<2> StringFileInfo_hdr;
+typedef hdr<int>::hdr_<3> VarFileInfo_hdr;
+typedef hdr<int>::hdr_<4> Var_hdr;
+typedef hdr<int>::hdr_<5> StringTable_hdr;
+typedef hdr<int>::hdr_<6> String_hdr;
 
 template<ss_typename_param_k T>
 T *rounded_ptr(T *p, ss_size_t n)

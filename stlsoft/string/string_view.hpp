@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        71
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1583,6 +1583,8 @@ inline ss_typename_type_k basic_string_view<C, T, A>::reverse_iterator basic_str
 #endif /* 0 */
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -1600,88 +1602,122 @@ inline void swap(basic_string_view<C, T, A> &lhs, basic_string_view<C, T, A> &rh
  * String access shims
  */
 
-/* c_str_ptr_null */
+// c_str_data
 
-/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::basic_string_view
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline C const *c_str_ptr_null(basic_string_view<C, T, A> const &s)
-{
-    return (s.length() == 0) ? 0 : s.c_str();
-}
-
-/* c_str_ptr */
-
-/** \brief Returns the corresponding C-string pointer of \c s
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline C const *c_str_ptr(basic_string_view<C, T, A> const &s)
-{
-    return s.c_str();
-}
-
-/* c_str_data */
-
-/** \brief Returns the corresponding C-string pointer of \c s
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline C const *c_str_data(basic_string_view<C, T, A> const &s)
+inline C const *c_str_data(stlsoft_ns_qual(basic_string_view)<C, T, A> const &s)
 {
     return s.data();
 }
 
-/** \brief Returns the corresponding C-string pointer of \c s
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_char_a_t const *c_str_ptr_a(basic_string_view<ss_char_a_t, T, A> const &s)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual(basic_string_view)<ss_char_a_t, T, A> const &s)
 {
-    return s.c_str();
+    return s.data();
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_w_t const *c_str_data_w(stlsoft_ns_qual(basic_string_view)<ss_char_w_t, T, A> const &s)
+{
+    return s.data();
 }
 
-/** \brief Returns the corresponding C-string pointer of \c s
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_char_w_t const *c_str_ptr_w(basic_string_view<ss_char_w_t, T, A> const &s)
-{
-    return s.c_str();
-}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* c_str_ptr_len */
+// c_str_len
 
-/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::basic_string_view
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_size_t c_str_len(basic_string_view<C, T, A> const &s)
+inline ss_size_t c_str_len(stlsoft_ns_qual(basic_string_view)<C, T, A> const &s)
 {
     return s.length();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_size_t c_str_len_a(stlsoft_ns_qual(basic_string_view)<ss_char_a_t, T, A> const &s)
+{
+    return s.length();
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_size_t c_str_len_w(stlsoft_ns_qual(basic_string_view)<ss_char_w_t, T, A> const &s)
+{
+    return s.length();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+// c_str_ptr
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::basic_string_view
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline C const *c_str_ptr(stlsoft_ns_qual(basic_string_view)<C, T, A> const &s)
+{
+    return s.c_str();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual(basic_string_view)<ss_char_a_t, T, A> const &s)
+{
+    return s.c_str();
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_w_t const *c_str_ptr_w(stlsoft_ns_qual(basic_string_view)<ss_char_w_t, T, A> const &s)
+{
+    return s.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+// c_str_ptr_null
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::basic_string_view
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline C const *c_str_ptr_null(stlsoft_ns_qual(basic_string_view)<C, T, A> const &s)
+{
+    return (0 != s.length()) ? s.c_str() : NULL;
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual(basic_string_view)<ss_char_a_t, T, A> const &s)
+{
+    return (0 != s.length()) ? s.c_str() : NULL;
+}
+template <ss_typename_param_k T, ss_typename_param_k A>
+inline ss_char_w_t const *c_str_ptr_null_w(stlsoft_ns_qual(basic_string_view)<ss_char_w_t, T, A> const &s)
+{
+    return (0 != s.length()) ? s.c_str() : NULL;
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

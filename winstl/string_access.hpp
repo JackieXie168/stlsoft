@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      3
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_REVISION   4
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       99
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      4
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_REVISION   1
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,8 +100,10 @@ namespace winstl_project
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline ws_size_t GetWindowTextLength__(HWND hwnd)
+inline ws_size_t GetWindowTextLength__t(HWND hwnd, int (WINAPI *pfn)(HWND ))
 {
+    WINSTL_ASSERT(NULL != pfn);
+
     WindowIdent ident   =   GetWindowIdent(hwnd);
     int         sel;
 
@@ -137,8 +139,42 @@ inline ws_size_t GetWindowTextLength__(HWND hwnd)
             break;
     }
 
-    return static_cast<ws_size_t>(::GetWindowTextLength(hwnd));
+    return static_cast<ws_size_t>(pfn(hwnd));
 }
+
+inline ws_size_t GetWindowTextLength__(HWND hwnd)
+{
+    return GetWindowTextLength__t(hwnd, ::GetWindowTextLength);
+}
+inline ws_size_t GetWindowTextLength__A(HWND hwnd)
+{
+    return GetWindowTextLength__t(hwnd, ::GetWindowTextLengthA);
+}
+inline ws_size_t GetWindowTextLength__W(HWND hwnd)
+{
+    return GetWindowTextLength__t(hwnd, ::GetWindowTextLengthW);
+}
+
+template <ss_typename_param_k C>
+struct WindowTextLength_traits;
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct WindowTextLength_traits<ws_char_a_t>
+{
+    static ws_size_t get_length(HWND hwnd)
+    {
+        return GetWindowTextLength__A(hwnd);
+    }
+};
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct WindowTextLength_traits<ws_char_w_t>
+{
+    static ws_size_t get_length(HWND hwnd)
+    {
+        return GetWindowTextLength__W(hwnd);
+    }
+};
 
 inline ws_size_t GetWindowTextA__(HWND hwnd, ws_char_a_t *buffer, ws_size_t cchBuffer)
 {
@@ -251,7 +287,7 @@ public:
     /// \param h The HWND from which the text will be retrieved
     ss_explicit_k c_str_ptr_null_HWND_proxy(HWND h)
     {
-        ws_size_t length  =   GetWindowTextLength__(h);
+        ws_size_t length  =   WindowTextLength_traits<C>::get_length(h);
 
         if(length == 0)
         {
@@ -354,7 +390,7 @@ public:
     /// \param h The HWND from which the text will be retrieved
     ss_explicit_k c_str_ptr_HWND_proxy(HWND h)
     {
-        ws_size_t length  =   GetWindowTextLength__(h);
+        ws_size_t length  =   WindowTextLength_traits<C>::get_length(h);
 
         m_buffer = string_maker_type::alloc(length);
 
@@ -624,127 +660,28 @@ inline S &operator <<(S & s, c_str_ptr_null_LSA_UNICODE_STRING_proxy const &shim
 #endif /* _NTSECAPI_ */
 
 /* /////////////////////////////////////////////////////////////////////////
- * c_str_ptr_null
- *
- * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
- */
-
-/* HWND */
-/** \brief Returns the corresponding C-string pointer of the window \c h, or a null pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_null_HWND_proxy<ws_char_a_t> c_str_ptr_null_a(HWND h)
-{
-    return c_str_ptr_null_HWND_proxy<ws_char_a_t>(h);
-}
-
-/** \brief Returns the corresponding C-string pointer of the window \c h, or a null pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_null_HWND_proxy<ws_char_w_t> c_str_ptr_null_w(HWND h)
-{
-    return c_str_ptr_null_HWND_proxy<ws_char_w_t>(h);
-}
-
-/** \brief Returns the corresponding C-string pointer of the window \c h, or a null pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_null_HWND_proxy<TCHAR> c_str_ptr_null(HWND h)
-{
-    return c_str_ptr_null_HWND_proxy<TCHAR>(h);
-}
-
-/* LSA_UNICODE_STRING */
-#ifdef _NTSECAPI_
-/** \brief Returns the corresponding C-string pointer of the LSA_UNICODE_STRING \c s, or a null pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null(const LSA_UNICODE_STRING &s)
-{
-    return c_str_ptr_null_LSA_UNICODE_STRING_proxy(s);
-}
-#endif /* _NTSECAPI_ */
-
-/* /////////////////////////////////////////////////////////////////////////
- * c_str_ptr
- *
- * This can be applied to an expression, and the return value is either a
- * pointer to the character string or to an empty string.
- */
-
-/* HWND */
-/** \brief Returns the corresponding C-string pointer of the window \c h
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_HWND_proxy<ws_char_a_t> c_str_ptr_a(HWND h)
-{
-    return c_str_ptr_HWND_proxy<ws_char_a_t>(h);
-}
-
-/** \brief Returns the corresponding C-string pointer of the window \c h
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_HWND_proxy<ws_char_w_t> c_str_ptr_w(HWND h)
-{
-    return c_str_ptr_HWND_proxy<ws_char_w_t>(h);
-}
-
-/** \brief Returns the corresponding C-string pointer of the window \c h
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_HWND_proxy<TCHAR> c_str_ptr(HWND h)
-{
-    return c_str_ptr_HWND_proxy<TCHAR>(h);
-}
-
-/* LSA_UNICODE_STRING */
-#ifdef _NTSECAPI_
-/** \brief Returns the corresponding C-string pointer of the LSA_UNICODE_STRING \c s
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr(const LSA_UNICODE_STRING &s)
-{
-    return c_str_ptr_LSA_UNICODE_STRING_proxy(s);
-}
-#endif /* _NTSECAPI_ */
-
-/* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
  * This can be applied to an expression, and the return value is either a
  * pointer to the character string or to an empty string.
  */
 
-/** \brief Returns the corresponding C-string pointer of the window \c h
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline c_str_ptr_HWND_proxy<ws_char_a_t> c_str_data_a(HWND h)
 {
     return c_str_ptr_HWND_proxy<ws_char_a_t>(h);
 }
-
-/** \brief Returns the corresponding C-string pointer of the window \c h
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
 inline c_str_ptr_HWND_proxy<ws_char_w_t> c_str_data_w(HWND h)
 {
     return c_str_ptr_HWND_proxy<ws_char_w_t>(h);
 }
 
-/** \brief Returns the corresponding C-string pointer of the window \c h
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for HWND
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline c_str_ptr_HWND_proxy<TCHAR> c_str_data(HWND h)
 {
@@ -753,9 +690,16 @@ inline c_str_ptr_HWND_proxy<TCHAR> c_str_data(HWND h)
 
 /* LSA_UNICODE_STRING */
 #ifdef _NTSECAPI_
-/** \brief Returns the corresponding potentially unterminated C-string pointer of the LSA_UNICODE_STRING \c s
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline LPCWSTR c_str_data_w(const LSA_UNICODE_STRING &s)
+{
+    return s.Buffer;    /
+}
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for LSA_UNICODE_STRING
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline LPCWSTR c_str_data(const LSA_UNICODE_STRING &s)
 {
@@ -771,42 +715,145 @@ inline LPCWSTR c_str_data(const LSA_UNICODE_STRING &s)
  */
 
 /* HWND */
-/** \brief Returns the length (in characters) of the string of \c s, <b><i>not</i></b> including the null-terminating character
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline ws_size_t c_str_len_a(HWND h)
+{
+    return GetWindowTextLength__A(h);
+}
+inline ws_size_t c_str_len_w(HWND h)
+{
+    return GetWindowTextLength__W(h);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for HWND
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline ws_size_t c_str_len(HWND h)
 {
     return GetWindowTextLength__(h);
 }
 
-/** \brief Returns the length (in characters) of the string of \c s, <b><i>not</i></b> including the null-terminating character
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline ws_size_t c_str_len_a(HWND h)
-{
-    return c_str_len(h);
-}
-
-/** \brief Returns the length (in characters) of the string of \c s, <b><i>not</i></b> including the null-terminating character
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline ws_size_t c_str_len_w(HWND h)
-{
-    return c_str_len(h);
-}
-
 /* LSA_UNICODE_STRING */
 #ifdef _NTSECAPI_
-/** \brief Returns the length (in characters) of the LSA_UNICODE_STRING \c s, <b><i>not</i></b> including the null-terminating character
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline ws_size_t c_str_len_w(const LSA_UNICODE_STRING &s)
+{
+    return s.Length;
+}
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for LSA_UNICODE_STRING
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline ws_size_t c_str_len(const LSA_UNICODE_STRING &s)
 {
     return s.Length;
+}
+#endif /* _NTSECAPI_ */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * c_str_ptr
+ *
+ * This can be applied to an expression, and the return value is either a
+ * pointer to the character string or to an empty string.
+ */
+
+/* HWND */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline c_str_ptr_HWND_proxy<ws_char_a_t> c_str_ptr_a(HWND h)
+{
+    return c_str_ptr_HWND_proxy<ws_char_a_t>(h);
+}
+inline c_str_ptr_HWND_proxy<ws_char_w_t> c_str_ptr_w(HWND h)
+{
+    return c_str_ptr_HWND_proxy<ws_char_w_t>(h);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for HWND
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_HWND_proxy<TCHAR> c_str_ptr(HWND h)
+{
+    return c_str_ptr_HWND_proxy<TCHAR>(h);
+}
+
+/* LSA_UNICODE_STRING */
+#ifdef _NTSECAPI_
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr_w(const LSA_UNICODE_STRING &s)
+{
+    return c_str_ptr_LSA_UNICODE_STRING_proxy(s);
+}
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for LSA_UNICODE_STRING
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr(const LSA_UNICODE_STRING &s)
+{
+    return c_str_ptr_LSA_UNICODE_STRING_proxy(s);
+}
+#endif /* _NTSECAPI_ */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * c_str_ptr_null
+ *
+ * This can be applied to an expression, and the return value is either a
+ * pointer to the character string or NULL.
+ */
+
+/* HWND */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline c_str_ptr_null_HWND_proxy<ws_char_a_t> c_str_ptr_null_a(HWND h)
+{
+    return c_str_ptr_null_HWND_proxy<ws_char_a_t>(h);
+}
+inline c_str_ptr_null_HWND_proxy<ws_char_w_t> c_str_ptr_null_w(HWND h)
+{
+    return c_str_ptr_null_HWND_proxy<ws_char_w_t>(h);
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for HWND
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_null_HWND_proxy<TCHAR> c_str_ptr_null(HWND h)
+{
+    return c_str_ptr_null_HWND_proxy<TCHAR>(h);
+}
+
+/* LSA_UNICODE_STRING */
+#ifdef _NTSECAPI_
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null_w(const LSA_UNICODE_STRING &s)
+{
+    return c_str_ptr_null_LSA_UNICODE_STRING_proxy(s);
+}
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for LSA_UNICODE_STRING
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null(const LSA_UNICODE_STRING &s)
+{
+    return c_str_ptr_null_LSA_UNICODE_STRING_proxy(s);
 }
 #endif /* _NTSECAPI_ */
 
@@ -846,14 +893,6 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::winstl::c_str_ptr_null;
-using ::winstl::c_str_ptr_null_a;
-using ::winstl::c_str_ptr_null_w;
-
-using ::winstl::c_str_ptr;
-using ::winstl::c_str_ptr_a;
-using ::winstl::c_str_ptr_w;
-
 using ::winstl::c_str_data;
 using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
@@ -861,6 +900,14 @@ using ::winstl::c_str_data_w;
 using ::winstl::c_str_len;
 using ::winstl::c_str_len_a;
 using ::winstl::c_str_len_w;
+
+using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
+
+using ::winstl::c_str_ptr_null;
+using ::winstl::c_str_ptr_null_a;
+using ::winstl::c_str_ptr_null_w;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

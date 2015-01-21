@@ -4,7 +4,7 @@
  * Purpose:     Definition of the spin_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     12th June 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      13
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/spin_mutex.hpp
@@ -103,7 +103,7 @@ namespace platformstl_project
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::spin_mutex

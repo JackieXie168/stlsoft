@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/containers/environment_block.hpp
-///
-/// Contains the basic_environment_block class.
+/** \file stlsoft/containers/environment_block.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::basic_environment_block
+ *   container class template.
+ *  (\ref group__library__containers "Containers" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MAJOR    4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MINOR    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT     33
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_REVISION 3
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,27 +91,14 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/** \brief \weakgroup libraries STLSoft Libraries
- * \brief The individual libraries
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-
-/** \brief \weakgroup libraries_system System Library
- * \ingroup libraries
- * \brief This library provides facilities for defining and manipulating operating-system specific constructs
- * @{
- */
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/** \brief Class used for preparing environment blocks
+/** \brief Stores nul-terminated environment variable name-value strings
+ *    continguously in a format compatible with system environment settings.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param C The character type
  * \param T The traits type. Defaults to char_traits<C>. On translators that do not support default template parameters, this must be explicitly specified.
@@ -324,7 +314,7 @@ private:
 typedef basic_environment_block<ss_char_a_t>    environment_block_a;
 /** \brief Instantiation of the basic_environment_block template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  */
 typedef basic_environment_block<ss_char_w_t>    environment_block_w;
 

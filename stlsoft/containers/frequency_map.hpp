@@ -4,7 +4,7 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     10th June 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/containers/frequency_map.hpp
-///
-/// A container that measures the frequency of the unique elements it contains.
+/** \file stlsoft/containers/frequency_map.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::frequency_map container
+ *   class template.
+ *  (\ref group__library__containers "Containers" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     7
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,6 +85,12 @@ namespace stlsoft
  * Classes
  */
 
+/** \brief A container that measures the frequency of the unique elements it
+ *    contains.
+ *
+ * \ingroup group__library__containers
+ *
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k N = uint32_t
         >

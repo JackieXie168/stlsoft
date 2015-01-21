@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    0
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    1
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 1
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     54
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -409,30 +409,70 @@ inline void swap(ccombstr_veneer &lhs, ccombstr_veneer &rhs)
  * Shims
  */
 
-inline LPCOLESTR c_str_ptr_null(ccombstr_veneer const &str)
-{
-    return str.empty() ? NULL : str.c_str();
-}
-
-inline LPCOLESTR c_str_ptr(ccombstr_veneer const &str)
-{
-    return str.c_str();
-}
-
-inline LPCOLESTR c_str_data(ccombstr_veneer const &str)
+/** \brief \ref section__concept__shims__string_access__c_str_data for comstl::ccombstr_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCOLESTR c_str_data(atlstl_ns_qual(ccombstr_veneer) const &str)
 {
     return str.data();
 }
 
-inline as_size_t c_str_len(ccombstr_veneer const &str)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline LPCOLESTR c_str_data_w(atlstl_ns_qual(ccombstr_veneer) const &str)       { return c_str_data(str); }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for comstl::ccombstr_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline as_size_t c_str_len(atlstl_ns_qual(ccombstr_veneer) const &str)
 {
     return str.length();
 }
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline as_size_t c_str_len_w(atlstl_ns_qual(ccombstr_veneer) const &str)        { return c_str_len(str); }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for comstl::ccombstr_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCOLESTR c_str_ptr(atlstl_ns_qual(ccombstr_veneer) const &str)
+{
+    return str.c_str();
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline LPCOLESTR c_str_ptr_w(atlstl_ns_qual(ccombstr_veneer) const &str)        { return c_str_ptr(str); }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for comstl::ccombstr_veneer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCOLESTR c_str_ptr_null(atlstl_ns_qual(ccombstr_veneer) const &str)
+{
+    return !str.empty() ? str.c_str() : NULL;
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline LPCOLESTR c_str_ptr_null_w(atlstl_ns_qual(ccombstr_veneer) const &str)   { return c_str_ptr_null(str); }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
+
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for comstl::ccombstr_veneer
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<ss_typename_param_k S>
-inline S &operator <<(S &s, ccombstr_veneer const &str)
+inline S &operator <<(S &s, atlstl_ns_qual(ccombstr_veneer) const &str)
 {
     s << str.c_str();
 
@@ -450,6 +490,8 @@ inline S &operator <<(S &s, ccombstr_veneer const &str)
 /* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline ccombstr_veneer::ccombstr_veneer()
     : parent_class_type()
@@ -639,6 +681,8 @@ inline ccombstr_veneer::const_pointer ccombstr_veneer::data() const
     return empty() ? L"" : static_cast<const_pointer>(*this);
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _ATLSTL_NO_NAMESPACE
@@ -660,6 +704,43 @@ namespace stlsoft
     }
 } // namespace stlsoft
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ *
+ * The string access shims exist either in the stlsoft namespace, or in the
+ * global namespace. This is required by the lookup rules.
+ *
+ */
+
+#ifndef _ATLSTL_NO_NAMESPACE
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+namespace stlsoft
+{
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
+
+using ::atlstl::c_str_data;
+using ::atlstl::c_str_data_w;
+
+using ::atlstl::c_str_len;
+using ::atlstl::c_str_len_w;
+
+using ::atlstl::c_str_ptr;
+using ::atlstl::c_str_ptr_w;
+
+using ::atlstl::c_str_ptr_null;
+using ::atlstl::c_str_ptr_null_w;
+
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+} // namespace stlsoft
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
+#endif /* !_ATLSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

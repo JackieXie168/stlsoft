@@ -1,5 +1,5 @@
 
-// Updated: 4th July 2006
+// Updated: 10th July 2006
 
 #if !defined(COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/collections/enumerator_sequence.hpp
@@ -1005,19 +1005,19 @@ namespace unittest
 			{
 				winstl::module	module("MMCOMBSC");
 
-				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumString(module.get_handle(), r))
+				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumString(module.get_module_handle(), r))
 				{
 					bSuccess = false;
 				}
-				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumBSTR(module.get_handle(), r))
+				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumBSTR(module.get_module_handle(), r))
 				{
 					bSuccess = false;
 				}
-				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumVARIANT(module.get_handle(), r))
+				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumVARIANT(module.get_module_handle(), r))
 				{
 					bSuccess = false;
 				}
-				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumGUID(module.get_handle(), r))
+				if(!test_comstl_enumerator_sequence_MMCOMBSC_IEnumGUID(module.get_module_handle(), r))
 				{
 					bSuccess = false;
 				}

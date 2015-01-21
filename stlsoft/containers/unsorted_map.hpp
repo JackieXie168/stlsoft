@@ -4,7 +4,7 @@
  * Purpose:     An associative container that maintains the order of element insertion.
  *
  * Created:     12th February 2006
- * Updated:     11th June 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/containers/unsorted_map.hpp
-///
-/// An associative container that maintains the order of element insertion.
+/** \file stlsoft/containers/unsorted_map.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::unsorted_map container
+ *   class template.
+ *  (\ref group__library__containers "Containers" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,6 +99,22 @@ namespace stlsoft
  * Classes
  */
 
+/** \brief An associative container that maintains the order of element
+ *   insertion.
+ *
+ * \ingroup group__library__containers
+ *
+ * \param K The container key type
+ * \param T The container mapped type
+ * \param P The comparison predicate type
+ * \param A The allocator type
+ *
+\htmlonly
+<pre>
+  stlsoft::unsorted_map
+</pre>
+\endhtmlonly
+ */
 template<   ss_typename_param_k K
         ,   ss_typename_param_k T
         ,   ss_typename_param_k P   =   stlsoft_ns_qual_std(less)<K>
@@ -105,10 +124,15 @@ class unsorted_map
     : public stl_collection_tag
 {
 public:
+    /// \brief The key type
     typedef K                                                               key_type;
+    /// \brief The mapped type
     typedef T                                                               mapped_type;
+    /// \brief The predicate type
     typedef P                                                               key_compare;
+    /// \brief The value type
     typedef stlsoft_ns_qual_std(pair)<const K, T>                           value_type;
+    /// \brief allocator type
     typedef A                                                               allocator_type;
 private:
     typedef stlsoft_ns_qual_std(pair)<K, T>                                 internal_value_type_;
@@ -144,6 +168,7 @@ public:
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 public:
+    /// \brief The number of elements in the map
     size_type   size() const
     {
         return m_elements.size();
@@ -260,7 +285,7 @@ private:
  */
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/frequency_map_unittest_.h"
+# include "./unittest/unsorted_map_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

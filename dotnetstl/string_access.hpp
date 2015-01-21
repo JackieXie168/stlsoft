@@ -87,11 +87,15 @@ namespace stlsoft
 
     }
 
-    using dotnetstl_project::c_str_len;
-    using dotnetstl_project::c_str_ptr_a;
-    using dotnetstl_project::c_str_ptr_w;
-    using dotnetstl_project::c_str_ptr;
+    using dotnetstl_project::c_str_data;
     using dotnetstl_project::c_str_data_a;
     using dotnetstl_project::c_str_data_w;
-    using dotnetstl_project::c_str_data;
+
+    using dotnetstl_project::c_str_len;
+//    using dotnetstl_project::c_str_len_a;
+//    using dotnetstl_project::c_str_len_w;
+
+    using dotnetstl_project::c_str_ptr;
+    using dotnetstl_project::c_str_ptr_a;
+    using dotnetstl_project::c_str_ptr_w;
 }

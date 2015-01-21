@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      0
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       77
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   2
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,7 +122,7 @@ namespace winstl_project
 
 #if defined(STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1200)
+        _MSC_VER < 1300)
 # define _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)     stlsoft_ns_qual(basic_simple_string)<C, stlsoft_ns_qual(char_traits)<C>, processheap_allocator<C> >
 #else /* ? STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 # define _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)     stlsoft_ns_qual(basic_static_string)<C, _MAX_PATH>

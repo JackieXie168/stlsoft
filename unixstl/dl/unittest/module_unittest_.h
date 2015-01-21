@@ -1,5 +1,5 @@
 
-// Updated: 11th June 2006
+// Updated: 10th July 2006
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE)
 # error This file cannot be directly included, and should only be included within unixstl/dl/module.hpp
@@ -24,7 +24,7 @@ namespace unittest
 			try
 			{
 				module						m1("something_or_other.not_likely.to_exist.so");
-				module::module_handle_type	h1	=	m1.get_handle();
+				module::module_handle_type	h1	=	m1.get_module_handle();
 				module::module_handle_type	h2;
 
 				m1.get_symbol("and_now_a_symbol_that_is_unlikely_to_exist");
