@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     7th May 2008
+ * Updated:     23rd February 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     70
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ public:
     /// \brief Duplicates a registry key
     static hkey_type    key_dup(        hkey_type       hkey
                                     ,   REGSAM          samDesired  =   KEY_ALL_ACCESS
-                                    ,   result_type     *result     =   NULL);
+                                    ,   result_type*    result     =   NULL);
     /// \brief Opens a registry sub-key
     static result_type  reg_open_key(   hkey_type           hkey,
                                         char_type const*    sub_key_name,
@@ -141,11 +141,11 @@ public:
     /// \brief Opens a registry sub-key
     static result_type  reg_create_key( hkey_type       hkey,
                                         char_type const* sub_key_name,
-                                        hkey_type       *hkey_result,
+                                        hkey_type*          hkey_result,
                                         REGSAM          samDesired = KEY_ALL_ACCESS);
     static result_type  reg_create_key( hkey_type       hkey,
                                         char_type const* sub_key_name,
-                                        hkey_type       *hkey_result,
+                                        hkey_type*          hkey_result,
                                         ws_bool_t       &bCreated,
                                         REGSAM          samDesired = KEY_ALL_ACCESS);
     /// \brief Destroys a registry sub-key
@@ -155,7 +155,7 @@ public:
     static result_type  reg_query_value(hkey_type       hkey,
                                         char_type const* valueName,
                                         ws_dword_t      &valueType,
-                                        void            *data,
+                                        void*               data,
                                         size_type       &cbData);
     /// \brief Sets the value of the named value.
     static result_type  reg_set_value(  hkey_type           hkey
@@ -169,45 +169,45 @@ public:
 
     /// \brief Queries a registry key's characteristics
     static result_type  reg_query_info( hkey_type       hkey,
-                                        char_type       *key_class,
-                                        size_type       *cch_key_class,
-                                        ws_uint32_t     *c_sub_keys,
-                                        size_type       *cch_sub_key_max,
-                                        size_type       *cch_key_class_max,
-                                        ws_uint32_t     *c_values,
-                                        size_type       *cch_valueName_max,
-                                        size_type       *cb_value_data_max,
-                                        size_type       *cb_security_descriptor_max,
-                                        time_type       *time_last_write);
+                                        char_type*      key_class,
+                                        size_type*      cch_key_class,
+                                        ws_uint32_t*    c_sub_keys,
+                                        size_type*      cch_sub_key_max,
+                                        size_type*      cch_key_class_max,
+                                        ws_uint32_t*    c_values,
+                                        size_type*      cch_valueName_max,
+                                        size_type*      cb_value_data_max,
+                                        size_type*      cb_security_descriptor_max,
+                                        time_type*      time_last_write);
     /// \brief Enumerates a registry key's sub-keys
     static result_type  reg_enum_key(   hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *key_name,
-                                        size_type       *cch_key_name,
-                                        time_type       *time_last_write    =   NULL);
+                                        char_type*      key_name,
+                                        size_type*      cch_key_name,
+                                        time_type*      time_last_write    =   NULL);
     /// \brief [DEPRECATED] Enumerates a registry key's sub-keys
     ///
     /// \deprecated This is deprecated in favour of reg_enum_key(hkey_type, ws_dword_t, char_type*, size_type*, time_type *)
     static result_type  reg_enum_key(   hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *key_name,
-                                        size_type       *cch_key_name,
-                                        char_type       *key_class,
-                                        size_type       *cch_key_class,
-                                        time_type       *time_last_write);
+                                        char_type*      key_name,
+                                        size_type*      cch_key_name,
+                                        char_type*      key_class,
+                                        size_type*      cch_key_class,
+                                        time_type*      time_last_write);
     /// \brief Enumerates a registry key's values
     static result_type  reg_enum_value( hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *valueName,
-                                        size_type       *cch_valueName,
-                                        ws_dword_t      *valueType,
-                                        void            *data,
+                                        char_type*      valueName,
+                                        size_type*      cch_valueName,
+                                        ws_dword_t*     valueType,
+                                        void*           data,
                                         size_type       &cbData);
     /// \brief Enumerates a registry key's values
     static result_type  reg_enum_value( hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *valueName,
-                                        size_type       *cch_valueName);
+                                        char_type*      valueName,
+                                        size_type*      cch_valueName);
 /// @}
 };
 
@@ -273,7 +273,7 @@ public:
         return ::RegDeleteKeyA(hkey, sub_key_name);
     }
 
-    static result_type reg_query_value(hkey_type hkey, char_type const* valueName, ws_dword_t& valueType, void *data, size_type &cbData)
+    static result_type reg_query_value(hkey_type hkey, char_type const* valueName, ws_dword_t& valueType, void* data, size_type &cbData)
     {
         return ::RegQueryValueExA(hkey, valueName, NULL, &valueType, static_cast<LPBYTE>(data), reinterpret_cast<LPDWORD>(&cbData));
     }
@@ -289,46 +289,46 @@ public:
     }
 
     static result_type reg_query_info(  hkey_type       hkey,
-                                        char_type       *key_class,
-                                        size_type       *cch_key_class,
-                                        ws_uint32_t     *c_sub_keys,
-                                        size_type       *cch_sub_key_max,
-                                        size_type       *cch_key_class_max,
-                                        ws_uint32_t     *c_values,
-                                        size_type       *cch_valueName_max,
-                                        size_type       *cb_value_data_max,
-                                        size_type       *cb_security_descriptor_max,
-                                        time_type       *time_last_write)
+                                        char_type*      key_class,
+                                        size_type*      cch_key_class,
+                                        ws_uint32_t*    c_sub_keys,
+                                        size_type*      cch_sub_key_max,
+                                        size_type*      cch_key_class_max,
+                                        ws_uint32_t*    c_values,
+                                        size_type*      cch_valueName_max,
+                                        size_type*      cb_value_data_max,
+                                        size_type*      cb_security_descriptor_max,
+                                        time_type*      time_last_write)
     {
         return ::RegQueryInfoKeyA(hkey, key_class, reinterpret_cast<LPDWORD>(cch_key_class), NULL, reinterpret_cast<LPDWORD>(c_sub_keys), reinterpret_cast<LPDWORD>(cch_sub_key_max), reinterpret_cast<LPDWORD>(cch_key_class_max), reinterpret_cast<LPDWORD>(c_values), reinterpret_cast<LPDWORD>(cch_valueName_max), reinterpret_cast<LPDWORD>(cb_value_data_max), reinterpret_cast<LPDWORD>(cb_security_descriptor_max), time_last_write);
     }
 
     static result_type reg_enum_key(    hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *key_name,
-                                        size_type       *cch_key_name,
-                                        time_type       *time_last_write    =   NULL)
+                                        char_type*      key_name,
+                                        size_type*      cch_key_name,
+                                        time_type*      time_last_write    =   NULL)
     {
         return ::RegEnumKeyExA(hkey, index, key_name, reinterpret_cast<LPDWORD>(cch_key_name), NULL, NULL, NULL, time_last_write);
     }
 
     static result_type reg_enum_key(    hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *key_name,
-                                        size_type       *cch_key_name,
-                                        char_type       *key_class,
-                                        size_type       *cch_key_class,
-                                        time_type       *time_last_write)
+                                        char_type*      key_name,
+                                        size_type*      cch_key_name,
+                                        char_type*      key_class,
+                                        size_type*      cch_key_class,
+                                        time_type*      time_last_write)
     {
         return ::RegEnumKeyExA(hkey, index, key_name, reinterpret_cast<LPDWORD>(cch_key_name), NULL, key_class, reinterpret_cast<LPDWORD>(cch_key_class), time_last_write);
     }
 
     static result_type reg_enum_value(  hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *valueName,
-                                        size_type       *cch_valueName,
-                                        ws_dword_t      *valueType,
-                                        void            *data,
+                                        char_type*      valueName,
+                                        size_type*      cch_valueName,
+                                        ws_dword_t*     valueType,
+                                        void*           data,
                                         size_type       &cbData)
     {
         return ::RegEnumValueA(hkey, index, valueName, reinterpret_cast<LPDWORD>(cch_valueName), NULL, valueType, reinterpret_cast<LPBYTE>(data), reinterpret_cast<LPDWORD>(&cbData));
@@ -336,8 +336,8 @@ public:
 
     static result_type reg_enum_value(  hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *valueName,
-                                        size_type       *cch_valueName)
+                                        char_type*      valueName,
+                                        size_type*      cch_valueName)
     {
         return ::RegEnumValueA(hkey, index, valueName, reinterpret_cast<LPDWORD>(cch_valueName), NULL, NULL, NULL, NULL);
     }
@@ -400,7 +400,7 @@ public:
         return ::RegDeleteKeyW(hkey, sub_key_name);
     }
 
-    static result_type reg_query_value(hkey_type hkey, char_type const* valueName, ws_dword_t& valueType, void *data, size_type &cbData)
+    static result_type reg_query_value(hkey_type hkey, char_type const* valueName, ws_dword_t& valueType, void* data, size_type &cbData)
     {
         return ::RegQueryValueExW(hkey, valueName, NULL, &valueType, static_cast<LPBYTE>(data), reinterpret_cast<LPDWORD>(&cbData));
     }
@@ -416,46 +416,46 @@ public:
     }
 
     static result_type reg_query_info(  hkey_type       hkey,
-                                        char_type       *key_class,
-                                        size_type       *cch_key_class,
-                                        ws_uint32_t     *c_sub_keys,
-                                        size_type       *cch_sub_key_max,
-                                        size_type       *cch_key_class_max,
-                                        ws_uint32_t     *c_values,
-                                        size_type       *cch_valueName_max,
-                                        size_type       *cb_value_data_max,
-                                        size_type       *cb_security_descriptor_max,
-                                        time_type       *time_last_write)
+                                        char_type*      key_class,
+                                        size_type*      cch_key_class,
+                                        ws_uint32_t*    c_sub_keys,
+                                        size_type*      cch_sub_key_max,
+                                        size_type*      cch_key_class_max,
+                                        ws_uint32_t*    c_values,
+                                        size_type*      cch_valueName_max,
+                                        size_type*      cb_value_data_max,
+                                        size_type*      cb_security_descriptor_max,
+                                        time_type*      time_last_write)
     {
         return ::RegQueryInfoKeyW(hkey, key_class, reinterpret_cast<LPDWORD>(cch_key_class), NULL, reinterpret_cast<LPDWORD>(c_sub_keys), reinterpret_cast<LPDWORD>(cch_sub_key_max), reinterpret_cast<LPDWORD>(cch_key_class_max), reinterpret_cast<LPDWORD>(c_values), reinterpret_cast<LPDWORD>(cch_valueName_max), reinterpret_cast<LPDWORD>(cb_value_data_max), reinterpret_cast<LPDWORD>(cb_security_descriptor_max), time_last_write);
     }
 
     static result_type reg_enum_key(    hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *key_name,
-                                        size_type       *cch_key_name,
-                                        time_type       *time_last_write    =   NULL)
+                                        char_type*      key_name,
+                                        size_type*      cch_key_name,
+                                        time_type*      time_last_write    =   NULL)
     {
         return ::RegEnumKeyExW(hkey, index, key_name, reinterpret_cast<LPDWORD>(cch_key_name), NULL, NULL, NULL, time_last_write);
     }
 
     static result_type reg_enum_key(    hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *key_name,
-                                        size_type       *cch_key_name,
-                                        char_type       *key_class,
-                                        size_type       *cch_key_class,
-                                        time_type       *time_last_write)
+                                        char_type*      key_name,
+                                        size_type*      cch_key_name,
+                                        char_type*      key_class,
+                                        size_type*      cch_key_class,
+                                        time_type*      time_last_write)
     {
         return ::RegEnumKeyExW(hkey, index, key_name, reinterpret_cast<LPDWORD>(cch_key_name), NULL, key_class, reinterpret_cast<LPDWORD>(cch_key_class), time_last_write);
     }
 
     static result_type reg_enum_value(  hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *valueName,
-                                        size_type       *cch_valueName,
-                                        ws_dword_t      *valueType,
-                                        void            *data,
+                                        char_type*      valueName,
+                                        size_type*      cch_valueName,
+                                        ws_dword_t*     valueType,
+                                        void*           data,
                                         size_type       &cbData)
     {
         return ::RegEnumValueW(hkey, index, valueName, reinterpret_cast<LPDWORD>(cch_valueName), NULL, valueType, reinterpret_cast<LPBYTE>(data), reinterpret_cast<LPDWORD>(&cbData));
@@ -463,8 +463,8 @@ public:
 
     static result_type reg_enum_value(  hkey_type       hkey,
                                         ws_dword_t      index,
-                                        char_type       *valueName,
-                                        size_type       *cch_valueName)
+                                        char_type*      valueName,
+                                        size_type*      cch_valueName)
     {
         return ::RegEnumValueW(hkey, index, valueName, reinterpret_cast<LPDWORD>(cch_valueName), NULL, NULL, NULL, NULL);
     }

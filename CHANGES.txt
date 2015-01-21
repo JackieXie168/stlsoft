@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  13th February 2009
+; Updated:  26th February 2009
 
 ============================================================================
 
@@ -19,7 +19,57 @@ STLSoft - Changes
 
 ============================================================================
 
-Changes for 1.9.73 (13th February 2009)
+Changes for 1.9.74 (13th February 2009)
+
+Summary:
+========
+
+ * tidied up COMSTL documentation
+ * tidied up scoped_handle use in winstl::memory_mapped_file
+ * added checks to detect at compile time accidental use of &stat_data with winstl::filesystem_traits<>::get_file_size()
+ * fixed defect in winstl::basic_reg_value::value_sz(), whereby the nul-terminator is included in the resultant string length
+ * tidied up winstl::basic_path, and added max_size() method
+ * tidied up winstl::basic_commandline_parser, added substring-constructor, and changed subscript operator to allow indexing (but not use) of the end element
+
+Changes:
+========
+
+ COMSTL:
+ =======
+
+ ~ include/comstl/collections/collection_sequence.hpp:
+ ~ include/comstl/collections/enumeration_policies.hpp:
+ ~ include/comstl/collections/enumerator_sequence.hpp:
+ ~ include/comstl/util/value_policies.hpp:
+    ~ enhanced documentation markup
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/filesystem_traits.hpp:
+    ~ added private method declarations to prevent accidental use of get_file_size(HANDLE) as if it was get_file_size(&stat_data)
+
+ ~ include/winstl/filesystem/memory_mapped_file.hpp:
+    ~ tidied up use of scoped_handle for compilers that struggle with it
+
+ ~ include/winstl/filesystem/path.hpp:
+    + added max_size() method
+    ~ minor documentation markup enhancements
+    + added precondition enforcement onto push() method
+    ~ moved implementation of push(char_type*) into push_() worker method, in preparation for using ptr+len in public methods
+
+ ~ include/winstl/registry/reg_value.hpp:
+    ~ fixed defect in value_sz() method, whereby the resultant string length erroneously included the nul-terminator
+
+ ~ include/winstl/system/commandline_parser.hpp:
+    - removed \brief documentation markup tags
+    + added additional ctor, taking length
+    ~ renamed all internal member types to have trailing underscore
+    ~ changed subscript operator to be able to index (but not use) the end element
+
+============================================================================
+
+Changes for 1.9.74 (13th February 2009)
 
 Summary:
 ========

@@ -4,13 +4,13 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     27th September 2008
+ * Updated:     25th February 2009
  *
  * Thanks to:   Pablo Aguilar for requesting multibyte / Unicode ambivalence.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      81
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,6 +133,16 @@ public:
 /// \name Implementation
 /// @{
 private:
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1200) || \
+    defined(STLSOFT_COMPILER_IS_WATCOM)
+    static void CloseHandle(HANDLE h)
+    {
+        ::CloseHandle(h);
+    }
+#endif /* compiler */
+
+
     void open_( ws_char_a_t const*  fileName
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
             ,   offset_type         offset
@@ -147,13 +157,7 @@ private:
                                                     ,   OPEN_EXISTING
                                                     ,   FILE_FLAG_RANDOM_ACCESS
                                                     ,   NULL)
-#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1200) || \
-    defined(STLSOFT_COMPILER_IS_WATCOM)
-                            ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
-#else /* ? compiler */
-                            ,   ::CloseHandle
-#endif /* compiler */
+                            ,   CloseHandle
                             ,   INVALID_HANDLE_VALUE);
 
 
@@ -178,13 +182,7 @@ private:
                                                     ,   OPEN_EXISTING
                                                     ,   FILE_FLAG_RANDOM_ACCESS
                                                     ,   NULL)
-#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1200) || \
-    defined(STLSOFT_COMPILER_IS_WATCOM)
-                            ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
-#else /* ? compiler */
-                            ,   ::CloseHandle
-#endif /* compiler */
+                            ,   CloseHandle
                             ,   INVALID_HANDLE_VALUE);
 
 
@@ -225,6 +223,8 @@ private:
             else if(0 == fileSizeHigh &&
                     0 == fileSizeLow)
             {
+                // Windows CreateFileMapping() does not support mapping
+                // zero-length files, so we catch this condition here
                 m_memory    =   NULL;
                 m_cb        =   0;
             }
@@ -250,13 +250,7 @@ private:
                                                                     ,   maxSizeHi
                                                                     ,   maxSizeLo
                                                                     ,   NULL)
-#if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1200) || \
-    defined(STLSOFT_COMPILER_IS_WATCOM)
-                                    ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
-#else /* ? compiler */
-                                    ,   ::CloseHandle
-#endif /* compiler */
+                                    ,   CloseHandle
                                     ,   NULL);
 
                 if(hmap.empty())

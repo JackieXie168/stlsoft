@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     10th October 2008
+ * Updated:     25th February 2009
  *
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
@@ -19,7 +19,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,8 +62,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      101
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -606,6 +606,10 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
         }
         else
         {
+			WINSTL_ASSERT(0 != data_size);
+
+			--data_size; // This is required since the size contains space for the nul-terminator
+
             buffer[data_size / sizeof(char_type)] = 0; // The site of a former bug. Thanks to Diego Chanoux for spotting this
 
             ret.assign(buffer.data(), data_size / sizeof(char_type));

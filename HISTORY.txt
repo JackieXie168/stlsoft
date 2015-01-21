@@ -2,9 +2,20 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  13th February 2009
+; Updated:  26th February 2009
 
 ============================================================================
+
+
+26th February 2009 - 1.9.75 released
+------------------------------------
+
+ * tidied up COMSTL documentation
+ * tidied up scoped_handle use in winstl::memory_mapped_file
+ * added checks to detect at compile time accidental use of &stat_data with winstl::filesystem_traits<>::get_file_size()
+ * fixed defect in winstl::basic_reg_value::value_sz(), whereby the nul-terminator is included in the resultant string length
+ * tidied up winstl::basic_path, and added max_size() method
+ * tidied up winstl::basic_commandline_parser, added substring-constructor, and changed subscript operator to allow indexing (but not use) of the end element
 
 
 13th February 2009 - 1.9.74 released
