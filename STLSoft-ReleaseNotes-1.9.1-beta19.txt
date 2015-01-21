@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta18
+File:     STLSoft-ReleaseNotes-1.9.1-beta19
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,10 +11,20 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Date:     7th August 2006
+Updated:  9th August 2006
 
 ============================================================================
 
+
+============================================================================
+
+Changes for 1.9.1 beta 19 (9th August 2006):
+
+Additions:
+==========
+
++ dotnetstl::check_cast custom cast function template
+  (dotnetstl/conversion/check_cast.hpp)
 
 ============================================================================
 
@@ -35,6 +45,22 @@ Changes:
 	for the (dual) interface from which they inherit - they used to inherit
 	from IDispatch.
 
+Diffs:
+======
+
+  root-dir-1: H:\3Pty\stlsoft\1.9.1-beta17
+  root-dir-2: H:\3Pty\stlsoft\1.9.1-beta18
+Items unchanged from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:             1434
+Items changed from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:               4
+Items changed (major) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:       0
+Items changed (minor) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:       1
+  include\atlstl\automation\automation_collections.hpp                          3.0.1.94     => 3.1.1.95    ; 18th July 2006      => 6th August 2006
+Items changed (revision) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:    1
+  include\stlsoft\string\special_string_instance.hpp                            1.2.1.8      => 1.2.2.9     ; 9th July 2006       => 7th August 2006
+Items changed (edit) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:        0
+Items changed (unversioned) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18: 2
+  include\stlsoft\smartptr\unittest\scoped_handle_unittest_.h                   ...          => ...         ; 6th July 2006       => 5th August 2006
+  include\winstl\filesystem\unittest\absolute_path_unittest_.h                  ...          => ...         ;                     =>
 
 ============================================================================
 
@@ -62,23 +88,6 @@ Changes:
 
 ~ winstl::load_text_file() now throws an exception if the file cannot be
   opened.
-
-Diffs:
-======
-
-  root-dir-1: H:\3Pty\stlsoft\1.9.1-beta17
-  root-dir-2: H:\3Pty\stlsoft\1.9.1-beta18
-Items unchanged from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:             1434
-Items changed from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:               4
-Items changed (major) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:       0
-Items changed (minor) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:       1
-  include\atlstl\automation\automation_collections.hpp                          3.0.1.94     => 3.1.1.95    ; 18th July 2006      => 6th August 2006
-Items changed (revision) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:    1
-  include\stlsoft\string\special_string_instance.hpp                            1.2.1.8      => 1.2.2.9     ; 9th July 2006       => 7th August 2006
-Items changed (edit) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18:        0
-Items changed (unversioned) from H:\3Pty\stlsoft\1.9.1-beta17 to H:\3Pty\stlsoft\1.9.1-beta18: 2
-  include\stlsoft\smartptr\unittest\scoped_handle_unittest_.h                   ...          => ...         ; 6th July 2006       => 5th August 2006
-  include\winstl\filesystem\unittest\absolute_path_unittest_.h                  ...          => ...         ;                     =>
 
 ============================================================================
 
