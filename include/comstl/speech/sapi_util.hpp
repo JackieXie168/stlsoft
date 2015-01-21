@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        comstl/speech/sapi_util.hpp (derived from Pantheios)
  *
- * Purpose:     Interface traits.
+ * Purpose:     Definition of SAPI types and constants.
  *
  * Created:     31st August 2006
- * Updated:     22nd December 2007
+ * Updated:     2nd February 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,6 +39,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/** \file comstl/speech/sapi_util.hpp
+ *
+ * \brief [C++ only; requires COM] Definition of SAPI types and constants.
+ *   (\ref group__library__utility__com "COM Utility" Library).
+ */
+
 #ifndef COMSTL_INCL_COMSTL_SPEECH_HPP_SAPI_UTIL
 #define COMSTL_INCL_COMSTL_SPEECH_HPP_SAPI_UTIL
 
@@ -46,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    1
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        1
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    2
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,12 +72,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS
 # include <stlsoft/conversion/char_conversions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR
+# include <stlsoft/shims/attribute/get_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR */
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
 # include <stlsoft/smartptr/ref_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */
-
-# include <stlsoft/shims/access/string.hpp>
-# include <stlsoft/shims/attribute/get_ptr.hpp>
 
 #ifdef COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS
 # include <sapi.h>
@@ -238,6 +247,19 @@ inline HRESULT sapi_create(stlsoft_ns_qual(ref_ptr)<ISpVoice>& voice)
 } /* namespace comstl_project */
 } /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
+
+using ::comstl::SPF_DEFAULT;
+using ::comstl::SPF_ASYNC;
+using ::comstl::SPF_PURGEBEFORESPEAK;
+using ::comstl::SPF_IS_FILENAME;
+using ::comstl::SPF_IS_XML;
+using ::comstl::SPF_IS_NOT_XML;
+using ::comstl::SPF_PERSIST_XML;
+using ::comstl::SPF_NLP_SPEAK_PUNC;
+using ::comstl::SPF_NLP_MASK;
+using ::comstl::SPF_VOICE_MASK;
+using ::comstl::SPF_UNUSED_FLAGS;
+
 #endif /* !_COMSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
