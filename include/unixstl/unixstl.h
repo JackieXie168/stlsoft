@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     18th November 2007
+ * Updated:     5th January 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 8
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     78
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 9
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -103,9 +103,6 @@
  * The current composite version number of UNIXSTL
  */
 
-#define _UNIXSTL_VER_MAJOR      1
-#define _UNIXSTL_VER_MINOR      6
-#define _UNIXSTL_VER_REVISION   3
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _UNIXSTL_VER_0_9_1     0x00000901  /*!< Version 0.9.1 */
 # define _UNIXSTL_VER_0_9_2     0x00000902  /*!< Version 0.9.2 */
@@ -119,10 +116,15 @@
 # define _UNIXSTL_VER_1_5_1     0x00010501  /*!< Version 1.5.1 */
 # define _UNIXSTL_VER_1_6_1     0x00010601  /*!< Version 1.6.1 (with STLSoft 1.9.1) */
 # define _UNIXSTL_VER_1_6_2     0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.7) */
-# define _UNIXSTL_VER_1_6_3     0x00010602  /*!< Version 1.6.3 (with STLSoft 1.9.9) */
+# define _UNIXSTL_VER_1_6_3     0x00010603  /*!< Version 1.6.3 (with STLSoft 1.9.9) */
+# define _UNIXSTL_VER_1_6_4     0x00010604  /*!< Version 1.6.4 (with STLSoft 1.9.17) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_6_3
+#define _UNIXSTL_VER_MAJOR      1
+#define _UNIXSTL_VER_MINOR      6
+#define _UNIXSTL_VER_REVISION   4
+
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_6_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -326,7 +328,7 @@
  */
 #if defined(UNIXSTL_OS_IS_MACOSX) && \
     defined(__assert)
-# define UNIXSTL_ASSERT(expr)               ((void)((expr) ? 0 : __assert(#expr, __FILE__, __LINE__)))
+# define UNIXSTL_ASSERT(expr)               ((void)((expr) ? 0 : (__assert(#expr, __FILE__, __LINE__), 0)))
 #else /* ? UNIXSTL_OS_IS_MACOSX */
 # define UNIXSTL_ASSERT(expr)               STLSOFT_ASSERT(expr)
 #endif /* UNIXSTL_OS_IS_MACOSX */
