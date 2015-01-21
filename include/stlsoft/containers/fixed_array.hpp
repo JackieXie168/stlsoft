@@ -1,13 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/containers/fixed_array.hpp
  *
- * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
+ * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d,
+ *              fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     6th November 2007
+ * Updated:     17th December 2007
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode; Neal
  *              again for requesting the function call operator.
+ *
+ *              Thorsten Ottosen for suggesting swap() and mutating data(),
+ *              and for providing suggested implementations.
  *
  * Home:        http://stlsoft.org/
  *
@@ -15,28 +19,29 @@
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- * - Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
- *   any contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
+ * - Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
+ *   names of any contributors may be used to endorse or promote products
+ *   derived from this software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      5
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       180
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      7
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       182
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,6 +103,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
 # include <string>                      // for std::string - sigh!
@@ -189,10 +198,10 @@ public:
     typedef T                                       dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
-    typedef value_type                              &reference;
-    typedef value_type const                        &const_reference;
-    typedef value_type                              *pointer;
-    typedef value_type const                        *const_pointer;
+    typedef value_type&                             reference;
+    typedef value_type const&                       const_reference;
+    typedef value_type*                             pointer;
+    typedef value_type const*                       const_pointer;
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
@@ -204,7 +213,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::type             iterator;
+                                        >::type     iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -212,7 +221,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::type             const_iterator;
+                                        >::type     const_iterator;
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -220,14 +229,14 @@ public:
                                         ,   reference
                                         ,   pointer
                                         ,   difference_type
-                                        >                   reverse_iterator;
+                                        >           reverse_iterator;
 
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
                                         ,   const_pointer
                                         ,   difference_type
-                                        >                   const_reverse_iterator;
+                                        >           const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
@@ -238,6 +247,8 @@ public:
                   fixed_array_1d(index_type d0, value_type const& t);
                   fixed_array_1d(class_type const& rhs);
                  ~fixed_array_1d() stlsoft_throw_0();
+
+    void          swap(class_type& rhs) stlsoft_throw_0();
 
 // Access
 public:
@@ -288,7 +299,8 @@ public:
 
 // Access
 public:
-    value_type const        *data() const;
+    pointer                 data();
+    const_pointer           data() const;
 
 // Implementation
 private:
@@ -301,8 +313,8 @@ private:
 
 // Members
 private:
-    T * const           m_data;
-    const index_type    m_d0;
+    T*          m_data;
+    index_type  m_d0;
 
     friend class fixed_array_2d<T, A, P, true>;
     friend class fixed_array_2d<T, A, P, false>;
@@ -341,10 +353,10 @@ public:
     typedef fixed_array_1d<T, A, P, false>          dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
-    typedef value_type                              &reference;
-    typedef value_type const                        &const_reference;
-    typedef value_type                              *pointer;
-    typedef value_type const                        *const_pointer;
+    typedef value_type&                             reference;
+    typedef value_type const&                       const_reference;
+    typedef value_type*                             pointer;
+    typedef value_type const*                       const_pointer;
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
@@ -356,7 +368,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::type             iterator;
+                                        >::type     iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -364,7 +376,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::type             const_iterator;
+                                        >::type     const_iterator;
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -372,14 +384,14 @@ public:
                                         ,   reference
                                         ,   pointer
                                         ,   difference_type
-                                        >                   reverse_iterator;
+                                        >           reverse_iterator;
 
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
                                         ,   const_pointer
                                         ,   difference_type
-                                        >                   const_reverse_iterator;
+                                        >           const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
@@ -390,6 +402,8 @@ public:
     fixed_array_2d(index_type d0, index_type d1, value_type const& t);
     fixed_array_2d(class_type const& rhs);
     ~fixed_array_2d() stlsoft_throw_0();
+
+    void swap(class_type& rhs) stlsoft_throw_0();
 
 // Access
 public:
@@ -443,7 +457,8 @@ public:
 
 // Access
 public:
-    value_type const        *data() const;
+    pointer                 data();
+    const_pointer           data() const;
 
 // Implementation
 private:
@@ -457,10 +472,10 @@ private:
 
 // Members
 private:
-    T * const           m_data;
-    const index_type    m_d0;
-    const index_type    m_d1;
-    const size_type     m_size;
+    T*          m_data;
+    index_type  m_d0;
+    index_type  m_d1;
+    size_type   m_size;
 
     friend class fixed_array_3d<T, A, P, true>;
     friend class fixed_array_3d<T, A, P, false>;
@@ -499,10 +514,10 @@ public:
     typedef fixed_array_2d<T, A, P, false>          dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
-    typedef value_type                              &reference;
-    typedef value_type const                        &const_reference;
-    typedef value_type                              *pointer;
-    typedef value_type const                        *const_pointer;
+    typedef value_type&                             reference;
+    typedef value_type const&                       const_reference;
+    typedef value_type*                             pointer;
+    typedef value_type const*                       const_pointer;
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
@@ -514,7 +529,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::type             iterator;
+                                        >::type     iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -522,7 +537,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::type             const_iterator;
+                                        >::type     const_iterator;
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -530,14 +545,14 @@ public:
                                         ,   reference
                                         ,   pointer
                                         ,   difference_type
-                                        >                   reverse_iterator;
+                                        >           reverse_iterator;
 
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
                                         ,   const_pointer
                                         ,   difference_type
-                                        >                   const_reverse_iterator;
+                                        >           const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
@@ -548,6 +563,8 @@ public:
     fixed_array_3d(index_type d0, index_type d1, index_type d2, value_type const& t);
     fixed_array_3d(class_type const& rhs);
     ~fixed_array_3d() stlsoft_throw_0();
+
+    void swap(class_type& rhs) stlsoft_throw_0();
 
 // Access
 public:
@@ -601,7 +618,8 @@ public:
 
 // Access
 public:
-    value_type const        *data() const;
+    pointer                 data();
+    const_pointer           data() const;
 
 // Implementation
 private:
@@ -615,10 +633,10 @@ private:
 
 // Members
 private:
-    T * const           m_data;
-    const index_type    m_d0;
-    const index_type    m_d1;
-    const index_type    m_d2;
+    T*          m_data;
+    index_type  m_d0;
+    index_type  m_d1;
+    index_type  m_d2;
 
     friend class fixed_array_4d<T, A, P, true>;
     friend class fixed_array_4d<T, A, P, false>;
@@ -657,10 +675,10 @@ public:
     typedef fixed_array_3d<T, A, P, false>          dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
-    typedef value_type                              &reference;
-    typedef value_type const                        &const_reference;
-    typedef value_type                              *pointer;
-    typedef value_type const                        *const_pointer;
+    typedef value_type&                             reference;
+    typedef value_type const&                       const_reference;
+    typedef value_type*                             pointer;
+    typedef value_type const*                       const_pointer;
     typedef ss_size_t                               size_type;
     typedef ss_size_t                               index_type;
     typedef ss_ptrdiff_t                            difference_type;
@@ -672,7 +690,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::type             iterator;
+                                        >::type     iterator;
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
@@ -680,7 +698,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::type             const_iterator;
+                                        >::type     const_iterator;
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef reverse_iterator_base       <   iterator
@@ -688,14 +706,14 @@ public:
                                         ,   reference
                                         ,   pointer
                                         ,   difference_type
-                                        >                   reverse_iterator;
+                                        >           reverse_iterator;
 
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
                                         ,   const_pointer
                                         ,   difference_type
-                                        >                   const_reverse_iterator;
+                                        >           const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
@@ -706,6 +724,8 @@ public:
     fixed_array_4d(index_type d0, index_type d1, index_type d2, index_type d3, value_type const& t);
     fixed_array_4d(class_type const& rhs);
     ~fixed_array_4d() stlsoft_throw_0();
+
+    void swap(class_type& rhs) stlsoft_throw_0();
 
 // Access
 public:
@@ -760,7 +780,8 @@ public:
 
 // Access
 public:
-    value_type const        *data() const;
+    pointer                 data();
+    const_pointer           data() const;
 
 // Implementation
 private:
@@ -774,11 +795,11 @@ private:
 
 // Members
 private:
-    T * const           m_data;
-    const index_type    m_d0;
-    const index_type    m_d1;
-    const index_type    m_d2;
-    const index_type    m_d3;
+    T*          m_data;
+    index_type  m_d0;
+    index_type  m_d1;
+    index_type  m_d2;
+    index_type  m_d3;
 
     friend class fixed_array_5d<T, A, P, true>;
     friend class fixed_array_5d<T, A, P, false>;
@@ -845,7 +866,7 @@ inline void fixed_array_1d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline fixed_array_1d<T, A, P, R>::fixed_array_1d(T *src, ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type d0)
+inline fixed_array_1d<T, A, P, R>::fixed_array_1d(T* src, ss_typename_type_k fixed_array_1d<T, A, P, R>::index_type d0)
     : m_data(src)
     , m_d0(d0)
 {
@@ -904,6 +925,18 @@ inline fixed_array_1d<T, A, P, R>::~fixed_array_1d() stlsoft_throw_0()
         array_range_initialiser<T, A, P>::destroy(*this, data_(), size());
         deallocate_(m_data, size());
     }
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline void fixed_array_1d<T, A, P, R>::swap(ss_typename_type_k fixed_array_1d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
+{
+    // We don't need to do any construct and swap here, because all the
+    // variables that are being swapped are simple types (integers and
+    // pointers).
+
+	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(m_data, rhs.m_data);
+    std_swap(m_d0, rhs.m_d0);
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1079,7 +1112,13 @@ inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::const_reverse_iterator
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::value_type const* fixed_array_1d<T, A, P, R>::data() const
+inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::pointer fixed_array_1d<T, A, P, R>::data()
+{
+    return m_data;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_ret_k fixed_array_1d<T, A, P, R>::const_pointer fixed_array_1d<T, A, P, R>::data() const
 {
     return m_data;
 }
@@ -1143,7 +1182,7 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline fixed_array_2d<T, A, P, R>::fixed_array_2d(T *src, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d1)
+inline fixed_array_2d<T, A, P, R>::fixed_array_2d(T* src, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d0, ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type d1)
     : m_data(src)
     , m_d0(d0)
     , m_d1(d1)
@@ -1212,6 +1251,20 @@ inline fixed_array_2d<T, A, P, R>::~fixed_array_2d() stlsoft_throw_0()
         array_range_initialiser<T, A, P>::destroy(*this, data_(), size());
         deallocate_(m_data, size());
     }
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline void fixed_array_2d<T, A, P, R>::swap(ss_typename_type_k fixed_array_2d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
+{
+    // We don't need to do any construct and swap here, because all the
+    // variables that are being swapped are simple types (integers and
+    // pointers).
+
+	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(m_data, rhs.m_data);
+    std_swap(m_d0, rhs.m_d0);
+    std_swap(m_d1, rhs.m_d1);
+    std_swap(m_size, rhs.m_size);
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1417,7 +1470,13 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_reverse_iterator
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::value_type const* fixed_array_2d<T, A, P, R>::data() const
+inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::pointer fixed_array_2d<T, A, P, R>::data()
+{
+    return m_data;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_pointer fixed_array_2d<T, A, P, R>::data() const
 {
     return m_data;
 }
@@ -1550,6 +1609,20 @@ inline fixed_array_3d<T, A, P, R>::~fixed_array_3d() stlsoft_throw_0()
         array_range_initialiser<T, A, P>::destroy(*this, data_(), size());
         deallocate_(m_data, size());
     }
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline void fixed_array_3d<T, A, P, R>::swap(ss_typename_type_k fixed_array_3d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
+{
+    // We don't need to do any construct and swap here, because all the
+    // variables that are being swapped are simple types (integers and
+    // pointers).
+
+	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(m_data, rhs.m_data);
+    std_swap(m_d0, rhs.m_d0);
+    std_swap(m_d1, rhs.m_d1);
+    std_swap(m_d2, rhs.m_d2);
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -1759,7 +1832,13 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_reverse_iterator
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::value_type const* fixed_array_3d<T, A, P, R>::data() const
+inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::pointer fixed_array_3d<T, A, P, R>::data()
+{
+    return m_data;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_pointer fixed_array_3d<T, A, P, R>::data() const
 {
     return m_data;
 }
@@ -1824,7 +1903,7 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline fixed_array_4d<T, A, P, R>::fixed_array_4d(T *src, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d3)
+inline fixed_array_4d<T, A, P, R>::fixed_array_4d(T* src, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d0, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d1, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d2, ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type d3)
     : m_data(src)
     , m_d0(d0)
     , m_d1(d1)
@@ -1898,6 +1977,21 @@ inline fixed_array_4d<T, A, P, R>::~fixed_array_4d() stlsoft_throw_0()
         array_range_initialiser<T, A, P>::destroy(*this, data_(), size());
         deallocate_(m_data, size());
     }
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline void fixed_array_4d<T, A, P, R>::swap(ss_typename_type_k fixed_array_4d<T, A, P, R>::class_type& rhs) stlsoft_throw_0()
+{
+    // We don't need to do any construct and swap here, because all the
+    // variables that are being swapped are simple types (integers and
+    // pointers).
+
+	std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(m_data, rhs.m_data);
+    std_swap(m_d0, rhs.m_d0);
+    std_swap(m_d1, rhs.m_d1);
+    std_swap(m_d2, rhs.m_d2);
+    std_swap(m_d3, rhs.m_d3);
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -2113,7 +2207,13 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_reverse_iterator
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::value_type const* fixed_array_4d<T, A, P, R>::data() const
+inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::pointer fixed_array_4d<T, A, P, R>::data()
+{
+    return m_data;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_pointer fixed_array_4d<T, A, P, R>::data() const
 {
     return m_data;
 }

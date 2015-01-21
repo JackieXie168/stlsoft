@@ -135,80 +135,80 @@ namespace unittest
 				cmdargs::value const	&value0 	=	args.values()[0];
 				cmdargs::value const	&value1 	=	args.values()[1];
 
-				if(option0.m_name != "option0")
+				if(option0.name != "option0")
 				{
 					r->report("cmdargs option[0] not valid (name) for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if(option0.m_value != "ov0")
+				if(option0.value != "ov0")
 				{
 					r->report("cmdargs option[0] not valid (value) for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if(option0.m_type != cmdargs::singleDash)
+				if(option0.type != cmdargs::singleDash)
 				{
 					r->report("cmdargs option[0] not valid (type) for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if(option0.m_index != 2)
+				if(option0.index != 2)
 				{
 					r->report("cmdargs option[0] not valid (index) for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if(option0.m_original != "-option0=ov0")
+				if(option0.original != "-option0=ov0")
 				{
 					r->report("cmdargs option[0] not valid (original) for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if( option1.m_name != "option1" ||
-					option1.m_value != "ov1" ||
-					option1.m_type != cmdargs::doubleDash ||
-					option1.m_index != 3 ||
-					option1.m_original != "--option1=ov1")
+				if( option1.name != "option1" ||
+					option1.value != "ov1" ||
+					option1.type != cmdargs::doubleDash ||
+					option1.index != 3 ||
+					option1.original != "--option1=ov1")
 				{
 					r->report("cmdargs option[1] not valid for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if( option2.m_name != "option2" ||
-					option2.m_value != "" ||
-					option2.m_type != cmdargs::singleDash ||
-					option2.m_index != 5 ||
-					option2.m_original != "-option2")
+				if( option2.name != "option2" ||
+					option2.value != "" ||
+					option2.type != cmdargs::singleDash ||
+					option2.index != 5 ||
+					option2.original != "-option2")
 				{
 					r->report("cmdargs option[2] not valid for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if( option3.m_name != "-option3" ||
-					option3.m_value != "" ||
-					option3.m_type != cmdargs::doubleDash ||
-					option3.m_index != 6 ||
-					option3.m_original != "---option3")
+				if( option3.name != "-option3" ||
+					option3.value != "" ||
+					option3.type != cmdargs::doubleDash ||
+					option3.index != 6 ||
+					option3.original != "---option3")
 				{
 					r->report("cmdargs option[3] not valid for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if(value0.m_value != "value0")
+				if(value0.name != "value0")
 				{
 					r->report("cmdargs value[0] not valid (value) for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if(value0.m_index != 1)
+				if(value0.index != 1)
 				{
 					r->report("cmdargs value[0] not valid (index) for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;
 				}
 
-				if( value1.m_value != "value1" ||
-					value1.m_index != 4)
+				if( value1.name != "value1" ||
+					value1.index != 4)
 				{
 					r->report("cmdargs value[1] not valid for non-empty cmdargs instance", __LINE__);
 					bSuccess = false;

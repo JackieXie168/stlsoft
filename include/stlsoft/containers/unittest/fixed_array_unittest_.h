@@ -1,4 +1,6 @@
 
+// Updated: 17th December 2007
+
 #if !defined(STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY)
 # error This file cannot be directly included, and should only be included within stlsoft/containers/fixed_array.hpp
 #endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY */
@@ -34,6 +36,11 @@ namespace unittest
 
 			////////////////////////////////////////////////
 			// 1-dimension
+
+			{ for(size_t i = 0; i < a1d_1.dimension0(); ++i)
+			{
+				a1d_1[i] = static_cast<int>(i);
+			}}
 
 			// values, via at_unchecked(), (), []
 
@@ -89,8 +96,34 @@ namespace unittest
 				}
 			}}
 
+			// data()
+
+			a1d_1.data()[0] = -999999;
+			if(-999999 != a1d_1[0])
+			{
+				r->report("data() return wrong reference", __LINE__);
+				bSuccess = false;
+			}
+
+			// swap()
+
+			a1d_1.swap(a1d_2);
+			if(-999999 != a1d_2[0])
+			{
+				r->report("swap() failed", __LINE__);
+				bSuccess = false;
+			}
+
 			////////////////////////////////////////////////
 			// 2-dimensions
+
+			{ for(size_t i = 0; i < a2d_1.dimension0(); ++i)
+			{
+				{ for(size_t j = 0; j < a2d_1.dimension1(); ++j)
+				{
+					a2d_1[i][j] = static_cast<int>(i * a2d_1.dimension0() + j);
+				}}
+			}}
 
 			// values, via at_unchecked(), (), []
 
@@ -131,8 +164,37 @@ namespace unittest
 			catch(std::out_of_range &)
 			{}
 
+			// data()
+
+			a2d_1.data()[0] = -999999;
+			if(-999999 != a2d_1[0][0])
+			{
+				r->report("data() return wrong reference", __LINE__);
+				bSuccess = false;
+			}
+
+			// swap()
+
+			a2d_1.swap(a2d_2);
+			if(-999999 != a2d_2[0][0])
+			{
+				r->report("swap() failed", __LINE__);
+				bSuccess = false;
+			}
+
 			////////////////////////////////////////////////
 			// 3-dimensions
+
+			{ for(size_t i = 0; i < a3d_1.dimension0(); ++i)
+			{
+				{ for(size_t j = 0; j < a3d_1.dimension1(); ++j)
+				{
+					{ for(size_t k = 0; k < a3d_1.dimension2(); ++k)
+					{
+						a3d_1[i][j][k] = static_cast<int>((i * a3d_1.dimension0() * a3d_1.dimension1()) + (j * a3d_1.dimension1()) + k);
+					}}
+				}}
+			}}
 
 			// values, via at_unchecked(), (), []
 
@@ -176,8 +238,40 @@ namespace unittest
 			catch(std::out_of_range &)
 			{}
 
+			// data()
+
+			a3d_1.data()[0] = -999999;
+			if(-999999 != a3d_1[0][0][0])
+			{
+				r->report("data() return wrong reference", __LINE__);
+				bSuccess = false;
+			}
+
+			// swap()
+
+			a3d_1.swap(a3d_2);
+			if(-999999 != a3d_2[0][0][0])
+			{
+				r->report("swap() failed", __LINE__);
+				bSuccess = false;
+			}
+
 			////////////////////////////////////////////////
 			// 4-dimensions
+
+			{ for(size_t i = 0; i < a4d_1.dimension0(); ++i)
+			{
+				{ for(size_t j = 0; j < a4d_1.dimension1(); ++j)
+				{
+					{ for(size_t k = 0; k < a4d_1.dimension2(); ++k)
+					{
+						{ for(size_t l = 0; l < a4d_1.dimension3(); ++l)
+						{
+							a4d_1[i][j][k][l] = static_cast<int>((i * a4d_1.dimension0() * a4d_1.dimension1() * a4d_1.dimension2()) + (j * a4d_1.dimension1() * a4d_1.dimension2()) + (k * a4d_1.dimension2()) + l);
+						}}
+					}}
+				}}
+			}}
 
 			// values, via at_unchecked(), (), []
 
@@ -223,6 +317,24 @@ namespace unittest
 			}
 			catch(std::out_of_range &)
 			{}
+
+			// data()
+
+			a4d_1.data()[0] = -999999;
+			if(-999999 != a4d_1[0][0][0][0])
+			{
+				r->report("data() return wrong reference", __LINE__);
+				bSuccess = false;
+			}
+
+			// swap()
+
+			a4d_1.swap(a4d_2);
+			if(-999999 != a4d_2[0][0][0][0])
+			{
+				r->report("swap() failed", __LINE__);
+				bSuccess = false;
+			}
 
 			return bSuccess;
 		}

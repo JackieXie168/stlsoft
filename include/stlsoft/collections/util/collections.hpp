@@ -4,7 +4,7 @@
  * Purpose:     Collection types.
  *
  * Created:     10th January 2006
- * Updated:     10th January 2007
+ * Updated:     17th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_MAJOR     2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_REVISION  1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_EDIT      8
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_REVISION  2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,6 +101,7 @@ struct collection_tag
  * \ingroup group__library__collections
  */
 struct stl_collection_tag
+	: public collection_tag
 {};
 
 #if 0
