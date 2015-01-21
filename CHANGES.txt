@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  7th May 2009
+; Updated:  15th May 2009
 
 ============================================================================
 
@@ -18,7 +18,29 @@ STLSoft - Changes
 
 ============================================================================
 
-Changes for 1.9.80 (6th May 2009)
+Changes for 1.9.82 (15th May 2009)
+
+Summary:
+========
+
+ * added winstl::reg_traits<>::reg_delete_tree()
+ * added IOStreams compatibility for winstl::findfile_sequence::value_type
+
+Changes:
+========
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/findfile_sequence.hpp:
+    + added compatibility with IOStreams
+
+ ~ include/winstl/registry/reg_traits.hpp:
+    + added reg_delete_tree()
+
+============================================================================
+
+Changes for 1.9.81 (7th May 2009)
 
 Summary:
 ========

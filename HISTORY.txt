@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  7th May 2009
+; Updated:  15th May 2009
 
 ============================================================================
+
+
+15th May 2009 - 1.9.82 released
+-------------------------------
+
+ * added winstl::reg_traits<>::reg_delete_tree()
+ * added IOStreams compatibility for winstl::findfile_sequence::value_type
 
 
 7th May 2009 - 1.9.81 released
