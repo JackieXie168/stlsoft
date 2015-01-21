@@ -4,7 +4,7 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     14th July 2006
+ * Updated:     31st August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,8 +44,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    2
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     18
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 3
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp
@@ -145,10 +145,10 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1
-# error RangeLib is only compatible with STLSoft version 1.9.1 and above
-#endif /* _STLSOFT_VER */
+#if !defined(_STLSOFT_VER_1_9_1_B20) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
+# error RangeLib is only compatible with STLSoft version 1.9.1 beta 20, and above
+#endif /* _STLSOFT_VER_1_9_1_B20 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility

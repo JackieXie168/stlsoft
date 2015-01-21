@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     14th July 2006
+ * Updated:     27th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     22
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 3
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -134,10 +134,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1
-# error This version of the PlatformSTL libraries requires STLSoft version 1.9.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
+#if !defined(_STLSOFT_VER_1_9_1_B20) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.1 beta 20 or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Operating system identification

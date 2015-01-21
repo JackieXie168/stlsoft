@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     14th July 2006
+ * Updated:     27th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        89
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    3
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h \brief [C, C++] The root header for the \ref group__project__comstl "COMSTL" project. */
@@ -139,10 +139,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1
-# error This version of the COMSTL libraries requires STLSoft version 1.9.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
+#if !defined(_STLSOFT_VER_1_9_1_B20) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
+# error This version of the COMSTL libraries requires STLSoft version 1.9.1 beta 20 or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     7th July 2006
+ * Updated:     11th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    0
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     67
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    1
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 1
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifdef STLSOFT_UNITTEST
-# include <wchar.h>
-#endif /* STLSOFT_UNITTEST */
+
+#include <string.h>
+#include <wchar.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -115,6 +115,8 @@ STLSOFT_INLINE BSTR comstl__bstr_create_w(cs_char_w_t const *s)
  */
 STLSOFT_INLINE BSTR comstl__bstr_create_len_w(cs_char_w_t const *s, cs_size_t len)
 {
+    COMSTL_MESSAGE_ASSERT("Cannot pass size_t(-1) as length!", 0 != len + 1);
+
     return STLSOFT_NS_GLOBAL(SysAllocStringLen)(s, len);
 }
 
@@ -169,6 +171,8 @@ STLSOFT_INLINE BSTR comstl__bstr_create_len_a(cs_char_a_t const *s, cs_size_t le
 {
     BSTR    bstr = NULL;
 
+    COMSTL_MESSAGE_ASSERT("Cannot pass size_t(-1) as length!", 0 != len + 1);
+
     if(s != NULL)
     {
         cs_char_w_t     *pwsz   =   stlsoft_static_cast(cs_char_w_t*, STLSOFT_NS_GLOBAL(CoTaskMemAlloc)((1 + len) * sizeof(cs_char_w_t)));
@@ -216,6 +220,44 @@ STLSOFT_INLINE void comstl__bstr_destroy(BSTR bstr)
 STLSOFT_INLINE BSTR comstl__bstr_dup(BSTR bstr)
 {
     return comstl__bstr_create_w(bstr);
+}
+
+/** \brief Compares two BSTR strings
+ *
+ * \ingroup group__library__string
+ *
+ * \param s1 The first BSTR to compare. May be NULL
+ * \param s2 The second BSTR to compare. May be NULL
+ *
+ * \return An integer value representing the relationship between the strings
+ * \retval <0 s1 is lexicographically less than s2
+ * \retval 0 s1 is lexicographically equal than s2
+ * \retval >0 s1 is lexicographically greater than s2
+ */
+STLSOFT_INLINE int comstl__bstr_compare(BSTR s1, BSTR s2)
+{
+    if(NULL == s1)
+    {
+        if(NULL == s2)
+        {
+            return 0;   /* Two NULLs are equal */
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    else
+    {
+        if(NULL == s2)
+        {
+            return +1;
+        }
+        else
+        {
+            return STLSOFT_NS_GLOBAL(wcscmp)(s1, s2);
+        }
+    }
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -353,6 +395,23 @@ inline void bstr_destroy(BSTR bstr)
 inline BSTR bstr_dup(BSTR bstr)
 {
     return comstl__bstr_dup(bstr);
+}
+
+/** \brief Compares two BSTR strings
+ *
+ * \ingroup group__library__string
+ *
+ * \param s1 The first BSTR to compare. May be NULL
+ * \param s2 The second BSTR to compare. May be NULL
+ *
+ * \return An integer value representing the relationship between the strings
+ * \retval <0 s1 is lexicographically less than s2
+ * \retval 0 s1 is lexicographically equal than s2
+ * \retval >0 s1 is lexicographically greater than s2
+ */
+inline int bstr_compare(BSTR s1, BSTR s2)
+{
+    return comstl__bstr_compare(s1, s2);
 }
 
 #endif /* __cplusplus */

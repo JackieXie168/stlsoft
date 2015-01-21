@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     14th July 2006
+ * Updated:     27th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    5
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        150
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    6
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        151
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -172,10 +172,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1
-# error This version of the WinSTL libraries requires STLSoft version 1.9.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
+#if !defined(_STLSOFT_VER_1_9_1_B20) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
+# error This version of the WinSTL libraries requires STLSoft version 1.9.1 beta 20 or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Proper C++ casting

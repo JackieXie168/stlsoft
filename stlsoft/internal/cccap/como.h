@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     18th July 2006
+ * Updated:     25th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     7
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      48
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -241,7 +241,7 @@
 #define __STLSOFT_CF_ALLOCATOR_DEALLOCATE_HAS_OBJECTCOUNT
  */
 
-/* This is no longer supported here. Include stlsoft/util/std/library_discriminator.hpp
+/* This is no longer supported here. Include stlsoft/memory/allocator_features.hpp
 #define STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
  */
 

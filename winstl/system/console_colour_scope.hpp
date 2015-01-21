@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/console_colour_scope.hpp
+ * File:        winstl/system/console_colour_scope.hpp
  *
  * Purpose:     Scopes the console colour (and intensity).
  *
  * Created:     20th July 2006
- * Updated:     20th July 2006
+ * Updated:     25th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,20 +38,20 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/window/console_colour_scope.hpp
+/** \file winstl/system/console_colour_scope.hpp
  *
  * \brief [C++ only] Definition of the winstl::console_colour_scope class.
  * (\ref group__library__windows_window "Windows Window" Library.)
  */
 
-#ifndef WINSTL_INCL_WINSTL_WINDOW_HPP_CONSOLE_COLOUR_SCOPE
-#define WINSTL_INCL_WINSTL_WINDOW_HPP_CONSOLE_COLOUR_SCOPE
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE
+#define WINSTL_INCL_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_WINDOW_HPP_CONSOLE_COLOUR_SCOPE_MAJOR    1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_CONSOLE_COLOUR_SCOPE_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_CONSOLE_COLOUR_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_CONSOLE_COLOUR_SCOPE_EDIT     1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MAJOR    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MINOR    0
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_REVISION 2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,22 +108,36 @@ public:
 
 // Construction
 public:
-    /// \brief Toggles the window enable state
+    /// \brief Sets the console text attribute(s), remembering the current
+    ///   state so it can be reset in the destructor.
     ///
-    /// Takes a HWND and changes it's current enable-status, which is set back to
-    /// the original state in the destructor.
+    /// The constructor applies the given text attributes to the given
+    /// console screen buffer, after first recording the current state so
+    /// that they can be reset when the instance is destroyed.
+    ///
+    /// \exception winstl::windows_exception If \ref page__exception_agnostic "exception handling is enabled",
+    ///   an instance of \link winstl::windows_exception windows_exception\endlink
+    ///   will be thrown if the console text attributes cannot be elicited
+    ///   or changed. If \ref page__exception_agnostic "exception handling is not enabled",
+    ///   the console attributes are left as they are, and the destructor
+    ///   makes no attempt at modification.
     ///
     /// \param hBuffer Handle the console screen buffer.
-    /// \param 
+    /// \param textAttributes The text attributes to be applied to the console
     ss_explicit_k console_colour_scope(HANDLE hBuffer, WORD textAttributes)
         : m_hBuffer(hBuffer)
         , m_attributes(init_(hBuffer, textAttributes))
     {}
 
-    /// Resets the enable status
+    /// Resets the console text attribute(s) to the original form.
     ~console_colour_scope() stlsoft_throw_0()
     {
-        ::SetConsoleTextAttribute(m_hBuffer, static_cast<WORD>(m_attributes));
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+        if(0xffffffff != m_attributes)
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+        {
+            ::SetConsoleTextAttribute(m_hBuffer, static_cast<WORD>(m_attributes));
+        }
     }
 
 /// \name Implementation
@@ -137,8 +151,6 @@ private:
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw windows_exception("Could not retrieve console buffer information", ::GetLastError());
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            return 0xffffffff;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
@@ -147,8 +159,6 @@ private:
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 throw windows_exception("Could not set console text attributes", ::GetLastError());
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-                return 0xffffffff;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
             else
@@ -156,6 +166,11 @@ private:
                 return bufferInfo.wAttributes;
             }
         }
+
+#if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
+    defined(STLSOFT_COMPILER_IS_DMC)
+        return 0xffffffff;  // Catch-all returns the error code
+#endif /* !exceptions, compiler */
     }
 /// @}
 
@@ -188,6 +203,6 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* WINSTL_INCL_WINSTL_WINDOW_HPP_CONSOLE_COLOUR_SCOPE */
+#endif /* WINSTL_INCL_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE */
 
 /* ////////////////////////////////////////////////////////////////////// */

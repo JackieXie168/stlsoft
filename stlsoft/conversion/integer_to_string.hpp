@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     7th July 2006
+ * Updated:     31st August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      68
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -780,6 +780,29 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, ss_uint64_t const &i
     return unsigned_integer_to_string(buf, cchBuf, i, cchRes);
 }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template <ss_typename_param_k C>
+inline C const *integer_to_string(C *buf, ss_size_t cchBuf, int i, ss_size_t &cchRes)
+{
+    return signed_integer_to_string(buf, cchBuf, i, cchRes);
+}
+
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template <ss_typename_param_k C>
+inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned int i, ss_size_t &cchRes)
+{
+    return unsigned_integer_to_string(buf, cchBuf, i, cchRes);
+}
+#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
+
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

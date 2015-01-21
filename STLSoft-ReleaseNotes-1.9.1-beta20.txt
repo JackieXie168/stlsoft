@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta19
+File:     STLSoft-ReleaseNotes-1.9.1-beta20
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,10 +11,28 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  9th August 2006
+Updated:  2nd September 2006
 
 ============================================================================
 
+
+============================================================================
+
+Changes for 1.9.1 beta 20 (2nd September 2006):
+
+Additions:
+==========
+
++ comstl::bstr (comstl/string/bstr.hpp) - facade for BSTR
+
++ comstl::variant (comstl/util/variant.hpp) - facade for VARIANT
+
++ comstl::bstr_compare()
+
++ new overloads of comstl::co_create_instance(), which takes a string, and
+  attempts to resolve it with CLSIDFromProgID(), or CLSIDFromString()
+
++ winstl::reg_get_dword_value() - retrieves a DWORD value from a reg key
 
 ============================================================================
 

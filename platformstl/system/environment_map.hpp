@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     14th July 2006
+ * Updated:     2nd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        40
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,6 +84,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 # error Operating system not discriminated
 #endif /* operating system */
 
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
+# include <stlsoft/util/std/library_discriminator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
 # include <stlsoft/smartptr/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
@@ -182,15 +185,12 @@ private:
     {
     public: // Member Types
         typedef stlsoft_ns_qual(shared_ptr)<snapshot>   ref_type;
-#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
-        (   defined(STLSOFT_COMPILER_IS_INTEL) && \
-            defined(_WIN32))) && \
-    _MSC_VER == 1300
+#if STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
         // VC7 libs get confused with const key type here
         typedef stlsoft_ns_qual_std(map)<         first_type
-#else /* ? compiler */
+#else /* ? library */
         typedef stlsoft_ns_qual_std(map)<   const first_type
-#endif /* compiler */
+#endif /* library */
                                         ,   second_type
                                         >               variables_type_;
         typedef variables_type_::iterator               iterator;
