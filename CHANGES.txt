@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th May 2009
+; Updated:  23rd May 2009
 
 ============================================================================
 
@@ -15,6 +15,47 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.84 (23rd May 2009)
+
+Summary:
+========
+
+ * fixed defect in winstl::basic_reg_key::set_value() for REG_MULTI_SZ values (widestring only)
+ * "safe string" library and widestring support for stlsoft::basic_error_desc
+ * various 64-bit LP64 compatibility changes
+
+Changes:
+========
+
+ COMSTL:
+ =======
+
+ ~ include/comstl/comstl.h:
+    ~ documentation enhancements
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/error/error_desc.hpp:
+    ~ "safe string" library support
+    ~ widestring support
+
+ ~ include/stlsoft/memory/auto_buffer.hpp:
+ ~ include/stlsoft/string/string_traits.hpp:
+ ~ include/stlsoft/util/integral_printf_traits.hpp:
+ ~ include/stlsoft/util/limit_traits.h:
+ ~ include/stlsoft/util/sign_traits.hpp:
+    ~ 64-bit (LP64) compatibility
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/registry/reg_key.hpp:
+    ~ fixed defect in set_value_() overload for REG_MULTI_SZ values (widestring only)
 
 ============================================================================
 

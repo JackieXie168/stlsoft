@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     25th October 2008
+ * Updated:     22nd May 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       7
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        109
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    3
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -144,12 +144,13 @@
 # define _COMSTL_VER_1_8_1      0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.37) */
 # define _COMSTL_VER_1_8_2      0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.57) */
 # define _COMSTL_VER_1_8_3      0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.9.59) */
+# define _COMSTL_VER_1_8_4      0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.9.84) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       8
-#define _COMSTL_VER_REVISION    3
-#define _COMSTL_VER             _COMSTL_VER_1_8_3
+#define _COMSTL_VER_REVISION    4
+#define _COMSTL_VER             _COMSTL_VER_1_8_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -571,7 +572,15 @@ stlsoft_ns_using(move_lhs_from_rhs)
  *
  * \ingroup group__project__comstl__language_agnostic_macros
  *
- * \brief 
+ * Used to provide access to the \c mem member of a \c VARIANT structure in
+ * a language-independent manner
+ *
+ * Usage:
+<pre>
+  VARIANT v;
+
+  COMSTL_ACCESS_VARIANT_MEM_BYREF(v, lVal) = 10;
+</pre>
  */
 #define COMSTL_ACCESS_VARIANT_MEM_BYREF(var, mem)       COMSTL_ACCESS_VARIANT_MEM_BYPTR(&(var), mem)
 
@@ -594,7 +603,15 @@ stlsoft_ns_using(move_lhs_from_rhs)
  *
  * \ingroup group__project__comstl__language_agnostic_macros
  *
- * \brief 
+ * Used to provide access to the \c vt member of a \c VARIANT structure in
+ * a language-independent manner
+ *
+ * Usage:
+<pre>
+  VARIANT v;
+
+  COMSTL_ACCESS_VARIANT_vt_BYREF(v) = VT_I4;
+</pre>
  */
 #define COMSTL_ACCESS_VARIANT_vt_BYREF(var)             COMSTL_ACCESS_VARIANT_vt_BYPTR(&(var))
 
