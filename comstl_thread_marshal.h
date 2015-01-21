@@ -4,7 +4,7 @@
  * Purpose:     Thread marshalling functions.
  *
  * Created:     25th May 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_H_COMSTL_THREAD_MARSHAL_MAJOR       3
-# define COMSTL_VER_H_COMSTL_THREAD_MARSHAL_MINOR       1
+# define COMSTL_VER_H_COMSTL_THREAD_MARSHAL_MINOR       2
 # define COMSTL_VER_H_COMSTL_THREAD_MARSHAL_REVISION    1
-# define COMSTL_VER_H_COMSTL_THREAD_MARSHAL_EDIT        42
+# define COMSTL_VER_H_COMSTL_THREAD_MARSHAL_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/thread_marshal.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

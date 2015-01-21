@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_PIPE_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_PIPE_MINOR     1
 # define WINSTL_VER_WINSTL_HPP_PIPE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_PIPE_EDIT      22
+# define WINSTL_VER_WINSTL_HPP_PIPE_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,10 +60,10 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>   // windows_exception
+# include <winstl/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
-# include <winstl/functions.h>      // CloseHandleSetNull
+# include <winstl/functions.h>      // for CloseHandleSetNull()
 #endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////

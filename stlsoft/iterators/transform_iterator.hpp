@@ -5,7 +5,7 @@
  *              the values from the iterator's underlying sequence.
  *
  * Created:     6th February 1999
- * Updated:     20th December 2005
+ * Updated:     27th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      89
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  7
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>      // stlsoft::iterator, and macros
+# include <stlsoft/iterator.hpp>      // for stlsoft::iterator, and macros
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
 #ifdef STLSOFT_UNITTEST
@@ -93,6 +93,19 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/// \weakgroup iterators Iterators
+/// \brief STL-compatible iterators
+
+/// \weakgroup adaptors Adaptors
+/// \brief Adaptor functions and classes used throughout the STLSoft libraries
+
+/// \weakgroup adaptors_iterator Iterator Adaptors
+/// \brief Classes that provide iterator adaptation
+/// \ingroup iterators adaptors
+/// @{
+
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
@@ -113,7 +126,16 @@ public:
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
+// [[synesis:class:iterator: transform_iterator<T<I>, T<F>>]]
 class transform_iterator
+#if 0
+    : public stlsoft_ns_qual(iterator_base) <   stlsoft_ns_qual_std(output_iterator_tag)
+                                            ,   void
+                                            ,   void
+                                            ,   void
+                                            ,   void
+                                            >
+#endif /* 0 */
 {
 /// \name Member Types
 /// @{
@@ -314,6 +336,12 @@ private:
  * Creator function
  */
 
+/// Creator function for transform_iterator
+///
+/// \param i The iterator to transform
+/// \param f The function object used to effect the transformation
+///
+/// \return An instance of the specialisation transform_iterator&lt;T, F&gt;
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
@@ -322,12 +350,20 @@ inline transform_iterator<I, F> make_transform_iterator(I i, F f)
     return transform_iterator<I, F>(i, f);
 }
 
+/// Creator function for transform_iterator
+///
+/// \param i The iterator to transform
+/// \param f The function object used to effect the transformation
+///
+/// \return An instance of the specialisation transform_iterator&lt;T, F&gt;
+///
+/// \note Short-hand for make_transform_iterator()
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
 inline transform_iterator<I, F> transformer(I i, F f)
 {
-    return transform_iterator<I, F>(i, f);
+    return make_transform_iterator(i, f);
 }
 
 #if 0
@@ -454,6 +490,10 @@ inline ss_bool_t operator >=(transform_iterator<I, F> const &lhs, transform_iter
 {
     return lhs.compare(rhs) >= 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

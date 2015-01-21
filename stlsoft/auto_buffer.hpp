@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MINOR      2
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       114
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,14 +60,14 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>      // feature discrimination
+# include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_POD_ALGORITHMS
+#ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 # include <stlsoft/algorithms/pod.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_POD_ALGORITHMS */
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS_POD */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
@@ -79,18 +79,18 @@
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_UDT */
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-#  include <stlsoft/iterator.hpp>           // reverse_iterator_base
+#  include <stlsoft/iterator.hpp>           // for reverse_iterator_base
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-#  include <stlsoft/constraints.hpp>        // Include the STLSoft constraints header
+#  include <stlsoft/constraints.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD */
 
 #ifdef STLSOFT_UNITTEST
 # if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-#  include <numeric>                        // accumulate
+#  include <numeric>                        // for std::accumulate()
 # endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #endif /* STLSOFT_UNITTEST */
 

@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MAJOR       4
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        83
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,19 +60,19 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>         // winstl::file_path_buffer
+# include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>    // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>                // stlsoft::sap_cast
+# include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>                // iterator bases
+# include <stlsoft/iterator.hpp>                // for iterator base class templates
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-# include <stdexcept>                           // std::exception
+# include <stdexcept>                           // for std::exception
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
 #include <wchar.h>
 #ifdef STLSOFT_UNITTEST

@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     18th December 2005
+ * Updated:     26th December 2005
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MINOR       2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        70
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@
 
 /* Are we going to cater for std::(w)string? */
 #ifndef STLSOFT_STRING_ACCESS_NO_STD_STRING
-# include <string>                      // std::string classes
+# include <string>
 #endif /* STLSOFT_STRING_ACCESS_NO_STD_STRING */
 
 /* Include stlsoft_char_traits if not using std::string, or std::char_traits
@@ -117,13 +117,17 @@
  */
 #if !defined(__STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-#  include <stlsoft/char_traits.hpp>    // stlsoft::char_traits
+#  include <stlsoft/char_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #endif /* !__STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
 
 #if defined(STLSOFT_COMPILER_IS_GCC)
 # include <wchar.h>
 #endif /* STLSOFT_COMPILER_IS_GCC */
+
+#ifdef STLSOFT_UNITTEST
+# include <stdio.h>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Pre-processor control

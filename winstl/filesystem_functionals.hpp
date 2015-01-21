@@ -4,7 +4,7 @@
  * Purpose:     File-system related functions and predicates.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR     1
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT      61
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,13 +73,13 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>   // basic_file_path_buffer
+# include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>  // c_str_ptr, etc.
+# include <winstl/string_access.hpp>  // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #ifndef _WINSTL_FUNCTIONALS_NO_STD
 # include <functional>

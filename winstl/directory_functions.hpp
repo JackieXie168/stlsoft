@@ -4,7 +4,7 @@
  * Purpose:     Contains some Win32 file-system functions.
  *
  * Created:     7th February 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_EDIT     24
+# define WINSTL_VER_WINSTL_HPP_DIRECTORY_FUNCTIONS_EDIT     25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,10 +70,10 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>      // filesystem_traits
+# include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>       // file_path_buffer
+# include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
 
 /* /////////////////////////////////////////////////////////////////////////////

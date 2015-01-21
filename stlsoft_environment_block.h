@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_ENVIRONMENT_BLOCK_MAJOR    3
-# define STLSOFT_VER_H_STLSOFT_ENVIRONMENT_BLOCK_MINOR    1
+# define STLSOFT_VER_H_STLSOFT_ENVIRONMENT_BLOCK_MINOR    2
 # define STLSOFT_VER_H_STLSOFT_ENVIRONMENT_BLOCK_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_ENVIRONMENT_BLOCK_EDIT     18
+# define STLSOFT_VER_H_STLSOFT_ENVIRONMENT_BLOCK_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/environment_block.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_H_WINSTL_REG_DEFS_MAJOR     2
 # define WINSTL_VER_H_WINSTL_REG_DEFS_MINOR     2
 # define WINSTL_VER_H_WINSTL_REG_DEFS_REVISION  1
-# define WINSTL_VER_H_WINSTL_REG_DEFS_EDIT      43
+# define WINSTL_VER_H_WINSTL_REG_DEFS_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@
 #endif /* _MSC_VER == 1100 */
 
 #if defined(_WINSTL_REG_STRING_USE_STD_STRING)
-# include <string>                                  // std::string
+# include <string>
 #elif defined(_WINSTL_REG_STRING_USE_CUSTOM_STRING)
 # if !defined(_WINSTL_REG_STRING_CUSTOM_HEADER_FILE)
 #  error You must define the header file (e.g. "#define _WINSTL_REG_STRING_CUSTOM_HEADER_FILE <mystring.h>") if you specify _WINSTL_REG_STRING_USE_CUSTOM_STRING
@@ -90,7 +90,7 @@
 # endif /* !_WINSTL_REG_STRING_CUSTOM_HEADER_FILE */
 #else
 # ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>                // stlsoft::basic_simple_string
+#  include <stlsoft/simple_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #endif /* string type */
 

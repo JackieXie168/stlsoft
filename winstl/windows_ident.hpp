@@ -4,7 +4,7 @@
  * Purpose:     Windows identification.
  *
  * Created:     11th March 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_EDIT       27
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_REVISION   3
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,14 +59,11 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_H_WINSTL_FUNCTIONS
-//# include "winstl_functions.h"            //
-#endif /* !WINSTL_INCL_H_WINSTL_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  //
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -109,7 +106,10 @@ enum WindowIdent
 
 inline WindowIdent GetWindowIdent(HWND hwnd)
 {
-    typedef auto_buffer<char, processheap_allocator<char>, 256> buffer_t;
+    typedef auto_buffer<char
+                    ,   processheap_allocator<char>
+                    ,   256
+                    >                           buffer_t;
 
     struct Ident
     {

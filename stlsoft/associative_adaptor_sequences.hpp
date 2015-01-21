@@ -4,7 +4,7 @@
  * Purpose:     Associative container adaptor sequences.
  *
  * Created:     28th January 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MINOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     6
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,10 +70,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_KEY_SEQUENCE
-# include <stlsoft/associative_key_sequence.hpp>    // associative_key_sequence
+# include <stlsoft/associative_key_sequence.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_KEY_SEQUENCE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE
-# include <stlsoft/associative_value_sequence.hpp>  // associative_value_sequence
+# include <stlsoft/associative_value_sequence.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE */
 
 /* ////////////////////////////////////////////////////////////////////////// */

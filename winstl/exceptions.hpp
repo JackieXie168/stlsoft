@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     18th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MINOR     1
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      28
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,14 +60,14 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>    // os_exception
+# include <stlsoft/exceptions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_H_ERROR_FUNCTIONS
-# include <winstl/error_functions.h>    // FormatMessage
+# include <winstl/error_functions.h>    // for FormatMessage()
 #endif /* !WINSTL_INCL_WINSTL_H_ERROR_FUNCTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp> // stlsoft::simple_string
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
+# include <stlsoft/util/exception_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -102,11 +102,11 @@ class windows_exception
 /// \name Types
 /// @{
 protected:
-    typedef stlsoft_ns_qual(simple_string)  string_type;
+    typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
-    typedef os_exception                    parent_class_type;
-    typedef ws_dword_t                      error_code_type;
-    typedef windows_exception               class_type;
+    typedef os_exception                        parent_class_type;
+    typedef ws_dword_t                          error_code_type;
+    typedef windows_exception                   class_type;
 /// @}
 
 /// \name Construction
@@ -193,7 +193,8 @@ public:
     }
 /// @}
 
-// Implementation
+/// \name Implementation
+/// @{
 private:
     static string_type create_reason_(char const *reason, error_code_type err)
     {
@@ -220,16 +221,21 @@ private:
             return r;
         }
     }
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     const string_type   m_reason;
     char                *m_strerror;
     error_code_type     m_errorCode;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     class_type &operator =(class_type const &);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Indexed range adaptor class.
  *
  * Created:     11th October 2004
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
 # define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       2
 # define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    3
-# define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        19
+# define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #endif /* STLSOFT_COMPILER_IS_BORLAND */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>  //
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
@@ -86,11 +86,11 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 #ifndef RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
-# include <rangelib/operator_adaptors.hpp>         // operator_bool_generator
+# include <rangelib/operator_adaptors.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
 #ifdef STLSOFT_UNITTEST
 # ifndef RANGELIB_INCL_RANGELIB_HPP_INTEGRAL_RANGE
-#  include <rangelib/integral_range.hpp>     // integral_range used for unittesting
+#  include <rangelib/integral_range.hpp>
 # endif /* !RANGELIB_INCL_RANGELIB_HPP_INTEGRAL_RANGE */
 #endif /* STLSOFT_UNITTEST */
 

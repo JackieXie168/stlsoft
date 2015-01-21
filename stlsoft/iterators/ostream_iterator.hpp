@@ -4,7 +4,7 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     20th December 2005
+ * Updated:     27th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        6
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       1
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -83,19 +83,32 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/// \weakgroup iterators Iterators
+/// \brief STL-compatible iterators
+
+/// \weakgroup iterators_output Output Iterators
+/// \brief Classes that provide Output Iteration functionality
+/// \ingroup iterators
+/// @{
+
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k C>
-struct character_encoding_check
+struct character_encoding_verifier
 {
-    character_encoding_check()
+    typedef character_encoding_verifier<C>  class_type;
+
+public:
+    character_encoding_verifier()
     {}
 
     template <ss_typename_param_k S>
-    character_encoding_check(S const &s)
+    character_encoding_verifier(S const &s)
     {
         C   const   *p1 =   stlsoft::c_str_ptr(s);
 
@@ -105,7 +118,7 @@ struct character_encoding_check
     template<   ss_typename_param_k S1
             ,   ss_typename_param_k S2
             >
-    character_encoding_check(S1 const &s1, S2 const &s2)
+    character_encoding_verifier(S1 const &s1, S2 const &s2)
     {
         C   const   *p1 =   stlsoft::c_str_ptr(s1);
         C   const   *p2 =   stlsoft::c_str_ptr(s2);
@@ -182,7 +195,7 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k S = std::basic_string<C, T>
         >
 class ostream_iterator
-    : private character_encoding_check<C>
+    : private character_encoding_verifier<C>
 {
 /// \name Member Types
 /// @{
@@ -198,10 +211,13 @@ public:
     /// The stream type
     typedef std::basic_ostream<char_type, traits_type>  ostream_type;
 private:
-    typedef character_encoding_check<C>                 encoding_verifier_type;
+    typedef character_encoding_verifier<C>              encoding_verifier_type;
 public:
     /// The class type
     typedef ostream_iterator<V, C, T, S>                class_type;
+private:
+    class deref_proxy;
+    friend class deref_proxy;
 /// @}
 
 /// \name Construction
@@ -211,7 +227,8 @@ public:
     ///
     /// \note This is 100% functionally compatible with std::iostream_iterator
     ss_explicit_k ostream_iterator(ostream_type &os)
-        : m_stm(os)
+        : encoding_verifier_type()
+        , m_stm(os)
         , m_prefix()
         , m_suffix()
     {}
@@ -245,29 +262,48 @@ public:
     {}
 /// @}
 
-/// \name Assignment
+/// \name Implementation
 /// @{
-public:
-    class_type &operator =(value_type const &value)
+private:
+    class deref_proxy
     {
-        m_stm << m_prefix << value << m_suffix;
+    public:
+        deref_proxy(ostream_iterator *it)
+            : m_it(it)
+        {}
 
-        return *this;
+    public:
+        void operator =(value_type const &value)
+        {
+            m_it->invoke_(value);
+        }
+
+    private:
+        ostream_iterator  *const m_it;
+
+    // Not to be implemented
+    private:
+        void operator =(deref_proxy const &);
+    };
+
+    void invoke_(value_type const &value)
+    {
+        m_stm  << m_prefix << value << m_suffix;
     }
 /// @}
 
 /// \name Ouput Iterator Methods
 /// @{
 public:
-    class_type &operator *()
+    deref_proxy operator *()
     {
-        return *this;
+        return deref_proxy(this);
     }
     class_type &operator ++()
     {
         return *this;
     }
-    class_type operator ++(int)
+    class_type &operator ++(int)
     {
         return *this;
     }
@@ -281,6 +317,10 @@ private:
     string_type     m_suffix;
 /// @}
 };
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

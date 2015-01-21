@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_VALUE_MAJOR    2
 # define WINSTL_VER_H_WINSTL_REG_VALUE_MINOR    2
-# define WINSTL_VER_H_WINSTL_REG_VALUE_REVISION 1
-# define WINSTL_VER_H_WINSTL_REG_VALUE_EDIT     60
+# define WINSTL_VER_H_WINSTL_REG_VALUE_REVISION 2
+# define WINSTL_VER_H_WINSTL_REG_VALUE_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,19 +66,19 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_DEFS
-# include <winstl/reg_defs.hpp>               // The WinSTL reg API standard types
+# include <winstl/reg_defs.hpp>             // The WinSTL reg API standard types
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_DEFS */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_TRAITS
-# include <winstl/reg_traits.hpp>             // The WinSTL reg API reg_traits class
+# include <winstl/reg_traits.hpp>           // The WinSTL reg API reg_traits class
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // Include the STLSoft auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>              // stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>            // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #include <algorithm>
 
@@ -131,7 +131,10 @@ template<ss_typename_param_k A>
 class reg_blob
     : protected A
 {
-    typedef auto_buffer<ws_byte_t, processheap_allocator<ws_byte_t>, CCH_REG_API_AUTO_BUFFER>   buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer)<   ws_byte_t
+                                        ,   processheap_allocator<ws_byte_t>
+                                        ,   CCH_REG_API_AUTO_BUFFER
+                                        >                   buffer_type;
 public:
     /// The allocator type
     typedef A                                               allocator_type;
@@ -204,32 +207,50 @@ template<   ss_typename_param_k C
         >
 class basic_reg_value
 {
+/// \name XXXXXX
+/// @{
 public:
     /// The character type
-    typedef C                                           char_type;
+    typedef C                                                           char_type;
     /// The traits type
-    typedef T                                           traits_type;
+    typedef T                                                           traits_type;
     /// The allocator type
-    typedef A                                           allocator_type;
+    typedef A                                                           allocator_type;
     /// The current parameterisation of the type
-    typedef basic_reg_value<C, T, A>                    class_type;
+    typedef basic_reg_value<C, T, A>                                    class_type;
     /// The size type
-    typedef ss_typename_type_k traits_type::size_type   size_type;
+    typedef ss_typename_type_k traits_type::size_type                   size_type;
     /// The string type
-    typedef ss_typename_type_k traits_type::string_type string_type;
+    typedef ss_typename_type_k traits_type::string_type                 string_type;
     /// The key type
 #if defined(__STLSOFT_CF_THROW_BAD_ALLOC) && \
     defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1100
     /* WSCB: VC5 has an internal compiler error if use traits_type::hkey_type */
-    typedef HKEY                                        hkey_type;
+    typedef HKEY                                                        hkey_type;
 #else
-    typedef ss_typename_type_k traits_type::hkey_type   hkey_type;
+    typedef ss_typename_type_k traits_type::hkey_type                   hkey_type;
 #endif /* 0 */
     /// The blob type
-    typedef reg_blob<A>                                 blob_type;
+    typedef reg_blob<A>                                                 blob_type;
+private:
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   allocator_type
+                                        ,   CCH_REG_API_AUTO_BUFFER
+                                        >                               char_buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer)<   ws_byte_t
+#ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+                                        ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<ws_byte_t>::other
+#else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+                                        ,   processheap_allocator<ws_byte_t>
+#endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
-// Construction
+                                        ,   CCH_REG_API_AUTO_BUFFER
+                                        >                               byte_buffer_type_;
+/// @}
+
+/// \name Construction
+/// @{
 public:
     /// Default constructor
     basic_reg_value();
@@ -248,8 +269,10 @@ public:
 
     /// Copy assignment operator
     class_type &operator =(class_type const &rhs);
+/// @}
 
-// Attributes
+/// \name Attributes
+/// @{
 public:
     /// Returns the type of the value
     ///
@@ -288,12 +311,16 @@ public:
     ws_dword_t  value_dword_bigendian() const;
     /// The registry value as a binary value
     blob_type   value_binary() const;
+/// @}
 
-// Implementation
+/// \name Implementation
+/// @{
 private:
     ws_dword_t  _type() const;
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     friend class basic_reg_value_sequence_const_iterator<C, T, class_type, A>;
 
@@ -301,6 +328,7 @@ private:
     string_type             m_name;             // The name of the value
     ss_mutable_k ws_dword_t m_type;             // The type of the value
     ss_mutable_k ws_bool_t  m_bTypeRetrieved;   // Facilitates lazy evaluation of the type
+/// @}
 };
 
 /* Typedefs to commonly encountered types. */
@@ -451,8 +479,8 @@ inline ss_typename_type_k basic_reg_value<C, T, A>::string_type basic_reg_value<
     if( res == ERROR_SUCCESS &&
         data_size > 0)
     {
-        stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(1 + data_size);
-        ws_dword_t                                                                          dw;
+        char_buffer_type_   buffer(1 + data_size);
+        ws_dword_t          dw;
 
         data_size = buffer.size();
         res = traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, &buffer[0], data_size);
@@ -477,8 +505,8 @@ inline ss_typename_type_k basic_reg_value<C, T, A>::string_type basic_reg_value<
     if( ret.length() > 0 &&
         m_type == REG_EXPAND_SZ)
     {
-        size_type                                                                           size    =   traits_type::expand_env_strings(ret.c_str(), NULL, 0);
-        stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer(1 + size);
+        size_type           size    =   traits_type::expand_env_strings(ret.c_str(), NULL, 0);
+        char_buffer_type_   buffer(1 + size);
 
         if(traits_type::expand_env_strings(ret.c_str(), &buffer[0], size) != 0)
         {
@@ -528,8 +556,7 @@ inline ss_typename_type_k basic_reg_value<C, T, A>::blob_type basic_reg_value<C,
 
         if(data_size > 0)
         {
-//          stlsoft_ns_qual(auto_buffer)<ws_byte_t, allocator_type::rebind<ws_byte_t>, CCH_REG_API_AUTO_BUFFER>    buffer(data_size);
-            stlsoft_ns_qual(auto_buffer)<ws_byte_t, processheap_allocator<ws_byte_t>, CCH_REG_API_AUTO_BUFFER>    buffer(data_size);
+            byte_buffer_type_   buffer(data_size);
 
             data_size = buffer.size();
             res = traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, buffer.data(), data_size);

@@ -4,7 +4,7 @@
  * Purpose:     Win32 TLS slot index.
  *
  * Created:     20th January 1999
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_TSS_INDEX_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_TSS_INDEX_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_TSS_INDEX_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_TSS_INDEX_EDIT       20
+# define WINSTL_VER_WINSTL_HPP_TSS_INDEX_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-#  include <winstl/exceptions.hpp>        // windows_exception
+#  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
 

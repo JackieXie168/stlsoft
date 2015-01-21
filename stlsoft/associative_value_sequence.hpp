@@ -4,7 +4,7 @@
  * Purpose:     Adapts associative containers into a sequence of their values.
  *
  * Created:     28th January 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        10
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR
-# include <stlsoft/associative_select_iterator.hpp> // associative_select_iterator
+# include <stlsoft/associative_select_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR */
 #include <stdexcept>
 #ifdef STLSOFT_UNITTEST

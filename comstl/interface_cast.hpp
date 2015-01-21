@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MAJOR     3
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MINOR     1
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      80
+# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,16 +76,16 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* _MSC_VER < 1200 */
 
 #ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h> // safe_addref, safe_release
+# include <comstl/refcount_functions.h>     // for safe_addref(), safe_release()
 #endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef COMSTL_INCL_COMSTL_HPP_INTERFACE_TRAITS
-# include <comstl/interface_traits.hpp>   // Include IID_traits
+# include <comstl/interface_traits.hpp>     // for IID_traits
 #endif /* !COMSTL_INCL_COMSTL_HPP_INTERFACE_TRAITS */
 #ifndef COMSTL_INCL_COMSTL_HPP_BAD_INTERFACE_CAST
-# include <comstl/bad_interface_cast.hpp> // bad_interface_cast
+# include <comstl/bad_interface_cast.hpp>   // for bad_interface_cast
 #endif /* !COMSTL_INCL_COMSTL_HPP_BAD_INTERFACE_CAST */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>     // operator_bool_generator
+# include <stlsoft/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 
 /* ////////////////////////////////////////////////////////////////////////////

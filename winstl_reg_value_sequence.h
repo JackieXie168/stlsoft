@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_MAJOR       2
 # define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_MINOR       2
 # define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_REVISION    1
-# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_EDIT        68
+# define WINSTL_VER_H_WINSTL_REG_VALUE_SEQUENCE_EDIT        69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,25 +66,25 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_DEFS
-# include <winstl/reg_defs.hpp>               // The WinSTL reg API standard types
+# include <winstl/reg_defs.hpp>                 // The WinSTL reg API standard types
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_DEFS */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_TRAITS
-# include <winstl/reg_traits.hpp>             // The WinSTL reg API reg_traits class
+# include <winstl/reg_traits.hpp>               // The WinSTL reg API reg_traits class
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_KEY
-# include <winstl/reg_key.hpp>                // The WinSTL reg API reg_key class
+# include <winstl/reg_key.hpp>                  // The WinSTL reg API reg_key class
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_KEY */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_VALUE
-# include <winstl/reg_value.hpp>              // The WinSTL reg API reg_value class
+# include <winstl/reg_value.hpp>                // The WinSTL reg API reg_value class
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_VALUE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // Include the STLSoft auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>              // stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>                // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////

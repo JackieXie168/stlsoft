@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     18th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_MINOR    1
-# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_EDIT     33
+# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -80,15 +80,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-//#if defined(STLSOFT_COMPILER_IS_BORLAND)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>        // stlsoft::basic_simple_string
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-//#else /* ? compiler */
-//# ifndef STLSOFT_INCL_H_STLSOFT_STATIC_STRING
-//#  include <stlsoft/static_string.hpp>      // stlsoft::basic_static_string
-//# endif /* !STLSOFT_INCL_H_STLSOFT_STATIC_STRING */
-//#endif /* compiler */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
+# include <stlsoft/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
 # include <stlsoft/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */
@@ -98,7 +92,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #ifndef STLSOFT_COMPILER_IS_WATCOM
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-#  include <stlsoft/iterator.hpp>          // iterator_base
+#  include <stlsoft/iterator.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #endif /* STLSOFT_COMPILER_IS_WATCOM */
 

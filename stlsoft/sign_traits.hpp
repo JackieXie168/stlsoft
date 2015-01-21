@@ -4,7 +4,7 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       31
+# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SIZE_TRAITS
-# include <stlsoft/size_traits.hpp>   // int_size_traits
+# include <stlsoft/size_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIZE_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////

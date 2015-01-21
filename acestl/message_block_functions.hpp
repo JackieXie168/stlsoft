@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created:     23rd September 2004
- * Updated:     17th July 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   7
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       13
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,8 +59,8 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#include <ace/Message_Block.h>      // ACE_Message_Block
-#include <ace/OS_Memory.h>          // ACE_bad_alloc, ACE_NEW_THROWS_EXCEPTIONS
+#include <ace/Message_Block.h>      // for ACE_Message_Block
+#include <ace/OS_Memory.h>          // for ACE_bad_alloc, ACE_NEW_THROWS_EXCEPTIONS
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

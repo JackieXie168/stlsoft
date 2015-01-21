@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_WINDOWS_DIRECTORY_MAJOR    3
-# define WINSTL_VER_H_WINSTL_WINDOWS_DIRECTORY_MINOR    1
+# define WINSTL_VER_H_WINSTL_WINDOWS_DIRECTORY_MINOR    2
 # define WINSTL_VER_H_WINSTL_WINDOWS_DIRECTORY_REVISION 1
-# define WINSTL_VER_H_WINSTL_WINDOWS_DIRECTORY_EDIT     47
+# define WINSTL_VER_H_WINSTL_WINDOWS_DIRECTORY_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/windows_directory.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

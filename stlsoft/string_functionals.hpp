@@ -4,7 +4,7 @@
  * Purpose:     String function objects
  *
  * Created:     
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_FUNCTIONALS_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_FUNCTIONALS_MINOR       3
+# define STLSOFT_VER_STLSOFT_HPP_STRING_FUNCTIONALS_MINOR       4
 # define STLSOFT_VER_STLSOFT_HPP_STRING_FUNCTIONALS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_FUNCTIONALS_EDIT        16
+# define STLSOFT_VER_STLSOFT_HPP_STRING_FUNCTIONALS_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,6 @@
 
 /*
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_COMO:
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -83,12 +82,6 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* _STLSOFT_STRING_FUNCTIONALS_NO_STD */
 #include <string.h>
 
-#ifdef STLSOFT_UNITTEST
-# include <algorithm>
-# include <string>
-# include <vector>
-#endif /* STLSOFT_UNITTEST */
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
  */
@@ -105,137 +98,6 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////////
  * Functors
  */
-
-
-#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-# pragma message(_sscomp_fileline_message("This should be moved to stlsoft/string/iterators.hpp"))
-#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
-
-template<   ss_typename_param_k S1
-        ,   ss_typename_param_k S2
-        >
-struct string_concatenation_iterator
-    : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, ss_ptrdiff_t, void, void>
-{
-public:
-    typedef S1                                      first_string_type;
-    typedef S2                                      second_string_type;
-    typedef string_concatenation_iterator<S1, S2>   class_type;
-
-public:
-    string_concatenation_iterator(S1 &s, S2 const &delim)
-        : m_s(s)
-        , m_delim(delim)
-        , m_delimCopy()
-    {}
-    string_concatenation_iterator(int, S1 &s, S2 const &delim)
-        : m_s(s)
-        , m_delim(m_delimCopy)
-        , m_delimCopy(delim)
-    {}
-#if 0
-    string_concatenation_iterator(class_type const &rhs)
-        : m_s(m_s)
-        , m_delim(m_delimCopy)
-        , m_delimCopy(m_delimCopy)
-    {}
-#endif /* 0 */
-
-public:
-    template <ss_typename_param_k S3>
-    void operator =(S3 const &value)
-    {
-        if(0 != c_str_len(m_s))
-        {
-            m_s.append(m_delim);
-        }
-        m_s.append(c_str_ptr(value));
-    }
-
-    string_concatenation_iterator &operator *()
-    {
-        return *this;
-    }
-
-    string_concatenation_iterator &operator ++()
-    {
-        return *this;
-    }
-
-    string_concatenation_iterator operator ++(int)
-    {
-        if(&m_delim == &m_delimCopy)
-        {
-            return class_type(-1, m_s, m_delim);
-        }
-        else
-        {
-            return class_type(m_s, m_delim);
-        }
-    }
-
-private:
-    S1          &m_s;
-    S2 const    &m_delim;
-    S1          m_delimCopy;
-
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED) && \
-    !defined(STLSOFT_COMPILER_IS_COMO)
-
-#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-# pragma message(_sscomp_fileline_message("This needs to be changed, and to make the class properly copy assignable"))
-#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
-
-
-    /// \note This has have void return type, otherwise VC++ 7.0 has a cow
-    void operator =(class_type const &);
-#endif /* STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
-};
-
-template<   ss_typename_param_k S1
-        ,   ss_typename_param_k S2
-        >
-inline string_concatenation_iterator<S1, S2> string_concatenator(S1 &s, S2 const &delim)
-{
-    return string_concatenation_iterator<S1, S2>(s, delim);
-}
-
-#if (   !defined(STLSOFT_COMPILER_IS_GCC) || \
-        __GNUC__ >= 3) && \
-    (   !defined(STLSOFT_COMPILER_IS_INTEL) || \
-        !defined(_WIN32) || \
-        _MSC_VER > 1300) && \
-    !defined(STLSOFT_COMPILER_IS_MWERKS) && \
-    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-        _MSC_VER > 1300)
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline string_concatenation_iterator<S, S> string_concatenator(S &s, C const *delim)
-{
-    return string_concatenation_iterator<S, S>(-1, s, delim);
-}
-
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline string_concatenation_iterator<S, S> string_concatenator(S &s, C *delim)
-{
-    return string_concatenation_iterator<S, S>(-1, s, delim);
-}
-#endif /* compiler */
-
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORTx
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        ,   ss_size_t           N
-        >
-inline string_concatenation_iterator<S, S> string_concatenator(S &s, C (&delim)[N])
-{
-    return string_concatenation_iterator<S, S>(-1, s, delim);
-}
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 /// Unary function object that returns a quoted form of its argument, if
 /// the argument contains spaces

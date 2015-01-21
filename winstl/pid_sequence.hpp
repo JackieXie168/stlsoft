@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        18
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -258,9 +258,9 @@ private:
     typedef stlsoft_ns_qual(auto_buffer)<   value_type
                                         ,   allocator_type
                                         ,   64
-                                        >       buffer_type;
+                                        >       buffer_type_;
 
-    buffer_type m_pids;
+    buffer_type_    m_pids;
 /// @}
 
 /// \name Not to be implemented
@@ -284,7 +284,7 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline pid_sequence::pid_sequence(ws_uint32_t flags)
-    : m_pids(buffer_type::internal_size())
+    : m_pids(buffer_type_::internal_size())
 {
     DWORD   cbReturned;
 

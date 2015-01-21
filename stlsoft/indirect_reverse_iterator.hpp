@@ -4,7 +4,7 @@
  * Purpose:     indirect_reverse_iterator class template.
  *
  * Created:     7th June 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_INDIRECT_REVERSE_ITERATOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_HPP_INDIRECT_REVERSE_ITERATOR_MINOR    1
-# define STLSOFT_VER_STLSOFT_HPP_INDIRECT_REVERSE_ITERATOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_INDIRECT_REVERSE_ITERATOR_EDIT     11
+# define STLSOFT_VER_STLSOFT_HPP_INDIRECT_REVERSE_ITERATOR_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_INDIRECT_REVERSE_ITERATOR_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,9 +70,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/iterators/indirect_reverse_iterator.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR
 # include <stlsoft/iterators/indirect_reverse_iterator.hpp>

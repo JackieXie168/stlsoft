@@ -6,7 +6,7 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_EDIT       10
+# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,17 +72,17 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>          // __STLSOFT_GEN_SINT64_SUFFIX
+# include <stlsoft/limit_traits.h>          // for __STLSOFT_GEN_SINT64_SUFFIX
 #endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS
-# include <stlsoft/static_initialisers.hpp> // class_constructor
+# include <stlsoft/static_initialisers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS
-//# include <stlsoft/sign_traits.hpp>         // stlsoft::sign_traits
+//# include <stlsoft/sign_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS */
 #ifndef STLSOFT_CF_64BIT_INT_SUPPORT
 # ifndef STLSOFT_INCL_STLSOFT_HPP_64BIT_INTEGERS
-#  include <stlsoft/64bit_integers.hpp>     // sinteger64
+#  include <stlsoft/64bit_integers.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_64BIT_INTEGERS */
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
 

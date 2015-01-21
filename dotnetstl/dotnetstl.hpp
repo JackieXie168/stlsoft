@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    0
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    1
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     28
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp The root header for the \ref dotnetSTL ".netSTL" project */
@@ -220,7 +220,7 @@
 /// Defines a runtime assertion
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
-#define DOTNETSTL_ASSERT(expr)                  stlsoft_assert(expr)
+#define DOTNETSTL_ASSERT(expr)                  STLSOFT_ASSERT(expr)
 
 /// Defines a runtime assertion, with message
 ///

@@ -4,7 +4,7 @@
  * Purpose:     Contains some Win32 file-system functions.
  *
  * Created:     7th February 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_MINOR      4
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_EDIT       21
+# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,10 +70,10 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem_traits.hpp>      // filesystem_traits
+# include <unixstl/filesystem_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
-# include <unixstl/file_path_buffer.hpp>       // file_path_buffer
+# include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
 
 /* /////////////////////////////////////////////////////////////////////////////

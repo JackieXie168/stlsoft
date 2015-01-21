@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       0
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       1
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        46
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -304,7 +304,7 @@
   * where
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
-# define stlsoft_assert(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
+# define STLSOFT_ASSERT(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME    _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else
@@ -321,10 +321,10 @@
                    */
 #  endif /* C++ && _MSC_VER >= 1300 */
 #  define __STLSOFT_CF_ASSERT_INCLUDE_NAME       <crtdbg.h>
-#  define stlsoft_assert(_x)                     _ASSERTE(_x)
+#  define STLSOFT_ASSERT(_x)                     _ASSERTE(_x)
 # else /* _MSC_VER */
 #  define __STLSOFT_CF_ASSERT_INCLUDE_NAME       <assert.h>
-#  define stlsoft_assert(_x)                     assert(_x)
+#  define STLSOFT_ASSERT(_x)                     assert(_x)
 # endif /* _MSC_VER */
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 

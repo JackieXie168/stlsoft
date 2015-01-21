@@ -5,7 +5,7 @@
  *              the glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_MAJOR      3
-# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_MINOR      2
+# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_MINOR      3
 # define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_EDIT       56
+# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/glob_sequence.hpp and use the type glob_sequence")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
@@ -70,7 +70,7 @@
 #endif /* _UNIXSTL_FINDFILE_SEQUENCE_NO_BACK_SLASH_TERMINATOR */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_GLOB_SEQUENCE
-# include <unixstl/glob_sequence.hpp> // glob_sequence
+# include <unixstl/glob_sequence.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_GLOB_SEQUENCE */
 
 /* /////////////////////////////////////////////////////////////////////////////

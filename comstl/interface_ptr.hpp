@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_PTR_MAJOR      5
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_PTR_MINOR      1
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_PTR_REVISION   1
-# define COMSTL_VER_COMSTL_HPP_INTERFACE_PTR_EDIT       469
+# define COMSTL_VER_COMSTL_HPP_INTERFACE_PTR_EDIT       470
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,10 +60,10 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h> // addref, release, etc.
+# include <comstl/refcount_functions.h> // for addref(), release(), etc.
 #endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>     // operator_bool_generator
+# include <stlsoft/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>

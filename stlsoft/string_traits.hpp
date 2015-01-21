@@ -4,7 +4,7 @@
  * Purpose:     Contains string_traits.
  *
  * Created:     16th January 2002
- * Updated:     20th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_REVISION   4
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_EDIT       59
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@
 # include <stlsoft/string_traits_fwd.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS_FWD */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp> // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef _STLSOFT_STRING_TRAITS_NO_STD_STRING
 # include <string>

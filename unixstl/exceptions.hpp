@@ -4,7 +4,7 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     15th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_MAJOR       3
-# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_MINOR       2
+# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_EDIT        28
+# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,11 +60,11 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>    // os_exception
+# include <stlsoft/exceptions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp> // stlsoft::simple_string
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
+# include <stlsoft/util/exception_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
 #include <errno.h>
 #include <string.h>
 
@@ -101,11 +101,11 @@ class unix_exception
 /// \name Types
 /// @{
 protected:
-    typedef stlsoft_ns_qual(simple_string)  string_type;
+    typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
-    typedef os_exception                    parent_class_type;
-    typedef int                             error_code_type;
-    typedef unix_exception                  class_type;
+    typedef os_exception                        parent_class_type;
+    typedef int                                 error_code_type;
+    typedef unix_exception                      class_type;
 /// @}
 
 /// \name Construction
@@ -203,6 +203,12 @@ private:
 private:
     const string_type   m_reason;
     error_code_type     m_errorCode;
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    class_type &operator =(class_type const &);
 /// @}
 };
 

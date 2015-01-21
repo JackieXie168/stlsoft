@@ -4,7 +4,7 @@
  * Purpose:     COM memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_MEMORY_FUNCTIONS_MAJOR     3
 # define COMSTL_VER_COMSTL_H_MEMORY_FUNCTIONS_MINOR     1
-# define COMSTL_VER_COMSTL_H_MEMORY_FUNCTIONS_REVISION  1
-# define COMSTL_VER_COMSTL_H_MEMORY_FUNCTIONS_EDIT      34
+# define COMSTL_VER_COMSTL_H_MEMORY_FUNCTIONS_REVISION  2
+# define COMSTL_VER_COMSTL_H_MEMORY_FUNCTIONS_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -104,10 +104,10 @@ namespace comstl_project
 ///
 /// \param pv Pointer to the memory block
 /// \return The size of the memory block (in bytes)
-STLSOFT_INLINE ULONG comstl__CoTaskMemGetSize(void *pv)
+STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
 {
     LPMALLOC    lpmalloc;
-    ULONG       ulRet;
+    cs_size_t   ulRet;
     HRESULT     hr  =   STLSOFT_NS_GLOBAL(CoGetMalloc)(MEMCTX_TASK, &lpmalloc);
 
     if(SUCCEEDED(hr))
@@ -182,7 +182,7 @@ STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
 ///
 /// \param pv Pointer to the memory block
 /// \return The size of the memory block (in bytes)
-inline ULONG CoTaskMemGetSize(void *pv)
+inline cs_size_t CoTaskMemGetSize(void *pv)
 {
     return comstl__CoTaskMemGetSize(pv);
 }

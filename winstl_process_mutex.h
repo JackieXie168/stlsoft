@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutext, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_PROCESS_MUTEX_MAJOR    3
-# define WINSTL_VER_H_WINSTL_PROCESS_MUTEX_MINOR    1
+# define WINSTL_VER_H_WINSTL_PROCESS_MUTEX_MINOR    2
 # define WINSTL_VER_H_WINSTL_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_H_WINSTL_PROCESS_MUTEX_EDIT     34
+# define WINSTL_VER_H_WINSTL_PROCESS_MUTEX_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/process_mutex.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

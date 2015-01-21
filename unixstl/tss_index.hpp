@@ -4,7 +4,7 @@
  * Purpose:     UNIX TSS slot index.
  *
  * Created:     21st January 1999
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_MAJOR    2
 # define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_EDIT     29
+# define UNIXSTL_VER_UNIXSTL_HPP_TSS_INDEX_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS
-# include <unixstl/exceptions.hpp>        // unix_exception
+# include <unixstl/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS */
 #if !defined(_REENTRANT)
 # error unixstl/tss_index.hpp cannot be included in non-multithreaded compilation. _REENTRANT must be defined

@@ -4,7 +4,7 @@
  * Purpose:     Random number range class.
  *
  * Created:     31st May 2004
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      1
 # define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   3
-# define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       15
+# define STLSOFT_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>     // operator_bool_generator
+# include <stlsoft/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
-#include <stdlib.h>                     // rand(), srand()
+#include <stdlib.h>                     // for rand(), srand()
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

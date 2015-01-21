@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_H_UNIXSTL_GLOB_SEQUENCE_MAJOR      4
-# define UNIXSTL_VER_H_UNIXSTL_GLOB_SEQUENCE_MINOR      1
+# define UNIXSTL_VER_H_UNIXSTL_GLOB_SEQUENCE_MINOR      2
 # define UNIXSTL_VER_H_UNIXSTL_GLOB_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_H_UNIXSTL_GLOB_SEQUENCE_EDIT       90
+# define UNIXSTL_VER_H_UNIXSTL_GLOB_SEQUENCE_EDIT       91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/glob_sequence.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

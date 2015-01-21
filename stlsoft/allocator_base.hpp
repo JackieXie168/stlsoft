@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_MINOR       4
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_EDIT        22
+# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_BASE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@
 #if defined(__STLSOFT_CF_THROW_BAD_ALLOC) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1100)
-# include <new>         // placement new, std::bad_alloc
+# include <new>         // for placement new, std::bad_alloc
 #endif /* __STLSOFT_CF_THROW_BAD_ALLOC || _MSC_VER < 1100) */
 
 /* ////////////////////////////////////////////////////////////////////////////

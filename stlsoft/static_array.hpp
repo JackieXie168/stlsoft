@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     20th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_EDIT      155
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_ARRAY_EDIT      156
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -85,22 +85,22 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_NULL_ALLOCATOR
-# include <stlsoft/null_allocator.hpp>    // stlsoft::null_allocator
+# include <stlsoft/null_allocator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_NULL_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>          // stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>          // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ARRAY_POLICIES
-# include <stlsoft/array_policies.hpp>    // stlsoft::do_construction
+# include <stlsoft/array_policies.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ARRAY_POLICIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>  // is_pointer
+# include <stlsoft/meta.hpp>  // for is_pointer
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     defined(__STLSOFT_CF_STL_IS_STLPORT)
-# include <string>                      // std::string - sigh!
+# include <string>                      // for std::string - sigh!
 #endif /* STLSOFT_COMPILER_IS_MSVC && __STLSOFT_CF_STL_IS_STLPORT */
-#include <stdexcept>                    // std::out_of_range
+#include <stdexcept>                    // for std::out_of_range
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>
 # include <numeric>

@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -63,7 +63,7 @@
 # define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_MINOR      4
 # define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_EDIT       147
+# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_EDIT       148
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -90,13 +90,13 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #endif /* _MSC_VER < 1200 */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>    // filesystem_traits
+# include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>     // basic_file_path_buffer
+# include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION
-# include <winstl/system_version.hpp>       // winnt(), major()
+# include <winstl/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
@@ -108,14 +108,14 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_COMPILER_IS_WATCOM
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-#  include <stlsoft/iterator.hpp>           // iterator_base
+#  include <stlsoft/iterator.hpp>           // for stlsoft::iterator_base
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #endif /* STLSOFT_COMPILER_IS_WATCOM */
 #ifndef STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS
-# include <stlsoft/tokeniser_functions.hpp> // find_next_token
+# include <stlsoft/tokeniser_functions.hpp> // for find_next_token()
 #endif /* !STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 
 #ifdef STLSOFT_UNITTEST

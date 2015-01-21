@@ -4,7 +4,7 @@
  * Purpose:     afx_allocator class.
  *
  * Created:     5th August 2005
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,12 +45,12 @@
 #ifndef MFCSTL_INCL_MFCSTL_HPP_AFX_ALLOCATOR
 #define MFCSTL_INCL_MFCSTL_HPP_AFX_ALLOCATOR
 
-#ifndef __STLSOFT_DOCUMENTATION_SKIP_SECTION
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_MAJOR      1
 # define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_MINOR      0
-# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_EDIT       1
-#endif /* !__STLSOFT_DOCUMENTATION_SKIP_SECTION */
+# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_REVISION   2
+# define MFCSTL_VER_MFCSTL_HPP_AFX_ALLOCATOR_EDIT       3
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
  * Includes
@@ -62,7 +62,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
 # include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#include <stdexcept>                    // runtime_error
+#include <stdexcept>                    // for std::runtime_error
 #include <afx.h>
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION)
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::mfcstl */
 namespace mfcstl
 {
@@ -185,7 +185,7 @@ private:
     }
 };
 
-#ifndef __STLSOFT_DOCUMENTATION_SKIP_SECTION
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 // Specialisation for void
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -209,9 +209,9 @@ public:
 #endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
 };
 
-#endif /* !__STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#ifndef __STLSOFT_DOCUMENTATION_SKIP_SECTION
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
 inline ms_bool_t operator ==(const afx_allocator<T> &/* lhs */, const afx_allocator<T> &/* rhs */)
@@ -225,7 +225,7 @@ inline ms_bool_t operator !=(const afx_allocator<T> &/* lhs */, const afx_alloca
     return ms_false_v;
 }
 
-#endif /* !__STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -242,7 +242,7 @@ inline ms_bool_t operator !=(const afx_allocator<T> &/* lhs */, const afx_alloca
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION)
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace mfcstl
 # else
 } // namespace mfcstl_project

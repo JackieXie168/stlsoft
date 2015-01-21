@@ -4,7 +4,7 @@
  * Purpose:     Definition of the \c unrecoverable exception class.
  *
  * Created:     14th October 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_UNRECOVERABLE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_UNRECOVERABLE_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_UNRECOVERABLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_UNRECOVERABLE_EDIT     15
+# define STLSOFT_VER_STLSOFT_HPP_UNRECOVERABLE_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -65,18 +65,18 @@
 # include <exception>
 #else /* ? __STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
-#  include <except.h>       // terminate()
-#  include <stdexcep.h>     // 'std' exception
+#  include <except.h>       // for terminate()
+#  include <stdexcep.h>     // for 'std' exceptions
 # else /* ? compiler */
 #  error No other non-std compiler supported
 # endif /* compiler */
 #endif /* __STLSOFT_CF_std_NAMESPACE */
 #if defined(STLSOFT_UNRECOVERABLE_EXCEPTION_USE_WIN32_EXITPROCESS) || \
     defined(STLSOFT_COMPILER_IS_MWERKS)
-# include <stdlib.h>    // EXIT_FAILURE / exit()
+# include <stdlib.h>        // for EXIT_FAILURE / exit()
 #endif /* STLSOFT_UNRECOVERABLE_EXCEPTION_USE_WIN32_EXITPROCESS || STLSOFT_COMPILER_IS_MWERKS */
 #if defined(STLSOFT_UNRECOVERABLE_EXCEPTION_USE_WIN32_EXITPROCESS)
-# include <windows.h>   // ExitProcess
+# include <windows.h>       // for ExitProcess()
 #endif /* STLSOFT_UNRECOVERABLE_EXCEPTION_USE_WIN32_EXITPROCESS */
 
 /* ////////////////////////////////////////////////////////////////////////////

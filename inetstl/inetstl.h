@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    0
+# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    1
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     22
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h The root header for the \ref InetSTL project */
@@ -291,18 +291,18 @@
 /// Defines a runtime assertion
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
-#define INETSTL_ASSERT(expr)                stlsoft_assert(expr)
+#define INETSTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
 
 /// Defines a runtime assertion, with message
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
 /// \param msg The literal character string message to be included in the assertion
-#define INETSTL_MESSAGE_ASSERT(msg, expr)   stlsoft_message_assert(msg, expr)
+#define INETSTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /// Defines a compile-time assertion
 ///
 /// \param expr Must be non-zero, or compilation will fail
-#define INETSTL_STATIC_ASSERT(expr)         stlsoft_static_assert(expr)
+#define INETSTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
 
 
 

@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MAJOR       4
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        41
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,10 +63,10 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>   // stlsoft_constraint_must_be_pod
+# include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-# include <stlsoft/type_traits.hpp>   //
+# include <stlsoft/type_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////

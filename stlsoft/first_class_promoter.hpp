@@ -4,7 +4,7 @@
  * Purpose:     Class template that allows built-in & aggregate types to be treated as 1st-class types.
  *
  * Created:     8th September 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      34
+# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,12 +60,12 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>     // must_be_pod
+# include <stlsoft/constraints.hpp>     // for must_be_pod
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
-# include <stlsoft/meta/yesno.hpp>      // yes_type, no_type
+# include <stlsoft/meta/yesno.hpp>      // for yes_type, no_type
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
-#include <string.h>                     // memset()
+#include <string.h>                     // for memset()
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

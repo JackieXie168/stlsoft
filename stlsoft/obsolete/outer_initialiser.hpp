@@ -4,7 +4,7 @@
  * Purpose:     Contains the outer_initialiser template class.
  *
  * Created:     9th July 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_MINOR      1
 # define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_EDIT       14
+# define STLSOFT_VER_STLSOFT_OBSOLETE_H_OUTER_INITIALISER_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>  // sap_cast
+# include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 
 /* /////////////////////////////////////////////////////////////////////////////

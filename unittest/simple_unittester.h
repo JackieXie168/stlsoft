@@ -4,7 +4,7 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,16 +49,16 @@
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_MAJOR      1
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_MINOR      2
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_REVISION   1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       9
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       10
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
-#include <stlsoft/stlsoft.h>    // Include the STLSoft root header
+#include <stlsoft/stlsoft.h>
 #ifdef __STLSOFT_CF_std_NAMESPACE
-# include <vector>      // std::vector
+# include <vector>
 #else /* ? __STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 #  include <wcvector.h>

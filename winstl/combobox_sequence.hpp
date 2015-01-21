@@ -4,7 +4,7 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_EDIT       40
+# define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,16 +62,16 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // Include the STLSoft auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS
-# include <winstl/control_functions.h>      // combobox_addstring, etc.
+# include <winstl/control_functions.h>      // for combobox_addstring(), etc.
 #endif /* !WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_MINOR      2
+# define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_MINOR      3
 # define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_EDIT       38
+# define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/method_properties.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

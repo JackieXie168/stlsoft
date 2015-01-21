@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MAJOR      4
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      1
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      2
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   1
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       28
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,12 +71,12 @@
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. The inetstl::basic_findfile_sequence class now supports multi-part patterns. This file will be removed from a future release.")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>         // stlsoft::basic_simple_string
+# include <stlsoft/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
   # include <stlsoft/string_access.hpp>
@@ -89,7 +89,7 @@
 
 #ifndef STLSOFT_COMPILER_IS_WATCOM
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-#  include <stlsoft/iterator.hpp>          // iterator_base
+#  include <stlsoft/iterator.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #endif /* STLSOFT_COMPILER_IS_WATCOM */
 

@@ -4,7 +4,7 @@
  * Purpose:     Converts between POD types (of the same size) without the use of casts.
  *
  * Created:     2nd May 1997
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_MAJOR      4
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_MINOR      1
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_EDIT       21
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
-# include <stlsoft/union_cast.hpp>    // union_cast
+# include <stlsoft/union_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
 
 /* /////////////////////////////////////////////////////////////////////////////

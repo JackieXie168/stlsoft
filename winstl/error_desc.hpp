@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     18th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MINOR     1
+# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_ERROR_DESC_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_EDIT      45
+# define WINSTL_VER_WINSTL_HPP_ERROR_DESC_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,13 +60,13 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
-# include <winstl/functions.h>              // winstl::FormatMessage()
+# include <winstl/functions.h>              // for winstl::FormatMessage()
 #endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>    // load_library
+# include <winstl/filesystem_traits.hpp>    // for load_library()
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>        // c_str_ptr, etc.
+# include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -132,6 +132,15 @@ public:
     /// \note If the error string is not found in the given module, the standard
     /// system libraries will be searched
     ss_explicit_k basic_error_desc(ws_dword_t error = GetLastError(), char_type const *modulePath = NULL);
+
+    /// Constructor
+    ///
+    /// \param ht The COM error whose string equivalent will be searched
+    /// \param modulePath The module in which the string will be searched
+    ///
+    /// \note If the error string is not found in the given module, the standard
+    /// system libraries will be searched
+    basic_error_desc(HRESULT hr, char_type const *modulePath = NULL);
 
     /// Constructor
     ///
@@ -246,6 +255,21 @@ inline basic_error_desc<C, T>::basic_error_desc(ws_dword_t error /* = ::GetLastE
     if(NULL == m_message)
     {
         if(0 == FormatMessage(error, NULL, &m_message))
+        {
+            m_message = NULL;
+        }
+    }
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        >
+inline basic_error_desc<C, T>::basic_error_desc(HRESULT hr, char_type const *modulePath /* = NULL */)
+    : m_message(find_message_(static_cast<DWORD>(hr), modulePath))
+{
+    if(NULL == m_message)
+    {
+        if(0 == FormatMessage(static_cast<DWORD>(hr), NULL, &m_message))
         {
             m_message = NULL;
         }

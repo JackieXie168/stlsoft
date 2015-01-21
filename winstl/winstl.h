@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     18th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       0
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        135
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       1
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h The root header for the \ref WinSTL project */
@@ -195,7 +195,8 @@
 #include <windows.h>    // Windows base header
 
 /* Intel is super pernickety about conversions, so we need to bring out the union_cast. */
-#if defined(STLSOFT_COMPILER_IS_INTEL)
+#if defined(STLSOFT_COMPILER_IS_INTEL) && \
+    defined(__cplusplus)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
 #  include <stlsoft/union_cast.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
@@ -334,18 +335,18 @@
 /// Defines a runtime assertion
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
-#define WINSTL_ASSERT(expr)                 stlsoft_assert(expr)
+#define WINSTL_ASSERT(expr)                 STLSOFT_ASSERT(expr)
 
 /// Defines a runtime assertion, with message
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
 /// \param msg The literal character string message to be included in the assertion
-#define WINSTL_MESSAGE_ASSERT(msg, expr)    stlsoft_message_assert(msg, expr)
+#define WINSTL_MESSAGE_ASSERT(msg, expr)    STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /// Defines a compile-time assertion
 ///
 /// \param expr Must be non-zero, or compilation will fail
-#define WINSTL_STATIC_ASSERT(expr)          stlsoft_static_assert(expr)
+#define WINSTL_STATIC_ASSERT(expr)          STLSOFT_STATIC_ASSERT(expr)
 
 
 

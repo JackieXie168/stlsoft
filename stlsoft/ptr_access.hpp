@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PTR_ACCESS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_PTR_ACCESS_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_PTR_ACCESS_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_PTR_ACCESS_EDIT      32
+# define STLSOFT_VER_STLSOFT_HPP_PTR_ACCESS_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@
 #endif /* compiler */
 
 #ifndef _STLSOFT_PTR_ACCESS_NO_AUTO_PTR
-# include <memory>                  // std::auto_ptr
+# include <memory>                  // for std::auto_ptr
 #endif /* _STLSOFT_PTR_ACCESS_NO_AUTO_PTR */
 
 /* /////////////////////////////////////////////////////////////////////////////

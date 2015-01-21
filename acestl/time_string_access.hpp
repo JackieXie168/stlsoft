@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MINOR     2
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      15
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -63,9 +63,9 @@
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
-# include <stlsoft/shim_string.hpp>           // basic_shim_string
+# include <stlsoft/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
-#include <ace/Time_Value.h>                 // ACE_Time_Value
+#include <ace/Time_Value.h>                 // for ACE_Time_Value
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

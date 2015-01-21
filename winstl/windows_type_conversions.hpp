@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT        25
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
-# include <stlsoft/union_cast.hpp>    // stlsoft::union_cast
+# include <stlsoft/union_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
 
 /* ////////////////////////////////////////////////////////////////////////// */

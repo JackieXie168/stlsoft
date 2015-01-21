@@ -4,7 +4,7 @@
  * Purpose:     Definition of the operator_bool_adaptor class.
  *
  * Created:     21st October 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_EDIT     11
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp> // operator bool generator
+# include <stlsoft/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 
 /* /////////////////////////////////////////////////////////////////////////////

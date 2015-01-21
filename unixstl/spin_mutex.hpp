@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     15th December 2005
+ * Updated:     21st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_EDIT        37
+# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_REVISION    2
+# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -83,7 +83,7 @@
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION)
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::unixstl */
 namespace unixstl
 {
@@ -192,7 +192,7 @@ private:
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION)
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace unixstl
 # else
 } // namespace unixstl_project
@@ -233,7 +233,7 @@ inline void unlock_instance(unixstl_ns_qual(spin_mutex) &mx)
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION)
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 namespace unixstl
 {
 # else
@@ -285,7 +285,7 @@ public:
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(__STLSOFT_DOCUMENTATION_SKIP_SECTION)
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } // namespace unixstl
 # else
 } // namespace unixstl_project

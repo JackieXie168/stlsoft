@@ -4,7 +4,7 @@
  * Purpose:     SupportErrorInfoImpl class.
  *
  * Created:     17th April 1999
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_MAJOR      4
-# define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_MINOR      1
+# define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_MINOR      2
 # define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_REVISION   1
-# define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_EDIT       53
+# define ATLSTL_VER_H_ATLSTL_SUPPORT_ERROR_INFO_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include atlstl/support_error_info.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

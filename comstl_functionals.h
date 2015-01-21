@@ -4,7 +4,7 @@
  * Purpose:     Contains COM specific predicates and functionals.
  *
  * Created:     14th June 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_MAJOR      3
-# define COMSTL_VER_H_COMSTL_FUNCTIONALS_MINOR      1
+# define COMSTL_VER_H_COMSTL_FUNCTIONALS_MINOR      2
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_REVISION   1
-# define COMSTL_VER_H_COMSTL_FUNCTIONALS_EDIT       52
+# define COMSTL_VER_H_COMSTL_FUNCTIONALS_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/interface_functionals.hpp and/or comstl/type_functionals.hpp and/or stlsoft/method_adaptors.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

@@ -1,6 +1,6 @@
 ================================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta1
+File:     STLSoft-ReleaseNotes-1.9.1-beta2
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,16 +11,42 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Date:     20th December 2005
+Date:     26th December 2005
 
 ================================================================================
 ================================================================================
 
-THIS THE CASE BEFORE:
- - XMLSTL put into main branch
- - 1.9 stuff merged in
+================================================================================
+
+Changes for 1.9.1 beta 2 (27th December 2005)
 
 
+Lots of minor code format / directory structure changes
+
+Additions:
+==========
+
++ stlsoft::exception_string class. (Replaces simple_string in exception classes)
+
++ stlsoft::string_concatenator_iterator
+
+Removals:
+=========
+
+- stlsoft::tref_reverse_iterator
+
+
+Diffs:
+======
+
+  root-dir-2: H:\3Pty\stlsoft\1.9.1-beta1
+  root-dir-2: H:\3Pty\stlsoft\1.9.1-beta2
+
+
+
+================================================================================
+
+Changes for 1.9.1 beta 1 (20th December 2005)
 
 STLSoft
 =======
@@ -100,3 +126,4 @@ Diffs:
 
   root-dir-1: H:\3Pty\stlsoft\1.8.3\include
   root-dir-2: H:\3Pty\stlsoft\1.8.4-beta1
+

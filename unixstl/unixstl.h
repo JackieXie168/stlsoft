@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    0
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     56
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h The root header for the \ref UNIXSTL project */
@@ -356,18 +356,18 @@
 /// Defines a runtime assertion
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
-#define UNIXSTL_ASSERT(expr)                stlsoft_assert(expr)
+#define UNIXSTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
 
 /// Defines a runtime assertion, with message
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
 /// \param msg The literal character string message to be included in the assertion
-#define UNIXSTL_MESSAGE_ASSERT(msg, expr)   stlsoft_message_assert(msg, expr)
+#define UNIXSTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /// Defines a compile-time assertion
 ///
 /// \param expr Must be non-zero, or compilation will fail
-#define UNIXSTL_STATIC_ASSERT(expr)         stlsoft_static_assert(expr)
+#define UNIXSTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
 
 
 

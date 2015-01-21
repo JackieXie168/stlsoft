@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_MAJOR       1
 # define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_MINOR       2
-# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_REVISION    1
-# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_EDIT        14
+# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_REVISION    2
+# define WINSTL_VER_H_WINSTL_COMMANDLINE_PARSER_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -64,13 +64,13 @@
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp> // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 # if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-     _MSC_VER == 1200
+     _MSC_VER >= 1200
 # ifndef STLSOFT_INCL_STLSOFT_HPP_POD_VECTOR
 #  include <stlsoft/pod_vector.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_POD_VECTOR */
@@ -121,9 +121,8 @@ private:
     typedef processheap_allocator<C>                                    allocator_type;
     typedef processheap_allocator<C*>                                   pointers_allocator_type;
     typedef stlsoft_ns_qual(auto_buffer)<C, allocator_type>             buffer_type;
-//#include <stlsoft/char_traits.hpp>
 # if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-     _MSC_VER == 1200
+     _MSC_VER >= 1200
     typedef stlsoft_ns_qual(pod_vector)<C*, pointers_allocator_type>    pointers_type;
 #else
     typedef stlsoft_ns_qual_std(vector)<C*, pointers_allocator_type>    pointers_type;
@@ -227,12 +226,16 @@ private:
     pointers_type   m_pointers;
 };
 
-
 typedef basic_commandline_parser<ws_char_a_t>                   commandline_parser_a;
-
 typedef basic_commandline_parser<ws_char_w_t>                   commandline_parser_w;
-
 typedef basic_commandline_parser<TCHAR>                         commandline_parser;
+
+////////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/commandline_parser_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     20th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MAJOR    3
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    0
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 5
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     39
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    1
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 1
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,6 +82,10 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+    !defined(MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT)
+# include <afxtempl.h>
+#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT */
 
 #ifdef STLSOFT_UNITTEST
 # include <afxtempl.h>
@@ -219,7 +223,7 @@ struct CArray_adaptor_traits<CStringArray>
 };
 
 #if defined(__AFXTEMPL_H__) && \
-defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+    defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 template <class V, class A>
 struct CArray_adaptor_traits<CArray<V, A> >
 {
@@ -284,6 +288,9 @@ private:
     typedef T                                                                   array_traits_type;
 public:
     /// The value type
+    ///
+    /// \note If the compiler report "use of undefined type" when you're using the adaptor class(es)
+    /// with CArray<>, ensure that you've included <b>afxtempl</b> <i>before</i> you include this file.
     typedef ss_typename_type_k array_traits_type::value_type                    value_type;
     /// The allocator type
     typedef afx_allocator<value_type>                                           allocator_type;

@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    7
 # define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     44
+# define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/operator_adaptors.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>  //
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
 # ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_DIFFERENCE_TYPE

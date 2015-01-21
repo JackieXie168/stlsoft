@@ -4,7 +4,7 @@
  * Purpose:     Simple utility class for creating (constant) C-strings.
  *
  * Created:     14th May 2004
- * Updated:     18th December 2005
+ * Updated:     24th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_MINOR    1
+# define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_EDIT     30
+# define STLSOFT_VER_STLSOFT_HPP_CSTRING_MAKER_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,13 +60,13 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>          // feature discrimination
+# include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR
-# include <stlsoft/malloc_allocator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>             // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ struct char_to_byte__traits_<ss_char_a_t>
         (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
             _MSC_VER != 1100))
 template<   ss_typename_param_k C
-        ,   ss_typename_param_k A = malloc_allocator<C>
+        ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
         ,   ss_typename_param_k T = stlsoft_char_traits<C>
         >
 struct cstring_maker
@@ -156,7 +156,7 @@ public:
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
         ss_typename_type_k allocator_type::ss_template_qual_k rebind<ss_byte_t>::other  byte_ator;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-        malloc_allocator<ss_byte_t>                                                     byte_ator;
+        allocator_selector<ss_byte_t>::allocator_type                                   byte_ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
         cb = (cb + 31) & ~31;
@@ -211,7 +211,7 @@ public:
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
         ss_typename_type_k allocator_type::ss_template_qual_k rebind<ss_byte_t>::other  byte_ator;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-        malloc_allocator<ss_byte_t>                                                     byte_ator;
+        allocator_selector<ss_byte_t>::allocator_type                                   byte_ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
         if(NULL != s)
@@ -240,11 +240,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct cstring_maker<char>
 {
 public:
-    typedef char                        char_type;
-    typedef malloc_allocator<char_type> allocator_type;
-    typedef char_traits<char_type>      traits_type;
-    typedef ss_size_t                   size_type;
-    typedef cstring_maker<char_type>    class_type;
+    typedef char                                            char_type;
+    typedef allocator_selector<char_type>::allocator_type   allocator_type;
+    typedef char_traits<char_type>                          traits_type;
+    typedef ss_size_t                                       size_type;
+    typedef cstring_maker<char_type>                        class_type;
 
 public:
     static char_type *alloc(size_type cch)
@@ -272,11 +272,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct cstring_maker<wchar_t>
 {
 public:
-    typedef wchar_t                     char_type;
-    typedef malloc_allocator<char_type> allocator_type;
-    typedef char_traits<char_type>      traits_type;
-    typedef ss_size_t                   size_type;
-    typedef cstring_maker<char_type>    class_type;
+    typedef wchar_t                                         char_type;
+    typedef allocator_selector<char_type>::allocator_type   allocator_type;
+    typedef char_traits<char_type>                          traits_type;
+    typedef ss_size_t                                       size_type;
+    typedef cstring_maker<char_type>                        class_type;
 
 public:
     static char_type *alloc(size_type cch)

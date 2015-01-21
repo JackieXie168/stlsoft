@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MAJOR       5
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_REVISION    1
-# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        20
+# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,14 +70,14 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h> // safe_release, release_set_null
+# include <comstl/refcount_functions.h> // for safe_release(), release_set_null()
 #endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef COMSTL_INCL_COMSTL_HPP_EXCEPTIONS
-#  include <comstl/exceptions.hpp>     // exception base classes
+#  include <comstl/exceptions.hpp>
 # endif /* !COMSTL_INCL_COMSTL_HPP_EXCEPTIONS */
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
 

@@ -4,7 +4,7 @@
  * Purpose:     Range adaptor for C-strings.
  *
  * Created:     17th May 2004
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
 # define STLSOFT_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     2
 # define STLSOFT_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  4
-# define STLSOFT_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      23
+# define STLSOFT_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/operator_adaptors.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>       // is_integral_type, etc.
+# include <stlsoft/constraints.hpp>       // for is_integral_type, etc.
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 
 /* /////////////////////////////////////////////////////////////////////////////

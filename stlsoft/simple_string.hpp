@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MINOR    3
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     197
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_REVISION 4
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     201
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,25 +70,25 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>      // feature discrimination
+# include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>         // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS
-# include <stlsoft/algorithms.hpp>         // stlsoft::copy_n
+# include <stlsoft/algorithms.hpp>         // for stlsoft::copy_n()
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>         // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>            // stlsoft::sap_cast
+# include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS_FWD
 # include <stlsoft/string_traits_fwd.hpp>
@@ -97,16 +97,16 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/minmax.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MINMAX */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
-# include <stlsoft/util/std_swap.hpp>       // stlsoft::std_swap
+# include <stlsoft/util/std_swap.hpp>       // for stlsoft::std_swap()
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
 
 #ifdef STLSOFT_UNITTEST
 # include <stdio.h>
-# include <string>                          // std::basic_string
+# include <string>
 #endif /* STLSOFT_UNITTEST */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-# include <stdexcept>                       // std::out_of_range
+# include <stdexcept>                       // for std::out_of_range
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -537,6 +537,10 @@ private:
         char_type   contents[1];    // The first element in the array
     };
 
+    typedef auto_buffer<char_type
+                    ,   allocator_type
+                    >           buffer_type_;
+
 #ifdef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
     typedef string_buffer       *member_pointer;
     typedef string_buffer const *member_const_pointer;
@@ -605,10 +609,8 @@ private:
     class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
-        typedef auto_buffer<char_type, allocator_type>  buffer_t;
-
         const size_t    n   =   static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last));
-        buffer_t        buffer(n);
+        buffer_type_    buffer(n);
 
         copy_n(first, buffer.size(), &buffer[0]);
         assign(&buffer[0], buffer.size());
@@ -642,9 +644,7 @@ private:
     class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
-        typedef auto_buffer<char_type, allocator_type>  buffer_t;
-
-        buffer_t    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
+        buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
 
         stlsoft_ns_qual_std(copy)(first, last, &buffer[0]);
         append(&buffer[0], buffer.size());
@@ -1444,7 +1444,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
         if(buffer->capacity < 1)
         {
 #ifdef STLSOFT_UNITTEST
-            printf("%08x: capacity (%u) < 1\n", reinterpret_cast<unsigned>(this), static_cast<unsigned>(buffer->capacity));
+            printf("%08x: capacity (%u) < 1\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<unsigned>(buffer->capacity));
 #endif /* STLSOFT_UNITTEST */
 
             return false;
@@ -1452,7 +1452,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
         else if(buffer->capacity < buffer->length)
         {
 #ifdef STLSOFT_UNITTEST
-            printf("%08x: capacity (%u) < length (%u, %08x)\n", reinterpret_cast<unsigned>(this), static_cast<unsigned>(buffer->capacity), static_cast<unsigned>(buffer->length), static_cast<unsigned>(buffer->length));
+            printf("%08x: capacity (%u) < length (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<unsigned>(buffer->capacity), static_cast<unsigned>(buffer->length), static_cast<unsigned>(buffer->length));
 #endif /* STLSOFT_UNITTEST */
 
             return false;
@@ -1464,7 +1464,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
             if(buffer->length < len)
             {
 #ifdef STLSOFT_UNITTEST
-                printf("%08x: length (%u) < length() (%u, %08x)\n", reinterpret_cast<unsigned>(this), static_cast<unsigned>(buffer->length), static_cast<unsigned>(len), static_cast<unsigned>(len));
+                printf("%08x: length (%u) < length() (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<unsigned>(buffer->length), static_cast<unsigned>(len), static_cast<unsigned>(len));
 #endif /* STLSOFT_UNITTEST */
 
                 return false;
@@ -2184,9 +2184,7 @@ template<   ss_typename_param_k C
 inline ss_typename_type_k basic_simple_string<C, T, A>::class_type &basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch)
 {
-    typedef auto_buffer<char_type, allocator_type>  buffer_t;
-
-    buffer_t    buffer(cch);
+    buffer_type_    buffer(cch);
 
     static_cast<void>(stlsoft_ns_qual_std(fill)(buffer.begin(), buffer.end(), ch));
 
@@ -2371,9 +2369,7 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::class_type &basic_simple
     }
     else
     {
-        typedef auto_buffer<char_type, allocator_type>  buffer_t;
-
-        buffer_t    buffer(cch);
+        buffer_type_    buffer(cch);
 
         static_cast<void>(stlsoft_ns_qual_std(fill)(buffer.begin(), buffer.end(), ch));
 

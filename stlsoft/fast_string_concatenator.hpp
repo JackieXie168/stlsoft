@@ -4,7 +4,7 @@
  * Purpose:     Fast string concatenator.
  *
  * Created:     4th November 2003 (the time added to STLSoft libraries)
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks to:   Sean Kelly for picking up on my gratuitous use of pointers
  *              in the first implementation.
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_EDIT        120
+# define STLSOFT_VER_STLSOFT_HPP_FAST_STRING_CONCATENATOR_EDIT        121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -95,7 +95,7 @@ class fast_string_concatenator;
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp> // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #include <algorithm>
 

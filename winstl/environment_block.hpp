@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_MINOR    1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_EDIT     31
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,13 +64,13 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp> // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>          // c_str_ptr
+# include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -255,9 +255,12 @@ public:
 
 /// Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, 1024>   buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   allocator_type
+                                        ,   1024
+                                        >           buffer_type_;
 
-    buffer_type m_buffer;
+    buffer_type_    m_buffer;
 };
 
 /* /////////////////////////////////////////////////////////////////////////////

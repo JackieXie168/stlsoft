@@ -4,7 +4,7 @@
  * Purpose:     basic_fixed_substring class.
  *
  * Created:     1st May 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MAJOR    2
 # define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MINOR    4
 # define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_EDIT     46
+# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,16 +72,16 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>       // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR
-# include <stlsoft/new_allocator.hpp>     // stlsoft::new_allocator
+# include <stlsoft/new_allocator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp> // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>          // stlsoft iterator bases
+# include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -898,7 +898,7 @@ template<   ss_typename_param_k C
         >
 inline ss_typename_type_k basic_fixed_substring<C, T, A>::const_reference basic_fixed_substring<C, T, A>::operator [](ss_typename_type_k basic_fixed_substring<C, T, A>::size_type index) const
 {
-    stlsoft_message_assert("Index out of range", !(size() < index));
+    STLSOFT_MESSAGE_ASSERT("Index out of range", !(size() < index));
 
     return m_first[index];
 }

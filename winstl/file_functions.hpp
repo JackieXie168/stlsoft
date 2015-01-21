@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     20th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MAJOR     1
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      18
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MINOR     4
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -81,6 +81,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
 # include <stlsoft/string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_TOKENISER_FUNCTIONS
+# include <stlsoft/tokeniser_functions.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_TOKENISER_FUNCTIONS */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/simple_string.hpp>
@@ -188,7 +191,10 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
         {
 // TODO: Catch the out-of-memory exception and translate to a std::out_of_range()
 
-            typedef ::stlsoft::auto_buffer<char_2_type, processheap_allocator<char_2_type>, 1024>   buffer_t;
+            typedef ::stlsoft::auto_buffer< char_2_type
+                                        ,   processheap_allocator<char_2_type>
+                                        ,   1024
+                                        >                   buffer_t;
 
             buffer_t    buffer(static_cast<ss_typename_type_k buffer_t::size_type>(size));
             DWORD       dw;
@@ -210,8 +216,8 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
 }
 
 #if !defined(STLSOFT_COMPILER_IS_MWERKS) && \
-	(	!defined(STLSOFT_COMPILER_IS_MSVC) || \
-		_MSC_VER != 1300)
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER != 1300)
 
 template<   ss_typename_param_k S2
         >
@@ -246,6 +252,107 @@ inline ws_uint64_t load_text_file(ws_char_w_t *fileName, S2 &contents)
 #endif /* compiler */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
+template<   ss_typename_param_k S
+        >
+struct trim_trailing_carriage_return
+{
+public:
+    S operator ()(S const &s)
+    {
+        ss_size_t   len =   stlsoft_ns_qual(c_str_len)(s);
+
+        if( len > 0 &&
+            '\r' == s[len])
+        {
+            return s;
+        }
+
+        return S(stlsoft_ns_qual(c_str_ptr)(s), len - 1);
+    }
+};
+#endif /* 0 */
+
+template<   ss_typename_param_k CH
+        ,   ss_typename_param_k C
+        >
+void readlines_impl(CH const *p, ss_size_t len, C &container)
+{
+    typedef CH                                  char_t;
+    typedef ss_typename_type_k C::value_type    value_t;
+
+    char_t const *p0     =   p;
+    char_t const *p1     =   p0;
+    char_t const *end    =   p + len;
+
+    while(end != stlsoft_ns_qual(find_next_token)(p0, p1, end, '\n'))
+    {
+        if( p1 > p0 &&
+            '\r' == p1[-1])
+        {
+            --p1;
+        }
+
+        container.push_back(value_t(p0, static_cast<size_t>(p1 - p0)));
+
+        if('\r' == *p1)
+        {
+            ++p1;
+        }
+    }
+}
+
+/// \brief Reads the lines of a text-file into a sequence container
+///
+/// \param fileName The name of the text-file to load
+/// \param container Reference to the sequence container to which each line read from \c fileName will be appended (via its push_back() method)
+///
+/// \returns The \c container reference
+template<   ss_typename_param_k S
+        ,   ss_typename_param_k C
+        >
+C &readlines(S const &fileName, C &container)
+{
+    S   contents;
+    S   delim;
+
+    // NOTE: doing these as characters skips the issue of ANSI vs Unicode
+    delim.append(1, '\n');
+
+    load_text_file(fileName, contents);
+
+#if 0
+    stlsoft::string_tokeniser<  S /* stlsoft::basic_string_view<ss_typename_type_k stlsoft::string_traits<S>::char_type> */
+                            ,   S
+                            ,   stlsoft::string_tokeniser_ignore_blanks<false>
+                            >           tokens(contents, delim);
+
+    std::transform(tokens.begin(), tokens.end(), std::back_inserter(container), trim_trailing_carriage_return</* ss_typename_type_k */ C::value_type>());
+#else 
+
+    readlines_impl(contents.c_str(), contents.size(), container);
+#endif /* 0 */
+
+    return container;
+}
+
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Unit-testing

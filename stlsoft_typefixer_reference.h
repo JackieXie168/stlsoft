@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_reference and fixer_const_reference types.
  *
  * Created:     9th February 2004
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCE_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCE_MINOR     1
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCE_MINOR     2
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCE_EDIT      21
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCE_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/typefixer/reference.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

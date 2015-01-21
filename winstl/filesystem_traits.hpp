@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_MINOR      6
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       80
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_TRAITS_EDIT       81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -170,30 +170,30 @@ struct filesystem_traits
 /// @{
 public:
     /// The character type
-    typedef C                           char_type;
+    typedef C                                       char_type;
     /// The size type
-    typedef ws_size_t                   size_type;
+    typedef ws_size_t                               size_type;
     /// The difference type
-    typedef ws_ptrdiff_t                difference_type;
+    typedef ws_ptrdiff_t                            difference_type;
     /// The find data type
-    typedef WIN32_FIND_DATA             find_data_type;     // Placeholder only
+    typedef WIN32_FIND_DATA                         find_data_type;     // Placeholder only
     /// The stat data type
-    typedef WIN32_FIND_DATA             stat_data_type;
+    typedef WIN32_FIND_DATA                         stat_data_type;
     /// The fstat data type
-    typedef BY_HANDLE_FILE_INFORMATION  fstat_data_type;
+    typedef BY_HANDLE_FILE_INFORMATION              fstat_data_type;
     /// The current instantion of the type
-    typedef filesystem_traits<C>        class_type;
+    typedef filesystem_traits<C>                    class_type;
 
     /// The (signed) integer type
-    typedef ws_int_t                    int_type;
+    typedef ws_int_t                                int_type;
     /// The Boolean type
-    typedef ws_bool_t                   bool_type;
+    typedef ws_bool_t                               bool_type;
     /// The type of a system file handle
-    typedef HANDLE                      file_handle_type;
+    typedef HANDLE                                  file_handle_type;
     /// The type of a handle to a dynamically loaded module
-    typedef HINSTANCE                   module_type;
+    typedef HINSTANCE                               module_type;
     /// The type of system error codes
-    typedef DWORD                       error_type;
+    typedef DWORD                                   error_type;
 /// @}
 
 /// \name Constants
@@ -559,23 +559,26 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<ws_char_a_t>
 {
 public:
-    typedef ws_char_a_t                     char_type;
-    typedef ws_size_t                       size_type;
-    typedef ws_ptrdiff_t                    difference_type;
-    typedef WIN32_FIND_DATAA                find_data_type;
-    typedef WIN32_FIND_DATAA                stat_data_type;
-    typedef BY_HANDLE_FILE_INFORMATION      fstat_data_type;
-    typedef filesystem_traits<char_type>    class_type;
+    typedef ws_char_a_t                             char_type;
+    typedef ws_size_t                               size_type;
+    typedef ws_ptrdiff_t                            difference_type;
+    typedef WIN32_FIND_DATAA                        find_data_type;
+    typedef WIN32_FIND_DATAA                        stat_data_type;
+    typedef BY_HANDLE_FILE_INFORMATION              fstat_data_type;
+    typedef filesystem_traits<char_type>            class_type;
     /// The (signed) integer type
-    typedef ws_int_t                        int_type;
+    typedef ws_int_t                                int_type;
     /// The Boolean type
-    typedef ws_bool_t                       bool_type;
+    typedef ws_bool_t                               bool_type;
     /// The type of a system file handle
-    typedef HANDLE                          file_handle_type;
+    typedef HANDLE                                  file_handle_type;
     /// The type of a handle to a dynamically loaded module
-    typedef HINSTANCE                       module_type;
+    typedef HINSTANCE                               module_type;
     /// The type of system error codes
-    typedef DWORD                           error_type;
+    typedef DWORD                                   error_type;
+private:
+    typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
+public:
 
     enum
     {
@@ -803,9 +806,7 @@ private:
             NULL != buffer &&
             r > cchBuffer)
         {
-            typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
-
-            buffer_t    buffer_(1 + r);
+            buffer_type_    buffer_(1 + r);
 
             if(0 == buffer_.size())
             {
@@ -857,9 +858,7 @@ private:
 
         if('\0' != fileName[len])
         {
-            typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
-
-            buffer_t    fileName_(1 + (len - 1));
+            buffer_type_    fileName_(1 + (len - 1));
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -1182,9 +1181,7 @@ public:
         {
             WINSTL_ASSERT(len > 2);
 
-            typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
-
-            buffer_t    buffer(1 + len);
+            buffer_type_    buffer(1 + len);
 
             if(0 == buffer.size())
             {
@@ -1355,23 +1352,26 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<ws_char_w_t>
 {
 public:
-    typedef ws_char_w_t                     char_type;
-    typedef ws_size_t                       size_type;
-    typedef ws_ptrdiff_t                    difference_type;
-    typedef WIN32_FIND_DATAW                find_data_type;
-    typedef WIN32_FIND_DATAW                stat_data_type;
-    typedef BY_HANDLE_FILE_INFORMATION      fstat_data_type;
-    typedef filesystem_traits<char_type>    class_type;
+    typedef ws_char_w_t                             char_type;
+    typedef ws_size_t                               size_type;
+    typedef ws_ptrdiff_t                            difference_type;
+    typedef WIN32_FIND_DATAW                        find_data_type;
+    typedef WIN32_FIND_DATAW                        stat_data_type;
+    typedef BY_HANDLE_FILE_INFORMATION              fstat_data_type;
+    typedef filesystem_traits<char_type>            class_type;
     /// The (signed) integer type
-    typedef ws_int_t                        int_type;
+    typedef ws_int_t                                int_type;
     /// The Boolean type
-    typedef ws_bool_t                       bool_type;
+    typedef ws_bool_t                               bool_type;
     /// The type of a system file handle
-    typedef HANDLE                          file_handle_type;
+    typedef HANDLE                                  file_handle_type;
     /// The type of a handle to a dynamically loaded module
-    typedef HINSTANCE                       module_type;
+    typedef HINSTANCE                               module_type;
     /// The type of system error codes
-    typedef DWORD                           error_type;
+    typedef DWORD                                   error_type;
+private:
+    typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
+public:
 
     enum
     {

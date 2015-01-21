@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     56
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,15 +75,15 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 //#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
-//# include <stlsoft/string_traits.hpp>   // stlsoft::string_traits
+//# include <stlsoft/string_traits.hpp>
 //#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>      // stlsoft::null_exception_policy
+# include <stlsoft/exceptions.hpp>      // for stlsoft::null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 #ifdef STLSOFT_UNITTEST
-# include <iostream>                    // std::cout, std::endl
-# include <string>                      // std::string, std::wstring
-# include <stdio.h>                     // fprintf, stdout
+# include <iostream>                    // for std::cout, std::endl
+# include <string>                      // for std::string, std::wstring
+# include <stdio.h>                     // for fprintf(), stdout
 #endif /* STLSOFT_UNITTEST */
 #include <exception>
 

@@ -4,7 +4,7 @@
  * Purpose:     indirect_reverse_iterator class template.
  *
  * Created:     7th June 2005
- * Updated:     18th December 2005
+ * Updated:     27th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MINOR      1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       11
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   4
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_DESTRUCTOR
 # include <stlsoft/auto_destructor.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_DESTRUCTOR
+#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
@@ -84,6 +84,19 @@ STLSOFT_COMPILER_IS_WATCOM:
 namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/// \weakgroup iterators Iterators
+/// \brief STL-compatible iterators
+
+/// \weakgroup adaptors Adaptors
+/// \brief Adaptor functions and classes used throughout the STLSoft libraries
+
+/// \weakgroup adaptors_iterator Iterator Adaptors
+/// \brief Classes that provide iterator adaptation
+/// \ingroup iterators adaptors
+/// @{
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
@@ -99,18 +112,32 @@ namespace stlsoft
 /// \param P The pointer type
 /// \param D The distance type
 template<   ss_typename_param_k I
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
-        ,   ss_typename_param_k T /* = stlsoft_ns_qual_std(iterator_traits)<I>::value_type */
-#else /* ? compiler */
+#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+    !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
+        STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1)
         ,   ss_typename_param_k T = ss_typename_type_def_k stlsoft_ns_qual_std(iterator_traits)<I>::value_type
+#else /* ? compiler */
+        ,   ss_typename_param_k T
 #endif /* compiler */
         ,   ss_typename_param_k R = T&
         ,   ss_typename_param_k P = T*
         ,   ss_typename_param_k D = ptrdiff_t
+#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+    !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
+        STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1)
+        ,   ss_typename_param_k C = ss_typename_type_def_k stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category
+#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+        ,   ss_typename_param_k C = stlsoft_ns_qual_std(input_iterator_tag)
+#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
         >
+// [[synesis:class:iterator: indirect_reverse_iterator<T<I>, T<T>, T<R>, T<P>, T<D>>]]
 class indirect_reverse_iterator
 //    : public reverse_iterator_base<I, T, R, P, D>
 {
+/// \name Members
+/// @{
 private:
     /// The iterator pointer type
     ///
@@ -120,19 +147,19 @@ private:
     ///   iterator type and indirect_reverse_iterator
     /// - It has immutable RAII, requiring explicit writing of the 
     ///   copy constructor and copy assignment operator
-    typedef auto_destructor<I>                                          iterator_ptr_type;
+    typedef auto_destructor<I>                              iterator_ptr_type;
 public:
-    typedef indirect_reverse_iterator<I, T, R, P, D>                    class_type;
-    typedef 
-#if !defined(STLSOFT_COMPILER_IS_BORLAND)
-        ss_typename_type_k 
-#endif /* compiler */
-            stlsoft_ns_qual_std(iterator_traits)<I>::iterator_category  iterator_category;
-    typedef I                                                           iterator_type;
-    typedef R                                                           reference;
-    typedef P                                                           pointer;
-    typedef D                                                           difference_type;
+    typedef indirect_reverse_iterator<I, T, R, P, D, C>     class_type;
+    typedef I                                               iterator_type;
+    typedef T                                               value_type;
+    typedef R                                               reference;
+    typedef P                                               pointer;
+    typedef D                                               difference_type;
+    typedef C                                               iterator_category;
+/// @}
 
+/// \name Construction
+/// @{
 public:
     indirect_reverse_iterator()
         : m_it(new iterator_type())
@@ -143,7 +170,10 @@ public:
     indirect_reverse_iterator(class_type const &rhs)
         : m_it(new iterator_type(*rhs.m_it.get()))
     {}
+/// @}
 
+/// \name Iterator Operations
+/// @{
 public:
     I base() const
     {
@@ -231,18 +261,33 @@ public:
     {
         return (*m_it.get() < *rhs.m_it.get()) ? -1 : (*rhs.m_it.get() < *m_it.get()) ? +1 : 0;
     }
+/// @}
 
+/// \name Members
+/// @{
 private:
     iterator_ptr_type   m_it;
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    class_type &operator =(class_type const &);
+/// @}
 };
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Operators
+ */
 
 template<   ss_typename_param_k I
         ,   ss_typename_param_k T
         ,   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k D
+        ,   ss_typename_param_k C
         >
-inline bool operator ==(indirect_reverse_iterator<I, T, R, P, D> const &lhs, indirect_reverse_iterator<I, T, R, P, D> const &rhs)
+inline bool operator ==(indirect_reverse_iterator<I, T, R, P, D, C> const &lhs, indirect_reverse_iterator<I, T, R, P, D, C> const &rhs)
 {
     return lhs.equal(rhs);
 }
@@ -252,8 +297,9 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k D
+        ,   ss_typename_param_k C
         >
-inline bool operator !=(indirect_reverse_iterator<I, T, R, P, D> const &lhs, indirect_reverse_iterator<I, T, R, P, D> const &rhs)
+inline bool operator !=(indirect_reverse_iterator<I, T, R, P, D, C> const &lhs, indirect_reverse_iterator<I, T, R, P, D, C> const &rhs)
 {
     return !lhs.equal(rhs);
 }
@@ -263,8 +309,9 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k D
+        ,   ss_typename_param_k C
         >
-inline bool operator <(indirect_reverse_iterator<I, T, R, P, D> const &lhs, indirect_reverse_iterator<I, T, R, P, D> const &rhs)
+inline bool operator <(indirect_reverse_iterator<I, T, R, P, D, C> const &lhs, indirect_reverse_iterator<I, T, R, P, D, C> const &rhs)
 {
     return lhs.compare(rhs) < 0;
 }
@@ -274,8 +321,9 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k D
+        ,   ss_typename_param_k C
         >
-inline bool operator <=(indirect_reverse_iterator<I, T, R, P, D> const &lhs, indirect_reverse_iterator<I, T, R, P, D> const &rhs)
+inline bool operator <=(indirect_reverse_iterator<I, T, R, P, D, C> const &lhs, indirect_reverse_iterator<I, T, R, P, D, C> const &rhs)
 {
     return lhs.compare(rhs) <= 0;
 }
@@ -285,8 +333,9 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k D
+        ,   ss_typename_param_k C
         >
-inline bool operator >(indirect_reverse_iterator<I, T, R, P, D> const &lhs, indirect_reverse_iterator<I, T, R, P, D> const &rhs)
+inline bool operator >(indirect_reverse_iterator<I, T, R, P, D, C> const &lhs, indirect_reverse_iterator<I, T, R, P, D, C> const &rhs)
 {
     return lhs.compare(rhs) > 0;
 }
@@ -296,11 +345,23 @@ template<   ss_typename_param_k I
         ,   ss_typename_param_k R
         ,   ss_typename_param_k P
         ,   ss_typename_param_k D
+        ,   ss_typename_param_k C
         >
-inline bool operator >=(indirect_reverse_iterator<I, T, R, P, D> const &lhs, indirect_reverse_iterator<I, T, R, P, D> const &rhs)
+inline bool operator >=(indirect_reverse_iterator<I, T, R, P, D, C> const &lhs, indirect_reverse_iterator<I, T, R, P, D, C> const &rhs)
 {
     return lhs.compare(rhs) >= 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// @} // end of group
+
+////////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/indirect_reverse_iterator_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

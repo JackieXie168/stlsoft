@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MINOR     5
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      89
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,22 +60,22 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem_traits.hpp>   // filesystem_traits
+# include <unixstl/filesystem_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
-# include <unixstl/file_path_buffer.hpp>    // file_path_buffer
+# include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS
-# include <unixstl/exceptions.hpp>          // unix_exception
+# include <unixstl/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS */
 #include <unistd.h>
 #if defined(PATH_MAX)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING
-#  include <stlsoft/static_string.hpp>         // stlsoft::basic_static_string
+#  include <stlsoft/static_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING */
 #else /* ? PATH_MAX */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>         // stlsoft::basic_simple_string
+#  include <stlsoft/simple_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #endif /* !PATH_MAX */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR

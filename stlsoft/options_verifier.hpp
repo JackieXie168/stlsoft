@@ -4,7 +4,7 @@
  * Purpose:     Options verification.
  *
  * Created:     9th November 2004
- * Updated:     20th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MINOR     3
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_REVISION  4
-# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      25
+# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,8 +82,8 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#include <exception>                    // uncaught_exception
-#include <stdexcept>                    // std::runtime_error
+#include <exception>                    // for uncaught_exception
+#include <stdexcept>                    // for std::runtime_error
 
 #ifdef STLSOFT_UNITTEST
 # include <string>

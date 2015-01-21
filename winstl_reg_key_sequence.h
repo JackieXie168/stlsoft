@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_MAJOR     2
 # define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_MINOR     2
-# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_REVISION  1
-# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_EDIT      78
+# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_REVISION  2
+# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,22 +66,22 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_DEFS
-# include <winstl/reg_defs.hpp>               // The WinSTL reg API standard types
+# include <winstl/reg_defs.hpp>                 // The WinSTL reg API standard types
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_DEFS */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_TRAITS
-# include <winstl/reg_traits.hpp>             // The WinSTL reg API reg_traits class
+# include <winstl/reg_traits.hpp>               // The WinSTL reg API reg_traits class
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_KEY
-# include <winstl/reg_key.hpp>                // The WinSTL reg API reg_key class
+# include <winstl/reg_key.hpp>                  // The WinSTL reg API reg_key class
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_KEY */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // Include the STLSoft auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>              // stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>                // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -180,6 +180,10 @@ public:
                                                                         void*,
                                                                         difference_type>    const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+private:
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   allocator_type
+                                        ,   CCH_REG_API_AUTO_BUFFER>                buffer_type_;
 
 // Construction
 public:
@@ -262,25 +266,29 @@ class basic_reg_key_sequence_const_iterator
 {
 public:
     /// The character type
-    typedef C                                                   char_type;
+    typedef C                                                           char_type;
     /// The traits type
-    typedef T                                                   traits_type;
+    typedef T                                                           traits_type;
     /// The value type
-    typedef V                                                   value_type;
+    typedef V                                                           value_type;
     /// The allocator type
-    typedef A                                                   allocator_type;
+    typedef A                                                           allocator_type;
     /// The current parameterisation of the type
-    typedef basic_reg_key_sequence_const_iterator<C, T, V, A>   class_type;
+    typedef basic_reg_key_sequence_const_iterator<C, T, V, A>           class_type;
     /// The size type
-    typedef ss_typename_type_k traits_type::size_type           size_type;
+    typedef ss_typename_type_k traits_type::size_type                   size_type;
     /// The difference type
-    typedef ss_typename_type_k traits_type::difference_type     difference_type;
+    typedef ss_typename_type_k traits_type::difference_type             difference_type;
     /// The string type
-    typedef ss_typename_type_k traits_type::string_type         string_type;
+    typedef ss_typename_type_k traits_type::string_type                 string_type;
     /// The index type
-    typedef ws_sint32_t                                         index_type;
+    typedef ws_sint32_t                                                 index_type;
     /// The hkey type
-    typedef ss_typename_type_k traits_type::hkey_type           hkey_type;
+    typedef ss_typename_type_k traits_type::hkey_type                   hkey_type;
+private:
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   allocator_type
+                                        ,   CCH_REG_API_AUTO_BUFFER>    buffer_type_;
 
 // Construction
 private:
@@ -415,8 +423,6 @@ inline basic_reg_key_sequence<C, T, A>::~basic_reg_key_sequence() stlsoft_throw_
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::const_iterator basic_reg_key_sequence<C, T, A>::begin() const
 {
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer_t;
-
     // Grab enough for the first item
     size_type   cch_key_name    =   0;
     size_type   c_sub_keys      =   0;
@@ -426,7 +432,7 @@ inline ss_typename_type_k basic_reg_key_sequence<C, T, A>::const_iterator basic_
         0 < c_sub_keys)
     {
         size_type const maxKnown    =   ++cch_key_name;
-        buffer_t        buffer(maxKnown);
+        buffer_type_    buffer(maxKnown);
 
         res = traits_type::reg_enum_key(m_hkey, 0, &buffer[0], &cch_key_name, NULL, NULL, NULL);
 
@@ -551,12 +557,10 @@ inline ss_typename_type_k basic_reg_key_sequence_const_iterator<C, T, V, A>::cla
 {
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", sentinel_() != m_index);
 
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer_t;
-
     // Grab enough for the first item
-    size_type   cch_key_name    =   m_maxKnown;
-    buffer_t    buffer(cch_key_name);
-    ws_long_t   res             =   (0 == m_maxKnown) ? ERROR_MORE_DATA : traits_type::reg_enum_key(m_hkey, 1 + m_index, &buffer[0], &cch_key_name, NULL, NULL, NULL);
+    size_type       cch_key_name    =   m_maxKnown;
+    buffer_type_    buffer(cch_key_name);
+    ws_long_t       res             =   (0 == m_maxKnown) ? ERROR_MORE_DATA : traits_type::reg_enum_key(m_hkey, 1 + m_index, &buffer[0], &cch_key_name, NULL, NULL, NULL);
 
     // The registry may have changed during the life of the iterator - albeit that's unlikely and undesirable - we
     // make sure we have enough size for a given item. More reasonably, m_maxKnown starts out life as 0
@@ -596,8 +600,6 @@ inline ss_typename_type_k basic_reg_key_sequence_const_iterator<C, T, V, A>::cla
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V, ss_typename_param_k A>
 inline ss_typename_type_k basic_reg_key_sequence_const_iterator<C, T, V, A>::class_type &basic_reg_key_sequence_const_iterator<C, T, V, A>::operator --()
 {
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>    buffer_t;
-
     // Grab enough for the first item
     size_type   cch_key_name    =   0;
     ws_uint_t   c_sub_keys;
@@ -605,7 +607,7 @@ inline ss_typename_type_k basic_reg_key_sequence_const_iterator<C, T, V, A>::cla
 
     if(res == 0)
     {
-        buffer_t    buffer(++cch_key_name);
+        buffer_type_    buffer(++cch_key_name);
 
         // If the iterator is currently at the "end()", ...
         if(m_index == sentinel_())

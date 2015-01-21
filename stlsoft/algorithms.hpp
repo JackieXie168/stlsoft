@@ -4,7 +4,7 @@
  * Purpose:     Contains various simple self-contained algorithms.
  *
  * Created:     23rd October 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MINOR       5
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        17
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* __STLSOFT_CF_std_NAMESPACE */
 
 #ifdef STLSOFT_UNITTEST
-# include <string.h>        // for strcmp
+# include <string.h>        // for strcmp()
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////

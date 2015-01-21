@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       2
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        31
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,13 +63,13 @@
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
-# include <unixstl/string_access.hpp>  // c_str_ptr, etc.
+# include <unixstl/string_access.hpp>  // for string access shims
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
 # include <unixstl/filesystem_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
-# include <unixstl/file_path_buffer.hpp>  // basic_file_path_buffer
+# include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
 #ifndef _UNIXSTL_FUNCTIONALS_NO_STD
 # include <functional>

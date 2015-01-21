@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_MAJOR      2
 # define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_MINOR      2
 # define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_EDIT       19
+# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,16 +60,16 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>     // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>     // auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META_YESNO
-# include <stlsoft/meta/yesno.hpp>          // yes_type, no_type
+# include <stlsoft/meta/yesno.hpp>          // for yes_type, no_type
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META_YESNO */
 
 /* /////////////////////////////////////////////////////////////////////////////

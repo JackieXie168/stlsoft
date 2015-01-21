@@ -79,43 +79,43 @@ namespace stlsoft
 template <typename T>
 struct base_type_traits_array_detector
 {
-	enum { value			=	0 };
+    enum { value            =   0 };
 };
 
-template<	typename	T
-		,	ss_size_t	N
-		>
+template<   typename    T
+        ,   ss_size_t   N
+        >
 struct base_type_traits_array_detector<T[N]>
 {
-	enum { value			=	1 };
+    enum { value            =   1 };
 };
 # endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 template <typename T>
 struct base_type_traits_pointer_detector
 {
-	enum { value			=	0 };
+    enum { value            =   0 };
 };
 
 template <typename T>
 struct base_type_traits_pointer_detector<T*>
 {
-	enum { value			=	1 };
+    enum { value            =   1 };
 };
 template <typename T>
 struct base_type_traits_pointer_detector<T const*>
 {
-	enum { value			=	1 };
+    enum { value            =   1 };
 };
 template <typename T>
 struct base_type_traits_pointer_detector<T volatile*>
 {
-	enum { value			=	1 };
+    enum { value            =   1 };
 };
 template <typename T>
 struct base_type_traits_pointer_detector<T const volatile*>
 {
-	enum { value			=	1 };
+    enum { value            =   1 };
 };
 
 
@@ -130,7 +130,7 @@ struct base_type_traits
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T   base_type;
@@ -153,7 +153,7 @@ struct base_type_traits<const T>
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T   base_type;
@@ -169,7 +169,7 @@ struct base_type_traits<volatile T>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T   base_type;
@@ -185,7 +185,7 @@ struct base_type_traits<const volatile T>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T   base_type;
@@ -205,7 +205,7 @@ struct base_type_traits<T*>
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T   base_type;
@@ -221,7 +221,7 @@ struct base_type_traits<T const*>
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	0	};
+    enum { is_array             =   0   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T       base_type;
@@ -237,7 +237,7 @@ struct base_type_traits<T volatile*>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	0	};
+    enum { is_array             =   0   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T           base_type;
@@ -253,7 +253,7 @@ struct base_type_traits<T const volatile*>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	0	};
+    enum { is_array             =   0   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T                   base_type;
@@ -335,7 +335,7 @@ struct base_type_traits<T&>
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T   base_type;
@@ -351,7 +351,7 @@ struct base_type_traits<T const&>
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T       base_type;
@@ -367,7 +367,7 @@ struct base_type_traits<T volatile&>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T           base_type;
@@ -383,7 +383,7 @@ struct base_type_traits<T const volatile&>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   0 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	base_type_traits_array_detector<T>::value	};
+    enum { is_array             =   base_type_traits_array_detector<T>::value   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T                   base_type;
@@ -401,7 +401,7 @@ struct base_type_traits<T*&>
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	0	};
+    enum { is_array             =   0   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T   base_type;
@@ -417,7 +417,7 @@ struct base_type_traits<T const*&>
     enum { is_volatile          =   0 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	0	};
+    enum { is_array             =   0   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T       base_type;
@@ -433,7 +433,7 @@ struct base_type_traits<T volatile*&>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	0	};
+    enum { is_array             =   0   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T           base_type;
@@ -449,7 +449,7 @@ struct base_type_traits<T const volatile*&>
     enum { is_volatile          =   1 };
     enum { is_array_or_pointer  =   1 };
 #if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
-	enum { is_array				=	0	};
+    enum { is_array             =   0   };
 #endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
     typedef T                   base_type;

@@ -156,7 +156,7 @@ namespace unittest
 
             // STL manipulation
             {   ss_typename_type_k C1::iterator b   =   c1.begin();
-                size_t							i   =   0;
+                size_t                          i   =   0;
 
                 for(; bSuccess && i < STLSOFT_NUM_ELEMENTS(strings1); ++i, ++b)
                 {

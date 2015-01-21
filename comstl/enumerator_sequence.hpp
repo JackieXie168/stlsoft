@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MAJOR    5
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 4
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     191
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MINOR    2
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 1
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     193
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,10 +70,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h> // safe_release, release_set_null
+# include <comstl/refcount_functions.h>     // for safe_release(), release_set_null()
 #endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef COMSTL_INCL_COMSTL_HPP_ENUMERATION_POLICIES
-# include <comstl/enumeration_policies.hpp> // input_cloning_policy
+# include <comstl/enumeration_policies.hpp> // for input_cloning_policy
 #endif /* !COMSTL_INCL_COMSTL_HPP_ENUMERATION_POLICIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
@@ -240,10 +240,14 @@ public:
         {
             m_i->AddRef();
         }
+
+        COMSTL_ASSERT(is_valid());
     }
     /// Releases the adapted interface pointer
     ~enumerator_sequence() stlsoft_throw_0()
     {
+        COMSTL_ASSERT(is_valid());
+
         m_i->Release();
     }
 
@@ -289,6 +293,8 @@ public:
             , m_quanta(0)
         {
 //            init_elements_(retrievalQuanta);
+
+            COMSTL_ASSERT(is_valid());
         }
         /// Copy constructor
         ///
@@ -319,18 +325,23 @@ public:
             {
                 value_policy_type::init(begin);
             }
+
+            COMSTL_ASSERT(is_valid());
         }
         /// Releases any internal storage
         ~iterator() stlsoft_throw_0()
         {
+            COMSTL_ASSERT(is_valid());
+
             clear_elements_();
 
             safe_release(m_i);
         }
 
-    public:
-        /// Pre-increment operator
-        iterator &operator ++()
+    /// \name Forward Iterator Methods
+    /// @{
+    private:
+        void increment_()
         {
             if(++m_current < m_acquired)
             {
@@ -342,7 +353,8 @@ public:
 
                 clear_elements_();
 
-                m_acquired = 0;
+                m_acquired  =   0;
+                m_current   =   0;
             }
             else
             {
@@ -368,15 +380,31 @@ public:
                     release_set_null(m_i);
                 }
             }
+        }
+
+    public:
+        /// Pre-increment operator
+        iterator &operator ++()
+        {
+            COMSTL_ASSERT(is_valid());
+
+            increment_();
+
+            COMSTL_ASSERT(is_valid());
 
             return *this;
         }
 
+        /// Post-increment operator
         class_type operator ++(int)
         {
+            COMSTL_ASSERT(is_valid());
+
             class_type  r(*this);
 
             operator ++();
+
+            COMSTL_ASSERT(is_valid());
 
             return r;
         }
@@ -385,12 +413,16 @@ public:
         /// Returns the value represented by the current iteration position
         reference operator *()
         {
+            COMSTL_ASSERT(is_valid());
+
             return m_values[m_current];
         }
 
         /// Returns the value represented by the current iteration position
         pointer operator ->()
         {
+            COMSTL_ASSERT(is_valid());
+
             return m_values + m_current;
         }
 
@@ -398,6 +430,8 @@ public:
         /// Evaluates whether \c this and \c rhs are equivalent
         cs_bool_t equal(iterator const &rhs) const
         {
+            COMSTL_ASSERT(is_valid());
+
             // The only valid comparison is when they both represent the end
             // values.
 
@@ -408,13 +442,73 @@ public:
         /// Evaluates whether \c this and \c rhs are equivalent
         cs_bool_t operator == (iterator const &rhs) const
         {
+            COMSTL_ASSERT(is_valid());
+
             return this->equal(rhs);
         }
         /// Evaluates whether \c this and \c rhs are not equivalent
         cs_bool_t operator != (iterator const &rhs) const
         {
+            COMSTL_ASSERT(is_valid());
+
             return !this->equal(rhs);
         }
+
+    /// \name Invariant
+    /// @{
+    private:
+        cs_bool_t is_valid() const
+        {
+            if( NULL == m_i &&
+                0 == m_quanta)
+            {
+                if(0 != m_acquired)
+                {
+#ifdef STLSOFT_UNITTEST
+                    fprintf(stderr, "m_acquired == %lu when m_quanta == 0\n", m_acquired);
+#endif /* STLSOFT_UNITTEST */
+                    return false;
+                }
+                if(0 != m_current)
+                {
+#ifdef STLSOFT_UNITTEST
+                    fprintf(stderr, "m_current == %lu when m_quanta == 0\n", m_current);
+#endif /* STLSOFT_UNITTEST */
+                    return false;
+                }
+                if(0 != m_quanta)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if(m_acquired < m_current)
+                {
+#ifdef STLSOFT_UNITTEST
+                    fprintf(stderr, "m_acquired (%lu) not less than m_current (%lu)\n", m_acquired, m_current);
+#endif /* STLSOFT_UNITTEST */
+                    return false;
+                }
+                if(m_quanta < m_current)
+                {
+#ifdef STLSOFT_UNITTEST
+                    fprintf(stderr, "m_quanta (%lu) not less than m_current (%lu)\n", m_quanta, m_current);
+#endif /* STLSOFT_UNITTEST */
+                    return false;
+                }
+                if(m_quanta < m_acquired)
+                {
+#ifdef STLSOFT_UNITTEST
+                    fprintf(stderr, "m_quanta (%lu) not less than m_acquired (%lu)\n", m_quanta, m_acquired);
+#endif /* STLSOFT_UNITTEST */
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    /// @}
 
     /// \name Implementation
     /// @{
@@ -467,10 +561,14 @@ public:
     /// \return An iterator representing the start of the sequence
     iterator begin() const
     {
+        COMSTL_ASSERT(is_valid());
+
         if(NULL != m_i)
         {
             m_i->Reset();
         }
+
+        COMSTL_ASSERT(is_valid());
 
         return iterator(m_i, m_quanta);
     }
@@ -479,8 +577,24 @@ public:
     /// \return An iterator representing the end of the sequence
     iterator end() const
     {
+        COMSTL_ASSERT(is_valid());
+
         return iterator();
     }
+
+/// \name Invariant
+/// @{
+private:
+    cs_bool_t is_valid() const
+    {
+        if(NULL == m_i)
+        {
+            return false;
+        }
+
+        return true;
+    }
+/// @}
 
 // Implementation
 private:
@@ -502,7 +616,7 @@ private:
     interface_type  *m_i;
     size_type const m_quanta;
 
-// Implementation
+// Not to be implemented
 private:
     enumerator_sequence(class_type const &);
     class_type const &operator =(class_type const &);

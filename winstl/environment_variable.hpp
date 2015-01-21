@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MINOR       1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        42
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,19 +71,19 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>      // Include the WinSTL get_environment_variable
+# include <winstl/filesystem_traits.hpp>      // for get_environment_variable()
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>          // winstl::c_str_ptr
+# include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -218,9 +218,11 @@ public:
 
 // Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, allocator_type>     buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   allocator_type
+                                        >       buffer_type_;
 
-    buffer_t    m_buffer;
+    buffer_type_    m_buffer;
 
 // Not to be implemented
 private:

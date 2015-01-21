@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_CONTROL_FUNCTIONALS_MAJOR      3
-# define WINSTL_VER_H_WINSTL_CONTROL_FUNCTIONALS_MINOR      1
+# define WINSTL_VER_H_WINSTL_CONTROL_FUNCTIONALS_MINOR      2
 # define WINSTL_VER_H_WINSTL_CONTROL_FUNCTIONALS_REVISION   1
-# define WINSTL_VER_H_WINSTL_CONTROL_FUNCTIONALS_EDIT       48
+# define WINSTL_VER_H_WINSTL_CONTROL_FUNCTIONALS_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/control_functionals.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

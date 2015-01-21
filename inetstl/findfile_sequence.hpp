@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MAJOR    2
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    5
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 1
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     84
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 #ifndef INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS
-# include <inetstl/filesystem_traits.hpp> // filesystem_traits
+# include <inetstl/filesystem_traits.hpp>
 #endif /* !INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
@@ -70,10 +70,10 @@
 # include <stlsoft/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>         // iterator_base
+# include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS
-# include <stlsoft/tokeniser_functions.hpp> // find_next_token
+# include <stlsoft/tokeniser_functions.hpp> // for find_next_token
 #endif /* !STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////

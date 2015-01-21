@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_POD_VECTOR_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_POD_VECTOR_MINOR       1
+# define STLSOFT_VER_H_STLSOFT_POD_VECTOR_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_POD_VECTOR_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_POD_VECTOR_EDIT        42
+# define STLSOFT_VER_H_STLSOFT_POD_VECTOR_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/pod_vector.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

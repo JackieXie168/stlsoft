@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_MAJOR       2
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_MINOR       2
 # define WINSTL_VER_H_WINSTL_REG_TRAITS_REVISION    1
-# define WINSTL_VER_H_WINSTL_REG_TRAITS_EDIT        44
+# define WINSTL_VER_H_WINSTL_REG_TRAITS_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_DEFS
-# include <winstl/reg_defs.hpp>               // The WinSTL reg API standard types
+# include <winstl/reg_defs.hpp>             // The WinSTL reg API standard types
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_DEFS */
 
 /* /////////////////////////////////////////////////////////////////////////////

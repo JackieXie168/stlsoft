@@ -4,7 +4,7 @@
  * Purpose:     Window icon scoping class.
  *
  * Created:     30th June 1999
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       35
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,10 +60,10 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>    // winstl::get_hwnd
+# include <winstl/window_access.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS
-# include <winstl/window_functions.h>   // set_window_icon
+# include <winstl/window_functions.h>   // for set_window_icon()
 #endif /* !WINSTL_INCL_WINSTL_H_WINDOW_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     18th December 2005
+ * Updated:     24th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     1
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      81
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  2
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,9 +78,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
-#include <iterator>    // std::iterator, std::reverse_iterator, std::reverse_bidirectional_iterator
+#include <iterator>    // for std::iterator, std::reverse_iterator, std::reverse_bidirectional_iterator
 
-#ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
+#ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED_XXXX
 # ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER
 #  include <stlsoft/typefixer/pointer.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER */
@@ -466,7 +466,7 @@ private:
 #endif /* STLSOFT_ITERATOR_ITERATOR_FORM?_SUPPORT */
 
 
-# ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED_XXX
+# ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED_XXXX
 private:
     // iterator_category
     enum { has_member_iterator_category     =   0 != has_iterator_category<parent_class_type>::value    };

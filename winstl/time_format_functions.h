@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     32
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -66,10 +66,10 @@
 # include <stlsoft/integer_to_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS
-# include <winstl/registry_functions.hpp>   // reg_get_string_value
+# include <winstl/registry_functions.hpp>   // for reg_get_string_value()
 #endif /* !WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -177,9 +177,11 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
                                             ,   C                   *lpTimeStr  // formatted string buffer
                                             ,   const int           cchTime)    // size of string buffer
 {
-    typedef C                                                                       char_t;
-    typedef time_format_functions_traits<char_t>                                    traits_t;
-    typedef stlsoft_ns_qual(auto_buffer)<char_t, processheap_allocator<char_t> >    buffer_t;
+    typedef C                                                               char_t;
+    typedef time_format_functions_traits<char_t>                            traits_t;
+    typedef stlsoft_ns_qual(auto_buffer)<   char_t
+                                        ,   processheap_allocator<char_t>
+                                        >                                   buffer_t;
 
     if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
     {
@@ -374,7 +376,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA_(  LCID                locale      
                                             ,   ws_char_a_t         *lpTimeStr  // formatted string buffer
                                             ,   const int           cchTime)    // size of string buffer
 {
-    typedef stlsoft_ns_qual(auto_buffer)<ws_char_a_t, processheap_allocator<ws_char_a_t> >  buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer)<   ws_char_a_t
+                                        ,   processheap_allocator<ws_char_a_t>
+                                        >                           buffer_t;
 
     if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
     {
@@ -562,7 +566,9 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
                                             ,   ws_char_w_t         *lpTimeStr  // formatted string buffer
                                             ,   const int           cchTime)    // size of string buffer
 {
-    typedef stlsoft_ns_qual(auto_buffer)<ws_char_w_t, processheap_allocator<ws_char_w_t> >  buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer)<   ws_char_w_t
+                                        ,   processheap_allocator<ws_char_w_t>
+                                        >                                   buffer_t;
 
     if(dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
     {
@@ -825,7 +831,9 @@ namespace unittest
         {
             using stlsoft::unittest::unittest_initialiser;
 
-            typedef stlsoft_ns_qual(auto_buffer)<char, processheap_allocator<char> >    buffer_a_t;
+            typedef stlsoft_ns_qual(auto_buffer)<   char
+                                                ,   processheap_allocator<char>
+                                                >                       buffer_a_t;
 
             ss_bool_t               bSuccess    =   true;
 

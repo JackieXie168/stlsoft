@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     15th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_PATH_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_HPP_PATH_MINOR     4
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      182
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,27 +60,27 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem_traits.hpp>       // filesystem_traits
+# include <unixstl/filesystem_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
-# include <unixstl/file_path_buffer.hpp>        // basic_file_path_buffer
+# include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>          // feature discrimination
+# include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>      // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
-# include <unixstl/string_access.hpp>           // unixstl::c_str_ptr
+# include <unixstl/string_access.hpp>           // for string access shims
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>             // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#include <stdexcept>                            // std::logic_error
+#include <stdexcept>                            // for std::logic_error
 #ifdef WIN32
 # include <ctype.h>
 #endif /* WIN32 */
@@ -627,6 +627,10 @@ inline /* ss_explicit_k */ basic_path<C, T, A>::basic_path(ss_typename_type_k ba
 
         m_len = cch;
     }
+    else
+    {
+        m_buffer[0] = '\0';
+    }
 }
 
 template<   ss_typename_param_k C
@@ -644,8 +648,8 @@ inline basic_path<C, T, A>::basic_path( ss_typename_type_k basic_path<C, T, A>::
         UNIXSTL_ASSERT(cch < m_buffer.size());
 
         traits_type::str_n_copy(&m_buffer[0], path, cch);
-        m_buffer[cch] = '\0';
     }
+    m_buffer[cch] = '\0';
 }
 
 template<   ss_typename_param_k C
@@ -897,7 +901,9 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(us_bool_t bRemoveT
     typedef ss_typename_type_k allocator_selector<part>::allocator_type     part_ator_type;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
-    typedef stlsoft_ns_qual(auto_buffer)<part, part_ator_type>              part_buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer)<   part
+                                        ,   part_ator_type
+                                        >                                   part_buffer_t;
 
     part_buffer_t   parts(this->length() / 2);  // Uncanonicalised directory parts
     char_type       *dest   =   &newPath.m_buffer[0];

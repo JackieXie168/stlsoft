@@ -1,5 +1,5 @@
-
-// Updated: 11th September 2005
+\
+// Updated: 23rd December 2005
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_STRING_FUNCTIONALS)
 # error This file cannot be directly included, and should only be included within stlsoft/string_functionals.hpp
@@ -18,46 +18,6 @@ namespace unittest
             ss_bool_t               bSuccess    =   true;
 
             unittest_initialiser    init(r, "STLSoft", "string_functionals", __FILE__);
-
-            typedef std::string             string_t;
-            typedef std::vector<string_t>   strings_t;
-
-            {
-                strings_t       strings;
-                string_t        result;
-
-                strings.push_back("abc");
-                strings.push_back("def");
-                strings.push_back("ghi");
-
-                std::copy(  strings.begin(), strings.end()
-                        ,   stlsoft::string_concatenator(result, ","));
-
-                if(result != "abc,def,ghi")
-                {
-                    r->report("string_concatenator() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
-
-            {
-                strings_t       strings;
-                string_t        result;
-                const string_t  sep(",");
-
-                strings.push_back("abc");
-                strings.push_back("def");
-                strings.push_back("ghi");
-
-                std::copy(  strings.begin(), strings.end()
-                        ,   stlsoft::string_concatenator(result, sep));
-
-                if(result != "abc,def,ghi")
-                {
-                    r->report("string_concatenator() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
 
             return bSuccess;
         }

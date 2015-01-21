@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_INETSTL_SEARCHSPEC_SEQUENCE_MAJOR    4
-# define STLSOFT_VER_H_INETSTL_SEARCHSPEC_SEQUENCE_MINOR    1
+# define STLSOFT_VER_H_INETSTL_SEARCHSPEC_SEQUENCE_MINOR    2
 # define STLSOFT_VER_H_INETSTL_SEARCHSPEC_SEQUENCE_REVISION 1
-# define STLSOFT_VER_H_INETSTL_SEARCHSPEC_SEQUENCE_EDIT     27
+# define STLSOFT_VER_H_INETSTL_SEARCHSPEC_SEQUENCE_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include inetstl/searchspec_sequence.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
