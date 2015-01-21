@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  15th May 2009
+; Updated:  19th May 2009
 
 ============================================================================
 
@@ -15,6 +15,40 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.83 (19th May 2009)
+
+Summary:
+========
+
+ * fixed defects in winstl::basic_reg_value::value_sz()/value_multi_sz()
+ * fixed defects in exception-safety in winstl::basic_reg_value and winstl::basic_reg_key
+ * various minor fixes and documentation mods
+
+Changes:
+========
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/registry/reg_key.hpp:
+    ~ corrected exception-safety defect (by reversing the order of m_name and m_hkey)
+    ~ added required dependency on <functional>
+    ~ documentation simplification
+
+ ~ include/winstl/registry/reg_traits.hpp:
+    + added reg_dup_key()
+    - deprecated key_dup()
+    ~ linearising behaviour between operating systems
+    ~ tightening type-conversions
+    ~ documentation simplification
+
+ ~ include/winstl/registry/reg_value.hpp:
+    ~ modifications to value_multi_sz() and value_sz() to avoid possible race conditions (with registry changes made by other processes)
+    ~ corrected exception-safety defect (by reversing the order of m_name and m_hkey)
+    ~ documentation simplification
 
 ============================================================================
 

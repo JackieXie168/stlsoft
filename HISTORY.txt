@@ -2,9 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  15th May 2009
+; Updated:  19th May 2009
 
 ============================================================================
+
+
+19th May 2009 - 1.9.83 released
+-------------------------------
+
+ * fixed defects in winstl::basic_reg_value::value_sz()/value_multi_sz()
+ * fixed defects in exception-safety in winstl::basic_reg_value and winstl::basic_reg_key
+ * various minor fixes and documentation mods
 
 
 15th May 2009 - 1.9.82 released
