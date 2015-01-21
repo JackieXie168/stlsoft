@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  8th November 2010
+; Updated:  21st November 2010
 
 ============================================================================
 
@@ -15,6 +15,29 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.103 (21st November 2010)
+
+Summary:
+========
+
+ * changed mechanism of discriminating Dinkumware standard library versions
+ * added typedefs for path_a and path_w to introduce them into the platformstl namespace
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/platformstl/filesystem/path.hpp:
+    + added typedefs for path_a and path_w to introduce them into the platformstl namespace
+
+ ~ include/stlsoft/util/std/library_discriminator.hpp:
+    ~ changed mechanism of discriminating Dinkumware standard library versions: for versions with VC++ 7.0+ the library pre-processor symbol _CPPLIB_VER is the trusted authority
 
 
 ============================================================================
