@@ -4,7 +4,7 @@
  * Purpose:     Miscellaneous undocumented features.
  *
  * Created:     20th October 1994
- * Updated:     10th January 2007
+ * Updated:     23rd April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MAJOR       4
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MINOR       0
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_REVISION    1
-#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        34
+#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ namespace winstl_project
 
 /** \brief get_undoc_clipboard_fmt__
  *
- * ingpoup group__library__utility
+ * \ingroup group__library__utility
  *
  * \note This has to be implemented as a class, because the function version
  * does not correctly work in respect of the static. Specifically, it does not

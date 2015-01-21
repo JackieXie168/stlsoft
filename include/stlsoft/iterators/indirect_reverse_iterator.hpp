@@ -4,7 +4,7 @@
  * Purpose:     indirect_reverse_iterator class template.
  *
  * Created:     7th June 2005
- * Updated:     22nd March 2007
+ * Updated:     23rd April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MINOR      2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       28
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   6
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,9 +92,10 @@ namespace stlsoft
  * Classes
  */
 
-/** \brief This class template provides the same services as std::reverse_iterator, but
- * uses pointers in order to facilitate reverse adaptation of incompletely
- * defined types, such as forward-declared member classes
+/** \brief This class template provides the same services as
+ * std::reverse_iterator, but uses pointers in order to facilitate reverse
+ * adaptation of incompletely defined types, such as forward-declared member
+ * classes.
  *
  * \ingroup group__library__iterators
  *
@@ -177,9 +178,13 @@ public:
     {
         return *(*m_it.get() - 1);
     }
+    // Define STLSOFT_INDIRECT_REVERSE_ITERATOR_ALLOW_PTR2MEMBER to
+    // force provision of operator ->() for compilers for which it
+    // is not normally provided.
 #if defined(STLSOFT_INDIRECT_REVERSE_ITERATOR_ALLOW_PTR2MEMBER) || \
-    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-        _MSC_VER > 1300)
+    (   !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+        (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+            _MSC_VER > 1300))
     pointer operator ->() const
     {
         return &*m_it.get();

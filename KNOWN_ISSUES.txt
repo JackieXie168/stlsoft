@@ -1,0 +1,22 @@
+============================================================================
+STLSoft - Known Issues:
+
+; Created:  29th March 2002
+; Updated:  30th April 2007
+
+============================================================================
+
+
+STLSoft 1.9.1 Known Issues:
+---------------------------
+
+ * There are some problems with GCC 4.0 in compiling the fixed array classes
+   with the subscript operators.
+
+ * The GCC atomic integer APIs are not yet used. This is planned for the
+   future.
+
+ * The documentation is still hopeless. This will be addressed in the next
+   few months.
+
+=============================== End of file ================================

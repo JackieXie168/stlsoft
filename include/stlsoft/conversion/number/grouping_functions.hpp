@@ -4,7 +4,7 @@
  * Purpose:     Number formatting functions.
  *
  * Created:     28th August 2005
- * Updated:     12th March 2007
+ * Updated:     22nd April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  3
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      9
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  4
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ inline ss_size_t format_thousands(  C           *dest
                                 ,   I const     &number
                                 )
 {
-    return format_thousands(dest, cchDest, picture, number, ';', ',');
+    return format_thousands<C, I>(dest, cchDest, picture, number, ';', ',');
 }
 
 /* /////////////////////////////////////////////////////////////////////////

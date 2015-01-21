@@ -4,7 +4,7 @@
  * Purpose:     Functions for initialising Win32 structures.
  *
  * Created:     20th October 1994
- * Updated:     29th January 2007
+ * Updated:     23rd April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       0
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    4
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        218
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        219
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,9 +89,9 @@ namespace winstl_project
  * Functions
  */
 
-/** \brief 
+/** \brief Initialises all elements of a structure to zero
  *
- * ingpoup group__library__utility
+ * \ingroup group__library__utility
  */
 template <ss_typename_param_k T>
 inline void zero_struct(T &t)
@@ -201,9 +201,10 @@ struct struct_has
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief 
+/** \brief Initialises all members of a structure to zero, and
+ *    sets the size member to the size of the structure.
  *
- * ingpoup group__library__utility
+ * \ingroup group__library__utility
  */
 template <ss_typename_param_k T>
 inline void init_struct(T &t)

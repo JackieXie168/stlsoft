@@ -1,0 +1,42 @@
+============================================================================
+STLSoft - TODO
+
+; Created:  29th March 2002
+; Updated:  30th April 2007
+
+============================================================================
+
+
+STLSoft 1.9.1 TODOs:
+====================
+
+? 1. STLSoft Documentation
+--------------------------
+
+Priority: high
+
+
+? 2. STLSoft Website
+--------------------
+
+Priority: high
+
+
+? 3. Allocator constructor parameters for the fixed array classes
+-----------------------------------------------------------------
+
+Priority: medium
+
+
+? 4. Interface pointers providing more succinct syntax for COM
+--------------------------------------------------------------
+
+Priority: medium
+
+
+
+
+
+
+
+=============================== End of file ================================

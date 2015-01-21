@@ -1,10 +1,5 @@
-#include <winstl/winstl.h>
 
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/shell/memory/functions.h")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#include <winstl/shell/memory/functions.h>
+#error This file is now obsolete. Instead include winstl/shell/memory/functions.h
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

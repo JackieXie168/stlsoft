@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     7th April 2007
+ * Updated:     23rd April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    3
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     18
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,7 +95,7 @@ namespace winstl_project
  */
 
 // class semaphore
-/** \brief This class acts as an semaphore based on the Win32
+/** This class acts as an semaphore based on the Win32
  *   kernel semaphore object
  *
  * \ingroup group__library__synch
@@ -107,23 +107,27 @@ class semaphore
     , public stlsoft_ns_qual(synchronisable_object_tag)
 {
 public:
+	/// This type
     typedef semaphore       class_type;
+	/// The synchronisation handle type
     typedef HANDLE          synch_handle_type;
+	/// The Boolean type
     typedef ws_bool_t       bool_type;
+	/// The count type
     typedef ws_size_t       count_type;
-
+	/// The resource type
     typedef HANDLE          resource_type;
 
 public:
     enum
     {
-        maxCountValue   =   0x7fffffff  // Borrowed from PThreads-win32
+        maxCountValue   =   0x7fffffff  ///!< Borrowed from PThreads-win32
     };
 
 /// \name Construction
 /// @{
 public:
-    /// \brief Conversion constructor
+    /// Conversion constructor
     semaphore(synch_handle_type sem, bool_type bTakeOwnership)
         : m_sem(sem)
         , m_maxCount(0)
@@ -131,7 +135,7 @@ public:
     {
         WINSTL_ASSERT(NULL != sem);
     }
-    /// \brief Creates an instance of the semaphore
+    /// Creates an instance of the semaphore
     ss_explicit_k semaphore(count_type initialCount, count_type maxCount = maxCountValue)
         : m_sem(create_semaphore_(NULL, initialCount, maxCount, static_cast<ws_char_a_t const*>(NULL)))
         , m_maxCount(maxCount)
@@ -145,32 +149,32 @@ public:
         , m_bOwnHandle(true)
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-    /// \brief Creates an instance of the semaphore
+    /// Creates an instance of the semaphore
     ss_explicit_k semaphore(ws_char_a_t const* name, count_type initialCount, count_type maxCount = maxCountValue)
         : m_sem(create_semaphore_(NULL, initialCount, maxCount, name))
         , m_maxCount(maxCount)
         , m_bOwnHandle(true)
     {}
-    /// \brief Creates an instance of the semaphore
+    /// Creates an instance of the semaphore
     ss_explicit_k semaphore(ws_char_w_t const* name, count_type initialCount, count_type maxCount = maxCountValue)
         : m_sem(create_semaphore_(NULL, initialCount, maxCount, name))
         , m_maxCount(maxCount)
         , m_bOwnHandle(true)
     {}
-    /// \brief Creates an instance of the semaphore
+    /// Creates an instance of the semaphore
     ss_explicit_k semaphore(ws_char_a_t const* name, LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount = maxCountValue)
         : m_sem(create_semaphore_(psa, initialCount, maxCount, name))
         , m_maxCount(maxCount)
         , m_bOwnHandle(true)
     {}
-    /// \brief Creates an instance of the semaphore
+    /// Creates an instance of the semaphore
     ss_explicit_k semaphore(ws_char_w_t const* name, LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount = maxCountValue)
         : m_sem(create_semaphore_(psa, initialCount, maxCount, name))
         , m_maxCount(maxCount)
         , m_bOwnHandle(true)
     {}
 
-    /// \brief Destroys an instance of the semaphore
+    /// Destroys an instance of the semaphore
     ~semaphore() stlsoft_throw_0()
     {
         if( NULL != m_sem &&
@@ -184,7 +188,7 @@ public:
 /// \name Operations
 /// @{
 public:
-    /// \brief Acquires a lock on the semaphore, pending the thread until the lock is aquired
+    /// Acquires a lock on the semaphore, pending the thread until the lock is aquired
     void lock()
     {
         WINSTL_ASSERT(NULL != m_sem);
@@ -198,7 +202,7 @@ public:
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
-    /// \brief Acquires a lock on the semaphore, pending the thread until the lock is aquired
+    /// Acquires a lock on the semaphore, pending the thread until the lock is aquired
     bool_type lock(ws_dword_t wait)
     {
         WINSTL_ASSERT(NULL != m_sem);
@@ -215,14 +219,14 @@ public:
 
         return (dwRes == WAIT_OBJECT_0);
     }
-    /// \brief Attempts to lock the semaphore
+    /// Attempts to lock the semaphore
     ///
     /// \return <b>true</b> if the semaphore was aquired, or <b>false</b> if not
     bool_type try_lock()
     {
         return lock(0);
     }
-    /// \brief Releases an aquired lock on the semaphore, increasing the
+    /// Releases an aquired lock on the semaphore, increasing the
     ///  semaphore's counter by one.
     ///
     /// \note Equivalent to \link winstl::semaphore::unlock(count_type) unlock()\endlink.
@@ -237,7 +241,7 @@ public:
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
-    /// \brief Releases a number of aquired "locks" on the semaphore,
+    /// Releases a number of aquired "locks" on the semaphore,
     ///  increasing the semaphore's counter by the given value.
     ///
     /// \param numLocksToRelease The number by which to increment the
@@ -273,12 +277,12 @@ public:
 /// \name Accessors
 /// @{
 public:
-    /// \brief The underlying kernel object handle
+    /// The underlying kernel object handle
     synch_handle_type handle()
     {
         return m_sem;
     }
-    /// \brief The underlying kernel object handle
+    /// The underlying kernel object handle
     synch_handle_type get()
     {
         return m_sem;
@@ -333,7 +337,7 @@ private:
  * Shims
  */
 
-/** \brief Overload of the form of the winstl::get_synch_handle() shim for
+/** Overload of the form of the winstl::get_synch_handle() shim for
  *    the winstl::semaphore type.
  *
  * \param sem The winstl::semaphore instance
@@ -345,7 +349,7 @@ inline HANDLE get_synch_handle(semaphore &sem)
     return sem.get();
 }
 
-/** \brief Overload of the form of the winstl::get_kernel_handle() shim for
+/** Overload of the form of the winstl::get_kernel_handle() shim for
  *    the winstl::semaphore type.
  *
  * \ingroup group__library__shims__kernel_handle_attribute
@@ -369,7 +373,7 @@ inline HANDLE get_kernel_handle(semaphore &sem)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/** \brief This \ref group__concept__shims "control shim" aquires a lock on the given semaphore
+/** This \ref group__concept__shims "control shim" aquires a lock on the given semaphore
  *
  * \ingroup group__concept__shim__synchronisation_control
  *
@@ -380,7 +384,7 @@ inline void lock_instance(winstl_ns_qual(semaphore) &sem)
     sem.lock();
 }
 
-/** \brief This \ref group__concept__shims "control shim" releases a lock on the given semaphore
+/** This \ref group__concept__shims "control shim" releases a lock on the given semaphore
  *
  * \ingroup group__concept__shim__synchronisation_control
  *
@@ -409,7 +413,7 @@ using ::stlsoft::unlock_instance;
  */
 
 // class lock_traits
-/** \brief Traits for the semaphore class
+/** Traits for the semaphore class
  *
  * \ingroup group__library__synch
  */
