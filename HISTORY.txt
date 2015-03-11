@@ -2,10 +2,19 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  10th October 2008
+; Updated:  16th October 2008
 
 ============================================================================
 
+
+16th October 2008 - 1.9.58 released
+-----------------------------------
+
+ * fixed major defect introduced in 1.9.52 to WinSTL's time string access
+   shims
+ * fixed minor defects in COMSTL's VARIANT string access shims
+ * fixed defect in documentation generation whereby examples were omitted
+ * reduced compilation dependencies in STLSoft's time string access shims
 
 10th October 2008 - 1.9.57 released
 -----------------------------------

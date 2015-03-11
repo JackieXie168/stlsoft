@@ -5,7 +5,7 @@
  *              information about the host system version.
  *
  * Created:     10th February 2002
- * Updated:     1st October 2008
+ * Updated:     13th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MAJOR      4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_MINOR      0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_REVISION   2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_EDIT       52
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_VERSION_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,14 +101,13 @@ namespace winstl_project
  */
 class system_version
 {
-public:
+public: /// Member Types
     /// This type
     typedef system_version class_type;
 
-// Operations
-public:
+public: /// Accessors
 
-    // Operating system type
+public: /// Accessors:Operating System Type
 
     /// Returns \c true if the operating system is one of the NT family (NT, 2000, XP, .NET)
     static ws_bool_t winnt();
@@ -119,8 +118,7 @@ public:
     /// Returns \c true if the operating system is Win32s
     static ws_bool_t win32s();
 
-    // Operating system version
-
+public: /// Accessors:Operating System Version
     /// Returns the operating system major version
     static ws_uint_t major();
 
@@ -132,8 +130,7 @@ public:
     /// Returns the operating system build number
     static ws_uint32_t build_number();
 
-    // Structure access
-
+public: /// Accessors
     /// Provides a non-mutable (const) reference to the \c OSVERSIONINFO instance
     static OSVERSIONINFO const& get_versioninfo();
 

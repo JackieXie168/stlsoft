@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     22nd September 2008
+ * Updated:     15th October 2008
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    5
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        51
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    6
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
 #ifndef WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS
 # include <winstl/time/format_functions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
-# include <stlsoft/shims/access/string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING
+# include <stlsoft/shims/access/string/std/c_string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
 # include <stlsoft/string/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
@@ -240,7 +240,7 @@ inline void stream_insert(S &stm, SYSTEMTIME const& t)
             // two preceeding calls, we guard against an unterminated
             // C-style string by forcibly appending the nul-terminator that
             // GetTimeFormat() will do for us normally.
-            s.data()[cchTotal - 1] = '\0';
+            s.data()[cchTotal] = '\0';
         }
 
         stm << s.data();
@@ -304,7 +304,7 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME co
         // two preceeding calls, we guard against an unterminated
         // C-style string by forcibly appending the nul-terminator that
         // GetTimeFormat() will do for us normally.
-        s.data()[cchTotal - 1] = '\0';
+        s.data()[cchTotal] = '\0';
     }
 
     return s;
@@ -345,7 +345,7 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME co
         // two preceeding calls, we guard against an unterminated
         // C-style string by forcibly appending the nul-terminator that
         // GetTimeFormat() will do for us normally.
-        s.data()[cchTotal - 1] = '\0';
+        s.data()[cchTotal] = '\0';
     }
 
     return s;
