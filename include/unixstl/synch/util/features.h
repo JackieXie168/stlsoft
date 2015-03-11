@@ -100,8 +100,8 @@
 # endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
 # if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) || \
-	 defined(_WIN32) || \
-	 defined(UNIXSTL_OS_IS_MACOSX)
+     defined(_WIN32) || \
+     defined(UNIXSTL_OS_IS_MACOSX)
 #  define UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 # endif
 

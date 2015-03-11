@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     16th November 2007
+ * Updated:     18th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -118,7 +118,7 @@
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   7
+#define _STLSOFT_VER_REVISION   8
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
 # define _STLSOFT_VER_1_0_2     0x00010002  /*!< Version 1.0.2 */
@@ -173,10 +173,11 @@
 # define _STLSOFT_VER_1_9_4     0x010904ff  /*!< Version 1.9.4 (2nd Aug 2007) */
 # define _STLSOFT_VER_1_9_5     0x010905ff  /*!< Version 1.9.5 (4th Aug 2007) */
 # define _STLSOFT_VER_1_9_6     0x010906ff  /*!< Version 1.9.6 (6th Aug 2007) */
-# define _STLSOFT_VER_1_9_7     0x010907ff  /*!< Version 1.9.7 (9th Nov 2007) */
+# define _STLSOFT_VER_1_9_7     0x010907ff  /*!< Version 1.9.7 (16th Nov 2007) */
+# define _STLSOFT_VER_1_9_8     0x010908ff  /*!< Version 1.9.8 (18th Nov 2007) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_7
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_8
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros

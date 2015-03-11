@@ -4,7 +4,11 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     2nd June 2007
+ * Updated:     18th November 2007
+ *
+ * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
+ *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
+ *              pre-processor hack around retrievalQuanta are the result. ;)
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 8
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     97
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 9
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -232,8 +236,12 @@ public:
     typedef ss_typename_type_k enumerator_sequence_type::cloning_policy_type    cloning_policy_type;
     /// \brief Iterator tag type
     typedef ss_typename_type_k enumerator_sequence_type::iterator_tag_type      iterator_tag_type;
+#ifdef STLSOFT_COMPILER_IS_BORLAND
+# define retrievalQuanta                                                        Q
+#else /* ? compiler */
     /// \brief Retrieval quanta
     enum                                                                      { retrievalQuanta = enumerator_sequence_type::retrievalQuanta };
+#endif /* compiler */
     /// \brief The policy for acquiring the enumerator from the collection
     typedef EAP                                                                 enumerator_acquisition_policy_type;
     /// \brief Type of the current parameterisation
@@ -407,6 +415,13 @@ private:
     collection_sequence(class_type const&);
     class_type const& operator =(class_type const&);
 };
+
+////////////////////////////////////////////////////////////////////////////
+// Compiler compatibility
+
+#ifdef STLSOFT_COMPILER_IS_BORLAND
+# undef retrievalQuanta
+#endif /* compiler */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  16th November 2007
+; Updated:  18th November 2007
 
 ============================================================================
 
@@ -17,31 +17,60 @@ Bug reports, fixes and suggestions (for which we are very grateful):
 
     Adi Shavit
     Allan McLellan
+	Anders F Björklund
+	Andrew Bond
     Anton Sekeris
+	Bart van der Velden
     Bjorn Karlsson
     Brad Cox
     Carlos Santander Bernal
+	chenchang
     Chris Newcombe
+	Christopher Diggins
     Cláudio Albuquerque
+	Dave Brooks
     David Wang
     Diego Chanoux
+	Dimitri Kaparis
+    Eduardo Bezerra
     Eugene Gershnik
     Felix Gartsman
     Gabor Fischer
+	Greg Peet
+	HeartIcy
     Kevlin Henney
+	Ilya Minkov
+	Javier Estrada
+	John Abney
+	Joseph McCay
+	Julio César Carrascal Urquijo
     Luoyi
+	Marc Kamradt
     Martin J Moene
+	Mateusz Loskot
     Mikael Pahmp
+    Mike Batten
     Neal Becker
     Nevin Liber
     Pablo Aguilar
+	Pavel Vozenilek
     Peter Bannister
+	Peter Schregle
+	Raindog
     Robert Kreger
     Rupert Kittinger
     Ryan Ginstrom
+	Sean Kelly
+	Shawn Poulson
     Scott Meyers
+	Scott Michel
     Scott Patterson
     Sean Kelly
+    Vivi Orunitia
+	Victor T
+	Volker Lukas
+	W³odzimierz Skiba
+	Yakov Markovitch
 
     and many others who's posts and requests have been invaluable
 

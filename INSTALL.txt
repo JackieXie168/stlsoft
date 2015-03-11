@@ -2,7 +2,7 @@
 STLSoft - Install
 
 ; Created:  29th March 2002
-; Updated:  16th November 2007
+; Updated:  18th November 2007
 
 ============================================================================
 
