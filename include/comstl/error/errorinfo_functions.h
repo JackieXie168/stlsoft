@@ -4,7 +4,7 @@
  * Purpose:     Error info functions.
  *
  * Created:     5th Feburary 2004
- * Updated:     6th January 2010
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 4
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     42
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -344,6 +344,7 @@ namespace comstl
  */
 
 #ifdef __cplusplus
+
 /** \brief Sets the description of the current error object to the given ANSI string
  *
  * \ingroup group__library__error
@@ -413,6 +414,7 @@ inline HRESULT set_error_info(cs_char_w_t const* description, cs_char_w_t const*
 {
     return comstl__set_error_info_w_(description, source, &guid, NULL, NULL);
 }
+
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////

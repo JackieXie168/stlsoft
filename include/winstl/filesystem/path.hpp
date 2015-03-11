@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     30th January 2010
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 17
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     256
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 18
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     258
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -483,7 +483,7 @@ private:
     typedef stlsoft_ns_qual(auto_buffer_old)<   part_type
                                             ,   part_ator_type_
 # ifdef WIN32
-                                            ,   _MAX_PATH / 2
+                                            ,   WINSTL_CONST_MAX_PATH / 2
 # endif /* OS */
                                             >                                   part_buffer_type_;
 

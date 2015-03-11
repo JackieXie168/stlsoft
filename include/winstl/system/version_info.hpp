@@ -4,11 +4,11 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     10th August 2009
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 6
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     123
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 7
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1070,7 +1070,7 @@ inline VsStringFileInfo version_info::StringFileInfo() const
 inline /* static */ VS_VERSIONINFO_hdr const* version_info::retrieve_module_info_block_(ws_char_a_t const* moduleName)
 {
 #ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
-    ws_char_a_t                         buffer[1 + _MAX_PATH];
+    ws_char_a_t                         buffer[1 + WINSTL_CONST_MAX_PATH];
 #else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
     basic_file_path_buffer<ws_char_a_t> buffer;
 #endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
@@ -1143,7 +1143,7 @@ inline /* static */ VS_VERSIONINFO_hdr const* version_info::retrieve_module_info
 inline /* static */ VS_VERSIONINFO_hdr const* version_info::retrieve_module_info_block_(ws_char_w_t const* moduleName)
 {
 #ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
-    ws_char_w_t                         buffer[1 + _MAX_PATH];
+    ws_char_w_t                         buffer[1 + WINSTL_CONST_MAX_PATH];
 #else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
     basic_file_path_buffer<ws_char_w_t> buffer;
 #endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */

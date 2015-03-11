@@ -4,13 +4,13 @@
  * Purpose:     Shell file operations.
  *
  * Created:     12th December 1996
- * Updated:     10th August 2009
+ * Updated:     15th February 2010
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2010, Matthew Wilson and Synesis Software
  * Copyright (c) 2005, Pablo Aguilar
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MINOR      1
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   2
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       87
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   3
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -112,7 +112,7 @@ inline int shell_delete_a_(HWND hwnd, ws_char_a_t const* from, ws_char_a_t const
 {
     WINSTL_MESSAGE_ASSERT("Null string cannot be specified", NULL != from);
 
-    typedef auto_buffer<ws_char_a_t, 2 + _MAX_PATH, shell_allocator<ws_char_a_t> >  buffer_t;
+    typedef auto_buffer<ws_char_a_t, 2 + WINSTL_CONST_MAX_PATH, shell_allocator<ws_char_a_t> >  buffer_t;
 
     ws_size_t   cch =   static_cast<ws_size_t>(::lstrlenA(from));
     buffer_t    buff(1 + cch + 1);
@@ -160,7 +160,7 @@ inline int shell_delete_w_(HWND hwnd, ws_char_w_t const* from, ws_char_w_t const
 {
     WINSTL_MESSAGE_ASSERT("Null string cannot be specified", NULL != from);
 
-    typedef auto_buffer<ws_char_w_t, 2 + _MAX_PATH, shell_allocator<ws_char_w_t> >  buffer_t;
+    typedef auto_buffer<ws_char_w_t, 2 + WINSTL_CONST_MAX_PATH, shell_allocator<ws_char_w_t> >  buffer_t;
 
     ws_size_t   cch =   static_cast<ws_size_t>(::lstrlenW(from));
     buffer_t    buff(1 + cch + 1);

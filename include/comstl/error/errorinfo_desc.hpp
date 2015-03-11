@@ -4,11 +4,11 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     10th August 2009
+ * Updated:     15th February 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       5
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    7
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        31
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    8
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ public:
         , m_description_a(NULL)
         , m_len(0)
     {
-        IErrorInfo  *pei;
+        IErrorInfo* pei;
 
         if(S_OK == ::GetErrorInfo(0, &pei))
         {
@@ -133,7 +133,7 @@ public:
             pei->Release();
         }
     }
-    errorinfo_desc(IErrorInfo *pei)
+    errorinfo_desc(IErrorInfo* pei)
         : m_description(NULL)
         , m_description_a(NULL)
     {
@@ -190,7 +190,7 @@ private:
         {
             int cch = ::WideCharToMultiByte(0, 0, m_description, -1, NULL, 0, NULL, NULL);
 
-            m_description_a = (char*)::CoTaskMemAlloc((1 + cch) * sizeof(char));
+            m_description_a = static_cast<char*>(::CoTaskMemAlloc((1 + cch) * sizeof(char)));
 
             if(NULL == m_description_a)
             {
@@ -207,7 +207,7 @@ private:
         return (NULL == m_description_a) ? "" : m_description_a;
     }
 
-    static void get_description(IErrorInfo *pei, BSTR &description, cs_size_t &len)
+    static void get_description(IErrorInfo* pei, BSTR& description, cs_size_t& len)
     {
         BSTR    bstr;
 
@@ -259,7 +259,7 @@ private:
 /// @{
 private:
     BSTR        m_description;
-    char        *m_description_a;
+    char*       m_description_a;
     cs_size_t   m_len;
 /// @}
 

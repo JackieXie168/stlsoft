@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     10th August 2009
+ * Updated:     15th February 2010
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in seource and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        121
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        123
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -501,7 +501,7 @@ public:
 
         if(0 == cchBuffer)
         {
-            char_type   buff[1 + _MAX_PATH];
+            char_type   buff[1 + WINSTL_CONST_MAX_PATH];
 
             return get_module_filename(hModule, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
         }
@@ -882,7 +882,7 @@ public:
 
         if(0 == cchBuffer)
         {
-            char_type   buff[1 + _MAX_PATH];
+            char_type   buff[1 + WINSTL_CONST_MAX_PATH];
             size_type   cch =   get_module_filename(hModule, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
 
             if(0 == str_compare(L"\\\\?\\", buff))
