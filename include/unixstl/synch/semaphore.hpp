@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on POSIX semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     10th January 2007
+ * Updated:     15th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     12
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
-#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS
-# include <unixstl/synch/exceptions.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS */
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+# include <unixstl/synch/error/exceptions.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 
 #include <errno.h>
 #include <semaphore.h>
@@ -301,19 +301,6 @@ inline void unlock_instance(unixstl_ns_qual(semaphore) &sem)
 {
     sem.unlock();
 }
-
-
-#if 0
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1310
-/** \brief Access shim
- */
-inline HANDLE get_handle(semaphore &sem)
-{
-    return sem.get();
-}
-#endif /* compiler */
-#endif /* 0 */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \

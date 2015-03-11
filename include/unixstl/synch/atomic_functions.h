@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     14th January 2007
+ * Updated:     15th January 2007
  *
  * Thanks:      To Brad Cox, for helping out in testing and fixing the
  *              implementation for MAC OSX (Intel).
@@ -51,10 +51,10 @@
 #define UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      195
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     6
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     0
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      196
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,21 +64,18 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
-#if defined(_WIN32)
-# if 1 || !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES
+# include <unixstl/synch/util/features.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES */
+
+#ifdef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
+# ifdef UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS
+# elif defined(_WIN32)
 #  include <windows.h>
-# endif /* !UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS */
-#elif defined(UNIXSTL_OS_IS_LINUX)
-# if defined(UNIXSTL_ARCH_IS_INTEL)
-   /* Nothing needed in current version */
-# else /* ? arch */
-#  include <asm/atomic.h>
-# endif /* arch */
-#elif defined(UNIXSTL_OS_IS_MACOSX)
-# include <libkern/OSAtomic.h>
-#else /* ? arch */
-# error Currently only defined for Intel (Linux) and Power-PC architectures.
-#endif /* ? arch */
+# elif defined(UNIXSTL_OS_IS_MACOSX)
+#  include <libkern/OSAtomic.h>
+# endif /* architecture */
+#endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -106,19 +103,18 @@ namespace unixstl_project
  * Typedefs
  */
 
-#if defined(_WIN32)
+#ifdef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
+# ifdef UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS
+#  ifndef UNIXSTL_FORCED_ATOMIC_INT_T
+#   error If you are forcing atomic integer support (by defining UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) you must also define UNIXSTL_FORCED_ATOMIC_INT_T
+#  endif /* UNIXSTL_FORCED_ATOMIC_INT_T */
+typedef UNIXSTL_FORCED_ATOMIC_INT_T atomic_int_t;
+# elif defined(_WIN32)
 typedef us_sint32_t                 atomic_int_t;
-#elif defined(UNIXSTL_OS_IS_LINUX)
-# if defined(UNIXSTL_ARCH_IS_INTEL)
-typedef us_sint32_t                 atomic_int_t;
-# else /* ? arch */
-typedef atomic_t                    atomic_int_t;
-# endif /* arch */
-#elif defined(UNIXSTL_OS_IS_MACOSX)
+# elif defined(UNIXSTL_OS_IS_MACOSX)
 typedef STLSOFT_NS_GLOBAL(int32_t)  atomic_int_t;
-#else /* ? architecture */
-typedef us_sint32_t                 atomic_int_t;
-#endif /* architecture */
+# endif /* architecture */
+#endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Features
@@ -211,22 +207,26 @@ typedef us_sint32_t                 atomic_int_t;
  */
 # define UNIXSTL_HAS_ATOMIC_POSTADD
 
-
-
-#elif defined(_WIN32)
-# if !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
+#elif defined(UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS)
+# ifdef UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS
+#  ifndef UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS
+#   error If you are forcing atomic integer support (by defining UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) you must also define UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS
+#  endif /* UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS */
+#  include UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS
+# elif defined(_WIN32)
+#  if !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
 
 STLSOFT_INLINE atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
 }
-#  define UNIXSTL_HAS_ATOMIC_PREINCREMENT
+#   define UNIXSTL_HAS_ATOMIC_PREINCREMENT
 
 STLSOFT_INLINE atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
 }
-#  define UNIXSTL_HAS_ATOMIC_PREDECREMENT
+#   define UNIXSTL_HAS_ATOMIC_PREDECREMENT
 
 STLSOFT_INLINE atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
 {
@@ -236,7 +236,7 @@ STLSOFT_INLINE atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
 
     return pre;
 }
-#  define UNIXSTL_HAS_ATOMIC_POSTINCREMENT
+#   define UNIXSTL_HAS_ATOMIC_POSTINCREMENT
 
 STLSOFT_INLINE atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
 {
@@ -246,21 +246,21 @@ STLSOFT_INLINE atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
 
     return pre;
 }
-#  define UNIXSTL_HAS_ATOMIC_POSTDECREMENT
+#   define UNIXSTL_HAS_ATOMIC_POSTDECREMENT
 
 STLSOFT_INLINE void atomic_increment(atomic_int_t volatile *pl)
 {
     STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
 }
-#  define UNIXSTL_HAS_ATOMIC_INCREMENT
+#   define UNIXSTL_HAS_ATOMIC_INCREMENT
 
 STLSOFT_INLINE void atomic_decrement(atomic_int_t volatile *pl)
 {
     STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
 }
-#  define UNIXSTL_HAS_ATOMIC_DECREMENT
+#   define UNIXSTL_HAS_ATOMIC_DECREMENT
 
-# endif /* !UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS */
+#  endif /* !UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS */
 
 /* NOTE: We allow atomic_write(), since on almost all platforms this'll be fine */
 
@@ -270,13 +270,13 @@ STLSOFT_INLINE atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t
 }
 #  define UNIXSTL_HAS_ATOMIC_WRITE
 
-# if !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
+#  if !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
 
 STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile *pv)
 {
     return *pv;
 }
-#  define UNIXSTL_HAS_ATOMIC_READ
+#   define UNIXSTL_HAS_ATOMIC_READ
 
 /* STLSOFT_INLINE */ atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n);
 
@@ -284,60 +284,11 @@ STLSOFT_INLINE atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int
 {
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
 }
-#  define UNIXSTL_HAS_ATOMIC_POSTADD
+#   define UNIXSTL_HAS_ATOMIC_POSTADD
 
-# endif /* !UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS */
+#  endif /* !UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS */
 
-#elif defined(UNIXSTL_OS_IS_LINUX)
-# if defined(UNIXSTL_ARCH_IS_INTEL)
-
-/** \brief 
- *
- * \ingroup group__library__synch
- */
-STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile *pv)
-{
-    /* STLSOFT_NS_GLOBAL(mb)(); */
-
-    return *pv;
-}
-# define UNIXSTL_HAS_ATOMIC_READ
-
-/** \brief 
- *
- * \ingroup group__library__synch
- */
-STLSOFT_INLINE atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
-{
-    atomic_int_t    oldval;
-
-    /* Note: the "xchg" instruction does not need a "lock" prefix */
-#ifdef STLSOFT_COMPILER_IS_GCC
-    __asm__ __volatile__(   "xchgl %0, %1"      /* long (32-bit) xchg, from */
-                        :   "=r"(oldval),   "=m"(*(pv))
-                        :   "0"(n),         "m"(*(pv))
-                        :   "memory");
-#else /* ? compiler */
-    _asm
-    {
-        mov ecx, dword ptr [pv]
-        mov eax, n
-        xchg dword ptr [ecx], eax
-        mov oldval, eax
-    }
-#endif /* compiler */
-
-    return oldval;
-}
-# define UNIXSTL_HAS_ATOMIC_WRITE
-
-# else /* ? arch */
-
-#  error Currently only defined for Intel Linuxen; If you would like to contribute for your platform, you would be most welcome.
-
-# endif /* arch */
-
-#elif defined(UNIXSTL_OS_IS_MACOSX)
+# elif defined(UNIXSTL_OS_IS_MACOSX)
 
 /** \brief 
  *
@@ -347,7 +298,7 @@ STLSOFT_INLINE atomic_int_t atomic_preincrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
-# define UNIXSTL_HAS_ATOMIC_PREINCREMENT
+#  define UNIXSTL_HAS_ATOMIC_PREINCREMENT
 
 /** \brief 
  *
@@ -357,7 +308,7 @@ STLSOFT_INLINE atomic_int_t atomic_predecrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
-# define UNIXSTL_HAS_ATOMIC_PREDECREMENT
+#  define UNIXSTL_HAS_ATOMIC_PREDECREMENT
 
 /** \brief 
  *
@@ -367,7 +318,7 @@ STLSOFT_INLINE atomic_int_t atomic_postincrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl)) - 1;
 }
-# define UNIXSTL_HAS_ATOMIC_POSTINCREMENT
+#  define UNIXSTL_HAS_ATOMIC_POSTINCREMENT
 
 /** \brief 
  *
@@ -377,7 +328,7 @@ STLSOFT_INLINE atomic_int_t atomic_postdecrement(atomic_int_t volatile *pl)
 {
     return STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl)) + 1;
 }
-# define UNIXSTL_HAS_ATOMIC_POSTDECREMENT
+#  define UNIXSTL_HAS_ATOMIC_POSTDECREMENT
 
 /** \brief 
  *
@@ -387,7 +338,7 @@ STLSOFT_INLINE void atomic_increment(atomic_int_t volatile *pl)
 {
     STLSOFT_NS_GLOBAL(OSAtomicIncrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
-# define UNIXSTL_HAS_ATOMIC_INCREMENT
+#  define UNIXSTL_HAS_ATOMIC_INCREMENT
 
 /** \brief 
  *
@@ -397,7 +348,7 @@ STLSOFT_INLINE void atomic_decrement(atomic_int_t volatile *pl)
 {
     STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(stlsoft_const_cast(atomic_int_t*, pl));
 }
-# define UNIXSTL_HAS_ATOMIC_DECREMENT
+#  define UNIXSTL_HAS_ATOMIC_DECREMENT
 
 /** \brief 
  *
@@ -420,7 +371,7 @@ STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile *pv)
 
     return *pv;
 }
-# define UNIXSTL_HAS_ATOMIC_READ
+#  define UNIXSTL_HAS_ATOMIC_READ
 
 /** \brief 
  *
@@ -430,7 +381,7 @@ STLSOFT_INLINE atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_
 {
     return STLSOFT_NS_GLOBAL(OSAtomicAdd32Barrier)(n, stlsoft_const_cast(atomic_int_t*, pl));
 }
-# define UNIXSTL_HAS_ATOMIC_PREADD
+#  define UNIXSTL_HAS_ATOMIC_PREADD
 
 /** \brief 
  *
@@ -440,13 +391,40 @@ STLSOFT_INLINE atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int
 {
     return STLSOFT_NS_GLOBAL(OSAtomicAdd32Barrier)(n, stlsoft_const_cast(atomic_int_t*, pl)) - n;
 }
-# define UNIXSTL_HAS_ATOMIC_POSTADD
+#  define UNIXSTL_HAS_ATOMIC_POSTADD
 
-#else /* ? architecture */
+# elif 0
 
-# error Currently only defined for Intel and Power-PC architectures.
+STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile *pv);
 
-#endif /* architecture */
+/* # define UNIXSTL_HAS_ATOMIC_READ */
+
+STLSOFT_INLINE atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
+{
+    atomic_int_t    oldval;
+
+    /* Note: the "xchg" instruction does not need a "lock" prefix */
+#  ifdef STLSOFT_COMPILER_IS_GCC
+    __asm__ __volatile__(   "xchgl %0, %1"      /* long (32-bit) xchg, from */
+                        :   "=r"(oldval),   "=m"(*(pv))
+                        :   "0"(n),         "m"(*(pv))
+                        :   "memory");
+#  else /* ? compiler */
+    _asm
+    {
+        mov ecx, dword ptr [pv]
+        mov eax, n
+        xchg dword ptr [ecx], eax
+        mov oldval, eax
+    }
+#  endif /* compiler */
+
+    return oldval;
+}
+/* #   define UNIXSTL_HAS_ATOMIC_WRITE */
+
+# endif /* architecture */
+#endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Unit-testing

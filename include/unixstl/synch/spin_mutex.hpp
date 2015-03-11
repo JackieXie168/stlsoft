@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     10th January 2007
+ * Updated:     15th January 2007
  *
  * Thanks:      To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
@@ -54,10 +54,10 @@
 #define UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SPIN_MUTEX
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      51
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     5
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,16 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES
+# include <unixstl/synch/util/features.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES */
+#ifndef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
+# error unixstl/synch/spin_mutex.hpp requires support for atomic integer operations. Consult unixstl/synch/util/features.h for details
+#endif /* !UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
+
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
+# include <unixstl/synch/atomic_functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
@@ -78,14 +88,6 @@
 # include <stlsoft/synch/spin_policies.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES */
 
-#if defined(UNIXSTL_OS_IS_LINUX) && \
-    !defined(UNIXSTL_ARCH_IS_INTEL)
-# include <asm/atomic.h> // Only works for Linux. For other OSs, use unixstl/synch/process_mutex.hpp
-#elif defined(UNIXSTL_OS_IS_MACOSX)
-# include <libkern/OSAtomic.h>
-#else /* ? architecture */
-# include <unixstl/synch/atomic_functions.h>
-#endif /* architecture */
 #include <sched.h>
 
 #ifdef STLSOFT_UNITTEST
@@ -141,23 +143,16 @@ class spin_mutex_base
 /// @{
 private:
     /// \brief The spin-policy class
-    typedef SP                  spin_policy_class;
+    typedef SP                              spin_policy_class;
 public:
     /// \brief This class
-    typedef spin_mutex_base<SP> class_type;
+    typedef spin_mutex_base<SP>             class_type;
     /// \brief The atomic integer type
-#if defined(UNIXSTL_OS_IS_LINUX) && \
-    !defined(UNIXSTL_ARCH_IS_INTEL)
-    typedef atomic_t            atomic_int_type;
-#elif defined(UNIXSTL_OS_IS_MACOSX)
-    typedef ::int32_t           atomic_int_type;
-#else /* ? architecture */
-    typedef us_sint32_t         atomic_int_type;
-#endif /* architecture */
+    typedef unixstl_ns_qual(atomic_int_t)   atomic_int_type;
     /// \brief The count type
-    typedef us_sint32_t         count_type;
+    typedef us_sint32_t                     count_type;
     /// \brief The bool type
-    typedef us_bool_t           bool_type;
+    typedef us_bool_t                       bool_type;
 /// @}
 
 /// \name Construction

@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta41
+File:     STLSoft-ReleaseNotes-1.9.1-beta42
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  14th January 2007
+Updated:  15th January 2007
 
 ============================================================================
 
@@ -29,10 +29,25 @@ Updated:  14th January 2007
 
 ============================================================================
 
+Changes for 1.9.1 beta 42 (15th January 2006):
+
+Changes:
+========
+
+ ~ refactored atomic integer support on UNIX:
+    - Now only supports if for Mac OS-X, Win32 (when emulated, of course),
+	  and if UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS is defined, allowing
+	  the user to decide for themselves whether or not to use (non-portable)
+	  facilities such as asm/atomic.h
+    + unixstl/synch/util/features.h
+
+
+============================================================================
+
 Changes for 1.9.1 beta 41 (14th January 2006):
 
-Changes
-=======
+Changes:
+========
 
  ~ refactored sized-integer detection:
     - The symbols 
