@@ -4,11 +4,11 @@
  * Purpose:     COM memory functions.
  *
  * Created:     20th December 2003
- * Updated:     13th January 2007
+ * Updated:     30th November 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MAJOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     1
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      30
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ namespace comstl_project
 template<   ss_typename_param_k R
         ,   ss_typename_param_k V
         >
-inline R &transfer_resource(R &r, V v)
+inline R& transfer_resource(R& r, V v)
 {
 //  COMSTL_MESSAGE_ASSERT("Resource destination not empty!", 0 == r);
     r = v;
@@ -112,42 +112,42 @@ inline R &transfer_resource(R &r, V v)
 }
 #endif /* 0 */
 
-inline ss_sint8_t &transfer_resource(ss_sint8_t &r, ss_sint8_t v)               { return ((r = v), r); }
-inline ss_uint8_t &transfer_resource(ss_uint8_t &r, ss_uint8_t v)               { return ((r = v), r); }
-inline ss_sint16_t &transfer_resource(ss_sint16_t &r, ss_sint16_t v)            { return ((r = v), r); }
-inline ss_uint16_t &transfer_resource(ss_uint16_t &r, ss_uint16_t v)            { return ((r = v), r); }
-inline ss_sint32_t &transfer_resource(ss_sint32_t &r, ss_sint32_t v)            { return ((r = v), r); }
-inline ss_uint32_t &transfer_resource(ss_uint32_t &r, ss_uint32_t v)            { return ((r = v), r); }
+inline ss_sint8_t& transfer_resource(ss_sint8_t& r, ss_sint8_t v)               { return ((r = v), r); }
+inline ss_uint8_t& transfer_resource(ss_uint8_t& r, ss_uint8_t v)               { return ((r = v), r); }
+inline ss_sint16_t& transfer_resource(ss_sint16_t& r, ss_sint16_t v)            { return ((r = v), r); }
+inline ss_uint16_t& transfer_resource(ss_uint16_t& r, ss_uint16_t v)            { return ((r = v), r); }
+inline ss_sint32_t& transfer_resource(ss_sint32_t& r, ss_sint32_t v)            { return ((r = v), r); }
+inline ss_uint32_t& transfer_resource(ss_uint32_t& r, ss_uint32_t v)            { return ((r = v), r); }
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-inline ss_sint64_t &transfer_resource(ss_sint64_t &r, ss_sint64_t v)            { return ((r = v), r); }
-inline ss_uint64_t &transfer_resource(ss_uint64_t &r, ss_uint64_t v)            { return ((r = v), r); }
+inline ss_sint64_t& transfer_resource(ss_sint64_t& r, ss_sint64_t v)            { return ((r = v), r); }
+inline ss_uint64_t& transfer_resource(ss_uint64_t& r, ss_uint64_t v)            { return ((r = v), r); }
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
 
 #ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
-inline signed char &transfer_resource(signed char &r, signed char v)            { return ((r = v), r); }
-inline unsigned char &transfer_resource(unsigned char &r, unsigned char v)      { return ((r = v), r); }
+inline signed char& transfer_resource(signed char& r, signed char v)            { return ((r = v), r); }
+inline unsigned char& transfer_resource(unsigned char& r, unsigned char v)      { return ((r = v), r); }
 #endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
 #ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
-inline signed short &transfer_resource(signed short &r, signed short v)         { return ((r = v), r); }
-inline unsigned short &transfer_resource(unsigned short &r, unsigned short v)   { return ((r = v), r); }
+inline signed short& transfer_resource(signed short& r, signed short v)         { return ((r = v), r); }
+inline unsigned short& transfer_resource(unsigned short& r, unsigned short v)   { return ((r = v), r); }
 #endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline signed int &transfer_resource(signed int &r, signed int v)               { return ((r = v), r); }
-inline unsigned int &transfer_resource(unsigned int &r, unsigned int v)         { return ((r = v), r); }
+inline signed int& transfer_resource(signed int& r, signed int v)               { return ((r = v), r); }
+inline unsigned int& transfer_resource(unsigned int& r, unsigned int v)         { return ((r = v), r); }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline signed long &transfer_resource(signed long &r, signed long v)            { return ((r = v), r); }
-inline unsigned long &transfer_resource(unsigned long &r, unsigned long v)      { return ((r = v), r); }
+inline signed long& transfer_resource(signed long& r, signed long v)            { return ((r = v), r); }
+inline unsigned long& transfer_resource(unsigned long& r, unsigned long v)      { return ((r = v), r); }
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-inline float &transfer_resource(float &r, float v)                              { return ((r = v), r); }
-inline double &transfer_resource(double &r, double v)                           { return ((r = v), r); }
-inline long double &transfer_resource(long double &r, long double v)            { return ((r = v), r); }
+inline float& transfer_resource(float& r, float v)                              { return ((r = v), r); }
+inline double& transfer_resource(double& r, double v)                           { return ((r = v), r); }
+inline long double& transfer_resource(long double& r, long double v)            { return ((r = v), r); }
 
 template<   ss_typename_param_k R
         ,   ss_typename_param_k V
         >
-inline R *&transfer_resource(R *&r, V *v)
+inline R*& transfer_resource(R*& r, V* v)
 {
     COMSTL_MESSAGE_ASSERT("Resource destination not empty!", 0 == r);
 
@@ -163,7 +163,7 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         ,   ss_typename_param_k V
         >
-inline R method_cast(C &c, HRESULT (C::*pfn)(V *))
+inline R method_cast(C& c, HRESULT (C::*pfn)(V*))
 {
     R       r   =   R();
     V       v;
@@ -185,7 +185,7 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         ,   ss_typename_param_k V
         >
-inline R method_cast(C *c, HRESULT (STDAPICALLTYPE C::*pfn)(V *))
+inline R method_cast(C *c, HRESULT (STDAPICALLTYPE C::*pfn)(V*))
 {
     R       r   =   R();
     V       v;
