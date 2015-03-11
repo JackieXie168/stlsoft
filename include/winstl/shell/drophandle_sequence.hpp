@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      0
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   5
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       87
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   6
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -420,7 +420,7 @@ inline ws_bool_t operator !=(   basic_drophandle_sequence_const_iterator<C, T> c
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline /* static */ ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::index_type basic_drophandle_sequence_const_iterator<C, T>::sentinel_()
+inline /* static */ ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::index_type basic_drophandle_sequence_const_iterator<C, T>::sentinel_()
 {
     return 0x7fffffff;
 }
@@ -452,7 +452,7 @@ inline basic_drophandle_sequence_const_iterator<C, T>::basic_drophandle_sequence
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator =(ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator =(ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type const& rhs)
 {
     m_hdrop = rhs.m_hdrop;
     m_index = rhs.m_index;
@@ -463,7 +463,7 @@ inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator ++()
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Incrementing the end iterator", m_index != sentinel_());
 
@@ -487,7 +487,7 @@ inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator --()
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator --()
 {
     // If currently at 'end' ....
     if(m_index == sentinel_())
@@ -518,7 +518,7 @@ inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type basic_drophandle_sequence_const_iterator<C, T>::operator ++(int)
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type basic_drophandle_sequence_const_iterator<C, T>::operator ++(int)
 {
     class_type  ret(*this);
 
@@ -530,7 +530,7 @@ inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type basic_drophandle_sequence_const_iterator<C, T>::operator --(int)
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type basic_drophandle_sequence_const_iterator<C, T>::operator --(int)
 {
     class_type  ret(*this);
 
@@ -598,7 +598,7 @@ inline ws_bool_t basic_drophandle_sequence<C, T>::empty() const
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_iterator basic_drophandle_sequence<C, T>::begin() const
+inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_iterator basic_drophandle_sequence<C, T>::begin() const
 {
     char_type   ch;
     ws_uint_t   res =   traits_type::drag_query_file(m_hdrop, 0, &ch, 1);
@@ -607,7 +607,7 @@ inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_iterator basic_
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_iterator basic_drophandle_sequence<C, T>::end() const
+inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_iterator basic_drophandle_sequence<C, T>::end() const
 {
     return const_iterator(m_hdrop, const_iterator::sentinel_());
 }
@@ -615,13 +615,13 @@ inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_iterator basic_
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_reverse_iterator basic_drophandle_sequence<C, T>::rbegin() const
+inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_reverse_iterator basic_drophandle_sequence<C, T>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_drophandle_sequence<C, T>::const_reverse_iterator basic_drophandle_sequence<C, T>::rend() const
+inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_reverse_iterator basic_drophandle_sequence<C, T>::rend() const
 {
     return const_reverse_iterator(begin());
 }

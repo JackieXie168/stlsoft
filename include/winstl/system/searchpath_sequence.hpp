@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    1
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 3
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     88
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 4
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -625,7 +625,7 @@ inline basic_searchpath_sequence<C, T>::~basic_searchpath_sequence() stlsoft_thr
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_iterator basic_searchpath_sequence<C, T>::begin() const
+inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator basic_searchpath_sequence<C, T>::begin() const
 {
     return &m_values[0];
 }
@@ -633,7 +633,7 @@ inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_iterator basic_
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_iterator basic_searchpath_sequence<C, T>::end() const
+inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator basic_searchpath_sequence<C, T>::end() const
 {
     return m_end;
 }
@@ -642,7 +642,7 @@ inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_iterator basic_
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_reverse_iterator basic_searchpath_sequence<C, T>::rbegin() const
+inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_iterator basic_searchpath_sequence<C, T>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
@@ -650,7 +650,7 @@ inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_reverse_iterato
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_reverse_iterator basic_searchpath_sequence<C, T>::rend() const
+inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_iterator basic_searchpath_sequence<C, T>::rend() const
 {
     return const_reverse_iterator(begin());
 }
@@ -659,7 +659,7 @@ inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_reverse_iterato
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_searchpath_sequence<C, T>::size_type basic_searchpath_sequence<C, T>::size() const
+inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type basic_searchpath_sequence<C, T>::size() const
 {
     return static_cast<size_type>(end() - begin());
 }
@@ -675,7 +675,7 @@ inline ws_bool_t basic_searchpath_sequence<C, T>::empty() const
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline /* static */ ss_typename_type_k basic_searchpath_sequence<C, T>::size_type basic_searchpath_sequence<C, T>::max_size()
+inline /* static */ ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type basic_searchpath_sequence<C, T>::max_size()
 {
     // Kind of kludgy, sigh.
     return static_cast<size_type>(-1) / _MAX_PATH;
@@ -684,7 +684,7 @@ inline /* static */ ss_typename_type_k basic_searchpath_sequence<C, T>::size_typ
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_searchpath_sequence<C, T>::value_type basic_searchpath_sequence<C, T>::operator [](ss_typename_type_k basic_searchpath_sequence<C, T>::size_type index) const
+inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::value_type basic_searchpath_sequence<C, T>::operator [](ss_typename_type_k basic_searchpath_sequence<C, T>::size_type index) const
 {
     WINSTL_MESSAGE_ASSERT("Invalid index in search path sequence", !(size() < index));
 

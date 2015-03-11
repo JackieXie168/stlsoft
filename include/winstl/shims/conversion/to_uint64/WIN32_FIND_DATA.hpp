@@ -4,7 +4,7 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     4th July 2007
- * Updated:     4th July 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,10 +48,10 @@
 #define WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MAJOR		1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MINOR		0
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_REVISION	1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_EDIT		1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MAJOR     1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MINOR     0
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_REVISION  1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,11 +86,11 @@ namespace stlsoft
  */
 inline stlsoft_ns_qual(ss_uint64_t) to_uint64(WIN32_FIND_DATAA const& fd)
 {
-	return ((static_cast<stlsoft_ns_qual(ss_uint64_t)>(fd.nFileSizeHigh) << 32) + fd.nFileSizeLow);
+    return ((static_cast<stlsoft_ns_qual(ss_uint64_t)>(fd.nFileSizeHigh) << 32) + fd.nFileSizeLow);
 }
 inline stlsoft_ns_qual(ss_uint64_t) to_uint64(WIN32_FIND_DATAW const& fd)
 {
-	return ((static_cast<stlsoft_ns_qual(ss_uint64_t)>(fd.nFileSizeHigh) << 32) + fd.nFileSizeLow);
+    return ((static_cast<stlsoft_ns_qual(ss_uint64_t)>(fd.nFileSizeHigh) << 32) + fd.nFileSizeLow);
 }
 
 /** \brief Converts a pointer to a WIN32_FIND_DATA instance to an unsigned
@@ -101,11 +101,11 @@ inline stlsoft_ns_qual(ss_uint64_t) to_uint64(WIN32_FIND_DATAW const& fd)
  */
 inline stlsoft_ns_qual(ss_uint64_t) to_uint64(WIN32_FIND_DATAA const* pfd)
 {
-	return (NULL == pfd) ? 0 : to_uint64(*pfd);
+    return (NULL == pfd) ? 0 : to_uint64(*pfd);
 }
 inline stlsoft_ns_qual(ss_uint64_t) to_uint64(WIN32_FIND_DATAW const* pfd)
 {
-	return (NULL == pfd) ? 0 : to_uint64(*pfd);
+    return (NULL == pfd) ? 0 : to_uint64(*pfd);
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

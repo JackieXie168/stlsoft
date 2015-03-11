@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/util/std/library_discriminator.hpp
  *
- * Purpose:     
+ * Purpose:     Discriminates between standard library implementations
  *
  * Created:     2nd January 2000
- * Updated:     13th January 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        95
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       4
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    1
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,6 +119,14 @@ namespace stlsoft
  *
  */
 
+#ifdef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE
+# undef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE
+#endif /* STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE */
+
+#ifdef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND
+# undef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND
+#endif /* STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND */
+
 #ifdef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC
 # undef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC
 #endif /* STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC */
@@ -154,6 +162,7 @@ namespace stlsoft
 
 #if defined(_STLPORT_VERSION) && \
       defined(_STLP_INTERNAL_ITERATOR_H)
+ /* STLport */
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("Standard library is STLport")
 # endif /* _STLSOFT_COMPILE_VERBOSE */
@@ -162,14 +171,28 @@ namespace stlsoft
 #elif defined(_ITERATOR_) && \
       defined(_UTILITY_) && \
       defined(_XSTDDEF_)
-# ifdef _STLSOFT_COMPILE_VERBOSE
-#  pragma message("Standard library is Dinkumware (VC++)")
-# endif /* _STLSOFT_COMPILE_VERBOSE */
-# define STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "Dinkumware (VC++)"
+ /* Dinkumware */
+# define STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE
+# if defined(STLSOFT_COMPILER_IS_INTEL) || \
+     defined(STLSOFT_COMPILER_IS_MSVC)
+#  ifdef _STLSOFT_COMPILE_VERBOSE
+#   pragma message("Standard library is Dinkumware (VC++)")
+#  endif /* _STLSOFT_COMPILE_VERBOSE */
+#  define STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC
+#  define STLSOFT_CF_STD_LIBRARY_NAME_STRING            "Dinkumware (VC++)"
+# elif defined(STLSOFT_COMPILER_IS_BORLAND)
+#  ifdef _STLSOFT_COMPILE_VERBOSE
+#   pragma message("Standard library is Dinkumware (Borland)")
+#  endif /* _STLSOFT_COMPILE_VERBOSE */
+#  define STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND
+#  define STLSOFT_CF_STD_LIBRARY_NAME_STRING            "Dinkumware (Borland)"
+# else /* ? compiler */
+#  error STLSoft does not currently recognise combination of any compilers except Borland, Intel and Microsoft with the Dinkumware libraries.
+# endif /* compiler */
 #elif defined(_ITERATOR) && \
       defined(_MSLCONFIG) && \
       defined(__MSL_CPP__)
+ /* MSL */
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("Standard library is MSL")
 # endif /* _STLSOFT_COMPILE_VERBOSE */
@@ -183,6 +206,7 @@ namespace stlsoft
 # define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "HP/SGI"
 #elif defined(__GLIBCPP_INTERNAL_ITERATOR_H) || \
       defined(_GLIBCXX_ITERATOR)
+ /* HP/SGI/GnuFSF */
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("Standard library is HP/SGI/GnuFSF")
 # endif /* _STLSOFT_COMPILE_VERBOSE */
@@ -190,6 +214,7 @@ namespace stlsoft
 # define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "HP/SGI/GnuFSF"
 #elif defined(__RW_ITERATOR_H) && \
       defined(__STD_RW_ITERATOR__)
+ /* HP/RW */
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("Standard library is HP/RW")
 # endif /* _STLSOFT_COMPILE_VERBOSE */
@@ -236,9 +261,11 @@ namespace stlsoft
 # if defined(STLSOFT_COMPILER_IS_INTEL) && \
      defined(unix)
   /* Ok to have Intel + Dinkumware without VC++ on Linux */
-# elif !defined(_MSC_VER)
+# elif defined(__BORLANDC__)
+# elif defined(_MSC_VER)
+# else /* ? compiler */
 #  error When the Dinkumware-VC library is used, STLSoft requires that Visual C++ or a compatible compiler (e.g. DMC++, Comeau, CodeWarrior, Intel) is used
-# endif /* !_MSC_VER */
+# endif /* compiler */
 
 # if !defined(_STCONS)
   /* Version 4.2 */
@@ -283,6 +310,13 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////
  * Tested compatibilities
  */
+
+#if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND) || \
+    defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC)
+# ifndef STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE
+#  error STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE should be defined if one of the STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_xxxx symbols is defined
+# endif /* !STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE */
+#endif /* STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_xxxx */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Random access iterator support

@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to common controls.
  *
  * Created:     8th October 2002
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MINOR      1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_REVISION   3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       70
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 
 /*
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_DMC:	__DMC__<0x0850
+STLSOFT_COMPILER_IS_DMC:    __DMC__<0x0850
 STLSOFT_COMPILER_IS_GCC: __GNUC__<3
 [Incompatibilies-end]
  */
@@ -129,7 +129,7 @@ template <ws_bool_t BACK = true>
 // [[synesis:class:unary-functor: listview_inserter]]
 struct listview_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listview_inserter<BACK> >
 #endif /* compiler */
 {
@@ -251,7 +251,7 @@ typedef listview_inserter<true>     listview_back_inserter;
 // [[synesis:class:unary-functor: treeview_inserter]]
 struct treeview_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<treeview_inserter>
 #endif /* compiler */
 {

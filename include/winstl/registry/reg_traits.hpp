@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     66
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -193,10 +193,10 @@ public:
     static result_type  reg_query_info( hkey_type       hkey,
                                         char_type       *key_class,
                                         size_type       *cch_key_class,
-                                        ws_uint_t       *c_sub_keys,
+                                        ws_uint32_t     *c_sub_keys,
                                         size_type       *cch_sub_key_max,
                                         size_type       *cch_key_class_max,
-                                        ws_uint_t       *c_values,
+                                        ws_uint32_t     *c_values,
                                         size_type       *cch_valueName_max,
                                         size_type       *cb_value_data_max,
                                         size_type       *cb_security_descriptor_max,
@@ -362,10 +362,10 @@ public:
     static result_type reg_query_info(  hkey_type       hkey,
                                         char_type       *key_class,
                                         size_type       *cch_key_class,
-                                        ws_uint_t       *c_sub_keys,
+                                        ws_uint32_t     *c_sub_keys,
                                         size_type       *cch_sub_key_max,
                                         size_type       *cch_key_class_max,
-                                        ws_uint_t       *c_values,
+                                        ws_uint32_t     *c_values,
                                         size_type       *cch_valueName_max,
                                         size_type       *cb_value_data_max,
                                         size_type       *cb_security_descriptor_max,
@@ -539,10 +539,10 @@ public:
     static result_type reg_query_info(  hkey_type       hkey,
                                         char_type       *key_class,
                                         size_type       *cch_key_class,
-                                        ws_uint_t       *c_sub_keys,
+                                        ws_uint32_t     *c_sub_keys,
                                         size_type       *cch_sub_key_max,
                                         size_type       *cch_key_class_max,
-                                        ws_uint_t       *c_values,
+                                        ws_uint32_t     *c_values,
                                         size_type       *cch_valueName_max,
                                         size_type       *cb_value_data_max,
                                         size_type       *cb_security_descriptor_max,

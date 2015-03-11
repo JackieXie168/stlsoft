@@ -2,18 +2,48 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  30th April 2007
+; Updated:  16th November 2007
 
 ============================================================================
 
 
 Major Contributors:
 
-  Matthew Wilson		(most of the libraries)
-  Pablo Aguilar			(Windows ToolHelp Library)
+  Matthew Wilson        (most of the libraries)
+  Pablo Aguilar         (Windows ToolHelp Library)
 
 
 Bug reports, fixes and suggestions (for which we are very grateful):
+
+    Adi Shavit
+    Allan McLellan
+    Anton Sekeris
+    Bjorn Karlsson
+    Brad Cox
+    Carlos Santander Bernal
+    Chris Newcombe
+    Cláudio Albuquerque
+    David Wang
+    Diego Chanoux
+    Eugene Gershnik
+    Felix Gartsman
+    Gabor Fischer
+    Kevlin Henney
+    Luoyi
+    Martin J Moene
+    Mikael Pahmp
+    Neal Becker
+    Nevin Liber
+    Pablo Aguilar
+    Peter Bannister
+    Robert Kreger
+    Rupert Kittinger
+    Ryan Ginstrom
+    Scott Meyers
+    Scott Patterson
+    Sean Kelly
+
+    and many others who's posts and requests have been invaluable
 
 Contributions are welcomed.
 

@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     8th May 2007
+ * Updated:     6th November 2007
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  5
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      181
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  6
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      182
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -780,13 +780,13 @@ private:
 // static_array_1d
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::pointer static_array_1d<T, N0, P, M>::data_()
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::pointer static_array_1d<T, N0, P, M>::data_()
 {
     return &m_data[0];
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::calc_index_(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::calc_index_(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
 {
     return i0;
 }
@@ -839,7 +839,7 @@ inline static_array_1d<T, N0, P, M>::~static_array_1d() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type &static_array_1d<T, N0, P, M>::at(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type &static_array_1d<T, N0, P, M>::at(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0)
 {
     range_check_(i0);
 
@@ -847,7 +847,7 @@ inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type &static_array
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const& static_array_1d<T, N0, P, M>::at(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type const& static_array_1d<T, N0, P, M>::at(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
 {
     range_check_(i0);
 
@@ -855,7 +855,7 @@ inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const& static
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type &static_array_1d<T, N0, P, M>::at_unchecked(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type &static_array_1d<T, N0, P, M>::at_unchecked(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0)
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
 
@@ -863,7 +863,7 @@ inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type &static_array
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const& static_array_1d<T, N0, P, M>::at_unchecked(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type const& static_array_1d<T, N0, P, M>::at_unchecked(ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
 
@@ -871,7 +871,7 @@ inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const& static
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type &static_array_1d<T, N0, P, M>::operator [](ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type &static_array_1d<T, N0, P, M>::operator [](ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0)
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
 
@@ -879,7 +879,7 @@ inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type &static_array
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const& static_array_1d<T, N0, P, M>::operator [](ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type const& static_array_1d<T, N0, P, M>::operator [](ss_typename_type_k static_array_1d<T, N0, P, M>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
 
@@ -887,37 +887,37 @@ inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const& static
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::reference static_array_1d<T, N0, P, M>::front()
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::reference static_array_1d<T, N0, P, M>::front()
 {
     return at(0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::reference static_array_1d<T, N0, P, M>::back()
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::reference static_array_1d<T, N0, P, M>::back()
 {
     return at(N0 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::const_reference static_array_1d<T, N0, P, M>::front() const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_reference static_array_1d<T, N0, P, M>::front() const
 {
     return at(0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::const_reference static_array_1d<T, N0, P, M>::back() const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_reference static_array_1d<T, N0, P, M>::back() const
 {
     return at(N0 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::dimension0()
+inline /* static */ ss_typename_type_ret_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::dimension0()
 {
     return N0;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::size()
+inline /* static */ ss_typename_type_ret_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::size()
 {
     return N0;
 }
@@ -929,63 +929,63 @@ inline /* static */ ss_bool_t static_array_1d<T, N0, P, M>::empty()
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::max_size()
+inline /* static */ ss_typename_type_ret_k static_array_1d<T, N0, P, M>::index_type static_array_1d<T, N0, P, M>::max_size()
 {
     return size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::iterator static_array_1d<T, N0, P, M>::begin()
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::iterator static_array_1d<T, N0, P, M>::begin()
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::iterator static_array_1d<T, N0, P, M>::end()
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::iterator static_array_1d<T, N0, P, M>::end()
 {
     return m_data + size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::const_iterator static_array_1d<T, N0, P, M>::begin() const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_iterator static_array_1d<T, N0, P, M>::begin() const
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::const_iterator static_array_1d<T, N0, P, M>::end() const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_iterator static_array_1d<T, N0, P, M>::end() const
 {
     return m_data + size();
 }
 
 #ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::reverse_iterator static_array_1d<T, N0, P, M>::rbegin()
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::reverse_iterator static_array_1d<T, N0, P, M>::rbegin()
 {
     return reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::reverse_iterator static_array_1d<T, N0, P, M>::rend()
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::reverse_iterator static_array_1d<T, N0, P, M>::rend()
 {
     return reverse_iterator(begin());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::const_reverse_iterator static_array_1d<T, N0, P, M>::rbegin() const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_reverse_iterator static_array_1d<T, N0, P, M>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::const_reverse_iterator static_array_1d<T, N0, P, M>::rend() const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_reverse_iterator static_array_1d<T, N0, P, M>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const* static_array_1d<T, N0, P, M>::data() const
+inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type const* static_array_1d<T, N0, P, M>::data() const
 {
     return m_data;
 }
@@ -994,13 +994,13 @@ inline ss_typename_type_k static_array_1d<T, N0, P, M>::value_type const* static
 // static_array_2d
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::pointer static_array_2d<T, N0, N1, P, M>::data_()
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::pointer static_array_2d<T, N0, N1, P, M>::data_()
 {
     return &m_data[0];
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::calc_index_(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1) const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::calc_index_(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1) const
 {
     return (i0 * N1) + i1;
 }
@@ -1069,7 +1069,7 @@ inline static_array_2d<T, N0, N1, P, M>::~static_array_2d() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1)
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1)
 {
     range_check_(i0, i1);
 
@@ -1077,7 +1077,7 @@ inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reference static_arr
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1) const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1) const
 {
     range_check_(i0, i1);
 
@@ -1085,7 +1085,7 @@ inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reference stat
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1)
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1)
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1);
 
@@ -1093,7 +1093,7 @@ inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reference static_arr
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1) const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0, ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i1) const
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1);
 
@@ -1101,7 +1101,7 @@ inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reference stat
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::dimension_type static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0)
 {
     range_check_(i0);
 
@@ -1109,7 +1109,7 @@ inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type stati
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type const static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0) const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::dimension_type const static_array_2d<T, N0, N1, P, M>::at(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0) const
 {
     range_check_(i0);
 
@@ -1117,19 +1117,19 @@ inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type const
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::dimension_type static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0)
 {
     return dimension_type(m_data + i0 * N1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type const static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0) const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::dimension_type const static_array_2d<T, N0, N1, P, M>::at_unchecked(ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0) const
 {
     return dimension_type(m_data + i0 * N1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type static_array_2d<T, N0, N1, P, M>::operator [](ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::dimension_type static_array_2d<T, N0, N1, P, M>::operator [](ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type i0)
 {
     return dimension_type(m_data + i0 * N1);
 }
@@ -1141,43 +1141,43 @@ inline const ss_typename_type_k static_array_2d<T, N0, N1, P, M>::dimension_type
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::front()
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::front()
 {
     return at(0, 0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::back()
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::reference static_array_2d<T, N0, N1, P, M>::back()
 {
     return at(N0 - 1, N1 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::front() const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::front() const
 {
     return at(0, 0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::back() const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_reference static_array_2d<T, N0, N1, P, M>::back() const
 {
     return at(N0 - 1, N1 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::dimension0()
+inline /* static */ ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::dimension0()
 {
     return N0;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::dimension1()
+inline /* static */ ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::dimension1()
 {
     return N1;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::size()
+inline /* static */ ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::size()
 {
     return N0 * N1;
 }
@@ -1189,63 +1189,63 @@ inline /* static */ ss_bool_t static_array_2d<T, N0, N1, P, M>::empty()
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::max_size()
+inline /* static */ ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::index_type static_array_2d<T, N0, N1, P, M>::max_size()
 {
     return size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::iterator static_array_2d<T, N0, N1, P, M>::begin()
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::iterator static_array_2d<T, N0, N1, P, M>::begin()
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::iterator static_array_2d<T, N0, N1, P, M>::end()
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::iterator static_array_2d<T, N0, N1, P, M>::end()
 {
     return m_data + size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_iterator static_array_2d<T, N0, N1, P, M>::begin() const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_iterator static_array_2d<T, N0, N1, P, M>::begin() const
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_iterator static_array_2d<T, N0, N1, P, M>::end() const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_iterator static_array_2d<T, N0, N1, P, M>::end() const
 {
     return m_data + size();
 }
 
 #ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reverse_iterator static_array_2d<T, N0, N1, P, M>::rbegin()
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::reverse_iterator static_array_2d<T, N0, N1, P, M>::rbegin()
 {
     return reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::reverse_iterator static_array_2d<T, N0, N1, P, M>::rend()
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::reverse_iterator static_array_2d<T, N0, N1, P, M>::rend()
 {
     return reverse_iterator(begin());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reverse_iterator static_array_2d<T, N0, N1, P, M>::rbegin() const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_reverse_iterator static_array_2d<T, N0, N1, P, M>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::const_reverse_iterator static_array_2d<T, N0, N1, P, M>::rend() const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_reverse_iterator static_array_2d<T, N0, N1, P, M>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::value_type const* static_array_2d<T, N0, N1, P, M>::data() const
+inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::value_type const* static_array_2d<T, N0, N1, P, M>::data() const
 {
     return m_data;
 }
@@ -1253,13 +1253,13 @@ inline ss_typename_type_k static_array_2d<T, N0, N1, P, M>::value_type const* st
 // static_array_3d
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::pointer static_array_3d<T, N0, N1, N2, P, M>::data_()
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::pointer static_array_3d<T, N0, N1, N2, P, M>::data_()
 {
     return &m_data[0];
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::calc_index_(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2) const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::calc_index_(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2) const
 {
     return ((i0 * N1) + i1) * N2 + i2;
 }
@@ -1329,7 +1329,7 @@ inline static_array_3d<T, N0, N1, N2, P, M>::~static_array_3d() stlsoft_throw_0(
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type &static_array_3d<T, N0, N1, N2, P, M>::at(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2)
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::value_type &static_array_3d<T, N0, N1, N2, P, M>::at(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2)
 {
     range_check_(i0, i1, i2);
 
@@ -1337,7 +1337,7 @@ inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type &stat
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type const& static_array_3d<T, N0, N1, N2, P, M>::at(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2) const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::value_type const& static_array_3d<T, N0, N1, N2, P, M>::at(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2) const
 {
     range_check_(i0, i1, i2);
 
@@ -1345,7 +1345,7 @@ inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type const
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type &static_array_3d<T, N0, N1, N2, P, M>::at_unchecked(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2)
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::value_type &static_array_3d<T, N0, N1, N2, P, M>::at_unchecked(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2)
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1 && i2 < N2);
 
@@ -1353,7 +1353,7 @@ inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type &stat
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type const& static_array_3d<T, N0, N1, N2, P, M>::at_unchecked(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2) const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::value_type const& static_array_3d<T, N0, N1, N2, P, M>::at_unchecked(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i1, ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i2) const
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1 && i2 < N2);
 
@@ -1361,7 +1361,7 @@ inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type const
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::dimension_type static_array_3d<T, N0, N1, N2, P, M>::at(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::dimension_type static_array_3d<T, N0, N1, N2, P, M>::at(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0)
 {
     range_check_(i0);
 
@@ -1377,7 +1377,7 @@ inline const ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::dimension_
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::dimension_type static_array_3d<T, N0, N1, N2, P, M>::at_unchecked(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::dimension_type static_array_3d<T, N0, N1, N2, P, M>::at_unchecked(ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0)
 {
     return dimension_type(m_data + i0 * N1 * N2);
 }
@@ -1389,7 +1389,7 @@ inline const ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::dimension_
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::dimension_type static_array_3d<T, N0, N1, N2, P, M>::operator [](ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::dimension_type static_array_3d<T, N0, N1, N2, P, M>::operator [](ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type i0)
 {
     return dimension_type(m_data + i0 * N1 * N2);
 }
@@ -1401,49 +1401,49 @@ inline const ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::dimension_
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::reference static_array_3d<T, N0, N1, N2, P, M>::front()
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::reference static_array_3d<T, N0, N1, N2, P, M>::front()
 {
     return at(0, 0, 0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::reference static_array_3d<T, N0, N1, N2, P, M>::back()
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::reference static_array_3d<T, N0, N1, N2, P, M>::back()
 {
     return at(N0 - 1, N1 - 1, N2 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::const_reference static_array_3d<T, N0, N1, N2, P, M>::front() const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_reference static_array_3d<T, N0, N1, N2, P, M>::front() const
 {
     return at(0, 0, 0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::const_reference static_array_3d<T, N0, N1, N2, P, M>::back() const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_reference static_array_3d<T, N0, N1, N2, P, M>::back() const
 {
     return at(N0 - 1, N1 - 1, N2 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::dimension0()
+inline /* static */ ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::dimension0()
 {
     return N0;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::dimension1()
+inline /* static */ ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::dimension1()
 {
     return N1;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::dimension2()
+inline /* static */ ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::dimension2()
 {
     return N2;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::size()
+inline /* static */ ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::size()
 {
     return N0 * N1 * N2;
 }
@@ -1455,63 +1455,63 @@ inline /* static */ ss_bool_t static_array_3d<T, N0, N1, N2, P, M>::empty()
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::max_size()
+inline /* static */ ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::index_type static_array_3d<T, N0, N1, N2, P, M>::max_size()
 {
     return size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::iterator static_array_3d<T, N0, N1, N2, P, M>::begin()
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::iterator static_array_3d<T, N0, N1, N2, P, M>::begin()
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::iterator static_array_3d<T, N0, N1, N2, P, M>::end()
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::iterator static_array_3d<T, N0, N1, N2, P, M>::end()
 {
     return m_data + size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::const_iterator static_array_3d<T, N0, N1, N2, P, M>::begin() const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_iterator static_array_3d<T, N0, N1, N2, P, M>::begin() const
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::const_iterator static_array_3d<T, N0, N1, N2, P, M>::end() const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_iterator static_array_3d<T, N0, N1, N2, P, M>::end() const
 {
     return m_data + size();
 }
 
 #ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rbegin()
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rbegin()
 {
     return reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rend()
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rend()
 {
     return reverse_iterator(begin());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::const_reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rbegin() const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::const_reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rend() const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type const* static_array_3d<T, N0, N1, N2, P, M>::data() const
+inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::value_type const* static_array_3d<T, N0, N1, N2, P, M>::data() const
 {
     return m_data;
 }
@@ -1519,13 +1519,13 @@ inline ss_typename_type_k static_array_3d<T, N0, N1, N2, P, M>::value_type const
 // static_array_4d
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::pointer static_array_4d<T, N0, N1, N2, N3, P, M>::data_()
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::pointer static_array_4d<T, N0, N1, N2, N3, P, M>::data_()
 {
     return &m_data[0];
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::calc_index_(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3) const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::calc_index_(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3) const
 {
     return (((i0 * N1) + i1) * N2 + i2) * N3 + i3;
 }
@@ -1591,7 +1591,7 @@ inline static_array_4d<T, N0, N1, N2, N3, P, M>::~static_array_4d() stlsoft_thro
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type &static_array_4d<T, N0, N1, N2, N3, P, M>::at(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3)
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type &static_array_4d<T, N0, N1, N2, N3, P, M>::at(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3)
 {
     range_check_(i0, i1, i2, i3);
 
@@ -1599,7 +1599,7 @@ inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type &
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type const& static_array_4d<T, N0, N1, N2, N3, P, M>::at(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3) const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type const& static_array_4d<T, N0, N1, N2, N3, P, M>::at(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3) const
 {
     range_check_(i0, i1, i2, i3);
 
@@ -1607,7 +1607,7 @@ inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type c
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type &static_array_4d<T, N0, N1, N2, N3, P, M>::at_unchecked(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3)
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type &static_array_4d<T, N0, N1, N2, N3, P, M>::at_unchecked(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3)
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1 && i2 < N2 && i3 < N3);
 
@@ -1615,7 +1615,7 @@ inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type &
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type const& static_array_4d<T, N0, N1, N2, N3, P, M>::at_unchecked(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3) const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type const& static_array_4d<T, N0, N1, N2, N3, P, M>::at_unchecked(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i1, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i2, ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i3) const
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1 && i2 < N2 && i3 < N3);
 
@@ -1623,7 +1623,7 @@ inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type c
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimension_type static_array_4d<T, N0, N1, N2, N3, P, M>::at(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimension_type static_array_4d<T, N0, N1, N2, N3, P, M>::at(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0)
 {
     range_check_(i0);
 
@@ -1639,7 +1639,7 @@ inline const ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimens
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimension_type static_array_4d<T, N0, N1, N2, N3, P, M>::at_unchecked(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimension_type static_array_4d<T, N0, N1, N2, N3, P, M>::at_unchecked(ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0)
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
 
@@ -1655,7 +1655,7 @@ inline const ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimens
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimension_type static_array_4d<T, N0, N1, N2, N3, P, M>::operator [](ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0)
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimension_type static_array_4d<T, N0, N1, N2, N3, P, M>::operator [](ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type i0)
 {
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
 
@@ -1671,55 +1671,55 @@ inline const ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::dimens
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::reference static_array_4d<T, N0, N1, N2, N3, P, M>::front()
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::reference static_array_4d<T, N0, N1, N2, N3, P, M>::front()
 {
     return at(0, 0, 0, 0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::reference static_array_4d<T, N0, N1, N2, N3, P, M>::back()
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::reference static_array_4d<T, N0, N1, N2, N3, P, M>::back()
 {
     return at(N0 - 1, N1 - 1, N2 - 1, N3 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reference static_array_4d<T, N0, N1, N2, N3, P, M>::front() const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reference static_array_4d<T, N0, N1, N2, N3, P, M>::front() const
 {
     return at(0, 0, 0, 0);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reference static_array_4d<T, N0, N1, N2, N3, P, M>::back() const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reference static_array_4d<T, N0, N1, N2, N3, P, M>::back() const
 {
     return at(N0 - 1, N1 - 1, N2 - 1, N3 - 1);
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension0()
+inline /* static */ ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension0()
 {
     return N0;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension1()
+inline /* static */ ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension1()
 {
     return N1;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension2()
+inline /* static */ ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension2()
 {
     return N2;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension3()
+inline /* static */ ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::dimension3()
 {
     return N3;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::size()
+inline /* static */ ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::size()
 {
     return N0 * N1 * N2 * N3;
 }
@@ -1731,63 +1731,63 @@ inline /* static */ ss_bool_t static_array_4d<T, N0, N1, N2, N3, P, M>::empty()
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline /* static */ ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::max_size()
+inline /* static */ ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::index_type static_array_4d<T, N0, N1, N2, N3, P, M>::max_size()
 {
     return size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::iterator static_array_4d<T, N0, N1, N2, N3, P, M>::begin()
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::iterator static_array_4d<T, N0, N1, N2, N3, P, M>::begin()
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::iterator static_array_4d<T, N0, N1, N2, N3, P, M>::end()
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::iterator static_array_4d<T, N0, N1, N2, N3, P, M>::end()
 {
     return m_data + size();
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::begin() const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::begin() const
 {
     return m_data;
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::end() const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::end() const
 {
     return m_data + size();
 }
 
 #ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rbegin()
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rbegin()
 {
     return reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rend()
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rend()
 {
     return reverse_iterator(begin());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rbegin() const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rend() const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
-inline ss_typename_type_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type const* static_array_4d<T, N0, N1, N2, N3, P, M>::data() const
+inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type const* static_array_4d<T, N0, N1, N2, N3, P, M>::data() const
 {
     return m_data;
 }

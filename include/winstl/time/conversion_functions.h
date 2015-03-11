@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     12th March 2007
+ * Updated:     13th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 3
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     45
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 4
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ STLSOFT_INLINE time_t winstl__FILETIMEToUNIXTime(FILETIME const* ft, ws_sint32_t
     {
         *microseconds = stlsoft_static_cast(ws_sint32_t, (i % 10000000) / 10);
 
-        WINSTL_ASSERT(*microseconds >= 0 && *microseconds <= 999);
+        WINSTL_ASSERT(*microseconds >= 0 && *microseconds <= 999999);
     }
     i /= 10000000;
 

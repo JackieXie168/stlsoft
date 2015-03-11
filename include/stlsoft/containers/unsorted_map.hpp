@@ -4,7 +4,7 @@
  * Purpose:     An associative container that maintains the order of element insertion.
  *
  * Created:     12th February 2006
- * Updated:     12th March 2007
+ * Updated:     16th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,18 +45,24 @@
  *   (\ref group__library__containers "Containers" Library).
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP
-#define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP
+#ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP
+#define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 5
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     12
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_MAJOR      1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_MINOR      2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_REVISION   1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_BORLAND:
+[Incompatibilies-end]
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,10 +87,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR
 # include <stlsoft/iterators/member_selector_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR */
+
 #include <algorithm>
 #include <functional>
 #include <utility>
 #include <vector>
+
+#ifdef STLSOFT_UNITTEST
+# include <string>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -134,16 +145,17 @@ public:
     typedef A                                                               allocator_type;
 private:
     typedef stlsoft_ns_qual_std(pair)<K, T>                                 internal_value_type_;
-    typedef stlsoft_ns_qual_std(vector)<value_type
-                                    ,   ss_typename_type_def_k allocator_selector<internal_value_type_>::allocator_type
+    typedef stlsoft_ns_qual_std(vector)<internal_value_type_
+                                    ,   ss_typename_type_k allocator_selector<internal_value_type_>::allocator_type
                                     >                                       container_type_;
 public:
     typedef ss_typename_type_k container_type_::size_type                   size_type;
     typedef ss_typename_type_k container_type_::difference_type             difference_type;
-    typedef value_type                                                      *pointer;
-    typedef value_type const                                                *const_pointer;
-    typedef value_type                                                      &reference;
-    typedef value_type const                                                &const_reference;
+    typedef ss_bool_t                                                       bool_type;
+    typedef value_type*                                                     pointer;
+    typedef value_type const*                                               const_pointer;
+    typedef value_type&                                                     reference;
+    typedef value_type const&                                               const_reference;
 private:
     typedef pointer_iterator<value_type, pointer, reference>                iterator_gen_;
     typedef pointer_iterator<value_type, const_pointer, const_reference>    const_iterator_gen_;
@@ -172,6 +184,13 @@ public:
         return m_elements.size();
     }
 
+    /// Indicates whether the map is empty
+    bool_type   empty() const
+    {
+        return m_elements.empty();
+    }
+
+#if 1
     reference   operator [](size_type index)
     {
         return *sap_cast<value_type*>(&m_elements[index]);
@@ -180,6 +199,16 @@ public:
     {
         return *sap_cast<value_type*>(&m_elements[index]);
     }
+#else /* ? 0 */
+    reference   operator [](mapped_type const& key)
+    {
+        return m_elements[key]);
+    }
+    const_reference operator [](mapped_type const& key) const
+    {
+        return m_elements[key]);
+    }
+#endif /* 0 */
 
     reference   front()
     {
@@ -296,6 +325,6 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP */
+#endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_UNSORTED_MAP */
 
 /* ////////////////////////////////////////////////////////////////////// */

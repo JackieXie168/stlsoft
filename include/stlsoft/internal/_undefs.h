@@ -4,7 +4,7 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     2nd August 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    5
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    6
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     23
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -355,8 +355,9 @@
  *
  * Discriminated symbols are STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT,
  * STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT,
- * STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT and
- * STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+ * STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+ * STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT and
+ * STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
  *
  * The typename keyword is actually used for two distinct purposes: the
  * generic type placeholder in template parameter specifications, and the
@@ -387,6 +388,10 @@
 #ifdef STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 # undef STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 #endif /* STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+
+#ifdef STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
+# undef STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
+#endif /* STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT */
 
 /* Move constructor support
  *

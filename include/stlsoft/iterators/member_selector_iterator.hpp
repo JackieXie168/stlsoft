@@ -4,7 +4,7 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Thanks to:   Felix Gartsman for spotting a bug in (lack of) operator <()
  *              when building Pantheios.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        50
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -553,7 +553,7 @@ template<   ss_typename_param_k I
         ,   class               C
         ,   ss_typename_param_k M
         >
-inline ss_typename_type_k msi_traits<I, C, M>::type member_selector(I it, M C::*member)
+inline ss_typename_type_ret_k msi_traits<I, C, M>::type member_selector(I it, M C::*member)
 {
     typedef ss_typename_type_k msi_traits<I, C, M>::type    iterator_t;
 

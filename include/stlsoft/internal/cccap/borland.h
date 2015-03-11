@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Borland C/C++.
  *
  * Created:     7th February 2003
- * Updated:     17th August 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      12
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       70
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      13
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -263,6 +263,8 @@
 
 /* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 
+#define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
+
 #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 
 /* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
@@ -271,7 +273,7 @@
 
 #define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
-#if __BORLANDC__ >= 0x0560
+#if __BORLANDC__ >= 0x0582
 /* # define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* compiler */
 

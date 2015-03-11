@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      107
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -526,7 +526,7 @@ inline ws_bool_t is_empty(winstl_ns_qual(basic_findvolume_sequence_value_type)<C
 // basic_findvolume_sequence
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_findvolume_sequence<C, T>::const_iterator basic_findvolume_sequence<C, T>::begin() const
+inline ss_typename_type_ret_k basic_findvolume_sequence<C, T>::const_iterator basic_findvolume_sequence<C, T>::begin() const
 {
     char_type   vol_name[MAX_VOL_NAME + 1];
     HANDLE      hSrch   =   traits_type::find_first_volume(vol_name, STLSOFT_NUM_ELEMENTS(vol_name));
@@ -553,7 +553,7 @@ inline ss_typename_type_k basic_findvolume_sequence<C, T>::const_iterator basic_
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_findvolume_sequence<C, T>::const_iterator basic_findvolume_sequence<C, T>::end() const
+inline ss_typename_type_ret_k basic_findvolume_sequence<C, T>::const_iterator basic_findvolume_sequence<C, T>::end() const
 {
     return const_iterator(*this);
 }
@@ -585,7 +585,7 @@ inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_val
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_findvolume_sequence_value_type<C, T>::class_type &basic_findvolume_sequence_value_type<C, T>::operator =(class_type const& rhs)
+inline ss_typename_type_ret_k basic_findvolume_sequence_value_type<C, T>::class_type &basic_findvolume_sequence_value_type<C, T>::operator =(class_type const& rhs)
 {
     traits_type::str_copy(m_name, rhs.m_name);
 
@@ -625,7 +625,7 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_seque
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
-inline ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type &basic_findvolume_sequence_const_iterator<C, T, V>::operator =(ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type &basic_findvolume_sequence_const_iterator<C, T, V>::operator =(ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type const& rhs)
 {
     shared_handle   *this_handle    =   m_handle;
 
@@ -657,7 +657,7 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::~basic_findvolume_sequ
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
-inline ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type &basic_findvolume_sequence_const_iterator<C, T, V>::operator ++()
+inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type &basic_findvolume_sequence_const_iterator<C, T, V>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", NULL != m_handle);
 
@@ -672,7 +672,7 @@ inline ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::cla
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
-inline ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type basic_findvolume_sequence_const_iterator<C, T, V>::operator ++(int)
+inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type basic_findvolume_sequence_const_iterator<C, T, V>::operator ++(int)
 {
     class_type  ret(*this);
 

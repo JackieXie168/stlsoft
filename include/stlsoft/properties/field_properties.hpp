@@ -4,7 +4,7 @@
  * Purpose:     Field-based properties.
  *
  * Created:     6th October 2003
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   2
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       27
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -384,7 +384,7 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k S
         >
 inline S& operator <<(  S& s
-                    ,   field_property_get<V, R, C> const&	prop)
+                    ,   field_property_get<V, R, C> const&  prop)
 {
     s << static_cast<R>(prop);
 

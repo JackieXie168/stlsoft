@@ -4,7 +4,7 @@
  * Purpose:     Simple utility class for creating (constant) C-strings.
  *
  * Created:     14th May 2004
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_EDIT     43
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_MAKER_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,7 +84,9 @@ namespace stlsoft
  * Classes
  */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#if !defined(_STLSOFT_NO_NAMESPACE) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER > 1200)
 namespace
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
@@ -111,7 +113,9 @@ struct char_to_byte__traits_<ss_char_a_t>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#if !defined(_STLSOFT_NO_NAMESPACE) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER > 1200)
 } // anonymous namespace
 #endif /* _STLSOFT_NO_NAMESPACE */
 

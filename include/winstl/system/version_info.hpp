@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     22nd March 2007
+ * Updated:     10th October 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     117
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -155,11 +155,11 @@ typedef hdr<int>::hdr_<5> StringTable_hdr;
 typedef hdr<int>::hdr_<6> String_hdr;
 
 template<ss_typename_param_k T>
-T *rounded_ptr(T *p, ss_size_t n)
+T* rounded_ptr(T* p, ss_size_t n)
 {
     union
     {
-        T           *p;
+        T*          p;
         ss_size_t   cb;
     } u;
 
@@ -173,19 +173,19 @@ T *rounded_ptr(T *p, ss_size_t n)
 }
 
 template<ss_typename_param_k T>
-T *rounded_ptr(T *p, ss_ptrdiff_t byteOffset, ss_size_t n)
+T* rounded_ptr(T* p, ss_ptrdiff_t byteOffset, ss_size_t n)
 {
     // 1. This has to be done in a ridiculously long-hand fashion because Borland is a *very* stupid compiler!
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
-    void const  *pv =   &byteOffset[(char*)p];
+    void const* pv  =   &byteOffset[(char*)p];
 #else /* ? compiler */
-    void const  *pv =   ptr_byte_offset(p, byteOffset);
+    void const* pv  =   ptr_byte_offset(p, byteOffset);
 #endif /* compiler */
 
     WINSTL_ASSERT(((char*)pv - (char*)p) == byteOffset);
 
-    T       *p_     =   static_cast<T*>(pv);
-    T       *r      =   rounded_ptr(p_, n);
+    T*          p_  =   static_cast<T*>(pv);
+    T*          r   =   rounded_ptr(p_, n);
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND
     STLSOFT_SUPPRESS_UNUSED(p);
@@ -317,8 +317,8 @@ public:
     LangCodePage const& operator [](ss_size_t index) const;
 
 private:
-    Var_hdr const       *m_p;
-    LangCodePage const  *m_values;
+    Var_hdr const*      m_p;
+    LangCodePage const* m_values;
 };
 
 /** \brief Represents a string part of a version information block
@@ -393,7 +393,7 @@ public:
         ws_bool_t operator !=(class_type const& rhs) const;
 
     private:
-        void const  *m_p;
+        void const* m_p;
     };
 
     const_iterator begin() const;
@@ -401,8 +401,8 @@ public:
     const_iterator end() const;
 
 private:
-    StringTable_hdr const   *m_p;
-    void const              *m_strings;
+    StringTable_hdr const*  m_p;
+    void const*             m_strings;
 };
 
 /** \brief Represents a variable file info part of a version information block
@@ -462,8 +462,8 @@ public:
     const_iterator end() const;
 
 private:
-    VarFileInfo_hdr const   *m_p;
-    void const              *m_vars;
+    VarFileInfo_hdr const*  m_p;
+    void const*             m_vars;
 };
 
 /** \brief Represents a variable string part of a version information block
@@ -526,8 +526,8 @@ public:
     const_iterator end() const;
 
 private:
-    StringFileInfo_hdr const    *m_p;
-    void const                  *m_vars;
+    StringFileInfo_hdr const*   m_p;
+    void const*                 m_vars;
 };
 
 
@@ -605,12 +605,12 @@ private:
     void init_();
 
 private:
-    VS_VERSIONINFO_hdr const    *const  m_hdr;
-    wchar_t const               *const  m_key;
-    VS_FIXEDFILEINFO const      *const  m_ffi;
-    WORD const                  *const  m_children;
-    StringFileInfo_hdr const            *m_sfi;
-    VarFileInfo_hdr const               *m_vfi;
+    VS_VERSIONINFO_hdr const*   const   m_hdr;
+    wchar_t const*              const   m_key;
+    VS_FIXEDFILEINFO const*     const   m_ffi;
+    WORD const*                 const   m_children;
+    StringFileInfo_hdr const*           m_sfi;
+    VarFileInfo_hdr const*              m_vfi;
 
 // Not to be implemented
 private:

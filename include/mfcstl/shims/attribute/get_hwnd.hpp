@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/attribute/get_hwnd.hpp
+ * File:        mfcstl/shims/attribute/get_HWND.hpp
  *
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file mfcstl/shims/attribute/get_hwnd.hpp
+/** \file mfcstl/shims/attribute/get_HWND.hpp
  *
- * \brief [C++ only] Definition of stlsoft::get_hwnd attribute shim
+ * \brief [C++ only] Definition of stlsoft::get_HWND attribute shim
  *   functions for MFC types
  *   (\ref group__library__shims__window_attribute "Window Attribute Shims").
  */
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION    1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT        40
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION    2
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ namespace mfcstl_project
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * get_hwnd
+ * get_HWND
  *
  * This can be applied to an expression, and the return value is the
  * corresponding HWND.
@@ -131,7 +131,7 @@ inline HWND get_hwnd(CWnd const* w)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/get_hwnd_unittest_.h"
+# include "./unittest/get_HWND_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

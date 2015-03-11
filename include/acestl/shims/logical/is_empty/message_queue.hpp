@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Queue class.
  *
  * Created:     16th December 2004
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_MAJOR       3
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_MINOR       0
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_REVISION    4
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT        25
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,15 +84,15 @@ namespace stlsoft
 
 STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
 
-	no_type is_empty_helper_assistant(ACE_Message_Queue_Base const*, ACE_Message_Queue_Base const*)
-	{
-		return no_type();
-	}
+    no_type is_empty_helper_assistant(ACE_Message_Queue_Base const*, ACE_Message_Queue_Base const*)
+    {
+        return no_type();
+    }
 
-	inline ss_bool_t is_empty_helper(ACE_Message_Queue_Base const& q, no_type)
-	{
-		return 0 != const_cast<ACE_Message_Queue_Base&>(q).is_empty();
-	}
+    inline ss_bool_t is_empty_helper(ACE_Message_Queue_Base const& q, no_type)
+    {
+        return 0 != const_cast<ACE_Message_Queue_Base&>(q).is_empty();
+    }
 
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
 

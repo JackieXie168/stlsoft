@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        112
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -311,7 +311,7 @@ inline basic_current_directory_scope<C, T>::~basic_current_directory_scope() stl
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_current_directory_scope<C, T>::char_type const* basic_current_directory_scope<C, T>::get_previous() const
+inline ss_typename_type_ret_k basic_current_directory_scope<C, T>::char_type const* basic_current_directory_scope<C, T>::get_previous() const
 {
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
     __GNUC__ < 3

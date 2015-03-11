@@ -6,7 +6,7 @@
  *              sequence.
  *
  * Created:     6th February 1999
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  15
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      114
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  16
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -504,7 +504,7 @@ inline transform_iterator<I, F> operator -(transform_iterator<I, F> const& lhs, 
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
-inline ss_typename_type_k transform_iterator<I, F>::difference_type operator -(transform_iterator<I, F> const& lhs, transform_iterator<I, F> const& rhs)
+inline ss_typename_type_ret_k transform_iterator<I, F>::difference_type operator -(transform_iterator<I, F> const& lhs, transform_iterator<I, F> const& rhs)
 {
     return lhs.distance(rhs);
 }

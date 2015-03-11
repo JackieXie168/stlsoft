@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      119
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -339,7 +339,7 @@ inline basic_current_directory_scope<C, T>::~basic_current_directory_scope() stl
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_current_directory_scope<C, T>::char_type const* basic_current_directory_scope<C, T>::get_previous() const
+inline ss_typename_type_ret_k basic_current_directory_scope<C, T>::char_type const* basic_current_directory_scope<C, T>::get_previous() const
 {
     return stlsoft_ns_qual(c_str_ptr)(m_previous);
 }

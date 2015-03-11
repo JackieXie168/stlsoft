@@ -4,7 +4,7 @@
  * Purpose:     Mappings to string string functions
  *
  * Created:     2nd December 2004
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   2
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       28
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   3
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -179,7 +179,7 @@ namespace std_impl
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_traits<S>::char_type *strcpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type *strcpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
 {
     return stlsoft_std_ns_qual(strcpy_)(dest, stlsoft_ns_qual(c_str_ptr)(src));
 }
@@ -199,7 +199,7 @@ inline ss_char_w_t *strcpy(ss_char_w_t *dest, ss_char_w_t const* src)
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_traits<S>::char_type *strcat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type *strcat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
 {
     return stlsoft_std_ns_qual(strcat_)(dest, stlsoft_ns_qual(c_str_ptr)(src));
 }
@@ -218,7 +218,7 @@ inline ss_char_w_t *strcat(ss_char_w_t *dest, ss_char_w_t const* src)
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_traits<S>::char_type *strncpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type *strncpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
 {
     return stlsoft_std_ns_qual(strncpy_)(dest, stlsoft_ns_qual(c_str_data)(src), stlsoft_ns_qual(c_str_len)(src));
 }
@@ -227,7 +227,7 @@ inline ss_typename_type_k string_traits<S>::char_type *strncpy(ss_typename_type_
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_traits<S>::char_type *strncat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
+inline ss_typename_type_ret_k string_traits<S>::char_type *strncat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src)
 {
     return stlsoft_std_ns_qual(strncat_)(dest, stlsoft_ns_qual(c_str_data)(src), stlsoft_ns_qual(c_str_len)(src));
 }
@@ -236,7 +236,7 @@ inline ss_typename_type_k string_traits<S>::char_type *strncat(ss_typename_type_
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_traits<S>::char_type *strncpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src, ss_size_t n)
+inline ss_typename_type_ret_k string_traits<S>::char_type *strncpy(ss_typename_type_k string_traits<S>::char_type *dest, S const& src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncpy_)(dest, stlsoft_ns_qual(c_str_data)(src), n);
 }
@@ -255,7 +255,7 @@ inline ss_char_w_t *strncpy(ss_char_w_t *dest, ss_char_w_t const* src, ss_size_t
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_traits<S>::char_type *strncat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src, ss_size_t n)
+inline ss_typename_type_ret_k string_traits<S>::char_type *strncat(ss_typename_type_k string_traits<S>::char_type *dest, S const& src, ss_size_t n)
 {
     return stlsoft_std_ns_qual(strncat_)(dest, stlsoft_ns_qual(c_str_data)(src), n);
 }
@@ -481,7 +481,7 @@ namespace std_impl
  */
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_traits<S>::char_type *strdup(S const& s)
+inline ss_typename_type_ret_k string_traits<S>::char_type *strdup(S const& s)
 {
     return stlsoft_std_ns_qual(strdup_)(stlsoft_ns_qual(c_str_ptr)(s));
 }

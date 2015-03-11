@@ -4,7 +4,7 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      12
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ typedef basic_error_desc<char>          error_desc;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_error_desc<C>::allocator_type &basic_error_desc<C>::get_allocator_()
+inline ss_typename_type_ret_k basic_error_desc<C>::allocator_type &basic_error_desc<C>::get_allocator_()
 {
     return *this;
 }
@@ -232,7 +232,7 @@ inline basic_error_desc<C>::~basic_error_desc() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_error_desc<C>::char_type const* basic_error_desc<C>::get_description() const
+inline ss_typename_type_ret_k basic_error_desc<C>::char_type const* basic_error_desc<C>::get_description() const
 {
     static const char_type s_nullMessage[1] = { '\0' };
 
@@ -240,19 +240,19 @@ inline ss_typename_type_k basic_error_desc<C>::char_type const* basic_error_desc
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_error_desc<C>::char_type const* basic_error_desc<C>::c_str() const
+inline ss_typename_type_ret_k basic_error_desc<C>::char_type const* basic_error_desc<C>::c_str() const
 {
     return get_description();
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_error_desc<C>::size_type basic_error_desc<C>::length() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_error_desc<C>::size_type basic_error_desc<C>::length() const stlsoft_throw_0()
 {
     return m_length;
 }
 
 template <ss_typename_param_k C>
-inline ss_typename_type_k basic_error_desc<C>::size_type basic_error_desc<C>::size() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_error_desc<C>::size_type basic_error_desc<C>::size() const stlsoft_throw_0()
 {
     return length();
 }

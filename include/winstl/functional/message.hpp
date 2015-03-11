@@ -4,7 +4,7 @@
  * Purpose:     Window messaging function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MAJOR     4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     0
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      35
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  2
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
-# include <winstl/shims/attribute/get_hwnd.hpp>
+# include <winstl/shims/attribute/get_HWND.hpp>
 #endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 #ifndef _WINSTL_WINDOW_FUNCTIONALS_NO_STD
 # include <functional>

@@ -2,18 +2,20 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  25th September 2007
+; Updated:  16th November 2007
 
 ============================================================================
 
 
-STLSoft 1.9.6 TODOs:
+STLSoft 1.9.7 TODOs:
 ====================
+
 
 ? 1. STLSoft Documentation
 --------------------------
 
 Priority: high
+
 
 
 ? 2. STLSoft Website
@@ -22,10 +24,12 @@ Priority: high
 Priority: high
 
 
+
 ? 3. Allocator constructor parameters for the fixed array classes
 -----------------------------------------------------------------
 
 Priority: medium
+
 
 
 ? 4. Interface pointers providing more succinct syntax for COM
@@ -34,10 +38,12 @@ Priority: medium
 Priority: medium
 
 
+
 ? 5. Investigate 64-bit compilation for scoped_handle
 -----------------------------------------------------
 
 Priority: medium
+
 
 
 ? 6. CString header file #include bringing up to date
@@ -46,16 +52,26 @@ Priority: medium
 Priority: low
 
 
+
 ? 7. Implement scoped_method
 -----------------------------------------------------
 
 Priority: medium
 
 
+
 ? 8. 64-bit issues for Windows x64
 ----------------------------------
 
 Priority: high
+
+
+
+? 9. scoped_method smart pointer class
+-----------------------------------------------------
+
+Priority: medium
+
 
 
 

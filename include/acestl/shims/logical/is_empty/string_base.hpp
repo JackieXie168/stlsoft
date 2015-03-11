@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_String_Base class.
  *
  * Created:     16th December 2004
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_REVISION  2
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      8
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,26 +84,26 @@ namespace stlsoft
 
 STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
 
-	no_type is_empty_helper_assistant(ACE_String_Base<ss_char_a_t> const*, ACE_String_Base<ss_char_a_t> const*)
-	{
-		return no_type();
-	}
+    no_type is_empty_helper_assistant(ACE_String_Base<ss_char_a_t> const*, ACE_String_Base<ss_char_a_t> const*)
+    {
+        return no_type();
+    }
 
-	inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_a_t> const& s, no_type)
-	{
-		return 0 != s.length();
-	}
+    inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_a_t> const& s, no_type)
+    {
+        return 0 != s.length();
+    }
 
 
-	no_type is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const*, ACE_String_Base<ss_char_w_t> const*)
-	{
-		return no_type();
-	}
+    no_type is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const*, ACE_String_Base<ss_char_w_t> const*)
+    {
+        return no_type();
+    }
 
-	inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_w_t> const& s, no_type)
-	{
-		return 0 != s.length();
-	}
+    inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_w_t> const& s, no_type)
+    {
+        return 0 != s.length();
+    }
 
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
 

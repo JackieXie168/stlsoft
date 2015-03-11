@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       491
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   2
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       492
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -279,7 +279,7 @@ inline interface_ptr<T>::~interface_ptr() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::class_type &interface_ptr<T>::operator =(ss_typename_type_k interface_ptr<T>::class_type const& rhs)
+inline ss_typename_type_ret_k interface_ptr<T>::class_type &interface_ptr<T>::operator =(ss_typename_type_k interface_ptr<T>::class_type const& rhs)
 {
     class_type   t(rhs);
 
@@ -307,7 +307,7 @@ inline void interface_ptr<T>::set(ss_typename_type_k interface_ptr<T>::reference
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::pointer interface_ptr<T>::detach()
+inline ss_typename_type_ret_k interface_ptr<T>::pointer interface_ptr<T>::detach()
 {
     return parent_class_type::detach();
 }
@@ -331,13 +331,13 @@ inline interface_ptr<T>::operator ss_typename_type_k interface_ptr<T>::operator_
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::pointer interface_ptr<T>::get_interface_ptr()
+inline ss_typename_type_ret_k interface_ptr<T>::pointer interface_ptr<T>::get_interface_ptr()
 {
     return parent_class_type::get();
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k interface_ptr<T>::const_pointer interface_ptr<T>::get_interface_ptr() const
+inline ss_typename_type_ret_k interface_ptr<T>::const_pointer interface_ptr<T>::get_interface_ptr() const
 {
     return parent_class_type::get();
 }

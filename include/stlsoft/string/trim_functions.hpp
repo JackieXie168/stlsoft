@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for trimming and removing string contents.
  *
  * Created:     25th April 2005
- * Updated:     19th August 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    4
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        32
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    5
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,6 +96,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 # ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 #  include <stlsoft/string/simple_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
+#  include <stlsoft/string/string_view.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -183,8 +186,6 @@ inline S& trim_left(S& str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
-
-    STLSOFT_SUPPRESS_UNUSED(p);
 # endif /* compiler */
 
     // 2. typedef the char_t
@@ -277,8 +278,6 @@ inline S& trim_right(S& str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
-
-    STLSOFT_SUPPRESS_UNUSED(n);
 # endif /* compiler */
 
     // 2. typedef the char_t
@@ -372,8 +371,6 @@ inline S& trim_all(S& str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
-
-    STLSOFT_SUPPRESS_UNUSED(n);
 # endif /* compiler */
 
     // 2. typedef the char_t
@@ -422,15 +419,15 @@ inline S& remove_all_impl(S& str, ss_typename_type_k S::value_type const* remove
     // 3. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type           char_t;
     // 4. typedef the iterator type(s)
-    typedef ss_typename_type_k string_traits_t::const_iterator      iterator_t;
+    typedef ss_typename_type_k string_traits_t::iterator            iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
 
     // Get an iterator to the first element that
-    /* const */ iterator_t        it_b    =   str.begin();
-//  const iterator_t        it_e    =   str.end();
-    const iterator_t        it_l    =   it_b;
-    const iterator_t        it_r    =   remove_if(it_b, str.end(), bind1st(ptr_fun(pfn), removeChars));
+    iterator_t          it_b    =   str.begin();
+    iterator_t          it_e    =   str.end();
+    const iterator_t    it_l    =   it_b;
+    const iterator_t    it_r    =   remove_if(it_b, it_e, bind1st(ptr_fun(pfn), removeChars));
 
     return string_traits_t::assign_inplace(str, it_l, it_r);
 }
@@ -451,8 +448,6 @@ inline S& remove_all(S& str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
-
-    STLSOFT_SUPPRESS_UNUSED(n);
 # endif /* compiler */
 
     // 2. typedef the char_t

@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       224
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       225
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -921,7 +921,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_k basic_path<C, T, A>::class_type basic_path<C, T, A>::root(ss_typename_type_k basic_path<C, T, A>::char_type const* s)
+inline /* static */ ss_typename_type_ret_k basic_path<C, T, A>::class_type basic_path<C, T, A>::root(ss_typename_type_k basic_path<C, T, A>::char_type const* s)
 {
     return class_type(s);
 }
@@ -1390,7 +1390,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::get_file() const
+inline ss_typename_type_ret_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::get_file() const
 {
     char_type const* slash      =   traits_type::str_rchr(stlsoft_ns_qual(c_str_ptr)(m_buffer), traits_type::path_name_separator());
     char_type const* slash_a    =   traits_type::str_rchr(stlsoft_ns_qual(c_str_ptr)(m_buffer), path_name_separator_alt());
@@ -1416,7 +1416,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::get_ext() const
+inline ss_typename_type_ret_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::get_ext() const
 {
     char_type const         *dot    =   traits_type::str_rchr(this->c_str(), '.');
     char_type const         *file   =   get_file();
@@ -1440,7 +1440,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::size_type basic_path<C, T, A>::length() const
+inline ss_typename_type_ret_k basic_path<C, T, A>::size_type basic_path<C, T, A>::length() const
 {
     return m_len;
 }
@@ -1449,7 +1449,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::size_type basic_path<C, T, A>::size() const
+inline ss_typename_type_ret_k basic_path<C, T, A>::size_type basic_path<C, T, A>::size() const
 {
     return length();
 }
@@ -1458,7 +1458,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::bool_type basic_path<C, T, A>::empty() const
+inline ss_typename_type_ret_k basic_path<C, T, A>::bool_type basic_path<C, T, A>::empty() const
 {
     return 0 == size();
 }
@@ -1467,7 +1467,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::c_str() const
+inline ss_typename_type_ret_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::c_str() const
 {
     return stlsoft_ns_qual(c_str_ptr)(m_buffer);
 }
@@ -1476,7 +1476,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::char_type const& basic_path<C, T, A>::operator [](ss_typename_type_k basic_path<C, T, A>::size_type index) const
+inline ss_typename_type_ret_k basic_path<C, T, A>::char_type const& basic_path<C, T, A>::operator [](ss_typename_type_k basic_path<C, T, A>::size_type index) const
 {
     UNIXSTL_MESSAGE_ASSERT("Index out of range", !(size() < index));
 
@@ -1523,7 +1523,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_path<C, T, A>::size_type basic_path<C, T, A>::copy(ss_typename_type_k basic_path<C, T, A>::char_type *buffer, ss_typename_type_k basic_path<C, T, A>::size_type cchBuffer) const
+inline ss_typename_type_ret_k basic_path<C, T, A>::size_type basic_path<C, T, A>::copy(ss_typename_type_k basic_path<C, T, A>::char_type *buffer, ss_typename_type_k basic_path<C, T, A>::size_type cchBuffer) const
 {
     return stlsoft_ns_qual(copy_contents)(buffer, cchBuffer, m_buffer.data(), m_len);
 }

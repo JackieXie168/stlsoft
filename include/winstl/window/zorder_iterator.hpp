@@ -4,7 +4,7 @@
  * Purpose:     Z-order iteration.
  *
  * Created:     11th July 2005
- * Updated:     8th April 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MAJOR     2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      36
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  3
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -333,7 +333,7 @@ inline zorder_iterator_tmpl<T>::~zorder_iterator_tmpl() stlsoft_throw_0()
 {}
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator =(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const& rhs)
+inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator =(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const& rhs)
 {
     WINSTL_ASSERT(NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot));
 
@@ -375,7 +375,7 @@ inline /* static */ zorder_iterator_tmpl<T> zorder_iterator_tmpl<T>::create(HWND
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator ++()
+inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Attempt to increment an invalid / out-of-range iterator", NULL != m_hwndCurrent);
 
@@ -385,7 +385,7 @@ inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_t
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator ++(int)
+inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator ++(int)
 {
     class_type  ret(*this);
 
@@ -395,7 +395,7 @@ inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tm
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator --()
+inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator --()
 {
     WINSTL_MESSAGE_ASSERT("Attempt to decrement an invalid / out-of-range iterator", NULL != m_hwndRoot);
 
@@ -412,7 +412,7 @@ inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_t
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator --(int)
+inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator --(int)
 {
     class_type  ret(*this);
 
@@ -422,7 +422,7 @@ inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tm
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k zorder_iterator_tmpl<T>::base_iterator_type zorder_iterator_tmpl<T>::base() const
+inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::base_iterator_type zorder_iterator_tmpl<T>::base() const
 {
     base_iterator_type  it = base_iterator_type::create(m_hwndCurrent, fromCurrent);
 
@@ -430,7 +430,7 @@ inline ss_typename_type_k zorder_iterator_tmpl<T>::base_iterator_type zorder_ite
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_k zorder_iterator_tmpl<T>::value_type zorder_iterator_tmpl<T>::operator *() const
+inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::value_type zorder_iterator_tmpl<T>::operator *() const
 {
     return m_hwndCurrent;
 }

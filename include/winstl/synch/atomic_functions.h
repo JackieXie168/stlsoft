@@ -4,7 +4,7 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     2
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      196
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     3
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      198
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,9 +81,10 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
  * Compatibility
  */
 
-#if !defined(_M_IX86)
+#if !defined(_M_IX86) && \
+    !defined(_M_IA64)
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 */
+#endif /* _M_IX86 || _M_IA64 */
 
 #ifdef STLSOFT_ATOMIC_CALLCONV
 # undef STLSOFT_ATOMIC_CALLCONV
@@ -103,16 +104,27 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 # endif /* compiler */
 #endif /* STLSOFT_NO_FASTCALL */
 
-#if defined(STLSOFT_CF_FASTCALL_SUPPORTED) && \
-    !defined(STLSOFT_NO_FASTCALL)
-# define WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL
-# define WINSTL_ATOMIC_FNS_CALLCONV         __fastcall
-#elif defined(STLSOFT_CF_STDCALL_SUPPORTED)
-# define WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL
-# define WINSTL_ATOMIC_FNS_CALLCONV         __stdcall
-#else
-# error Need to define calling convention
-#endif /* call-conv */
+#if defined(_M_IX86)
+
+# if defined(STLSOFT_CF_FASTCALL_SUPPORTED) && \
+     !defined(STLSOFT_NO_FASTCALL)
+#  define WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL
+#  define WINSTL_ATOMIC_FNS_CALLCONV        __fastcall
+# elif defined(STLSOFT_CF_STDCALL_SUPPORTED)
+#  define WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL
+#  define WINSTL_ATOMIC_FNS_CALLCONV        __stdcall
+# else
+#  error Need to define calling convention
+# endif /* call-conv */
+
+#elif defined(_M_IA64)
+
+#  define WINSTL_ATOMIC_FNS_CALLCONV_IS_CDECL
+#  define WINSTL_ATOMIC_FNS_CALLCONV        __cdecl
+
+#else /* ? arch */
+# error Only defined for the Intel x86 and IA64 architectures
+#endif /* arch */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -201,7 +213,13 @@ namespace winstl_project
  * Typedefs
  */
 
+#if defined(_M_IX86)
 typedef ws_sint32_t     atomic_int_t;
+#elif defined(_M_IA64)
+typedef ws_sint64_t     atomic_int_t;
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Atomic function declarations
@@ -210,50 +228,50 @@ typedef ws_sint32_t     atomic_int_t;
 #ifndef WINSTL_ATOMIC_FNS_DEFINITION
 
 /* Uni-processor variants */
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postdecrement_up(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(void) atomic_increment_up(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(void) atomic_decrement_up(ws_sint32_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preincrement_up(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_predecrement_up(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postincrement_up(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postdecrement_up(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_increment_up(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_decrement_up(atomic_int_t volatile* pl);
 
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_write_up(ws_sint32_t volatile* pl, ws_sint32_t n);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_read_up(ws_sint32_t volatile const* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_write_up(atomic_int_t volatile* pl, atomic_int_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const* pl);
 
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postadd_up(ws_sint32_t volatile* pl, ws_sint32_t n);
-STLSOFT_INLINE ws_sint32_t atomic_preadd_up(ws_sint32_t volatile* pl, ws_sint32_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* pl, atomic_int_t n);
+STLSOFT_INLINE atomic_int_t atomic_preadd_up(atomic_int_t volatile* pl, atomic_int_t n);
 
 
 
 /* SMP variants */
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_predecrement_smp(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postincrement_smp(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postdecrement_smp(ws_sint32_t volatile* pl);
-STLSOFT_INLINE void atomic_increment_smp(ws_sint32_t volatile* pl);
-STLSOFT_INLINE void atomic_decrement_smp(ws_sint32_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preincrement_smp(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_predecrement_smp(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postincrement_smp(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postdecrement_smp(atomic_int_t volatile* pl);
+STLSOFT_INLINE void atomic_increment_smp(atomic_int_t volatile* pl);
+STLSOFT_INLINE void atomic_decrement_smp(atomic_int_t volatile* pl);
 
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_write_smp(ws_sint32_t volatile* pl, ws_sint32_t n);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_read_smp(ws_sint32_t volatile const* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_write_smp(atomic_int_t volatile* pl, atomic_int_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_read_smp(atomic_int_t volatile const* pl);
 
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postadd_smp(ws_sint32_t volatile* pl, ws_sint32_t n);
-STLSOFT_INLINE ws_sint32_t atomic_preadd_smp(ws_sint32_t volatile* pl, ws_sint32_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postadd_smp(atomic_int_t volatile* pl, atomic_int_t n);
+STLSOFT_INLINE atomic_int_t atomic_preadd_smp(atomic_int_t volatile* pl, atomic_int_t n);
 
 
 
 /* Multi-processor detection variants */
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(void) atomic_increment(ws_sint32_t volatile* pl);
-WINSTL_ATOMIC_FNS_DECL_(void) atomic_decrement(ws_sint32_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_predecrement(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postincrement(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_increment(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_decrement(atomic_int_t volatile* pl);
 
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_write(ws_sint32_t volatile* pl, ws_sint32_t n);
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_read(ws_sint32_t volatile const* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_write(atomic_int_t volatile* pl, atomic_int_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_read(atomic_int_t volatile const* pl);
 
-WINSTL_ATOMIC_FNS_DECL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile* pl, ws_sint32_t n);
-STLSOFT_INLINE ws_sint32_t atomic_preadd(ws_sint32_t volatile* pl, ws_sint32_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postadd(atomic_int_t volatile* pl, atomic_int_t n);
+STLSOFT_INLINE atomic_int_t atomic_preadd(atomic_int_t volatile* pl, atomic_int_t n);
 
 
 #endif /* !WINSTL_ATOMIC_FNS_DEFINITION */
@@ -280,13 +298,13 @@ STLSOFT_INLINE ws_sint32_t atomic_preadd(ws_sint32_t volatile* pl, ws_sint32_t n
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_up(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
         /* pop 1 into eax, which can then be atomically added into *pl (held
          * in ecx). Since it's an xadd it exchanges the previous value into eax
-		 */
+         */
         mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -303,7 +321,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile
 
         /* Since this is pre-increment, we need to inc eax to catch up with the
          * real value
-		 */
+         */
         inc eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -318,13 +336,13 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_up(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
         /* pop 1 into eax, which can then be atomically added into *pl (held
          * in ecx). Since it's an xadd it exchanges the previous value into eax
-		 */
+         */
         mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -341,7 +359,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile
 
         /* Since this is pre-decrement, we need to inc eax to catch up with the
          * real value
-		 */
+         */
         dec eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -356,13 +374,13 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_up(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
         /* pop 1 into eax, which can then be atomically added into *pl (held
          * in ecx). Since it's an xadd it exchanges the previous value into eax
-		 */
+         */
         mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -379,7 +397,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatil
 
         /* Since this is post-increment, we need do nothing, since the previous
          * value is in eax
-		 */
+         */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
         ret
@@ -393,13 +411,13 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_up(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_up(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
         /* pop 1 into eax, which can then be atomically added into *pl (held
          * in ecx). Since it's an xadd it exchanges the previous value into eax
-		 */
+         */
         mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -430,7 +448,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_up(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
@@ -458,7 +476,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(ws_sint32_t volatile* /* pl */
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
@@ -486,7 +504,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(ws_sint32_t volatile* /* pl */
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_up(ws_sint32_t volatile const* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const* /* pl */)
 {
     _asm
     {
@@ -522,7 +540,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_up(ws_sint32_t volatile const* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_up(ws_sint32_t volatile* /* pl */, ws_sint32_t /* n */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_up(atomic_int_t volatile* /* pl */, atomic_int_t /* n */)
 {
     _asm
     {
@@ -555,7 +573,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_up(ws_sint32_t volatile* /* pl
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_up(ws_sint32_t volatile* /* pl */, ws_sint32_t /* n */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* /* pl */, atomic_int_t /* n */)
 {
     /* Thanks to Eugene Gershnik for the fast-call implementation */
     __asm
@@ -598,7 +616,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_up(ws_sint32_t volatile* /* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_smp(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
@@ -621,7 +639,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatil
 
         /* Since this is pre-increment, we need to inc eax to catch up with the
          * real value
-		 */
+         */
         inc eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -636,7 +654,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_smp(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_smp(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
@@ -674,7 +692,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_smp(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_smp(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_smp(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
@@ -711,7 +729,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_smp(ws_sint32_t volati
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_smp(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_smp(atomic_int_t volatile* /* pl */)
 {
     _asm
     {
@@ -748,7 +766,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_smp(ws_sint32_t volati
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_smp(ws_sint32_t volatile const* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_smp(atomic_int_t volatile const* /* pl */)
 {
     _asm
     {
@@ -784,7 +802,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_smp(ws_sint32_t volatile const*
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_smp(ws_sint32_t volatile* /* pl */, ws_sint32_t /* n */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_smp(atomic_int_t volatile* /* pl */, atomic_int_t /* n */)
 {
     _asm
     {
@@ -817,7 +835,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_smp(ws_sint32_t volatile* /* p
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_smp(ws_sint32_t volatile* /* pl */, ws_sint32_t /* n */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_smp(atomic_int_t volatile* /* pl */, atomic_int_t /* n */)
 {
     /* Thanks to Eugene Gershnik for the fast-call implementation */
     __asm
@@ -861,7 +879,7 @@ namespace
     inline ws_bool_t is_host_up()
     {
         /* All these statics are guaranteed to be zero as a result of the module/process loading */
-        static ws_sint32_t  s_spin; /* The spin variable */
+        static atomic_int_t  s_spin; /* The spin variable */
         static ws_bool_t    s_init; /* This is guaranteed to be zero */
         static ws_bool_t    s_up;   /* This is the flag variably, also guaranteed to be zero */
 
@@ -898,7 +916,7 @@ namespace
      * case is benign. The only cost in the very rare case where it happens is that
      * the thread(s) will use bus locking until such time as the static is fully
      * initialised.
-	 */
+     */
     static ws_bool_t    s_up = is_host_up();
 }
 
@@ -906,7 +924,7 @@ namespace
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile* /* pl */)
 {
     if(s_up)
     {
@@ -980,7 +998,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile* /
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement(atomic_int_t volatile* /* pl */)
 {
     if(s_up)
     {
@@ -1054,7 +1072,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile* /
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement(atomic_int_t volatile* /* pl */)
 {
     if(s_up)
     {
@@ -1126,7 +1144,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile* /* pl */)
 {
     if(s_up)
     {
@@ -1138,7 +1156,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile* 
             mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-			/* __fastcall: ecx is pl */
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
             /* __stdcall: arguments are on the stack */
 
@@ -1170,7 +1188,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile* 
             mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-			/* __fastcall: ecx is pl */
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
             /* __stdcall: arguments are on the stack */
 
@@ -1198,7 +1216,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(atomic_int_t volatile* /* pl */)
 {
     if(s_up)
     {
@@ -1240,7 +1258,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(ws_sint32_t volatile* /* pl */)
             /* The IA-32 Intel Architecture Software Developer's Manual, volume 2
              * states that a LOCK can be prefixed to ADD, but CodePlay VectorC
              * has a problem with it.
-			 */
+             */
 #if defined(STLSOFT_COMPILER_IS_VECTORC)
             mov eax, 1
             lock xadd dword ptr [ecx], eax
@@ -1262,7 +1280,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(ws_sint32_t volatile* /* pl */)
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(ws_sint32_t volatile* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(atomic_int_t volatile* /* pl */)
 {
     if(s_up)
     {
@@ -1322,7 +1340,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(ws_sint32_t volatile* /* pl */)
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read(ws_sint32_t volatile const* /* pl */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read(atomic_int_t volatile const* /* pl */)
 {
     if(s_up)
     {
@@ -1392,7 +1410,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read(ws_sint32_t volatile const* /* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write(ws_sint32_t volatile* /* pl */, ws_sint32_t /* n */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write(atomic_int_t volatile* /* pl */, atomic_int_t /* n */)
 {
     _asm
     {
@@ -1425,7 +1443,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write(ws_sint32_t volatile* /* pl */
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile* /* pl */, ws_sint32_t /* n */)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd(atomic_int_t volatile* /* pl */, atomic_int_t /* n */)
 {
     /* Thanks to Eugene Gershnik for the fast-call implementation */
     if(s_up)
@@ -1506,6 +1524,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile* /* pl 
 #endif /* compiler */
 
 #  else /* STSLSOFT_INLINE_ASM_SUPPORTED */
+
 /* Non-assembler versions
  *
  * These use the Win32 Interlocked functions. These are not guaranteed to give
@@ -1518,29 +1537,47 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile* /* pl 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile* pl)
 {
+#if defined(_M_IX86)
     return STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
+#elif defined(_M_IA64)
+    return STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 /** \brief 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement(atomic_int_t volatile* pl)
 {
+#if defined(_M_IX86)
     return STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
+#elif defined(_M_IA64)
+    return STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 /** \brief 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement(atomic_int_t volatile* pl)
 {
-    ws_sint32_t pre = *pl;
+    atomic_int_t pre = *pl;
 
+#if defined(_M_IX86)
     STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
+#elif defined(_M_IA64)
+    STLSOFT_NS_GLOBAL(InterlockedIncrement64)((LONGLONG*)pl);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 
     return pre;
 }
@@ -1549,11 +1586,17 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile* pl)
 {
-    ws_sint32_t pre = *pl;
+    atomic_int_t pre = *pl;
 
+#if defined(_M_IX86)
     STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
+#elif defined(_M_IA64)
+    STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 
     return pre;
 }
@@ -1562,34 +1605,52 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(atomic_int_t volatile* pl)
 {
+#if defined(_M_IX86)
     STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
+#elif defined(_M_IA64)
+    STLSOFT_NS_GLOBAL(InterlockedIncrement64)((LONGLONG*)pl);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 /** \brief 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(atomic_int_t volatile* pl)
 {
+#if defined(_M_IX86)
     STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
+#elif defined(_M_IA64)
+    STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 /** \brief 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write(ws_sint32_t volatile* pl, ws_sint32_t n)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write(atomic_int_t volatile* pl, atomic_int_t n)
 {
+#if defined(_M_IX86)
     return STLSOFT_NS_GLOBAL(InterlockedExchange)((LPLONG)pl, n);
+#elif defined(_M_IA64)
+    return STLSOFT_NS_GLOBAL(InterlockedExchange64)((LONGLONG*)pl, n);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 /** \brief 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read(ws_sint32_t volatile const* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read(atomic_int_t volatile const* pl)
 {
     return *pl;
 }
@@ -1598,9 +1659,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read(ws_sint32_t volatile const* pl)
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile* pl, ws_sint32_t n)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd(atomic_int_t volatile* pl, atomic_int_t n)
 {
-    return (ws_sint32_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
+#if defined(_M_IX86)
+    return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
+#elif defined(_M_IA64)
+    return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd64)((LONGLONG*)pl, n);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 
@@ -1610,7 +1677,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile* pl, ws
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_up(atomic_int_t volatile* pl)
 {
     return atomic_preincrement(pl);
 }
@@ -1619,7 +1686,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_up(atomic_int_t volatile* pl)
 {
     return atomic_predecrement(pl);
 }
@@ -1628,7 +1695,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_up(atomic_int_t volatile* pl)
 {
     return atomic_postincrement(pl);
 }
@@ -1637,7 +1704,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_up(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_up(atomic_int_t volatile* pl)
 {
     return atomic_postdecrement(pl);
 }
@@ -1646,7 +1713,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_up(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(atomic_int_t volatile* pl)
 {
     atomic_increment(pl);
 }
@@ -1655,7 +1722,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(ws_sint32_t volatile* pl)
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(atomic_int_t volatile* pl)
 {
     atomic_decrement(pl);
 }
@@ -1664,7 +1731,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(ws_sint32_t volatile* pl)
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_up(ws_sint32_t volatile* pl, ws_sint32_t n)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_up(atomic_int_t volatile* pl, atomic_int_t n)
 {
     return atomic_write(pl, n);
 }
@@ -1673,7 +1740,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_up(ws_sint32_t volatile* pl, w
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_up(ws_sint32_t volatile const* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const* pl)
 {
     return *pl;
 }
@@ -1682,9 +1749,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_up(ws_sint32_t volatile const* 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_up(ws_sint32_t volatile* pl, ws_sint32_t n)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* pl, atomic_int_t n)
 {
-    return (ws_sint32_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
+#if defined(_M_IX86)
+    return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
+#elif defined(_M_IA64)
+    return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd64)((LONGLONG*)pl, n);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 /* SMP variants */
@@ -1693,7 +1766,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_up(ws_sint32_t volatile* pl,
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_smp(atomic_int_t volatile* pl)
 {
     return atomic_preincrement(pl);
 }
@@ -1702,7 +1775,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_smp(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_smp(atomic_int_t volatile* pl)
 {
     return atomic_predecrement(pl);
 }
@@ -1711,7 +1784,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_smp(ws_sint32_t volatil
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_smp(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_smp(atomic_int_t volatile* pl)
 {
     return atomic_postincrement(pl);
 }
@@ -1720,7 +1793,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_smp(ws_sint32_t volati
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_smp(ws_sint32_t volatile* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_smp(atomic_int_t volatile* pl)
 {
     return atomic_postdecrement(pl);
 }
@@ -1729,7 +1802,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_smp(ws_sint32_t volati
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_smp(ws_sint32_t volatile* pl, ws_sint32_t n)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_smp(atomic_int_t volatile* pl, atomic_int_t n)
 {
     return atomic_write(pl, n);
 }
@@ -1738,7 +1811,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_smp(ws_sint32_t volatile* pl, 
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_smp(ws_sint32_t volatile const* pl)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_smp(atomic_int_t volatile const* pl)
 {
     return *pl;
 }
@@ -1747,9 +1820,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_smp(ws_sint32_t volatile const*
  *
  * \ingroup group__library__synch
  */
-WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_smp(ws_sint32_t volatile* pl, ws_sint32_t n)
+WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_smp(atomic_int_t volatile* pl, atomic_int_t n)
 {
-    return (ws_sint32_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
+#if defined(_M_IX86)
+    return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
+#elif defined(_M_IA64)
+    return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd64)((LONGLONG*)pl, n);
+#else /* ? arch */
+# error Not valid for processors other than Intel
+#endif /* _M_IX86 || _M_IA64 */
 }
 
 #  endif /* STSLSOFT_INLINE_ASM_SUPPORTED */
@@ -1764,7 +1843,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_smp(ws_sint32_t volatile* pl
  *
  * \ingroup group__library__synch
  */
-STLSOFT_INLINE ws_sint32_t atomic_preadd_up(ws_sint32_t volatile* pl, ws_sint32_t n)
+STLSOFT_INLINE atomic_int_t atomic_preadd_up(atomic_int_t volatile* pl, atomic_int_t n)
 {
     return n + atomic_postadd_up(pl, n);
 }
@@ -1773,7 +1852,7 @@ STLSOFT_INLINE ws_sint32_t atomic_preadd_up(ws_sint32_t volatile* pl, ws_sint32_
  *
  * \ingroup group__library__synch
  */
-STLSOFT_INLINE void atomic_increment_smp(ws_sint32_t volatile* pl)
+STLSOFT_INLINE void atomic_increment_smp(atomic_int_t volatile* pl)
 {
     atomic_postincrement_smp(pl);
 }
@@ -1782,7 +1861,7 @@ STLSOFT_INLINE void atomic_increment_smp(ws_sint32_t volatile* pl)
  *
  * \ingroup group__library__synch
  */
-STLSOFT_INLINE void atomic_decrement_smp(ws_sint32_t volatile* pl)
+STLSOFT_INLINE void atomic_decrement_smp(atomic_int_t volatile* pl)
 {
     atomic_postdecrement_smp(pl);
 }
@@ -1791,7 +1870,7 @@ STLSOFT_INLINE void atomic_decrement_smp(ws_sint32_t volatile* pl)
  *
  * \ingroup group__library__synch
  */
-STLSOFT_INLINE ws_sint32_t atomic_preadd_smp(ws_sint32_t volatile* pl, ws_sint32_t n)
+STLSOFT_INLINE atomic_int_t atomic_preadd_smp(atomic_int_t volatile* pl, atomic_int_t n)
 {
     return n + atomic_postadd_smp(pl, n);
 }
@@ -1800,7 +1879,7 @@ STLSOFT_INLINE ws_sint32_t atomic_preadd_smp(ws_sint32_t volatile* pl, ws_sint32
  *
  * \ingroup group__library__synch
  */
-STLSOFT_INLINE ws_sint32_t atomic_preadd(ws_sint32_t volatile* pl, ws_sint32_t n)
+STLSOFT_INLINE atomic_int_t atomic_preadd(atomic_int_t volatile* pl, atomic_int_t n)
 {
     return n + atomic_postadd(pl, n);
 }

@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        72
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -315,7 +315,7 @@ typedef basic_error_desc<TCHAR>         error_desc;
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_error_desc<C, T>::char_type *basic_error_desc<C, T>::find_message_(ss_typename_type_k basic_error_desc<C, T>::error_type error, ss_typename_type_k basic_error_desc<C, T>::char_type const* modulePath, ss_typename_type_k basic_error_desc<C, T>::size_type *length)
+inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type *basic_error_desc<C, T>::find_message_(ss_typename_type_k basic_error_desc<C, T>::error_type error, ss_typename_type_k basic_error_desc<C, T>::char_type const* modulePath, ss_typename_type_k basic_error_desc<C, T>::size_type *length)
 {
     WINSTL_ASSERT(NULL != length);
     WINSTL_MESSAGE_ASSERT("Constructor initialisation order error", 0 == *length);
@@ -415,7 +415,7 @@ inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_d
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::get_description() const
+inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::get_description() const
 {
     static const char_type s_nullMessage[1] = { '\0' };
 
@@ -425,7 +425,7 @@ inline ss_typename_type_k basic_error_desc<C, T>::char_type const* basic_error_d
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::c_str() const
+inline ss_typename_type_ret_k basic_error_desc<C, T>::char_type const* basic_error_desc<C, T>::c_str() const
 {
     return get_description();
 }
@@ -447,7 +447,7 @@ inline basic_error_desc<C, T>::operator ss_typename_type_k basic_error_desc<C, T
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::length() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::length() const stlsoft_throw_0()
 {
     return m_length;
 }
@@ -455,7 +455,7 @@ inline ss_typename_type_k basic_error_desc<C, T>::size_type basic_error_desc<C, 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::size() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_error_desc<C, T>::size_type basic_error_desc<C, T>::size() const stlsoft_throw_0()
 {
     return length();
 }

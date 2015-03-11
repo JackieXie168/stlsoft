@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 3
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     72
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 4
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 
 /*
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_DMC:	__DMC__<0x0850
+STLSOFT_COMPILER_IS_DMC:    __DMC__<0x0850
 STLSOFT_COMPILER_IS_GCC:  __GNUC__<3
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 [Incompatibilies-end]
@@ -93,7 +93,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 # include <winstl/shims/access/string.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
-# include <winstl/shims/attribute/get_hwnd.hpp>
+# include <winstl/shims/attribute/get_HWND.hpp>
 #endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 #ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS
 # include <winstl/conversion/char_conversions.hpp>  // for winstl::a2w, w2a
@@ -311,7 +311,7 @@ private:
 // [[synesis:class:unary-functor: listbox_front_inserter]]
 struct listbox_front_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_front_inserter>
 #endif /* compiler */
 {
@@ -386,7 +386,7 @@ private:
 // [[synesis:class:unary-functor: listbox_add_inserter]]
 struct listbox_add_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_add_inserter>
 #endif /* compiler */
 {
@@ -461,7 +461,7 @@ private:
 // [[synesis:class:unary-functor: listbox_back_inserter]]
 struct listbox_back_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_back_inserter>
 #endif /* compiler */
 {
@@ -538,7 +538,7 @@ private:
 // [[synesis:class:unary-functor: combobox_front_inserter]]
 struct combobox_front_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_front_inserter>
 #endif /* compiler */
 {
@@ -613,7 +613,7 @@ private:
 // [[synesis:class:unary-functor: combobox_add_inserter]]
 struct combobox_add_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_add_inserter>
 #endif /* compiler */
 {
@@ -688,7 +688,7 @@ private:
 // [[synesis:class:unary-functor: combobox_back_inserter]]
 struct combobox_back_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-		__DMC__ > 0x0850
+        __DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_back_inserter>
 #endif /* compiler */
 {

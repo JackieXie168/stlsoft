@@ -4,7 +4,7 @@
  * Purpose:     string_traits traits class.
  *
  * Created:     16th January 2002
- * Updated:     19th August 2007
+ * Updated:     17th October 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      74
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -156,9 +156,9 @@ struct string_traits<ss_char_a_t const*>
 };
 
 
-#if 0
-#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-# if 1
+# if 0
+#  ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#   if 1
 
 template <ss_size_t N>
 struct string_traits<ss_char_a_t const (&)[N]>
@@ -180,7 +180,7 @@ struct string_traits<ss_char_a_t []>
     : public string_traits<ss_char_a_t *>
 {};
 
-# else /* ? 0 */
+#   else /* ? 0 */
 
 template <ss_typename_param_k C, ss_size_t N>
 struct string_traits<C (&)[N]>
@@ -208,9 +208,9 @@ struct string_traits<C const (&)[N]>
     typedef value_type const        *const_pointer;
 };
 
+#   endif /* 0 */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 # endif /* 0 */
-#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-#endif /* 0 */
 
 
 /* C-style Unicode string */

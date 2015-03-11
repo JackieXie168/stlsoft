@@ -2,10 +2,22 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  25th September 2007
+; Updated:  16th November 2007
 
 ============================================================================
 
+
+16th November 2007 - 1.9.7 released
+-----------------------------------
+
+ Win 64-bit compilation support; not perfect yet
+ Borland Turbo C++ v5.82 support; not perfect yet
+ new stlsoft::get_FILE_ptr shim
+ new platformstl::file_lines class
+ new winstl::to_DATE conversion shim
+ major enhancements to unixstl::memory_mapped_file
+ multiple compiler compatibility enhancement fixes
+ minor compilation warning fixes
 
 25th September 2007 - 1.9.6 released
 ------------------------------------

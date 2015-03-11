@@ -1,6 +1,6 @@
 
 #if !defined(ATLSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND)
-# error This file cannot be directly included, and should only be included within atlstl/shims/attribute/get_hwnd.hpp
+# error This file cannot be directly included, and should only be included within atlstl/shims/attribute/get_HWND.hpp
 #endif /* !ATLSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 
 #if !defined(STLSOFT_UNITTEST)
@@ -26,7 +26,7 @@ namespace unittest
 
 			if(get_hwnd(wndDesktop) != hwndDesktop)
 			{
-				r->report("get_hwnd(CWindow) failed", __LINE__);
+				r->report("get_HWND(CWindow) failed", __LINE__);
 				bSuccess = false;
 			}
 

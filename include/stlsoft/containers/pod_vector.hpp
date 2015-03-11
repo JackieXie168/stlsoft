@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     22nd March 2007
+ * Updated:     6th November 2007
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    7
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        69
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    8
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -335,7 +335,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         ,   ss_size_t           SPACE
         >
-inline ss_typename_type_k pod_vector<T, A, SPACE>::pointer pod_vector<T, A, SPACE>::begin_()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::pointer pod_vector<T, A, SPACE>::begin_()
 {
     return m_buffer.data();
 }
@@ -344,7 +344,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         ,   ss_size_t           SPACE
         >
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_pointer pod_vector<T, A, SPACE>::begin_() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_pointer pod_vector<T, A, SPACE>::begin_() const
 {
     return m_buffer.data();
 }
@@ -541,9 +541,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::begin()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::begin()
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::begin()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::begin()
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -556,9 +556,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::begin() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::begin() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::begin() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::begin() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -571,9 +571,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::end()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::end()
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::end()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::end()
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -586,9 +586,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::end() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::end() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::end() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_iterator pod_vector<T, A, SPACE>::end() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -602,9 +602,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rbegin()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rbegin()
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rbegin()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rbegin()
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -617,9 +617,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rbegin() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rbegin() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rbegin() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rbegin() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -632,9 +632,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rend()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rend()
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rend()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reverse_iterator pod_vector<T, A, SPACE>::rend()
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -647,9 +647,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rend() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rend() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rend() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reverse_iterator pod_vector<T, A, SPACE>::rend() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -665,7 +665,7 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::size_type pod_vector<T, A, SPACE>::size() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::size_type pod_vector<T, A, SPACE>::size() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline ss_size_t pod_vector<T, A, SPACE>::size() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -680,7 +680,7 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::size_type pod_vector<T, A, SPACE>::capacity() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::size_type pod_vector<T, A, SPACE>::capacity() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline ss_size_t pod_vector<T, A, SPACE>::capacity() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -695,7 +695,7 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::size_type pod_vector<T, A, SPACE>::max_size() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::size_type pod_vector<T, A, SPACE>::max_size() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline ss_size_t pod_vector<T, A, SPACE>::max_size() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -721,9 +721,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::allocator_type pod_vector<T, A, SPACE>::get_allocator() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::allocator_type pod_vector<T, A, SPACE>::get_allocator() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::allocator_type pod_vector<T, A, SPACE>::get_allocator() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::allocator_type pod_vector<T, A, SPACE>::get_allocator() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -737,9 +737,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::at(size_type index)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::at(size_type index)
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::at(ss_typename_type_k pod_vector<T, A, SPACE>::size_type index)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::at(ss_typename_type_k pod_vector<T, A, SPACE>::size_type index)
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T &pod_vector<T, A, SPACE>::at(size_type index)
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -758,9 +758,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::at(size_type index) const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::at(size_type index) const
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::at(ss_typename_type_k pod_vector<T, A, SPACE>::size_type index) const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::at(ss_typename_type_k pod_vector<T, A, SPACE>::size_type index) const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T const& pod_vector<T, A, SPACE>::at(size_type index) const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -779,9 +779,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::operator [](size_type index)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::operator [](size_type index)
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::operator [](ss_typename_type_k pod_vector<T, A, SPACE>::size_type index)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::operator [](ss_typename_type_k pod_vector<T, A, SPACE>::size_type index)
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T &pod_vector<T, A, SPACE>::operator [](size_type index)
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -800,9 +800,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::operator [](size_type index) const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::operator [](size_type index) const
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::operator [](ss_typename_type_k pod_vector<T, A, SPACE>::size_type index) const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::operator [](ss_typename_type_k pod_vector<T, A, SPACE>::size_type index) const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T const& pod_vector<T, A, SPACE>::operator [](size_type index) const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -819,9 +819,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::front()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::front()
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::front()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::front()
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T &pod_vector<T, A, SPACE>::front()
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -838,9 +838,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::front() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::front() const
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::front() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::front() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T const& pod_vector<T, A, SPACE>::front() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -857,9 +857,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::back()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::back()
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::back()
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::reference pod_vector<T, A, SPACE>::back()
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T &pod_vector<T, A, SPACE>::back()
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -877,9 +877,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::back() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::back() const
 #elif defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::back() const
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::const_reference pod_vector<T, A, SPACE>::back() const
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline T const& pod_vector<T, A, SPACE>::back() const
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
@@ -1081,9 +1081,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::insert(ss_typename_type_k pod_vector<T, A, SPACE>::iterator it, ss_typename_type_k pod_vector<T, A, SPACE>::value_type const& value /* = value_type() */)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::insert(ss_typename_type_k pod_vector<T, A, SPACE>::iterator it, ss_typename_type_k pod_vector<T, A, SPACE>::value_type const& value /* = value_type() */)
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::insert(iterator it, value_type const& value /* = value_type() */)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::insert(iterator it, value_type const& value /* = value_type() */)
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -1176,9 +1176,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(ss_typename_type_k pod_vector<T, A, SPACE>::iterator it)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(ss_typename_type_k pod_vector<T, A, SPACE>::iterator it)
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(iterator it)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(iterator it)
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());
@@ -1206,9 +1206,9 @@ template<   ss_typename_param_k T
         ,   ss_size_t           SPACE
         >
 #if defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED)
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(ss_typename_type_k pod_vector<T, A, SPACE>::iterator first, ss_typename_type_k pod_vector<T, A, SPACE>::iterator last)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(ss_typename_type_k pod_vector<T, A, SPACE>::iterator first, ss_typename_type_k pod_vector<T, A, SPACE>::iterator last)
 #else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
-inline ss_typename_type_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(iterator first, iterator last)
+inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A, SPACE>::erase(iterator first, iterator last)
 #endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     STLSOFT_ASSERT(is_valid_());

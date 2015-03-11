@@ -4,7 +4,7 @@
  * Purpose:     Window enable-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     86
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 2
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
-# include <winstl/shims/attribute/get_hwnd.hpp>
+# include <winstl/shims/attribute/get_HWND.hpp>
 #endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 
 /* /////////////////////////////////////////////////////////////////////////

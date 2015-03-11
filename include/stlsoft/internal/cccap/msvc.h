@@ -4,7 +4,10 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     4th August 2007
+ * Updated:     16th November 2007
+ *
+ * Thanks:      To Cláudio Albuquerque for working on the
+ *              Win64-compatibility.
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     14
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      95
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -417,6 +420,22 @@
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1300
+# if defined(_M_IX86)
+#  define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
+# elif defined(_M_IA64)
+ /* NOTE: The IA64 compiler version 13.10.2197.8 does not support this. This may not hold for other 64-bit compiler versions. */
+#  if _MSC_VER == 1310
+#  else ? _MSC_VER
+#   error 64-bit compilation has been tested only with version 13.10.2197.8. Other 64-bit MSVC compilers might not have the bug with qualifying return types with typename, so we break compilation here until further research/response is received
+#  endif /* _MSC_VER */
+# else /* ? arch */
+#  error Only defined for the Intel x86 and IA64 architectures
+# endif /* arch */
+#else
+ /* Not defined */
+#endif /* _MSC_VER */
+
+#if _MSC_VER >= 1300
 #  define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 #else
  /* Not defined */
@@ -502,27 +521,54 @@
 
 /* /////////////////////////////////////////////////////////////////////////
  * Calling convention
+ *
+ * On x86, the following are supported:
+ *   - cdecl
+ *   - fastcall
+ *   - stdcall
+ *
+ * On x64, there is only a single calling convention. Calling convention
+ * keywords are ignored.
  */
 
-#define STLSOFT_CF_CDECL_SUPPORTED
+#if defined(_M_IX86)
 
-#ifndef _MANAGED
-# define STLSOFT_CF_FASTCALL_SUPPORTED
-#endif /* !_MANAGED */
-#define STLSOFT_CF_STDCALL_SUPPORTED
+# define STLSOFT_CF_CDECL_SUPPORTED
+# ifndef _MANAGED
+#  define STLSOFT_CF_FASTCALL_SUPPORTED
+# endif /* !_MANAGED */
+# define STLSOFT_CF_STDCALL_SUPPORTED
 
-#define STLSOFT_CDECL               __cdecl
-#ifndef _MANAGED
-# define STLSOFT_FASTCALL           __fastcall
-#endif /* !_MANAGED */
-#define STLSOFT_STDCALL             __stdcall
+# define STLSOFT_CDECL              __cdecl
+# ifndef _MANAGED
+#  define STLSOFT_FASTCALL          __fastcall
+# endif /* !_MANAGED */
+# define STLSOFT_STDCALL            __stdcall
+
+#elif defined(_M_IA64)
+
+# define STLSOFT_CF_CDECL_SUPPORTED
+
+# define STLSOFT_CDECL
+
+#else /* ? arch */
+# error Only defined for the Intel x86 and IA64 architectures
+#endif /* arch */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Inline assembler
  */
 
-#define STSLSOFT_INLINE_ASM_SUPPORTED
-#define STSLSOFT_ASM_IN_INLINE_SUPPORTED
+#if defined(_M_IX86)
+# define STSLSOFT_INLINE_ASM_SUPPORTED
+# define STSLSOFT_ASM_IN_INLINE_SUPPORTED
+#elif defined(_M_IA64)
+ /* Although inline asm is possible on 64-bit architectures, we don't yet
+  * know how to do it.
+  *
+  * This discrimination will be sorted properly later.
+  */
+#endif /* arch */
 
 /* /////////////////////////////////////////////////////////////////////////
  * inline support

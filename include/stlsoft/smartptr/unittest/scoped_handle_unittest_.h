@@ -165,7 +165,7 @@ namespace unittest
 
 			{
 #  if defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
+	  _MSC_VER < 1200
 				scoped_handle<long> 	sh1(22, (void (STLSOFT_FASTCALL *)(long ))test_stlsoft_scoped_handle__close_long_fastcall);
 #  else /* ? compiler */
 				scoped_handle<long> 	sh1(22, test_stlsoft_scoped_handle__close_long_fastcall);

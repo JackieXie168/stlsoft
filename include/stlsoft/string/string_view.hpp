@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     19th August 2007
+ * Updated:     6th November 2007
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        84
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -877,7 +877,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_k basic_string_view<C, T, A>::char_type const* basic_string_view<C, T, A>::empty_string_()
+inline /* static */ ss_typename_type_ret_k basic_string_view<C, T, A>::char_type const* basic_string_view<C, T, A>::empty_string_()
 {
     // This character array is initialised to 0, which conveniently happens to
     // be the empty string, by the module/application load, so it is
@@ -1142,7 +1142,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::size() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::size() const stlsoft_throw_0()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1153,7 +1153,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::max_size() stlsoft_throw_0()
+inline /* static */ ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::max_size() stlsoft_throw_0()
 {
     return static_cast<size_type>(-1) / sizeof(char_type);
 }
@@ -1164,7 +1164,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::length() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::length() const stlsoft_throw_0()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1175,7 +1175,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::capacity() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::capacity() const stlsoft_throw_0()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1197,7 +1197,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::allocator_type basic_string_view<C, T, A>::get_allocator() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::allocator_type basic_string_view<C, T, A>::get_allocator() const
 {
     return *this;
 }
@@ -1418,7 +1418,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::reference basic_string_view<C, T, A>::operator [](ss_typename_type_k basic_string_view<C, T, A>::size_type index)
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::reference basic_string_view<C, T, A>::operator [](ss_typename_type_k basic_string_view<C, T, A>::size_type index)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1430,7 +1430,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::operator [](ss_typename_type_k basic_string_view<C, T, A>::size_type index) const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::operator [](ss_typename_type_k basic_string_view<C, T, A>::size_type index) const
 {
     STLSOFT_MESSAGE_ASSERT("string_view index out of bounds", index <= size());
 
@@ -1444,7 +1444,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::at(ss_typename_type_k basic_string_view<C, T, A>::size_type index) const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::at(ss_typename_type_k basic_string_view<C, T, A>::size_type index) const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1463,7 +1463,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::c_str() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::c_str() const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1513,7 +1513,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::c_str(ss_bool_t bRefresh) const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::c_str(ss_bool_t bRefresh) const
 {
     if(bRefresh)
     {
@@ -1528,7 +1528,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::data() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::data() const stlsoft_throw_0()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1539,7 +1539,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::base() const stlsoft_throw_0()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basic_string_view<C, T, A>::base() const stlsoft_throw_0()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1551,7 +1551,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::reference basic_string_view<C, T, A>::front()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::reference basic_string_view<C, T, A>::front()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1562,7 +1562,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::reference basic_string_view<C, T, A>::back()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::reference basic_string_view<C, T, A>::back()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1574,7 +1574,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::front() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::front() const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1585,7 +1585,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::back() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reference basic_string_view<C, T, A>::back() const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1596,7 +1596,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::copy(   ss_typename_type_k basic_string_view<C, T, A>::value_type     *dest
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::copy(   ss_typename_type_k basic_string_view<C, T, A>::value_type     *dest
                                                                                                 ,   ss_typename_type_k basic_string_view<C, T, A>::size_type      cch
                                                                                                 ,   ss_typename_type_k basic_string_view<C, T, A>::size_type      pos /* = 0 */) const
 {
@@ -1630,7 +1630,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::begin() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::begin() const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1641,7 +1641,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::end() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::end() const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1653,7 +1653,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::iterator basic_string_view<C, T, A>::begin()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::iterator basic_string_view<C, T, A>::begin()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1664,7 +1664,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::iterator basic_string_view<C, T, A>::end()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::iterator basic_string_view<C, T, A>::end()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1677,7 +1677,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_reverse_iterator basic_string_view<C, T, A>::rbegin() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reverse_iterator basic_string_view<C, T, A>::rbegin() const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1688,7 +1688,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::const_reverse_iterator basic_string_view<C, T, A>::rend() const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reverse_iterator basic_string_view<C, T, A>::rend() const
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1700,7 +1700,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::reverse_iterator basic_string_view<C, T, A>::rbegin()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::reverse_iterator basic_string_view<C, T, A>::rbegin()
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -1711,7 +1711,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_k basic_string_view<C, T, A>::reverse_iterator basic_string_view<C, T, A>::rend()
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::reverse_iterator basic_string_view<C, T, A>::rend()
 {
     STLSOFT_ASSERT(is_valid());
 

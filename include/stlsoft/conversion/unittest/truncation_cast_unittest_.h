@@ -1,5 +1,5 @@
 
-// Updated: 5th January 2007
+// Updated: 12th November 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST)
 # error This file cannot be directly included, and should only be included within stlsoft/conversion/truncation_cast.hpp
@@ -22,7 +22,15 @@ namespace unittest
 
 			unittest_initialiser	init(r, "STLSoft", "conversion/truncation_cast", __FILE__);
 
-			STLSOFT_SUPPRESS_UNUSED(bSuccess);
+			try
+			{
+				truncation_cast<short>(int(100000));
+
+				r->report("truncation_cast<short>() failed ", __LINE__);
+				bSuccess = false;
+			}
+			catch(std::out_of_range&)
+			{}
 
 			return bSuccess;
 		}

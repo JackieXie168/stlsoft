@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     5th August 2007
+ * Updated:     16th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    10
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     312
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    11
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     315
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -118,7 +118,7 @@
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   6
+#define _STLSOFT_VER_REVISION   7
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
 # define _STLSOFT_VER_1_0_2     0x00010002  /*!< Version 1.0.2 */
@@ -168,14 +168,15 @@
 # define _STLSOFT_VER_1_9_1_B47 0x0109012f  /*!< Version 1.9.1 beta 47 (6th Apr 2007) */
 # define _STLSOFT_VER_1_9_1_B48 0x01090130  /*!< Version 1.9.1 beta 48 (12th Apr 2007) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (30th Apr 2007) */
-# define _STLSOFT_VER_1_9_2     0x010902ff  /*!< Version 1.9.1 (2nd Jun 2007) */
-# define _STLSOFT_VER_1_9_3     0x010903ff  /*!< Version 1.9.1 (29th Jul 2007) */
-# define _STLSOFT_VER_1_9_4     0x010904ff  /*!< Version 1.9.1 (2nd Aug 2007) */
-# define _STLSOFT_VER_1_9_5     0x010905ff  /*!< Version 1.9.1 (4th Aug 2007) */
-# define _STLSOFT_VER_1_9_6     0x010906ff  /*!< Version 1.9.1 (6th Aug 2007) */
+# define _STLSOFT_VER_1_9_2     0x010902ff  /*!< Version 1.9.2 (2nd Jun 2007) */
+# define _STLSOFT_VER_1_9_3     0x010903ff  /*!< Version 1.9.3 (29th Jul 2007) */
+# define _STLSOFT_VER_1_9_4     0x010904ff  /*!< Version 1.9.4 (2nd Aug 2007) */
+# define _STLSOFT_VER_1_9_5     0x010905ff  /*!< Version 1.9.5 (4th Aug 2007) */
+# define _STLSOFT_VER_1_9_6     0x010906ff  /*!< Version 1.9.6 (6th Aug 2007) */
+# define _STLSOFT_VER_1_9_7     0x010907ff  /*!< Version 1.9.7 (9th Nov 2007) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_6
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_7
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -321,9 +322,10 @@
 #  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.6"
 # elif (__BORLANDC__ == 0x0564)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.6.4 (C++ BuilderX)"
+# elif (__BORLANDC__ == 0x0582)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.82 (Turbo C++)"
 # else /* ? __BORLANDC__ */
-  /*# error Currently only versions 4.52, 5.5, 5.51 and 5.6 of the Borland C++ compiler are supported by the STLSoft libraries */
-#  error Currently only versions 5.51, 5.6 and 5.6.4 of the Borland C++ compiler are supported by the STLSoft libraries
+#  error Currently only versions 5.51, 5.6, 5.6.4 and 5.82 of the Borland C++ compiler are supported by the STLSoft libraries
 # endif /* __BORLANDC__ */
 
 #elif defined(__DMC__)
@@ -719,28 +721,38 @@
 # define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT) && \
+    defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
+# define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
+#endif /* !STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Calling convention
  */
 
-/** \def STLSOFT_CDECL_SUPPORTED
- * \brief When defined, indicates that the compiler supports the <b>cdecl</b> calling convention.
- */
-#define    STLSOFT_CDECL_SUPPORTED
+/* Calling convention support symbols */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/** \def STLSOFT_FASTCALL_SUPPORTED
+/** \def STLSOFT_CF_CDECL_SUPPORTED
+ * \brief When defined, indicates that the compiler supports the <b>cdecl</b> calling convention.
+ */
+# define    STLSOFT_CF_CDECL_SUPPORTED
+
+/** \def STLSOFT_CF_FASTCALL_SUPPORTED
  * \brief When defined, indicates that the compiler supports the <b>fastcall</b> calling convention.
  */
-# define    STLSOFT_FASTCALL_SUPPORTED
+# define    STLSOFT_CF_FASTCALL_SUPPORTED
 
-/** \def STLSOFT_STDCALL_SUPPORTED
+/** \def STLSOFT_CF_STDCALL_SUPPORTED
  * \brief When defined, indicates that the compiler supports the <b>stdcall</b> calling convention.
  */
-# define    STLSOFT_STDCALL_SUPPORTED
+# define    STLSOFT_CF_STDCALL_SUPPORTED
+
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
+/* Calling convention keyword abstraction */
 
 /** \def STLSOFT_CDECL
  * \brief Resolves to the <b>cdecl</b> keyword for the current compiler, or to nothing for compilers
@@ -776,8 +788,11 @@
 #endif /* !STLSOFT_STDCALL */
 
 
+/* Calling convention facility values */
 
-#define STLSOFT_CDECL_VALUE         (1)     /*!< \brief A unique value indicating <b>cdecl</b> calling convention. */
+#if defined(STLSOFT_CF_CDECL_SUPPORTED)
+# define STLSOFT_CDECL_VALUE        (1)     /*!< \brief A unique value indicating <b>cdecl</b> calling convention. */
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #if defined(STLSOFT_CF_FASTCALL_SUPPORTED)
 # define STLSOFT_FASTCALL_VALUE     (2)     /*!< \brief A unique value indicating <b>fastcall</b> calling convention. */
@@ -1528,6 +1543,7 @@ private:
  * ss_typename_param_k      -   typename or class (used for template parameters)
  * ss_typename_type_def_k   -   typename qualifier in template default parameters
  * ss_typename_type_mil_k   -   typename qualifier in constructor initialiser lists
+ * ss_typename_type_ret_k   -   typename qualifier in return types
  */
 
 /** \defgroup pseudo_keyword_macros Pseudo-keyword Macros
@@ -1611,6 +1627,20 @@ private:
 #else /* ? STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 # define ss_typename_type_mil_k
 #endif /* STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+
+/** \def ss_typename_type_ret_k
+ *
+ * \brief Evaluates to <b>typename</b> on translators that support the keyword and its application in
+ *   the context of member function/method return types, otherwise to nothing.
+ *
+ * Used for type disambiguation inside initialiser lists in class template constructors
+ */
+#if defined(STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define ss_typename_type_ret_k     typename
+#else /* ? STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT */
+# define ss_typename_type_ret_k
+#endif /* STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT */
 
 /** \def ss_template_qual_k
  *
@@ -2102,12 +2132,14 @@ template<ss_typename_param_k T>
 inline void suppress_unused_func(T const volatile &)
 {}
 
+# if defined(STLSOFT_CF_CDECL_SUPPORTED)
 template<ss_typename_param_k R>
 inline void suppress_unused_func(R (STLSOFT_CDECL *)())
 {}
 template<ss_typename_param_k R, ss_typename_param_k A0>
 inline void suppress_unused_func(R (STLSOFT_CDECL *)(A0))
 {}
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # if defined(STLSOFT_CF_FASTCALL_SUPPORTED)
 template<ss_typename_param_k R>
 inline void suppress_unused_func(R (STLSOFT_FASTCALL *)())
@@ -2115,7 +2147,7 @@ inline void suppress_unused_func(R (STLSOFT_FASTCALL *)())
 template<ss_typename_param_k R, ss_typename_param_k A0>
 inline void suppress_unused_func(R (STLSOFT_FASTCALL *)(A0))
 {}
-# endif /* !STLSOFT_CF_FASTCALL_SUPPORTED */
+# endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # if defined(STLSOFT_CF_STDCALL_SUPPORTED)
 template<ss_typename_param_k R>
 inline void suppress_unused_func(R (STLSOFT_STDCALL *)())
@@ -2123,7 +2155,7 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)())
 template<ss_typename_param_k R, ss_typename_param_k A0>
 inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
 {}
-# endif /* !STLSOFT_CF_STDCALL_SUPPORTED */
+# endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
 # define STLSOFT_SUPPRESS_UNUSED(x)     stlsoft_ns_qual(suppress_unused_func)(x)
 #else /* ? compiler */

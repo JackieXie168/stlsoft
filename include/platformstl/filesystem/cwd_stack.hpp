@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the filesystem_traits components.
  *
  * Created:     16th July 2006
- * Updated:     12th March 2007
+ * Updated:     6th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      21
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@ typedef basic_cwd_stack<ss_char_a_t>            cwd_stack;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <typename C, typename XP>
-inline ss_typename_type_k basic_cwd_stack<C, XP>::string_type const& basic_cwd_stack<C, XP>::translate_environment_(ss_typename_type_k basic_cwd_stack<C, XP>::string_type const& directory, ss_typename_type_k basic_cwd_stack<C, XP>::string_type &trueDirectory)
+inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::string_type const& basic_cwd_stack<C, XP>::translate_environment_(ss_typename_type_k basic_cwd_stack<C, XP>::string_type const& directory, ss_typename_type_k basic_cwd_stack<C, XP>::string_type &trueDirectory)
 {
     if(directory.end() != std::find(directory.begin(), directory.end(), '%'))
     {
@@ -197,19 +197,19 @@ inline ss_typename_type_k basic_cwd_stack<C, XP>::string_type const& basic_cwd_s
 
 
 template <typename C, typename XP>
-inline ss_typename_type_k basic_cwd_stack<C, XP>::size_type basic_cwd_stack<C, XP>::size() const
+inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::size_type basic_cwd_stack<C, XP>::size() const
 {
     return m_stack.size();
 }
 
 template <typename C, typename XP>
-inline ss_typename_type_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::empty() const
+inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::empty() const
 {
     return 0 == size();
 }
 
 template <typename C, typename XP>
-inline ss_typename_type_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::is_empty() const
+inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::is_empty() const
 {
     return empty();
 }
@@ -253,7 +253,7 @@ inline void basic_cwd_stack<C, XP>::pop()
 }
 
 template <typename C, typename XP>
-inline ss_typename_type_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::try_pop()
+inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::try_pop()
 {
     STLSOFT_ASSERT(!empty());
 
