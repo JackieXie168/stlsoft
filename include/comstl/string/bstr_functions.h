@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/string/bstr_functions.h (originally MOBStrFn.h, ::SynesisCom)
+ * File:        comstl/string/BSTR_functions.h (originally MOBStrFn.h, ::SynesisCom)
  *
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     9th March 2008
+ * Updated:     23rd August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file comstl/string/bstr_functions.h
+/** \file comstl/string/BSTR_functions.h
  *
  * \brief [C, C++] Functions for manipulating BSTR strings
  *   (\ref group__library__string "String" Library).
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 7
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     81
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -438,7 +438,7 @@ inline int bstr_compare(BSTR s1, BSTR s2)
  */
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/bstr_functions_unittest_.h"
+# include "./unittest/BSTR_functions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

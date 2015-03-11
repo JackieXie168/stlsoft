@@ -4,7 +4,7 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     9th March 2008
+ * Updated:     18th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     18
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 10
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,11 +91,13 @@ namespace stlsoft
  * Classes
  */
 
-/** \brief A container that measures the frequency of the unique elements it
+/** A container that measures the frequency of the unique elements it
  *    contains.
  *
  * \ingroup group__library__containers
  *
+ * \param T The value type of the container
+ * \param N The count integer type. Defaults to uint32_t
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k N = uint32_t
@@ -103,29 +105,37 @@ template<   ss_typename_param_k T
 class frequency_map
     : public stl_collection_tag
 {
-private:
-    typedef stlsoft_ns_qual_std(map)<T, N>                  map_type;
-
+private: /// Member Types
+    typedef stlsoft_ns_qual_std(map)<T, N>                  map_type_;
 public:
-    typedef ss_typename_param_k map_type::value_type        value_type;
-    typedef ss_typename_param_k map_type::const_iterator    const_iterator;
-//    typedef ss_typename_param_k map_type::const_pointer     const_pointer;
-    typedef ss_typename_param_k map_type::const_reference   const_reference;
+    /// The value type
+    typedef ss_typename_param_k map_type_::value_type       value_type;
+    /// The non-mutating (const) iterator type
+    typedef ss_typename_param_k map_type_::const_iterator   const_iterator;
+//    typedef ss_typename_param_k map_type_::const_pointer    const_pointer;
+    /// The non-mutating (const) reference type
+    typedef ss_typename_param_k map_type_::const_reference  const_reference;
 
-    typedef ss_typename_param_k map_type::key_type          key_type;
-//    typedef ss_typename_param_k map_type::mapped_type       mapped_type
+    /// The key type
+    typedef ss_typename_param_k map_type_::key_type         key_type;
+//    typedef ss_typename_param_k map_type_::mapped_type      mapped_type
+    /// The count type
     typedef N                                               count_type;
+    /// The size type
     typedef ss_size_t                                       size_type;
+    /// The difference type
     typedef ss_ptrdiff_t                                    difference_type;
+    /// The boolean type
+    typedef ss_bool_t                                       bool_type;
 
-public: // Construction
+public: /// Construction
     /// Creates an instance of the map
     frequency_map()
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<N>::value);
     }
 
-public: // Modifiers
+public: /// Modifiers
     /// Pushes an entry onto the map
     ///
     /// If the entry already exists in the map, its count will be increased
@@ -141,7 +151,7 @@ public: // Modifiers
 #if 0
         // NOTE: Because the count type N must be an integer, the code above
         // is equivalent to the following "full" thread-safe implementation.
-        ss_typename_param_k map_type::iterator it = m_map.find(key);
+        ss_typename_param_k map_type_::iterator it = m_map.find(key);
         if(m_map.end() == it)
         {
             value_type  value(key, 1);
@@ -165,7 +175,7 @@ public: // Modifiers
         m_map.clear();
     }
 
-public: // 
+public: /// Search
     /// Returns an iterator for the entry representing the given key, or
     /// <code>end()</code> if no such entry exists.
     const_iterator find(key_type const& key) const
@@ -173,7 +183,7 @@ public: //
         return m_map.find(key);
     }
 
-public: // Element Access
+public: /// Element Access
     /// Returns the count associated with the entry representing the given
     /// key, or 0 if no such entry exists.
     count_type operator [](key_type const& key) const
@@ -190,9 +200,9 @@ public: // Element Access
         return (m_map.end() != it) ? (*it).second : 0;
     }
 
-public: // Size
+public: /// Size
     /// Indicates whether the map is empty
-    ss_bool_t empty() const
+    bool_type empty() const
     {
         return m_map.empty();
     }
@@ -206,7 +216,7 @@ public: // Size
         return m_map.size();
     }
 
-public:
+public: /// Iteration
     /// A non-mutating (const) iterator representing the start of the sequence
     const_iterator begin() const
     {
@@ -218,8 +228,8 @@ public:
         return m_map.end();
     }
 
-private:
-    map_type    m_map;
+private: /// Member Variables
+    map_type_   m_map;
 };
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     1st June 2008
+ * Updated:     22nd August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        39
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,17 +123,17 @@ class basic_shim_string
 /// @{
 public:
     /// The value type
-    typedef C                                               char_type;
-    /// The traits type
-    typedef T                                               traits_type;
+    typedef C                                                   char_type;
     /// The allocator type
-    typedef A                                               allocator_type;
+    typedef A                                                   allocator_type;
+    /// The traits type
+    typedef T                                                   traits_type;
     /// The current parameterisation of the type
-    typedef basic_shim_string<C, N, U, A, T>                class_type;
+    typedef basic_shim_string<C, N, U, A, T>                    class_type;
     /// The size type
-    typedef ss_size_t                                       size_type;
+    typedef ss_size_t                                           size_type;
     /// The buffer type
-    typedef auto_buffer_old<char_type, allocator_type, N>   buffer_type;
+    typedef auto_buffer_old<char_type, allocator_type, N + 1>   buffer_type;
 
 /// @}
 
