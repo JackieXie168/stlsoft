@@ -4,7 +4,7 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     80
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 7
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -183,7 +183,7 @@ private:
         }
         else
         {
-            if(static_cast<size_t>(-1) == ::mbstowcs(data, s, size))
+            if(static_cast<ss_size_t>(-1) == ::mbstowcs(data, s, size))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 STLSOFT_THROW_X(conversion_error("failed to convert multibyte string to wide string", errno));
@@ -296,7 +296,7 @@ private:
         }
         else
         {
-            if(static_cast<size_t>(-1) == ::wcstombs(data, s, size))
+            if(static_cast<ss_size_t>(-1) == ::wcstombs(data, s, size))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 STLSOFT_THROW_X(conversion_error("failed to convert wide string to multibyte string", errno));
@@ -632,13 +632,13 @@ inline S &operator <<(S & s, stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 
 # include <iosfwd>
 
-template <size_t CCH>
+template <stlsoft_ns_qual(ss_size_t) CCH>
 inline stlsoft_ns_qual_std(basic_ostream)<char> &operator <<(stlsoft_ns_qual_std(basic_ostream)<char> &stm, stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return stm << b.c_str();
 }
 
-template <size_t CCH>
+template <stlsoft_ns_qual(ss_size_t) CCH>
 inline stlsoft_ns_qual_std(basic_ostream)<wchar_t> &operator <<(stlsoft_ns_qual_std(basic_ostream)<wchar_t> &stm, stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return stm << b.c_str();

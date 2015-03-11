@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the filesystem_traits components.
  *
  * Created:     16th July 2006
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      17
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ public:
     typedef XP                                  exception_policy_type;
     typedef stlsoft::basic_simple_string<C>     string_type;
     typedef bool                                bool_type;
-    typedef size_t                              size_type;
+    typedef stlsoft_ns_qual(ss_size_t)          size_type;
 private:
     typedef filesystem_traits<C>                traits_type;
     typedef std::stack<string_type>             stack_type;
@@ -185,7 +185,7 @@ inline ss_typename_type_k basic_cwd_stack<C, XP>::string_type const &basic_cwd_s
     if(directory.end() != std::find(directory.begin(), directory.end(), '%'))
     {
         stlsoft::auto_buffer<char_type>     buffer(1 + traits_type::expand_environment_strings(directory.c_str(), NULL, 0));
-        const size_t                        cch = traits_type::expand_environment_strings(directory.c_str(), &buffer[0], buffer.size());
+        const stlsoft_ns_qual(ss_size_t)    cch = traits_type::expand_environment_strings(directory.c_str(), &buffer[0], buffer.size());
 
         trueDirectory.assign(buffer.data(), cch);
 
@@ -218,7 +218,7 @@ template <typename C, typename XP>
 inline void basic_cwd_stack<C, XP>::push(ss_typename_type_k basic_cwd_stack<C, XP>::string_type const &directory)
 {
     stlsoft::auto_buffer<char_type>     buffer(1 + traits_type::get_current_directory(static_cast<char_type*>(NULL), 0));
-    const size_t                        cch = traits_type::get_current_directory(&buffer[0], buffer.size());
+    const stlsoft_ns_qual(ss_size_t)    cch = traits_type::get_current_directory(&buffer[0], buffer.size());
 
     string_type                         cwd(buffer.data(), cch);
     string_type                         trueDirectory;

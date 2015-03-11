@@ -4,7 +4,7 @@
  * Purpose:     Contains the inert class.
  *
  * Created:     16th January 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       35
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ private:
     inert const &operator =(inert const &rhs);
 
 #ifndef new
-    void *operator new(size_t ) stlsoft_throw_0()
+    void *operator new(ss_size_t ) stlsoft_throw_0()
     {
         return 0;
     }

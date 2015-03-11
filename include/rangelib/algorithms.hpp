@@ -4,14 +4,14 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     16th July 2006
+ * Updated:     6th January 2007
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -76,7 +76,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     37
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -178,7 +178,7 @@ inline T r_accumulate_2_impl(R r, T val, indirect_range_tag const &)
 
 /** \brief accumulate() for ranges
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param val The initial value
@@ -241,7 +241,7 @@ inline T r_accumulate_3_impl(R r, T val, P pred, indirect_range_tag const &)
 
 /** \brief accumulate() for ranges
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param val The initial value
@@ -303,7 +303,7 @@ inline O r_copy_impl(R r, O o, basic_indirect_range_tag const &)
 
 /** \brief Copies the contents of the range to the output iterator
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range whose elements are to be copied
  * \param o The output iterator to receive the elements
@@ -373,7 +373,7 @@ inline O r_copy_if_impl(R r, O o, P pred, basic_indirect_range_tag const &)
 
 /** \brief Copies the contents of the range to the output iterator
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range whose elements are to be copied
  * \param o The output iterator to receive the elements
@@ -439,7 +439,7 @@ inline ss_size_t r_count_impl(R r, const T &val, indirect_range_tag const &)
 
 /** \brief Counts the number of instances of a given value in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param val The value to search for
@@ -504,7 +504,7 @@ inline ss_size_t r_count_if_impl(R r, P pred, indirect_range_tag const &)
 
 /** \brief Counts the number of instances matching the given predicate in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param pred The predicate applied to each entry
@@ -556,7 +556,7 @@ inline ss_ptrdiff_t r_distance_1_impl(R r, basic_indirect_range_tag const &)
 
 /** \brief Counts the number of instances in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \retval The number of elements in the range
@@ -599,7 +599,7 @@ inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, iterable_range_tag const &, iterab
 
 /** \brief Determines whether two ranges are equal
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r1 The first range to compare
  * \param r2 The second range to compare
@@ -649,7 +649,7 @@ inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, P pred, iterable_range_tag const &
 
 /** \brief Determines whether two ranges are equal, as defined by a predicate
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r1 The first range to compare
  * \param r2 The second range to compare
@@ -715,7 +715,7 @@ inline ss_bool_t r_exists_impl(R r, T const &val, indirect_range_tag const &)
 
 /** \brief Determines whether the given value exists in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param val The value to search for
@@ -776,7 +776,7 @@ inline ss_bool_t r_exists_if_1_impl(R r, P pred, indirect_range_tag const &)
 
 /** \brief Determines whether a value matching the given predicate exists in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param pred The predicate used to match the items
@@ -860,7 +860,7 @@ inline ss_bool_t r_exists_if_2_impl(R r, P pred, T &result, indirect_range_tag c
 
 /** \brief Determines whether a value matching the given predicate exists in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param pred The predicate used to match the items
@@ -891,7 +891,7 @@ inline void r_fill_impl(R r, T const &val, iterable_range_tag const &)
 
 /** \brief Sets the elements in the range to the given value
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param val The value to assign to all elements in the range
@@ -921,7 +921,7 @@ inline void r_fill_n_impl(R r, S n, T const &val, iterable_range_tag const &)
 
 /** \brief Sets the first \c n elements in the range to the given value
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param n The number of elements to set. This must be <code><= r_distance(r)</code>
@@ -970,7 +970,7 @@ inline R r_find_impl(R r, T const &val, iterable_range_tag const &)
 
 /** \brief Finds the first instance of the given value in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param val The value to find
@@ -1017,7 +1017,7 @@ inline R r_find_if_impl(R r, P pred, iterable_range_tag const &)
 
 /** \brief Finds the first instance of a value in the range matching the given predicate
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param pred The value to find
@@ -1075,7 +1075,7 @@ inline F r_for_each_impl(R r, F f, indirect_range_tag const &)
 
 /** \brief Applies the given function to every element in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param f The function to apply
@@ -1104,7 +1104,7 @@ inline void r_generate_impl(R r, F f, iterable_range_tag const &)
 
 /** \brief Sets each element in the range to the result of the given function
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param f The generator function
@@ -1172,7 +1172,7 @@ inline ss_typename_type_k R::value_type r_max_element_1_impl(R r, indirect_range
 
 /** \brief Evaluates the maximum element in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range. Cannot be closed
  *
@@ -1250,7 +1250,7 @@ inline ss_typename_type_k R::value_type r_max_element_2_impl(R r, F f, indirect_
 
 /** \brief Evaluates the maximum element in the range evaluated according to the given function
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range. Cannot be closed
  * \param f The function used to evaluate the ordering
@@ -1328,7 +1328,7 @@ inline ss_typename_type_k R::value_type r_min_element_1_impl(R r, indirect_range
 
 /** \brief Evaluates the minimum element in the range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range. Cannot be closed
  *
@@ -1406,7 +1406,7 @@ inline ss_typename_type_k R::value_type r_min_element_2_impl(R r, F f, indirect_
 
 /** \brief Evaluates the minimum element in the range evaluated according to the given function
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range. Cannot be closed
  * \param f The function used to evaluate the ordering
@@ -1447,7 +1447,7 @@ inline void r_replace_impl(R r, T oldVal, T newVal, indirect_range_tag const &)
 
 /** \brief Replaces all elements of the given old value with the new value
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param oldVal The value to search for
@@ -1489,7 +1489,7 @@ inline void r_replace_copy_impl(RI ri, RO ro, T oldVal, T newVal, indirect_range
 
 /** \brief Replaces all elements of the given old value with the new value
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param oldVal The value to search for
@@ -1531,7 +1531,7 @@ inline void r_replace_if_impl(R r, P pred, T newVal, indirect_range_tag const &)
 
 /** \brief Replaces all elements matching the given predicate with the new value
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param r The range
  * \param pred The predicate for matching the old values to replace

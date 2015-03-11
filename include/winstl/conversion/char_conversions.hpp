@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     80
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 4
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -700,13 +700,13 @@ using ::winstl::c_str_ptr_null_w;
 
 # include <iosfwd>
 
-template <size_t CCH>
+template <winstl_ns_qual(ws_size_t) CCH>
 inline winstl_ns_qual_std(basic_ostream)<char> &operator <<(winstl_ns_qual_std(basic_ostream)<char> &stm, winstl_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return stm << b.c_str();
 }
 
-template <size_t CCH>
+template <winstl_ns_qual(ws_size_t) CCH>
 inline winstl_ns_qual_std(basic_ostream)<wchar_t> &operator <<(winstl_ns_qual_std(basic_ostream)<wchar_t> &stm, winstl_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return stm << b.c_str();

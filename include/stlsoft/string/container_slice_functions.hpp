@@ -4,7 +4,7 @@
  * Purpose:     String container slice functions.
  *
  * Created:     25th April 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MINOR    1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     17
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 2
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -231,7 +231,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> le
  *
  * \ingroup group__library__string
  */
-inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> left(ss_char_a_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> left(ss_char_a_t *s, ss_size_t n)
 {
     return left(const_cast<ss_char_a_t const*>(s), n);
 }
@@ -251,7 +251,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> le
  *
  * \ingroup group__library__string
  */
-inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> left(ss_char_w_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> left(ss_char_w_t *s, ss_size_t n)
 {
     return left(const_cast<ss_char_w_t const*>(s), n);
 }
@@ -279,7 +279,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> ri
  *
  * \ingroup group__library__string
  */
-inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> right(ss_char_a_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> right(ss_char_a_t *s, ss_size_t n)
 {
     return right(const_cast<ss_char_a_t const*>(s), n);
 }
@@ -306,7 +306,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> ri
  *
  * \ingroup group__library__string
  */
-inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> right(ss_char_w_t *s, size_t n)
+inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> right(ss_char_w_t *s, ss_size_t n)
 {
     return right(const_cast<ss_char_w_t const*>(s), n);
 }

@@ -4,7 +4,7 @@
  * Purpose:     Contains the pair template.
  *
  * Created:     19th November 1998
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      50
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_REVISION  2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -166,34 +166,7 @@ inline pair<T1, T2> make_pair(T1 const &x, T2 const &y)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_stlsoft_pair(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "pair", __FILE__);
-
-
-#if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_pair(test_stlsoft_pair);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/pair_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

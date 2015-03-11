@@ -4,11 +4,11 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     16th September 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    5
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     28
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@ namespace rangelib_project
 
 /** \brief This class adapts an STL sequence instance into a Range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param R The range class
  * \param P The filter predicate

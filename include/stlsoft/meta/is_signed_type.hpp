@@ -4,7 +4,7 @@
  * Purpose:     is_signed_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_EDIT       4
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_REVISION   2
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SIGNED_TYPE_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,6 +103,9 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint32_t, 1, yes_t
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint64_t, 1, yes_type)
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#ifndef STLSOFT_CF_CHAR_IS_UNSIGNED
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, char, 1, yes_type)
+#endif /* !STLSOFT_CF_CHAR_IS_UNSIGNED */
 #if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
         defined(STLSOFT_COMPILER_IS_MSVC)) && \
     _MSC_VER == 1200

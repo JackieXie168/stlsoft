@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     3rd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        74
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -204,7 +204,7 @@ public:
 
         if(NULL != m_memory)
         {
-            ::munmap(m_memory, static_cast<size_t>(m_cb));
+            ::munmap(m_memory, static_cast<us_size_t>(m_cb));
         }
     }
 /// @}

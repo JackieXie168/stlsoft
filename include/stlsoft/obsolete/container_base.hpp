@@ -4,11 +4,11 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     17th February 2004
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       16
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ namespace stlsoft
 
 /** \brief Base template for STL allocators
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__obsolete
  */
 template <ss_typename_param_k A>
 struct container_base

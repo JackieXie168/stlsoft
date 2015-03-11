@@ -4,7 +4,7 @@
  * Purpose:     afx_allocator class.
  *
  * Created:     5th August 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MAJOR       2
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MINOR       0
-# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_REVISION    1
-# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        12
+# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_REVISION    3
+# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ public:
     typedef afx_allocator<void>     class_type;
     typedef void                    *pointer;
     typedef void const              *const_pointer;
-    typedef ptrdiff_t               difference_type;
+    typedef ms_ptrdiff_t            difference_type;
     typedef ms_size_t               size_type;
 
 #ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT

@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_MINOR       1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_EDIT        61
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_REVISION    2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ struct windir_policy
 public:
     typedef C                           char_type;
     typedef processheap_allocator<C>    allocator_type;
-    typedef size_t                      size_type;
+    typedef ws_size_t                   size_type;
     typedef size_type                   (*pfn_type)(char_type *, size_type);
     typedef winstl::spin_mutex          spin_mutex_type;
 /// @}

@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       53
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -246,7 +246,7 @@ public:
     }
 
     /// \brief Returns a mutable (non-const) pointer to the internal buffer
-    reference operator [](size_t index)
+    reference operator [](us_size_t index)
     {
         buffer_type   &this_  =   m_buffer;
 
@@ -255,7 +255,7 @@ public:
 #if !defined(STLSOFT_COMPILER_IS_COMO) && \
     !defined(STLSOFT_COMPILER_IS_MWERKS)
     /// \brief Returns a non-mutable (const) pointer to the internal buffer
-    const_reference operator [](size_t index) const
+    const_reference operator [](us_size_t index) const
     {
         UNIXSTL_MESSAGE_ASSERT("Index out of range", !(size() < index));
 

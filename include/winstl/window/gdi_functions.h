@@ -4,11 +4,11 @@
  * Purpose:     Error functions.
  *
  * Created:     20th October 1994
- * Updated:     29th December 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     132
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     133
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,34 +88,34 @@ namespace winstl_project
  * C functions
  */
 
-STLSOFT_INLINE size_t winstl__get_BITMAP(HBITMAP hbmp, BITMAP *pbmp)
+STLSOFT_INLINE ws_size_t winstl__get_BITMAP(HBITMAP hbmp, BITMAP *pbmp)
 {
-    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetObject)(hbmp, sizeof(BITMAP), pbmp));
+    return stlsoft_static_cast(ws_size_t, STLSOFT_NS_GLOBAL(GetObject)(hbmp, sizeof(BITMAP), pbmp));
 }
 
-STLSOFT_INLINE size_t winstl__get_DIBSECTION(HBITMAP hbmp, DIBSECTION *pds)
+STLSOFT_INLINE ws_size_t winstl__get_DIBSECTION(HBITMAP hbmp, DIBSECTION *pds)
 {
-    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetObject)(hbmp, sizeof(DIBSECTION), pds));
+    return stlsoft_static_cast(ws_size_t, STLSOFT_NS_GLOBAL(GetObject)(hbmp, sizeof(DIBSECTION), pds));
 }
 
-STLSOFT_INLINE size_t winstl__get_LOGPEN(HPEN hpen, LOGPEN *plp)
+STLSOFT_INLINE ws_size_t winstl__get_LOGPEN(HPEN hpen, LOGPEN *plp)
 {
-    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetObject)(hpen, sizeof(LOGPEN), plp));
+    return stlsoft_static_cast(ws_size_t, STLSOFT_NS_GLOBAL(GetObject)(hpen, sizeof(LOGPEN), plp));
 }
 
-STLSOFT_INLINE size_t winstl__get_EXTLOGPEN(HPEN hpen, EXTLOGPEN *pxlp)
+STLSOFT_INLINE ws_size_t winstl__get_EXTLOGPEN(HPEN hpen, EXTLOGPEN *pxlp)
 {
-    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetObject)(hpen, sizeof(EXTLOGPEN), pxlp));
+    return stlsoft_static_cast(ws_size_t, STLSOFT_NS_GLOBAL(GetObject)(hpen, sizeof(EXTLOGPEN), pxlp));
 }
 
-STLSOFT_INLINE size_t winstl__get_LOGBRUSH(HBRUSH hpal, LOGBRUSH *pbr)
+STLSOFT_INLINE ws_size_t winstl__get_LOGBRUSH(HBRUSH hpal, LOGBRUSH *pbr)
 {
-    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetObject)(hpal, sizeof(LOGBRUSH), pbr));
+    return stlsoft_static_cast(ws_size_t, STLSOFT_NS_GLOBAL(GetObject)(hpal, sizeof(LOGBRUSH), pbr));
 }
 
-STLSOFT_INLINE size_t winstl__get_LOGFONT(HFONT hpal, LOGFONT *pfnt)
+STLSOFT_INLINE ws_size_t winstl__get_LOGFONT(HFONT hpal, LOGFONT *pfnt)
 {
-    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetObject)(hpal, sizeof(LOGFONT), pfnt));
+    return stlsoft_static_cast(ws_size_t, STLSOFT_NS_GLOBAL(GetObject)(hpal, sizeof(LOGFONT), pfnt));
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,32 +124,32 @@ STLSOFT_INLINE size_t winstl__get_LOGFONT(HFONT hpal, LOGFONT *pfnt)
 
 #if defined(__cplusplus)
 
-inline size_t get_object(HBITMAP h, BITMAP &desc)
+inline ws_size_t get_object(HBITMAP h, BITMAP &desc)
 {
     return winstl__get_BITMAP(h, &desc);
 }
 
-inline size_t get_object(HBITMAP h, DIBSECTION &desc)
+inline ws_size_t get_object(HBITMAP h, DIBSECTION &desc)
 {
     return winstl__get_DIBSECTION(h, &desc);
 }
 
-inline size_t get_object(HPEN h, EXTLOGPEN &desc)
+inline ws_size_t get_object(HPEN h, EXTLOGPEN &desc)
 {
     return winstl__get_EXTLOGPEN(h, &desc);
 }
 
-inline size_t get_object(HPEN h, LOGPEN &desc)
+inline ws_size_t get_object(HPEN h, LOGPEN &desc)
 {
     return winstl__get_LOGPEN(h, &desc);
 }
 
-inline size_t get_object(HBRUSH h, LOGBRUSH &desc)
+inline ws_size_t get_object(HBRUSH h, LOGBRUSH &desc)
 {
     return winstl__get_LOGBRUSH(h, &desc);
 }
 
-inline size_t get_object(HFONT h, LOGFONT &desc)
+inline ws_size_t get_object(HFONT h, LOGFONT &desc)
 {
     return winstl__get_LOGFONT(h, &desc);
 }

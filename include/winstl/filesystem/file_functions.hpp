@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       43
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   6
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -347,7 +347,7 @@ void readlines_impl(CH const *p, ss_size_t len, C &container)
             --p1;
         }
 
-        container.push_back(value_t(p0, static_cast<size_t>(p1 - p0)));
+        container.push_back(value_t(p0, static_cast<ws_size_t>(p1 - p0)));
 
         if('\r' == *p1)
         {

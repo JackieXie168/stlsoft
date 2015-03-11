@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MINOR       0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        48
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -214,7 +214,7 @@ public:
     /// std::bad_alloc if memory cannot be acquired. When compiling absent
     /// exception support, failure to acquire memory will cause the method
     /// to return false.
-    ws_bool_t push_back(char_type const *variable, size_t cch)
+    ws_bool_t push_back(char_type const *variable, ws_size_t cch)
     {
         WINSTL_ASSERT(NULL != variable);
         WINSTL_ASSERT(cch >= 3);
@@ -275,7 +275,7 @@ public:
     /// std::bad_alloc if memory cannot be acquired. When compiling absent
     /// exception support, failure to acquire memory will cause the method
     /// to return false.
-    ws_bool_t push_back(char_type const *name, size_t cchName, char_type const *value, size_t cchValue)
+    ws_bool_t push_back(char_type const *name, ws_size_t cchName, char_type const *value, ws_size_t cchValue)
     {
         WINSTL_ASSERT(NULL != name);
         WINSTL_ASSERT(NULL != value);

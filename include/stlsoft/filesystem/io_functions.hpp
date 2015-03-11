@@ -4,11 +4,11 @@
  * Purpose:     File-system functions.
  *
  * Created:     2nd January 2007
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   2
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ namespace stlsoft
  */
 
 template <typename S>
-size_t read_line(FILE *stm, S &str)
+ss_size_t read_line(FILE *stm, S &str)
 {
     const char  CH      =   '~';
 #ifdef _DEBUG
@@ -87,7 +87,7 @@ size_t read_line(FILE *stm, S &str)
 #else /* ? _DEBUG */
     char        buff[100];
 #endif /* _DEBUG */
-    size_t      total   =   0;
+    ss_size_t   total   =   0;
 
     for(str.assign("");;)
     {
@@ -118,7 +118,7 @@ size_t read_line(FILE *stm, S &str)
             else
             {
                 // Less than a full buffer.
-                size_t  len =   ::strlen(buff);
+                ss_size_t len =   ::strlen(buff);
 
                 if(len > 0)
                 {

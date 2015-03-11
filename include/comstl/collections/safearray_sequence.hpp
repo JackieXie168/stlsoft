@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th April 2004
- * Updated:     4th January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MAJOR     4
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_MINOR     1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  6
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      52
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_REVISION  7
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_SAFEARRAY_SEQUENCE_EDIT      53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ public:
     /// \brief The size type
     typedef cs_size_t                                       size_type;
     /// \brief The difference type
-    typedef ptrdiff_t                                       difference_type;
+    typedef cs_ptrdiff_t                                    difference_type;
     /// \brief The reference type
     typedef value_type                                      &reference;
     /// \brief The non-mutable (const) reference type

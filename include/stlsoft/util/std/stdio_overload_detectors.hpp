@@ -5,11 +5,11 @@
  *              will be, subject to upgrade in standardisation.
  *
  * Created:     30th May 2002
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,9 +39,14 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/util/std/stdio_overload_detectors.hpp
-///
-/// Detects characteristics of certain stdio functions that are, or will be, subject to upgrade in standardisation.
+/** \file stlsoft/util/std/stdio_overload_detectors.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::vswprintf_detector and
+ *   stlsoft:: swprintf_detector classes, which detects characteristics of
+ *   certain stdio functions that are, or will be, subject to upgrade in
+ *   standardisation..
+ * (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS
 #define STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS
@@ -49,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_EDIT     5
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_REVISION 2
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_STDIO_OVERLOAD_DETECTORS_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,7 +101,7 @@ struct vswprintf_detector_base
 {
 protected:
     typedef int (*vswprintf_3_t)(wchar_t *, const wchar_t *, va_list);
-    typedef int (*vswprintf_4_t)(wchar_t *, size_t, const wchar_t *, va_list);
+    typedef int (*vswprintf_4_t)(wchar_t *, ss_size_t, const wchar_t *, va_list);
 
     // NOTE: The four functions have to have different return types, otherwise a number
     // of compilers mess up the detection
@@ -119,7 +124,7 @@ struct swprintf_detector_base
 {
 protected:
     typedef int (*swprintf_3_t)(wchar_t *, const wchar_t *, ...);
-    typedef int (*swprintf_4_t)(wchar_t *, size_t, const wchar_t *, ...);
+    typedef int (*swprintf_4_t)(wchar_t *, ss_size_t, const wchar_t *, ...);
 
     // NOTE: The four functions have to have different return types, otherwise a number
     // of compilers mess up the detection

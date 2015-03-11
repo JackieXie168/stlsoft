@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     107
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -297,7 +297,7 @@ public:
     }
 
     /// \brief Returns a mutable (non-const) pointer to the internal buffer
-    reference operator [](size_t index)
+    reference operator [](ws_size_t index)
     {
         buffer_type   &this_  =   m_buffer;
 
@@ -306,7 +306,7 @@ public:
 #if !defined(STLSOFT_COMPILER_IS_COMO) || \
     __COMO_VERSION__ >= 4303
     /// \brief Returns a non-mutable (const) pointer to the internal buffer
-    const_reference operator [](size_t index) const
+    const_reference operator [](ws_size_t index) const
     {
         WINSTL_MESSAGE_ASSERT("Index out of range", !(size() < index));
 

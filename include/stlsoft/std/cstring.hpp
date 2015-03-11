@@ -4,14 +4,14 @@
  * Purpose:     Mappings to string string functions
  *
  * Created:     2nd December 2004
- * Updated:     14th July 2006
+ * Updated:     6th January 2007
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,9 +41,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/std/cstring.hpp
-///
-/// Mappings to string string functions
+/** \file stlsoft/std/cstdlib.hpp
+ *
+ * \brief [C++ only] Mappings of &lt;cstring> string functions that use
+ *   \ref group__concept__shim__string_access string.
+ * (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_STD_HPP_CSTRING
 #define STLSOFT_INCL_STLSOFT_STD_HPP_CSTRING
@@ -51,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       21
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   2
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -409,8 +412,8 @@ inline ss_char_w_t const *strstr(ss_char_w_t const *s, ss_char_w_t const *charSe
 
 #if 0
 // NOTE: Can't do the ones that return pointers, since the shims may return temporaries. That would *not be good
-size_t  __cdecl strcspn(const char *, const char *);
-size_t  __cdecl strspn(const char *, const char *);
+ss_size_t  __cdecl strcspn(const char *, const char *);
+ss_size_t  __cdecl strspn(const char *, const char *);
 char *  __cdecl strpbrk(const char *, const char *);
 
 
@@ -423,7 +426,7 @@ char *  __cdecl strpbrk(const char *, const char *);
 
 /** \brief strdup()
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 
 #ifndef _STLSOFT_NO_NAMESPACE
@@ -471,7 +474,7 @@ namespace std_impl
 
 /** \brief Duplicates the given string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * \note The returned string is allocated by the standard strdup() function,
  * which uses malloc() to allocate the memory, and so must be freed using free()

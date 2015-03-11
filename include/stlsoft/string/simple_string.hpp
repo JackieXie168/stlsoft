@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     229
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 9
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     231
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -605,7 +605,7 @@ private:
     class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
-        const size_t    n   =   static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last));
+        const ss_size_t n   =   static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last));
         buffer_type_    buffer(n);
 
         copy_n(first, buffer.size(), &buffer[0]);
@@ -1103,7 +1103,7 @@ inline basic_simple_string<C, T, A> operator +(C lhs, basic_simple_string<C, T, 
 
 /** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1115,7 +1115,7 @@ inline C const *c_str_ptr_null(basic_simple_string<C, T, A> const &s)
 }
 /** \brief char variant of c_str_ptr_null for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_a_t const *c_str_ptr_null_a(basic_simple_string<ss_char_a_t, T, A> const &s)
@@ -1124,7 +1124,7 @@ inline ss_char_a_t const *c_str_ptr_null_a(basic_simple_string<ss_char_a_t, T, A
 }
 /** \brief wchar_t variant of c_str_ptr_null for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_w_t const *c_str_ptr_null_w(basic_simple_string<ss_char_w_t, T, A> const &s)
@@ -1136,7 +1136,7 @@ inline ss_char_w_t const *c_str_ptr_null_w(basic_simple_string<ss_char_w_t, T, A
 
 /** \brief Returns the corresponding C-string pointer of \c s
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1148,7 +1148,7 @@ inline C const *c_str_ptr(basic_simple_string<C, T, A> const &s)
 }
 /** \brief char variant of c_str_ptr for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_a_t const *c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> const &s)
@@ -1157,7 +1157,7 @@ inline ss_char_a_t const *c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> con
 }
 /** \brief wchar_t variant of c_str_ptr for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_w_t const *c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> const &s)
@@ -1169,7 +1169,7 @@ inline ss_char_w_t const *c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> con
 
 /** \brief Returns the corresponding C-string pointer of \c s
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1181,7 +1181,7 @@ inline C const *c_str_data(basic_simple_string<C, T, A> const &s)
 }
 /** \brief char variant of c_str_data for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_a_t const *c_str_data_a(basic_simple_string<ss_char_a_t, T, A> const &s)
@@ -1190,7 +1190,7 @@ inline ss_char_a_t const *c_str_data_a(basic_simple_string<ss_char_a_t, T, A> co
 }
 /** \brief wchar_t variant of c_str_data for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_char_w_t const *c_str_data_w(basic_simple_string<ss_char_w_t, T, A> const &s)
@@ -1202,7 +1202,7 @@ inline ss_char_w_t const *c_str_data_w(basic_simple_string<ss_char_w_t, T, A> co
 
 /** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1214,7 +1214,7 @@ inline ss_size_t c_str_len(basic_simple_string<C, T, A> const &s)
 }
 /** \brief char variant of c_str_len for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_size_t c_str_len_a(basic_simple_string<ss_char_a_t, T, A> const &s)
@@ -1223,7 +1223,7 @@ inline ss_size_t c_str_len_a(basic_simple_string<ss_char_a_t, T, A> const &s)
 }
 /** \brief wchar_t variant of c_str_len for basic_simple_string specialisations
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
 inline ss_size_t c_str_len_w(basic_simple_string<ss_char_w_t, T, A> const &s)
@@ -1497,7 +1497,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
         {
 #if defined(STLSOFT_UNITTEST) || \
     defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-            printf("%08x: capacity (%u) < 1\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<unsigned>(buffer->capacity));
+            printf("%08x: capacity (%u) < 1\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity));
 #endif /* STLSOFT_UNITTEST */
 
             return false;
@@ -1506,7 +1506,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
         {
 #if defined(STLSOFT_UNITTEST) || \
     defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-            printf("%08x: capacity (%u) < length (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<unsigned>(buffer->capacity), static_cast<unsigned>(buffer->length), static_cast<unsigned>(buffer->length));
+            printf("%08x: capacity (%u) < length (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity), static_cast<unsigned>(buffer->length), static_cast<unsigned>(buffer->length));
 #endif /* STLSOFT_UNITTEST */
 
             return false;
@@ -1519,7 +1519,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
             {
 #if defined(STLSOFT_UNITTEST) || \
     defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-                printf("%08x: length (%u) < length() (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<unsigned>(buffer->length), static_cast<unsigned>(len), static_cast<unsigned>(len));
+                printf("%08x: length (%u) < length() (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->length), static_cast<unsigned>(len), static_cast<unsigned>(len));
 #endif /* STLSOFT_UNITTEST */
 
                 return false;

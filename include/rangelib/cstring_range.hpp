@@ -4,11 +4,11 @@
  * Purpose:     Range adaptor for C-strings.
  *
  * Created:     17th May 2004
- * Updated:     16th September 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     3
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  3
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      31
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,7 @@ namespace rangelib_project
 
 /** \brief Traits type for cstring_range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template <ss_typename_param_k C>
 struct cstring_range_traits
@@ -136,7 +136,7 @@ public:
 
 /** \brief This class represents a C-style string as a range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * It is categoried as a Notional Range
  *

@@ -4,7 +4,7 @@
  * Purpose:     String view slice functions.
  *
  * Created:     25th April 2005
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions, and
  *              collaboration on their implementation.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_MAJOR     2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_MINOR     1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_REVISION  1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_EDIT      18
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_REVISION  2
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -157,9 +157,9 @@ struct string_view_helper_traits<ss_char_w_t const *>
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k C>
-inline basic_string_view<C> left_view_helper(C const *s, size_t n)
+inline basic_string_view<C> left_view_helper(C const *s, ss_size_t n)
 {
-    const size_t    len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -175,7 +175,7 @@ inline basic_string_view<C> left_view_helper(C const *s, size_t n)
  *
  * \ingroup group__library__string
  */
-inline basic_string_view<ss_char_a_t> left_view(ss_char_a_t const *s, size_t n)
+inline basic_string_view<ss_char_a_t> left_view(ss_char_a_t const *s, ss_size_t n)
 {
     return left_view_helper(s, n);
 }
@@ -184,18 +184,18 @@ inline basic_string_view<ss_char_a_t> left_view(ss_char_a_t const *s, size_t n)
  *
  * \ingroup group__library__string
  */
-inline basic_string_view<ss_char_w_t> left_view(ss_char_w_t const *s, size_t n)
+inline basic_string_view<ss_char_w_t> left_view(ss_char_w_t const *s, ss_size_t n)
 {
     return left_view_helper(s, n);
 }
 
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_view_helper_traits<S>::view_type left_view(S const &s, size_t n)
+inline ss_typename_type_k string_view_helper_traits<S>::view_type left_view(S const &s, ss_size_t n)
 {
     typedef string_view_helper_traits<S>            traits_t;
     typedef ss_typename_type_k traits_t::view_type  view_t;
 
-    const size_t    len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -208,9 +208,9 @@ inline ss_typename_type_k string_view_helper_traits<S>::view_type left_view(S co
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k C>
-inline basic_string_view<C> right_view_helper(C const *s, size_t n)
+inline basic_string_view<C> right_view_helper(C const *s, ss_size_t n)
 {
-    const size_t    len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -231,7 +231,7 @@ inline basic_string_view<C> right_view_helper(C const *s, size_t n)
  *
  * \ingroup group__library__string
  */
-inline basic_string_view<ss_char_a_t> right_view(ss_char_a_t const *s, size_t n)
+inline basic_string_view<ss_char_a_t> right_view(ss_char_a_t const *s, ss_size_t n)
 {
     return right_view_helper(s, n);
 }
@@ -240,19 +240,19 @@ inline basic_string_view<ss_char_a_t> right_view(ss_char_a_t const *s, size_t n)
  *
  * \ingroup group__library__string
  */
-inline basic_string_view<ss_char_w_t> right_view(ss_char_w_t const *s, size_t n)
+inline basic_string_view<ss_char_w_t> right_view(ss_char_w_t const *s, ss_size_t n)
 {
     return right_view_helper(s, n);
 }
 
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_view_helper_traits<S>::view_type right_view(S const &s, size_t n)
+inline ss_typename_type_k string_view_helper_traits<S>::view_type right_view(S const &s, ss_size_t n)
 {
     typedef string_view_helper_traits<S>            traits_t;
     typedef ss_typename_type_k traits_t::view_type  view_t;
 
-    const size_t    len =   stlsoft_ns_qual(c_str_len)(s);
-    size_t          off =   0;
+    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    ss_size_t       off =   0;
 
     if(n > len)
     {
@@ -269,10 +269,10 @@ inline ss_typename_type_k string_view_helper_traits<S>::view_type right_view(S c
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k C>
-inline basic_string_view<C> mid_view_helper(C const *s, size_t start, size_t n)
+inline basic_string_view<C> mid_view_helper(C const *s, ss_size_t start, ss_size_t n)
 {
-    const size_t    len =   stlsoft_ns_qual(c_str_len)(s);
-    size_t          off =   0;
+    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    ss_size_t       off =   0;
 
     if(start > len)
     {
@@ -298,7 +298,7 @@ inline basic_string_view<C> mid_view_helper(C const *s, size_t start, size_t n)
  *
  * \ingroup group__library__string
  */
-inline basic_string_view<ss_char_a_t> mid_view(ss_char_a_t const *s, size_t start, size_t n)
+inline basic_string_view<ss_char_a_t> mid_view(ss_char_a_t const *s, ss_size_t start, ss_size_t n)
 {
     return mid_view_helper(s, start, n);
 }
@@ -307,19 +307,19 @@ inline basic_string_view<ss_char_a_t> mid_view(ss_char_a_t const *s, size_t star
  *
  * \ingroup group__library__string
  */
-inline basic_string_view<ss_char_w_t> mid_view(ss_char_w_t const *s, size_t start, size_t n)
+inline basic_string_view<ss_char_w_t> mid_view(ss_char_w_t const *s, ss_size_t start, ss_size_t n)
 {
     return mid_view_helper(s, start, n);
 }
 
 template <ss_typename_param_k S>
-inline ss_typename_type_k string_view_helper_traits<S>::view_type mid_view(S const &s, size_t start, size_t n)
+inline ss_typename_type_k string_view_helper_traits<S>::view_type mid_view(S const &s, ss_size_t start, ss_size_t n)
 {
     typedef string_view_helper_traits<S>            traits_t;
     typedef ss_typename_type_k traits_t::view_type  view_t;
 
-    const size_t    len =   stlsoft_ns_qual(c_str_len)(s);
-    size_t          off =   0;
+    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    ss_size_t       off =   0;
 
     if(start > len)
     {

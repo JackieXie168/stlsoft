@@ -4,11 +4,11 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     12th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    2
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 3
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     21
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp
@@ -90,25 +90,25 @@
 /** \brief \def _RANGELIB_VER_MAJOR
  * The major version number of RangeLib
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 
 /** \brief \def _RANGELIB_VER_MINOR
  * The minor version number of RangeLib
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 
 /** \brief \def _RANGELIB_VER_REVISION
  * The revision version number of RangeLib
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 
 /** \brief \def _RANGELIB_VER
  * The current composite version number of RangeLib
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 
 #define _RANGELIB_VER_MAJOR     1

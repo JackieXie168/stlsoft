@@ -4,11 +4,11 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     29th December 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2004, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -279,7 +279,7 @@ char const *simple_unittest_reporter::get_file() const
  * simple_unittest_host
  */
 
-size_t simple_unittest_host::size()
+ss_size_t simple_unittest_host::size()
 {
 #ifdef STLSOFT_CF_std_NAMESPACE
 
@@ -365,7 +365,7 @@ bool simple_unittest_host::test(bool bVerbose)
         }
     }
 #else /* ? 0 */
-    for(size_t i = 0, n = size(); i < n; ++i)
+    for(ss_size_t i = 0, n = size(); i < n; ++i)
     {
         if(!(*m_functions[i])(&rep))
         {

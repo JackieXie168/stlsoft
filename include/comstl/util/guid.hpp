@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   5
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       39
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   6
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -250,24 +250,24 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(comstl_ns_qual(guid) const
  *
  * \ingroup group__concept__shim__string_access
  */
-inline size_t c_str_len(comstl_ns_qual(guid) const &g)
+inline cs_size_t c_str_len(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_len)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline size_t c_str_len_a(comstl_ns_qual(guid) const &g)
+inline cs_size_t c_str_len_a(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_len_a)(g.get());
 }
 
-inline size_t c_str_len_w(comstl_ns_qual(guid) const &g)
+inline cs_size_t c_str_len_w(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_len_w)(g.get());
 }
 
-inline size_t c_str_len_o(comstl_ns_qual(guid) const &g)
+inline cs_size_t c_str_len_o(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_len_o)(g.get());
 }

@@ -5,11 +5,11 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     12th December 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     28
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 7
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -300,8 +300,10 @@ typedef unixstl_ns_qual(us_long_t)          long_t;      /*!< long */
 #ifdef __cplusplus
 typedef unixstl_ns_qual(us_bool_t)          bool_t;      /*!< bool */
 #endif /* __cplusplus */
+#if 0
 typedef unixstl_ns_qual(us_size_t)          size_t;      /*!< size */
 typedef unixstl_ns_qual(us_ptrdiff_t)       ptrdiff_t;   /*!< ptr diff */
+#endif /* 0 */
 typedef unixstl_ns_qual(us_streampos_t)     streampos_t; /*!< streampos */
 typedef unixstl_ns_qual(us_streamoff_t)     streamoff_t; /*!< streamoff */
 # elif defined(PLATFORMSTL_OS_IS_WIN32)
@@ -327,8 +329,10 @@ typedef winstl_ns_qual(ws_long_t)           long_t;      /*!< long */
 #ifdef __cplusplus
 typedef winstl_ns_qual(ws_bool_t)           bool_t;      /*!< bool */
 #endif /* __cplusplus */
+#if 0
 typedef winstl_ns_qual(ws_size_t)           size_t;      /*!< size */
 typedef winstl_ns_qual(ws_ptrdiff_t)        ptrdiff_t;   /*!< ptr diff */
+#endif /* 0 */
 typedef winstl_ns_qual(ws_streampos_t)      streampos_t; /*!< streampos */
 typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 # else /* ? operating system */

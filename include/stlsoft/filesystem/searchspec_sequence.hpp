@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     1st May 2004
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    3
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        48
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -499,10 +499,6 @@ public:
 /// \name Implementation
 /// @{
 private:
-/** \brief TODO: Rename this to null_str_()
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
     static char_type const *get_root_dir()
     {
         static char_type s_rootDir[2] = { '.', '\0' };

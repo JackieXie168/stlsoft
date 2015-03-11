@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     3rd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     9
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      87
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     10
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,6 +99,11 @@
 #else
  /* Not defined */
 #endif /* __BOOL_DEFINED */
+
+/* char (sign) */
+#ifdef _CHAR_UNSIGNED
+# define STLSOFT_CF_CHAR_IS_UNSIGNED
+#endif /* _CHAR_UNSIGNED */
 
 /* wchar_t */
 #if _MSC_VER >= 1300

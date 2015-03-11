@@ -4,7 +4,7 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  6
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      47
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  7
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -162,8 +162,8 @@ public:
         public:
             mq_iterator_type    m_mqi;
             ACE_Message_Block   *m_entry;
-            size_t              m_entryLength;
-            size_t              m_entryIndex;
+            as_size_t           m_entryLength;
+            as_size_t           m_entryIndex;
         private:
             ss_sint32_t         m_refCount;
 

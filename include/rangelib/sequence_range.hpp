@@ -4,14 +4,14 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     16th September 2006
+ * Updated:     6th January 2007
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     55
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ namespace rangelib_project
 
 /** \brief Traits class for determining the attributes of range-adapted sequence container types
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template<   ss_typename_param_k S
         ,   bool                B_CONST = false
@@ -208,7 +208,7 @@ public:
 
 /** \brief Partial specialisation for constant sequences
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template<   ss_typename_param_k S
         >
@@ -289,7 +289,7 @@ public:
 
 /** \brief This class adapts an STL sequence instance into a Range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param S The sequence class
  * \param T The sequence range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type

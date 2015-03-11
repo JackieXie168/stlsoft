@@ -5,11 +5,11 @@
  *              non_mutating_operator_adaptor classes.
  *
  * Created:     4th November 2003
- * Updated:     16th September 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,11 +39,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file rangelib/operator_adaptors.hpp Definition of the mutating_operator_adaptor
-/// and non_mutating_operator_adaptor classes
-///
-/// These classes are used to bolt in Range operators to a class that implements the
-/// range methods
+/** \file rangelib/operator_adaptors.hpp
+ *
+ * \brief [C++ only] Definition of the rangelib::mutating_operator_adaptor
+ *   and rangelib::non_mutating_operator_adaptor classes, which are used to
+ *   bolt in Range operators to classes that implement the range methods.
+ * (\ref group__library__smart_pointers "Smart Pointers" Library.)
+ */
 
 #ifndef RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
 #define RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
@@ -52,7 +54,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MINOR       5
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    4
-# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        25
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +122,7 @@ namespace rangelib_project
 /** \brief This class facilitates specific definition of the \c const_iterator and
  * \c iterator member types
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template<   ss_typename_param_k CR
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -144,7 +146,7 @@ public:
  * non-mutating Range operators based on the method forms of its
  * parameterising (and deriving) class
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \note Because this is a reverse bolt-in, \c R is an incomplete type at the
  * time of the template parsing. Hence, we cannot deduce \c reference and
@@ -218,7 +220,7 @@ public:
  * operators based on the method forms of its parameterising (and deriving)
  * class
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \note Because this is a reverse bolt-in, \c R is an incomplete type at the
  * time of the template parsing. Hence, we cannot deduce \c reference and
@@ -308,7 +310,7 @@ struct fixer_mutating_operator_adaptor<R, T, false>
 /** \brief This type is used to select the mutating or non-mutating form of the
  * operator adaptor
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template<   ss_typename_param_k R
         ,   ss_typename_param_k T

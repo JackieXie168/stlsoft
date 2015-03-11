@@ -4,7 +4,7 @@
  * Purpose:     Standard interface traits.
  *
  * Created:     25th May 2002
- * Updated:     4th January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/internal/interface_traits_std.hpp
-///
-/// Standard interface traits.
+/** \file comstl/internal/interface_traits_std.hpp
+ *
+ * \brief [C++ only] Contains explicit specialisations of the
+ *   comstl::IID_traits traits class, used by compilers that do not
+ *   support the Microsoft-specific <code>__uuidof</code> operator.
+ * (\ref group__library__utility__com "COM Utility" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD
 #define COMSTL_INCL_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD
@@ -49,7 +53,7 @@
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_MAJOR      3
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_MINOR      1
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_REVISION   4
-# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_EDIT       40
+# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta39
+File:     STLSoft-ReleaseNotes-1.9.1-beta40
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  5th January 2007
+Updated:  6th January 2007
 
 ============================================================================
 
@@ -25,6 +25,49 @@ Updated:  5th January 2007
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 40 (6th January 2006):
+
+
+Additions:
+==========
+
+ + stlsoft::format_thousands() grouping function template, e.g.
+
+     char   result[101];
+
+     stlsoft::format_thousands(result, STLSOFT_NUM_ELEMENTS(result), "2;3", 987654321);
+
+     assert(0 == ::strcmp(result, "9876,54,321"));
+
+ + stlsoft::truncation_test() function suite; this is necessary to support
+   the new VOLE library (see http://vole.sourceforge.net/)
+
+ + stlsoft::truncation_cast() cast function template (implemented in terms
+   of stlsoft::truncation_test())
+
+Removals:
+=========
+
+ - all sub-project namespace-specific size_t and ptrdiff_t references are
+   removed. This fixes conflicts when using using directives (though that's
+   never recommended for application code).
+
+Changes:
+========
+
+ ~ stlsoft::must_init now has all built-in operators overloaded, e.g. you
+   can now write something like the following:
+
+     stlsoft::must_init<int>   i(10);
+
+     i = i + 10;
+
+ ~ all remaining in-header unit-test blocks are removed into separate
+   headers.
 
 
 ============================================================================

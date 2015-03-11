@@ -4,7 +4,7 @@
  * Purpose:     is_array_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_ARRAY_TYPE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_ARRAY_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_ARRAY_TYPE_REVISION    2
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_ARRAY_TYPE_EDIT        5
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_ARRAY_TYPE_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ two_t is_array_type_func(...);
 
 /** \brief traits type used to determine whether the given type is an array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__meta
  */
 template <ss_typename_param_k T>
 struct is_array_type

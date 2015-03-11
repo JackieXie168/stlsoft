@@ -4,7 +4,7 @@
  * Purpose:     Class to provide explicit cast operators.
  *
  * Created:     20th September 2002
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_EDIT      32
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_EXPLICIT_CAST_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ private:
 /** \brief Being able to cast to non-const references does not work, since
  * the compilers will refuse to apply such to a temporary.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__conversion
  *
  * Furthermore, it is too evil to contemplate (see Effective C++ #30)
  * so we simply hide the constructor and conversion operator.
@@ -219,7 +219,7 @@ private:
 /** \brief Not sure I really like this one, and reserve the right to remove it
  * but for now it stays.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__conversion
  */
 template <ss_typename_param_k T>
 class explicit_cast<T *>

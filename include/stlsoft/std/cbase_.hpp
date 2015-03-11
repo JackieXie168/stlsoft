@@ -4,14 +4,14 @@
  * Purpose:     Root header for the stlsoft::std::c namespace
  *
  * Created:     22nd April 2005
- * Updated:     10th June 2006
+ * Updated:     6th January 2007
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,9 +41,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/std/cbase_.hpp
-///
-/// Root header for the stlsoft::std::c namespace
+/** \file stlsoft/std/cbase_.hpp
+ *
+ * \brief [C++ only] Root header for the stlsoft::std::c namespace.
+ * (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_STD_HPP_CBASE_
 #define STLSOFT_INCL_STLSOFT_STD_HPP_CBASE_
@@ -52,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MAJOR       1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MINOR       2
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__REVISION    1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        8
+# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

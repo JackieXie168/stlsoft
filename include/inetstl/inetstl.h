@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     29th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     35
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 3
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -246,7 +246,7 @@
 
 /** \brief Defines a runtime assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
@@ -254,7 +254,7 @@
 
 /** \brief Defines a runtime assertion, with message
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
@@ -263,7 +263,7 @@
 
 /** \brief Defines a compile-time assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or compilation will fail
  */
@@ -473,8 +473,10 @@ typedef is_byte_t           byte_t;             //!< Byte
 typedef is_bool_t           bool_t;             //!< bool
 typedef is_dword_t          dword_t;            //!< dword
 # if !defined(STLSOFT_COMPILER_IS_DMC)
+#if 0
 typedef is_size_t           size_t;             //!< size
 typedef is_ptrdiff_t        ptrdiff_t;          //!< ptr diff
+#endif /* 0 */
 typedef is_streampos_t      streampos_t;        //!< streampos
 typedef is_streamoff_t      streamoff_t;        //!< streamoff
 # endif /* compiler */

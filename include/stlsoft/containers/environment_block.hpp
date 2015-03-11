@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MAJOR    4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MINOR    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT     37
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ public:
 /// @{
 public:
     /// \brief Append a full NAME=VALUE environment pair
-    void push_back(char_type const *s, size_t cch)
+    void push_back(char_type const *s, ss_size_t cch)
     {
         STLSOFT_ASSERT(NULL != s);
         STLSOFT_ASSERT(cch >= 3);
@@ -185,7 +185,7 @@ public:
     {
         push_back(stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s));
     }
-    void push_back(char_type const *name, size_t cchName, char_type const *value, size_t cchValue)
+    void push_back(char_type const *name, ss_size_t cchName, char_type const *value, ss_size_t cchValue)
     {
         STLSOFT_ASSERT(NULL != name);
         STLSOFT_ASSERT(NULL != value);

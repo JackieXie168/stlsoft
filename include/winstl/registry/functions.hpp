@@ -4,11 +4,11 @@
  * Purpose:     Registry functions.
  *
  * Created:     20th November 1995
- * Updated:     30th December 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1995-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1995-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      44
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -112,7 +112,7 @@ namespace winstl_project
  * \retval "any other value" The function failed, and the error code indicates why
  */
 template <ss_typename_param_k C>
-inline LONG reg_get_string_value(HKEY hkey, C const *name, C *buffer, size_t &cchBuffer)
+inline LONG reg_get_string_value(HKEY hkey, C const *name, C *buffer, ws_size_t &cchBuffer)
 {
     DWORD       type;
     ws_size_t   cbData  =   sizeof(C) * cchBuffer;

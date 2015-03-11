@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created:     23rd September 2004
- * Updated:     29th December 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      0
-# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   1
-# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       20
+# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   2
+# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ if(NULL == newBlock)
 \endhtmlonly
  *
  */
-inline ACE_Message_Block *make_copied_Message_Block(char const *p, size_t n)
+inline ACE_Message_Block *make_copied_Message_Block(char const *p, as_size_t n)
 {
 #if defined(ACE_NEW_THROWS_EXCEPTIONS)
     try

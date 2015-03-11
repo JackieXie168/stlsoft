@@ -4,11 +4,11 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     30th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     35
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,7 +130,7 @@ namespace rangelib_project
 
 /** \brief Traits class for determining the attributes of range-adapted iterator types
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  */
 template<   ss_typename_param_k I
         ,   bool                B_CONST
@@ -266,7 +266,7 @@ struct const_pointer_iterator_range_traits
 
 /** \brief This class adapts an iterator pair into a Range
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__rangelib
  *
  * \param I The iterator type
  * \param T The iterator range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type

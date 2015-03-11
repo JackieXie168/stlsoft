@@ -6,11 +6,11 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     30th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    6
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        60
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    7
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -258,10 +258,7 @@ public:
     {
         return static_cast<size_type>(-1) / sizeof(value_type);
     }
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Subscripting
 /// @{
@@ -319,10 +316,7 @@ public:
         return const_cast<pointer>(m_base)[index];
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Iteration
 /// @{
@@ -394,10 +388,7 @@ public:
         return reverse_iterator(begin());
     }
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Invariant
 /// @{
@@ -420,10 +411,7 @@ private:
 
         return true;
     }
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Implementation
 /// @{
@@ -437,20 +425,14 @@ private:
         }
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Members
 /// @{
 private:
     size_type   m_size;
     pointer     m_base;
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -496,33 +478,7 @@ inline array_view<const T> make_array_view(T const *p, ss_size_t n)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_stlsoft_array_view(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "array_view", __FILE__);
-
-#if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_array_view(test_stlsoft_array_view);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/array_view_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     CString Get/ReleaseBuffer scoping class.
  *
  * Created:     12th February 1999
- * Updated:     7th July 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file mfcstl/string/grab_cstring_buffer.hpp
-///
-/// CString Get/ReleaseBuffer scoping class.
+/** \file mfcstl/string/grab_cstring_buffer.hpp
+ *
+ * \brief [C++ only] Definition of the mfcstl::grab_cstring_buffer class.
+ * (\ref group__library__string "String" Library.)
+ */
 
 #ifndef MFCSTL_INCL_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER
 #define MFCSTL_INCL_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER
@@ -49,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_MAJOR      4
 # define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_MINOR      0
 # define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_REVISION   1
-# define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_EDIT       54
+# define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

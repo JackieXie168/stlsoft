@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MINOR    1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     42
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,35 +215,7 @@ public:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_unixstl_functionals(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "UNIXSTL", "functionals", __FILE__);
-
-#if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_unixstl_functionals(test_unixstl_functionals);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/functionals_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

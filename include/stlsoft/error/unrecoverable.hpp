@@ -4,11 +4,11 @@
  * Purpose:     Definition of the \c unrecoverable exception class.
  *
  * Created:     14th October 2004
- * Updated:     16th July 2006
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       24
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   2
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -193,7 +193,7 @@ private:
 private:
     class_type &operator =(class_type const &);
 
-    void *operator new(size_t );
+    void *operator new(ss_size_t );
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

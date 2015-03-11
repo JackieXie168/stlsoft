@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     12th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     6
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  5
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      31
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  6
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp \brief [C++ only] The root header for the \ref group__project__acestl "ACESTL" project. */
@@ -177,7 +177,7 @@
 
 /** \brief Defines a runtime assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
@@ -185,7 +185,7 @@
 
 /** \brief Defines a runtime assertion, with message
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
@@ -194,7 +194,7 @@
 
 /** \brief Defines a compile-time assertion
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__macros__assertion
  *
  * \param expr Must be non-zero, or compilation will fail
  */
@@ -401,8 +401,10 @@ typedef as_long_t           long_t;             //!< long integer
 //typedef as_byte_t           byte_t;             //!< Byte
 typedef as_bool_t           bool_t;             //!< bool
 # if !defined(STLSOFT_COMPILER_IS_DMC)
+#if 0
 typedef as_size_t           size_t;             //!< size
 typedef as_ptrdiff_t        ptrdiff_t;          //!< ptr diff
+#endif /* 0 */
 typedef as_streampos_t      streampos_t;        //!< streampos
 typedef as_streamoff_t      streamoff_t;        //!< streamoff
 # endif /* compiler */

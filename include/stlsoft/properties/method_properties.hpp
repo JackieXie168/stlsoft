@@ -4,7 +4,7 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -64,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MINOR     0
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      49
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_REVISION  2
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,11 +132,11 @@ namespace stlsoft
  * \param P The property name
  */
 
-#define STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)                 \
-                                                                    \
-    static ptrdiff_t STLSOFT_METHOD_PROPERTY_OFFSET_NAME(C, P)()    \
-    {                                                               \
-        return STLSOFT_RAW_OFFSETOF(C, P);                          \
+#define STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)                                     \
+                                                                                        \
+    static stlsoft_ns_qual(ss_ptrdiff_t) STLSOFT_METHOD_PROPERTY_OFFSET_NAME(C, P)()    \
+    {                                                                                   \
+        return STLSOFT_RAW_OFFSETOF(C, P);                                              \
     }
 
 
@@ -516,10 +516,10 @@ private:
  * Then the template is parameterised with the value type, the reference type,
  * the container type, the member function and the offset function.
  */
-template<   ss_typename_param_k V   /* The actual property value type */
-        ,   ss_typename_param_k R   /* The reference type */
-        ,   ss_typename_param_k C   /* The enclosing class */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset of property within container */
+template<   ss_typename_param_k V       /* The actual property value type */
+        ,   ss_typename_param_k R       /* The reference type */
+        ,   ss_typename_param_k C       /* The enclosing class */
+        ,   ss_ptrdiff_t (*PFnOff)()    /* Pointer to function providing offset of property within container */
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   R (C::*PFnGet)() const  /* Pointer to a const member function returning R */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
@@ -576,7 +576,7 @@ public:
     /// Provides read-only access to the property
     operator reference_type() const
     {
-        ptrdiff_t       offset  =   (*PFnOff)();
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
         container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
@@ -614,10 +614,10 @@ private:
  * Then the template is parameterised with the value type, the reference type,
  * the container type, the member function and the offset function.
  */
-template<   ss_typename_param_k V   /* The actual property value type */
-        ,   ss_typename_param_k R   /* The reference type */
-        ,   ss_typename_param_k C   /* The enclosing class */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset of property within container */
+template<   ss_typename_param_k V       /* The actual property value type */
+        ,   ss_typename_param_k R       /* The reference type */
+        ,   ss_typename_param_k C       /* The enclosing class */
+        ,   ss_ptrdiff_t (*PFnOff)()    /* Pointer to function providing offset of property within container */
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   void (C::*PFnSet)(R )   /* Pointer to a member function taking R */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
@@ -681,8 +681,8 @@ public:
     /// Provides write-only access to the property
     class_type &operator =(reference_type value)
     {
-        ptrdiff_t   offset  =   (*PFnOff)();
-        container_type           *pC     =   (container_type*)((ss_byte_t*)this - offset);
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
+        container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         (pC->*PFnSet)(value);
@@ -712,11 +712,11 @@ private:
  * the get reference type, the container type, the member functions and the offset
  * function.
  */
-template<   ss_typename_param_k V   /* The actual property value type */
-        ,   ss_typename_param_k RG  /* The get reference type */
-        ,   ss_typename_param_k RS  /* The set reference type */
-        ,   ss_typename_param_k C   /* The enclosing class */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset of property within container */
+template<   ss_typename_param_k V       /* The actual property value type */
+        ,   ss_typename_param_k RG      /* The get reference type */
+        ,   ss_typename_param_k RS      /* The set reference type */
+        ,   ss_typename_param_k C       /* The enclosing class */
+        ,   ss_ptrdiff_t (*PFnOff)()    /* Pointer to function providing offset of property within container */
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   RG (C::*PFnGet)() const /* Pointer to a const member function returning R */
         ,   void (C::*PFnSet)(RS)   /* Pointer to a member function taking R */
@@ -783,7 +783,7 @@ public:
     /// Provides read-only access to the property
     operator get_reference_type () const
     {
-        ptrdiff_t       offset  =   (*PFnOff)();
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
         container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
@@ -796,7 +796,7 @@ public:
     /// Provides write-only access to the property
     class_type &operator =(set_reference_type value)
     {
-        ptrdiff_t       offset  =   (*PFnOff)();
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
         container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
@@ -829,9 +829,9 @@ private:
  * Then the template is parameterised with the the reference type, the
  * container type, the member function and the offset function.
  */
-template<   ss_typename_param_k R   /* The reference type */
-        ,   ss_typename_param_k C   /* The enclosing class */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset of property within container */
+template<   ss_typename_param_k R       /* The reference type */
+        ,   ss_typename_param_k C       /* The enclosing class */
+        ,   ss_ptrdiff_t (*PFnOff)()    /* Pointer to function providing offset of property within container */
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   R (C::*PFnGet)() const  /* Pointer to a const member function returning R */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
@@ -876,7 +876,7 @@ public:
     /// Provides read-only access to the property
     operator reference_type () const
     {
-        ptrdiff_t       offset  =   (*PFnOff)();
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
         container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
@@ -908,9 +908,9 @@ private:
  * Then the template is parameterised with the reference type, the container
  * type, the member function and the offset function.
  */
-template<   ss_typename_param_k R   /* The reference type */
-        ,   ss_typename_param_k C   /* The enclosing class */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset of property within container */
+template<   ss_typename_param_k R       /* The reference type */
+        ,   ss_typename_param_k C       /* The enclosing class */
+        ,   ss_ptrdiff_t (*PFnOff)()    /* Pointer to function providing offset of property within container */
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   void (C::*PFnSet)(R )   /* Pointer to a member function taking R */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
@@ -955,7 +955,7 @@ public:
     /// Provides read-only access to the property
     method_property_set_external &operator =(reference_type value)
     {
-        ptrdiff_t       offset  =   (*PFnOff)();
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
         container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
@@ -980,10 +980,10 @@ public:
  * Then the template is parameterised with the set reference type, the get
  * reference type, the container type, the member functions and the offset function.
  */
-template<   ss_typename_param_k RG  /* The reference type */
-        ,   ss_typename_param_k RS  /* The reference type */
-        ,   ss_typename_param_k C   /* The enclosing class */
-        ,   ptrdiff_t   (*PFnOff)() /* Pointer to function providing offset of property within container */
+template<   ss_typename_param_k RG      /* The reference type */
+        ,   ss_typename_param_k RS      /* The reference type */
+        ,   ss_typename_param_k C       /* The enclosing class */
+        ,   ss_ptrdiff_t (*PFnOff)()    /* Pointer to function providing offset of property within container */
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   RG (C::*PFnGet)() const /* Pointer to a const member function returning R */
         ,   void (C::*PFnSet)(RS )  /* Pointer to a member function taking R */
@@ -1034,7 +1034,7 @@ public:
     /// Provides read-only access to the property
     operator get_reference_type () const
     {
-        ptrdiff_t       offset  =   (*PFnOff)();
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
         container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
@@ -1047,7 +1047,7 @@ public:
     /// Provides read-only access to the property
     class_type &operator =(set_reference_type value)
     {
-        ptrdiff_t       offset  =   (*PFnOff)();
+        ss_ptrdiff_t    offset  =   (*PFnOff)();
         container_type  *pC     =   (container_type*)((ss_byte_t*)this - offset);
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
@@ -1357,7 +1357,7 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k RG
         ,   ss_typename_param_k RS
         ,   ss_typename_param_k C
-        ,   ptrdiff_t   (*PFnOff)()
+        ,   ss_ptrdiff_t (*PFnOff)()
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   RG (C::*PFnGet)() const
         ,   void (C::*PFnSet)(RS)
@@ -1381,7 +1381,7 @@ inline S &operator <<(  S                                                       
 template<   ss_typename_param_k V
         ,   ss_typename_param_k R
         ,   ss_typename_param_k C
-        ,   ptrdiff_t   (*PFnOff)()
+        ,   ss_ptrdiff_t (*PFnOff)()
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   R (C::*PFnGet)() const
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
@@ -1404,7 +1404,7 @@ inline S &operator <<(  S                                                   &s
 template<   ss_typename_param_k RG
         ,   ss_typename_param_k RS
         ,   ss_typename_param_k C
-        ,   ptrdiff_t   (*PFnOff)()
+        ,   ss_ptrdiff_t (*PFnOff)()
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   RG (C::*PFnGet)() const
         ,   void (C::*PFnSet)(RS )
@@ -1427,7 +1427,7 @@ inline S &operator <<(  S                                                       
 
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
-        ,   ptrdiff_t   (*PFnOff)()
+        ,   ss_ptrdiff_t (*PFnOff)()
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
         ,   R (C::*PFnGet)() const
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */

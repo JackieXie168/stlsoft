@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 4
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     40
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 5
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,7 +161,7 @@ public:
     /// \brief The non-mutating (const) reference type
     typedef value_type const                    &const_reference;
     /// \brief The difference type
-    typedef ptrdiff_t                           difference_type;
+    typedef ss_ptrdiff_t                        difference_type;
     /// \brief The size type
     typedef ss_size_t                           size_type;
 private:

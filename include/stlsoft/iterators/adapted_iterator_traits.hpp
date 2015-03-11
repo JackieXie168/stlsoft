@@ -4,7 +4,7 @@
  * Purpose:     Traits for detecting characteristics of adapted iterators.
  *
  * Created:     9th July 2004
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MINOR    5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     42
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 4
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -338,7 +338,7 @@ struct adapted_iterator_traits<T*>
 {
     typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
     typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
+    typedef ss_ptrdiff_t                                    difference_type;
     typedef value_type                                      *pointer;
     typedef value_type const                                *const_pointer;
     typedef value_type                                      &reference;
@@ -354,7 +354,7 @@ struct adapted_iterator_traits<T const*>
 {
     typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
     typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
+    typedef ss_ptrdiff_t                                    difference_type;
     typedef value_type const                                *pointer;
     typedef value_type const                                *const_pointer;
     typedef value_type const                                &reference;
@@ -370,7 +370,7 @@ struct adapted_iterator_traits<T volatile*>
 {
     typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
     typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
+    typedef ss_ptrdiff_t                                    difference_type;
     typedef value_type volatile                             *pointer;
     typedef value_type volatile const                       *const_pointer;
     typedef value_type volatile                             &reference;
@@ -386,7 +386,7 @@ struct adapted_iterator_traits<T const volatile*>
 {
     typedef stlsoft_ns_qual_std(random_access_iterator_tag) iterator_category;
     typedef T                                               value_type;
-    typedef ptrdiff_t                                       difference_type;
+    typedef ss_ptrdiff_t                                    difference_type;
     typedef value_type volatile const                       *pointer;
     typedef value_type volatile const                       *const_pointer;
     typedef value_type volatile const                       &reference;

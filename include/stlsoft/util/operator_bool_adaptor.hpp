@@ -4,7 +4,7 @@
  * Purpose:     Definition of the operator_bool_adaptor class.
  *
  * Created:     21st October 2004
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,14 +45,14 @@
  * (\ref group__library__utility "Utility" Library.)
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR
-#define STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR
+#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR
+#define STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MAJOR    2
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MINOR    0
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_REVISION 2
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_EDIT     20
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_MAJOR    2
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_MINOR    0
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_REVISION 3
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,40 +118,7 @@ public:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_rangelib_operator_adaptor(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "operator_adaptors", __FILE__);
-
-    #if 0
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
-
-                if(1968 != *pi1)
-                {
-                    r->report("construct() failed ", __LINE__);
-                    bSuccess = false;
-                }
-            }
-    #endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_rangelib_operator_adaptor(test_rangelib_operator_adaptor);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/operator_bool_adaptor_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -162,6 +129,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR */
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL_ADAPTOR */
 
 /* ////////////////////////////////////////////////////////////////////// */

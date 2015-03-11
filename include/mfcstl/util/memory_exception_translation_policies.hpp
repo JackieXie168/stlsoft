@@ -4,11 +4,11 @@
  * Purpose:     Contains .
  *
  * Created:     2nd February 2006
- * Updated:     24th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,9 +38,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file mfcstl/util/memory_exception_translation_policies.hpp
-///
-/// Contains .
+/** \file mfcstl/util/memory_exception_translation_policies.hpp
+ *
+ * \brief [C++ only] Definition of the mfcstl::bad_alloc_throwing_policy
+ *   and mfcstl::CMemoryException_throwing_policy exception translation
+ *   policy classes.
+ * (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef MFCSTL_INCL_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES
 #define MFCSTL_INCL_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES
@@ -49,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MAJOR     1
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MINOR     0
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_REVISION  4
-# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      7
+# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,7 +93,7 @@ namespace mfcstl_project
 
 /** \brief Memory exception translation policy that ensures CMemoryException* is the thrown type in all cases
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 struct CMemoryException_throwing_policy
 {
@@ -108,7 +112,7 @@ public:
 
 /** \brief Memory exception translation policy that ensures std::bad_alloc is the thrown type in all cases
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 struct bad_alloc_throwing_policy
 {

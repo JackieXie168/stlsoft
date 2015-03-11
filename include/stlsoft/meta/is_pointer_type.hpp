@@ -4,7 +4,7 @@
  * Purpose:     Tests whether a type is a pointer.
  *
  * Created:     19th November 1998
- * Updated:     2nd January 2007
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_EDIT        115
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_EDIT        116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,7 +83,7 @@ namespace stlsoft
 //
 /** \brief Tests whether a type is a pointer type
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__meta
  */
 
 template <ss_typename_param_k U>

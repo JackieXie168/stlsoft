@@ -4,14 +4,14 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     29th December 2006
+ * Updated:     5th January 2007
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       0
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    2
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        37
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    3
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ inline void stream_insert(S &stm, SYSTEMTIME const &t)
 
     const int       cchDate     =   ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
     const int       cchTime     =   ::GetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
     string_t        s(cchTotal);
 
     if(cchTotal == s.size())
@@ -171,7 +171,7 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME co
 
     const int       cchDate     =   ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
     const int       cchTime     =   pfnGetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
     string_t        s(cchTotal);
 
     if(cchTotal == s.size())
@@ -203,7 +203,7 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME co
 
     const int       cchDate     =   ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
     const int       cchTime     =   pfnGetTimeFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
     string_t        s(cchTotal);
 
     if(cchTotal == s.size())
@@ -408,7 +408,7 @@ inline ws_size_t c_str_len_a(SYSTEMTIME const &t, ws_bool_t bMilliseconds)
 
     const int       cchDate     =   ::GetDateFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
     const int       cchTime     =   pfnGetTimeFormatA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
 
     return cchTotal;
 }
@@ -430,7 +430,7 @@ inline ws_size_t c_str_len_w(SYSTEMTIME const &t, ws_bool_t bMilliseconds)
 
     const int       cchDate     =   ::GetDateFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
     const int       cchTime     =   pfnGetTimeFormatW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0);
-    const size_t    cchTotal    =   static_cast<size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
+    const ws_size_t cchTotal    =   static_cast<ws_size_t>((cchDate - 1) + 1 + (cchTime - 1));  // GetDateFormat() + space + GetTimeFormat() (subtracting 1 for terminating NUL in each count returned)
 
     return cchTotal;
 }

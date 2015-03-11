@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     2nd January 2007
+ * Updated:     5th January 2007
  *
  * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -47,14 +47,14 @@
  * (\ref group__library__utility__com "COM Utility" Library.)
  */
 
-#ifndef COMSTL_INCL_COMSTL_HPP_INITIALISERS
-#define COMSTL_INCL_COMSTL_HPP_INITIALISERS
+#ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INITIALISERS
+#define COMSTL_INCL_COMSTL_UTIL_HPP_INITIALISERS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_MAJOR       3
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_MINOR       2
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    4
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        72
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      2
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   6
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -402,37 +402,7 @@ typedef ole_initialiser ole_initializer;
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_comstl_initialisers(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "COMSTL", "initialisers", __FILE__);
-
-            com_initializer coinit;
-
-    #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_comstl_initialisers(test_comstl_initialisers);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/initialisers_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -519,6 +489,6 @@ inline HRESULT initialiser<IP, XP>::get_HRESULT() const
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !COMSTL_INCL_COMSTL_HPP_INITIALISERS */
+#endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INITIALISERS */
 
 /* ////////////////////////////////////////////////////////////////////// */

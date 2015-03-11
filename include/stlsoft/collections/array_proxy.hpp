@@ -6,11 +6,11 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     30th December 2006
+ * Updated:     6th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MAJOR    4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION 3
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     49
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -220,10 +220,7 @@ public:
         stlsoft_constraint_must_be_same_size(D, T);
     }
 #endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Attributes
 /// @{
@@ -255,10 +252,7 @@ public:
     {
         return static_cast<size_type>(-1) / sizeof(value_type);
     }
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Subscripting
 /// @{
@@ -283,10 +277,7 @@ public:
 
         return const_cast<pointer>(m_begin)[index];
     }
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 /// \name Iteration
 /// @{
@@ -319,10 +310,7 @@ public:
     {
         return m_end;
     }
-/** \brief  @}
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+///  @}
 
 // Members
 private:
