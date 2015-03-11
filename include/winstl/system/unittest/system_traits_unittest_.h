@@ -1,5 +1,5 @@
 
-// Updated: 24th March 2008
+// Updated: 3rd April 2008
 
 #if !defined(WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS)
 # error This file cannot be directly included, and should only be included within winstl/system/system_traits.hpp
@@ -20,7 +20,8 @@ namespace unittest
         {
             ss_bool_t   bSuccess    =   true;
 
-#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
+	defined(_CRT_SECURE_NO_DEPRECATE)
 
             char    buff1[101];
 //            char    buff2[101];
@@ -41,7 +42,7 @@ namespace unittest
                 r->report("str_copy() failure", __LINE__);
                 bSuccess = false;
             }
-#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
 
 #if 0
     /* static char_type    *str_copy(char_type *dest, char_type const* src) */

@@ -4,7 +4,7 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     23rd October 1997
- * Updated:     9th March 2008
+ * Updated:     2nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MAJOR    1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MINOR    1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,9 @@
 # endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
 # if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) || \
-     defined(_WIN32) || \
+     (  (   defined(_WIN32) || \
+            defined(_WIN64)) && \
+        !defined(UNIXSTL_NO_ATOMIC_INTEGER_OPERATIONS_ON_WINDOWS)) || \
      defined(UNIXSTL_OS_IS_MACOSX)
 #  define UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 # endif

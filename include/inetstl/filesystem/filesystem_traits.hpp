@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     24th March 2008
+ * Updated:     3rd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 5
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     67
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 6
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,14 +147,15 @@ public:
 /// \name General string handling
 /// @{
 public:
-#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
+    defined(_CRT_SECURE_NO_DEPRECATE)
     /// Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const* src);
     /// Copies the contents of \c src to \c dest, up to cch \c characters
     static char_type    *str_n_copy(char_type *dest, char_type const* src, is_size_t cch);
     /// Appends the contents of \c src to \c dest
     static char_type    *str_cat(char_type *dest, char_type const* src);
-#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
     /// Comparies the contents of \c src and \c dest
     static is_int_t     str_compare(char_type const* s1, char_type const* s2);
     /// Comparies the contents of \c src and \c dest in a case-insensitive fashion
@@ -295,14 +296,15 @@ public:
 
 public:
     // General string handling
-#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
+    defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
-#ifdef STLSOFT_MIN_CRT
+# ifdef STLSOFT_MIN_CRT
         return ::lstrcpyA(dest, src);
-#else /*? STLSOFT_MIN_CRT */
+# else /*? STLSOFT_MIN_CRT */
         return ::strcpy(dest, src);
-#endif /* STLSOFT_MIN_CRT */
+# endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
@@ -312,13 +314,13 @@ public:
 
     static char_type *str_cat(char_type *dest, char_type const* src)
     {
-#ifdef STLSOFT_MIN_CRT
+# ifdef STLSOFT_MIN_CRT
         return ::lstrcatA(dest, src);
-#else /*? STLSOFT_MIN_CRT */
+# else /*? STLSOFT_MIN_CRT */
         return ::strcat(dest, src);
-#endif /* STLSOFT_MIN_CRT */
+# endif /* STLSOFT_MIN_CRT */
     }
-#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
 
     static is_int_t str_compare(char_type const* s1, char_type const* s2)
     {
@@ -631,14 +633,15 @@ public:
 
 public:
     // General string handling
-#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
+    defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
-#ifdef STLSOFT_MIN_CRT
+# ifdef STLSOFT_MIN_CRT
         return ::lstrcpyW(dest, src);
-#else /*? STLSOFT_MIN_CRT */
+# else /*? STLSOFT_MIN_CRT */
         return ::wcscpy(dest, src);
-#endif /* STLSOFT_MIN_CRT */
+# endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
@@ -648,13 +651,13 @@ public:
 
     static char_type *str_cat(char_type *dest, char_type const* src)
     {
-#ifdef STLSOFT_MIN_CRT
+# ifdef STLSOFT_MIN_CRT
         return ::lstrcatW(dest, src);
-#else /*? STLSOFT_MIN_CRT */
+# else /*? STLSOFT_MIN_CRT */
         return ::wcscat(dest, src);
-#endif /* STLSOFT_MIN_CRT */
+# endif /* STLSOFT_MIN_CRT */
     }
-#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
 
     static is_int_t str_compare(char_type const* s1, char_type const* s2)
     {

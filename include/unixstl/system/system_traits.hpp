@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     24th March 2008
+ * Updated:     3rd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      99
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  5
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -190,7 +190,8 @@ public:
 /// \name General string handling
 /// @{
 public:
-#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
+    defined(_CRT_SECURE_NO_DEPRECATE)
     /// \brief Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const* src);
     /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
@@ -199,7 +200,7 @@ public:
     static char_type    *str_cat(char_type *dest, char_type const* src);
     /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
     static char_type    *str_n_cat(char_type *dest, char_type const* src, size_type cch);
-#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
     /// \brief Comparies the contents of \c src and \c dest
     static int_type     str_compare(char_type const* s1, char_type const* s2);
     /// \brief Comparies the contents of \c src and \c dest in a case-insensitive fashion
@@ -281,7 +282,8 @@ public:
     typedef int                         error_type;
 
 public:
-#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
+    defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
         return ::strcpy(dest, src);
@@ -301,7 +303,7 @@ public:
     {
         return ::strncat(dest, src, cch);
     }
-#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
 
     static int_type str_compare(char_type const* s1, char_type const* s2)
     {
@@ -427,7 +429,8 @@ public:
     typedef int                         error_type;
 
 public:
-#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) || \
+    defined(_CRT_SECURE_NO_DEPRECATE)
     static char_type *str_copy(char_type *dest, char_type const* src)
     {
         return ::wcscpy(dest, src);
@@ -447,7 +450,7 @@ public:
     {
         return ::wcsncat(dest, src, cch);
     }
-#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
 
     static int_type str_compare(char_type const* s1, char_type const* s2)
     {

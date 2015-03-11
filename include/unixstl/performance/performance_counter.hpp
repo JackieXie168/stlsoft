@@ -4,7 +4,7 @@
  * Purpose:     performance_counter class.
  *
  * Created:     16th January 2002
- * Updated:     9th March 2008
+ * Updated:     2nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       59
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   4
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -235,9 +235,7 @@ private:
 
 inline /* static */ void performance_counter::measure_(performance_counter::epoch_type &epoch)
 {
-    struct timezone tz;
-
-    ::gettimeofday(&epoch, &tz);
+    ::gettimeofday(&epoch, NULL);
 }
 
 inline void performance_counter::start()

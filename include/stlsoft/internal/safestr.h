@@ -4,7 +4,7 @@
  * Purpose:     Handles detection of safe string library.
  *
  * Created:     24th March 2008
- * Updated:     24th March 2008
+ * Updated:     2nd April 2008
  *
  * Author:      Matthew Wilson
  *
@@ -49,6 +49,13 @@
 #ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
 #define STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_MAJOR     1
+# define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_MINOR     1
+# define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_REVISION  1
+# define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_EDIT      3
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
@@ -57,8 +64,15 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        (   defined(STLSOFT_COMPILER_IS_INTEL) && \
+            defined(_MSC_VER))) && \
+    _MSC_VER >= 1400
+# include <crtdefs.h>
+#endif /* compiler */
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * Symbols
  */
 
 #ifdef __STDC_SECURE_LIB__

@@ -2,13 +2,16 @@
 STLSoft - Known Issues:
 
 ; Created:  29th March 2002
-; Updated:  27th January 2008
+; Updated:  3rd April 2008
 
 ============================================================================
 
 
 STLSoft 1.9 Known Issues:
 ----------------------------
+
+ * The safe string library compatibility is not done yet. This is planned to
+   be fully complete with 1.10.
 
  * There are some problems with GCC 4.0 in compiling the fixed array classes
    with the subscript operators.
