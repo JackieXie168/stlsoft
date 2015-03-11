@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for trimming and removing string contents.
  *
  * Created:     25th April 2005
- * Updated:     9th March 2008
+ * Updated:     26th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    6
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        34
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    7
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,9 +85,6 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#ifndef STLSOFT_INCL_STLSOFT_STD_HPP_CSTRING
-# include <stlsoft/std/cstring.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_STD_HPP_CSTRING */
 
 #ifndef STLSOFT_INCL_ALGORITHM
 # define STLSOFT_INCL_ALGORITHM
@@ -97,6 +94,15 @@ STLSOFT_COMPILER_IS_WATCOM:
 # define STLSOFT_INCL_FUNCTIONAL
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 #ifdef STLSOFT_UNITTEST
 # include <string>
@@ -120,6 +126,15 @@ namespace stlsoft
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline char const* strchr_select(char const* s, char ch)
+{
+	return ::strchr(s, ch);
+}
+inline wchar_t const* strchr_select(wchar_t const* s, wchar_t ch)
+{
+	return ::wcschr(s, ch);
+}
 
 template <ss_typename_param_k C>
 inline C const* default_trim_chars(C const* , ss_size_t& n)
@@ -166,7 +181,7 @@ inline S& trim_left_impl(S& str, ss_typename_type_k string_traits<S>::char_type 
     // 4. typedef the iterator type(s)
     typedef ss_typename_type_k string_traits_t::const_iterator      iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
-    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
+    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr_select;
 
     // Get an iterator to the first element that
     const iterator_t  it_b    =   str.begin();
@@ -252,7 +267,7 @@ inline S& trim_right_impl(S& str, ss_typename_type_k string_traits<S>::char_type
     typedef ss_typename_type_k string_traits_t::const_iterator          iterator_t;
     typedef ss_typename_type_k string_traits_t::const_reverse_iterator  reverse_iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
-    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
+    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr_select;
 
     // Get a (reverse) iterator to the first element that is not a space === find_last_not_of
     const iterator_t            it_b    =   cstr.begin();
@@ -338,14 +353,14 @@ inline S& trim_all_impl(S& str, ss_typename_type_k string_traits<S>::char_type c
     using namespace std;
 #endif /* STLSOFT_CF_std_NAMESPACE */
     // 2. typedef the string traits
-    typedef string_traits<S>                                        string_traits_t;
+    typedef string_traits<S>											string_traits_t;
     // 3. typedef the char_t
-    typedef ss_typename_type_k string_traits_t::char_type           char_t;
+    typedef ss_typename_type_k string_traits_t::char_type				char_t;
     // 4. typedef the iterator type(s)
-    typedef ss_typename_type_k string_traits_t::const_iterator            iterator_t;
-    typedef ss_typename_type_k string_traits_t::const_reverse_iterator    reverse_iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_iterator          iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_reverse_iterator  reverse_iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
-    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
+    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr_select;
 
     // Get an iterator to the first element that
     const iterator_t            it_b    =   cstr.begin();
@@ -428,7 +443,7 @@ inline S& remove_all_impl(S& str, ss_typename_type_k S::value_type const* remove
     // 4. typedef the iterator type(s)
     typedef ss_typename_type_k string_traits_t::iterator            iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
-    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
+    char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr_select;
 
     // Get an iterator to the first element that
     iterator_t          it_b    =   str.begin();

@@ -48,7 +48,7 @@ namespace unittest
 				{
 					long			*pl =	static_cast<long*>(pv);
 					cs_size_t		l;
-					long			total;
+					cs_uptrint_t	total;
 
 					for(l = 0, total = 0; l < bounds[0].cElements * bounds[1].cElements; ++l)
 					{
@@ -59,14 +59,14 @@ namespace unittest
 
 					comstl::safearray_sequence<long>	array(psa);
 
-					if(stlsoft_ns_qual_std(accumulate)(array.begin(), array.end(), static_cast<long>(0)) != total)
+					if(stlsoft_ns_qual_std(accumulate)(array.begin(), array.end(), static_cast<cs_uptrint_t>(0)) != total)
 					{
 						r->report("array contents (forward iteration) test failed", __LINE__);
 						bSuccess = false;
 					}
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-					if(stlsoft_ns_qual_std(accumulate)(array.rbegin(), array.rend(), static_cast<long>(0)) != total)
+					if(stlsoft_ns_qual_std(accumulate)(array.rbegin(), array.rend(), static_cast<cs_uptrint_t>(0)) != total)
 					{
 						r->report("array contents (reverse iteration) test failed", __LINE__);
 						bSuccess = false;

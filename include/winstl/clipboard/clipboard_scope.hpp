@@ -4,11 +4,11 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     5th September 2007
+ * Updated:     20th May 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   5
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       31
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   6
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -199,7 +199,7 @@ public:
     ///
     /// \param hwndOwner Window to be associated as owner of the clipboard.
     ///  May be NULL, in which case the current thread owns the clipboard.
-    ss_explicit_k clipboard_scope(HWND hwndOwner = NULL) stlsoft_throw_1(clipboard_scope_exception );
+    ss_explicit_k clipboard_scope(HWND hwndOwner = NULL) stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gives up ownership of the clipboard.
     ~clipboard_scope() stlsoft_throw_0();
 /// @}
@@ -215,7 +215,7 @@ public:
 /// @{
 public:
     /// \brief Empties the clipboard.
-    void    clear() stlsoft_throw_1(clipboard_scope_exception );
+    void    clear() stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Returns the current owner of the clipboard.
     HWND    owner() const;
@@ -224,44 +224,69 @@ public:
     ws_bool_t   is_fmt_available(UINT fmt) const;
 
     /// \brief Sets the given data with the given format into the clipboard.
-    void    set_data(UINT fmt, HANDLE hData) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(UINT fmt, HANDLE hData) stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Sets the given text to the clipboard with CF_TEXT format.
-    void    set_data(char const* str) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(char const* str) stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Sets the given text to the clipboard with CF_TEXT format.
-    void    set_data(char const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(char const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Sets the given text to the clipboard with CF_UNICODETEXT format.
-    void    set_data(wchar_t const* str) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(wchar_t const* str) stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Sets the given text to the clipboard with CF_UNICODETEXT format.
-    void    set_data(wchar_t const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(wchar_t const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Sets the bitmap to the clipboard with CF_BITMAP format.
-    void    set_data(HBITMAP hBmp) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(HBITMAP hBmp) stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Sets the bitmap to the clipboard with CF_HDROP format.
-    void    set_data(HDROP hDrop) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(HDROP hDrop) stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Sets the bitmap to the clipboard with CF_ENHMETAFILE format.
-    void    set_data(HENHMETAFILE hEmf) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(HENHMETAFILE hEmf) stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Sets the bitmap to the clipboard with CF_PALETTE format.
-    void    set_data(HPALETTE hPal) stlsoft_throw_1(clipboard_scope_exception );
+    void    set_data(HPALETTE hPal) stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the data with the requested format from the clipboard
-    HANDLE  get_data(UINT fmt) const stlsoft_throw_1(clipboard_scope_exception );
+    HANDLE  get_data(UINT fmt) const stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the clipboard data with the CF_TEXT format.
-    void    get_data(char const*& str) const stlsoft_throw_1(clipboard_scope_exception );
+    void    get_data(char const*& str) const stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the clipboard data with the CF_UNICODETEXT format.
-    void    get_data(wchar_t const*& str) const stlsoft_throw_1(clipboard_scope_exception );
+    void    get_data(wchar_t const*& str) const stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the clipboard data with the CF_BITMAP format.
-    void    get_data(HBITMAP& hBmp) const stlsoft_throw_1(clipboard_scope_exception );
+    void    get_data(HBITMAP& hBmp) const stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gets the clipboard data with the CF_HDROP format.
-    void    get_data(HDROP& hDrop) const stlsoft_throw_1(clipboard_scope_exception );
+    void    get_data(HDROP& hDrop) const stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gets the clipboard data with the CF_ENHMETAFILE format.
-    void    get_data(HENHMETAFILE& hEmf) const stlsoft_throw_1(clipboard_scope_exception );
+    void    get_data(HENHMETAFILE& hEmf) const stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gets the clipboard data with the CF_PALETTE format.
-    void    get_data(HPALETTE& hPal) const stlsoft_throw_1(clipboard_scope_exception );
+    void    get_data(HPALETTE& hPal) const stlsoft_throw_1(clipboard_scope_exception);
+/// @}
+
+/// \name Members
+/// @{
+private:
+    template <ss_typename_param_k A>
+    void set_data_or_deallocate_and_throw_(UINT fmt, HANDLE hData, A& ator) stlsoft_throw_1(clipboard_scope_exception)
+    {
+    #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        try
+        {
+    #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+            set_data(fmt, hData);
+
+    #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        }
+        catch(...)
+        {
+            ator.deallocate(hData);
+
+            throw;
+        }
+    #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
 /// @}
 
 /// \name Members
@@ -291,7 +316,7 @@ private:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline clipboard_scope::clipboard_scope(HWND hwndOwner /* = NULL */) stlsoft_throw_1(clipboard_scope_exception )
+inline clipboard_scope::clipboard_scope(HWND hwndOwner /* = NULL */) stlsoft_throw_1(clipboard_scope_exception)
 {
     if(!::OpenClipboard(hwndOwner))
     {
@@ -311,7 +336,7 @@ inline clipboard_scope::allocator_type clipboard_scope::get_allocator() const
     return ator;
 }
 
-inline void clipboard_scope::clear() stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::clear() stlsoft_throw_1(clipboard_scope_exception)
 {
     if(!::EmptyClipboard())
     {
@@ -337,7 +362,7 @@ inline ws_bool_t clipboard_scope::is_fmt_available(UINT fmt) const
     return BOOL2bool(::IsClipboardFormatAvailable(fmt));
 }
 
-inline void clipboard_scope::set_data(UINT fmt, HANDLE hData) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(UINT fmt, HANDLE hData) stlsoft_throw_1(clipboard_scope_exception)
 {
     if(NULL == ::SetClipboardData(fmt, hData))
     {
@@ -345,71 +370,75 @@ inline void clipboard_scope::set_data(UINT fmt, HANDLE hData) stlsoft_throw_1(cl
     }
 }
 
-inline void clipboard_scope::set_data(char const* str) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(char const* str) stlsoft_throw_1(clipboard_scope_exception)
 {
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     allocator_type::rebind<char>::other     ator(*this);
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     global_allocator<char>                  ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+    char*                                   memory = stlsoft_ns_qual(string_dup)(str, ator);
 
-    set_data(CF_TEXT, stlsoft_ns_qual(string_dup)(str, ator));
+    set_data_or_deallocate_and_throw_(CF_TEXT, memory, ator);
 }
 
-inline void clipboard_scope::set_data(char const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(char const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception)
 {
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     allocator_type::rebind<char>::other     ator(*this);
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     global_allocator<char>                  ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+    char*                                   memory = stlsoft_ns_qual(string_dup)(str, n, ator);
 
-    set_data(CF_TEXT, stlsoft_ns_qual(string_dup)(str, n, ator));
+    set_data_or_deallocate_and_throw_(CF_TEXT, memory, ator);
 }
 
-inline void clipboard_scope::set_data(wchar_t const* str) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(wchar_t const* str) stlsoft_throw_1(clipboard_scope_exception)
 {
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     allocator_type::rebind<wchar_t>::other  ator(*this);
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     global_allocator<wchar_t>               ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+    wchar_t*                                memory = stlsoft_ns_qual(string_dup)(str, ator);
 
-    set_data(CF_UNICODETEXT, stlsoft_ns_qual(string_dup)(str, ator));
+    set_data_or_deallocate_and_throw_(CF_UNICODETEXT, memory, ator);
 }
 
-inline void clipboard_scope::set_data(wchar_t const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(wchar_t const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception)
 {
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     allocator_type::rebind<wchar_t>::other  ator(*this);
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     global_allocator<wchar_t>               ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+    wchar_t*                                memory = stlsoft_ns_qual(string_dup)(str, n, ator);
 
-    set_data(CF_UNICODETEXT, stlsoft_ns_qual(string_dup)(str, n, ator));
+    set_data_or_deallocate_and_throw_(CF_UNICODETEXT, memory, ator);
 }
 
-inline void clipboard_scope::set_data(HBITMAP hBmp) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(HBITMAP hBmp) stlsoft_throw_1(clipboard_scope_exception)
 {
     set_data(CF_BITMAP, hBmp);
 }
 
-inline void clipboard_scope::set_data(HDROP hDrop) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(HDROP hDrop) stlsoft_throw_1(clipboard_scope_exception)
 {
     set_data(CF_HDROP, hDrop);
 }
 
-inline void clipboard_scope::set_data(HENHMETAFILE hEmf) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(HENHMETAFILE hEmf) stlsoft_throw_1(clipboard_scope_exception)
 {
     set_data(CF_ENHMETAFILE, hEmf);
 }
 
-inline void clipboard_scope::set_data(HPALETTE hPal) stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::set_data(HPALETTE hPal) stlsoft_throw_1(clipboard_scope_exception)
 {
     set_data(CF_PALETTE, hPal);
 }
 
-inline HANDLE clipboard_scope::get_data(UINT fmt) const stlsoft_throw_1(clipboard_scope_exception )
+inline HANDLE clipboard_scope::get_data(UINT fmt) const stlsoft_throw_1(clipboard_scope_exception)
 {
     HANDLE hData = ::GetClipboardData(fmt);
 
@@ -422,32 +451,32 @@ inline HANDLE clipboard_scope::get_data(UINT fmt) const stlsoft_throw_1(clipboar
     return hData;
 }
 
-inline void clipboard_scope::get_data(char const*& str) const stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::get_data(char const*& str) const stlsoft_throw_1(clipboard_scope_exception)
 {
     str = static_cast<char const*>(get_data(CF_TEXT));
 }
 
-inline void clipboard_scope::get_data(wchar_t const*& str) const stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::get_data(wchar_t const*& str) const stlsoft_throw_1(clipboard_scope_exception)
 {
     str = static_cast<wchar_t const*>(get_data(CF_UNICODETEXT));
 }
 
-inline void clipboard_scope::get_data(HBITMAP& hBmp) const stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::get_data(HBITMAP& hBmp) const stlsoft_throw_1(clipboard_scope_exception)
 {
     hBmp = static_cast<HBITMAP>(get_data(CF_BITMAP));
 }
 
-inline void clipboard_scope::get_data(HDROP& hDrop) const stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::get_data(HDROP& hDrop) const stlsoft_throw_1(clipboard_scope_exception)
 {
     hDrop = static_cast<HDROP>(get_data(CF_HDROP));
 }
 
-inline void clipboard_scope::get_data(HENHMETAFILE& hEmf) const stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::get_data(HENHMETAFILE& hEmf) const stlsoft_throw_1(clipboard_scope_exception)
 {
     hEmf = static_cast<HENHMETAFILE>(get_data(CF_ENHMETAFILE));
 }
 
-inline void clipboard_scope::get_data(HPALETTE& hPal) const stlsoft_throw_1(clipboard_scope_exception )
+inline void clipboard_scope::get_data(HPALETTE& hPal) const stlsoft_throw_1(clipboard_scope_exception)
 {
     hPal = static_cast<HPALETTE>(get_data(CF_PALETTE));
 }

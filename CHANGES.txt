@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  17th May 2008
+; Updated:  31st May 2008
 
 ============================================================================
 
@@ -15,6 +15,50 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.43 (31st May 2008)
+
+Summary:
+========
+
+ * more Win64-compatibility modifications
+ * more Safe String library modifications
+ * expanded the stlsoft::get_FILE_ptr attribute shim for MFC's CStdioFile
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/conversion/char_conversions.hpp - Safe String compatibility
+  ~ stlsoft/string/trim_functions.hpp - Safe String compatibility, and
+    removal of dependency on soon-to-be-obselete STLSoft standard emulation
+	functions (as they'll be handed off to the soon-to-be-released
+	flecxx library; see http://flecxx.org/)
+  ~ stlsoft/util/constraints.hpp - elimination of warnings for some highly
+    pedantic compiler modes
+
+ COMSTL:
+ -------
+
+  ~ comstl/collections/enumerator_sequence.hpp - Win64 compatibility
+
+  ~ comstl/string/bstr.hpp - Win64 compatibility
+
+ MFCSTL:
+ -------
+
+  + mfcstl/shims/attribute/get_FILE_ptr.hpp
+
+ WinSTL:
+ -------
+
+  ~ winstl/clipboard/clipboard_scope.hpp - tightening up of exception
+    handling code
 
 
 ============================================================================
