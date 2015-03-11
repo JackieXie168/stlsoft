@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     23rd December 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      14
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       69
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      15
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,6 +139,30 @@
  *
  * which indicate that a given type is not used in the size-specific types.
  */
+
+#if defined(__LP64__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (8)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#elif defined(__linux__) || \
+      defined(__APPLE__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#elif defined(_WIN64) || \
+      defined(_WIN32)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#else /* ? data model */
+# error Use of GCC has not been verified on any operation system other than Linux, Mac OS-X and Win32. Please contact STLSoft
+#endif /* data model */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT

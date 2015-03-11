@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the performance_counter components.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      0
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       14
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/performance/performance_counter.hpp
@@ -73,7 +73,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER
 #  include <unixstl/performance/performance_counter.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER
 #  include <winstl/performance/performance_counter.hpp>
 # endif /* !WINSTL_INCL_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER */
@@ -128,7 +128,7 @@ namespace platformstl_project
     using ::unixstl::performance_counter;
 # endif /* _UNIXSTL_NO_NAMESPACE */
 
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef _WINSTL_NO_NAMESPACE
     using ::performance_counter;

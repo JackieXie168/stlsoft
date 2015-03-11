@@ -4,7 +4,7 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     15th January 2007
- * Updated:     15th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_MINOR    0
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_EDIT     1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES
 #  include <unixstl/synch/sleep_functions.h>
 # endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
@@ -86,7 +86,7 @@
 # ifdef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 #  define PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 # endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # define PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS  /* Windows always has it */
 #else /* ? operating system */
 # error Operating system not discriminated

@@ -5,7 +5,7 @@
  *              classes.
  *
  * Created:     1st November 1994
- * Updated:     12th March 2007
+ * Updated:     28th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MAJOR       5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       0
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        68
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -267,22 +267,15 @@ public:
         return m_value;
     }
     /// Returns the pointer
-    value_type* get_ptr()
+    ///
+    /// \deprecated This function will be removed in a future release. Users
+    ///   should instead invoke get()
+    value_type* get_ptr() const
     {
-        return m_value;
+        return get();
     }
     /// Returns the pointer
-    value_type const* get_ptr() const
-    {
-        return m_value;
-    }
-    /// Returns the pointer
-    value_type* get()
-    {
-        return m_value;
-    }
-    /// Returns the pointer
-    value_type const* get() const
+    value_type* get() const
     {
         return m_value;
     }
@@ -393,22 +386,15 @@ public:
         return m_value;
     }
     /// Returns the pointer
-    value_type* get_ptr()
+    ///
+    /// \deprecated This function will be removed in a future release. Users
+    ///   should instead invoke get()
+    value_type* get_ptr() const
     {
-        return m_value;
+        return get();
     }
     /// Returns the pointer
-    value_type const* get_ptr() const
-    {
-        return m_value;
-    }
-    /// Returns the pointer
-    value_type* get()
-    {
-        return m_value;
-    }
-    /// Returns the pointer
-    value_type const* get() const
+    value_type* get() const
     {
         return m_value;
     }
@@ -643,72 +629,36 @@ private:
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T *get_ptr(auto_destructor<T> &ad)
+inline T *get_ptr(auto_destructor<T> const& ad)
 {
-    return ad.get_ptr();
+    return ad.get();
 }
 
 /** \brief 
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T const* get_ptr(auto_destructor<T> const& ad)
+inline T* get_ptr(return_value_destructor<T> const& ad)
 {
-    return ad.get_ptr();
+    return ad.get();
 }
 
 /** \brief 
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T* get_ptr(return_value_destructor<T>& ad)
+inline T* get_ptr(auto_array_destructor<T> const& ad)
 {
-    return ad.get_ptr();
+    return ad.get();
 }
 
 /** \brief 
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T const* get_ptr(return_value_destructor<T> const& ad)
+inline T* get_ptr(return_value_array_destructor<T> const& ad)
 {
-    return ad.get_ptr();
-}
-
-/** \brief 
- * \ingroup group__concept__shim__pointer_attribute__get_ptr
- */
-template <ss_typename_param_k T>
-inline T* get_ptr(auto_array_destructor<T>& ad)
-{
-    return ad.get_ptr();
-}
-
-/** \brief 
- * \ingroup group__concept__shim__pointer_attribute__get_ptr
- */
-template <ss_typename_param_k T>
-inline T const* get_ptr(auto_array_destructor<T> const& ad)
-{
-    return ad.get_ptr();
-}
-
-/** \brief 
- * \ingroup group__concept__shim__pointer_attribute__get_ptr
- */
-template <ss_typename_param_k T>
-inline T* get_ptr(return_value_array_destructor<T>& ad)
-{
-    return ad.get_ptr();
-}
-
-/** \brief 
- * \ingroup group__concept__shim__pointer_attribute__get_ptr
- */
-template <ss_typename_param_k T>
-inline T const* get_ptr(return_value_array_destructor<T> const& ad)
-{
-    return ad.get_ptr();
+    return ad.get();
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

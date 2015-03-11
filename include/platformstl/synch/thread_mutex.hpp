@@ -4,7 +4,7 @@
  * Purpose:     Definition of the thread_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       0
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        15
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/thread_mutex.hpp
@@ -67,7 +67,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_THREAD_MUTEX
 #  include <unixstl/synch/thread_mutex.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_THREAD_MUTEX */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_THREAD_MUTEX
 #  include <winstl/synch/thread_mutex.hpp>
 # endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_THREAD_MUTEX */
@@ -122,7 +122,7 @@ namespace platformstl_project
     using ::unixstl::thread_mutex;
 # endif /* _UNIXSTL_NO_NAMESPACE */
 
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef _WINSTL_NO_NAMESPACE
     using ::thread_mutex;

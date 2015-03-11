@@ -5,7 +5,7 @@
  *              explicit initialisation.
  *
  * Created:     18th June 2006
- * Updated:     16th December 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        11
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,13 +123,13 @@ class must_init_builtin
 /// @{
 public:
     /// \brief The wrapped type
-    typedef T						value_type;
+    typedef T                       value_type;
     /// \brief The current instantiation of the type
     typedef must_init_builtin<T>    class_type;
     /// The reference type
-    typedef T						&reference;
+    typedef T                       &reference;
     /// The non-mutating (const) reference type
-    typedef T const					&const_reference;
+    typedef T const                 &const_reference;
 /// @}
 
 /// \name Construction
@@ -266,17 +266,17 @@ public:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-# define STLSOFT_UTIL_MUST_INIT_DEFINE_BUILTIN_(type)		\
-															\
-	STLSOFT_TEMPLATE_SPECIALISATION							\
-	class must_init<type>									\
-		: public must_init_builtin<type>					\
-	{														\
-	public:													\
-		explicit must_init(type value)						\
-			: must_init_builtin<type>(value)				\
-		{}													\
-	}
+# define STLSOFT_UTIL_MUST_INIT_DEFINE_BUILTIN_(type)       \
+                                                            \
+    STLSOFT_TEMPLATE_SPECIALISATION                         \
+    class must_init<type>                                   \
+        : public must_init_builtin<type>                    \
+    {                                                       \
+    public:                                                 \
+        explicit must_init(type value)                      \
+            : must_init_builtin<type>(value)                \
+        {}                                                  \
+    }
 
 # ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 STLSOFT_UTIL_MUST_INIT_DEFINE_BUILTIN_(bool);
@@ -659,21 +659,21 @@ inline must_init<T> operator +(T const& lhs, must_init<T> const& rhs)
 // operator -
 
 template<   ss_typename_param_k T
-		>
+        >
 inline must_init<T> operator -(must_init<T> const& lhs, must_init<T> const& rhs)
 {
     return must_init<T>(lhs.base_type_value() - rhs.base_type_value());
 }
 
 template<   ss_typename_param_k T
-		>
+        >
 inline must_init<T> operator -(must_init<T> const& lhs, T const& rhs)
 {
     return must_init<T>(lhs.base_type_value() - rhs);
 }
 
 template<   ss_typename_param_k T
-		>
+        >
 inline must_init<T> operator -(T const& lhs, must_init<T> const& rhs)
 {
     return must_init<T>(lhs - rhs.base_type_value());

@@ -4,7 +4,7 @@
  * Purpose:     Time functions.
  *
  * Created:     10th June 2006
- * Updated:     10th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       4
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS
 #  include <unixstl/synch/sleep_functions.h>
 # endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS
 #  include <winstl/synch/sleep_functions.h>
 # endif /* !WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS */
@@ -108,7 +108,7 @@ namespace platformstl_project
     using unixstl::micro_sleep;
 #  endif /* _UNIXSTL_NO_NAMESPACE */
 
-# elif defined(PLATFORMSTL_OS_IS_WIN32)
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 #  if defined(_UNIXSTL_NO_NAMESPACE)
     /* There's no unixstl namespace, so we 'use' from the global namespace. */

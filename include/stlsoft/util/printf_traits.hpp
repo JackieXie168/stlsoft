@@ -4,7 +4,7 @@
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     12th March 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,10 +49,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR    5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     57
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,19 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS
-# include <stlsoft/util/size_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS */
-
-#ifdef STLSOFT_UNITTEST
-# include <stlsoft/util/limit_traits.h>
-# include <stlsoft/meta/yesno.hpp>
-# include <stlsoft/util/std/stdio_overload_detectors.hpp>
-# include <stdarg.h>
-# include <stdio.h>
-# include <string.h>
-# include <wchar.h>
-#endif /* STLSOFT_UNITTEST */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS
+# include <stlsoft/util/integral_printf_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -91,104 +81,57 @@ namespace stlsoft
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#define STLSOFT_PRINTF_TRAITS_SINT8_MIN         -128
-#define STLSOFT_PRINTF_TRAITS_SINT8_MAX         127
+#define STLSOFT_PRINTF_TRAITS_SINT8_MIN         STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT8_MIN
+#define STLSOFT_PRINTF_TRAITS_SINT8_MAX         STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT8_MAX
 
-#define STLSOFT_PRINTF_TRAITS_UINT8_MIN         0
-#define STLSOFT_PRINTF_TRAITS_UINT8_MAX         255
+#define STLSOFT_PRINTF_TRAITS_UINT8_MIN         STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT8_MIN
+#define STLSOFT_PRINTF_TRAITS_UINT8_MAX         STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT8_MAX
 
-#define STLSOFT_PRINTF_TRAITS_SINT16_MIN        -32768
-#define STLSOFT_PRINTF_TRAITS_SINT16_MAX        32767
+#define STLSOFT_PRINTF_TRAITS_SINT16_MIN        STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT16_MIN
+#define STLSOFT_PRINTF_TRAITS_SINT16_MAX        STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT16_MAX
 
-#define STLSOFT_PRINTF_TRAITS_UINT16_MIN        0
-#define STLSOFT_PRINTF_TRAITS_UINT16_MAX        65535
+#define STLSOFT_PRINTF_TRAITS_UINT16_MIN        STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT16_MIN
+#define STLSOFT_PRINTF_TRAITS_UINT16_MAX        STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT16_MAX
 
-#define STLSOFT_PRINTF_TRAITS_SINT32_MIN        -2147483648
-#define STLSOFT_PRINTF_TRAITS_SINT32_MAX        2147483647
+#define STLSOFT_PRINTF_TRAITS_SINT32_MIN        STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT32_MIN
+#define STLSOFT_PRINTF_TRAITS_SINT32_MAX        STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT32_MAX
 
-#define STLSOFT_PRINTF_TRAITS_UINT32_MIN        0
-#define STLSOFT_PRINTF_TRAITS_UINT32_MAX        4294967295
+#define STLSOFT_PRINTF_TRAITS_UINT32_MIN        STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT32_MIN
+#define STLSOFT_PRINTF_TRAITS_UINT32_MAX        STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT32_MAX
 
-#define STLSOFT_PRINTF_TRAITS_SINT64_MIN        -9223372036854775808
-#define STLSOFT_PRINTF_TRAITS_SINT64_MAX        9223372036854775807
+#define STLSOFT_PRINTF_TRAITS_SINT64_MIN        STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MIN
+#define STLSOFT_PRINTF_TRAITS_SINT64_MAX        STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MAX
 
-#define STLSOFT_PRINTF_TRAITS_UINT64_MIN        0
-#define STLSOFT_PRINTF_TRAITS_UINT64_MAX        18446744073709551615
+#define STLSOFT_PRINTF_TRAITS_UINT64_MIN        STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MIN
+#define STLSOFT_PRINTF_TRAITS_UINT64_MAX        STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MAX
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-# define __STLSOFT_PRINTF_TRAITS__SINT8_MIN     STLSOFT_PRINTF_TRAITS_SINT8_MIN
-# define __STLSOFT_PRINTF_TRAITS__SINT8_MAX     STLSOFT_PRINTF_TRAITS_SINT8_MAX
+# define __STLSOFT_PRINTF_TRAITS__SINT8_MIN     STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT8_MIN
+# define __STLSOFT_PRINTF_TRAITS__SINT8_MAX     STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT8_MAX
 
-# define __STLSOFT_PRINTF_TRAITS__UINT8_MIN     STLSOFT_PRINTF_TRAITS_UINT8_MIN
-# define __STLSOFT_PRINTF_TRAITS__UINT8_MAX     STLSOFT_PRINTF_TRAITS_UINT8_MAX
+# define __STLSOFT_PRINTF_TRAITS__UINT8_MIN     STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT8_MIN
+# define __STLSOFT_PRINTF_TRAITS__UINT8_MAX     STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT8_MAX
 
-# define __STLSOFT_PRINTF_TRAITS__SINT16_MIN    STLSOFT_PRINTF_TRAITS_SINT16_MIN
-# define __STLSOFT_PRINTF_TRAITS__SINT16_MAX    STLSOFT_PRINTF_TRAITS_SINT16_MAX
+# define __STLSOFT_PRINTF_TRAITS__SINT16_MIN    STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT16_MIN
+# define __STLSOFT_PRINTF_TRAITS__SINT16_MAX    STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT16_MAX
 
-# define __STLSOFT_PRINTF_TRAITS__UINT16_MIN    STLSOFT_PRINTF_TRAITS_UINT16_MIN
-# define __STLSOFT_PRINTF_TRAITS__UINT16_MAX    STLSOFT_PRINTF_TRAITS_UINT16_MAX
+# define __STLSOFT_PRINTF_TRAITS__UINT16_MIN    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT16_MIN
+# define __STLSOFT_PRINTF_TRAITS__UINT16_MAX    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT16_MAX
 
-# define __STLSOFT_PRINTF_TRAITS__SINT32_MIN    STLSOFT_PRINTF_TRAITS_SINT32_MIN
-# define __STLSOFT_PRINTF_TRAITS__SINT32_MAX    STLSOFT_PRINTF_TRAITS_SINT32_MAX
+# define __STLSOFT_PRINTF_TRAITS__SINT32_MIN    STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT32_MIN
+# define __STLSOFT_PRINTF_TRAITS__SINT32_MAX    STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT32_MAX
 
-# define __STLSOFT_PRINTF_TRAITS__UINT32_MIN    STLSOFT_PRINTF_TRAITS_UINT32_MIN
-# define __STLSOFT_PRINTF_TRAITS__UINT32_MAX    STLSOFT_PRINTF_TRAITS_UINT32_MAX
+# define __STLSOFT_PRINTF_TRAITS__UINT32_MIN    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT32_MIN
+# define __STLSOFT_PRINTF_TRAITS__UINT32_MAX    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT32_MAX
 
-# define __STLSOFT_PRINTF_TRAITS__SINT64_MIN    STLSOFT_PRINTF_TRAITS_SINT64_MIN
-# define __STLSOFT_PRINTF_TRAITS__SINT64_MAX    STLSOFT_PRINTF_TRAITS_SINT64_MAX
+# define __STLSOFT_PRINTF_TRAITS__SINT64_MIN    STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MIN
+# define __STLSOFT_PRINTF_TRAITS__SINT64_MAX    STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MAX
 
-# define __STLSOFT_PRINTF_TRAITS__UINT64_MIN    STLSOFT_PRINTF_TRAITS_UINT64_MIN
-# define __STLSOFT_PRINTF_TRAITS__UINT64_MAX    STLSOFT_PRINTF_TRAITS_UINT64_MAX
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Macros
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-# define ___stringise_(x)           # x
-# define ___stringise(x)            ___stringise_(x)
-
-# if defined(STLSOFT_COMPILER_IS_BORLAND)
-#  define ___stringise_w_(x)        L"" ## #x
-# else /* ? compiler */
-#  define ___stringise_w_(x)        L ## #x
-# endif /* compiler */
-# define ___stringise_w(x)          ___stringise_w_(x)
-
-#ifdef STLSOFT_CF_64_BIT_PRINTF_USES_I64
-# undef STLSOFT_CF_64_BIT_PRINTF_USES_I64
-#endif /* STLSOFT_CF_64_BIT_PRINTF_USES_I64 */
-
-#ifdef STLSOFT_CF_64_BIT_PRINTF_USES_LL
-# undef STLSOFT_CF_64_BIT_PRINTF_USES_LL
-#endif /* STLSOFT_CF_64_BIT_PRINTF_USES_LL */
-
-# if defined(STLSOFT_COMPILER_IS_BORLAND) || \
-     (  defined(STLSOFT_COMPILER_IS_COMO) && \
-        defined(_MSC_VER)) || \
-     (  defined(WIN32) && \
-        (   defined(STLSOFT_COMPILER_IS_GCC)) || \
-            defined(STLSOFT_COMPILER_IS_INTEL)) || \
-     defined(STLSOFT_COMPILER_IS_MSVC) || \
-     defined(STLSOFT_COMPILER_IS_VECTORC) || \
-     defined(STLSOFT_COMPILER_IS_WATCOM)
-#  define STLSOFT_CF_64_BIT_PRINTF_USES_I64
-# elif defined(STLSOFT_COMPILER_IS_COMO) || \
-       defined(STLSOFT_COMPILER_IS_DMC) || \
-       defined(STLSOFT_COMPILER_IS_INTEL) || \
-       defined(STLSOFT_COMPILER_IS_MSVC) || \
-       defined(STLSOFT_COMPILER_IS_GCC) || \
-       defined(STLSOFT_COMPILER_IS_MWERKS)
-#  define STLSOFT_CF_64_BIT_PRINTF_USES_LL
-# else /* ? compiler */
-#  error Further compiler discrimination is required
-# endif /* printf-64 */
+# define __STLSOFT_PRINTF_TRAITS__UINT64_MIN    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MIN
+# define __STLSOFT_PRINTF_TRAITS__UINT64_MAX    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MAX
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -240,245 +183,45 @@ struct printf_traits
 template <ss_typename_param_k T>
 struct printf_traits;
 
-# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-struct printf_traits_fixed;
-
-/* s/uint8 */
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_sint8_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT8_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT8_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-        return "%d";
-    }
-    static ss_char_w_t const* format_w()
-    {
-        return L"%d";
-    }
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_uint8_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT8_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT8_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-        return "%u";
-    }
-    static ss_char_w_t const* format_w()
-    {
-        return L"%u";
-    }
-};
-
-/* s/uint16 */
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_sint16_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT16_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT16_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-        return "%d";
-    }
-    static ss_char_w_t const* format_w()
-    {
-        return L"%d";
-    }
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_uint16_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT16_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT16_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-        return "%u";
-    }
-    static ss_char_w_t const* format_w()
-    {
-        return L"%u";
-    }
-};
-
-/* s/uint32 */
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_sint32_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT32_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT32_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-        return "%ld";
-    }
-    static ss_char_w_t const* format_w()
-    {
-        return L"%ld";
-    }
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_uint32_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT32_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT32_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-        return "%lu";
-    }
-    static ss_char_w_t const* format_w()
-    {
-        return L"%lu";
-    }
-};
-
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-
-/* s/uint64 */
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_sint64_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT64_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_SINT64_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
-        return "%I64d";
-#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
-        return "%lld";
-#else
-# error Further compiler discrimination is required
-#endif /* printf-64 */
-    }
-    static ss_char_w_t const* format_w()
-    {
-#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
-        return L"%I64d";
-#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
-        return L"%lld";
-#else
-# error Further compiler discrimination is required
-#endif /* printf-64 */
-    }
-};
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct printf_traits_fixed<ss_uint64_t>
-{
-    enum
-    {
-            size_min = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT64_MIN))
-        ,   size_max = sizeof(___stringise(STLSOFT_PRINTF_TRAITS_UINT64_MAX))
-        ,   size = (size_min < size_max) ? size_max : size_min
-    };
-
-    static ss_char_a_t const* format_a()
-    {
-#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
-        return "%I64u";
-#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
-        return "%llu";
-#else
-# error Further compiler discrimination is required
-#endif /* printf-64 */
-    }
-    static ss_char_w_t const* format_w()
-    {
-#if defined(STLSOFT_CF_64_BIT_PRINTF_USES_I64)
-        return L"%I64u";
-#elif defined(STLSOFT_CF_64_BIT_PRINTF_USES_LL)
-        return L"%llu";
-#else
-# error Further compiler discrimination is required
-#endif /* printf-64 */
-    }
-};
-
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
-# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_sint8_t>
-    : printf_traits_fixed<ss_sint8_t>
+    : integral_printf_traits<ss_sint8_t>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_uint8_t>
-    : printf_traits_fixed<ss_uint8_t>
+    : integral_printf_traits<ss_uint8_t>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_sint16_t>
-    : printf_traits_fixed<ss_sint16_t>
+    : integral_printf_traits<ss_sint16_t>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_uint16_t>
-    : printf_traits_fixed<ss_uint16_t>
+    : integral_printf_traits<ss_uint16_t>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_sint32_t>
-    : printf_traits_fixed<ss_sint32_t>
+    : integral_printf_traits<ss_sint32_t>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_uint32_t>
-    : printf_traits_fixed<ss_uint32_t>
+    : integral_printf_traits<ss_uint32_t>
 {};
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_sint64_t>
-    : printf_traits_fixed<ss_sint64_t>
+    : integral_printf_traits<ss_sint64_t>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_uint64_t>
-    : printf_traits_fixed<ss_uint64_t>
+    : integral_printf_traits<ss_uint64_t>
 {};
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
@@ -486,36 +229,36 @@ struct printf_traits<ss_uint64_t>
 #ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<short>
-    : printf_traits_fixed<int_size_traits<sizeof(short)>::signed_type>
+    : integral_printf_traits<short>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<unsigned short>
-    : printf_traits_fixed<int_size_traits<sizeof(unsigned short)>::unsigned_type>
+    : integral_printf_traits<unsigned short>
 {};
 #endif // STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<int>
-    : printf_traits_fixed<int_size_traits<sizeof(int)>::signed_type>
+    : integral_printf_traits<int>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<unsigned int>
-    : printf_traits_fixed<int_size_traits<sizeof(unsigned int)>::unsigned_type>
+    : integral_printf_traits<unsigned int>
 {};
 #endif // STLSOFT_CF_INT_DISTINCT_INT_TYPE
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<long>
-    : printf_traits_fixed<int_size_traits<sizeof(long)>::signed_type>
+    : integral_printf_traits<long>
 {};
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<unsigned long>
-    : printf_traits_fixed<int_size_traits<sizeof(unsigned long)>::unsigned_type>
+    : integral_printf_traits<unsigned long>
 {};
 #endif // STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the tss_index type.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MAJOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MINOR      0
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/tss_index.hpp
@@ -67,7 +67,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_HPP_TSS_INDEX
 #   include <unixstl/synch/tss_index.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_TSS_INDEX */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_TSS_INDEX
 #   include <winstl/synch/tss_index.hpp>
 # endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_TSS_INDEX */
@@ -118,16 +118,28 @@ namespace platformstl_project
 
 # ifdef _UNIXSTL_NO_NAMESPACE
     using ::tss_index;
+#  ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    using ::tss_exception;
+#  endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 # else /* ? _UNIXSTL_NO_NAMESPACE */
     using ::unixstl::tss_index;
+#  ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    using ::unixstl::tss_exception;
+#  endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 # endif /* _UNIXSTL_NO_NAMESPACE */
 
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef _WINSTL_NO_NAMESPACE
     using ::tss_index;
+#  ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    using ::tss_exception;
+#  endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 # else /* ? _WINSTL_NO_NAMESPACE */
     using ::winstl::tss_index;
+#  ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    using ::winstl::tss_exception;
+#  endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 # endif /* _WINSTL_NO_NAMESPACE */
 
 #else /* ? operating system */

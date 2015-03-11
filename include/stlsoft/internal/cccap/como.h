@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     23rd December 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     13
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      61
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     14
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,6 +147,30 @@
  *
  * which indicate that a given type is not used in the size-specific types.
  */
+
+#if defined(__LP64__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (8)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#elif defined(__linux__) || \
+      defined(__APPLE__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#elif defined(_WIN64) || \
+      defined(_WIN32)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#else /* ? data model */
+# error Use of Comeau has not been verified on any operation system other than Win32. Please contact STLSoft
+#endif /* data model */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT

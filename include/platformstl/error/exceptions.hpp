@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the platform_exceptions components.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_MAJOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_MINOR      1
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_MINOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_EDIT       17
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/error/exceptions.hpp
@@ -68,7 +68,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_HPP_ERROR_UNIX_EXCEPTIONS
 #  include <unixstl/error/exceptions.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
 #  include <winstl/error/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
@@ -107,7 +107,7 @@ namespace platformstl_project
     typedef ::unixstl::unix_exception_policy        platform_exception_policy;
 # endif /* _UNIXSTL_NO_NAMESPACE */
 
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef _WINSTL_NO_NAMESPACE
     typedef ::windows_exception                     platform_exception;

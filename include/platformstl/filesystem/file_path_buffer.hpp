@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_path_buffer components.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     29th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      0
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       21
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@
 # ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
 #  include <unixstl/filesystem/file_path_buffer.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
 #  include <winstl/filesystem/file_path_buffer.hpp>
 # endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
@@ -184,7 +184,7 @@ namespace platformstl_project
 
 # endif /* compiler */
 
-#elif defined(PLATFORMSTL_OS_IS_WIN32)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     // Because early incarnations of Visual C++ are pretty stupid, we need to
     // work around their inability to introduce a template via using by
