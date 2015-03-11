@@ -4,7 +4,7 @@
  * Purpose:     A component for relating two COM objects without cycles.
  *
  * Created:     25th March 2006
- * Updated:     7th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MAJOR     1
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MINOR     2
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  2
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      8
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  3
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -397,7 +397,7 @@ inline acyclic_connector<MX>::acyclic_connector(LPUNKNOWN       leftPeer
     if(FAILED(hr))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw com_exception("Could not acquire left-side identity", hr);
+        throw_x(com_exception("Could not acquire left-side identity", hr));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     else
@@ -409,7 +409,7 @@ inline acyclic_connector<MX>::acyclic_connector(LPUNKNOWN       leftPeer
             m_left->Release();
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw com_exception("Could not acquire right-side identity", hr);
+            throw_x(com_exception("Could not acquire right-side identity", hr));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             m_left = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

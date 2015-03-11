@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     10th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 7
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     10
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 8
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -489,7 +489,7 @@ inline applet::applet(applet_module_base *module, applet::index_type index)
         0 == (m_module->m_flags & applet_module::dontExpectNonZeroInit))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw control_panel_exception("Applet initialisation failed", ::GetLastError());
+        throw_x(control_panel_exception("Applet initialisation failed", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(ERROR_DLL_INIT_FAILED);
 
@@ -514,7 +514,7 @@ inline applet::applet(applet_module_base *module, applet::index_type index)
                     applet_module::ignoreIconLoadFailures == (m_module->m_flags & applet_module::ignoreIconLoadFailures))
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    throw resource_exception("Could not load the applet icon", ::GetLastError(), MAKEINTRESOURCE(info.idIcon), RT_ICON);
+                    throw_x(resource_exception("Could not load the applet icon", ::GetLastError(), MAKEINTRESOURCE(info.idIcon), RT_ICON));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
             }
@@ -720,7 +720,7 @@ inline void applet_module::init_(int flags, HWND hwndParent)
     if(NULL == m_module.get_symbol("CPlApplet", m_pfn))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw control_panel_exception("Control panel entry point not found", ::GetLastError());
+        throw_x(control_panel_exception("Control panel entry point not found", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     else

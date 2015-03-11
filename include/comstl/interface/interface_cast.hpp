@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     7th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_INTERFACE_HPP_INTERFACE_CAST_MAJOR     4
 # define COMSTL_VER_COMSTL_INTERFACE_HPP_INTERFACE_CAST_MINOR     0
-# define COMSTL_VER_COMSTL_INTERFACE_HPP_INTERFACE_CAST_REVISION  3
-# define COMSTL_VER_COMSTL_INTERFACE_HPP_INTERFACE_CAST_EDIT      92
+# define COMSTL_VER_COMSTL_INTERFACE_HPP_INTERFACE_CAST_REVISION  4
+# define COMSTL_VER_COMSTL_INTERFACE_HPP_INTERFACE_CAST_EDIT      93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -177,7 +177,7 @@ public:
     /// \param riid The REFIID that could not be acquired
     void operator ()(HRESULT hr, REFIID riid) stlsoft_throw_1(bad_interface_cast)
     {
-        throw bad_interface_cast(riid, hr);
+        throw_x(bad_interface_cast(riid, hr));
     }
 };
 

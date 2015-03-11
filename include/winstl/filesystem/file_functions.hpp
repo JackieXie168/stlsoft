@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     4th August 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       37
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -207,12 +207,12 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
                                                             ,   OPEN_EXISTING
                                                             ,   0
                                                             ,   NULL)
-                            ,   (void (__cdecl *)(HANDLE))&filesys_traits_t::close_handle
+                            ,   (void (__cdecl *)(HANDLE))&filesys_traits_t::close_handle // This cast required by VC++ 5
                             ,   INVALID_HANDLE_VALUE);
 
     if(INVALID_HANDLE_VALUE == h.get())
     {
-        throw winstl::windows_exception("File does not exist", ::GetLastError());
+        throw_x(winstl::windows_exception("File does not exist", ::GetLastError()));
     }
 
     ws_uint64_t             size    =   filesys_traits_t::get_file_size(::stlsoft::get_handle(h));
@@ -222,7 +222,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
     {
         if(size > 0xFFFFFFFF)
         {
-            throw std::out_of_range("Cannot read in files larger than 4GB");
+            throw_x(std::out_of_range("Cannot read in files larger than 4GB"));
         }
         else
         {
@@ -238,7 +238,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
 
             if(!::ReadFile(::stlsoft::get_handle(h), &buffer[0], buffer.size(), &dw, NULL))
             {
-                throw winstl::windows_exception("Read operation failed", ::GetLastError());
+                throw_x(winstl::windows_exception("Read operation failed", ::GetLastError()));
             }
             else
             {

@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     13th September 2006
+ * Updated:     17th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      71
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  4
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -516,6 +516,29 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned int i)
 #endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
 
 
+#ifdef STLSOFT_CF_LONG_DISTINCT_TYPE
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template <ss_typename_param_k C>
+inline C const *integer_to_string(C *buf, ss_size_t cchBuf, long i)
+{
+    return signed_integer_to_string(buf, cchBuf, i);
+}
+
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template <ss_typename_param_k C>
+inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned long i)
+{
+    return unsigned_integer_to_string(buf, cchBuf, i);
+}
+#endif /* !STLSOFT_CF_LONG_DISTINCT_TYPE */
+
+
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
 /** \brief Highly efficient conversion of integer to string.
@@ -672,6 +695,32 @@ inline C const *integer_to_string(C (&buf)[N], unsigned int i)
 }
 #endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
 
+#ifdef STLSOFT_CF_LONG_DISTINCT_TYPE
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template< ss_typename_param_k C
+        , ss_size_t           N
+        >
+inline C const *integer_to_string(C (&buf)[N], long i)
+{
+    return signed_integer_to_string(buf, N, i);
+}
+
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template< ss_typename_param_k C
+        , ss_size_t           N
+        >
+inline C const *integer_to_string(C (&buf)[N], unsigned long i)
+{
+    return signed_integer_to_string(buf, N, i);
+}
+#endif /* !STLSOFT_CF_LONG_DISTINCT_TYPE */
+
 #endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 #if 0
@@ -802,6 +851,28 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned int i, ss_s
     return unsigned_integer_to_string(buf, cchBuf, i, cchRes);
 }
 #endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
+
+#ifdef STLSOFT_CF_LONG_DISTINCT_TYPE
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template <ss_typename_param_k C>
+inline C const *integer_to_string(C *buf, ss_size_t cchBuf, long i, ss_size_t &cchRes)
+{
+    return signed_integer_to_string(buf, cchBuf, i, cchRes);
+}
+
+/** \brief Highly efficient conversion of integer to string.
+ *
+ * \ingroup group__library__conversion
+ */
+template <ss_typename_param_k C>
+inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned long i, ss_size_t &cchRes)
+{
+    return unsigned_integer_to_string(buf, cchBuf, i, cchRes);
+}
+#endif /* !STLSOFT_CF_LONG_DISTINCT_TYPE */
 
 
 ////////////////////////////////////////////////////////////////////////////

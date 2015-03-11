@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     16th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        27
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    2
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -260,7 +260,7 @@ inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_h
 
     if(dl_call_traits::entry_point_type() == fp)
     {
-        throw unixstl::missing_entry_point_exception(functionName, errno);
+        throw_x(unixstl::missing_entry_point_exception(functionName, errno));
     }
 
     return fp;

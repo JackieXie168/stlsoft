@@ -4,7 +4,7 @@
  * Purpose:     Contains .
  *
  * Created:     2nd February 2006
- * Updated:     7th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MAJOR     1
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MINOR     0
-# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_REVISION  1
-# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      4
+# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_REVISION  2
+# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ public:
     /// Translates a CMemoryException* into a std::bad_alloc&
     static void handle(CMemoryException *)
     {
-        throw mfcstl_ns_qual_std(bad_alloc)();
+        throw_x(mfcstl_ns_qual_std(bad_alloc)());
     }
     /// <i>Translates</i> a std::bad_alloc& into a std::bad_alloc&, by simply rethrowing via a <code>throw;</code> statement
     static void handle(mfcstl_ns_qual_std(bad_alloc) &)

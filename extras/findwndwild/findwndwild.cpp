@@ -4,7 +4,7 @@
  * Purpose:     Window searching using (shwild) wildcards.
  *
  * Created:     4th August 2006
- * Updated:     4th August 2006
+ * Updated:     4th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/conversion/union_cast.hpp>
 
-#include <shwild/shwild.hpp>
+#include <shwild/shwild.hpp>	// Download the shwild project from http://shwild.org/
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Functions

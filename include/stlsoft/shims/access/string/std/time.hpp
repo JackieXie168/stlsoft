@@ -4,7 +4,7 @@
  * Purpose:     String shims for standard time structures.
  *
  * Created:     25th July 2005
- * Updated:     19th September 2006
+ * Updated:     21st October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_MINOR     1
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_REVISION  2
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_EDIT      11
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_REVISION  3
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,8 +97,8 @@ inline basic_shim_string<ss_char_a_t> c_str_data_a(struct tm const *t)
 {
     typedef basic_shim_string<ss_char_a_t>  shim_string_t;
 
-    shim_string_t   s(shim_string_t::internal_size() - 1);
-    const ss_size_t cch =   ::strftime(s.data(), s.size(), "%b %d %H:%M:%S %Y", t);
+    shim_string_t   s(20);
+    const ss_size_t cch =   ::strftime(s.data(), 1 + s.size(), "%b %d %H:%M:%S %Y", t);
 
     STLSOFT_ASSERT(20 == cch);
 

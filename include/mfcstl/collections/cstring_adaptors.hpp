@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st October 2002
- * Updated:     13th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    2
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        71
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    3
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1424,7 +1424,7 @@ inline ss_typename_type_k CString_adaptor_base<I>::reference CString_adaptor_bas
 {
     if(index >= size())
     {
-        throw std::out_of_range("invalid index");
+        throw_x(std::out_of_range("invalid index"));
     }
 
     return subscript_(index);
@@ -1434,7 +1434,7 @@ inline ss_typename_type_k CString_adaptor_base<I>::const_reference CString_adapt
 {
     if(index >= size())
     {
-        throw std::out_of_range("invalid index");
+        throw_x(std::out_of_range("invalid index"));
     }
 
     return subscript_(index);

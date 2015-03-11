@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for UNIX PThreads TSS key.
  *
  * Created:     21st January 1999
- * Updated:     15th September 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       36
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -209,7 +209,7 @@ private:
 
         if(0 != res)
         {
-            throw tss_exception(res);
+            throw_x(tss_exception(res));
         }
 
         return key;

@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta25
+File:     STLSoft-ReleaseNotes-1.9.1-beta26
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,33 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  5th October 2006
+Updated:  21st October 2006
 
 ============================================================================
+
+
+============================================================================
+
+Changes for 1.9.1 beta 26 (21st October 2006):
+
+Additions:
+==========
+
++ stlsoft::scoped_handle<void> specialisation for scoping APIs with 0 params
+
++ string access shims (in InetSTL) for struct in_addr
+
+
+Changes:
+========
+
+~ VC5 compatibility in ~50 files. (You may find it strange that VC5 compat
+  is even an issue, but we have some older products that require VC5
+  compilation, and we want to put Pantheios into it. So, STLSoft has to be
+  made to work with it ...)
+
+~ fix to stlsoft::integer_to_string() overloads to handle (unsigned) long in
+  addition to all the others
 
 
 ============================================================================
@@ -132,21 +156,21 @@ Changes:
 
 ~ the following files were "moved" into stlsoft/util:
 
-	options_verifier.hpp
-	printf_traits.hpp
-	true_typedef.hpp
-	argument_proxies.hpp
-	compiler_optimisation_traits.hpp
-	constraints.hpp
-	limit_traits.h
-	sign_traits.hpp
-	size_traits.hpp
-	static_initialisers.hpp
+    options_verifier.hpp
+    printf_traits.hpp
+    true_typedef.hpp
+    argument_proxies.hpp
+    compiler_optimisation_traits.hpp
+    constraints.hpp
+    limit_traits.h
+    sign_traits.hpp
+    size_traits.hpp
+    static_initialisers.hpp
 
 ~ the following files were "moved" into stlsoft/obsolete:
 
-	first_class_promoter.hpp
-	explicit_inheritance_veneer.hpp
+    first_class_promoter.hpp
+    explicit_inheritance_veneer.hpp
 
 ~ fix of version numbers in stlsoft/stlsoft.h
 
@@ -205,9 +229,9 @@ Changes:
 
 ~ atlstl/automation/automation_collections.hpp: 
     atlstl::generic_automation_collection (and
-	atlstl::generic_collection_base) now both can accept a template param
-	for the (dual) interface from which they inherit - they used to inherit
-	from IDispatch.
+    atlstl::generic_collection_base) now both can accept a template param
+    for the (dual) interface from which they inherit - they used to inherit
+    from IDispatch.
 
 Diffs:
 ======

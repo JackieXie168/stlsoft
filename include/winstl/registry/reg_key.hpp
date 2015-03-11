@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     14th July 2006
+ * Updated:     18th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        105
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -807,7 +807,7 @@ inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_r
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not open key", static_cast<DWORD>(res));
+        throw_x(registry_exception("Could not open key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         hkey = NULL;
@@ -830,7 +830,7 @@ inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_r
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not duplicate key", res);
+        throw_x(registry_exception("Could not duplicate key", res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         hkeyDup = NULL;
@@ -997,7 +997,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T,
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not create sub-key", static_cast<DWORD>(res));
+        throw_x(registry_exception("Could not create sub-key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         return class_type();
@@ -1024,7 +1024,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, 
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw registry_exception("Could not delete sub-key", res);
+            throw_x(registry_exception("Could not delete sub-key", res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through
@@ -1096,7 +1096,7 @@ inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::result_type basic
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(ERROR_SUCCESS != res)
     {
-        throw registry_exception("Could not create value", static_cast<DWORD>(res));
+        throw_x(registry_exception("Could not create value", static_cast<DWORD>(res)));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -1212,7 +1212,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, 
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw registry_exception("Could not delete value", static_cast<DWORD>(res));
+            throw_x(registry_exception("Could not delete value", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through

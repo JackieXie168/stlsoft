@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     16th September 2006
+ * Updated:     17th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 13
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     282
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 14
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     283
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -155,14 +155,18 @@
 # define _STLSOFT_VER_1_8_7     0x00010807  /*!< Version 1.8.7 */
 # define _STLSOFT_VER_1_8_8     0x00010808  /*!< Version 1.8.8 */
 # define _STLSOFT_VER_1_8_9     0x00010809  /*!< Version 1.8.9 */
-# define _STLSOFT_VER_1_9_1_B13 0x0109010d  /*!< Version 1.9.1 beta 13 (10th July 2006) */
-# define _STLSOFT_VER_1_9_1_B20 0x01090114  /*!< Version 1.9.1 beta 20 (28th August 2006) */
-# define _STLSOFT_VER_1_9_1_B21 0x01090115  /*!< Version 1.9.1 beta 21 (7th September 2006) */
-# define _STLSOFT_VER_1_9_1_B22 0x01090116  /*!< Version 1.9.1 beta 22 (8th September 2006) */
-# define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (12th Dec 2005) */
+# define _STLSOFT_VER_1_9_1_B13 0x0109010d  /*!< Version 1.9.1 beta 13 (10th Jul 2006) */
+# define _STLSOFT_VER_1_9_1_B20 0x01090114  /*!< Version 1.9.1 beta 20 (28th Aug 2006) */
+# define _STLSOFT_VER_1_9_1_B21 0x01090115  /*!< Version 1.9.1 beta 21 (7th Sep 2006) */
+# define _STLSOFT_VER_1_9_1_B22 0x01090116  /*!< Version 1.9.1 beta 22 (13th Sep 2006) */
+# define _STLSOFT_VER_1_9_1_B23 0x01090117  /*!< Version 1.9.1 beta 23 (17th Sep 2006) */
+# define _STLSOFT_VER_1_9_1_B24 0x01090118  /*!< Version 1.9.1 beta 24 (24th Sep 2006) */
+# define _STLSOFT_VER_1_9_1_B25 0x01090119  /*!< Version 1.9.1 beta 25 (5th Oct 2006) */
+# define _STLSOFT_VER_1_9_1_B26 0x0109011a  /*!< Version 1.9.1 beta 26 (20th Oct 2006) */
+# define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B22
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B26
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
