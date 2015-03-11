@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     23rd May 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        100
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    10
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_EXCEPTIONS
 # include <winstl/registry/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_EXCEPTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */

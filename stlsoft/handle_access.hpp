@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_handle access shim.
  *
  * Created:     23rd February 2005
- * Updated:     21st March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_MAJOR    1
-# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_MINOR    2
-# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_EDIT     11
+# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_MINOR    3
+# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
+# include <stlsoft/meta/yesno.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 #ifndef _STLSOFT_HANDLE_ACCESS_NO_AUTO_PTR
 # include <memory>                  // for std::auto_ptr
 #endif /* _STLSOFT_HANDLE_ACCESS_NO_AUTO_PTR */
@@ -88,61 +91,63 @@ namespace stlsoft
 /// \brief These \ref concepts_shims "shims" retrieve the pointer for arbitrary pointer types
 /// @{
 
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Traits types
+ */
+
+template <ss_typename_param_k T>
+struct handle_traits
+{
+    typedef ss_typename_type_k T::handle_type   handle_type;
+    typedef yes_type                            is_type_a_wrapper_type_type;
+};
+
 /* /////////////////////////////////////////////////////////////////////////////
  * Dummy types
  */
 
-struct stlsoft_unknown_handle_;
-typedef stlsoft_unknown_handle_ *stlsoft_unknown_handle;
+struct stlsoft_unknown_handle_type_;
+typedef stlsoft_unknown_handle_type_ *stlsoft_unknown_handle_type;
+
+stlsoft_unknown_handle_type get_handle(stlsoft_unknown_handle_type h);
 
 /* /////////////////////////////////////////////////////////////////////////////
  * get_handle functions
  */
 
-#if 0
-// TODO: These should go in a common/worker area
-struct non_comparable_result
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k R
+        >
+inline R get_handle_helper(T &t, yes_type)
 {
-#if defined(STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR) || \
-    defined(STLSOFT_COMPILER_IS_WATCOM)
-protected:
-#else /* ? compiler */
-private:
-#endif /* compiler */
-    void operator ==(non_comparable_result const &);
-    void operator !=(non_comparable_result const &);
-};
-#endif /* 0 */
-
-// The degenerate case - void*
-#if 0
-inline void *get_handle(void *h);
-#endif /* 0 */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-inline stlsoft_unknown_handle get_handle(stlsoft_unknown_handle );
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#if 0
-// Any other generic case cannot be handled generically
-template <ss_typename_param_k H>
-inline non_comparable_result get_handle(H *h);
-#endif /* 0 */
-
-#if !defined(STLSOFT_COMPILER_IS_WATCOM)
-// Generic 'smart pointer', via get()
-template <ss_typename_param_k T>
-inline ss_typename_type_k T::handle_type get_handle(T &h)
+    return t.get();
+}
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k R
+        >
+inline R get_handle_helper(T &t, no_type)
 {
-    return h.get();
+    return t;
 }
 
+
+template <ss_typename_param_k T>
+/* inline */ ss_typename_type_k handle_traits<T>::handle_type get_handle(T &t)
+{
+    typedef ss_typename_type_k handle_traits<T>::handle_type                    handle_t;
+    typedef ss_typename_type_k handle_traits<T>::is_type_a_wrapper_type_type    yesno_t;
+
+    return get_handle_helper<T, handle_t>(t, yesno_t());
+}
+
+#if 0
 template <ss_typename_param_k T>
 inline ss_typename_type_k T::handle_type const get_handle(T const &h)
 {
     return h.get();
 }
-#endif /* compiler */
+#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

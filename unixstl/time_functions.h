@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL time functions.
  *
  * Created:     2nd September 2005
- * Updated:     21st March 2006
+ * Updated:     30th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -117,6 +117,6 @@ STLSOFT_INLINE us_bool_t micro_sleep(us_uint_t microseconds)
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !WINSTL_INCL_UNIXSTL_H_TIME_FUNCTIONS */
+#endif /* !UNIXSTL_INCL_UNIXSTL_H_TIME_FUNCTIONS */
 
 /* ////////////////////////////////////////////////////////////////////////// */

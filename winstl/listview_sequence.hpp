@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      4
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   2
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       53
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   3
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_BORLAND:
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */

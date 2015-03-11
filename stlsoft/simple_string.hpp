@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     8th April 2006
+ * Updated:     29th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MINOR    12
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     215
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -84,9 +84,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS
 # include <stlsoft/algorithms.hpp>         // for stlsoft::copy_n()
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
 # include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */

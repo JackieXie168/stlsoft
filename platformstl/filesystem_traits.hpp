@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the filesystem_traits components.
  *
  * Created:     20th March 2005
- * Updated:     21st March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,8 +45,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILESYSTEM_TRAITS_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILESYSTEM_TRAITS_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILESYSTEM_TRAITS_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILESYSTEM_TRAITS_EDIT     10
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILESYSTEM_TRAITS_REVISION 7
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILESYSTEM_TRAITS_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem_traits.hpp Platform header for the filesystem_traits components */
@@ -60,13 +60,13 @@
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-#  include <unixstl/filesystem_traits.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
+# ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+#  include <unixstl/filesystem/filesystem_traits.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-#  include <winstl/filesystem_traits.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
+# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+#  include <winstl/filesystem/filesystem_traits.hpp>
+# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */

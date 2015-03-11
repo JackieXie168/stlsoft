@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_variable_traits class.
  *
  * Created:     9th December 2005
- * Updated:     21st March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_MINOR      3
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_EDIT       9
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,9 +75,9 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */

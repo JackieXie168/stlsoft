@@ -5,7 +5,7 @@
  *              the glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     25th May 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_MAJOR      3
 # define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_MINOR      3
-# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_EDIT       61
+# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_REVISION   2
+# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,16 +62,16 @@
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/glob_sequence.hpp and use the type glob_sequence")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/filesystem/glob_sequence.hpp and use the type glob_sequence")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifdef _UNIXSTL_FINDFILE_SEQUENCE_NO_BACK_SLASH_TERMINATOR
 # define _UNIXSTL_GLOB_SEQUENCE_NO_BACK_SLASH_TERMINATOR
 #endif /* _UNIXSTL_FINDFILE_SEQUENCE_NO_BACK_SLASH_TERMINATOR */
 
-#ifndef UNIXSTL_INCL_UNIXSTL_HPP_GLOB_SEQUENCE
-# include <unixstl/glob_sequence.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_GLOB_SEQUENCE */
+#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE
+# include <unixstl/filesystem/glob_sequence.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

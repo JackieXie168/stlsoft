@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     24th March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MAJOR      3
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      6
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   3
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       72
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   4
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,9 +75,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS
 //# include <winstl/registry_functions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE
 # include <stlsoft/lock_scope.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE */

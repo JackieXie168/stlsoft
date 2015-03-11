@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     8th February 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MAJOR    4
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MINOR    2
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 2
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     47
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 3
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,9 +75,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 # include <stlsoft/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #if defined(STLSOFT_COMPILER_IS_DMC)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
 #  include <stlsoft/sap_cast.hpp>

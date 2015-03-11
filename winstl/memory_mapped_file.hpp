@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     21st March 2006
+ * Updated:     29th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MINOR     4
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MINOR     5
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      59
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -148,11 +148,17 @@ private:
                 on_error_("Failed to determine mapped file size", error);
             }
 #ifndef STLSOFT_CF_64BIT_INT_SUPPORT
-            else if(0 == fileSizeHigh)
+            else if(0 != fileSizeHigh)
             {
                 on_error_("Cannot map files with sizes larger than 4GB with compilers that do not support 64-bit integers", ERROR_SUCCESS);
             }
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
+            else if(0 == fileSizeHigh &&
+                    0 == fileSizeLow)
+            {
+                m_memory    =   NULL;
+                m_cb        =   0;
+            }
             else
             {
                 scoped_handle<HANDLE>   hmap(   ::CreateFileMappingA(   ::stlsoft::get_handle(hfile)

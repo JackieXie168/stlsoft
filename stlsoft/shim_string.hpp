@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     25th March 2006
+ * Updated:     29th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_MAJOR      2
 # define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_MINOR      4
-# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_EDIT       22
+# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META_YESNO
 # include <stlsoft/meta/yesno.hpp>          // for yes_type, no_type
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META_YESNO */

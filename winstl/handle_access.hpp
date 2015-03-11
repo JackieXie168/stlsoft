@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     3rd July 2003
- * Updated:     21st March 2006
+ * Updated:     31st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_MAJOR      1
-# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_MINOR      3
 # define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_EDIT       11
+# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_EDIT       12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_H_STLSOFT_HANDLE_ACCESS
-//# include <stlsoft/handle_access.hpp>
+# include <stlsoft/handle_access.hpp>
 #endif /* !STLSOFT_INCL_H_STLSOFT_HANDLE_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -113,8 +113,39 @@ namespace winstl_project
  */
 inline HANDLE get_handle(HANDLE h)
 {
-    return h;
+	return h;
 }
+
+#ifndef _WINSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+} // namespace winstl
+# else
+} // namespace stlsoft::winstl_project
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Traits specialisations
+ */
+
+template <>
+struct handle_traits<HANDLE>
+{
+	typedef HANDLE		handle_type;
+	typedef no_type		is_type_a_wrapper_type_type;
+};
+
+#ifndef _WINSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
+     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+namespace winstl
+{
+# else
+namespace winstl_project
+{
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
