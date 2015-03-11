@@ -4,7 +4,7 @@
  * Purpose:     Definition of the spin_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     10th January 2007
+ * Updated:     12th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,22 +38,31 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX
-#define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX
-
-/* File version */
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      16
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
 /** \file platformstl/synch/spin_mutex.hpp
  *
  * \brief [C++ only] Definition of the platformstl::spin_mutex type
  *   (\ref group__library__synch "Synchronisation" Library).
  */
+
+#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX
+#define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      17
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Auto-generation and compatibility
+ */
+
+/*
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+[Incompatibilies-start]
+[Incompatibilies-end]
+*/
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

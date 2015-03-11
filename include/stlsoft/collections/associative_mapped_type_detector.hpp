@@ -1,10 +1,5 @@
-#include <stlsoft/stlsoft.h>
 
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/collections/util/associative_mapped_type_detector.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#include <stlsoft/collections/util/associative_mapped_type_detector.hpp>
+#error This file is now obsolete. Instead include stlsoft/collections/util/associative_mapped_type_detector.hpp
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

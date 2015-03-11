@@ -1,0 +1,20 @@
+============================================================================
+STLSoft - Authors
+
+; Created:  29th March 2002
+; Updated:  30th April 2007
+
+============================================================================
+
+
+Major Contributors:
+
+  Matthew Wilson		(most of the libraries)
+  Pablo Aguilar			(Windows ToolHelp Library)
+
+
+Bug reports, fixes and suggestions (for which we are very grateful):
+
+Contributions are welcomed.
+
+=============================== End of file ================================

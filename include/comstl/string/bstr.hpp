@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     7th April 2007
+ * Updated:     23rd April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       5
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        50
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    3
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,6 +84,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# include <stdexcept>
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -405,12 +408,32 @@ inline bstr::bstr()
 
 inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
 {
-    if(len < 0)
-    {
-        len = (NULL == s) ? 0 : static_cast<int>(::strlen(s));
-    }
+    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and negative (or default) length", NULL != s || len >= 0);
 
-    m_bstr = bstr_create(s, static_cast<cs_size_t>(len));
+    // There's a potential problem here (which has actually occurred!):
+    //
+    // If s is non-NULL and len is non-negative, it's possible for
+    // the underlying SysAllocStringLen() to walk into invalid
+    // memory while searching s.
+
+    int actualLen = static_cast<int>(stlsoft_ns_qual(c_str_len)(s));
+
+    if( NULL != s &&
+        len > actualLen)
+    {
+        m_bstr = bstr_create(static_cast<cs_char_w_t const*>(NULL), static_cast<cs_size_t>(len));
+
+        if(NULL != m_bstr)
+        {
+            ::MultiByteToWideChar(0, 0, s, actualLen + 1, m_bstr, actualLen + 1);
+        }
+    }
+    else
+    {
+        len = actualLen;
+
+        m_bstr = bstr_create(s, static_cast<cs_size_t>(len));
+    }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if( NULL == m_bstr &&
@@ -425,12 +448,32 @@ inline /* explicit */ bstr::bstr(cs_char_a_t const* s, int len /* = -1 */)
 
 inline /* explicit */ bstr::bstr(cs_char_w_t const* s, int len /* = -1 */)
 {
-    if(len < 0)
-    {
-        len = (NULL == s) ? 0 : static_cast<int>(::wcslen(s));
-    }
+    COMSTL_MESSAGE_ASSERT("Cannot pass in NULL pointer and negative (or default) length", NULL != s || len >= 0);
 
-    m_bstr = bstr_create(s, static_cast<cs_size_t>(len));
+    // There's a potential problem here (which has actually occurred!):
+    //
+    // If s is non-NULL and len is non-negative, it's possible for
+    // the underlying SysAllocStringLen() to walk into invalid
+    // memory while searching s.
+
+    int actualLen = static_cast<int>(stlsoft_ns_qual(c_str_len)(s));
+
+    if( NULL != s &&
+        len > actualLen)
+    {
+        m_bstr = bstr_create(static_cast<cs_char_w_t const*>(NULL), static_cast<cs_size_t>(len));
+
+        if(NULL != m_bstr)
+        {
+            ::wcscpy(m_bstr, s);
+        }
+    }
+    else
+    {
+        len = actualLen;
+
+        m_bstr = bstr_create(s, static_cast<cs_size_t>(len));
+    }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if( NULL == m_bstr &&

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     12th March 2007
+ * Updated:     16th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 4
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     76
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 6
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,6 +116,8 @@ STLSOFT_INLINE BSTR comstl__bstr_create_w(cs_char_w_t const* s)
 STLSOFT_INLINE BSTR comstl__bstr_create_len_w(cs_char_w_t const* s, cs_size_t len)
 {
     COMSTL_MESSAGE_ASSERT("Cannot pass size_t(-1) as length!", 0 != len + 1);
+
+    COMSTL_ASSERT(NULL == s || !STLSOFT_NS_GLOBAL(IsBadStringPtrW(s, len)));
 
     return STLSOFT_NS_GLOBAL(SysAllocStringLen)(s, stlsoft_static_cast(UINT, len));
 }

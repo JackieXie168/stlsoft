@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     12th April 2007
+ * Updated:     22nd April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    8
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     307
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    9
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     308
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -167,10 +167,10 @@
 # define _STLSOFT_VER_1_9_1_B45 0x0109012d  /*!< Version 1.9.1 beta 45 (1st Mar 2007) */
 # define _STLSOFT_VER_1_9_1_B47 0x0109012f  /*!< Version 1.9.1 beta 47 (6th Apr 2007) */
 # define _STLSOFT_VER_1_9_1_B48 0x01090130  /*!< Version 1.9.1 beta 48 (12th Apr 2007) */
-# define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
+# define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (22nd Apr 2007) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B48
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros

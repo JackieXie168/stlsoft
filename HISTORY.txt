@@ -1,0 +1,29 @@
+============================================================================
+STLSoft - History
+
+; Created:  29th March 2002
+; Updated:  30th April 2007
+
+============================================================================
+
+
+
+30th April 2007 - 1.9.1 released (for Extended STL, volume 1: CD)
+-----------------------------------------------------------------
+
+ There has been an enormous amount of changes in STLSoft from the last
+ release, 1.8.9 (October 2005), to the new release, 1.9.1 (April/May 2007).
+
+ Consequently, I just can't muster the effort at this time to detail the
+ entire set of changes. The one big change I will note, however, is that
+ the library files no longer reside in the root directory, e.g.
+
+   comstl_bstr_functions.h
+
+ and are now in appropriate sub-directories under the sub-project
+ sub-directories, e.g.
+
+   comstl/string/bstr_functions.h
+
+
+=============================== End of file ================================

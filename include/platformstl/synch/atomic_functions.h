@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     10th January 2007
+ * Updated:     12th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,30 +38,29 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS
-#define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS
-
-/* File version */
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        21
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
 /** \file platformstl/synch/atomic_functions.h
  *
  * \brief [C, C++] Definition of the atomic functions
  *   (\ref group__library__synch "Synchronisation" Library).
  */
 
+#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS
+#define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        22
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
 /*
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 [Incompatibilies-end]
  */
 

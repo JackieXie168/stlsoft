@@ -4,10 +4,11 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     12th March 2007
+ * Updated:     12th April 2007
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
- *              out some gaps in the compatibility with the sequence_range.
+ *              out some gaps in the compatibility with the sequence_range; to
+ *              Yakov Markovitch for spotting a bug in r_exists_if_1_impl().
  *
  * Home:        http://stlsoft.org/
  *
@@ -75,8 +76,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     40
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,6 +109,13 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR */
 #include <algorithm>
 #include <numeric>
+
+#ifdef STLSOFT_UNITTEST
+# include <rangelib/integral_range.hpp>
+# include <rangelib/sequence_range.hpp>
+# include <iterator>
+# include <list>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -603,7 +611,9 @@ inline ss_bool_t r_equal_1_impl(R1 r1, R2 r2, iterable_range_tag const&, iterabl
  *
  * \param r1 The first range to compare
  * \param r2 The second range to compare
- * \retval true if the first N elements in the second range match the N elements in the first range.
+ * \retval true if the first N elements in the second range match the N 
+ *   elements in the first range. If the first range contains more
+ *   elements than the second, then this function always returns false.
  *
  * \note: Supports Notional and Iterable Range types
  */
@@ -612,7 +622,10 @@ template<   ss_typename_param_k R1
         >
 inline ss_bool_t r_equal(R1 r1, R2 r2)
 {
-    STLSOFT_ASSERT(r_distance(r1) <= r_distance(r2));
+    if(r_distance(r1) > r_distance(r2))
+    {
+        return false;
+    }
 
     return r_equal_1_impl(r1, r2, r1, r2);
 }
@@ -755,7 +768,7 @@ template<   ss_typename_param_k R
         >
 inline ss_bool_t r_exists_if_1_impl(R r, P pred, iterable_range_tag const&)
 {
-    return std::find(r.begin(), r.end(), pred) != r.end();
+    return std::find_if(r.begin(), r.end(), pred) != r.end();
 }
 
 template<   ss_typename_param_k R
@@ -837,7 +850,7 @@ template<   ss_typename_param_k R
         >
 inline ss_bool_t r_exists_if_2_impl(R r, P pred, T &result, iterable_range_tag const&)
 {
-    return r_exists_if_2_impl_helper_(std::find(r.begin(), r.end(), pred), r.end());
+    return r_exists_if_2_impl_helper_(std::find_if(r.begin(), r.end(), pred), r.end());
 }
 
 template<   ss_typename_param_k R
@@ -1012,7 +1025,7 @@ template<   ss_typename_param_k R
         >
 inline R r_find_if_impl(R r, P pred, iterable_range_tag const&)
 {
-    return R(std::find(r.begin(), r.end(), pred), r.end());
+    return R(std::find_if(r.begin(), r.end(), pred), r.end());
 }
 
 /** \brief Finds the first instance of a value in the range matching the given predicate
