@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  3rd April 2008
+; Updated:  13th April 2008
 
 ============================================================================
 
@@ -16,6 +16,43 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.31 (13th April 2008)
+
+Summary:
+==========
+
+ * exception hierarchy refactoring
+ * bug fix to stlsoft::must_init
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+   + new STLSoft-root exception: stlsoft::project_exception 
+
+   ~ exception hierarchy refactoring
+
+   ~ fixes to stlsoft::must_init for built-in types to support assignment
+
+ COMSTL:
+ -------
+
+   ~ exception hierarchy refactoring
+
+ UNIXSTL:
+ --------
+
+   ~ exception hierarchy refactoring
+
+ WinSTL:
+ -------
+
+   ~ exception hierarchy refactoring
 
 ============================================================================
 

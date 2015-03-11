@@ -2,13 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  3rd April 2008
+; Updated:  13th April 2008
 
 ============================================================================
 
 
 
-3rd March 2008 - 1.9.30 released
+13th April 2008 - 1.9.31 released
+---------------------------------
+
+ * 
+
+3rd April 2008 - 1.9.30 released
 --------------------------------
 
  * tidying of distribution

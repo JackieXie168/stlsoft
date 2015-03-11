@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/exceptions.hpp
+ * File:        stlsoft/error/os_exception.hpp
  *
- * Purpose:     Obsolete header for common exception classes.
+ * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
  * Updated:     13th April 2008
@@ -39,21 +39,30 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/error/exceptions.hpp
+/** \file stlsoft/error/os_exception.hpp
  *
- * \brief [C++ only] Obsolete header for common exception classes.
+ * \brief [C++ only] Definition of the stlsoft::os_exception exception
+ *   class
  *   (\ref group__library__error "Error" Library).
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
-#define STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_OS_EXCEPTION
+#define STLSOFT_INCL_STLSOFT_ERROR_HPP_OS_EXCEPTION
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MAJOR     5
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      49
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_OS_EXCEPTION_MAJOR       5
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_OS_EXCEPTION_MINOR       0
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_OS_EXCEPTION_REVISION    1
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_OS_EXCEPTION_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -62,18 +71,65 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_OS_EXCEPTION
-# include <stlsoft/error/os_exception.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_OS_EXCEPTION */
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION
 # include <stlsoft/error/project_exception.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION */
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_THROW_POLICIES
-# include <stlsoft/error/throw_policies.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_THROW_POLICIES */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifndef _STLSOFT_NO_NAMESPACE
+namespace stlsoft
+{
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Classes
+ */
+
+/** \brief Root exception class for sub-project platform-specific
+ *    exceptions.
+ *
+ * \ingroup group__library__error
+ *
+ */
+class os_exception
+    : public project_exception
+{
+/// \name Types
+/// @{
+public:
+    /// The type of the current instantiation
+    typedef os_exception                    class_type;
+    /// The parent type
+    typedef project_exception               parent_class_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    /// Default constructor
+    os_exception()
+    {}
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    /// Returns a human-readable string describing the exception condition
+    virtual char const* what() const stlsoft_throw_0() = 0;
+/// @}
+};
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
+#ifndef _STLSOFT_NO_NAMESPACE
+} // namespace stlsoft
+#endif /* _STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_OS_EXCEPTION */
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     22nd March 2007
+ * Updated:     13th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    6
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        41
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       1
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    1
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,9 +73,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
-# include <stlsoft/error/exceptions.hpp>      // for os_exception
-#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION
+# include <stlsoft/error/project_exception.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_PROJECT_EXCEPTION */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
 # include <stlsoft/util/exception_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
@@ -112,7 +112,7 @@ namespace comstl_project
  *
  */
 class com_exception
-    : public stlsoft_ns_qual(os_exception)
+    : public stlsoft_ns_qual(project_exception)
 {
 /// \name Types
 /// @{
@@ -120,7 +120,7 @@ private:
     typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
     typedef com_exception                       class_type;
-    typedef stlsoft_ns_qual(os_exception)       parent_class_type;
+    typedef stlsoft_ns_qual(project_exception)  parent_class_type;
 /// @}
 
 /// \name Construction
@@ -170,7 +170,7 @@ public:
 private:
     virtual char const* real_what_() const throw()
     {
-        return "COM system exception";
+        return "COM exception";
     }
 /// @}
 

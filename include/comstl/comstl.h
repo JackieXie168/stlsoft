@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     9th March 2008
+ * Updated:     13th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       4
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    6
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        103
+# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       5
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -138,14 +138,15 @@
 # define _COMSTL_VER_1_6_1      0x00010601  /*!< Version 1.6.1 */
 # define _COMSTL_VER_1_6_2      0x00010602  /*!< Version 1.6.2 */
 # define _COMSTL_VER_1_7_1      0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.1) */
-# define _COMSTL_VER_1_7_2      0x00010702  /*!< Version 1.7.1 (with STLSoft 1.9.8) */
-# define _COMSTL_VER_1_7_3      0x00010703  /*!< Version 1.7.1 (with STLSoft 1.9.25) */
+# define _COMSTL_VER_1_7_2      0x00010702  /*!< Version 1.7.2 (with STLSoft 1.9.8) */
+# define _COMSTL_VER_1_7_3      0x00010703  /*!< Version 1.7.3 (with STLSoft 1.9.25) */
+# define _COMSTL_VER_1_7_4      0x010704ff  /*!< Version 1.7.4 (with STLSoft 1.9.31) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       7
-#define _COMSTL_VER_REVISION    3
-#define _COMSTL_VER             _COMSTL_VER_1_7_3
+#define _COMSTL_VER_REVISION    4
+#define _COMSTL_VER             _COMSTL_VER_1_7_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

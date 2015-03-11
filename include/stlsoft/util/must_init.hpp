@@ -5,11 +5,11 @@
  *              explicit initialisation.
  *
  * Created:     18th June 2006
- * Updated:     29th December 2007
+ * Updated:     12th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        12
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -145,6 +145,13 @@ public:
     {
         return value;
     }
+
+    class_type& operator =(const value_type rhs)
+    {
+        value = rhs;
+
+        return *this;
+    }
 /// @}
 
 /// \name Members
@@ -220,6 +227,13 @@ public:
     {
         return value;
     }
+
+    class_type& operator =(value_type const &rhs)
+    {
+        value = rhs;
+
+        return *this;
+    }
 /// @}
 
 /// \name Members
@@ -273,9 +287,16 @@ public:
         : public must_init_builtin<type>                    \
     {                                                       \
     public:                                                 \
+        typedef must_init<type> class_type;                 \
+    public:                                                 \
         explicit must_init(type value)                      \
             : must_init_builtin<type>(value)                \
         {}                                                  \
+        class_type& operator =(const value_type rhs)        \
+        {                                                   \
+            value = rhs;                                    \
+            return *this;                                   \
+        }                                                   \
     }
 
 # ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT

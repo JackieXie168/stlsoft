@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     3rd April 2008
+ * Updated:     13th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    14
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     336
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     337
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -196,12 +196,13 @@
 # define _STLSOFT_VER_1_9_28    0x01091cff  /*!< Version 1.9.28 (24th Mar 2008) */
 # define _STLSOFT_VER_1_9_29    0x01091dff  /*!< Version 1.9.29 (3rd Apr 2008) */
 # define _STLSOFT_VER_1_9_30    0x01091eff  /*!< Version 1.9.30 (3rd Apr 2008) */
+# define _STLSOFT_VER_1_9_31    0x01091fff  /*!< Version 1.9.31 (13th Apr 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   30
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_30
+#define _STLSOFT_VER_REVISION   31
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_31
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
