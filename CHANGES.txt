@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  28th January 2009
+; Updated:  1st February 2009
 
 ============================================================================
 
@@ -17,6 +17,77 @@ STLSoft - Changes
    **************************************
 
 
+============================================================================
+
+Changes for 1.9.72 (1st February 2009)
+
+Summary:
+========
+
+ * added char_copy() methods to filesystem_traits classes in UNIXSTL, as part of move away from "unsafe" string functions
+ * fixed defect in winstl::squeeze_path() whereby wrong length is returned if buffer size is < 5 and the file length < buffer size
+ * removes unwanted trailing slash in application directory from winstl::basic_searchpath_sequence
+ * further work to remove dependency on "unsafe" string functions
+
+Changes:
+========
+
+ COMSTL:
+ =======
+
+ ~ include/comstl/shims/access/string/guid.hpp:
+    ~ modified symbols that broke reserved naming rules
+
+ InetSTL:
+ ========
+
+ ~ include/inetstl/filesystem/filesystem_traits.hpp:
+    + added str_n_compare()
+    ~ tidied up asserts
+    - removed dependency on "unsafe" string library functions
+
+ ~ include/inetstl/filesystem/findfile_sequence.hpp:
+    - removed dependency on "unsafe" string library functions
+    + added optional length parameter to get_directory()
+
+ UNIXSTL:
+ ========
+
+ ~ include/unixstl/filesystem/file_path_buffer.hpp:
+    ~ tidying up
+
+ ~ include/unixstl/filesystem/filesystem_traits.hpp:
+    ~ tidying up, and removal of declarations of functions (from wide char specialisation) that are not implemented
+
+ ~ include/unixstl/filesystem/path.hpp:
+    - removal of dependency on so-called "unsafe" string functions
+    ~ simplification of implementation
+
+ ~ include/unixstl/system/system_traits.hpp:
+    + added char_copy()
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/error/exceptions.hpp:
+    ~ minor mods
+
+ ~ include/winstl/filesystem/findvolume_sequence.hpp:
+    - removed dependency on "unsafe" string functions
+
+ ~ include/winstl/filesystem/path.hpp:
+    ~ simplification
+
+ ~ include/winstl/filesystem/path_functions.hpp:
+    ~ fixed defect whereby if buffer size is < 5 and the file length < buffer size, the wrong length is returned
+    ~ now implemented in terms of system_traits<>::char_copy()
+
+ ~ include/winstl/system/searchpath_sequence.hpp:
+    ~ no longer dependent on "safe" string library
+    ~ removes unwanted trailing slash on application directory
+
+ ~ include/winstl/system/system_traits.hpp:
+    ~ tidied up asserts
 
 ============================================================================
 

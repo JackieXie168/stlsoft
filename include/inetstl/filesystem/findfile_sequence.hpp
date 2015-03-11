@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     10th October 2008
+ * Updated:     28th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 9
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     135
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 10
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -272,7 +272,7 @@ public:
     /// Returns the directory of the search
     ///
     /// \note Will be the empty string for instances created with the first constructor
-    char_type const     *get_directory() const;
+    char_type const*    get_directory(size_type* pn = NULL) const;
 /// @}
 
 /// \name State
@@ -412,26 +412,31 @@ public:
     /// Default constructor
     basic_findfile_sequence_value_type();
 private:
-    basic_findfile_sequence_value_type(find_data_type const& data, char_type const* path)
+    basic_findfile_sequence_value_type(find_data_type const& data, char_type const* path, size_type cchPath)
         : m_data(data)
     {
-        INETSTL_ASSERT(NULL != path);
-
-        const size_type cchPath = traits_type::str_len(path);
+        INETSTL_ASSERT(NULL != path || 0 == cchPath);
 
         INETSTL_ASSERT(cchPath < STLSOFT_NUM_ELEMENTS(m_path));
         STLSOFT_SUPPRESS_UNUSED(cchPath);
 
+        size_type cchFile = traits_type::str_len(data.cFileName);
+
         if('/' != data.cFileName[0])
         {
-            traits_type::str_copy(m_path, path);
-            traits_type::ensure_dir_end(m_path);
+            traits_type::char_copy(m_path, path, cchPath + 1);
+            if(!traits_type::has_dir_end(m_path))
+            {
+                traits_type::ensure_dir_end(m_path);
+                ++cchPath;
+            }
         }
         else
         {
             m_path[0] = '\0';
+            cchPath = 0u;
         }
-        traits_type::str_cat(m_path, data.cFileName);
+        traits_type::char_copy(m_path + cchPath, data.cFileName, cchFile + 1);
     }
 // @}
 
@@ -442,22 +447,22 @@ private:
 // @{
 public:
     /// Returns a non-mutating reference to find-data
-    find_data_type const    &get_find_data() const;
+    find_data_type const&   get_find_data() const;
 #ifdef STLSOFT_OBSOLETE
     /// Returns a non-mutating reference to find-data
     ///
     /// \deprecated This method may be removed in a future release. get_find_data() should be used instead
-    find_data_type const    &GetFindData() const;   // Deprecated
+    find_data_type const&   GetFindData() const;   // Deprecated
 #endif /* STLSOFT_OBSOLETE */
 
     /// Returns the filename part of the item
-    char_type const         *get_filename() const;
+    char_type const*        get_filename() const;
     /// Returns the short form of the filename part of the item
-    char_type const         *get_short_filename() const;
+    char_type const*        get_short_filename() const;
     /// Returns the full path of the item
-    char_type const         *get_path() const;
+    char_type const*        get_path() const;
     /// Returns the full path of the item
-    char_type const         *c_str() const;
+    char_type const*        c_str() const;
 
     /// Implicit conversion to a pointer-to-const of the full path
     operator char_type const* () const;
@@ -607,11 +612,13 @@ private:
 /// \name Construction
 /// @{
 private:
-    basic_findfile_sequence_const_input_iterator(   sequence_type const& l
-                                                ,   char_type const     *rootDir
-                                                ,   char_type const     *patterns
-                                                ,   char_type           delim
-                                                ,   flags_type          flags);
+    basic_findfile_sequence_const_input_iterator(
+        sequence_type const&    l
+    ,   char_type const*        rootDir
+    ,   char_type const*        patterns
+    ,   char_type               delim
+    ,   flags_type              flags
+    );
     basic_findfile_sequence_const_input_iterator(   sequence_type const& l);
 public:
     /// Default constructor
@@ -651,11 +658,11 @@ private:
     friend class basic_findfile_sequence<C, T, X>;
 
     sequence_type const* const                      m_list;
-    shared_handle                                   *m_handle;
+    shared_handle*                                  m_handle;
     ss_typename_type_k traits_type::find_data_type  m_data;
     char_type const*                                m_rootDir;
-    char_type const                                 *m_pattern0;
-    char_type const                                 *m_pattern1;
+    char_type const*                                m_pattern0;
+    char_type const*                                m_pattern1;
     char_type                                       m_delim;
     flags_type                                      m_flags;
 /// @}
@@ -875,10 +882,12 @@ inline C const* c_str_ptr_null(inetstl_ns_qual(basic_findfile_sequence_value_typ
 // basic_findfile_sequence
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline /* static */ HINTERNET basic_findfile_sequence<C, T, X>::find_first_file_(HINTERNET                                                             hconn
-                                                                            ,   ss_typename_type_k basic_findfile_sequence<C, T, X>::char_type const   *spec
-                                                                            ,   ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_type        /* flags */
-                                                                            ,   ss_typename_type_k basic_findfile_sequence<C, T, X>::find_data_type    *findData)
+inline /* static */ HINTERNET basic_findfile_sequence<C, T, X>::find_first_file_(
+    HINTERNET                                                               hconn
+,   ss_typename_type_k basic_findfile_sequence<C, T, X>::char_type const*   spec
+,   ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_type         /* flags */
+,   ss_typename_type_k basic_findfile_sequence<C, T, X>::find_data_type*    findData
+)
 {
     HINTERNET   hSrch   =   traits_type::find_first_file(hconn, spec, findData);
 
@@ -931,7 +940,7 @@ inline /* static */ is_bool_t basic_findfile_sequence<C, T, X>::is_valid() const
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
 inline /* static */ void basic_findfile_sequence<C, T, X>::extract_subpath_(HINTERNET hconn, char_type *dest, char_type const* pattern)
 {
-    char_type   *pFile;
+    char_type* pFile;
 
     traits_type::get_full_path_name(hconn, pattern, _MAX_PATH, dest, &pFile);
 
@@ -965,11 +974,13 @@ inline basic_findfile_sequence<C, T, X>::basic_findfile_sequence(HINTERNET hconn
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-inline basic_findfile_sequence<C, T, X>::basic_findfile_sequence(  HINTERNET                                                       hconn
-                                                            ,   char_type const                                                 *directory
-                                                            ,   char_type const                                                 *patterns
-                                                            ,   char_type                                                       delim
-                                                            ,   ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_type    flags /* = directories | files */)
+inline basic_findfile_sequence<C, T, X>::basic_findfile_sequence(
+    HINTERNET                                                       hconn
+,   char_type const*                                                directory
+,   char_type const*                                                patterns
+,   char_type                                                       delim
+,   ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_type flags /* = directories | files */
+)
     : m_hconn(hconn)
     , m_delim(delim)
     , m_flags(validate_flags_(flags))
@@ -1004,9 +1015,18 @@ inline ss_typename_type_ret_k basic_findfile_sequence<C, T, X>::const_iterator b
 
 // Attributes
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X>
-ss_typename_type_k basic_findfile_sequence<C, T, X>::char_type const* basic_findfile_sequence<C, T, X>::get_directory() const
+ss_typename_type_k basic_findfile_sequence<C, T, X>::char_type const* basic_findfile_sequence<C, T, X>::get_directory(ss_typename_type_k basic_findfile_sequence<C, T, X>::size_type* pn) const
 {
     INETSTL_ASSERT(is_valid());
+
+    size_type n_;
+
+    if(NULL == pn)
+    {
+        pn = &n_;
+    }
+
+    *pn = m_rootDir.size();
 
     return m_rootDir.c_str();
 }
@@ -1271,7 +1291,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, X, V> &basic_findfile_
 {
     INETSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", (NULL == m_list || NULL == rhs.m_list || m_list == rhs.m_list));    // Should only be comparing iterators from same container
 
-    shared_handle   *this_handle    =   m_handle;
+    shared_handle* this_handle = m_handle;
 
     m_handle    =   rhs.m_handle;
     m_data      =   rhs.m_data;
@@ -1429,7 +1449,10 @@ inline const ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, 
 {
     if(NULL != m_handle)
     {
-        return value_type(m_data, m_list->get_directory());
+        size_type           dirLen  =   0;
+        char_type const*    dir     =   m_list->get_directory(&dirLen);
+
+        return value_type(m_data, dir, dirLen);
     }
     else
     {

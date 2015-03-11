@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     6th June 2006
- * Updated:     23rd January 2009
+ * Updated:     1st February 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       12
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C *buffer, ws_size
         {
             // Room for all
 
-            ::memcpy(buffer, path_ptr, sizeof(C) * pathLen);
+            traits_t::char_copy(buffer, path_ptr, pathLen);
             buffer[pathLen] = '\0';
 
             cchBuffer = pathLen + 1;
@@ -180,8 +180,13 @@ ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C *buffer, ws_size
 
             if(cchBuffer < 5 + 1)
             {
-                ::memcpy(buffer, file_ptr, sizeof(C) * (cchBuffer - 1));
+                traits_t::char_copy(buffer, file_ptr, cchBuffer - 1);
                 buffer[cchBuffer - 1] = '\0';
+
+                if(cchBuffer > fileLen)
+                {
+                    cchBuffer = fileLen + 1;
+                }
             }
             else if(cchBuffer < fileLen + 1)
             {
@@ -189,18 +194,18 @@ ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C *buffer, ws_size
                 ws_size_t   leftLen     =   (cchBuffer - 3 - 1) / 2;
                 ws_size_t   rightLen    =   (cchBuffer - 3 - 1) - leftLen;
 
-                ::memcpy(buffer, file_ptr, sizeof(C) * leftLen);
+                traits_t::char_copy(buffer, file_ptr, leftLen);
                 buffer[leftLen + 0] = '.';
                 buffer[leftLen + 1] = '.';
                 buffer[leftLen + 2] = '.';
-                ::memcpy(buffer + leftLen + 3, file_ptr + (fileLen - rightLen), sizeof(C) * rightLen);
+                traits_t::char_copy(buffer + leftLen + 3, file_ptr + (fileLen - rightLen), rightLen);
                 buffer[leftLen + 3 + rightLen] = '\0';
             }
             else if(cchBuffer < rootLen + 3 + 1 + fileLen + 1)
             {
                 // File (name + ext) only
 
-                ::memcpy(buffer, file_ptr, sizeof(C) * fileLen);
+                traits_t::char_copy(buffer, file_ptr, fileLen);
                 buffer[fileLen] = '\0';
 
                 if(cchBuffer > fileLen)
@@ -216,11 +221,11 @@ ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C *buffer, ws_size
                 ws_size_t   rightLen    =   1 + fileLen;
                 ws_size_t   leftLen     =   (cchBuffer - 3 - 1) - rightLen;
 
-                ::memcpy(buffer, path_ptr, sizeof(C) * leftLen);
+                traits_t::char_copy(buffer, path_ptr, leftLen);
                 buffer[leftLen + 0] = '.';
                 buffer[leftLen + 1] = '.';
                 buffer[leftLen + 2] = '.';
-                ::memcpy(buffer + leftLen + 3, file_ptr - 1, sizeof(C) * rightLen);
+                traits_t::char_copy(buffer + leftLen + 3, file_ptr - 1, rightLen);
                 buffer[leftLen + 3 + rightLen] = '\0';
             }
         }

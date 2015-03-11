@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     9th March 2008
+ * Updated:     29th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MAJOR       5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MINOR       0
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_REVISION    2
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        110
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,14 +117,14 @@ inline cs_size_t guid2string_a(GUID const& guid, cs_char_a_t buff[1 + COMSTL_CCH
 
     /* Don't ask! */
 #ifdef STLSOFT_COMPILER_IS_BORLAND
-    int         __buff[COMSTL_CCH_GUID_AND_NULL];
-    cs_char_w_t *_buff  =   (wchar_t *)__buff;
+    int         buff__[COMSTL_CCH_GUID_AND_NULL];
+    cs_char_w_t *buff_  =   (wchar_t *)buff__;
 #else /* ? compiler */
-    cs_char_w_t _buff[COMSTL_CCH_GUID_AND_NULL];
+    cs_char_w_t buff_[COMSTL_CCH_GUID_AND_NULL];
 #endif /* compiler */
-    cs_size_t   cch =   guid2string_w(guid, _buff);
+    cs_size_t   cch =   guid2string_w(guid, buff_);
 
-    ::WideCharToMultiByte(0, 0, _buff, COMSTL_CCH_GUID_AND_NULL, buff, COMSTL_CCH_GUID_AND_NULL, 0, 0);
+    ::WideCharToMultiByte(0, 0, buff_, COMSTL_CCH_GUID_AND_NULL, buff, COMSTL_CCH_GUID_AND_NULL, 0, 0);
 
     return cch;
 }

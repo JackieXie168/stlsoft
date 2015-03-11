@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     9th March 2008
+ * Updated:     1st February 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       61
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,29 +148,30 @@ private:
         indeterminateMaxPathGuess   =   2048
     };
 
-    typedef stlsoft_ns_qual(auto_buffer)<   C
-                                        ,   internalBufferSize
-                                        ,   A
-                                        >                           buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer)<
+        C
+    ,   internalBufferSize
+    ,   A
+    >                                                       buffer_type_;
 /// @}
 
 /// \name Member Types
 /// @{
 public:
     /// \brief The character type
-    typedef C                                                       char_type;
+    typedef C                                               char_type;
     /// \brief The allocator type
-    typedef A                                                       allocator_type;
+    typedef A                                               allocator_type;
     /// \brief The current parameterisation of the type
-    typedef basic_file_path_buffer<C, A>                            class_type;
+    typedef basic_file_path_buffer<C, A>                    class_type;
     /// \brief The value type
-    typedef ss_typename_type_k buffer_type::value_type              value_type;
+    typedef ss_typename_type_k buffer_type_::value_type     value_type;
     /// \brief The reference type
-    typedef value_type                                              &reference;
+    typedef value_type&                                     reference;
     /// \brief The non-mutating (const) reference type
-    typedef value_type const                                        &const_reference;
+    typedef value_type const&                               const_reference;
     /// \brief The size type
-    typedef ss_typename_type_k buffer_type::size_type               size_type;
+    typedef ss_typename_type_k buffer_type_::size_type      size_type;
 /// @}
 
 /// \name Construction
@@ -252,7 +253,7 @@ public:
     /// \brief Returns a mutable (non-const) pointer to the internal buffer
     reference operator [](us_size_t index)
     {
-        buffer_type   &this_  =   m_buffer;
+        buffer_type_& this_ = m_buffer;
 
         return this_[index];
     }
@@ -321,7 +322,7 @@ private:
 /// \name Members
 /// @{
 private:
-    buffer_type m_buffer;
+    buffer_type_ m_buffer;
 /// @}
 };
 

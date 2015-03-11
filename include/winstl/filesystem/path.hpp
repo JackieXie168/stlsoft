@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     24th January 2009
+ * Updated:     30th January 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     245
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 11
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     247
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1285,7 +1285,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop(ws_bool_t bRemoveTrailingPa
 
     if(NULL != slash)
     {
-        if(slash - m_buffer.data() + 1 == m_len)
+        if(static_cast<size_type>(slash - m_buffer.data()) + 1 == m_len)
         {
             bool shouldRemoveTrailingSlash = true;
 
@@ -1354,7 +1354,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop(ws_bool_t bRemoveTrailingPa
     if(NULL != slash)
     {
         *(slash + 1) = '\0';
-        m_len = static_cast<size_type>((slash + 1) - stlsoft_ns_qual(c_str_ptr)(m_buffer));
+        m_len = static_cast<size_type>((slash + 1) - m_buffer.c_str());
 
         if(bRemoveTrailingPathNameSeparator)
         {
@@ -1489,7 +1489,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::make_absolute(ws_bool_t bRemove
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
-        class_type      newPath(stlsoft_ns_qual(c_str_ptr)(buffer), cch);
+        class_type      newPath(buffer.c_str(), cch);
 
         if(bRemoveTrailingPathNameSeparator)
         {
@@ -1793,7 +1793,7 @@ template<   ss_typename_param_k C
         >
 inline ss_typename_type_ret_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::c_str() const
 {
-    return stlsoft_ns_qual(c_str_ptr)(m_buffer);
+    return m_buffer.c_str();
 }
 
 template<   ss_typename_param_k C
@@ -1888,7 +1888,7 @@ template<   ss_typename_param_k C
         >
 inline ws_bool_t basic_path<C, T, A>::equal(ss_typename_type_k basic_path<C, T, A>::char_type const* rhs) const
 {
-    return 0 == traits_type::str_compare_no_case(stlsoft_ns_qual(c_str_ptr)(m_buffer), stlsoft_ns_qual(c_str_ptr)(rhs));
+    return 0 == traits_type::str_compare_no_case(m_buffer.c_str(), stlsoft_ns_qual(c_str_ptr)(rhs));
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

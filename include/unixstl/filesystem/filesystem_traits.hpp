@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     22nd April 2008
+ * Updated:     1st February 2009
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      103
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,7 +196,7 @@ public:
     /// \brief The type of a system file handle
     typedef int                                     file_handle_type;
     /// \brief The type of a handle to a dynamically loaded module
-    typedef void                                    *module_type;
+    typedef void*                                   module_type;
     /// \brief The type of system error codes
     typedef int                                     error_type;
     /// \brief The mode type
@@ -224,11 +224,11 @@ public:
     /// \brief Appends a path name separator to \c dir if one does not exist
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *ensure_dir_end(char_type *dir);
+    static char_type*   ensure_dir_end(char_type* dir);
     /// \brief Removes the path name separator from the end of \c dir, if it has it
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *remove_dir_end(char_type *dir);
+    static char_type*   remove_dir_end(char_type* dir);
     /// \brief Returns \c true if \c dir has trailing path name separator
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
@@ -281,7 +281,7 @@ public:
     /// \note Because not all systems support fixed maximum path lengths, the value of this function is notionally dynamic
     static size_type    path_max();
     /// \brief Gets the full path name into the given buffer, returning a pointer to the file-part
-    static size_type    get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile);
+    static size_type    get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile);
     /// \brief Gets the full path name into the given buffer
     static size_type    get_full_path_name(char_type const* fileName, char_type* buffer, size_type cchBuffer);
     /// \brief Gets the full path name into the given buffer
@@ -298,9 +298,9 @@ public:
     // opendir/readdir API
 
     /// \brief Initiate a file-system search
-    static DIR                  *open_dir(char_type const* dir);
+    static DIR*                 open_dir(char_type const* dir);
     /// \brief Read an entry from the file-system search
-    static struct dirent const  *read_dir(DIR *h);
+    static struct dirent const* read_dir(DIR *h);
     /// \brief Closes the handle of the file-system search
     static void                 close_dir(DIR *h);
 
@@ -316,7 +316,7 @@ public:
     /// \deprecated The other overload is now the preferred form
     static size_type    get_current_directory(size_type cchBuffer, char_type* buffer);
     /// \brief Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
-    static size_type    get_current_directory(char_type *buffer, size_type cchBuffer);
+    static size_type    get_current_directory(char_type* buffer, size_type cchBuffer);
 /// @}
 
 /// \name File-system state
@@ -402,7 +402,7 @@ public:
     typedef us_int_t                                    int_type;
     typedef us_bool_t                                   bool_type;
     typedef int                                         file_handle_type;
-    typedef void                                        *module_type;
+    typedef void*                                       module_type;
     typedef int                                         error_type;
 #ifdef _WIN32
     typedef unsigned short                              mode_type;
@@ -422,11 +422,11 @@ public:
 #endif /* PATH_MAX */
 
 public:
-    static char_type *ensure_dir_end(char_type *dir)
+    static char_type* ensure_dir_end(char_type* dir)
     {
         UNIXSTL_ASSERT(NULL != dir);
 
-        char_type   *end    =   str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -438,7 +438,7 @@ public:
         return dir;
     }
 
-    static char_type *remove_dir_end(char_type *dir)
+    static char_type* remove_dir_end(char_type* dir)
     {
         UNIXSTL_ASSERT(NULL != dir);
 
@@ -461,7 +461,7 @@ public:
         }
 #endif /* _WIN32 */
 
-        char_type   *end    =   str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -791,11 +791,11 @@ private:
     }
 
 public:
-    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
         UNIXSTL_ASSERT(NULL != ppFile);
 
-        size_type   r =   get_full_path_name(fileName, buffer, cchBuffer);
+        size_type r = get_full_path_name(fileName, buffer, cchBuffer);
 
         *ppFile = NULL;
 
@@ -803,14 +803,14 @@ public:
             0 != r &&
             r <= cchBuffer)
         {
-            size_type   cchRequired =   get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
+            size_type cchRequired = get_full_path_name(fileName, static_cast<char_type*>(NULL), 0);
 
             if(r == cchRequired)
             {
                 // Now search for the file separator
-                char_type *pFile        =   str_rchr(buffer, path_name_separator());
+                char_type* pFile        =   str_rchr(buffer, path_name_separator());
 #if defined(_WIN32)
-                char_type *pFile2       =   str_rchr(buffer, '\\');
+                char_type* pFile2       =   str_rchr(buffer, '\\');
 
                 if(NULL == pFile)
                 {
@@ -847,46 +847,8 @@ public:
             fileName = s_dot;
         }
 
-#if 1
         // Can't call realpath(), since that requires that the file exists
         return get_full_path_name_impl(fileName, str_len(fileName), buffer, cchBuffer);
-#else /* ? 0 */
-        buffer_type_    directory(1 + path_max());
-
-        if( 0 == directory.size() ||
-            NULL == ::realpath(fileName, &directory[0]))
-        {
-            return 0;
-        }
-        else
-        {
-            const size_type len =   str_len(directory.data());
-
-            if(NULL == buffer)
-            {
-                return len;
-            }
-            else if(0 == cchBuffer)
-            {
-                return 0;
-            }
-            else
-            {
-                if(len < cchBuffer)
-                {
-                    str_copy(&buffer[0], directory.data());
-
-                    return len;
-                }
-                else
-                {
-                    str_n_copy(&buffer[0], directory.data(), cchBuffer);
-
-                    return cchBuffer;
-                }
-            }
-        }
-#endif /* 0 */
     }
 
     static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer)
@@ -925,7 +887,7 @@ public:
         return get_current_directory(buffer, cchBuffer);
     }
 
-    static size_type get_current_directory(char_type *buffer, size_type cchBuffer)
+    static size_type get_current_directory(char_type* buffer, size_type cchBuffer)
     {
         char_type const* dir = ::getcwd(buffer, cchBuffer);
 
@@ -1139,11 +1101,11 @@ public:
 #endif /* PATH_MAX */
 
 public:
-    static char_type *ensure_dir_end(char_type *dir)
+    static char_type* ensure_dir_end(char_type* dir)
     {
         UNIXSTL_ASSERT(NULL != dir);
 
-        char_type   *end    =   str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -1155,7 +1117,7 @@ public:
         return dir;
     }
 
-    static char_type *remove_dir_end(char_type *dir)
+    static char_type* remove_dir_end(char_type* dir)
     {
         UNIXSTL_ASSERT(NULL != dir);
 
@@ -1178,7 +1140,7 @@ public:
         }
 #endif /* _WIN32 */
 
-        char_type   *end    =   str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -1308,11 +1270,12 @@ public:
 #endif /* PATH_MAX */
     }
 
-    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile);
+#if 0
+    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile);
 
     static size_type get_full_path_name(char_type const* fileName, char_type* buffer, size_type cchBuffer)
     {
-        char_type *pFile;
+        char_type* pFile;
 
         return get_full_path_name(fileName, cchBuffer, buffer, &pFile);
     }
@@ -1322,12 +1285,18 @@ public:
         return get_full_path_name(fileName, buffer, cchBuffer);
     }
 
+    static size_type get_short_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer)
+    {
+        return get_full_path_name(fileName, cchBuffer, buffer);
+    }
+#endif /* 0 */
+
     // File-system state
     static bool_type set_current_directory(char_type const* dir);
 
     static size_type get_current_directory(size_type cchBuffer, char_type* buffer);
 
-    static size_type get_current_directory(char_type *buffer, size_type cchBuffer);
+    static size_type get_current_directory(char_type* buffer, size_type cchBuffer);
 };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
