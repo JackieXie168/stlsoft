@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th January 2009
+; Updated:  23rd January 2009
 
 ============================================================================
 
@@ -16,6 +16,31 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.69 (23rd January 2009)
+
+Summary:
+========
+
+ * improved robustness of winstl::path_squeeze
+ * more "Safe String" library compatibility changes
+
+Changes:
+========
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/path.hpp:
+    ~ now implemented in terms of memcpy(), rather than strcpy(), strcat(), etc.
+
+ ~ include/winstl/filesystem/path_functions.hpp:
+    ~ making robust in light of corner cases
+
+ ~ include/winstl/string/resource_string.hpp:
+    ~ removal of unnecessary string access shim
 
 ============================================================================
 
