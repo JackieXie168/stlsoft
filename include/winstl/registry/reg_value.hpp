@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     25th February 2009
+ * Updated:     19th April 2009
  *
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
@@ -63,7 +63,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     4
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      102
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -606,9 +606,9 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
         }
         else
         {
-			WINSTL_ASSERT(0 != data_size);
+            WINSTL_ASSERT(0 != data_size);
 
-			--data_size; // This is required since the size contains space for the nul-terminator
+            --data_size; // This is required since the size contains space for the nul-terminator
 
             buffer[data_size / sizeof(char_type)] = 0; // The site of a former bug. Thanks to Diego Chanoux for spotting this
 

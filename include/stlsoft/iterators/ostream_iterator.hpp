@@ -4,11 +4,11 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     9th March 2008
+ * Updated:     21st April 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        34
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,19 +158,20 @@ class ostream_iterator
 /// @{
 public:
     /// The value type
-    typedef V                                                           assigned_type;
+    typedef V                                       assigned_type;
     /// The character type
-    typedef C                                                           char_type;
+    typedef C                                       char_type;
     /// The traits type
-    typedef T                                                           traits_type;
+    typedef T                                       traits_type;
     /// The string type
-    typedef S                                                           string_type;
+    typedef S                                       string_type;
     /// The stream type
-    typedef stlsoft_ns_qual_std(basic_ostream)< char_type
-                                            ,   traits_type
-                                            >           ostream_type;
+    typedef stlsoft_ns_qual_std(basic_ostream)<
+        char_type
+    ,   traits_type
+    >                                               ostream_type;
     /// The class type
-    typedef ostream_iterator<V, C, T, S>                                class_type;
+    typedef ostream_iterator<V, C, T, S>            class_type;
 private:
     class deref_proxy;
     friend class deref_proxy;
@@ -181,7 +182,7 @@ private:
 public:
     /// \brief Constructs an instance holding a reference to the given stream, with default prefix and suffix
     ///
-    /// \note This is 100% functionally compatible with std::iostream_iterator
+    /// \note This is 100% functionally compatible with std::ostream_iterator
     ss_explicit_k ostream_iterator(ostream_type &os)
         : m_stm(&os)
         , m_prefix()
@@ -189,7 +190,7 @@ public:
     {}
     /// \brief Constructs an instance holding a reference to the given stream, with a suffix
     ///
-    /// \note This is 100% functionally compatible with std::iostream_iterator
+    /// \note This is 100% functionally compatible with std::ostream_iterator
     template <ss_typename_param_k S1>
     ostream_iterator(ostream_type &os, S1 const& suffix)
         : m_stm(&os)
@@ -223,7 +224,7 @@ private:
     class deref_proxy
     {
     public:
-        deref_proxy(ostream_iterator *it)
+        deref_proxy(ostream_iterator* it)
             : m_it(it)
         {}
 
@@ -234,7 +235,7 @@ private:
         }
 
     private:
-        ostream_iterator  *const m_it;
+        ostream_iterator* const m_it;
 
     // Not to be implemented
     private:
@@ -287,7 +288,7 @@ private:
 /// \name Members
 /// @{
 private:
-    ostream_type    *m_stm;
+    ostream_type*   m_stm;
     string_type     m_prefix;
     string_type     m_suffix;
 /// @}

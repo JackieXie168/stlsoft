@@ -4,11 +4,11 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     10th October 2008
+ * Updated:     26th April 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 4
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     64
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 5
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ public:
         *xv = external_value_type();
     }
 #endif /* 0 */
-    static HRESULT copy(external_value_type *v, internal_value_type const& iv);
+    static HRESULT copy(external_value_type *xv, internal_value_type const& iv);
 #if 0
     {
         *xv = iv;
@@ -140,7 +140,7 @@ public:
     static void clear(external_value_type *xv);
 #if 0
     {
-        STLSOFT_SUPPRESS_UNUSED(iv);
+        STLSOFT_SUPPRESS_UNUSED(xv);
     }
 #endif /* 0 */
 };
@@ -174,7 +174,7 @@ public:
  * taking a copy of the contents of its source.
  */
 template<   ss_typename_param_k I                                   //!< Enumerator interface
-        ,   IID const           *piid                               //!< Enumerator interface Id
+        ,   IID const*          piid                               //!< Enumerator interface Id
         ,   ss_typename_param_k V                                   //!< Enumerator interface value type
         ,   ss_typename_param_k IV      =   V                       //!< Internal type. Must have value semantics
         ,   ss_typename_param_k I2ETx   =   copy_policy<IV, V>      //!< Internal to external transformation policy
@@ -187,7 +187,7 @@ class ATL_NO_VTABLE copy_enumerator
 // class copy_enumerator_impl
 // [[synesis:class: atlstl::copy_enumerator_impl<T<I>, IID const*, T<V>, T<IV>, T<I2ETx>>]]
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -358,7 +358,7 @@ private:
 // class copy_enumerator
 // [[synesis:class: atlstl::copy_enumerator<T<I>, IID const*, T<V>, T<IV>, T<I2ETx>, T<TM>>]]
 template<   ss_typename_param_k I                                   // Enumerator interface
-        ,   IID const           *piid                               // Enumerator interface Id
+        ,   IID const*          piid                               // Enumerator interface Id
         ,   ss_typename_param_k V                                   // Enumerator interface value type
         ,   ss_typename_param_k IV      =   V                       // Internal type
         ,   ss_typename_param_k I2ETx   =   copy_policy<IV, V>      // Internal to external transformation policy
@@ -401,7 +401,7 @@ protected:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -412,7 +412,7 @@ inline copy_enumerator_impl<I, piid, V, IV, I2ETx>::copy_enumerator_impl()
 {}
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -421,7 +421,7 @@ inline copy_enumerator_impl<I, piid, V, IV, I2ETx>::~copy_enumerator_impl() stls
 {}
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -474,7 +474,7 @@ inline STDMETHODIMP copy_enumerator_impl<I, piid, V, IV, I2ETx>::Next(ULONG celt
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -489,20 +489,20 @@ inline STDMETHODIMP copy_enumerator_impl<I, piid, V, IV, I2ETx>::Skip(ULONG celt
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
         >
 inline STDMETHODIMP copy_enumerator_impl<I, piid, V, IV, I2ETx>::Reset(void)
 {
-    m_current == m_values.begin();
+    m_current = m_values.begin();
 
     return S_OK;
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -562,7 +562,7 @@ inline STDMETHODIMP copy_enumerator_impl<I, piid, V, IV, I2ETx>::Clone(I** ppEnu
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -573,7 +573,7 @@ inline ss_size_t copy_enumerator_impl<I, piid, V, IV, I2ETx>::size() const
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -584,7 +584,7 @@ inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::const
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -595,7 +595,7 @@ inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::itera
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx
@@ -606,7 +606,7 @@ inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::const
 }
 
 template<   ss_typename_param_k I
-        ,   IID const           *piid
+        ,   IID const*          piid
         ,   ss_typename_param_k V
         ,   ss_typename_param_k IV
         ,   ss_typename_param_k I2ETx

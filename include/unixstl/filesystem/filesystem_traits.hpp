@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     1st February 2009
+ * Updated:     19th April 2009
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      104
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -665,13 +665,14 @@ private:
             }
             else if(cchBuffer < len)
             {
-                str_n_copy(&buffer[0], fileName, cchBuffer);
+                char_copy(&buffer[0], fileName, cchBuffer);
                 len = cchBuffer;
             }
             else
             {
                 // Given buffer is large enough, so copy
-                str_copy(buffer, fileName);
+                char_copy(&buffer[0], fileName, len);
+                buffer[len] = '\0';
             }
         }
         else
@@ -712,13 +713,14 @@ private:
                         {
                             if(cchBuffer < lenDir)
                             {
-                                str_n_copy(&buffer[0], directory.data(), cchBuffer);
+                                char_copy(&buffer[0], directory.data(), cchBuffer);
                                 len = cchBuffer;
                             }
                             else
                             {
                                 // Given buffer is large enough, so copy
-                                str_copy(buffer, directory.data());
+                                char_copy(buffer, directory.data(), len);
+                                buffer[len] = '\0';
                                 len = lenDir;
                             }
                         }
@@ -735,11 +737,11 @@ private:
 
                         if(NULL != buffer)
                         {
-                            str_n_copy(&buffer[0], directory.data(), cchBuffer);
+                            char_copy(&buffer[0], directory.data(), cchBuffer);
 
                             if(cchBuffer > lenDir)
                             {
-                                str_n_copy(&buffer[0] + lenDir, fileName, cchBuffer - lenDir);
+                                char_copy(&buffer[0] + lenDir, fileName, cchBuffer - lenDir);
                             }
 
                             if(cchBuffer < len)
@@ -778,7 +780,7 @@ private:
             {
                 fileName_[len] = '\0';
 
-                return get_full_path_name_impl2(str_n_copy(&fileName_[0], fileName, len)
+                return get_full_path_name_impl2(char_copy(&fileName_[0], fileName, len)
                                             ,   len
                                             ,   buffer
                                             ,   cchBuffer);
@@ -948,7 +950,8 @@ public:
                 }
                 else
                 {
-                    str_copy(&directory[0], path);
+                    char_copy(&directory[0], path, len);
+                    directory[len] = '\0';
 
                     class_type::remove_dir_end(&directory[0]);
 

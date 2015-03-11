@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     1st February 2009
+ * Updated:     19th April 2009
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    4
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     665
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     666
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,9 +102,9 @@ struct H_holder
 /// \name Member Types
 /// @{
 public:
-	typedef H			resource_type;
-	typedef H			handle_type;
-	typedef H_holder<H> class_type;
+    typedef H           resource_type;
+    typedef H           handle_type;
+    typedef H_holder<H> class_type;
 /// @}
 
 /// \name Construction
@@ -158,7 +158,7 @@ template<   ss_typename_param_k H
 struct function_translator_cdecl
 {
 private:
-    typedef void    (STLSOFT_CDECL*	degenerate_function_type)();    // C++-98; 5.2.10;6
+    typedef void    (STLSOFT_CDECL* degenerate_function_type)();    // C++-98; 5.2.10;6
 public:
     typedef R       (STLSOFT_CDECL* function_type)(H);
     typedef R       (STLSOFT_CDECL* indirect_function_type)(H*);
@@ -193,11 +193,11 @@ template<   ss_typename_param_k H
 struct function_translator_fastcall
 {
 private:
-    typedef void    (STLSOFT_CDECL*		degenerate_function_type)();
+    typedef void    (STLSOFT_CDECL*     degenerate_function_type)();
 public:
-    typedef R       (STLSOFT_FASTCALL*	function_type)(H);
-    typedef R       (STLSOFT_FASTCALL*	indirect_function_type)(H*);
-    typedef H_holder<H>				    holder_type;
+    typedef R       (STLSOFT_FASTCALL*  function_type)(H);
+    typedef R       (STLSOFT_FASTCALL*  indirect_function_type)(H*);
+    typedef H_holder<H>                 holder_type;
 
     static void translate(holder_type& h, degenerate_function_type pv)
     {
@@ -228,11 +228,11 @@ template<   ss_typename_param_k H
 struct function_translator_stdcall
 {
 private:
-    typedef void    (STLSOFT_CDECL*		degenerate_function_type)();
+    typedef void    (STLSOFT_CDECL*     degenerate_function_type)();
 public:
-    typedef R       (STLSOFT_STDCALL*	function_type)(H);
-    typedef R       (STLSOFT_STDCALL*	indirect_function_type)(H*);
-    typedef H_holder<H>				    holder_type;
+    typedef R       (STLSOFT_STDCALL*   function_type)(H);
+    typedef R       (STLSOFT_STDCALL*   indirect_function_type)(H*);
+    typedef H_holder<H>                 holder_type;
 
     static void translate(holder_type& h, degenerate_function_type pv)
     {

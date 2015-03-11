@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     1st February 2009
+ * Updated:     25th April 2009
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        117
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -252,6 +252,8 @@ public:
     /// \param name The name of the variable to find
     /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
     /// \param cchBuffer The size of the buffer, in characters
+    ///
+    /// \pre NULL != name
     static size_type    get_environment_variable(char_type const* name, char_type* buffer, size_type cchBuffer);
     /// Expands environment strings in \c src into \c buffer, up to a maximum \c cchDest characters
     static size_type    expand_environment_strings(char_type const* src, char_type* buffer, size_type cchBuffer);
@@ -274,6 +276,41 @@ public:
     typedef HINSTANCE                   module_type;
     typedef HANDLE                      handle_type;
     typedef DWORD                       error_type;
+
+    class scoped_mem_block
+    {
+    public:
+        ss_explicit_k scoped_mem_block(void* block)
+            : m_block(block)
+        {}
+        ~scoped_mem_block() stlsoft_throw_0()
+        {
+            ::HeapFree(::GetProcessHeap(), 0, m_block);
+        }
+    private:
+        scoped_mem_block(scoped_mem_block const&);
+        scoped_mem_block& operator =(scoped_mem_block const&);
+
+    public:
+        static ws_char_a_t* allocate_string_buffer_a(size_type n)
+        {
+            return static_cast<ws_char_a_t*>(::HeapAlloc(::GetProcessHeap(), 0, sizeof(ws_char_a_t) * (1 + n)));
+        }
+
+        static ws_char_w_t* allocate_string_buffer_w(size_type n)
+        {
+            return static_cast<ws_char_w_t*>(::HeapAlloc(::GetProcessHeap(), 0, sizeof(ws_char_w_t) * (1 + n)));
+        }
+
+    public:
+        void*   get() const
+        {
+            return m_block;
+        }
+
+    private:
+        void*   m_block;
+    };
 
 public:
     static bool_type close_handle(handle_type h)
@@ -552,7 +589,52 @@ public:
         WINSTL_ASSERT(NULL != name);
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return class_type::GetEnvironmentVariableA(name, buffer, cchBuffer);
+        char_type   dummy[1];
+
+        // If the buffer is NULL, we set it to a local buffer and cchBuffer
+        // to 0, which will cause the API function to return the required
+        // number of variables
+        if(NULL == buffer)
+        {
+            buffer      =   &dummy[0];
+            cchBuffer   =   0u;
+        }
+
+        size_type n = class_type::GetEnvironmentVariableA(name, buffer, cchBuffer);
+
+        if(n > cchBuffer)
+        {
+            --n;    // GetEnvironmentVariable always gives size of string + nul terminator
+        }
+
+        if( 0u != cchBuffer &&
+            n >= cchBuffer)
+        {
+            typedef system_traits_::scoped_mem_block scoped_mem_block;
+
+            char_type*  buffer2 = scoped_mem_block::allocate_string_buffer_a(n);
+
+            if(NULL == buffer2)
+            {
+                return 0;
+            }
+            else
+            {
+                scoped_mem_block    block(buffer2);
+                size_type           n2 = class_type::GetEnvironmentVariableA(name, buffer2, 1 + n);
+
+                if(n2 > cchBuffer)
+                {
+                    n2 = cchBuffer;
+                }
+
+                char_copy(buffer, buffer2, n2);
+
+                return n2;
+            }
+        }
+
+        return n;
     }
 
     static size_type expand_environment_strings(char_type const* src, char_type* dest, size_type cch_dest)
@@ -897,7 +979,52 @@ public:
         WINSTL_ASSERT(NULL != name);
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        return class_type::GetEnvironmentVariableW(name, buffer, cchBuffer);
+        char_type   dummy[1];
+
+        // If the buffer is NULL, we set it to a local buffer and cchBuffer
+        // to 0, which will cause the API function to return the required
+        // number of variables
+        if(NULL == buffer)
+        {
+            buffer      =   &dummy[0];
+            cchBuffer   =   0u;
+        }
+
+        size_type n = class_type::GetEnvironmentVariableW(name, buffer, cchBuffer);
+
+        if(n > cchBuffer)
+        {
+            --n;    // GetEnvironmentVariable always gives size of string + nul terminator
+        }
+
+        if( 0u != cchBuffer &&
+            n >= cchBuffer)
+        {
+            typedef system_traits_::scoped_mem_block scoped_mem_block;
+
+            char_type*  buffer2 = scoped_mem_block::allocate_string_buffer_w(n);
+
+            if(NULL == buffer2)
+            {
+                return 0;
+            }
+            else
+            {
+                scoped_mem_block    block(buffer2);
+                size_type           n2 = class_type::GetEnvironmentVariableW(name, buffer2, 1 + n);
+
+                if(n2 > cchBuffer)
+                {
+                    n2 = cchBuffer;
+                }
+
+                char_copy(buffer, buffer2, n2);
+
+                return n2;
+            }
+        }
+
+        return n;
     }
 
     static size_type expand_environment_strings(char_type const* src, char_type* dest, size_type cch_dest)
