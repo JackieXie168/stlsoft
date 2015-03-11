@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  27th October 2008
+; Updated:  19th November 2008
 
 ============================================================================
 
@@ -16,6 +16,42 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.61 (19th November 2008)
+
+Summary:
+========
+
+ * better compatibility with SAPI.h for COMSTL's sapi_util.hpp
+ * documentation markup improvements for a number of files
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ stlsoft/iterators/filter_iterator.hpp:
+    ~ fixed up incorrect fwd-include guards
+ ~ stlsoft/string/shim_string.hpp:
+    ~ fixed up incorrect fwd-include guards
+ ~ stlsoft/string/split_functions.hpp:
+    - removed unnecessary iterator declaration
+    ~ improved documentation markup
+
+ COMSTL:
+ -------
+
+ ~ comstl/speech/sapi_util.hpp:
+    ~ compatibility with sapi.h
+
+ MFCSTL:
+ -------
+
+ ~ mfcstl/shims/attribute/get_synch_handle.hpp:
+    ~ documentation markup improvements
 
 ============================================================================
 

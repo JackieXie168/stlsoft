@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     22nd August 2008
+ * Updated:     9th November 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        40
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,9 +77,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META_YESNO
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META_YESNO */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1310

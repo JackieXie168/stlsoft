@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  27th October 2008
+; Updated:  19th November 2008
 
 ============================================================================
+
+
+19th November 2008 - 1.9.61 released
+------------------------------------
+
+ * better compatibility with SAPI.h for COMSTL's sapi_util.hpp
+ * documentation markup improvements for a number of files
 
 
 27th October 2008 - 1.9.60 released
