@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     14th July 2006
+ * Updated:     31st October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MAJOR    4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_REVISION 1
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     79
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -279,8 +279,8 @@ using ::mfcstl::c_str_ptr_null_a;
  * Global namespace shims
  */
 
-/* This defines an inserter function template for CString for use with the
- * Visual C++ <7.1 standard library.
+/* This defines a stream inserter shim function template for CString for use
+ * with the Visual C++ <7.1 standard library.
  *
  * It cannot be defined as a template because that conflicts with operator << (CArchive &, CString const &)
  */

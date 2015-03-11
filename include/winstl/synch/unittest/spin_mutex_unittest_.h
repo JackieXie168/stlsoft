@@ -20,7 +20,7 @@ namespace unittest
 			unittest_initialiser	init(r, "WinSTL", "synch/spin_mutex", __FILE__);
 
 			spin_mutex::atomic_int_type i	=	0;
-			spin_mutex					mx(&i);
+			spin_mutex					mx(&i, false);
 
 			mx.lock();
 			if(1 != mx.spun_count())

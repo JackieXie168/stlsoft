@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     14th July 2006
+ * Updated:     30th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      206
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      207
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -175,8 +175,7 @@ struct skip_blank_tokens
  *
  * This traits class has three responsibilities. First, it defines a number of
  * member types that are used by the string_tokeniser and
- * string_tokeniser::iterator classes: value_type, size_type, difference_type,
- * const_iterator_type.
+ * string_tokeniser::iterator classes: value_type, const_iterator_type.
  *
  * Second, it provides a means by which the iterators of the string_tokeniser
  * specialisation's string type can be elicited, by defining the (static)
@@ -207,10 +206,6 @@ public:
     typedef ss_typename_type_k S::value_type        value_type;
     /// The non-mutable (const) iterator type
     typedef ss_typename_type_k S::const_iterator    const_iterator_type;
-    /// The size type
-    typedef ss_typename_type_k S::size_type         size_type;
-    /// The difference type
-    typedef ss_typename_type_k S::difference_type   difference_type;
 /// @}
 
 /// \name Operations
@@ -240,6 +235,10 @@ public:
     (   (   defined(STLSOFT_COMPILER_IS_INTEL) || \
             defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER == 1300))
+
+        /// The size type
+        typedef ss_typename_type_k S::size_type         size_type;
+
         return tokeniser_value_type(&*f, static_cast<size_type>(t - f));
 #else /* ? compiler */
         return tokeniser_value_type(f, t);
@@ -580,7 +579,10 @@ public:
     /// as size_t
     typedef ss_size_t                                       size_type;
     /// The difference type
-    typedef ss_typename_type_k traits_type::difference_type difference_type;
+    ///
+    /// \note This no longer relies on a difference_type member type of the traits type (T). It is defined
+    /// as ptrdiff_t
+    typedef ss_ptrdiff_t                                    difference_type;
     /// The non-mutating (const) reference type
     typedef const value_type                                const_reference;
     /// The non-mutating (const) iterator type

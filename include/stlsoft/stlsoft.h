@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     29th October 2006
+ * Updated:     27th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 15
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     284
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 16
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     285
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -165,10 +165,11 @@
 # define _STLSOFT_VER_1_9_1_B26 0x0109011a  /*!< Version 1.9.1 beta 26 (21st Oct 2006) */
 # define _STLSOFT_VER_1_9_1_B27 0x0109011b  /*!< Version 1.9.1 beta 27 (22nd Oct 2006) */
 # define _STLSOFT_VER_1_9_1_B28 0x0109011c  /*!< Version 1.9.1 beta 28 (29th Oct 2006) */
+# define _STLSOFT_VER_1_9_1_B29 0x0109011d  /*!< Version 1.9.1 beta 29 (27th Nov 2006) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B27
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B29
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -722,11 +723,12 @@
  * Calling convention
  */
 
-#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /** \def STLSOFT_CDECL_SUPPORTED
  * \brief When defined, indicates that the compiler supports the <b>cdecl</b> calling convention.
  */
-# define    STLSOFT_CDECL_SUPPORTED
+#define    STLSOFT_CDECL_SUPPORTED
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 /** \def STLSOFT_FASTCALL_SUPPORTED
  * \brief When defined, indicates that the compiler supports the <b>fastcall</b> calling convention.

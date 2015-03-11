@@ -4,7 +4,10 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     23rd September 2006
+ * Updated:     27th November 2006
+ *
+ * Thanks:		To Rupert Kittinger, for pointing out that prior
+ *              implementation that always yielded was not really "spinning".
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR       4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       0
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        46
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,6 +67,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES
+# include <stlsoft/synch/spin_policies.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/synch/lock_scope.hpp>
@@ -103,48 +109,75 @@ namespace winstl_project
  * Classes
  */
 
-// class spin_mutex
+// class spin_mutex_base
 /** \brief This class provides an implementation of the mutex model based on
- *   a spinning mechanism
+ *    a spinning mechanism
  *
  * \ingroup group__library__synch
  *
  * \note A spin mutex is not recursive. If you re-enter it your thread will
- *  be in irrecoverable deadlock.
+ *   be in irrecoverable deadlock.
  */
-class spin_mutex
+template <typename SP>
+class spin_mutex_base
     : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_ISNOT_RECURSIVE
                                             ,   STLSOFT_CRITICAL_SECTION_ISNOT_TRYABLE
                                             >
 {
 /// \name Member Types
 /// @{
+private:
+    /// \brief The spin-policy class
+    typedef SP                  spin_policy_class;
 public:
     /// \brief This class
-    typedef spin_mutex      class_type;
+    typedef spin_mutex_base<SP>  class_type;
     /// \brief The atomic integer type
-    typedef ws_sint32_t     atomic_int_type;
+    typedef ws_sint32_t         atomic_int_type;
     /// \brief The count type
-    typedef ws_sint32_t     count_type;
+    typedef ws_sint32_t         count_type;
+    /// \brief The bool type
+    typedef ws_bool_t           bool_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
+#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
+# pragma message(_sscomp_fileline_message("Create stlsoft/synch/spin_mutex_base.hpp, and factor out"))
+#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
+
     /// \brief Creates an instance of the mutex
     ///
     /// \param p Pointer to an external counter variable. May be NULL, in
     ///  which case an internal member is used for the counter variable.
-    ss_explicit_k spin_mutex(atomic_int_type *p = NULL) stlsoft_throw_0()
+	///
+	/// \note 
+    ss_explicit_k spin_mutex_base(atomic_int_type *p = NULL) stlsoft_throw_0()
         : m_spinCount((NULL != p) ? p : &m_internalCount)
         , m_internalCount(0)
 #ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
         , m_cLocks(0)
 #endif // STLSOFT_SPINMUTEX_COUNT_LOCKS
         , m_spunCount(0)
+        , m_bYieldOnSpin(spin_policy_class::value)
+    {}
+    /// \brief Creates an instance of the mutex
+    ///
+    /// \param p Pointer to an external counter variable. May be NULL, in
+    ///  which case an internal member is used for the counter variable.
+	/// \param bYieldOnSpin
+    spin_mutex_base(atomic_int_type *p, bool_type bYieldOnSpin) stlsoft_throw_0()
+        : m_spinCount((NULL != p) ? p : &m_internalCount)
+        , m_internalCount(0)
+#ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
+        , m_cLocks(0)
+#endif // STLSOFT_SPINMUTEX_COUNT_LOCKS
+        , m_spunCount(0)
+        , m_bYieldOnSpin(bYieldOnSpin)
     {}
     /// Destroys an instance of the mutex
-    ~spin_mutex() stlsoft_throw_0()
+    ~spin_mutex_base() stlsoft_throw_0()
     {
 #ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
         WINSTL_ASSERT(0 == m_cLocks);
@@ -173,8 +206,13 @@ public:
 
 //      WINSTL_MESSAGE_ASSERT("Attempting to re-enter a spin mutex that is already acquired: this will deadlock!", 0 == m_spunCount);
 
-        for(m_spunCount = 1; 0 != ::InterlockedExchange(reinterpret_cast<LPLONG>(m_spinCount), 1); ++m_spunCount, ::Sleep(1))
-        {}
+        for(m_spunCount = 1; 0 != ::InterlockedExchange(reinterpret_cast<LPLONG>(m_spinCount), 1); ++m_spunCount)
+        {
+            if(m_bYieldOnSpin)
+            {
+                ::Sleep(1);
+            }
+        }
 
 #ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
         WINSTL_ASSERT(0 != ++m_cLocks);
@@ -222,15 +260,25 @@ private:
     count_type      m_cLocks;       // Used as check on matched Lock/Unlock calls
 #endif // STLSOFT_SPINMUTEX_COUNT_LOCKS
     count_type      m_spunCount;
+    const bool_type m_bYieldOnSpin;
 /// @}
 
 /// \name Not to be implemented
 /// @{
 private:
-    spin_mutex(class_type const &rhs);
+    spin_mutex_base(class_type const &rhs);
     class_type &operator =(class_type const &rhs);
 /// @}
 };
+
+typedef spin_mutex_base<stlsoft_ns_qual(spin_yield)>        spin_mutex_yield;
+typedef spin_mutex_base<stlsoft_ns_qual(spin_no_yield)>     spin_mutex_no_yield;
+
+#ifdef STLSOFT_OLD_SPIN_MUTEX_BEHAVIOUR
+typedef spin_mutex_no_yield                                 spin_mutex;
+#else /* ? STLSOFT_OLD_SPIN_MUTEX_BEHAVIOUR */
+typedef spin_mutex_yield                                    spin_mutex;
+#endif /* STLSOFT_OLD_SPIN_MUTEX_BEHAVIOUR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Control shims
@@ -251,7 +299,8 @@ private:
  *
  * \param mx The mutex on which to aquire the lock.
  */
-inline void lock_instance(winstl_ns_qual(spin_mutex) &mx)
+template <ss_typename_param_k SP>
+inline void lock_instance(winstl_ns_qual(spin_mutex_base)<SP> &mx)
 {
     mx.lock();
 }
@@ -262,7 +311,8 @@ inline void lock_instance(winstl_ns_qual(spin_mutex) &mx)
  *
  * \param mx The mutex on which to release the lock
  */
-inline void unlock_instance(winstl_ns_qual(spin_mutex) &mx)
+template <ss_typename_param_k SP>
+inline void unlock_instance(winstl_ns_qual(spin_mutex_base)<SP> &mx)
 {
     mx.unlock();
 }

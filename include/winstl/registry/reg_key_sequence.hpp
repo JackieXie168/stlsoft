@@ -13,7 +13,7 @@
  *              basic_reg_key_sequence class interface.
  *
  * Created:     19th January 2002
- * Updated:     18th October 2006
+ * Updated:     1st November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       113
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -217,7 +217,7 @@ public:
     /// \param accessMask The security access mask with which the key (hkey + sub_key_name) will be opened. Defaults to KEY_READ.
     ///
     /// \note If accessMask contains KEY_NOTIFY, this method will construct a sequence whose iterators monitor for external iterator
-    /// interruption. Use the alternative (four-parameter) constructor form to explicitly suppress monitoring.
+    /// invalidation. Use the alternative (four-parameter) constructor form to explicitly suppress monitoring.
     basic_reg_key_sequence( hkey_type           hkey
                         ,   char_type const     *sub_key_name
                         ,   REGSAM              accessMask                      =   KEY_READ);
@@ -227,21 +227,21 @@ public:
     /// \param sub_key_name The name of the sub-key whose sub-keys will be enumerated. If sub_key_name is NULL or the empty string, then
     /// the sub-keys of \c hkey will be enumerated
     /// \param accessMask The security access mask with which the key (hkey + sub_key_name) will be opened. Defaults to KEY_READ
-    /// \param bMonitorExternalInterruption If non-zero, the iterators will monitor for external iterator interruption, throwing
+    /// \param bMonitorExternalInvalidation If non-zero, the iterators will monitor for external iterator invalidation, throwing
     /// an instance of registry_exception (or a derived class) when any sub-keys are added or removed
     ///
-    /// \note The bMonitorExternalInterruption parameter overrides the accessMask parameter. i.e. if bMonitorExternalInterruption is
+    /// \note The bMonitorExternalInvalidation parameter overrides the accessMask parameter. i.e. if bMonitorExternalInvalidation is
     /// non-zero then accessMask is combined with KEY_NOTIFY. If not, then KEY_NOTIFY is stripped from accessMask.
     basic_reg_key_sequence( hkey_type           hkey
                         ,   char_type const     *sub_key_name
                         ,   REGSAM              accessMask
-                        ,   bool_type           bMonitorExternalInterruption);
+                        ,   bool_type           bMonitorExternalInvalidation);
     /// \brief Creates an instance which provides access to the sub-keys of of \c key
     ///
     /// \param key A registry key handle representing the parent of \c sub_key_name
     ///
     /// \note If the key's access mask contains KEY_NOTIFY, this method will construct a sequence whose iterators monitor for external iterator
-    /// interruption. Use the alternative (three-parameter) constructor form to explicitly suppress monitoring.
+    /// invalidation. Use the alternative (three-parameter) constructor form to explicitly suppress monitoring.
     ss_explicit_k basic_reg_key_sequence(reg_key_type const &key);
     /// \brief Creates an instance which provides access to the sub-keys of of \c key
     ///
@@ -249,21 +249,21 @@ public:
     /// \param accessMask The security access mask with which the key will be used. Defaults to KEY_READ
     ///
     /// \note If accessMask contains KEY_NOTIFY, this method will construct a sequence whose iterators monitor for external iterator
-    /// interruption. Use the alternative (three-parameter) constructor form to explicitly suppress monitoring.
+    /// invalidation. Use the alternative (three-parameter) constructor form to explicitly suppress monitoring.
     basic_reg_key_sequence( reg_key_type const  &key
                         ,   REGSAM              accessMask);
     /// \brief Creates an instance which provides access to the sub-keys of of \c key
     ///
     /// \param key A registry key handle representing the parent of \c sub_key_name
     /// \param accessMask The security access mask with which the key will be used. Defaults to KEY_READ
-    /// \param bMonitorExternalInterruption If non-zero, the iterators will monitor for external iterator interruption, throwing
+    /// \param bMonitorExternalInvalidation If non-zero, the iterators will monitor for external iterator invalidation, throwing
     /// an instance of registry_exception (or a derived class) when any sub-keys are added or removed
     ///
-    /// \note The bMonitorExternalInterruption parameter overrides the accessMask parameter. i.e. if bMonitorExternalInterruption is
+    /// \note The bMonitorExternalInvalidation parameter overrides the accessMask parameter. i.e. if bMonitorExternalInvalidation is
     /// non-zero then accessMask is combined with KEY_NOTIFY. If not, then KEY_NOTIFY is stripped from accessMask.
     basic_reg_key_sequence( reg_key_type const  &key
                         ,   REGSAM              accessMask
-                        ,   bool_type           bMonitorExternalInterruption);
+                        ,   bool_type           bMonitorExternalInvalidation);
     /// \brief Destructor
     ~basic_reg_key_sequence() stlsoft_throw_0();
 /// @}
@@ -317,7 +317,7 @@ public:
 /// @{
 private:
     registry_util::shared_handle    *create_shared_handle_(result_type &res);
-    static REGSAM                   validate_access_mask_(REGSAM accessMask, bool_type bMonitorExternalInterruption);
+    static REGSAM                   validate_access_mask_(REGSAM accessMask, bool_type bMonitorExternalInvalidation);
     static hkey_type                dup_key_(hkey_type hkey, REGSAM accessMask/* , result_type *result */);
 /// @}
 
@@ -326,7 +326,7 @@ private:
 private:
     hkey_type       m_hkey;
     const REGSAM    m_accessMask;
-    const bool_type m_bMonitorExternalInterruption;
+    const bool_type m_bMonitorExternalInvalidation;
 /// @}
 
 /// \name Not to be implemented
@@ -518,7 +518,7 @@ inline registry_util::shared_handle *basic_reg_key_sequence<C, T, A>::create_sha
     {
         // Pop it in a scoped handle for RAII
         scoped_handle<HKEY>             sh(hkey2, ::RegCloseKey);
-        registry_util::shared_handle    *handle =   registry_util::create_shared_handle(hkey2, m_bMonitorExternalInterruption, REG_NOTIFY_CHANGE_NAME);
+        registry_util::shared_handle    *handle =   registry_util::create_shared_handle(hkey2, m_bMonitorExternalInvalidation, REG_NOTIFY_CHANGE_NAME);
 
         if(NULL == handle)
         {
@@ -540,9 +540,9 @@ inline registry_util::shared_handle *basic_reg_key_sequence<C, T, A>::create_sha
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ REGSAM basic_reg_key_sequence<C, T, A>::validate_access_mask_(REGSAM accessMask, ss_typename_type_k basic_reg_key_sequence<C, T, A>::bool_type bMonitorExternalInterruption)
+inline /* static */ REGSAM basic_reg_key_sequence<C, T, A>::validate_access_mask_(REGSAM accessMask, ss_typename_type_k basic_reg_key_sequence<C, T, A>::bool_type bMonitorExternalInvalidation)
 {
-    if(bMonitorExternalInterruption)
+    if(bMonitorExternalInvalidation)
     {
         return accessMask | KEY_NOTIFY;
     }
@@ -576,7 +576,7 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type
                                                             ,   REGSAM                                                              accessMask /* = KEY_READ */)
     : m_hkey(NULL)
     , m_accessMask(accessMask)
-    , m_bMonitorExternalInterruption(0 != (KEY_NOTIFY & accessMask))
+    , m_bMonitorExternalInvalidation(0 != (KEY_NOTIFY & accessMask))
 {
     result_type result;
 
@@ -594,10 +594,10 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type_k basic_reg_key_sequence<C, T, A>::hkey_type       hkey
                                                             ,   ss_typename_type_k basic_reg_key_sequence<C, T, A>::char_type const *sub_key_name
                                                             ,   REGSAM                                                              accessMask
-                                                            ,   ss_typename_type_k basic_reg_key_sequence<C, T, A>::bool_type       bMonitorExternalInterruption)
+                                                            ,   ss_typename_type_k basic_reg_key_sequence<C, T, A>::bool_type       bMonitorExternalInvalidation)
     : m_hkey(NULL)
-    , m_accessMask(validate_access_mask_(accessMask, bMonitorExternalInterruption))
-    , m_bMonitorExternalInterruption(bMonitorExternalInterruption)
+    , m_accessMask(validate_access_mask_(accessMask, bMonitorExternalInvalidation))
+    , m_bMonitorExternalInvalidation(bMonitorExternalInvalidation)
 {
     result_type result;
 
@@ -615,7 +615,7 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence(ss_typename_type_k basic_reg_key_sequence<C, T, A>::reg_key_type const &key)
     : m_hkey(dup_key_(key.m_hkey, key.get_access_mask()))
     , m_accessMask(key.get_access_mask())
-    , m_bMonitorExternalInterruption(0 != (KEY_NOTIFY & key.get_access_mask()))
+    , m_bMonitorExternalInvalidation(0 != (KEY_NOTIFY & key.get_access_mask()))
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
@@ -630,7 +630,7 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type
                                                             ,   REGSAM                                                                  accessMask)
     : m_hkey(dup_key_(key.m_hkey, accessMask))
     , m_accessMask(accessMask)
-    , m_bMonitorExternalInterruption(0 != (KEY_NOTIFY & accessMask))
+    , m_bMonitorExternalInvalidation(0 != (KEY_NOTIFY & accessMask))
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
@@ -643,10 +643,10 @@ inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_key_sequence<C, T, A>::basic_reg_key_sequence( ss_typename_type_k basic_reg_key_sequence<C, T, A>::reg_key_type const  &key
                                                             ,   REGSAM                                                                  accessMask
-                                                            ,   bool_type                                                               bMonitorExternalInterruption)
-    : m_hkey(dup_key_(key.m_hkey, validate_access_mask_(accessMask, bMonitorExternalInterruption)))
-    , m_accessMask(validate_access_mask_(accessMask, bMonitorExternalInterruption))
-    , m_bMonitorExternalInterruption(bMonitorExternalInterruption)
+                                                            ,   bool_type                                                               bMonitorExternalInvalidation)
+    : m_hkey(dup_key_(key.m_hkey, validate_access_mask_(accessMask, bMonitorExternalInvalidation)))
+    , m_accessMask(validate_access_mask_(accessMask, bMonitorExternalInvalidation))
+    , m_bMonitorExternalInvalidation(bMonitorExternalInvalidation)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)

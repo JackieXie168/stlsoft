@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     18th October 2006
+ * Updated:     27th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     225
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     226
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1848,7 +1848,7 @@ template<   ss_typename_param_k C
         >
 inline ss_typename_type_k basic_simple_string<C, T, A>::reference basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index)
 {
-    STLSOFT_MESSAGE_ASSERT("index access out of range in frame_string", index < length());
+    STLSOFT_MESSAGE_ASSERT("index access out of range in simple_string", index < length());
 
     STLSOFT_ASSERT(is_valid());
 
@@ -1861,7 +1861,7 @@ template<   ss_typename_param_k C
         >
 inline ss_typename_type_k basic_simple_string<C, T, A>::const_reference basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index) const
 {
-    STLSOFT_MESSAGE_ASSERT("index access out of range in frame_string", index < length() + 1); // Valid to return (const) reference to nul-terminator
+    STLSOFT_MESSAGE_ASSERT("index access out of range in simple_string", index < length() + 1); // Valid to return (const) reference to nul-terminator
 
     STLSOFT_ASSERT(is_valid());
 

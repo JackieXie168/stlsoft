@@ -4,7 +4,7 @@
  * Purpose:     Z-order iteration.
  *
  * Created:     11th July 2005
- * Updated:     18th October 2006
+ * Updated:     30th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MAJOR    1
 # define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MINOR    6
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 2
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     27
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 3
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -386,7 +386,7 @@ inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tm
 template <ss_typename_param_k T>
 inline ss_typename_type_k zorder_iterator_tmpl<T>::class_type &zorder_iterator_tmpl<T>::operator --()
 {
-    WINSTL_MESSAGE_ASSERT("Attempt to increment an invalid / out-of-range iterator", NULL != m_hwndRoot);
+    WINSTL_MESSAGE_ASSERT("Attempt to decrement an invalid / out-of-range iterator", NULL != m_hwndRoot);
 
     if(NULL != m_hwndCurrent)
     {

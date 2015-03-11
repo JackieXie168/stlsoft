@@ -4,10 +4,12 @@
  * Purpose:     is_same_type class.
  *
  * Created:     19th November 1998
- * Updated:     6th July 2006
+ * Updated:     10th November 2006
  *
  * Thanks to:   Pablo Aguilar for providing the basis for the version that
  *              works for the Borland compiler.
+ *
+ *              Nevin Liber, for pointing out missing 'type' member.
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MAJOR       4
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR       3
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_MINOR       4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        114
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_SAME_TYPE_EDIT        115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,9 +82,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/meta/capabilities.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
-#endif /* compiler */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
@@ -127,18 +129,24 @@ template <ss_typename_param_k A>
 struct is_same_type<void, A>
 {
     enum { value = 0 };
+
+    typedef no_type     type;
 };
 
 template <ss_typename_param_k A>
 struct is_same_type<A, void>
 {
     enum { value = 0 };
+
+    typedef no_type     type;
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct is_same_type<void, void>
 {
     enum { value = 1 };
+
+    typedef yes_type    type;
 };
 
 #elif defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
@@ -154,6 +162,8 @@ template<   ss_typename_param_k T1
 struct is_same_type
 {
     enum { value = 0 };
+
+    typedef no_type     type;
 };
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -162,6 +172,8 @@ template <ss_typename_param_k T>
 struct is_same_type<T, T>
 {
     enum { value = 1 };
+
+    typedef yes_type    type;
 };
 
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -178,15 +190,21 @@ private:
     struct same_
     {
         enum { value = 0 };
+
+        typedef no_type     type;
     };
     STLSOFT_TEMPLATE_SPECIALISATION
     struct same_<T1>
     {
         enum { value = 1 };
+
+        typedef yes_type    type;
     };
 
 public:
     enum { value = same_<T2>::value };
+
+    typedef ss_typename_type_k same_<T2>::type  type;
 };
 
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */

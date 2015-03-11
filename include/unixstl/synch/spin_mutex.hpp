@@ -4,7 +4,10 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     23rd September 2006
+ * Updated:     27th November 2006
+ *
+ * Thanks:		To Rupert Kittinger, for pointing out that prior
+ *              implementation that always yielded was not really "spinning".
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      46
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +71,13 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES
+# include <stlsoft/synch/spin_policies.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES */
+
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
-# include <asm/atomic.h> // Only works for Linux. For other OSs, use unixstl_process_mutex.h
+# include <asm/atomic.h> // Only works for Linux. For other OSs, use unixstl/synch/process_mutex.hpp
 #elif defined(UNIXSTL_ARCH_IS_POWERPC)
 # include <libkern/OSAtomic.h>
 #else /* ? architecture */
@@ -114,53 +121,80 @@ namespace unixstl_project
 
 // class spin_mutex
 /** \brief This class provides an implementation of the mutex model based on
- *   a spinning mechanism.
+ *    a spinning mechanism.
  *
  * \ingroup group__library__synch
  *
  * \note A spin mutex is not recursive. If you re-enter it your thread will
- *  be in irrecoverable deadlock.
+ *   be in irrecoverable deadlock.
  */
-class spin_mutex
+template <ss_typename_param_k SP>
+class spin_mutex_base
     : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_ISNOT_RECURSIVE
                                             ,   STLSOFT_CRITICAL_SECTION_ISNOT_TRYABLE
                                             >
 {
 /// \name Member Types
 /// @{
+private:
+    /// \brief The spin-policy class
+    typedef SP                  spin_policy_class;
 public:
     /// \brief This class
-    typedef spin_mutex  class_type;
+    typedef spin_mutex_base<SP> class_type;
     /// \brief The atomic integer type
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
-    typedef atomic_t        atomic_int_type;
+    typedef atomic_t            atomic_int_type;
 #elif defined(UNIXSTL_ARCH_IS_POWERPC)
-    typedef ::int32_t       atomic_int_type;
+    typedef ::int32_t           atomic_int_type;
 #else /* ? architecture */
-    typedef us_sint32_t     atomic_int_type;
+    typedef us_sint32_t         atomic_int_type;
 #endif /* architecture */
     /// \brief The count type
-    typedef us_sint32_t     count_type;
+    typedef us_sint32_t         count_type;
+    /// \brief The bool type
+    typedef us_bool_t           bool_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
+#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
+# pragma message(_sscomp_fileline_message("Create stlsoft/synch/spin_mutex_base.hpp, and factor out"))
+#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
+
     /// \brief Creates an instance of the mutex
     ///
     /// \param p Pointer to an external counter variable. May be NULL, in
     ///  which case an internal member is used for the counter variable.
-    ss_explicit_k spin_mutex(atomic_int_type *p = NULL) stlsoft_throw_0()
+	///
+	/// \note 
+    ss_explicit_k spin_mutex_base(atomic_int_type *p = NULL) stlsoft_throw_0()
         : m_spinCount((NULL != p) ? p : &m_internalCount)
         , m_internalCount(0)
 #ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
         , m_cLocks(0)
 #endif // STLSOFT_SPINMUTEX_COUNT_LOCKS
         , m_spunCount(0)
+        , m_bYieldOnSpin(spin_policy_class::value)
+    {}
+    /// \brief Creates an instance of the mutex
+    ///
+    /// \param p Pointer to an external counter variable. May be NULL, in
+    ///  which case an internal member is used for the counter variable.
+	/// \param bYieldOnSpin
+    spin_mutex_base(atomic_int_type *p, bool_type bYieldOnSpin) stlsoft_throw_0()
+        : m_spinCount((NULL != p) ? p : &m_internalCount)
+        , m_internalCount(0)
+#ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
+        , m_cLocks(0)
+#endif // STLSOFT_SPINMUTEX_COUNT_LOCKS
+        , m_spunCount(0)
+        , m_bYieldOnSpin(bYieldOnSpin)
     {}
     /// Destroys an instance of the mutex
-    ~spin_mutex() stlsoft_throw_0()
+    ~spin_mutex_base() stlsoft_throw_0()
     {
 #ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
         UNIXSTL_ASSERT(0 == m_cLocks);
@@ -189,17 +223,20 @@ public:
 
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
-        for(m_spunCount = 1; 0 != ::atomic_inc_and_test(m_spinCount); ++m_spunCount, ::sched_yield())
-        {}
+        for(m_spunCount = 1; 0 != ::atomic_inc_and_test(m_spinCount); ++m_spunCount)
 #elif defined(UNIXSTL_ARCH_IS_POWERPC)
-        for(m_spunCount = 1; !::OSAtomicCompareAndSwap32Barrier(0, 1, m_spinCount); ++m_spunCount, ::sched_yield())
-        {}
+        for(m_spunCount = 1; !::OSAtomicCompareAndSwap32Barrier(0, 1, m_spinCount); ++m_spunCount)
 #elif defined(UNIXSTL_HAS_ATOMIC_WRITE)
-        for(m_spunCount = 1; 0 != atomic_write(m_spinCount, 1); ++m_spunCount, ::sched_yield())
-        {}
+        for(m_spunCount = 1; 0 != atomic_write(m_spinCount, 1); ++m_spunCount)
 #else /* ? arch */
 # error Your platform does not support atomic_write(), or has provides it in a manner unknown to the authors of UNIXSTL. If you know of the correct implementation, please send a patch.
 #endif /* arch */
+        {
+            if(m_bYieldOnSpin)
+            {
+                ::sched_yield();
+            }
+        }
 
 #ifdef STLSOFT_SPINMUTEX_COUNT_LOCKS
         UNIXSTL_ASSERT(0 != ++m_cLocks);
@@ -254,15 +291,25 @@ private:
     count_type      m_cLocks;       // Used as check on matched Lock/Unlock calls
 #endif // STLSOFT_SPINMUTEX_COUNT_LOCKS
     count_type      m_spunCount;
+    const bool_type m_bYieldOnSpin;
 /// @}
 
 /// \name Not to be implemented
 /// @{
 private:
-    spin_mutex(class_type const &rhs);
+    spin_mutex_base(class_type const &rhs);
     class_type &operator =(class_type const &rhs);
 /// @}
 };
+
+typedef spin_mutex_base<stlsoft_ns_qual(spin_yield)>        spin_mutex_yield;
+typedef spin_mutex_base<stlsoft_ns_qual(spin_no_yield)>     spin_mutex_no_yield;
+
+#ifdef STLSOFT_OLD_SPIN_MUTEX_BEHAVIOUR
+typedef spin_mutex_no_yield                                 spin_mutex;
+#else /* ? STLSOFT_OLD_SPIN_MUTEX_BEHAVIOUR */
+typedef spin_mutex_yield                                    spin_mutex;
+#endif /* STLSOFT_OLD_SPIN_MUTEX_BEHAVIOUR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Control shims
@@ -283,7 +330,8 @@ private:
  *
  * \param mx The mutex on which to aquire the lock.
  */
-inline void lock_instance(unixstl_ns_qual(spin_mutex) &mx)
+template <ss_typename_param_k SP>
+inline void lock_instance(unixstl_ns_qual(spin_mutex_base)<SP> &mx)
 {
     mx.lock();
 }
@@ -294,7 +342,8 @@ inline void lock_instance(unixstl_ns_qual(spin_mutex) &mx)
  *
  * \param mx The mutex on which to release the lock
  */
-inline void unlock_instance(unixstl_ns_qual(spin_mutex) &mx)
+template <ss_typename_param_k SP>
+inline void unlock_instance(unixstl_ns_qual(spin_mutex_base)<SP> &mx)
 {
     mx.unlock();
 }

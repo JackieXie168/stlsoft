@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     14th July 2006
+ * Updated:     31st October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    0
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 1
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     98
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 2
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -754,6 +754,31 @@ using ::comstl::c_str_ptr_null_w;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Global namespace shims
+ */
+
+/* This defines stream inserter shim functions for the converters for use
+ * with the Visual C++ <7.1 standard library.
+ */
+
+#if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+    STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
+
+# include <iosfwd>
+
+inline comstl_ns_qual_std(basic_ostream)<char> &operator <<(comstl_ns_qual_std(basic_ostream)<char> &stm, comstl_ns_qual(c_str_VARIANT_proxy_a) const &v)
+{
+    return stm << static_cast<char const*>(v);
+}
+
+inline comstl_ns_qual_std(basic_ostream)<wchar_t> &operator <<(comstl_ns_qual_std(basic_ostream)<wchar_t> &stm, comstl_ns_qual(c_str_VARIANT_proxy_w) const &v)
+{
+    return stm << static_cast<wchar_t const*>(v);
+}
+
+#endif /* library */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Borland C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th September 2006
+ * Updated:     26th November 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,9 +42,10 @@
 # error This file must not be included independently of stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/// \file stlsoft/internal/cccap/borland.h
-///
-/// Compiler feature discrimination for Borland C/C++.
+/** \file stlsoft/internal/cccap/borland.h
+ *
+ * Compiler feature discrimination for Borland C/C++.
+ */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_BORLAND
 # error This file cannot be included more than once in any compilation unit
@@ -55,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       60
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,7 +124,7 @@
 
 /* 32-bit integer */
 #define STLSOFT_CF_32BIT_INT_SUPPORT
-//#define STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE
+/* #define STLSOFT_CF_32BIT_INT_IS_EXTENDED_TYPE */
 #define STLSOFT_CF_EXTENDED_INT32_T            __int32
 #define STLSOFT_CF_EXTENDED_SINT32_T    signed __int32
 #define STLSOFT_CF_EXTENDED_UINT32_T  unsigned __int32
@@ -151,8 +152,9 @@
 # define STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
 #endif /* compiler */
 
-// It transpires that Borland cannot elide the contents of the static
-// asserts, so we only do them in debug mode
+/* It transpires that Borland cannot elide the contents of the static
+ *  asserts, so we only do them in debug mode.
+ */
 #ifdef _DEBUG
 # define __STLSOFT_CF_STATIC_ASSERT_SUPPORT
 # define STLSOFT_CF_STATIC_ASSERT_SUPPORT
@@ -186,7 +188,7 @@
  /* Not defined */
 #endif /* __TEMPLATES__ */
 
-//#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
+/* #define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS */
 
 #define __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
 #define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
@@ -202,7 +204,7 @@
 #define __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 #define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 
-//#define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
+/* #define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
 
 #define __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 #define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
@@ -264,16 +266,16 @@
 #define __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 #define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 
-//#define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
-//#define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+/* #define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
+/* #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
 
-//#define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
-//#define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+/* #define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+/* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 
 #define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
 
-//#define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
-//#define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+/* #define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+/* #define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
 #define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
 #define STLSOFT_CF_ADL_LOOKUP_SUPPORT
@@ -282,26 +284,26 @@
 #define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
 #if __BORLANDC__ >= 0x0560
-//# define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-//# define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+/* # define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+/* # define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* compiler */
 
-//#define __STLSOFT_CF_VENEER_SUPPORT
-//#define STLSOFT_CF_VENEER_SUPPORT
+/* #define __STLSOFT_CF_VENEER_SUPPORT */
+/* #define STLSOFT_CF_VENEER_SUPPORT */
 
 #define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 
-//#define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
 
-// Shims are supported
-//#define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
-//#define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+/* Shims are supported. */
+/* #define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+/* #define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
 #define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 
-//#define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-//#define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+/* #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
+/* #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
 
 #if defined(_STLSOFT_CUSTOM_ASSERT)
  /* You have defined the pre-processor symbol _STLSOFT_CUSTOM_ASSERT,
@@ -337,7 +339,7 @@
 #else
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
-//#define   __STLSOFT_CF_USE_cassert
+/* #define   __STLSOFT_CF_USE_cassert */
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME       <assert.h>
 # define STLSOFT_ASSERT(_x)                     assert(_x)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
@@ -360,7 +362,7 @@
 #if __BORLANDC__ >= 0x0560
 # define STSLSOFT_INLINE_ASM_SUPPORTED
 #endif /* compiler */
-//#define STSLSOFT_ASM_IN_INLINE_SUPPORTED
+/* #define STSLSOFT_ASM_IN_INLINE_SUPPORTED */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler warning suppression
