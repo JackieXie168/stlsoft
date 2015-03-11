@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  17th December 2007
+; Updated:  19th December 2007
 
 ============================================================================
 
+
+19th December 2007 - 1.9.12 released
+------------------------------------
+
+ * features enhancements to fixed array classes
 
 17th December 2007 - 1.9.11 released
 ------------------------------------
