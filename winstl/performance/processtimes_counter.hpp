@@ -4,7 +4,7 @@
  * Purpose:     WinSTL process-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     10th June 2006
+ * Updated:     22nd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR       4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR       0
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION    1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT        48
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION    2
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,15 +102,16 @@ namespace winstl_project
 class processtimes_counter
 {
 public:
-    typedef processtimes_counter    class_type;
-
-private:
+    /// \brief The epoch type
+    ///
+    /// The type of the interval measurement, a 64-bit signed integer.
     typedef ws_sint64_t             epoch_type;
-public:
     /// \brief The interval type
     ///
-    /// The type of the interval measurement, a 64-bit signed integer
+    /// The type of the interval measurement, a 64-bit signed integer.
     typedef ws_sint64_t             interval_type;
+    /// \brief The class type.
+    typedef processtimes_counter    class_type;
 
 // Construction
 public:

@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     10th June 2006
+ * Updated:     20th June 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION	1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      59
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION	2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,9 +91,9 @@ STLSOFT_COMPILER_IS_BORLAND:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS
-# include <winstl/commctrl_functions.h>
-#endif /* !WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS
+# include <winstl/controls/commctrl_functions.h>
+#endif /* !WINSTL_INCL_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS */
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 typedef stlsoft_ns_qual(basic_simple_string)<TCHAR> lvs_string_t;
 #else

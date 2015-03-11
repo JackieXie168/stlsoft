@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/performance/performance_counter.hpp (formerly winstl/performance_counter.hpp; originally winstl_performance_counter.h)
+ * File:        winstl/performance/performance_counter.hpp (originally winstl_performance_counter.h)
  *
  * Purpose:     WinSTL general performance counter class. This class attempts to
  *              use the built-in high-performance hardware counter if available,
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     10th June 2006
+ * Updated:     22nd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     21
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 2
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,7 +170,6 @@ class performance_counter
 /// \name Member types
 /// @{
 public:
-    typedef performance_counter         class_type;
     /// \brief The epoch type
     ///
     /// The type of the epoch measurement. This will be a 64-bit signed
@@ -191,6 +190,8 @@ public:
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     typedef sinteger64                  interval_type;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    /// \brief The class type
+    typedef performance_counter         class_type;
 /// @}
 
 /// \name Construction
@@ -269,7 +270,6 @@ public:
     /// \brief Stops the current period, starts the next, and returns the
     ///  interval, in microseconds, for the prior period.
     interval_type   stop_get_microseconds_and_restart();
-
 /// @}
 
 /// \name Implementation
@@ -420,7 +420,6 @@ inline void performance_counter::restart()
     measure_(m_start);
     m_end = m_start;
 }
-
 
 // Attributes
 

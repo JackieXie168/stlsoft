@@ -1,9 +1,9 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/pipe.hpp
+ * File:        platformstl/filesystem/current_directory_scope.hpp
  *
- * Purpose:     Platform header for the pipe components.
+ * Purpose:     Platform header for the current_directory_scope components.
  *
- * Created:     20th March 2005
+ * Created:     13th June 2005
  * Updated:     20th June 2006
  *
  * Home:        http://stlsoft.org/
@@ -38,27 +38,23 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_PIPE
-#define PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_PIPE
+/** \file platformstl/filesystem/current_directory_scope.hpp
+ *
+ * \brief [C++ only] Definition of the platformstl::basic_current_directory_scope
+ *  type.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
+
+#ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
+#define PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
 
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_MAJOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_MINOR      0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_EDIT       13
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       0
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/** \file platformstl/filesystem/pipe.hpp
- *
- * \brief [C++ only] Definition of the platformstl::pipe type.
- *  (\ref group__library__file_system "File System" Library.)
- *
- * When compiling on UNIX platforms, the platformstl::pipe
- * type resolves to the unixstl::pipe class. On Windows
- * platforms it resolves to the winstl::pipe class. It is
- * not defined for other platforms.
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -69,13 +65,13 @@
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# ifndef UNIXSTL_INCL_FILESYSTEM_UNIXSTL_HPP_PIPE
-#  include <unixstl/filesystem/pipe.hpp>
-# endif /* !UNIXSTL_INCL_FILESYSTEM_UNIXSTL_HPP_PIPE */
+# ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
+#  include <unixstl/filesystem/current_directory_scope.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_FILESYSTEM_WINSTL_HPP_PIPE
-#  include <winstl/filesystem/pipe.hpp>
-# endif /* !WINSTL_INCL_FILESYSTEM_WINSTL_HPP_PIPE */
+# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
+#  include <winstl/filesystem/current_directory_scope.hpp>
+# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
@@ -103,7 +99,7 @@ namespace platformstl_project
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-    /** \brief A facade for the platform's pipe functionality.
+    /** \brief A facade for the platform's current_directory_scope functionality.
      *
      * \ingroup group__library__file_system
      *
@@ -113,28 +109,28 @@ namespace platformstl_project
      * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
-     * When compiling on UNIX platforms, the platformstl::pipe
-     * type resolves to the unixstl::pipe class. On Windows
-     * platforms it resolves to the winstl::pipe class. It
+     * When compiling on UNIX platforms, the platformstl::current_directory_scope
+     * type resolves to the unixstl::current_directory_scope class. On Windows
+     * platforms it resolves to the winstl::current_directory_scope class. It
      * is not defined for other platforms.
      */
-    class pipe
+    class current_directory_scope
     {};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef _UNIXSTL_NO_NAMESPACE
-    using ::pipe;
+    using ::current_directory_scope;
 # else /* ? _UNIXSTL_NO_NAMESPACE */
-    using ::unixstl::pipe;
+    using ::unixstl::current_directory_scope;
 # endif /* _UNIXSTL_NO_NAMESPACE */
 
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
 
 # ifdef _WINSTL_NO_NAMESPACE
-    using ::pipe;
+    using ::current_directory_scope;
 # else /* ? _WINSTL_NO_NAMESPACE */
-    using ::winstl::pipe;
+    using ::winstl::current_directory_scope;
 # endif /* _WINSTL_NO_NAMESPACE */
 
 #else /* ? operating system */
@@ -153,6 +149,6 @@ namespace platformstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_PIPE */
+#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE */
 
 /* ////////////////////////////////////////////////////////////////////// */

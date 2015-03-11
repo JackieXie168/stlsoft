@@ -4,7 +4,7 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     10th June 2006
+ * Updated:     19th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        38
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    6
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -238,7 +238,11 @@ private:
     {
         C       *p      =   0;          // C* is a proper pointer
         M       C::*pm  =   0;          // M C:: are meaningful class/member types
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+        M       &m      =   p->*pm;     // Pointer to member can be dereferenced
+#else /* ? compiler */
         M const &m      =   p->*pm;     // Pointer to member can be dereferenced
+#endif /* compiler */
 
         STLSOFT_SUPPRESS_UNUSED(m);
     }

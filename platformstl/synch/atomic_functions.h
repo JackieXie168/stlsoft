@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     18th June 2006
+ * Updated:     23rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,8 +45,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        16
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/atomic_functions.h
@@ -136,7 +136,19 @@ namespace platformstl_project
  /* Source atomic functions are defined within a namespace, either unixstl or winstl. */
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
    /* OS: UNIX */
-#   if defined(UNIXSTL_OS_IS_LINUX)
+#   if defined(_WIN32)
+    /* OS (flavour): emulating Unix (via UNIXEm) on Win32 */
+    using atomic_preincrement;
+    using atomic_predecrement;
+    using atomic_postincrement;
+    using atomic_postdecrement;
+    using atomic_increment;
+    using atomic_decrement;
+    using atomic_write;
+    using atomic_read;
+    using atomic_preadd;
+    using atomic_postadd;
+#   elif defined(UNIXSTL_OS_IS_LINUX)
     /* OS (flavour): Linux */
 #    if defined(UNIXSTL_ARCH_IS_INTEL)
      /* Arch: i386 */
@@ -203,7 +215,19 @@ namespace platformstl_project
  /* Source atomic functions are defined within the global namespace. */
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
    /* OS: UNIX */
-#   if defined(UNIXSTL_OS_IS_LINUX)
+#   if defined(_WIN32)
+    /* OS (flavour): emulating Unix (via UNIXEm) on Win32 */
+    using implementation::platform_stl_::atomic_preincrement;
+    using implementation::platform_stl_::atomic_predecrement;
+    using implementation::platform_stl_::atomic_postincrement;
+    using implementation::platform_stl_::atomic_postdecrement;
+    using implementation::platform_stl_::atomic_increment;
+    using implementation::platform_stl_::atomic_decrement;
+    using implementation::platform_stl_::atomic_write;
+    using implementation::platform_stl_::atomic_read;
+    using implementation::platform_stl_::atomic_preadd;
+    using implementation::platform_stl_::atomic_postadd;
+#   elif defined(UNIXSTL_OS_IS_LINUX)
     /* OS (flavour): Linux */
 #    if defined(UNIXSTL_ARCH_IS_INTEL)
      /* Arch: i386 */

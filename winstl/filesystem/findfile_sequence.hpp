@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     17th June 2006
+ * Updated:     20th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -66,7 +66,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        179
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        180
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 #ifdef STLSOFT_UNITTEST
-# include <winstl/current_directory.hpp>
+# include <winstl/filesystem/current_directory.hpp>
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////

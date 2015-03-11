@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     13th June 2006
+ * Updated:     22nd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       17
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ namespace platformstl_project
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 
-    typedef basic_path<TCHAR>   path;
+    typedef basic_path<char>    path;
 
 # else /* ? compiler */
 
