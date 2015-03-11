@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     11th April 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -93,12 +93,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #include <iterator>                     // for std::distance()
 
 #ifdef STLSOFT_UNITTEST
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW
-#  include <stlsoft/string_view.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+#  include <stlsoft/string/simple_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
+#  include <stlsoft/string/string_view.hpp>
+# endif /* STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
 # include <string>
 #endif /* STLSOFT_UNITTEST */
 

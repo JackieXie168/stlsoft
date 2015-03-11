@@ -4,7 +4,7 @@
  * Purpose:     Simple class that converts a relative path to an absolute one.
  *
  * Created:     20th December 2002
- * Updated:     31st May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,18 +38,20 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/absolute_path.hpp
-///
-/// Simple class that converts a relative path to an absolute one.
+/** \file winstl/filesystem/absolute_path.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_absolute_path class template.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR		4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT		50
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -94,20 +96,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * basic_absolute_path
  *
@@ -115,10 +103,14 @@ namespace winstl_project
  * as a C-string of its value.
  */
 
-/// Converts a relative path to an absolute path
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
+/** \brief Converts a relative path to an absolute path
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template
+ *  arguments, this defaults to filesystem_traits<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
@@ -128,66 +120,79 @@ template<   ss_typename_param_k C
         >
 class basic_absolute_path
 {
+/// \name Member Types
+/// @{
 public:
-    /// The char type
+    /// \brief The char type
     typedef C                           char_type;
-    /// The traits type
+    /// \brief The traits type
     typedef T                           traits_type;
-    /// The current parameterisation of the type
+    /// \brief The current parameterisation of the type
     typedef basic_absolute_path<C, T>   class_type;
-    /// The size type
+    /// \brief The size type
     typedef ws_size_t                   size_type;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
-    /// Constructs an absolute path from \c path
+    /// \brief Constructs an absolute path from \c path
     ss_explicit_k basic_absolute_path(char_type const *path)
         : m_len(traits_type::get_full_path_name(path, m_path.size(), &m_path[0]))
     {}
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-    /// Constructs an absolute path from \c path
+    /// \brief Constructs an absolute path from \c path
     template<ss_typename_param_k S>
     ss_explicit_k basic_absolute_path(S const &path)
         : m_len(traits_type::get_full_path_name(stlsoft_ns_qual(c_str_ptr)(path), stlsoft_ns_qual(c_str_len)(m_path), &m_path[0]))
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+/// @}
 
-// Conversions
+/// \name Conversions
+/// @{
 public:
-    /// Implicit conversion to a non-mutable (const) pointer to the path
+    /// \brief Implicit conversion to a non-mutable (const) pointer to the path
     operator char_type const *() const
     {
         return stlsoft_ns_qual(c_str_ptr)(m_path);
     }
+/// @}
 
-// Attributes
+/// \name Attributes
+/// @{
 public:
-    /// Returns the length of the converted path
+    /// \brief Returns the length of the converted path
     size_type length() const
     {
         return m_len;
     }
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     basic_file_path_buffer<char_type>   m_path;
     size_type const                     m_len;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
-    basic_absolute_path(const class_type &);
-    basic_absolute_path &operator =(const class_type &);
+    basic_absolute_path(class_type const &);
+    class_type &operator =(class_type const &);
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_absolute_path template for the ANSI character type \c char
+/// \brief Instantiation of the basic_absolute_path template for the ANSI character type \c char
 typedef basic_absolute_path<ws_char_a_t, filesystem_traits<ws_char_a_t> >       absolute_path_a;
-/// Instantiation of the basic_absolute_path template for the Unicode character type \c wchar_t
+/// \brief Instantiation of the basic_absolute_path template for the Unicode character type \c wchar_t
 typedef basic_absolute_path<ws_char_w_t, filesystem_traits<ws_char_w_t> >       absolute_path_w;
-/// Instantiation of the basic_absolute_path template for the Win32 character type \c TCHAR
+/// \brief Instantiation of the basic_absolute_path template for the Win32 character type \c TCHAR
 typedef basic_absolute_path<TCHAR, filesystem_traits<TCHAR> >                   absolute_path;
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -197,8 +202,10 @@ typedef basic_absolute_path<TCHAR, filesystem_traits<TCHAR> >                   
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER >= 1100
 
-/// This helper function makes an absolute path variable without needing to
-/// qualify the template parameter.
+/** \brief This \ref group__pattern__creator_function "creator function"
+ *   makes an absolute path variable without needing to qualify the template
+ *   parameter.
+ */
 template<ss_typename_param_k C>
 inline basic_absolute_path<C> make_absolute_path(C const *path)
 {
@@ -213,10 +220,6 @@ inline basic_absolute_path<C> make_absolute_path(C const *path)
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/absolute_path_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_filesystem_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

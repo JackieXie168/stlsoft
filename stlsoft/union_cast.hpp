@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     21st March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MAJOR       4
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MINOR       3
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        48
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_REVISION    3
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 # include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
-#ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
-# include <stlsoft/meta/base_type_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+#  include <stlsoft/meta/base_type_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

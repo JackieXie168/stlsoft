@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       199
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       202
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -217,13 +217,13 @@ public:
 /// \name Operations
 /// @{
 public:
-    /// \brief Appends the contents of \rhs to the path
+    /// \brief Appends the contents of \c rhs to the path
     class_type &push(class_type const &rhs, bool_type bAddPathNameSeparator = false);
-    /// \brief Appends the contents of \rhs to the path
+    /// \brief Appends the contents of \c rhs to the path
     class_type &push(char_type const *rhs, bool_type bAddPathNameSeparator = false);
-    /// \brief Appends the contents of \rhs to the path as an extension
+    /// \brief Appends the contents of \c rhs to the path as an extension
     class_type &push_ext(class_type const &rhs, bool_type bAddPathNameSeparator = false);
-    /// \brief Appends the contents of \rhs to the path as an extension
+    /// \brief Appends the contents of \c rhs to the path as an extension
     class_type &push_ext(char_type const *rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Ensures that the path has a trailing path name separator
     class_type &push_sep();
@@ -274,6 +274,10 @@ public:
     char_type const *get_ext() const;
     /// \brief Returns the length of the converted path
     size_type       length() const;
+    /// \brief Returns the length of the converted path
+    ///
+    /// \remarks Equivalent to length()
+    size_type       size() const;
     /// \brief Conversion to a non-mutable (const) pointer to the path
     char_type const *c_str() const;
     /// \brief Indicates whether the path represents an existing file system entry
@@ -561,6 +565,7 @@ inline us_size_t c_str_len(basic_path<C, T, A> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -569,6 +574,7 @@ inline us_size_t c_str_size(basic_path<C, T, A> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.c_str());
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -678,7 +684,9 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A>::basic_path()
     : m_len(0)
-{}
+{
+    m_buffer[0] = '\0';
+}
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1261,6 +1269,15 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
+inline ss_typename_type_k basic_path<C, T, A>::size_type basic_path<C, T, A>::size() const
+{
+    return length();
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
 inline ss_typename_type_k basic_path<C, T, A>::char_type const *basic_path<C, T, A>::c_str() const
 {
     return stlsoft_ns_qual(c_str_ptr)(m_buffer);
@@ -1398,7 +1415,9 @@ using ::unixstl::c_str_data_w;
 
 using ::unixstl::c_str_len;
 
+#if 0
 using ::unixstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

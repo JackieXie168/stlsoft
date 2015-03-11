@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     30th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -96,9 +96,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef WINSTL_INCL_WINSTL_HPP_CHAR_CONVERSIONS
 # include <winstl/char_conversions.hpp>     // for winstl::a2w, w2a
 #endif /* !WINSTL_INCL_WINSTL_HPP_CHAR_CONVERSIONS */
-#ifndef WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS
-# include <winstl/control_functions.h>      // for winstl::listbox_add_string, ...
-#endif /* !WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS
+# include <winstl/controls/functions.h>     // for winstl::listbox_add_string, ...
+#endif /* !WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS */
 #ifndef _WINSTL_CONTROL_FUNCTIONALS_NO_STD
 # include <functional>
 #else /* ? _WINSTL_CONTROL_FUNCTIONALS_NO_STD */

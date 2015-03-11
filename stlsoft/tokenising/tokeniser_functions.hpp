@@ -4,7 +4,7 @@
  * Purpose:     Restartable tokenising functions.
  *
  * Created:     6th January 2001
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -63,13 +63,13 @@
 # if !defined(STLSOFT_COMPILER_IS_WATCOM)
 #  if defined(STLSOFT_COMPILER_IS_MWERKS) && \
       ((__MWERKS__ & 0xff00) < 0x3000)
-#   ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#    include <stlsoft/simple_string.hpp>
-#   endif /* STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#   ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+#    include <stlsoft/string/simple_string.hpp>
+#   endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #  else /* ? compiler */
-#   ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW
-#    include <stlsoft/string_view.hpp>
-#   endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW */
+#   ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
+#    include <stlsoft/string/string_view.hpp>
+#   endif /* STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
 #  endif /* compiler */
 #  include <vector>
 # endif /* compiler */

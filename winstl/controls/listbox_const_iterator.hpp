@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_const_iterator class.
  *
  * Created:     10th November 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -70,9 +70,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
-# include <stlsoft/string_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
+# include <stlsoft/string/string_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION
 # include <stlsoft/exceptions/external_iterator_invalidation.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */

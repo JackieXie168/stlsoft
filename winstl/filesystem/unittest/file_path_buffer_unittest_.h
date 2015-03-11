@@ -1,8 +1,8 @@
 
-// Updated: 31st May 2006
+// Updated: 6th June 2006
 
 #if !defined(WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER)
-# error This file cannot be directly included, and should only be included within winstl/file_path_buffer.hpp
+# error This file cannot be directly included, and should only be included within winstl/filesystem/file_path_buffer.hpp
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
 
 #if !defined(STLSOFT_UNITTEST)

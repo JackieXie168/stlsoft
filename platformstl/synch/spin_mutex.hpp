@@ -4,7 +4,7 @@
  * Purpose:     Definition of the spin_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     30th May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,13 +45,14 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      9
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/spin_mutex.hpp
  *
  * \brief [C++ only] Definition of the platformstl::spin_mutex type.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,13 +64,13 @@
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_SPIN_MUTEX
-#  include <unixstl/spin_mutex.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_HPP_SPIN_MUTEX */
+# ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SPIN_MUTEX
+#  include <unixstl/synch/spin_mutex.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SPIN_MUTEX */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX
-#  include <winstl/spin_mutex.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX */
+# ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX
+#  include <winstl/synch/spin_mutex.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */

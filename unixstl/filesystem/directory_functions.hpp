@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/directory_functions.hpp (formerly unixstl/directory_functions.hpp; originally borrowed from winstl_filesystem_functions.h)
+ * File:        unixstl/filesystem/directory_functions.hpp (originally borrowed from winstl_filesystem_functions.h)
  *
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     31st May 2006
+ * Updated:     4th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file unixstl/filesystem/directory_functions.hpp
  *
  * \brief [C++ only] Functions for manipulating directories.
+ *  (\ref group__library__file_system "File System" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS
@@ -50,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        27
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -182,7 +183,7 @@ inline us_bool_t create_directory_recurse_impl(C const *dir, unsigned short mode
                 traits_t::remove_dir_end(&sz[0]);
 
                 if( traits_t::create_directory(sz.c_str(), mode) ||
-					EEXIST == traits_t::get_last_error())
+                    EEXIST == traits_t::get_last_error())
                 {
                     traits_t::set_last_error(0);
 
@@ -433,7 +434,7 @@ inline us_int_t remove_directory_recurse_impl(C const *dir, us_int_t (*pfn)(void
 /// \ingroup group__library__file_system
 ///
 /// \param dir The path of the directory to create
-/// \mode The permissions with which each directory is to be created
+/// \param mode The permissions with which each directory is to be created
 inline us_bool_t create_directory_recurse(us_char_a_t const *dir, unsigned short mode = 0755)
 {
     return create_directory_recurse_impl(dir, mode);

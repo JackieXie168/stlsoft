@@ -4,7 +4,7 @@
  * Purpose:     Scoped thread-safe access locking class.
  *
  * Created:     7th November 2004
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,9 +59,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE
-# include <stlsoft/lock_scope.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE
+# include <stlsoft/synch/lock_scope.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

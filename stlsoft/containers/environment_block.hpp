@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -72,9 +72,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
+# include <stlsoft/string/char_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */

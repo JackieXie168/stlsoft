@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/file_path_buffer.hpp (formerly winstl/file_path_buffer.hpp; originally winstl_file_path_buffer.h)
+ * File:        winstl/filesystem/file_path_buffer.hpp (originally winstl_file_path_buffer.h)
  *
  * Purpose:     Contains the basic_file_path_buffer template class, and ANSI
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -42,9 +42,12 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/file_path_buffer.hpp
-///
-/// Contains the basic_file_path_buffer template class, and ANSI and Unicode specialisations thereof.
+/** \file winstl/filesystem/file_path_buffer.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_file_path_buffer class
+ *  template.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
@@ -52,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     95
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -475,6 +478,7 @@ inline ws_size_t c_str_len(basic_file_path_buffer<C, A> const &b)
 }
 
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
@@ -482,6 +486,7 @@ inline ws_size_t c_str_size(basic_file_path_buffer<C, A> const &b)
 {
     return stlsoft_ns_qual(c_str_size)(b.c_str());
 }
+#endif /* 0 */
 
 
 template<   ss_typename_param_k S
@@ -566,7 +571,9 @@ using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
 
+#if 0
 using ::winstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

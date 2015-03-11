@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     8th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -80,9 +80,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+# include <stlsoft/string/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
 # include <stlsoft/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */

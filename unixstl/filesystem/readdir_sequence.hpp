@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -72,13 +72,13 @@
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS */
 #include <unistd.h>
 #if defined(PATH_MAX)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING
-#  include <stlsoft/static_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
+#  include <stlsoft/string/static_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING */
 #else /* ? PATH_MAX */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+#  include <stlsoft/string/simple_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #endif /* !PATH_MAX */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>

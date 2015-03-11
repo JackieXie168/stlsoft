@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation object lock scoping class.
  *
  * Created:     1st October 1994
- * Updated:     29th May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file stlsoft/synch/lock_scope.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::lock_scope class template.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE
@@ -50,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      103
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -85,25 +86,30 @@ namespace stlsoft
 template<ss_typename_param_k L>
 struct lock_traits
 {
+/// \name Member Types
+/// @{
 public:
-    /// The lockable type
+    /// \brief The lockable type
     typedef L               lock_type;
-    /// The current parameterisation of this type
+    /// \brief The current parameterisation of this type
     typedef lock_traits<L>  class_type;
+/// @}
 
-// Operations
+/// \name Operations
+/// @{
 public:
-    /// Locks the given lockable instance
+    /// \brief Locks the given lockable instance
     static void lock(lock_type &c)
     {
         lock_instance(c);
     }
 
-    /// Unlocks the given lockable instance
+    /// \brief Unlocks the given lockable instance
     static void unlock(lock_type &c)
     {
         unlock_instance(c);
     }
+/// @}
 };
 
 // class lock_invert_traits
@@ -117,30 +123,35 @@ public:
 template<ss_typename_param_k L>
 struct lock_invert_traits
 {
+/// \name Member Types
+/// @{
 public:
-    /// The lockable type
+    /// \brief The lockable type
     typedef L                       lock_type;
-    /// The current parameterisation of this type
+    /// \brief The current parameterisation of this type
     typedef lock_invert_traits<L>   class_type;
+/// @}
 
-// Operations
+/// \name Operations
+/// @{
 public:
-    /// Unlocks the given lockable instance
+    /// \brief Unlocks the given lockable instance
     static void lock(lock_type &c)
     {
         unlock_instance(c);
     }
 
-    /// Locks the given lockable instance
+    /// \brief Locks the given lockable instance
     static void unlock(lock_type &c)
     {
         lock_instance(c);
     }
+/// @}
 };
 
 // class lock_traits_inverter
 
-/** Traits inverter class for inverting the lock behaviour of lockable traits types
+/** \brief Traits inverter class for inverting the lock behaviour of lockable traits types
  *
  * \ingroup group__library__synch
  *
@@ -149,27 +160,32 @@ public:
 template<ss_typename_param_k T>
 struct lock_traits_inverter
 {
+/// \name Member Types
+/// @{
 public:
-    /// The traits type
+    /// \brief The traits type
     typedef T                                           traits_type;
-    /// The lockable type
+    /// \brief The lockable type
     typedef ss_typename_type_k traits_type::lock_type   lock_type;
-    /// The current parameterisation of this type
+    /// \brief The current parameterisation of this type
     typedef lock_traits_inverter<T>                     class_type;
+/// @}
 
-// Operations
+/// \name Operations
+/// @{
 public:
-    /// Unlocks the given lockable instance
+    /// \brief Unlocks the given lockable instance
     static void lock(lock_type &c)
     {
         traits_type::unlock(c);
     }
 
-    /// Locks the given lockable instance
+    /// \brief Locks the given lockable instance
     static void unlock(lock_type &c)
     {
         traits_type::lock(c);
     }
+/// @}
 };
 
 // class lock_scope
@@ -190,36 +206,45 @@ template<   ss_typename_param_k L
         >
 class lock_scope
 {
+/// \name Member Types
+/// @{
 public:
-    /// The lockable type
+    /// \brief The lockable type
     typedef L                       lock_type;
-    /// The traits type
+    /// \brief The traits type
     typedef T                       traits_type;
-    /// The current parameterisation of this type
+    /// \brief The current parameterisation of this type
     typedef lock_scope<L, T>        class_type;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
-    /// Locks the lockable instance
+    /// \brief Locks the lockable instance
     lock_scope(lock_type &l)
         : m_l(l)
     {
         traits_type::lock(m_l);
     }
-    /// Unlocks the lockable instance
+    /// \brief Unlocks the lockable instance
     ~lock_scope() stlsoft_throw_0()
     {
         traits_type::unlock(m_l);
     }
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     lock_type   &m_l;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     lock_scope(class_type const &rhs);
     lock_scope &operator =(class_type const &rhs);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */

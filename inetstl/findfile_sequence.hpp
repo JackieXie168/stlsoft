@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MAJOR    2
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    11
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 3
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     102
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 5
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,21 +82,21 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #  include <stlsoft/exceptions.hpp>           // for stlsoft::null_exception_policy
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS
-# include <stlsoft/tokenising/tokeniser_functions.hpp> // for find_next_token
-#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+# include <stlsoft/string/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS
+# include <stlsoft/tokenising/tokeniser_functions.hpp> // for find_next_token
+#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
+# include <stlsoft/iterator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
+# include <stlsoft/string_access.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/integer_to_string.hpp>
@@ -752,6 +752,20 @@ inline C const *c_str_ptr_null(basic_findfile_sequence_value_type<C, T, X> const
 {
     return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
 }
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline is_char_a_t const *c_str_ptr_null_a(basic_findfile_sequence_value_type<is_char_a_t, T, X> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
+}
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline is_char_w_t const *c_str_ptr_null_w(basic_findfile_sequence_value_type<is_char_w_t, T, X> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null(v.get_path()));
+}
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -761,12 +775,40 @@ inline C const *c_str_ptr(basic_findfile_sequence_value_type<C, T, X> const &v)
 {
     return v.get_path();
 }
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline is_char_a_t const *c_str_ptr_a(basic_findfile_sequence_value_type<is_char_a_t, T, X> const &v)
+{
+    return v.get_path();
+}
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline is_char_w_t const *c_str_ptr_w(basic_findfile_sequence_value_type<is_char_w_t, T, X> const &v)
+{
+    return v.get_path();
+}
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
 inline C const *c_str_data(basic_findfile_sequence_value_type<C, T, X> const &v)
+{
+    return v.get_path();
+}
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline is_char_a_t const *c_str_data_a(basic_findfile_sequence_value_type<is_char_a_t, T, X> const &v)
+{
+    return v.get_path();
+}
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k X
+        >
+inline is_char_w_t const *c_str_data_w(basic_findfile_sequence_value_type<is_char_w_t, T, X> const &v)
 {
     return v.get_path();
 }
@@ -780,6 +822,7 @@ inline is_size_t c_str_len(basic_findfile_sequence_value_type<C, T, X> const &v)
     return stlsoft_ns_qual(c_str_len(v.get_path()));
 }
 
+#if 0
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
@@ -788,6 +831,7 @@ inline is_size_t c_str_size(basic_findfile_sequence_value_type<C, T, X> const &v
 {
     return stlsoft_ns_qual(c_str_size(v.get_path()));
 }
+#endif /* 0 */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1574,14 +1618,22 @@ namespace stlsoft
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
 using ::inetstl::c_str_ptr_null;
+using ::inetstl::c_str_ptr_null_a;
+using ::inetstl::c_str_ptr_null_w;
 
 using ::inetstl::c_str_ptr;
+using ::inetstl::c_str_ptr_a;
+using ::inetstl::c_str_ptr_w;
 
 using ::inetstl::c_str_data;
+using ::inetstl::c_str_data_a;
+using ::inetstl::c_str_data_w;
 
 using ::inetstl::c_str_len;
 
+#if 0
 using ::inetstl::c_str_size;
+#endif /* 0 */
 
 using ::inetstl::is_empty;
 

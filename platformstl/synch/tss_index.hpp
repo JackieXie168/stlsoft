@@ -4,7 +4,7 @@
  * Purpose:     Definition of the tss_index type.
  *
  * Created:     20th March 2005
- * Updated:     30th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,12 +46,13 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       9
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/tss_index.hpp
  *
  * \brief [C++ only] Definition of the platformstl::tss_index components.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,12 +65,12 @@
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # ifndef UNIXSTL_INCL_UNIXSTL_HPP_TSS_INDEX
-#   include <unixstl/tss_index.hpp>
+#   include <unixstl/synch/tss_index.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_TSS_INDEX */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_WINSTL_HPP_TSS_INDEX
-#   include <winstl/tss_index.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_TSS_INDEX */
+# ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_TSS_INDEX
+#   include <winstl/synch/tss_index.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_TSS_INDEX */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */

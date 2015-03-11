@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class using char-sets.
  *
  * Created:     17th October 2005
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -77,12 +77,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #include <algorithm>
 
 #ifdef STLSOFT_UNITTEST
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW
-#  include <stlsoft/string_view.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+#  include <stlsoft/string/simple_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
+#  include <stlsoft/string/string_view.hpp>
+# endif /* STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
 # include <algorithm>
 # include <string>
 #endif /* STLSOFT_UNITTEST */

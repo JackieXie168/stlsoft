@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,18 +52,21 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/findfile_sequence.hpp
-///
-/// Contains the basic_findfile_sequence template class, and ANSI and Unicode specialisations thereof.
+/** \file winstl/filesystem/findfile_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_findfile_sequence class
+ *  template.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR		4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT		173
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        176
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -147,20 +150,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Forward declarations
  */
@@ -180,7 +169,9 @@ class basic_findfile_sequence_const_input_iterator;
  */
 
 // class basic_findfile_sequence
-/// Presents an STL-like sequence interface over the items on the file-system
+/// \brief Presents an STL-like sequence interface over the items on the file-system
+///
+/// \ingroup group__library__file_system
 ///
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
@@ -401,7 +392,7 @@ public:
     class_type &operator =(class_type const &rhs);
 /// @}
 
-/// Accessors
+/// \name Accessors
 /// @{
 public:
     /// Returns a non-mutating reference to find-data
@@ -457,10 +448,12 @@ public:
     bool_type               is_hidden() const;
 /// @}
 
-/// Comparison
+/// \name Comparison
 /// @{
 public:
+    /// \brief Determines whether the instance is equal to the given path
     bool_type               equal(char_type const *rhs) const;
+    /// \brief Determines whether two instances are equal
     bool_type               equal(class_type const &rhs) const;
 /// @}
 
@@ -722,9 +715,29 @@ inline C const *c_str_ptr(basic_findfile_sequence_value_type<C, T> const &v)
 {
     return v.get_path();
 }
+template <ss_typename_param_k T>
+inline ws_char_a_t const *c_str_ptr(basic_findfile_sequence_value_type<ws_char_a_t, T> const &v)
+{
+    return v.get_path();
+}
+template <ss_typename_param_k T>
+inline ws_char_w_t const *c_str_ptr(basic_findfile_sequence_value_type<ws_char_w_t, T> const &v)
+{
+    return v.get_path();
+}
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline C const *c_str_data(basic_findfile_sequence_value_type<C, T> const &v)
+{
+    return v.get_path();
+}
+template <ss_typename_param_k T>
+inline ws_char_a_t const *c_str_data(basic_findfile_sequence_value_type<ws_char_a_t, T> const &v)
+{
+    return v.get_path();
+}
+template <ss_typename_param_k T>
+inline ws_char_w_t const *c_str_data(basic_findfile_sequence_value_type<ws_char_w_t, T> const &v)
 {
     return v.get_path();
 }
@@ -735,11 +748,13 @@ inline ws_size_t c_str_len(basic_findfile_sequence_value_type<C, T> const &v)
     return v.length();
 }
 
+#if 0
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_size_t c_str_size(basic_findfile_sequence_value_type<C, T> const &v)
 {
     return v.length() * sizeof(C);
 }
+#endif /* 0 */
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_bool_t is_empty(basic_findfile_sequence<C, T> const &s)
@@ -1586,10 +1601,6 @@ inline ws_bool_t basic_findfile_sequence_const_input_iterator<C, T, V>::equal(cl
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group winstl_filesystem_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -1620,12 +1631,18 @@ namespace stlsoft
 using ::winstl::c_str_ptr_null;
 
 using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
 
 using ::winstl::c_str_data;
+using ::winstl::c_str_data_a;
+using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
 
+#if 0
 using ::winstl::c_str_size;
+#endif /* 0 */
 
 using ::winstl::is_empty;
 

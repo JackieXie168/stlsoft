@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     9th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MINOR      2
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       79
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   3
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER
-# include <stlsoft/cstring_maker.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER
+# include <stlsoft/string/cstring_maker.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */
 #ifdef STLSOFT_UNITTEST
 # include <wchar.h>
 #endif /* STLSOFT_UNITTEST */
@@ -332,6 +332,15 @@ inline c_str_ptr_null_CWindow_proxy c_str_ptr_null(atlstl_ns_qual_atl(CWindow) c
 {
     return c_str_ptr_null_CWindow_proxy(w);
 }
+/// \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+# ifdef UNICODE
+inline c_str_ptr_null_CWindow_proxy c_str_ptr_null_w(atlstl_ns_qual_atl(CWindow) const &w)
+# else /* ? UNICODE */
+inline c_str_ptr_null_CWindow_proxy c_str_ptr_null_a(atlstl_ns_qual_atl(CWindow) const &w)
+# endif /* UNICODE */
+{
+    return c_str_ptr_null(w);
+}
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
@@ -340,6 +349,10 @@ inline LPCOLESTR c_str_ptr_null(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     /* NULL is a valid BSTR value, so may return that */
     return s.m_str;
+}
+inline LPCOLESTR c_str_ptr_null_w(atlstl_ns_qual_atl(CComBSTR) const &s)
+{
+    return c_str_ptr_null(s);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -356,6 +369,15 @@ inline c_str_ptr_CWindow_proxy c_str_ptr(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr_CWindow_proxy(w);
 }
+/// \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+# ifdef UNICODE
+inline c_str_ptr_CWindow_proxy c_str_ptr_w(atlstl_ns_qual_atl(CWindow) const &w)
+# else /* ? UNICODE */
+inline c_str_ptr_CWindow_proxy c_str_ptr_a(atlstl_ns_qual_atl(CWindow) const &w)
+# endif /* UNICODE */
+{
+    return c_str_ptr(w);
+}
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
@@ -364,6 +386,10 @@ inline LPCOLESTR c_str_ptr(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     /* NULL is a valid BSTR value, so check for that */
     return (s.m_str != 0) ? s.m_str : L"";
+}
+inline LPCOLESTR c_str_ptr_w(atlstl_ns_qual_atl(CComBSTR) const &s)
+{
+    return c_str_ptr(s);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -380,12 +406,25 @@ inline c_str_ptr_CWindow_proxy c_str_data(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr(w);
 }
+/// \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+# ifdef UNICODE
+inline c_str_ptr_CWindow_proxy c_str_data_w(atlstl_ns_qual_atl(CWindow) const &w)
+# else /* ? UNICODE */
+inline c_str_ptr_CWindow_proxy c_str_data_a(atlstl_ns_qual_atl(CWindow) const &w)
+# endif /* UNICODE */
+{
+    return c_str_data(w);
+}
 #endif /* __ATLWIN_H__ */
 
 /// \brief Returns the corresponding possibly un-terminated C-string pointer of the CComBSTR \c s
 inline LPCOLESTR c_str_data(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return c_str_ptr(s);
+}
+inline LPCOLESTR c_str_data_w(atlstl_ns_qual_atl(CComBSTR) const &s)
+{
+    return c_str_data(s);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -421,19 +460,23 @@ inline as_size_t c_str_len(atlstl_ns_qual_atl(CComBSTR) const &s)
 
 /* CWindow */
 #ifdef __ATLWIN_H__
+#if 0
 /// \brief Returns the size (in bytes) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
 inline as_size_t c_str_size(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_len(w) * sizeof(TCHAR);
 }
+#endif /* 0 */
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
+#if 0
 /// \brief Returns the size (in bytes) of the CComBSTR \c s, <b><i>not</i></b> including the null-terminating character
 inline as_size_t c_str_size(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return c_str_len(s) * sizeof(OLECHAR);
 }
+#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -476,14 +519,28 @@ namespace stlsoft
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
 using ::atlstl::c_str_ptr_null;
+#if !defined(UNICODE)
+using ::atlstl::c_str_ptr_null_a;
+#endif /* UNICODE */
+using ::atlstl::c_str_ptr_null_w;
 
 using ::atlstl::c_str_ptr;
+#if !defined(UNICODE)
+using ::atlstl::c_str_ptr_a;
+#endif /* UNICODE */
+using ::atlstl::c_str_ptr_w;
 
 using ::atlstl::c_str_data;
+#if !defined(UNICODE)
+using ::atlstl::c_str_data_a;
+#endif /* UNICODE */
+using ::atlstl::c_str_data_w;
 
 using ::atlstl::c_str_len;
 
+#if 0
 using ::atlstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

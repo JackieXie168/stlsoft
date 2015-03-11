@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     8th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MAJOR      4
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MINOR      2
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_REVISION   2
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       90
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_REVISION   3
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -914,24 +914,31 @@ inline cs_size_t c_str_len_w(VARIANT const &v)
  */
 
 /* GUID */
+#if 0
 /// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
 inline cs_size_t c_str_size_a(GUID const &guid)
 {
     return c_str_len_a(guid) *sizeof(cs_char_a_t);
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
 inline cs_size_t c_str_size_w(GUID const &guid)
 {
     return c_str_len_w(guid) * sizeof(cs_char_w_t);
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
 inline cs_size_t c_str_size_o(GUID const &guid)
 {
     return c_str_len_o(guid) * sizeof(cs_char_o_t);
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
 inline cs_size_t c_str_size(GUID const &guid)
 {
@@ -941,20 +948,26 @@ inline cs_size_t c_str_size(GUID const &guid)
     return c_str_size_a(guid);
 #endif /* UNICODE */
 }
+#endif /* 0 */
 
 /* VARIANT */
+#if 0
 /// \brief Returns the size (in bytes) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
 inline cs_size_t c_str_size_a(VARIANT const &v)
 {
     return c_str_len(v) * sizeof(cs_char_a_t);
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
 inline cs_size_t c_str_size_w(VARIANT const &v)
 {
     return c_str_len(v) * sizeof(OLECHAR);
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
 inline cs_size_t c_str_size(VARIANT const &v)
 {
@@ -964,6 +977,7 @@ inline cs_size_t c_str_size(VARIANT const &v)
     return c_str_size_a(v);
 #endif /* UNICODE */
 }
+#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -1025,10 +1039,12 @@ using ::comstl::c_str_len_w;
 using ::comstl::c_str_len_o;
 using ::comstl::c_str_len;
 
+#if 0
 using ::comstl::c_str_size_a;
 using ::comstl::c_str_size_w;
 using ::comstl::c_str_size_o;
 using ::comstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

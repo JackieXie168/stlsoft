@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     31st May 2006
+ * Updated:     4th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,10 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file unixstl/memory_mapped_file.hpp
-///
-/// Memory mapped file class.
+/** \file unixstl/memory_mapped_file.hpp
+ *
+ * \brief [C++ only] Definition of the unixstl::memory_mapped_file class.
+ */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_MEMORY_MAPPED_FILE
 #define UNIXSTL_INCL_UNIXSTL_HPP_MEMORY_MAPPED_FILE
@@ -48,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_EDIT        61
+# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_REVISION    3
+# define UNIXSTL_VER_UNIXSTL_HPP_MEMORY_MAPPED_FILE_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -70,6 +71,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE
 # include <stlsoft/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD
+# include <stlsoft/string_access_fwd.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
 #include <sys/mman.h>
 #include <sys/stat.h>
 
@@ -99,28 +103,36 @@ namespace unixstl_project
  * Classes
  */
 
-/// Facade over the UNIX memory mapped file API
+/** \brief Facade over the UNIX memory mapped file API.
+ *
+ * \ingroup group__file_system
+ */
 class memory_mapped_file
 {
+/// \name Member Types
+/// @{
 private:
+    /// \brief The character type
     typedef us_char_a_t                     char_type;
+    /// \brief The traits type
     typedef filesystem_traits<us_char_a_t>  traits_type;
 public:
+    /// \brief This type
     typedef memory_mapped_file              class_type;
+    /// \brief The size type
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     typedef us_uint64_t                     size_type;
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     typedef us_uint32_t                     size_type;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    /// \brief The error type
+    typedef int                             error_type;
+/// @}
 
-public:
-#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-# pragma message(_sscomp_fileline_message("Make this use a create_() method via MUMI"))
-#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
-
-    ss_explicit_k memory_mapped_file(char_type const *fileName)
-        : m_cb(0)
-        , m_memory(NULL)
+/// \name Implementation
+/// @{
+private:
+    void open_(char_type const *fileName)
     {
         scoped_handle<int>  hfile(  traits_type::open(  fileName
                                                     ,   O_RDONLY
@@ -140,12 +152,6 @@ public:
             {
                 on_error_("Failed to determine mapped file size");
             }
-#ifndef STLSOFT_CF_64BIT_INT_SUPPORT
-            else if(0 == fileSizeHigh)
-            {
-                on_error_("Cannot map files with sizes larger than 4GB with compilers that do not support 64-bit integers", ETOBIG);
-            }
-#endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
             else if(0 == st.st_size)
             {
                 m_memory    =   NULL;
@@ -167,33 +173,54 @@ public:
             }
         }
     }
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    ss_explicit_k memory_mapped_file(char_type const *fileName)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(fileName);
+    }
+    template <ss_typename_param_k S>
+    ss_explicit_k memory_mapped_file(S const &fileName)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(stlsoft_ns_qual(c_str_ptr)(fileName));
+    }
     ~memory_mapped_file() stlsoft_throw_0()
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        UNIXSTL_ASSERT(NULL != m_memory);
-#else /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-        if(NULL != m_memory)
+        UNIXSTL_ASSERT(NULL != m_memory || 0 == m_cb);
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        if(NULL != m_memory)
         {
             ::munmap(m_memory, static_cast<size_t>(m_cb));
         }
     }
+/// @}
 
 /// \name Accessors
 /// @{
 public:
+    /// \brief Non-mutating (const) pointer to the start of the mapped
+    ///  region.
     void const  *memory() const
     {
         return m_memory;
     }
-
+    /// \brief The number of bytes in the mapped region
     size_type size() const
     {
         return m_cb;
     }
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    int lastError() const
+    error_type lastError() const
     {
         return m_lastError;
     }
@@ -201,8 +228,9 @@ public:
 /// @}
 
 /// \name Implementation
+/// @{
 private:
-    void on_error_(char const *message, int error = errno)
+    void on_error_(char const *message, error_type error = errno)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw unix_exception(message, error);
@@ -210,19 +238,24 @@ private:
         m_lastError = error;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
+/// @}
 
-/// Members
+/// \name Members
+/// @{
 private:
     size_type   m_cb;
     void        *m_memory;
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    int         m_lastError;
+    error_type  m_lastError;
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     memory_mapped_file(class_type const &);
     class_type &operator =(class_type const &);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */

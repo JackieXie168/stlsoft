@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
- * File:        winstl/file_creation_functions.h
+ * File:        winstl/filesystem/file_creation_functions.h
  *
  * Purpose:     File creation functions.
  *
  * Created:     12th September 2005
- * Updated:     31st May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/file_creation_functions.h
-///
-/// File creation functions.
+/** \file winstl/filesystem/file_creation_functions.h
+ *
+ * \brief [C, C++] File creation functions.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_H_FILE_CREATION_FUNCTIONS
 #define WINSTL_INCL_WINSTL_H_FILE_CREATION_FUNCTIONS
@@ -49,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       4
+# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,37 +84,41 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \ingroup functions
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * C functions
  */
 
-/** \brief Opens an existing file for shared read access */
+/** \brief Opens an existing file for shared read access.
+ *
+ * \ingroup group__library__file_system
+ */
 STLSOFT_INLINE HANDLE winstl__open_file_read_shared_a(ws_char_a_t const *fileName, DWORD dwShareMode)
 {
     return STLSOFT_NS_GLOBAL(CreateFileA)(fileName, GENERIC_READ, dwShareMode, NULL, OPEN_ALWAYS, 0, NULL);
 }
 
-/** \brief Opens an existing file for shared read access */
+/** \brief Opens an existing file for shared read access.
+ *
+ * \ingroup group__library__file_system
+ */
 STLSOFT_INLINE HANDLE winstl__open_file_read_shared_w(ws_char_w_t const *fileName, DWORD dwShareMode)
 {
     return STLSOFT_NS_GLOBAL(CreateFileW)(fileName, GENERIC_READ, dwShareMode, NULL, OPEN_ALWAYS, 0, NULL);
 }
 
-/** \brief Opens an existing file for exclusive read access */
+/** \brief Opens an existing file for exclusive read access.
+ *
+ * \ingroup group__library__file_system
+ */
 STLSOFT_INLINE HANDLE winstl__open_file_exclusive_a(ws_char_a_t const *fileName)
 {
     return STLSOFT_NS_GLOBAL(CreateFileA)(fileName, GENERIC_READ, 0, NULL, OPEN_ALWAYS, 0, NULL);
 }
 
-/** \brief Opens an existing file for exclusive read access */
+/** \brief Opens an existing file for exclusive read access.
+ *
+ * \ingroup group__library__file_system
+ */
 STLSOFT_INLINE HANDLE winstl__open_file_exclusive_w(ws_char_w_t const *fileName)
 {
     return STLSOFT_NS_GLOBAL(CreateFileW)(fileName, GENERIC_READ, 0, NULL, OPEN_ALWAYS, 0, NULL);
@@ -124,29 +130,41 @@ STLSOFT_INLINE HANDLE winstl__open_file_exclusive_w(ws_char_w_t const *fileName)
 
 #if defined(__cplusplus)
 
+/** \brief Opens an existing file for shared read access.
+ *
+ * \ingroup group__library__file_system
+ */
 inline HANDLE open_file_read_shared(ws_char_a_t const *fileName, DWORD dwShareMode)
 {
     return winstl__open_file_read_shared_a(fileName, dwShareMode);
 }
+/** \brief Opens an existing file for shared read access.
+ *
+ * \ingroup group__library__file_system
+ */
 inline HANDLE open_file_read_shared(ws_char_w_t const *fileName, DWORD dwShareMode)
 {
     return winstl__open_file_read_shared_w(fileName, dwShareMode);
 }
 
+/** \brief Opens an existing file for exclusive read access.
+ *
+ * \ingroup group__library__file_system
+ */
 inline HANDLE open_file_exclusive(ws_char_a_t const *fileName)
 {
     return winstl__open_file_exclusive_a(fileName);
 }
+/** \brief Opens an existing file for exclusive read access.
+ *
+ * \ingroup group__library__file_system
+ */
 inline HANDLE open_file_exclusive(ws_char_w_t const *fileName)
 {
     return winstl__open_file_exclusive_w(fileName);
 }
 
 #endif /* __cplusplus */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_filesystem_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

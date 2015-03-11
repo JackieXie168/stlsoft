@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -66,14 +66,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
+# include <stlsoft/string/char_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER >= 1200
-# ifndef STLSOFT_INCL_STLSOFT_HPP_POD_VECTOR
-#  include <stlsoft/pod_vector.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_POD_VECTOR */
+# ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_POD_VECTOR
+#  include <stlsoft/containers/pod_vector.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_POD_VECTOR */
 #else /* ? compiler */
 # include <vector>
 #endif /* compiler */

@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     25th March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -101,7 +101,7 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 
 #ifdef STLSOFT_UNITTEST
 # include <afxtempl.h>
-# include <stlsoft/simple_string.hpp>
+# include <stlsoft/string/simple_string.hpp>
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////

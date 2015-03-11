@@ -4,7 +4,7 @@
  * Purpose:     Contains the exception_string limited functionality string class.
  *
  * Created:     26th December 2005
- * Updated:     29th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,15 +59,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
+# include <stlsoft/string/char_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 
 #ifdef STLSOFT_UNITTEST
 # include <string.h>

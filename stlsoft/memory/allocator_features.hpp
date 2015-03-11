@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     27th March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/memory/allocator_features.hpp
-///
-/// Allocator commmon features.
+/** \file stlsoft/memory/allocator_features.hpp
+ *
+ * \brief [C++ only] Discrimination of allocator features.
+ *  (\ref group__library__memory "Memory" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
 #define STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MAJOR    5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MINOR    0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     30
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -226,22 +228,6 @@ namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup stlsoft_allocator_library Allocator Library (STLSoft)
-/// \ingroup STLSoft libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-/// @{
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group stlsoft_allocator_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

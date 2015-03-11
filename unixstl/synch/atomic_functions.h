@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     1st June 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,10 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/** \file unixstl/synch/synch/atomic_functions.h
+/** \file unixstl/synch/atomic_functions.h
  *
  * \brief [C++ only] Definition of the atomic functions.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
@@ -50,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      183
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -93,21 +94,6 @@ namespace unixstl_project
 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_threading Threading Library
-/// \ingroup libraries
-/// \brief This library provides synchronisation and threading facilities
-
-/// \weakgroup unixstl_threading_library Threading Library (UNIXSTL)
-/// \ingroup UNIXSTL libraries_threading
-/// \ingroup functions
-/// \brief This library provides synchronisation and threading facilities for UNIX
-/// @{
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -274,10 +260,6 @@ inline atomic_int_t atomic_postadd(atomic_int_t volatile *pl, atomic_int_t n)
 # error Currently only defined for Intel and Power-PC architectures.
 
 #endif /* architecture */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group unixstl_threading_library
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

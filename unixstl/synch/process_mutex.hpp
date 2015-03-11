@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     1st June 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file unixstl/synch/process_mutex.hpp
  *
  * \brief [C++ only] Definition of the unixstl::process_mutex class.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX
@@ -50,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       46
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -261,37 +262,28 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_sync_control Synchronisation Control Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" control the behaviour of synchronisation objects
-
-/// \defgroup unixstl_sync_control_shims Synchronisation Control Shims (UNIXSTL)
-/// \ingroup UNIXSTL concepts_shims_sync_control
-/// \brief These \ref concepts_shims "shims" control the behaviour of UNIX synchronisation objects
-/// @{
-
-/// This control ref concepts_shims "shim" aquires a lock on the given mutex
-///
-/// \param mx The mutex on which to aquire the lock
+/** \brief This \ref group__concept__shims "control shim" aquires a lock on the given mutex
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param mx The mutex on which to aquire the lock.
+ */
 inline void lock_instance(unixstl_ns_qual(process_mutex) &mx)
 {
     mx.lock();
 }
 
-/// This control ref concepts_shims "shim" releases a lock on the given mutex
-///
-/// \param mx The mutex on which to release the lock
+/** \brief This \ref group__concept__shims "control shim" releases a lock on the given mutex
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param mx The mutex on which to release the lock
+ */
 inline void unlock_instance(unixstl_ns_qual(process_mutex) &mx)
 {
     mx.unlock();
 }
 
-/// @} // end of group unixstl_sync_control_shims
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \

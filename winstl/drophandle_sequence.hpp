@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    3
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     73
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -69,13 +69,13 @@
 # ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 #  include <winstl/memory/processheap_allocator.hpp>
 # endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+#  include <stlsoft/string/simple_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #else /* ? STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING
-#  include <stlsoft/static_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
+#  include <stlsoft/string/static_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING */
 #endif /* STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>              // for stlsoft::iterator, stlsoft::reverse_iterator
@@ -358,7 +358,7 @@ private:
 // Not to be implemented
 private:
     basic_drophandle_sequence(class_type const &);
-    const class_type &operator =(class_type const &);
+    class_type &operator =(class_type const &);
 };
 
 /* Typedefs to commonly encountered types. */

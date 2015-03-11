@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation API exception(s).
  *
  * Created:     30th May 2006
- * Updated:     1st June 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file unixstl/synch/exceptions.hpp
  *
  * \brief [C++ only] Definition of unixstl::synchronisation_exception class.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS
@@ -50,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_EDIT      1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

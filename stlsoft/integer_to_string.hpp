@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        integer_to_string.hpp (formerly stlsoft_integer_to_string.h)
  *
- * Purpose:     Number to string conversion functions.
+ * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     8th February 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,10 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/integer_to_string.hpp
-///
-/// Number to string conversion functions.
+/** \file stlsoft/integer_to_string.hpp
+ *
+ * \brief [C++ only] Very efficient integer to string conversion functions.
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
 #define STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
@@ -48,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_MINOR       3
-# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_EDIT        63
+# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_REVISION    4
+# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +60,17 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
+# ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
+#  include <stlsoft/limit_traits.h>
+# endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS
+#  include <stlsoft/sign_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
+#  include <stlsoft/meta/is_same_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#endif /* !STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
 #ifdef STLSOFT_UNITTEST
 # ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
 #  include <stlsoft/limit_traits.h>
@@ -238,15 +250,46 @@ inline C const *signed_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 #ifndef STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 // If the compiler does not evaluate -9 % 10 to equal -9, then we need to work
 // with it as if an unsigned, and prepend the -ve
-    C const *psz = unsigned_integer_to_string(buf, cchBuf, i);
+    typedef limit_traits<I>                                 limit_traits_t;
+    typedef sign_traits<I>                                  sign_traits_t;
+    typedef ss_typename_type_k sign_traits_t::signed_type   signed_type_t;  
+    typedef ss_typename_type_k sign_traits_t::unsigned_type unsigned_type_t;    
 
-    if(i < 0)
+    // If this fires, something has happened to invoke this function on an
+    // unsigned type.
+    STLSOFT_STATIC_ASSERT((0 != is_same_type<signed_type_t, I>::value));
+
+    C const *psz;
+
+    if(i == limit_traits_t::minimum())
     {
+        STLSOFT_ASSERT(i == -i);
+
+        // Special case of the (signed) minimum, since the maximum -ve value
+        // of a signed integer cannot be negated.
+        //
+        // We instead take the equivalent value as an unsigned integer,
+        // convert that (as unsigned), and prepend a '-'
+
+        psz = unsigned_integer_to_string(buf, cchBuf, static_cast<unsigned_type_t>(limit_traits_t::minimum()));
+
         *const_cast<C*>(--psz) = C('-');
+    }
+    else
+    {
+        // Just using the unsigned version here for the absence of
+        // sign. Perversely, The invoked function is still a signed
+        // specialisation.
+        psz = unsigned_integer_to_string(buf, cchBuf, i);
+
+        if(i < 0)
+        {
+            *const_cast<C*>(--psz) = C('-');
+        }
     }
 
     return psz;
-#else
+#else /* ? STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
 // Compiler evaluates -9 % 10 to equal -9, so use the full -ve algorithm. This
 // is chosen because it is more efficient on most compilers than calling the
 // unsigned peer and converting.

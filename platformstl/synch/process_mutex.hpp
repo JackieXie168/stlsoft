@@ -4,7 +4,7 @@
  * Purpose:     Definition of the process_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     31st May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,6 +38,12 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
+/** \file platformstl/synch/process_mutex.hpp
+ *
+ * \brief [C++ only] Definition of the platformstl::process_mutex type.
+ *  (\ref group__library__synch "Synchronisation" Library.)
+ */
+
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX
 #define PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX
 
@@ -46,13 +52,8 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       9
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/** \file platformstl/synch/process_mutex.hpp
- *
- * \brief [C++ only] Definition of the platformstl::process_mutex type.
- */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Includes

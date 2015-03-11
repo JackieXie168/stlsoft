@@ -4,7 +4,7 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -64,9 +64,9 @@
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR
 # include <winstl/controls/listbox_const_iterator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR */
-#ifndef WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS
-# include <winstl/control_functions.h>      // for combobox_addstring(), etc.
-#endif /* !WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS
+# include <winstl/controls/functions.h>     // for combobox_addstring(), etc.
+#endif /* !WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      2
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       92
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      3
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_REVISION   3
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOWS_IDENT
 # include <winstl/windows_ident.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOWS_IDENT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER
-# include <stlsoft/cstring_maker.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER
+# include <stlsoft/string/cstring_maker.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -705,6 +705,18 @@ inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr(const LSA_UNICODE_STRING &s)
  */
 
 /// \brief Returns the corresponding C-string pointer of the window \c h
+inline c_str_ptr_HWND_proxy<ws_char_a_t> c_str_data_a(HWND h)
+{
+    return c_str_ptr_HWND_proxy<ws_char_a_t>(h);
+}
+
+/// \brief Returns the corresponding C-string pointer of the window \c h
+inline c_str_ptr_HWND_proxy<ws_char_w_t> c_str_data_w(HWND h)
+{
+    return c_str_ptr_HWND_proxy<ws_char_w_t>(h);
+}
+
+/// \brief Returns the corresponding C-string pointer of the window \c h
 inline c_str_ptr_HWND_proxy<TCHAR> c_str_data(HWND h)
 {
     return c_str_ptr_HWND_proxy<TCHAR>(h);
@@ -763,31 +775,39 @@ inline ws_size_t c_str_len(const LSA_UNICODE_STRING &s)
  */
 
 /* HWND */
+#if 0
 /// \brief Returns the size (in bytes) of the string of \c h, <b><i>not</i></b> including the null-terminating character
 inline ws_size_t c_str_size_a(HWND h)
 {
     return c_str_len(h) * sizeof(ws_char_a_t);
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the string of \c h, <b><i>not</i></b> including the null-terminating character
 inline ws_size_t c_str_size_w(HWND h)
 {
     return c_str_len(h) * sizeof(ws_char_w_t);
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the string of \c h, <b><i>not</i></b> including the null-terminating character
 inline ws_size_t c_str_size(HWND h)
 {
     return c_str_len(h) * sizeof(TCHAR);
 }
+#endif /* 0 */
 
 /* LSA_UNICODE_STRING */
 #ifdef _NTSECAPI_
+#if 0
 /// \brief Returns the size (in bytes) of the LSA_UNICODE_STRING \c s, <b><i>not</i></b> including the null-terminating character
 inline ws_size_t c_str_size(const LSA_UNICODE_STRING &s)
 {
     return c_str_len(s) * sizeof(WCHAR);
 }
+#endif /* 0 */
 #endif /* _NTSECAPI_ */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -830,19 +850,27 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::winstl::c_str_ptr_null_a;
-using ::winstl::c_str_ptr_a;
-using ::winstl::c_str_len_a;
-using ::winstl::c_str_size_a;
-using ::winstl::c_str_ptr_null_w;
-using ::winstl::c_str_ptr_w;
-using ::winstl::c_str_len_w;
-using ::winstl::c_str_size_w;
 using ::winstl::c_str_ptr_null;
+using ::winstl::c_str_ptr_null_a;
+using ::winstl::c_str_ptr_null_w;
+
 using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
+
 using ::winstl::c_str_data;
+using ::winstl::c_str_data_a;
+using ::winstl::c_str_data_w;
+
 using ::winstl::c_str_len;
+using ::winstl::c_str_len_a;
+using ::winstl::c_str_len_w;
+
+#if 0
 using ::winstl::c_str_size;
+using ::winstl::c_str_size_a;
+using ::winstl::c_str_size_w;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

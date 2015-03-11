@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -94,7 +94,7 @@
 #include <utility>                          // for std::swap
 
 #ifdef STLSOFT_UNITTEST
-# include <stlsoft/simple_string.hpp>
+# include <stlsoft/string/simple_string.hpp>
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation concept tags.
  *
  * Created:     16th January 2006
- * Updated:     21st March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/synch/concepts.hpp
-///
-/// Synchronisation concept tags.
+/** \file stlsoft/synch/concepts.hpp
+ *
+ * \brief [C++ only] Synchronisation concept tags.
+ *  (\ref group__library__synch "Synchronisation" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 #define STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MINOR       0
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        4
+# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,31 +78,41 @@ namespace stlsoft
  * Classes
  */
 
-/** Denotes that a deriving class is a synchronisation type
+/** \brief Denotes that a deriving class is a synchronisation type
+ *
+ * \ingroup group__library__synch
  */
 #if 0
 struct synchronisation_type_tag
 {};
 #endif /* 0 */
 
-/** Denotes that a deriving class is a wrapper for a native synchronisation object,
- * and that the underlying object is available via a get() method
+/** \brief Denotes that a deriving class is a wrapper for a native
+ *   synchronisation object, and that the underlying object is available via a
+ *   <code>get()</code> method.
+ *
+ * \ingroup group__library__synch
  */
 struct synchronisable_object_tag
 //    : public synchronisation_type_tag
 {};
 
-/** Denotes that a deriving class can be used as a critical section, i.e. it
- * has methods lock() and unlock() for entering and exiting the critical sections
+/** \brief Denotes that a deriving class can be used as a critical section,
+ *   i.e. it has methods lock() and unlock() for entering and exiting the
+ *   critical sections.
+ *
+ * \ingroup group__library__synch
  */
 struct critical_section_tag
 //    : public synchronisation_type_tag
 {};
 
 #if 0
-/** Denotes that a deriving class can be used as a critical section
+/** \brief Denotes that a deriving class can be used as a critical section
  * (see critical_section_tag), and that it can be recursively entered without
  * deadlock, i.e. the following call sequence is well defined:
+ *
+ * \ingroup group__library__synch
  *
  * obj.lock();
  * obj.lock();
@@ -111,17 +123,27 @@ struct recursive_critical_section_tag
 //    : public critical_section_tag
 {};
 
-/** Denotes that a deriving class can be used as a critical section
+/** \brief Denotes that a deriving class can be used as a critical section
  * (see critical_section_tag), and that it has a try_lock() method, which returns
  * an integral result, where non-0 indicates that the lock() can be acquired <b>and</b>
  * has been acquired.
+ *
+ * \ingroup group__library__synch
  */
 struct tryable_critical_section_tag
 //    : public critical_section_tag
 {};
 #endif /* 0 */
 
-
+/** \brief Concept tag class that denotes that an object may be utilised to
+ *   serialise access to a critical section of code.
+ *
+ * \ingroup group__library__synch
+ *
+ * \param R Integral value indicating whether the object is recursive
+ * \param T Integral value indicating whether the object supports the
+ *  <code>try_lock()</code> operation.
+ */
 template<   int R
         ,   int T
         >
@@ -131,6 +153,9 @@ struct critical_section
     enum {  is_recursive    =   R       };
     enum {  is_tryable      =   T       };
 
+	/// \brief Type the indicates whether the deriving type 
+	///
+	/// 
     typedef ss_typename_type_k value_to_yesno_type<is_recursive>::type  is_recursive_type;
     typedef ss_typename_type_k value_to_yesno_type<is_tryable>::type    is_tryable_type;
 };

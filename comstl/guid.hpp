@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_HPP_COMSTL_GUID_MAJOR      3
 # define _COMSTL_VER_HPP_COMSTL_GUID_MINOR      3
-# define _COMSTL_VER_HPP_COMSTL_GUID_REVISION   1
-# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       25
+# define _COMSTL_VER_HPP_COMSTL_GUID_REVISION   2
+# define _COMSTL_VER_HPP_COMSTL_GUID_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -276,20 +276,26 @@ inline size_t c_str_len(guid const &g)
     return stlsoft_ns_qual(c_str_len)(g.get());
 }
 
+#if 0
 inline size_t c_str_size_a(guid const &g)
 {
     return stlsoft_ns_qual(c_str_size_a)(g.get());
 }
+#endif /* 0 */
 
+#if 0
 inline size_t c_str_size_w(guid const &g)
 {
     return stlsoft_ns_qual(c_str_size_w)(g.get());
 }
+#endif /* 0 */
 
+#if 0
 inline size_t c_str_size(guid const &g)
 {
     return stlsoft_ns_qual(c_str_size)(g.get());
 }
+#endif /* 0 */
 
 /* ////////////////////////////////////////////////////////////////////////////
  * Operators
@@ -508,10 +514,12 @@ using ::comstl::c_str_len_w;
 using ::comstl::c_str_len_o;
 using ::comstl::c_str_len;
 
+#if 0
 using ::comstl::c_str_size_a;
 using ::comstl::c_str_size_w;
 using ::comstl::c_str_size_o;
 using ::comstl::c_str_size;
+#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

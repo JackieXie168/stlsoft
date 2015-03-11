@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     30th May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file winstl/synch/process_mutex.hpp
  *
  * \brief [C++ only] Definition of winstl::process_mutex class.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_PROCESS_MUTEX
@@ -50,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     39
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -398,37 +399,28 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_sync_control Synchronisation Control Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" control the behaviour of synchronisation objects
-
-/// \defgroup winstl_sync_control_shims Synchronisation Control Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_sync_control
-/// \brief These \ref concepts_shims "shims" control the behaviour of Win32 synchronisation objects
-/// @{
-
-/// This control ref concepts_shims "shim" aquires a lock on the given mutex
-///
-/// \param mx The mutex on which to aquire the lock
+/** \brief This \ref group__concept__shims "control shim" aquires a lock on the given mutex
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param mx The mutex on which to aquire the lock.
+ */
 inline void lock_instance(winstl_ns_qual(process_mutex) &mx)
 {
     mx.lock();
 }
 
-/// This control ref concepts_shims "shim" releases a lock on the given mutex
-///
-/// \param mx The mutex on which to release the lock
+/** \brief This \ref group__concept__shims "control shim" releases a lock on the given mutex
+ *
+ * \ingroup group__composite__synch_control_shims
+ *
+ * \param mx The mutex on which to release the lock
+ */
 inline void unlock_instance(winstl_ns_qual(process_mutex) &mx)
 {
     mx.unlock();
 }
 
-/// @} // end of group winstl_sync_control_shims
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \

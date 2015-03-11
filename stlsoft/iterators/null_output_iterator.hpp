@@ -4,7 +4,7 @@
  * Purpose:     Null output iterator.
  *
  * Created:     18th February 2006
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -72,7 +72,7 @@
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1200
 # include <iterator>
-# include <stlsoft/char_traits.hpp>
+# include <stlsoft/string/char_traits.hpp>
 #endif /* compiler */
 
 #ifdef STLSOFT_UNITTEST

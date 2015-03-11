@@ -4,7 +4,7 @@
  * Purpose:     global_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     25th March 2006
+ * Updated:     1st June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/memory/global_allocator.hpp
-///
-/// global_allocator class.
+/** \file winstl/memory/global_allocator.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::global_allocator class.
+ *  (\ref group__library__memory "Memory" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR
 #define WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR
@@ -49,7 +51,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_REVISION 1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     66
+# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -85,25 +87,13 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup winstl_allocator_library Allocator Library (WinSTL)
-/// \ingroup WinSTL libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// STL Allocator based on the Win32 Global() API
+/// \brief STL Allocator based on the Win32 Global() API
+///
+/// \ingroup group__library__memory
 ///
 /// \param T The value_type of the allocator
 template <ss_typename_param_k T>
@@ -228,10 +218,6 @@ inline ws_bool_t operator !=(const global_allocator<T> &/* lhs */, const global_
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/global_allocator_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_allocator_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

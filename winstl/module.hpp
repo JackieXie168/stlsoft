@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     31st May 2006
+ * Updated:     1st June 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MODULE_MAJOR     5
 # define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     4
-# define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      206
+# define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  2
+# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      207
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,12 +74,12 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
-#ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
+# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
+#  include <winstl/filesystem/file_path_buffer.hpp>
+# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+# include <winstl/filesystem/filesystem_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -52,10 +52,10 @@
 #define WINSTL_INCL_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MAJOR		1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MINOR		0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_REVISION	1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT		5
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MAJOR       1
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MINOR       0
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_REVISION    1
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,8 +121,8 @@ public:
 /// \name Construction
 /// @{
 public:
-	/** \brief Contructs an instance from the given reason and error code.
-	 */
+    /** \brief Contructs an instance from the given reason and error code.
+     */
     control_panel_exception(char const *reason, error_code_type err)
         : windows_exception(reason, err)
     {}
@@ -147,8 +147,8 @@ public:
 /// \name Construction
 /// @{
 public:
-	/** \brief Contructs an instance from the given reason and error code.
-	 */
+    /** \brief Contructs an instance from the given reason and error code.
+     */
     applet_entry_not_found_exception(char const *reason, error_code_type err)
         : control_panel_exception(reason, err)
     {}

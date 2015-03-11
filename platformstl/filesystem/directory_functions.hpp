@@ -4,7 +4,7 @@
  * Purpose:     Platform header for directory manipulation functions.
  *
  * Created:     29th May 2006
- * Updated:     29th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,6 +38,12 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
+/** \file platformstl/filesystem/directory_functions.hpp
+ *
+ * \brief [C++ only] Functions for manipulating directories.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
+
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS
 #define PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS
 
@@ -46,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,10 +126,12 @@ inline bool_t create_directory_recurse(S const &dir)
 # endif /* operating system */
 }
 
+#if 0
 template <ss_typename_param_k S>
 inline bool_t remove_directory_recurse(S const &dir)
 {
 }
+#endif /* 0 */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     29th May 2006
+ * Updated:     2nd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,10 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/memory_mapped_file.hpp
-///
-/// Memory mapped file class.
+/** \file winstl/memory_mapped_file.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::memory_mapped_file class.
+ */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_MEMORY_MAPPED_FILE
 #define WINSTL_INCL_WINSTL_HPP_MEMORY_MAPPED_FILE
@@ -48,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_MINOR     5
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      61
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_REVISION  3
+# define WINSTL_VER_WINSTL_HPP_MEMORY_MAPPED_FILE_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,9 +60,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+# include <winstl/filesystem/filesystem_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
@@ -100,20 +101,34 @@ namespace winstl_project
  * Classes
  */
 
-/// Facade over the Win32 memory mapped file API
+/** \brief Facade over the Win32 memory mapped file API.
+ *
+ * \ingroup group__file_system
+ */
 class memory_mapped_file
 {
+/// \name Member Types
+/// @{
 private:
+    /// \brief The character type
     typedef ws_char_a_t                     char_type;
+    /// \brief The traits type
     typedef filesystem_traits<ws_char_a_t>  traits_type;
 public:
+    /// \brief This type
     typedef memory_mapped_file              class_type;
+    /// \brief The size type
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     typedef ws_uint64_t                     size_type;
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     typedef ws_uint32_t                     size_type;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    /// \brief The error type
+    typedef ws_dword_t                      error_type;
+/// @}
 
+/// \name Implementation
+/// @{
 private:
     void open_(char_type const *fileName)
     {
@@ -204,6 +219,10 @@ private:
             }
         }
     }
+/// @}
+
+/// \name Construction
+/// @{
 public:
     ss_explicit_k memory_mapped_file(char_type const *fileName)
         : m_cb(0)
@@ -221,30 +240,33 @@ public:
     ~memory_mapped_file() stlsoft_throw_0()
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        WINSTL_ASSERT(NULL != m_memory);
-#else /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-        if(NULL != m_memory)
+        WINSTL_ASSERT(NULL != m_memory || 0 == m_cb);
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        if(NULL != m_memory)
         {
             ::UnmapViewOfFile(m_memory);
         }
     }
+/// @}
 
 /// \name Accessors
 /// @{
 public:
+    /// \brief Non-mutating (const) pointer to the start of the mapped
+    ///  region.
     void const  *memory() const
     {
         return m_memory;
     }
-
+    /// \brief The number of bytes in the mapped region
     size_type size() const
     {
         return m_cb;
     }
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    ws_dword_t lastError() const
+    error_type lastError() const
     {
         return m_lastError;
     }
@@ -252,8 +274,9 @@ public:
 /// @}
 
 /// \name Implementation
+/// @{
 private:
-    void on_error_(char const *message, ws_dword_t error = ::GetLastError())
+    void on_error_(char const *message, error_type error = ::GetLastError())
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         // The exception policy is used because VC++ 5 has a cow when it is
@@ -266,19 +289,24 @@ private:
         m_lastError = error;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
+/// @}
 
-/// Members
+/// \name Members
+/// @{
 private:
     size_type   m_cb;
     void        *m_memory;
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    ws_dword_t  m_lastError;
+    error_type  m_lastError;
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     memory_mapped_file(class_type const &);
     class_type &operator =(class_type const &);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */

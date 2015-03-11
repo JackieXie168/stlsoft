@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     27th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -78,9 +78,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_MODULE
 # include <winstl/module.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_MODULE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+# include <stlsoft/string/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #include <vector>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -352,7 +352,7 @@ private:
 /// \name Constants
 /// @{
 public:
-	/// \brief Flags that moderate the load behaviour.
+    /// \brief Flags that moderate the load behaviour.
     enum load_flags
     {
             ignoreIconLoadFailures  =   0x0001  //!< \brief Ignores icon load failures and continues applet loading.
@@ -365,18 +365,18 @@ public:
 /// @{
 public:
     /// \brief Constructs an instance containing all the applets in the
-	///  given module.
-	///
-	/// \param path [in] Path of the applet module.
-	/// \param flags [in] Flags that moderate the loading behaviour.
-	/// \param hwndParent [in] Handle to a window to act as the parent for
-	///  the dialog(s) of the applet(s) contained in the module
-	///
-	/// \exception control_panel_exception Thrown if the applet module
-	///  initialisation fails.
-	/// \exception resource_exception Thrown if the icon cannot be loaded
-	///  for a given applet, and
-	///  \link applet_module::load_flags ignoreIconLoadFailures\endlink.
+    ///  given module.
+    ///
+    /// \param path [in] Path of the applet module.
+    /// \param flags [in] Flags that moderate the loading behaviour.
+    /// \param hwndParent [in] Handle to a window to act as the parent for
+    ///  the dialog(s) of the applet(s) contained in the module
+    ///
+    /// \exception control_panel_exception Thrown if the applet module
+    ///  initialisation fails.
+    /// \exception resource_exception Thrown if the icon cannot be loaded
+    ///  for a given applet, and
+    ///  \link applet_module::load_flags ignoreIconLoadFailures\endlink.
     ss_explicit_k applet_module(TCHAR const *path, int flags = ignoreIconLoadFailures, HWND hwndParent = NULL);
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     ss_explicit_k applet_module(TCHAR const *path, onFailureC pfn, int flags = ignoreIconLoadFailures, HWND hwndParent = NULL);

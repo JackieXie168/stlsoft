@@ -4,7 +4,7 @@
  * Purpose:     Contains the edit_line_sequence class.
  *
  * Created:     23rd March 2006
- * Updated:     30th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,15 +68,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+# include <stlsoft/string/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
+# include <stlsoft/iterator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #include <vector>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,13 +171,13 @@ private:
 
 
 template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
-inline ws_bool_t operator ==(edit_line_sequence<C, A, S, Q>::const_iterator const &lhs, edit_line_sequence<C, A, S, Q>::const_iterator const &rhs)
+inline ws_bool_t operator ==(ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const &lhs, ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const &rhs)
 {
     return lhs.equal(rhs);
 }
 
 template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
-inline ws_bool_t operator !=(edit_line_sequence<C, A, S, Q>::const_iterator const &lhs, edit_line_sequence<C, A, S, Q>::const_iterator const &rhs)
+inline ws_bool_t operator !=(ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const &lhs, ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const &rhs)
 {
     return !lhs.equal(rhs);
 }

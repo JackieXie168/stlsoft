@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MAJOR    4
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MINOR    2
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 3
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     48
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 4
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -438,10 +438,12 @@ inline as_size_t c_str_len(ccombstr_veneer const &str)
     return str.length();
 }
 
+#if 0
 inline as_size_t c_str_size(ccombstr_veneer const &str)
 {
     return c_str_len(str) * sizeof(OLECHAR);
 }
+#endif /* 0 */
 
 template<ss_typename_param_k S>
 inline S &operator <<(S &s, ccombstr_veneer const &str)

@@ -4,7 +4,7 @@
  * Purpose:     A component for relating two COM objects without .
  *
  * Created:     25th March 2006
- * Updated:     26th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -63,9 +63,9 @@
 #ifndef COMSTL_INCL_COMSTL_HPP_ACYCLIC_CONNECTOR
 # include <comstl/interface_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_HPP_ACYCLIC_CONNECTOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE
-# include <stlsoft/lock_scope.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE
+# include <stlsoft/synch/lock_scope.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE */
 
 /* ////////////////////////////////////////////////////////////////////////////
  * Namespace

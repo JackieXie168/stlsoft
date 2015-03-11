@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     21st March 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MAJOR       1
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MINOR       2
-# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_REVISION    2
-# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        14
+# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_REVISION    4
+# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -115,10 +115,26 @@ inline C const *c_str_ptr(ACE_String_Base<C> const &s)
 {
     return s.c_str();
 }
+inline as_char_a_t const *c_str_ptr_a(ACE_String_Base<as_char_a_t> const &s)
+{
+    return s.c_str();
+}
+inline as_char_w_t const *c_str_ptr_w(ACE_String_Base<as_char_w_t> const &s)
+{
+    return s.c_str();
+}
 
 /// Returns a non-NULL optionally non-nul-terminated c-string pointer from the given string instance
 template <ss_typename_param_k C>
 inline C const *c_str_data(ACE_String_Base<C> const &s)
+{
+    return s.c_str();
+}
+inline as_char_a_t const *c_str_data_a(ACE_String_Base<as_char_a_t> const &s)
+{
+    return s.c_str();
+}
+inline as_char_w_t const *c_str_data_a(ACE_String_Base<as_char_w_t> const &s)
 {
     return s.c_str();
 }
@@ -137,12 +153,14 @@ inline as_size_t c_str_len(ACE_String_Base<C> const &s)
     return s.length();
 }
 
+#if 0
 /// Evaluates the size (in bytes) of the string
 template <ss_typename_param_k C>
 inline as_size_t c_str_size(ACE_String_Base<C> const &s)
 {
     return sizeof(C) * s.length();
 }
+#endif /* 0 */
 
 /// An inserter function for ACE_Time_Value into output streams
 template<   ss_typename_param_k S
@@ -183,9 +201,18 @@ namespace stlsoft
 {
 
     using ::acestl::c_str_ptr;
+    using ::acestl::c_str_ptr_a;
+    using ::acestl::c_str_ptr_w;
+
     using ::acestl::c_str_data;
+    using ::acestl::c_str_data_a;
+    using ::acestl::c_str_data_w;
+
     using ::acestl::c_str_len;
+
+#if 0
     using ::acestl::c_str_size;
+#endif /* 0 */
 
 } // namespace stlsoft
 

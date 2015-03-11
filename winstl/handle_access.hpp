@@ -113,7 +113,7 @@ namespace winstl_project
  */
 inline HANDLE get_handle(HANDLE h)
 {
-	return h;
+    return h;
 }
 
 #ifndef _WINSTL_NO_NAMESPACE
@@ -132,8 +132,8 @@ inline HANDLE get_handle(HANDLE h)
 template <>
 struct handle_traits<HANDLE>
 {
-	typedef HANDLE		handle_type;
-	typedef no_type		is_type_a_wrapper_type_type;
+    typedef HANDLE      handle_type;
+    typedef no_type     is_type_a_wrapper_type_type;
 };
 
 #ifndef _WINSTL_NO_NAMESPACE

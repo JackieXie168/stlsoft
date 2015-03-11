@@ -4,7 +4,7 @@
  * Purpose:     Selects the most appropriate allocator.
  *
  * Created:     20th August 2005
- * Updated:     27th March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/memory/allocator_selector.hpp
-///
-/// Selects the most appropriate allocator.
+/** \file stlsoft/memory/allocator_selector.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::allocator_selector class.
+ *  (\ref group__library__memory "Memory" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 #define STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     15
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -161,6 +163,13 @@ namespace stlsoft
  * Classes
  */
 
+/** \brief \ref group__pattern__type_generator "Type generator" class
+ *   template that selects an appropriate allocator specialisation for the
+ *   given type.
+ *
+ * \ingroup group__library__memory
+ *
+ */
 template <ss_typename_param_k T>
 struct allocator_selector
 {

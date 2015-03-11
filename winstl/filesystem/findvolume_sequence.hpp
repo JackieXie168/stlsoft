@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     31st May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,18 +44,21 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/filesystem/findvolume_sequence.hpp
-///
-/// Contains the basic_findvolume_sequence template class, and ANSI and Unicode specialisations thereof.
+/** \file winstl/filesystem/findvolume_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_findvolume_sequence
+ *  class template.
+ *  (\ref group__library__file_system "File System" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR		4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION	1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT		87
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -97,20 +100,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_filesystem File-System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating file-system objects
-
-/// \weakgroup winstl_filesystem_library File-System Library (WinSTL)
-/// \ingroup WinSTL libraries_filesystem
-/// \brief This library provides facilities for defining and manipulating file-system objects for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Enumerations
  */
@@ -141,7 +130,9 @@ class basic_findvolume_sequence_const_iterator;
  */
 
 // class basic_findvolume_sequence
-/// Presents an STL-like sequence interface over the volumes on a system
+/// \brief Presents an STL-like sequence interface over the volumes on a system
+///
+/// \ingroup group__library__file_system
 ///
 /// \note This class functions only on Windows 2000 and later
 ///
@@ -222,13 +213,13 @@ public:
     /// Default constructor
     basic_findvolume_sequence_value_type();
     /// Copy constructor
-    basic_findvolume_sequence_value_type(const class_type &rhs);
+    basic_findvolume_sequence_value_type(class_type const &rhs);
 private:
     basic_findvolume_sequence_value_type(char_type const *vol_name);
 public:
 
     /// Copy assignment operator
-    basic_findvolume_sequence_value_type &operator =(const class_type &rhs);
+    class_type &operator =(class_type const &rhs);
 
 // Attributes
 public:
@@ -345,12 +336,12 @@ public:
     /// Default constructor
     basic_findvolume_sequence_const_iterator();
     /// Copy constructor
-    basic_findvolume_sequence_const_iterator(const class_type &rhs);
+    basic_findvolume_sequence_const_iterator(class_type const &rhs);
     /// Destructor
     ~basic_findvolume_sequence_const_iterator() stlsoft_throw_0();
 
     /// Copy assignment operator
-    basic_findvolume_sequence_const_iterator &operator =(const class_type &rhs);
+    class_type &operator =(class_type const &rhs);
 
 public:
     /// Pre-increment operator
@@ -360,9 +351,9 @@ public:
     /// Dereference to access the value at the current position
     const value_type operator *() const;
     /// Evaluates whether \c this and \c rhs are equivalent
-    ws_bool_t operator ==(const class_type &rhs) const;
+    ws_bool_t operator ==(class_type const &rhs) const;
     /// Evaluates whether \c this and \c rhs are not equivalent
-    ws_bool_t operator !=(const class_type &rhs) const;
+    ws_bool_t operator !=(class_type const &rhs) const;
 
 // Members
 private:
@@ -374,6 +365,67 @@ private:
     shared_handle   *m_handle;
     char_type       m_name[MAX_VOL_NAME + 1];
 };
+
+///////////////////////////////////////////////////////////////////////////////
+// Shims
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline C const *c_str_ptr_null(basic_findvolume_sequence_value_type<C, T> const &v)
+{
+    return stlsoft_ns_qual(c_str_ptr_null(v));
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline C const *c_str_ptr(basic_findvolume_sequence_value_type<C, T> const &v)
+{
+    return v;
+}
+template <ss_typename_param_k T>
+inline ws_char_a_t const *c_str_ptr_a(basic_findvolume_sequence_value_type<ws_char_a_t, T> const &v)
+{
+    return v;
+}
+template <ss_typename_param_k T>
+inline ws_char_w_t const *c_str_ptr_w(basic_findvolume_sequence_value_type<ws_char_w_t, T> const &v)
+{
+    return v;
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline C const *c_str_data(basic_findvolume_sequence_value_type<C, T> const &v)
+{
+    return v;
+}
+template <ss_typename_param_k T>
+inline ws_char_a_t const *c_str_data_a(basic_findvolume_sequence_value_type<ws_char_a_t, T> const &v)
+{
+    return v;
+}
+template <ss_typename_param_k T>
+inline ws_char_w_t const *c_str_data_w(basic_findvolume_sequence_value_type<ws_char_w_t, T> const &v)
+{
+    return v;
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline ws_size_t c_str_len(basic_findvolume_sequence_value_type<C, T> const &v)
+{
+    return stlsoft_ns_qual(c_str_len(stlsoft_ns_qual(c_str_ptr(v))));
+}
+
+#if 0
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline ws_size_t c_str_size(basic_findvolume_sequence_value_type<C, T> const &v)
+{
+    return stlsoft_ns_qual(c_str_size(stlsoft_ns_qual(c_str_ptr(v))));
+}
+#endif /* 0 */
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline ws_bool_t is_empty(basic_findvolume_sequence_value_type<C, T> const &v)
+{
+    return '\0' == v[0];
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -437,7 +489,7 @@ inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_val
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_value_type(const class_type &rhs)
+inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_value_type(class_type const &rhs)
 {
     traits_type::str_copy(m_name, rhs.m_name);
 }
@@ -449,7 +501,7 @@ inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_val
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k basic_findvolume_sequence_value_type<C, T>::class_type &basic_findvolume_sequence_value_type<C, T>::operator =(const class_type &rhs)
+inline ss_typename_type_k basic_findvolume_sequence_value_type<C, T>::class_type &basic_findvolume_sequence_value_type<C, T>::operator =(class_type const &rhs)
 {
     traits_type::str_copy(m_name, rhs.m_name);
 
@@ -489,7 +541,7 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_seque
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
-inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_sequence_const_iterator(const class_type &rhs)
+inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_sequence_const_iterator(class_type const &rhs)
     : m_list(rhs.m_list)
     , m_handle(rhs.m_handle)
 {
@@ -589,10 +641,6 @@ inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator !=(
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// @} // end of group winstl_filesystem_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -601,6 +649,49 @@ inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator !=(
 } // namespace winstl_project
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Namespace
+ *
+ * The string access shims exist either in the stlsoft namespace, or in the
+ * global namespace. This is required by the lookup rules.
+ *
+ */
+
+#ifndef _WINSTL_NO_NAMESPACE
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+namespace stlsoft
+{
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
+
+using ::winstl::c_str_ptr_null;
+
+using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
+
+using ::winstl::c_str_data;
+using ::winstl::c_str_data_a;
+using ::winstl::c_str_data_w;
+
+using ::winstl::c_str_len;
+
+#if 0
+using ::winstl::c_str_size;
+#endif /* 0 */
+
+using ::winstl::is_empty;
+
+# if !defined(_STLSOFT_NO_NAMESPACE) && \
+     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+} // namespace stlsoft
+# else /* ? _STLSOFT_NO_NAMESPACE */
+/* There is no stlsoft namespace, so must define in the global namespace */
+# endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */

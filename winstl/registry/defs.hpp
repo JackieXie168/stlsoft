@@ -4,7 +4,7 @@
  * Purpose:     Contains common type and feature discriminations for the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     22nd May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -87,9 +87,9 @@
 #  include _WINSTL_REG_STRING_CUSTOM_HEADER_FILE    // Your string class
 # endif /* !_WINSTL_REG_STRING_CUSTOM_HEADER_FILE */
 #else /* ? _WINSTL_REG_STRING_USE_CUSTOM_STRING */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+#  include <stlsoft/string/simple_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #endif /* string type */
 
 /* /////////////////////////////////////////////////////////////////////////////

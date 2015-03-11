@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation functions.
  *
  * Created:     30th May 2006
- * Updated:     30th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,6 +42,7 @@
  *
  * \brief [C++ only] Definition of the winstl::WaitForMultipleObjects()
  *  functions.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_FUNCTIONS
@@ -50,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_FUNCTIONS_EDIT     1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_FUNCTIONS_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -94,6 +95,10 @@ namespace winstl_project
  * Functions
  */
 
+/** \brief [IMPLEMENTATION]
+ *
+ * \ingroup group__library__synch
+ */
 inline DWORD WaitForMultipleObjects_helper_8(   HANDLE		h0
                                             ,   HANDLE		h1
                                             ,   HANDLE		h2
@@ -132,6 +137,10 @@ inline DWORD WaitForMultipleObjects_helper_8(   HANDLE		h0
 }
 
 
+/** \brief Execute wait for 8 synchronisation objects of heterogeneous types.
+ *
+ * \ingroup group__library__synch
+ */
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         ,   ss_typename_param_k L2
@@ -153,7 +162,7 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L5 &
     WINSTL_ASSERT(NULL != stlsoft_ns_qual(get_handle)(l7));
 
     return WaitForMultipleObjects_helper_8(
-        ,   stlsoft_ns_qual(get_handle)(l0)
+            stlsoft_ns_qual(get_handle)(l0)
         ,   stlsoft_ns_qual(get_handle)(l1)
         ,   stlsoft_ns_qual(get_handle)(l2)
         ,   stlsoft_ns_qual(get_handle)(l3)
@@ -165,6 +174,10 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L5 &
         ,   timeout);
 }
 
+/** \brief Execute wait for 7 synchronisation objects of heterogeneous types.
+ *
+ * \ingroup group__library__synch
+ */
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         ,   ss_typename_param_k L2
@@ -184,7 +197,7 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L5 &
     WINSTL_ASSERT(NULL != stlsoft_ns_qual(get_handle)(l6));
 
     return WaitForMultipleObjects_helper_8(
-        ,   stlsoft_ns_qual(get_handle)(l0)
+            stlsoft_ns_qual(get_handle)(l0)
         ,   stlsoft_ns_qual(get_handle)(l1)
         ,   stlsoft_ns_qual(get_handle)(l2)
         ,   stlsoft_ns_qual(get_handle)(l3)
@@ -196,6 +209,10 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L5 &
         ,   timeout);
 }
 
+/** \brief Execute wait for 6 synchronisation objects of heterogeneous types.
+ *
+ * \ingroup group__library__synch
+ */
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         ,   ss_typename_param_k L2
@@ -213,7 +230,7 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L5 &
     WINSTL_ASSERT(NULL != stlsoft_ns_qual(get_handle)(l5));
 
     return WaitForMultipleObjects_helper_8(
-        ,   stlsoft_ns_qual(get_handle)(l0)
+            stlsoft_ns_qual(get_handle)(l0)
         ,   stlsoft_ns_qual(get_handle)(l1)
         ,   stlsoft_ns_qual(get_handle)(l2)
         ,   stlsoft_ns_qual(get_handle)(l3)
@@ -225,6 +242,10 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L5 &
         ,   timeout);
 }
 
+/** \brief Execute wait for 5 synchronisation objects of heterogeneous types.
+ *
+ * \ingroup group__library__synch
+ */
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         ,   ss_typename_param_k L2
@@ -240,7 +261,7 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, ws_b
     WINSTL_ASSERT(NULL != stlsoft_ns_qual(get_handle)(l4));
 
     return WaitForMultipleObjects_helper_8(
-        ,   stlsoft_ns_qual(get_handle)(l0)
+            stlsoft_ns_qual(get_handle)(l0)
         ,   stlsoft_ns_qual(get_handle)(l1)
         ,   stlsoft_ns_qual(get_handle)(l2)
         ,   stlsoft_ns_qual(get_handle)(l3)
@@ -252,6 +273,10 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, ws_b
         ,   timeout);
 }
 
+/** \brief Execute wait for 4 synchronisation objects of heterogeneous types.
+ *
+ * \ingroup group__library__synch
+ */
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         ,   ss_typename_param_k L2
@@ -265,7 +290,7 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, ws_bool_t bW
     WINSTL_ASSERT(NULL != stlsoft_ns_qual(get_handle)(l3));
 
     return WaitForMultipleObjects_helper_8(
-        ,   stlsoft_ns_qual(get_handle)(l0)
+            stlsoft_ns_qual(get_handle)(l0)
         ,   stlsoft_ns_qual(get_handle)(l1)
         ,   stlsoft_ns_qual(get_handle)(l2)
         ,   stlsoft_ns_qual(get_handle)(l3)
@@ -277,6 +302,10 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, ws_bool_t bW
         ,   timeout);
 }
 
+/** \brief Execute wait for 3 synchronisation objects of heterogeneous types.
+ *
+ * \ingroup group__library__synch
+ */
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         ,   ss_typename_param_k L2
@@ -288,7 +317,7 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, ws_bool_t bWaitAll, 
     WINSTL_ASSERT(NULL != stlsoft_ns_qual(get_handle)(l2));
 
     return WaitForMultipleObjects_helper_8(
-        ,   stlsoft_ns_qual(get_handle)(l0)
+            stlsoft_ns_qual(get_handle)(l0)
         ,   stlsoft_ns_qual(get_handle)(l1)
         ,   stlsoft_ns_qual(get_handle)(l2)
         ,   NULL
@@ -300,6 +329,10 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, L2 &l2, ws_bool_t bWaitAll, 
         ,   timeout);
 }
 
+/** \brief Execute wait for 2 synchronisation objects of heterogeneous types.
+ *
+ * \ingroup group__library__synch
+ */
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         >
@@ -309,7 +342,7 @@ inline DWORD WaitForMultipleObjects(L0 &l0, L1 &l1, ws_bool_t bWaitAll, ws_dword
     WINSTL_ASSERT(NULL != stlsoft_ns_qual(get_handle)(l1));
 
     return WaitForMultipleObjects_helper_8(
-        ,   stlsoft_ns_qual(get_handle)(l0)
+            stlsoft_ns_qual(get_handle)(l0)
         ,   stlsoft_ns_qual(get_handle)(l1)
         ,   NULL
         ,   NULL

@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     25th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -75,18 +75,18 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. The inetstl::basic_findfile_sequence class now supports multi-part patterns. This file will be removed from a future release.")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+# include <stlsoft/string/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
 # include <stlsoft/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 //#include <inetstl_string_access.h>
 

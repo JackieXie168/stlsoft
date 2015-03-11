@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     22nd May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,7 +44,8 @@
  *  and
  *  \link winstl::registry_util::monitored_shared_handle monitored_shared_handle\endlink
  *  classes that are used to provide shared context between iterators implement
- *  the <b>Externally Invalidatable Iterator</b> pattern.
+ *  the \ref group__pattern__externally_invalidatable_iterator "Externally Invalidatable Iterator"
+ *  pattern.
  */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_SHARED_HANDLES
@@ -54,7 +55,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     9
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,9 +77,9 @@
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY
 # include <winstl/registry/reg_key.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY */
-#ifndef WINSTL_INCL_WINSTL_HPP_EVENT
-# include <winstl/event.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_EVENT */
+#ifndef WINSTL_INCL_SYNCH_WINSTL_HPP_EVENT
+# include <winstl/synch/event.hpp>
+#endif /* !WINSTL_INCL_SYNCH_WINSTL_HPP_EVENT */
 #ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
 # include <winstl/functions.h>
 #endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */

@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the current_directory components.
  *
  * Created:     13th June 2005
- * Updated:     8th February 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     7
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/current_directory.hpp Platform header for the current_directory components */
@@ -122,8 +122,8 @@ namespace platformstl_project
 
     // Not to be implemented
     private:
-        basic_current_directory(const class_type &);
-        basic_current_directory &operator =(const class_type &);
+        basic_current_directory(class_type const &);
+        class_type &operator =(class_type const &);
     };
 
     typedef basic_current_directory<char>       current_directory_a;
@@ -172,8 +172,8 @@ namespace platformstl_project
 
     // Not to be implemented
     private:
-        basic_current_directory(const class_type &);
-        basic_current_directory &operator =(const class_type &);
+        basic_current_directory(class_type const &);
+        class_type &operator =(class_type const &);
     };
 
     typedef basic_current_directory<char>       current_directory_a;

@@ -4,7 +4,7 @@
  * Purpose:     afx_allocator class.
  *
  * Created:     5th August 2005
- * Updated:     25th March 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file mfcstl/memory/afx_allocator.hpp
-///
-/// afx_allocator class.
+/** \file mfcstl/memory/afx_allocator.hpp
+ *
+ * \brief [C++ only] Definition of the mfcstl::afx_allocator class.
+ *  (\ref group__library__memory "Memory" Library.)
+ */
 
 #ifndef MFCSTL_INCL_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR
 #define MFCSTL_INCL_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR
@@ -49,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MAJOR       2
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MINOR       0
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_REVISION    1
-# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        5
+# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -87,25 +89,13 @@ namespace mfcstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup mfcstl_allocator_library Allocator Library (MFCSTL)
-/// \ingroup MFCSTL libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types for MFC
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// STL Allocator based on the MFC memory framework
+/// \brief STL Allocator based on the MFC memory framework
+///
+/// \ingroup group__library__memory
 ///
 /// \param T The value_type of the allocator
 template <ss_typename_param_k T>

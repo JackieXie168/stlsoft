@@ -4,7 +4,7 @@
  * Purpose:     stlsoft_new_allocator class - use new & delete operators.
  *
  * Created:     2nd January 2001
- * Updated:     25th March 2006
+ * Updated:     1st June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/memory/new_allocator.hpp
-///
-/// Definition of stlsoft_new_allocator class - use new & delete operators.
+/** \file stlsoft/memory/new_allocator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::new_allocator class.
+ *  (\ref group__library__memory "Memory" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR
 #define STLSOFT_INCL_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      69
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -72,25 +74,13 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup stlsoft_allocator_library Allocator Library (STLSoft)
-/// \ingroup STLSoft libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// STL Allocator based on operators \c new and \c delete
+/// \brief STL Allocator based on operators \c new and \c delete
+///
+/// \ingroup group__library__memory
 ///
 /// \param T The value_type of the allocator
 template <ss_typename_param_k T>
@@ -233,10 +223,6 @@ inline ss_bool_t operator !=(const new_allocator<T> &/* lhs */, const new_alloca
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/new_allocator_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group stlsoft_allocator_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     12th May 2006
+ * Updated:     6th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MAJOR     1
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MINOR     3
-# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_REVISION  2
-# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      19
+# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_REVISION  3
+# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -180,17 +180,21 @@ inline ss_size_t c_str_len(stlsoft_ns_qual_std(exception) const &x)
  */
 
 /* std::exception */
+#if 0
 /// \brief Returns the size (in bytes) of the contents of \c x, <b><i>not</i></b> including the null-terminating character
 inline ss_size_t c_str_size_a(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_size_a(x.what());
 }
+#endif /* 0 */
 
+#if 0
 /// \brief Returns the size (in bytes) of the contents of \c x, <b><i>not</i></b> including the null-terminating character
 inline ss_size_t c_str_size(stlsoft_ns_qual_std(exception) const &x)
 {
     return c_str_size_a(x);
 }
+#endif /* 0 */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

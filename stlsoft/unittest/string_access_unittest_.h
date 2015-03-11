@@ -1,5 +1,5 @@
 
-// Updated: 19th December 2005
+// Updated: 6th June 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS)
 # error This file cannot be directly included, and should only be included within stlsoft/string_access.hpp
@@ -18,7 +18,7 @@ namespace unittest
             ss_bool_t           bSuccess    =   true;
             ss_char_a_t const   *s1         =   "String #1";
 
-            if(NULL != c_str_ptr_null_a(NULL))
+            if(NULL != c_str_ptr_null_a(static_cast<ss_char_a_t const*>(NULL)))
             {
                 r->report("c_str_ptr_null_a(NULL) failed", __LINE__);
                 bSuccess = false;
@@ -36,14 +36,14 @@ namespace unittest
 
 
 
-            if(NULL == c_str_ptr_a(NULL))
+            if(NULL == c_str_ptr_a(static_cast<ss_char_a_t const*>(NULL)))
             {
                 r->report("c_str_ptr_a(NULL) failed", __LINE__);
                 bSuccess = false;
             }
             if(NULL == c_str_ptr_a(""))
             {
-                r->report("c_str_ptr_a(NULL) failed", __LINE__);
+                r->report("c_str_ptr_a(\"\") failed", __LINE__);
                 bSuccess = false;
             }
             if(s1 != c_str_ptr_a(s1))
@@ -54,14 +54,14 @@ namespace unittest
 
 
 
-            if(NULL == c_str_data_a(NULL))
+            if(NULL == c_str_data_a(static_cast<ss_char_a_t const*>(NULL)))
             {
                 r->report("c_str_data_a(NULL) failed", __LINE__);
                 bSuccess = false;
             }
             if(NULL == c_str_data_a(""))
             {
-                r->report("c_str_data_a(NULL) failed", __LINE__);
+                r->report("c_str_data_a(\"\") failed", __LINE__);
                 bSuccess = false;
             }
             if(s1 != c_str_data_a(s1))
@@ -72,7 +72,7 @@ namespace unittest
 
 
 
-            if(0 != c_str_len_a(NULL))
+            if(0 != c_str_len_a(static_cast<ss_char_a_t const*>(NULL)))
             {
                 r->report("c_str_len_a(NULL) failed", __LINE__);
                 bSuccess = false;
@@ -90,7 +90,7 @@ namespace unittest
 
 
 
-            if(0 != c_str_size_a(NULL))
+            if(0 != c_str_size_a(static_cast<ss_char_a_t const*>(NULL)))
             {
                 r->report("c_str_size_a(NULL) failed", __LINE__);
                 bSuccess = false;
@@ -115,7 +115,7 @@ namespace unittest
             ss_bool_t           bSuccess    =   true;
             ss_char_w_t const   *s1         =   L"String #1";
 
-            if(NULL != c_str_ptr_null_w(NULL))
+            if(NULL != c_str_ptr_null_w(static_cast<ss_char_w_t const*>(NULL)))
             {
                 r->report("c_str_ptr_null_w(NULL) failed", __LINE__);
                 bSuccess = false;
@@ -133,14 +133,14 @@ namespace unittest
 
 
 
-            if(NULL == c_str_ptr_w(NULL))
+            if(NULL == c_str_ptr_w(static_cast<ss_char_w_t const*>(NULL)))
             {
                 r->report("c_str_ptr_w(NULL) failed", __LINE__);
                 bSuccess = false;
             }
             if(NULL == c_str_ptr_w(L""))
             {
-                r->report("c_str_ptr_w(NULL) failed", __LINE__);
+                r->report("c_str_ptr_w(\"\") failed", __LINE__);
                 bSuccess = false;
             }
             if(s1 != c_str_ptr_w(s1))
@@ -151,14 +151,14 @@ namespace unittest
 
 
 
-            if(NULL == c_str_data_w(NULL))
+            if(NULL == c_str_data_w(static_cast<ss_char_w_t const*>(NULL)))
             {
                 r->report("c_str_data_w(NULL) failed", __LINE__);
                 bSuccess = false;
             }
             if(NULL == c_str_data_w(L""))
             {
-                r->report("c_str_data_w(NULL) failed", __LINE__);
+                r->report("c_str_data_w(\"\") failed", __LINE__);
                 bSuccess = false;
             }
             if(s1 != c_str_data_w(s1))
@@ -169,7 +169,7 @@ namespace unittest
 
 
 
-            if(0 != c_str_len_w(NULL))
+            if(0 != c_str_len_w(static_cast<ss_char_w_t const*>(NULL)))
             {
                 r->report("c_str_len_w(NULL) failed", __LINE__);
                 bSuccess = false;
@@ -187,7 +187,7 @@ namespace unittest
 
 
 
-            if(0 != c_str_size_w(NULL))
+            if(0 != c_str_size_w(static_cast<ss_char_w_t const*>(NULL)))
             {
                 r->report("c_str_size_w(NULL) failed", __LINE__);
                 bSuccess = false;

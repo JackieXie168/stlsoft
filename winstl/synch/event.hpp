@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     30th May 2006
+ * Updated:     3rd June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,6 +41,7 @@
 /** \file winstl/synch/event.hpp
  *
  * \brief [C++ only] Definition of the winstl::event class.
+ *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EVENT
@@ -50,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     42
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -227,33 +228,6 @@ private:
     event &operator =(class_type const &rhs);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Access shims
- */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_sync_control Synchronisation Control Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" control the behaviour of synchronisation objects
-
-/// \defgroup winstl_sync_attribute_shims Synchronisation Access Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_sync_control
-/// \brief These \ref concepts_shims "shims" access the characteristics of Win32 synchronisation objects
-/// @{
-
-#if 0
-inline HANDLE get_handle(event &ev)
-{
-    return ev.handle();
-}
-#endif /* 0 */
-
-/// @} // end of group winstl_sync_attribute_shims
-
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
@@ -289,10 +263,6 @@ namespace stlsoft
 # else /* ? _STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
-
-#if 0
-using ::winstl::get_handle;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
