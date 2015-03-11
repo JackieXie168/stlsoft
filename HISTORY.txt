@@ -8,6 +8,11 @@ STLSoft - History
 
 
 
+3rd March 2008 - 1.9.30 released
+--------------------------------
+
+ * tidying of distribution
+
 3rd March 2008 - 1.9.29 released
 --------------------------------
 

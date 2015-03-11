@@ -9,6 +9,8 @@ STLSoft - News
 
 News:
 
+  3rd April 2008       -   Release of STLSoft 1.9.30
+
   3rd April 2008       -   Release of STLSoft 1.9.29
 
   24th March 2008      -   Release of STLSoft 1.9.28
