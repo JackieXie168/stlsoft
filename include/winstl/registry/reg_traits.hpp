@@ -5,7 +5,9 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     23rd February 2009
+ * Updated:     15th May 2009
+ *
+ * Thanks to:   Sam Fisher for requesting reg_delete_tree().
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    4
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     71
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,33 +132,33 @@ public:
 /// @{
 public:
     /// \brief Duplicates a registry key
-    static hkey_type    key_dup(        hkey_type       hkey
-                                    ,   REGSAM          samDesired  =   KEY_ALL_ACCESS
-                                    ,   result_type*    result     =   NULL);
+    static hkey_type    key_dup(        hkey_type           hkey
+                                    ,   REGSAM              samDesired  =   KEY_ALL_ACCESS
+                                    ,   result_type*        result     =   NULL);
     /// \brief Opens a registry sub-key
     static result_type  reg_open_key(   hkey_type           hkey,
                                         char_type const*    sub_key_name,
                                         hkey_type*          hkey_result,
                                         REGSAM              samDesired = KEY_ALL_ACCESS);
     /// \brief Opens a registry sub-key
-    static result_type  reg_create_key( hkey_type       hkey,
-                                        char_type const* sub_key_name,
+    static result_type  reg_create_key( hkey_type           hkey,
+                                        char_type const*    sub_key_name,
                                         hkey_type*          hkey_result,
-                                        REGSAM          samDesired = KEY_ALL_ACCESS);
-    static result_type  reg_create_key( hkey_type       hkey,
-                                        char_type const* sub_key_name,
+                                        REGSAM              samDesired = KEY_ALL_ACCESS);
+    static result_type  reg_create_key( hkey_type           hkey,
+                                        char_type const*    sub_key_name,
                                         hkey_type*          hkey_result,
-                                        ws_bool_t       &bCreated,
-                                        REGSAM          samDesired = KEY_ALL_ACCESS);
+                                        ws_bool_t&          bCreated,
+                                        REGSAM              samDesired = KEY_ALL_ACCESS);
     /// \brief Destroys a registry sub-key
-    static result_type  reg_delete_key( hkey_type       hkey,
-                                        char_type const* sub_key_name);
+    static result_type  reg_delete_key( hkey_type           hkey,
+                                        char_type const*    sub_key_name);
     /// \brief Queries a registry key value
-    static result_type  reg_query_value(hkey_type       hkey,
-                                        char_type const* valueName,
-                                        ws_dword_t      &valueType,
+    static result_type  reg_query_value(hkey_type           hkey,
+                                        char_type const*    valueName,
+                                        ws_dword_t&         valueType,
                                         void*               data,
-                                        size_type       &cbData);
+                                        size_type           &cbData);
     /// \brief Sets the value of the named value.
     static result_type  reg_set_value(  hkey_type           hkey
                                     ,   char_type const*    valueName
@@ -166,6 +168,12 @@ public:
     /// \brief Deletes the named value.
     static result_type  reg_delete_value(hkey_type          hkey
                                     ,   char_type const*    valueName);
+
+    /// Deletes the key and all sub-keys, permissions allowing 
+    static result_type reg_delete_tree(
+        hkey_type           hkey
+    ,   char_type const*    sub_key_name
+    );
 
     /// \brief Queries a registry key's characteristics
     static result_type  reg_query_info( hkey_type       hkey,
@@ -288,6 +296,21 @@ public:
         return ::RegDeleteValueA(hkey, valueName);
     }
 
+    static result_type reg_delete_tree(
+        hkey_type           hkey
+    ,   char_type const*    sub_key_name
+    )
+    {
+        result_type res = execute_dynamic_("advapi32.dll", "RegDeleteTreeA", hkey, sub_key_name);
+
+        if(ERROR_PROC_NOT_FOUND == res)
+        {
+            res = execute_dynamic_("shlwapi.dll", "SHDeleteKeyA", hkey, sub_key_name);
+        }
+
+        return res;
+    }
+
     static result_type reg_query_info(  hkey_type       hkey,
                                         char_type*      key_class,
                                         size_type*      cch_key_class,
@@ -340,6 +363,46 @@ public:
                                         size_type*      cch_valueName)
     {
         return ::RegEnumValueA(hkey, index, valueName, reinterpret_cast<LPDWORD>(cch_valueName), NULL, NULL, NULL, NULL);
+    }
+
+private:
+    static result_type execute_dynamic_(
+        ws_char_a_t const*  module
+    ,   ws_char_a_t const*  function
+    ,   hkey_type           a1
+    ,   char_type const*    a2
+    )
+    {
+        result_type r       =   ERROR_SUCCESS;
+        HINSTANCE   hinst   =   ::LoadLibraryA(module);
+
+        if(NULL == hinst)
+        {
+            r = ::GetLastError();
+        }
+        else
+        {
+            union
+            {
+                FARPROC                 fp;
+                DWORD (STLSOFT_STDCALL* pfn)(HKEY, LPCSTR);
+            } u;
+
+            u.fp = ::GetProcAddress(hinst, function);
+
+            if(NULL == u.fp)
+            {
+                r = ::GetLastError();
+            }
+            else
+            {
+                r = (*u.pfn)(a1, a2);
+            }
+
+            ::FreeLibrary(hinst);
+        }
+
+        return r;
     }
 };
 
@@ -415,6 +478,21 @@ public:
         return ::RegDeleteValueW(hkey, valueName);
     }
 
+    static result_type reg_delete_tree(
+        hkey_type           hkey
+    ,   char_type const*    sub_key_name
+    )
+    {
+        result_type res = execute_dynamic_("advapi32.dll", "RegDeleteTreeW", hkey, sub_key_name);
+
+        if(ERROR_PROC_NOT_FOUND == res)
+        {
+            res = execute_dynamic_("shlwapi.dll", "SHDeleteKeyW", hkey, sub_key_name);
+        }
+
+        return res;
+    }
+
     static result_type reg_query_info(  hkey_type       hkey,
                                         char_type*      key_class,
                                         size_type*      cch_key_class,
@@ -468,6 +546,47 @@ public:
     {
         return ::RegEnumValueW(hkey, index, valueName, reinterpret_cast<LPDWORD>(cch_valueName), NULL, NULL, NULL, NULL);
     }
+
+private:
+    static result_type execute_dynamic_(
+        ws_char_a_t const*  module
+    ,   ws_char_a_t const*  function
+    ,   hkey_type           a1
+    ,   char_type const*    a2
+    )
+    {
+        result_type r       =   ERROR_SUCCESS;
+        HINSTANCE   hinst   =   ::LoadLibraryA(module);
+
+        if(NULL == hinst)
+        {
+            r = ::GetLastError();
+        }
+        else
+        {
+            union
+            {
+                FARPROC                 fp;
+                DWORD (STLSOFT_STDCALL* pfn)(HKEY, LPCWSTR);
+            } u;
+
+            u.fp = ::GetProcAddress(hinst, function);
+
+            if(NULL == u.fp)
+            {
+                r = ::GetLastError();
+            }
+            else
+            {
+                r = (*u.pfn)(a1, a2);
+            }
+
+            ::FreeLibrary(hinst);
+        }
+
+        return r;
+    }
+    
 };
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */

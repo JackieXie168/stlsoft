@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     1st February 2009
+ * Updated:     15th May 2009
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
  *              example when writing books about good design/implementation;
@@ -68,9 +68,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        213
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        214
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -731,6 +731,18 @@ template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_bool_t operator != (C const* lhs, basic_findfile_sequence_value_type<C, T> const& rhs)
 {
     return !rhs.equal(lhs);
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * IOStream compatibility
+ */
+
+template <ss_typename_param_k S, ss_typename_param_k C, ss_typename_param_k T>
+inline S& operator <<(S& s, basic_findfile_sequence_value_type<C, T> const& value)
+{
+    s << value.get_path();
+
+    return s;
 }
 
 ////////////////////////////////////////////////////////////////////////////
