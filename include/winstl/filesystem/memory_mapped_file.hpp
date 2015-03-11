@@ -4,7 +4,9 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     16th July 2006
+ * Updated:     28th December 2006
+ *
+ * Thanks to:   Pablo Aguilar for requesting multibyte / Unicode ambivalence.
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      68
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +63,6 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem/filesystem_traits.hpp>
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
 #  include <winstl/error/exceptions.hpp>
@@ -75,6 +74,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
+
+#ifdef STLSOFT_UNITTEST
+# include <winstl/filesystem/file_path_buffer.hpp>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -110,11 +113,6 @@ class memory_mapped_file
 {
 /// \name Member Types
 /// @{
-private:
-    /// \brief The character type
-    typedef ws_char_a_t                     char_type;
-    /// \brief The traits type
-    typedef filesystem_traits<ws_char_a_t>  traits_type;
 public:
     /// \brief This type
     typedef memory_mapped_file              class_type;
@@ -131,31 +129,58 @@ public:
 /// \name Implementation
 /// @{
 private:
-    void open_(char_type const *fileName)
+    void open_(ws_char_a_t const *fileName)
     {
-        scoped_handle<HANDLE>   hfile(  traits_type::create_file(   fileName
-                                                                ,   GENERIC_READ
-                                                                ,   FILE_SHARE_READ
-                                                                ,   NULL
-                                                                ,   OPEN_EXISTING
-                                                                ,   FILE_FLAG_RANDOM_ACCESS
-                                                                ,   NULL)
+        scoped_handle<HANDLE>   hfile(  ::CreateFileA(  fileName
+                                                    ,   GENERIC_READ
+                                                    ,   FILE_SHARE_READ
+                                                    ,   NULL
+                                                    ,   OPEN_EXISTING
+                                                    ,   FILE_FLAG_RANDOM_ACCESS
+                                                    ,   NULL)
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-                            ,   (void (*)(HANDLE))&filesystem_traits<char_type>::close_handle
+                            ,   (void (*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
-                            ,   &filesystem_traits<char_type>::close_handle
+                            ,   ::CloseHandle
 #endif /* compiler */
                             ,   INVALID_HANDLE_VALUE);
 
-        if(hfile.empty())
+
+        open_helper_(hfile.get());
+    }
+
+    void open_(ws_char_w_t const *fileName)
+    {
+        scoped_handle<HANDLE>   hfile(  ::CreateFileW(  fileName
+                                                    ,   GENERIC_READ
+                                                    ,   FILE_SHARE_READ
+                                                    ,   NULL
+                                                    ,   OPEN_EXISTING
+                                                    ,   FILE_FLAG_RANDOM_ACCESS
+                                                    ,   NULL)
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+                            ,   (void (*)(HANDLE))&::CloseHandle
+#else /* ? compiler */
+                            ,   ::CloseHandle
+#endif /* compiler */
+                            ,   INVALID_HANDLE_VALUE);
+
+
+        open_helper_(hfile.get());
+    }
+
+    void open_helper_(HANDLE hFile)
+    {
+        if(INVALID_HANDLE_VALUE == hFile)
         {
             on_error_("Failed to open file for mapping");
         }
         else
         {
             DWORD   fileSizeHigh;
-            DWORD   fileSizeLow =   ::GetFileSize(::stlsoft::get_handle(hfile), &fileSizeHigh);
+            DWORD   fileSizeLow =   ::GetFileSize(hFile, &fileSizeHigh);
             DWORD   error       =   ::GetLastError();
 
             if( INVALID_FILE_SIZE == fileSizeLow &&
@@ -177,7 +202,7 @@ private:
             }
             else
             {
-                scoped_handle<HANDLE>   hmap(   ::CreateFileMappingA(   ::stlsoft::get_handle(hfile)
+                scoped_handle<HANDLE>   hmap(   ::CreateFileMappingA(   hFile
                                                                     ,   NULL
                                                                     ,   PAGE_READONLY
                                                                     ,   0
@@ -185,9 +210,9 @@ private:
                                                                     ,   NULL)
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-                                    ,   (void (*)(HANDLE))&filesystem_traits<char_type>::close_handle
+                                    ,   (void (*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
-                                    ,   &filesystem_traits<char_type>::close_handle
+                                    ,   ::CloseHandle
 #endif /* compiler */
                                     ,   NULL);
 
@@ -197,7 +222,7 @@ private:
                 }
                 else
                 {
-                    void    *memory = ::MapViewOfFile( ::stlsoft::get_handle(hmap)
+                    void    *memory = ::MapViewOfFile(  hmap.get()
                                                     ,   FILE_MAP_READ
                                                     ,   0
                                                     ,   0
@@ -225,7 +250,13 @@ private:
 /// \name Construction
 /// @{
 public:
-    ss_explicit_k memory_mapped_file(char_type const *fileName)
+    ss_explicit_k memory_mapped_file(ws_char_a_t const *fileName)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(fileName);
+    }
+    ss_explicit_k memory_mapped_file(ws_char_w_t const *fileName)
         : m_cb(0)
         , m_memory(NULL)
     {
@@ -309,6 +340,13 @@ private:
     class_type &operator =(class_type const &);
 /// @}
 };
+
+////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/memory_mapped_file_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

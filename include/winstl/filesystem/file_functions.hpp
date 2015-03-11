@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     24th December 2006
+ * Updated:     28th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       40
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
         STLSOFT_THROW_X(windows_exception("File does not exist", ::GetLastError()));
     }
 
-    ws_uint64_t             size    =   filesys_traits_t::get_file_size(::stlsoft::get_handle(h));
+    ws_uint64_t             size    =   filesys_traits_t::get_file_size(h.get());
 
     if( 0 != size &&
         static_cast<ws_uint64_t>(~0) != size)
@@ -236,7 +236,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
             buffer_t    buffer(static_cast<ss_typename_type_k buffer_t::size_type>(size));
             DWORD       dw;
 
-            if(!::ReadFile(::stlsoft::get_handle(h), &buffer[0], buffer.size(), &dw, NULL))
+            if(!::ReadFile(h.get(), &buffer[0], buffer.size(), &dw, NULL))
             {
                 STLSOFT_THROW_X(windows_exception("Read operation failed", ::GetLastError()));
             }

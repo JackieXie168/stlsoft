@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     24th December 2006
+ * Updated:     28th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        70
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,6 +77,10 @@
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 #include <sys/mman.h>
 #include <sys/stat.h>
+
+#ifdef STLSOFT_UNITTEST
+# include <unixstl/filesystem/file_path_buffer.hpp>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -138,7 +142,7 @@ private:
         scoped_handle<int>  hfile(  traits_type::open(  fileName
                                                     ,   O_RDONLY
                                                     ,   PROT_READ)
-                                ,   &filesystem_traits<char_type>::close
+                                ,   &traits_type::close
                                 ,   -1);
 
         if(hfile.empty())
@@ -149,7 +153,7 @@ private:
         {
             struct stat st;
 
-            if(0 != ::fstat(::stlsoft::get_handle(hfile), &st))
+            if(0 != ::fstat(hfile.get(), &st))
             {
                 on_error_("Failed to determine mapped file size");
             }
@@ -160,7 +164,7 @@ private:
             }
             else
             {
-                void    *memory = ::mmap(NULL, st.st_size, PROT_READ, 0, ::stlsoft::get_handle(hfile), 0);
+                void    *memory = ::mmap(NULL, st.st_size, PROT_READ, 0, hfile.get(), 0);
 
                 if(MAP_FAILED == memory)
                 {
@@ -258,6 +262,13 @@ private:
     class_type &operator =(class_type const &);
 /// @}
 };
+
+////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/memory_mapped_file_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
