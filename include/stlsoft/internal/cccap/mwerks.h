@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     29th December 2007
+ * Updated:     20th February 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       15
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        65
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,11 +196,12 @@
 #endif /* __option(RTTI) */
 
 /* Exception support */
-#if __option(exceptions)
+#if __option(exceptions) && \
+    defined(__cplusplus)
 # define STLSOFT_CF_EXCEPTION_SUPPORT
 #else
   /* Not defined */
-#endif /* __option(exceptions) */
+#endif /* __option(exceptions) && __cplusplus */
 
 /*  */
 #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
