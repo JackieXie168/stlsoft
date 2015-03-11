@@ -4,13 +4,13 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     10th August 2009
+ * Updated:     14th May 2010
  *
  * Thanks:      To Gabor Fischer for requesting attach().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        59
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    3
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@
 # endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS
-# include <comstl/string/bstr_functions.h>
+# include <comstl/string/BSTR_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
@@ -129,36 +129,38 @@ class bstr
 /// \name Member Types
 /// @{
 public:
-    typedef bstr                                            class_type;
-    typedef cs_char_o_t                                     char_type;
-    typedef char_type                                       value_type;
-    typedef char_type*                                      pointer;
-    typedef char_type const*                                const_pointer;
-    typedef char_type&                                      reference;
-    typedef char_type const&                                const_reference;
-    typedef cs_ptrdiff_t                                    difference_type;
-    typedef cs_size_t                                       size_type;
-    typedef cs_ptrdiff_t                                    ssize_type;
-    typedef cs_bool_t                                       bool_type;
-    typedef pointer                                         iterator;
-    typedef const_pointer                                   const_iterator;
+    typedef bstr                                    class_type;
+    typedef cs_char_o_t                             char_type;
+    typedef char_type                               value_type;
+    typedef char_type*                              pointer;
+    typedef char_type const*                        const_pointer;
+    typedef char_type&                              reference;
+    typedef char_type const&                        const_reference;
+    typedef cs_ptrdiff_t                            difference_type;
+    typedef cs_size_t                               size_type;
+    typedef cs_ptrdiff_t                            ssize_type;
+    typedef cs_bool_t                               bool_type;
+    typedef pointer                                 iterator;
+    typedef const_pointer                           const_iterator;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    typedef stlsoft_ns_qual(reverse_iterator_base)< iterator
-                                                ,   value_type
-                                                ,   reference
-                                                ,   pointer
-                                                ,   difference_type
-                                                >           reverse_iterator;
+    typedef stlsoft_ns_qual(reverse_iterator_base)<
+        iterator
+    ,   value_type
+    ,   reference
+    ,   pointer
+    ,   difference_type
+    >                                               reverse_iterator;
 
-    typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
-                                                    ,   value_type const
-                                                    ,   const_reference
-                                                    ,   const_pointer
-                                                    ,   difference_type
-                                                    >       const_reverse_iterator;
+    typedef stlsoft_ns_qual(const_reverse_iterator_base)<
+        const_iterator
+    ,   value_type const
+    ,   const_reference
+    ,   const_pointer
+    ,   difference_type
+    >                                               const_reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
-    typedef BSTR                                            resource_type;
+    typedef BSTR                                    resource_type;
 /// @}
 
 /// \name Construction
@@ -176,10 +178,10 @@ public:
     /// \brief Copies the given instance
     class_type& operator =(class_type const& rhs);
 
-    class_type  &assign(cs_char_a_t const* s, ssize_type len = -1);
-    class_type  &assign(cs_char_w_t const* s, ssize_type len = -1);
+    class_type& assign(cs_char_a_t const* s, ssize_type len = -1);
+    class_type& assign(cs_char_w_t const* s, ssize_type len = -1);
 
-    class_type  &assign(const_iterator from, const_iterator to);
+    class_type& assign(const_iterator from, const_iterator to);
 
     class_type& operator =(cs_char_a_t const* s);
     class_type& operator =(cs_char_w_t const* s);
@@ -383,7 +385,7 @@ inline bstr::const_pointer c_str_ptr_null_o(comstl_ns_qual(bstr) const& b)
  */
 template<   ss_typename_param_k S
         >
-inline S& operator <<(S &stm, comstl_ns_qual(bstr) const& str)
+inline S& operator <<(S& stm, comstl_ns_qual(bstr) const& str)
 {
     STLSOFT_STATIC_ASSERT(sizeof(OLECHAR) == sizeof(ss_typename_type_k S::char_type));
 
@@ -777,12 +779,12 @@ inline bstr::const_pointer *bstr::NonDestructiveAddress() const
     return const_cast<const_pointer*>(&m_bstr);
 }
 
-inline BSTR *bstr::NonDestructiveAddress()
+inline BSTR* bstr::NonDestructiveAddress()
 {
     return &m_bstr;
 }
 
-inline BSTR *bstr::DestructiveAddress()
+inline BSTR* bstr::DestructiveAddress()
 {
     clear();
 
@@ -940,9 +942,9 @@ struct string_traits< ::comstl::bstr>
     }
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type& assign_inplace(string_type& str, I first, I last)
 # else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type& assign_inplace(string_type& str, const_iterator first, const_iterator last)
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // comstl::bstr cannot assign in-place

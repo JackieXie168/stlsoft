@@ -4,11 +4,11 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     10th August 2009
+ * Updated:     14th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       488
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       489
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ namespace stlsoft
  * exception
  */
 template<ss_typename_param_k I>
-inline void add_reference(I *pi)
+inline void add_reference(I* pi)
 {
     STLSOFT_ASSERT(NULL != pi);
 
@@ -107,7 +107,7 @@ inline void add_reference(I *pi)
  * exception
  */
 template<ss_typename_param_k I>
-inline void release_reference(I *pi)
+inline void release_reference(I* pi)
 {
     STLSOFT_ASSERT(NULL != pi);
 
@@ -178,9 +178,9 @@ private:
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1300
     /// \brief Helper function to effect upcast from const counted type to interface type
-    static interface_type *i_from_const_c(counted_type const* cc)
+    static interface_type* i_from_const_c(counted_type const* cc)
     {
-        counted_type*   c  =   const_cast<counted_type*>(cc);
+        counted_type* c = const_cast<counted_type*>(cc);
 
         return i_from_c(c);
     }
@@ -208,7 +208,7 @@ public:
     /// ownership of it. In such a case, \c false should be specified as the second
     /// parameter. If, however, a reference is being "borrowed", then \c true should
     /// be specified.
-    ref_ptr(counted_type *c, bool_type bAddRef)
+    ref_ptr(counted_type* c, bool_type bAddRef)
         : m_pi(i_from_c(c))
     {
         if( bAddRef &&
@@ -368,7 +368,7 @@ public:
     /// \note It provides the no-throw guarantee
     void swap(class_type& rhs)
     {
-        interface_type  *t          =   rhs.m_pi;
+        interface_type* t           =   rhs.m_pi;
                         rhs.m_pi    =   m_pi;
                         m_pi        =   t;
     }
@@ -379,7 +379,7 @@ public:
     /// \param bAddRef parameter that determines whether reference will be
     ///   <i>consumed</i> (<code>false</code>) or <i>borrowed</i>
     ///   (<code>true</code>).
-    void set(counted_type *c, bool_type bAddRef)
+    void set(counted_type* c, bool_type bAddRef)
     {
         class_type  t(c, bAddRef);
 
@@ -400,9 +400,9 @@ public:
 
     /// \brief Detaches the managed instance, and returns it to the caller, which
     /// takes responsibility for ensuring that the resource is not leaked
-    counted_type *detach()
+    counted_type* detach()
     {
-        counted_type    *r  =   class_type::c_from_i(m_pi);
+        counted_type* r = class_type::c_from_i(m_pi);
 
         m_pi = NULL;
 
@@ -489,7 +489,7 @@ public:
 /// \name Members
 /// @{
 private:
-    interface_type  *m_pi;
+    interface_type* m_pi;
 /// @}
 };
 
@@ -553,7 +553,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k I /* = T */
         ,   ss_typename_param_k U /* = I */
         >
-inline T *get_ptr(ref_ptr<T, I, U> const& p)
+inline T* get_ptr(ref_ptr<T, I, U> const& p)
 {
     return p.get();
 }

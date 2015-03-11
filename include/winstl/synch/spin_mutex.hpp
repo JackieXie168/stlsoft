@@ -4,14 +4,14 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     10th August 2009
+ * Updated:     29th April 2010
  *
  * Thanks:      To Rupert Kittinger, for pointing out that prior
  *              implementation that always yielded was not really "spinning".
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR       4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        55
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    3
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,6 +70,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES
 # include <stlsoft/synch/spin_policies.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_TYPES
+# include <winstl/synch/atomic_types.h>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_TYPES */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/synch/lock_scope.hpp>
@@ -128,16 +131,16 @@ class spin_mutex_base
 /// @{
 private:
     /// \brief The spin-policy class
-    typedef SP                  spin_policy_class;
+    typedef SP                            spin_policy_class;
 public:
     /// \brief This class
-    typedef spin_mutex_base<SP>  class_type;
+    typedef spin_mutex_base<SP>           class_type;
     /// \brief The atomic integer type
-    typedef ws_sint32_t         atomic_int_type;
+    typedef winstl_ns_qual(atomic_int_t)  atomic_int_type;
     /// \brief The count type
-    typedef ws_sint32_t         count_type;
+    typedef ws_sint32_t                   count_type;
     /// \brief The bool type
-    typedef ws_bool_t           bool_type;
+    typedef ws_bool_t                     bool_type;
 /// @}
 
 /// \name Construction

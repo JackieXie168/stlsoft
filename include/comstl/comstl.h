@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     17th March 2010
+ * Updated:     12th May 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       7
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    5
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        114
+# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       8
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -147,12 +147,13 @@
 # define _COMSTL_VER_1_8_4      0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.9.84) */
 # define _COMSTL_VER_1_8_5      0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.9.88) */
 # define _COMSTL_VER_1_8_6      0x010806ff  /*!< Version 1.8.6 (with STLSoft 1.9.97) */
+# define _COMSTL_VER_1_9_1      0x010901ff  /*!< Version 1.9.1 (with STLSoft 1.9.98) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
-#define _COMSTL_VER_MINOR       8
-#define _COMSTL_VER_REVISION    6
-#define _COMSTL_VER             _COMSTL_VER_1_8_6
+#define _COMSTL_VER_MINOR       9
+#define _COMSTL_VER_REVISION    1
+#define _COMSTL_VER             _COMSTL_VER_1_9_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -168,9 +169,9 @@
 #endif /* !STLSOFT_INCL_H_OBJBASE */
 
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
-	defined(_WIN32) && \
-	(	defined(WIN32) || \
-		defined(WIN64))
+    defined(_WIN32) && \
+    (   defined(WIN32) || \
+        defined(WIN64))
 # ifndef STLSOFT_INCL_H_OLEAUTO
 #  define STLSOFT_INCL_H_OLEAUTO
 #  include <oleauto.h>
@@ -528,13 +529,28 @@ stlsoft_ns_using(move_lhs_from_rhs)
  *
  * \brief Resolves to <b>iid</b> for C compilation, and to <b>&iid</b> in C++
  *
- * \see COMSTL_ITF_CALL, COMSTL_ITF_THIS, COMSTL_ITF_THIS0, COMSTL_REF_2_REF
+ * \see COMSTL_ITF_CALL, COMSTL_ITF_THIS, COMSTL_ITF_THIS0, COMSTL_PTR_2_REF
  */
 
 #if defined(__cplusplus)
 # define COMSTL_REF_2_PTR(iid)        (&(iid))
 #else /* ? __cplusplus */
 # define COMSTL_REF_2_PTR(iid)        (iid)
+#endif /* __cplusplus */
+
+/** \def COMSTL_PTR_2_REF(iid)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>piid</b> for C compilation, and to <b>*piid</b> in C++
+ *
+ * \see COMSTL_ITF_CALL, COMSTL_ITF_THIS, COMSTL_ITF_THIS0, COMSTL_REF_2_PTR
+ */
+
+#if defined(__cplusplus)
+# define COMSTL_PTR_2_REF(piid)       (*(piid))
+#else /* ? __cplusplus */
+# define COMSTL_PTR_2_REF(piid)       (piid)
 #endif /* __cplusplus */
 
 
@@ -747,6 +763,17 @@ typedef cs_uptrint_t        uptrint_t;
 #define cs_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Constants
+ */
+
+#ifdef __cplusplus
+const cs_size_t COMSTL_CCH_GUID     =   38;
+#else /* ? __cplusplus */
+# define COMSTL_CCH_GUID            (38u)
+#endif /* __cplusplus */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */

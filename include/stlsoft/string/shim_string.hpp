@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     10th August 2009
+ * Updated:     11th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        43
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,6 +80,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1310
@@ -170,6 +173,12 @@ public:
     {
         traits_type::copy(&m_buffer[0], &rhs.m_buffer[0], m_buffer.size());
         m_buffer[m_buffer.size() - 1] = '\0';
+    }
+
+    /// Swaps the contents of this instance with another
+    void swap(class_type& rhs) stlsoft_throw_0()
+    {
+        m_buffer.swap(rhs.get_buffer());
     }
 /// @}
 

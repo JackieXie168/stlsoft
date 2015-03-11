@@ -4,11 +4,11 @@
  * Purpose:     String split functions.
  *
  * Created:     28th January 2005
- * Updated:     10th August 2009
+ * Updated:     17th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MAJOR      2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MINOR      1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_REVISION   5
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       38
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MINOR      3
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_REVISION   1
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * Helper functions
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -136,7 +136,257 @@ inline ss_bool_t split_impl(C const* s, ss_size_t n, C delim, S& s0, S& s1)
     return (e == it) ? false : (++it, s1 = S(it, e), true);
 }
 
+template<   ss_typename_param_k S
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
+        >
+inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2)
+{
+    C const* const  b   =   s;
+    C const* const  e   =   s + cch;
+    C const*        it0 =   b;
+    C const*        it1 =   stlsoft_ns_qual_std(find)(it0, e, delim);
+    ss_uint_t       n   =   it1 != it0;
+
+    s0 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s1 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = e;
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s2 = S(it0, it1);
+
+    return n;
+}
+
+template<   ss_typename_param_k S
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
+        >
+inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2, S& s3)
+{
+    C const* const  b   =   s;
+    C const* const  e   =   s + cch;
+    C const*        it0 =   b;
+    C const*        it1 =   stlsoft_ns_qual_std(find)(it0, e, delim);
+    ss_uint_t       n   =   it1 != it0;
+
+    s0 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s1 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s2 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = e;
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s3 = S(it0, it1);
+
+    return n;
+}
+
+template<   ss_typename_param_k S
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
+        >
+inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2, S& s3, S& s4)
+{
+    C const* const  b   =   s;
+    C const* const  e   =   s + cch;
+    C const*        it0 =   b;
+    C const*        it1 =   stlsoft_ns_qual_std(find)(it0, e, delim);
+    ss_uint_t       n   =   it1 != it0;
+
+    s0 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s1 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s2 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s3 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = e;
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s4 = S(it0, it1);
+
+    return n;
+}
+
+template<   ss_typename_param_k S
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S::value_type */
+        >
+inline ss_uint_t split_impl(C const* s, ss_size_t cch, C delim, S& s0, S& s1, S& s2, S& s3, S& s4, S& s5)
+{
+    C const* const  b   =   s;
+    C const* const  e   =   s + cch;
+    C const*        it0 =   b;
+    C const*        it1 =   stlsoft_ns_qual_std(find)(it0, e, delim);
+    ss_uint_t       n   =   it1 != it0;
+
+    s0 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s1 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s2 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s3 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = stlsoft_ns_qual_std(find)(it0, e, delim);
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s4 = S(it0, it1);
+
+    if(e != it1)
+    {
+        ++n;
+        it0 = ++it1;
+        it1 = e;
+    }
+    else
+    {
+        it0 = it1;
+    }
+
+    s5 = S(it0, it1);
+
+    return n;
+}
+
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Functions
+ */
 
 /** Splits a string into two, at the first incidence of a delimiter
  *
@@ -155,6 +405,92 @@ inline ss_bool_t split(S1 const& s, C delim, S2& s0, S2& s1)
     STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
 
     return split_impl(c_str_data(s), c_str_len(s), delim, s0, s1);
+}
+
+/** Splits a string into three, at first two incidences of a delimiter
+ *
+ * \ingroup group__library__string
+ *
+ * \warn The behaviour is undefined if the string instance being split is
+ *        passed as one or both recipients
+ */
+template<   ss_typename_param_k S1
+        ,   ss_typename_param_k S2
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
+        >
+inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2)
+{
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s2));
+
+    return split_impl(c_str_data(s), c_str_len(s), delim, s0, s1, s2);
+}
+
+/** Splits a string into four, at first three incidences of a delimiter
+ *
+ * \ingroup group__library__string
+ *
+ * \warn The behaviour is undefined if the string instance being split is
+ *        passed as one or both recipients
+ */
+template<   ss_typename_param_k S1
+        ,   ss_typename_param_k S2
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
+        >
+inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2, S2& s3)
+{
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s2));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s3));
+
+    return split_impl(c_str_data(s), c_str_len(s), delim, s0, s1, s2, s3);
+}
+
+/** Splits a string into five, at first four incidences of a delimiter
+ *
+ * \ingroup group__library__string
+ *
+ * \warn The behaviour is undefined if the string instance being split is
+ *        passed as one or both recipients
+ */
+template<   ss_typename_param_k S1
+        ,   ss_typename_param_k S2
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
+        >
+inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2, S2& s3, S2& s4)
+{
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s2));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s3));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s4));
+
+    return split_impl(c_str_data(s), c_str_len(s), delim, s0, s1, s2, s3, s4);
+}
+
+/** Splits a string into six, at first five incidences of a delimiter
+ *
+ * \ingroup group__library__string
+ *
+ * \warn The behaviour is undefined if the string instance being split is
+ *        passed as one or both recipients
+ */
+template<   ss_typename_param_k S1
+        ,   ss_typename_param_k S2
+        ,   ss_typename_param_k C /* = ss_typename_type_def_k S2::value_type */
+        >
+inline ss_uint_t split(S1 const& s, C delim, S2& s0, S2& s1, S2& s2, S2& s3, S2& s4, S2& s5)
+{
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s0));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s1));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s2));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s3));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s4));
+    STLSOFT_MESSAGE_ASSERT("Source string specified as recipient!", static_cast<void const*>(&s) != static_cast<void const*>(&s5));
+
+    return split_impl(c_str_data(s), c_str_len(s), delim, s0, s1, s2, s3, s4, s5);
 }
 
 /** Splits a string into two, at the first incidence of a delimiter

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     15th February 2010
+ * Updated:     19th May 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      1
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   2
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       94
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   3
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -550,7 +550,7 @@ inline const ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::
     stlsoft_ns_qual(auto_buffer)<char_type> sz(1 + cch);
 
     if( 0 == sz.size() ||
-        0 == (cch = traits_type::drag_query_file(m_hdrop, static_cast<ws_uint_t>(m_index), &sz[0], sz.size())))
+        0 == (cch = traits_type::drag_query_file(m_hdrop, static_cast<ws_uint_t>(m_index), &sz[0], ws_uint_t(sz.size()))))
     {
         sz[0] = '\0';
     }

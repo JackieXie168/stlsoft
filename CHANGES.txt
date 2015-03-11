@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  4th April 2010
+; Updated:  7th June 2010
 
 ============================================================================
 
@@ -15,6 +15,154 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.98 (7th June 2010)
+
+Summary:
+========
+
+ * added range overload of stlsoft::read_line(), so can read lines from an iterator range
+ * added nullptr (C++0x) support for VC++ 10
+ * added swap() method to stlsoft::basic_shim_string
+ * added 3, 4, 5, and 6-split overloads to stlsoft::split()
+ * added sized-string ctor, data() and size() methods, and string access shims (to simplify xTests-based unit-testing, if nothing else) to stlsoft::exception_string
+ * added VARIANT_BOOL overload to comstl::method_cast()
+ * added platformstl::file_lines empty() method
+ * separated PlatformSTL's atomic types into separate file platformstl/synch/atomic_types.h
+ * separated UNIXSTL's atomic types into separate file unixstl/synch/atomic_types.h
+ * separated WinSTL's atomic types into separate file winstl/synch/atomic_types.h
+ * fixed winstl::memory_mapped_file to handle case where an offset is specified but there are 0 remaining bytes in the file to be mapped at that location: constructs an instance with 0 size
+ * fixed potential memory leak of format-message-string if windows_exception creation throws an exception 
+ * moved COMSTL_CCH_GUID to comstl/comstl.h from comstl/shims/access/string/guid.hpp
+ * adjusted winstl::drophandle_sequence for Win64 compatibility
+ * adjusted winstl::version_info for Win64 compatibility
+ * various components no longer rely on operator += of exception_string type, in preparation for 1.10 versions
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/containers/frequency_map.hpp:
+    ~ documentation markup
+
+ ~ stlsoft/error/error_desc.hpp:
+    ~ forwards and backwards compatibility with basic_shim_string
+
+ ~ stlsoft/filesystem/read_line.hpp:
+    + added range overload of read_line()
+
+ ~ stlsoft/internal/cccap/msvc.h:
+    + added nullptr (C++0x) support for VC++ 10
+
+ ~ stlsoft/smartptr/ref_ptr.hpp:
+    ~ formatting
+
+ ~ stlsoft/string/shim_string.hpp:
+ ~ stlsoft/string/shim_string_vc5_.hpp:
+    + added swap() method
+
+ ~ stlsoft/string/split_functions.hpp:
+    + added 5 and 6 split overloads
+    + added 3 and 4 split overloads
+
+ ~ stlsoft/util/exception_string.hpp:
+    - removed all mutating methods and several constructors, to simplify exception_string: all dependent code should now use exception_string_creator
+    + added sized-string constructor
+    + string access shims (useful for unit-testing, if nothing else)
+    + added data()
+    ~ now all member and non-member functions are defined in terms of char_type
+    + added size() method
+
+ ~ stlsoft/util/forward_enums.hpp:
+    ~ changed all double underscores
+
+ COMSTL:
+ =======
+
+ ~ comstl/comstl.h:
+    + added COMSTL_PTR_2_REF()
+    ~ moved COMSTL_CCH_GUID to comstl/comstl.h from comstl/shims/access/string/guid.hpp
+
+ ~ comstl/conversion/interface_cast.hpp:
+    ~ documentation markup
+
+ ~ comstl/conversion/method_cast.hpp:
+    + added VARIANT_BOOL overload
+
+ ~ comstl/error/excepinfo_functions.h:
+ ~ comstl/shims/access/string/variant.hpp:
+ ~ comstl/util/variant.hpp:
+    ~ bstr_functions.h -> BSTR_functions.h
+
+ ~ comstl/shims/access/string/guid.hpp:
+    ~ moved COMSTL_CCH_GUID to comstl/comstl.h from comstl/shims/access/string/guid.hpp
+    ~ bstr_functions.h -> BSTR_functions.h
+
+ ~ comstl/string/bstr.hpp:
+    ~ formatting
+    ~ bstr_functions.h -> BSTR_functions.h
+
+ ~ comstl/util/guid.hpp:
+    ~ adds missing include (to stlsoft/util/std_swap.hpp)
+
+
+ PlatformSTL:
+ ============
+
+ ~ platformstl/filesystem/file_lines.hpp:
+    + added empty() method
+
+ ~ platformstl/synch/atomic_functions.h:
+    ~ separated PlatformSTL's atomic types into separate file platformstl/synch/atomic_types.h
+    ~ corrected include guard symbols
+
+ ~ platformstl/synch/atomic_types.h:
+    ~ separated PlatformSTL's atomic types into separate file platformstl/synch/atomic_types.h
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/error/exceptions.hpp:
+    ~ no longer relies on operator += of exception_string type, in preparation for 1.10 versions
+
+ ~ unixstl/synch/atomic_functions.h:
+ ~ unixstl/synch/atomic_types.h:
+    ~ separated UNIXSTL's atomic types into separate file unixstl/synch/atomic_types.h
+
+ WinSTL:
+ =======
+
+ ~ winstl/dl/dl_call.hpp:
+    ~ no longer relies on operator += of exception_string type, in preparation for 1.10 versions
+
+ ~ winstl/error/exceptions.hpp:
+    ~ preparation for STLSoft 1.10
+    ~ whitespace
+    ~ fixed potential memory leak if exception-creation throws an exception
+    ~ no longer relies on operator += of exception_string type, in preparation for 1.10 versions
+
+ ~ winstl/filesystem/memory_mapped_file.hpp:
+    ~ now handles case where an offset is specified but there are 0 remaining bytes in the file to be mapped at that location: constructs an instance with 0 size
+
+ ~ winstl/performance/threadtimes_counter.hpp:
+ ~ winstl/system/system_version.hpp:
+    ~ documentation markup
+
+ ~ winstl/shell/drophandle_sequence.hpp:
+ ~ winstl/system/version_info.hpp:
+    ~ Win64 compatibility
+
+ ~ winstl/synch/atomic_functions.h:
+ ~ winstl/synch/atomic_types.h:
+ ~ winstl/synch/spin_mutex.hpp:
+    ~ separated WinSTL's atomic types into separate file winstl/synch/atomic_types.h
+    ~ atomic_int_type is now winstl::atomic_int_t, rather than ws_sint32_t
+
 
 
 ============================================================================

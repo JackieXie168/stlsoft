@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_shim_string template class for VC++ 5.
  *
  * Created:     16th October 2006
- * Updated:     10th August 2009
+ * Updated:     11th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5__MAJOR      1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        11
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_MINOR       1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,6 +81,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
 #ifndef STLSOFT_INCL_NEW
 # define STLSOFT_INCL_NEW
@@ -209,6 +212,13 @@ public:
         ::free(m_buffer);
     }
 
+    /// Swaps the contents of this instance with another
+    void swap(class_type& rhs) stlsoft_throw_0()
+    {
+        std_swap(m_buffer, rhs.m_buffer);
+        std_swap(m_length, rhs.m_length);
+    }
+
 public:
     void write(char_type const* s)
     {
@@ -248,7 +258,7 @@ private:
 //  static
 
 private:
-    char_type   *m_buffer;
+    char_type*  m_buffer;
     ss_size_t   m_length;
 
 private:

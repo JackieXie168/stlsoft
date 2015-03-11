@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     4th April 2010
+ * Updated:     29th April 2010
  *
  * Thanks:      To Brad Cox, for helping out in testing and fixing the
  *              implementation for MAC OSX (Intel).
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     6
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      200
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      201
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,6 +67,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES
 # include <unixstl/synch/util/features.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES */
+#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_TYPES
+# include <unixstl/synch/atomic_types.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_TYPES */
 
 #if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS)
  /* Nothing to include here; UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS will be included inside unixstl namespace */
@@ -101,25 +104,6 @@ namespace unixstl_project
 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Typedefs
- */
-
-#if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS)
-# ifndef UNIXSTL_FORCED_ATOMIC_INT_T
-#  error If you are forcing atomic integer support (by defining UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) you must also define UNIXSTL_FORCED_ATOMIC_INT_T
-# endif /* UNIXSTL_FORCED_ATOMIC_INT_T */
-typedef UNIXSTL_FORCED_ATOMIC_INT_T     atomic_int_t;
-#elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_GCC_BUILTINS)
-typedef volatile int                    atomic_int_t;
-# elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED)
-typedef us_sint32_t                     atomic_int_t;
-# elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX)
-typedef STLSOFT_NS_GLOBAL(int32_t)      atomic_int_t;
-#else
-# error Atomic integer operations not supported: see unixstl/synch/util/features.h for details
-#endif
 
 /* /////////////////////////////////////////////////////////////////////////
  * Features

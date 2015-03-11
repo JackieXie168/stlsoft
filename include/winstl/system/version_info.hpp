@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     15th February 2010
+ * Updated:     19th May 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 7
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     125
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 8
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1079,7 +1079,7 @@ inline /* static */ VS_VERSIONINFO_hdr const* version_info::retrieve_module_info
 #ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
         0 != ::GetModuleFileNameA(NULL, &buffer[0], STLSOFT_NUM_ELEMENTS(buffer)))
 #else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
-        0 != ::GetModuleFileNameA(NULL, &buffer[0], buffer.size()))
+        0 != ::GetModuleFileNameA(NULL, &buffer[0], DWORD(buffer.size())))
 #endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
     {
         moduleName = stlsoft_ns_qual(c_str_ptr)(buffer);
@@ -1152,7 +1152,7 @@ inline /* static */ VS_VERSIONINFO_hdr const* version_info::retrieve_module_info
 #ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
         0 != ::GetModuleFileNameW(NULL, &buffer[0], STLSOFT_NUM_ELEMENTS(buffer)))
 #else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
-        0 != ::GetModuleFileNameW(NULL, &buffer[0], buffer.size()))
+        0 != ::GetModuleFileNameW(NULL, &buffer[0], DWORD(buffer.size())))
 #endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
     {
         moduleName = stlsoft_ns_qual(c_str_ptr)(buffer);

@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     10th August 2009
+ * Updated:     16th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     16
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    4
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
@@ -176,21 +176,23 @@ public:
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
         defined(_WIN32))
 
-            typedef stlsoft::string_tokeniser<  value_type
-                                            ,   value_type
-                                            ,   stlsoft::skip_blank_tokens<false>
-                                            ,   value_type
-                                            >       tokeniser_t;
+            typedef stlsoft::string_tokeniser<
+                value_type
+            ,   value_type
+            ,   stlsoft::skip_blank_tokens<false>
+            ,   value_type
+            >                       tokeniser_t_;
 
             static const char_type  sep[] = { '\r', '\n', '\0' };
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
-            typedef stlsoft::string_tokeniser<  value_type
-                                            ,   char
-                                            ,   stlsoft::skip_blank_tokens<false>
-                                            ,   value_type
-                                            >       tokeniser_t;
+            typedef stlsoft::string_tokeniser<
+                value_type
+            ,   char
+            ,   stlsoft::skip_blank_tokens<false>
+            ,   value_type
+            >                       tokeniser_t_;
 
             static const char_type  sep = '\n';
 
@@ -204,7 +206,7 @@ public:
             m_contents.assign(static_cast<C const*>(mmf.memory()), static_cast<size_type>(mmf.size()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-            tokeniser_t     lines(m_contents.data(), m_contents.size(), sep);
+            tokeniser_t_ lines(m_contents.data(), m_contents.size(), sep);
 
             std::copy(lines.begin(), lines.end(), std::back_inserter(m_strings));
 
@@ -235,6 +237,12 @@ public:
     size_type size() const
     {
         return m_strings.size();
+    }
+
+    /// Indicates whethere there are any lines in the file
+    bool_type empty() const
+    {
+        return 0u == size();
     }
 
     /// Returns a non-mutable (const) reference to the line at \c index

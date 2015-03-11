@@ -4,11 +4,11 @@
  * Purpose:     Definition of stlsoft::read_line() function template.
  *
  * Created:     2nd January 2007
- * Updated:     10th August 2009
+ * Updated:     11th May 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MAJOR     2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MINOR     0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      10
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MINOR     1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,7 +122,7 @@ struct read_line_impl
 {
     class read_from_FILE
     {
-    public: /// Member Types
+    public: // Member Types
         typedef read_from_FILE  class_type;
 
     public:
@@ -133,9 +133,9 @@ struct read_line_impl
             : m_stm(rhs.m_stm)
         {}
     private:
-        class_type &operator =(class_type const&);
+        class_type& operator =(class_type const&);
 
-    public: /// Operations
+    public: // Operations
         int read_char()
         {
             return ::fgetc(m_stm);
@@ -157,9 +157,59 @@ struct read_line_impl
         FILE* const m_stm;
     };
 
+    template <ss_typename_param_k I>
+    class read_from_iterator_range
+    {
+    private: // Member Types
+        typedef I                                           iterator_type_;
+    public:
+        typedef read_from_iterator_range<iterator_type_>    class_type;
+
+    public:
+        ss_explicit_k read_from_iterator_range(iterator_type_ from, iterator_type_ to)
+            : m_from(from)
+            , m_to(to)
+        {}
+        read_from_iterator_range(class_type const& rhs)
+            : m_from(rhs.m_from)
+            , m_to(rhs.m_to)
+        {}
+    private:
+        class_type& operator =(class_type const&);
+
+    public: // Operations
+        int read_char()
+        {
+            if(m_from == m_to)
+            {
+                return -1;
+            }
+            else
+            {
+                return *m_from++;
+            }
+        }
+
+        int peek_next_char()
+        {
+            if(m_from == m_to)
+            {
+                return -1;
+            }
+            else
+            {
+                return *m_from;
+            }
+        }
+
+    private:
+        iterator_type_          m_from;
+        iterator_type_ const    m_to;
+    };
+
     class read_from_char_buffer
     {
-    public: /// Member Types
+    public: // Member Types
         typedef read_from_char_buffer   class_type;
 
     public:
@@ -193,9 +243,9 @@ struct read_line_impl
                 return static_cast<ss_size_t>(size);
             }
         }
-        class_type &operator =(class_type const&);
+        class_type& operator =(class_type const&);
 
-    public: /// Operations
+    public: // Operations
         int read_char()
         {
             if(m_current == m_size)
@@ -349,6 +399,18 @@ template <ss_typename_param_k S>
 ss_bool_t read_line(FILE* stm, S& line, read_line_flags::flags_t flags = read_line_flags::recogniseAll)
 {
     read_line_impl::read_from_FILE  policy(stm);
+
+    return read_line_impl::read_line(policy, line, flags);
+}
+
+/** Reads a line from a pair of iterators
+ */
+template<   ss_typename_param_k I
+        ,   ss_typename_param_k S
+        >
+ss_bool_t read_line(I from, I to, S& line, read_line_flags::flags_t flags = read_line_flags::recogniseAll)
+{
+    read_line_impl::read_from_iterator_range<I> policy(from, to);
 
     return read_line_impl::read_line(policy, line, flags);
 }
