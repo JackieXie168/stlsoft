@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/reg_key.hpp (formerly winstl_reg_key.h)
  *
- * Purpose:     Contains the basic_reg_key template class, and ANSI
+ * Purpose:     Contains the basic_reg_key class template, and ANSI
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     28th March 2006
+ * Updated:     23rd May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,7 @@
 
 
 /// \file winstl/registry/reg_key.hpp
-///
-/// Contains the basic_reg_key template class, and ANSI and Unicode specialisations thereof.
+/// \brief [C++ only] Definition of the \link winstl::basic_reg_key basic_reg_key\endlink class template. (\ref group__library__windows_registry "Windows Registry" Library.)
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY
@@ -49,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        98
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    9
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -118,25 +117,22 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// Represents a registry key
-///
-/// This class acts as the value type of classes that manipulate registry keys
-/// and encapsulates the concept of a registry key.
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments this defaults to reg_traits<C>
-/// \param A The allocator type. On translators that support default template arguments this defaults to processheap_allocator<C>
+/** \brief Represents a registry key, and provides methods for manipulating its
+ * values and sub-keys.
+ *
+ * \ingroup group__library__windows_registry
+ *
+ * This class acts as the value type of classes that manipulate registry keys
+ * and encapsulates the concept of a registry key.
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments this defaults to reg_traits<C>
+ * \param A The allocator type. On translators that support default template arguments this defaults to processheap_allocator<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = reg_traits<C>
@@ -151,19 +147,19 @@ class basic_reg_key
 /// \name Member Types
 /// @{
 public:
-    /// The character type
+    /// \brief The character type
     typedef C                                           char_type;
-    /// The traits type
+    /// \brief The traits type
     typedef T                                           traits_type;
-    /// The allocator type
+    /// \brief The allocator type
     typedef A                                           allocator_type;
-    /// The current parameterisation of the type
+    /// \brief The current parameterisation of the type
     typedef basic_reg_key<C, T, A>                      class_type;
-    /// The size type
+    /// \brief The size type
     typedef ss_typename_type_k traits_type::size_type   size_type;
-    /// The string type
+    /// \brief The string type
     typedef ss_typename_type_k traits_type::string_type string_type;
-    /// The key type
+    /// \brief The key type
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1100
     /* WSCB: VC5 has an internal compiler error if use traits_type::hkey_type */
@@ -171,97 +167,194 @@ public:
 #else /* ? compiler */
     typedef ss_typename_type_k traits_type::hkey_type   hkey_type;
 #endif /* compiler */
-    /// The Boolean type
+    /// \brief The Boolean type
     typedef ws_bool_t                                   bool_type;
-    /// The type of the key's values
+    /// \brief The type of the key's values
     typedef basic_reg_value<C, T, A>                    key_value_type;
 #if 0
-    /// The type of the sub-key collection
+    /// \brief The type of the sub-key collection
     typedef basic_reg_key_sequence<C, T, A>             subkeys_collection_type;
-    /// The type of the value collection
+    /// \brief The type of the value collection
     typedef basic_reg_value_sequence<C, T, A>           value_collection_type;
 #endif /* 0 */
 private:
-    /// The results type of the Registry API
+    /// \brief The results type of the Registry API
     typedef ss_typename_type_k traits_type::result_type result_type;
 /// @}
 
 /// \name Construction
 /// @{
 private:
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     friend class basic_reg_value_sequence<C, T, A>;
     friend class basic_reg_key_sequence<C, T, A>;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     (   _MSC_VER == 1200 || \
         _MSC_VER == 1300)
 public:
 #endif /* compiler */
-    basic_reg_key(hkey_type *hkey, string_type const &key_name, REGSAM accessMask);
+    basic_reg_key(hkey_type *hkey, string_type const &keyName, REGSAM accessMask);
 public:
-    /// Default constructor
+    /// \brief Default constructor
     basic_reg_key();
-    /// Construct from the named sub-key of the given parent
-    basic_reg_key(hkey_type hkeyParent, char_type const *key_name, REGSAM accessMask = KEY_ALL_ACCESS)
-        : m_hkey(open_key_(hkeyParent, key_name, accessMask))
-        , m_name(key_name)
+    /** \brief Construct from the named sub-key of the given parent
+     *
+     * \param hkeyParent A handle to the parent key, whose named subkey is
+     *  to be opened.
+     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     *  or the empty string, then a copy of <code>hkeyParent</code> will be
+     *  opened.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be opened. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
+    basic_reg_key(hkey_type hkeyParent, char_type const *keyName, REGSAM accessMask = KEY_ALL_ACCESS)
+        : m_hkey(open_key_(hkeyParent, keyName, accessMask))
+        , m_name(keyName)
         , m_accessMask(accessMask)
     {} // Implementation is within class, otherwise VC5 will not link
-    /// Construct from the named sub-key of the given parent
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Construct from the named sub-key of the given parent
+     *
+     * \param hkeyParent A handle to the parent key, whose named subkey is
+     *  to be opened.
+     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     *  or the empty string, then a copy of <code>hkeyParent</code> will be
+     *  opened.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be opened. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
     template <ss_typename_param_k S>
-    basic_reg_key(hkey_type hkeyParent, S const &key_name, REGSAM accessMask = KEY_ALL_ACCESS)
-        : m_hkey(open_key_(hkeyParent, stlsoft_ns_qual(c_str_ptr)(key_name), accessMask))
-        , m_name(key_name)
+    basic_reg_key(hkey_type hkeyParent, S const &keyName, REGSAM accessMask = KEY_ALL_ACCESS)
+        : m_hkey(open_key_(hkeyParent, stlsoft_ns_qual(c_str_ptr)(keyName), accessMask))
+        , m_name(keyName)
         , m_accessMask(accessMask)
     {} // Implementation is within class, otherwise VC5 will not link
-    /// Construct from the named sub-key of the given parent
-    basic_reg_key(class_type const &keyParent, char_type const *key_name, REGSAM accessMask = KEY_ALL_ACCESS)
-        : m_hkey(open_key_(keyParent.get_key_handle(), key_name, accessMask))
-        , m_name(key_name)
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    /** \brief Construct from the named sub-key of the given parent
+     *
+     * \param keyParent A handle to the parent key, whose named subkey is
+     *  to be opened.
+     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     *  or the empty string, then a copy of <code>keyParent</code> will be
+     *  opened.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be opened. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
+    basic_reg_key(class_type const &keyParent, char_type const *keyName, REGSAM accessMask = KEY_ALL_ACCESS)
+        : m_hkey(open_key_(keyParent.get_key_handle(), keyName, accessMask))
+        , m_name(keyName)
         , m_accessMask(accessMask)
     {} // Implementation is within class, otherwise VC5 will not link
-    /// Construct from the named sub-key of the given parent
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Construct from the named sub-key of the given parent
+     *
+     * \param keyParent A handle to the parent key, whose named subkey is
+     *  to be opened.
+     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     *  or the empty string, then a copy of <code>keyParent</code> will be
+     *  opened.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be opened. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
     template <ss_typename_param_k S>
-    basic_reg_key(class_type const &keyParent, S const &key_name, REGSAM accessMask = KEY_ALL_ACCESS)
-        : m_hkey(open_key_(keyParent.get_key_handle(), stlsoft_ns_qual(c_str_ptr)(key_name), accessMask))
-        , m_name(key_name)
+    basic_reg_key(class_type const &keyParent, S const &keyName, REGSAM accessMask = KEY_ALL_ACCESS)
+        : m_hkey(open_key_(keyParent.get_key_handle(), stlsoft_ns_qual(c_str_ptr)(keyName), accessMask))
+        , m_name(keyName)
         , m_accessMask(accessMask)
     {} // Implementation is within class, otherwise VC5 will not link
-
-    /// Copy constructor
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    /** \brief Constructs an instance as a (logical) copy of another.
+     *
+     * \param rhs Instance whose key will be opened by the new instance.
+     *
+     * \note The instance will hold a <i>different</i> handle to the
+     *  <i>same</i> registry key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be opened. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
     basic_reg_key(class_type const &rhs);
-    /// Copy constructor, with permissions
-    ///
-    /// \param rhs The key from which to copy
-    /// \param accessMask a change of permissions
+    /** \brief Constructs an instance as a (logical) copy of another, but with different permissions.
+     *
+     * \param rhs Instance whose key will be opened by the new instance.
+     * \param accessMask The permissions for the new instance.
+     *
+     * \note The instance will hold a <i>different</i> handle to the
+     *  <i>same</i> registry key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be opened. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
     basic_reg_key(class_type const &rhs, REGSAM accessMask);
 
-    /// Destructor
+    /// \brief Destructor
+    ///
+    /// Releases any resources allocated by the instance, including closing the
+    /// underlying registry key.
     ~basic_reg_key() stlsoft_throw_0();
 
-    /// Copy assignment operator
+    /// \brief Copy assignment operator
     class_type &operator =(class_type const &rhs);
 /// @}
 
 /// \name Attributes
 /// @{
 public:
-    /// The name of the key
+    /// \brief The name of the key
     string_type const       &name() const;
-    /// The registry class of the key
+    /// \brief The registry class of the key
     string_type             reg_class() const;
-    /// The number of sub-keys
+    /// \brief The number of sub-keys
     ///
     /// \note This is not a constant-time operation
     size_type               num_sub_keys() const;
-    /// The number of values
+    /// \brief The number of values
     ///
     /// \note This is not a constant-time operation
     size_type               num_values() const;
 
-    /// The key handle
+    /** \brief The handle to the underlying Registry API key.
+     *
+     * \note If \ref page__exception_agnostic "exception handling is not enabled",
+     *  then this method will return <code>NULL</code> in the case where an
+     *  instance constructor failed to open the key with the requested permissions.
+     */
     hkey_type               get_key_handle() const;
-    /// The key handle
+    /// \brief The handle to the underlying Registry API key.
+    ///
+    /// \note Equivalent to get_key_handle()
     hkey_type               get() const;
 
 #if 0
@@ -269,13 +362,14 @@ public:
     value_collection_type   values() const;
 #endif /* 0 */
 
+    /// \brief The access mask associated with the key
     REGSAM                  get_access_mask() const;
 /// @}
 
 /// \name Sub-key operations
 /// @{
 public:
-    /// Opens the named sub-key of this key
+    /// \brief Opens the named sub-key of this key
     class_type  open_sub_key(char_type const *subKeyName, REGSAM accessMask = KEY_ALL_ACCESS);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k S>
@@ -285,9 +379,34 @@ public:
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
-    /// Creates a named sub-key of this key
+    /** \brief Creates a named sub-key of this key
+     *
+     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     *  empty string, then the function returns a copy of the callee.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be created. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
     class_type  create_sub_key(char_type const *subKeyName, REGSAM accessMask = KEY_ALL_ACCESS);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Creates a named sub-key of this key
+     *
+     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     *  empty string, then the function returns a copy of the callee.
+     * \param accessMask A mask of <code>KEY_*</code> flags that define the
+     *  required access to the key.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown indicating why the given key could not be created. If not,
+     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  value returned from the get_key_handle() method.
+     */
     template <ss_typename_param_k S>
     class_type  create_sub_key(S const &subKeyName, REGSAM accessMask = KEY_ALL_ACCESS)
     {
@@ -295,9 +414,34 @@ public:
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
-    /// Deletes the named sub-key of this key
+    /** \brief Deletes the named sub-key of this key
+     *
+     * \return Indicates whether the sub-key was deleted.
+     * \retval true The sub-key existed and was successfully deleted.
+     * \retval false The sub-key does not exist. (<b>Note</b>:
+     *  if \ref page__exception_agnostic "exception handling is not enabled",
+     *  then false will also be returned for any other reason, and the
+     *  reason will be available via <code>::GetLastError()</code>.)
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the sub-key exists but cannot be deleted.
+     */
     bool_type   delete_sub_key(char_type const *subKeyName);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Deletes the named sub-key of this key
+     *
+     * \return Indicates whether the sub-key was deleted.
+     * \retval true The sub-key existed and was successfully deleted.
+     * \retval false The sub-key does not exist. (<b>Note</b>:
+     *  if \ref page__exception_agnostic "exception handling is not enabled",
+     *  then false will also be returned for any other reason, and the
+     *  reason will be available via <code>::GetLastError()</code>.)
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the sub-key exists but cannot be deleted.
+     */
     template <ss_typename_param_k S>
     class_type  delete_sub_key(S const &subKeyName)
     {
@@ -306,79 +450,225 @@ public:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 /// @}
 
-
-    /* The handle returned from this method MUST be closed with RegCloseKey() */
-    hkey_type   dup_key_handle(REGSAM accessMask = KEY_ALL_ACCESS);
+    /// \brief Returns a duplicate of the key's handle, if any.
+    /// 
+    /// \param accessMask The access mask for the 
+    /// \param result A pointer to a variable (of type result_type) into
+    ///   which will be written the result of the underlying registry API
+    ///   call.
+    ///
+    /// \return 
+    ///
+    /// \note The handle returned from this method <b>must</b> be closed with RegCloseKey()
+    hkey_type   dup_key_handle( REGSAM      accessMask  =   KEY_ALL_ACCESS
+                            ,   result_type *result     =   NULL);
 
 /// \name Value operations
 /// @{
 public:
+    /** \brief Sets the named value to the value of the given 32-bit integer.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     bool_type   set_value(char_type const *valueName, DWORD value);
-#  ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    /** \brief Sets the named value to the value of the given 64-bit integer.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     bool_type   set_value(char_type const *valueName, ws_uint64_t value);
-#  endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    /** \brief Sets the named value to the value of the given string.
+    ///
+    /// \param valueName The name of the value.
+    /// \param value The value of the value
+    /// \param type The type of the value. Must be one of REG_SZ, REG_EXPAND_SZ or REG_MULTI_SZ.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     bool_type   set_value(char_type const *valueName, char_type const *value, ws_uint_t type = REG_SZ);
+    /** \brief Sets the named value to the values of the given string array.
+    ///
+    /// \param valueName The name of the value.
+    /// \param values The string array.
+    /// \param numValues Number of elements in the string array.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     bool_type   set_value(char_type const *valueName, char_type const **values, size_type numValues);
+    /** \brief Sets the named value to the given binary value.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     bool_type   set_value(char_type const *valueName, void const *value, size_type cbValue);
 
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Sets the named value to the value of the given 32-bit integer.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     template <ss_typename_param_k S>
     bool_type   set_value(S const &valueName, DWORD value)
     {
         return set_value_(stlsoft_ns_qual(c_str_ptr)(valueName), value);
     }
-#  ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Sets the named value to the value of the given 64-bit integer.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     template <ss_typename_param_k S>
     bool_type   set_value(S const &valueName, ws_uint64_t value)
     {
         return set_value_(stlsoft_ns_qual(c_str_ptr)(valueName), value);
     }
-#  endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Sets the named value to the value of the given string.
+    ///
+    /// \param valueName The name of the value.
+    /// \param value The value of the value
+    /// \param type The type of the value. Must be one of REG_SZ, REG_EXPAND_SZ or REG_MULTI_SZ.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     template <ss_typename_param_k S>
     bool_type   set_value(S const &valueName, char_type const *value, ws_uint_t type = REG_SZ)
     {
         return set_value_(stlsoft_ns_qual(c_str_ptr)(valueName), value, type);
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Sets the named value to the values of the given string array.
+    ///
+    /// \param valueName The name of the value.
+    /// \param values The string array.
+    /// \param numValues Number of elements in the string array.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     template <ss_typename_param_k S>
     bool_type   set_value(S const &valueName, char_type const **values, size_type numValues)
     {
         return set_value_(stlsoft_ns_qual(c_str_ptr)(valueName), values, numValues);
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Sets the named value to the given binary value.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     template <ss_typename_param_k S>
     bool_type   set_value(S const &valueName, void const *value, size_type cbValue)
     {
         return set_value_(stlsoft_ns_qual(c_str_ptr)(valueName), value, cbValue);
     }
-
-    /// \brief Inserts the given integer (stored as an unsigned value)
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    /** \brief Sets the named value to the given integer (stored as an unsigned value).
     ///
     /// \note This method is provided solely to disambiguate between the DWORD and ws_uint64_t overloads
     /// when using integer literals.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     bool_type   set_value(char_type const *valueName, int value);
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Sets the named value to the given integer (stored as an unsigned value).
+    ///
+    /// \note This method is provided solely to disambiguate between the DWORD and ws_uint64_t overloads
+    /// when using integer literals.
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value cannot be set.
+     */
     template <ss_typename_param_k S>
     bool_type   set_value(S const &valueName, int value)
     {
         return set_value_(stlsoft_ns_qual(c_str_ptr)(valueName), value);
     }
-
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    /** \brief Deletes the named value.
+     *
+     * \return Indicates whether the value was deleted.
+     * \retval true The value existed and was successfully deleted.
+     * \retval false The value does not exist. (<b>Note</b>:
+     *  if \ref page__exception_agnostic "exception handling is not enabled",
+     *  then false will also be returned for any other reason, and the
+     *  reason will be available via <code>::GetLastError()</code>.)
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value exists but cannot be deleted.
+     */
     bool_type   delete_value(char_type const *valueName);
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Deletes the named value.
+     *
+     * \return Indicates whether the value was deleted.
+     * \retval true The value existed and was successfully deleted.
+     * \retval false The value does not exist. (<b>Note</b>:
+     *  if \ref page__exception_agnostic "exception handling is not enabled",
+     *  then false will also be returned for any other reason, and the
+     *  reason will be available via <code>::GetLastError()</code>.)
+     *
+     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     *  an instance of \link winstl::registry_exception registry_exception\endlink
+     *  will be thrown if the value exists but cannot be deleted.
+     */
     template <ss_typename_param_k S>
     bool_type   delete_value(S const &valueName)
     {
         return this->delete_value_(stlsoft_ns_qual(c_str_ptr)(valueName));
     }
-
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
 #if 0
     ws_dword_t      get_value_type(char_type const *valueName) const;
     size_type       get_value_data_size(char_type const *valueName) const;
 #endif /* 0 */
 
+    /** \brief Returns the named value.
+    ///
+    /// \return An instance of basic_reg_value.
+     */
     key_value_type              get_value(char_type const *valueName) const;
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    /** \brief Returns the named value.
+    ///
+    /// \return An instance of basic_reg_value.
+     */
     template <ss_typename_param_k S>
     key_value_type              get_value(S const &valueName) const
     {
         return this->get_value(stlsoft_ns_qual(c_str_ptr)(stlsoft_ns_qual(c_str_ptr)(valueName)));
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 //  std::list<key_value_type>   get_values(char_type const *valueNames) const;
 /// @}
 
@@ -386,7 +676,7 @@ public:
 /// @{
 private:
     static hkey_type    open_key_(  hkey_type       hkeyParent
-                                ,   char_type const *key_name
+                                ,   char_type const *keyName
                                 ,   REGSAM          accessMask);
     class_type  open_sub_key_(      char_type const *subKeyName
                                 ,   REGSAM          accessMask);
@@ -414,11 +704,18 @@ private:
     bool_type   delete_value_(char_type const *valueName);
 
     static result_type  get_value_(hkey_type hkey, char_type const *valueName, ws_uint_t type, void *value, size_type *pcbValue);
+
+    static hkey_type    dup_key_(   hkey_type       hkey
+                                ,   REGSAM          accessMask  =   KEY_ALL_ACCESS);
 /// @}
 
 /// \name Operations
 /// @{
 public:
+    /** \brief Efficiently swaps the contents between two instances
+    ///
+    /// \param rhs The parameter whose contents will be swapped.
+     */
     void    swap(class_type &rhs) stlsoft_throw_0();
 /// @}
 
@@ -445,7 +742,14 @@ typedef basic_reg_key<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >  
 
 /* get_handle */
 
-/// \brief Returns the corresponding registry handle of \c k
+/** \brief [\ref group__concept__shims "Shim" function] Returns the corresponding registry handle of an instance of \link winstl::basic_reg_key basic_reg_key\endlink.
+ *
+ * \ingroup group__library__windows_registry
+ *
+ * \param key The \link winstl::basic_reg_key basic_reg_key\endlink instance.
+ *
+ * \return The HKEY handle of the given \link winstl::basic_reg_key basic_reg_key\endlink instance.
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -475,24 +779,48 @@ template<   ss_typename_param_k C
 #if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1100) || \
     defined(STLSOFT_COMPILER_IS_VECTORC)
-inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(hkey_type hkeyParent, char_type const *key_name, REGSAM accessMask)
+inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(hkey_type hkeyParent, char_type const *keyName, REGSAM accessMask)
 #else /* ? compiler */
-inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(ss_typename_param_k basic_reg_key<C, T, A>::hkey_type hkeyParent, ss_typename_param_k basic_reg_key<C, T, A>::char_type const *key_name, REGSAM accessMask)
+inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(ss_typename_param_k basic_reg_key<C, T, A>::hkey_type hkeyParent, ss_typename_param_k basic_reg_key<C, T, A>::char_type const *keyName, REGSAM accessMask)
 #endif /* compiler */
 {
     hkey_type   hkey;
-    result_type res = traits_type::reg_open_key(hkeyParent, key_name, &hkey, accessMask);
+    result_type res = traits_type::reg_open_key(hkeyParent, keyName, &hkey, accessMask);
 
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw registry_exception("Could not open key", static_cast<DWORD>(res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        ::SetLastError(res);
         hkey = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     return hkey;
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::dup_key_(  ss_typename_type_k basic_reg_key<C, T, A>::hkey_type    hkey
+                                                                                                        ,   REGSAM                                                  accessMask /* = KEY_ALL_ACCESS */)
+{
+    result_type res;
+    HKEY        hkeyDup =   traits_type::key_dup(hkey, accessMask, &res);
+
+    if(ERROR_SUCCESS != res)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        throw registry_exception("Could not duplicate key", res);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        ::SetLastError(res);
+        hkeyDup = NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    return hkeyDup;
 }
 
 // Construction
@@ -503,22 +831,22 @@ inline basic_reg_key<C, T, A>::basic_reg_key()
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_key<C, T, A>::basic_reg_key(ss_typename_type_k basic_reg_key<C, T, A>::hkey_type *hkey, ss_typename_type_k basic_reg_key<C, T, A>::string_type const &key_name, REGSAM accessMask)
+inline basic_reg_key<C, T, A>::basic_reg_key(ss_typename_type_k basic_reg_key<C, T, A>::hkey_type *hkey, ss_typename_type_k basic_reg_key<C, T, A>::string_type const &keyName, REGSAM accessMask)
     : m_hkey(*hkey)
-    , m_name(key_name)
+    , m_name(keyName)
     , m_accessMask(accessMask)
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_key<C, T, A>::basic_reg_key(class_type const &rhs)
-    : m_hkey(traits_type::key_dup(rhs.m_hkey, rhs.get_access_mask()))
+    : m_hkey(dup_key_(rhs.m_hkey, rhs.get_access_mask()))
     , m_name(rhs.m_name)
     , m_accessMask(rhs.m_accessMask)
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_key<C, T, A>::basic_reg_key(class_type const &rhs, REGSAM accessMask)
-    : m_hkey(traits_type::key_dup(rhs.m_hkey, accessMask))
+    : m_hkey(dup_key_(rhs.m_hkey, accessMask))
     , m_name(rhs.m_name)
     , m_accessMask(accessMask)
 {}
@@ -654,6 +982,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T,
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw registry_exception("Could not create sub-key", static_cast<DWORD>(res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        ::SetLastError(res);
         return class_type();
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -670,30 +999,31 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_sub_key_(char_type const *subKeyName)
 {
-    result_type r   =   traits_type::reg_delete_key(m_hkey, subKeyName);
+    result_type res = traits_type::reg_delete_key(m_hkey, subKeyName);
 
-    if( ERROR_SUCCESS != r &&
-        ERROR_FILE_NOT_FOUND != r)
+    switch(res)
     {
+        case    ERROR_SUCCESS:
+            return true;
+        default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw registry_exception("Could not delete sub-key", r);
+            throw registry_exception("Could not delete sub-key", res);
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        return false;
+            ::SetLastError(res);
+            // Fall through
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        case    ERROR_FILE_NOT_FOUND:
+            return false;
     }
-
-    return ERROR_SUCCESS == r;
 }
 
 
 /* The handle returned from this method MUST be closed with RegCloseKey() */
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::dup_key_handle(REGSAM accessMask /* = KEY_ALL_ACCESS */)
+inline ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::dup_key_handle(REGSAM accessMask /* = KEY_ALL_ACCESS */, result_type *result /* = NULL */)
 {
-    return traits_type::key_dup(m_hkey);
+    return traits_type::key_dup(m_hkey, accessMask, result);
 }
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 // Values
 
@@ -857,7 +1187,22 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const *valueName)
 {
-    return ERROR_SUCCESS == traits_type::delete_value(valueName);
+    result_type res = traits_type::reg_delete_value(m_hkey, valueName);
+
+    switch(res)
+    {
+        case    ERROR_SUCCESS:
+            return true;
+        default:
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw registry_exception("Could not delete value", static_cast<DWORD>(res));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+            ::SetLastError(res);
+            // Fall through
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        case    ERROR_FILE_NOT_FOUND:
+            return false;
+    }
 }
 
 
@@ -867,9 +1212,7 @@ inline basic_reg_value<C, T, A> basic_reg_key<C, T, A>::get_value(ss_typename_ty
     return basic_reg_value<C, T, A>(m_hkey, valueName);
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

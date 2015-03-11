@@ -4,7 +4,7 @@
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     21st March 2006
+ * Updated:     12th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MAJOR     1
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MINOR     3
-# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_REVISION  1
-# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      18
+# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_REVISION  2
+# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -136,6 +136,13 @@ inline ss_char_a_t const *c_str_ptr(stlsoft_ns_qual_std(exception) const &x)
  * This can be applied to an expression, and the return value is either a
  * pointer to the character string or to an empty string.
  */
+
+/* std::exception */
+/// \brief Returns the corresponding C-string pointer of \c x
+inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(exception) const &x)
+{
+    return c_str_ptr_a(x);
+}
 
 /* std::exception */
 /// \brief Returns the corresponding C-string pointer of \c x

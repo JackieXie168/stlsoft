@@ -4,7 +4,7 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     14th March 2006
+ * Updated:     7th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_META_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_META_MINOR       19
-# define STLSOFT_VER_H_STLSOFT_META_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_META_EDIT        117
+# define STLSOFT_VER_H_STLSOFT_META_MINOR       21
+# define STLSOFT_VER_H_STLSOFT_META_REVISION    1
+# define STLSOFT_VER_H_STLSOFT_META_EDIT        119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,12 +62,18 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#ifndef STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_
+# include <stlsoft/meta/util/meta_.hpp>
+#endif /* STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
 # include <stlsoft/meta/is_function_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
+# include <stlsoft/meta/is_integral_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
 # include <stlsoft/meta/is_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE */
@@ -80,6 +86,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
 # include <stlsoft/meta/select_first_type_if.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SIZEOF
+# include <stlsoft/meta/size_of.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SIZEOF */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -89,48 +98,6 @@
 namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Macros
- */
-
-/// \def STLSOFT_GEN_TRAIT_SPECIALISATION
-/// \ingroup code_modification_macros
-///
-/// \brief Used to define a specialisation of a traits type
-///
-#define STLSOFT_GEN_TRAIT_SPECIALISATION(TR, T, V)  \
-                                                    \
-    STLSOFT_TEMPLATE_SPECIALISATION                 \
-    struct TR<T>                                    \
-    {                                               \
-        enum { value = V };                         \
-    };
-
-
-/// \def STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE
-/// \ingroup code_modification_macros
-///
-/// \brief Used to define a specialisation of a traits type that contains a member type
-///
-#define STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(TR, T, V, MT)    \
-                                                                    \
-    STLSOFT_TEMPLATE_SPECIALISATION                                 \
-    struct TR<T>                                                    \
-    {                                                               \
-        enum { value = V };                                         \
-                                                                    \
-        typedef MT type;                                            \
-    };
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Typedefs and basic support types
- */
-
-/// \brief Converts compile time constants to type
-template <int N>
-struct int_to_type
-{};
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Tests
@@ -294,53 +261,6 @@ STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, unsigned int, 1)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, float, 1)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, double, 1)
 STLSOFT_GEN_TRAIT_SPECIALISATION(is_numeric_type, long double, 1)
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-/// traits type used to determine whether a given type is integral
-template <ss_typename_param_k T>
-struct is_integral_type
-{
-    enum { value = 0 };
-
-    typedef no_type     type;
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_sint8_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_uint8_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_sint16_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_uint16_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_sint32_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_uint32_t, 1, yes_type)
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_sint64_t, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_uint64_t, 1, yes_type)
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC)) && \
-    _MSC_VER == 1200
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed char, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned char, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed short, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned short, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed int, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned int, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed long, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned long, 1, yes_type)
-#elif defined(STLSOFT_CF_INT_DISTINCT_TYPE)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed int, 1, yes_type)
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned int, 1, yes_type)
-#endif /* _MSC_VER == 1200 */
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_bool_t, 1, yes_type)
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_a_t, 1, yes_type)
-#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
-STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_w_t, 1, yes_type)
-#endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -592,25 +512,6 @@ struct is_void<void>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-
-
-/// \brief Provides the sizeof the type, and works with void (for which it
-/// provides the value 0)
-template <ss_typename_param_k T>
-struct size_of
-{
-    enum { value = sizeof(T) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct size_of<void>
-{
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 

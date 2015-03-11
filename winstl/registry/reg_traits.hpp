@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/reg_traits.hpp (formerly winstl_reg_traits.h)
  *
- * Purpose:     Contains the reg_traits template class, and ANSI
+ * Purpose:     Contains the reg_traits class template, and ANSI
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     21st March 2006
+ * Updated:     23rd May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,7 @@
 
 
 /// \file winstl/registry/reg_traits.hpp
-///
-/// Contains the reg_traits template class, and ANSI and Unicode specialisations thereof.
+/// \brief [C++ only] Definition of the \link winstl::reg_traits reg_traits\endlink class template used throughout the \ref group__library__windows_registry "Windows Registry" Library.
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
@@ -49,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     57
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -88,17 +87,10 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// Traits for accessing the correct registry functions for a given character type
+/// \brief Traits for accessing the correct registry functions for a given character type
+///
+/// \ingroup group__library__windows_registry
 ///
 /// reg_traits is a traits class for determining the correct registry
 /// structures and functions for a given character type.
@@ -110,19 +102,19 @@ struct reg_traits
 /// \name Member Types
 /// @{
 public:
-    /// The character type
+    /// \brief The character type
     typedef C               char_type;
-    /// The size type
+    /// \brief The size type
     typedef ws_size_t       size_type;
-    /// The difference type
+    /// \brief The difference type
     typedef ws_ptrdiff_t    difference_type;
-    /// The registry key type
+    /// \brief The registry key type
     typedef HKEY            hkey_type;
-    /// The string type
+    /// \brief The string type
     typedef reg_string_t    string_type;        // Placeholder only
-    /// The time type
+    /// \brief The time type
     typedef FILETIME        time_type;
-    /// The API result type (LONG)
+    /// \brief The API result type (LONG)
     typedef ws_long_t       result_type;
 /// @}
 
@@ -130,17 +122,17 @@ public:
 /// @{
 public:
     // General string handling
-    /// Copies the contents of \c src to \c dest, up to cch \c characters
+    /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
     static char_type    *str_n_copy(char_type *dest, char_type const *src, size_type cch);
 # if 0
-    /// Copies the contents of \c src to \c dest
+    /// \brief Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type *dest, char_type const *src);
-    /// Appends the contents of \c src to \c dest
+    /// \brief Appends the contents of \c src to \c dest
     static char_type    *str_cat(char_type *dest, char_type const *src);
-    /// Comparies the contents of \c src and \c dest
+    /// \brief Comparies the contents of \c src and \c dest
     static ws_int_t     str_compare(char_type *dest, char_type const *src);
 # endif /* 0 */
-    /// Evaluates the length of \c src
+    /// \brief Evaluates the length of \c src
     static size_type    str_len(char_type const *src);
 /// @}
 
@@ -148,23 +140,23 @@ public:
     // Registry names
 
 # if 0
-    /// Appends a registry path separator to \c path if one does not exist
+    /// \brief Appends a registry path separator to \c path if one does not exist
     static char_type    *ensure_subkey_end(char_type *path);
 # endif /* 0 */
 
-    /// Expands environment strings in \c src into \c dest, up to a maximum \c cchDest characters
+    /// \brief Expands environment strings in \c src into \c dest, up to a maximum \c cchDest characters
     static size_type    expand_env_strings(char_type const *src, char_type *dest, size_type cch_dest);
 
-    /// Duplicates a registry key
+    /// \brief Duplicates a registry key
     static hkey_type    key_dup(        hkey_type       hkey
-                                    ,   REGSAM          samDesired	=	KEY_ALL_ACCESS
-									,	result_type		*result		=	NULL);
-    /// Opens a registry sub-key
+                                    ,   REGSAM          samDesired  =   KEY_ALL_ACCESS
+                                    ,   result_type     *result     =   NULL);
+    /// \brief Opens a registry sub-key
     static result_type  reg_open_key(   hkey_type       hkey,
                                         char_type const *sub_key_name,
                                         hkey_type       *hkey_result,
                                         REGSAM          samDesired = KEY_ALL_ACCESS);
-    /// Opens a registry sub-key
+    /// \brief Opens a registry sub-key
     static result_type  reg_create_key( hkey_type       hkey,
                                         char_type const *sub_key_name,
                                         hkey_type       *hkey_result,
@@ -174,16 +166,26 @@ public:
                                         hkey_type       *hkey_result,
                                         ws_bool_t       &bCreated,
                                         REGSAM          samDesired = KEY_ALL_ACCESS);
-    /// Destroys a registry sub-key
+    /// \brief Destroys a registry sub-key
     static result_type  reg_delete_key( hkey_type       hkey,
                                         char_type const *sub_key_name);
-    /// Queries a registry key value
+    /// \brief Queries a registry key value
     static result_type  reg_query_value(hkey_type       hkey,
                                         char_type const *valueName,
                                         ws_dword_t      &valueType,
                                         void            *data,
                                         size_type       &cbData);
-    /// Queries a registry key's characteristics
+    /// \brief Sets the value of the named value.
+    static result_type  reg_set_value(  hkey_type       hkey
+                                    ,   char_type const *valueName
+                                    ,   ws_dword_t      valueType
+                                    ,   void const      *data
+                                    ,   size_type       cbData);
+    /// \brief Deletes the named value.
+    static result_type  reg_delete_value(hkey_type      hkey
+                                    ,   char_type const *valueName);
+
+    /// \brief Queries a registry key's characteristics
     static result_type  reg_query_info( hkey_type       hkey,
                                         char_type       *key_class,
                                         size_type       *cch_key_class,
@@ -195,15 +197,15 @@ public:
                                         size_type       *cb_value_data_max,
                                         size_type       *cb_security_descriptor_max,
                                         time_type       *time_last_write);
-    /// Enumerates a registry key's sub-keys
+    /// \brief Enumerates a registry key's sub-keys
     static result_type  reg_enum_key(   hkey_type       hkey,
                                         ws_dword_t      index,
                                         char_type       *key_name,
                                         size_type       *cch_key_name,
                                         time_type       *time_last_write    =   NULL);
-    /// Enumerates a registry key's sub-keys
+    /// \brief [DEPRECATED] Enumerates a registry key's sub-keys
     ///
-    /// \deprecated
+    /// \deprecated This is deprecated in favour of reg_enum_key(hkey_type, ws_dword_t, char_type*, size_type*, time_type *)
     static result_type  reg_enum_key(   hkey_type       hkey,
                                         ws_dword_t      index,
                                         char_type       *key_name,
@@ -211,7 +213,7 @@ public:
                                         char_type       *key_class,
                                         size_type       *cch_key_class,
                                         time_type       *time_last_write);
-    /// Enumerates a registry key's values
+    /// \brief Enumerates a registry key's values
     static result_type  reg_enum_value( hkey_type       hkey,
                                         ws_dword_t      index,
                                         char_type       *valueName,
@@ -219,7 +221,7 @@ public:
                                         ws_dword_t      *valueType,
                                         void            *data,
                                         size_type       &cbData);
-    /// Enumerates a registry key's values
+    /// \brief Enumerates a registry key's values
     static result_type  reg_enum_value( hkey_type       hkey,
                                         ws_dword_t      index,
                                         char_type       *valueName,
@@ -305,10 +307,10 @@ public:
             hkeyDup = NULL;
         }
 
-		if(NULL != result)
-		{
-			*result = res;
-		}
+        if(NULL != result)
+        {
+            *result = res;
+        }
 
         return hkeyDup;
     }
@@ -348,7 +350,7 @@ public:
         return ::RegSetValueExA(hkey, valueName, 0, valueType, static_cast<BYTE const*>(data), cbData);
     }
 
-    static result_type reg_delete_vaue(hkey_type hkey, char_type const *valueName)
+    static result_type reg_delete_value(hkey_type hkey, char_type const *valueName)
     {
         return ::RegDeleteValueA(hkey, valueName);
     }
@@ -482,10 +484,10 @@ public:
             hkeyDup = NULL;
         }
 
-		if(NULL != result)
-		{
-			*result = res;
-		}
+        if(NULL != result)
+        {
+            *result = res;
+        }
 
         return hkeyDup;
     }
@@ -525,7 +527,7 @@ public:
         return ::RegSetValueExW(hkey, valueName, 0, valueType, static_cast<BYTE const*>(data), cbData);
     }
 
-    static result_type reg_delete_vaue(hkey_type hkey, char_type const *valueName)
+    static result_type reg_delete_value(hkey_type hkey, char_type const *valueName)
     {
         return ::RegDeleteValueW(hkey, valueName);
     }
@@ -586,10 +588,6 @@ public:
 };
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

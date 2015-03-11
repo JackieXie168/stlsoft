@@ -4,7 +4,7 @@
  * Purpose:     performance_counter class.
  *
  * Created:     16th January 2002
- * Updated:     21st March 2006
+ * Updated:     26th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file unixstl/performance_counter.hpp
-///
-/// performance_counter class.
+/** \file unixstl/performance_counter.hpp
+ * \brief [C++ only] Definition of the 
+ *  \link unixstl::performance_counter performance_counter\endlink class.
+ *  (\ref group__library__performance "Performance" Library.)
+ */
 
 #ifndef UNIXSTL_INCL_H_UNIXSTL_PERFORMANCE_COUNTER
 #define UNIXSTL_INCL_H_UNIXSTL_PERFORMANCE_COUNTER
@@ -49,7 +51,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_PERFORMANCE_COUNTER_MAJOR    3
 # define UNIXSTL_VER_H_UNIXSTL_PERFORMANCE_COUNTER_MINOR    1
 # define UNIXSTL_VER_H_UNIXSTL_PERFORMANCE_COUNTER_REVISION 1
-# define UNIXSTL_VER_H_UNIXSTL_PERFORMANCE_COUNTER_EDIT     47
+# define UNIXSTL_VER_H_UNIXSTL_PERFORMANCE_COUNTER_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -94,28 +96,17 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_performance Performance Library
-/// \ingroup libraries
-/// \brief This library provides performance measuring facilities
-
-/// \weakgroup unixstl_perf_library Performance Library (UNIXSTL)
-/// \ingroup UNIXSTL libraries_performance
-/// \brief This library provides performance measuring facilities for UNIX
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// \brief A performance counter using \c gettimeofday()
-///
-/// This class provides performance monitoring functionality based around the
-/// UNIX \c gettimeofday() API.
+/** \brief A performance counter using \c gettimeofday()
+ *
+ * \ingroup group__library__performance
+ *
+ * This class provides performance monitoring functionality based around the
+ * UNIX \c gettimeofday() API.
+ */
 
 class performance_counter
 {
@@ -230,6 +221,8 @@ namespace unittest
 ////////////////////////////////////////////////////////////////////////////////
 // Implementation
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline void performance_counter::start()
 {
     struct timezone tz;
@@ -287,9 +280,7 @@ inline performance_counter::interval_type performance_counter::get_microseconds(
     return secs * (1000 * 1000) + usecs;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group unixstl_perf_library
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

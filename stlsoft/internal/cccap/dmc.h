@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      7
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      8
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       68
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -372,6 +372,10 @@
 
 #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
+
+
+#define STLSOFT_CF_REQUIRE_RETURN_ALWAYS
+
 
 #if defined(_STLSOFT_CUSTOM_ASSERT)
  /* You have defined the pre-processor symbol _STLSOFT_CUSTOM_ASSERT,

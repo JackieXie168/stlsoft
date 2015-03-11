@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     25th March 2006
+ * Updated:     24th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_PATH_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_HPP_PATH_MINOR     8
 # define UNIXSTL_VER_UNIXSTL_HPP_PATH_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      195
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      196
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 # include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
-# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>

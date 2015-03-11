@@ -17,7 +17,7 @@ namespace unittest
 
             ss_bool_t               bSuccess    =   true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "absolute_path", __FILE__);
+            unittest_initialiser    init(r, "WinSTL", "absolute_path", __FILE__);
 
             TCHAR   cwd[1 + _MAX_PATH];
 

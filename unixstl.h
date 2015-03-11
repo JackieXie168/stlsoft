@@ -3,7 +3,7 @@
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include unixstl/unixstl.h")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/unixstl.h")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL

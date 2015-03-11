@@ -1,4 +1,6 @@
 
+// Updated: 25th May 2006
+
 #if !defined(WINSTL_INCL_WINSTL_HPP_RESOURCE_STRING)
 # error This file cannot be directly included, and should only be included within winstl/resource_string.hpp
 #endif /* !WINSTL_INCL_WINSTL_HPP_RESOURCE_STRING */
@@ -36,11 +38,24 @@ namespace unittest
             };
 
         public:
-            void operator ()(HINSTANCE hinst, int id)
+            void operator ()(char const *reason, DWORD err, LPCSTR resourceId, LPCSTR resourceType) const
             {
-                char    message[101];
+                char    message[1001];
+                char    szResourceId[21];
+                char    szResourceType[21];
 
-                wsprintfA(message, "Failed to load resource %d from module 0x%084", id, hinst);
+                if(0 == HIWORD(resourceId))
+                {
+                    wsprintfA(szResourceId, "%d", resourceId);
+                    resourceId = &szResourceId[0];
+                }
+                if(0 == HIWORD(resourceType))
+                {
+                    wsprintfA(szResourceType, "%d", resourceType);
+                    resourceType = &szResourceType[0];
+                }
+
+                wsprintfA(message, "Failed to load resource %s (of type %s): %s; error=d", resourceId, resourceType, reason, err);
 
                 throw thrown_type(message);
             }

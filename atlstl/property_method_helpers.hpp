@@ -5,7 +5,7 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     25th March 2006
+ * Updated:     21st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MAJOR    3
-# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MINOR    3
+# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MINOR    4
 # define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_EDIT     56
+# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -289,6 +289,37 @@ template <ss_typename_param_k C>
 inline HRESULT put_MemberValue(C *const cls, CComVariant const &newVal, CComVariant C::*mem)
 {
     return put_MemberValue(cls, (VARIANT const &)newVal, mem);
+}
+
+
+
+
+
+
+
+/// \brief Shorthand for implementing methods that return a constant value
+///
+/// This method is used to implement methods that return a value of a
+/// known constant, e.g.
+///
+/// \htmlonly
+/// <pre>
+/// 
+/// STDMETHODIMP DatabaseFlags::get_OrderFields(BOOL *pVal)
+/// {
+///     return atlstl::get_ConstantValue(pVal, openrj::ORJ_FLAG_ORDERFIELDS);
+/// }
+/// 
+/// </pre>
+/// \endhtmlonly
+///
+/// \param ret Pointer to the return value
+///
+
+template <ss_typename_type_k T1, ss_typename_type_k T2>
+inline HRESULT get_ConstantValue(T1 *ret, T2 const &value)
+{
+    return (NULL == ret) ? E_POINTER : (*ret = value, S_OK);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

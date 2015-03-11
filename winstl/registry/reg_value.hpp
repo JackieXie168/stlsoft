@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/reg_value.hpp (formerly winstl_reg_value.h)
  *
- * Purpose:     Contains the basic_reg_value template class, and ANSI
+ * Purpose:     Contains the basic_reg_value class template, and ANSI
  *              and Unicode specialisations thereof.
  *
  * Notes:       The original implementation of the class had the const_iterator
@@ -12,7 +12,7 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     24th March 2006
+ * Updated:     22nd May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,7 @@
 
 
 /// \file winstl/registry/reg_value.hpp
-///
-/// Contains the basic_reg_value template class, and ANSI and Unicode specialisations thereof.
+/// \brief [C++ only] Definition of the \link winstl::basic_reg_value basic_reg_value\endlink class template. (\ref group__library__windows_registry "Windows Registry" Library.)
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE
@@ -56,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      74
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -121,44 +120,39 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// Represents a binary registry value
+/// \brief Represents a binary registry value
+///
+/// \ingroup group__library__windows_registry
 template<ss_typename_param_k A>
 class reg_blob
     : protected A
     , public stlsoft_ns_qual(stl_collection_tag)
 {
+/// \name Member Types
+/// @{
     typedef stlsoft_ns_qual(auto_buffer_old)<   ws_byte_t
                                             ,   processheap_allocator<ws_byte_t>
                                             ,   CCH_REG_API_AUTO_BUFFER
                                             >               buffer_type;
 public:
-    /// The allocator type
+    /// \brief The allocator type
     typedef A                                               allocator_type;
-    /// The current parameterisation of the type
+    /// \brief The current parameterisation of the type
     typedef reg_blob<A>                                     class_type;
-    /// The value type
+    /// \brief The value type
     typedef ws_byte_t                                       value_type;
-    /// The non-mutable (const) reference type
+    /// \brief The non-mutable (const) reference type
     typedef value_type const                                &const_reference;
-    /// The non-mutable (const) pointer type
+    /// \brief The non-mutable (const) pointer type
     typedef value_type const                                *const_pointer;
-    /// The non-mutating (const) iterator type
+    /// \brief The non-mutating (const) iterator type
     typedef value_type const                                *const_iterator;
-    /// The size type
+    /// \brief The size type
     typedef ws_size_t                                       size_type;
-    /// The difference type
+    /// \brief The difference type
     typedef ws_ptrdiff_t                                    difference_type;
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    /// The non-mutating (const) reverse iterator type
+    /// \brief The non-mutating (const) reverse iterator type
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
@@ -166,34 +160,73 @@ public:
                                         ,   difference_type
                                         >                   const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
+    /// \brief Default constructor
     reg_blob();
+    /// \brief Copies the contents of the given pointer.
+    ///
+    /// \param data Pointer to the bytes to be copied into the instance.
+    /// \param n Number of bytes pointed to by \c data.
     reg_blob(value_type const *data, size_type n);
+    /// \brief Copy constructor
     reg_blob(class_type const &rhs);
+    /// \brief Destructor
     ~reg_blob() stlsoft_throw_0();
+/// @}
 
-// Attributes
+/// \name Attributes
+/// @{
 public:
+    /// \brief Number of bytes in the blob.
     size_type       size() const;
+    /// \brief Pointer to the first byte in the blob.
     const_pointer   data() const;
+/// @}
 
-// Iteration
+/// \name Iteration
+/// @{
 public:
+    /// \brief Begins the iteration
+    ///
+    /// \return An iterator representing the start of the sequence
     const_iterator  begin() const;
+    /// \brief Ends the iteration
+    ///
+    /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-// Members
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+    /// \brief Begins the reverse iteration
+    ///
+    /// \return An iterator representing the start of the reverse sequence
+    const_reverse_iterator  rbegin() const;
+    /// \brief Ends the reverse iteration
+    ///
+    /// \return An iterator representing the end of the reverse sequence
+    const_reverse_iterator  rend() const;
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+/// @}
+
+/// \name Members
+/// @{
 private:
     buffer_type m_buffer;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     reg_blob &operator =(class_type const &rhs);
+/// @}
 };
 
-/// Represents a registry value
+/// \brief Represents a registry value, providing methods for accessing the value in different types.
+///
+/// \ingroup group__library__windows_registry
 ///
 /// This class acts as the value type of classes that manipulate registry values
 /// and encapsulates the concept of a registry value.
@@ -215,19 +248,19 @@ class basic_reg_value
 /// \name Member Types
 /// @{
 public:
-    /// The character type
+    /// \brief The character type
     typedef C                                                           char_type;
-    /// The traits type
+    /// \brief The traits type
     typedef T                                                           traits_type;
-    /// The allocator type
+    /// \brief The allocator type
     typedef A                                                           allocator_type;
-    /// The current parameterisation of the type
+    /// \brief The current parameterisation of the type
     typedef basic_reg_value<C, T, A>                                    class_type;
-    /// The size type
+    /// \brief The size type
     typedef ss_typename_type_k traits_type::size_type                   size_type;
-    /// The string type
+    /// \brief The string type
     typedef ss_typename_type_k traits_type::string_type                 string_type;
-    /// The key type
+    /// \brief The key type
 #if defined(STLSOFT_CF_THROW_BAD_ALLOC) && \
     defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1100
@@ -236,7 +269,7 @@ public:
 #else /* ? compiler */
     typedef ss_typename_type_k traits_type::hkey_type                   hkey_type;
 #endif /* compiler */
-    /// The blob type
+    /// \brief The blob type
     typedef reg_blob<A>                                                 blob_type;
 private:
     typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
@@ -251,37 +284,43 @@ private:
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
                                             ,   CCH_REG_API_AUTO_BUFFER
                                             >                           byte_buffer_type_;
+private:
+    /// \brief The results type of the Registry API
+    typedef ss_typename_type_k traits_type::result_type                 result_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    /// Default constructor
+    /// \brief Default constructor
     basic_reg_value();
-    /// Copy constructor
+    /// \brief Copy constructor
     basic_reg_value(class_type const &rhs);
 protected:
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     friend class basic_reg_value_sequence_iterator<C, T, class_type, A>;
     friend class basic_reg_key<C, T, A>;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+    /// \brief Internal constructor, used by basic_reg_key and basic_reg_value_sequence.
     basic_reg_value(hkey_type hkeyParent, string_type const &value_name)
-        : m_hkey(traits_type::key_dup(hkeyParent, KEY_READ))
+        : m_hkey(dup_key_(hkeyParent, KEY_READ))
         , m_name(value_name)
         , m_type(REG_NONE)
         , m_bTypeRetrieved(ws_false_v)
     {} // Implementation provided here, as otherwise VC5 will not link
 public:
-    /// Destructor
+    /// \brief Destructor
     ~basic_reg_value() stlsoft_throw_0();
 
-    /// Copy assignment operator
+    /// \brief Copy assignment operator
     class_type &operator =(class_type const &rhs);
 /// @}
 
 /// \name Attributes
 /// @{
 public:
-    /// Returns the type of the value
+    /// \brief Returns the type of the value
     ///
     /// \retval REG_NONE No value type
     /// \retval REG_SZ A Unicode nul terminated string
@@ -299,31 +338,32 @@ public:
     /// \retval REG_QWORD_LITTLE_ENDIAN A 64-bit number (same as REG_QWORD)
     ws_dword_t  type() const;
 
-    /// The name of the value
+    /// \brief The name of the value
     string_type name() const;
 
-    /// The registry value in \c REG_SZ form
+    /// \brief The registry value in \c REG_SZ form
     ///
     /// This method does <i>not</i> expand environment strings
     string_type value_sz() const;
-    /// The registry value in \c REG_EXPAND_SZ form
+    /// \brief The registry value in \c REG_EXPAND_SZ form
     ///
     /// This method <i>does</i> expand environment strings
     string_type value_expand_sz() const;
-    /// The registry value as a 32-bit integer
+    /// \brief The registry value as a 32-bit integer
     ws_dword_t  value_dword() const;
-    /// The registry value as a translated (from little-endian) 32-bit integer
+    /// \brief The registry value as a translated (from little-endian) 32-bit integer
     ws_dword_t  value_dword_littleendian() const;
-    /// The registry value as a translated (from big-endian) 32-bit integer
+    /// \brief The registry value as a translated (from big-endian) 32-bit integer
     ws_dword_t  value_dword_bigendian() const;
-    /// The registry value as a binary value
+    /// \brief The registry value as a binary value
     blob_type   value_binary() const;
 /// @}
 
 /// \name Implementation
 /// @{
 private:
-    ws_dword_t  get_type_() const;
+    ws_dword_t          get_type_() const;
+    static hkey_type    dup_key_(hkey_type hkey, REGSAM accessMask/* , result_type *result */);
 /// @}
 
 /// \name Members
@@ -366,7 +406,7 @@ inline basic_reg_value<C, T, A>::basic_reg_value()
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_value<C, T, A>::basic_reg_value(class_type const &rhs)
-    : m_hkey(traits_type::key_dup(rhs.m_hkey, KEY_READ))
+    : m_hkey(dup_key_(rhs.m_hkey, KEY_READ))
     , m_name(rhs.m_name)
     , m_type(rhs.m_type)
     , m_bTypeRetrieved(rhs.m_bTypeRetrieved)
@@ -375,7 +415,7 @@ inline basic_reg_value<C, T, A>::basic_reg_value(class_type const &rhs)
 #if 0
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_value<C, T, A>::basic_reg_value(basic_reg_value<C, T, A>::hkey_type hkeyParent, basic_reg_value<C, T, A>::string_type const &value_name)
-    : m_hkey(traits_type::key_dup(hkeyParent))
+    : m_hkey(dup_key_(hkeyParent))
     , m_name(value_name)
     , m_type(REG_NONE)
     , m_bTypeRetrieved(ws_false_v)
@@ -399,7 +439,7 @@ inline ss_typename_type_k basic_reg_value<C, T, A>::class_type &basic_reg_value<
     m_bTypeRetrieved    =   rhs.m_bTypeRetrieved;
 
     hkey_type   hkey    =   m_hkey;
-    m_hkey              =   traits_type::key_dup(rhs.m_hkey, KEY_READ);
+    m_hkey              =   dup_key_(rhs.m_hkey, KEY_READ);
     if(hkey != NULL)
     {
         ::RegCloseKey(hkey);
@@ -432,6 +472,25 @@ inline ws_dword_t basic_reg_value<C, T, A>::get_type_() const
 
     return m_type;
 }
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline /* static */ ss_typename_type_k basic_reg_value<C, T, A>::hkey_type basic_reg_value<C, T, A>::dup_key_(ss_typename_type_k basic_reg_value<C, T, A>::hkey_type hkey, REGSAM accessMask/* , ss_typename_type_k basic_reg_value<C, T, A>::result_type *result */)
+{
+    result_type result;
+    HKEY        hkeyDup =   traits_type::key_dup(hkey, accessMask, &result);
+
+    if(ERROR_SUCCESS != result)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        throw registry_exception("Could not duplicate key", result);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        hkeyDup = NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+
+    return hkeyDup;
+}
+
 
 // Attributes
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
@@ -481,7 +540,7 @@ inline ss_typename_type_k basic_reg_value<C, T, A>::string_type basic_reg_value<
     string_type  ret = value_sz();
 
     if( ret.length() > 0 &&
-        m_type == REG_EXPAND_SZ)
+        REG_EXPAND_SZ == get_type_())
     {
         size_type           size    =   traits_type::expand_env_strings(ret.c_str(), NULL, 0);
         char_buffer_type_   buffer(1 + size);
@@ -598,11 +657,22 @@ inline ss_typename_type_k reg_blob<A>::const_iterator reg_blob<A>::end() const
     return m_buffer.end();
 }
 
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+template<ss_typename_param_k A>
+inline ss_typename_type_k reg_blob<A>::const_reverse_iterator reg_blob<A>::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+template<ss_typename_param_k A>
+inline ss_typename_type_k reg_blob<A>::const_reverse_iterator reg_blob<A>::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
+
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

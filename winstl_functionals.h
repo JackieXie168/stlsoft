@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     19th January 2002
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_MAJOR      2
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_MINOR      4
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_REVISION   1
-# define WINSTL_VER_H_WINSTL_FUNCTIONALS_EDIT       62
+# define WINSTL_VER_H_WINSTL_FUNCTIONALS_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* compiler */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include winstl/filesystem_functionals.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/filesystem_functionals.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_FUNCTIONALS

@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     24th March 2006
+ * Updated:     21st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MAJOR       4
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       4
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    3
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        94
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    6
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,15 +59,30 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
+#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
+# include <winstl/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# if defined(UNICODE) || \
+     defined(_UNICODE)
+#  error winstl::version_info is not supported on Visual C++ 5.0 (or previous) with UNICODE compilations
+# endif /* Unicode */
+# define WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
+#else /* ? compiler */
+# ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
+#  include <winstl/file_path_buffer.hpp>
+# endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
+#endif /* compiler */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
 # include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
+# include <stlsoft/string_access.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>                // for iterator base class templates
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
@@ -193,8 +208,22 @@ T *rounded_ptr(T *p, ss_ptrdiff_t byteOffset, ss_size_t n)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 /// Exception thrown by the version_info class
 class version_info_exception
-    : public winstl_ns_qual_std(exception)
+    : public windows_exception
 {
+/// \name Member Types
+/// @{
+public:
+    typedef windows_exception           parent_class_type;
+    typedef version_info_exception      class_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    version_info_exception(char const *reason, error_code_type err)
+        : parent_class_type(reason, err)
+    {}
+/// @}
 };
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -346,9 +375,9 @@ public:
 
         value_type operator *() const;
 
-        ss_bool_t operator ==(class_type const &rhs) const;
+        ws_bool_t operator ==(class_type const &rhs) const;
 
-        ss_bool_t operator !=(class_type const &rhs) const;
+        ws_bool_t operator !=(class_type const &rhs) const;
 
     private:
         void const  *m_p;
@@ -404,9 +433,9 @@ public:
 
         value_type operator *() const;
 
-        ss_bool_t operator ==(class_type const &rhs) const;
+        ws_bool_t operator ==(class_type const &rhs) const;
 
-        ss_bool_t operator !=(class_type const &rhs) const;
+        ws_bool_t operator !=(class_type const &rhs) const;
 
     private:
         const void  *m_p;
@@ -465,9 +494,9 @@ public:
 
         value_type operator *() const;
 
-        ss_bool_t operator ==(class_type const &rhs) const;
+        ws_bool_t operator ==(class_type const &rhs) const;
 
-        ss_bool_t operator !=(class_type const &rhs) const;
+        ws_bool_t operator !=(class_type const &rhs) const;
 
     private:
         const void  *m_p;
@@ -528,13 +557,13 @@ public:
     fixed_file_info FixedFileInfo() const;
 
     /// Indicates whether the module contains a VarFileInfo block
-    ss_bool_t HasVarFileInfo() const;
+    ws_bool_t HasVarFileInfo() const;
 
     /// The VarFileInfo part of the block
     VsVarFileInfo VarFileInfo() const;
 
     /// Indicates whether the module contains a StringFileInfo block
-    ss_bool_t HasStringFileInfo() const;
+    ws_bool_t HasStringFileInfo() const;
 
     /// The StringFileInfo part of the block
     VsStringFileInfo    StringFileInfo() const;
@@ -674,9 +703,9 @@ inline FILETIME const &fixed_file_info::FileDateTime() const
 inline VsVar::VsVar(Var_hdr const *p)
     : m_p(p)
 {
-    WINSTL_ASSERT(0 == wcscmp(p->szKey, L"Translation"));
+    WINSTL_ASSERT(0 == ::wcsncmp(p->szKey, L"Translation", 12));
 
-    m_values = sap_cast<LangCodePage const*>(rounded_ptr(&p->szKey[1 + wcslen(p->szKey)], 4));
+    m_values = sap_cast<LangCodePage const*>(rounded_ptr(&p->szKey[1 + ::wcslen(p->szKey)], 4));
 }
 
 inline ss_size_t VsVar::length() const
@@ -692,7 +721,7 @@ inline VsVar::LangCodePage const &VsVar::operator [](ss_size_t index) const
 inline VsString::VsString(String_hdr const *p)
     : m_name(p->szKey)
 {
-    m_value =   sap_cast<wchar_t const*>(rounded_ptr(&p->szKey[1 + wcslen(p->szKey)], 4));
+    m_value =   sap_cast<wchar_t const*>(rounded_ptr(&p->szKey[1 + ::wcslen(p->szKey)], 4));
 }
 
 inline wchar_t const *VsString::name() const
@@ -708,7 +737,7 @@ inline wchar_t const *VsString::value() const
 inline VsStringTable::VsStringTable(StringTable_hdr const *p)
     : m_p(p)
 {
-    m_strings = rounded_ptr(&p->szKey[1 + wcslen(p->szKey)], 4);
+    m_strings = rounded_ptr(&p->szKey[1 + ::wcslen(p->szKey)], 4);
 }
 
 inline wchar_t const *VsStringTable::Key() const
@@ -747,12 +776,12 @@ inline VsString VsStringTable::const_iterator::operator *() const
     return VsString(str);
 }
 
-inline ss_bool_t VsStringTable::const_iterator::operator ==(VsStringTable::const_iterator::class_type const &rhs) const
+inline ws_bool_t VsStringTable::const_iterator::operator ==(VsStringTable::const_iterator::class_type const &rhs) const
 {
     return m_p == rhs.m_p;
 }
 
-inline ss_bool_t VsStringTable::const_iterator::operator !=(VsStringTable::const_iterator::class_type const &rhs) const
+inline ws_bool_t VsStringTable::const_iterator::operator !=(VsStringTable::const_iterator::class_type const &rhs) const
 {
     return !operator ==(rhs);
 }
@@ -770,9 +799,9 @@ inline VsStringTable::const_iterator VsStringTable::end() const
 inline VsVarFileInfo::VsVarFileInfo(VarFileInfo_hdr const *p)
     : m_p(p)
 {
-    WINSTL_ASSERT(0 == wcscmp(p->szKey, L"VarFileInfo"));
+    WINSTL_ASSERT(0 == ::wcsncmp(p->szKey, L"VarFileInfo", 12));
 
-    m_vars = rounded_ptr(&p->szKey[1 + wcslen(p->szKey)], 4);
+    m_vars = rounded_ptr(&p->szKey[1 + ::wcslen(p->szKey)], 4);
 }
 
 inline wchar_t const *VsVarFileInfo::Key() const
@@ -811,12 +840,12 @@ inline VsVar VsVarFileInfo::const_iterator::operator *() const
     return VsVar(var);
 }
 
-inline ss_bool_t VsVarFileInfo::const_iterator::operator ==(class_type const &rhs) const
+inline ws_bool_t VsVarFileInfo::const_iterator::operator ==(class_type const &rhs) const
 {
     return m_p == rhs.m_p;
 }
 
-inline ss_bool_t VsVarFileInfo::const_iterator::operator !=(class_type const &rhs) const
+inline ws_bool_t VsVarFileInfo::const_iterator::operator !=(class_type const &rhs) const
 {
     return !operator ==(rhs);
 }
@@ -834,9 +863,9 @@ inline VsVarFileInfo::const_iterator VsVarFileInfo::end() const
 inline VsStringFileInfo::VsStringFileInfo(StringFileInfo_hdr const *p)
     : m_p(p)
 {
-    WINSTL_ASSERT(0 == wcscmp(p->szKey, L"StringFileInfo"));
+    WINSTL_ASSERT(0 == ::wcsncmp(p->szKey, L"StringFileInfo", 15));
 
-    m_vars = rounded_ptr(&p->szKey[1 + wcslen(p->szKey)], 4);
+    m_vars = rounded_ptr(&p->szKey[1 + ::wcslen(p->szKey)], 4);
 }
 
 inline wchar_t const *VsStringFileInfo::Key() const
@@ -875,12 +904,12 @@ inline VsStringTable VsStringFileInfo::const_iterator::operator *() const
     return VsStringTable(strtbl);
 }
 
-inline ss_bool_t VsStringFileInfo::const_iterator::operator ==(class_type const &rhs) const
+inline ws_bool_t VsStringFileInfo::const_iterator::operator ==(class_type const &rhs) const
 {
     return m_p == rhs.m_p;
 }
 
-inline ss_bool_t VsStringFileInfo::const_iterator::operator !=(class_type const &rhs) const
+inline ws_bool_t VsStringFileInfo::const_iterator::operator !=(class_type const &rhs) const
 {
     return !operator ==(rhs);
 }
@@ -975,7 +1004,7 @@ inline fixed_file_info version_info::FixedFileInfo() const
     return fixed_file_info(m_ffi);
 }
 
-inline ss_bool_t version_info::HasVarFileInfo() const
+inline ws_bool_t version_info::HasVarFileInfo() const
 {
     return NULL != m_vfi;
 }
@@ -987,7 +1016,7 @@ inline VsVarFileInfo version_info::VarFileInfo() const
     return VsVarFileInfo(m_vfi);
 }
 
-inline ss_bool_t version_info::HasStringFileInfo() const
+inline ws_bool_t version_info::HasStringFileInfo() const
 {
     return NULL != m_sfi;
 }
@@ -1001,12 +1030,40 @@ inline VsStringFileInfo version_info::StringFileInfo() const
 
 inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info_block_(ws_char_a_t const *moduleName)
 {
+#ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
+    ws_char_a_t                         buffer[1 + _MAX_PATH];
+#else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
     basic_file_path_buffer<ws_char_a_t> buffer;
+#endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
 
     if( NULL == moduleName &&
+#ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
+        0 != ::GetModuleFileNameA(NULL, &buffer[0], STLSOFT_NUM_ELEMENTS(buffer)))
+#else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
         0 != ::GetModuleFileNameA(NULL, &buffer[0], buffer.size()))
+#endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
     {
-        moduleName = buffer.c_str();
+        moduleName = stlsoft_ns_qual(c_str_ptr)(buffer);
+    }
+    else
+    {
+        // Must verify it can be loaded, i.e. is a 32-bit resource
+        //
+        // TODO: Work out how to support 16-bit versions
+        HINSTANCE   hinst   =   ::LoadLibraryExA(moduleName, NULL, LOAD_LIBRARY_AS_DATAFILE);
+
+        if(NULL == hinst)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw_x(version_info_exception("Could not elicit version information from module", ::GetLastError()));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+            return NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+        else
+        {
+            ::FreeLibrary(hinst);
+        }
     }
 
     allocator_type      allocator;
@@ -1033,7 +1090,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
         allocator.deallocate(static_cast<ws_byte_t*>(pv), cb);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw version_info_exception();
+        throw_x(version_info_exception("Could not elicit version information from module", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1046,12 +1103,40 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
 
 inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info_block_(ws_char_w_t const *moduleName)
 {
-    file_path_buffer_w  buffer;
+#ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
+    ws_char_w_t                         buffer[1 + _MAX_PATH];
+#else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
+    basic_file_path_buffer<ws_char_w_t> buffer;
+#endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
 
     if( NULL == moduleName &&
+#ifdef WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER
+        0 != ::GetModuleFileNameW(NULL, &buffer[0], STLSOFT_NUM_ELEMENTS(buffer)))
+#else /* ?WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
         0 != ::GetModuleFileNameW(NULL, &buffer[0], buffer.size()))
+#endif /* WINSTL_VERSION_INFO_NO_USE_FILE_PATH_BUFFER */
     {
-        moduleName = buffer.c_str();
+        moduleName = stlsoft_ns_qual(c_str_ptr)(buffer);
+    }
+    else
+    {
+        // Must verify it can be loaded, i.e. is a 32-bit resource
+        //
+        // TODO: Work out how to support 16-bit versions
+        HINSTANCE   hinst   =   ::LoadLibraryExW(moduleName, NULL, LOAD_LIBRARY_AS_DATAFILE);
+
+        if(NULL == hinst)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            throw_x(version_info_exception("Could not elicit version information from module", ::GetLastError()));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+            return NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+        else
+        {
+            ::FreeLibrary(hinst);
+        }
     }
 
     allocator_type  allocator;
@@ -1072,7 +1157,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
         allocator.deallocate(static_cast<ws_byte_t*>(pv), cb);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw version_info_exception();
+        throw_x((version_info_exception("Could not elicit version information from module", ::GetLastError())));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         pv = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1093,9 +1178,24 @@ inline /* static */ wchar_t const *version_info::calc_key_(void const *pv)
     WINSTL_ASSERT(NULL != pv);
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
+#ifdef _DEBUG
+    // Bit of 16-bit resource code here
+    //
+    // This is reasonably safe, because if it is unicode, then the n-limited string comparison
+    // will simply return non-0, rather than potentially going off and crashing
+    {
+        char const  *keyA   =   reinterpret_cast<char const*>(static_cast<WORD const*>(pv) + 2);
+
+        if(0 == ::strncmp("VS_VERSION_INFO", keyA, 16))
+        {
+            keyA = NULL;
+        }
+    }
+#endif /* _DEBUG */
+
     wchar_t const *key  =   reinterpret_cast<wchar_t const*>(static_cast<WORD const*>(pv) + 3);
 
-    WINSTL_ASSERT(0 == wcscmp(L"VS_VERSION_INFO", key));
+    WINSTL_ASSERT(0 == ::wcsncmp(L"VS_VERSION_INFO", key, 16));
 
     return key;
 }
@@ -1112,7 +1212,7 @@ inline /* static */ VS_FIXEDFILEINFO const *version_info::calc_ffi_(wchar_t cons
     WINSTL_ASSERT(NULL != key);
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
-    return sap_cast<VS_FIXEDFILEINFO const*>(rounded_ptr(&key[1 + wcslen(key)], 4));
+    return sap_cast<VS_FIXEDFILEINFO const*>(rounded_ptr(&key[1 + ::wcslen(key)], 4));
 }
 
 inline /* static */ WORD const *version_info::calc_children_(VS_FIXEDFILEINFO const *ffi)
@@ -1171,7 +1271,7 @@ inline void version_info::init_()
 
         WINSTL_ASSERT(ptr_byte_diff(pv, m_hdr) < m_hdr->wLength);
 
-        if(0 == wcscmp(u.psfi->szKey, L"StringFileInfo"))
+        if(0 == ::wcsncmp(u.psfi->szKey, L"StringFileInfo", 15))
         {
             WINSTL_ASSERT(NULL == m_sfi);
 
@@ -1179,7 +1279,7 @@ inline void version_info::init_()
 
             pv = rounded_ptr(pv, u.psfi->wLength, 4);
         }
-        else if(0 == wcscmp(u.psfi->szKey, L"VarFileInfo"))
+        else if(0 == ::wcsncmp(u.psfi->szKey, L"VarFileInfo", 12))
         {
             WINSTL_ASSERT(NULL == m_vfi);
 

@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     21st March 2006
+ * Updated:     29th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MINOR     7
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      101
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -189,11 +189,6 @@ public:
     /// The flags type
     typedef us_int_t                                            flags_type;
 
-//    typedef const_iterator::pointer            pointer;
-//    typedef const_iterator::pointer const      const_pointer;
-//    typedef const_iterator::reference          reference;
-//    typedef const_iterator::reference const    const_reference;
-
 public:
 #if defined(PATH_MAX)
     typedef stlsoft_ns_qual(basic_static_string)<   char_type
@@ -232,15 +227,11 @@ public:
     /// \note The \c flags parameter defaults to <code>directories | files</code> because
     /// this reflects the default behaviour of \c readdir(), and also because it is the
     /// most efficient.
-#if 0
-    readdir_sequence(char_type const *directory, flags_type flags = directories | files);
-#else /* ? 0 */
     template <ss_typename_param_k S>
     readdir_sequence(S const &directory, flags_type flags = directories | files)
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_(stlsoft_ns_qual(c_str_ptr)(directory), flags))
     {}
-#endif /* 0 */
 /// @}
 
 /// \name Iteration
@@ -541,13 +532,6 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
 
     return directory;
 }
-
-#if 0
-inline readdir_sequence::readdir_sequence(char_type const *directory, readdir_sequence::flags_type flags /* = directories | files */)
-    : m_flags(validate_flags_(flags))
-    , m_directory(prepare_directory_(stlsoft_ns_qual(c_str_ptr)(directory), flags))
-{}
-#endif /* 0 */
 
 inline readdir_sequence::const_iterator readdir_sequence::begin() const
 {

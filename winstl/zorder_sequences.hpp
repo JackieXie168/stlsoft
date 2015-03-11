@@ -4,7 +4,7 @@
  * Purpose:     Collection of the peers of a given window.
  *
  * Created:     11th July 2005
- * Updated:     21st March 2006
+ * Updated:     2nd April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MAJOR       1
 # define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_MINOR       0
-# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_REVISION    3
-# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        4
+# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_REVISION    4
+# define WINSTL_VER_WINSTL_HPP_ZORDER_SEQUENCES_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ public:
 /// \name State
 /// @{
 public:
-    ss_bool_t   empty() const;
+    ws_bool_t   empty() const;
 /// @}
 
 /// \name Members
@@ -253,7 +253,7 @@ inline ss_typename_type_k zorder_sequence_base<B, E>::const_reverse_iterator zor
 template<   zorder_iterator_base::search    B
         ,   zorder_iterator_base::search    E
         >
-inline ss_bool_t zorder_sequence_base<B, E>::empty() const
+inline ws_bool_t zorder_sequence_base<B, E>::empty() const
 {
     return end() == begin();
 }

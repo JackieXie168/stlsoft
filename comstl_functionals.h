@@ -4,7 +4,7 @@
  * Purpose:     Contains COM specific predicates and functionals.
  *
  * Created:     14th June 2002
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -73,7 +73,7 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include comstl/interface_functionals.hpp and/or comstl/type_functionals.hpp and/or stlsoft/method_adaptors.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include comstl/interface_functionals.hpp and/or comstl/type_functionals.hpp and/or stlsoft/method_adaptors.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FUNCTION_ADAPTORS
@@ -190,42 +190,6 @@ inline std_mem_fun_ref_t<R, T> std_mem_fun_ref(R (STDAPICALLTYPE T::*f)())
 {
     return std_mem_fun_ref_t<R, T>(f);
 }
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_comstl_functionals(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "COMSTL", "functionals", __FILE__);
-
-# if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-# endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_comstl_functionals(test_comstl_functionals);
-    } // anonymous namespace
-
-} // namespace unittest
-
-#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

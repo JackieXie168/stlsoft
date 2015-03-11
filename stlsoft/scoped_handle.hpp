@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_MINOR    4
-# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_EDIT     645
+# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_EDIT     646
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -416,79 +416,12 @@ inline ss_typename_type_k scoped_handle<H>::handle_type get_handle(scoped_handle
     return h.get();
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        void STLSOFT_CDECL test_stlsoft_scoped_handle__close_short_cdecl(short )
-        {}
-
-#ifdef STLSOFT_CF_FASTCALL_SUPPORTED
-        void STLSOFT_FASTCALL test_stlsoft_scoped_handle__close_long_fastcall(long )
-        {}
-#endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
-
-#ifdef STLSOFT_CF_STDCALL_SUPPORTED
-        void STLSOFT_STDCALL test_stlsoft_scoped_handle__close_unsigned_stdcall(unsigned )
-        {}
-#endif /* STLSOFT_CF_STDCALL_SUPPORTED */
-
-        ss_bool_t test_stlsoft_scoped_handle(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "scoped_handle", __FILE__);
-
-            // cdecl
-            {
-                scoped_handle<short>    sh1(23, test_stlsoft_scoped_handle__close_short_cdecl);
-
-                if(23 != ::stlsoft::get_handle(sh1))
-                {
-                    r->report("scoped_handle<short> get_handle() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
-
-#ifdef STLSOFT_CF_FASTCALL_SUPPORTED
-            // fastcall
-            {
-                scoped_handle<long>    sh1(24, test_stlsoft_scoped_handle__close_long_fastcall);
-
-                if(24 != ::stlsoft::get_handle(sh1))
-                {
-                    r->report("scoped_handle<short> get_handle() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
-#endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
-
-#ifdef STLSOFT_CF_STDCALL_SUPPORTED
-            // stdcall
-            {
-                scoped_handle<unsigned>    sh1(25, test_stlsoft_scoped_handle__close_unsigned_stdcall);
-
-                if(25 != ::stlsoft::get_handle(sh1))
-                {
-                    r->report("scoped_handle<short> get_handle() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
-#endif /* STLSOFT_CF_STDCALL_SUPPORTED */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_scoped_handle(test_stlsoft_scoped_handle);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/scoped_handle_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */

@@ -4,7 +4,7 @@
  * Purpose:     WinSTL high performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     21st March 2006
+ * Updated:     26th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/highperformance_counter.hpp
-///
-/// WinSTL high performance counter class.
+/** \file winstl/highperformance_counter.hpp
+ * \brief [C++ only] Definition of the 
+ *  \link winstl::highperformance_counter highperformance_counter\endlink class.
+ *  (\ref group__library__performance "Performance" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_HIGHPERFORMANCE_COUNTER
 #define WINSTL_INCL_WINSTL_HPP_HIGHPERFORMANCE_COUNTER
@@ -49,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_REVISION   3
-# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_EDIT       71
+# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_EDIT       73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -107,30 +109,19 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_performance Performance Library
-/// \ingroup libraries
-/// \brief This library provides performance measuring facilities
-
-/// \weakgroup winstl_perf_library Performance Library (WinSTL)
-/// \ingroup WinSTL libraries_performance
-/// \brief This library provides performance measuring facilities for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // class highperformance_counter
-/// \brief A performance counter that uses the high performance hardware counter on the host machine
-///
-/// This class provides high-resolution performance monitoring using the host machine's high performance
-/// hardware counter. This class does not provide meaningful timing information on operating systems
-/// that do not provide a high performance hardware counter.
+/** \brief A performance counter that uses the high performance hardware counter on the host machine
+ *
+ * \ingroup group__library__performance
+ *
+ * This class provides high-resolution performance monitoring using the host machine's high performance
+ * hardware counter. This class does not provide meaningful timing information on operating systems
+ * that do not provide a high performance hardware counter.
+ */
 class highperformance_counter
 {
 public:
@@ -217,6 +208,8 @@ static stlsoft_ns_qual(class_constructor)<highperformance_counter>  s_highperfor
 /* /////////////////////////////////////////////////////////////////////////////
  * Implementation
  */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline /* static */ highperformance_counter::interval_type highperformance_counter::query_frequency_()
 {
@@ -316,9 +309,7 @@ inline highperformance_counter::interval_type highperformance_counter::get_micro
     return result;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_perf_library
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

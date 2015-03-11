@@ -4,7 +4,7 @@
  * Purpose:     String split functions.
  *
  * Created:     28th January 2005
- * Updated:     21st March 2006
+ * Updated:     21st May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_MINOR      3
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_REVISION   4
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_EDIT       24
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_REVISION   5
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,9 @@ STLSOFT_COMPILER_IS_WATCOM:
     (   defined(STLSOFT_COMPILER_IS_DMC) && \
         __DMC__ < 0x0844) || \
     (   defined(STLSOFT_COMPILER_IS_GCC) && \
-        __GNUC__ < 3)
+        __GNUC__ < 3) || \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1200)
 # define STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY
 #endif /* compiler */
 

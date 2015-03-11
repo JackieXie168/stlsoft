@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     24th March 2006
+ * Updated:     29th April 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +62,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_MINOR      10
-# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_REVISION   5
-# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_EDIT       171
+# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_REVISION   6
+# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_EDIT       172
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -967,6 +967,16 @@ inline basic_findfile_sequence_value_type<C, T>::basic_findfile_sequence_value_t
     m_data.cAlternateFileName[0]    =   '\0';
     m_path[0]                       =   '\0';
     m_pathLen                       =   0;
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline ss_typename_type_k basic_findfile_sequence_value_type<C, T>::class_type &basic_findfile_sequence_value_type<C, T>::operator =(ss_typename_type_k basic_findfile_sequence_value_type<C, T>::class_type const &rhs)
+{
+    m_data      =   rhs.m_data;
+    m_path      =   rhs.m_path;
+    m_pathLen   =   rhs.m_pathLen;
+
+    return *this;
 }
 
 #if 0

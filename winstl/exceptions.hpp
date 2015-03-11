@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     21st March 2006
+ * Updated:     27th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MINOR     2
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      33
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MINOR     3
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ namespace winstl_project
 class windows_exception
     : public os_exception
 {
-/// \name Types
+/// \name Member Types
 /// @{
 protected:
     typedef stlsoft_ns_qual(exception_string)   string_type;
@@ -112,22 +112,26 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// \brief Constructs an instance from the given error code
     ss_explicit_k windows_exception(error_code_type err)
         : m_reason()
         , m_strerror(NULL)
         , m_errorCode(err)
     {}
+    /// \brief Copy constructor
     windows_exception(class_type const &rhs)
         : m_reason(rhs.m_reason)
         , m_strerror(NULL)
         , m_errorCode(rhs.m_errorCode)
     {}
+    /// \brief Constructs an instance from the given message and error code
     windows_exception(char const *reason, error_code_type err)
         : m_reason(class_type::create_reason_(reason, err))
         , m_strerror(NULL)
         , m_errorCode(err)
     {}
 protected:
+    /// \brief 
     windows_exception(string_type const &reason, error_code_type err)
         : m_reason(reason)
         , m_strerror(NULL)
@@ -238,11 +242,62 @@ private:
 /// @}
 };
 
+/// Exception thrown by the clipboard_scope class
+class resource_exception
+    : public windows_exception
+{
+/// \name Member Types
+/// @{
+public:
+    typedef windows_exception   parent_class_type;
+    typedef resource_exception  class_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    resource_exception( char const          *reason
+                    ,   error_code_type     err
+                    ,   LPCTSTR             resourceId      =   NULL
+                    ,   LPCTSTR             resourceType    =   NULL)
+        : windows_exception(reason, err)
+        , m_resourceId(resourceId)
+        , m_resourceType(resourceType)
+    {}
+/// @}
+
+/// \name Members
+/// @{
+public:
+    LPCTSTR get_resource_id() const
+    {
+        return m_resourceId;
+    }
+    LPCTSTR get_resource_type() const
+    {
+        return m_resourceType;
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    const LPCTSTR   m_resourceId;
+    const LPCTSTR   m_resourceType;
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    class_type &operator =(class_type const &);
+/// @}
+};
+
 /* ////////////////////////////////////////////////////////////////////////////
  * Policies
  */
 
-/// The policy class, which throws a windows_exception class.
+/// A policy class that throws a windows_exception class.
 // [[synesis:class:exception-policy: windows_exception_policy]]
 struct windows_exception_policy
 {
@@ -271,6 +326,56 @@ public:
     void operator ()(char const *reason, error_code_type err) const
     {
         throw_exception_(thrown_type(reason, err));
+    }
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+    template <ss_typename_param_k X>
+    static void throw_exception_(X const &x)
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      _MSC_VER < 1200
+    static void throw_exception_(std::exception const &x)
+#else /* ? feature / compiler */
+    static void throw_exception_(thrown_type const &x)
+#endif /* feature / compiler */
+    {
+        throw x;
+    }
+/// @}
+};
+
+/// A policy class that throws a resource_exception class.
+// [[synesis:class:exception-policy: resource_exception_policy]]
+struct resource_exception_policy
+{
+/// \name Member Types
+/// @{
+public:
+    /// The thrown type
+    typedef resource_exception  thrown_type;
+    typedef ws_dword_t          error_code_type;
+/// @}
+
+/// \name Operators
+/// @{
+public:
+    /// Function call operator, taking two parameters
+    void operator ()(char const *reason, error_code_type err) const
+    {
+        throw_exception_(thrown_type(reason, err));
+    }
+    /// Function call operator, taking three parameters
+    void operator ()(char const *reason, error_code_type err, LPCTSTR resourceId) const
+    {
+        throw_exception_(thrown_type(reason, err, resourceId));
+    }
+    /// Function call operator, taking four parameters
+    void operator ()(char const *reason, error_code_type err, LPCTSTR resourceId, LPCTSTR resourceType) const
+    {
+        throw_exception_(thrown_type(reason, err, resourceId, resourceType));
     }
 /// @}
 

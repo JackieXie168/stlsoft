@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     28th March 2006
+ * Updated:     26th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PATH_MAJOR       5
 # define WINSTL_VER_WINSTL_HPP_PATH_MINOR       8
-# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        202
+# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    4
+# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        205
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -222,7 +222,7 @@ public:
     class_type &push_ext(class_type const &rhs, ws_bool_t bAddPathNameSeparator = false);
     class_type &push_ext(char_type const *rhs, ws_bool_t bAddPathNameSeparator = false);
     class_type &push_sep();
-    class_type &pop();
+    class_type &pop(ws_bool_t bRemoveTrailingPathNameSeparator = false);
     class_type &pop_sep();
     class_type &pop_ext();
 
@@ -585,54 +585,7 @@ inline S &operator <<(S & s, basic_path<C, T, A> const &b)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_winstl_path(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "UNIXSTL", "path", __FILE__);
-
-            path_a  path1("..");
-            path_a  path2(".\\..\\.\\.\\lower\\..");
-
-            if(!path1.equivalent(path2))
-            {
-                r->report("equivalence test failed", __LINE__);
-                bSuccess = false;
-            }
-
-            path_a  path3(path1);
-
-            if(path1 != path3)
-            {
-                r->report("copy-construction failed", __LINE__);
-                bSuccess = false;
-            }
-
-            path3 /= "sub1";
-
-            path_a  path4("..\\sub1");
-
-            if(path4 != path3)
-            {
-                r->report("concatenation failed", __LINE__);
-                bSuccess = false;
-            }
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_winstl_path(test_winstl_path);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/path_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -816,16 +769,27 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::push(char_type const *rhs, ws_bool_t bAddPathNameSeparator /* = false */)
 {
-    class_type  newPath(*this);
+    WINSTL_ASSERT(NULL != rhs);
 
-    newPath.push_sep();
-    newPath.concat_(rhs);
-    if(bAddPathNameSeparator)
+    if(traits_type::is_path_rooted(rhs))
     {
-        newPath.push_sep();
-    }
+        class_type  newPath(rhs);
 
-    swap(newPath);
+        swap(newPath);
+    }
+    else
+    {
+        class_type  newPath(*this);
+
+        newPath.push_sep();
+        newPath.concat_(rhs);
+        if(bAddPathNameSeparator)
+        {
+            newPath.push_sep();
+        }
+
+        swap(newPath);
+    }
 
     return *this;
 }
@@ -894,7 +858,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_path<C, T, A> &basic_path<C, T, A>::pop()
+inline basic_path<C, T, A> &basic_path<C, T, A>::pop(ws_bool_t bRemoveTrailingPathNameSeparator /* = true */)
 {
     char_type   *slash      =   traits_type::str_rchr(c_str_ptr(m_buffer), traits_type::path_name_separator());
     char_type   *slash_a    =   traits_type::str_rchr(c_str_ptr(m_buffer), path_name_separator_alt());
@@ -908,6 +872,11 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop()
     {
         *(slash + 1) = '\0';
         m_len = (slash + 1) - c_str_ptr(m_buffer);
+    }
+
+    if(bRemoveTrailingPathNameSeparator)
+    {
+        this->pop_sep();
     }
 
     return *this;

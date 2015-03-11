@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MAJOR       5
-# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MINOR       2
-# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        197
+# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MINOR       3
+# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_REVISION    2
+# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,11 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS
 # include <unixstl/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS */
+#ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
+# include <unixstl/string_access.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
 #include <dlfcn.h>
+#include <errno.h>
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -131,6 +135,21 @@ public:
     /// \note If exception-handling is being used, then this throws a
     /// \c unix_exception if the module cannot be loaded
     ss_explicit_k module(us_char_w_t const *modName, int mode = RTLD_NOW);
+    /// \brief Constructs by loading the named module
+    ///
+    /// \note If exception-handling is being used, then this throws a
+    /// \c windows_exception if the module cannot be loaded
+    template <ss_typename_param_k S>
+    ss_explicit_k module(S const &modName, int mode = RTLD_NOW)
+        : m_hmodule(load(modName))
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        if(NULL == m_hmodule)
+        {
+            throw unix_exception("Cannot load module", errno);
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
     /// \brief Constructs by taking ownership of the given handle
     ///
     /// \note If exception-handling is being used, then this throws a
@@ -165,21 +184,30 @@ public:
     void *get_symbol(us_char_a_t const *symbolName);
 /// @}
 
-// \name Accessors
+/// \name Accessors
 /// @{
 public:
     /// \brief Provides access to the underlying module handle
     module_handle_type  get_handle() const;
 /// @}
 
-// Members
+/// \name Implementation
+/// @{
+private:
+/// @}
+
+/// \name Members
+/// @{
 private:
     module_handle_type  m_hmodule;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
-    // TODO: These can be implemented later
-
+    module(class_type const &);
+    class_type &operator =(class_type const &);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */

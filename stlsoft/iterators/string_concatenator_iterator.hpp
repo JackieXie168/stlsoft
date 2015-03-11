@@ -4,7 +4,7 @@
  * Purpose:     string_concatenator_iterator class template.
  *
  * Created:     12th May 1998
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MAJOR       2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    9
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        28
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
+# include <stlsoft/string_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
 #ifndef _STLSOFT_STRING_FUNCTIONALS_NO_STD
 # include <functional>
 #else /* ? _STLSOFT_STRING_FUNCTIONALS_NO_STD */
@@ -187,7 +190,26 @@ private:
         template <ss_typename_param_k S3>
         void operator =(S3 const &value)
         {
-            m_it->invoke_(value);
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+            // NOTE: Borland has a cow with the default implementation of this
+            // method (shown below), so we do an extra (and less efficient)
+            // indirection. Sigh!
+            m_it->invoke_(c_str_ptr(value));
+#else /* ? compiler */
+            // Derive the character type of the string, so can dispatch on it
+
+            // NOTE: If you get an 'undefined' compilation error here, you
+            // need to include a suitable specialisation of the stlsoft::string_traits
+            // traits class. For example, if you are concatenating std::string/std::wstring
+            // or 
+            // COM VARIANTs, then
+            // you will need to include comstl/string_traits.hpp
+            typedef ss_typename_type_k string_traits<string_type>::char_type    char_t;
+
+            STLSOFT_STATIC_ASSERT(sizeof(char) == sizeof(char_t) || sizeof(wchar_t) == sizeof(char_t));
+
+            m_it->invoke_(value, char_t());
+#endif /* compiler */
         }
 
     private:
@@ -198,9 +220,21 @@ private:
         void operator =(deref_proxy const &);
     };
 
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+    template <ss_typename_param_k C2>
+    void invoke_(C2 const *value)
+    {
+          this->invoke_(value, *value);
+    }
+#endif /* ? compiler */
+
+#if 0
     template <ss_typename_param_k S3>
     void invoke_(S3 const &value)
     {
+        STLSOFT_ASSERT(NULL != m_s);
+        STLSOFT_ASSERT(NULL != m_delim);
+
         if(0 != c_str_len(*m_s))
         {
             // NOTE: Use +=, as it's the most general
@@ -208,6 +242,34 @@ private:
         }
         *m_s += c_str_ptr(value);
     }
+#else /* ? 0 */
+    template <ss_typename_param_k S3>
+    void invoke_(S3 const &value, ss_char_a_t)
+    {
+        STLSOFT_ASSERT(NULL != m_s);
+        STLSOFT_ASSERT(NULL != m_delim);
+
+        if(0 != c_str_len(*m_s))
+        {
+            // NOTE: Use +=, as it's the most general
+            *m_s += c_str_ptr_a(*m_delim);
+        }
+        *m_s += c_str_ptr_a(value);
+    }
+    template <ss_typename_param_k S3>
+    void invoke_(S3 const &value, ss_char_w_t)
+    {
+        STLSOFT_ASSERT(NULL != m_s);
+        STLSOFT_ASSERT(NULL != m_delim);
+
+        if(0 != c_str_len(*m_s))
+        {
+            // NOTE: Use +=, as it's the most general
+            *m_s += c_str_ptr_w(*m_delim);
+        }
+        *m_s += c_str_ptr_w(value);
+    }
+#endif /* 0 */
 /// @}
 
 /// \name Member Variables

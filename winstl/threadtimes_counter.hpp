@@ -4,7 +4,7 @@
  * Purpose:     WinSTL thread-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     21st March 2006
+ * Updated:     26th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/threadtimes_counter.hpp
-///
-/// WinSTL thread-time performance counter class.
+/** \file winstl/threadtimes_counter.hpp
+ * \brief [C++ only] Definition of the 
+ *  \link winstl::threadtimes_counter threadtimes_counter\endlink class.
+ *  (\ref group__library__performance "Performance" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_THREADTIMES_COUNTER
 #define WINSTL_INCL_WINSTL_HPP_THREADTIMES_COUNTER
@@ -49,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_THREADTIMES_COUNTER_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_THREADTIMES_COUNTER_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_THREADTIMES_COUNTER_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_THREADTIMES_COUNTER_EDIT       36
+# define WINSTL_VER_WINSTL_HPP_THREADTIMES_COUNTER_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,31 +84,20 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_performance Performance Library
-/// \ingroup libraries
-/// \brief This library provides performance measuring facilities
-
-/// \weakgroup winstl_perf_library Performance Library (WinSTL)
-/// \ingroup WinSTL libraries_performance
-/// \brief This library provides performance measuring facilities for the Win32 API
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // class threadtimes_counter
-/// \brief A performance counter that provides thread-specific performance timings
-///
-/// This class uses the operating system's performance monitoring facilities to provide timing
-/// information pertaining to the calling thread only, irrespective of the activities of other
-/// threads on the system. This class does not provide meaningful timing information on operating
-/// systems that do not provide thread-specific monitoring.
+/** \brief A performance counter that provides thread-specific performance timings
+ *
+ * \ingroup group__library__performance
+ *
+ * This class uses the operating system's performance monitoring facilities to provide timing
+ * information pertaining to the calling thread only, irrespective of the activities of other
+ * threads on the system. This class does not provide meaningful timing information on operating
+ * systems that do not provide thread-specific monitoring.
+ */
 class threadtimes_counter
 {
 public:
@@ -217,6 +208,8 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 // Implementation
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline threadtimes_counter::threadtimes_counter()
     : m_thread(::GetCurrentThread())
 {
@@ -307,9 +300,7 @@ inline threadtimes_counter::interval_type threadtimes_counter::get_microseconds(
     return get_period_count() / interval_type(10);
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_perf_library
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

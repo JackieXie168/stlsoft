@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     21st March 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,7 +61,7 @@
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include unixstl/filesystem_functionals.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/filesystem_functionals.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS

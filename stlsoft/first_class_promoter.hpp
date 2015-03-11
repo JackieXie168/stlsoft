@@ -4,7 +4,7 @@
  * Purpose:     Class template that allows built-in & aggregate types to be treated as 1st-class types.
  *
  * Created:     8th September 2002
- * Updated:     5th February 2006
+ * Updated:     25th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MINOR     2
-# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      37
+# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_REVISION  2
+# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>      // for yes_type, no_type
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT_META
+# include <stlsoft_meta.h>              // for is_fundamental_type
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT_META */
 #include <string.h>                     // for memset()
 
 /* /////////////////////////////////////////////////////////////////////////////

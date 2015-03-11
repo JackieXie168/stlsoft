@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     21st March 2006
+ * Updated:     26th May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_DL_CALL_MAJOR      1
-# define WINSTL_VER_WINSTL_HPP_DL_CALL_MINOR      4
-# define WINSTL_VER_WINSTL_HPP_DL_CALL_REVISION   2
-# define WINSTL_VER_WINSTL_HPP_DL_CALL_EDIT       15
+# define WINSTL_VER_WINSTL_HPP_DL_CALL_MINOR      5
+# define WINSTL_VER_WINSTL_HPP_DL_CALL_REVISION   1
+# define WINSTL_VER_WINSTL_HPP_DL_CALL_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Exception class for
+/// \brief Exception thrown when an entry point cannot be located in a library.
 class missing_entry_point_exception
     : public windows_exception
 {
@@ -129,7 +129,7 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// Constructs an instance of the exception based on the given missing
+    /// \brief Constructs an instance of the exception based on the given missing
     /// function name, and Windows error code.
     missing_entry_point_exception(char const *functionName, error_code_type err)
         : parent_class_type(class_type::create_reason_(functionName), err)
@@ -140,16 +140,81 @@ public:
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
-// Implementation
+/// \name Implementation
+/// @{
 private:
     static string_type create_reason_(char const *functionName)
     {
         return "Failed to find procedure \"" + string_type(functionName) + '"';
     }
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     class_type &operator =(class_type const &);
+/// @}
+};
+
+/// \brief Exception thrown when a calling convention specifier is invalid.
+class invalid_calling_convention_exception
+    : public windows_exception
+{
+/// \name Types
+/// @{
+public:
+    typedef windows_exception                       parent_class_type;
+    typedef invalid_calling_convention_exception    class_type;
+private:
+    typedef parent_class_type::string_type          string_type;
+public:
+    typedef parent_class_type::error_code_type      error_code_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    /// \brief Constructs an instance of the exception based on the given 
+    /// function name, and Windows error code.
+    invalid_calling_convention_exception(char const *callingConventionSpecifier)
+        : parent_class_type(class_type::create_reason_(callingConventionSpecifier), ERROR_INVALID_FUNCTION)
+        , m_ccs(callingConventionSpecifier)
+    {}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    virtual ~invalid_calling_convention_exception() stlsoft_throw_0()
+    {}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    string_type const   &get_specifier() const
+    {
+        return m_ccs;
+    }
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+    static string_type create_reason_(char const *callingConventionSpecifier)
+    {
+        return "Unrecognised or unsupported calling convention \"" + string_type(callingConventionSpecifier) + '"';
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    const string_type   m_ccs;
+/// @}
+
+// Not to be implemented
+/// @}
+private:
+    class_type &operator =(class_type const &);
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -261,6 +326,39 @@ inline function_descriptor<0, S> fn_desc(int cc, S const &functionName)
  * Traits
  */
 
+/** \brief Traits type that provides a mechanism for declaring specific
+ *   types to be compatible with dl_call.
+ *
+ * To specify your type being dl_call()-compatible, simply specialise the
+ * traits template as follows (for the notional type <code>MyType</code>):
+ *
+\htmlonly
+<pre>
+namespace MyNamespace
+{
+  class MyType
+  {};
+
+} // MyNamespace
+
+namespace winstl
+{
+  template <>
+  struct is_valid_dl_call_arg<MyNamespace::MyType>
+  {
+    enum { value = 1 };
+  };
+} // namespace winstl
+</pre>
+\endhtmlonly
+ */
+
+template<ss_typename_param_k T>
+struct is_valid_dl_call_arg
+{
+    enum { value = 0 };
+};
+
 ///
 ///
 /// \note This is a struct, rather than a namespace, because namespaces are
@@ -362,7 +460,7 @@ inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_h
 
     if(NULL == fp)
     {
-        throw winstl::missing_entry_point_exception(functionName, ::GetLastError());
+        throw_x(winstl::missing_entry_point_exception(functionName, ::GetLastError()));
     }
 
     return fp;
@@ -400,7 +498,7 @@ inline calling_convention::calling_convention determine_calling_convention_(C co
 #endif // STLSOFT_CF_STDCALL_SUPPORTED
         else
         {
-            throw std::runtime_error("Unrecognised or unsupported calling convention");
+            throw_x(winstl::invalid_calling_convention_exception(s0.c_str()));
         }
 
         functionName = s1.base();
@@ -8334,6 +8432,8 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd)
 {
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd);
 }
@@ -8348,7 +8448,9 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0);
 }
@@ -8364,8 +8466,10 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1);
 }
@@ -8382,9 +8486,11 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2);
 }
@@ -8402,10 +8508,12 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3);
 }
@@ -8424,11 +8532,13 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4);
 }
@@ -8448,12 +8558,14 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5);
 }
@@ -8474,13 +8586,15 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6);
 }
@@ -8502,14 +8616,16 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7);
 }
@@ -8532,15 +8648,17 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8);
 }
@@ -8564,16 +8682,18 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 }
@@ -8598,17 +8718,19 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
@@ -8634,18 +8756,20 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 }
@@ -8672,19 +8796,21 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
 }
@@ -8712,20 +8838,22 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 }
@@ -8754,21 +8882,23 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
 }
@@ -8798,22 +8928,24 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
 }
@@ -8844,23 +8976,25 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
 }
@@ -8892,24 +9026,26 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
 }
@@ -8942,25 +9078,27 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
 }
@@ -8994,26 +9132,28 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
 }
@@ -9048,27 +9188,29 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
 }
@@ -9104,28 +9246,30 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
 }
@@ -9162,29 +9306,31 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
 }
@@ -9222,30 +9368,32 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
 }
@@ -9284,31 +9432,33 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
 }
@@ -9348,32 +9498,34 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || winstl::is_valid_dl_call_arg<A25>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
 }
@@ -9414,33 +9566,35 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || winstl::is_valid_dl_call_arg<A25>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value || winstl::is_valid_dl_call_arg<A26>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
 }
@@ -9482,34 +9636,36 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || winstl::is_valid_dl_call_arg<A25>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value || winstl::is_valid_dl_call_arg<A26>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value || winstl::is_valid_dl_call_arg<A27>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
 }
@@ -9552,35 +9708,37 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || winstl::is_valid_dl_call_arg<A25>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value || winstl::is_valid_dl_call_arg<A26>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value || winstl::is_valid_dl_call_arg<A27>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value || winstl::is_valid_dl_call_arg<A28>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 }
@@ -9624,36 +9782,38 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A29>::value || stlsoft::is_pointer_type<A29>::value || stlsoft::is_function_pointer_type<A29>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || winstl::is_valid_dl_call_arg<A25>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value || winstl::is_valid_dl_call_arg<A26>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value || winstl::is_valid_dl_call_arg<A27>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value || winstl::is_valid_dl_call_arg<A28>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A29>::value || stlsoft::is_pointer_type<A29>::value || stlsoft::is_function_pointer_type<A29>::value || winstl::is_valid_dl_call_arg<A29>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
 }
@@ -9698,37 +9858,39 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A29>::value || stlsoft::is_pointer_type<A29>::value || stlsoft::is_function_pointer_type<A29>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A30>::value || stlsoft::is_pointer_type<A30>::value || stlsoft::is_function_pointer_type<A30>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || winstl::is_valid_dl_call_arg<A25>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value || winstl::is_valid_dl_call_arg<A26>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value || winstl::is_valid_dl_call_arg<A27>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value || winstl::is_valid_dl_call_arg<A28>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A29>::value || stlsoft::is_pointer_type<A29>::value || stlsoft::is_function_pointer_type<A29>::value || winstl::is_valid_dl_call_arg<A29>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A30>::value || stlsoft::is_pointer_type<A30>::value || stlsoft::is_function_pointer_type<A30>::value || winstl::is_valid_dl_call_arg<A30>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
 }
@@ -9774,38 +9936,40 @@ template<   ss_typename_param_k R
         >
 inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31)
 {
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A29>::value || stlsoft::is_pointer_type<A29>::value || stlsoft::is_function_pointer_type<A29>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A30>::value || stlsoft::is_pointer_type<A30>::value || stlsoft::is_function_pointer_type<A30>::value);
-    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A31>::value || stlsoft::is_pointer_type<A31>::value || stlsoft::is_function_pointer_type<A31>::value);
+#ifndef WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || winstl::is_valid_dl_call_arg<A0>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || winstl::is_valid_dl_call_arg<A1>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || winstl::is_valid_dl_call_arg<A2>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || winstl::is_valid_dl_call_arg<A3>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || winstl::is_valid_dl_call_arg<A4>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || winstl::is_valid_dl_call_arg<A5>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || winstl::is_valid_dl_call_arg<A6>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || winstl::is_valid_dl_call_arg<A7>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || winstl::is_valid_dl_call_arg<A8>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || winstl::is_valid_dl_call_arg<A9>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || winstl::is_valid_dl_call_arg<A10>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || winstl::is_valid_dl_call_arg<A11>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || winstl::is_valid_dl_call_arg<A12>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || winstl::is_valid_dl_call_arg<A13>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || winstl::is_valid_dl_call_arg<A14>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || winstl::is_valid_dl_call_arg<A15>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || winstl::is_valid_dl_call_arg<A16>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || winstl::is_valid_dl_call_arg<A17>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || winstl::is_valid_dl_call_arg<A18>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || winstl::is_valid_dl_call_arg<A19>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || winstl::is_valid_dl_call_arg<A20>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || winstl::is_valid_dl_call_arg<A21>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || winstl::is_valid_dl_call_arg<A22>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || winstl::is_valid_dl_call_arg<A23>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || winstl::is_valid_dl_call_arg<A24>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || winstl::is_valid_dl_call_arg<A25>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value || winstl::is_valid_dl_call_arg<A26>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value || winstl::is_valid_dl_call_arg<A27>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value || winstl::is_valid_dl_call_arg<A28>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A29>::value || stlsoft::is_pointer_type<A29>::value || stlsoft::is_function_pointer_type<A29>::value || winstl::is_valid_dl_call_arg<A29>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A30>::value || stlsoft::is_pointer_type<A30>::value || stlsoft::is_function_pointer_type<A30>::value || winstl::is_valid_dl_call_arg<A30>::value);
+    STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A31>::value || stlsoft::is_pointer_type<A31>::value || stlsoft::is_function_pointer_type<A31>::value || winstl::is_valid_dl_call_arg<A31>::value);
+#endif /* !WINSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
     return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
 }
@@ -9813,6 +9977,13 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 //[<[STLSOFT-AUTO:DL_CALL-FUNCTIONS:END]>]
 
 /// @}
+
+////////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/dl_call_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

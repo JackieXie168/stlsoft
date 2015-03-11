@@ -4,7 +4,7 @@
  * Purpose:     Declares the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     21st March 2006
+ * Updated:     22nd May 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,8 +39,7 @@
 
 
 /// \file winstl/registry/registry.hpp
-///
-/// Declares the Registry Library.
+/// \brief [C++ only] Main include file for the \ref group__library__windows_registry "Windows Registry" Library.
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REGISTRY
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REGISTRY
@@ -48,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_MAJOR      1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_MINOR      0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_REVISION	2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_EDIT       49
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_REVISION   3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REGISTRY_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -89,42 +88,6 @@ namespace winstl_project
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \defgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Typedefs
- */
-
-#ifdef _STLSOFT_NO_NAMESPACES
-struct registry_util
-#else /* ? _STLSOFT_NO_NAMESPACES */
-namespace registry_util
-#endif /* _STLSOFT_NO_NAMESPACES */
-{
-
-	typedef reg_string_a_t			string_a_t;
-	typedef reg_string_w_t			string_w_t;
-	typedef reg_string_t			string_t;
-
-	struct reg_key_handle;
-	struct monitored_reg_key_handle;
-
-#ifdef _STLSOFT_NO_NAMESPACES
-}; // struct registry_util
-#else /* ? _STLSOFT_NO_NAMESPACES */
-} // namespace registry_util
-#endif /* _STLSOFT_NO_NAMESPACES */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

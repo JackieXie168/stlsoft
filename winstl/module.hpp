@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     21st March 2006
+ * Updated:     21st May 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MODULE_MAJOR     5
-# define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     2
-# define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      201
+# define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     3
+# define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  2
+# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      205
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -146,17 +146,21 @@ public:
     ///
     /// \note If exception-handling is being used, then this throws a
     /// \c windows_exception if the module cannot be loaded
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER >= 1200)
     template <ss_typename_param_k S>
     ss_explicit_k module(S const &modName)
         : m_hmodule(load(modName))
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
         {
-            throw windows_exception("Cannot load module", ::GetLastError());
+            throw_x(windows_exception("Cannot load module", ::GetLastError()));
         }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     /// \brief Constructs by taking ownership of the given handle
     ///
     /// \note If exception-handling is being used, then this throws a
@@ -175,15 +179,22 @@ public:
 public:
     static module_handle_type   load(ws_char_a_t const *modName);
     static module_handle_type   load(ws_char_w_t const *modName);
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER >= 1200)
     template <ss_typename_param_k S>
     static module_handle_type   load(S const &modName)
     {
         return class_type::load(stlsoft_ns_qual(c_str_ptr)(modName));
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     static void                 unload(module_handle_type hmodule);
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName);
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal);
 
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER >= 1200)
     template <ss_typename_param_k F>
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName, F &f)
     {
@@ -202,6 +213,7 @@ public:
 
         return proc;
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 /// @}
 
 /// \name Operations
@@ -220,6 +232,9 @@ public:
     proc_pointer    get_symbol(ws_char_a_t const *symbolName);
     proc_pointer    get_symbol(ws_uint32_t symbolOrdinal);
 
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+        _MSC_VER >= 1200)
     template <ss_typename_param_k F>
     proc_pointer    get_symbol(ws_char_a_t const *symbolName, F &f)
     {
@@ -230,13 +245,17 @@ public:
     {
         return class_type::get_symbol(m_hmodule, symbolOrdinal, f);
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 /// @}
 
-// \name Accessors
+/// \name Accessors
 /// @{
 public:
     /// \brief Provides access to the underlying module handle
     module_handle_type  get_handle() const;
+
+    /// \brief Provides access to the underlying module handle
+    module_handle_type  get() const;
 /// @}
 
 // Members
@@ -298,7 +317,7 @@ inline module::module(ws_char_a_t const *modName)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw windows_exception("Cannot load module", ::GetLastError());
+        throw_x(windows_exception("Cannot load module", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -309,7 +328,7 @@ inline module::module(ws_char_w_t const *modName)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw windows_exception("Cannot load module", ::GetLastError());
+        throw_x(windows_exception("Cannot load module", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -320,7 +339,7 @@ inline module::module(module::module_handle_type hmodule)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw windows_exception("Cannot load module", ::GetLastError());
+        throw_x(windows_exception("Cannot load module", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -339,7 +358,7 @@ inline module::module(module const &rhs)
         if(0 == cch)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw windows_exception("Cannot get module path", ::GetLastError());
+            throw_x(windows_exception("Cannot get module path", ::GetLastError()));
 #else /* STLSOFT_CF_EXCEPTION_SUPPORT */
             m_hmodule = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -416,6 +435,11 @@ inline module::proc_pointer module::get_symbol(ws_uint32_t symbolOrdinal)
 }
 
 inline module::module_handle_type module::get_handle() const
+{
+    return m_hmodule;
+}
+
+inline module::module_handle_type module::get() const
 {
     return m_hmodule;
 }
