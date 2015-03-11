@@ -2,9 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  9th December 2008
+; Updated:  28th December 2008
 
 ============================================================================
+
+
+28th December 2008 - 1.9.64 released
+------------------------------------
+
+ * fix to string access shims for VARIANT
 
 
 9th December 2008 - 1.9.63 released

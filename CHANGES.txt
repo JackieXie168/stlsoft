@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  9th December 2008
+; Updated:  28th December 2008
 
 ============================================================================
 
@@ -16,6 +16,26 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.64 (28th December 2008)
+
+Summary:
+========
+
+ * fix to string access shims for VARIANT
+
+Changes:
+========
+
+ COMSTL:
+ =======
+
+ ~ include/comstl/shims/access/string/variant.hpp:
+    ~ fixed defect seen with Borland, whereby conversion to multibyte string
+	  in c_str_VARIANT_proxy_a's implicit conversion operator was not
+	  carried out
 
 ============================================================================
 
