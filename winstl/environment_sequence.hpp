@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     26th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MINOR       6
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        56
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    5
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
@@ -126,7 +126,7 @@ namespace winstl_project
 /// \param C The character type
 ///
 /// \note Even though Win32 treats environment variables in a case-insensitive
-/// manner, it is possible for the raw environment information (access via the 
+/// manner, it is possible for the raw environment information (access via the
 /// GetEnvironmentStrings() function) to contain multiple entries whose names
 /// differ only by case. Thus, later versions of the sequence class support the
 /// \c ignoreCase member constant, which is passed by default to the
@@ -136,6 +136,8 @@ template <ss_typename_param_k C>
 class basic_environment_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
 {
+/// \name Member Types
+/// @{
 public:
     /// The character type
     typedef C                                                   char_type;
@@ -163,17 +165,16 @@ public:
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
       ss_typename_type_k
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
         stlsoft_ns_qual(pointer_iterator)   <   value_type
                                             ,   const_pointer
                                             ,   const_reference
                                             >::type             const_iterator;
-
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
-    typedef 
+    typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-            ss_typename_type_k 
+            ss_typename_type_k
 #endif /* compiler */
                                stlsoft_ns_qual(const_reverse_iterator_generator)<   const_iterator
                                                                                 ,   value_type
@@ -181,7 +182,8 @@ public:
                                                                                 ,   const_pointer
                                                                                 ,   difference_type
                                                                                 >::type     const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+/// @}
 
 /// \name Constants
 /// @{
@@ -198,7 +200,7 @@ public:
 public:
     /// Construct a sequence of the current process's environment entries, according
     /// to the given criteria
-    /// 
+    ///
     /// \param flags One or more of the member constants
     ss_explicit_k basic_environment_sequence(ws_int_t flags = ignoreCase);
     /// Destructor, which releases any resources acquired
@@ -216,7 +218,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -225,7 +227,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
     /// Searches for an entry holding the given name
     ///
@@ -293,12 +295,7 @@ public:
         ws_bool_t   m_bIgnoreCase;
     };
 
-#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    defined(STLSOFT_COMPILER_IS_DMC) || \
-    defined(STLSOFT_COMPILER_IS_MSVC) || \
-    defined(STLSOFT_COMPILER_IS_MWERKS)
-    friend struct compare_symbol;
-#endif /* compiler */
+    friend struct compare_symbol; // This is needed by Borland, CodeWarrior, DMC++ and Visual C++
 
 private:
     static ws_int_t         validate_flags_(ws_int_t flags);
@@ -509,7 +506,7 @@ inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_en
     return &*m_symbols.end();
 }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template <ss_typename_param_k C>
 inline ss_typename_type_k basic_environment_sequence<C>::const_reverse_iterator basic_environment_sequence<C>::rbegin() const
 {
@@ -521,7 +518,7 @@ inline ss_typename_type_k basic_environment_sequence<C>::const_reverse_iterator 
 {
     return const_reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k C>
 inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_environment_sequence<C>::find(ss_typename_type_k basic_environment_sequence<C>::char_type const *name) const
@@ -551,7 +548,7 @@ inline ss_typename_type_k basic_environment_sequence<C>::const_iterator basic_en
     for(; b != e; ++b)
     {
         if( 0 == compare_strings_(name, (*b).name, m_flags) &&
-            (   NULL == value || 
+            (   NULL == value ||
                 0 == compare_strings_(value, (*b).value, m_flags)))
         {
 //fprintf(stderr, "find-2 [%s, %s]\n", name, (*b).name);

@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     17th February 2004
- * Updated:     4th January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_MINOR     0
 # define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_EDIT      11
+# define STLSOFT_VER_H_STLSOFT_CONTAINER_BASE_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,9 +60,9 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/obsolete/container_base.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE
 # include <stlsoft/obsolete/container_base.hpp>

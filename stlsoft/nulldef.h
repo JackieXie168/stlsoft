@@ -4,11 +4,11 @@
  * Purpose:     Include for defining NULL to be the NULL_v template class.
  *
  * Created:     17th December 2002
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_H_NULLDEF_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_NULLDEF_MINOR    0
 # define STLSOFT_VER_STLSOFT_H_NULLDEF_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_NULLDEF_EDIT     18
+# define STLSOFT_VER_STLSOFT_H_NULLDEF_EDIT     20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -79,9 +79,9 @@
  */
 
 #ifndef NULL
-# ifdef _STLSOFT_COMPILE_VERBOSE
+# ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 #  pragma message("NULL not defined. This is potentially dangerous. You are advised to include its defining header before stlsoft_nulldef.h")
-# endif /* _STLSOFT_COMPILE_VERBOSE */
+# endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 #endif /* !NULL */
 
 #ifdef _STLSOFT_NULL_v_DEFINED

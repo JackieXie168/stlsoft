@@ -4,7 +4,7 @@
  * Purpose:     String duplication functions.
  *
  * Created:     26th May 2005
- * Updated:     2nd January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_MAJOR    1
-# define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_MINOR    1
+# define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_MINOR    3
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_EDIT     13
+# define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,13 +75,13 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 # include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
+# include <stlsoft/memory/allocator_base.hpp>	// for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 
 #ifdef STLSOFT_UNITTEST
-# include <stlsoft/malloc_allocator.hpp>
-# include <stlsoft/new_allocator.hpp>
+# include <stlsoft/memory/malloc_allocator.hpp>
+# include <stlsoft/memory/new_allocator.hpp>
 # include <string.h>
 #endif /* STLSOFT_UNITTEST */
 
@@ -184,39 +184,39 @@ namespace unittest
             char                    *ds1;
             char                    *ds2;
 
-# ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+# ifdef STLSOFT_CF_THROW_BAD_ALLOC
             try
             {
-# endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
                 {
                     malloc_allocator<char>  ator;
 
                     ds1 = string_dup(sz1, ator);
                 }
-# ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+# ifdef STLSOFT_CF_THROW_BAD_ALLOC
             }
             catch(stlsoft_ns_qual_std(bad_alloc) &)
             {
                 ds1 = NULL;
             }
-# endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 
-# ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+# ifdef STLSOFT_CF_THROW_BAD_ALLOC
             try
             {
-# endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
                 {
                     new_allocator<char>     ator;
 
                     ds2 = string_dup(sz2, ator);
                 }
-# ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+# ifdef STLSOFT_CF_THROW_BAD_ALLOC
             }
             catch(stlsoft_ns_qual_std(bad_alloc) &)
             {
                 ds2 = NULL;
             }
-# endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 
             if( NULL != ds1 &&
                 0 != ::strcmp(sz1, ds1))

@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     27th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_REVISION 5
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_EDIT     83
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MINOR    3
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_REVISION 1
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -148,11 +148,11 @@ class basic_findvolume_sequence_const_iterator;
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_findvolume_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -379,47 +379,7 @@ private:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_winstl_findvolume_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "WinSTL", "findvolume_sequence", __FILE__);
-
-            findvolume_sequence_a   fvsa;
-            findvolume_sequence_w   fvsw;
-
-            {
-
-                findvolume_sequence_a::const_iterator   b   =   fvsa.begin();
-                findvolume_sequence_a::const_iterator   b2;
-
-                b2  =   b;
-                b   =   b;
-                b   =   b2;
-                b2  =   fvsa.begin();
-            }
-
-            if(fvsa.empty() != fvsw.empty())
-            {
-                r->report("findvolume_sequence(ANSI)::empty() != findvolume_sequence(Unicode)::empty()", __LINE__);
-                bSuccess = false;
-            }
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_winstl_findvolume_sequence(test_winstl_findvolume_sequence);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/findvolume_sequence_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -433,15 +393,10 @@ template <ss_typename_param_k C, ss_typename_param_k T>
 inline ss_typename_type_k basic_findvolume_sequence<C, T>::const_iterator basic_findvolume_sequence<C, T>::begin() const
 {
     char_type   vol_name[MAX_VOL_NAME + 1];
-    HANDLE      hSrch   =   traits_type::find_first_volume(vol_name, winstl_num_elements(vol_name));
+    HANDLE      hSrch   =   traits_type::find_first_volume(vol_name, STLSOFT_NUM_ELEMENTS(vol_name));
 
-    if(hSrch == INVALID_HANDLE_VALUE)
+    if(hSrch != INVALID_HANDLE_VALUE)
     {
-        return const_iterator(*this);
-    }
-    else
-    {
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         try
         {
@@ -457,6 +412,8 @@ inline ss_typename_type_k basic_findvolume_sequence<C, T>::const_iterator basic_
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
+
+    return const_iterator(*this);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
@@ -502,11 +459,11 @@ inline ss_typename_type_k basic_findvolume_sequence_value_type<C, T>::class_type
 
 #if 0
 template <ss_typename_param_k C, ss_typename_param_k T>
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 inline basic_findvolume_sequence_value_type<C, T>::operator basic_findvolume_sequence<C, T>::char_type const *() const
 #else
 inline basic_findvolume_sequence_value_type<C, T>::operator char_type const *() const
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     return m_name;
 }
@@ -581,7 +538,7 @@ inline ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::cla
 {
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", NULL != m_handle);
 
-    if(!traits_type::find_next_volume(m_handle->hSrch, m_name, winstl_num_elements(m_name)))
+    if(!traits_type::find_next_volume(m_handle->hSrch, m_name, STLSOFT_NUM_ELEMENTS(m_name)))
     {
         m_handle->Release();
 

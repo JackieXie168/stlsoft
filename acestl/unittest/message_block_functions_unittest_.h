@@ -21,42 +21,42 @@ namespace unittest
 
             const char              data[]      =   "abcdefghijklmnopqrstuvwxyz0123456789";
 
-            ACE_Message_Block       *bl1        =   make_copied_Message_Block(&data[0], stlsoft_num_elements(data) - 1);
-#if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
+            ACE_Message_Block       *bl1        =   make_copied_Message_Block(&data[0], STLSOFT_NUM_ELEMENTS(data) - 1);
+#if defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
             ACE_Message_Block       *bl2        =   make_copied_Message_Block(data);
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             if(NULL != bl1)
             {
-                if(bl1->wr_ptr() - bl1->rd_ptr() != stlsoft_num_elements(data) - 1)
+                if(bl1->wr_ptr() - bl1->rd_ptr() != STLSOFT_NUM_ELEMENTS(data) - 1)
                 {
                     r->report("ACE_Message_Block has invalid size", __LINE__);
                     bSuccess = false;
                 }
 
-                if(0 != memcmp(bl1->rd_ptr(), &data[0], stlsoft_num_elements(data) - 1))
+                if(0 != memcmp(bl1->rd_ptr(), &data[0], STLSOFT_NUM_ELEMENTS(data) - 1))
                 {
                     r->report("ACE_Message_Block has invalid contents", __LINE__);
                     bSuccess = false;
                 }
             }
 
-#if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
+#if defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
             if(NULL != bl2)
             {
-                if(bl2->wr_ptr() - bl2->rd_ptr() != stlsoft_num_elements(data))
+                if(bl2->wr_ptr() - bl2->rd_ptr() != STLSOFT_NUM_ELEMENTS(data))
                 {
                     r->report("ACE_Message_Block has invalid size", __LINE__);
                     bSuccess = false;
                 }
 
-                if(0 != memcmp(bl2->rd_ptr(), &data[0], stlsoft_num_elements(data)))
+                if(0 != memcmp(bl2->rd_ptr(), &data[0], STLSOFT_NUM_ELEMENTS(data)))
                 {
                     r->report("ACE_Message_Block has invalid contents", __LINE__);
                     bSuccess = false;
                 }
             }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
             return bSuccess;
         }

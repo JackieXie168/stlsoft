@@ -4,11 +4,11 @@
  * Purpose:     Various constants.
  *
  * Created:     20th October 1994
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_MINOR     1
 # define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_EDIT      29
+# define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

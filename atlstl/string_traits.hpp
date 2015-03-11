@@ -4,11 +4,11 @@
  * Purpose:     Contains string_traits for ATL.
  *
  * Created:     28th April 2005
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_MAJOR      2
 # define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_MINOR      1
 # define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_REVISION   3
-# define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_EDIT       9
+# define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              version 1.5.1.
  *
  * Created:     24th December 2002
- * Updated:     21st January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,16 +42,16 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # error stlsoft_cc_obsolete.h can only be included from within stlsoft/stlsoft.h, and should not be included directly
 #else /* ? STLSOFT_INCL_STLSOFT_H_STLSOFT */
-# ifdef _STLSOFT_COMPILE_VERBOSE
+# ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 #  pragma message("This file is now obsolete. It will be removed in a future version")
-# endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+# endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 /* File version */
 # define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_MINOR     0
 # define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_EDIT      12
+# define STLSOFT_VER_H_STLSOFT_CC_OBSOLETE_EDIT      13
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility

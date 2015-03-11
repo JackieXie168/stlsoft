@@ -1,5 +1,5 @@
 
-// Updated: 19th September 2005
+// Updated: 21st March 2006
 
 #if !defined(COMSTL_INCL_COMSTL_HPP_THREAD_MARSHAL)
 # error This file cannot be directly included, and should only be included within comstl/thread_marshal.hpp
@@ -23,7 +23,7 @@ namespace unittest
 
             typedef HRESULT (WINAPI* PFnCreateEnumStringFromArray)(LPCOLESTR const* , size_t , void** );
 
-            static const LPCOLESTR  strings[] = 
+            static const LPCOLESTR  strings[] =
             {
                     L"string-#1"
                 ,   L"string-#2"
@@ -32,7 +32,7 @@ namespace unittest
             HINSTANCE                       hinst   =   ::LoadLibraryA("MMCOMBSC.DLL");
             PFnCreateEnumStringFromArray    pfn     =   (NULL != hinst) ? (PFnCreateEnumStringFromArray)::GetProcAddress(hinst, "CreateEnumStringFromArray") : NULL;
             IEnumString                     *pes    =   NULL;
-            HRESULT                         hr      =   (NULL != pfn) ? (*pfn)(strings, stlsoft_num_elements(strings), reinterpret_cast<void**>(&pes)) : E_FAIL;
+            HRESULT                         hr      =   (NULL != pfn) ? (*pfn)(strings, STLSOFT_NUM_ELEMENTS(strings), reinterpret_cast<void**>(&pes)) : E_FAIL;
 
             if(SUCCEEDED(hr))
             {

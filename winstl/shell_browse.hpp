@@ -4,7 +4,7 @@
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     21st January 2006
+ * Updated:     21st March 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_MAJOR       4
 # define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_MINOR       0
 # define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_EDIT        46
+# define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

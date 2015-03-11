@@ -4,7 +4,7 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     22nd December 2005
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,9 +40,9 @@
 
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_MAJOR    2
-# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_MINOR    4
-# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_REVISION 1
-# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_EDIT     18
+# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_MINOR    5
+# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_REVISION 2
+# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_EDIT     20
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -53,20 +53,20 @@
 # if defined(_STLSOFT_COMPILE_VERBOSE)
 #  undef _STLSOFT_COMPILE_VERBOSE
 # endif /* _STLSOFT_COMPILE_VERBOSE */
-#endif /* __MWERKS__ */
+#endif /* compiler */
 
 #include <stdio.h>
 #include <stlsoft/stlsoft.h>
 #include <unittest/simple_unittester.h>
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # include <string>
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 #  include <string.hpp>
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 #ifndef STLSOFT_UNITTEST
 # error This file cannot be used if STLSOFT_UNITTEST is not defined.
@@ -88,15 +88,15 @@ namespace unittest
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 typedef stlsoft_ns_qual_std(string)     string_t;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 typedef String                          string_t;
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
@@ -271,11 +271,11 @@ char const *simple_unittest_reporter::get_file() const
 
 size_t simple_unittest_host::size()
 {
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 
     return m_functions.size();
 
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 
     return m_functions.length();
@@ -283,7 +283,7 @@ size_t simple_unittest_host::size()
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
 simple_unittest_host::simple_unittest_host()
@@ -296,11 +296,11 @@ simple_unittest_host::~simple_unittest_host() stlsoft_throw_0()
 
 ss_uint32_t simple_unittest_host::register_unittest_fn(unittest_function pfn)
 {
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 
     m_functions.push_back(pfn);
 
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 
     m_functions[size()] = pfn;
@@ -308,7 +308,7 @@ ss_uint32_t simple_unittest_host::register_unittest_fn(unittest_function pfn)
 # else /* ? compiler */
 #  error No other non-std compiler is known
 # endif /* ? compiler */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
     return 1;
 }

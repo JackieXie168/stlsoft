@@ -5,11 +5,11 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     28th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       0
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        23
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    2
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ public:
 /// \name Member Constants
 /// @{
 public:
-    
+
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
     enum {  has_member_iterator_category    =   0 != has_iterator_category<T>::value    /*!< Indicates whether the type has an \c iterator_category member  */  };
     enum {  has_member_value_type           =   0 != has_value_type<T>::value           /*!< Indicates whether the type has a \c value_type member          */  };
@@ -132,15 +132,15 @@ public:
     enum {  has_member_pointer_type         =   0 != has_pointer_type<T>::value         /*!< Indicates whether the type has a \c pointer_type member        */  };
     enum {  has_member_iterator             =   0 != has_iterator<T>::value             /*!< Indicates whether the type has an \c iterator member           */  };
 # if !defined(STLSOFT_COMPILER_IS_DMC) || \
-      __DMC__ >= 0x0845
+     __DMC__ >= 0x0845
     enum {  has_member_const_iterator       =   0 != has_const_iterator<T>::value       /*!< Indicates whether the type has a \c const_iterator member      */  };
-# endif /* !STLSOFT_COMPILER_IS_DMC */
+# endif /* compiler */
     enum {  has_member_const_pointer        =   0 != has_const_pointer<T>::value        /*!< Indicates whether the type has a \c const_pointer member       */  };
 # if defined(STLSOFT_COMPILER_IS_MWERKS)
-    enum {  has_member_reference            =   0 != has_reference<T>::value            /*!< Indicates whether the type has a \c reference member           */  };  
+    enum {  has_member_reference            =   0 != has_reference<T>::value            /*!< Indicates whether the type has a \c reference member           */  };
     enum {  has_member_reference_type       =   0 != has_reference_type<T>::value       /*!< Indicates whether the type has a \c reference_type member      */  };
     enum {  has_member_const_reference      =   0 != has_const_reference<T>::value      /*!< Indicates whether the type has a \c const_reference member     */  };
-# endif /* STLSOFT_COMPILER_IS_MWERKS */
+# endif /* compiler */
     enum {  has_member_difference_type      =   0 != has_difference_type<T>::value      /*!< Indicates whether the type has a \c difference_type member     */  };
     enum {  has_member_key_type             =   0 != has_key_type<T>::value             /*!< Indicates whether the type has a \c key_type member            */  };
     enum {  has_member_mapped_type          =   0 != has_mapped_type<T>::value          /*!< Indicates whether the type has a \c mapped_type member         */  };

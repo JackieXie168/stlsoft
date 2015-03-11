@@ -1,5 +1,5 @@
 
-// Updated: 23rd January 2006
+// Updated: 21st March 2006
 
 #if !defined(WINSTL_INCL_WINSTL_HPP_FINDFILE_SEQUENCE)
 # error This file cannot be directly included, and should only be included within winstl/findfile_sequence.hpp
@@ -237,7 +237,7 @@ namespace unittest
 
                 // Pathname should be "$(cwd)\."
 
-                basic_file_path_buffer<char>    cwd;    
+                basic_file_path_buffer<char>    cwd;
                 size_t                          cwdLen  =   ::GetCurrentDirectoryA(cwd.size(), &cwd[0]);
 
                 if(0 != cwdLen)
@@ -381,7 +381,7 @@ for(; b != e; ++b)
                             findfile_sequence_a::const_iterator e   =   ffs.end();
                             size_t                              i;
 
-                            {   
+                            {
                                 basic_file_path_buffer<char>    dir0(tempDir);
                                 basic_file_path_buffer<char>    dir1;
 
@@ -443,7 +443,7 @@ for(; b != e; ++b)
                         }
 
                         { // 4. Test the implicit directory search
-                            basic_file_path_buffer<char>    cwd;    
+                            basic_file_path_buffer<char>    cwd;
                             size_t                          cwdLen  =   ::GetCurrentDirectoryA(cwd.size(), &cwd[0]);
 
                             if(0 != cwdLen)
@@ -455,7 +455,7 @@ for(; b != e; ++b)
                                 findfile_sequence_a::const_iterator e   =   ffs.end();
                                 size_t                              i;
 
-                                {   
+                                {
                                     basic_file_path_buffer<char>    dir0(tempDir);
                                     basic_file_path_buffer<char>    dir1;
 
@@ -520,7 +520,7 @@ for(; b != e; ++b)
                         }
 
                         { // 5. Test the implicit directory search of files, with pattern containing subdir
-                            basic_file_path_buffer<char>    cwd;    
+                            basic_file_path_buffer<char>    cwd;
                             size_t                          cwdLen  =   ::GetCurrentDirectoryA(cwd.size(), &cwd[0]);
 
                             if(0 != cwdLen)
@@ -539,7 +539,7 @@ for(; b != e; ++b)
                                 findfile_sequence_a::const_iterator e   =   ffs.end();
                                 size_t                              i;
 
-                                {   
+                                {
                                     basic_file_path_buffer<char>    dir0(tempDir);
                                     basic_file_path_buffer<char>    dir1;
 
@@ -606,7 +606,7 @@ for(; b != e; ++b)
                         }
 
                         { // 5. Test the explicit NULL directory search
-                            basic_file_path_buffer<char>    cwd;    
+                            basic_file_path_buffer<char>    cwd;
                             size_t                          cwdLen  =   ::GetCurrentDirectoryA(cwd.size(), &cwd[0]);
 
                             if(0 != cwdLen)
@@ -618,7 +618,7 @@ for(; b != e; ++b)
                                 findfile_sequence_a::const_iterator e   =   ffs.end();
                                 size_t                              i;
 
-                                {   
+                                {
                                     basic_file_path_buffer<char>    dir0(tempDir);
                                     basic_file_path_buffer<char>    dir1;
 
@@ -678,7 +678,7 @@ for(; b != e; ++b)
                         }
 
                         { // 6. Test the explicit empty directory search
-                            basic_file_path_buffer<char>    cwd;    
+                            basic_file_path_buffer<char>    cwd;
                             size_t                          cwdLen  =   ::GetCurrentDirectoryA(cwd.size(), &cwd[0]);
 
                             if(0 != cwdLen)
@@ -690,7 +690,7 @@ for(; b != e; ++b)
                                 findfile_sequence_a::const_iterator e   =   ffs.end();
                                 size_t                              i;
 
-                                {   
+                                {
                                     basic_file_path_buffer<char>    dir0(tempDir);
                                     basic_file_path_buffer<char>    dir1;
 

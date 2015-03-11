@@ -4,11 +4,11 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     23rd December 2005
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CHAR_TRAITS_MAJOR        3
-# define STLSOFT_VER_H_STLSOFT_CHAR_TRAITS_MINOR        2
+# define STLSOFT_VER_H_STLSOFT_CHAR_TRAITS_MINOR        3
 # define STLSOFT_VER_H_STLSOFT_CHAR_TRAITS_REVISION     1
-# define STLSOFT_VER_H_STLSOFT_CHAR_TRAITS_EDIT         54
+# define STLSOFT_VER_H_STLSOFT_CHAR_TRAITS_EDIT         57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@
  *
  * Also influencing this is whether the compiler/std-library actually provide
  * a char_traits type. GCC 2.95 does not. Presence of this is indicated by the
- * definition of __STLSOFT_CF_std_char_traits_AVAILABLE
+ * definition of STLSOFT_CF_std_char_traits_AVAILABLE
  *
  * Finally, DMC++ has a problem whereby, with the SGI libs, the specialisation
  * of char_traits in the global namespace clashes with stlsoft::char_traits<>.
@@ -92,7 +92,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/char_traits.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 # include <stlsoft/char_traits.hpp>

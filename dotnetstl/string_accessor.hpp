@@ -4,11 +4,11 @@
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_MAJOR      3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_MINOR      2
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_REVISION   1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_EDIT       35
+# define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

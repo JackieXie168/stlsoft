@@ -4,7 +4,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include dotnetstl/dotnetstl.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef DOTNETSTL_INCL_ATLSTL_HPP_DOTNETSTL
 #include "./dotnetstl/dotnetstl.hpp"

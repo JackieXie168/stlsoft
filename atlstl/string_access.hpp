@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     22nd December 2005
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +46,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MAJOR      3
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MINOR      1
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MINOR      2
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       76
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -160,12 +160,12 @@ public:
     {
         rhs.m_buffer = 0;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_null_CWindow_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_null_CWindow_proxy() stlsoft_throw_0()
@@ -224,7 +224,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -238,12 +238,12 @@ public:
     {
         rhs.m_buffer = 0;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_CWindow_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_CWindow_proxy() stlsoft_throw_0()
@@ -492,21 +492,6 @@ using ::atlstl::c_str_size;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Global namespace shims
- */
-
-#if 0
-/* Alas, this one has to die, because CComBSTR has implicit constructors, which result in conflicts. */
-template<ss_typename_param_k S>
-inline S &operator <<(S &s, CComBSTR const &shim)
-{
-    s << stlsoft_ns_qual(c_str_ptr)(shim);
-
-    return s;
-}
-#endif /* 0 */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

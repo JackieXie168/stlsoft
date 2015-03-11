@@ -4,7 +4,7 @@
  * Purpose:     Contains the adaptors to allow functions to be used as procedures in algorithms.
  *
  * Created:     13th June 1999
- * Updated:     2nd January 2006
+ * Updated:     20th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_EDIT        6
+# define STLSOFT_VER_STLSOFT_HPP_PROCEDURE_ADAPTORS_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -88,10 +88,10 @@ struct unary_procedure_adaptor
                                                 ,   void>
 {
 private:
-    typedef F                           adapted_function_type;
+    typedef F                                   adapted_function_type;
 public:
-    typedef typename F::argument_type   argument_type;
-    typedef void                        result_type;
+    typedef ss_typename_type_k F::argument_type argument_type;
+    typedef void                                result_type;
 
 public:
     unary_procedure_adaptor(adapted_function_type func)
@@ -125,11 +125,11 @@ struct binary_procedure_adaptor
                                 ,   void>
 {
 private:
-    typedef F                                   adapted_function_type;
+    typedef F                                           adapted_function_type;
 public:
-    typedef typename F::first_argument_type     first_argument_type;
-    typedef typename F::second_argument_type    second_argument_type;
-    typedef void                                result_type;
+    typedef ss_typename_type_k F::first_argument_type   first_argument_type;
+    typedef ss_typename_type_k F::second_argument_type  second_argument_type;
+    typedef void                                        result_type;
 
 public:
     binary_procedure_adaptor(adapted_function_type func)

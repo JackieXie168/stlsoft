@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     22nd December 2005
+ * Updated:     20th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MAJOR     1
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MINOR     2
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      16
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_MINOR     3
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_REVISION  1
+# define ACESTL_VER_ACESTL_HPP_TIME_STRING_ACCESS_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -118,13 +118,13 @@ void stream_insert(S &s, ACE_Time_Value const &t)
     const long          s   =   t.sec();
     const long          us  =   t.usec();
     struct tm   *const  tm  =   ACE_OS::localtime(&static_cast<time_t const&>(s));
-    size_t              len =   ACE_OS::strftime(s1, stlsoft_num_elements(s1), "%Y-%m-%d %H:%M:%S", tm);
+    size_t              len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
 
-    ACESTL_ASSERT(len == 1 + stlsoft_num_elements(s1));
+    ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s1));
 
-    len = ACE_OS::snprintf(s2, stlsoft_num_elements(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
+    len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
 
-    ACESTL_ASSERT(len == 1 + stlsoft_num_elements(s2));
+    ACESTL_ASSERT(len == 1 + STLSOFT_NUM_ELEMENTS(s2));
 
     s.write(&s2[0], len);
 }
@@ -141,13 +141,13 @@ inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_Time_Value const &t
     const long          s   =   t.sec();
     const long          us  =   t.usec();
     struct tm   *const  tm  =   ACE_OS::localtime(&static_cast<time_t const&>(s));
-    size_t              len =   ACE_OS::strftime(s1, stlsoft_num_elements(s1), "%Y-%m-%d %H:%M:%S", tm);
+    size_t              len =   ACE_OS::strftime(s1, STLSOFT_NUM_ELEMENTS(s1), "%Y-%m-%d %H:%M:%S", tm);
 
-    ACESTL_ASSERT(1 + len == stlsoft_num_elements(s1));
+    ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s1));
 
-    len = ACE_OS::snprintf(s2, stlsoft_num_elements(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
+    len = ACE_OS::snprintf(s2, STLSOFT_NUM_ELEMENTS(s2), ACE_TEXT("%s.%03ld"), s1, us / 1000);
 
-    ACESTL_ASSERT(1 + len == stlsoft_num_elements(s2));
+    ACESTL_ASSERT(1 + len == STLSOFT_NUM_ELEMENTS(s2));
 
     return ::stlsoft::basic_shim_string<ACE_TCHAR>(&s2[0], len);
 }
@@ -173,7 +173,7 @@ inline as_size_t c_str_size(ACE_Time_Value const &t)
 }
 
 /// An inserter function for ACE_Time_Value into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_Time_Value const &addr)
 {
     stream_insert(s, addr);
@@ -234,7 +234,7 @@ namespace unittest
 # endif /* _STLSOFT_NO_NAMESPACE */
 
 /// An inserter function for ACE_Time_Value into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_Time_Value const &addr)
 {
     ::acestl::stream_insert(s, addr);

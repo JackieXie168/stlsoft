@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutext, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     16th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_EDIT     36
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -351,7 +351,7 @@ namespace winstl_project {
 #  if defined(STLSOFT_COMPILER_IS_BORLAND)
 using ::stlsoft::lock_instance;
 using ::stlsoft::unlock_instance;
-#  endif /* STLSOFT_COMPILER_IS_BORLAND */
+#  endif /* compiler */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 

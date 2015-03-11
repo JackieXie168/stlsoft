@@ -4,7 +4,7 @@
  * Purpose:     Specialisations of explicit_cast
  *
  * Created:     13th August 2003
- * Updated:     21st January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define STLSOFT_VER_H_EXPLICIT_CAST_SPECIALISATIONS_MAJOR      3
 # define STLSOFT_VER_H_EXPLICIT_CAST_SPECIALISATIONS_MINOR      2
 # define STLSOFT_VER_H_EXPLICIT_CAST_SPECIALISATIONS_REVISION   1
-# define STLSOFT_VER_H_EXPLICIT_CAST_SPECIALISATIONS_EDIT       16
+# define STLSOFT_VER_H_EXPLICIT_CAST_SPECIALISATIONS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/internal/explicit_cast_specialisations.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS
 # include <stlsoft/internal/explicit_cast_specialisations.hpp>

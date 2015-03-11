@@ -4,11 +4,11 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     13th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MINOR       2
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        45
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_MINOR       3
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_REVISION    3
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_VARIABLE_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,9 +82,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -134,11 +134,11 @@ namespace winstl_project
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_environment_variable
 {
@@ -174,7 +174,7 @@ public:
             m_buffer.resize(1 + traits_type::str_len(m_buffer.data()));
         }
     }
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Create an instance representing the given environment variable
     template<ss_typename_param_k S>
     ss_explicit_k basic_environment_variable(S const &name)
@@ -192,7 +192,7 @@ public:
             m_buffer.resize(1 + traits_type::str_len(m_buffer.data()));
         }
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 // Conversions
 public:
@@ -256,7 +256,7 @@ inline basic_environment_variable<C> make_environment_variable(C const *path)
     return basic_environment_variable<C>(path);
 }
 
-#endif /* !(_MSC_VER < 1100) */
+#endif /* compiler */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

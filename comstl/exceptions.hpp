@@ -4,11 +4,11 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     26th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_H_COMSTL_EXCEPTIONS_MAJOR       1
 # define COMSTL_VER_H_COMSTL_EXCEPTIONS_MINOR       2
-# define COMSTL_VER_H_COMSTL_EXCEPTIONS_REVISION    2
-# define COMSTL_VER_H_COMSTL_EXCEPTIONS_EDIT        21
+# define COMSTL_VER_H_COMSTL_EXCEPTIONS_REVISION    5
+# define COMSTL_VER_H_COMSTL_EXCEPTIONS_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -108,19 +108,28 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs an instance from the given result code
+    ///
+    /// \param hr The result code associated with the exception
     ss_explicit_k com_exception(HRESULT hr)
         : m_reason()
         , m_hr(hr)
     {}
+    /// Constructs an instance from the given message string and result code
+    ///
+    /// \param reason The message code associated with the exception
+    /// \param hr The result code associated with the exception
     com_exception(char const *reason, HRESULT hr)
         : m_reason((NULL == reason) ? "" : reason)
         , m_hr(hr)
     {}
-#if defined(STLSOFT_COMPILER_IS_COMO) || \
-    defined(STLSOFT_COMPILER_IS_GCC)
-    ~com_exception() stlsoft_throw_0()
+    /// Destructor
+    ///
+    /// \note This does not do have any implementation, but is required to placate
+    /// the Comeau and GCC compilers, which otherwise complain about mismatched
+    /// exception specifications between this class and its parent
+    virtual ~com_exception() stlsoft_throw_0()
     {}
-#endif /* compiler */
 /// @}
 
 /// \name Accessors
@@ -177,11 +186,13 @@ public:
     variant_type_exception(char const *reason, HRESULT hr)
         : parent_class_type(reason, hr)
     {}
-#if defined(STLSOFT_COMPILER_IS_COMO) || \
-    defined(STLSOFT_COMPILER_IS_GCC)
-    ~variant_type_exception() stlsoft_throw_0()
+    /// Destructor
+    ///
+    /// \note This does not do have any implementation, but is required to placate
+    /// the Comeau and GCC compilers, which otherwise complain about mismatched
+    /// exception specifications between this class and its parent
+    virtual ~variant_type_exception() stlsoft_throw_0()
     {}
-#endif /* compiler */
 /// @}
 
 /// \name Implementation
@@ -203,26 +214,49 @@ template <ss_typename_param_k X>
 // [[synesis:class:exception-policy: exception_policy_base]]
 struct exception_policy_base
 {
+/// \name Member Types
+/// @{
 public:
     /// The thrown type
     typedef X       thrown_type;
+/// @}
 
+/// \name Operators
+/// @{
 public:
     /// Function call operator, taking no parameters
-    void operator ()()
+    void operator ()() const
     {
-        throw thrown_type(::GetLastError());
+        throw_exception_(thrown_type(::GetLastError()));
     }
     /// Function call operator, taking one parameter
     void operator ()(HRESULT hr) const
     {
-        throw thrown_type(hr);
+        throw_exception_(thrown_type(hr));
     }
     /// Function call operator, taking two parameters
     void operator ()(char const *reason, HRESULT hr) const
     {
-        throw thrown_type(reason, hr);
+        throw_exception_(thrown_type(reason, hr));
     }
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+    template <ss_typename_param_k X2>
+    static void throw_exception_(X2 const &x)
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      _MSC_VER < 1200
+    static void throw_exception_(std::exception const &x)
+#else /* ? feature / compiler */
+    static void throw_exception_(thrown_type const &x)
+#endif /* feature / compiler */
+    {
+        throw x;
+    }
+/// @}
 };
 
 /// The policy class, which throws a com_exception class.

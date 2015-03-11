@@ -1,5 +1,5 @@
 
-// Updated: 20th December 2005
+// Updated: 28th March 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_REF_PTR)
 # error This file cannot be directly included, and should only be included within stlsoft/ref_ptr.hpp
@@ -331,7 +331,7 @@ namespace unittest
                 }
 
                 Base_ptr        p2;
-                
+
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER != 1300
                 p2 = p1;
@@ -354,6 +354,90 @@ namespace unittest
             return bSuccess;
         }
 
+        ss_bool_t test_stlsoft_ref_ptr_4(unittest_reporter *r)
+        {
+            ss_bool_t               bSuccess    =   true;
+
+            typedef ref_ptr<RCIs::Base, RCIs::IRefCounter>      Base1_ptr;
+            typedef ref_ptr<RCIs::Base, RCIs::Base>             Base2_ptr;
+
+//#error
+            Base1_ptr   p1;
+            Base1_ptr   p2(NULL, false);
+            Base1_ptr   p3(NULL, false);
+            Base1_ptr   p4(p1);
+
+            if(NULL != p1.get())
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+
+            if(p1 != p1)
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+
+            if(p1 != p2)
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+            if(p2 != p1)
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+
+            if(p1 != p3)
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+            if(p3 != p1)
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+
+            if(p1 != p4)
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+            if(p4 != p1)
+            {
+                r->report("Default construction failed", __LINE__);
+                bSuccess = false;
+            }
+
+            RCIs::Base  base;
+            const long  startCount  =   base.Count();
+
+            {
+                Base1_ptr   p1_1(&base, true);
+
+                Base2_ptr   p2_1;
+                Base2_ptr   p2_2(&base, true);
+
+                Base2_ptr   p2_3;
+
+                p2_3    =   p2_1;
+
+                p1      =   p2_3;
+                p2_3    =   p1;
+            }
+
+            if(base.Count() != startCount)
+            {
+                r->report("Constructor erroneously took/lost a reference when bAddRef was false", __LINE__);
+                bSuccess = false;
+            }
+
+            return bSuccess;
+        }
+
         ss_bool_t test_stlsoft_ref_ptr(unittest_reporter *r)
         {
             ss_bool_t               bSuccess    =   true;
@@ -369,6 +453,11 @@ namespace unittest
                 bSuccess = false;
             }
             if(!test_stlsoft_ref_ptr_3(r))
+            {
+                bSuccess = false;
+            }
+
+            if(!test_stlsoft_ref_ptr_4(r))
             {
                 bSuccess = false;
             }

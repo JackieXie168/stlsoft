@@ -4,7 +4,7 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MINOR      3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       48
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   3
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -129,11 +129,11 @@ public:
     }
     static ws_int_t get_text(HWND hwnd, ws_int_t index, ws_char_a_t *s)
     {
-        return combobox_gettext(hwnd, index, s);
+        return combobox_gettext_a(hwnd, index, s);
     }
     static ws_int_t get_text(HWND hwnd, ws_int_t index, ws_char_w_t *s)
     {
-        return combobox_gettext(hwnd, index, s);
+        return combobox_gettext_w(hwnd, index, s);
     }
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -217,7 +217,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const
     {
-        return const_iterator(m_hwnd, static_cast<int>(control_traits_type::get_count(m_hwnd)));
+        return const_iterator(m_hwnd, static_cast<int>(size()));
     }
 
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)

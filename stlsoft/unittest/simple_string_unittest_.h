@@ -1,5 +1,5 @@
 
-// Updated: 22nd January 2006
+// Updated: 5th February 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING)
 # error This file cannot be directly included, and should only be included within stlsoft/simple_string.hpp
@@ -91,11 +91,11 @@ namespace unittest
                 bSuccess = false;
             }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
             const alt_string_t  ss1(s4.begin(), s4.end());
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
             const alt_string_t  ss1(s4.data(), s4.length());
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
            r->start_section("section-5");
@@ -113,11 +113,11 @@ namespace unittest
                 bSuccess = false;
             }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
             const string_t      s5(ss1.begin(), ss1.end());
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
             const string_t      s5(ss1.data(), ss1.length());
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
            r->start_section("section-6");
@@ -139,7 +139,7 @@ namespace unittest
            r->start_section("section-7");
 #endif /* 0 */
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
             string_t      s6(s5);
             string_t      s7(s5);
 
@@ -152,7 +152,7 @@ namespace unittest
                 bSuccess = false;
             }
 
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
            r->start_section("section-8");
@@ -242,7 +242,7 @@ namespace unittest
            r->start_section("section-10");
 #endif /* 0 */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
             {
                 const string_t  ss_1("This is an stlsoft::simple_string instance");
                 const string_t  ss_2(ss_1.rbegin(), ss_1.rend());   // Reverse form of ss_1
@@ -283,7 +283,7 @@ namespace unittest
                 }
 # endif /* compiler */
             }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 #ifdef _STLSOFT_SIMPLE_STRING_SHOW_SECTIONS
            r->start_section("section-12");

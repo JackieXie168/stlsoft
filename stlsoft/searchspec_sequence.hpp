@@ -15,11 +15,11 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     11th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_MINOR    2
-# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_EDIT     36
+# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_SEARCHSPEC_SEQUENCE_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 #  include <stlsoft/iterator.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#endif /* STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
@@ -170,13 +170,10 @@ public:
     /// The non-mutating (const) iterator type
     class                                                               const_iterator;
 private:
-//#if defined(STLSOFT_COMPILER_IS_BORLAND)
     typedef basic_simple_string<char_type>                              string_type;
-//#else /* ? compiler */
     // TODO: Have all filesystem_traits that have a fixed length derive from a tag type, so that we can parameterise
-    // based on that. Then reinstante the string type discrimination based on the traits
+    // based on that. Then reinstate the string type discrimination based on the traits
 //    typedef basic_static_string<char_type, traits_type::maxPathLength>  string_type;
-//#endif /* compiler */
     typedef string_tokeniser<string_type, char>                         tokeniser_type;
 
 public:
@@ -284,7 +281,7 @@ private:
         }
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-_MSC_VER < 1300
+    _MSC_VER < 1300
         friend class const_iterator;
 #endif /* compiler */
 
@@ -429,7 +426,7 @@ public:
             if(!m_searchState->next())
             {
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-_MSC_VER < 1300
+    _MSC_VER < 1300
                 m_searchState->Release();
 
                 m_searchState = NULL;

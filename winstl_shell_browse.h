@@ -4,7 +4,7 @@
  * Purpose:     shell_browsing class.
  *
  * Created:     2nd March 2002
- * Updated:     21st January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_SHELL_BROWSE_MAJOR     3
 # define WINSTL_VER_H_WINSTL_SHELL_BROWSE_MINOR     3
 # define WINSTL_VER_H_WINSTL_SHELL_BROWSE_REVISION  1
-# define WINSTL_VER_H_WINSTL_SHELL_BROWSE_EDIT      45
+# define WINSTL_VER_H_WINSTL_SHELL_BROWSE_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/shell/browse_for_folder.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER
 # include <winstl/shell/browse_for_folder.hpp>

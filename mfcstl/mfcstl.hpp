@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     2
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  1
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      74
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp The root header for the \ref MFCSTL project */
@@ -373,13 +373,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def mfcstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if MFCSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define mfcstl_ns_qual_std(x)      ::std::x
 # define mfcstl_ns_using_std(x)     using ::std::x;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define mfcstl_ns_qual_std(x)      x
 # define mfcstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -450,7 +450,12 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define mfcstl_num_elements(ar)                         stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define MFCSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define mfcstl_num_elements(ar)                        MFCSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

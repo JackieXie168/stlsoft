@@ -4,11 +4,11 @@
  * Purpose:     STL container adaptor veneers.
  *
  * Created:     19th August 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_EDIT     31
+# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

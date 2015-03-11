@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     21st January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    2
+# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     25
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h The root header for the \ref InetSTL project */
@@ -178,9 +178,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-//#if defined(STLSOFT_COMPILER_IS_BORLAND)
-# include <windows.h>
-//#endif /* compiler */
+#include <windows.h>
 #include <wininet.h>    // Windows base header
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -404,13 +402,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def inetstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if InetSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define inetstl_ns_qual_std(x)      ::std::x
 # define inetstl_ns_using_std(x)     using ::std::x;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define inetstl_ns_qual_std(x)      x
 # define inetstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -516,7 +514,12 @@ typedef is_streamoff_t      streamoff_t;        //!< streamoff
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define inetstl_num_elements(ar)                         stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define INETSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define inetstl_num_elements(ar)                        INETSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

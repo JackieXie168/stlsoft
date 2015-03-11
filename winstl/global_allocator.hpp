@@ -4,11 +4,11 @@
  * Purpose:     global_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     18th December 2005
+ * Updated:     23rd March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define WINSTL_INCL_WINSTL_HPP_GLOBAL_ALLOCATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_HPP_GLOBAL_ALLOCATOR_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_GLOBAL_ALLOCATOR_MINOR       3
+# define WINSTL_VER_WINSTL_HPP_GLOBAL_ALLOCATOR_MAJOR       4
+# define WINSTL_VER_WINSTL_HPP_GLOBAL_ALLOCATOR_MINOR       0
 # define WINSTL_VER_WINSTL_HPP_GLOBAL_ALLOCATOR_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_GLOBAL_ALLOCATOR_EDIT        62
+# define WINSTL_VER_WINSTL_HPP_GLOBAL_ALLOCATOR_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,191 +59,14 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 
-/* ////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include winstl/memory/global_allocator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
-{
-# else
-/* Define stlsoft::winstl_project */
-
-namespace stlsoft
-{
-
-namespace winstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup winstl_allocator_library Allocator Library (WinSTL)
-/// \ingroup WinSTL libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types for the Win32 API
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// STL Allocator based on the Win32 Global() API
-///
-/// \param T The value_type of the allocator
-template <ss_typename_param_k T>
-class global_allocator
-    : public allocator_base<T, global_allocator<T> >
-{
-private:
-    typedef allocator_base<T, global_allocator<T> >                 parent_class_type;
-public:
-    /// The parameterisation of the class
-    typedef global_allocator<T>                                     class_type;
-    /// The value type
-    typedef ss_typename_type_k parent_class_type::value_type        value_type;
-    /// The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer           pointer;
-    /// The non-mutating (const) pointer type
-    typedef ss_typename_type_k parent_class_type::const_pointer     const_pointer;
-    /// The reference type
-    typedef ss_typename_type_k parent_class_type::reference         reference;
-    /// The non-mutating (const) reference type
-    typedef ss_typename_type_k parent_class_type::const_reference   const_reference;
-    /// The difference type
-    typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
-    /// The size type
-    typedef ss_typename_type_k parent_class_type::size_type         size_type;
-
-public:
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator's <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef global_allocator<U>                                 other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-
-/// \name Construction
-/// @{
-public:
-    /// Default constructor
-    global_allocator()
-    {}
-    /// Copy constructor
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    template <typename U>
-    global_allocator(global_allocator<U> const &)
-    {}
-#else /* ? STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    global_allocator(class_type const &)
-    {}
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-/// @}
-
-private:
-    friend class allocator_base<T, global_allocator<T> >;
-
-    void *do_allocate(size_type n, void const *hint)
-    {
-        STLSOFT_SUPPRESS_UNUSED(hint);
-
-        return static_cast<void*>(::GlobalAlloc(GMEM_FIXED, n * sizeof(value_type)));
-    }
-    void do_deallocate(void *pv, size_type n)
-    {
-        STLSOFT_SUPPRESS_UNUSED(n);
-
-        ::GlobalFree(static_cast<HGLOBAL>(pv));
-    }
-    void do_deallocate(void *pv)
-    {
-        ::GlobalFree(static_cast<HGLOBAL>(pv));
-    }
-};
-
-
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-// Specialisation for void
-STLSOFT_TEMPLATE_SPECIALISATION
-class global_allocator<void>
-{
-public:
-    typedef void                       value_type;
-    typedef global_allocator<void>     class_type;
-    typedef void                       *pointer;
-    typedef void const                 *const_pointer;
-    typedef ptrdiff_t                  difference_type;
-    typedef ws_size_t                  size_type;
-
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef global_allocator<U>    other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-inline ws_bool_t operator ==(const global_allocator<T> &/* lhs */, const global_allocator<T> &/* rhs */)
-{
-    return ws_true_v;
-}
-
-template <ss_typename_param_k T>
-inline ws_bool_t operator !=(const global_allocator<T> &/* lhs */, const global_allocator<T> &/* rhs */)
-{
-    return ws_false_v;
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/global_allocator_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_allocator_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
-# else
-} // namespace winstl_project
-} // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR
+# include <winstl/memory/global_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

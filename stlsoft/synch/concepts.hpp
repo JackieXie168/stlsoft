@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation concept tags.
  *
  * Created:     16th January 2006
- * Updated:     17th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MINOR       0
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        2
+# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ struct synchronisable_object_tag
 //    : public synchronisation_type_tag
 {};
 
-/** Denotes that a deriving class can be used as a critical section, i.e. it 
+/** Denotes that a deriving class can be used as a critical section, i.e. it
  * has methods lock() and unlock() for entering and exiting the critical sections
  */
 struct critical_section_tag
@@ -98,7 +98,7 @@ struct critical_section_tag
 {};
 
 #if 0
-/** Denotes that a deriving class can be used as a critical section 
+/** Denotes that a deriving class can be used as a critical section
  * (see critical_section_tag), and that it can be recursively entered without
  * deadlock, i.e. the following call sequence is well defined:
  *
@@ -111,7 +111,7 @@ struct recursive_critical_section_tag
 //    : public critical_section_tag
 {};
 
-/** Denotes that a deriving class can be used as a critical section 
+/** Denotes that a deriving class can be used as a critical section
  * (see critical_section_tag), and that it has a try_lock() method, which returns
  * an integral result, where non-0 indicates that the lock() can be acquired <b>and</b>
  * has been acquired.

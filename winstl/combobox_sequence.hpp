@@ -4,7 +4,7 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_MINOR      0
 # define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_EDIT       49
+# define WINSTL_VER_WINSTL_HPP_COMBOBOX_SEQUENCE_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/controls/combobox_sequence.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE
 # include <winstl/controls/combobox_sequence.hpp>

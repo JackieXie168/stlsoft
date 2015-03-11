@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS CRITICAL_SECTION.
  *
  * Created:     17th December 1996
- * Updated:     2nd January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_THREAD_MUTEX_MAJOR       3
 # define UNIXSTL_VER_H_UNIXSTL_THREAD_MUTEX_MINOR       2
 # define UNIXSTL_VER_H_UNIXSTL_THREAD_MUTEX_REVISION    1
-# define UNIXSTL_VER_H_UNIXSTL_THREAD_MUTEX_EDIT        32
+# define UNIXSTL_VER_H_UNIXSTL_THREAD_MUTEX_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/thread_mutex.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_THREAD_MUTEX
 # include <unixstl/thread_mutex.hpp>

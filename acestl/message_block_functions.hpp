@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created:     23rd September 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      1
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      1
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   7
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       14
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      2
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   1
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -110,17 +110,17 @@ namespace acestl_project
 ///
 /// Usage is extremely simple. Just specify the source (pointer and length), and
 /// test for NULL (allocation failure):
-/// 
+///
 /// \htmlonly
 /// <pre>
-/// 
+///
 /// ACE_Message_Block *newBlock = acestl::make_copied_Message_Block("Contents", 7);
-/// 
+///
 /// if(NULL == newBlock)
 /// {
 ///   fprintf(stderr, "Allocation failed!\n");
 /// }
-/// 
+///
 /// </pre>
 /// \endhtmlonly
 inline ACE_Message_Block *make_copied_Message_Block(char const *p, size_t n)
@@ -155,7 +155,7 @@ inline ACE_Message_Block *make_copied_Message_Block(char const *p, size_t n)
 #endif /* ACE_NEW_THROWS_EXCEPTIONS */
 }
 
-#if defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
+#if defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 
 template <ss_size_t N>
 inline ACE_Message_Block *make_copied_Message_Block(const char (&ar)[N])
@@ -163,7 +163,7 @@ inline ACE_Message_Block *make_copied_Message_Block(const char (&ar)[N])
     return make_copied_Message_Block(&ar[0], N);
 }
 
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 ////////////////////////////////////////////////////////////////////////////////
 

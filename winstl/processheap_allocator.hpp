@@ -4,11 +4,11 @@
  * Purpose:     processheap_allocator class.
  *
  * Created:     25th February 2002
- * Updated:     18th December 2005
+ * Updated:     23rd March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_HPP_PROCESSHEAP_ALLOCATOR_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_PROCESSHEAP_ALLOCATOR_MINOR     3
+# define WINSTL_VER_WINSTL_HPP_PROCESSHEAP_ALLOCATOR_MAJOR     4
+# define WINSTL_VER_WINSTL_HPP_PROCESSHEAP_ALLOCATOR_MINOR     0
 # define WINSTL_VER_WINSTL_HPP_PROCESSHEAP_ALLOCATOR_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_PROCESSHEAP_ALLOCATOR_EDIT      67
+# define WINSTL_VER_WINSTL_HPP_PROCESSHEAP_ALLOCATOR_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,209 +59,14 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 
-/* ////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include winstl/memory/processheap_allocator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
-{
-# else
-/* Define stlsoft::winstl_project */
-
-namespace stlsoft
-{
-
-namespace winstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup winstl_allocator_library Allocator Library (WinSTL)
-/// \ingroup WinSTL libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types for the Win32 API
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// STL Allocator based on the Win32 process heap
-///
-/// \param T The value_type of the allocator
-template <ss_typename_param_k T>
-class processheap_allocator
-    : public allocator_base<T, processheap_allocator<T> >
-{
-private:
-    typedef allocator_base<T, processheap_allocator<T> >            parent_class_type;
-public:
-    /// The parameterisation of the class
-    typedef processheap_allocator<T>                                class_type;
-    /// The value type
-    typedef ss_typename_type_k parent_class_type::value_type        value_type;
-    /// The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer           pointer;
-    /// The non-mutating (const) pointer type
-    typedef ss_typename_type_k parent_class_type::const_pointer     const_pointer;
-    /// The reference type
-    typedef ss_typename_type_k parent_class_type::reference         reference;
-    /// The non-mutating (const) reference type
-    typedef ss_typename_type_k parent_class_type::const_reference   const_reference;
-    /// The difference type
-    typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
-    /// The size type
-    typedef ss_typename_type_k parent_class_type::size_type         size_type;
-
-public:
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator's <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef processheap_allocator<U>                            other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-
-/// \name Construction
-/// @{
-public:
-    /// Default constructor
-    processheap_allocator() stlsoft_throw_0()
-        : m_processheap(::GetProcessHeap())
-    {}
-    /// Copy constructor
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    template <ss_typename_param_k U>
-    processheap_allocator(processheap_allocator<U> const &/* rhs */) stlsoft_throw_0()
-        : m_processheap(::GetProcessHeap())
-    {}
-#else /* ? STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    processheap_allocator(processheap_allocator const &/* rhs */) stlsoft_throw_0()
-        : m_processheap(::GetProcessHeap())
-    {}
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    /// Destructor
-    ~processheap_allocator() stlsoft_throw_0()
-    {}
-
-    /// Copy assignment operator
-    ///
-    /// \note This has to be provided, to avoid precipitating C4217 with Visual C++
-    class_type &operator =(class_type const &rhs)
-    {
-        return *this;
-    }
-/// @}
-
-private:
-    friend class allocator_base<T, processheap_allocator<T> >;
-
-    void *do_allocate(size_type n, void const *hint)
-    {
-        STLSOFT_SUPPRESS_UNUSED(hint);
-
-        return ::HeapAlloc(m_processheap, 0, n * sizeof(value_type));
-    }
-    void do_deallocate(void *pv, size_type n)
-    {
-        STLSOFT_SUPPRESS_UNUSED(n);
-
-        ::HeapFree(m_processheap, 0, pv);
-    }
-    void do_deallocate(void *pv)
-    {
-        ::HeapFree(m_processheap, 0, pv);
-    }
-
-// Members
-private:
-    HANDLE  m_processheap;
-};
-
-
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-// Specialisation for void
-STLSOFT_TEMPLATE_SPECIALISATION
-class processheap_allocator<void>
-{
-public:
-    typedef void                            value_type;
-    typedef processheap_allocator<void>     class_type;
-    typedef void                            *pointer;
-    typedef void const                      *const_pointer;
-    typedef ptrdiff_t                       difference_type;
-    typedef ws_size_t                       size_type;
-
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef processheap_allocator<U>    other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-inline ws_bool_t operator ==(processheap_allocator<T> const &/* lhs */, processheap_allocator<T> const &/* rhs */)
-{
-    return ws_true_v;
-}
-
-template <ss_typename_param_k T>
-inline ws_bool_t operator !=(processheap_allocator<T> const &/* lhs */, processheap_allocator<T> const &/* rhs */)
-{
-    return ws_false_v;
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/processheap_allocator_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_allocator_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
-# else
-} // namespace winstl_project
-} // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

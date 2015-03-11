@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_MODULE_MAJOR     5
 # define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      199
+# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      201
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ public:
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName);
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal);
 
-    template <typename F>
+    template <ss_typename_param_k F>
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_char_a_t const *symbolName, F &f)
     {
         proc_pointer    proc  =   class_type::get_symbol(hmodule, symbolName);
@@ -193,7 +193,7 @@ public:
 
         return proc;
     }
-    template <typename F>
+    template <ss_typename_param_k F>
     static proc_pointer         get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal, F &f)
     {
         proc_pointer    proc  =   class_type::get_symbol(hmodule, symbolOrdinal);
@@ -220,12 +220,12 @@ public:
     proc_pointer    get_symbol(ws_char_a_t const *symbolName);
     proc_pointer    get_symbol(ws_uint32_t symbolOrdinal);
 
-    template <typename F>
+    template <ss_typename_param_k F>
     proc_pointer    get_symbol(ws_char_a_t const *symbolName, F &f)
     {
         return class_type::get_symbol(m_hmodule, symbolName, f);
     }
-    template <typename F>
+    template <ss_typename_param_k F>
     proc_pointer    get_symbol(ws_uint32_t symbolOrdinal, F &f)
     {
         return class_type::get_symbol(m_hmodule, symbolOrdinal, f);

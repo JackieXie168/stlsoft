@@ -4,11 +4,11 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_CHAR_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_H_WINSTL_CHAR_CONVERSIONS_MINOR       2
 # define WINSTL_VER_H_WINSTL_CHAR_CONVERSIONS_REVISION    1
-# define WINSTL_VER_H_WINSTL_CHAR_CONVERSIONS_EDIT        51
+# define WINSTL_VER_H_WINSTL_CHAR_CONVERSIONS_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/char_conversions.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_CHAR_CONVERSIONS
 # include <winstl/char_conversions.hpp>

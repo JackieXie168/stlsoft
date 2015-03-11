@@ -4,11 +4,11 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     26th January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MAJOR      3
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MINOR      2
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   2
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       62
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MINOR      3
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   1
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ inline resource_string::resource_string(HINSTANCE hinst, ms_uint_t id) stlsoft_t
 {
     TCHAR sz[1024];
 
-    if(0 == ::LoadString(hinst, id, sz, stlsoft_num_elements(sz)))
+    if(0 == ::LoadString(hinst, id, sz, STLSOFT_NUM_ELEMENTS(sz)))
     {
         AfxThrowResourceException();
     }

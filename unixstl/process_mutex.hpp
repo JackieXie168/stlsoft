@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     22nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_MINOR    3
 # define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_EDIT     44
+# define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

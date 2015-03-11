@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     19th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_MINOR    7
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_EDIT     82
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_EDIT     84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -587,13 +587,13 @@ public:
 
 #ifdef WIN32
         // If it's really on Windows, then it can only be absolute if ...
-        // 
+        //
         // ... it's a UNC path, or ...
         if(is_path_UNC(path))
         {
             return true;
         }
-        // ... it's got drive + root slash, or 
+        // ... it's got drive + root slash, or
         if( isalpha(path[0]) &&
             ':' == path[1] &&
             is_path_name_separator(path[2]))
@@ -1317,13 +1317,13 @@ public:
 
 #ifdef WIN32
         // If it's really on Windows, then it can only be absolute if ...
-        // 
+        //
         // ... it's a UNC path, or ...
         if(is_path_UNC(path))
         {
             return true;
         }
-        // ... it's got drive + root slash, or 
+        // ... it's got drive + root slash, or
         if( isalpha(path[0]) &&
             ':' == path[1] &&
             is_path_name_separator(path[2]))

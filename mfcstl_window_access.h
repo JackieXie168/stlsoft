@@ -4,11 +4,11 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_H_MFCSTL_WINDOW_ACCESS_MAJOR     3
 # define MFCSTL_VER_H_MFCSTL_WINDOW_ACCESS_MINOR     2
 # define MFCSTL_VER_H_MFCSTL_WINDOW_ACCESS_REVISION  1
-# define MFCSTL_VER_H_MFCSTL_WINDOW_ACCESS_EDIT      31
+# define MFCSTL_VER_H_MFCSTL_WINDOW_ACCESS_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include mfcstl/window_access.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef MFCSTL_INCL_MFCSTL_HPP_WINDOW_ACCESS
 # include <mfcstl/window_access.hpp>

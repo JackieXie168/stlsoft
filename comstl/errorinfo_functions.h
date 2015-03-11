@@ -4,7 +4,7 @@
  * Purpose:     Error info functions.
  *
  * Created:     5th Feburary 2004
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MAJOR      3
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MINOR      1
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_REVISION   1
-# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       26
+# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_w_(   cs_char_w_t const   *descrip
         IErrorInfo  *pEI;
 
         // Ask for IErrorInfo
-        hr = COMSTL_ITF_CALL(pCEI)->QueryInterface( COMSTL_ITF_THIS(pCEI) 
+        hr = COMSTL_ITF_CALL(pCEI)->QueryInterface( COMSTL_ITF_THIS(pCEI)
                                                     COMSTL_IID_2_REF(IID_IErrorInfo)
                                                 ,   stlsoft_reinterpret_cast(void**, &pEI));
 

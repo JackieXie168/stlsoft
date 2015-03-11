@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     13th January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MAJOR      1
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MINOR      5
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MINOR      6
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_REVISION   1
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       19
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
 # include <stlsoft/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
@@ -160,7 +160,7 @@ inline as_size_t c_str_len(ACE_INET_Addr const &addr)
 }
 
 /// An inserter function for ACE_INET_Addr into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 {
     stream_insert(s, addr);
@@ -191,7 +191,7 @@ inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 # endif /* _STLSOFT_NO_NAMESPACE */
 
 /// An inserter function for ACE_INET_Addr into output streams
-template <typename S>
+template <ss_typename_param_k S>
 inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 {
     ::acestl::stream_insert(s, addr);

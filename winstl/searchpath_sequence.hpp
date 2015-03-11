@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     26th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MAJOR      3
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      5
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   2
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       66
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      6
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   3
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,9 +63,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
 # include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION
 # include <winstl/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION */
@@ -134,11 +134,11 @@ namespace winstl_project
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_searchpath_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -173,7 +173,7 @@ public:
                                                                 ,   const_pointer
                                                                 ,   const_reference
                                                                 >::type             const_iterator;
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
                                                         ,   value_type
@@ -181,7 +181,7 @@ public:
                                                         ,   const_pointer
                                                         ,   difference_type
                                                         >                           const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 public:
@@ -209,7 +209,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -218,7 +218,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // State
 public:
@@ -261,9 +261,9 @@ private:
     /* WSCB: Borland has an internal compiler error if use ws_bool_t */
 #ifdef STLSOFT_COMPILER_IS_BORLAND
     typedef ws_int_t        init_type;
-#else
+#else /* ? compiler */
     typedef ws_bool_t       init_type;
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
     static char_type const  *get_application_directory()
     {
@@ -278,8 +278,8 @@ private:
             char_type   dummy[_MAX_PATH + 1];
             char_type   *file_part;
 
-            traits_type::get_module_filename(NULL, s_application_directory, winstl_num_elements(s_application_directory));
-            traits_type::get_full_path_name(s_application_directory, winstl_num_elements(dummy), dummy, &file_part);
+            traits_type::get_module_filename(NULL, s_application_directory, STLSOFT_NUM_ELEMENTS(s_application_directory));
+            traits_type::get_full_path_name(s_application_directory, STLSOFT_NUM_ELEMENTS(dummy), dummy, &file_part);
             s_application_directory[file_part - &dummy[0]] = '\0';
             s_init = ws_true_v;
         }
@@ -293,7 +293,7 @@ private:
         static sint32_t                         s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
-        static init_type                        s_init = (traits_type::get_system_directory(s_system_directory, winstl_num_elements(s_system_directory)), ws_true_v);
+        static init_type                        s_init = (traits_type::get_system_directory(s_system_directory, STLSOFT_NUM_ELEMENTS(s_system_directory)), ws_true_v);
 
         return s_system_directory;
     }
@@ -304,7 +304,7 @@ private:
         static sint32_t                         s_mx;
         spin_mutex                              mx(&s_mx);
         stlsoft_ns_qual(lock_scope)<spin_mutex> lock(mx);
-        static init_type                        s_init = (traits_type::get_windows_directory(s_windows_directory, winstl_num_elements(s_windows_directory)), ws_true_v);
+        static init_type                        s_init = (traits_type::get_windows_directory(s_windows_directory, STLSOFT_NUM_ELEMENTS(s_windows_directory)), ws_true_v);
 
         return s_windows_directory;
     }
@@ -323,7 +323,7 @@ private:
             {
                 char_type   *file_part;
 
-                traits_type::get_full_path_name(get_system_directory(), winstl_num_elements(s_system16_directory), s_system16_directory, &file_part);
+                traits_type::get_full_path_name(get_system_directory(), STLSOFT_NUM_ELEMENTS(s_system16_directory), s_system16_directory, &file_part);
                 traits_type::str_copy(file_part, _disgusting_hack("SYSTEM", L"SYSTEM"));
             }
             else
@@ -572,7 +572,7 @@ inline void basic_searchpath_sequence<C, T>::construct_(ws_bool_t   bIncludeAppl
     ++psz;
 
     // 2.b. Current directory last?
-    if( bIncludeCurrentDirectory && 
+    if( bIncludeCurrentDirectory &&
         bIncludeCurrentDirectoryLast)
     {
         *it++ = cwd;
@@ -637,7 +637,7 @@ inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_iterator basic_
     return m_end;
 }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -653,7 +653,7 @@ inline ss_typename_type_k basic_searchpath_sequence<C, T>::const_reverse_iterato
 {
     return const_reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

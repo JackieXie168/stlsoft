@@ -26,8 +26,8 @@ namespace unittest
                 char    szRoot[1 + _MAX_PATH];
                 char    *lpFilePart;
 
-                ::GetCurrentDirectoryA(stlsoft_num_elements(szCwd), szCwd);
-                ::GetFullPathNameA("\\", stlsoft_num_elements(szRoot), szRoot, &lpFilePart);
+                ::GetCurrentDirectoryA(STLSOFT_NUM_ELEMENTS(szCwd), szCwd);
+                ::GetFullPathNameA("\\", STLSOFT_NUM_ELEMENTS(szRoot), szRoot, &lpFilePart);
 
                 current_directory_scope cds(szRoot);
 

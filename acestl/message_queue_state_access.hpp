@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE_Message_Queue class.
  *
  * Created:     16th December 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_MINOR     0
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_REVISION  3
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_EDIT      9
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

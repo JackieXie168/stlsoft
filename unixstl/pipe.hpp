@@ -4,11 +4,11 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     20th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_PIPE_MAJOR     3
 # define UNIXSTL_VER_UNIXSTL_HPP_PIPE_MINOR     1
 # define UNIXSTL_VER_UNIXSTL_HPP_PIPE_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_HPP_PIPE_EDIT      28
+# define UNIXSTL_VER_UNIXSTL_HPP_PIPE_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -111,9 +111,9 @@ public:
     (   defined(_MSC_VER) || \
         defined(STLSOFT_COMPILER_IS_DMC))
         if(0 != ::_pipe(&m_handles[0], 10240, _O_TEXT))
-#else /* ? WIN32 && STLSOFT_COMPILER_IS_MSVC */
+#else /* ? WIN32 */
         if(0 != ::pipe(&m_handles[0]))
-#endif /* WIN32 && STLSOFT_COMPILER_IS_MSVC */
+#endif /* WIN32 */
         {
             exception_policy_type()(errno);
 

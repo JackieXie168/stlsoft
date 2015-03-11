@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd December 2005
+ * Updated:     6th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MAJOR      3
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MINOR      1
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MINOR      3
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       67
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -68,6 +68,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER
 # include <stlsoft/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
+# include <stlsoft/util/std/library_discriminator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn -8022 /* Suppresses "'f()' hides virtual function 'g()'" */
@@ -273,7 +276,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -287,12 +290,12 @@ public:
     {
         rhs.m_buffer = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_null_CWnd_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_null_CWnd_proxy() stlsoft_throw_0()
@@ -355,7 +358,7 @@ public:
         }
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -369,12 +372,12 @@ public:
     {
         rhs.m_buffer = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_ptr_CWnd_proxy(class_type const &rhs)
         : m_buffer(string_maker_type::dup_null(rhs.m_buffer))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_ptr_CWnd_proxy() stlsoft_throw_0()
@@ -726,16 +729,24 @@ using ::mfcstl::c_str_size;
  * Global namespace shims
  */
 
-#if 0
-/* Alas, this one has to die, because it conflicts with operator <<(class CArchive &,const class CString &) (at least with VC++ 6). */
-template<ss_typename_param_k S>
-inline S &operator <<(S &s, CString const &shim)
-{
-    s << static_cast<LPCTSTR>(shim);
+/* This defines an inserter function template for CString for use with the
+ * Visual C++ <7.1 standard library.
+ *
+ * It cannot be defined as a template because that conflicts with operator << (CArchive &, CString const &)
+ */
 
-    return s;
+#if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
+    STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION < STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1
+
+# include <iosfwd>
+
+/* Has to be like this otherwise it conflicts with operator <<(class CArchive &,const class CString &) (at least with VC++ <7.1). */
+inline mfcstl_ns_qual_std(basic_ostream)<TCHAR> &operator <<(mfcstl_ns_qual_std(basic_ostream)<TCHAR> &stm, CString const &shim)
+{
+    return stm << static_cast<LPCTSTR>(shim);
 }
-#endif /* 0 */
+
+#endif /* library */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

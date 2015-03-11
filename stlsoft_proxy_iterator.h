@@ -4,11 +4,11 @@
  * Purpose:     proxy_iterator template class.
  *
  * Created:     28th June 2004
- * Updated:     22nd December 2005
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MAJOR       2
-# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MINOR       4
+# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MINOR       5
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        38
+# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -89,9 +89,9 @@ namespace stlsoft
 #if defined(STLSOFT_COMPILER_IS_MSVC)
 # if _MSC_VER >= 1200
 #  pragma warning(push)
-# endif /* _MSC_VER */
+# endif /* compiler */
 # pragma warning(disable : 4355)
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
@@ -147,7 +147,7 @@ public:
         , m_modified(true)
     {}
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     proxy_iterator(element_type *from, element_type *to)
         : m_begin(from)
@@ -161,9 +161,9 @@ public:
         , m_value(value_type())
         , m_modified(true)
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     template <ss_typename_param_k P2>
     proxy_iterator(P2 *from, P2 *to)
         : m_begin(from)
@@ -178,7 +178,7 @@ public:
         , m_value(value_type())
         , m_modified(true)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     proxy_iterator(class_type const &rhs)
         : m_begin(rhs.begin())
@@ -187,7 +187,7 @@ public:
         , m_modified(true)
     {}
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1310)
     template <ss_typename_param_k I>
@@ -197,7 +197,7 @@ public:
         , m_value(value_type())
         , m_modified(true)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT && compiler */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT && compiler */
 
     class_type &operator =(class_type const &rhs)
     {
@@ -208,7 +208,7 @@ public:
         return *this;
     }
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     template <ss_typename_param_k I>
     class_type &operator =(I &rhs)
     {
@@ -218,7 +218,7 @@ public:
 
         return *this;
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 /// @}
 
 /// \name Helper functions
@@ -475,10 +475,10 @@ inline ss_ptrdiff_t operator >=(proxy_iterator<E, V, T, C, R, P> const &lhs, pro
 #if defined(STLSOFT_COMPILER_IS_MSVC)
 # if _MSC_VER >= 1200
 #  pragma warning(pop)
-# else /* ? _MSC_VER */
+# else /* ? compiler */
 #  pragma warning(default: 4355)
 # endif /* _MSC_VER */
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

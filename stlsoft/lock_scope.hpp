@@ -4,11 +4,11 @@
  * Purpose:     Synchronisation object lock scoping class.
  *
  * Created:     1st October 1994
- * Updated:     18th December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_LOCK_SCOPE_MAJOR       5
-# define STLSOFT_VER_STLSOFT_HPP_LOCK_SCOPE_MINOR       1
+# define STLSOFT_VER_STLSOFT_HPP_LOCK_SCOPE_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_LOCK_SCOPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_LOCK_SCOPE_EDIT        100
+# define STLSOFT_VER_STLSOFT_HPP_LOCK_SCOPE_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -169,11 +169,11 @@ public:
 /// \param L The lockable type, e.g. stlsoft::null_mutex
 /// \param T The lock traits. On translators that support default template arguments this defaults to lock_traits<L>
 template<   ss_typename_param_k L
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = lock_traits<L>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class lock_scope
 {

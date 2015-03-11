@@ -4,11 +4,11 @@
  * Purpose:     Window enable-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_MINOR    1
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_EDIT     76
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ public:
         ::EnableWindow(m_hwnd, !m_bEnableOnDtor);
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// \brief Toggles the window enable state
     ///
     /// Takes a HWND and changes it's current enable-status, which is set back to
@@ -142,7 +142,7 @@ public:
     {
         ::EnableWindow(m_hwnd, !m_bEnableOnDtor);
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Modifies the window enable state
     ///
@@ -155,7 +155,7 @@ public:
     {
         ::EnableWindow(m_hwnd, bEnableOnCtor);
     }
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Modifies the window enable state
     ///
     /// \param wnd The window whose enable state is to be controlled
@@ -168,16 +168,14 @@ public:
     {
         ::EnableWindow(m_hwnd, bEnableOnCtor);
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Resets the enable status
     ~window_enable_scope() stlsoft_throw_0()
     {
-#if !defined(STLSOFT_COMPILER_IS_COMO) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    !defined(STLSOFT_COMPILER_IS_INTEL)
-        winstl_static_assert(STLSOFT_RAW_OFFSETOF(class_type, m_hwnd) < STLSOFT_RAW_OFFSETOF(class_type, m_bEnableOnDtor));
-#endif /* compiler */
+#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+        WINSTL_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_hwnd) < STLSOFT_RAW_OFFSETOF(class_type, m_bEnableOnDtor));
+#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 
         ::EnableWindow(m_hwnd, m_bEnableOnDtor);
     }

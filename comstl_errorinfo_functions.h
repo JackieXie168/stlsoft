@@ -4,7 +4,7 @@
  * Purpose:     Error info functions.
  *
  * Created:     5th Feburary 2004
- * Updated:     2nd January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_ERRORINFO_FUNCTIONS_MAJOR      3
 # define COMSTL_VER_H_COMSTL_ERRORINFO_FUNCTIONS_MINOR      2
 # define COMSTL_VER_H_COMSTL_ERRORINFO_FUNCTIONS_REVISION   1
-# define COMSTL_VER_H_COMSTL_ERRORINFO_FUNCTIONS_EDIT       26
+# define COMSTL_VER_H_COMSTL_ERRORINFO_FUNCTIONS_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/errorinfo_functions.h")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef COMSTL_INCL_COMSTL_H_ERRORINFO_FUNCTIONS
 # include <comstl/errorinfo_functions.h>

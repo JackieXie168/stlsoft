@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     19th January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_PATH_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_MINOR     5
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      187
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_MINOR     8
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_HPP_PATH_EDIT      195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,12 +65,12 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
 # include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
+# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -107,10 +107,6 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS)
-stlsoft_ns_using(c_str_ptr)
-#endif /* compiler */
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
 /// \weakgroup libraries STLSoft Libraries
@@ -144,13 +140,13 @@ stlsoft_ns_using(c_str_ptr)
 /// has been added without requiring any major fundamental changes to the original
 /// <code>push/pop</code>-based interface
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
         ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft_ns_qual(allocator_selector)<C>::allocator_type
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
         ,   ss_typename_param_k A /* = ss_typename_type_def_k stlsoft_ns_qual(allocator_selector)<C>::allocator_type */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_path
 {
@@ -179,7 +175,7 @@ public:
     basic_path();
     /// Constructs a path from \c path
     ss_explicit_k basic_path(char_type const *path);
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs a path from \c path
     template<ss_typename_param_k S>
     ss_explicit_k basic_path(S const &s)
@@ -188,7 +184,7 @@ public:
 
         m_len = stlsoft_ns_qual(c_str_len)(s);
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// Constructs a path from \c cch characters in \c path
     basic_path(char_type const *path, size_type cch);
 
@@ -202,14 +198,14 @@ public:
 
     // Creates a root path
     static class_type root(char_type const *s);
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     // Creates a root path
     template<ss_typename_param_k S>
     static class_type root(S const &s)
     {
         return root(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 /// @}
 
 /// \name Operations
@@ -235,20 +231,20 @@ public:
     /// Equivalent to push()
     class_type &operator /=(char_type const *rhs);
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED)
     /// Equivalent to push()
     class_type &operator /=(class_type const &rhs);
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     /// Equivalent to push()
     template <ss_typename_param_k S>
     class_type &operator /=(S const &rhs)
     {
         return operator /=(stlsoft_ns_qual(c_str_ptr)(rhs));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
     /// Converts the path to absolute form
     class_type &make_absolute(us_bool_t bRemoveTrailingPathNameSeparator = true);
@@ -448,7 +444,7 @@ inline basic_path<C> make_path(C const *path)
     return basic_path<C>(path);
 }
 
-#endif /* !(_MSC_VER < 1100) */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * swapping
@@ -806,9 +802,9 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::pop()
 {
-    char_type   *slash      =   traits_type::str_rchr(c_str_ptr(m_buffer), traits_type::path_name_separator());
+    char_type   *slash      =   traits_type::str_rchr(stlsoft_ns_qual(c_str_ptr)(m_buffer), traits_type::path_name_separator());
 #ifdef WIN32
-    char_type   *slash_a    =   traits_type::str_rchr(c_str_ptr(m_buffer), path_name_separator_alt());
+    char_type   *slash_a    =   traits_type::str_rchr(stlsoft_ns_qual(c_str_ptr)(m_buffer), path_name_separator_alt());
 
     if(slash_a > slash)
     {
@@ -819,7 +815,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop()
     if(NULL != slash)
     {
         *(slash + 1) = '\0';
-        m_len = (slash + 1) - c_str_ptr(m_buffer);
+        m_len = (slash + 1) - stlsoft_ns_qual(c_str_ptr)(m_buffer);
     }
 
     return *this;
@@ -851,7 +847,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop_sep()
 }
 
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED)
 
 template<   ss_typename_param_k C
@@ -863,7 +859,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::operator /=(basic_path<C, T, A>
     return push(path);
 }
 
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1097,8 +1093,8 @@ template<   ss_typename_param_k C
         >
 inline ss_typename_type_k basic_path<C, T, A>::char_type const *basic_path<C, T, A>::get_file() const
 {
-    char_type const *slash      =   traits_type::str_rchr(c_str_ptr(m_buffer), traits_type::path_name_separator());
-    char_type const *slash_a    =   traits_type::str_rchr(c_str_ptr(m_buffer), path_name_separator_alt());
+    char_type const *slash      =   traits_type::str_rchr(stlsoft_ns_qual(c_str_ptr)(m_buffer), traits_type::path_name_separator());
+    char_type const *slash_a    =   traits_type::str_rchr(stlsoft_ns_qual(c_str_ptr)(m_buffer), path_name_separator_alt());
 
     if(slash_a > slash)
     {
@@ -1107,7 +1103,7 @@ inline ss_typename_type_k basic_path<C, T, A>::char_type const *basic_path<C, T,
 
     if(NULL == slash)
     {
-        slash = c_str_ptr(m_buffer);
+        slash = stlsoft_ns_qual(c_str_ptr)(m_buffer);
     }
     else
     {
@@ -1243,10 +1239,10 @@ inline us_bool_t basic_path<C, T, A>::equal(ss_typename_type_k basic_path<C, T, 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -1262,7 +1258,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

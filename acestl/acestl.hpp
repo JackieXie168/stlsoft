@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     21st January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     5
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      20
+# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     6
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp The root header for the \ref ACESTL project */
@@ -162,7 +162,7 @@
 # ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
 #  include <stlsoft/union_cast.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
-#endif /* STLSOFT_COMPILER_IS_INTEL */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
@@ -182,9 +182,9 @@
 #  undef     ACE_INVALID_HANDLE
 #  if defined(STLSOFT_COMPILER_IS_INTEL)
 #   define    ACE_INVALID_HANDLE            stlsoft_ns_qual(make_union_cast)<HANDLE>(-1)
-#  else /* ? STLSOFT_COMPILER_IS_INTEL */
+#  else /* ? compiler */
 #   define    ACE_INVALID_HANDLE            reinterpret_cast<HANDLE>(-1)
-#  endif /* STLSOFT_COMPILER_IS_INTEL */
+#  endif /* compiler */
 # endif /* ACE_WIN32 */
 #endif /* __cplusplus */
 
@@ -317,13 +317,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def acestl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if ACESTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define acestl_ns_qual_std(x)         ::std::x
 # define acestl_ns_using_std(x)        using ::std::x;
-#else
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define acestl_ns_qual_std(x)         x
 # define acestl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -425,7 +425,12 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define acestl_num_elements(ar)                        stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define ACESTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define acestl_num_elements(ar)                        ACESTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

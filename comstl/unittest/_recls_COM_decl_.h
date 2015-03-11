@@ -1,6 +1,6 @@
 
 // Created: 13th December 2005
-// Updated: 18th December 2005
+// Updated: 21st March 2006
 
 #ifndef COMSTL_INCL_COMSTL_UNITTEST_H__RECLS_COM_DECL_
 #define COMSTL_INCL_COMSTL_UNITTEST_H__RECLS_COM_DECL_
@@ -32,52 +32,52 @@ namespace recls_COM
     IFileEntry_ : public IDispatch
     {
     public:
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Path( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Path(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Drive( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Drive(
             /* [retval][out] */ OLECHAR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Directory( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Directory(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_DirectoryPath( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_DirectoryPath(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_DirectoryParts( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_DirectoryParts(
             /* [retval][out] */ LPUNKNOWN __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_File( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_File(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_ShortFile( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_ShortFile(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_FileName( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_FileName(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_FileExt( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_FileExt(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_CreationTime( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_CreationTime(
             /* [retval][out] */ DATE __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_ModificationTime( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_ModificationTime(
             /* [retval][out] */ DATE __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_LastAccessTime( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_LastAccessTime(
             /* [retval][out] */ DATE __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_LastStatusChangeTime( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_LastStatusChangeTime(
             /* [retval][out] */ DATE __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Size( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Size(
             /* [retval][out] */ long __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_IsReadOnly( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_IsReadOnly(
             /* [retval][out] */ BOOL __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_IsDirectory( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_IsDirectory(
             /* [retval][out] */ BOOL __RPC_FAR *pVal) = 0;
 
     };
@@ -87,17 +87,17 @@ namespace recls_COM
     IEnumFileEntry_ : public IUnknown
     {
     public:
-        virtual /* [local] */ HRESULT STDMETHODCALLTYPE Next( 
+        virtual /* [local] */ HRESULT STDMETHODCALLTYPE Next(
             /* [in] */ ULONG celt,
             /* [length_is][size_is][out] */ IFileEntry_* __RPC_FAR *rgVar,
             /* [out] */ ULONG __RPC_FAR *pceltFetched) = 0;
 
-        virtual HRESULT STDMETHODCALLTYPE Skip( 
+        virtual HRESULT STDMETHODCALLTYPE Skip(
             /* [in] */ ULONG celt) = 0;
 
         virtual HRESULT STDMETHODCALLTYPE Reset( void) = 0;
 
-        virtual HRESULT STDMETHODCALLTYPE Clone( 
+        virtual HRESULT STDMETHODCALLTYPE Clone(
             /* [out] */ IEnumFileEntry_ __RPC_FAR *__RPC_FAR *ppenum) = 0;
 
     };
@@ -107,7 +107,7 @@ namespace recls_COM
     ISearchCollection_ : public IDispatch
     {
     public:
-        virtual /* [hidden][restricted][id][propget] */ HRESULT STDMETHODCALLTYPE get__NewEnum( 
+        virtual /* [hidden][restricted][id][propget] */ HRESULT STDMETHODCALLTYPE get__NewEnum(
             /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *pVal) = 0;
 
     };
@@ -117,14 +117,14 @@ namespace recls_COM
     IDirectoryPartsCollection_ : public IDispatch
     {
     public:
-        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_Count( 
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_Count(
             /* [retval][out] */ long __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_Item( 
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_Item(
             long index,
             /* [retval][out] */ VARIANT __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][hidden][restricted][id][propget] */ HRESULT STDMETHODCALLTYPE get__NewEnum( 
+        virtual /* [helpstring][hidden][restricted][id][propget] */ HRESULT STDMETHODCALLTYPE get__NewEnum(
             /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *ppenum) = 0;
 
     };
@@ -134,22 +134,22 @@ namespace recls_COM
     IFileSearch_ : public IDispatch
     {
     public:
-        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE Search( 
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE Search(
             /* [in] */ BSTR searchRoot,
             /* [in] */ BSTR pattern,
             /* [in] */ long flags,
             /* [retval][out] */ IUnknown __RPC_FAR *__RPC_FAR *results) = 0;
 
-        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Roots( 
+        virtual /* [helpstring][propget][id] */ HRESULT STDMETHODCALLTYPE get_Roots(
             /* [retval][out] */ LPUNKNOWN __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_PathSeparator( 
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_PathSeparator(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_PathNameSeparator( 
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_PathNameSeparator(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
-        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_WildcardsAll( 
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_WildcardsAll(
             /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
 
     };

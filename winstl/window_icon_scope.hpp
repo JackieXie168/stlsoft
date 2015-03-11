@@ -4,11 +4,11 @@
  * Purpose:     Window icon scoping class.
  *
  * Created:     30th June 1999
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MINOR      1
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       36
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -160,7 +160,7 @@ public:
         , m_hicon(set_window_icon(m_hwnd, iconType, hinst, iconId))
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// \brief Toggles the window enable state
     ///
     /// Takes a window and sets its icon, which is then reset to the original in
@@ -205,16 +205,14 @@ public:
         , m_iconId(iconType)
         , m_hicon(set_window_icon(m_hwnd, iconType, hinst, iconId))
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Resets the window's original icon
     ~window_icon_scope() stlsoft_throw_0()
     {
-#if !defined(STLSOFT_COMPILER_IS_COMO) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    !defined(STLSOFT_COMPILER_IS_INTEL)
-        winstl_static_assert(STLSOFT_RAW_OFFSETOF(class_type, m_hwnd) < STLSOFT_RAW_OFFSETOF(class_type, m_hicon));
-#endif /* compiler */
+#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+        WINSTL_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_hwnd) < STLSOFT_RAW_OFFSETOF(class_type, m_hicon));
+#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 
         set_window_icon(m_hwnd, m_iconId, m_hicon);
     }

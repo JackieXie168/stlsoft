@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     17th January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_H_STLSOFT_FILTER_ITERATOR_MAJOR    3
 # define STLSOFT_VER_H_STLSOFT_FILTER_ITERATOR_MINOR    2
 # define STLSOFT_VER_H_STLSOFT_FILTER_ITERATOR_REVISION 3
-# define STLSOFT_VER_H_STLSOFT_FILTER_ITERATOR_EDIT     18
+# define STLSOFT_VER_H_STLSOFT_FILTER_ITERATOR_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/filter_iterator.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR
 # include <stlsoft/filter_iterator.hpp>

@@ -4,11 +4,11 @@
  * Purpose:     Options verification.
  *
  * Created:     9th November 2004
- * Updated:     22nd December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MAJOR     1
-# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MINOR     3
-# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_REVISION  4
-# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      26
+# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MINOR     4
+# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_REVISION  1
+# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -114,12 +114,12 @@ public:
     option_verification_exception(char const *message)
         : parent_class_type(message)
     {}
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     option_verification_exception(S const &message)
         : parent_class_type(stlsoft_ns_qual(c_str_ptr)(message))
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// Copy constructor
     ///
     /// \note This has to be provided, to avoid precipitating C4217 with Visual C++

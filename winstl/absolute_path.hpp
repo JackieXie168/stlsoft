@@ -4,11 +4,11 @@
  * Purpose:     Simple class that converts a relative path to an absolute one.
  *
  * Created:     20th December 2002
- * Updated:     22nd December 2005
+ * Updated:     28th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ABSOLUTE_PATH_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_ABSOLUTE_PATH_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_ABSOLUTE_PATH_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_ABSOLUTE_PATH_EDIT       43
+# define WINSTL_VER_WINSTL_HPP_ABSOLUTE_PATH_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_ABSOLUTE_PATH_REVISION   4
+# define WINSTL_VER_WINSTL_HPP_ABSOLUTE_PATH_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -94,10 +94,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS)
-stlsoft_ns_using(c_str_ptr)
-#endif /* compiler */
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
 /// \weakgroup libraries STLSoft Libraries
@@ -124,11 +120,11 @@ stlsoft_ns_using(c_str_ptr)
 /// \param C The character type
 /// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_absolute_path
 {
@@ -148,13 +144,13 @@ public:
     ss_explicit_k basic_absolute_path(char_type const *path)
         : m_len(traits_type::get_full_path_name(path, m_path.size(), &m_path[0]))
     {}
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs an absolute path from \c path
     template<ss_typename_param_k S>
     ss_explicit_k basic_absolute_path(S const &path)
-        : m_len(traits_type::get_full_path_name(c_str_ptr(path), m_path.size(), &m_path[0]))
+        : m_len(traits_type::get_full_path_name(stlsoft_ns_qual(c_str_ptr)(path), stlsoft_ns_qual(c_str_len)(m_path), &m_path[0]))
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 // Conversions
 public:
@@ -209,7 +205,7 @@ inline basic_absolute_path<C> make_absolute_path(C const *path)
     return basic_absolute_path<C>(path);
 }
 
-#endif /* !(_MSC_VER < 1100) */
+#endif /* compiler */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

@@ -4,7 +4,7 @@
  * Purpose:     Contains various standard functions, or their equivalents.
  *
  * Created:     17th January 2002
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_MAJOR       3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_MINOR       1
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_MINOR       2
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_EDIT        65
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # include <algorithm>
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -138,9 +138,9 @@ template<   ss_typename_param_k I
         >
 inline ss_size_t std_count_if(I first, I to, P pred)
 {
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     return stlsoft_ns_qual_std(count_if)(first, to, pred);
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
     ss_size_t r;
 
     for (r = 0; first != to; ++first)
@@ -152,7 +152,7 @@ inline ss_size_t std_count_if(I first, I to, P pred)
     }
 
     return r;
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
 /// \brief Equivalent to std::fill()
@@ -161,14 +161,14 @@ template<   ss_typename_param_k O
         >
 inline void std_fill(O first, O last, V const &v)
 {
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     stlsoft_ns_qual_std(fill)(first, last, v);
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
     for(; first != last; ++first)
     {
         *first = v;
     }
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
 /// \brief Equivalent to std::fill_n()
@@ -177,14 +177,14 @@ template<   ss_typename_param_k O
         >
 inline void std_fill_n(O dest, ss_size_t n, V const &v)
 {
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     stlsoft_ns_qual_std(fill_n)(dest, n, v);
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
     for(; 0 != n; ++dest, --n)
     {
         *dest = v;
     }
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
 /// \brief Equivalent to std::for_each()
@@ -193,16 +193,16 @@ template<   ss_typename_param_k I
         >
 inline F std_for_each(I first, I last, F f)
 {
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     return stlsoft_ns_qual_std(for_each)(first, last, f);
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
     for(; first != last; ++first)
     {
         f(*first);
     }
 
     return f;
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
 /// \brief Equivalent to std::replace()
@@ -226,16 +226,16 @@ template<   ss_typename_param_k I
         >
 inline O std_transform(I first, I last, O dest, F fn)
 {
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     return stlsoft_ns_qual_std(transform)(first, last, dest, fn);
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
     for(; first != last; ++first)
     {
         f(*first);
     }
 
     return f;
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
     for(; first != last; ++first, ++dest)
     {
         *dest = fn(*first);

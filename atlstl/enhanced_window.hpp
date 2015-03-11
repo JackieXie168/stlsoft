@@ -4,11 +4,11 @@
  * Purpose:     ATL ActiveX control (OCX) container window functions.
  *
  * Created:     30th November 2000
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MAJOR    3
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MINOR    1
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     18
+# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

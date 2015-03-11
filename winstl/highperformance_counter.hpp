@@ -4,11 +4,11 @@
  * Purpose:     WinSTL high performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_EDIT       67
+# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_REVISION   3
+# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # error winstl_highperformance_counter.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
 # include <stlsoft/limit_traits.h>          // for stlsoft::limit_traits<ss_uint64_t>::maximum()
@@ -241,19 +241,19 @@ inline /* static */ highperformance_counter::interval_type highperformance_count
     _MSC_VER >= 1310
 # pragma warning(push)
 # pragma warning(disable : 4640)   /* "construction of local static object is not thread-safe" - since it is here! (As long as one uses a 'conformant' allocator) - maybe use a spin_mutex in future */
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     interval_type           s_frequency = query_frequency_();
-#else /* ? STLSOFT_COMPILER_IS_BORLAND */
+#else /* ? compiler */
     static interval_type    s_frequency = query_frequency_();
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
 #if !defined(STLSOFT_STRICT) && \
     defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1310
 # pragma warning(pop)
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
     WINSTL_ASSERT(0 != s_frequency);
 
@@ -287,7 +287,7 @@ inline highperformance_counter::interval_type highperformance_counter::get_milli
     highperformance_counter::interval_type  result;
     highperformance_counter::interval_type  count   =   get_period_count();
 
-    if(count < __STLSOFT_GEN_SINT64_SUFFIX(0x20C49BA5E353F7))
+    if(count < STLSOFT_GEN_SINT64_SUFFIX(0x20C49BA5E353F7))
     {
         result = (count * interval_type(1000)) / frequency_();
     }
@@ -304,7 +304,7 @@ inline highperformance_counter::interval_type highperformance_counter::get_micro
     highperformance_counter::interval_type  result;
     highperformance_counter::interval_type  count   =   get_period_count();
 
-    if(count < __STLSOFT_GEN_SINT64_SUFFIX(0x8637BD05AF6))
+    if(count < STLSOFT_GEN_SINT64_SUFFIX(0x8637BD05AF6))
     {
         result = (count * interval_type(1000000)) / frequency_();
     }

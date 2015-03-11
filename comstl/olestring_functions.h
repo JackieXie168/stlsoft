@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     2nd March 1996
- * Updated:     22nd December 2005
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_MAJOR      4
-# define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_MINOR      1
+# define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_MINOR      2
 # define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_REVISION   1
-# define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_EDIT       141
+# define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_EDIT       143
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_H_MEMORY_FUNCTIONS
-# include <comstl/memory_functions.h>
-#endif /* !COMSTL_INCL_COMSTL_H_MEMORY_FUNCTIONS */
+#ifndef COMSTL_INCL_COMSTL_MEMORY_H_MEMORY_FUNCTIONS
+# include <comstl/memory/functions.h>
+#endif /* !COMSTL_INCL_COMSTL_MEMORY_H_MEMORY_FUNCTIONS */
 #include <wchar.h>
 
 /* /////////////////////////////////////////////////////////////////////////////

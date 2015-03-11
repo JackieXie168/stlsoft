@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     19th January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_PROXY_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_PROXY_MINOR    0
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_PROXY_MINOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_PROXY_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_PROXY_EDIT     41
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_PROXY_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ public:
 /// \name Construction
 ///  @{
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Conversion constructor, facilitating conversion between polymorphic
     /// types of the same size
     ///
@@ -120,7 +120,7 @@ public:
         stlsoft_constraint_must_be_same_size(D, T);
     }
 
-# ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+# ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
     /// Constructs an instance of the array proxy from the given array
     ///
     /// \param d The array
@@ -148,22 +148,22 @@ public:
         , m_end(&t[N])
     {}
 #  endif /* STLSOFT_CF_NON_TEMPLATE_CTOR_REQUIRED_WITH_TEMPLATE_CTOR */
-# endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+# endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     /// Constructs an instance of the array proxy from the given range
     ///
     /// \param begin The start point of the range [begin, end)
     /// \param end The end point of the range [begin, end)
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_NON_TEMPLATE_CTOR_REQUIRED_WITH_TEMPLATE_CTOR)
     array_proxy(pointer begin, pointer end)
         : m_begin(begin)
         , m_end(end)
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_NON_TEMPLATE_CTOR_REQUIRED_WITH_TEMPLATE_CTOR */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_NON_TEMPLATE_CTOR_REQUIRED_WITH_TEMPLATE_CTOR */
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs an instance of the array proxy from the given range
     ///
     /// \param b The start point of the range [begin, end)
@@ -181,9 +181,9 @@ public:
         // Ensures that D and T are the same size.
         stlsoft_constraint_must_be_same_size(D, T);
    }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_NON_TEMPLATE_CTOR_REQUIRED_WITH_TEMPLATE_CTOR)
     /// Constructs an instance of the array proxy from the given pointer
     ///
@@ -193,9 +193,9 @@ public:
         : m_begin(p)
         , m_end(p + n)
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_NON_TEMPLATE_CTOR_REQUIRED_WITH_TEMPLATE_CTOR */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_NON_TEMPLATE_CTOR_REQUIRED_WITH_TEMPLATE_CTOR */
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs an instance of the array proxy from the given range
     ///
     /// \param p The start of the range
@@ -213,7 +213,7 @@ public:
         // Ensures that D and T are the same size.
         stlsoft_constraint_must_be_same_size(D, T);
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 ///  @}
 
 /// \name Attributes
@@ -320,14 +320,14 @@ private:
  * Creator functions
  */
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 template <ss_typename_param_k T, ss_size_t N>
 inline array_proxy<T> make_array_proxy(T (&t)[N])
 {
     return array_proxy<T>(&t[0], &t[N]);
 //    return array_proxy<T>(t); // This one not used, because CodeWarrior gets confused
 }
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 template <ss_typename_param_k T>
 inline array_proxy<T> make_array_proxy(T *begin, T *end)

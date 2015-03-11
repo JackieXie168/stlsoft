@@ -4,11 +4,11 @@
  * Purpose:     Converts between POD types (of the same size) without the use of casts.
  *
  * Created:     2nd May 1997
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_MAJOR      4
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_MINOR      1
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_EDIT       22
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

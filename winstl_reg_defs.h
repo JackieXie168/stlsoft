@@ -1,11 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        winstl_reg_defs.h
  *
- * Purpose:     Contains the reg_traits template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose:     Contains common type and feature discriminations for the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     21st January 2006
+ * Updated:     9th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,16 +40,16 @@
 
 /// \file winstl_reg_defs.h
 ///
-/// Contains the reg_traits template class, and ANSI and Unicode specialisations thereof.
+/// Contains common type and feature discriminations for the Registry Library
 
 #ifndef WINSTL_INCL_H_WINSTL_REG_DEFS
 #define WINSTL_INCL_H_WINSTL_REG_DEFS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_H_WINSTL_REG_DEFS_MAJOR     2
-# define WINSTL_VER_H_WINSTL_REG_DEFS_MINOR     2
+# define WINSTL_VER_H_WINSTL_REG_DEFS_MAJOR     3
+# define WINSTL_VER_H_WINSTL_REG_DEFS_MINOR     0
 # define WINSTL_VER_H_WINSTL_REG_DEFS_REVISION  1
-# define WINSTL_VER_H_WINSTL_REG_DEFS_EDIT      45
+# define WINSTL_VER_H_WINSTL_REG_DEFS_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,160 +59,17 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifdef _WINSTL_REG_NO_STD_STRING
-# error _WINSTL_REG_NO_STD_STRING no longer supported. You should select _WINSTL_REG_STRING_USE_STD_STRING or _WINSTL_REG_STRING_USE_CUSTOM_STRING, or nothing (to use STLSoft simple_string)
-#endif /* _WINSTL_REG_NO_STD_STRING */
 
-/* Digital Mars seems to have trouble with basic_simple_string, so ...  */
-#if 0 && \
-    defined(STLSOFT_COMPILER_IS_DMC) && \
-    !defined(_WINSTL_REG_STRING_USE_CUSTOM_STRING) && \
-    __DMC__ <= 0x0834
-# define _WINSTL_REG_STRING_USE_STD_STRING
-#endif /* Digital Mars <= 0x0834 */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include winstl/registry/reg_defs.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-/* For some totally inexplicable reason VC 5 gets its namespace knickers in a twist if
- * we use simple_strings, so ...
- */
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
-# define _WINSTL_REG_STRING_USE_STD_STRING
-#endif /* _MSC_VER == 1100 */
-
-#if defined(_WINSTL_REG_STRING_USE_STD_STRING)
-# include <string>
-#elif defined(_WINSTL_REG_STRING_USE_CUSTOM_STRING)
-# if !defined(_WINSTL_REG_STRING_CUSTOM_HEADER_FILE)
-#  error You must define the header file (e.g. "#define _WINSTL_REG_STRING_CUSTOM_HEADER_FILE <mystring.h>") if you specify _WINSTL_REG_STRING_USE_CUSTOM_STRING
-# else /* ? !_WINSTL_REG_STRING_CUSTOM_HEADER_FILE */
-#  include _WINSTL_REG_STRING_CUSTOM_HEADER_FILE    // Your string class
-# endif /* !_WINSTL_REG_STRING_CUSTOM_HEADER_FILE */
-#else /* ? _WINSTL_REG_STRING_USE_CUSTOM_STRING */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-#endif /* string type */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
-
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
-{
-# else
-/* Define stlsoft::winstl_project */
-
-namespace stlsoft
-{
-
-namespace winstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
+# include <winstl/registry/defs.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \defgroup winstl_reg_library Registry Library
-/// \ingroup WinSTL libraries
-/// \brief This library provides facilities for working with the Windows registry
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Constants
- */
-
-const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Typedefs
- *
- * All the following typedefs may be overriden by use of the pre-processor.
- */
-
-#if defined(_WINSTL_REG_STRING_USE_STD_STRING)
-
-// ANSI
-
-/// For all compilers this is basic_string<ws_char_a_t> except Visual C++ 4.2
-/// for which it is string
-# if defined(STLSOFT_COMPILER_IS_MSVC) && \
-     _MSC_VER < 1100
-  typedef string                                            reg_string_a_t;
-# else /* ? compiler */
-  typedef winstl_ns_qual_std(basic_string)<ws_char_a_t>     reg_string_a_t;
-# endif /* compiler */
-
-# define _WINSTL_REG_STRING_STRING_A_DEFINED
-
-// Unicode
-
-/// For all compilers this is basic_string<ws_char_w_t> except Visual C++ 4.2
-/// for which it is wstring
-# if defined(STLSOFT_COMPILER_IS_MSVC) && \
-     _MSC_VER < 1100
-  typedef wstring                                           reg_string_w_t;
-# else /* ? compiler */
-  typedef winstl_ns_qual_std(basic_string)<ws_char_w_t>     reg_string_w_t;
-# endif /* compiler */
-
-# define _WINSTL_REG_STRING_STRING_W_DEFINED
-
-#elif defined(_WINSTL_REG_STRING_USE_CUSTOM_STRING)
-
-// ANSI
-
-# ifndef _WINSTL_REG_STRING_STRING_A_DEFINED
-#  error If using custom strings, must provide definition of reg_string_a_t type, and defined _WINSTL_REG_STRING_STRING_A_DEFINED
-# endif /* !_WINSTL_REG_STRING_STRING_A_DEFINED */
-
-// Unicode
-
-# ifndef _WINSTL_REG_STRING_STRING_W_DEFINED
-#  error If using custom strings, must provide definition of reg_string_w_t type, and defined _WINSTL_REG_STRING_STRING_W_DEFINED
-# endif /* !_WINSTL_REG_STRING_STRING_W_DEFINED */
-
-#else /* ? _WINSTL_REG_STRING_USE_STD_STRING */
-
-// ANSI
-
- typedef stlsoft_ns_qual(basic_simple_string)<ws_char_a_t>  reg_string_a_t;
-
-# define _WINSTL_REG_STRING_STRING_A_DEFINED
-
-// Unicode
-
- typedef stlsoft_ns_qual(basic_simple_string)<ws_char_w_t>  reg_string_w_t;
-
-# define _WINSTL_REG_STRING_STRING_W_DEFINED
-
-#endif /* string type */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_reg_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
-# else
-} // namespace winstl_project
-} // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#endif /* WINSTL_INCL_H_WINSTL_REG_DEFS */
+#endif /* !WINSTL_INCL_H_WINSTL_REG_DEFS */
 
 /* ////////////////////////////////////////////////////////////////////////// */

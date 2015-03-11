@@ -4,14 +4,14 @@
  * Purpose:     String view slice functions.
  *
  * Created:     25th April 2005
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions, and
  *              collaboration on their implementation.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * Copyright (c) 2005, Pablo Aguilar
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_VIEW_SLICE_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_VIEW_SLICE_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_VIEW_SLICE_FUNCTIONS_REVISION  1
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_VIEW_SLICE_FUNCTIONS_EDIT      12
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_VIEW_SLICE_FUNCTIONS_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

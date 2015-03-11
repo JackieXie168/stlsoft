@@ -5,11 +5,11 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     22nd December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_MINOR     1
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_EDIT      118
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_EDIT      120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -132,10 +132,10 @@ struct do_construction<double>      { enum { value = false }; typedef no_type ty
 STLSOFT_TEMPLATE_SPECIALISATION
 struct do_construction<long double> { enum { value = false }; typedef no_type type; };
 
-#ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct do_construction<ss_bool_t>   { enum { value = false }; typedef no_type type; };
-#endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

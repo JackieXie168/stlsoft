@@ -4,11 +4,11 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_ATOMIC_FUNCTIONS_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_H_ATOMIC_FUNCTIONS_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_H_ATOMIC_FUNCTIONS_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_H_ATOMIC_FUNCTIONS_EDIT        180
+# define UNIXSTL_VER_UNIXSTL_H_ATOMIC_FUNCTIONS_EDIT        182
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -199,7 +199,7 @@ inline void atomic_decrement(atomic_int_t volatile *pl)
     STLSOFT_NS_GLOBAL(OSAtomicDecrement32Barrier)(const_cast<atomic_int_t*>(pl));
 }
 
-/// Note: atomic_write() for PowerPC is not yet defined. If you wish to suggest an 
+/// Note: atomic_write() for PowerPC is not yet defined. If you wish to suggest an
 /// implementation, it will be most welcome.
 inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n);
 

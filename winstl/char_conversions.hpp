@@ -4,11 +4,11 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     13th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       4
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        56
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       5
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    5
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,11 +78,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1100
 # error winstl_char_conversions.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -117,11 +117,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS)
-stlsoft_ns_using(c_str_ptr)
-stlsoft_ns_using(c_str_len)
-#endif /* compiler */
-
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
@@ -139,26 +134,26 @@ public:
     typedef ss_typename_type_k parent_class_type::pointer                           pointer;
 
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     ss_explicit_k ansi2Unicode(S const &s)
 #else
     ss_explicit_k ansi2Unicode(ws_char_a_t const *s)
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         : parent_class_type(stlsoft_ns_qual(c_str_len)(s) + 1)
     {
-        prepare_(stlsoft_ns_qual(c_str_ptr)(s));
+        prepare_(stlsoft_ns_qual(c_str_ptr_a)(s));
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     ansi2Unicode(S const &s, size_type cch)
 #else
     ansi2Unicode(ws_char_a_t const *s, size_type cch)
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         : parent_class_type(cch + 1)
     {
-        prepare_(stlsoft_ns_qual(c_str_ptr)(s));
+        prepare_(stlsoft_ns_qual(c_str_ptr_a)(s));
     }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -182,7 +177,7 @@ private:
 
             // Note: cannot use -1 for length, since s might be a type that
             // could change length
-            p[(0 == ::MultiByteToWideChar(0, 0, stlsoft_ns_qual(c_str_ptr)(s), static_cast<int>(size), p, static_cast<int>(size))) ? 0 : size - 1] = '\0';
+            p[(0 == ::MultiByteToWideChar(0, 0, s, static_cast<int>(size), p, static_cast<int>(size))) ? 0 : size - 1] = '\0';
         }
     }
 
@@ -225,38 +220,33 @@ public:
     typedef ss_typename_type_k parent_class_type::pointer                           pointer;
 
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     ss_explicit_k unicode2Ansi(S const &s)
 #else
     ss_explicit_k unicode2Ansi(ws_char_w_t const *s)
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         : parent_class_type(stlsoft_ns_qual(c_str_len)(s) + 1)
     {
-        prepare_(s);
+        prepare_(stlsoft_ns_qual(c_str_ptr_w)(s));
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k S>
     ss_explicit_k unicode2Ansi(S const &s, size_type cch)
 #else
     ss_explicit_k unicode2Ansi(ws_char_w_t const *s, size_type cch)
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         : parent_class_type(cch + 1)
     {
-        prepare_(s);
+        prepare_(stlsoft_ns_qual(c_str_ptr_w)(s));
     }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 // Implementation
 private:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
-    template <ss_typename_param_k S>
-    void prepare_(S const &s)
-#else
     void prepare_(ws_char_w_t const *s)
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     {
         // If the auto_buffer failed to allocate the required memory, and
         // we're not in an exception-environment, then size() will be zero
@@ -273,7 +263,7 @@ private:
 
             // Note: cannot use -1 for length, since s might be a type that
             // could change length
-            p[(0 == ::WideCharToMultiByte(0, 0, stlsoft_ns_qual(c_str_ptr)(s), static_cast<int>(size), p, static_cast<int>(size), NULL, NULL)) ? 0 : size - 1] = '\0';
+            p[(0 == ::WideCharToMultiByte(0, 0, s, static_cast<int>(size), p, static_cast<int>(size), NULL, NULL)) ? 0 : size - 1] = '\0';
         }
     }
 

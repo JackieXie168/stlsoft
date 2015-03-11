@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     21st January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MAJOR      4
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MINOR      1
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_REVISION   1
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       88
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MINOR      2
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_REVISION   2
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -165,7 +165,7 @@ public:
     c_str_ptr_GUID_proxy(class_type const &rhs)
         : m_(m_buffer)
     {
-        for(cs_size_t i = 0; i < comstl_num_elements(m_buffer); ++i)
+        for(cs_size_t i = 0; i < STLSOFT_NUM_ELEMENTS(m_buffer); ++i)
         {
             m_buffer[i] = rhs.m_buffer[i];
         }
@@ -194,8 +194,8 @@ inline c_str_ptr_GUID_proxy<cs_char_a_t>::c_str_ptr_GUID_proxy(GUID const &guid)
     : m_(m_buffer)
 {
 #ifndef STLSOFT_COMPILER_IS_BORLAND
-    COMSTL_STATIC_ASSERT(comstl_num_elements(m_buffer) > COMSTL_CCH_GUID);
-#endif /* !STLSOFT_COMPILER_IS_BORLAND */
+    COMSTL_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(m_buffer) > COMSTL_CCH_GUID);
+#endif /* compiler */
 
     guid2string_a(guid, m_buffer);
 }
@@ -205,8 +205,8 @@ inline c_str_ptr_GUID_proxy<cs_char_w_t>::c_str_ptr_GUID_proxy(GUID const &guid)
     : m_(m_buffer)
 {
 #ifndef STLSOFT_COMPILER_IS_BORLAND
-    COMSTL_STATIC_ASSERT(comstl_num_elements(m_buffer) > COMSTL_CCH_GUID);
-#endif /* !STLSOFT_COMPILER_IS_BORLAND */
+    COMSTL_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(m_buffer) > COMSTL_CCH_GUID);
+#endif /* compiler */
 
     guid2string_w(guid, m_buffer);
 }
@@ -251,7 +251,7 @@ public:
         , m_own(false)
     {}
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -267,12 +267,12 @@ public:
         move_lhs_from_rhs(rhs).m_bstr  =   NULL;
         move_lhs_from_rhs(rhs).m_own   =   false;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_null_VARIANT_proxy(class_type const &rhs)
         : m_bstr(bstr_dup(rhs.m_bstr))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_null_VARIANT_proxy() stlsoft_throw_0()
@@ -321,7 +321,7 @@ public:
         s = NULL;
     }
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -335,12 +335,12 @@ public:
     {
         move_lhs_from_rhs(rhs).m_bstr = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_VARIANT_proxy_w(class_type const &rhs)
         : m_bstr(bstr_dup(rhs.m_bstr))
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_VARIANT_proxy_w() stlsoft_throw_0()
@@ -384,7 +384,7 @@ public:
         , m_buffer(0)
     {}
 
-#ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+#ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     /// Move constructor
     ///
     /// This <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">move constructor</a>
@@ -399,13 +399,13 @@ public:
     {
         move_lhs_from_rhs(rhs).m_buffer = NULL;
     }
-#else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     // Copy constructor
     c_str_VARIANT_proxy_a(class_type const &rhs)
         : m_proxyw(rhs.m_proxyw)
         , m_buffer(NULL)
     {}
-#endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+#endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
     /// Releases any storage aquired by the proxy
     ~c_str_VARIANT_proxy_a() stlsoft_throw_0()

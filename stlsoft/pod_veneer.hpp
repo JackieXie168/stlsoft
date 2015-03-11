@@ -4,11 +4,11 @@
  * Purpose:     Contains the pod_veneer template class.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_MINOR       1
-# define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_EDIT        38
+# define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -167,9 +167,9 @@ public:
         stlsoft_constraint_must_be_same_size(class_type, pod_type);
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
         STLSOFT_ASSERT(sizeof(class_type) == sizeof(pod_type));
-#else
+#else /* ? compiler */
         STLSOFT_MESSAGE_ASSERT("pod_veneer used for inappropriate type", sizeof(class_type) == sizeof(pod_type));
-#endif /* !STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
 
         // Destroy the pod
         destructor_function_type()(static_cast<pod_type *>(this));

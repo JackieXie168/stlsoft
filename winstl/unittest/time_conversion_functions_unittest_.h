@@ -35,7 +35,7 @@ namespace unittest
 
             STLSOFT_SUPPRESS_UNUSED(t1);
             STLSOFT_SUPPRESS_UNUSED(t2);
-            
+
 
 #if 0
             typedef message_queue_sequence<char>    env_var_t;

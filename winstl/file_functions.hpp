@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     21st January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MAJOR     1
 # define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      22
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_HPP_FILE_FUNCTIONS_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 # include <winstl/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
@@ -81,9 +81,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS
 # include <stlsoft/string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_TOKENISER_FUNCTIONS
-# include <stlsoft/tokeniser_functions.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_TOKENISER_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS
+# include <stlsoft/tokenising/tokeniser_functions.hpp> // for find_next_token
+#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/simple_string.hpp>
@@ -124,7 +124,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents);
 
 /// \brief Loads a text file into a string
 ///
-/// \param fileName The name/path of the text file to load. Can be nul-terminated 
+/// \param fileName The name/path of the text file to load. Can be nul-terminated
 ///                  C-style string, or a string object
 /// \param contents A reference to a string instance into which the contents will
 ///                  be loaded (with the assign() method)

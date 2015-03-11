@@ -21,7 +21,7 @@ namespace unittest
 
             TCHAR   cwd[1 + _MAX_PATH];
 
-            ::GetCurrentDirectory(stlsoft_num_elements(cwd), cwd);
+            ::GetCurrentDirectory(STLSOFT_NUM_ELEMENTS(cwd), cwd);
 
             if(0 != lstrcmp(cwd, absolute_path(".")))
             {

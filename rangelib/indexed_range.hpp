@@ -4,7 +4,7 @@
  * Purpose:     Indexed range adaptor class.
  *
  * Created:     11th October 2004
- * Updated:     20th January 2006
+ * Updated:     24th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       3
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    2
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        22
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    4
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -56,6 +56,7 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_BORLAND:
 STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
 STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 [Incompatibilies-end]
@@ -69,10 +70,11 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/rangelib.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
 
-#if defined(STLSOFT_COMPILER_IS_BORLAND) && \
-    (defined(STLSOFT_COMPILER_IS_MWERKS) && ((__MWERKS__ & 0xFF00) < 0x3000))
+#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    (   defined(STLSOFT_COMPILER_IS_MWERKS) && \
+        ((__MWERKS__ & 0xFF00) < 0x3000))
 # error This file is not compatible with the current compiler
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>
@@ -131,8 +133,8 @@ namespace rangelib_project
 ///
 /// \param R The adapted range type
 /// \param I The integer type
-template<   class       R
-        ,   typename    I   =   int
+template<   class               R
+        ,   ss_typename_param_k I   =   int
         >
 class indexed_range
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)

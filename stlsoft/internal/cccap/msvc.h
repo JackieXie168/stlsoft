@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,15 +52,15 @@
 
 #ifndef STLSOFT_COMPILER_IS_MSVC
 # error This file has been erroneously included for a compiler other than Visual C++
-#endif /* !STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     6
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     8
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      76
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -93,6 +93,7 @@
 /* bool */
 #ifdef __BOOL_DEFINED
 # define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
 #else
  /* Not defined */
 #endif /* __BOOL_DEFINED */
@@ -107,12 +108,15 @@
   */
 # ifdef _NATIVE_WCHAR_T_DEFINED
 #  define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
-//#  define __STLSOFT_NATIVE_WCHAR_T            __wchar_t
+#  define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+/* #  define STLSOFT_NATIVE_WCHAR_T            __wchar_t */
 # elif defined(_WCHAR_T_DEFINED)
 #  define __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
 # else
   /* Not defined */
 #  define __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
 # endif /* _WCHAR_T_DEFINED */
 #else
  /* Previous versions do not have a native type, but do have the typedef wchar_t
@@ -120,6 +124,7 @@
   */
 # if defined(_WCHAR_T_DEFINED)
 #  define __STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
+#  define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
 # else
   /* Not defined */
 # endif /* _WCHAR_T_DEFINED */
@@ -192,6 +197,7 @@
 /* Are integers a unique type (i.e. not int8/16/32/64)? */
 #if _MSC_VER == 1200
 # define __STLSOFT_CF_INT_DISTINCT_TYPE
+# define STLSOFT_CF_INT_DISTINCT_TYPE
 #endif /* _MSC_VER */
 
 
@@ -210,7 +216,7 @@
 #ifdef _CPPUNWIND
 # define __STLSOFT_CF_EXCEPTION_SUPPORT
 # define STLSOFT_CF_EXCEPTION_SUPPORT
-#else
+#else /* ? _CPPUNWIND */
  /* Not defined */
 #endif /* _CPPUNWIND */
 
@@ -218,6 +224,7 @@
 #if _MSC_VER >= 1100 && \
     _MSC_VER < 1310
 # define __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+# define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 #endif /* _MSC_VER */
 
 /* Namespace support */
@@ -249,19 +256,24 @@
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
-# define __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
-#endif /* _MSC_VER >= 1100 */
+# ifdef _CPPUNWIND
+#  define __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+#  define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
+# endif /* _CPPUNWIND */
+#endif /* _MSC_VER */
 
 //#define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
 
 #if _MSC_VER >= 1300
 # define __STLSOFT_CF_THROW_BAD_ALLOC
+# define STLSOFT_CF_THROW_BAD_ALLOC
 #else
  /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+# define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
@@ -271,6 +283,7 @@
  */
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+# define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
@@ -297,6 +310,7 @@
  */
 #if _MSC_VER > 1100
 # define __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+# define STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 #else
   /* Not defined */
 #endif /* _MSC_VER */
@@ -306,7 +320,7 @@
  */
 #if _MSC_VER < 1300
 # define STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD
-#else 
+#else
   /* Not defined */
 #endif /* _MSC_VER */
 
@@ -316,43 +330,49 @@
 
 #if _MSC_VER >= 1200
 # define __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+# define STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
 #else
   /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
+# define STLSOFT_CF_MEMBER_TEMPLATE_CLASS_SUPPORT
 #else
   /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
+# define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 #else
   /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1310
-# define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT	/* obsolete */
+# define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT   /* obsolete */
 # define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+# define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 #else
   /* Not supported */
-# ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-#  undef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-# endif /* __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+# ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#  undef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+# endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_std_NAMESPACE
+# define STLSOFT_CF_std_NAMESPACE
 #else
   /* Not defined */
 #endif /* _MSC_VER */
 
 #define __STLSOFT_CF_std_char_traits_AVAILABLE
+#define STLSOFT_CF_std_char_traits_AVAILABLE
 
 /* This is no longer supported here. Include stlsoft/allocator_base.hpp
 #define __STLSOFT_CF_ALLOCATOR_ALLOCATE_HAS_HINT
@@ -381,36 +401,42 @@
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
+# define STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+# define STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
+# define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1200
 # define __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
+# define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1300
 # define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+# define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1310
 //#  define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+//#  define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
@@ -424,6 +450,7 @@
 #if defined(_MSC_EXTENSIONS) && \
     _MSC_VER < 1310
 # define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+# define STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
 #endif /* _MSC_EXTENSIONS && _MSC_VER < 1310 */
 
 #if _MSC_VER >= 1310
@@ -438,11 +465,13 @@
 
 #if _MSC_VER >= 1300
 # define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+# define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 #else
   /* Not defined */
 #endif /* _MSC_VER */
 
 #define __STLSOFT_CF_VENEER_SUPPORT
+#define STLSOFT_CF_VENEER_SUPPORT
 
 #if !defined(_ATL_MIN_CRT)
 # define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
@@ -452,9 +481,11 @@
 
 #if _MSC_VER < 1100
 # define __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+# define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 #endif /* _MSC_VER */
 
 #define __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
+#define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
@@ -486,6 +517,7 @@
   * where
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
+# define STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_ASSERT(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME    _STLSOFT_CUSTOM_ASSERT_INCLUDE
@@ -494,6 +526,7 @@
 # endif /* !_STLSOFT_CUSTOM_ASSERT_INCLUDE */
 #else /* ? _STLSOFT_CUSTOM_ASSERT */
 # define __STLSOFT_CF_ASSERT_SUPPORT
+# define STLSOFT_CF_ASSERT_SUPPORT
  //#define   __STLSOFT_CF_USE_cassert
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME       <crtdbg.h>
 # define STLSOFT_ASSERT(_x)                     _ASSERTE(_x)
@@ -602,7 +635,7 @@
 
 #if _MSC_VER >= 1310
 /* Suppresses: "'bytes' bytes padding added after member 'member'" */
-# pragma warning(disable : 4820) 
+# pragma warning(disable : 4820)
 #endif /* _MSC_VER >= 1310 */
 
 #if _MSC_VER < 1300
@@ -615,5 +648,20 @@
 # endif /* __cplusplus */
 # pragma warning(disable : 4284)
 #endif /* _MSC_VER < 1300 */
+
+#if _MSC_VER < 1300 && \
+    defined(_DEBUG)
+# include <cstddef>
+# ifdef _XSTDDEF_
+#  undef _TRY_BEGIN
+#  define _TRY_BEGIN    if(1) {
+#  undef _CATCH
+#  define _CATCH(x)     } else {
+#  undef _CATCH_ALL
+#  define _CATCH_ALL    } else {
+#  undef _CATCH_END
+#  define _CATCH_END    }
+# endif /* _XSTDDEF_ */
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */

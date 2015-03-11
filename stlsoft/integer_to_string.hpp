@@ -4,11 +4,11 @@
  * Purpose:     Number to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     18th December 2005
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_MINOR       1
-# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_EDIT        59
+# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_MINOR       3
+# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_INTEGER_TO_STRING_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,14 @@
 namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Macros
+ */
+
+#ifdef __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+# define STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#endif /* __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Constants
@@ -162,9 +170,9 @@ inline C const *unsigned_integer_to_string(C *buf, ss_size_t cchBuf, I i)
     {
 #if defined(STLSOFT_COMPILER_IS_MSVC)
         typedef I           rem_t;
-#else
+#else /* ? compiler */
         typedef ss_uint_t   rem_t;
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
         rem_t   lsd = static_cast<rem_t>(i % 10);   // Determine the least significant digit.
 
@@ -227,7 +235,7 @@ template<   ss_typename_param_k C
         >
 inline C const *signed_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 {
-#ifndef __STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
+#ifndef STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 // If the compiler does not evaluate -9 % 10 to equal -9, then we need to work
 // with it as if an unsigned, and prepend the -ve
     C const *psz = unsigned_integer_to_string(buf, cchBuf, i);
@@ -245,9 +253,9 @@ inline C const *signed_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 
 #if defined(STLSOFT_COMPILER_IS_MSVC)
     typedef I           rem_t;
-#else
+#else /* ? compiler */
     typedef ss_sint_t   rem_t;
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
     C   *psz    =   buf + cchBuf - 1;  // Set pointer to last character.
 
@@ -295,7 +303,7 @@ inline C const *signed_integer_to_string(C *buf, ss_size_t cchBuf, I i)
     STLSOFT_ASSERT(!(psz < buf));
 
     return psz;
-#endif /* !__STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
+#endif /* !STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
 }
 
 /// Highly efficient conversion of signed integers to string
@@ -364,12 +372,12 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, ss_uint32_t i)
 template <ss_typename_param_k C>
 inline C const *integer_to_string(C *buf, ss_size_t cchBuf, ss_sint64_t const &i)
 {
-#ifdef __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#ifdef STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
     if(i < 0x80000000)
     {
         return signed_integer_to_string(buf, cchBuf, static_cast<ss_sint32_t>(i));
     }
-#endif // __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#endif // STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
 
     return signed_integer_to_string(buf, cchBuf, i);
 }
@@ -377,18 +385,18 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, ss_sint64_t const &i
 template <ss_typename_param_k C>
 inline C const *integer_to_string(C *buf, ss_size_t cchBuf, ss_uint64_t const &i)
 {
-#ifdef __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#ifdef STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
     if(i < 0x80000000)
     {
         return unsigned_integer_to_string(buf, cchBuf, static_cast<ss_uint32_t>(i));
     }
-#endif // __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#endif // STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
 
     return unsigned_integer_to_string(buf, cchBuf, i);
 }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#ifdef __STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
 template <ss_typename_param_k C>
 inline C const *integer_to_string(C *buf, ss_size_t cchBuf, int i)
 {
@@ -400,10 +408,10 @@ inline C const *integer_to_string(C *buf, ss_size_t cchBuf, unsigned int i)
 {
     return unsigned_integer_to_string(buf, cchBuf, i);
 }
-#endif /* !__STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
 
 
-#ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+#ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
 template< ss_typename_param_k C
         , ss_size_t           N
@@ -473,12 +481,12 @@ inline C const *integer_to_string(C (&buf)[N], ss_sint64_t const &i)
 {
     STLSOFT_STATIC_ASSERT(!(N < 21));
 
-#ifdef __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#ifdef STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
     if(i < 0x80000000)
     {
         return signed_integer_to_string(buf, N, static_cast<ss_sint32_t>(i));
     }
-#endif // __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#endif // STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
 
     return signed_integer_to_string(buf, N, i);
 }
@@ -490,18 +498,18 @@ inline C const *integer_to_string(C (&buf)[N], ss_uint64_t const &i)
 {
     STLSOFT_STATIC_ASSERT(!(N < 21));
 
-#ifdef __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#ifdef STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
     if(i < 0x80000000)
     {
         return unsigned_integer_to_string(buf, N, static_cast<ss_uint32_t>(i));
     }
-#endif // __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
+#endif // STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
 
     return unsigned_integer_to_string(buf, N, i);
 }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#ifdef __STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
 template< ss_typename_param_k C
         , ss_size_t           N
         >
@@ -517,9 +525,9 @@ inline C const *integer_to_string(C (&buf)[N], unsigned int i)
 {
     return signed_integer_to_string(buf, N, i);
 }
-#endif /* !__STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
 
-#endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 #if 0
 template <ss_typename_param_k C>

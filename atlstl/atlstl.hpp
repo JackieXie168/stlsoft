@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     2
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  1
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      88
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp The root header for the \ref ATLSTL project */
@@ -381,13 +381,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def atlstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if ATLSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define atlstl_ns_qual_std(x)      ::std::x
 # define atlstl_ns_using_std(x)     using ::std::x;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define atlstl_ns_qual_std(x)      x
 # define atlstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /// \def atlstl_ns_qual_atl(x)
 /// Qualifies with <b>ATL::</b> if ATLSTL is being translated in the context of ATL being within the <b>ATL</b> namespace or, if not, does not qualify
@@ -472,7 +472,12 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     as_streamoff_t; //!< streamoff
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define atlstl_num_elements(ar)                         stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define ATLSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define atlstl_num_elements(ar)                        ATLSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

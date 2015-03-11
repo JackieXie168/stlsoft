@@ -1,5 +1,5 @@
 
-// Updated: 2nd September 2005
+// Updated: 5th February 2006
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS)
 # error This file cannot be directly included, and should only be included within unixstl/filesystem_traits.hpp
@@ -24,7 +24,7 @@ namespace unittest
             char        sz2[1 + 4096];
             char        cwd[1 + 4096];
 
-            if(NULL == getcwd(cwd, stlsoft_num_elements(cwd)))
+            if(NULL == getcwd(cwd, STLSOFT_NUM_ELEMENTS(cwd)))
             {
                 r->report("Failed to get current directory", __LINE__);
                 bSuccess = false;
@@ -33,8 +33,8 @@ namespace unittest
             {
                 char        *pFile1;
                 char        *pFile2;
-                ss_size_t   cch1    =   traits_a_t::get_full_path_name(".", stlsoft_num_elements(sz1), sz1, &pFile1);
-                ss_size_t   cch2    =   traits_a_t::get_full_path_name(cwd, stlsoft_num_elements(sz2), sz2, &pFile2);
+                ss_size_t   cch1    =   traits_a_t::get_full_path_name(".", STLSOFT_NUM_ELEMENTS(sz1), sz1, &pFile1);
+                ss_size_t   cch2    =   traits_a_t::get_full_path_name(cwd, STLSOFT_NUM_ELEMENTS(sz2), sz2, &pFile2);
 
                 STLSOFT_SUPPRESS_UNUSED(cch1);
                 STLSOFT_SUPPRESS_UNUSED(cch2);
@@ -48,8 +48,8 @@ namespace unittest
 
                 traits_a_t::str_cat(traits_a_t::ensure_dir_end(cwd), "../..");
 
-                cch1    =   traits_a_t::get_full_path_name("../..", stlsoft_num_elements(sz1), sz1, &pFile1);
-                cch2    =   traits_a_t::get_full_path_name(cwd, stlsoft_num_elements(sz2), sz2, &pFile2);
+                cch1    =   traits_a_t::get_full_path_name("../..", STLSOFT_NUM_ELEMENTS(sz1), sz1, &pFile1);
+                cch2    =   traits_a_t::get_full_path_name(cwd, STLSOFT_NUM_ELEMENTS(sz2), sz2, &pFile2);
 
                 STLSOFT_SUPPRESS_UNUSED(cch1);
                 STLSOFT_SUPPRESS_UNUSED(cch2);

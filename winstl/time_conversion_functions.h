@@ -4,11 +4,11 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_TIME_CONVERSION_FUNCTIONS_MAJOR    3
-# define WINSTL_VER_WINSTL_H_TIME_CONVERSION_FUNCTIONS_MINOR    1
+# define WINSTL_VER_WINSTL_H_TIME_CONVERSION_FUNCTIONS_MINOR    2
 # define WINSTL_VER_WINSTL_H_TIME_CONVERSION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_H_TIME_CONVERSION_FUNCTIONS_EDIT     31
+# define WINSTL_VER_WINSTL_H_TIME_CONVERSION_FUNCTIONS_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ namespace winstl_project
 /// \note This follows the algorithm provided in MSDN Q167296
 STLSOFT_INLINE void winstl__UNIXTimeToFILETIME(time_t t, FILETIME *ft)
 {
-    const ws_uint64_t i = UInt32x32To64(t, 10000000) + __STLSOFT_GEN_UINT64_SUFFIX(116444736000000000);
+    const ws_uint64_t i = UInt32x32To64(t, 10000000) + STLSOFT_GEN_UINT64_SUFFIX(116444736000000000);
 
     WINSTL_ASSERT(NULL != ft);
 
@@ -119,7 +119,7 @@ STLSOFT_INLINE void winstl__UNIXTimeToFILETIME(time_t t, FILETIME *ft)
 
 STLSOFT_INLINE void winstl__UNIXTimeToFILETIME_us(time_t t, ws_sint32_t usec, FILETIME *ft)
 {
-    ws_uint64_t i = UInt32x32To64(t, 10000000) + Int32x32To64(usec, 10) + __STLSOFT_GEN_UINT64_SUFFIX(116444736000000000);
+    ws_uint64_t i = UInt32x32To64(t, 10000000) + Int32x32To64(usec, 10) + STLSOFT_GEN_UINT64_SUFFIX(116444736000000000);
 
     WINSTL_ASSERT(NULL != ft);
 
@@ -135,7 +135,7 @@ STLSOFT_INLINE time_t winstl__FILETIMEToUNIXTime(FILETIME const *ft, ws_sint32_t
     i <<= 32;
     i |= ft->dwLowDateTime;
 
-    i -= __STLSOFT_GEN_UINT64_SUFFIX(116444736000000000);
+    i -= STLSOFT_GEN_UINT64_SUFFIX(116444736000000000);
     if(NULL != microseconds)
     {
         *microseconds = stlsoft_static_cast(ws_sint32_t, (i % 10000000) / 10);

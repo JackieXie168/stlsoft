@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SHARED_PTR_MAJOR       2
-# define STLSOFT_VER_STLSOFT_HPP_SHARED_PTR_MINOR       3
-# define STLSOFT_VER_STLSOFT_HPP_SHARED_PTR_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_SHARED_PTR_EDIT        16
+# define STLSOFT_VER_STLSOFT_HPP_SHARED_PTR_MINOR       4
+# define STLSOFT_VER_STLSOFT_HPP_SHARED_PTR_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_SHARED_PTR_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ public:
         STLSOFT_ASSERT(is_valid());
     }
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER > 1200)
     template <ss_typename_param_k T2>
@@ -180,7 +180,7 @@ public:
         return *this;
     }
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER > 1200)
     template <ss_typename_param_k T2>
@@ -410,7 +410,7 @@ inline S &operator <<(S &s, shared_ptr<T> const &p)
     return s << *p;
 }
 
-#endif /* !STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
@@ -418,10 +418,10 @@ inline S &operator <<(S &s, shared_ptr<T> const &p)
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -435,7 +435,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

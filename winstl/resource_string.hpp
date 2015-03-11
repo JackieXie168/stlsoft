@@ -4,14 +4,14 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * Copyright (c) 2004-2005, Ryan Ginstrom
  * All rights reserved.
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MINOR    1
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     57
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_STRING_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ namespace winstl_project
 /// \htmlonly
 /// <pre>
 /// winstl::basic_resource_string&lt;std::string&gt;  str(1024);
-/// 
+///
 /// std::cout << "String with id 1024: " << str << std::endl;
 ///
 /// fprintf(stdout, "String with id 1024: %.*s\n", str.size(), str.data());
@@ -158,7 +158,7 @@ namespace winstl_project
 /// // Assuming 9999999 is not a valid string resource identifier in the
 /// // module whose instance handle is in hinst ...
 /// winstl::basic_resource_string&lt;std::string&gt;  str(hinst, 9999999);
-/// 
+///
 /// assert(0 == str.size());
 /// assert(str == "");
 /// </pre>
@@ -175,7 +175,7 @@ namespace winstl_project
 /// try
 /// {
 ///   winstl::basic_resource_string&lt;std::string, throw_MyX_policy&gt;  str(hinst, 9999999);
-/// 
+///
 ///   std::cerr << "Should never get here!!" << std::endl;
 /// }
 /// catch(MyX &x)
@@ -193,11 +193,11 @@ namespace winstl_project
 /// \param S The string class, e.g. std::string, stlsoft::simple_string, etc.
 /// \param X The exception class
 template<   ss_typename_param_k S
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k X = stlsoft_ns_qual(null_exception_policy)
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k X /* = stlsoft_ns_qual(null_exception_policy) */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_resource_string
     : public S
@@ -324,7 +324,7 @@ private:
         // wrong, then need to fix this to use auto_buffer
         value_type  sz[1024];
 
-        if(0 == this->LoadString(hinst, id, sz, winstl_num_elements(sz)))
+        if(0 == this->LoadString(hinst, id, sz, STLSOFT_NUM_ELEMENTS(sz)))
         {
             exception_policy_type()(hinst, id);
 

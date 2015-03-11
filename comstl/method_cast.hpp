@@ -4,11 +4,11 @@
  * Purpose:     COM memory functions.
  *
  * Created:     20th December 2003
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_METHOD_CAST_MAJOR      1
 # define COMSTL_VER_H_COMSTL_METHOD_CAST_MINOR      1
 # define COMSTL_VER_H_COMSTL_METHOD_CAST_REVISION   1
-# define COMSTL_VER_H_COMSTL_METHOD_CAST_EDIT       19
+# define COMSTL_VER_H_COMSTL_METHOD_CAST_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -104,8 +104,8 @@ namespace comstl_project
  */
 
 #if 0
-template<   typename R
-        ,   typename V
+template<   ss_typename_param_k R
+        ,   ss_typename_param_k V
         >
 inline R &transfer_resource(R &r, V v)
 {
@@ -135,7 +135,7 @@ inline signed short &transfer_resource(signed short &r, signed short v)         
 inline unsigned short &transfer_resource(unsigned short &r, unsigned short v)   { return ((r = v), r); }
 inline signed int &transfer_resource(signed int &r, signed int v)               { return ((r = v), r); }
 inline unsigned int &transfer_resource(unsigned int &r, unsigned int v)         { return ((r = v), r); }
-#endif /* _MSC_VER == 1200 */
+#endif /* compiler */
 #if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
         defined(STLSOFT_COMPILER_IS_MSVC)) && \
     (   _MSC_VER == 1200 || \
@@ -143,13 +143,13 @@ inline unsigned int &transfer_resource(unsigned int &r, unsigned int v)         
         _MSC_VER == 1310)
 inline signed long &transfer_resource(signed long &r, signed long v)            { return ((r = v), r); }
 inline unsigned long &transfer_resource(unsigned long &r, unsigned long v)      { return ((r = v), r); }
-#endif /* _MSC_VER == 1310 */
+#endif /* compiler */
 inline float &transfer_resource(float &r, float v)                              { return ((r = v), r); }
 inline double &transfer_resource(double &r, double v)                           { return ((r = v), r); }
 inline long double &transfer_resource(long double &r, long double v)            { return ((r = v), r); }
 
-template<   typename R
-        ,   typename V
+template<   ss_typename_param_k R
+        ,   ss_typename_param_k V
         >
 inline R *&transfer_resource(R *&r, V *v)
 {
@@ -159,9 +159,9 @@ inline R *&transfer_resource(R *&r, V *v)
 }
 
 
-template<   typename R
-        ,   typename C
-        ,   typename V
+template<   ss_typename_param_k R
+        ,   ss_typename_param_k C
+        ,   ss_typename_param_k V
         >
 inline R method_cast(C &c, HRESULT (C::*pfn)(V *))
 {
@@ -177,9 +177,9 @@ inline R method_cast(C &c, HRESULT (C::*pfn)(V *))
     return r;
 }
 
-template<   typename R
-        ,   typename C
-        ,   typename V
+template<   ss_typename_param_k R
+        ,   ss_typename_param_k C
+        ,   ss_typename_param_k V
         >
 inline R method_cast(C *c, HRESULT (STDAPICALLTYPE C::*pfn)(V *))
 {

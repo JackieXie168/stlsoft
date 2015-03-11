@@ -1,5 +1,5 @@
 
-// Updated: 20th January 2006
+// Updated: 21st March 2006
 
 #if !defined(INETSTL_INCL_INETSTL_HPP_FTPDIR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within inetstl/ftpdir_sequence.hpp
@@ -138,12 +138,12 @@ namespace unittest
                 }
                 else
                 {
-                    static const char   *hosts[] = 
+                    static const char   *hosts[] =
                     {
                             "ftp.digitalmars.com"
                         ,   "ftp.microsoft.com"
                         ,   "ftp.synesis.com.au"
-                        ,   
+                        ,
                     };
 
                     { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(hosts); ++i)

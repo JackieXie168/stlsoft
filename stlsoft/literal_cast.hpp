@@ -4,11 +4,11 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     29th December 2005
+ * Updated:     5th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_MINOR       2
-# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_EDIT        31
+# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -161,14 +161,14 @@ template<literal_cast_int_t V>
 class literal_cast<invalid_int_t, V>
 {
 public:
-#if 0
+# if 0
     literal_cast()
     {
         const int STLSOFT_LITERAL_CAST_INVALID_TYPE_WARNING =   0;
 
         STLSOFT_STATIC_ASSERT(STLSOFT_LITERAL_CAST_INVALID_TYPE_WARNING);
     }
-#endif /* 0 */
+# endif /* 0 */
 
 private:
     operator invalid_int_t () const
@@ -180,9 +180,9 @@ private:
         return 0;
     }
 
-#if defined(STLSOFT_COMPILER_IS_GCC)
+# if defined(STLSOFT_COMPILER_IS_GCC)
 public: static void f() {}
-#endif /* !STLSOFT_COMPILER_IS_GCC */
+# endif /* compiler */
 };
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 

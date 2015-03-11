@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     30th January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MAJOR      4
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MINOR      2
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MINOR      5
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       125
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,12 +59,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
+# include <stlsoft/memory/allocator_base.hpp>		// for STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 # include <stlsoft/algorithms/pod.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS_POD */
@@ -73,15 +73,15 @@
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 #ifdef _STLSOFT_AUTO_BUFFER_ALLOW_UDT
 # define _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
-# ifdef _STLSOFT_COMPILE_VERBOSE
+# ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 #  pragma message("_STLSOFT_AUTO_BUFFER_ALLOW_UDT is deprecated. Use _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD instead")
-# endif /* _STLSOFT_COMPILE_VERBOSE */
+# endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_UDT */
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 #  include <stlsoft/iterator.hpp>           // for reverse_iterator_base
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
 # ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 #  include <stlsoft/constraints.hpp>
@@ -93,9 +93,9 @@
 
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>
-# if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+# if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 #  include <numeric>
-# endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 # include <stdio.h>
 #endif /* STLSOFT_UNITTEST */
 
@@ -123,7 +123,7 @@ struct auto_buffer_internal_default
     enum { division_factor  =   2       };
 };
 
-template <typename T>
+template <ss_typename_param_k T>
 struct auto_buffer_internal_size_calculator
     : private auto_buffer_internal_default
 {
@@ -155,14 +155,14 @@ struct auto_buffer_internal_size_calculator<ss_char_a_t>
 {
     enum { value    =   auto_buffer_internal_default::max_value                 };
 };
-#  if defined(__STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT) || \
-      defined(__STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT)
+#  if defined(STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT) || \
+      defined(STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT)
 STLSOFT_TEMPLATE_SPECIALISATION
 struct auto_buffer_internal_size_calculator<ss_char_w_t>
 {
     enum { value    =   auto_buffer_internal_default::max_value                 };
 };
-#  endif /* __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+#  endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -191,11 +191,11 @@ struct auto_buffer_internal_size_calculator<ss_char_w_t>
 ///   exception on allocation failure, or returns NULL. In the latter case,
 ///   construction failure to allocate results in the size() method returning
 ///   0.
-/// 
+///
 /// \note With version 1.9 of STLSoft, the order of the space and allocator
 ///   arguments were reversed. Further, the allocator default changed from
 ///   stlsoft::new_allocator to std::allocator for translators that support the
-///   standard library. If you need the old characteristics, you can \#define 
+///   standard library. If you need the old characteristics, you can \#define
 ///   the symbol <b>STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS</b>.
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -210,16 +210,16 @@ struct auto_buffer_internal_size_calculator<ss_char_w_t>
 #  undef STLSOFT_AUTO_BUFFER_NEW_FORM
 # endif /* STLSOFT_AUTO_BUFFER_NEW_FORM */
 
- // ////////////////////////////////////////////// 
+ // //////////////////////////////////////////////
  // This is the pre-1.9 template parameter list
 
 template<   ss_typename_param_k T
-# ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type
-# else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+# else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k A
-# endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-# ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+# endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+# ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #  if defined(STLSOFT_COMPILER_IS_BORLAND)
         ,   ss_size_t           space   =   256
 #  elif defined(STLSOFT_COMPILER_IS_DMC)
@@ -227,21 +227,21 @@ template<   ss_typename_param_k T
 #  else /* ? compiler */
         ,   ss_size_t           SPACE   =   auto_buffer_internal_size_calculator<T>::value
 #  endif /* compiler */
-# else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+# else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 #  if !defined(STLSOFT_COMPILER_IS_BORLAND)
         ,   ss_size_t           SPACE   /* =   auto_buffer_internal_size_calculator<T>::value */
 #  else /* ? compiler */
         ,   ss_size_t           space   /* =   256 */
 #  endif /* compiler */
-# endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
         >
 
  // End of pre-1.9 template parameter list
- // ////////////////////////////////////////////// 
+ // //////////////////////////////////////////////
 
 #else /* ? STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
 
- // ////////////////////////////////////////////// 
+ // //////////////////////////////////////////////
  // This is the 1.9+ template parameter list
 
 # ifndef STLSOFT_AUTO_BUFFER_NEW_FORM
@@ -249,7 +249,7 @@ template<   ss_typename_param_k T
 # endif /* !STLSOFT_AUTO_BUFFER_NEW_FORM */
 
 template<   ss_typename_param_k T
-# ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #  if defined(STLSOFT_COMPILER_IS_BORLAND)
         ,   ss_size_t           space   =   256
 #  elif defined(STLSOFT_COMPILER_IS_DMC)
@@ -257,29 +257,29 @@ template<   ss_typename_param_k T
 #  else /* ? compiler */
         ,   ss_size_t           SPACE   =   auto_buffer_internal_size_calculator<T>::value
 #  endif /* compiler */
-# else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+# else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
 #  if !defined(STLSOFT_COMPILER_IS_BORLAND)
         ,   ss_size_t           SPACE   /* =   auto_buffer_internal_size_calculator<T>::value */
 #  else /* ? compiler */
         ,   ss_size_t           space   /* =   256 */
 #  endif /* compiler */
-# endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
-# ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-#  if defined(__STLSOFT_CF_std_NAMESPACE)
+# endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+# ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#  if defined(STLSOFT_CF_std_NAMESPACE)
         ,   ss_typename_param_k A = stlsoft_ns_qual_std(allocator)<T>
-#  else /* ? __STLSOFT_CF_std_NAMESPACE */
+#  else /* ? STLSOFT_CF_std_NAMESPACE */
         ,   ss_typename_param_k A = new_allocator<T>
-#  endif /* __STLSOFT_CF_std_NAMESPACE */
-# else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#  endif /* STLSOFT_CF_std_NAMESPACE */
+# else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k A
-# endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 
  // End of 1.9+ template parameter list
- // ////////////////////////////////////////////// 
+ // //////////////////////////////////////////////
 
 #endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
-        
+
 class auto_buffer
 #if !defined(STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE)
     : protected A
@@ -320,12 +320,12 @@ public:
     typedef ss_size_t                                           size_type;
     /// The difference type
     typedef ss_ptrdiff_t                                        difference_type;
-#if !defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if !defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The iterator type
     typedef value_type                                          *iterator;
     /// The non-mutable (const) iterator type
     typedef value_type const                                    *const_iterator;
-#else /* ? !__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#else /* ? !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -339,7 +339,7 @@ public:
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
          ss_typename_type_k
-# endif /* STLSOFT_COMPILER_IS_BORLAND */
+# endif /* compiler */
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
@@ -360,7 +360,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* !__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Implementation
@@ -452,13 +452,9 @@ public:
         // changed, invalidating the initialisation logic of m_buffer and
         // m_cItems. The runtime assert is included for those compilers that
         // do not implement compile-time asserts.
-#if !defined(STLSOFT_COMPILER_IS_COMO) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    !defined(STLSOFT_COMPILER_IS_INTEL) && \
-    !defined(STLSOFT_COMPILER_IS_WATCOM)
+#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_buffer) < STLSOFT_RAW_OFFSETOF(class_type, m_cItems));
-#else /* ? compiler */
-#endif /* compiler */
+#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
         STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
 
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
@@ -479,11 +475,11 @@ public:
     /// Releases any allocated memory. If the internal memory buffer was
     /// used, then nothing is done, otherwise the allocated memory is
     /// returned to the allocator.
-#if defined(__STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT)
+#if defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT)
     ~auto_buffer()
-#else /* ? compiler */
+#else /* ? STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT */
     ~auto_buffer() stlsoft_throw_0()
-#endif /* compiler */
+#endif /* STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT */
     {
         STLSOFT_ASSERT(is_valid());
 
@@ -820,7 +816,7 @@ public:
         return m_buffer + m_cItems;
     }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -857,7 +853,7 @@ public:
 
         return reverse_iterator(begin());
     }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /// @}
 
@@ -903,7 +899,7 @@ public:
      _MSC_VER >= 1310
 #  pragma warning(push)
 #  pragma warning(disable : 4640)   /* "construction of local static object is not thread-safe" - since it is here! (As long as one uses a 'conformant' allocator) - maybe use a spin_mutex in future */
-# endif /* _MSC_VER >= 1310 */
+# endif /* compiler */
 
         static allocator_type   s_allocator;
 
@@ -913,7 +909,7 @@ public:
      defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER >= 1310
 #  pragma warning(pop)
-# endif /* _MSC_VER >= 1310 */
+# endif /* compiler */
     }
 #else /* ? STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
     allocator_type get_allocator() const
@@ -1009,21 +1005,21 @@ private:
 };
 
 template<   ss_typename_param_k T
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k A
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #  if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
       !defined(STLSOFT_COMPILER_IS_DMC)
         ,   ss_size_t           SPACE   =   auto_buffer_internal_size_calculator<T>::value
 # else /* ? compiler */
         ,   ss_size_t           SPACE   =   256
 # endif /* compiler */
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
         ,   ss_size_t           SPACE /* = auto_buffer_internal_size_calculator<T>::value */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
         >
 class auto_buffer_old
 #if defined(STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS)
@@ -1053,10 +1049,10 @@ public:
     typedef ss_typename_type_k parent_class_type::difference_type           difference_type;
     typedef ss_typename_type_k parent_class_type::iterator                  iterator;
     typedef ss_typename_type_k parent_class_type::const_iterator            const_iterator;
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef ss_typename_type_k parent_class_type::reverse_iterator          reverse_iterator;
     typedef ss_typename_type_k parent_class_type::const_reverse_iterator    const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Construction
@@ -1101,7 +1097,7 @@ inline void swap(auto_buffer<T, SPACE, A> &lhs, auto_buffer<T, SPACE, A> &rhs)
  * Shims
  */
 
-#ifndef __STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
+#ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
 template<   ss_typename_param_k T
 # ifdef STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS
@@ -1121,7 +1117,7 @@ inline ss_bool_t is_empty(auto_buffer<T, SPACE, A> const &b)
     return b.empty();
 }
 
-#endif /* !__STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
+#endif /* !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -1136,10 +1132,10 @@ inline ss_bool_t is_empty(auto_buffer<T, SPACE, A> const &b)
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -1164,7 +1160,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

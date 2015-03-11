@@ -4,11 +4,11 @@
  * Purpose:     Colour constants.
  *
  * Created:     20th February 1999
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_COLOURS_MAJOR      3
 # define WINSTL_VER_H_WINSTL_COLOURS_MINOR      1
 # define WINSTL_VER_H_WINSTL_COLOURS_REVISION   1
-# define WINSTL_VER_H_WINSTL_COLOURS_EDIT       17
+# define WINSTL_VER_H_WINSTL_COLOURS_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     indirect_reverse_iterator class template.
  *
  * Created:     7th June 2005
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MINOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       17
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ namespace stlsoft
 /// This class template provides the same services as std::reverse_iterator, but
 /// uses pointers in order to facilitate reverse adaptation of incompletely
 /// defined types, such as forward-declared member classes
-/// 
+///
 /// \param I The iterator to be adapted for reverse iteration
 /// \param T The value type
 /// \param R The reference type
@@ -145,7 +145,7 @@ private:
     /// - Is supplies RAII management of the iterator object
     /// - It supports only a one-to-one relationship between the mapped
     ///   iterator type and indirect_reverse_iterator
-    /// - It has immutable RAII, requiring explicit writing of the 
+    /// - It has immutable RAII, requiring explicit writing of the
     ///   copy constructor and copy assignment operator
     typedef auto_destructor<I>                              iterator_ptr_type;
 public:

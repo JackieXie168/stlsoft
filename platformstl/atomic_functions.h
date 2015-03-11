@@ -4,11 +4,11 @@
  * Purpose:     Platform header for reference-counting functions.
  *
  * Created:     22nd March 2005
- * Updated:     7th October 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_REFCOUNT_FUNCTIONS_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_REFCOUNT_FUNCTIONS_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_REFCOUNT_FUNCTIONS_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_H_REFCOUNT_FUNCTIONS_EDIT     10
+# define PLATFORMSTL_VER_PLATFORMSTL_H_REFCOUNT_FUNCTIONS_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

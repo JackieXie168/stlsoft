@@ -4,11 +4,11 @@
  * Purpose:     Definition of the fixer_referent_type and fixer_const_referent_type types.
  *
  * Created:     26th February 2005
- * Updated:     29th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_MAJOR    1
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_MINOR    3
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_EDIT     8
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENT_TYPE_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ namespace typefixer
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_referent_type
 {
-    typedef ss_typename_type_k T::referent_type        referent_type;
+    typedef ss_typename_type_k T::referent_type         referent_type;
 };
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION

@@ -4,7 +4,7 @@
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     26th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MINOR    3
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_REVISION 4
-# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     55
+# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

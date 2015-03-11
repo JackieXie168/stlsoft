@@ -4,11 +4,11 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_MINOR     5
-# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_REVISION  7
-# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_EDIT      34
+# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_REVISION  8
+# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -127,9 +127,9 @@ public:
     typedef event_id_   *event_id;
 };
 
-/// Adaptor class that facilitates the 
+/// Adaptor class that facilitates the
 /// custom_event_handler::cancel_custom_events() member function template.
-template<typename C>
+template<ss_typename_param_k C>
 struct cancel_adapter
     : public ceh_root
 {
@@ -164,7 +164,7 @@ private:
 ///
 /// To use, derive from it as you would from ACE_Event_Handler, and override the
 /// handle_custom_event() method, e.g
-/// 
+///
 /// \htmlonly
 /// <pre>
 ///
@@ -182,21 +182,21 @@ private:
 ///   }
 /// . . .
 /// };
-/// 
+///
 /// acestl::custom_event_handler *eh = new MyHandler();
-/// 
+///
 /// // Schedule an event with id 100
 /// eh->schedule_custom_event(100);
-/// 
+///
 /// // Schedule an event for 10 seconds hence, with id 200
 /// eh->schedule_custom_event(200, ACE_Time_Value(10));
-/// 
+///
 /// // Schedule an event for 10 seconds hence, with id 300, and an argument in a string instance
 /// eh->schedule_custom_event(300, ACE_Time_Value(10), new std::string("300"));
-/// 
+///
 /// // Start the reactor loop. Events will be dispatched from here on in
 /// ACE_Reactor::instance()->run_reactor_event_loop();
-/// 
+///
 /// </pre>
 /// \endhtmlonly
 class custom_event_handler
@@ -291,9 +291,9 @@ public:
 
 #if defined(ACESTL_CUSTOM_EVENT_HANDLER_CANCEL_EVENTS_MEMBER_CLEANUP_SUPPORT)
 #if 0
-    /// Some compilers (i.e. VC++ 6) have a big cry here, so we define this out 
+    /// Some compilers (i.e. VC++ 6) have a big cry here, so we define this out
     /// of the class, and use the private base type trick
-    template<typename C>
+    template<ss_typename_param_k C>
     struct cancel_adapter
     {
         typedef cancel_adapter<C>   class_type;
@@ -316,12 +316,12 @@ public:
     };
 #endif /* 0 */
 
-    template<typename C>
+    template<ss_typename_param_k C>
     int cancel_custom_events(long code, C *obj, void (C::*pfn)(long code, event_id id, void *arg))
     {
         cancel_adapter<C>   adapter(obj, pfn);
 
-        return this->cancel_custom_events(code, &cancel_adapter<C>::proc, &adapter); 
+        return this->cancel_custom_events(code, &cancel_adapter<C>::proc, &adapter);
     }
 #endif /* ACESTL_CUSTOM_EVENT_HANDLER_CANCEL_EVENTS_MEMBER_CLEANUP_SUPPORT */
 
@@ -480,9 +480,9 @@ private:
 #ifdef STLSOFT_COMPILER_IS_MSVC
 # if _MSC_VER >= 1200
 #  pragma warning(push)
-# endif /* _MSC_VER >= 1200 */
+# endif /* compiler */
 # pragma warning(disable : 4702)
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
 inline custom_event_handler::event_id custom_event_handler::schedule_event_(event_info *entry, ACE_Time_Value const &delay)
 {
@@ -758,10 +758,10 @@ inline int custom_event_handler::handle_callback_timeout(ACE_Time_Value const &c
 #ifdef STLSOFT_COMPILER_IS_MSVC
 # if _MSC_VER >= 1200
 #  pragma warning(push)
-# else /* ? _MSC_VER */
+# else /* ? compiler */
 #  pragma warning(default : 4702)
 # endif /* _MSC_VER */
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

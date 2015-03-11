@@ -5,11 +5,11 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     6th January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MAJOR    3
-# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MINOR    2
+# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MINOR    3
 # define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_EDIT     53
+# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_DMC:
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # error No recognised Borland compiler generates correct code when used with these functions
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -131,7 +131,7 @@ namespace atlstl_project
 /// \return An HRESULT code indicating whether the access succeeded or failed
 /// \retval E_POINTER ret was a null pointer
 /// \retval S_OK The value was retrieved successfully
-template <ss_typename_param_k C, ss_typename_param_k T>
+template <class C, ss_typename_param_k T>
 inline HRESULT get_MemberValue(C *const cls, T *ret, T C::*mem)
 {
     return (ret == 0) ? E_POINTER : (*ret = cls->*mem, S_OK);
@@ -148,7 +148,7 @@ inline HRESULT get_MemberValue(C *const cls, T *ret, T C::*mem)
 ///
 /// \note This is deemed worth the inconvenience since using the generic version would like lead to code that violated COM's memory rules
 ///
-template <ss_typename_param_k C, class T>
+template <class C, ss_typename_param_k T>
 inline HRESULT get_MemberValue(C *const cls, T **ret, T *C::*mem);
 
 /// \brief Inline retrieval of a CComBSTR member variable value
@@ -164,7 +164,7 @@ inline HRESULT get_MemberValue(C *const cls, T **ret, T *C::*mem);
 /// \retval E_POINTER ret was a null pointer
 /// \retval E_OUTOFMEMORY Not enough memory to create a copy for the returned value
 /// \retval S_OK The value was retrieved successfully
-template <ss_typename_param_k C>
+template <class C>
 inline HRESULT get_MemberValue(C *const cls, BSTR *ret, CComBSTR C::*mem)
 {
     return (ret == 0) ? E_POINTER : (*ret = (cls->*mem).Copy(), (*ret != 0 ? S_OK :  E_OUTOFMEMORY));
@@ -186,10 +186,32 @@ inline HRESULT get_MemberValue(C *const cls, BSTR *ret, CComBSTR C::*mem)
 /// \retval E_OUTOFMEMORY Memory could not be allocated for the copy.
 /// \retval E_INVALIDARG One of the arguments is invalid.
 /// \retval S_OK The value was retrieved successfully
-template <ss_typename_param_k C>
+template <class C>
 inline HRESULT get_MemberValue(C *const cls, VARIANT *ret, CComVariant C::*mem)
 {
     return (ret == 0) ? E_POINTER : ::VariantCopy(ret, &(cls->*mem));
+}
+
+
+
+/// \brief Inline retrieval of method value
+///
+/// This function takes a pointer to a class, a pointer to a return value
+/// and a pointer to method of the given class, and retrieves the return value
+/// of the method into the return value.
+///
+/// \note This generic version should only be used for built-in types, or those which have value semantics.
+///
+/// \param cls Pointer to the class instance
+/// \param ret Pointer to the return value
+/// \param pfn Pointer to the method
+/// \return An HRESULT code indicating whether the access succeeded or failed
+/// \retval E_POINTER ret was a null pointer
+/// \retval S_OK The value was retrieved successfully
+template<class C, ss_typename_param_k T>
+inline HRESULT get_MemberValue(C *const cls, T *ret, T (C::*pfn)() const)
+{
+    return (ret == 0) ? E_POINTER : (*ret = (cls->*pfn)(), S_OK);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////

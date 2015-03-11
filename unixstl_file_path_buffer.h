@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_FILE_PATH_BUFFER_MAJOR     3
 # define UNIXSTL_VER_H_UNIXSTL_FILE_PATH_BUFFER_MINOR     2
 # define UNIXSTL_VER_H_UNIXSTL_FILE_PATH_BUFFER_REVISION  1
-# define UNIXSTL_VER_H_UNIXSTL_FILE_PATH_BUFFER_EDIT      29
+# define UNIXSTL_VER_H_UNIXSTL_FILE_PATH_BUFFER_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/file_path_buffer.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
 # include <unixstl/file_path_buffer.hpp>

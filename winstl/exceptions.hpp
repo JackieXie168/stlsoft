@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_MINOR     2
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      31
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_HPP_EXCEPTIONS_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -246,14 +246,19 @@ private:
 // [[synesis:class:exception-policy: windows_exception_policy]]
 struct windows_exception_policy
 {
+/// \name Member Types
+/// @{
 public:
     /// The thrown type
     typedef windows_exception   thrown_type;
     typedef ws_dword_t          error_code_type;
+/// @}
 
+/// \name Operators
+/// @{
 public:
     /// Function call operator, taking no parameters
-    void operator ()()
+    void operator ()() const
     {
         throw_exception_(thrown_type(::GetLastError()));
     }
@@ -267,9 +272,12 @@ public:
     {
         throw_exception_(thrown_type(reason, err));
     }
+/// @}
 
+/// \name Implementation
+/// @{
 private:
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     template <ss_typename_param_k X>
     static void throw_exception_(X const &x)
 #elif defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -281,6 +289,7 @@ private:
     {
         throw x;
     }
+/// @}
 };
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Exception thrown when interface casts fail.
  *
  * Created:     22nd December 2003
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_BAD_INTERFACE_CAST_MAJOR     3
 # define COMSTL_VER_COMSTL_HPP_BAD_INTERFACE_CAST_MINOR     2
 # define COMSTL_VER_COMSTL_HPP_BAD_INTERFACE_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_BAD_INTERFACE_CAST_EDIT      18
+# define COMSTL_VER_COMSTL_HPP_BAD_INTERFACE_CAST_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

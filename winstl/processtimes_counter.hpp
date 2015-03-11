@@ -4,11 +4,11 @@
  * Purpose:     WinSTL process-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_PROCESSTIMES_COUNTER_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_PROCESSTIMES_COUNTER_MINOR     1
 # define WINSTL_VER_WINSTL_HPP_PROCESSTIMES_COUNTER_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_PROCESSTIMES_COUNTER_EDIT      43
+# define WINSTL_VER_WINSTL_HPP_PROCESSTIMES_COUNTER_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -222,7 +222,7 @@ inline /* static */ HANDLE processtimes_counter::get_process_handle_()
     _MSC_VER >= 1310
 # pragma warning(push)
 # pragma warning(disable : 4640)   /* "construction of local static object is not thread-safe" - since it is here! (As long as one uses a 'conformant' allocator) - maybe use a spin_mutex in future */
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
     static HANDLE   s_hProcess  =   ::GetCurrentProcess();
 
@@ -230,7 +230,7 @@ inline /* static */ HANDLE processtimes_counter::get_process_handle_()
     defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1310
 # pragma warning(pop)
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
     return s_hProcess;
 }

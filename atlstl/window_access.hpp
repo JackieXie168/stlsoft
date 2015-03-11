@@ -4,11 +4,11 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_MINOR      1
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_EDIT       28
+# define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////

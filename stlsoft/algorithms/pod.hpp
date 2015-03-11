@@ -4,11 +4,11 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     29th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        71
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ namespace stlsoft
 /// \brief Utility functions and constructs used throughout the STLSoft libraries
 
 /// \weakgroup pod_algorithms POD Algorithms
-/// \brief Algorithms for manipulating POD types 
+/// \brief Algorithms for manipulating POD types
 /// \ingroup algorithms
 /// @{
 
@@ -121,10 +121,10 @@ namespace stlsoft
  * <pre>
  * const int8_t  src_bytes[3] = { -1, 0, +1 };
  * int8_t        dest_bytes[3];
- * 
+ *
  * pod_copy(&src_bytes[0], &src_bytes[0] + STLSOFT_NUM_ELEMENTS(src_bytes), &dest_bytes[0]);
  * assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
- * 
+ *
  * </pre>
  * \endhtmlonly
  *
@@ -174,10 +174,10 @@ inline void pod_copy(I *first, I *last, O *dest)
  * <pre>
  * const int8_t  src_bytes[3] = { -1, 0, +1 };
  * int8_t        dest_bytes[3];
- * 
+ *
  * pod_copy_n(&dest_bytes[0], &src_bytes[0], STLSOFT_NUM_ELEMENTS(src_bytes));
  * assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
- * 
+ *
  * </pre>
  * \endhtmlonly
  *
@@ -312,10 +312,10 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
  * <pre>
  * const int8_t  src_bytes[3] = { 3, 3, 3 };
  * int8_t        dest_bytes[3];
- * 
+ *
  * pod_fill_n(&dest_bytes[0], STLSOFT_NUM_ELEMENTS(src_bytes), 3);
  * assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
- * 
+ *
  * </pre>
  * \endhtmlonly
  *

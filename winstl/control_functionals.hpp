@@ -4,11 +4,11 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_MINOR    3
 # define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_EDIT     56
+# define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -248,14 +248,14 @@ public:
     {
         WINSTL_ASSERT(NULL != windowClass);
 
-        lstrcpynA(&m_name.sza[0], windowClass, stlsoft_num_elements(m_name.sza));
+        lstrcpynA(&m_name.sza[0], windowClass, STLSOFT_NUM_ELEMENTS(m_name.sza));
     }
     ss_explicit_k is_class(ws_char_w_t const *windowClass)
         : m_bUnicode(true)
     {
         WINSTL_ASSERT(NULL != windowClass);
 
-        lstrcpynW(&m_name.szw[0], windowClass, stlsoft_num_elements(m_name.sza));
+        lstrcpynW(&m_name.szw[0], windowClass, STLSOFT_NUM_ELEMENTS(m_name.sza));
     }
 
 public:
@@ -277,14 +277,14 @@ private:
     {
         ws_char_w_t szw[256];
 
-        return  ::GetClassNameW(hwnd, &szw[0], stlsoft_num_elements(szw)) &&
+        return  ::GetClassNameW(hwnd, &szw[0], STLSOFT_NUM_ELEMENTS(szw)) &&
                 0 == ::lstrcmpiW(&szw[0], &m_name.szw[0]);
     }
     BOOL is_class_a_(HWND hwnd) const
     {
         ws_char_a_t sza[256];
 
-        return  ::GetClassNameA(hwnd, &sza[0], stlsoft_num_elements(sza)) &&
+        return  ::GetClassNameA(hwnd, &sza[0], STLSOFT_NUM_ELEMENTS(sza)) &&
                 0 == ::lstrcmpiA(&sza[0], &m_name.sza[0]);
     }
 
@@ -322,14 +322,14 @@ public:
         , m_bUnicode(rhs.m_bUnicode)
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     template <ss_typename_param_k S>
     void operator ()(S const &s)
     {
         insert(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     void operator ()(ws_char_a_t const *s)
     {
@@ -391,14 +391,14 @@ public:
         , m_bUnicode(rhs.m_bUnicode)
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     template <ss_typename_param_k S>
     void operator ()(S const &s)
     {
         add(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     void operator ()(ws_char_a_t const *s)
     {
@@ -460,14 +460,14 @@ public:
         , m_bUnicode(rhs.m_bUnicode)
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     template <ss_typename_param_k S>
     void operator ()(S const &s)
     {
         insert(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     void operator ()(ws_char_a_t const *s)
     {
@@ -531,14 +531,14 @@ public:
         , m_bUnicode(rhs.m_bUnicode)
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     template <ss_typename_param_k S>
     void operator ()(S const &s)
     {
         insert(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     void operator ()(ws_char_a_t const *s)
     {
@@ -600,14 +600,14 @@ public:
         , m_bUnicode(rhs.m_bUnicode)
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     template <ss_typename_param_k S>
     void operator ()(S const &s)
     {
         add(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     void operator ()(ws_char_a_t const *s)
     {
@@ -669,14 +669,14 @@ public:
         , m_bUnicode(rhs.m_bUnicode)
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     template <ss_typename_param_k S>
     void operator ()(S const &s)
     {
         insert(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     void operator ()(ws_char_a_t const *s)
     {

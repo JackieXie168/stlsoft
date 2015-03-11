@@ -4,7 +4,7 @@
  * Purpose:     Raw conversion veneer class.
  *
  * Created:     30th July 2002
- * Updated:     4th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MAJOR      3
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MINOR      1
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       37
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -472,7 +472,7 @@ public:
 /// \ingroup concepts_veneer
 template<   ss_typename_param_k T
         ,   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
         ,   ss_typename_param_k V = T
         ,   ss_typename_param_k P = invalid_conversion<T, C>
         ,   ss_typename_param_k R = invalid_conversion<T, C>
@@ -484,7 +484,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k R
         ,   ss_typename_param_k PC
         ,   ss_typename_param_k RC
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
         >
 class conversion_veneer
     : public T
@@ -529,7 +529,7 @@ public:
         stlsoft_constraint_must_be_same_size(T, class_type);
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     // For compilers that support member templates, the following constructors
     // are provided.
 
@@ -585,7 +585,7 @@ public:
     conversion_veneer(N1 n1, N2 n2, N3 n3, N4 n4, N5 n5, N6 n6, N7 n7, N8 n8)
         : parent_class_type(n1, n2, n3, n4, n5, n6, n7, n8)
     {}
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     /// Copy assignment operator
     class_type &operator =(class_type const &rhs)
@@ -603,7 +603,7 @@ public:
         return *this;
     }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Copy from a value
     template <ss_typename_param_k T1>
     class_type &operator =(T1 rhs)
@@ -612,7 +612,7 @@ public:
 
         return *this;
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
     // Note that the copy constructor is not defined, and will NOT be defined copy ctor/operator not made
 

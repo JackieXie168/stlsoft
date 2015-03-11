@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     261
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     268
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file stlsoft/stlsoft.h The root header for the \ref STLSoft project, and for all other \ref projects "projects" */
@@ -202,7 +202,7 @@
 # define _STLSOFT_VER_1_8_7     0x00010807  /*!< Version 1.8.7 */
 # define _STLSOFT_VER_1_8_8     0x00010808  /*!< Version 1.8.8 */
 # define _STLSOFT_VER_1_8_9     0x00010809  /*!< Version 1.8.9 */
-# define _STLSOFT_VER_1_9_1     0x00010901  /*!< Version 1.9.1 (12th Dec 2005) */ 
+# define _STLSOFT_VER_1_9_1     0x00010901  /*!< Version 1.9.1 (12th Dec 2005) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER            _STLSOFT_VER_1_9_1
@@ -582,16 +582,16 @@
 #if defined(_STLSOFT_COMPILE_VERBOSE) && \
     !defined(STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT)
 # undef _STLSOFT_COMPILE_VERBOSE
-# endif /* !STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* !STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
 #if defined(STLSOFT_NO_COMPILE_VERBOSE) && \
     defined(_STLSOFT_COMPILE_VERBOSE)
 # undef _STLSOFT_COMPILE_VERBOSE
-# endif /* STLSOFT_NO_COMPILE_VERBOSE && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_NO_COMPILE_VERBOSE && _STLSOFT_COMPILE_VERBOSE */
 
-# ifdef _STLSOFT_COMPILE_VERBOSE
-#  pragma message(STLSOFT_COMPILER_VERSION_STRING)
-# endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#ifdef _STLSOFT_COMPILE_VERBOSE
+# pragma message(STLSOFT_COMPILER_VERSION_STRING)
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Sanity checks - 2
@@ -614,11 +614,11 @@
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT && (STLSOFT_CF_64BIT_INT_IS___int64 || STLSOFT_CF_64BIT_INT_IS_long_long) */
 
 /* Out-of-class method definition argument full-qualification requirement */
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 # define stlsoft_oom_fn_qual(Q, T)      Q::T
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 # define stlsoft_oom_fn_qual(Q, T)      T
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 
 /* Out-of-memory throws bad_alloc.
  *
@@ -637,8 +637,8 @@
  * define bad_alloc (whether in std or not), so it is therefore assumed that
  * operator new will not throw exceptions in out of memory conditions.
  *
- * Define __STLSOFT_CF_THROW_BAD_ALLOC to force Digital Mars/Microsoft to do so.
- * Define __STLSOFT_CF_NO_THROW_BAD_ALLOC to prevent Borland/Comeau/
+ * Define STLSOFT_CF_THROW_BAD_ALLOC to force Digital Mars/Microsoft to do so.
+ * Define __STLSOFT_CF_NOTHROW_BAD_ALLOC to prevent Borland/Comeau/
  * GCC/Metrowerks/Watcom from doing so.
  */
 
@@ -657,15 +657,15 @@
 
 /* Template specialisation syntax support
  */
-#ifdef __STLSOFT_TEMPLATE_SPECIALISATION
-# undef __STLSOFT_TEMPLATE_SPECIALISATION
-#endif /* __STLSOFT_TEMPLATE_SPECIALISATION */
+#ifdef STLSOFT_TEMPLATE_SPECIALISATION
+# undef STLSOFT_TEMPLATE_SPECIALISATION
+#endif /* STLSOFT_TEMPLATE_SPECIALISATION */
 
-#ifdef __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
+#ifdef STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 # define STLSOFT_TEMPLATE_SPECIALISATION                template <>
-#else /* ? __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX */
+#else /* ? STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX */
 # define STLSOFT_TEMPLATE_SPECIALISATION
-#endif /* __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX */
+#endif /* STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX */
 
 
 /* Keyword support.
@@ -689,35 +689,35 @@
 # define _STLSOFT_FORCE_KEYWORD_TYPENAME
 #endif /* _STLSOFT_FORCE_ALL_KEYWORDS */
 
-#if !defined(__STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT) && \
     defined(_STLSOFT_FORCE_KEYWORD_EXPLICIT)
-# define __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
-#endif /* !__STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_EXPLICIT */
+# define STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
+#endif /* !STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_EXPLICIT */
 
-#if !defined(__STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT) && \
     defined(_STLSOFT_FORCE_KEYWORD_MUTABLE)
-# define __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
-#endif /* !__STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_MUTABLE */
+# define STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+#endif /* !STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_MUTABLE */
 
-#if !defined(__STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT) && \
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
-# define __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
-#endif /* !__STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
+# define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
+#endif /* !STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
-#if !defined(__STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT) && \
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
-# define __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
-#endif /* !__STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
+# define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
+#endif /* !STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
-#if !defined(__STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT) && \
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
-# define __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
-#endif /* !__STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
+# define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+#endif /* !STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
-#if !defined(__STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT) && \
+#if !defined(STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT) && \
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
-# define __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
-#endif /* !__STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
+# define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+#endif /* !STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Calling convention
@@ -820,9 +820,9 @@
 # ifdef STLSOFT_STRICT
 #  error You are using an old version of one or more of ATLSTL, COMSTL, MFCSTL, UNIXSTL and WinSTL. Please upgrade all dependent projects in line with the STLSoft version you are using
 # else /* ? STLSOFT_STRICT */
-#  ifdef _STLSOFT_COMPILE_VERBOSE
+#  ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 #   pragma message("You are using an old version of one or more of ATLSTL, COMSTL, MFCSTL, UNIXSTL and WinSTL. _STLSOFT_INCLUDE_OBSOLETE will be defined (but is not guaranteed to work!)")
-#  endif /* _STLSOFT_COMPILE_VERBOSE */
+#  endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 #  ifndef _STLSOFT_INCLUDE_OBSOLETE
 #   define _STLSOFT_INCLUDE_OBSOLETE
 #  endif /* !_STLSOFT_INCLUDE_OBSOLETE */
@@ -851,16 +851,16 @@
  */
 
 #if defined(_STLSOFT_NO_ASSERT) && \
-    defined(__STLSOFT_CF_ASSERT_SUPPORT)
-# undef __STLSOFT_CF_ASSERT_SUPPORT
-#endif /* _STLSOFT_NO_ASSERT && __STLSOFT_CF_ASSERT_SUPPORT */
+    defined(STLSOFT_CF_ASSERT_SUPPORT)
+# undef STLSOFT_CF_ASSERT_SUPPORT
+#endif /* _STLSOFT_NO_ASSERT && STLSOFT_CF_ASSERT_SUPPORT */
 
 /** \def STLSOFT_ASSERT(ex)
  * Defines a runtime assertion
  *
  * \param ex Must be non-zero, or an assertion will be fired
  */
-#ifdef __STLSOFT_CF_ASSERT_SUPPORT
+#ifdef STLSOFT_CF_ASSERT_SUPPORT
 # ifdef __STLSOFT_CF_USE_cassert
   /* Using the standard assertion mechanism, located in <cassert> */
 #  include <cassert>
@@ -885,7 +885,7 @@
 # ifndef STLSOFT_ASSERT
 #  error If your compiler discrimination file supports assertions, it must define STLSOFT_ASSERT() (taking a single parameter)
 # endif /* !STLSOFT_ASSERT */
-#endif /* !__STLSOFT_CF_ASSERT_SUPPORT */
+#endif /* !STLSOFT_CF_ASSERT_SUPPORT */
 
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -913,7 +913,7 @@
  * \param ex Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
-#if defined(__STLSOFT_CF_ASSERT_SUPPORT)
+#if defined(STLSOFT_CF_ASSERT_SUPPORT)
 # if defined(__WATCOMC__)
 #  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT(ex)
 # elif defined(__COMO__) || \
@@ -923,9 +923,9 @@
 # else /* ? compiler */
 #  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT((msg, ex))
 # endif /* __WATCOMC__ */
-#else /* ? __STLSOFT_CF_ASSERT_SUPPORT */
+#else /* ? STLSOFT_CF_ASSERT_SUPPORT */
 # define STLSOFT_MESSAGE_ASSERT(msg, ex)
-#endif /* __STLSOFT_CF_ASSERT_SUPPORT */
+#endif /* STLSOFT_CF_ASSERT_SUPPORT */
 
 /** \def stlsoft_message_assert(ex)
  *
@@ -1035,14 +1035,14 @@ namespace stlsoft
  * Declares a using directive (with respect to <b>std</b>) if STLSoft is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
  */
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define stlsoft_ns_qual_std(x)      ::std::x
 # define stlsoft_ns_qual_std_(x)     std::x
 # define stlsoft_ns_using_std(x)     using ::std::x;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define stlsoft_ns_qual_std(x)      x
 # define stlsoft_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /** \def STLSOFT_NS_GLOBAL(X)
  * Qualifies <b>X</b> with <b>::</b> if compiling C++, otherwise just resolves to X
@@ -1086,16 +1086,16 @@ namespace stlsoft
  * wchar_t is either a built-in type, or is defined to unsigned 16-bit value
  */
 
-#ifdef __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
  /* It's some kind of compiler native type. */
-# ifndef __STLSOFT_NATIVE_WCHAR_T
+# ifndef STLSOFT_NATIVE_WCHAR_T
   /* either wchar_t itself */
   typedef wchar_t                  ss_char_w_pr_t_;    /* Unicode char type */
-# else /* ? __STLSOFT_NATIVE_WCHAR_T */
+# else /* ? STLSOFT_NATIVE_WCHAR_T */
   /* or a compiler-specific type */
-  typedef __STLSOFT_NATIVE_WCHAR_T ss_char_w_pr_t_;    /* Unicode char type */
-# endif /* !__STLSOFT_NATIVE_WCHAR_T */
-#elif defined(__STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT)
+  typedef STLSOFT_NATIVE_WCHAR_T   ss_char_w_pr_t_;    /* Unicode char type */
+# endif /* !STLSOFT_NATIVE_WCHAR_T */
+#elif defined(STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT)
   typedef wchar_t                  ss_char_w_pr_t_;    /* Unicode char type */
 #else /* ? wchar_t support */
  /* It's some kind of library-defined type. */
@@ -1103,8 +1103,8 @@ namespace stlsoft
   typedef wchar_t                   ss_char_w_pr_t_;    /* Unicode char type */
 # else /* ? _STLSOFT_NO_STD_INCLUDES */
   typedef unsigned short            ss_char_w_pr_t_;    /* Unicode char type */
-# endif /* __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
-#endif /* !__STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+# endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+#endif /* !STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 /* 8-bit */
 #ifdef STLSOFT_CF_8BIT_INT_SUPPORT
@@ -1165,11 +1165,11 @@ namespace stlsoft
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 /* bool */
-#ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
  typedef bool               ss_bool_pr_t_;
-#else /* ? __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
  typedef unsigned int       ss_bool_pr_t_;
-#endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -1265,7 +1265,7 @@ struct stlsoft_size_checker
 protected: /* GCC is too "helpful" in this case, so must declare as protected */
 #  else /* ? compiler */
 private:
-#  endif /* STLSOFT_COMPILER_IS_GCC */
+#  endif /* compiler */
     stlsoft_size_checker();
     ~stlsoft_size_checker()
     {
@@ -1335,21 +1335,21 @@ private:
  *
  * Evaluates to <b>explicit</b> on translators that support the keyword, otherwise to nothing
  */
-#ifdef __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
+#ifdef STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 # define ss_explicit_k              explicit
-#else /* ? __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT */
+#else /* ? STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT */
 # define ss_explicit_k
-#endif /* __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT */
+#endif /* STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT */
 
 /** \def ss_mutable_k
  *
  * Evaluates to <b>mutable</b> on translators that support the keyword, otherwise to nothing
  */
-#ifdef __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+#ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 # define ss_mutable_k               mutable
-#else /* ? __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
+#else /* ? STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 # define ss_mutable_k
-#endif /* __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
+#endif /* STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 
 /** \def ss_typename_param_k
  *
@@ -1357,11 +1357,11 @@ private:
  *
  * Used for template parameter declarations
  */
-#ifdef __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
+#ifdef STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
 # define ss_typename_param_k        typename
-#else /* ? __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT */
+#else /* ? STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT */
 # define ss_typename_param_k        class
-#endif /* __STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT */
+#endif /* STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT */
 
 /** \def ss_typename_type_k
  *
@@ -1369,11 +1369,11 @@ private:
  *
  * Used for type disambiguation inside template bodies
  */
-#ifdef __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
+#ifdef STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
 # define ss_typename_type_k         typename
-#else /* ? __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT */
+#else /* ? STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT */
 # define ss_typename_type_k
-#endif /* __STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT */
+#endif /* STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT */
 
 /** \def ss_typename_type_def_k
  *
@@ -1381,11 +1381,11 @@ private:
  *
  * Used for type disambiguation in default template arguments
  */
-#ifdef __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
+#ifdef STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 # define ss_typename_type_def_k     typename
-#else /* ? __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
+#else /* ? STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
 # define ss_typename_type_def_k
-#endif /* __STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
+#endif /* STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT */
 
 /** \def ss_typename_type_mil_k
  *
@@ -1393,11 +1393,11 @@ private:
  *
  * Used for type disambiguation inside initialiser lists in class template constructors
  */
-#ifdef __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+#ifdef STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 # define ss_typename_type_mil_k     typename
-#else /* ? __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+#else /* ? STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 # define ss_typename_type_mil_k
-#endif /* __STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+#endif /* STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
 
 /** \def ss_template_qual_k
  *
@@ -1421,13 +1421,13 @@ private:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 # define ss_true_v       (true)
 # define ss_false_v      (false)
-#else /* ? __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 # define ss_true_v       (1)
 # define ss_false_v      (0)
-#endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* /////////////////////////////////////////////////////////////////////////////
@@ -1445,7 +1445,7 @@ private:
 #if !defined(STLSOFT_NO_USE_EXCEPTION_SPECIFICATIONS) && \
     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
     (   defined(STLSOFT_USE_EXCEPTION_SPECIFICATIONS) || \
-        defined(__STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT))
+        defined(STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT))
 # ifndef STLSOFT_USE_EXCEPTION_SPECIFICATIONS
 #  define STLSOFT_USE_EXCEPTION_SPECIFICATIONS
 # endif /* !STLSOFT_USE_EXCEPTION_SPECIFICATIONS */
@@ -1471,7 +1471,7 @@ private:
 # define stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
 # define stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
 # define stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
-#endif /* __STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT && !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#endif /* STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT && !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Array size determination macro(s)
@@ -1512,14 +1512,14 @@ private:
  * gotcha whereby <code>(sizeof(ar) / sizeof(ar[0]))</code> is applied to such types, without
  * causing a compiler error.
  *
- * \note From STLSoft 1.8.3 onwards, the underlying ss_static_array_size function is changed to return reference to const 
+ * \note From STLSoft 1.8.3 onwards, the underlying ss_static_array_size function is changed to return reference to const
  * ss_array_size_struct, rather than ss_array_size_struct, so as to avoid Visual C++ (7.1)'s C4686 warning
  */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_NUM_ELEMENTS_(ar)                      (sizeof(ar) / sizeof(0[(ar)]))
 
 # if defined(__cplusplus) && \
-     defined(__STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
+     defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 #  if 0/* defined(STLSOFT_COMPILER_IS_GCC) */
 #   pragma pack(push, 1)
 template <int N>
@@ -1546,14 +1546,14 @@ ss_array_size_struct<N> const &ss_static_array_size(T (&)[N]);
 #if defined(STLSOFT_COMPILER_IS_VECTORC)
 template <class T, int N>
 ss_array_size_struct<N> const &ss_static_array_size(T const (&)[N]);
-#endif /* STLSOFT_COMPILER_IS_VECTORC */
+#endif /* compiler */
 
 
 #   define STLSOFT_NUM_ELEMENTS(ar)                     sizeof(stlsoft_ns_qual(ss_static_array_size)(ar).c)
 #  endif /* 0 */
-# else /* ? __cplusplus && __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+# else /* ? __cplusplus && STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #  define STLSOFT_NUM_ELEMENTS(ar)                      STLSOFT_NUM_ELEMENTS_(ar)
-# endif /* __cplusplus && __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+# endif /* __cplusplus && STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 # define STLSOFT_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -1634,6 +1634,17 @@ ss_array_size_struct<N> const &ss_static_array_size(T const (&)[N]);
  */
 #define stlsoft_raw_offsetof(s, m)                      STLSOFT_RAW_OFFSETOF(s, m)
 
+#ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+# undef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+#endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
+
+#if !defined(STLSOFT_COMPILER_IS_COMO) && \
+    !defined(STLSOFT_COMPILER_IS_GCC) && \
+    !defined(STLSOFT_COMPILER_IS_INTEL) && \
+    !defined(STLSOFT_COMPILER_IS_WATCOM)
+# define STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+#endif /* compiler */
+
 /* /////////////////////////////////////////////////////////////////////////////
  * Destruction function(s)/macro(s)
  */
@@ -1672,7 +1683,7 @@ inline void stlsoft_destroy_instance_fn(T *p)
 #  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)           do { (P)->~T1(); } while(0)
 # else /* ? compiler */
 #  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)           stlsoft_ns_qual(stlsoft_destroy_instance_fn)((P))
-# endif /* STLSOFT_COMPILER_IS_DMC */
+# endif /* compiler */
 #endif /* __cplusplus */
 
 /** \def stlsoft_destroy_instance(T1, T2, P)
@@ -1821,8 +1832,7 @@ inline void stlsoft_destroy_instance_fn(T *p)
         defined(STLSOFT_COMPILER_IS_DMC) || \
         (   defined(STLSOFT_COMPILER_IS_GCC) && \
             __GNUC__ >= 3) || \
-        defined(STLSOFT_COMPILER_IS_INTEL) /* || \
-        defined(STLSOFT_COMPILER_IS_MWERKS) */)
+        defined(STLSOFT_COMPILER_IS_INTEL))
 template<ss_typename_param_k T>
 inline void suppress_unused_func(T const volatile &)
 {}
@@ -1851,9 +1861,9 @@ inline void suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
 # endif /* !STLSOFT_CF_STDCALL_SUPPORTED */
 
 # define STLSOFT_SUPPRESS_UNUSED(x)     stlsoft_ns_qual(suppress_unused_func)(x)
-#else /* ? STLSOFT_COMPILER_IS_INTEL */
+#else /* ? compiler */
 # define STLSOFT_SUPPRESS_UNUSED(x)     ((void)(x))
-#endif /* STLSOFT_COMPILER_IS_INTEL */
+#endif /* compiler */
 
 /** \def STLSOFT_UNNAMED_PARAM
  * \ingroup code_modification_macros
@@ -2032,7 +2042,7 @@ inline void const *ptr_byte_offset(T const p, ss_ptrdiff_t n)
     void const      *p4 =   static_cast<void const*>(p3);
     void const      *p5 =   static_cast<void const*>(p);
 
-    stlsoft_assert((static_cast<char const*>(p4) - static_cast<char const*>(p5)) == n);
+    STLSOFT_ASSERT((static_cast<char const*>(p4) - static_cast<char const*>(p5)) == n);
 
     STLSOFT_SUPPRESS_UNUSED(p5);    /* VC++ 7.1 can't see this. ?? */
 
@@ -2093,40 +2103,40 @@ inline T &remove_const(T const &t)
 /* Mutable support */
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-#  ifdef __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+#  ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
 inline T &mutable_access(T &t)
-#  else /* ? __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
+#  else /* ? STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 inline T &mutable_access(T const &t)
-#  endif /* __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
+#  endif /* STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 {
-#  ifdef __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+#  ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
     return t;
-#  else /* ? __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
+#  else /* ? STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
     return const_cast<T &>(t);
-#  endif /* __STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
+#  endif /* STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Move constructor support */
-# ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+# ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
 #  define stlsoft_define_move_rhs_type(t)           t &
-# else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+# else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 #  define stlsoft_define_move_rhs_type(t)           t const &
-# endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+# endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
 template <ss_typename_param_k T>
 inline T &move_lhs_from_rhs(stlsoft_define_move_rhs_type(T) t)
 {
-# ifdef __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+# ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     return t;
-# else /* ? __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+# else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
     return const_cast<T &>(t);
-# endif /* __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+# endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 }
 
 /* \brief Takes the address of a variable
  *
- * This function is used to take the address of a variable, 
+ * This function is used to take the address of a variable,
  * possibly a temporary, and allows the code to skip the
  * reasonable reservations of compilers to not want to
  * compile code that uses the address of temporaries. As

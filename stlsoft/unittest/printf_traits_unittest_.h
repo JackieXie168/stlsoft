@@ -1,5 +1,5 @@
 
-// Updated: 19th January 2006
+// Updated: 5th February 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS)
 # error This file cannot be directly included, and should only be included within stlsoft/printf_traits.hpp
@@ -155,26 +155,26 @@ namespace unittest
             static const char   *signed_minimums[] =
             {
                 /* 0 */         ""
-                /* 1 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__SINT8_MIN)
-                /* 2 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__SINT16_MIN)
+                /* 1 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_SINT8_MIN)
+                /* 2 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_SINT16_MIN)
                 /* 3 */     ,   ""
-                /* 4 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__SINT32_MIN)
+                /* 4 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_SINT32_MIN)
                 /* 5 */     ,   ""
                 /* 6 */     ,   ""
                 /* 7 */     ,   ""
-                /* 4 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__SINT64_MIN)
+                /* 4 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_SINT64_MIN)
             };
             static const char   *unsigned_minimums[] =
             {
                 /* 0 */         ""
-                /* 1 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__UINT8_MIN)
-                /* 2 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__UINT16_MIN)
+                /* 1 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_UINT8_MIN)
+                /* 2 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_UINT16_MIN)
                 /* 3 */     ,   ""
-                /* 4 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__UINT32_MIN)
+                /* 4 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_UINT32_MIN)
                 /* 5 */     ,   ""
                 /* 6 */     ,   ""
                 /* 7 */     ,   ""
-                /* 4 */     ,   ___stringise(__STLSOFT_PRINTF_TRAITS__UINT64_MIN)
+                /* 4 */     ,   ___stringise(STLSOFT_PRINTF_TRAITS_UINT64_MIN)
             };
 
             // (i) min (with char)
@@ -186,7 +186,7 @@ namespace unittest
                 r->report("traits (8-bit, signed) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__SINT8_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_SINT8_MIN)))
             {
                 r->report("traits (8-bit, signed) format invalid", __LINE__);
                 bSuccess = false;
@@ -199,7 +199,7 @@ namespace unittest
                 r->report("traits (8-bit, unsigned) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__UINT8_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_UINT8_MIN)))
             {
                 r->report("traits (8-bit, unsigned) format invalid", __LINE__);
                 bSuccess = false;
@@ -239,7 +239,7 @@ namespace unittest
                 r->report("traits (16-bit, signed) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__SINT16_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_SINT16_MIN)))
             {
                 r->report("traits (16-bit, signed) format invalid", __LINE__);
                 bSuccess = false;
@@ -252,7 +252,7 @@ namespace unittest
                 r->report("traits (16-bit, unsigned) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__UINT16_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_UINT16_MIN)))
             {
                 r->report("traits (16-bit, unsigned) format invalid", __LINE__);
                 bSuccess = false;
@@ -293,7 +293,7 @@ namespace unittest
                 r->report("traits (32-bit, signed) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__SINT32_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_SINT32_MIN)))
             {
                 r->report("traits (32-bit, signed) format invalid", __LINE__);
                 bSuccess = false;
@@ -306,7 +306,7 @@ namespace unittest
                 r->report("traits (32-bit, unsigned) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__UINT32_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_UINT32_MIN)))
             {
                 r->report("traits (32-bit, unsigned) format invalid", __LINE__);
                 bSuccess = false;
@@ -321,7 +321,7 @@ namespace unittest
                 r->report("traits (64-bit, signed) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__SINT64_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_SINT64_MIN)))
             {
                 r->report("traits (64-bit, signed) format invalid", __LINE__);
                 bSuccess = false;
@@ -334,7 +334,7 @@ namespace unittest
                 r->report("traits (64-bit, unsigned) min invalid", __LINE__);
                 bSuccess = false;
             }
-            if(0 != strcmp(sz, ___stringise(__STLSOFT_PRINTF_TRAITS__UINT64_MIN)))
+            if(0 != strcmp(sz, ___stringise(STLSOFT_PRINTF_TRAITS_UINT64_MIN)))
             {
                 r->report("traits (64-bit, unsigned) format invalid", __LINE__);
                 bSuccess = false;
@@ -344,13 +344,13 @@ namespace unittest
             // (ii) max (with char)
 
             // 8-bit signed
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_sint8_t>::format_w(), limit_traits<ss_sint8_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_sint8_t>::format_w(), limit_traits<ss_sint8_t>::maximum());
             if(printf_traits<ss_sint8_t>::size_max != 1 + cch)
             {
                 r->report("traits (8-bit, signed) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t sint8_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__SINT8_MAX);
+            wchar_t sint8_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_SINT8_MAX);
             if(0 != wcscmp(szw, sint8_t_max))
             {
                 r->report("traits (8-bit, signed) format invalid", __LINE__);
@@ -358,13 +358,13 @@ namespace unittest
             }
 
             // 8-bit unsigned
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_uint8_t>::format_w(), limit_traits<ss_uint8_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_uint8_t>::format_w(), limit_traits<ss_uint8_t>::maximum());
             if(printf_traits<ss_uint8_t>::size_max != 1 + cch)
             {
                 r->report("traits (8-bit, unsigned) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t uint8_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__UINT8_MAX);
+            wchar_t uint8_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_UINT8_MAX);
             if(0 != wcscmp(szw, uint8_t_max))
             {
                 r->report("traits (8-bit, unsigned) format invalid", __LINE__);
@@ -372,13 +372,13 @@ namespace unittest
             }
 
             // 16-bit signed
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_sint16_t>::format_w(), limit_traits<ss_sint16_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_sint16_t>::format_w(), limit_traits<ss_sint16_t>::maximum());
             if(printf_traits<ss_sint16_t>::size_max != 1 + cch)
             {
                 r->report("traits (16-bit, signed) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t sint16_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__SINT16_MAX);
+            wchar_t sint16_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_SINT16_MAX);
             if(0 != wcscmp(szw, sint16_t_max))
             {
                 r->report("traits (16-bit, signed) format invalid", __LINE__);
@@ -386,13 +386,13 @@ namespace unittest
             }
 
             // 16-bit unsigned
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_uint16_t>::format_w(), limit_traits<ss_uint16_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_uint16_t>::format_w(), limit_traits<ss_uint16_t>::maximum());
             if(printf_traits<ss_uint16_t>::size_max != 1 + cch)
             {
                 r->report("traits (16-bit, unsigned) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t uint16_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__UINT16_MAX);
+            wchar_t uint16_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_UINT16_MAX);
             if(0 != wcscmp(szw, uint16_t_max))
             {
                 r->report("traits (16-bit, unsigned) format invalid", __LINE__);
@@ -400,13 +400,13 @@ namespace unittest
             }
 
             // 32-bit signed
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_sint32_t>::format_w(), limit_traits<ss_sint32_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_sint32_t>::format_w(), limit_traits<ss_sint32_t>::maximum());
             if(printf_traits<ss_sint32_t>::size_max != 1 + cch)
             {
                 r->report("traits (32-bit, signed) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t sint32_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__SINT32_MAX);
+            wchar_t sint32_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_SINT32_MAX);
             if(0 != wcscmp(szw, sint32_t_max))
             {
                 r->report("traits (32-bit, signed) format invalid", __LINE__);
@@ -414,13 +414,13 @@ namespace unittest
             }
 
             // 32-bit unsigned
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_uint32_t>::format_w(), limit_traits<ss_uint32_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_uint32_t>::format_w(), limit_traits<ss_uint32_t>::maximum());
             if(printf_traits<ss_uint32_t>::size_max != 1 + cch)
             {
                 r->report("traits (32-bit, unsigned) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t uint32_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__UINT32_MAX);
+            wchar_t uint32_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_UINT32_MAX);
             if(0 != wcscmp(szw, uint32_t_max))
             {
                 r->report("traits (32-bit, unsigned) format invalid", __LINE__);
@@ -429,13 +429,13 @@ namespace unittest
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
             // 64-bit signed
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_sint64_t>::format_w(), limit_traits<ss_sint64_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_sint64_t>::format_w(), limit_traits<ss_sint64_t>::maximum());
             if(printf_traits<ss_sint64_t>::size_max != 1 + cch)
             {
                 r->report("traits (64-bit, signed) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t sint64_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__SINT64_MAX);
+            wchar_t sint64_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_SINT64_MAX);
             if(0 != wcscmp(szw, sint64_t_max))
             {
                 r->report("traits (64-bit, signed) format invalid", __LINE__);
@@ -443,14 +443,14 @@ namespace unittest
             }
 
             // 64-bit unsigned
-            cch = swprintf(szw, stlsoft_num_elements(szw), printf_traits<ss_uint64_t>::format_w(), limit_traits<ss_uint64_t>::maximum());
+            cch = swprintf(szw, STLSOFT_NUM_ELEMENTS(szw), printf_traits<ss_uint64_t>::format_w(), limit_traits<ss_uint64_t>::maximum());
             STLSOFT_ASSERT('\0' == szw[cch]);
             if(printf_traits<ss_uint64_t>::size_max != 1 + cch)
             {
                 r->report("traits (64-bit, unsigned) max invalid", __LINE__);
                 bSuccess = false;
             }
-            wchar_t uint64_t_max[] = ___stringise_w(__STLSOFT_PRINTF_TRAITS__UINT64_MAX);
+            wchar_t uint64_t_max[] = ___stringise_w(STLSOFT_PRINTF_TRAITS_UINT64_MAX);
             if(0 != wcscmp(szw, uint64_t_max))
             {
                 r->report("traits (64-bit, unsigned) format invalid", __LINE__);

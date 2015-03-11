@@ -5,11 +5,11 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     6th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    8
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     13
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h Root header for the PlatformSTL C/C++ libraries */
@@ -263,13 +263,13 @@ namespace platformstl_project
 /// \def platformstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if PlatformSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define platformstl_ns_qual_std(x)     ::std::x
 # define platformstl_ns_using_std(x)    using ::std::x;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define platformstl_ns_qual_std(x)     x
 # define platformstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

@@ -5,11 +5,11 @@
  *              classes.
  *
  * Created:     1st November 1994
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_DESTRUCTOR_MAJOR      4
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_DESTRUCTOR_MINOR      1
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_DESTRUCTOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_DESTRUCTOR_EDIT       56
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_DESTRUCTOR_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_DESTRUCTOR_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -401,9 +401,9 @@ public:
 #ifndef STLSOFT_RETURN_VALUE_DESTRUCTOR_DISABLE_UNUSED_ASSERT
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
         STLSOFT_ASSERT(m_value == 0);
-# else /* ? STLSOFT_RETURN_VALUE_DESTRUCTOR_DISABLE_UNUSED_ASSERT */
+# else /* ? compiler */
         STLSOFT_MESSAGE_ASSERT("This return value was not used", m_value == 0);
-# endif /* STLSOFT_COMPILER_IS_WATCOM */
+# endif /* compiler */
 #endif /* !STLSOFT_RETURN_VALUE_DESTRUCTOR_DISABLE_UNUSED_ASSERT */
 
         delete m_value;
@@ -501,9 +501,9 @@ public:
 #ifndef _STLSOFT_RETURN_VALUE_DESTRUCTOR_DISABLE_UNUSED_ASSERT
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
         STLSOFT_ASSERT(m_value == 0);
-# else /* ? _STLSOFT_RETURN_VALUE_DESTRUCTOR_DISABLE_UNUSED_ASSERT */
+# else /* ? compiler */
         STLSOFT_MESSAGE_ASSERT("This return value was not used", m_value == 0);
-# endif /* STLSOFT_COMPILER_IS_WATCOM */
+# endif /* compiler */
 #endif /* !_STLSOFT_RETURN_VALUE_DESTRUCTOR_DISABLE_UNUSED_ASSERT */
 
         delete [] m_value;

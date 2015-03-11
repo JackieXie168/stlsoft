@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       2
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        138
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       3
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        142
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h The root header for the \ref WinSTL project */
@@ -200,7 +200,7 @@
 # ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
 #  include <stlsoft/union_cast.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
-#endif /* STLSOFT_COMPILER_IS_INTEL */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
@@ -219,9 +219,9 @@
 # undef     INVALID_HANDLE_VALUE
 # if defined(STLSOFT_COMPILER_IS_INTEL)
 #  define   INVALID_HANDLE_VALUE        stlsoft_ns_qual(make_union_cast)<HANDLE>(-1)
-# else /* ? STLSOFT_COMPILER_IS_INTEL */
+# else /* ? compiler */
 #  define   INVALID_HANDLE_VALUE        reinterpret_cast<HANDLE>(-1)
-# endif /* STLSOFT_COMPILER_IS_INTEL */
+# endif /* compiler */
 
 # undef     MAKEINTRESOURCE
 # define    MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
@@ -448,13 +448,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def winstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if WinSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define winstl_ns_qual_std(x)      ::std::x
 # define winstl_ns_using_std(x)     using ::std::x;
-#else
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define winstl_ns_qual_std(x)      x
 # define winstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -537,9 +537,9 @@ typedef ws_streamoff_t      streamoff_t;        //!< streamoff
 
 /** \def WINSTL_CONST_NT_MAX_PATH
  *
- * Defines the number of 
+ * Defines the number of
  *
- * \note Accessing long path names The value is 4 + 32767, since the 
+ * \note Accessing long path names The value is 4 + 32767, since the
  */
 //
 #define WINSTL_CONST_NT_MAX_PATH            (4 + 32767)
@@ -580,7 +580,12 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define winstl_num_elements(ar)                         stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define WINSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define winstl_num_elements(ar)                        WINSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

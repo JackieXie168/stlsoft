@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     26th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_MAJOR    1
 # define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_MINOR    6
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_EDIT     22
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_REVISION 4
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,9 @@ STLSOFT_COMPILER_IS_COMO:
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
@@ -119,7 +119,7 @@ public:
     /// The value type
     typedef HMODULE                                                         value_type;
     /// The allocator type
-    typedef processheap_allocator<value_type>                               allocator_type; 
+    typedef processheap_allocator<value_type>                               allocator_type;
     /// The class type
     typedef process_module_sequence                                         class_type;
     /// The non-mutating (const) pointer type
@@ -135,7 +135,7 @@ public:
     typedef ws_size_t                                                       size_type;
     /// The difference type
     typedef ws_ptrdiff_t                                                    difference_type;
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)< const_iterator
                                                                     ,   value_type
@@ -143,7 +143,7 @@ public:
                                                                     ,   const_pointer
                                                                     ,   difference_type
                                                                     >       const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Construction
@@ -151,7 +151,7 @@ public:
 public:
     /// Constructs a sequence from the current modules in the given process
     ss_explicit_k process_module_sequence(HANDLE hProcess);
-    /// Copies the contents of the sequence 
+    /// Copies the contents of the sequence
     process_module_sequence(class_type const &rhs);
     /// Releases the storage associated with the process id list
     ~process_module_sequence() stlsoft_throw_0();
@@ -169,7 +169,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -178,7 +178,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Element Access
@@ -296,7 +296,7 @@ inline process_module_sequence::const_iterator process_module_sequence::end() co
     return &*m_modules.end();
 }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 inline process_module_sequence::const_reverse_iterator process_module_sequence::rbegin() const
 {
     return const_reverse_iterator(end());
@@ -306,7 +306,7 @@ inline process_module_sequence::const_reverse_iterator process_module_sequence::
 {
     return const_reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 inline process_module_sequence::const_reference process_module_sequence::operator [](process_module_sequence::size_type index) const
 {

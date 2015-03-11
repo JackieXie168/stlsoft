@@ -4,11 +4,11 @@
  * Purpose:     ZERO_v template class.
  *
  * Created:     29th July 2003
- * Updated:     18th December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ZERO_MAJOR       3
-# define STLSOFT_VER_STLSOFT_HPP_ZERO_MINOR       1
+# define STLSOFT_VER_STLSOFT_HPP_ZERO_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_ZERO_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ZERO_EDIT        33
+# define STLSOFT_VER_STLSOFT_HPP_ZERO_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@ public:
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#ifdef __STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
     /// A zero (of type signed int)
     operator signed int () const
     {
@@ -162,7 +162,7 @@ public:
     {
         return 0;
     }
-#endif /* __STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* STLSOFT_CF_INT_DISTINCT_TYPE */
 
     /// A zero (of type float)
     operator float () const
@@ -199,10 +199,10 @@ inline ss_bool_t operator ==(ZERO_v const &/* lhs */, ss_uint32_t i)        { re
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, ss_sint64_t const &i) { return i == 0; }
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, ss_uint64_t const &i) { return i == 0; }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#ifdef __STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, signed int i)         { return i == 0; }
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, unsigned int i)       { return i == 0; }
-#endif /* __STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* STLSOFT_CF_INT_DISTINCT_TYPE */
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, float const &i)       { return i == 0; }
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, double const &i)      { return i == 0; }
 inline ss_bool_t operator ==(ZERO_v const &/* lhs */, long double const &i) { return i == 0; }
@@ -218,10 +218,10 @@ inline ss_bool_t operator ==(ss_uint32_t i, ZERO_v const &/* lhs */)        { re
 inline ss_bool_t operator ==(ss_sint64_t const &i, ZERO_v const &/* lhs */) { return i == 0; }
 inline ss_bool_t operator ==(ss_uint64_t const &i, ZERO_v const &/* lhs */) { return i == 0; }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#ifdef __STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
 inline ss_bool_t operator ==(signed int i, ZERO_v const &/* lhs */)         { return i == 0; }
 inline ss_bool_t operator ==(unsigned int i, ZERO_v const &/* lhs */)       { return i == 0; }
-#endif /* __STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* STLSOFT_CF_INT_DISTINCT_TYPE */
 inline ss_bool_t operator ==(float const &i, ZERO_v const &/* lhs */)       { return i == 0; }
 inline ss_bool_t operator ==(double const &i, ZERO_v const &/* lhs */)      { return i == 0; }
 inline ss_bool_t operator ==(long double const &i, ZERO_v const &/* lhs */) { return i == 0; }
@@ -237,10 +237,10 @@ inline ss_bool_t operator !=(ZERO_v const &/* lhs */, ss_uint32_t i)        { re
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, ss_sint64_t const &i) { return i != 0; }
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, ss_uint64_t const &i) { return i != 0; }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#ifdef __STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, signed int i)         { return i != 0; }
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, unsigned int i)       { return i != 0; }
-#endif /* __STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* STLSOFT_CF_INT_DISTINCT_TYPE */
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, float const &i)       { return i != 0; }
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, double const &i)      { return i != 0; }
 inline ss_bool_t operator !=(ZERO_v const &/* lhs */, long double const &i) { return i != 0; }
@@ -256,10 +256,10 @@ inline ss_bool_t operator !=(ss_uint32_t i, ZERO_v const &/* lhs */)        { re
 inline ss_bool_t operator !=(ss_sint64_t const &i, ZERO_v const &/* lhs */) { return i != 0; }
 inline ss_bool_t operator !=(ss_uint64_t const &i, ZERO_v const &/* lhs */) { return i != 0; }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-#ifdef __STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
 inline ss_bool_t operator !=(signed int i, ZERO_v const &/* lhs */)         { return i != 0; }
 inline ss_bool_t operator !=(unsigned int i, ZERO_v const &/* lhs */)       { return i != 0; }
-#endif /* __STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* STLSOFT_CF_INT_DISTINCT_TYPE */
 inline ss_bool_t operator !=(float const &i, ZERO_v const &/* lhs */)       { return i != 0; }
 inline ss_bool_t operator !=(double const &i, ZERO_v const &/* lhs */)      { return i != 0; }
 inline ss_bool_t operator !=(long double const &i, ZERO_v const &/* lhs */) { return i != 0; }

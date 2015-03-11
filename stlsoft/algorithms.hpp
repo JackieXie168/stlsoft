@@ -4,11 +4,11 @@
  * Purpose:     Contains various simple self-contained algorithms.
  *
  * Created:     23rd October 2004
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MINOR       5
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MINOR       6
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        18
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,10 +72,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM
 # include <stlsoft/util/std/algorithm.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM */
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # include <iterator>        // for the iterator tags
 # include <utility>         // for std::pair
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 #ifdef STLSOFT_UNITTEST
 # include <string.h>        // for strcmp()
@@ -99,7 +99,7 @@ namespace stlsoft
 /// \brief Utility functions and constructs used throughout the STLSoft libraries
 
 /// \weakgroup stlsoft_algorithms STLSoft Algorithms
-/// \brief Algorithms for manipulating types 
+/// \brief Algorithms for manipulating types
 /// \ingroup algorithms utilities
 /// @{
 
@@ -183,7 +183,7 @@ inline I skip_equal(I first, I last)
     }
 }
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 // function find_first_duplicate
 
 /// Finds the first duplicate item in the unordered sequence [first, last)
@@ -247,7 +247,7 @@ inline stlsoft_ns_qual_std(pair)<I, I> find_first_duplicate(I first, I last, P p
     return stlsoft_ns_qual_std(make_pair)(last, last);
 }
 
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 // function replace_n
 
@@ -407,10 +407,10 @@ namespace unittest
 
             typedef stlsoft_ns_qual_std(pair)<char const*, char const*> char_pair_t;
 
-            char_pair_t p1  =   find_first_duplicate(&r1[0], &r1[0] + stlsoft_num_elements(r1) - 1);
+            char_pair_t p1  =   find_first_duplicate(&r1[0], &r1[0] + STLSOFT_NUM_ELEMENTS(r1) - 1);
 
-            if( p1.first == &r1[0] + stlsoft_num_elements(r1) - 1 ||
-                p1.second == &r1[0] + stlsoft_num_elements(r1) - 1)
+            if( p1.first == &r1[0] + STLSOFT_NUM_ELEMENTS(r1) - 1 ||
+                p1.second == &r1[0] + STLSOFT_NUM_ELEMENTS(r1) - 1)
             {
                 r->report("find_first_duplicate() failed for not finding duplicates within \"abcdefghfijklm\"", __LINE__);
                 bSuccess = false;
@@ -421,10 +421,10 @@ namespace unittest
                 bSuccess = false;
             }
 
-            char_pair_t p2  =   find_first_duplicate(&r2[0], &r2[0] + stlsoft_num_elements(r1) - 1);
+            char_pair_t p2  =   find_first_duplicate(&r2[0], &r2[0] + STLSOFT_NUM_ELEMENTS(r1) - 1);
 
-            if( p2.first != &r2[0] + stlsoft_num_elements(r2) - 1 ||
-                p2.second != &r2[0] + stlsoft_num_elements(r2) - 1)
+            if( p2.first != &r2[0] + STLSOFT_NUM_ELEMENTS(r2) - 1 ||
+                p2.second != &r2[0] + STLSOFT_NUM_ELEMENTS(r2) - 1)
             {
                 r->report("find_first_duplicate() failed for finding duplicates within \"abcdefghijklmn\"", __LINE__);
                 bSuccess = false;
@@ -447,13 +447,13 @@ namespace unittest
             const char  r1[]        =   "abcdefgh";
             const char  r2[]        =   "deadbeaf";
 
-            if(!unordered_includes(&r1[0], &r1[0] + stlsoft_num_elements(r1) - 1, &r2[0], &r2[0] + stlsoft_num_elements(r1) - 1))
+            if(!unordered_includes(&r1[0], &r1[0] + STLSOFT_NUM_ELEMENTS(r1) - 1, &r2[0], &r2[0] + STLSOFT_NUM_ELEMENTS(r1) - 1))
             {
                 r->report("unordered_includes() failed for not finding \"deadbeaf\" within \"abcdefgh\"", __LINE__);
                 bSuccess = false;
             }
 
-            if(unordered_includes(&r2[0], &r2[0] + stlsoft_num_elements(r1) - 1, &r1[0], &r1[0] + stlsoft_num_elements(r1) - 1))
+            if(unordered_includes(&r2[0], &r2[0] + STLSOFT_NUM_ELEMENTS(r1) - 1, &r1[0], &r1[0] + STLSOFT_NUM_ELEMENTS(r1) - 1))
             {
                 r->report("unordered_includes() failed for finding \"abcdefgh\" within \"deadbeaf\"", __LINE__);
                 bSuccess = false;

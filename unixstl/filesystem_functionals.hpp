@@ -4,11 +4,11 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_MAJOR       3
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       2
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        32
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -130,12 +130,12 @@ public:
     /// Function call, compares \c s1 with \c s2
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k T1, ss_typename_param_k T2>
     result_type operator ()(T1 const &s1, T2 const &s2)
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2)
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return compare_(stlsoft_ns_qual(c_str_ptr)(s1), stlsoft_ns_qual(c_str_ptr)(s2));
     }
@@ -167,7 +167,7 @@ private:
 
 /// Predicate that indicates whether a given path exists
 ///
-/// \note Does not expand environment variables in the argument passed to 
+/// \note Does not expand environment variables in the argument passed to
 /// the function call operator
 ///
 /// \param C The character type
@@ -191,12 +191,12 @@ public:
     typedef path_exists<C, A>                                   class_type;
 
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k S>
     us_bool_t operator ()(S const &s) const
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     us_bool_t operator ()(argument_type s) const
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return traits_type::file_exists(stlsoft_ns_qual(c_str_ptr)(s));
     }

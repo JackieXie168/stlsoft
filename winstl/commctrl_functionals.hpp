@@ -4,11 +4,11 @@
  * Purpose:     Functionals for application to common controls.
  *
  * Created:     8th October 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_MINOR       1
-# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_EDIT        53
+# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_MINOR       2
+# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_REVISION    3
+# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -108,10 +108,6 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS)
-stlsoft_ns_using(c_str_ptr)
-#endif /* compiler */
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
 /// \weakgroup libraries STLSoft Libraries
@@ -164,14 +160,14 @@ public:
         , m_iImage(rhs.m_iImage)
     {}
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     template <ss_typename_param_k S>
     ws_int_t operator ()(S const &s)
     {
-        return insert_item(c_str_ptr(s));
+        return insert_item(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator taking the item string
     ws_int_t operator ()(const ws_char_a_t *s)
     {
@@ -284,7 +280,7 @@ public:
     {}
 
 public:
-    template <typename S>
+    template <ss_typename_param_k S>
     HTREEITEM operator () (S const &s)
     {
         return insert_item(stlsoft_ns_qual(c_str_ptr)(s));

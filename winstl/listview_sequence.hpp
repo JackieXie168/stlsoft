@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     26th January 2006
+ * Updated:     24th March 2006
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      3
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      4
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   2
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       48
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@ STLSOFT_COMPILER_IS_BORLAND:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
@@ -89,14 +89,14 @@ STLSOFT_COMPILER_IS_BORLAND:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
 # include <stlsoft/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 typedef stlsoft_ns_qual(basic_simple_string)<TCHAR> lvs_string_t;
 #else
 typedef stlsoft_ns_qual(basic_simple_string)<   TCHAR
                                             ,   stlsoft_ns_qual(stlsoft_char_traits)<TCHAR>
                                             ,   winstl_ns_qual(processheap_allocator)<TCHAR>
                                             >       lvs_string_t;
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
@@ -238,7 +238,7 @@ public:
     typedef ss_size_t               size_type;
     /// The difference type
     typedef ws_ptrdiff_t            difference_type;
-    /// 
+    ///
     typedef listview_sequence       sequence_class_type;
 
 
@@ -395,7 +395,7 @@ public:
         int     m_index;
     };
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef stlsoft_ns_qual(const_reverse_iterator_base)<   const_iterator
                                                         ,   value_type
@@ -403,7 +403,7 @@ public:
                                                         ,   void        // By-Value Temporary reference category
                                                         ,   difference_type
                                                         >   const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // State
 public:
@@ -434,7 +434,7 @@ public:
         return const_iterator(m_hwndListView, static_cast<int>(size()));
     }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -449,7 +449,7 @@ public:
     {
         return const_reverse_iterator(begin());
     }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Accessors
 public:

@@ -4,11 +4,11 @@
  * Purpose:     WinSTL performance counter scoping class.
  *
  * Created:     20th July 2002
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_SCOPE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_SCOPE_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     31
+# define WINSTL_VER_WINSTL_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Range exceptions.
  *
  * Created:     30th December 2005
- * Updated:     31st December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_MAJOR     1
 # define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_MINOR     0
-# define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_REVISION  1
-# define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_EDIT      1
+# define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_REVISION  4
+# define RANGELIB_VER_RANGELIB_HPP_EXCEPTIONS_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -135,11 +135,13 @@ public:
     ss_explicit_k range_exception(char const *reason = NULL)
         : m_reason((NULL == reason) ? "" : reason)
     {}
-#if defined(STLSOFT_COMPILER_IS_COMO) || \
-    defined(STLSOFT_COMPILER_IS_GCC)
-    ~range_exception() stlsoft_throw_0()
+    /// Destructor
+    ///
+    /// \note This does not do have any implementation, but is required to placate
+    /// the Comeau and GCC compilers, which otherwise complain about mismatched
+    /// exception specifications between this class and its parent
+    virtual ~range_exception() stlsoft_throw_0()
     {}
-#endif /* compiler */
 /// @}
 
 /// \name Accessors
@@ -187,11 +189,13 @@ public:
     ss_explicit_k empty_range_exception(char const *reason = NULL)
         : parent_class_type(reason)
     {}
-#if defined(STLSOFT_COMPILER_IS_COMO) || \
-    defined(STLSOFT_COMPILER_IS_GCC)
-    ~empty_range_exception() stlsoft_throw_0()
+    /// Destructor
+    ///
+    /// \note This does not do have any implementation, but is required to placate
+    /// the Comeau and GCC compilers, which otherwise complain about mismatched
+    /// exception specifications between this class and its parent
+    virtual ~empty_range_exception() stlsoft_throw_0()
     {}
-#endif /* compiler */
 /// @}
 
 /// \name Implementation

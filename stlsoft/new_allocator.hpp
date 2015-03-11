@@ -4,11 +4,11 @@
  * Purpose:     stlsoft_new_allocator class - use new & delete operators.
  *
  * Created:     2nd January 2001
- * Updated:     21st December 2005
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_MINOR    2
-# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_REVISION 2
-# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_EDIT     66
+# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_MAJOR    4
+# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_MINOR    0
+# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_REVISION 1
+# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -59,190 +59,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 
-/* ////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include stlsoft/memory/new_allocator.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef _STLSOFT_NO_NAMESPACE
-namespace stlsoft
-{
-#endif /* _STLSOFT_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_allocator Allocator Library
-/// \ingroup libraries
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-
-/// \weakgroup stlsoft_allocator_library Allocator Library (STLSoft)
-/// \ingroup STLSoft libraries_allocator
-/// \brief This library provides STL-compatible <code><b>allocator</b></code> types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-/// STL Allocator based on operators \c new and \c delete
-///
-/// \param T The value_type of the allocator
-template <ss_typename_param_k T>
-class new_allocator
-    : public allocator_base<T, new_allocator<T> >
-{
-private:
-    typedef allocator_base<T, new_allocator<T> >                    parent_class_type;
-public:
-    /// The parameterisation of the class
-    typedef new_allocator<T>                                        class_type;
-    /// The value type
-    typedef ss_typename_type_k parent_class_type::value_type        value_type;
-    /// The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer           pointer;
-    /// The non-mutating (const) pointer type
-    typedef ss_typename_type_k parent_class_type::const_pointer     const_pointer;
-    /// The reference type
-    typedef ss_typename_type_k parent_class_type::reference         reference;
-    /// The non-mutating (const) reference type
-    typedef ss_typename_type_k parent_class_type::const_reference   const_reference;
-    /// The difference type
-    typedef ss_typename_type_k parent_class_type::difference_type   difference_type;
-    /// The size type
-    typedef ss_typename_type_k parent_class_type::size_type         size_type;
-
-public:
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator's <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef new_allocator<U>                                    other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-
-/// \name Construction
-/// @{
-public:
-    /// Default constructor
-    new_allocator() stlsoft_throw_0()
-    {}
-    /// Copy constructor
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    template <typename U>
-    new_allocator(new_allocator<U> const &)
-    {}
-#else /* ? STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-    new_allocator(class_type const &)
-    {}
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-/// @}
-
-private:
-    friend class allocator_base<T, new_allocator<T> >;
-
-    void *do_allocate(size_type n, void const *hint)
-    {
-        STLSOFT_SUPPRESS_UNUSED(hint);
-
-#if defined(new) || \
-    defined(delete)
-        return new ss_byte_t[n * sizeof(value_type)];
-#else /* ? new || delete */
-        return ::operator new (n * sizeof(value_type));
-#endif /* new || delete */
-    }
-    void do_deallocate(void *pv, size_type n)
-    {
-        STLSOFT_SUPPRESS_UNUSED(n);
-
-#if defined(new) || \
-    defined(delete)
-        delete [] static_cast<ss_byte_t*>(pv);
-#else /* ? new || delete */
-        ::operator delete (pv);
-#endif /* new || delete */
-    }
-    void do_deallocate(void *pv)
-    {
-#if defined(new) || \
-    defined(delete)
-        delete [] static_cast<ss_byte_t*>(pv);
-#else /* ? new || delete */
-        ::operator delete (pv);
-#endif /* new || delete */
-    }
-
-private:
-//    class_type &operator =(class_type const &);
-};
-
-
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-// Specialisation for void
-STLSOFT_TEMPLATE_SPECIALISATION
-class new_allocator<void>
-{
-public:
-    typedef void                    value_type;
-    typedef new_allocator<void>     class_type;
-    typedef void                    *pointer;
-    typedef void const              *const_pointer;
-    typedef ptrdiff_t               difference_type;
-    typedef ss_size_t               size_type;
-
-#ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
-    /// The allocator <b><code>rebind</code></b> structure
-    template <ss_typename_param_k U>
-    struct rebind
-    {
-        typedef new_allocator<U>    other;
-    };
-#endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-inline ss_bool_t operator ==(const new_allocator<T> &/* lhs */, const new_allocator<T> &/* rhs */)
-{
-    return ss_true_v;
-}
-
-template <ss_typename_param_k T>
-inline ss_bool_t operator !=(const new_allocator<T> &/* lhs */, const new_allocator<T> &/* rhs */)
-{
-    return ss_false_v;
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-////////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/new_allocator_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group stlsoft_allocator_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR
+# include <stlsoft/memory/new_allocator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

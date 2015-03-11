@@ -4,11 +4,11 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     31st January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MAJOR     3
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MINOR     2
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_MINOR     3
 # define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      42
+# define WINSTL_VER_WINSTL_H_WINDOW_FUNCTIONS_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -148,7 +148,7 @@ STLSOFT_INLINE ws_int_t winstl__IsWindowClassA(HWND hwnd, ws_char_a_t const *nam
     WINSTL_ASSERT(NULL != hwnd);
     WINSTL_ASSERT(NULL != name);
 
-    stlsoft_static_cast(void, STLSOFT_NS_GLOBAL(GetClassNameA)(hwnd, szName, stlsoft_num_elements(szName)));
+    stlsoft_static_cast(void, STLSOFT_NS_GLOBAL(GetClassNameA)(hwnd, szName, STLSOFT_NUM_ELEMENTS(szName)));
 
     return 0 == STLSOFT_NS_GLOBAL(lstrcmpiA)(szName, name);
 }
@@ -161,7 +161,7 @@ STLSOFT_INLINE ws_int_t winstl__IsWindowClassW(HWND hwnd, ws_char_w_t const *nam
     WINSTL_ASSERT(NULL != hwnd);
     WINSTL_ASSERT(NULL != name);
 
-    stlsoft_static_cast(void, STLSOFT_NS_GLOBAL(GetClassNameW)(hwnd, szName, stlsoft_num_elements(szName)));
+    stlsoft_static_cast(void, STLSOFT_NS_GLOBAL(GetClassNameW)(hwnd, szName, STLSOFT_NUM_ELEMENTS(szName)));
 
     return 0 == STLSOFT_NS_GLOBAL(lstrcmpiW)(szName, name);
 }
@@ -302,8 +302,6 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, int iconI
     return set_window_icon(hwnd, iconType, ::LoadIcon(hinst, MAKEINTRESOURCE(iconId)));
 }
 
-
-
 /* ////////////////////////////////////////////////////////////////////////// */
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -313,9 +311,9 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, int iconI
 #elif defined(STLSOFT_COMPILER_IS_MSVC)
 # if _MSC_VER > 1200
 #  define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3
-# else /* ? _MSC_VER */
+# else /* ? compiler */
 #  define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2
-# endif /* _MSC_VER */
+# endif /* compiler */
 #else /* ? compiler */
 # define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1
 #endif /* compiler */

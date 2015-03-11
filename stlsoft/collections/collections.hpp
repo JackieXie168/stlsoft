@@ -4,7 +4,7 @@
  * Purpose:     Collection types.
  *
  * Created:     10th January 2006
- * Updated:     11th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_MINOR      1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_REVISION	1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_EDIT       2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_REVISION   1
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_COLLECTIONS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ namespace stlsoft
 /// \brief STL-extension collections
 
 /// \weakgroup pod_collections POD Collections
-/// \brief Collections for manipulating POD types 
+/// \brief Collections for manipulating POD types
 /// \ingroup collections
 /// @{
 
@@ -92,20 +92,20 @@ struct stl_collection_tag
 {};
 
 #if 0
-template<	typename	V
-		,	int			R
-		,	int			W
-		,	int			C
-		>
+template<   ss_typename_param_k V
+        ,   int                 R
+        ,   int                 W
+        ,   int                 C
+        >
 struct collection
-	: public collection_tag
+    : public collection_tag
 {
 public:
-	enum { is_read			=	R	};
-	enum { is_write			=	W	};
-	enum { is_contiguous	=	C	};
+    enum { is_read          =   R   };
+    enum { is_write         =   W   };
+    enum { is_contiguous    =   C   };
 
-	typedef V				value_type;
+    typedef V               value_type;
 };
 #endif /* 0 */
 

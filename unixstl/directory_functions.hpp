@@ -4,7 +4,7 @@
  * Purpose:     Contains some Win32 file-system functions.
  *
  * Created:     7th February 2002
- * Updated:     19th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_MINOR      4
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_EDIT       23
+# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -385,7 +385,7 @@ inline us_int_t remove_directory_recurse_impl(C const *dir, us_int_t (*pfn)(void
                                                 }
                                             }
                                         }
-                                        else 
+                                        else
                                         {
                                             // If it's a directory, then pfn is consulted, otherwise
                                             // it's an automatic attempt to recursively delete
@@ -477,14 +477,14 @@ inline us_bool_t create_directory_recurse(S const &dir, unsigned short mode = 07
 ///
 /// \param dir The path of the directory to remove
 /// \param pfn Pointer to a callback function, which will receive notifications
-///         and requests for file/directory deletion. The semantics of the 
+///         and requests for file/directory deletion. The semantics of the
 ///         parameters are specified in the note below
 /// \param param Caller-supplied parameter, passed through to the callback
 ///         function
 ///
 /// \note If no callback function is specified, then the function will remove
 ///        only empty subdirectories, i.e. no files will be removed. To remove
-///        files, a function must be 
+///        files, a function must be
 ///
 /// \note The semantics of the callback function's parameters are as follows:
 /// \par If the err param is ~0 (-1 on UNIX), then the dir param specifies

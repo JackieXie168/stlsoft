@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     26th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MINOR       7
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        24
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    4
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,9 @@ STLSOFT_COMPILER_IS_COMO:
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION
 # include <winstl/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION */
@@ -125,7 +125,7 @@ public:
     /// The value type
     typedef DWORD                                                           value_type;
     /// The allocator type
-    typedef processheap_allocator<value_type>                               allocator_type; 
+    typedef processheap_allocator<value_type>                               allocator_type;
     /// The class type
     typedef pid_sequence                                                    class_type;
     /// The non-mutating (const) pointer type
@@ -141,7 +141,7 @@ public:
     typedef ws_size_t                                                       size_type;
     /// The difference type
     typedef ws_ptrdiff_t                                                    difference_type;
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)< const_iterator
                                                                     ,   value_type
@@ -149,7 +149,7 @@ public:
                                                                     ,   const_pointer
                                                                     ,   difference_type
                                                                     >       const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
     enum
     {
@@ -164,7 +164,7 @@ public:
 public:
     /// Constructs a sequence from the current processes in the host system
     ss_explicit_k pid_sequence(ws_uint32_t flags = elideIdle | elideSystem);
-    /// Copies the contents of the sequence 
+    /// Copies the contents of the sequence
     pid_sequence(class_type const &rhs);
     /// Releases the storage associated with the process id list
     ~pid_sequence() stlsoft_throw_0();
@@ -182,7 +182,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -191,7 +191,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Element Access
@@ -388,7 +388,7 @@ inline pid_sequence::const_iterator pid_sequence::end() const
     return &*m_pids.end();
 }
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 inline pid_sequence::const_reverse_iterator pid_sequence::rbegin() const
 {
     return const_reverse_iterator(end());
@@ -398,7 +398,7 @@ inline pid_sequence::const_reverse_iterator pid_sequence::rend() const
 {
     return const_reverse_iterator(begin());
 }
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 inline pid_sequence::const_reference pid_sequence::operator [](pid_sequence::size_type index) const
 {

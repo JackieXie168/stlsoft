@@ -4,11 +4,11 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     26th January 2006
+ * Updated:     28th March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PATH_MAJOR       5
-# define WINSTL_VER_WINSTL_HPP_PATH_MINOR       4
-# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        192
+# define WINSTL_VER_WINSTL_HPP_PATH_MINOR       8
+# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    1
+# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        202
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,12 +65,12 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
 # include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
+# include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -103,10 +103,6 @@ namespace winstl_project
 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
-
-#if !defined(STLSOFT_COMPILER_IS_MWERKS)
-stlsoft_ns_using(c_str_ptr)
-#endif /* compiler */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
@@ -141,13 +137,13 @@ stlsoft_ns_using(c_str_ptr)
 /// has been added without requiring any major fundamental changes to the original
 /// <code>push/pop</code>-based interface
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
         ,   ss_typename_param_k A = processheap_allocator<C>
-#else
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
         ,   ss_typename_param_k A /* = processheap_allocator<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_path
 {
@@ -176,7 +172,7 @@ public:
     basic_path();
     /// Constructs a path from \c path
     ss_explicit_k basic_path(char_type const *path);
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs a path from \c path
     template<ss_typename_param_k S>
     ss_explicit_k basic_path(S const &s)
@@ -186,7 +182,7 @@ public:
         traits_type::str_n_copy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), m_len);
         m_buffer[m_len] = '\0';
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// Constructs a path from \c cch characters in \c path
     basic_path(char_type const *path, size_type cch);
 
@@ -198,24 +194,24 @@ public:
     class_type &operator =(class_type const &rhs);
 #endif /* !STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD */
     class_type &operator =(char_type const *rhs);
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template<ss_typename_param_k S>
     class_type &operator =(S const &s)
     {
         return operator =(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
     // Creates a root path
     static class_type root(char_type const *s);
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     // Creates a root path
     template<ss_typename_param_k S>
     static class_type root(S const &s)
     {
         return root(stlsoft_ns_qual(c_str_ptr)(s));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 /// @}
 
 /// \name Operations
@@ -228,21 +224,22 @@ public:
     class_type &push_sep();
     class_type &pop();
     class_type &pop_sep();
+    class_type &pop_ext();
 
     class_type &operator /=(char_type const *rhs);
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED)
     class_type &operator /=(class_type const &rhs);
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     template <ss_typename_param_k S>
     class_type &operator /=(S const &rhs)
     {
         return operator /=(stlsoft_ns_qual(c_str_ptr)(rhs));
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
     class_type &make_absolute(ws_bool_t bRemoveTrailingPathNameSeparator = true);
     class_type &canonicalise(ws_bool_t bRemoveTrailingPathNameSeparator = true);
@@ -341,13 +338,13 @@ typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
     template<   ss_typename_param_k C
-    #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k T = filesystem_traits<C>
             ,   ss_typename_param_k A = processheap_allocator<C>
-    #else
+# else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k T /* = filesystem_traits<C> */
             ,   ss_typename_param_k A /* = processheap_allocator<C> */
-    #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >
     class basic_path__
         : public winstl_ns_qual(basic_path)<C, T, A>
@@ -368,13 +365,13 @@ typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
         ss_explicit_k basic_path__(char_type const *path)
             : parent_class_type(path)
         {}
-# ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         /// Constructs a path from \c path
         template<ss_typename_param_k S>
         ss_explicit_k basic_path__(S const &s)
             : parent_class_type(s)
         {}
-# endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
         basic_path__(char_type const *path, size_type cch)
             : parent_class_type(path, cch)
         {}
@@ -394,7 +391,7 @@ typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
 
             return *this;
         }
-# ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         template<ss_typename_param_k S>
         class_type &operator =(S const &s)
         {
@@ -402,7 +399,7 @@ typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
 
             return *this;
         }
-# endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -508,7 +505,7 @@ inline basic_path<C> make_path(C const *path)
     return basic_path<C>(path);
 }
 
-#endif /* !(_MSC_VER < 1100) */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * swapping
@@ -939,8 +936,35 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop_sep()
     return *this;
 }
 
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline basic_path<C, T, A> &basic_path<C, T, A>::pop_ext()
+{
+    { for(size_t len = m_len; 0 != len; --len)
+    {
+        char_type   *last = &m_buffer[len - 1];
 
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
+        if(traits_type::is_path_name_separator(*last))
+        {
+            break;
+        }
+        else if('.' == *last)
+        {
+            m_len = len - 1;
+
+            m_buffer[m_len] = '\0';
+
+            break;
+        }
+    }}
+
+    return *this;
+}
+
+
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED)
 
 template<   ss_typename_param_k C
@@ -952,7 +976,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::operator /=(basic_path<C, T, A>
     return push(path);
 }
 
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1320,10 +1344,10 @@ inline ws_bool_t basic_path<C, T, A>::equal(ss_typename_type_k basic_path<C, T, 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -1339,7 +1363,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

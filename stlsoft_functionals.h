@@ -4,11 +4,11 @@
  * Purpose:     Basic functionals.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     6th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_MINOR    1
+# define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_MINOR    2
 # define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_EDIT     36
+# define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -155,9 +155,9 @@ public:
 ///
 /// \param F The parameterising functional
 template<   ss_typename_param_k F
-#ifndef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         ,   ss_typename_param_k T
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         >
 // [[synesis:class:unary-functor: selector1st]]
 struct selector1st
@@ -187,9 +187,9 @@ public:
     /// \param t An instance of a \c pair like type, to whose \c first member will be applied the function F
     // Regrettably, the current implementation only provides an instantiation
     // returning void
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k T>
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     result_type operator ()(T const &t) const
     {
         return m_f(t.first);
@@ -200,16 +200,16 @@ private:
     F   m_f;
 };
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 template<   ss_typename_param_k F
         >
 inline selector1st<F> select1st(F f)
 {
     return selector1st<F>(f);
 }
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
 // struct selector2nd
 //
@@ -228,9 +228,9 @@ inline selector1st<F> select1st(F f)
 /// \param F The parameterising functional
 
 template<   ss_typename_param_k F
-#ifndef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         ,   ss_typename_param_k T
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         >
 // [[synesis:class:unary-functor: selector2nd]]
 struct selector2nd
@@ -260,9 +260,9 @@ public:
     /// \param t An instance of a \c pair like type, to whose \c second member will be applied the function F
     // Regrettably, the current implementation only provides an instantiation
     // returning void
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k T>
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     result_type operator ()(T &t) const
     {
         return m_f(t.second);
@@ -289,9 +289,9 @@ private:
 ///
 /// \param F The parameterising functional
 template<   ss_typename_param_k F
-#ifndef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         ,   ss_typename_param_k T
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         >
 // [[synesis:class:unary-functor: select_1st]]
 struct select_1st
@@ -317,9 +317,9 @@ public:
     ///
     /// \note Regrettably, the current implementation only provides an instantiation
     /// returning void
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k T>
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     void operator ()(T &t)
     {
         m_f(t.first);
@@ -330,16 +330,16 @@ private:
     F   m_f;
 };
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 template<   ss_typename_param_k F
         >
 inline select_1st<F> make_1st_selector(F f)
 {
     return select_1st<F>(f);
 }
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
 // struct select_2nd
 //
@@ -358,9 +358,9 @@ inline select_1st<F> make_1st_selector(F f)
 /// \param F The parameterising functional
 
 template<   ss_typename_param_k F
-#ifndef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         ,   ss_typename_param_k T
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         >
 // [[synesis:class:unary-functor: select_2nd]]
 struct select_2nd
@@ -384,9 +384,9 @@ public:
     /// \param t An instance of a \c pair like type, to whose \c second member will be applied the function F
     // Regrettably, the current implementation only provides an instantiation
     // returning void
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k T>
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     void operator ()(T &t)
     {
         m_f(t.second);
@@ -415,17 +415,17 @@ private:
 
 template<   ss_typename_param_k F1
         ,   ss_typename_param_k F2
-#ifndef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         ,   ss_typename_param_k T
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         >
 // [[synesis:class:unary-functor: select_both]]
 struct select_both
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     : public stlsoft_ns_qual_std(unary_function)<void, void>
 #else
     : public stlsoft_ns_qual_std(unary_function)<T &, void>
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 {
 public:
     /// Default constructor
@@ -447,9 +447,9 @@ public:
     /// \param t An instance of a \c pair like type, to whose \c first and \c second members will be applied the functions F1 and F2
     // Regrettably, the current implementation only provides an instantiation
     // returning void
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k T>
-#endif // __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     void operator ()(T &t)
     {
         m_f1(t.first);

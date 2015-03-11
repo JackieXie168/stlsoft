@@ -4,11 +4,11 @@
  * Purpose:     A simple object enumerator, based on ArrayList.
  *
  * Created:     24th June 2003
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_H_DOTNETSTL_OBJECT_ENUMERATORS_MAJOR     3
 # define DOTNETSTL_VER_H_DOTNETSTL_OBJECT_ENUMERATORS_MINOR     2
-# define DOTNETSTL_VER_H_DOTNETSTL_OBJECT_ENUMERATORS_REVISION  1
-# define DOTNETSTL_VER_H_DOTNETSTL_OBJECT_ENUMERATORS_EDIT      17
+# define DOTNETSTL_VER_H_DOTNETSTL_OBJECT_ENUMERATORS_REVISION  2
+# define DOTNETSTL_VER_H_DOTNETSTL_OBJECT_ENUMERATORS_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -57,12 +57,12 @@
  */
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL
-# include <dotnetstl/dotnetstl.h>
+# include <dotnetstl/dotnetstl.hpp>
 #endif /* !DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include dotnetstl/object_enumerators.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_HPP_OBJECT_ENUMERATORS
 # include <dotnetstl/object_enumerators.hpp>

@@ -4,11 +4,11 @@
  * Purpose:     Class to convert built-in & aggregate types to 1st class types.
  *
  * Created:     8th September 2002
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_FIRST_CLASS_PROMOTER_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_FIRST_CLASS_PROMOTER_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_FIRST_CLASS_PROMOTER_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_FIRST_CLASS_PROMOTER_EDIT        31
+# define STLSOFT_VER_H_STLSOFT_FIRST_CLASS_PROMOTER_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/first_class_promoter.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FIRST_CLASS_PROMOTER
 # include <stlsoft/first_class_promoter.hpp>

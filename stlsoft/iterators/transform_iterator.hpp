@@ -5,7 +5,7 @@
  *              the values from the iterator's underlying sequence.
  *
  * Created:     6th February 1999
- * Updated:     31st January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  12
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      101
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -132,14 +132,14 @@ public:
 #endif /* 0 */
 
 
-/// Transforms the elements of an iterator 
+/// Transforms the elements of an iterator
 ///
 /// I The iterator to transform
 /// F The unary function that will be used to transform the values
 ///
-/// \note The iterator provides the same iterator category as the base iterator type I 
+/// \note The iterator provides the same iterator category as the base iterator type I
 ///  (which is mapped to the member type \c iterator_type), but it always provides
-///  By-Value Temporary (BVT) element references, so its pointer and reference member types 
+///  By-Value Temporary (BVT) element references, so its pointer and reference member types
 ///  are always void.
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
@@ -230,14 +230,14 @@ public:
     {}
 # endif /* 0 */
 
-    template <typename F2>
+    template <ss_typename_param_k F2>
     transform_iterator(transform_iterator<I, F2> const &rhs)
         : m_it(rhs.m_it)
         , m_transformer()
     {}
 
 # if 0
-    template <typename F2>
+    template <ss_typename_param_k F2>
     operator transform_iterator<I, F2>() const
     {
         return transform_iterator<I, F2>(m_it, F2());

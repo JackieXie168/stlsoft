@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     13th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_EDIT     34
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_MINOR    4
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_BLOCK_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,15 +63,18 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 # include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
+# include <stlsoft/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -113,15 +116,41 @@ namespace winstl_project
  * Classes
  */
 
-/// Class used for preparing environment blocks
+/// Class used for preparing environment blocks compatible with the Windows
+/// CreateProcess() function.
+///
+/// It is used as follows:
+/// \htmlonly
+/// <pre>
+///
+/// winstl::environment_block   env;
+///
+/// env.push_back("Name1", "Value1"); // Insert separate name and value
+/// env.push_back("Name2=Value2");    // Insert composite name and value
+///
+/// ::CreateProcess(  . . . // application name
+///                ,  . . . // command line
+///                ,  . . . // process attributes
+///                ,  . . . // thread attributes
+///                ,  . . . // handle inherit boolean
+///                ,  . . . // creation flags
+///                ,  const_cast&lt;void*&gt;(env.base()) // The environment
+///                ,  . . . // current directory
+///                ,  . . . // statup info
+///                ,  . . . // process info);
+///
+/// </pre>
+/// \endhtmlonly
+///
+///
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = char_traits<C>
         ,   ss_typename_param_k A = processheap_allocator<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = char_traits<C> */
         ,   ss_typename_param_k A /* = processheap_allocator<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_environment_block
 {
@@ -145,18 +174,26 @@ public:
 /// \name Construction
 /// @{
 public:
+    /// Constructs an empty block
     basic_environment_block()
         : m_buffer(2)
     {
         m_buffer[0] = '\0';
         m_buffer[1] = '\0';
     }
+    /// Constructs the block with a copy of the given instance
     basic_environment_block(class_type const &rhs)
         : m_buffer(rhs.m_buffer.size())
     {
         pod_copy_n(&m_buffer.data()[0], &rhs.m_buffer.data()[0], m_buffer.size());
     }
 
+    /// Copies the contents of the given instance
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// std::bad_alloc if memory cannot be acquired. When compiling absent
+    /// exception support, failure to acquire memory will leave the
+    /// instance unchanged.
     class_type &operator =(class_type const &rhs)
     {
         if(m_buffer.resize(rhs.m_buffer.size()))
@@ -171,12 +208,25 @@ public:
 /// \name Operations
 /// @{
 public:
-    /// \brief Append a full NAME=VALUE environment pair
-    void push_back(char_type const *s, size_t cch)
+    /// \brief Append a full NAME=VALUE environment variable
+    ///
+    /// \param variable The variable
+    /// \param cch The length of the variable
+    ///
+    /// \return An indication of success. This will always return true when
+    /// compiling with exception support.
+    ///
+    /// \note The variable must contain an equal sign ('=')
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// std::bad_alloc if memory cannot be acquired. When compiling absent
+    /// exception support, failure to acquire memory will cause the method
+    /// to return false.
+    ws_bool_t push_back(char_type const *variable, size_t cch)
     {
-        WINSTL_ASSERT(NULL != s);
+        WINSTL_ASSERT(NULL != variable);
         WINSTL_ASSERT(cch >= 3);
-        WINSTL_ASSERT(NULL != traits_type::find(s, cch, '='));
+        WINSTL_ASSERT(NULL != traits_type::find(variable, cch, '='));
 
         size_type   oldSize = m_buffer.size();
 
@@ -184,27 +234,61 @@ public:
         WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 1]);
         WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 2]);
 
-        m_buffer.resize(oldSize + cch + 1);
+        if(!m_buffer.resize(oldSize + cch + 1))
+        {
+            return false;
+        }
+        else
+        {
+            traits_type::copy(&m_buffer[oldSize - 1], variable, cch);
+            m_buffer[m_buffer.size() - 2] = '\0';
+            m_buffer[m_buffer.size() - 1] = '\0';
 
-        traits_type::copy(&m_buffer[oldSize - 1], s, cch);
-        m_buffer[m_buffer.size() - 2] = '\0';
-        m_buffer[m_buffer.size() - 1] = '\0';
+            WINSTL_ASSERT(m_buffer.size() > 1);
+            WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 1]);
+            WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 2]);
 
-        WINSTL_ASSERT(m_buffer.size() > 1);
-        WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 1]);
-        WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 2]);
+            return true;
+        }
     }
-    template <typename S>
-    void push_back(S const &s)
+    /// \brief Append a NAME= environment variable
+    ///
+    /// \param variable The variable
+    ///
+    /// \return An indication of success. This will always return true when
+    /// compiling with exception support.
+    ///
+    /// \note The variable must contain an equal sign ('=')
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// std::bad_alloc if memory cannot be acquired. When compiling absent
+    /// exception support, failure to acquire memory will cause the method
+    /// to return false.
+    template <ss_typename_param_k S>
+    ws_bool_t push_back(S const &variable)
     {
-        push_back(stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s));
+        return push_back(stlsoft_ns_qual(c_str_data)(variable), stlsoft_ns_qual(c_str_len)(variable));
     }
-    void push_back(char_type const *name, size_t cchName, char_type const *value, size_t cchValue)
+    /// \brief Append a full NAME=VALUE environment pair
+    ///
+    /// \param name The variable name
+    /// \param cchName The length of the variable name
+    /// \param value The variable value
+    /// \param cchValue The length of the variable value
+    ///
+    /// \return An indication of success. This will always return true when
+    /// compiling with exception support.
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// std::bad_alloc if memory cannot be acquired. When compiling absent
+    /// exception support, failure to acquire memory will cause the method
+    /// to return false.
+    ws_bool_t push_back(char_type const *name, size_t cchName, char_type const *value, size_t cchValue)
     {
         WINSTL_ASSERT(NULL != name);
         WINSTL_ASSERT(NULL != value);
         WINSTL_ASSERT(cchName > 1);
-        WINSTL_ASSERT(cchValue > 1);
+//        WINSTL_ASSERT(cchValue > 1);
 
         size_type   oldSize = m_buffer.size();
 
@@ -212,25 +296,47 @@ public:
         WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 1]);
         WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 2]);
 
-        m_buffer.resize(oldSize + cchName + 1 + cchValue + 1);
+        if(!m_buffer.resize(oldSize + cchName + 1 + cchValue + 1))
+        {
+            return false;
+        }
+        else
+        {
+            traits_type::copy(&m_buffer[oldSize - 2], name, cchName);
+            m_buffer[oldSize - 2 + cchName] = '=';
+            traits_type::copy(&m_buffer[oldSize - 2 + cchName + 1], value, cchValue);
+            m_buffer[oldSize - 2 + cchName + 1 + cchValue] = '\0';
+            m_buffer[m_buffer.size() - 2] = '\0';
+            m_buffer[m_buffer.size() - 1] = '\0';
 
-        traits_type::copy(&m_buffer[oldSize - 2], name, cchName);
-        m_buffer[oldSize - 2 + cchName] = '=';
-        traits_type::copy(&m_buffer[oldSize - 2 + cchName + 1], value, cchValue);
-        m_buffer[oldSize - 2 + cchName + 1 + cchValue] = '\0';
-        m_buffer[m_buffer.size() - 2] = '\0';
-        m_buffer[m_buffer.size() - 1] = '\0';
+            WINSTL_ASSERT(m_buffer.size() > 1);
+            WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 1]);
+            WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 2]);
 
-        WINSTL_ASSERT(m_buffer.size() > 1);
-        WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 1]);
-        WINSTL_ASSERT('\0' == m_buffer[m_buffer.size() - 2]);
+            return true;
+        }
     }
-    template <typename S1, typename S2>
-    void push_back(S1 const &name, S2 const &value)
+    /// \brief Append a full NAME=VALUE environment pair
+    ///
+    /// \param name The variable name
+    /// \param value The variable value
+    ///
+    /// \return An indication of success. This will always return true when
+    /// compiling with exception support.
+    ///
+    /// \exception When compiling with exception support, this will throw
+    /// std::bad_alloc if memory cannot be acquired. When compiling absent
+    /// exception support, failure to acquire memory will cause the method
+    /// to return false.
+    template<   ss_typename_param_k S1
+            ,   ss_typename_param_k S2
+            >
+    ws_bool_t push_back(S1 const &name, S2 const &value)
     {
-        push_back(stlsoft_ns_qual(c_str_data)(name), stlsoft_ns_qual(c_str_len)(name), stlsoft_ns_qual(c_str_data)(value), stlsoft_ns_qual(c_str_len)(value));
+        return push_back(stlsoft_ns_qual(c_str_data)(name), stlsoft_ns_qual(c_str_len)(name), stlsoft_ns_qual(c_str_data)(value), stlsoft_ns_qual(c_str_len)(value));
     }
 
+    /// Empties the block of all variables
     void clear()
     {
         m_buffer.resize(2);
@@ -238,18 +344,33 @@ public:
         m_buffer[0] = '\0';
         m_buffer[1] = '\0';
     }
+
+    /// Swaps the contents of the two instances
+    void swap(class_type &rhs) stlsoft_throw_0()
+    {
+        m_buffer.swap(rhs.m_buffer);
+    }
 /// @}
 
 /// \name Accessors
 /// @{
 public:
+    /// Returns a pointer to the block contents
     void const  *base() const
     {
         return m_buffer.data();
     }
-    size_type length() const
+    /// The number of characters in the block
+    size_type size() const
     {
         return m_buffer.size();
+    }
+    /// The number of characters in the block
+    ///
+    /// \note This method is a synonym for size()
+    size_type length() const
+    {
+        return size();
     }
 /// @}
 
@@ -267,7 +388,7 @@ private:
  * Typedefs for commonly encountered types
  */
 
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 
  /// Instantiation of the basic_path template for the ANSI character type \c char
 typedef basic_environment_block<ws_char_a_t>    environment_block_a;
@@ -276,7 +397,7 @@ typedef basic_environment_block<ws_char_w_t>    environment_block_w;
 /// Instantiation of the basic_environment_block template for the Win32 character type \c TCHAR
 typedef basic_environment_block<TCHAR>          environment_block;
 
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Unit-testing

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     27th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MAJOR    2
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    10
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 5
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     98
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    11
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 3
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -91,9 +91,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS
-# include <stlsoft/tokeniser_functions.hpp> // for find_next_token
-#endif /* !STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS
+# include <stlsoft/tokenising/tokeniser_functions.hpp> // for find_next_token
+#endif /* !STLSOFT_INCL_STLSOFT_TOKENISING_HPP_TOKENISER_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
@@ -184,17 +184,17 @@ class basic_findfile_sequence_const_input_iterator;
 /// (http://www.windevnet.com/documents/win0303a/), in the March 2003 issue of
 /// Windows Developer Network (http://windevnet.com).
 template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ,   ss_typename_param_k X   =   throw_internet_exception_policy
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k X   =   stlsoft_ns_qual(null_exception_policy)
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = filesystem_traits<C> */
         ,   ss_typename_param_k X /* = throw_internet_exception_policy */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_findfile_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -206,7 +206,7 @@ public:
     typedef C                                                                   char_type;
     /// The exception policy type
     typedef X                                                                   exception_policy_type;
-    /// The type thrown 
+    /// The type thrown
     typedef ss_typename_param_k exception_policy_type::thrown_type              thrown_type;
     /// The traits type
     typedef T                                                                   traits_type;
@@ -396,7 +396,7 @@ public:
     typedef C                                                       char_type;
     /// The exception policy type
     typedef X                                                       exception_policy_type;
-    /// The type thrown 
+    /// The type thrown
     typedef ss_typename_param_k exception_policy_type::thrown_type  thrown_type;
     /// The traits type
     typedef T                                                       traits_type;
@@ -494,7 +494,7 @@ class basic_findfile_sequence_const_input_iterator
                                         ,   void    // By-Value Temporary reference
                                         ,   V       // By-Value Temporary reference
                                         >
-#endif /* !STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
 {
 /// \name Member Types
 /// @{
@@ -505,7 +505,7 @@ public:
     typedef C                                                           char_type;
     /// The exception policy type
     typedef X                                                           exception_policy_type;
-    /// The type thrown 
+    /// The type thrown
     typedef ss_typename_param_k exception_policy_type::thrown_type      thrown_type;
     /// The traits type
     typedef T                                                           traits_type;
@@ -849,7 +849,7 @@ inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T, X>::flags_t
     const flags_type    validFlags  =   0
                                     |   includeDots
                                     |   directories
-                                    |   files       
+                                    |   files
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
                                     |   noSort
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -1105,11 +1105,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::bool_type basic_findfile_sequence_value_type<C, T, X>::is_directory() const
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline is_bool_t basic_findfile_sequence_value_type<C, T, X>::is_directory() const
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     return traits_type::is_directory(&m_data);
 }
@@ -1117,11 +1117,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::bool_type basic_findfile_sequence_value_type<C, T, X>::is_file() const
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline is_bool_t basic_findfile_sequence_value_type<C, T, X>::is_file() const
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     return traits_type::is_file(&m_data);
 }
@@ -1129,11 +1129,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::bool_type basic_findfile_sequence_value_type<C, T, X>::is_read_only() const
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline is_bool_t basic_findfile_sequence_value_type<C, T, X>::is_read_only() const
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     return 0 != (m_data.dwFileAttributes & FILE_ATTRIBUTE_READONLY);
 }
@@ -1142,11 +1142,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::bool_type basic_findfile_sequence_value_type<C, T, X>::equal(ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::char_type const *rhs) const
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline is_bool_t basic_findfile_sequence_value_type<C, T, X>::equal(char_type const *rhs) const
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     return 0 == traits_type::str_compare(this->get_path(), rhs);
 }
@@ -1155,11 +1155,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k X
         >
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 inline ss_typename_type_k basic_findfile_sequence_value_type<C, T, X>::bool_type basic_findfile_sequence_value_type<C, T, X>::equal(basic_findfile_sequence_value_type<C, T, X> const &rhs) const
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline is_bool_t basic_findfile_sequence_value_type<C, T, X>::equal(basic_findfile_sequence_value_type<C, T, X> const &rhs) const
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     return equal(rhs.get_path());
 }
@@ -1188,15 +1188,15 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k V
         >
 inline /* static */ HINTERNET basic_findfile_sequence_const_input_iterator<C, T, X, V>::find_first_file_(  HINTERNET                                                                                   hconn
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
                                                                                                     ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::char_type const   *pattern
                                                                                                     ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::flags_type        flags
                                                                                                     ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::find_data_type    *findData)
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
                                                                                                     ,   char_type const                                                                             *pattern
                                                                                                     ,   flags_type                                                                                  flags
                                                                                                     ,   find_data_type                                                                              *findData)
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     HINTERNET   hSrch = traits_type::find_first_file(hconn, pattern, findData);
 
@@ -1265,17 +1265,17 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k V
         >
 inline basic_findfile_sequence_const_input_iterator<C, T, X, V>::basic_findfile_sequence_const_input_iterator( sequence_type const                                                                         &l
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
                                                                                                         ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::char_type const   *rootDir
                                                                                                         ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::char_type const   *patterns
                                                                                                         ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::char_type         delim
                                                                                                         ,   ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::flags_type        flags)
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
                                                                                                         ,   char_type const                                                                             *rootDir
                                                                                                         ,   char_type const                                                                             *patterns
                                                                                                         ,   char_type                                                                                   delim
                                                                                                         ,   flags_type                                                                                  flags)
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 
     : m_list(&l)
     , m_handle(NULL)
@@ -1331,9 +1331,9 @@ template<   ss_typename_param_k C
         >
 #ifndef STLSOFT_COMPILER_IS_WATCOM
 inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(ss_typename_param_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type const &rhs)
-#else /* ? STLSOFT_COMPILER_IS_WATCOM */
+#else /* ? compiler */
 inline basic_findfile_sequence_const_input_iterator<C, T, X, V> &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(basic_findfile_sequence_const_input_iterator<C, T, X, V> const &rhs)
-#endif /* STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
 {
     INETSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", NULL == m_list || NULL == rhs.m_list || m_list == rhs.m_list);    // Should only be comparing iterators from same container
 
@@ -1388,13 +1388,13 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, 
     // Possible call states:
     //
     //  1. starting out
-    //  2. 
+    //  2.
 
     for(; '\0' != *m_pattern0 || '\0' != *m_pattern1;)
     {
         if(NULL == m_handle)
         {
-            // Need to work through the 
+            // Need to work through the
 
             while(find_next_pattern_(m_pattern0, m_pattern1, m_delim))
             {
@@ -1526,11 +1526,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k X
         ,   ss_typename_param_k V
         >
-#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+#ifdef STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
 inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::bool_type basic_findfile_sequence_const_input_iterator<C, T, X, V>::equal(ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, X, V>::class_type const &rhs) const
-#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#else /* ? STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 inline is_bool_t basic_findfile_sequence_const_input_iterator<C, T, X, V>::equal(class_type const &rhs) const
-#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+#endif /* STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
     // Should only be comparing iterators from same container
     INETSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list);

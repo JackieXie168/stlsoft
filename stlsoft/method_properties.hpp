@@ -4,7 +4,7 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     12th January 2006
+ * Updated:     8th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_MINOR      3
-# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_EDIT       43
+# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -495,7 +495,7 @@ public:
 public:
 # else
 private:
-# endif /* STLSOFT_COMPILER_IS_DMC */
+# endif /* compiler */
     method_property_get()
     {}
 private:
@@ -576,9 +576,9 @@ class method_property_set
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 # if defined(STLSOFT_COMPILER_IS_DMC)
 public:
-# else
+# else /* ? compiler */
 private:
-# endif /* STLSOFT_COMPILER_IS_DMC */
+# endif /* compiler */
     method_property_set()
     {}
 private:
@@ -662,9 +662,9 @@ class method_property_getset
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 # if defined(STLSOFT_COMPILER_IS_DMC)
 public:
-# else
+# else /* ? compiler */
 private:
-# endif /* STLSOFT_COMPILER_IS_DMC */
+# endif /* compiler */
     method_property_getset()
     {}
 private:

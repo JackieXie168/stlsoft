@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     6th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    2
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 1
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     24
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp The root header for the \ref WTLSTL project */
@@ -257,14 +257,14 @@
 #  error Versions of Visual C++ prior to 5.0 are not supported by the WTLSTL libraries
 # endif /* _MSC_VER */
 
-#else
+#else /* ? compiler */
 /* No recognised compiler */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _WTLSTL_COMPILER_IS_UNKNOWN
 #  ifdef _STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to WTLSTL")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
-# else
+# else /* ? _STLSOFT_FORCE_ANY_COMPILER */
 #  error Currently only Borland C++, Digital Mars C/C++, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the WTLSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
@@ -397,13 +397,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def wtlstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if WTLSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define wtlstl_ns_qual_std(x)      ::std::x
 # define wtlstl_ns_using_std(x)     using ::std::x;
-#else
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define wtlstl_ns_qual_std(x)      x
 # define wtlstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /// \def wtlstl_ns_qual_atl(x)
 /// Qualifies with <b>ATL::</b> if WTLSTL is being translated in the context of ATL being within the <b>ATL</b> namespace or, if not, does not qualify
@@ -488,7 +488,12 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define wtlstl_num_elements(_x)                         stlsoft_num_elements(_x)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define WTLSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define wtlstl_num_elements(ar)						WTLSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

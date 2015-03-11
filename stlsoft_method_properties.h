@@ -4,11 +4,11 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_MINOR      3
 # define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_EDIT       39
+# define STLSOFT_VER_H_STLSOFT_METHOD_PROPERTIES_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/method_properties.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_METHOD_PROPERTIES
 # include <stlsoft/method_properties.hpp>

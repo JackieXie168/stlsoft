@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     30th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MAJOR    5
 # define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MINOR    6
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 3
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     209
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 5
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     212
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,13 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+#  include <stlsoft/meta/base_type_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_META
 #  include <stlsoft/meta.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
@@ -185,7 +191,7 @@ namespace comstl_project
 /// </code>
 /// \endhtmlonly
 ///
-/// \note The iterator instances returned by begin() and end() are valid outside 
+/// \note The iterator instances returned by begin() and end() are valid outside
 /// the lifetime of the collection instance from which they are obtained
 template<   ss_typename_param_k I                                   /* Interface */
         ,   ss_typename_param_k V                                   /* Value type */
@@ -199,42 +205,42 @@ class enumerator_sequence
 {
 public:
     /// Interface type
-    typedef I                                                           interface_type;
+    typedef I                                                                   interface_type;
     /// Value type
-    typedef V                                                           value_type;
+    typedef V                                                                   value_type;
     /// Value policy type
-    typedef value_policy_adaptor<VP>                                    value_policy_type;
+    typedef value_policy_adaptor<VP>                                            value_policy_type;
     /// Reference type
-    typedef R                                                           reference;
+    typedef R                                                                   reference;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    typedef R                                                           reference_type; // For backwards compatiblity
+    typedef R                                                                   reference_type; // For backwards compatiblity
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// The pointer type
-#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+#if defined(STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF) && \
        !defined(STLSOFT_COMPILER_IS_BORLAND)
-    typedef ss_typename_type_k select_first_type_if<value_type const*
-                                                ,   value_type*
-                                                ,   base_type_traits<R>::is_const
-                                                >::type                 pointer;
-#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-    typedef value_type                                                  *pointer;
-#endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+    typedef ss_typename_type_k stlsoft_ns_qual(select_first_type_if)<   value_type const*
+                                                                    ,   value_type*
+                                                                    ,   stlsoft_ns_qual(base_type_traits)<R>::is_const
+                                                                    >::type     pointer;
+#else /* ? STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
+    typedef value_type                                                          *pointer;
+#endif /* !STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
     /// Cloning policy type
-    typedef CP                                                          cloning_policy_type;
+    typedef CP                                                                  cloning_policy_type;
     /// Iterator tag type
-    typedef ss_typename_type_k cloning_policy_type::iterator_tag_type   iterator_tag_type;
+    typedef ss_typename_type_k cloning_policy_type::iterator_tag_type           iterator_tag_type;
     /// Retrieval quanta
-    enum                                                              { retrievalQuanta = Q };
+    enum                                                                      { retrievalQuanta = Q };
     /// Type of the current parameterisation
-    typedef enumerator_sequence<I, V, VP, R, CP, Q>                     class_type;
+    typedef enumerator_sequence<I, V, VP, R, CP, Q>                             class_type;
     /// Type of the current parameterisation
-    typedef class_type                                                  sequence_type;
+    typedef class_type                                                          sequence_type;
     /// The size type
-    typedef cs_size_t                                                   size_type;
+    typedef cs_size_t                                                           size_type;
     /// The difference type
-    typedef cs_ptrdiff_t                                                difference_type;
+    typedef cs_ptrdiff_t                                                        difference_type;
     /// The Boolean type
-    typedef cs_bool_t                                                   bool_type;
+    typedef cs_bool_t                                                           bool_type;
 
 public:
     /// Constructor
@@ -244,10 +250,10 @@ public:
     /// \param quanta The actual quanta required for this instance. Must be <= Q. Defaults to 0, which causes it to be Q
     /// \param bReset Determines whether the Reset() method is invoked on the enumerator instance upon construction. Defaults to true
     ///
-    /// \note This does not throw an exception, so it is safe to be used to "eat" the 
+    /// \note This does not throw an exception, so it is safe to be used to "eat" the
     /// reference. The only possible exception to this is if COMSTL_ASSERT() or COMSTL_MESSAGE_ASSERT(), which are
     /// used to validate that the given quanta size is within the limit specified in
-    /// the specialisation, has been redefined to throw an exception. But since 
+    /// the specialisation, has been redefined to throw an exception. But since
     /// precondition violations are no more recoverable than any others (see the article
     /// "The Nuclear Reactor and the Deep Space Probe"), this does not represent
     /// a concerning contradiction to the no-throw status of the constructor.
@@ -273,7 +279,7 @@ public:
         // If noncloneable, then just AddRef()
         // Otherwise Clone() and fail
         //
-        // At this point, m_enumerator will be non-NULL, and 
+        // At this point, m_enumerator will be non-NULL, and
         // can be used in all invocations of begin(), or it
         // will be NULL, in which case the 2nd or subsequent
         // invocations of begin() must be directed to throw.
@@ -382,7 +388,7 @@ public:
         public:
             /// Sharing constructor
             ///
-            /// The iterator is 
+            /// The iterator is
             enumeration_context(interface_type *i, size_type quanta, bool_type bFirst)
                 : m_enumerator(bFirst ? (i->AddRef(), i) : cloning_policy_type::share(i))
                 , m_acquired(0)
@@ -392,7 +398,7 @@ public:
                 , m_previousBlockTotal(0)
             {
                 COMSTL_ASSERT(quanta <= STLSOFT_NUM_ELEMENTS(m_values));
-        
+
                 init_elements_(m_quanta);
 
                 // Note: We don't add a reference here, because share() increments the reference count.
@@ -461,7 +467,7 @@ public:
 
                         // Either forward_cloning_policy that succeeded, or degenerate_cloning_policy that succeeded
                         //
-                        // 
+                        //
 
                         class_type  *newCtxt;
 
@@ -501,9 +507,9 @@ public:
                 // Four possibilities here:
                 //
                 // 1. Called when in an invalid state. This is determined by:
-                //   - 
-                //   - 
-                //   - 
+                //   -
+                //   -
+                //   -
                 // 2. next iteration point is within the number acquired
                 // 3. need to acquire more elements from IEnumXXXX::Next()
 
@@ -516,7 +522,7 @@ public:
 
                 if(++m_current < m_acquired)
                 {
-                    // 2. 
+                    // 2.
 
                     // Do nothing
                 }

@@ -2,8 +2,12 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_REG_TRAITS
 #define WINSTL_INCL_WINSTL_HPP_REG_TRAITS
 
-#ifndef WINSTL_INCL_H_WINSTL_REG_TRAITS
-# include <winstl_reg_traits.h>
-#endif /* !WINSTL_INCL_H_WINSTL_REG_TRAITS */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete. Instead include winstl/registry/reg_traits.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
+# include <winstl/registry/reg_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
 
 #endif /* !WINSTL_INCL_WINSTL_HPP_REG_TRAITS */

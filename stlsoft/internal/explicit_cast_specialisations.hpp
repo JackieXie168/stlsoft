@@ -4,11 +4,11 @@
  * Purpose:     Specialisations of explicit_cast
  *
  * Created:     13th August 2003
- * Updated:     15th November 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +46,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS_MAJOR       3
-# define STLSOFT_VER_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS_MINOR       0
-# define STLSOFT_VER_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS_REVISION    2
-# define STLSOFT_VER_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS_EDIT        12
+# define STLSOFT_VER_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS_MINOR       1
+# define STLSOFT_VER_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS_REVISION    1
+# define STLSOFT_VER_STLSOFT_INTERNAL_HPP_EXPLICIT_CAST_SPECIALISATIONS_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ private:
     char const &m_t;
 };
 
-#ifdef __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 
 STLSOFT_TEMPLATE_SPECIALISATION
 class explicit_cast<wchar_t const &>
@@ -116,7 +116,7 @@ private:
     wchar_t const &m_t;
 };
 
-#endif /* __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
 STLSOFT_TEMPLATE_SPECIALISATION
 class explicit_cast<unsigned char const &>
@@ -503,7 +503,7 @@ private:
     long double const &m_t;
 };
 
-#ifdef __STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 
 STLSOFT_TEMPLATE_SPECIALISATION
 class explicit_cast<bool const &>
@@ -530,7 +530,7 @@ private:
     bool const &m_t;
 };
 
-#endif /* __STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

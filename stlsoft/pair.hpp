@@ -4,11 +4,11 @@
  * Purpose:     Contains the pair template.
  *
  * Created:     19th November 1998
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PAIR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_PAIR_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_PAIR_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_PAIR_EDIT      44
+# define STLSOFT_VER_STLSOFT_HPP_PAIR_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

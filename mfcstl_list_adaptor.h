@@ -5,7 +5,7 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     26th January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MAJOR     2
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MINOR     4
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  3
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      43
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MINOR     5
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  1
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -302,7 +302,7 @@ public:
         /// Dereference operator
         value_type operator *() const
         {
-            mfcstl_message_assert("", m_c != 0);
+            MFCSTL_MESSAGE_ASSERT("", m_c != 0);
 
             return m_value;
         }
@@ -312,7 +312,7 @@ public:
         {
             if(m_pos == NULL)
             {
-                mfcstl_message_assert("operator ++() called on invalid iterator", m_c != 0);
+                MFCSTL_MESSAGE_ASSERT("operator ++() called on invalid iterator", m_c != 0);
 
                 m_c = 0;
             }
@@ -356,7 +356,7 @@ public:
             // can test both members, which results in the after-the-fact
             // equality evaluating correctly.
 
-            mfcstl_message_assert("invalid comparison between iterators from different ranges", m_c == 0 || rhs.m_c == 0 || m_c == rhs.m_c);
+            MFCSTL_MESSAGE_ASSERT("invalid comparison between iterators from different ranges", m_c == 0 || rhs.m_c == 0 || m_c == rhs.m_c);
 
             return m_pos == rhs.m_pos && m_c == rhs.m_c;
         }

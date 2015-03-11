@@ -5,7 +5,7 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     29th January 2006
+ * Updated:     20th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     3
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      86
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  6
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 /* This is here temporarily, until a better solution can be found. */
 #ifdef STLSOFT_COMPILER_IS_MSVC
 # pragma warning(disable : 4097)    // suppresses: typedef-name 'identifier1' used as synonym for class-name 'identifier2'
-#endif /* STLSOFT_COMPILER_IS_MSVC */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -115,7 +115,7 @@ namespace stlsoft
 
 #if !defined(STLSOFT_OVERRIDE_COMPILER_STD_LIBRARY_CHECK)
 
-#if 0
+# if 0
     /* Now we Must be either Dinkumware or STLport if compiling with Intel or Visual C++
      */
 
@@ -128,8 +128,7 @@ namespace stlsoft
 #     error When compiling with Intel C/C++ or Microsoft Visual C++, only the Dinkumware or STLport STL implementations are currently supported.
 #     error  Please contact STLSoft (admin@stlsoft.org) if you need to support a different STL implementation with these compilers.
 #    endif /* (Intel || MSVC) && !DinkumWare && !STLport */
-#endif /* 0 */
-
+# endif /* 0 */
 
 #endif /* !STLSOFT_OVERRIDE_COMPILER_STD_LIBRARY_CHECK */
 
@@ -338,7 +337,7 @@ namespace stlsoft
 
 /* Form 1 */
 
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 
 # if defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
  /* STLport is form 1 when not using the old form */
@@ -414,7 +413,7 @@ namespace stlsoft
 #  define stlsoft_reverse_bidirectional_iterator(I, V, R, P, D)      stlsoft_reverse_iterator(I, V, R, P, D)
 # endif /*  */
 
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Iterators
@@ -489,12 +488,12 @@ private:
 
 public:
     /// The pointer type
-    typedef ss_typename_type_k select_first_type_if<   ss_typename_type_k fixer_pointer_type<parent_class_type, has_member_pointer_type>::pointer_type
+    typedef ss_typename_type_k select_first_type_if<ss_typename_type_k fixer_pointer_type<parent_class_type, has_member_pointer_type>::pointer_type
                                                 ,   ss_typename_type_k fixer_pointer<parent_class_type, has_member_pointer>::pointer
                                                 ,   has_member_pointer_type
                                                 >::type             pointer;
     /// The reference type
-    typedef ss_typename_type_k select_first_type_if<   ss_typename_type_k fixer_reference_type<parent_class_type, has_member_reference_type>::reference_type
+    typedef ss_typename_type_k select_first_type_if<ss_typename_type_k fixer_reference_type<parent_class_type, has_member_reference_type>::reference_type
                                                 ,   ss_typename_type_k fixer_reference<parent_class_type, has_member_reference>::reference
                                                 ,   has_member_reference_type
                                                 >::type             reference;
@@ -535,7 +534,7 @@ public:
 };
 
 
-#ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
 // reverse_iterator_base, const_reverse_iterator_base,
 // reverse_bidirectional_iterator_base and const_reverse_bidirectional_iterator_base
@@ -740,7 +739,7 @@ public:
     {}
 };
 
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Random access iterator support
@@ -879,17 +878,14 @@ inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::type const &)
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-
 /// Iterator category obtainer
 ///
 /// \param I The iterator type
 /// \param i The iterator instance
 
-
-
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC)
-# define stlsoft_iterator_query_category(I, i)     (stlsoft_ns_qual_std(_Iter_cat)(i))
-# define stlsoft_iterator_query_category_ptr(I, i) (&stlsoft_ns_qual_std(_Iter_cat)(i))
+# define stlsoft_iterator_query_category(I, i)      (stlsoft_ns_qual_std(_Iter_cat)(i))
+# define stlsoft_iterator_query_category_ptr(I, i)  (&stlsoft_ns_qual_std(_Iter_cat)(i))
 
 //#elif defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
 //# define stlsoft_iterator_query_category(I, i)     (*static_cast<std::iterator_traits<I>::iterator_category*>(0))
@@ -897,12 +893,14 @@ inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::type const &)
 //#elif defined(STLSOFT_COMPILER_IS_BORLAND) // Change this to STLSOFT_CF_STD_LIBRARY_IS_SGI_RW
 //# define stlsoft_iterator_query_category(I, i)     (*static_cast<std::iterator_traits<I>::iterator_category*>(0))
 
-#else
+#else /* ? library */
+
 //#if defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
-# define stlsoft_iterator_query_category(I, i)     (*static_cast<ss_typename_type_k std::iterator_traits<I>::iterator_category*>(0))
-# define stlsoft_iterator_query_category_ptr(I, i) (static_cast<ss_typename_type_k std::iterator_traits<I>::iterator_category*>(0))
+# define stlsoft_iterator_query_category(I, i)      (*static_cast<ss_typename_type_k std::iterator_traits<I>::iterator_category*>(0))
+# define stlsoft_iterator_query_category_ptr(I, i)  (static_cast<ss_typename_type_k std::iterator_traits<I>::iterator_category*>(0))
 //#else
 //#  define stlsoft_iterator_query_category(I, i)     (stlsoft_ns_qual_std(iterator_category)(i))
+
 #endif /* library / compiler */
 
 #if 0
@@ -942,12 +940,12 @@ inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::type const &)
 #endif /* 0 */
 
 #if 0
-template <typename T>
+template <ss_typename_param_k T>
 struct queried_iterator_category
 {
 };
 
-template <typename T>
+template <ss_typename_param_k T>
 query_iterator_category
 #endif /* 0 */
 

@@ -4,11 +4,11 @@
  * Purpose:     Contains the std_swap() function.
  *
  * Created:     27th June 2005
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MINOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     6
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MINOR    2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_REVISION 2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#if !defined(__STLSOFT_CF_std_NAMESPACE)
+#if !defined(STLSOFT_CF_std_NAMESPACE)
 # define STLSOFT_STD_SWAP_NO_USE_STD
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 #if !defined(STLSOFT_STD_SWAP_NO_USE_STD)
 # include <algorithm>
 #endif /* STLSOFT_STD_SWAP_NO_USE_STD */
@@ -119,7 +119,7 @@ namespace stlsoft_nostd_util
 /// Dependent Lookup) to use a specialised form
 ///
 /// \note For compilers, such as Open Watcom, that do not have a functional
-/// standard library implementation, the swap() implementation from 
+/// standard library implementation, the swap() implementation from
 /// stlsoft::stlsoft_nostd_util is used.
 ///
 /// \param lhs The left hand parameter
@@ -135,7 +135,7 @@ inline void std_swap(T &lhs, T &rhs)
     using namespace stlsoft_nostd_util;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #else /* ? STLSOFT_STD_SWAP_NO_USE_STD */
-# ifdef __STLSOFT_CF_std_NAMESPACE
+# ifdef STLSOFT_CF_std_NAMESPACE
 #  if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
           defined(_MSC_VER)) || \
          defined(STLSOFT_COMPILER_IS_MSVC)) && \
@@ -144,7 +144,7 @@ inline void std_swap(T &lhs, T &rhs)
 #  else /* ? compiler */
     using namespace std;
 #  endif /* compiler */
-# endif /* __STLSOFT_CF_std_NAMESPACE */
+# endif /* STLSOFT_CF_std_NAMESPACE */
 #endif /* STLSOFT_STD_SWAP_NO_USE_STD */
 
     swap(lhs, rhs);
@@ -169,7 +169,7 @@ namespace stlsoft
     /// Dependent Lookup) to use a specialised form
     ///
     /// \note For compilers, such as Open Watcom, that do not have a functional
-    /// standard library implementation, the swap() implementation from 
+    /// standard library implementation, the swap() implementation from
     /// stlsoft::stlsoft_nostd_util is used.
     ///
     /// \param lhs The left hand parameter

@@ -5,11 +5,11 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_MAJOR    4
-# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_MINOR    3
+# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_MINOR    4
 # define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_EDIT     641
+# define STLSOFT_VER_STLSOFT_HPP_SCOPED_HANDLE_EDIT     645
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -202,7 +202,7 @@ public:
 /// \name Construction
 /// @{
 public:
-#if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+#if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// Construct from a resource handle and a clean-up function with void return type
     scoped_handle(  resource_type   h
@@ -213,9 +213,9 @@ public:
         , m_tfn(&function_translator_cdecl<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
-#endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+#endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Construct from a resource handle and a clean-up function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  resource_type   h
@@ -226,10 +226,10 @@ public:
         , m_tfn(&function_translator_cdecl<H, R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
-# if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+# if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
      defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// Construct from a resource handle and a clean-up "fastcall" function with void return type
     scoped_handle(  resource_type   h
@@ -240,9 +240,9 @@ public:
         , m_tfn(&function_translator_fastcall<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
-# endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+# endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-# if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+# if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Construct from a resource handle and a clean-up "fastcall" function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  resource_type   h
@@ -253,12 +253,12 @@ public:
         , m_tfn(&function_translator_fastcall<H, R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
-# endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
-# if !defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
+# if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
      defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
     /// Construct from a resource handle and a clean-up "stdcall" function with void return type
     scoped_handle(  resource_type   h
@@ -269,9 +269,9 @@ public:
         , m_tfn(&function_translator_stdcall<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
-# endif /* !__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
+# endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
-# if defined(__STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+# if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// Construct from a resource handle and a clean-up "stdcall" function with non-void return type
     template <ss_typename_param_k R>
     scoped_handle(  resource_type   h
@@ -282,7 +282,7 @@ public:
         , m_tfn(&function_translator_stdcall<H, R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
-# endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+# endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
     /// Destructor
@@ -497,10 +497,10 @@ namespace unittest
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
-#if defined(__STLSOFT_CF_std_NAMESPACE)
+#if defined(STLSOFT_CF_std_NAMESPACE)
 # if ( ( defined(STLSOFT_COMPILER_IS_INTEL) && \
          defined(_MSC_VER))) && \
      _MSC_VER < 1310
@@ -514,7 +514,7 @@ namespace std
     }
 } // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Compiler warnings

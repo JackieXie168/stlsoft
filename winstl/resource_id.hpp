@@ -5,11 +5,11 @@
  *              identifiers.
  *
  * Created:     11th April 2005
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_ID_MAJOR    1
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_ID_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_RESOURCE_ID_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_RESOURCE_ID_EDIT     6
+# define WINSTL_VER_WINSTL_HPP_RESOURCE_ID_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

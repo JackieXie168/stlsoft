@@ -1,5 +1,5 @@
 
-// Updated: 17th September 2005
+// Updated: 5th February 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING)
 # error This file cannot be directly included, and should only be included within stlsoft/static_string.hpp
@@ -117,11 +117,11 @@ namespace unittest
             }
 //printf("s3=%s; s4=%s\n", s3.c_str(), s4.c_str());
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
             const alt_string_t  ss1(s4.begin(), s4.end());
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
             const alt_string_t  ss1(s4.data(), s4.length());
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 //printf("1\n");
             if(ss1.c_str() != s4)
@@ -136,11 +136,11 @@ namespace unittest
                 bSuccess = false;
             }
 
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
             const string_t      s5(ss1.begin(), ss1.end());
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
             const string_t      s5(ss1.data(), ss1.length());
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 //printf("2\n");
             if(ss1.c_str() != s5)
@@ -156,7 +156,7 @@ namespace unittest
             }
 
 //printf("3\n");
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT
             string_t      s6(s5.begin(), s5.end());
             string_t      s7(s5);
 
@@ -176,7 +176,7 @@ namespace unittest
                 bSuccess = false;
             }
 
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 //printf("7\n");
             /// Sub-string construction
@@ -308,7 +308,7 @@ namespace unittest
 
 //printf("here 1.0\n");
 
-#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT)
             {
                 typedef basic_static_string<char, 48>    string_t;
 
@@ -356,7 +356,7 @@ namespace unittest
                 }
 # endif /* compiler */
             }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
 
 //printf("here 2.0\n");
 

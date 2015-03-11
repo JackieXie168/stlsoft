@@ -4,7 +4,7 @@
  * Purpose:     Collection of the children of a given window.
  *
  * Created:     13th January 2006
- * Updated:     18th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_CHILD_WINDOW_SEQUENCE_MAJOR       2
 # define WINSTL_VER_WINSTL_HPP_CHILD_WINDOW_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_HPP_CHILD_WINDOW_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_CHILD_WINDOW_SEQUENCE_EDIT        6
+# define WINSTL_VER_WINSTL_HPP_CHILD_WINDOW_SEQUENCE_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/zorder_sequences.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_ZORDER_SEQUENCE
 # include <winstl/zorder_sequences.hpp>

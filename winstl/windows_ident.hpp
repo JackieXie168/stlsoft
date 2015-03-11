@@ -4,11 +4,11 @@
  * Purpose:     Windows identification.
  *
  * Created:     11th March 2004
- * Updated:     13th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MINOR      2
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_EDIT       31
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MINOR      3
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_REVISION   3
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,12 +59,6 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -106,11 +100,6 @@ enum WindowIdent
 
 inline WindowIdent GetWindowIdent(HWND hwnd)
 {
-    typedef auto_buffer_old<char
-                        ,   processheap_allocator<char>
-                        ,   256
-                        >           buffer_t;
-
     struct Ident
     {
         WindowIdent ident;
@@ -118,7 +107,7 @@ inline WindowIdent GetWindowIdent(HWND hwnd)
     };
 
     WindowIdent         ident   =   Generic;
-    buffer_t            buffer(buffer_t::internal_size() / 2);
+    char                buffer[256];
     static const Ident  s_idents[] =
     {
             {   ListBox,    "LISTBOX"       }
@@ -126,22 +115,19 @@ inline WindowIdent GetWindowIdent(HWND hwnd)
         ,   {   ListView,   "SysListView32" }
     };
 
-    for(; buffer.resize(2 * buffer.size()); )
-    {
-        ws_size_t cch = static_cast<ws_size_t>(::GetClassNameA(hwnd, &buffer[0], static_cast<int>(buffer.size())));
+    const ws_size_t     cch = static_cast<ws_size_t>(::GetClassNameA(hwnd, &buffer[0], STLSOFT_NUM_ELEMENTS(buffer)));
 
-        if(cch < buffer.size())
-        {
-            break;
-        }
-    }
-
-    for(ws_size_t index = 0; index < sizeof(s_idents) / sizeof(s_idents[0]); ++index)
+    if(cch < STLSOFT_NUM_ELEMENTS(buffer))
     {
-        if(0 == lstrcmpiA(s_idents[index].name, &buffer[0]))
+        for(ws_size_t index = 0; index < sizeof(s_idents) / sizeof(s_idents[0]); ++index)
         {
-            ident = s_idents[index].ident;
-            break;
+            WINSTL_ASSERT(::lstrlenA(s_idents[index].name) < int(STLSOFT_NUM_ELEMENTS(buffer)));
+
+            if(0 == ::lstrcmpiA(s_idents[index].name, &buffer[0]))
+            {
+                ident = s_idents[index].ident;
+                break;
+            }
         }
     }
 

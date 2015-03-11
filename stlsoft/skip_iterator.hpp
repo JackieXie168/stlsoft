@@ -1,6 +1,6 @@
 
 // Created: 17th September 2005
-// Updated: 13th December 2005
+// Updated: 21st March 2006
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -15,13 +15,13 @@
 namespace stlsoft
 {
 
-    // R is required only because 
+    // R is required only because
 
-    template<   typename I
+    template<   ss_typename_param_k I
 #if 0
-            ,   typename R = ss_typename_type_def_k std::iterator_traits<I>::reference
+            ,   ss_typename_param_k R = ss_typename_type_def_k std::iterator_traits<I>::reference
 #else /* ? 0 */
-            ,   typename R = ss_typename_type_def_k I::reference
+            ,   ss_typename_param_k R = ss_typename_type_def_k I::reference
 #endif /* 0 */
             >
     class skip_iterator
@@ -223,48 +223,48 @@ namespace stlsoft
     /// @}
     };
 
-    template<   typename I
-            ,   typename R
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k R
             >
     inline bool operator ==(skip_iterator<I, R> const &lhs, skip_iterator<I, R> const &rhs)
     {
         return lhs.equal(rhs);
     }
 
-    template<   typename I
-            ,   typename R
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k R
             >
     inline bool operator ==(skip_iterator<I, R> const &lhs, I const &rhs)
     {
         return lhs.equal(rhs);
     }
 
-    template<   typename I
-            ,   typename R
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k R
             >
     inline bool operator ==(I const &lhs, skip_iterator<I, R> const &rhs)
     {
         return rhs.equal(lhs);
     }
 
-    template<   typename I
-            ,   typename R
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k R
             >
     inline bool operator !=(skip_iterator<I, R> const &lhs, skip_iterator<I, R> const &rhs)
     {
         return !lhs.equal(rhs);
     }
 
-    template<   typename I
-            ,   typename R
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k R
             >
     inline bool operator !=(skip_iterator<I, R> const &lhs, I const &rhs)
     {
         return !lhs.equal(rhs);
     }
 
-    template<   typename I
-            ,   typename R
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k R
             >
     inline bool operator !=(I const &lhs, skip_iterator<I, R> const &rhs)
     {
@@ -277,38 +277,38 @@ namespace stlsoft
 
 
 #ifndef USE_GLOB_SEQUENCE
-    template <typename I>
+    template <ss_typename_param_k I>
     inline skip_iterator<I> skip(I i, size_t n, size_t m)
     {
         return skip_iterator<I>(i, n, m);
     }
 
-    template <typename I>
+    template <ss_typename_param_k I>
     inline skip_iterator<I> skip(I i, size_t n, size_t m, size_t p)
     {
         return skip_iterator<I>(i, n, m, p);
     }
 
-    template <typename I>
+    template <ss_typename_param_k I>
     inline skip_iterator<I> skip(I i, size_t n, size_t m, I end)
     {
         return skip_iterator<I>(i, n, m, end);
     }
 
-    template <typename I>
+    template <ss_typename_param_k I>
     inline skip_iterator<I> skip(I i, size_t n, size_t m, size_t p, I end)
     {
         return skip_iterator<I>(i, n, m, p, end);
     }
 #else /* ? USE_GLOB_SEQUENCE */
 
-//  template <typename T>
+//  template <ss_typename_param_k T>
 //  inline skip_iterator<T*, T&> skip(T *i, size_t n, size_t m, size_t p, T *end)
 //  {
 //      return skip_iterator<T*, T&>(i, n, m, p, end);
 //  }
 
-    template <typename T>
+    template <ss_typename_param_k T>
     inline skip_iterator<T const*, T const&> skip(T const *i, size_t n, size_t m, size_t p, T const *end)
     {
         return skip_iterator<T const*, T const&>(i, n, m, p, end);

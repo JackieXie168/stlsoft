@@ -4,11 +4,11 @@
  * Purpose:     Definition of the fixer_mapped_type type.
  *
  * Created:     26th February 2005
- * Updated:     29th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_MAJOR      1
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_MINOR      3
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_EDIT       7
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

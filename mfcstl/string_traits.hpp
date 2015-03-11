@@ -4,11 +4,11 @@
  * Purpose:     Contains string_traits for MFC.
  *
  * Created:     25th April 2005
- * Updated:     15th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_MAJOR    1
 # define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_MINOR    2
 # define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_REVISION 1
-# define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_EDIT     6
+# define MFCSTL_VER_H_MFCSTL_STRING_TRAITS_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

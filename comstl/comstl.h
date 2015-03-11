@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       2
+# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        81
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h The root header for the \ref COMSTL project */
@@ -404,13 +404,13 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /// \def comstl_ns_using_std(x)
 /// Declares a using directive (with respect to <b>std</b>) if COMSTL is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
 
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
 # define comstl_ns_qual_std(x)      ::std::x
 # define comstl_ns_using_std(x)     using ::std::x;
-#else /* ? __STLSOFT_CF_std_NAMESPACE */
+#else /* ? STLSOFT_CF_std_NAMESPACE */
 # define comstl_ns_qual_std(x)      x
 # define comstl_ns_using_std(x)
-#endif /* !__STLSOFT_CF_std_NAMESPACE */
+#endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /// \def COMSTL_ITF_CALL(p)
 /// Resolves to <b>p->lpVtbl</b> for C compilation, and to <b>p</b> in C++
@@ -562,7 +562,12 @@ typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Evaluates, at compile time, to the number of elements within the given vector entity
-#define comstl_num_elements(ar)                         stlsoft_num_elements(ar)
+///
+/// \param ar An array whose dimension is to be evaluated
+#define COMSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define comstl_num_elements(ar)                        COMSTL_NUM_ELEMENTS(ar)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// Destroys the given instance \c p of the given type (\c t and \c _type)
 ///

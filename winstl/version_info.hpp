@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     26th January 2006
+ * Updated:     24th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MAJOR       4
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        90
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_MINOR       4
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_REVISION    3
+# define WINSTL_VER_WINSTL_HPP_VERSION_INFO_EDIT        94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
 # include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
 # include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
@@ -177,7 +177,7 @@ T *rounded_ptr(T *p, ss_ptrdiff_t byteOffset, ss_size_t n)
 #ifdef STLSOFT_COMPILER_IS_BORLAND
     STLSOFT_SUPPRESS_UNUSED(p);
     STLSOFT_SUPPRESS_UNUSED(byteOffset);
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
     WINSTL_ASSERT(ptr_byte_diff(r, p_) >= 0);
 
@@ -927,14 +927,14 @@ inline version_info::~version_info() stlsoft_throw_0()
 inline ws_size_t version_info::Length() const
 {
 #if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
+    !defined(STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == m_hdr)
     {
         return 0;
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != m_hdr);
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
     return *(sap_cast<WORD const*>(m_hdr) + 0);
 }
@@ -942,14 +942,14 @@ inline ws_size_t version_info::Length() const
 inline ws_size_t version_info::ValueLength() const
 {
 #if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
+    !defined(STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == m_hdr)
     {
         return 0;
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != m_hdr);
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
     return *(sap_cast<WORD const*>(m_hdr) + 1);
 }
@@ -1013,7 +1013,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
     ws_dword_t          cb  =   ::GetFileVersionInfoSizeA(const_cast<ws_char_a_t*>(moduleName), NULL);
     void                *pv =   (0 == cb) ? NULL : allocator.allocate(cb);
 
-#if !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
+#if !defined(STLSOFT_CF_THROW_BAD_ALLOC)
     // If bad_alloc will not be thrown, then we need to check for NULL, but only act on it
     // if cb is non-zero
     if( 0 != cb &&
@@ -1023,7 +1023,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
 
         return NULL;
     }
-#endif /* !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
     WINSTL_ASSERT(0 == cb || pv != NULL);
 
@@ -1058,13 +1058,13 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
     ws_dword_t      cb  =   ::GetFileVersionInfoSizeW(const_cast<ws_char_w_t*>(moduleName), NULL);
     void            *pv =   (0 == cb) ? NULL : allocator.allocate(cb);
 
-#ifndef __STLSOFT_CF_THROW_BAD_ALLOC
+#ifndef STLSOFT_CF_THROW_BAD_ALLOC
     if( 0 != cb &&
         pv == NULL)
     {
         return NULL;
     }
-#endif /* !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
     if( 0 == cb ||
         !::GetFileVersionInfoW(const_cast<ws_char_w_t*>(moduleName), 0, cb, pv))
@@ -1084,14 +1084,14 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
 inline /* static */ wchar_t const *version_info::calc_key_(void const *pv)
 {
 #if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
+    !defined(STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == pv)
     {
         return NULL;
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != pv);
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
     wchar_t const *key  =   reinterpret_cast<wchar_t const*>(static_cast<WORD const*>(pv) + 3);
 
@@ -1103,14 +1103,14 @@ inline /* static */ wchar_t const *version_info::calc_key_(void const *pv)
 inline /* static */ VS_FIXEDFILEINFO const *version_info::calc_ffi_(wchar_t const *key)
 {
 #if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
+    !defined(STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == key)
     {
         return NULL;
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != key);
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
     return sap_cast<VS_FIXEDFILEINFO const*>(rounded_ptr(&key[1 + wcslen(key)], 4));
 }
@@ -1118,14 +1118,14 @@ inline /* static */ VS_FIXEDFILEINFO const *version_info::calc_ffi_(wchar_t cons
 inline /* static */ WORD const *version_info::calc_children_(VS_FIXEDFILEINFO const *ffi)
 {
 #if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
+    !defined(STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == ffi)
     {
         return NULL;
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != ffi);
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
     return sap_cast<WORD const*>(rounded_ptr(&ffi[1], 4));
 }
@@ -1133,14 +1133,14 @@ inline /* static */ WORD const *version_info::calc_children_(VS_FIXEDFILEINFO co
 inline void version_info::init_()
 {
 #if !defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
-    !defined(__STLSOFT_CF_THROW_BAD_ALLOC)
+    !defined(STLSOFT_CF_THROW_BAD_ALLOC)
     if(NULL == m_hdr)
     {
         return;
     }
 #else /* ? exceptions */
     WINSTL_ASSERT(NULL != m_hdr);
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !__STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT || !STLSOFT_CF_THROW_BAD_ALLOC */
 
 #ifdef _DEBUG
     // Check that ffi is the same as the pointer returned from VerQueryValue("\\");

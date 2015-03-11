@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     25th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MAJOR       5
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_MINOR       9
 # define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_REVISION    1
-# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        30
+# define COMSTL_VER_COMSTL_HPP_ENUMERATION_POLICIES_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -403,7 +403,7 @@ struct policy_adaptor
 {
 public:
     typedef ss_typename_type_k P::value_type    value_type;
-}; 
+};
 
 /// \brief Acquires an enumerator from a collection assuming _NewEnum property
 ///
@@ -423,12 +423,12 @@ public:
         // If the compiler complains here that your interface does not have the
         // get__NewEnum method, then:
         //
-        // - you're passing a pure IDispatch interface, so you need to use 
+        // - you're passing a pure IDispatch interface, so you need to use
         //    new_enum_by_dispid_policy
         // - you're passing a collection interface that defines _NeWEnum as a
         //    method, so you need to use new_enum_method_policy
         // - you're passing the wrong interface. Check your code to ensure
-        //    you've not used the wrong interface to specialise 
+        //    you've not used the wrong interface to specialise
         //    comstl::collection_sequence.
         return pcoll->get__NewEnum(ppunkEnum);
     }

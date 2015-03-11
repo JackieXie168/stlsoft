@@ -4,7 +4,7 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     31st January 2006
+ * Updated:     25th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MAJOR      3
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      2
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      3
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       39
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
 # include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR
-# include <stlsoft/malloc_allocator.hpp>    // for malloc_allocator because ATL uses malloc() / free()
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR
+# include <stlsoft/memory/malloc_allocator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR */
 #include <atlwin.h>                         // for CDialogImplBase
 
 /* /////////////////////////////////////////////////////////////////////////////

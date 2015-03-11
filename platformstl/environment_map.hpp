@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     26th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MINOR      7
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_REVISION   4
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       30
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_REVISION   5
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -145,14 +145,14 @@ public:
     typedef ss_ptrdiff_t                                    difference_type;
     typedef const value_type                                const_reference;    // BVT
     class                                                   const_iterator;
-#if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef const_reverse_bidirectional_iterator_base<  const_iterator
                                                     ,   value_type
                                                     ,   const_reference
                                                     ,   void            // By-Value Temporary reference category
                                                     ,   difference_type
                                                     >       const_reverse_iterator;
-#endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     typedef environment_map                                 class_type;
 
 private:
@@ -200,7 +200,7 @@ public:
     /// \brief Returns the value of the given environment variable, or throws
     ////        std::out_of_range if it does not exist.
     ///
-    /// \param 
+    /// \param
     second_type operator [](char const *name) const;
     second_type operator [](first_type const &name) const;
 
@@ -223,14 +223,14 @@ public:
 public:
 #ifdef PLATFORMSTL_ENVVAR_SET_SUPPORTED
     /// \brief Inserts or updates and environment variable
-    /// 
+    ///
     /// \note This method is strongly exception-safe. The insertion into the
     /// snapshot is done first. If that does not throw an exception, but the
     /// insertion into the process' environment fails, it is removed from
     /// the snapshot. The only way that could fail would be if the element
     /// already exists, in which case
     void insert(first_type const &name, second_type const &value);
-    
+
     /// \brief The semantics of this function are identical to the string object overload
     ///
     /// \param name The name of the variable to insert/update
@@ -265,7 +265,7 @@ public:
     ///
     /// \return A non-mutating (const) iterator representing (one past) the end of the sequence
     const_iterator  end() const;
-# if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+# if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return A non-mutating (const) iterator representing the start of the reverse sequence
@@ -274,7 +274,7 @@ public:
     ///
     /// \return A non-mutating (const) iterator representing (one past) the end of the reverse sequence
     const_reverse_iterator  rend() const;
-# endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
 /// @}
 
@@ -543,8 +543,8 @@ inline void environment_map::insert(environment_map::first_type const &name, env
         m_snapshot->lookup(name, pstr))
     {
         // If it exists, then:
-        
-        // 1. Reserve the appropriate amount of storage (which may throw, 
+
+        // 1. Reserve the appropriate amount of storage (which may throw,
         // but doesn't need to be rolled back). If this succeeds, then
         // it means that the insert() call cannot throw an exception.
         pstr->reserve(value.size());
@@ -702,7 +702,7 @@ inline environment_map::const_iterator environment_map::end() const
 #endif /* 0 */
 }
 
-# if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+# if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 inline environment_map::const_reverse_iterator environment_map::rbegin() const
 {
     return const_reverse_iterator(end());
@@ -712,7 +712,7 @@ inline environment_map::const_reverse_iterator environment_map::rend() const
 {
     return const_reverse_iterator(begin());
 }
-# endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
 
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON

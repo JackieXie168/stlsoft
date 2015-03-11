@@ -4,7 +4,7 @@
  * Purpose:     cstring_concatenator_iterator class template.
  *
  * Created:     20th June 2005
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       17
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -128,10 +128,10 @@ private:
 /// \name Construction
 /// @{
 public:
-    /// Creates an instance of the cstring_concatenator_iterator from the given 
+    /// Creates an instance of the cstring_concatenator_iterator from the given
     /// c-string pointer
     ///
-    /// \param dest The C-string which in which will be written the results of the 
+    /// \param dest The C-string which in which will be written the results of the
     /// application of the iterator's dereference. May not be NULL
     /// \param pNumWritten An optional paramter to receive a count of how many
     /// bytes were written by the iterator. <b>Note</b>: the variable pointed to
@@ -230,10 +230,10 @@ private:
 };
 
 #if 0
-/// Creates an instance of the cstring_concatenator_iterator from the given 
+/// Creates an instance of the cstring_concatenator_iterator from the given
 /// c-string pointer
 ///
-/// \param s The C-string which in which will be written the results of the 
+/// \param s The C-string which in which will be written the results of the
 /// application of the iterator's dereference. May not be NULL
 /// \param numWritten An optional paramter to receive a count of how many
 /// bytes were written by the iterator. <b>Note</b>: the variable pointed to
@@ -245,10 +245,10 @@ inline cstring_concatenator_iterator<C> cstring_concatenator(C *s, ss_size_t &nu
     return cstring_concatenator_iterator<C>(s, &numWritten);
 }
 
-/// Creates an instance of the cstring_concatenator_iterator from the given 
+/// Creates an instance of the cstring_concatenator_iterator from the given
 /// c-string pointer
 ///
-/// \param s The C-string which in which will be written the results of the 
+/// \param s The C-string which in which will be written the results of the
 /// application of the iterator's dereference. May not be NULL
 template <ss_typename_param_k C>
 inline cstring_concatenator_iterator<C> cstring_concatenator(C *s)
@@ -270,10 +270,10 @@ inline cstring_concatenator_iterator<C> make_cstring_concatenator_iterator(C *s,
     return cstring_concatenator_iterator<C>(s, pNumWritten);
 }
 
-/// Creates an instance of the cstring_concatenator_iterator from the given 
+/// Creates an instance of the cstring_concatenator_iterator from the given
 /// c-string pointer
 ///
-/// \param s The C-string which in which will be written the results of the 
+/// \param s The C-string which in which will be written the results of the
 /// application of the iterator's dereference. May not be NULL
 /// \param pNumWritten An optional paramter to receive a count of how many
 /// bytes were written by the iterator. <b>Note</b>: the variable pointed to

@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_path_buffer components.
  *
  * Created:     20th March 2005
- * Updated:     21st January 2006
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_MAJOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_MINOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_REVISION  2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_EDIT      12
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_MINOR     2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_REVISION  1
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_FILE_PATH_BUFFER_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/file_path_buffer.hpp Platform header for the file_path_buffer components */
@@ -109,11 +109,11 @@ namespace platformstl_project
      _MSC_VER < 1310
 
     template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k A /* = ss_typename_type_def_k allocator_selector<C>::allocator_type */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >
     class basic_file_path_buffer
         : public unixstl_ns_qual(basic_file_path_buffer__)<C, A>
@@ -165,11 +165,11 @@ namespace platformstl_project
      _MSC_VER < 1310
 
     template<   ss_typename_param_k C
-#ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k A = winstl_ns_qual(processheap_allocator)<C>
-#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k A /* = processheap_allocator<C> */
-#endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             >
     class basic_file_path_buffer
         : public winstl_ns_qual(basic_file_path_buffer__)<C, A>

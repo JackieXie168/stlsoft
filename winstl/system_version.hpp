@@ -5,11 +5,11 @@
  *              information about the host system version.
  *
  * Created:     10th February 2002
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@
 # define WINSTL_VER_WINSTL_HPP_SYSTEM_VERSION_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_SYSTEM_VERSION_MINOR     1
 # define WINSTL_VER_WINSTL_HPP_SYSTEM_VERSION_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_SYSTEM_VERSION_EDIT      41
+# define WINSTL_VER_WINSTL_HPP_SYSTEM_VERSION_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -167,11 +167,11 @@ inline /* static */ OSVERSIONINFO &system_version::get_versioninfo_()
     /// get_versioninfo_() is int rather than bool when compiling for borland.
 
 #if !defined(STLSOFT_STRICT) && \
-defined(STLSOFT_COMPILER_IS_MSVC) && \
-_MSC_VER >= 1310
+    defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1310
 # pragma warning(push)
 # pragma warning(disable : 4640)   /* "construction of local static object is not thread-safe" - since it is here! (As long as one uses a 'conformant' allocator) - maybe use a spin_mutex in future */
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
     static OSVERSIONINFO    s_versioninfo;
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -182,10 +182,10 @@ _MSC_VER >= 1310
 #endif /* compiler */
 
 #if !defined(STLSOFT_STRICT) && \
-defined(STLSOFT_COMPILER_IS_MSVC) && \
-_MSC_VER >= 1310
+    defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1310
 # pragma warning(pop)
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
     STLSOFT_SUPPRESS_UNUSED(s_init); // Placate GCC
 

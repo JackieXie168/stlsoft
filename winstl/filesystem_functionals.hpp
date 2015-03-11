@@ -4,11 +4,11 @@
  * Purpose:     File-system related functions and predicates.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR     1
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT      62
+# define WINSTL_VER_WINSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,6 +81,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>  // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
+# include <stlsoft/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef _WINSTL_FUNCTIONALS_NO_STD
 # include <functional>
 #else /* ? _WINSTL_FUNCTIONALS_NO_STD */
@@ -148,9 +151,7 @@ inline bool file_exists_envx_(C const *s, ws_bool_t bExpandEnvironmentStrings)
     }
     else
     {
-        DWORD   dw = ::GetFileAttributes(&full[0]);
-
-        return 0xFFFFFFFF != dw;
+        return traits_t::file_exists(&full[0]);
     }
 }
 
@@ -212,7 +213,7 @@ inline bool are_paths_equal_envx_(C const *s1, C const *s2, ws_bool_t bExpandEnv
 
 /// Function object that compares two file-system paths
 ///
-/// \note Does not expand environment variables in the argument passed to 
+/// \note Does not expand environment variables in the argument passed to
 /// the function call operator
 ///
 /// \param C The character type
@@ -226,6 +227,8 @@ template<   ss_typename_param_k C
 struct path_compare
     : public winstl_ns_qual_std(binary_function)<A1, A2, ws_bool_t>
 {
+/// \name Member Types
+/// @{
 private:
     typedef winstl_ns_qual_std(binary_function)<A1, A2, ws_bool_t>      parent_class_type;
 public:
@@ -239,25 +242,29 @@ public:
     typedef ss_typename_type_k parent_class_type::result_type           result_type;
     /// The current parameterisation of the type
     typedef path_compare<C, A1, A2>                                     class_type;
+/// @}
 
+/// \name Operations
+/// @{
 public:
     /// Function call, compares \c s1 with \c s2
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template<ss_typename_param_k T1, ss_typename_param_k T2>
     result_type operator ()(T1 const &s1, T2 const &s2) const
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2) const
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return are_paths_equal_envx_(stlsoft_ns_qual(c_str_ptr)(s1), stlsoft_ns_qual(c_str_ptr)(s2), false);
     }
+/// @}
 };
 
 /// Function object that compares two file-system paths
 ///
-/// \note Does not expand environment variables in the argument passed to 
+/// \note Does not expand environment variables in the argument passed to
 /// the function call operator
 ///
 /// \param C The character type
@@ -271,6 +278,8 @@ template<   ss_typename_param_k C
 struct path_compare_env
     : public winstl_ns_qual_std(binary_function)<A1, A2, ws_bool_t>
 {
+/// \name Member Types
+/// @{
 private:
     typedef winstl_ns_qual_std(binary_function)<A1, A2, ws_bool_t>      parent_class_type;
 public:
@@ -284,25 +293,29 @@ public:
     typedef ss_typename_type_k parent_class_type::result_type           result_type;
     /// The current parameterisation of the type
     typedef path_compare_env<C, A1, A2>                                 class_type;
+/// @}
 
+/// \name Operations
+/// @{
 public:
     /// Function call, compares \c s1 with \c s2
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template<ss_typename_param_k T1, ss_typename_param_k T2>
     result_type operator ()(T1 const &s1, T2 const &s2) const
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2) const
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return are_paths_equal_envx_(stlsoft_ns_qual(c_str_ptr)(s1), stlsoft_ns_qual(c_str_ptr)(s2), true);
     }
+/// @}
 };
 
 /// Predicate that indicates whether a given path exists
 ///
-/// \note Does not expand environment variables in the argument passed to 
+/// \note Does not expand environment variables in the argument passed to
 /// the function call operator
 ///
 /// \param C The character type
@@ -314,6 +327,8 @@ template<   ss_typename_param_k C
 struct path_exists
     : public winstl_ns_qual_std(unary_function)<A, ws_bool_t>
 {
+/// \name Member Types
+/// @{
 private:
     typedef winstl_ns_qual_std(unary_function)<A, ws_bool_t>    parent_class_type;
 public:
@@ -323,22 +338,26 @@ public:
     typedef A                                                   argument_type;
     /// The current parameterisation of the type
     typedef path_exists<C, A>                                   class_type;
+/// @}
 
+/// \name Operations
+/// @{
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k S>
     ws_bool_t operator ()(S const &s) const
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     ws_bool_t operator ()(argument_type s) const
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return file_exists_envx_(stlsoft_ns_qual(c_str_ptr)(s), false);
     }
+/// @}
 };
 
 /// Predicate that indicates whether a given path exists, expanding environment variables
 ///
-/// \note Expands environment variables in the argument passed to 
+/// \note Expands environment variables in the argument passed to
 /// the function call operator
 ///
 /// \param C The character type
@@ -350,6 +369,8 @@ template<   ss_typename_param_k C
 struct path_exists_env
     : public winstl_ns_qual_std(unary_function)<A, ws_bool_t>
 {
+/// \name Member Types
+/// @{
 private:
     typedef winstl_ns_qual_std(unary_function)<A, ws_bool_t>    parent_class_type;
 public:
@@ -359,17 +380,93 @@ public:
     typedef A                                                   argument_type;
     /// The current parameterisation of the type
     typedef path_exists_env<C, A>                               class_type;
+/// @}
 
+/// \name Operations
+/// @{
 public:
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k S>
     ws_bool_t operator ()(S const &s) const
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     ws_bool_t operator ()(argument_type s) const
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         return file_exists_envx_(stlsoft_ns_qual(c_str_ptr)(s), true);
     }
+/// @}
+};
+
+
+/// \note The behaviour is undefined if the path passed to the function call operator
+///        is
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k A = C const *
+        >
+// [[synesis:class:function-class:unary-predicate: path_contains_file<T<C>, T<A>>]]
+struct path_contains_file
+    : public winstl_ns_qual_std(unary_function)<A, ws_bool_t>
+{
+/// \name Member Types
+/// @{
+private:
+    typedef winstl_ns_qual_std(unary_function)<A, ws_bool_t>    parent_class_type;
+public:
+    /// The character type
+    typedef C                                                   char_type;
+    /// The argument type
+    typedef A                                                   argument_type;
+    /// The current parameterisation of the type
+    typedef path_contains_file<C, A>                            class_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    path_contains_file(char_type const *file)
+        : m_file(file)
+    {}
+/// @}
+
+/// \name Operations
+/// @{
+public:
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+    template <ss_typename_param_k S>
+    ws_bool_t operator ()(S const &s) const
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    ws_bool_t operator ()(argument_type s) const
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    {
+        return path_contains_file_(stlsoft_ns_qual(c_str_ptr)(s), m_file);
+    }
+/// @}
+
+/// \name Implementation
+/// @{
+private:
+    static ws_bool_t path_contains_file_(char_type const *directory, char_type const *file)
+    {
+        typedef filesystem_traits<char_type>            traits_t;
+        typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
+
+        const size_t    cchDirectory    =   traits_t::str_len(directory);
+        const size_t    cchFile         =   traits_t::str_len(file);
+        buffer_t        path(1 + cchDirectory + 1 + cchFile + 1);
+
+        traits_t::str_copy(&path[0], directory);
+        traits_t::ensure_dir_end(&path[0]);
+        traits_t::str_cat(&path[0], file);
+
+        return traits_t::file_exists(path.data());
+    }
+/// @}
+
+/// \name Members
+/// @{
+private:
+    char_type const *m_file;
+/// @}
 };
 
 ////////////////////////////////////////////////////////////////////////////////

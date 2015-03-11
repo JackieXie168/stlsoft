@@ -6,11 +6,11 @@
  *              page size.
  *
  * Created:     7th February 2002
- * Updated:     18th December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_SYSTEM_INFO_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_SYSTEM_INFO_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_SYSTEM_INFO_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_SYSTEM_INFO_EDIT       45
+# define WINSTL_VER_WINSTL_HPP_SYSTEM_INFO_REVISION   2
+# define WINSTL_VER_WINSTL_HPP_SYSTEM_INFO_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -162,9 +162,9 @@ private:
 #ifdef STLSOFT_COMPILER_IS_BORLAND
         /* WSCB: Borland has an internal compiler error if use ws_bool_t */
         static ws_int_t     s_init = (::GetSystemInfo(&s_systeminfo), ws_true_v);
-#else
+#else /* ? compiler */
         static ws_bool_t    s_init = (::GetSystemInfo(&s_systeminfo), ws_true_v);
-#endif /* STLSOFT_COMPILER_IS_BORLAND */
+#endif /* compiler */
 
         STLSOFT_SUPPRESS_UNUSED(s_init);
 

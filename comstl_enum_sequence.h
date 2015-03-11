@@ -4,11 +4,11 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     23rd December 2005
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_ENUM_SEQUENCE_MAJOR    4
 # define COMSTL_VER_H_COMSTL_ENUM_SEQUENCE_MINOR    2
 # define COMSTL_VER_H_COMSTL_ENUM_SEQUENCE_REVISION 1
-# define COMSTL_VER_H_COMSTL_ENUM_SEQUENCE_EDIT     178
+# define COMSTL_VER_H_COMSTL_ENUM_SEQUENCE_EDIT     180
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/enum_sequence.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
 #ifndef COMSTL_INCL_COMSTL_HPP_ENUM_SEQUENCE
 # include <comstl/enum_sequence.hpp>

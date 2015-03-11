@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for trimming and removing string contents.
  *
  * Created:     25th April 2005
- * Updated:     2nd January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRIM_FUNCTIONS_MAJOR       1
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRIM_FUNCTIONS_MINOR       2
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRIM_FUNCTIONS_REVISION    1
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRIM_FUNCTIONS_EDIT        17
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRIM_FUNCTIONS_MINOR       3
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRIM_FUNCTIONS_REVISION    2
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_TRIM_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ inline C const *default_trim_chars(C const *, ss_size_t &n)
         ,   '\0'
     };
 
-    n = stlsoft_num_elements(s_trimChars) - 1;
+    n = STLSOFT_NUM_ELEMENTS(s_trimChars) - 1;
 
     return &s_trimChars[0];
 }
@@ -137,9 +137,9 @@ inline S &trim_left_impl(S &str, ss_typename_type_k string_traits<S>::char_type 
 #endif /* compiler */
 {
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     using namespace std;
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
     // 2. typedef the string traits
     typedef string_traits<S>                                        string_traits_t;
     // 3. typedef the char_t
@@ -150,7 +150,7 @@ inline S &trim_left_impl(S &str, ss_typename_type_k string_traits<S>::char_type 
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const *(*pfn)(char_t const *, char_t)   =   ::stlsoft::strchr;
 
-    // Get an iterator to the first element that 
+    // Get an iterator to the first element that
     const iterator_t  it_b    =   str.begin();
     const iterator_t  it_e    =   str.end();
     const iterator_t  it_l    =   find_if(it_b, it_e, not1(bind1st(ptr_fun(pfn), trimChars)));
@@ -199,7 +199,7 @@ inline S0 &trim_left(S0 &str, S1 const &trimChars)
 # if defined(__BORLANDC__)
 #  pragma warn -8091 // Otherwise BC++ complains that rbegin()/rend() returns passed to find_if() are output iterators
 #  pragma warn -8092 // Otherwise BC++ complains that rbegin()/rend() returns passed to find_if() are not iterators
-# endif /* __BORLANDC__ */
+# endif /* compiler */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1310
@@ -213,9 +213,9 @@ inline S &trim_right_impl(S &str, ss_typename_type_k string_traits<S>::char_type
 #endif /* compiler */
 {
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     using namespace std;
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
     // 2. typedef the string traits
     typedef string_traits<S>                                        string_traits_t;
     // 3. typedef the char_t
@@ -239,7 +239,7 @@ inline S &trim_right_impl(S &str, ss_typename_type_k string_traits<S>::char_type
 # if defined(__BORLANDC__)
 #  pragma warn .8092
 #  pragma warn .8091
-# endif /* __BORLANDC__ */
+# endif /* compiler */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -282,7 +282,7 @@ inline S0 &trim_right(S0 &str, S1 const &trimChars)
 # if defined(__BORLANDC__)
 #  pragma warn -8091 // Otherwise BC++ complains that rbegin()/rend() returns passed to find_if() are output iterators
 #  pragma warn -8092 // Otherwise BC++ complains that rbegin()/rend() returns passed to find_if() are not iterators
-# endif /* __BORLANDC__ */
+# endif /* compiler */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1310
@@ -296,9 +296,9 @@ inline S &trim_all_impl(S &str, ss_typename_type_k string_traits<S>::char_type c
 #endif /* compiler */
 {
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     using namespace std;
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
     // 2. typedef the string traits
     typedef string_traits<S>                                        string_traits_t;
     // 3. typedef the char_t
@@ -309,7 +309,7 @@ inline S &trim_all_impl(S &str, ss_typename_type_k string_traits<S>::char_type c
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const *(*pfn)(char_t const *, char_t)   =   ::stlsoft::strchr;
 
-    // Get an iterator to the first element that 
+    // Get an iterator to the first element that
     const iterator_t            it_b    =   str.begin();
 //    const iterator_t            it_e    =   str.end();
     const iterator_t            it_l    =   find_if(it_b, str.end(), not1(bind1st(ptr_fun(pfn), trimChars)));
@@ -322,7 +322,7 @@ inline S &trim_all_impl(S &str, ss_typename_type_k string_traits<S>::char_type c
 # if defined(__BORLANDC__)
 #  pragma warn .8092
 #  pragma warn .8091
-# endif /* __BORLANDC__ */
+# endif /* compiler */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -372,9 +372,9 @@ inline S &remove_all_impl(S &str, ss_typename_type_k S::value_type const *remove
 #endif /* compiler */
 {
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
-#ifdef __STLSOFT_CF_std_NAMESPACE
+#ifdef STLSOFT_CF_std_NAMESPACE
     using namespace std;
-#endif /* __STLSOFT_CF_std_NAMESPACE */
+#endif /* STLSOFT_CF_std_NAMESPACE */
     // 2. typedef the string traits
     typedef string_traits<S>                                        string_traits_t;
     // 3. typedef the char_t
@@ -385,7 +385,7 @@ inline S &remove_all_impl(S &str, ss_typename_type_k S::value_type const *remove
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const *(*pfn)(char_t const *, char_t)   =   ::stlsoft::strchr;
 
-    // Get an iterator to the first element that 
+    // Get an iterator to the first element that
     /* const */ iterator_t        it_b    =   str.begin();
 //    const iterator_t        it_e    =   str.end();
     const iterator_t        it_l    =   it_b;

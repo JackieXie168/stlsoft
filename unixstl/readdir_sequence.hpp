@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     27th January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MINOR     7
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      99
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -488,7 +488,7 @@ inline /* static */ readdir_sequence::flags_type readdir_sequence::validate_flag
     const flags_type    validFlags  =   0
                                     |   includeDots
                                     |   directories
-                                    |   files       
+                                    |   files
                                     |   fullPath
                                     |   absolutePath
                                     |   0;
@@ -714,12 +714,12 @@ inline readdir_sequence::const_iterator::class_type &readdir_sequence::const_ite
                 }
             }
 
-            // If either 
+            // If either
             //
             // - eliding files or directories, or
             // - requiring absolute path
             //
-            // then need to construct it. 
+            // then need to construct it.
             if((m_flags & (fullPath | directories | files)) != (directories | files))
             {
                 // Truncate the scratch to the directory path, ...

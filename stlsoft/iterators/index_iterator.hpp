@@ -4,7 +4,7 @@
  * Purpose:     index_iterator class template.
  *
  * Created:     5th April 2005
- * Updated:     31st January 2006
+ * Updated:     21st March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      14
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -140,7 +140,7 @@ class index_iterator
 private:
     // There are several problems to solve here.
     //
-    //  First, the issue of whether the library profers a meaningful definition of 
+    //  First, the issue of whether the library profers a meaningful definition of
     //  std::iterator_traits for this, or any, iterator type
     //
     //  Second, deducing whether the base iterator is const or not
@@ -150,7 +150,7 @@ private:
     //
     // Postscriptum:
     //
-    // Thankfully we don't need to worry about that any more, because 
+    // Thankfully we don't need to worry about that any more, because
     // adapted_iterator_traits handles it all for us. :-)
 
 public:

@@ -1,7 +1,7 @@
 
-// Transcriber, Translator, Arranger, Passport, Dressing, Impersonator, 
+// Transcriber, Translator, Arranger, Passport, Dressing, Impersonator,
 
-// Updated: 20th December 2005
+// Updated: 21st March 2006
 
 #if !defined(MFCSTL_INCL_MFCSTL_HPP_CARRAY_ADAPTORS)
 # error This file cannot be directly included, and should only be included within mfcstl/carray_adaptors.hpp

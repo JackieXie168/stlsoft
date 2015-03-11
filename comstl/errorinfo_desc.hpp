@@ -4,11 +4,11 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     26th December 2005
+ * Updated:     5th February 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_MAJOR     0
-# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_MINOR     2
-# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_REVISION  2
-# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_EDIT      8
+# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_MINOR     3
+# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_REVISION  1
+# define COMSTL_VER_COMSTL_HPP_ERRORINFO_DESC_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD
 # include <stlsoft/string_access_fwd.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
-#ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+#ifdef STLSOFT_CF_THROW_BAD_ALLOC
 # include <stdexcept>
-#endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -198,9 +198,9 @@ private:
 
             if(NULL == m_description_a)
             {
-#ifdef __STLSOFT_CF_THROW_BAD_ALLOC
+#ifdef STLSOFT_CF_THROW_BAD_ALLOC
                 throw stlsoft_ns_qual_std(bad_alloc)();
-#endif /* __STLSOFT_CF_THROW_BAD_ALLOC */
+#endif /* STLSOFT_CF_THROW_BAD_ALLOC */
             }
             else
             {

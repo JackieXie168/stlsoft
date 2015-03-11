@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     21st January 2006
+ * Updated:     13th March 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MAJOR     3
-# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MINOR     2
+# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_MINOR     3
 # define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      84
+# define COMSTL_VER_COMSTL_HPP_INTERFACE_CAST_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # error comstl_interface_cast.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* _MSC_VER < 1200 */
+#endif /* compiler */
 
 #ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
 # include <comstl/refcount_functions.h>     // for safe_addref(), safe_release()
@@ -287,16 +287,16 @@ public:
 // Construction
 protected:
     /// Constructor that attempts the speculative cast
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
     ss_explicit_k interface_cast_base(J &j)
         : m_pi(do_cast(simple_interface_cast(j)))
     {}
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_base(LPUNKNOWN punk)
         : m_pi(do_cast(punk))
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Constructor that directly casts (without calling QueryInterface())
     ss_explicit_k interface_cast_base(interface_pointer_type pi)
@@ -395,21 +395,21 @@ public:
     typedef protect_refcount<interface_type>                                *protected_interface_pointer_type;
 #else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     typedef interface_pointer_type                                          protected_interface_pointer_type;
-#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 // Construction
 public:
     /// Constructor that attempts the speculative cast
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
     ss_explicit_k interface_cast_noaddref(J &j)
         : parent_class_type(j)
     {}
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_noaddref(LPUNKNOWN punk)
         : parent_class_type(punk)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Constructor that directly casts (without calling QueryInterface())
     ss_explicit_k interface_cast_noaddref(interface_pointer_type pi)
@@ -465,16 +465,16 @@ public:
 // Construction
 public:
     /// Constructor that attempts the speculative cast
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
     ss_explicit_k interface_cast_addref(J j)
         : parent_class_type(j)
     {}
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_addref(LPUNKNOWN punk)
         : parent_class_type(punk)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Constructor that directly casts (without calling QueryInterface())
     ss_explicit_k interface_cast_addref(interface_pointer_type pi)
@@ -526,21 +526,21 @@ public:
     typedef protect_refcount<interface_type>                                                *protected_interface_pointer_type;
 #else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     typedef interface_pointer_type                                                          protected_interface_pointer_type;
-#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 // Construction
 public:
     /// Constructor that attempts the speculative cast
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
     ss_explicit_k interface_cast_test(J &j)
         : parent_class_type(j)
     {}
-#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_test(LPUNKNOWN punk)
         : parent_class_type(punk)
     {}
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Constructor that directly casts (without calling QueryInterface())
     ss_explicit_k interface_cast_test(interface_pointer_type pi)
