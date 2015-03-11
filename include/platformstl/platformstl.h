@@ -5,11 +5,11 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     29th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    11
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     33
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -117,14 +117,14 @@
 # define _PLATFORMSTL_VER_1_4_1     0x00010401  /*!< Version 1.4.1 */
 # define _PLATFORMSTL_VER_1_4_2     0x00010402  /*!< Version 1.4.2 */
 # define _PLATFORMSTL_VER_1_5_1     0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
-# define _PLATFORMSTL_VER_1_6_1     0x00010601  /*!< Version 1.5.1 (with STLSoft 1.9.16) */
+# define _PLATFORMSTL_VER_1_6_1     0x00010601  /*!< Version 1.6.1 (with STLSoft 1.9.16) */
+# define _PLATFORMSTL_VER_1_6_2     0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      6
-#define _PLATFORMSTL_VER_REVISION   1
-
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_6_1
+#define _PLATFORMSTL_VER_REVISION   2
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_6_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

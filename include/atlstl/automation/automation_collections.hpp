@@ -4,11 +4,11 @@
  * Purpose:     Adaptor classes for creating COM collection instances.
  *
  * Created:     16th April 1999
- * Updated:     2nd June 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MAJOR     3
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MINOR     2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      102
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  2
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,11 @@ STLSOFT_COMPILER_IS_DMC:
 #ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
-#include <atlcom.h>
+
+#ifndef STLSOFT_INCL_SYS_H_ATLCOM
+# define STLSOFT_INCL_SYS_H_ATLCOM
+# include <atlcom.h>
+#endif /* !STLSOFT_INCL_SYS_H_ATLCOM */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

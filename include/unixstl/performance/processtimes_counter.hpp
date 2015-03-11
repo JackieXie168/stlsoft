@@ -4,11 +4,11 @@
  * Purpose:     UNIXSTL process-time performance counter class.
  *
  * Created:     9th June 2006
- * Updated:     10th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      7
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,11 +62,18 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
+
 #ifdef _WIN32
 # include <winsock2.h>  /* This required to forestall conflicting type definitions of timeval wrt WinSock. */
 #endif /* _WIN32 */
-#include <sys/time.h>
-#include <sys/resource.h>
+#ifndef STLSOFT_INCL_H_SYS
+# define STLSOFT_INCL_H_SYS
+# include <sys/time.h>
+#endif /* !STLSOFT_INCL_H_SYS */
+#ifndef STLSOFT_INCL_H_SYS
+# define STLSOFT_INCL_H_SYS
+# include <sys/resource.h>
+#endif /* !STLSOFT_INCL_H_SYS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

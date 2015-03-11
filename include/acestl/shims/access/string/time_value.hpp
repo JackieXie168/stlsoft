@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  4
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      37
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  5
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,11 +71,24 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
-#include <ace/Time_Value.h>                 // for ACE_Time_Value
-#include <ace/ace_wchar.h>                  // for ACE_Wide_To_Ascii, ACE_Ascii_To_Wide
+
+#ifndef STLSOFT_INCL_ACE_H_TIME_VALUE
+# define STLSOFT_INCL_ACE_H_TIME_VALUE
+# include <ace/Time_Value.h>                // for ACE_Time_Value
+#endif /* !STLSOFT_INCL_ACE_H_TIME_VALUE */
+#ifndef STLSOFT_INCL_ACE_H_ACE_WCHAR
+# define STLSOFT_INCL_ACE_H_ACE_WCHAR
+# include <ace/ace_wchar.h>                 // for ACE_Wide_To_Ascii, ACE_Ascii_To_Wide
+#endif /* !STLSOFT_INCL_ACE_H_ACE_WCHAR */
 #if ACESTL_ACE_VERSION >= 0x00050004
-# include <ace/OS_NS_stdio.h>
-# include <ace/OS_NS_time.h>
+#ifndef STLSOFT_INCL_ACE_H_OS_NS_STDIO
+# define STLSOFT_INCL_ACE_H_OS_NS_STDIO
+#  include <ace/OS_NS_stdio.h>
+#endif /* !STLSOFT_INCL_ACE_H_OS_NS_STDIO */
+#ifndef STLSOFT_INCL_ACE_H_OS_NS_TIME
+# define STLSOFT_INCL_ACE_H_OS_NS_TIME
+#  include <ace/OS_NS_time.h>
+#endif /* !STLSOFT_INCL_ACE_H_OS_NS_TIME */
 #endif /* ACE_VER >= 5.4 */
 
 /* /////////////////////////////////////////////////////////////////////////

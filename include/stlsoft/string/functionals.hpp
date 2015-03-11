@@ -4,11 +4,11 @@
  * Purpose:     String function classes
  *
  * Created:     22nd April 2005
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        28
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,8 +83,15 @@ STLSOFT_COMPILER_IS_WATCOM:
 #else /* ? _STLSOFT_STRING_FUNCTIONALS_NO_STD */
 # error Now need to write that std_binary_function stuff!!
 #endif /* _STLSOFT_STRING_FUNCTIONALS_NO_STD */
-#include <string.h>
-#include <wchar.h>
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

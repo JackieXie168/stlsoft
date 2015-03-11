@@ -4,11 +4,11 @@
  * Purpose:     File-system functions.
  *
  * Created:     2nd January 2007
- * Updated:     10th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       4
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   3
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,8 +62,16 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <stdexcept>
-#include <stdio.h>
+
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
+# include <stdexcept>
+#endif /* !STLSOFT_INCL_STDEXCEPT */
+
+#ifndef STLSOFT_INCL_H_STDIO
+# define STLSOFT_INCL_H_STDIO
+# include <stdio.h>
+#endif /* !STLSOFT_INCL_H_STDIO */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -146,6 +154,6 @@ ss_size_t read_line(FILE *stm, S &str)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS */
+#endif /* !STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS */
 
 /* ////////////////////////////////////////////////////////////////////// */

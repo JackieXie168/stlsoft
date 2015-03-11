@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     12th April 2007
+ * Updated:     9th March 2008
  *
  * Thanks:      To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
@@ -14,7 +14,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      56
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,7 +83,6 @@
 #ifndef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
 # error unixstl/synch/spin_mutex.hpp requires support for atomic integer operations. Consult unixstl/synch/util/features.h for details
 #endif /* !UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
-
 #ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS
 # include <unixstl/synch/atomic_functions.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS */
@@ -94,7 +93,10 @@
 # include <stlsoft/synch/spin_policies.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES */
 
-#include <sched.h>
+#ifndef STLSOFT_INCL_H_SCHED
+# define STLSOFT_INCL_H_SCHED
+# include <sched.h>
+#endif /* !STLSOFT_INCL_H_SCHED */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/synch/lock_scope.hpp>

@@ -4,11 +4,11 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     17th September 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     214
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 4
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,8 +74,15 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING
 # include <unixstl/shims/access/string.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING */
-#include <dlfcn.h>
-#include <errno.h>
+
+#ifndef STLSOFT_INCL_H_DLFCN
+# define STLSOFT_INCL_H_DLFCN
+# include <dlfcn.h>
+#endif /* !STLSOFT_INCL_H_DLFCN */
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

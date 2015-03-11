@@ -4,11 +4,11 @@
  * Purpose:     Command-line sequences class.
  *
  * Created:     25th June 2005
- * Updated:     16th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        27
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    2
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,13 +81,19 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS
 # include <stlsoft/string/split_functions.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS */
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
 # include <stlsoft/string/string_view.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
 
-#include <utility>
-#include <vector>
+#ifndef STLSOFT_INCL_UTILITY
+# define STLSOFT_INCL_UTILITY
+# include <utility>
+#endif /* !STLSOFT_INCL_UTILITY */
+#ifndef STLSOFT_INCL_VECTOR
+# define STLSOFT_INCL_VECTOR
+# include <vector>
+#endif /* !STLSOFT_INCL_VECTOR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

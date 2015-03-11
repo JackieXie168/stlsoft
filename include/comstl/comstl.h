@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     18th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       4
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    5
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        100
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    6
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -121,9 +121,6 @@
  * \brief The current composite version number of COMSTL
  */
 
-#define _COMSTL_VER_MAJOR       1
-#define _COMSTL_VER_MINOR       7
-#define _COMSTL_VER_REVISION    2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _COMSTL_VER_1_1_1      0x00010101  /*!< Version 1.1.1 */
@@ -141,10 +138,14 @@
 # define _COMSTL_VER_1_6_1      0x00010601  /*!< Version 1.6.1 */
 # define _COMSTL_VER_1_6_2      0x00010602  /*!< Version 1.6.2 */
 # define _COMSTL_VER_1_7_1      0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.1) */
-# define _COMSTL_VER_1_7_2      0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.8) */
+# define _COMSTL_VER_1_7_2      0x00010702  /*!< Version 1.7.1 (with STLSoft 1.9.8) */
+# define _COMSTL_VER_1_7_3      0x00010703  /*!< Version 1.7.1 (with STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _COMSTL_VER             _COMSTL_VER_1_7_2
+#define _COMSTL_VER_MAJOR       1
+#define _COMSTL_VER_MINOR       7
+#define _COMSTL_VER_REVISION    3
+#define _COMSTL_VER             _COMSTL_VER_1_7_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -153,7 +154,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <objbase.h>
+
+#ifndef STLSOFT_INCL_H_OBJBASE
+# define STLSOFT_INCL_H_OBJBASE
+# include <objbase.h>
+#endif /* !STLSOFT_INCL_H_OBJBASE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility

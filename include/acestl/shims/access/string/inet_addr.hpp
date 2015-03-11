@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   4
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       39
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   5
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,8 +74,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
 # include <stlsoft/string/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
-#include <ace/INET_Addr.h>                      // for ACE_INET_Addr
-#include <ace/ace_wchar.h>                      // for ACE_Wide_To_Ascii, ACE_Ascii_To_Wide
+
+#ifndef STLSOFT_INCL_ACE_H_INET_ADDR
+# define STLSOFT_INCL_ACE_H_INET_ADDR
+# include <ace/INET_Addr.h>                     // for ACE_INET_Addr
+#endif /* !STLSOFT_INCL_ACE_H_INET_ADDR */
+#ifndef STLSOFT_INCL_ACE_H_ACE_WCHAR
+# define STLSOFT_INCL_ACE_H_ACE_WCHAR
+# include <ace/ace_wchar.h>                     // for ACE_Wide_To_Ascii, ACE_Ascii_To_Wide
+#endif /* !STLSOFT_INCL_ACE_H_ACE_WCHAR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

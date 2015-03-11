@@ -4,11 +4,11 @@
  * Purpose:     Contains the stlsoft::mem_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     6th December 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MINOR      1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       59
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   2
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,10 @@ STLSOFT_COMPILER_IS_GCC:    __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4
 # error This file is not compatible with GCC <3.3
 #endif /* compiler */
 
-#include <functional>
+#ifndef STLSOFT_INCL_FUNCTIONAL
+# define STLSOFT_INCL_FUNCTIONAL
+# include <functional>
+#endif /* !STLSOFT_INCL_FUNCTIONAL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

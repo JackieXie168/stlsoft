@@ -4,11 +4,11 @@
  * Purpose:     Basic functionals.
  *
  * Created:     19th January 2002
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MAJOR      3
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MINOR      0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_REVISION   1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       45
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_REVISION   2
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <functional>           // for std::unary_function
+
+#ifndef STLSOFT_INCL_FUNCTIONAL
+# define STLSOFT_INCL_FUNCTIONAL
+# include <functional>           // for std::unary_function
+#endif /* !STLSOFT_INCL_FUNCTIONAL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

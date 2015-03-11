@@ -4,11 +4,11 @@
  * Purpose:     Interface-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     11th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MAJOR     4
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MINOR     0
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  1
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      63
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  2
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,11 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS
 # include <comstl/util/refcount_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS */
-#include <functional>
+
+#ifndef STLSOFT_INCL_FUNCTIONAL
+# define STLSOFT_INCL_FUNCTIONAL
+# include <functional>
+#endif /* !STLSOFT_INCL_FUNCTIONAL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

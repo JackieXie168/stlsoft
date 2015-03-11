@@ -4,11 +4,11 @@
  * Purpose:     Contains the comstl::com_SUCCEEDED and comstl::com_S_OK.
  *
  * Created:     3rd April 2007
- * Updated:     3rd April 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://comstl.org/
  *
- * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef COMSTL_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MAJOR    1
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MINOR    0
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION 1
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT     1
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION 2
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT     4
 #endif /* !COMSTL_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,10 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_STLSOFT */
 
-#include <functional>
+#ifndef STLSOFT_INCL_FUNCTIONAL
+# define STLSOFT_INCL_FUNCTIONAL
+# include <functional>
+#endif /* !STLSOFT_INCL_FUNCTIONAL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

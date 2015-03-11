@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created:     23rd September 2004
- * Updated:     13th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      0
-# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   2
-# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       26
+# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   3
+# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,8 +62,15 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#include <ace/Message_Block.h>      // for ACE_Message_Block
-#include <ace/OS_Memory.h>          // for ACE_bad_alloc, ACE_NEW_THROWS_EXCEPTIONS
+
+#ifndef STLSOFT_INCL_ACE_H_MESSAGE_BLOCK
+# define STLSOFT_INCL_ACE_H_MESSAGE_BLOCK
+# include <ace/Message_Block.h>     // for ACE_Message_Block
+#endif /* !STLSOFT_INCL_ACE_H_MESSAGE_BLOCK */
+#ifndef STLSOFT_INCL_ACE_H_OS_MEMORY
+# define STLSOFT_INCL_ACE_H_OS_MEMORY
+# include <ace/OS_Memory.h>         // for ACE_bad_alloc, ACE_NEW_THROWS_EXCEPTIONS
+#endif /* !STLSOFT_INCL_ACE_H_OS_MEMORY */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -5,11 +5,11 @@
  *              unit-test framework.
  *
  * Created:     26th February 2004
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MAJOR    4
 # define STLSOFT_VER_UNITTEST_HPP_UNITTEST_MINOR    2
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_REVISION 1
-# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     36
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_REVISION 2
+# define STLSOFT_VER_UNITTEST_HPP_UNITTEST_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,8 +76,14 @@
 # error This file should not be used when STLSOFT_UNITTEST is not defined. You should probably refrain from including it directly, since it is an internal implementation feature, and subject to change at any time
 #endif /* !STLSOFT_UNITTEST */
 
-#include <stdio.h>
-#include <wchar.h>
+#ifndef STLSOFT_INCL_H_STDIO
+# define STLSOFT_INCL_H_STDIO
+# include <stdio.h>
+#endif /* !STLSOFT_INCL_H_STDIO */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

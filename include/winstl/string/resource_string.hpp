@@ -4,14 +4,14 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2008, Matthew Wilson and Synesis Software
  * Copyright (c) 2004-2005, Ryan Ginstrom
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 2
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     79
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 3
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,11 +86,16 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
 # include <winstl/error/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
+
+#ifndef STLSOFT_INCL_EXCEPTION
+# define STLSOFT_INCL_EXCEPTION
+# include <exception>
+#endif /* !STLSOFT_INCL_EXCEPTION */
+
 #ifdef STLSOFT_UNITTEST
 # include <iostream>                    // for std::cout, std::endl
 # include <string>                      // for std::string, std::wstring
 #endif /* STLSOFT_UNITTEST */
-#include <exception>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

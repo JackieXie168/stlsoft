@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     6th November 2007
+ * Updated:     9th March 2008
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -76,8 +76,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 3
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     42
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 4
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,8 +107,15 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
 # include <rangelib/basic_indirect_range_adaptor.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR */
-#include <algorithm>
-#include <numeric>
+
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>
+#endif /* !STLSOFT_INCL_ALGORITHM */
+#ifndef STLSOFT_INCL_NUMERIC
+# define STLSOFT_INCL_NUMERIC
+# include <numeric>
+#endif /* !STLSOFT_INCL_NUMERIC */
 
 #ifdef STLSOFT_UNITTEST
 # include <rangelib/integral_range.hpp>

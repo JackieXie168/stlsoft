@@ -4,11 +4,11 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     22nd March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MAJOR      4
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MINOR      0
-# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_REVISION   2
-# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       78
+# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_REVISION   3
+# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,10 @@
 # pragma warn -8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-#include <afxwin.h>     // for AfxThrowResourceException()
+#ifndef STLSOFT_INCL_H_AFXWIN
+# define STLSOFT_INCL_H_AFXWIN
+# include <afxwin.h>    // for AfxThrowResourceException()
+#endif /* !STLSOFT_INCL_H_AFXWIN */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn .8022 /* Suppresses "'f()' hides virtual function 'g()'" */

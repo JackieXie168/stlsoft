@@ -4,11 +4,11 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     30th December 2006
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_MAJOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_MINOR      0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_REVISION   1
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_EDIT       15
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_REVISION   2
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR
 # include <stlsoft/shims/attribute/get_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR */
-#include <functional>
+
+#ifndef STLSOFT_INCL_FUNCTIONAL
+# define STLSOFT_INCL_FUNCTIONAL
+# include <functional>
+#endif /* !STLSOFT_INCL_FUNCTIONAL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

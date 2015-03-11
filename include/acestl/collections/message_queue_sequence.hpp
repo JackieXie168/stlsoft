@@ -4,11 +4,11 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     2nd June 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  7
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      54
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  8
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,16 +74,38 @@
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_BOUNDED
 # include <stlsoft/algorithms/bounded.hpp>  // for stlsoft::copy_n()
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_BOUNDED */
+
 #if ACESTL_ACE_VERSION >= 0x00050004
   // This stinks, but appears to be necessary in ACE versions later than 5.3
-# include <ace/Condition_Thread_Mutex.h>
-# include <ace/Guard_T.h>
-# include <ace/Null_Condition.h>
-# include <ace/Null_Mutex.h>
-# include <ace/Thread_Mutex.h>
+#ifndef STLSOFT_INCL_ACE_H_CONDITION_THREAD_MUTEX
+# define STLSOFT_INCL_ACE_H_CONDITION_THREAD_MUTEX
+#  include <ace/Condition_Thread_Mutex.h>
+#endif /* !STLSOFT_INCL_ACE_H_CONDITION_THREAD_MUTEX */
+#ifndef STLSOFT_INCL_ACE_H_GUARD_T
+# define STLSOFT_INCL_ACE_H_GUARD_T
+#  include <ace/Guard_T.h>
+#endif /* !STLSOFT_INCL_ACE_H_GUARD_T */
+#ifndef STLSOFT_INCL_ACE_H_NULL_CONDITION
+# define STLSOFT_INCL_ACE_H_NULL_CONDITION
+#  include <ace/Null_Condition.h>
+#endif /* !STLSOFT_INCL_ACE_H_NULL_CONDITION */
+#ifndef STLSOFT_INCL_ACE_H_NULL_MUTEX
+# define STLSOFT_INCL_ACE_H_NULL_MUTEX
+#  include <ace/Null_Mutex.h>
+#endif /* !STLSOFT_INCL_ACE_H_NULL_MUTEX */
+#ifndef STLSOFT_INCL_ACE_H_THREAD_MUTEX
+# define STLSOFT_INCL_ACE_H_THREAD_MUTEX
+#  include <ace/Thread_Mutex.h>
+#endif /* !STLSOFT_INCL_ACE_H_THREAD_MUTEX */
 #endif /* ACESTL_ACE_VERSION */
-#include <ace/Message_Queue_T.h>
-#include <algorithm>                // for std::copy
+#ifndef STLSOFT_INCL_ACE_H_MESSAGE_QUEUE_T
+# define STLSOFT_INCL_ACE_H_MESSAGE_QUEUE_T
+# include <ace/Message_Queue_T.h>
+#endif /* !STLSOFT_INCL_ACE_H_MESSAGE_QUEUE_T */
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>                // for std::copy
+#endif /* !STLSOFT_INCL_ALGORITHM */
 
 #ifdef STLSOFT_UNITTEST
 # include <acestl/memory/message_block_functions.hpp>

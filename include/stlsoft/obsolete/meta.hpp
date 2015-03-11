@@ -4,11 +4,11 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     14th January 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MAJOR    4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MINOR    0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 2
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     131
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 3
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,10 +79,10 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
 # include <stlsoft/meta/capabilities.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifndef STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_
 # include <stlsoft/meta/util/meta_.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
+#endif /* !STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */

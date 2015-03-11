@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     12th March 2007
+ * Updated:     9th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      99
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,11 +69,18 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS
 # include <unixstl/system/system_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS */
+
 #ifdef _WIN32
 # include <ctype.h>
 #endif /* _WIN32 */
-#include <errno.h>
-#include <fcntl.h>
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
+#ifndef STLSOFT_INCL_H_FCNTL
+# define STLSOFT_INCL_H_FCNTL
+# include <fcntl.h>
+#endif /* !STLSOFT_INCL_H_FCNTL */
 #ifdef _WIN32
 # include <io.h>
 # if defined(STLSOFT_COMPILER_IS_INTEL) || \
@@ -81,16 +88,46 @@
 #  include <direct.h>
 # endif /* os && compiler */
 #endif /* _WIN32 */
-#include <dlfcn.h>
-#include <dirent.h>
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <wchar.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#ifndef STLSOFT_INCL_H_DLFCN
+# define STLSOFT_INCL_H_DLFCN
+# include <dlfcn.h>
+#endif /* !/* !STLSOFT_INCL_H_DLFCN */
+#ifndef STLSOFT_INCL_H_DIRENT
+# define STLSOFT_INCL_H_DIRENT
+# include <dirent.h>
+#endif /* !STLSOFT_INCL_H_DIRENT */
+#ifndef STLSOFT_INCL_H_LIMITS
+# define STLSOFT_INCL_H_LIMITS
+# include <limits.h>
+#endif /* !STLSOFT_INCL_H_LIMITS */
+#ifndef STLSOFT_INCL_H_STDIO
+# define STLSOFT_INCL_H_STDIO
+# include <stdio.h>
+#endif /* !STLSOFT_INCL_H_STDIO */
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>
+#endif /* !STLSOFT_INCL_H_STDLIB */
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
+#ifndef STLSOFT_INCL_H_UNISTD
+# define STLSOFT_INCL_H_UNISTD
+# include <unistd.h>
+#endif /* !STLSOFT_INCL_H_UNISTD */
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>
+#endif /* !STLSOFT_INCL_H_WCHAR */
+#ifndef STLSOFT_INCL_SYS_H_TYPES
+# define STLSOFT_INCL_SYS_H_TYPES
+# include <sys/types.h>
+#endif /* !STLSOFT_INCL_SYS_H_TYPES */
+#ifndef STLSOFT_INCL_SYS_H_STAT
+# define STLSOFT_INCL_SYS_H_STAT
+# include <sys/stat.h>
+#endif /* !STLSOFT_INCL_SYS_H_STAT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

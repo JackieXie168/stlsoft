@@ -6,14 +6,14 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     7th December 2007
+ * Updated:     9th March 2008
  *
  * Thanks:      To Cláudio Albuquerque for suggesting the inclusion of
  *              atlstr.h.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     4
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  1
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      88
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  2
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -110,9 +110,6 @@
  * The current composite version number of MFCSTL
  */
 
-#define _MFCSTL_VER_MAJOR       1
-#define _MFCSTL_VER_MINOR       5
-#define _MFCSTL_VER_REVISION    2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _MFCSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _MFCSTL_VER_1_1_1      0x00010101  /*!< Version 1.1.1 */
@@ -128,10 +125,14 @@
 # define _MFCSTL_VER_1_4_2      0x00010402  /*!< Version 1.4.2 */
 # define _MFCSTL_VER_1_4_3      0x00010403  /*!< Version 1.4.3 */
 # define _MFCSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
-# define _MFCSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.10) */
+# define _MFCSTL_VER_1_5_2      0x00010502  /*!< Version 1.5.2 (with STLSoft 1.9.10) */
+# define _MFCSTL_VER_1_5_3      0x00010503  /*!< Version 1.5.3 (with STLSoft 1.9.25) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _MFCSTL_VER             _MFCSTL_VER_1_5_2
+#define _MFCSTL_VER_MAJOR       1
+#define _MFCSTL_VER_MINOR       5
+#define _MFCSTL_VER_REVISION    3
+#define _MFCSTL_VER             _MFCSTL_VER_1_5_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -146,7 +147,10 @@
 # pragma warn -8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-#include <afx.h>        // MFC base header
+#ifndef STLSOFT_INCL_H_AFX
+# define STLSOFT_INCL_H_AFX
+# include <afx.h>        // MFC base header
+#endif /* !STLSOFT_INCL_H_AFX */
 
 #if _MFC_VER >= 0x0700
 # include <atlstr.h>
