@@ -4,11 +4,11 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     6th November 2007
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 4
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     74
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 5
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,6 +101,10 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS
 # include <winstl/controls/functions.h>     // for winstl::listbox_add_string, ...
 #endif /* !WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
+
 #ifndef _WINSTL_CONTROL_FUNCTIONALS_NO_STD
 # include <functional>
 #else /* ? _WINSTL_CONTROL_FUNCTIONALS_NO_STD */
@@ -249,16 +253,30 @@ public:
     ss_explicit_k is_class(ws_char_a_t const* windowClass)
         : m_bUnicode(false)
     {
+        typedef system_traits<ws_char_a_t>  traits_t;
+
         WINSTL_ASSERT(NULL != windowClass);
 
-        lstrcpynA(&m_name.sza[0], windowClass, STLSOFT_NUM_ELEMENTS(m_name.sza));
+        const traits_t::size_type cchClass = traits_t::str_len(windowClass);
+
+        WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.sza));
+
+        ::memcpy(&m_name.sza[0], windowClass, cchClass);
+        m_name.sza[cchClass] = '\0';
     }
     ss_explicit_k is_class(ws_char_w_t const* windowClass)
         : m_bUnicode(true)
     {
+        typedef system_traits<ws_char_w_t>  traits_t;
+
         WINSTL_ASSERT(NULL != windowClass);
 
-        lstrcpynW(&m_name.szw[0], windowClass, STLSOFT_NUM_ELEMENTS(m_name.sza));
+        const traits_t::size_type cchClass = traits_t::str_len(windowClass);
+
+        WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.szw));
+
+        ::memcpy(&m_name.szw[0], windowClass, cchClass);
+        m_name.szw[cchClass] = '\0';
     }
 
 public:

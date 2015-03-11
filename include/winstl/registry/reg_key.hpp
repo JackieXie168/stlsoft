@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        123
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -356,6 +356,22 @@ public:
     ///
     /// \note This is not a constant-time operation
     size_type               num_values() const;
+    /// Indicates whether the sub-key exists
+    ///
+    /// \param subKeyName The name of the sub-key to test
+    template <ss_typename_param_k S>
+    bool_type               has_sub_key(S const& subKeyName)
+    {
+        return this->has_sub_key_(stlsoft_ns_qual(c_str_ptr)(subKeyName));
+    }
+    /// Indicates whether the value exists
+    ///
+    /// \param valueName The name of the value to test
+    template <ss_typename_param_k S>
+    bool_type               has_value(S const& valueName)
+    {
+        return this->has_value_(stlsoft_ns_qual(c_str_ptr)(valueName));
+    }
 
     /** \brief The handle to the underlying Registry API key.
      *
@@ -761,6 +777,9 @@ private:
 
     bool_type   delete_value_(char_type const* valueName);
 
+    bool_type   has_sub_key_(char_type const* subKeyName);
+    bool_type   has_value_(char_type const* valueName);
+
     static result_type  get_value_(hkey_type hkey, char_type const* valueName, ws_uint_t type, void *value, size_type *pcbValue);
 
     static hkey_type    dup_key_(   hkey_type       hkey
@@ -877,7 +896,7 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type bas
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(registry_exception("Could not open key", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("could not open key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         hkey = NULL;
@@ -892,7 +911,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::dup_key_(  ss_typename_type_k basic_reg_key<C, T, A>::hkey_type    hkey
-                                                                                                        ,   REGSAM                                                  accessMask /* = KEY_ALL_ACCESS */)
+                                                                                                            ,   REGSAM                                                  accessMask /* = KEY_ALL_ACCESS */)
 {
     if(NULL == hkey)
     {
@@ -901,12 +920,12 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type bas
     else
     {
         result_type res;
-        HKEY        hkeyDup =   traits_type::key_dup(hkey, accessMask, &res);
+        HKEY        hkeyDup = traits_type::key_dup(hkey, accessMask, &res);
 
         if(ERROR_SUCCESS != res)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(registry_exception("Could not duplicate key", res));
+            STLSOFT_THROW_X(registry_exception("could not duplicate key", res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             hkeyDup = NULL;
@@ -997,6 +1016,10 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type basic_reg_key<
         }
     }
 
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    STLSOFT_THROW_X(registry_exception("could not determine the key registry class", static_cast<DWORD>(res)));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     return string_type();
 }
 
@@ -1008,7 +1031,11 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C,
 
     if(ERROR_SUCCESS != res)
     {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        STLSOFT_THROW_X(registry_exception("could not determine the number of sub-keys", static_cast<DWORD>(res)));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         c_sub_keys = 0;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     return c_sub_keys;
@@ -1022,7 +1049,11 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C,
 
     if(ERROR_SUCCESS != res)
     {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        STLSOFT_THROW_X(registry_exception("could not determine the number of values", static_cast<DWORD>(res)));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         c_values = 0;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     return c_values;
@@ -1082,7 +1113,7 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(registry_exception("Could not create sub-key", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("could not create sub-key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         return class_type();
@@ -1109,7 +1140,7 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(registry_exception("Could not delete sub-key", res));
+            STLSOFT_THROW_X(registry_exception("could not delete sub-key", res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through
@@ -1171,17 +1202,17 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::result_type basic_reg_key<C, T, A>::set_value_(  ss_typename_type_k basic_reg_key<C, T, A>::hkey_type        hkey
-                                                                                                            ,   ss_typename_type_k basic_reg_key<C, T, A>::char_type const  *valueName
-                                                                                                            ,   ws_uint_t                                                   type
-                                                                                                            ,   void const                                                  *value
-                                                                                                            ,   ss_typename_type_k basic_reg_key<C, T, A>::size_type        cbValue)
+                                                                                                                ,   ss_typename_type_k basic_reg_key<C, T, A>::char_type const  *valueName
+                                                                                                                ,   ws_uint_t                                                   type
+                                                                                                                ,   void const                                                  *value
+                                                                                                                ,   ss_typename_type_k basic_reg_key<C, T, A>::size_type        cbValue)
 {
-    result_type res =   traits_type::reg_set_value(hkey, valueName, type, value, cbValue);
+    result_type res = traits_type::reg_set_value(hkey, valueName, type, value, cbValue);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(ERROR_SUCCESS != res)
     {
-        STLSOFT_THROW_X(registry_exception("Could not create value", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("could not create value", static_cast<DWORD>(res)));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -1217,10 +1248,12 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, ss_typename_type_k basic_reg_key<C, T, A>::char_type const** values, ss_typename_type_k basic_reg_key<C, T, A>::size_type numValues)
 {
-    const size_type totalLen    =   winstl_ns_qual_std(accumulate)( stlsoft_ns_qual(transformer)(values, std::ptr_fun(traits_type::str_len))
-                                                                ,   stlsoft_ns_qual(transformer)(values + numValues, std::ptr_fun(traits_type::str_len))
-                                                                ,   size_type(0));
+    // Evaluate the total length of the source values
+    const size_type totalLen = winstl_ns_qual_std(accumulate)(  stlsoft_ns_qual(transformer)(values, std::ptr_fun(traits_type::str_len))
+                                                            ,   stlsoft_ns_qual(transformer)(values + numValues, std::ptr_fun(traits_type::str_len))
+                                                            ,   size_type(0));
 
+    // Create a buffer of sufficient size: total length + a nul-terminator for each value + a double nul-terminator
     stlsoft_ns_qual(auto_buffer)<char_type> buff(totalLen + numValues * 1 + 2);
 
     if(buff.empty())
@@ -1230,16 +1263,18 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
         return false;
     }
 
-    char_type   *p  =   &buff[0];
+    // Now synthesise all the data
+    char_type *p = &buff[0];
 
-    for(size_type i = 0; i < numValues; ++i)
+    { for(size_type i = 0; i != numValues; ++i)
     {
         char_type const*    s   =   values[i];
         const size_type     len =   traits_type::str_len(s);
 
-        traits_type::str_n_copy(p, s, len + 1);
-        p += len + 1;
-    }
+        ::memcpy(p, s, sizeof(char_type) * len);
+        p += len;
+        *p++ = '\0';
+    }}
     *p++ = '\0';
     *p++ = '\0';
 
@@ -1297,7 +1332,7 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(registry_exception("Could not delete value", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(registry_exception("could not delete value", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through
@@ -1307,6 +1342,41 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
     }
 }
 
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::has_sub_key_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* subKeyName)
+{
+    hkey_type   hkey;
+    result_type res = traits_type::reg_open_key(m_hkey, subKeyName, &hkey, KEY_READ);
+
+    switch(res)
+    {
+        case    ERROR_SUCCESS:
+            ::RegCloseKey(hkey);
+        case    ERROR_ACCESS_DENIED:
+            return true;
+        default:
+            return false;
+    }
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::has_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName)
+{
+    ws_dword_t  valueType;
+    ss_byte_t   data[1];
+    size_type   cbData = sizeof(data);
+    result_type res = traits_type::reg_query_value(m_hkey, valueName, valueType, &data[0], cbData);
+
+    switch(res)
+    {
+        case    ERROR_SUCCESS:
+        case    ERROR_MORE_DATA:
+            return true;
+        default:
+            return false;
+    }
+}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_value<C, T, A> basic_reg_key<C, T, A>::get_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName) const

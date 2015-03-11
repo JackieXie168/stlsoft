@@ -12,11 +12,11 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     6th December 2007
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      93
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -565,10 +565,10 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
     if( ret.length() > 0 &&
         REG_EXPAND_SZ == get_type_())
     {
-        size_type           size    =   traits_type::expand_env_strings(ret.c_str(), NULL, 0);
+        size_type           size    =   traits_type::expand_environment_strings(ret.c_str(), NULL, 0);
         char_buffer_type_   buffer(1 + size);
 
-        if(traits_type::expand_env_strings(ret.c_str(), &buffer[0], size) != 0)
+        if(traits_type::expand_environment_strings(ret.c_str(), &buffer[0], size) != 0)
         {
             ret = &buffer[0];
         }

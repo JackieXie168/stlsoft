@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     13th June 2006
- * Updated:     12th March 2007
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#ifdef _WIN32
+#if defined(_WIN32) || \
+    defined(_WIN64)
 # include <ctype.h>
-#endif /* _WIN32 */
+#endif /* Windows */
 
 #ifdef STLSOFT_UNITTEST
 #endif // STLSOFT_UNITTEST
@@ -148,14 +149,15 @@ us_size_t path_squeeze_impl(C const* path, us_size_t pathLen, C *buffer, us_size
 
                         rootLen = 1 + static_cast<us_size_t>(p1 - path_ptr);
                     }
-#ifdef _WIN32
+#if defined(_WIN32) || \
+    defined(_WIN64)
                     else if(isalpha(path_ptr[0]) && 
                             ':' == path_ptr[1])
                     {
                         // 2. drive
                         rootLen = 3;
                     }
-#endif /* _WIN32 */
+#endif /* Windows */
                     else
                     {
                         // 3. rooted - begins with \ or /

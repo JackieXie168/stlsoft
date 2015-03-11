@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     77
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
@@ -475,13 +478,17 @@ inline /* static */ void basic_environment_sequence<ws_char_w_t>::free_environme
 STLSOFT_TEMPLATE_SPECIALISATION
 inline /* static */ ws_int_t basic_environment_sequence<ws_char_a_t>::compare_strings_(ws_char_a_t const* s1, ws_char_a_t const* s2, ws_int_t flags)
 {
-    return (ignoreCase & flags) ? ::lstrcmpiA(s1, s2) : ::lstrcmpA(s1, s2);
+    typedef system_traits<ws_char_a_t>  traits_t;
+
+    return (ignoreCase & flags) ? traits_t::str_compare_no_case(s1, s2) : traits_t::str_compare(s1, s2);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
 inline /* static */ ws_int_t basic_environment_sequence<ws_char_w_t>::compare_strings_(ws_char_w_t const* s1, ws_char_w_t const* s2, ws_int_t flags)
 {
-    return (ignoreCase & flags) ? ::lstrcmpiW(s1, s2) : ::lstrcmpW(s1, s2);
+    typedef system_traits<ws_char_w_t>  traits_t;
+
+    return (ignoreCase & flags) ? traits_t::str_compare_no_case(s1, s2) : traits_t::str_compare(s1, s2);
 }
 
 template <ss_typename_param_k C>

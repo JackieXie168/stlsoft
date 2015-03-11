@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Thanks to:   Nevin Liber and Scott Meyers for kicking my lazy behind, and
  *              requiring that I implement the full complement of standard
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 2
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     79
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 3
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1428,9 +1428,9 @@ public:
 #ifdef STLSOFT_META_HAS_IS_SAME_TYPE
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<array_type, A2>::value));
 #else /* ? STLSOFT_META_HAS_IS_SAME_TYPE */
-        ASSERT(0 == ::strcmp(array.GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
+        ASSERT(0 == ::lstrcmpA(array.GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
 # ifdef _CPPRTTI
-        ASSERT(0 == ::strcmp(typeid(A2).name(), typeid(array_type).name()));
+        ASSERT(0 == ::lstrcmpA(typeid(A2).name(), typeid(array_type).name()));
 # endif /* _CPPRTTI */
 #endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
     }
@@ -1444,9 +1444,9 @@ public:
 #ifdef STLSOFT_META_HAS_IS_SAME_TYPE
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<array_type, A2>::value));
 #else /* ? STLSOFT_META_HAS_IS_SAME_TYPE */
-        ASSERT(0 == ::strcmp(pArray->GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
+        ASSERT(0 == ::lstrcmpA(pArray->GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
 # ifdef _CPPRTTI
-        ASSERT(0 == ::strcmp(typeid(A2).name(), typeid(array_type).name()));
+        ASSERT(0 == ::lstrcmpA(typeid(A2).name(), typeid(array_type).name()));
 # endif /* _CPPRTTI */
 #endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
     }

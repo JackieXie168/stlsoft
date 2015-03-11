@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     6th November 2007
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     67
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS
 # include <winstl/registry/util/defs.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -101,7 +104,8 @@ namespace winstl_project
  * \param C The character type
  */
 template <ss_typename_param_k C>
-struct reg_traits
+struct reg_traits\
+    : public system_traits<C>
 {
 /// \name Member Types
 /// @{
@@ -122,35 +126,9 @@ public:
     typedef ws_long_t       result_type;
 /// @}
 
-/// \name General string handling
+/// \name Operations
 /// @{
 public:
-    // General string handling
-    /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_copy(char_type *dest, char_type const* src, size_type cch);
-# if 0
-    /// \brief Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type *dest, char_type const* src);
-    /// \brief Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type *dest, char_type const* src);
-    /// \brief Comparies the contents of \c src and \c dest
-    static ws_int_t     str_compare(char_type *dest, char_type const* src);
-# endif /* 0 */
-    /// \brief Evaluates the length of \c src
-    static size_type    str_len(char_type const* src);
-/// @}
-
-
-    // Registry names
-
-# if 0
-    /// \brief Appends a registry path separator to \c path if one does not exist
-    static char_type    *ensure_subkey_end(char_type *path);
-# endif /* 0 */
-
-    /// \brief Expands environment strings in \c src into \c dest, up to a maximum \c cchDest characters
-    static size_type    expand_env_strings(char_type const* src, char_type *dest, size_type cch_dest);
-
     /// \brief Duplicates a registry key
     static hkey_type    key_dup(        hkey_type       hkey
                                     ,   REGSAM          samDesired  =   KEY_ALL_ACCESS
@@ -230,7 +208,8 @@ public:
                                         ws_dword_t      index,
                                         char_type       *valueName,
                                         size_type       *cch_valueName);
-}
+/// @}
+};
 
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -239,6 +218,7 @@ struct reg_traits;
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct reg_traits<ws_char_a_t>
+    : public system_traits<ws_char_a_t>
 {
 public:
     typedef ws_char_a_t         char_type;
@@ -250,57 +230,6 @@ public:
     typedef ws_long_t           result_type;
 
 public:
-    static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
-    {
-        return ::strncpy(dest, src, cch);
-    }
-
-#if 0
-    static char_type *str_copy(char_type *dest, char_type const* src)
-    {
-        return ::lstrcpyA(dest, src);
-    }
-
-    static char_type *str_cat(char_type *dest, char_type const* src)
-    {
-        return ::lstrcatA(dest, src);
-    }
-
-    static ws_int_t str_compare(char_type const* s1, char_type const* s2)
-    {
-        return ::lstrcmpA(s1, s2);
-    }
-#endif /* 0 */
-
-    static size_type str_len(char_type const* src)
-    {
-        return static_cast<size_type>(::lstrlenA(src));
-    }
-
-#if 0
-    static char_type *ensure_subkey_end(char_type *path)
-    {
-        char_type   *end;
-
-        for(end = path; *end != '\0'; ++end)
-        {}
-
-        if( path < end &&
-            *(end - 1) != '\\')
-        {
-            *end        =   '\\';
-            *(end + 1)  =   '\0';
-        }
-
-        return path;
-    }
-#endif /* 0 */
-
-    static size_type expand_env_strings(char_type const* src, char_type *dest, size_type cch_dest)
-    {
-        return static_cast<size_type>(::ExpandEnvironmentStringsA(src, dest, static_cast<DWORD>(cch_dest)));
-    }
-
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
     {
         hkey_type   hkeyDup;
@@ -416,6 +345,7 @@ public:
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct reg_traits<ws_char_w_t>
+    : public system_traits<ws_char_w_t>
 {
 public:
     typedef ws_char_w_t         char_type;
@@ -427,57 +357,6 @@ public:
     typedef ws_long_t           result_type;
 
 public:
-    static char_type *str_n_copy(char_type *dest, char_type const* src, size_type cch)
-    {
-        return ::wcsncpy(dest, src, cch);
-    }
-
-#if 0
-    static char_type *str_copy(char_type *dest, char_type const* src)
-    {
-        return ::lstrcpyW(dest, src);
-    }
-
-    static char_type *str_cat(char_type *dest, char_type const* src)
-    {
-        return ::lstrcatW(dest, src);
-    }
-
-    static ws_int_t str_compare(char_type const* s1, char_type const* s2)
-    {
-        return ::lstrcmpW(s1, s2);
-    }
-#endif /* 0 */
-
-    static size_type str_len(char_type const* src)
-    {
-        return static_cast<size_type>(::lstrlenW(src));
-    }
-
-#if 0
-    static char_type *ensure_subkey_end(char_type *path)
-    {
-        char_type   *end;
-
-        for(end = path; *end != L'\0'; ++end)
-        {}
-
-        if( path < end &&
-            *(end - 1) != L'\\')
-        {
-            *end        =   L'\\';
-            *(end + 1)  =   L'\0';
-        }
-
-        return path;
-    }
-#endif /* 0 */
-
-    static size_type expand_env_strings(char_type const* src, char_type *dest, size_type cch_dest)
-    {
-        return static_cast<size_type>(::ExpandEnvironmentStringsW(src, dest, static_cast<DWORD>(cch_dest)));
-    }
-
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
     {
         hkey_type   hkeyDup;

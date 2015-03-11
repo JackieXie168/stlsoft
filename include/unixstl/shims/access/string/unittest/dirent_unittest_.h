@@ -1,5 +1,5 @@
 
-// Updated: 14th July 2006
+// Updated: 24th March 2008
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT)
 # error This file cannot be directly included, and should only be included within unixstl/shims/access/string/dirent.hpp
@@ -23,7 +23,7 @@ namespace unittest
 
 			struct dirent	de;
 
-			strcpy(de.d_name, "/home/stlsoft");
+			::strcpy(de.d_name, "/home/stlsoft");
 
 			if(0 != strcmp("/home/stlsoft", c_str_ptr(de)))
 			{

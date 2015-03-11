@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     6th December 2007
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 7
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     131
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 8
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -415,6 +415,12 @@ private:
     basic_findfile_sequence_value_type(find_data_type const& data, char_type const* path)
         : m_data(data)
     {
+        INETSTL_ASSERT(NULL != path);
+
+        const size_type cchPath = traits_type::str_len(path);
+
+        INETSTL_ASSERT(cchPath < STLSOFT_NUM_ELEMENTS(m_path));
+
         if('/' != data.cFileName[0])
         {
             traits_type::str_copy(m_path, path);

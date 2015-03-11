@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     9th March 2008
+ * Updated:     24th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        106
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #if defined(_WIN64) || \
     defined(_M_IA64)
@@ -156,6 +159,7 @@ public:
 /// \name General string handling
 /// @{
 public:
+#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
     /// \brief Copies the contents of \c src to \c dest
     static char_type    *str_copy(char_type* dest, char_type const* src);
     /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
@@ -164,6 +168,7 @@ public:
     static char_type    *str_cat(char_type* dest, char_type const* src);
     /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
     static char_type    *str_n_cat(char_type* dest, char_type const* src, size_type cch);
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
     /// \brief Comparies the contents of \c src and \c dest
     static int_type     str_compare(char_type const* s1, char_type const* s2);
     /// \brief Comparies the contents of \c src and \c dest in a case-insensitive fashion
@@ -306,12 +311,17 @@ public:
     typedef DWORD                       error_type;
 
 public:
+#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
     static char_type* str_copy(char_type* dest, char_type const* src)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
 
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcpyA(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::strcpy(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
@@ -326,7 +336,11 @@ public:
     {
         WINSTL_ASSERT(NULL != src);
 
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcatA(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::strcat(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type* str_n_cat(char_type* dest, char_type const* src, size_type cch)
@@ -336,13 +350,18 @@ public:
 
         return ::strncat(dest, src, cch);
     }
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
     static int_type str_compare(char_type const* s1, char_type const* s2)
     {
         WINSTL_ASSERT(NULL != s1);
         WINSTL_ASSERT(NULL != s2);
 
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcmpA(s1, s2);
+#else /*? STLSOFT_MIN_CRT */
+        return ::strcmp(s1, s2);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static int_type str_compare_no_case(char_type const* s1, char_type const* s2)
@@ -365,7 +384,11 @@ public:
     {
         WINSTL_ASSERT(NULL != src);
 
+#ifdef STLSOFT_MIN_CRT
         return static_cast<size_type>(::lstrlenA(src));
+#else /*? STLSOFT_MIN_CRT */
+        return ::strlen(src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type* str_chr(char_type const* s, char_type ch)
@@ -433,14 +456,14 @@ public:
     {
         WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
-        size_type   cch =   get_module_filename(hModule, buffer, cchBuffer);
+        size_type cch = get_module_filename(hModule, buffer, cchBuffer);
 
         if( 0 != cch &&
             cch < cchBuffer)
         {
             buffer[cch] = '\0';
 
-            char_type   *s  =   str_rchr(buffer, '\\');
+            char_type *s = str_rchr(buffer, '\\');
 
             if(NULL != s)
             {
@@ -612,12 +635,17 @@ public:
     typedef DWORD                       error_type;
 
 public:
+#ifndef STLSOFT_USING_SAFE_STR_FUNCTIONS
     static char_type* str_copy(char_type* dest, char_type const* src)
     {
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
 
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcpyW(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcscpy(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type* str_n_copy(char_type* dest, char_type const* src, size_type cch)
@@ -633,7 +661,11 @@ public:
         WINSTL_ASSERT(NULL != dest);
         WINSTL_ASSERT(NULL != src);
 
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcatW(dest, src);
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcscat(dest, src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type* str_n_cat(char_type* dest, char_type const* src, size_type cch)
@@ -643,13 +675,18 @@ public:
 
         return ::wcsncat(dest, src, cch);
     }
+#endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
     static int_type str_compare(char_type const* s1, char_type const* s2)
     {
         WINSTL_ASSERT(NULL != s1);
         WINSTL_ASSERT(NULL != s2);
 
+#ifdef STLSOFT_MIN_CRT
         return ::lstrcmpW(s1, s2);
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcscmp(s1, s2);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static int_type str_compare_no_case(char_type const* s1, char_type const* s2)
@@ -672,7 +709,11 @@ public:
     {
         WINSTL_ASSERT(NULL != src);
 
+#ifdef STLSOFT_MIN_CRT
         return static_cast<size_type>(::lstrlenW(src));
+#else /*? STLSOFT_MIN_CRT */
+        return ::wcslen(src);
+#endif /* STLSOFT_MIN_CRT */
     }
 
     static char_type* str_chr(char_type const* s, char_type ch)
@@ -755,7 +796,7 @@ public:
         {
             buffer[cch] = '\0';
 
-            char_type   *s  =   str_rchr(buffer, '\\');
+            char_type *s = str_rchr(buffer, '\\');
 
             if(NULL != s)
             {
