@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     9th March 2008
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        84
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -179,7 +179,7 @@ private:
                     requestSize = static_cast<size_type>(st.st_size);
                 }
 
-                void    *memory = ::mmap(NULL, requestSize, PROT_READ, MAP_PRIVATE, hfile.get(), offset);
+                void* memory = ::mmap(NULL, static_cast<size_t>(requestSize), PROT_READ, MAP_PRIVATE, hfile.get(), offset);
 
                 if(MAP_FAILED == memory)
                 {
@@ -246,7 +246,7 @@ public:
 public:
     /// \brief Non-mutating (const) pointer to the start of the mapped
     ///  region.
-    void const  *memory() const
+    void const* memory() const
     {
         return m_memory;
     }
@@ -281,7 +281,7 @@ private:
 /// @{
 private:
     size_type   m_cb;
-    void        *m_memory;
+    void*       m_memory;
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
     error_type  m_lastError;
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */

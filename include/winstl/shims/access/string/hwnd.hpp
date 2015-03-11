@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd March 2007
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       0
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        108
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,6 +74,17 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER
 # include <stlsoft/string/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+#ifdef NOUSER
+# error This file cannot be used when NOUSER is specified (to suppress the Windows User API)
+#endif /* NOUSER */
+#ifdef NOWINOFFSETS
+# error This file cannot be used when NOWINOFFSETS is specified (to suppress GWL_*, GCL_*, associated routines)
+#endif /* NOWINOFFSETS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -107,13 +118,18 @@ inline ws_size_t GetWindowTextLength__t(HWND hwnd, int (WINAPI *pfn)(HWND ))
 {
     WINSTL_ASSERT(NULL != pfn);
 
-    WindowIdent ident   =   GetWindowIdent(hwnd);
+    WindowIdent ident       =   GetWindowIdent(hwnd);
     int         sel;
+# ifndef NOWINSTYLES
+    const long  lbsStyle    =   LBS_MULTIPLESEL | LBS_EXTENDEDSEL;
+# else /* ? NOWINSTYLES */
+    const long  lbsStyle    =   0x0008L | 0x0800L;
+# endif /* NOWINSTYLES */
 
     switch(ident)
     {
         case    ListBox:
-            if(0 == (GetStyle(hwnd) & (LBS_MULTIPLESEL | LBS_EXTENDEDSEL)))
+            if(0 == (GetStyle(hwnd) & lbsStyle))
             {
                 sel = static_cast<int>(::SendMessage(hwnd, LB_GETCURSEL, 0, 0l));
 

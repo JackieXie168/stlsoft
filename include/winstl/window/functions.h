@@ -4,11 +4,11 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     6th November 2007
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      62
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  8
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,6 +92,8 @@ namespace winstl_project
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
  */
+
+#ifndef NOWINOFFSETS
 
 STLSOFT_INLINE ws_long_t winstl__GetStyle(HWND h)
 {
@@ -143,6 +145,9 @@ STLSOFT_INLINE ws_long_t winstl__ModifyExStyle(HWND h, ws_long_t sRem, ws_long_t
     return winstl__SetExStyle(h, (winstl__GetExStyle(h) & ~sRem) | sAdd);
 }
 
+#endif /* !NOWINOFFSETS */
+
+
 /** Tests whether the given window has the given window class
  *
  * \ingroup group__library__windows_window
@@ -175,6 +180,8 @@ STLSOFT_INLINE ws_int_t winstl__IsWindowClassW(HWND hwnd, ws_char_w_t const* nam
     return 0 == STLSOFT_NS_GLOBAL(lstrcmpiW)(szName, name);
 }
 
+#ifndef NOCTLMGR
+
 /** Enables/disable a dialog item
  *
  * \ingroup group__library__windows_window
@@ -202,6 +209,10 @@ STLSOFT_INLINE ws_int_t winstl__GetDlgItemTextLength(HWND hwnd, int id)
     return STLSOFT_NS_GLOBAL(GetWindowTextLength)(STLSOFT_NS_GLOBAL(GetDlgItem)(hwnd, id));
 }
 
+#endif /* !NOCTLMGR */
+
+#ifndef NOWINOFFSETS
+
 /** Gets the HINSTANCE associated with a given window
  *
  * \ingroup group__library__windows_window
@@ -215,6 +226,8 @@ STLSOFT_INLINE HINSTANCE winstl__GetWindowInstance(HWND hwnd)
     return stlsoft_reinterpret_cast(HINSTANCE, STLSOFT_NS_GLOBAL(GetWindowLong)(hwnd, GWL_HINSTANCE));
 #endif /* width */
 }
+
+#endif /* !NOWINOFFSETS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -230,6 +243,8 @@ namespace winstl
  */
 
 #ifdef __cplusplus
+
+# ifndef NOWINOFFSETS
 
 /** Gets the style of the window
  *
@@ -285,6 +300,8 @@ inline ws_long_t ModifyExStyle(HWND h, ws_long_t sRem, ws_long_t sAdd)
     return winstl__ModifyExStyle(h, sRem, sAdd);
 }
 
+# endif /* !NOWINOFFSETS */
+
 /** Tests whether the given window has the given window class
  *
  * \ingroup group__library__windows_window
@@ -302,6 +319,8 @@ inline ws_bool_t IsWindowClass(HWND hwnd, ws_char_w_t const* name)
 {
     return BOOL2bool(winstl__IsWindowClassW(hwnd, name));
 }
+
+# ifndef NOCTLMGR
 
 /** Enables/disable a dialog item
  *
@@ -330,6 +349,10 @@ inline ws_int_t GetDlgItemTextLength(HWND hwnd, int id)
     return winstl__GetDlgItemTextLength(hwnd, id);
 }
 
+# endif /* !NOCTLMGR */
+
+# ifndef NOWINOFFSETS
+
 /** Gets the HINSTANCE associated with a given window
  *
  * \ingroup group__library__windows_window
@@ -341,6 +364,10 @@ inline HINSTANCE GetWindowInstance(HWND hwnd)
 {
     return winstl__GetWindowInstance(hwnd);
 }
+
+# endif /* !NOWINOFFSETS */
+
+# ifndef NOWINMESSAGES
 
 inline HICON set_window_icon(HWND hwnd, int iconType, HICON hicon)
 {
@@ -376,22 +403,26 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, int iconI
     return set_window_icon(hwnd, iconType, ::LoadIcon(hinst, MAKEINTRESOURCE(iconId)));
 }
 
+# endif /* !NOWINMESSAGES */
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-# define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1
-#elif defined(STLSOFT_COMPILER_IS_BORLAND) /* && \
-      __BORLANDC__ < 0x0582 */
-# define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3
-#elif defined(STLSOFT_COMPILER_IS_MSVC)
-# if _MSC_VER > 1200
-#  define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3
-# else /* ? compiler */
-#  define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2
-# endif /* compiler */
-#else /* ? compiler */
-# define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1
-#endif /* compiler */
+# ifndef NOCTLMGR
+
+#  if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#   define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1
+#  elif defined(STLSOFT_COMPILER_IS_BORLAND) /* && \
+        __BORLANDC__ < 0x0582 */
+#   define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3
+#  elif defined(STLSOFT_COMPILER_IS_MSVC)
+#   if _MSC_VER > 1200
+#    define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3
+#   else /* ? compiler */
+#    define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2
+#   endif /* compiler */
+#  else /* ? compiler */
+#   define WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1
+#  endif /* compiler */
 
 /** \brief Finds the first descendant window with the given id
  *
@@ -413,24 +444,24 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, int iconI
  * \note \c hwndParent is included in the search, so if it has the
  * given id, it will be returned
  */
-#if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1) || \
-    defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
+#  if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1) || \
+      defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
 
-#if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
+#  if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
 /* declare the template function */
 template <int N>
 inline HWND FindFirstChildById_N(HWND hwndParent, int id);
-# endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 */
+#   endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 */
 
 inline HWND FindFirstChildById(HWND hwndParent, int id)
-#if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
+#  if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
 {
     return FindFirstChildById_N<1>(hwndParent, id);
 }
 
 template <int N>
 inline HWND FindFirstChildById_N(HWND hwndParent, int id)
-# endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 */
+#   endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 */
 {
     if(::GetDlgCtrlID(hwndParent) == id)
     {
@@ -532,9 +563,11 @@ inline HWND FindFirstChildById(HWND hwndParent, int id)
   return FindFirstChildById_class/* <int> */::FindFirstChildById_N(hwndParent, id);
 }
 
-#else /* ? WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */
-# None of WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1, WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 or WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3 defined
-#endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */
+#  else /* ? WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */
+#   error None of WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1, WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 or WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3 defined
+#  endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */
+
+# endif /* !NOCTLMGR */
 
 #endif /* __cplusplus */
 

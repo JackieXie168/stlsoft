@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     15th January 2007
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_MAJOR    4
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_MINOR    1
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_REVISION 1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_EDIT     107
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_EDIT     108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,12 +62,17 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND
-# include <winstl/shims/access/string/hwnd.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING
-# include <winstl/shims/access/string/lsa_unicode_string.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING */
+#if !defined(NOUSER) && \
+    !defined(NOWINOFFSETS)
+# ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND
+#  include <winstl/shims/access/string/hwnd.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND */
+#endif /* !NOUSER && !NOWINOFFSETS */
+#ifdef _NTSECAPI_
+# ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING
+#  include <winstl/shims/access/string/lsa_unicode_string.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING */
+#endif /* _NTSECAPI_ */
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME
 # include <winstl/shims/access/string/time.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME */

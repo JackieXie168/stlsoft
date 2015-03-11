@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     13th April 2008
+ * Updated:     22nd April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       7
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        166
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        167
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -134,12 +134,13 @@
 # define _WINSTL_VER_1_9_3      0x00010903  /*!< Version 1.9.3 (with STLSoft 1.9.25) */
 # define _WINSTL_VER_1_9_4      0x010904ff  /*!< Version 1.9.4 (with STLSoft 1.9.30) */
 # define _WINSTL_VER_1_9_5      0x010905ff  /*!< Version 1.9.5 (with STLSoft 1.9.31) */
+# define _WINSTL_VER_1_9_6      0x010906ff  /*!< Version 1.9.6 (with STLSoft 1.9.32) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       9
-#define _WINSTL_VER_REVISION    5
-#define _WINSTL_VER             _WINSTL_VER_1_9_5
+#define _WINSTL_VER_REVISION    6
+#define _WINSTL_VER             _WINSTL_VER_1_9_6
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

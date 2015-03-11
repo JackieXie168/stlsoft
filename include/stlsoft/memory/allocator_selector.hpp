@@ -4,11 +4,11 @@
  * Purpose:     Selects the most appropriate allocator.
  *
  * Created:     20th August 2005
- * Updated:     22nd March 2007
+ * Updated:     15th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MINOR    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     23
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_REVISION 2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,8 +108,14 @@
  //
  // With DMC++, it crashes the compiler!! ;-(
 # define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR
-#elif defined(STLSOFT_COMPILER_IS_WATCOM)
+#elif defined(STLSOFT_COMPILER_IS_WATCOM) || \
+      (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+          _MSC_VER >= 1400)
  // Watcom's got major problems, so we use malloc_allocator
+ //
+ // VC++ 8 & 9 has a bug that results in a definition of
+ // std::allocator<>::allocate() and std::allocator<>::deallocate(),
+ // which breaks the linker with LNK2005 (multiple definitions)
 # define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
 #else /* ? compiler */
  // Now we work out which to select by default for each
@@ -123,7 +129,7 @@
 #  elif !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR)
 #   define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
 #  else /* ? NO_USE_??? */
-#   error All allocator types disabled. You must enable one or more, by disabling one or more of the
+#   error All allocator types disabled. You must enable one or more, by disabling one or more of
 #   error symbols STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR,
 #   error STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_NEW_ALLOCATOR
 #   error or STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR.
