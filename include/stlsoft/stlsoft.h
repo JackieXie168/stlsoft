@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     17th October 2006
+ * Updated:     29th October 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 14
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     283
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 15
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     284
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -162,11 +162,13 @@
 # define _STLSOFT_VER_1_9_1_B23 0x01090117  /*!< Version 1.9.1 beta 23 (17th Sep 2006) */
 # define _STLSOFT_VER_1_9_1_B24 0x01090118  /*!< Version 1.9.1 beta 24 (24th Sep 2006) */
 # define _STLSOFT_VER_1_9_1_B25 0x01090119  /*!< Version 1.9.1 beta 25 (5th Oct 2006) */
-# define _STLSOFT_VER_1_9_1_B26 0x0109011a  /*!< Version 1.9.1 beta 26 (20th Oct 2006) */
+# define _STLSOFT_VER_1_9_1_B26 0x0109011a  /*!< Version 1.9.1 beta 26 (21st Oct 2006) */
+# define _STLSOFT_VER_1_9_1_B27 0x0109011b  /*!< Version 1.9.1 beta 27 (22nd Oct 2006) */
+# define _STLSOFT_VER_1_9_1_B28 0x0109011c  /*!< Version 1.9.1 beta 28 (29th Oct 2006) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B26
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B27
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros

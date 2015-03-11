@@ -4,7 +4,10 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     14th July 2006
+ * Updated:     29th October 2006
+ *
+ * Thanks to:   David Wang, for spotting an error in one of the shim
+ *              functions.
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       0
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        33
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    2
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -225,7 +228,7 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(SYSTEMTIME const &t, 
     return c_str_ptr_a(t, bMilliseconds);
 #endif /* UNICODD */
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr(SYSTEMTIME const &t)
+inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(SYSTEMTIME const &t)
 {
     return c_str_ptr(t, ws_false_v);
 }

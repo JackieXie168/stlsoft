@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/conversion/char_conversions.hpp (originally MLStrCnv.h, ::SynesisStd)
+ * File:        stlsoft/conversion/char_conversions.hpp (originally MLStrCnv.h, ::SynesisStd)
  *
- * Purpose:     Type conversions for Windows.
+ * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
  * Updated:     27th October 2006
@@ -38,21 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/conversion/char_conversions.hpp
+/** \file stlsoft/conversion/char_conversions.hpp
  *
- * \brief [C++ only] Definition of the winstl::multibyte2wide and
- *  winstl::wide2multibyte class templates.
+ * \brief [C++ only] Definition of the stlsoft::multibyte2wide and
+ *  stlsoft::wide2multibyte class templates.
  *  (\ref group__library__conversion "Conversion" Library.)
  */
 
-#ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS
-#define WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS
+#define STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     74
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,35 +70,29 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
  * Includes
  */
 
-#ifndef WINSTL_INCL_WINSTL_H_WINSTL
-# include <winstl/winstl.h>
-#endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
     __GNUC__ < 3
-# error winstl/conversion/char_conversions.hpp is not compatible with GNU C++ prior to 3.0
+# error stlsoft/conversion/char_conversions.hpp is not compatible with GNU C++ prior to 3.0
 #endif /* compiler */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1100
-# error winstl/conversion/char_conversions.hpp is not compatible with Visual C++ 5.0 or earlier
+# error stlsoft/conversion/char_conversions.hpp is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
-#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/memory/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
-# include <winstl/shims/access/string.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef WINSTL_INCL_WINSTL_ERROR_HPP_EXCEPTIONS
-#  include <winstl/error/exceptions.hpp>
-# endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_EXCEPTIONS */
+# ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+#  include <stlsoft/error/exceptions.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -106,25 +100,14 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <wchar.h>
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
-{
-# else
-/* Define stlsoft::winstl_project */
-
+#ifndef _STLSOFT_NO_NAMESPACE
 namespace stlsoft
 {
-
-namespace winstl_project
-{
-
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+#endif /* _STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -135,23 +118,23 @@ namespace winstl_project
  *
  * \ingroup group__library__conversion
  */
-template <ws_size_t CCH>
+template <ss_size_t CCH>
 class multibyte2wide
-    : public auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>
+    : public auto_buffer<ss_char_w_t, CCH>
 {
 /// \name Member Types
 /// @{
 private:
-    typedef auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>   parent_class_type;
+    typedef auto_buffer<ss_char_w_t, CCH>                       parent_class_type;
 public:
     /// \brief The character type
-    typedef ws_char_w_t                                                             char_type;
+    typedef ss_char_w_t                                         char_type;
     /// \brief The alternate character type
-    typedef ws_char_a_t                                                             alt_char_type;
+    typedef ss_char_a_t                                         alt_char_type;
     /// \brief The size type
-    typedef ss_typename_type_k parent_class_type::size_type                         size_type;
+    typedef ss_typename_type_k parent_class_type::size_type     size_type;
     /// \brief The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer                           pointer;
+    typedef ss_typename_type_k parent_class_type::pointer       pointer;
 /// @}
 
 /// \name Construction
@@ -200,12 +183,10 @@ private:
         }
         else
         {
-            // Note: cannot use -1 for length, since s might be a type that
-            // could change length
-            if(0 == ::MultiByteToWideChar(0, 0, s, static_cast<int>(size), data, static_cast<int>(size)))
+            if(static_cast<size_t>(-1) == ::mbstowcs(data, s, size))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-// TODO:        throw conversion_exception("failed to convert multibyte string to wide string", ::GetLastError());
+// TODO:        throw conversion_exception("failed to convert multibyte string to wide string", errno);
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -251,23 +232,23 @@ private:
  *
  * \ingroup group__library__conversion
  */
-template <ws_size_t CCH>
+template <ss_size_t CCH>
 class wide2multibyte
-    : public auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>
+    : public auto_buffer<ss_char_a_t, CCH>
 {
 /// \name Member Types
 /// @{
 private:
-    typedef auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>   parent_class_type;
+    typedef auto_buffer<ss_char_a_t, CCH>                       parent_class_type;
 public:
     /// \brief The character type
-    typedef ws_char_a_t                                                             char_type;
+    typedef ss_char_a_t                                         char_type;
     /// \brief The alternate character type
-    typedef ws_char_w_t                                                             alt_char_type;
+    typedef ss_char_w_t                                         alt_char_type;
     /// \brief The size type
-    typedef ss_typename_type_k parent_class_type::size_type                         size_type;
+    typedef ss_typename_type_k parent_class_type::size_type     size_type;
     /// \brief The pointer type
-    typedef ss_typename_type_k parent_class_type::pointer                           pointer;
+    typedef ss_typename_type_k parent_class_type::pointer       pointer;
 /// @}
 
 /// \name Construction
@@ -315,12 +296,10 @@ private:
         }
         else
         {
-            // Note: cannot use -1 for length, since s might be a type that
-            // could change length
-            if(0 == ::WideCharToMultiByte(0, 0, s, static_cast<int>(size), data, static_cast<int>(size), NULL, NULL))
+            if(static_cast<size_t>(-1) == ::wcstombs(data, s, size))
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-// TODO:        throw conversion_exception("failed to convert multibyte string to wide string", ::GetLastError());
+// TODO:        throw conversion_exception("failed to convert wide string to multibyte string", errno);
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 data[0] = '\0';
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -401,38 +380,38 @@ typedef multibyte2wide<256>               a2w;
  */
 typedef wide2multibyte<256>               w2a;
 
-#if defined(UNICODE)
-typedef encoding2encoding<ws_char_w_t>  t2w;
-typedef encoding2encoding<ws_char_w_t>  w2t;
-typedef w2a                             t2a;
-typedef a2w                             a2t;
-#else /* ? UNICODE */
-typedef encoding2encoding<ws_char_a_t>  t2a;
-typedef encoding2encoding<ws_char_a_t>  a2t;
-typedef a2w                             t2w;
-typedef w2a                             w2t;
-#endif /* UNICODE */
+//#if defined(UNICODE)
+//typedef encoding2encoding<ss_char_w_t>  t2w;
+//typedef encoding2encoding<ss_char_w_t>  w2t;
+//typedef w2a                             t2a;
+//typedef a2w                             a2t;
+//#else /* ? UNICODE */
+//typedef encoding2encoding<ss_char_a_t>  t2a;
+//typedef encoding2encoding<ss_char_a_t>  a2t;
+//typedef a2w                             t2w;
+//typedef w2a                             w2t;
+//#endif /* UNICODE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::multibyte2wide
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::multibyte2wide
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_w_t const *c_str_ptr_null(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_char_w_t const *c_str_ptr_null(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_char_w_t const *c_str_ptr_null_w(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
@@ -440,66 +419,66 @@ inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(multibyte2wide)<CCH> c
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::multibyte2wide
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::multibyte2wide
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_w_t const *c_str_ptr(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_char_w_t const *c_str_ptr(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_char_w_t const *c_str_ptr_w(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::multibyte2wide
+/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::multibyte2wide
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_w_t const *c_str_data(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_char_w_t const *c_str_data(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_char_w_t const *c_str_data_w(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::multibyte2wide
+/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::multibyte2wide
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_size_t c_str_len(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_size_t c_str_len(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_size_t c_str_len_w(winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline ss_size_t c_str_len_w(stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_len_w)(b.c_str());
 }
@@ -508,88 +487,88 @@ inline ws_size_t c_str_len_w(winstl_ns_qual(multibyte2wide)<CCH> const &b)
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::wide2multibyte
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::wide2multibyte
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_a_t const *c_str_ptr_null(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_char_a_t const *c_str_ptr_null(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_a_t const *c_str_ptr_null_a(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::wide2multibyte
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::wide2multibyte
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_a_t const *c_str_ptr(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_char_a_t const *c_str_ptr(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_a_t const *c_str_ptr_a(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::wide2multibyte
+/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::wide2multibyte
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_a_t const *c_str_data(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_char_a_t const *c_str_data(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_char_a_t const *c_str_data_a(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return b.c_str();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::wide2multibyte
+/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::wide2multibyte
  *
  * \ingroup group__concept__shims__string_access
  */
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_size_t c_str_len(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_size_t c_str_len(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ws_size_t   CCH
+template<   ss_size_t   CCH
         >
-inline ws_size_t c_str_len_a(winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline ss_size_t c_str_len_a(stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return stlsoft_ns_qual(c_str_len_a)(b.c_str());
 }
@@ -599,28 +578,28 @@ inline ws_size_t c_str_len_a(winstl_ns_qual(wide2multibyte)<CCH> const &b)
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::multibyte2wide
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for stlsoft::multibyte2wide
  *
  * \ingroup group__concept__shims__stream_insertion
  */
 template<   ss_typename_param_k S
-        ,   ws_size_t   CCH
+        ,   ss_size_t   CCH
         >
-inline S &operator <<(S & s, winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline S &operator <<(S & s, stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     s << b.c_str();
 
     return s;
 }
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::wide2multibyte
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for stlsoft::wide2multibyte
  *
  * \ingroup group__concept__shims__stream_insertion
  */
 template<   ss_typename_param_k S
-        ,   ws_size_t   CCH
+        ,   ss_size_t   CCH
         >
-inline S &operator <<(S & s, winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline S &operator <<(S & s, stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     s << b.c_str();
 
@@ -636,56 +615,9 @@ inline S &operator <<(S & s, winstl_ns_qual(wide2multibyte)<CCH> const &b)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
-# else
-} // namespace winstl_project
+#ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Namespace
- *
- * The string access shims exist either in the stlsoft namespace, or in the
- * global namespace. This is required by the lookup rules.
- *
- */
-
-#ifndef _WINSTL_NO_NAMESPACE
-# if !defined(_STLSOFT_NO_NAMESPACE) && \
-     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-namespace stlsoft
-{
-# else /* ? _STLSOFT_NO_NAMESPACE */
-/* There is no stlsoft namespace, so must define in the global namespace */
-# endif /* !_STLSOFT_NO_NAMESPACE */
-
-using ::winstl::c_str_data;
-using ::winstl::c_str_data_a;
-using ::winstl::c_str_data_w;
-
-using ::winstl::c_str_len;
-using ::winstl::c_str_len_a;
-using ::winstl::c_str_len_w;
-
-using ::winstl::c_str_ptr;
-using ::winstl::c_str_ptr_a;
-using ::winstl::c_str_ptr_w;
-
-using ::winstl::c_str_ptr_null;
-using ::winstl::c_str_ptr_null_a;
-using ::winstl::c_str_ptr_null_w;
-
-# if !defined(_STLSOFT_NO_NAMESPACE) && \
-     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace stlsoft
-# else /* ? _STLSOFT_NO_NAMESPACE */
-/* There is no stlsoft namespace, so must define in the global namespace */
-# endif /* !_STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+#endif /* _STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Global namespace shims
@@ -701,13 +633,13 @@ using ::winstl::c_str_ptr_null_w;
 # include <iosfwd>
 
 template <size_t CCH>
-inline winstl_ns_qual_std(basic_ostream)<char> &operator <<(winstl_ns_qual_std(basic_ostream)<char> &stm, winstl_ns_qual(wide2multibyte)<CCH> const &b)
+inline stlsoft_ns_qual_std(basic_ostream)<char> &operator <<(stlsoft_ns_qual_std(basic_ostream)<char> &stm, stlsoft_ns_qual(wide2multibyte)<CCH> const &b)
 {
     return stm << b.c_str();
 }
 
 template <size_t CCH>
-inline winstl_ns_qual_std(basic_ostream)<wchar_t> &operator <<(winstl_ns_qual_std(basic_ostream)<wchar_t> &stm, winstl_ns_qual(multibyte2wide)<CCH> const &b)
+inline stlsoft_ns_qual_std(basic_ostream)<wchar_t> &operator <<(stlsoft_ns_qual_std(basic_ostream)<wchar_t> &stm, stlsoft_ns_qual(multibyte2wide)<CCH> const &b)
 {
     return stm << b.c_str();
 }
@@ -716,6 +648,6 @@ inline winstl_ns_qual_std(basic_ostream)<wchar_t> &operator <<(winstl_ns_qual_st
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS */
+#endif /* STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS */
 
 /* ////////////////////////////////////////////////////////////////////// */
