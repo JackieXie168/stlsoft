@@ -5,7 +5,7 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     12th March 2007
+ * Updated:     20th December 2007
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MINOR       1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        131
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -252,7 +252,7 @@ struct do_initialisation_never
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_1(A &ator, T *p, ss_size_t n, one_type)
+void do_construct_1(A& ator, T *p, ss_size_t n, one_type)
 {
     for(T *e = p + n; p != e; ++p)
     {
@@ -263,7 +263,7 @@ void do_construct_1(A &ator, T *p, ss_size_t n, one_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_1(A &/* ator */, T *p, ss_size_t n, two_type)
+void do_construct_1(A& /* ator */, T *p, ss_size_t n, two_type)
 {
 #if 1
     ::memset(p, 0, n * sizeof(T));
@@ -275,7 +275,7 @@ void do_construct_1(A &/* ator */, T *p, ss_size_t n, two_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_1(A &/* ator */, T * /* p */, ss_size_t /* n */, three_type)
+void do_construct_1(A& /* ator */, T * /* p */, ss_size_t /* n */, three_type)
 {}
 
 
@@ -285,7 +285,7 @@ void do_construct_1(A &/* ator */, T * /* p */, ss_size_t /* n */, three_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_2(A &ator, T *p, ss_size_t n, T const& value, one_type)
+void do_construct_2(A& ator, T *p, ss_size_t n, T const& value, one_type)
 {
 #if 0
     std::uninitialized_fill_n(p, n, value);
@@ -300,9 +300,9 @@ void do_construct_2(A &ator, T *p, ss_size_t n, T const& value, one_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_2(A &ator, T *p, ss_size_t n, T const& value, two_type)
+void do_construct_2(A& /* ator */, T* p, ss_size_t n, T const& value, two_type)
 {
-    for(T *e = p + n; p != e; ++p)
+    for(T* e = p + n; p != e; ++p)
     {
         ::memcpy(p, &value, sizeof(T));
     }
@@ -311,7 +311,7 @@ void do_construct_2(A &ator, T *p, ss_size_t n, T const& value, two_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_2(A &/* ator */, T * /* p */, ss_size_t /* n */, T const& value, three_type)
+void do_construct_2(A& /* ator */, T*  /* p */, ss_size_t /* n */, T const& value, three_type)
 {}
 
 
@@ -321,9 +321,9 @@ void do_construct_2(A &/* ator */, T * /* p */, ss_size_t /* n */, T const& valu
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_copy_construct_1(A &ator, T *p, T const* src, ss_size_t n, one_type)
+void do_copy_construct_1(A& ator, T* p, T const* src, ss_size_t n, one_type)
 {
-    for(T *e = p + n; p != e; ++p, ++src)
+    for(T* e = p + n; p != e; ++p, ++src)
     {
         ator.construct(p, *src);
     }
@@ -332,9 +332,9 @@ void do_copy_construct_1(A &ator, T *p, T const* src, ss_size_t n, one_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_copy_construct_1(A& /* ator */, T *p, T const* src, ss_size_t n, two_type)
+void do_copy_construct_1(A& /* ator */, T* p, T const* src, ss_size_t n, two_type)
 {
-    for(T *e = p + n; p != e; ++p, ++src)
+    for(T* e = p + n; p != e; ++p, ++src)
     {
         ::memcpy(p, src, sizeof(T));
     }
@@ -343,7 +343,7 @@ void do_copy_construct_1(A& /* ator */, T *p, T const* src, ss_size_t n, two_typ
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_copy_construct_1(A& /* ator */, T * /* p */, T const* /* src */, ss_size_t /* n */, three_type)
+void do_copy_construct_1(A& /* ator */, T* /* p */, T const* /* src */, ss_size_t /* n */, three_type)
 {}
 
 
@@ -353,9 +353,9 @@ void do_copy_construct_1(A& /* ator */, T * /* p */, T const* /* src */, ss_size
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_destroy_1(A &ator, T *p, ss_size_t n, one_type)
+void do_destroy_1(A& ator, T* p, ss_size_t n, one_type)
 {
-    for(T *e = p + n; p != e; ++p)
+    for(T* e = p + n; p != e; ++p)
     {
         ator.destroy(p);
     }
@@ -364,13 +364,13 @@ void do_destroy_1(A &ator, T *p, ss_size_t n, one_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_destroy_1(A &/* ator */, T * /* p */, ss_size_t /* n */, two_type)
+void do_destroy_1(A& /* ator */, T* /* p */, ss_size_t /* n */, two_type)
 {}
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_destroy_1(A &/* ator */, T * /* p */, ss_size_t /* n */, three_type)
+void do_destroy_1(A& /* ator */, T* /* p */, ss_size_t /* n */, three_type)
 {}
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -408,26 +408,26 @@ public:
     /// \note If the initialisation policy is 'true', then the value_type is assumed to be
     /// of non-POD type, and therefore constructed. If 'false', then the value_type is
     /// assumed to be POD and the memory is zero-filled (via memset())
-    static void construct(allocator_type &ator, pointer p, ss_size_t n)
+    static void construct(allocator_type& ator, pointer p, ss_size_t n)
     {
         do_construct_1(ator, p, n, selector_type());
     }
 
     /// \brief Performs in-place copy construction of n elements, whose first element
     /// is located at p, where *(p + n) is set to *(src + n)
-    static void copy_construct(allocator_type &ator, pointer p, const_pointer src, ss_size_t n)
+    static void copy_construct(allocator_type& ator, pointer p, const_pointer src, ss_size_t n)
     {
         do_copy_construct_1(ator, p, src, n, selector_type());
     }
 
     /// \brief Performs in-place copy construction of n elements, whose first element
     /// is located at p, where each element == val
-    static void construct(allocator_type &ator, pointer p, ss_size_t n, value_type const& val)
+    static void construct(allocator_type& ator, pointer p, ss_size_t n, value_type const& val)
     {
         do_construct_2(ator, p, n, val, selector_type());
     }
 
-    static void destroy(allocator_type &ator, pointer p, ss_size_t n)
+    static void destroy(allocator_type& ator, pointer p, ss_size_t n)
     {
         do_destroy_1(ator, p, n, selector_type());
     }
