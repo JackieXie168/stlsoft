@@ -5,7 +5,7 @@
  *              classes.
  *
  * Created:     1st November 1994
- * Updated:     28th December 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        70
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -625,7 +625,7 @@ private:
  * Shims
  */
 
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
@@ -634,7 +634,7 @@ inline T *get_ptr(auto_destructor<T> const& ad)
     return ad.get();
 }
 
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
@@ -643,7 +643,7 @@ inline T* get_ptr(return_value_destructor<T> const& ad)
     return ad.get();
 }
 
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
@@ -652,7 +652,7 @@ inline T* get_ptr(auto_array_destructor<T> const& ad)
     return ad.get();
 }
 
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>

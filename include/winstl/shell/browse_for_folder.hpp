@@ -4,7 +4,7 @@
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 3
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     58
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 4
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -364,7 +364,7 @@ inline ws_bool_t browse_for_folder( S0 const    &title
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-// Disambiguates between the two four parameter overloads 
+// Disambiguates between the two four parameter overloads
 //  browse_for_folder(S const& , C *, UINT , LPCITEMIDLIST )
 // and
 // template < . . . >

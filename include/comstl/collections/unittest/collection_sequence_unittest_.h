@@ -1,5 +1,5 @@
 
-// Updated: 4th July 2006
+// Updated: 23rd September 2008
 
 #if !defined(COMSTL_INCL_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/collections/collection_sequence.hpp
@@ -206,7 +206,17 @@ namespace unittest
 				HRESULT 		hr			=	E_FAIL;
 				winstl::module	module("MMCOMBSC");
 
-				hr = winstl::dl_call<HRESULT>(module.get_handle(), winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(144)), strings, STLSOFT_NUM_ELEMENTS(strings), reinterpret_cast<void**>(&punkEnum));
+				hr = winstl::dl_call<HRESULT>(	module.get_handle()
+#if defined(WINSTL_OS_IS_WIN64)
+											,	winstl::fn_desc<STLSOFT_CDECL_VALUE>(MAKEINTRESOURCE(144))
+#elif defined(WINSTL_OS_IS_WIN32)
+											,	winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(144))
+#else /* ? OS */
+# error Only defined for Win32 or Win64
+#endif /* OS */
+											,	strings
+											,	STLSOFT_NUM_ELEMENTS(strings)
+											,	reinterpret_cast<void**>(&punkEnum));
 
 				if(FAILED(hr))
 				{

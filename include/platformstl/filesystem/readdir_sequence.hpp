@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the readdir_sequence components.
  *
  * Created:     29th April 2006
- * Updated:     29th December 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       14
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,13 @@ namespace platformstl_project
         /// this reflects the default behaviour of \c readdir(), and also because it is the
         /// most efficient.
         template <ss_typename_param_k S>
-        readdir_sequence(S const& directory, flags_type flags = directories | files)
+        ss_explicit_k readdir_sequence(S const& directory)
+            : m_ffs(stlsoft_ns_qual(c_str_ptr)(directory), "*.*", translate_flags_(directories | files))
+            , m_flags(validate_flags_(directories | files))
+        {}
+
+        template <ss_typename_param_k S>
+        readdir_sequence(S const& directory, flags_type flags)
             : m_ffs(stlsoft_ns_qual(c_str_ptr)(directory), "*.*", translate_flags_(flags))
             , m_flags(validate_flags_(flags))
         {}

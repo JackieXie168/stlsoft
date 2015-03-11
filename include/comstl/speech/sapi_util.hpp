@@ -4,7 +4,7 @@
  * Purpose:     Definition of SAPI types and constants.
  *
  * Created:     31st August 2006
- * Updated:     2nd February 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    2
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        2
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    3
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -142,11 +142,11 @@ struct ISpVoice_ : public ISpEventSource_
     virtual void ISpVoice_6() = 0;
     virtual void ISpVoice_7() = 0;
 
-        virtual HRESULT STDMETHODCALLTYPE Speak( 
+        virtual HRESULT STDMETHODCALLTYPE Speak(
             /* [string][in] */ const WCHAR *pwcs,
             /* [in] */ DWORD dwFlags,
             /* [out] */ ULONG *pulStreamNumber) = 0;
-        
+
     virtual void ISpVoice_9() = 0;
     virtual void ISpVoice_10() = 0;
     virtual void ISpVoice_11() = 0;
@@ -159,9 +159,9 @@ struct ISpVoice_ : public ISpEventSource_
     virtual void ISpVoice_18() = 0;
     virtual void ISpVoice_19() = 0;
 
-        virtual HRESULT STDMETHODCALLTYPE WaitUntilDone( 
+        virtual HRESULT STDMETHODCALLTYPE WaitUntilDone(
             /* [in] */ ULONG msTimeout) = 0;
-        
+
     virtual void ISpVoice_21() = 0;
     virtual void ISpVoice_22() = 0;
 

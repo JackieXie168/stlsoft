@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       112
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   3
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -176,7 +176,7 @@ public:
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-/** \brief A function class that throws the 
+/** \brief A function class that throws the
  *     \link comstl::bad_interface_cast bad_interface_cast\endlink exception
  *     class. For use with
  *    comstl::interface_cast_noaddref and comstl::interface_cast_addref cast
@@ -775,7 +775,7 @@ catch(comstl::bad_interface_cast &)
  *   interface type must be specified, e.g.
  *   <code>interface_cast<IStream></code>.
  *
- * \exception comstl::bad_interface_cast When compiling with exception - 
+ * \exception comstl::bad_interface_cast When compiling with exception -
  *   detected when <code>STLSOFT_CF_EXCEPTION_SUPPORT</code> is defined -
  *   this will throw an instance of comstl::bad_interface_cast if the
  *   requested interface cannot be acquired. When compiling absent exception
@@ -817,7 +817,7 @@ catch(comstl::bad_interface_cast &)
  *   interface type must be specified, e.g.
  *   <code>interface_cast<IStream></code>.
  *
- * \exception comstl::bad_interface_cast When compiling with exception - 
+ * \exception comstl::bad_interface_cast When compiling with exception -
  *   detected when <code>STLSOFT_CF_EXCEPTION_SUPPORT</code> is defined -
  *   this will throw an instance of comstl::bad_interface_cast if the
  *   requested interface cannot be acquired. When compiling absent exception
@@ -840,7 +840,7 @@ inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(stlsoft_ns_qual(ref_ptr)<I
  * \ingroup group__library__conversion
  *
 \code
-IStream                     *pstm = . . . 
+IStream                     *pstm = . . .
 stlsoft::ref_ptr<IStorage>  stg   = comstl::interface_cast<IStorage>(pstm);
 
 if(!stg.empty())
@@ -855,7 +855,7 @@ if(!stg.empty())
  *   interface type must be specified, e.g.
  *   <code>interface_cast<IStream></code>.
  *
- * \return 
+ * \return
  */
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc

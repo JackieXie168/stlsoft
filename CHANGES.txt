@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  15th September 2008
+; Updated:  27th September 2008
 
 ============================================================================
 
@@ -16,6 +16,52 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.55 (27th September 2008)
+
+Summary:
+========
+
+ * corrected defects in stlsoft::wide2multibyte and stlsoft::multibyte2wide
+   conversion classes
+ * fixes to various x64 defects related to use of inappropriate calling
+   convention specifiers with use of dl_call
+ * sundry other modifications in internal pre-processor facilities and
+   small improvements to Watcom compatibility
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/stlsoft.h:
+     + added internal pre-processor facilities
+
+  ~ winstl/conversion/char_conversions.hpp
+     ~ corrected defective effective size() method (inherited from parent)
+	 of multibyte2wide and wide2multibyte class templates, by hiding parent
+	 and defining in-class version of method
+
+  ~ stlsoft/stlsoft.h:
+     ~ some Watcom compatibility
+
+ WinSTL:
+ -------
+
+  ~ winstl/dl/dl_call.hpp:
+  ~ winstl/system/pid_sequence.hpp:
+  ~ winstl/system/process_module_sequence.hpp:
+     ~ ensuring x64 compatibility with use of dl_call
+
+  ~ winstl/filesystem/memory_mapped_file.hpp:
+     ~ some Watcom compatibility
+
+  ~ winstl/registry/reg_value.hpp:
+  ~ winstl/registry/util/shared_handles.hpp:
+     ~ fixes to x64 defects (contributed by Austin Ziegler)
 
 ============================================================================
 

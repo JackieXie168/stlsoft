@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file winstl/control_panel/applet_module.hpp
  *
- * \brief [C++ only] Definition of the 
+ * \brief [C++ only] Definition of the
  *  \link winstl::applet applet\endlink
  *  and
  *  \link winstl::applet_module applet_module\endlink
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 10
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     21
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 11
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ class applet_module;
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/** \brief [IMPLEMENTATION] 
+/** \brief [IMPLEMENTATION]
  */
 struct applet_module_base
 {
@@ -180,7 +180,7 @@ public:
 private:
     typedef basic_resource_string<  string_type
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                                ,   resource_exception_policy   
+                                ,   resource_exception_policy
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                                 ,   stlsoft_ns_qual(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -336,7 +336,7 @@ public:
     /// \brief Prototype of <b>cdecl</b> function that receives error notifications.
     typedef void (STLSOFT_CDECL *onFailureC)(TCHAR const* path);
     /// \brief Prototype of <b>stdcall</b> function that receives error notifications.
-    typedef void (STLSOFT_STDCALL *onFailureS)(TCHAR const* path); 
+    typedef void (STLSOFT_STDCALL *onFailureS)(TCHAR const* path);
 private:
     struct error_translator
     {

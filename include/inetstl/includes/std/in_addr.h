@@ -4,8 +4,8 @@
  * Purpose:     Discrimination of various operating-specific header files
  *              for Internet-related types.
  *
- * Created:     
- * Updated:     10th January 2007
+ * Created:
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_MAJOR       1
 # define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_MINOR       0
-# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_REVISION    1
-# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_EDIT        3
+# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_REVISION    2
+# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

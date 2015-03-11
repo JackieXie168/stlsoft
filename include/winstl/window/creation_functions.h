@@ -4,7 +4,7 @@
  * Purpose:     Window creation functions.
  *
  * Created:     7th May 2000
- * Updated:     14th January 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     15
+# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -201,7 +201,7 @@ namespace winstl
 
 #ifdef __cplusplus
 # ifndef _WINSTL_NO_NAMESPACE
-/* 
+/*
 inline HWND CreateWindowA(  LPCSTR      lpClassName
                         ,   LPCSTR      lpWindowName
                         ,   DWORD       dwStyle
@@ -279,7 +279,7 @@ inline HWND CreateWindowExW(DWORD       dwExStyle
     return winstl__CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 }
 
-/* 
+/*
 inline HWND CreateWindowEx( DWORD       dwExStyle
                         ,   LPCTSTR     lpClassName
                         ,   LPCTSTR     lpWindowName

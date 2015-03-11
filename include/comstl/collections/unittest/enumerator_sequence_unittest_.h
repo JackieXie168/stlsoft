@@ -1,5 +1,5 @@
 
-// Updated: 24th April 2008
+// Updated: 23rd September 2008
 
 #if !defined(COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/collections/enumerator_sequence.hpp
@@ -265,13 +265,17 @@ namespace unittest
 			};
 			ss_bool_t				bSuccess	=	true;
 			LPUNKNOWN				punkEnum	=	NULL;
+			HRESULT 				hr			=	winstl::dl_call<HRESULT>(	hinst
 #if defined(WINSTL_OS_IS_WIN64)
-			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(144), strings, STLSOFT_NUM_ELEMENTS(strings), reinterpret_cast<void**>(&punkEnum));
+																			,	MAKEINTRESOURCE(144)
 #elif defined(WINSTL_OS_IS_WIN32)
-			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(144)), strings, STLSOFT_NUM_ELEMENTS(strings), reinterpret_cast<void**>(&punkEnum));
+																			,	winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(144))
 #else /* ? OS */
 # error Only defined for Win32 or Win64
 #endif /* OS */
+																			,	strings
+																			,	STLSOFT_NUM_ELEMENTS(strings)
+																			,	reinterpret_cast<void**>(&punkEnum));
 
 			if(FAILED(hr))
 			{
@@ -364,13 +368,17 @@ namespace unittest
 
 			ss_bool_t	bSuccess	=	true;
 			LPUNKNOWN	punkEnum	=	NULL;
+			HRESULT 	hr			=	winstl::dl_call<HRESULT>(	hinst
 #if defined(WINSTL_OS_IS_WIN64)
-			HRESULT 	hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(146), guids, STLSOFT_NUM_ELEMENTS(guids), reinterpret_cast<void**>(&punkEnum));
+																,	MAKEINTRESOURCE(146)
 #elif defined(WINSTL_OS_IS_WIN32)
-			HRESULT 	hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(146)), guids, STLSOFT_NUM_ELEMENTS(guids), reinterpret_cast<void**>(&punkEnum));
+																,	winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(146))
 #else /* ? OS */
 # error Only defined for Win32 or Win64
 #endif /* OS */
+																,	guids
+																,	STLSOFT_NUM_ELEMENTS(guids)
+																,	reinterpret_cast<void**>(&punkEnum));
 
 			if(FAILED(hr))
 			{
@@ -833,13 +841,17 @@ namespace unittest
 
 			ss_bool_t				bSuccess	=	true;
 			LPUNKNOWN				punkEnum	=	NULL;
+			HRESULT 				hr			=	winstl::dl_call<HRESULT>(	hinst
 #if defined(WINSTL_OS_IS_WIN64)
-			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(147), bstrs, STLSOFT_NUM_ELEMENTS(bstrs), reinterpret_cast<void**>(&punkEnum));
+																			,	MAKEINTRESOURCE(147)
 #elif defined(WINSTL_OS_IS_WIN32)
-			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(147)), bstrs, STLSOFT_NUM_ELEMENTS(bstrs), reinterpret_cast<void**>(&punkEnum));
+																			,	winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(147))
 #else /* ? OS */
 # error Only defined for Win32 or Win64
 #endif /* OS */
+																			,	bstrs
+																			,	STLSOFT_NUM_ELEMENTS(bstrs)
+																			,	reinterpret_cast<void**>(&punkEnum));
 
 			if(FAILED(hr))
 			{
@@ -932,13 +944,17 @@ namespace unittest
 
 			ss_bool_t				bSuccess	=	true;
 			LPUNKNOWN				punkEnum	=	NULL;
+			HRESULT 				hr			=	winstl::dl_call<HRESULT>(	hinst
 #if defined(WINSTL_OS_IS_WIN64)
-			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, MAKEINTRESOURCE(158), variants, STLSOFT_NUM_ELEMENTS(variants), reinterpret_cast<void**>(&punkEnum));
+																			,	MAKEINTRESOURCE(158)
 #elif defined(WINSTL_OS_IS_WIN32)
-			HRESULT 				hr			=	winstl::dl_call<HRESULT>(hinst, winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(158)), variants, STLSOFT_NUM_ELEMENTS(variants), reinterpret_cast<void**>(&punkEnum));
+																			,	winstl::fn_desc<STLSOFT_STDCALL_VALUE>(MAKEINTRESOURCE(158))
 #else /* ? OS */
 # error Only defined for Win32 or Win64
 #endif /* OS */
+																			,	variants
+																			,	STLSOFT_NUM_ELEMENTS(variants)
+																			,	reinterpret_cast<void**>(&punkEnum));
 
 			if(FAILED(hr))
 			{

@@ -22,7 +22,7 @@ namespace unittest
 			{	// bool
 
 				bool_init_t 	b1(false);
-	
+
 				if(false != b1.get())
 				{
 					r->report("must_init<bool> instance has wrong value", __LINE__);
@@ -30,7 +30,7 @@ namespace unittest
 				}
 
 				bool_init_t 	b2(true);
-	
+
 				if(true != b2.get())
 				{
 					r->report("must_init<bool> instance has wrong value", __LINE__);

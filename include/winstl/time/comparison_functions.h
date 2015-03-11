@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 4
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     45
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 5
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ namespace winstl_project
  * C functions
  */
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -122,7 +122,7 @@ STLSOFT_INLINE ws_sint_t winstl__compare_FILETIMEs(FILETIME const* lhs, FILETIME
     }
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -141,7 +141,7 @@ STLSOFT_INLINE ws_sint_t winstl__compare_FILETIME_with_SYSTEMTIME(FILETIME const
     return winstl__compare_FILETIMEs(lhs, &ft2);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -160,7 +160,7 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIME_with_FILETIME(SYSTEMTIME con
     return winstl__compare_FILETIMEs(&ft1, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -199,7 +199,7 @@ namespace winstl
 
 #ifdef __cplusplus
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -208,7 +208,7 @@ inline ws_sint_t compare(FILETIME const& lhs, FILETIME const& rhs)
     return winstl__compare_FILETIMEs(&lhs, &rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -217,7 +217,7 @@ inline ws_sint_t compare(FILETIME const& lhs, SYSTEMTIME const& rhs)
     return winstl__compare_FILETIME_with_SYSTEMTIME(&lhs, &rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -226,7 +226,7 @@ inline ws_sint_t compare(SYSTEMTIME const& lhs, FILETIME const& rhs)
     return winstl__compare_SYSTEMTIME_with_FILETIME(&lhs, &rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -241,7 +241,7 @@ inline ws_sint_t compare(SYSTEMTIME const& lhs, SYSTEMTIME const& rhs)
 
 /* operator == */
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -250,7 +250,7 @@ inline ws_bool_t operator ==(FILETIME const& lhs, FILETIME const& rhs)
     return 0 == compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -259,7 +259,7 @@ inline ws_bool_t operator ==(FILETIME const& lhs, SYSTEMTIME const& rhs)
     return 0 == compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -268,7 +268,7 @@ inline ws_bool_t operator ==(SYSTEMTIME const& lhs, FILETIME const& rhs)
     return 0 == compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -279,7 +279,7 @@ inline ws_bool_t operator ==(SYSTEMTIME const& lhs, SYSTEMTIME const& rhs)
 
 /* operator != */
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -288,7 +288,7 @@ inline ws_bool_t operator !=(FILETIME const& lhs, FILETIME const& rhs)
     return 0 != compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -297,7 +297,7 @@ inline ws_bool_t operator !=(FILETIME const& lhs, SYSTEMTIME const& rhs)
     return 0 != compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -306,7 +306,7 @@ inline ws_bool_t operator !=(SYSTEMTIME const& lhs, FILETIME const& rhs)
     return 0 != compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -317,7 +317,7 @@ inline ws_bool_t operator !=(SYSTEMTIME const& lhs, SYSTEMTIME const& rhs)
 
 /* operator < */
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -326,7 +326,7 @@ inline ws_bool_t operator <(FILETIME const& lhs, FILETIME const& rhs)
     return 0 > compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -335,7 +335,7 @@ inline ws_bool_t operator <(FILETIME const& lhs, SYSTEMTIME const& rhs)
     return 0 > compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -344,7 +344,7 @@ inline ws_bool_t operator <(SYSTEMTIME const& lhs, FILETIME const& rhs)
     return 0 > compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -355,7 +355,7 @@ inline ws_bool_t operator <(SYSTEMTIME const& lhs, SYSTEMTIME const& rhs)
 
 /* operator > */
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -364,7 +364,7 @@ inline ws_bool_t operator >(FILETIME const& lhs, FILETIME const& rhs)
     return 0 < compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -373,7 +373,7 @@ inline ws_bool_t operator >(FILETIME const& lhs, SYSTEMTIME const& rhs)
     return 0 < compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -382,7 +382,7 @@ inline ws_bool_t operator >(SYSTEMTIME const& lhs, FILETIME const& rhs)
     return 0 < compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -393,7 +393,7 @@ inline ws_bool_t operator >(SYSTEMTIME const& lhs, SYSTEMTIME const& rhs)
 
 /* operator <= */
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -402,7 +402,7 @@ inline ws_bool_t operator <=(FILETIME const& lhs, FILETIME const& rhs)
     return 0 >= compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -411,7 +411,7 @@ inline ws_bool_t operator <=(FILETIME const& lhs, SYSTEMTIME const& rhs)
     return 0 >= compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -420,7 +420,7 @@ inline ws_bool_t operator <=(SYSTEMTIME const& lhs, FILETIME const& rhs)
     return 0 >= compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -431,7 +431,7 @@ inline ws_bool_t operator <=(SYSTEMTIME const& lhs, SYSTEMTIME const& rhs)
 
 /* operator >= */
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -440,7 +440,7 @@ inline ws_bool_t operator >=(FILETIME const& lhs, FILETIME const& rhs)
     return 0 <= compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -449,7 +449,7 @@ inline ws_bool_t operator >=(FILETIME const& lhs, SYSTEMTIME const& rhs)
     return 0 <= compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */
@@ -458,7 +458,7 @@ inline ws_bool_t operator >=(SYSTEMTIME const& lhs, FILETIME const& rhs)
     return 0 <= compare(lhs, rhs);
 }
 
-/** 
+/**
  *
  * \ingroup group__library__time
  */

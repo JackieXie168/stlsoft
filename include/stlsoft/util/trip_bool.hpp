@@ -4,7 +4,7 @@
  * Purpose:     Defines the stlsoft::trip_bool class template.
  *
  * Created:     22nd October 2006
- * Updated:     22nd March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        6
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ namespace stlsoft
 /** \brief
  *
  * \note This template was inspired by Bill Rubin's "Trip Switch Booleans in
- *  C++" article in August 2006 issue of CVu. 
+ *  C++" article in August 2006 issue of CVu.
  */
 
 template <ss_bool_t V>
@@ -109,7 +109,7 @@ public:
 /// \name Accessors
 /// @{
 public:
-    /// \brief 
+    /// \brief
     operator value_type () const
     {
         return m_v;
@@ -119,7 +119,7 @@ public:
 /// \name Operations
 /// @{
 public:
-    /// \brief 
+    /// \brief
     void trip()
     {
         m_v = V;

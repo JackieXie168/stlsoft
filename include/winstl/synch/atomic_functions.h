@@ -4,7 +4,7 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     3rd May 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      200
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  4
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      201
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -296,7 +296,7 @@ STLSOFT_INLINE atomic_int_t atomic_preadd(atomic_int_t volatile* pl, atomic_int_
 
 /* Uni-processor */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -334,7 +334,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_up(atomic_int_t volati
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -372,7 +372,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_up(atomic_int_t volati
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -409,7 +409,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_up(atomic_int_t volat
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -446,7 +446,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_up(atomic_int_t volat
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -474,7 +474,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(atomic_int_t volatile* /* pl *
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -502,7 +502,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(atomic_int_t volatile* /* pl *
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -538,7 +538,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -571,7 +571,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_up(atomic_int_t volatile* /* 
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -614,7 +614,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* /
 
 /* Symmetric multi-processor */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -652,7 +652,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_smp(atomic_int_t volat
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -690,7 +690,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_smp(atomic_int_t volat
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -727,7 +727,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_smp(atomic_int_t vola
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -764,7 +764,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_smp(atomic_int_t vola
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -800,7 +800,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_smp(atomic_int_t volatile cons
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -833,7 +833,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_smp(atomic_int_t volatile* /*
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -922,7 +922,7 @@ namespace
     static ws_bool_t    s_up = is_host_up();
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -996,7 +996,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile*
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1070,7 +1070,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement(atomic_int_t volatile*
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1142,7 +1142,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement(atomic_int_t volatile
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1214,7 +1214,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1278,7 +1278,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(atomic_int_t volatile* /* pl */)
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1338,7 +1338,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(atomic_int_t volatile* /* pl */)
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1408,7 +1408,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read(atomic_int_t volatile const* /
     }
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1441,7 +1441,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write(atomic_int_t volatile* /* pl 
 }
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1535,7 +1535,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd(atomic_int_t volatile* /* p
 
 
 /* Multi-processor detection variants */
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1550,7 +1550,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile*
 #endif /* Win32 || Win64 */
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1565,7 +1565,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement(atomic_int_t volatile*
 #endif /* Win32 || Win64 */
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1584,7 +1584,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement(atomic_int_t volatile
     return pre;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1603,7 +1603,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile
     return pre;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1618,7 +1618,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(atomic_int_t volatile* pl)
 #endif /* Win32 || Win64 */
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1633,7 +1633,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(atomic_int_t volatile* pl)
 #endif /* Win32 || Win64 */
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1648,7 +1648,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write(atomic_int_t volatile* pl, at
 #endif /* Win32 || Win64 */
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1657,7 +1657,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read(atomic_int_t volatile const* p
     return *pl;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1675,7 +1675,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd(atomic_int_t volatile* pl, 
 
 /* Uni-processor variants */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1684,7 +1684,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_up(atomic_int_t volati
     return atomic_preincrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1693,7 +1693,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_up(atomic_int_t volati
     return atomic_predecrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1702,7 +1702,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_up(atomic_int_t volat
     return atomic_postincrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1711,7 +1711,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_up(atomic_int_t volat
     return atomic_postdecrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1720,7 +1720,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(atomic_int_t volatile* pl)
     atomic_increment(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1729,7 +1729,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(atomic_int_t volatile* pl)
     atomic_decrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1738,7 +1738,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_up(atomic_int_t volatile* pl,
     return atomic_write(pl, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1747,7 +1747,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const
     return *pl;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1764,7 +1764,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* p
 
 /* SMP variants */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1773,7 +1773,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement_smp(atomic_int_t volat
     return atomic_preincrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1782,7 +1782,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement_smp(atomic_int_t volat
     return atomic_predecrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1791,7 +1791,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement_smp(atomic_int_t vola
     return atomic_postincrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1800,7 +1800,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement_smp(atomic_int_t vola
     return atomic_postdecrement(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1809,7 +1809,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write_smp(atomic_int_t volatile* pl
     return atomic_write(pl, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1818,7 +1818,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_smp(atomic_int_t volatile cons
     return *pl;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1841,7 +1841,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_smp(atomic_int_t volatile* 
  * Other inline atomic function
  */
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1850,7 +1850,7 @@ STLSOFT_INLINE atomic_int_t atomic_preadd_up(atomic_int_t volatile* pl, atomic_i
     return n + atomic_postadd_up(pl, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1859,7 +1859,7 @@ STLSOFT_INLINE void atomic_increment_smp(atomic_int_t volatile* pl)
     atomic_postincrement_smp(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1868,7 +1868,7 @@ STLSOFT_INLINE void atomic_decrement_smp(atomic_int_t volatile* pl)
     atomic_postdecrement_smp(pl);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -1877,7 +1877,7 @@ STLSOFT_INLINE atomic_int_t atomic_preadd_smp(atomic_int_t volatile* pl, atomic_
     return n + atomic_postadd_smp(pl, n);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */

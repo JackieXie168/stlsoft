@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     9th March 2008
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      58
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -175,7 +175,7 @@ public:
     /// \param p Pointer to an external counter variable. May be NULL, in
     ///  which case an internal member is used for the counter variable.
     ///
-    /// \note 
+    /// \note
     ss_explicit_k spin_mutex_base(atomic_int_type *p = NULL) stlsoft_throw_0()
         : m_spinCount((NULL != p) ? p : &m_internalCount)
         , m_internalCount(0)
@@ -214,10 +214,10 @@ public:
     /// \brief Acquires a lock on the mutex, pending the thread until the lock is aquired
     void lock() stlsoft_throw_0()
     {
-#ifdef UNIXSTL_SPINMUTEX_CHECK_INIT 
+#ifdef UNIXSTL_SPINMUTEX_CHECK_INIT
         // If the dynamic initialisation phase has been skipped, the
         // members will all be assigned to 0, which is correct for
-        // all except m_spinCount, which must be assigned to 
+        // all except m_spinCount, which must be assigned to
         // &m_internalCount
         if(NULL == m_spinCount)
         {

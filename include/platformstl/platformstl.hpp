@@ -5,7 +5,7 @@
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     8th March 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,13 +46,13 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   3
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.hpp
  *
- * \brief [C++ only] Root header for the 
+ * \brief [C++ only] Root header for the
  *  \ref group__project__platformstl "PlatformSTL" project for C++
  *  compilation units.
  */

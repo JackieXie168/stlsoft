@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for manipulating unordered sequences.
  *
  * Created:     17th January 2002
- * Updated:     10th January 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MINOR     3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_REVISION  1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      69
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_REVISION  2
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ inline stlsoft_ns_qual_std(pair)<I, I> find_first_duplicate(I first, I last)
     return stlsoft_ns_qual_std(make_pair)(last, last);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__algorithms
  *
@@ -158,7 +158,7 @@ inline stlsoft_ns_qual_std(pair)<I, I> find_first_duplicate(I first, I last, BP 
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__algorithms
  *
@@ -176,11 +176,11 @@ inline FI unordered_unique(FI first, FI last)
 
         for(; first != last; ++first)
         {
-            // ... for each element in the sequence, we see if it has 
+            // ... for each element in the sequence, we see if it has
             // already in the 'accepted' sequence, and, if not, ...
             if(dest == std_find(start, dest, *first))
             {
-                // ... add it into the accepted sequence at the 
+                // ... add it into the accepted sequence at the
                 // current point.
                 //
                 // Effectively, this is to overwrite the element
@@ -200,7 +200,7 @@ inline FI unordered_unique(FI first, FI last)
     return first;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__algorithms
  *
@@ -220,11 +220,11 @@ inline FI unordered_unique(FI first, FI last, BP pred)
 
         for(; first != last; ++first)
         {
-            // ... for each element in the sequence, we see if it has 
+            // ... for each element in the sequence, we see if it has
             // already in the 'accepted' sequence, and, if not, ...
             if(dest == std_find_if(start, dest, std::bind2nd(pred, *first)))
             {
-                // ... add it into the accepted sequence at the 
+                // ... add it into the accepted sequence at the
                 // current point.
                 //
                 // Effectively, this is to overwrite the element
@@ -244,7 +244,7 @@ inline FI unordered_unique(FI first, FI last, BP pred)
     return first;
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__algorithms
  *
@@ -258,7 +258,7 @@ inline FI unordered_unique_if(FI first, FI last, BP pred)
     return unordered_unique(first, last, pred);
 }
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__algorithms
  *
@@ -279,11 +279,11 @@ inline OI unordered_unique_copy(FI first, FI last, OI dest)
         *dest++ = *first++;
         for(; first != last; ++first)
         {
-            // ... for each element in the sequence, we see if it has 
+            // ... for each element in the sequence, we see if it has
             // already in the 'accepted' sequence, and, if not, ...
             if(dest == std_find(start, dest, *first))
             {
-                // ... add it into the accepted sequence at the 
+                // ... add it into the accepted sequence at the
                 // current point.
                 *dest = *first;
                 ++dest;

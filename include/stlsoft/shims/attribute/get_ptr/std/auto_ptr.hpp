@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Thanks to:   Nevin Liber for spotting a mistake in the get_ptr
  *              definition.
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      47
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  2
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ namespace stlsoft
 #ifndef _STLSOFT_PTR_ACCESS_NO_AUTO_PTR
 
 /* std::auto_ptr */
-/** \brief 
+/** \brief
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>

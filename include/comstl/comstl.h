@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     30th April 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 #define COMSTL_INCL_COMSTL_H_COMSTL
 /** \brief Defined for backward-compatiblity
- * 
+ *
  * This is the old header include guard, from when comstl.h was in the
  * STLSoft root include directory
  */
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       6
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        106
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    3
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -375,10 +375,10 @@
  * \ref group__projects "sub-projects".)
  *
  * \note If either/both of the symbols <code>_STLSOFT_NO_NAMESPACES</code>
- * and <code>_COMSTL_NO_NAMESPACE</code> are defined, all 
+ * and <code>_COMSTL_NO_NAMESPACE</code> are defined, all
  * \ref group__project__comstl "COMSTL" components will be defined in the
  * global namespace. Conversely, if the <code>_STLSOFT_NO_NAMESPACE</code>
- * symbol (not to be confused with the 
+ * symbol (not to be confused with the
  * <code>_STLSOFT_NO_NAMESPACES</code> symbol!) is defined - meaning that
  * all \ref group__project__stlsoft "main project" components are to be
  * defined in the global namespace, and <code>_COMSTL_NO_NAMESPACE</code>
@@ -446,7 +446,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 /** \def COMSTL_ITF_CALL(p)
  *
  * \ingroup group__project__comstl__language_agnostic_macros
- * 
+ *
  * \brief Resolves to <b>p->lpVtbl</b> for C compilation, and to <b>p</b> in C++
  *
  * \see COMSTL_ITF_THIS, COMSTL_ITF_THIS0, COMSTL_IID_2_REF, COMSTL_REF_2_PTR

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Watcom C/C++.
  *
  * Created:     7th February 2003
- * Updated:     13th May 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       17
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        75
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -251,7 +251,7 @@
 # define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #endif /* __WATCOMC__ */
 
-#if __WATCOMC__ >= 1270
+#if __WATCOMC__ >= 1240
 # define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 #endif /* __WATCOMC__ */
 

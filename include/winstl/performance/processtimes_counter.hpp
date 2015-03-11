@@ -4,7 +4,7 @@
  * Purpose:     WinSTL process-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     10th January 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file winstl/performance/processtimes_counter.hpp
  *
- * \brief [C++ only] Definition of the 
+ * \brief [C++ only] Definition of the
  *  \link winstl::processtimes_counter processtimes_counter\endlink class
  *   (\ref group__library__performance "Performance" Library).
  */
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR       4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR       0
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION    2
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT        52
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION    3
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

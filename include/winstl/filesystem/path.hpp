@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     7th June 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     241
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     242
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,8 +196,8 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// \brief Constructs a path from a string object.
     ///
-    /// \remarks The string object may be any type for which the 
-    ///  <b>c_str_len</b> and <b>c_str_data</b> 
+    /// \remarks The string object may be any type for which the
+    ///  <b>c_str_len</b> and <b>c_str_data</b>
     ///  \ref group__concept__shim__string_access "String Access Shims" are
     ///  defined. The following example shows the use of a window handle
     ///  (HWND). Other types supported are <code>std::exception</code>,
@@ -205,7 +205,7 @@ public:
     ///  <code>winstl::error_desc</code>, and many more
     ///
     /// \code
-    /// HWND          hwndParent = . . . 
+    /// HWND          hwndParent = . . .
     /// HWND          hwnd       = winstl::CreateEdit(hwndParent, "C:\\Windows", ES_LEFT, 0, 0, 10, 10, 1001);
     /// winstl::path  p(hwnd);
     ///
@@ -382,7 +382,7 @@ public:
     /// \htmlonly
     /// <pre>
     /// winstl::path  p("C:\\Windows\\system32\\..");
-    /// 
+    ///
     /// assert(p != "C:\\WINDOWS\\");
     /// assert(!p.equal("C:\\WINDOWS\\"));
     /// assert(p.equivalent("C:\\WINDOWS\\"));

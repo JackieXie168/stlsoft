@@ -2,10 +2,20 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  15th September 2008
+; Updated:  27th September 2008
 
 ============================================================================
 
+
+27th September 2008 - 1.9.55 released
+-------------------------------------
+
+ * corrected defects in stlsoft::wide2multibyte and stlsoft::multibyte2wide
+   conversion classes
+ * fixes to various x64 defects related to use of inappropriate calling
+   convention specifiers with use of dl_call
+ * sundry other modifications in internal pre-processor facilities and
+   small improvements to Watcom compatibility
 
 15th September 2008 - 1.9.54 released
 -------------------------------------

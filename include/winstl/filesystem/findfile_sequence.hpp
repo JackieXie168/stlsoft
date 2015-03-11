@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     11th August 2008
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
  *              example when writing books about good design/implementation.
@@ -68,8 +68,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        210
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        211
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1509,7 +1509,7 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
                         stlsoft_ns_qual(scoped_handle)<HANDLE>  cleanup(hSrch, (void (STLSOFT_STDCALL *)(HANDLE))&::FindClose, INVALID_HANDLE_VALUE);
-                            
+
 #else /* ? compiler */
                         stlsoft_ns_qual(scoped_handle)<HANDLE>  cleanup(hSrch, ::FindClose, INVALID_HANDLE_VALUE);
 #endif /* compiler */

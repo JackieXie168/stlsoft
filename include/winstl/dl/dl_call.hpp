@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     9th March 2008
+ * Updated:     23rd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     6
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  2
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      41
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     7
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  1
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,6 +139,26 @@ namespace winstl_project
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Macros
+ */
+
+/** \def WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)
+ *
+ * String pastes the given name with the requisite Windows API standard call
+ * calling convention ("stdcall" on Win32, "cdecl" on Win64)
+ *
+ * \param name A string literal specifying the dynamically invoked function
+ */
+
+#if defined(WINSTL_OS_IS_WIN64)
+# define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)			"cdecl:" name
+#elif defined(WINSTL_OS_IS_WIN32)
+# define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)			"stdcall:" name
+#else /* ? WIN?? */
+# error Windows operating system not recognised
+#endif /* WIN?? */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -211,7 +231,7 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// \brief Constructs an instance of the exception based on the given 
+    /// \brief Constructs an instance of the exception based on the given
     /// function name, and Windows error code.
     invalid_calling_convention_exception(char const* callingConventionSpecifier)
         : parent_class_type(class_type::create_reason_(callingConventionSpecifier), ERROR_INVALID_FUNCTION)

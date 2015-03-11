@@ -4,7 +4,7 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     23rd October 1997
- * Updated:     2nd April 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MINOR    1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     4
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@
  *
  * PThreads is selected if:
  *
- * - _POSIX_THREADS is defined and _REENTRANT is defined, or 
+ * - _POSIX_THREADS is defined and _REENTRANT is defined, or
  * - UNIXSTL_FORCE_PTHREADS is defined, which causes &lt;pthread.h> to be
  *    included, and the symbol _REENTRANT (and _POSIX_THREADS on Windows)
  *    to be defined if they are not already.

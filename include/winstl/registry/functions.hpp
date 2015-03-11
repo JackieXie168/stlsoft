@@ -4,7 +4,7 @@
  * Purpose:     Registry functions.
  *
  * Created:     20th November 1995
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      46
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ namespace winstl_project
  * Functions
  */
 
-/** \brief Gets the contents of a registry key's string value into a 
+/** \brief Gets the contents of a registry key's string value into a
  *    caller-supplied buffer.
  * \ingroup group__library__windows_registry
  *

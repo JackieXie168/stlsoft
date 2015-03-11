@@ -5,7 +5,7 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     2nd June 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       14
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   2
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -142,7 +142,7 @@ namespace atlstl_project
  * By default, the ATL class template IDispatchImpl assumes that just a
  * single "active" dispinterface. We might envisage the following
  * (C++) class definition for <b>Field</b>:
- * 
+ *
 \code
   class ATL_NO_VTABLE Field
     : public CComObjectRootEx<CComSingleThreadModel>
@@ -164,7 +164,7 @@ namespace atlstl_project
  * Invoke(), operating over both its dispinterfaces to elicit the dispid(s)
  * for requested name(s) by querying each interface in turn. It is used with
  * the Field class as follows:
- * 
+ *
 \code
   class ATL_NO_VTABLE Field
     : public CComObjectRootEx<CComSingleThreadModel>
@@ -202,7 +202,7 @@ public:
 /// \name IDispatch methods
 /// @{
 protected:
-    /** \brief Provides the required behaviour of 
+    /** \brief Provides the required behaviour of
      *  <code>IDispatch::GetIDsOfNames()</code>, by querying the two
      *  dispinterfaces, in order, to match the name(s).
      *
@@ -211,7 +211,7 @@ protected:
      * resultant dispatch Ids are then striped with a bit in their
      * most-significant byte(s) to record the index of the dispinterface
      * which has thus undertaken to interpret them. This stripe is then
-     * detected 
+     * detected
      *
      * \remarks Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
@@ -265,7 +265,7 @@ protected:
 
         return hr;
     }
-    /** \brief Provides the required behaviour of 
+    /** \brief Provides the required behaviour of
      *  <code>IDispatch::Invoke()</code>, by invoking this method on the
      *  requisite dispinterface.
      *
@@ -362,7 +362,7 @@ protected:
      * resultant dispatch Ids are then striped with a bit in their
      * most-significant byte(s) to record the index of the dispinterface
      * which has thus undertaken to interpret them. This stripe is then
-     * detected 
+     * detected
      *
      * \remarks Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
@@ -424,7 +424,7 @@ protected:
 
         return hr;
     }
-    /** \brief Provides the required behaviour of 
+    /** \brief Provides the required behaviour of
      *  <code>IDispatch::Invoke()</code>, by invoking this method on the
      *  requisite dispinterface.
      *
@@ -537,7 +537,7 @@ protected:
      * resultant dispatch Ids are then striped with a bit in their
      * most-significant byte(s) to record the index of the dispinterface
      * which has thus undertaken to interpret them. This stripe is then
-     * detected 
+     * detected
      *
      * \remarks Names are matched en bloc: they are either all matched by one
      *  interface, or all by the other. It is <b>never</b> the case that
@@ -607,7 +607,7 @@ protected:
 
         return hr;
     }
-    /** \brief Provides the required behaviour of 
+    /** \brief Provides the required behaviour of
      *  <code>IDispatch::Invoke()</code>, by invoking this method on the
      *  requisite dispinterface.
      *

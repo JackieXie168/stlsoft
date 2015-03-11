@@ -4,7 +4,7 @@
  * Purpose:     Instantiations of th_sequence_value_traits<>.
  *
  * Created:     21st May 2005
- * Updated:     10th January 2007
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MINOR     1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_REVISION  3
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      7
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_REVISION  4
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Compatibility
@@ -115,7 +115,7 @@ struct th_sequence_value_traits<WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_VALUE>
 };
 
 // #undef here so we don't have to repeat this each time we include this file
-#undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_VALUE    
+#undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_VALUE
 #undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_FIRST
 #undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_NEXT
 #undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_FLAG

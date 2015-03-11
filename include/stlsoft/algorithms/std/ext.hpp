@@ -4,7 +4,7 @@
  * Purpose:     Extensions to standard algorithms.
  *
  * Created:     17th January 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_MINOR       2
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_REVISION    4
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_EDIT        70
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_REVISION    5
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,7 +119,7 @@ inline O copy_if(I first, I last, O dest, UP pred)
 /** \brief Applies the function to all items in a range that satisfy a predicate
  *
  * \ingroup group__library__algorithms
- * 
+ *
  * Applies the function f to each of the N elements in the source range [first, last)
  * for which the expression pred(*(i + n)) hold true, where i is the nth element in the
  * range

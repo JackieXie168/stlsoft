@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for unknown compilers.
  *
  * Created:     7th February 2003
- * Updated:     11th May 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      15
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       62
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -280,7 +280,7 @@
 /* This cannot be assumed. */
 /* #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
 
-/* 
+/*
  * class X
  * {
  * #ifdef STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT

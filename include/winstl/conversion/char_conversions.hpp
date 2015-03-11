@@ -4,11 +4,11 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     2nd September 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    2
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    3
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     86
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@ namespace winstl_project
  */
 template <ws_size_t CCH>
 class multibyte2wide
-    : public auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>
+    : private auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>
 {
 /// \name Member Types
 /// @{
@@ -225,6 +225,22 @@ public:
     {
         return parent_class_type::data();
     }
+
+    size_type size() const
+    {
+        size_type n = parent_class_type::size();
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        WINSTL_ASSERT(0 != n);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        if(0 == n)
+        {
+            return 0;
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        return n - 1;
+    }
 /// @}
 
 /// \name Operators
@@ -253,7 +269,7 @@ private:
  */
 template <ws_size_t CCH>
 class wide2multibyte
-    : public auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>
+    : private auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>
 {
 /// \name Member Types
 /// @{
@@ -298,7 +314,8 @@ public:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-// Implementation
+/// \name Implementation
+/// @{
 private:
     void prepare_(alt_char_type const* s)
     {
@@ -331,6 +348,7 @@ private:
             }
         }
     }
+/// @}
 
 /// \name Accessors
 /// @{
@@ -338,6 +356,22 @@ public:
     char_type const* c_str() const
     {
         return parent_class_type::data();
+    }
+
+    size_type size() const
+    {
+        size_type n = parent_class_type::size();
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        WINSTL_ASSERT(0 != n);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        if(0 == n)
+        {
+            return 0;
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        return n - 1;
     }
 /// @}
 

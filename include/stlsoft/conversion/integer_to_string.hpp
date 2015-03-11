@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      77
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -271,8 +271,8 @@ inline C const* signed_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 // with it as if an unsigned, and prepend the -ve
     typedef limit_traits<I>                                 limit_traits_t;
     typedef sign_traits<I>                                  sign_traits_t;
-    typedef ss_typename_type_k sign_traits_t::signed_type   signed_type_t;  
-    typedef ss_typename_type_k sign_traits_t::unsigned_type unsigned_type_t;    
+    typedef ss_typename_type_k sign_traits_t::signed_type   signed_type_t;
+    typedef ss_typename_type_k sign_traits_t::unsigned_type unsigned_type_t;
 
     // If this fires, something has happened to invoke this function on an
     // unsigned type.

@@ -19,7 +19,7 @@ namespace unittest
 
 			// 1. Check that it does not canonicalise fully canonicalised strings
 
-			char const* const	s_strings[] = 
+			char const* const	s_strings[] =
 			{
 				// Canonicalised strings
 				".",					".",

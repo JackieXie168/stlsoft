@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     3rd September 2008
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Cláudio Albuquerque for working on the
  *              Win64-compatibility.
@@ -64,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     19
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      104
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -231,9 +231,9 @@
  * - argument-dependent lookup
  * - static array-size determination
  * - empty-derived optimisation
- *    - 
+ *    -
  * - empty-base optimisation
- *    - 
+ *    -
  * - move constructor support
  * - operators
  *    - operator bool implemented as pointer-to-member

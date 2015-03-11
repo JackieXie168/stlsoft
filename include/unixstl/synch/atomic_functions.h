@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     12th March 2007
+ * Updated:     22nd September 2008
  *
  * Thanks:      To Brad Cox, for helping out in testing and fixing the
  *              implementation for MAC OSX (Intel).
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      197
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      198
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -290,7 +290,7 @@ STLSOFT_INLINE atomic_int_t atomic_postadd(atomic_int_t volatile* pl, atomic_int
 
 # elif defined(UNIXSTL_OS_IS_MACOSX)
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -300,7 +300,7 @@ STLSOFT_INLINE atomic_int_t atomic_preincrement(atomic_int_t volatile* pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_PREINCREMENT
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -310,7 +310,7 @@ STLSOFT_INLINE atomic_int_t atomic_predecrement(atomic_int_t volatile* pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_PREDECREMENT
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -320,7 +320,7 @@ STLSOFT_INLINE atomic_int_t atomic_postincrement(atomic_int_t volatile* pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_POSTINCREMENT
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -330,7 +330,7 @@ STLSOFT_INLINE atomic_int_t atomic_postdecrement(atomic_int_t volatile* pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_POSTDECREMENT
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -340,7 +340,7 @@ STLSOFT_INLINE void atomic_increment(atomic_int_t volatile* pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_INCREMENT
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -350,7 +350,7 @@ STLSOFT_INLINE void atomic_decrement(atomic_int_t volatile* pl)
 }
 #  define UNIXSTL_HAS_ATOMIC_DECREMENT
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -361,7 +361,7 @@ STLSOFT_INLINE void atomic_decrement(atomic_int_t volatile* pl)
  */
 /* STLSOFT_INLINE */ atomic_int_t atomic_write(atomic_int_t volatile* pv, atomic_int_t n);
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -373,7 +373,7 @@ STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile* pv)
 }
 #  define UNIXSTL_HAS_ATOMIC_READ
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */
@@ -383,7 +383,7 @@ STLSOFT_INLINE atomic_int_t atomic_preadd(atomic_int_t volatile* pl, atomic_int_
 }
 #  define UNIXSTL_HAS_ATOMIC_PREADD
 
-/** \brief 
+/** \brief
  *
  * \ingroup group__library__synch
  */

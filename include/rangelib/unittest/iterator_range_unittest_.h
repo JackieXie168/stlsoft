@@ -78,4 +78,3 @@ namespace unittest
 	unittest_registrar	  unittest_rangelib_iterator_range(test_rangelib_iterator_range);
 
 } // namespace unittest
-

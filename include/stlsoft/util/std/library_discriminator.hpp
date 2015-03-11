@@ -4,7 +4,7 @@
  * Purpose:     Discriminates between standard library implementations
  *
  * Created:     2nd January 2000
- * Updated:     24th April 2008
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        99
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 /*
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_WATCOM:
+STLSOFT_COMPILER_IS_WATCOM: __WATCOMC__<1240
 [Incompatibilies-end]
  */
 
@@ -73,9 +73,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#if !defined(STLSOFT_COMPILER_IS_WATCOM)
+#ifndef STLSOFT_INCL_ITERATOR
+# define STLSOFT_INCL_ITERATOR
 # include <iterator>    // required for detecting header include guards
-#endif /* compiler */
+#endif /* STLSOFT_INCL_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Warnings
@@ -107,8 +108,7 @@ namespace stlsoft
  * 5. Gnu FSF's HP/SGI derivative               __GLIBCPP_INTERNAL_ITERATOR_H, _GLIBCXX_ITERATOR
  * 6. HP/RW                                     __RW_ITERATOR_H. __STD_RW_ITERATOR__
  * 7. Sun Pro/RW                                __STD_ITERATOR__
- * 8. Watcom (patch)                            STLSOFT_OW12_INCL_ITERATOR
- * 9. Watcom (none)                             STLSOFT_COMPILER_IS_WATCOM
+ * 8. Watcom (none)                             STLSOFT_COMPILER_IS_WATCOM, _ITERATOR_INCLUDED
  */
 
 /* The inclusion of <iterator> results in the following inclusions when using one
@@ -159,13 +159,10 @@ namespace stlsoft
 # undef STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
 #endif /* STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
 
-#ifdef STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE
-# undef STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE
-#endif /* STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE */
+#ifdef STLSOFT_CF_STD_LIBRARY_IS_WATCOM
+# undef STLSOFT_CF_STD_LIBRARY_IS_WATCOM
+#endif /* STLSOFT_CF_STD_LIBRARY_IS_WATCOM */
 
-#ifdef STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH
-# undef STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH
-#endif /* STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH */
 
 #if defined(_STLPORT_VERSION) && \
       defined(_STLP_INTERNAL_ITERATOR_H)
@@ -232,14 +229,10 @@ namespace stlsoft
  /* Sun Pro/RW */
 # define STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
 # define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "SunPro/RW"
-#elif defined(STLSOFT_OW12_INCL_ITERATOR)
- /* Watcom (patch) */
-# define STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "STLSoft Watcom Patch"
 #elif defined(STLSOFT_COMPILER_IS_WATCOM)
- /* Watcom (none) */
-# define STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "<no standard library with Open Watcom>"
+ /* Watcom */
+# define STLSOFT_CF_STD_LIBRARY_IS_WATCOM
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "Watcom C++ Standard Library"
 #else /* ? */
 # error Standard library implementation not recognised
 #endif /* various "unique" macros */

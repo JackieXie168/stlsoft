@@ -4,7 +4,7 @@
  * Purpose:     A component for relating two COM objects without cycles.
  *
  * Created:     25th March 2006
- * Updated:     6th December 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MAJOR     1
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MINOR     2
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  6
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      19
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  7
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ DECLARE_INTERFACE_(IAcyclicSide, IUnknown)
  *   creating cyclic dependencies.
  *
  * Reference counting architectures, such as COM, rely on there being no
- * dependency cycles. A cyclic dependency is the situation where, say, 
+ * dependency cycles. A cyclic dependency is the situation where, say,
  * object <b>a</b> holds a reference to object <b>b</b>, and object
  * <b>b</b> holds a reference to object <b>a</b>. Since neither will
  * release the references it holds (held on its efferent dependents)
@@ -142,7 +142,7 @@ DECLARE_INTERFACE_(IAcyclicSide, IUnknown)
  * acyclic_connector is designed to help in the case where two objects
  * need to have knowledge of each other, but not hold references on each
  * other. It works by acting as an intermediary that each of two objects
- * in the relationship keep informed as to their existance. 
+ * in the relationship keep informed as to their existance.
  *
  * \param MX The type of the mutex that will be used to provide exclusive
  *  access to the instance state during the Clear() and QueryPeer() methods.

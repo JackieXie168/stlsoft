@@ -4,7 +4,7 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     28th December 2007
+ * Updated:     22nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       486
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       487
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ public:
         }
     }
 
-    /// \brief Creates a copy of the given ref_ptr instance, and increments the 
+    /// \brief Creates a copy of the given ref_ptr instance, and increments the
     /// reference count on its referent object, if any
     ///
     /// \param rhs The instance to copy
@@ -586,7 +586,7 @@ inline S& operator <<(S& s, ref_ptr<T, I, U> const& p)
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we 
+/* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.
  */
 #if defined(STLSOFT_CF_std_NAMESPACE)
