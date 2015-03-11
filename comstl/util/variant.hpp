@@ -4,7 +4,7 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     2nd September 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       134
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   3
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,9 +75,9 @@
 #ifndef COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS
 # include <comstl/interface/interface_traits.hpp>
 #endif /* !COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

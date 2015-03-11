@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     16th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       4
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    2
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        79
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    3
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,9 @@
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 #  include <stlsoft/meta/base_type_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-#  include <stlsoft/constraints.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+# ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+#  include <stlsoft/util/constraints.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \

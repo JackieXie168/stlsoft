@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta21
+File:     STLSoft-ReleaseNotes-1.9.1-beta22
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,38 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  7th September 2006
+Updated:  13th September 2006
 
 ============================================================================
+
+
+============================================================================
+
+Changes for 1.9.1 beta 22 (13th September 2006):
+
+Changes:
+========
+
+~ the following files were "moved" into stlsoft/util:
+
+	options_verifier.hpp
+	printf_traits.hpp
+	true_typedef.hpp
+	argument_proxies.hpp
+	compiler_optimisation_traits.hpp
+	constraints.hpp
+	limit_traits.h
+	sign_traits.hpp
+	size_traits.hpp
+	static_initialisers.hpp
+
+~ the following files were "moved" into stlsoft/obsolete:
+
+	first_class_promoter.hpp
+	explicit_inheritance_veneer.hpp
+
+~ fix of version numbers in stlsoft/stlsoft.h
+
 
 
 ============================================================================

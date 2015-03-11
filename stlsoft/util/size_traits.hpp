@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/inert.hpp (originally stlsoft_inert.h)
+ * File:        stlsoft/util/size_traits.hpp (originally stlsoft_size_traits.h)
  *
- * Purpose:     Contains the inert class.
+ * Purpose:     size_traits classes.
  *
- * Created:     16th January 2002
+ * Created:     24th August 2003
  * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,30 +38,19 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/util/inert.hpp
- *
- * \brief [C++ only] Definition of the stlsoft::inert class.
- *  (\ref group__library__utility "Utility" Library.)
- */
+/// \file stlsoft/util/size_traits.hpp
+///
+/// size_traits classes.
 
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT
-#define STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS
+#define STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR      4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       33
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MAJOR      4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MINOR      0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_REVISION   1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Compatibility
- */
-
-/* 
-[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
-[<[STLSOFT-AUTO:NO-UNITTEST]>]
-*/
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -84,58 +73,54 @@ namespace stlsoft
  * Classes
  */
 
-/** \brief This class is almost completely unusable, and is used as a placeholder or as
- * a name remover
+/** \brief traits type for determining the signed and unsigned forms of a given integral
+ * type
  *
  * \ingroup group__library__utility
+ *
  */
-// class inert
-class inert
+template <ss_size_t BYTES>
+struct int_size_traits
 {
-// Construction
-public:
-    /// Default constructor
-    inert()
-    {}
-    /// Destructor
-    ~inert() stlsoft_throw_0()
-    {}
-
-// Not to be implemented
-private:
-    inert(inert const &rhs);
-    inert const &operator =(inert const &rhs);
-
-#ifndef new
-    void *operator new(size_t ) stlsoft_throw_0()
-    {
-        return 0;
-    }
-    void operator delete(void *)
-    {}
-#endif /* !new */
-
-    int operator !() const;
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
-    operator bool() const;
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
-    operator void *() const;
-    void *operator &() const;
-#if defined(STLSOFT_COMPILER_IS_GCC) || \
-    defined(STLSOFT_COMPILER_IS_INTEL) || \
-    defined(STLSOFT_COMPILER_IS_WATCOM)
-    struct _{};
-    _ *operator ->() const;
-#else /* ? compiler */
-    struct {} *operator ->() const;
-#endif /* compiler */
-#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-    template <ss_typename_param_k T>
-    operator T &();
-    template <ss_typename_param_k T>
-    operator T const &() const;
-#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+    typedef void    signed_type;
+    typedef void    unsigned_type;
 };
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct int_size_traits<1>
+{
+    typedef ss_sint8_t  signed_type;
+    typedef ss_uint8_t  unsigned_type;
+};
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct int_size_traits<2>
+{
+    typedef ss_sint16_t signed_type;
+    typedef ss_uint16_t unsigned_type;
+};
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct int_size_traits<4>
+{
+    typedef ss_sint32_t signed_type;
+    typedef ss_uint32_t unsigned_type;
+};
+
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct int_size_traits<8>
+{
+    typedef ss_sint64_t signed_type;
+    typedef ss_uint64_t unsigned_type;
+};
+
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -145,6 +130,6 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT */
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS */
 
 /* ////////////////////////////////////////////////////////////////////// */

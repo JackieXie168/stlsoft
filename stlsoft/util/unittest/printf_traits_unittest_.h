@@ -1,9 +1,9 @@
 
-// Updated: 5th February 2006
+// Updated: 13th September 2006
 
-#if !defined(STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS)
-# error This file cannot be directly included, and should only be included within stlsoft/printf_traits.hpp
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS */
+#if !defined(STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS)
+# error This file cannot be directly included, and should only be included within stlsoft/util/printf_traits.hpp
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
@@ -147,7 +147,7 @@ namespace unittest
 
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "STLSoft", "printf_traits", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "util/printf_traits", __FILE__);
 
 			char				sz[21];
 			wchar_t 			szw[21];

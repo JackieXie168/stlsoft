@@ -5,7 +5,7 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     11th June 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       36
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,9 +73,9 @@
 
 #if !defined(STLSOFT_NO_SAP_CAST) && \
     defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-#  include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+# ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+#  include <stlsoft/util/constraints.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 #  include <stlsoft/meta/base_type_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */

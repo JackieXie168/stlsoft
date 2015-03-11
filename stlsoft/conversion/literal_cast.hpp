@@ -4,7 +4,7 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     11th June 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       35
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_REVISION   2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,9 +69,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>
-#endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS
+# include <stlsoft/util/limit_traits.h>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

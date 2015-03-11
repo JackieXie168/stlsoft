@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     38
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>
-#endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS
+# include <stlsoft/util/limit_traits.h>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
 #include <time.h>
 
 /* /////////////////////////////////////////////////////////////////////////

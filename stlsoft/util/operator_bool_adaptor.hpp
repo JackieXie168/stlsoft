@@ -4,7 +4,7 @@
  * Purpose:     Definition of the operator_bool_adaptor class.
  *
  * Created:     21st October 2004
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_REVISION 2
-# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_EDIT     17
+# define STLSOFT_VER_STLSOFT_HPP_OPERATOR_BOOK_ADAPTOR_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ namespace stlsoft
 /** \brief This class is a reverse bolt-in, which provides the "safe" operator
  * bool to its parameterising type, in terms of its \c is_open method
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 template<ss_typename_param_k T>
 class operator_bool_adaptor

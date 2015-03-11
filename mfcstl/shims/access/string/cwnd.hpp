@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     14th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    1
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        78
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    2
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER
 # include <stlsoft/string/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */

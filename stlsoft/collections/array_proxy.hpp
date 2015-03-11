@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MAJOR    4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MINOR    0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION 1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     45
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION 2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>     // for must_be_same_size, must_have_base
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */

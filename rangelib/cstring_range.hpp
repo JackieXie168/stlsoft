@@ -4,7 +4,7 @@
  * Purpose:     Range adaptor for C-strings.
  *
  * Created:     17th May 2004
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     3
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  1
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      29
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  2
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
 # include <rangelib/operator_adaptors.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>       // for is_integral_type, etc.
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

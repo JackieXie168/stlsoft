@@ -4,7 +4,7 @@
  * Purpose:     A robust and portable operator bool generator class.
  *
  * Created:     5th November 2003
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_EDIT     30
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ namespace stlsoft
 /** \brief \def STLSOFT_DEFINE_OPERATOR_BOOL_TYPES(U, G, B)
  * Defines the types for a type-safe boolean operator
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * \param U The Unique type. This is usually the \c class_type member type of the
  * class for which we are providing the boolean operator, but it could be any type.
@@ -96,7 +96,7 @@ namespace stlsoft
 /** \brief \def STLSOFT_DEFINE_OPERATOR_BOOL_TYPES(U, G, B)
  * Defines the types for a type-safe boolean operator, for use in templates
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  *
  * \param U The Unique type. This is usually the \c class_type member type of the
  * class for which we are providing the boolean operator, but it could be any type.
@@ -132,7 +132,7 @@ namespace stlsoft
 /** \brief Template which provides the types and conversion operations for safe and
  * highly-portable "<code>operator bool() const</code>".
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 template <ss_typename_param_k T>
 struct operator_bool_generator

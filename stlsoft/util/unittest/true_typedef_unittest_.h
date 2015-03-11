@@ -1,9 +1,9 @@
 
-// Updated: 19th September 2005
+// Updated: 13th September 2006
 
-#if !defined(STLSOFT_INCL_STLSOFT_HPP_TRUE_TYPEDEF)
-# error This file cannot be directly included, and should only be included within stlsoft/true_typedef.hpp
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_TRUE_TYPEDEF */
+#if !defined(STLSOFT_INCL_STLSOFT_UTIL_HPP_TRUE_TYPEDEF)
+# error This file cannot be directly included, and should only be included within stlsoft/util/true_typedef.hpp
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_TRUE_TYPEDEF */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
@@ -20,7 +20,7 @@ namespace unittest
 		{
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "STLSoft", "true_typedef", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "util/true_typedef", __FILE__);
 
 			int_tt	i0;
 			int_tt	i1(10);

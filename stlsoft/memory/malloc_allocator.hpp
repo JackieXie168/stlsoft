@@ -4,7 +4,7 @@
  * Purpose:     stlsoft_malloc_allocator class - uses malloc()/free().
  *
  * Created:     2nd January 2001
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_MAJOR      4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_EDIT       73
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_REVISION   2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_EDIT       74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
 # include <stlsoft/memory/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #include <stdlib.h>                     // for malloc(), free()
 
 /* /////////////////////////////////////////////////////////////////////////

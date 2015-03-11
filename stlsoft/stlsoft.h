@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     27th August 2006
+ * Updated:     11th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 10
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     279
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 12
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     281
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -156,11 +156,13 @@
 # define _STLSOFT_VER_1_8_8     0x00010808  /*!< Version 1.8.8 */
 # define _STLSOFT_VER_1_8_9     0x00010809  /*!< Version 1.8.9 */
 # define _STLSOFT_VER_1_9_1_B13 0x0109010d  /*!< Version 1.9.1 beta 13 (10th July 2006) */
-# define _STLSOFT_VER_1_9_1_B20 0x01090114  /*!< Version 1.9.1 beta 40 (28th August 2006) */
+# define _STLSOFT_VER_1_9_1_B20 0x01090114  /*!< Version 1.9.1 beta 20 (28th August 2006) */
+# define _STLSOFT_VER_1_9_1_B21 0x01090115  /*!< Version 1.9.1 beta 21 (7th September 2006) */
+# define _STLSOFT_VER_1_9_1_B22 0x01090116  /*!< Version 1.9.1 beta 22 (8th September 2006) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (12th Dec 2005) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B20
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B22
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -1011,12 +1013,16 @@
 
 /* No C++ compilation means no namespaces */
 #if !defined(__cplusplus)
-# define _STLSOFT_NO_NAMESPACES
+# if !defined(_STLSOFT_NO_NAMESPACES)
+#  define _STLSOFT_NO_NAMESPACES
+# endif /* !_STLSOFT_NO_NAMESPACES */
 #endif /* !__cplusplus */
 
 /* No STLSoft namespaces means no stlsoft namespace */
 #if defined(_STLSOFT_NO_NAMESPACES)
-# define _STLSOFT_NO_NAMESPACE
+# if !defined(_STLSOFT_NO_NAMESPACE)
+#  define _STLSOFT_NO_NAMESPACE
+# endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* _STLSOFT_NO_NAMESPACES */
 
 #ifndef _STLSOFT_NO_NAMESPACE

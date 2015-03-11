@@ -5,7 +5,7 @@
  *              automatically the strong NULL.
  *
  * Created:     8th September 2002
- * Updated:     7th July 2006
+ * Updated:     13th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT      45
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -141,7 +141,7 @@ public:
 
 /** \brief Static creation
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 public:
     static NULL_v create()
@@ -197,7 +197,7 @@ private:
 #if 0
 /** \brief operator == for NULL_v and an arbitrary type
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 template <ss_typename_param_k T>
 inline ss_bool_t operator ==(NULL_v const &lhs, T const &rhs)
@@ -209,7 +209,7 @@ inline ss_bool_t operator ==(NULL_v const &lhs, T const &rhs)
 
 /** \brief operator == for an arbitrary type and NULL_v
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 template <ss_typename_param_k T>
 inline ss_bool_t operator ==(T const &lhs, NULL_v const &rhs)
@@ -221,7 +221,7 @@ inline ss_bool_t operator ==(T const &lhs, NULL_v const &rhs)
 
 /** \brief operator != for NULL_v and an arbitrary type
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 template <ss_typename_param_k T>
 inline ss_bool_t operator !=(NULL_v const &lhs, T const &rhs)
@@ -233,7 +233,7 @@ inline ss_bool_t operator !=(NULL_v const &lhs, T const &rhs)
 
 /** \brief operator != for an arbitrary type and NULL_v
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__utility
  */
 template <ss_typename_param_k T>
 inline ss_bool_t operator !=(T const &lhs, NULL_v const &rhs)
