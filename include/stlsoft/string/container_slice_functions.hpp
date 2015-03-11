@@ -4,13 +4,13 @@
  * Purpose:     String container slice functions.
  *
  * Created:     25th April 2005
- * Updated:     10th August 2009
+ * Updated:     12th October 2010
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MINOR    1
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 3
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     22
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ namespace stlsoft
 template <ss_typename_param_k S>
 inline ss_size_t left_len(S const& s, ss_size_t n)
 {
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -168,7 +168,7 @@ inline S right(S const& s, ss_size_t n)
 {
     typedef string_traits<S>    traits_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -187,7 +187,7 @@ inline S mid(S const& s, ss_size_t pos, ss_size_t n)
 {
     typedef string_traits<S>    traits_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(pos > len)
     {
@@ -265,7 +265,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> ri
 {
     typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -292,7 +292,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> ri
 {
     typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(n > len)
     {
@@ -320,7 +320,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> mi
 {
     typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_a_t> string_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(pos > len)
     {
@@ -352,7 +352,7 @@ inline _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> mi
 {
     typedef _STLSOFT_STRING_CONTAINER_SLICE_FUNCTIONS_RETURN_TEMPLATE<ss_char_w_t> string_t;
 
-    const ss_size_t len =   stlsoft_ns_qual(c_str_len)(s);
+    const ss_size_t len = stlsoft_ns_qual(c_str_len)(s);
 
     if(pos > len)
     {

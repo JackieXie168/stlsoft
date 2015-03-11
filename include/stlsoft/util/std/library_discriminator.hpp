@@ -4,7 +4,11 @@
  * Purpose:     Discriminates between standard library implementations
  *
  * Created:     2nd January 2000
- * Updated:     21st June 2010
+ * Updated:     25th October 2010
+ *
+ * Thanks:      To Gabor Fischer, for reporting problems with VC++ 9/10
+ *              compatibility, and persisting in (re-)reporting it even when
+ *              I was being a thickie and unable to reproduce it.              
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       6
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        103
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    4
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,6 +80,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
 # include <iterator>    // required for detecting header include guards
+#endif /* compiler */
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1500
+# include <functional>
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -252,7 +260,7 @@ namespace stlsoft
  * _STCONS               in      5, 6, 7.0, 7.1, 8,  9,    10
  * _TEMPLATE_MEMBER      in            7.0
  * _TEMPLATE             in            7.0
- * _MESG                 in            7.0, 7.1, 8,  9
+ * _MESG                 in            7.0, 7.1, 8,  9,    10
  * _HAS_EXCEPTIONS       in            7.0, 7.1, 8,  9,    10
  * _EMPTY_ARGUMENT       in                      8,  9,    10
  * _THROWS               in                          9,    10
@@ -295,7 +303,7 @@ namespace stlsoft
     defined(_STCONS) && \
     !defined(_TEMPLATE_MEMBER) && \
     !defined(_TEMPLATE) && \
-    !defined(_MESG) && \
+    defined(_MESG) && \
     defined(_HAS_EXCEPTIONS) && \
     defined(_EMPTY_ARGUMENT) && \
     defined(_THROWS) && \

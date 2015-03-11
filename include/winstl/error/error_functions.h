@@ -4,7 +4,7 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     26th August 2010
+ * Updated:     18th October 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     2
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      58
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -554,53 +554,53 @@ inline void winstl_C_format_message_free_buff(ws_char_w_t* buffer)
     defined(STLSOFT_OBSOLETE) || \
     _STLSOFT_VER < 0x010a0000
 
-/** \def winstl_format_message_buff_inst_a
+/** \def winstl__format_message_buff_inst_a
  *
  * \deprecated Use winstl_C_format_message_buff_inst_a
  */
-# define winstl_format_message_buff_inst_a  winstl_C_format_message_buff_inst_a
+# define winstl__format_message_buff_inst_a  winstl_C_format_message_buff_inst_a
 
-/** \def winstl_format_message_buff_inst_w
+/** \def winstl__format_message_buff_inst_w
  *
  * \deprecated Use winstl_C_format_message_buff_inst_w
  */
-# define winstl_format_message_buff_inst_w  winstl_C_format_message_buff_inst_w
+# define winstl__format_message_buff_inst_w  winstl_C_format_message_buff_inst_w
 
-/** \def winstl_format_message_buff_a
+/** \def winstl__format_message_buff_a
  *
  * \deprecated Use winstl_C_format_message_buff_a
  */
-# define winstl_format_message_buff_a       winstl_C_format_message_buff_a
+# define winstl__format_message_buff_a       winstl_C_format_message_buff_a
 
-/** \def winstl_format_message_buff_w
+/** \def winstl__format_message_buff_w
  *
  * \deprecated Use winstl_C_format_message_buff_w
  */
-# define winstl_format_message_buff_w       winstl_C_format_message_buff_w
+# define winstl__format_message_buff_w       winstl_C_format_message_buff_w
 
-/** \def winstl_format_message_alloc_a
+/** \def winstl__format_message_alloc_a
  *
  * \deprecated Use winstl_C_format_message_alloc_a
  */
-# define winstl_format_message_alloc_a      winstl_C_format_message_alloc_a
+# define winstl__format_message_alloc_a      winstl_C_format_message_alloc_a
 
-/** \def winstl_format_message_alloc_w
+/** \def winstl__format_message_alloc_w
  *
  * \deprecated Use winstl_C_format_message_alloc_w
  */
-# define winstl_format_message_alloc_w      winstl_C_format_message_alloc_w
+# define winstl__format_message_alloc_w      winstl_C_format_message_alloc_w
 
-/** \def winstl_format_message_free_buff_a
+/** \def winstl__format_message_free_buff_a
  *
  * \deprecated Use winstl_C_format_message_free_buff_a
  */
-# define winstl_format_message_free_buff_a  winstl_C_format_message_free_buff_a
+# define winstl__format_message_free_buff_a  winstl_C_format_message_free_buff_a
 
-/** \def winstl_format_message_free_buff_w
+/** \def winstl__format_message_free_buff_w
  *
  * \deprecated Use winstl_C_format_message_free_buff_w
  */
-# define winstl_format_message_free_buff_w  winstl_C_format_message_free_buff_w
+# define winstl__format_message_free_buff_w  winstl_C_format_message_free_buff_w
 
 #endif /* obsolete || 1.9 */
 
