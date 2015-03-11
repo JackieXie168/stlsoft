@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     22nd March 2007
+ * Updated:     2nd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     85
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    2
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -394,24 +394,47 @@ private:
  *
  * \ingroup group__library__conversion
  */
-typedef multibyte2wide<256>               a2w;
+typedef multibyte2wide<256>               m2w;
 /** \brief Type that converts a wide string to a multibyte string.
  *
  * \ingroup group__library__conversion
  */
+typedef wide2multibyte<256>               w2m;
+
+/** \brief [Deprecated] Type that converts a multibyte string to a wide string.
+ *
+ * \ingroup group__library__conversion
+ *
+ * \deprecated This name is deprecated in favour of winstl::m2w
+ */
+typedef multibyte2wide<256>               a2w;
+/** \brief [Deprecated] Type that converts a wide string to a multibyte string.
+ *
+ * \ingroup group__library__conversion
+ *
+ * \deprecated This name is deprecated in favour of winstl::w2m
+ */
 typedef wide2multibyte<256>               w2a;
 
-#if defined(UNICODE)
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# if defined(UNICODE)
 typedef encoding2encoding<ws_char_w_t>  t2w;
 typedef encoding2encoding<ws_char_w_t>  w2t;
+typedef w2m                             t2m;
+typedef m2w                             m2t;
 typedef w2a                             t2a;
 typedef a2w                             a2t;
-#else /* ? UNICODE */
+# else /* ? UNICODE */
 typedef encoding2encoding<ws_char_a_t>  t2a;
 typedef encoding2encoding<ws_char_a_t>  a2t;
+typedef m2w                             t2w;
+typedef w2m                             w2t;
 typedef a2w                             t2w;
 typedef w2a                             w2t;
-#endif /* UNICODE */
+# endif /* UNICODE */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Shims

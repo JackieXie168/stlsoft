@@ -2,10 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  23rd August 2008
+; Updated:  2nd September 2008
 
 ============================================================================
 
+
+2nd September 2008 - 1.9.49 released
+------------------------------------
+
+ * fix for DMC++ defect in winstl::reg_value function template definition
+ * added winstl character conversion typedefs m2w, w2m, t2m, m2t
 
 23rd August 2008 - 1.9.48 released
 ----------------------------------
