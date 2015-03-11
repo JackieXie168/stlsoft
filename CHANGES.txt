@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  3rd February 2008
+; Updated:  5th February 2008
 
 ============================================================================
 
@@ -15,6 +15,23 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.21 (5th February 2008)
+
+Summary:
+==========
+
+ * fixed a bug in platformstl/synch/util/features.h
+
+Changes:
+========
+
+ ~ platformstl/synch/util/features.h was erroneously #including
+	unixstl/synch/sleep_functions.h,
+   rather than
+    unixstl/synch/util/features.h
 
 ============================================================================
 

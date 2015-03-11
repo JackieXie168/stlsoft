@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  3rd February 2008
+; Updated:  5th February 2008
 
 ============================================================================
 
+
+5th February 2008 - 1.9.21 released
+-----------------------------------
+
+ * fixed a bug in platformstl/synch/util/features.h
 
 3rd February 2008 - 1.9.20 released
 -----------------------------------
