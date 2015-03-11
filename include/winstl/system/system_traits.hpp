@@ -5,14 +5,17 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     7th May 2008
+ * Updated:     12th September 2008
+ *
+ * Thanks to:   Austin Ziegler for spotting the defective pre-condition
+ *              enforcement of expand_environment_strings().
  *
  * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
+ * Redistribution and use in seource and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
  * - Redistributions of source code must retain the above copyright notice, this
@@ -52,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    8
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        111
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    9
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -544,7 +547,7 @@ public:
     static size_type expand_environment_strings(char_type const* src, char_type* dest, size_type cch_dest)
     {
         WINSTL_ASSERT(NULL != src);
-        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != dest || 0 == cch_dest);
 
         return class_type::ExpandEnvironmentStringsA(src, dest, cch_dest);
     }
@@ -881,7 +884,7 @@ public:
     static size_type expand_environment_strings(char_type const* src, char_type* dest, size_type cch_dest)
     {
         WINSTL_ASSERT(NULL != src);
-        WINSTL_ASSERT(NULL != dest);
+        WINSTL_ASSERT(NULL != dest || 0 == cch_dest);
 
         return class_type::ExpandEnvironmentStringsW(src, dest, cch_dest);
     }

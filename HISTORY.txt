@@ -2,10 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  11th September 2008
+; Updated:  14th September 2008
 
 ============================================================================
 
+
+14th September 2008 - 1.9.53 released
+-------------------------------------
+
+ * changed definition of STLSOFT_STATIC_ASSERT() to work with GCC
+ * defect defect in pre-condition enforcement of
+   winstl::system_traits::expand_environment_strings()
 
 11th September 2008 - 1.9.52 released
 -------------------------------------

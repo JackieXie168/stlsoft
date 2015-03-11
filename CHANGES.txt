@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  11th September 2008
+; Updated:  14th September 2008
 
 ============================================================================
 
@@ -19,12 +19,41 @@ STLSoft - Changes
 
 ============================================================================
 
+Changes for 1.9.53 (14th September 2008)
+
+Summary:
+========
+
+ * changed definition of STLSOFT_STATIC_ASSERT() to work with GCC
+ * defect defect in pre-condition enforcement of
+   winstl::system_traits::expand_environment_strings()
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/stlsoft.h:
+     ~ changed definition of STLSOFT_STATIC_CAST() for GCC, since GCC allows
+       an array dimension of -1
+
+
+ WinSTL:
+ -------
+
+  ~ winstl/system/system_traits.hpp:
+     ~ fixed defective pre-condition enforcement of
+       expand_environment_strings()
+
+============================================================================
+
 Changes for 1.9.52 (11th September 2008)
 
 Summary:
 ========
 
- * fixed for warnings in 64-bit compilation (VC9) in WinSTL string access
+ * fix for warnings in 64-bit compilation (VC9) in WinSTL string access
    shims for SYSTEMTIME; also added extra safeguard against external race
    condition
 
@@ -36,9 +65,9 @@ Changes:
 
   ~ winstl/shims/access/string/time.hpp
      ~ fixed up 64-bit compiler warnings, by applying suitable
-	   unsigned->signed casts
+       unsigned->signed casts
      + added in safeguard for unlikely case of changing date/time pictures
-	   mid call
+       mid call
 
 ============================================================================
 
@@ -60,14 +89,14 @@ Changes:
 
   ~ stlsoft/error/conversion_error.hpp
      ~ fixed defect whereby the VC++ 6 compiler that causes the throwing of
-	   any derived class to cause an ICE
+       any derived class to cause an ICE
 
  WinSTL:
  -------
 
   ~ winstl/shims/access/string/time.hpp
      ~ fixed defect whereby failure to convert, due to invalid date, results
-	   in fault in shim string
+       in fault in shim string
 
 ============================================================================
 
@@ -115,7 +144,7 @@ Changes:
 
   ~ winstl/registry/reg_key.hpp:
      ~ fix for DMC++ defect in winstl::reg_value function template
-	   definition
+       definition
 
 ============================================================================
 
@@ -145,12 +174,12 @@ Changes:
 
   ~ stlsoft/string/shim_string.hpp
      ~ increased internal memory buffer of basic_shim_string by 1, so
-	   that users do not need to specify a number inclusive of the
-	   terminating nul character
+       that users do not need to specify a number inclusive of the
+       terminating nul character
 
   ~ stlsoft/string/trim_functions.hpp
      ~ fixed bug in trim_all() whereby the right iterator could be before the
-	   left
+       left
 
  COMSTL:
  -------
@@ -206,7 +235,7 @@ Changes:
 
   ~ rewrote stlsoft::read_line(), which can now use any combination of the
     line termination sequences CR, LF and CR+LF. stlsoft::read_line() is now
-	found in stlsoft/filesystem/read_line.hpp
+    found in stlsoft/filesystem/read_line.hpp
 
   ~ stlsoft/filesystem/io_functions.hpp now includes stlsoft/filesystem/read_line.hpp
 
@@ -244,11 +273,11 @@ Changes:
 
   ~ winstl::clipboard_format_sequence::const_iterator now properly defined
     according to rules outlined in Extended STL, vol 1
-	(winstl/clipboard/clipboard_format_sequence.hpp)
+    (winstl/clipboard/clipboard_format_sequence.hpp)
 
   ~ winstl::clipboard_scope defect in deallocation function fixed, and
     documentation markup improved to make clear the full semantics
-	
+    
   ~ winstl/controls/listbox_const_iterator.hpp - GCC 4.3 pedantic warnings
 
   ~ winstl/controls/listbox_data_const_iterator.hpp - GCC 4.3 pedantic warnings
@@ -291,11 +320,11 @@ Changes:
 
   ~ stlsoft::pod_vector<> defects fixed:
      ~ fix for assert in copy-ctor when copying empty object
-	 ~ fix for failure to write value_type() into 1-parameter resize()
-	 ~ fixed defect in resize() when moving from 0 != size() to 0 == size()
-	 ~ fixed defect in range insert
-	 ~ fixed defect in erase()
-	 ~ renamed internal type buffer_type to buffer_type_
+     ~ fix for failure to write value_type() into 1-parameter resize()
+     ~ fixed defect in resize() when moving from 0 != size() to 0 == size()
+     ~ fixed defect in range insert
+     ~ fixed defect in erase()
+     ~ renamed internal type buffer_type to buffer_type_
 
   ~ stlsoft::format_bytes() rewritten to use custom hex formatting
     instead of stdio formatting functions

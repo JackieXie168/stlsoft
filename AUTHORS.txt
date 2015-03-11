@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  11th August 2008
+; Updated:  14th September 2008
 
 ============================================================================
 
@@ -49,6 +49,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     Julio César Carrascal Urquijo
     Lars Ivar Igesund
     Luoyi
+    Manfred Ehrhart
     Marc Kamradt
     Martin J Moene
     Mateusz Loskot
