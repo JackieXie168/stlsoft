@@ -4,11 +4,11 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     30th December 2006
+ * Updated:     4th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/collections/enumeration_policies.hpp
-///
-/// Policies for enumerator interface handling.
+/** \file comstl/collections/enumeration_policies.hpp
+ *
+ * \brief [C++ only] Policies for enumerator interface handling.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES
 #define COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES
@@ -49,7 +51,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    6
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        44
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +110,7 @@ namespace comstl_project
 
 /** \brief Exception class thrown when Clone() method fails
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__collections
  */
 // [[synesis:class:exception: comstl::clone_failure]]
 class clone_failure
@@ -159,7 +161,7 @@ private:
 /** \brief Policy tag type that indicates an enumerator's Clone() method
  *    will fail.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__collections
  */
 struct noncloneable_enumerator_tag
 {};
@@ -167,7 +169,7 @@ struct noncloneable_enumerator_tag
 /** \brief Policy tag type that indicates an enumerator's Clone() method
  *    will succeed.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__collections
  */
 struct cloneable_enumerator_tag
 {};
@@ -176,7 +178,7 @@ struct cloneable_enumerator_tag
  *    will succeed, and return an enumerator that will provide the same
  *    sequence of items as the source instance.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__collections
  */
 struct repeatable_enumerator_tag
     : public cloneable_enumerator_tag
@@ -423,7 +425,7 @@ public:
  *
  * \deprecated Equivalent to value_policy_adaptor
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__collections
  */
 template <ss_typename_param_k P>
 struct policy_adaptor

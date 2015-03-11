@@ -4,11 +4,11 @@
  * Purpose:     Standard interface traits.
  *
  * Created:     25th May 2002
- * Updated:     6th December 2006
+ * Updated:     4th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_MAJOR      3
 # define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_MINOR      1
-# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_REVISION   3
-# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_EDIT       39
+# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_REVISION   4
+# define COMSTL_VER_COMSTL_INTERNAL_HPP_INTERFACE_TRAITS_STD_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,6 +103,74 @@ COMSTL_IID_TRAITS_DEFINE(IUnknown)
 #ifdef __IClassFactory_FWD_DEFINED__
 COMSTL_IID_TRAITS_DEFINE(IClassFactory)
 #endif  /* __IClassFactory_FWD_DEFINED__ */
+
+/* oaidl.idl */
+
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    defined(_UNKNWN_H)
+# define __ITypeLib_FWD_DEFINED__
+# define __ITypeLib2_FWD_DEFINED__
+# define __ICreateTypeInfo_FWD_DEFINED__
+# define __ICreateTypeInfo2_FWD_DEFINED__
+# define __ICreateTypeLib_FWD_DEFINED__
+# define __ICreateTypeLib2_FWD_DEFINED__
+# define __ITypeComp_FWD_DEFINED__
+# define __ITypeInfo_FWD_DEFINED__
+# define __ITypeInfo2_FWD_DEFINED__
+# define __IErrorInfo_FWD_DEFINED__
+# define __IDispatch_FWD_DEFINED__
+# define __IEnumVARIANT_FWD_DEFINED__
+# define __ICreateErrorInfo_FWD_DEFINED__
+# define __ISupportErrorInfo_FWD_DEFINED__
+# define __IRecordInfo_FWD_DEFINED__
+#endif /* STLSOFT_COMPILER_IS_GCC && _UNKNWN_H */
+
+#ifdef __ITypeLib_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ITypeLib)
+#endif /* __ITypeLib_FWD_DEFINED__ */
+#ifdef __ITypeLib2_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ITypeLib2)
+#endif /* __ITypeLib2_FWD_DEFINED__ */
+#ifdef __ICreateTypeInfo_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ICreateTypeInfo)
+#endif /* __ICreateTypeInfo_FWD_DEFINED__ */
+#ifdef __ICreateTypeInfo2_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ICreateTypeInfo2)
+#endif /* __ICreateTypeInfo2_FWD_DEFINED__ */
+#ifdef __ICreateTypeLib_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ICreateTypeLib)
+#endif /* __ICreateTypeLib_FWD_DEFINED__ */
+#ifdef __ICreateTypeLib2_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ICreateTypeLib2)
+#endif /* __ICreateTypeLib2_FWD_DEFINED__ */
+#ifdef __ITypeComp_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ITypeComp)
+#endif /* __ITypeComp_FWD_DEFINED__ */
+#ifdef __ITypeInfo_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ITypeInfo)
+#endif /* __ITypeInfo_FWD_DEFINED__ */
+#ifdef __ITypeInfo2_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ITypeInfo2)
+#endif /* __ITypeInfo2_FWD_DEFINED__ */
+#ifdef __IErrorInfo_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(IErrorInfo)
+#endif /* __IErrorInfo_FWD_DEFINED__ */
+#ifdef __IDispatch_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(IDispatch)
+#endif /* __IDispatch_FWD_DEFINED__ */
+#ifdef __IEnumVARIANT_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(IEnumVARIANT)
+#endif /* __IEnumVARIANT_FWD_DEFINED__ */
+#ifdef __ICreateErrorInfo_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ICreateErrorInfo)
+#endif /* __ICreateErrorInfo_FWD_DEFINED__ */
+#ifdef __ISupportErrorInfo_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(ISupportErrorInfo)
+#endif /* __ISupportErrorInfo_FWD_DEFINED__ */
+#ifdef __IRecordInfo_FWD_DEFINED__
+COMSTL_IID_TRAITS_DEFINE(IRecordInfo)
+#endif /* __IRecordInfo_FWD_DEFINED__ */
+
 
 /* objidl.idl */
 

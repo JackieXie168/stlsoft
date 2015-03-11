@@ -4,7 +4,7 @@
  * Purpose:     Interface traits.
  *
  * Created:     25th May 2002
- * Updated:     2nd January 2007
+ * Updated:     4th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MAJOR      5
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MINOR      0
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_REVISION   1
-# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       54
+# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -166,6 +166,7 @@ public:
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 # ifdef COMSTL_UUIDOF_SUPPORTED
+
 template <class I>
 struct IID_traits
 {
@@ -177,14 +178,15 @@ public:
 #  define COMSTL_IID_TRAITS_DEFINE_NS(I, NS)
 
 # else /* ? COMSTL_UUIDOF_SUPPORTED */
+
 template <class I>
 struct IID_traits;
 
-# define  COMSTL_IID_TRAITS_DEFINE(I)           EXTERN_C const IID IID_##I; \
+#  define COMSTL_IID_TRAITS_DEFINE(I)           EXTERN_C const IID IID_##I; \
                                                 _COMSTL_IID_TRAITS_DEFINE(I) \
                                                 COMSTL_IID_TRAITS_DEFINE__(I, I*)
 
-# define  COMSTL_IID_TRAITS_DEFINE_NS(I, NS)    COMSTL_IID_TRAITS_DEFINE_NS_(I, I, NS) \
+#  define COMSTL_IID_TRAITS_DEFINE_NS(I, NS)    COMSTL_IID_TRAITS_DEFINE_NS_(I, I, NS) \
                                                 COMSTL_IID_TRAITS_DEFINE_NS_(I, I*, NS)
 
 /* For backwards compatibility */
