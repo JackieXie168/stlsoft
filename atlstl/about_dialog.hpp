@@ -4,7 +4,7 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     13th January 2006
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file atlstl/about_dialog.hpp
+/// \file include/atlstl/about_dialog.hpp
 ///
 /// Simple 'about' dialog, that shell executes hyperlinks.
 
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      2
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       38
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

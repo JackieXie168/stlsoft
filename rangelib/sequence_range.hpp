@@ -4,14 +4,14 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     31st December 2005
+ * Updated:     20th January 2006
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    10
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     48
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -93,9 +93,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER
 #  include <stlsoft/typefixer/pointer.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
-#  include <stlsoft/member_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
+#  include <stlsoft/meta/member_traits.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
 #ifdef STLSOFT_UNITTEST

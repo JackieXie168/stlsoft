@@ -4,11 +4,11 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     2
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      27
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  5
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,10 @@
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <ace/Message_Queue_T.h>            // for ACE_Message_Queue_Iterator<>
+
+#ifdef STLSOFT_UNITTEST
+# include <acestl/message_block_functions.hpp>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -111,7 +115,7 @@ namespace acestl_project
 ///
 template <ACE_SYNCH_DECL>
 class message_queue_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Types
 /// @{
@@ -204,7 +208,7 @@ public:
 
             ss_bool_t   advance()
             {
-                ACESTL_ASSERT(m_entryIndex < m_entryLength);
+                ACESTL_MESSAGE_ASSERT("Invalid index", m_entryIndex < m_entryLength);
 
                 if(++m_entryIndex == m_entryLength)
                 {
@@ -289,12 +293,18 @@ public:
 
         class_type &operator =(class_type const &rhs)
         {
+            shared_handle   *this_handle    =   m_handle;
+
             m_handle    =   rhs.m_handle;
-            m_data      =   rhs.m_data;
 
             if(NULL != m_handle)
             {
                 m_handle->AddRef();
+            }
+
+            if(NULL != this_handle)
+            {
+                this_handle->Release();
             }
 
             return *this;
@@ -332,13 +342,50 @@ public:
         }
 
     public:
+        ss_bool_t equal(class_type const &rhs) const
+        {
+            return class_type::equal_(*this, rhs, iterator_category());
+        }
         ss_bool_t operator ==(class_type const &rhs) const
         {
-            return m_handle == rhs.m_handle;
+            return equal(rhs);
         }
         ss_bool_t operator !=(class_type const &rhs) const
         {
-            return !operator ==(rhs);
+            return !equal(rhs);
+        }
+
+    private:
+        static ss_bool_t equal_(class_type const &lhs, class_type const &rhs, stlsoft_ns_qual_std(input_iterator_tag))
+        {
+            // Input iterator
+            return lhs.is_end_point() == rhs.is_end_point();
+        }
+#if 0
+        static ss_bool_t equal_(class_type const &lhs, class_type const &rhs, stlsoft_ns_qual_std(forward_iterator_tag));
+            // Forward or above
+            if(is_end_point())
+            {
+                return rhs.is_end_point();
+            }
+            else
+            {
+                if(rhs.is_end_point())
+                {
+                    return false;
+                }
+                else
+                {
+                    ACESTL_ASSERT(NULL != m_handle);
+                    ACESTL_ASSERT(NULL != rhs.m_handle);
+                }
+            }
+#endif /* 0 */
+
+    private:
+        ss_bool_t is_end_point() const
+        {
+            return NULL == m_handle || m_handle->m_entryIndex == m_handle->m_entryLength;
         }
 
     private:

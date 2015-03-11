@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_MAJOR    1
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_MINOR    4
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_EDIT     19
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_MINOR    6
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MODULE_SEQUENCE_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -67,11 +67,11 @@ STLSOFT_COMPILER_IS_COMO:
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
@@ -111,7 +111,7 @@ namespace winstl_project
 
 /// Process module (constituent DLLs) sequence
 class process_module_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
@@ -130,7 +130,7 @@ public:
     typedef stlsoft_ns_qual(pointer_iterator)<  value_type
                                             ,   const_pointer
                                             ,   const_reference
-                                            >::iterator_type                const_iterator;
+                                            >::type                         const_iterator;
     /// The size type
     typedef ws_size_t                                                       size_type;
     /// The difference type
@@ -244,13 +244,13 @@ inline process_module_sequence::process_module_sequence(HANDLE hProcess)
         if(!dl_call<BOOL>("PSAPI.DLL", "stdcall:EnumProcessModules", hProcess, &m_modules[0], sizeof(value_type) * m_modules.size(), &cbReturned))
 #endif /* psapi */
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw windows_exception("Failed to enumerate processes", ::GetLastError());
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             m_modules.resize(0);
 
             break;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
         {

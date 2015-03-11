@@ -5,11 +5,11 @@
  *              directory.
  *
  * Created:     5th June 2003
- * Updated:     22nd December 2005
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MINOR       1
+# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MINOR       2
 # define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_EDIT        38
+# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -85,11 +85,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
 # include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #ifdef STLSOFT_UNITTEST
 # include <stdlib.h>                    // for malloc(), free()
@@ -328,12 +328,12 @@ template<   ss_typename_param_k C
 inline basic_module_directory<C, T>::basic_module_directory(HINSTANCE hinst /* = NULL */)
     : m_len(get_path(hinst, &m_dir[0], m_dir.size()))
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(0 == m_len)
     {
         throw windows_exception("could not determine module directory", ::GetLastError());
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 template<   ss_typename_param_k C

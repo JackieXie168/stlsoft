@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MAJOR    4
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MINOR    9
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     111
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MINOR    11
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ namespace unixstl_project
  * Classes
  */
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 /// \brief The exception-type thrown by the glob_sequence
 ///
 ///
@@ -247,7 +247,7 @@ private:
     class_type &operator =(class_type const &);
 };
 
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /// \brief STL-like readonly sequence based on the results of file-system wildcard matches
 ///
@@ -255,7 +255,7 @@ private:
 /// iteration over the results of file-system wildcard matches.
 
 class glob_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Types
 /// @{
@@ -283,7 +283,7 @@ public:
     typedef stlsoft_ns_qual(pointer_iterator)<   value_type const
                                              ,   const_pointer
                                              ,   const_reference
-                                             >::iterator_type               const_iterator;
+                                             >::type                        const_iterator;
 
 #ifdef __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// The type of the const (non-mutating) reverse iterator
@@ -805,14 +805,14 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
     us_int_t                            glob_flags  =   0;
     basic_file_path_buffer<char_type>   scratch_;   // Scratch buffer for directory / pattern
 
-#ifndef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
     if(0 == scratch_.size())
     {
         m_base = NULL;
 
         return 0;
     }
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
     if( NULL == directory &&
         absolutePath == (m_flags & absolutePath))
@@ -914,7 +914,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
 
     if(0 != gr)
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifdef GLOB_NOMATCH
         // When GLOB_NOMATCH is not defined, we can reasonably infer that
         // there is no replacement value, so throwing on a non-zero 
@@ -924,7 +924,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
         {
             throw glob_sequence_exception(gr, 0);
         }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
         m_base = NULL;
 
@@ -950,7 +950,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
 #endif /* !UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR */
             files == (m_flags & (directories | files)))         // 3
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             try
             {
                 m_buffer.resize(cItems);
@@ -961,7 +961,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
 
                 throw;
             }
-#else /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
             if(!m_buffer.resize(cItems))
             {
                 globfree(&m_glob);
@@ -970,7 +970,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
 
                 return 0;
             }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
             UNIXSTL_ASSERT(m_buffer.size() == cItems);
 
@@ -1038,7 +1038,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
             char_type                           **begin =   base;
             char_type                           **end   =   begin + cItems;
 
-#ifndef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
             if(0 == buffer.size())
             {
                 globfree(&m_glob);
@@ -1047,7 +1047,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
 
                 return 0;
             }
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
             // This loop enumerates through the list of entries, and attempts
             // to match each with the requested file type.

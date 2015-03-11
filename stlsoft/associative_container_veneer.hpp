@@ -4,11 +4,11 @@
  * Purpose:     RRID veneer for associative containers
  *
  * Created:     2nd October 2002
- * Updated:     11th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      31
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k FV
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k FK = noop_function<ss_typename_type_def_k T::key_type>
-#else
+#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k FK /* = noop_function<T> */
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >

@@ -10,11 +10,11 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     13th January 2006
+ * Updated:     27th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_EDIT     80
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_REVISION 5
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_findvolume_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The character type
@@ -328,9 +328,17 @@ private:
         : m_list(&l)
         , m_handle(new shared_handle(hSrch))
     {
-        traits_type::str_copy(m_name, vol_name);
-
         WINSTL_ASSERT(INVALID_HANDLE_VALUE != hSrch);
+
+        if(NULL == m_handle)
+        {
+            traits_type::find_volume_close(hSrch);
+            m_name[0] = '\0';
+        }
+        else
+        {
+            traits_type::str_copy(m_name, vol_name);
+        }
     }
     basic_findvolume_sequence_const_iterator(basic_findvolume_sequence<C, T> const &l);
 public:
@@ -387,6 +395,17 @@ namespace unittest
             findvolume_sequence_a   fvsa;
             findvolume_sequence_w   fvsw;
 
+            {
+
+                findvolume_sequence_a::const_iterator   b   =   fvsa.begin();
+                findvolume_sequence_a::const_iterator   b2;
+
+                b2  =   b;
+                b   =   b;
+                b   =   b2;
+                b2  =   fvsa.begin();
+            }
+
             if(fvsa.empty() != fvsw.empty())
             {
                 r->report("findvolume_sequence(ANSI)::empty() != findvolume_sequence(Unicode)::empty()", __LINE__);
@@ -422,7 +441,21 @@ inline ss_typename_type_k basic_findvolume_sequence<C, T>::const_iterator basic_
     }
     else
     {
-        return const_iterator(*this, hSrch, vol_name);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        try
+        {
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            return const_iterator(*this, hSrch, vol_name);
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        }
+        catch(...)
+        {
+            traits_type::find_volume_close(hSrch);
+
+            throw;
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
 
@@ -514,10 +547,7 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_seque
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 inline ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type &basic_findvolume_sequence_const_iterator<C, T, V>::operator =(ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type const &rhs)
 {
-    if(NULL != m_handle)
-    {
-        m_handle->Release();
-    }
+    shared_handle   *this_handle    =   m_handle;
 
     m_list      =   rhs.m_list;
     m_handle    =   rhs.m_handle;
@@ -525,6 +555,11 @@ inline ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::cla
     if(NULL != m_handle)
     {
         m_handle->AddRef();
+    }
+
+    if(NULL != this_handle)
+    {
+        this_handle->Release();
     }
 
     return *this;
@@ -582,25 +617,9 @@ inline const ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator ==(class_type const &rhs) const
 {
-    ws_bool_t    eq;
+    WINSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list);
 
-    WINSTL_ASSERT(m_list == rhs.m_list);    // Should only be comparing iterators from same container
-
-    // Not equal if different lists, or if one but not both handles is the INVALID_HANDLE_VALUE
-    // or if the data is not equal.
-    if( m_list != rhs.m_list ||
-        (NULL == m_handle) != (NULL == m_handle) ||
-        (   NULL != m_handle &&
-            traits_type::str_compare(m_name, rhs.m_name) != 0))
-    {
-        eq = ws_false_v;
-    }
-    else
-    {
-        eq = ws_true_v;
-    }
-
-    return eq;
+    return m_handle == rhs.m_handle;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>

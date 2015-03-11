@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     20th January 2006
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MAJOR    3
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    3
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    4
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 2
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     45
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -284,7 +284,7 @@ template<   ss_typename_param_k A
         ,   ss_typename_param_k T
         >
 class CArray_adaptor_base
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 private:
     typedef A                                                                   array_type;
@@ -314,7 +314,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type                        iterator;
+                                        >::type                                 iterator;
     /// The non-mutating (const) iterator type
     typedef
 # if !defined(__STLSOFT_COMPILER_IS_BORLAND)
@@ -323,7 +323,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type                        const_iterator;
+                                        >::type                                 const_iterator;
     /// The size type
     typedef ms_size_t                                                           size_type;
     /// The difference type
@@ -925,21 +925,23 @@ private:
 ///
 /// It is used as follows:
 ///
-/// \code
-  mfcstl::CArray_cadaptor<CStringArray>   ar;
-
-  // As an MFC CStringArray:
-  ar.Add("String 1");
-  ar.InsertAt(0, "String 0");
-
-  // As an STL container
-  ar.push_back("String 2");
-  std::list<CString>  l;
-  l.push_back("String 3");
-  l.push_back("String 4");
-  ar.insert(ar.begin() + 2, l.begin(), l.end());
-  std::sort(ar.begin(), ar.end());
-/// \endcode
+/// \htmlonly
+/// <pre>
+///   mfcstl::CArray_cadaptor<CStringArray>   ar;
+/// 
+///   // As an MFC CStringArray:
+///   ar.Add("String 1");
+///   ar.InsertAt(0, "String 0");
+/// 
+///   // As an STL container
+///   ar.push_back("String 2");
+///   std::list<CString>  l;
+///   l.push_back("String 3");
+///   l.push_back("String 4");
+///   ar.insert(ar.begin() + 2, l.begin(), l.end());
+///   std::sort(ar.begin(), ar.end());
+/// <pre>
+/// \endhtmlonly
 ///
 /// \param A The array class, e.g. CObArray, CArray<long>, etc.
 ///
@@ -1059,22 +1061,24 @@ public:
 ///
 /// It is used as follows:
 ///
-/// \code
-  CStringArray                          ar;
-  mfcstl::CArray_iadaptor<CStringArray> arp;
-
-  // As an MFC CStringArray:
-  ar.Add("String 1");
-  ar.InsertAt(0, "String 0");
-
-  // As an STL container
-  arp.push_back("String 2");
-  std::list<CString>  l;
-  l.push_back("String 3");
-  l.push_back("String 4");
-  arp.insert(arp.begin() + 2, l.begin(), l.end());
-  std::sort(arp.begin(), arp.end());
-/// \endcode
+/// \htmlonly
+/// <pre>
+///   CStringArray                          ar;
+///   mfcstl::CArray_iadaptor<CStringArray> arp;
+/// 
+///   // As an MFC CStringArray:
+///   ar.Add("String 1");
+///   ar.InsertAt(0, "String 0");
+/// 
+///   // As an STL container
+///   arp.push_back("String 2");
+///   std::list<CString>  l;
+///   l.push_back("String 3");
+///   l.push_back("String 4");
+///   arp.insert(arp.begin() + 2, l.begin(), l.end());
+///   std::sort(arp.begin(), arp.end());
+/// <pre>
+/// \endhtmlonly
 ///
 /// \param A The array class, e.g. CObArray, CArray<long>, etc.
 ///

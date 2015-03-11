@@ -4,11 +4,11 @@
  * Purpose:     shell_browsing class.
  *
  * Created:     2nd March 2002
- * Updated:     23rd December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_SHELL_BROWSE_MAJOR     3
-# define WINSTL_VER_H_WINSTL_SHELL_BROWSE_MINOR     2
+# define WINSTL_VER_H_WINSTL_SHELL_BROWSE_MINOR     3
 # define WINSTL_VER_H_WINSTL_SHELL_BROWSE_REVISION  1
-# define WINSTL_VER_H_WINSTL_SHELL_BROWSE_EDIT      44
+# define WINSTL_VER_H_WINSTL_SHELL_BROWSE_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -61,12 +61,12 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include winstl/shell_browse.hpp")
+# pragma message("This file is now obsolete. Instead include winstl/shell/browse_for_folder.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_SHELL_BROWSE
-# include <winstl/shell_browse.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_SHELL_BROWSE */
+#ifndef WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER
+# include <winstl/shell/browse_for_folder.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

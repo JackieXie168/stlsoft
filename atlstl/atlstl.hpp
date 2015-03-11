@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     2
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  1
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      87
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp The root header for the \ref ATLSTL project */
@@ -241,14 +241,14 @@ extern CComModule _Module;
 #  error Versions of Visual C++ prior to 5.0 are not supported by the ATLSTL libraries
 # endif /* _MSC_VER */
 
-#else
+#else /* ? compiler */
 /* No recognised compiler */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _ATLSTL_COMPILER_IS_UNKNOWN
 #  ifdef _STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to ATLSTL")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
-# else
+# else /* ? _STLSOFT_FORCE_ANY_COMPILER */
 #  error Currently only Borland C++, Digital Mars C/C++, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the ATLSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
@@ -370,7 +370,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifndef _ATLSTL_NO_NAMESPACE
 # define atlstl_ns_qual(x)          ::atlstl::x
 # define atlstl_ns_using(x)         using ::atlstl::x;
-#else
+#else /* ? _ATLSTL_NO_NAMESPACE */
 # define atlstl_ns_qual(x)          x
 # define atlstl_ns_using(x)
 #endif /* !_ATLSTL_NO_NAMESPACE */

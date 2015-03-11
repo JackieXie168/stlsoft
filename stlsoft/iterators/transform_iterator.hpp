@@ -5,7 +5,7 @@
  *              the values from the iterator's underlying sequence.
  *
  * Created:     6th February 1999
- * Updated:     2nd January 2006
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  12
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      100
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -334,6 +334,7 @@ public:
 /// \name Comparison
 /// @{
 public:
+    /// Evaluates whether \c this and \c rhs are equivalent
     ss_bool_t equal(class_type const &rhs) const
     {
         return m_it == rhs.m_it;
@@ -344,11 +345,13 @@ public:
         return m_it == rhs;
     }
 #endif /* 0 */
+    /// Compares \c this with the given string
     ss_sint_t compare(class_type const &rhs) const
     {
         return (m_it < rhs.m_it) ? -1 : (rhs.m_it < m_it) ? +1 : 0;
     }
 #ifndef STLSOFT_ITER_TXFM_ITER_OLD_DW
+    /// Calculate the distance between \c this and \c rhs
     difference_type distance(class_type const &rhs) const
     {
         return m_it - rhs.m_it;
@@ -384,21 +387,21 @@ private:
 
 /// Creator function for transform_iterator
 ///
-/// \param i The iterator to transform
+/// \param it The iterator to transform
 /// \param fn The function object used to effect the transformation
 ///
 /// \return An instance of the specialisation transform_iterator&lt;T, F&gt;
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
-inline transform_iterator<I, F> make_transform_iterator(I i, F fn)
+inline transform_iterator<I, F> make_transform_iterator(I it, F fn)
 {
-    return transform_iterator<I, F>(i, fn);
+    return transform_iterator<I, F>(it, fn);
 }
 
 /// Creator function for transform_iterator
 ///
-/// \param i The iterator to transform
+/// \param it The iterator to transform
 /// \param fn The function object used to effect the transformation
 ///
 /// \return An instance of the specialisation transform_iterator&lt;T, F&gt;
@@ -407,17 +410,17 @@ inline transform_iterator<I, F> make_transform_iterator(I i, F fn)
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
-inline transform_iterator<I, F> transformer(I i, F fn)
+inline transform_iterator<I, F> transformer(I it, F fn)
 {
-    return make_transform_iterator(i, fn);
+    return make_transform_iterator(it, fn);
 }
 
 #if 0
 template<   ss_typename_param_k I
         >
-inline transform_iterator<I, null_function> transformer(I i)
+inline transform_iterator<I, null_function> transformer(I it)
 {
-    return transform_iterator<I, null_function>(i, null_function());
+    return transform_iterator<I, null_function>(it, null_function());
 }
 #endif
 
@@ -425,9 +428,9 @@ inline transform_iterator<I, null_function> transformer(I i)
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
-inline transform_iterator<I, F> transform(I i, F fn)
+inline transform_iterator<I, F> transform(I it, F fn)
 {
-    return transform_iterator<I, F>(i, fn);
+    return transform_iterator<I, F>(it, fn);
 }
 #endif /* 0 */
 

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     18th January 2006
- * Updated:     20th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MAJOR      1
-# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MINOR      0
-# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_REVISION   3
-# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_EDIT       3
+# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_MINOR      1
+# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_REVISION   2
+# define INETSTL_VER_INETSTL_HPP_FTPDIR_SEQUENCE_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,15 +73,15 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS
 # include <inetstl/filesystem_traits.hpp>
 #endif /* !INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef INETSTL_INCL_INETSTL_HPP_EXCEPTIONS
 #  include <inetstl/exceptions.hpp>           // for throw_internet_exception_policy
 # endif /* !INETSTL_INCL_INETSTL_HPP_EXCEPTIONS */
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
 #  include <stlsoft/exceptions.hpp>           // for stlsoft::null_exception_policy
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef INETSTL_INCL_INETSTL_HPP_FINDFILE_SEQUENCE
 # include <inetstl/findfile_sequence.hpp>
 #endif /* !INETSTL_INCL_INETSTL_HPP_FINDFILE_SEQUENCE */
@@ -134,11 +134,11 @@ namespace inetstl_project
 
 template<   ss_typename_param_k C
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-# ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ,   ss_typename_param_k X   =   throw_internet_exception_policy
-# else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+# else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k X   =   stlsoft_ns_qual(null_exception_policy)
-# endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         ,   ss_typename_param_k T = filesystem_traits<C>
 #else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k X /* = throw_internet_exception_policy */
@@ -146,12 +146,12 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_ftpdir_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
 private:
-    typedef basic_findfile_sequence<C, X, T>                        sequence_type_;
+    typedef basic_findfile_sequence<C, T, X>                        sequence_type_;
 public:
     typedef ss_typename_type_k sequence_type_::char_type            char_type;
     typedef ss_typename_type_k sequence_type_::value_type           value_type;
@@ -280,29 +280,29 @@ private:
 
 /// Instantiation of the basic_findfile_sequence template for the ANSI character type \c char
 typedef basic_ftpdir_sequence<is_char_a_t
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                             ,   throw_internet_exception_policy
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   stlsoft_ns_qual(null_exception_policy)
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   filesystem_traits<is_char_a_t>
                             >                                                   ftpdir_sequence_a;
 /// Instantiation of the basic_ftpdir_sequence template for the Unicode character type \c wchar_t
 typedef basic_ftpdir_sequence<is_char_w_t
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                             ,   throw_internet_exception_policy
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   stlsoft_ns_qual(null_exception_policy)
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   filesystem_traits<is_char_w_t>
                             >                                                   ftpdir_sequence_w;
 /// Instantiation of the basic_ftpdir_sequence template for the Win32 character type \c TCHAR
 typedef basic_ftpdir_sequence<TCHAR
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                             ,   throw_internet_exception_policy
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   stlsoft_ns_qual(null_exception_policy)
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                             ,   filesystem_traits<TCHAR>
                             >                 ftpdir_sequence;
 

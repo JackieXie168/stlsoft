@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     17th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MAJOR      4
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MINOR      1
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_REVISION   4
-# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       123
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_MINOR      2
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_REVISION   1
+# define STLSOFT_VER_STLSOFT_HPP_AUTO_BUFFER_EDIT       125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ struct auto_buffer_internal_size_calculator<ss_char_w_t>
 /// \note With version 1.9 of STLSoft, the order of the space and allocator
 ///   arguments were reversed. Further, the allocator default changed from
 ///   stlsoft::new_allocator to std::allocator for translators that support the
-///   standard library. If you need the old characteristics, you can #define 
+///   standard library. If you need the old characteristics, you can \#define 
 ///   the symbol <b>STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS</b>.
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -334,7 +334,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::type             iterator;
     /// The non-mutating (const) iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -343,7 +343,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::type             const_iterator;
 
     /// The mutating (non-const) reverse iterator type
     typedef reverse_iterator_base       <   iterator

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     20th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_H_WINSTL_REG_KEY_MAJOR      2
 # define WINSTL_VER_H_WINSTL_REG_KEY_MINOR      5
 # define WINSTL_VER_H_WINSTL_REG_KEY_REVISION   2
-# define WINSTL_VER_H_WINSTL_REG_KEY_EDIT       79
+# define WINSTL_VER_H_WINSTL_REG_KEY_EDIT       80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -142,7 +142,7 @@ template<   ss_typename_param_k C
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = reg_traits<C>
         ,   ss_typename_param_k A = processheap_allocator<C>
-#else
+#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = reg_traits<C> */
         ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
@@ -167,9 +167,9 @@ public:
     _MSC_VER == 1100
     /* WSCB: VC5 has an internal compiler error if use traits_type::hkey_type */
     typedef HKEY                                        hkey_type;
-#else
+#else /* ? compiler */
     typedef ss_typename_type_k traits_type::hkey_type   hkey_type;
-#endif /* 0 */
+#endif /* compiler */
 
 // Construction
 public:
@@ -338,9 +338,9 @@ template<   ss_typename_param_k C
         _MSC_VER < 1100) || \
     defined(STLSOFT_COMPILER_IS_VECTORC)
 inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(hkey_type hkeyParent, char_type const *key_name, REGSAM samDesired)
-#else
+#else /* ? compiler */
 inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(ss_typename_param_k basic_reg_key<C, T, A>::hkey_type hkeyParent, ss_typename_param_k basic_reg_key<C, T, A>::char_type const *key_name, REGSAM samDesired)
-#endif /* STLSOFT_COMPILER_IS_MSVC && _MSC_VER < 1100 */
+#endif /* compiler */
 {
     hkey_type   hkey;
 

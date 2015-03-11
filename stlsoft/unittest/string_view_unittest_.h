@@ -1,5 +1,5 @@
 
-// Updated: 16th November 2005
+// Updated: 22nd January 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW)
 # error This file cannot be directly included, and should only be included within stlsoft/string_view.hpp
@@ -74,7 +74,7 @@ namespace unittest
                 bSuccess = false;
             }
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             try
             {
                 char const  &ch =   sv_a.at(0);
@@ -86,7 +86,7 @@ namespace unittest
             }
             catch(std::out_of_range &)
             {}
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 
             return bSuccess;
@@ -149,7 +149,7 @@ namespace unittest
                 bSuccess = false;
             }
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             try
             {
                 { for(size_t i = 0; i < sv_a.size(); ++i)
@@ -164,7 +164,7 @@ namespace unittest
                 r->report("Erroneously detected valid subscript in at() for non-empty instance", __LINE__);
                 bSuccess = false;
             }
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 
             return bSuccess;

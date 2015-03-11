@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     66
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 4
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -280,7 +280,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_drophandle_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The character type

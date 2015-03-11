@@ -4,11 +4,11 @@
  * Purpose:     Definition of the environment_variable_traits class.
  *
  * Created:     9th December 2005
- * Updated:     11th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_MINOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_EDIT       6
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_TRAITS_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -277,6 +277,8 @@ public:
     /// \brief Removed the given variable
     ///
     /// \param name The name of the variable to remove
+    ///
+    /// \note Erasing a variable that does not exist is a succesful operation 
     ///
     /// \return A status code indicating success
     /// \retval 0 The operation completed successfully

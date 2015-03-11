@@ -6,11 +6,11 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     29th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MAJOR       4
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MINOR       2
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        44
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MINOR       3
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -85,23 +85,32 @@ namespace stlsoft
 /// This class (union) effects conversion from one type to another, without
 /// the use of casts.
 ///
-/// \note The use of this technique is non-portable, and you use this class at
-/// your own risk. Notwithstanding that, the TO and FROM types have to be the
-/// same size, so the technique is widely usable.
+/// \param TO The type to cast to
+/// \param FROM The type to cast from
+/// \param B_CHECK_ALIGN Determines the default checking behaviour. If 0, no checking on alignment is conducted
+///
+/// \note This technique is non-portable, and you use this class at your own 
+/// risk. Notwithstanding that, the TO and FROM types have to be the same
+/// size, so the technique is widely usable.
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
+        ,   ss_bool_t           B_CHECK_ALIGN    =   true
         >
 union union_cast
 {
+/// \name Member Types
+/// @{
 public:
-    typedef TO                      to_type;
-    typedef FROM                    from_type;
-    typedef union_cast<TO, FROM>    class_type;
+    typedef TO                                  to_type;
+    typedef FROM                                from_type;
+    typedef union_cast<TO, FROM, B_CHECK_ALIGN> class_type;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
     /// Conversion constructor
-    ss_explicit_k union_cast(from_type const from)
+    ss_explicit_k union_cast(from_type const from, ss_bool_t bCheckAlign = B_CHECK_ALIGN)
         : m_from(from)
     {
         // The body of the constructor constrains the type conversion according
@@ -159,31 +168,40 @@ public:
             STLSOFT_SUPPRESS_UNUSED(from_value);
 
             // Need to add to_size, since Metrowerks warns of constant division by zero
-            STLSOFT_MESSAGE_ASSERT( "Misalignment in conversion from non-pointer to pointer", (0 == to_size) || (0 == ((from_value + to_size) % to_size)));
+            STLSOFT_MESSAGE_ASSERT( "Misalignment in conversion from non-pointer to pointer", !bCheckAlign || (0 == to_size) || (0 == ((from_value + to_size) % to_size)));
         }
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 #else /* ? compiler */
         // Sizes must be the same
         STLSOFT_ASSERT(sizeof(from_type) == sizeof(to_type));
 #endif /* compiler */
-    }
 
-// Conversion
+        STLSOFT_SUPPRESS_UNUSED(bCheckAlign);
+    }
+/// @}
+
+/// \name Conversion
+/// @{
 public:
     /// Implicit conversion operator
     operator to_type () const
     {
         return m_to;
     }
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     from_type const  m_from;
     to_type          m_to;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     class_type &operator =(class_type const &);
+/// @}
 };
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -195,9 +213,9 @@ private:
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
         >
-inline union_cast<TO, FROM> make_union_cast(FROM const from)
+inline union_cast<TO, FROM, true> make_union_cast(FROM const from, ss_bool_t bCheckAlign = true)
 {
-    return union_cast<TO, FROM>(from);
+    return union_cast<TO, FROM, true>(from, bCheckAlign);
 }
 
 #endif /* compiler */
@@ -206,10 +224,13 @@ inline union_cast<TO, FROM> make_union_cast(FROM const from)
  * Operators
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
+        ,   ss_bool_t           B_CHECK_ALIGN
         >
-inline ss_bool_t operator < (union_cast<TO, FROM> const &lhs, TO const &rhs)
+inline ss_bool_t operator < (union_cast<TO, FROM, B_CHECK_ALIGN> const &lhs, TO const &rhs)
 {
     TO const    lhs_    =   lhs;
 
@@ -218,8 +239,9 @@ inline ss_bool_t operator < (union_cast<TO, FROM> const &lhs, TO const &rhs)
 
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
+        ,   ss_bool_t           B_CHECK_ALIGN
         >
-inline ss_bool_t operator < (TO const &lhs, union_cast<TO, FROM> const &rhs)
+inline ss_bool_t operator < (TO const &lhs, union_cast<TO, FROM, B_CHECK_ALIGN> const &rhs)
 {
     TO const    rhs_    =   rhs;
 
@@ -228,14 +250,17 @@ inline ss_bool_t operator < (TO const &lhs, union_cast<TO, FROM> const &rhs)
 
 template<   ss_typename_param_k TO
         ,   ss_typename_param_k FROM
+        ,   ss_bool_t           B_CHECK_ALIGN
         >
-inline ss_bool_t operator < (union_cast<TO, FROM> const &lhs, union_cast<TO, FROM> const &rhs)
+inline ss_bool_t operator < (union_cast<TO, FROM, B_CHECK_ALIGN> const &lhs, union_cast<TO, FROM, B_CHECK_ALIGN> const &rhs)
 {
     TO const    lhs_    =   lhs;
     TO const    rhs_    =   rhs;
 
     return lhs_ < rhs_;
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////////
 // Unit-testing

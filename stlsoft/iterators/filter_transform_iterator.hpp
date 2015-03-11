@@ -4,7 +4,7 @@
  * Purpose:     A combination of the filter_iterator and the transform_iterator.
  *
  * Created:     2nd January 2006
- * Updated:     17th January 2006
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_REVISION  2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_EDIT      3
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_TRANSFORM_ITERATOR_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -107,8 +107,10 @@ namespace stlsoft
 
 /// Creator function for filter_iterator + transform_iterator
 ///
-/// \param i The iterator to transform
+/// \param from The start of the iterator range to be transformed
+/// \param to The end-point of the iterator range to be transformed
 /// \param pr The predicate used to filter the underlying range
+/// \param fn The function object used to effect the transformation
 ///
 /// \return An instance of the specialisation filter_iterator&lt;T, P&gt;
 template<   ss_typename_param_k I
@@ -129,8 +131,10 @@ inline filter_iterator<transform_iterator<I, F>, P> make_filter_transform_iterat
 
 /// Creator function for filter_iterator + transform_iterator
 ///
-/// \param i The iterator to transform
+/// \param from The start of the iterator range to be transformed
+/// \param to The end-point of the iterator range to be transformed
 /// \param pr The predicate used to filter the underlying range
+/// \param fn The function object used to effect the transformation
 ///
 /// \return An instance of the specialisation filter_iterator&lt;T, P&gt;
 ///

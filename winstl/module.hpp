@@ -4,13 +4,13 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     22nd December 2005
+ * Updated:     22nd January 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_MODULE_MAJOR     5
-# define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     1
+# define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      198
+# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      199
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -150,12 +150,12 @@ public:
     ss_explicit_k module(S const &modName)
         : m_hmodule(load(modName))
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
         {
             throw windows_exception("Cannot load module", ::GetLastError());
         }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     /// \brief Constructs by taking ownership of the given handle
     ///
@@ -295,34 +295,34 @@ inline HINSTANCE get_handle(module const &m)
 inline module::module(ws_char_a_t const *modName)
     : m_hmodule(load(modName))
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
         throw windows_exception("Cannot load module", ::GetLastError());
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 inline module::module(ws_char_w_t const *modName)
     : m_hmodule(load(modName))
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
         throw windows_exception("Cannot load module", ::GetLastError());
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 inline module::module(module::module_handle_type hmodule)
     : m_hmodule(hmodule)
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
         throw windows_exception("Cannot load module", ::GetLastError());
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 inline module::module(module const &rhs)
@@ -338,11 +338,11 @@ inline module::module(module const &rhs)
 
         if(0 == cch)
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw windows_exception("Cannot get module path", ::GetLastError());
-#else /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
             m_hmodule = NULL;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
         {

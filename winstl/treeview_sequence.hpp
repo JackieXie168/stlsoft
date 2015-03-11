@@ -4,7 +4,7 @@
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MINOR    3
-# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     54
+# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_REVISION 4
+# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@ private:
 /// Base class for the treeview_child_sequence and treeview_peer_sequence classes
 template <UINT N, UINT P>
 class treeview_sequence_base
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{

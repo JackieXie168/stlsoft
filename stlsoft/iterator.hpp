@@ -5,11 +5,11 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     29th December 2005
+ * Updated:     29th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MAJOR     4
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     2
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      84
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     3
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  2
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,10 +74,6 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/util/std/library_discriminator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR */
 
-
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #include <iterator>    // for std::iterator, std::reverse_iterator, std::reverse_bidirectional_iterator
 
 #ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED_XXXX
@@ -838,18 +834,24 @@ struct pointer_iterator
 #if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES) && \
     !defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
 # if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300)
-    typedef std::test_dinkumware::_Ptrit_tdkw<V, P, R>::iterator_type   iterator_type;
+    typedef std::test_dinkumware::_Ptrit_tdkw<V, P, R>::iterator_type   type;
 # else
-    typedef P                                                           iterator_type;
+    typedef P                                                           type;
 # endif /* __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300 */
 #elif defined(STLSOFT_COMPILER_IS_MSVC) && \
       !defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT) && \
       defined(_XUTILITY_) && \
       _MSC_VER == 1300
-    typedef std::_Ptrit<V, ptrdiff_t, P, R, P, R>                       iterator_type;
+    typedef std::_Ptrit<V, ptrdiff_t, P, R, P, R>                       type;
 #else
-    typedef P                                                           iterator_type;
+    typedef P                                                           type;
 #endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+public:
+    // For backwards compatibility
+    typedef type                                                        iterator_type;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -860,7 +862,7 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k P
         ,   ss_typename_param_k R
         >
-inline random_access_iterator_tag iterator_category(pointer_iterator<V, P, R>::iterator_type const &)
+inline random_access_iterator_tag iterator_category(pointer_iterator<V, P, R>::type const &)
 {
     return random_access_iterator_tag();
 }
@@ -869,7 +871,7 @@ template<   ss_typename_param_k V
         ,   ss_typename_param_k P
         ,   ss_typename_param_k R
         >
-inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::iterator_type const &)
+inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::type const &)
 {
     return static_cast<ptrdiff_t*>(0);
 }

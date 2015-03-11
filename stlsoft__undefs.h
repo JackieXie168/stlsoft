@@ -4,11 +4,11 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     18th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # error stlsoft__undefs.h can only be included from within stlsoft/stlsoft.h, and should not be included directly
-#else 
+#else /* ? STLSOFT_INCL_STLSOFT_H_STLSOFT */
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("This file is now obsolete. It will be removed in a future version")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    3
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    0
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     12
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     13
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility

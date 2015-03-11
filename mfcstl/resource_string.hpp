@@ -4,7 +4,7 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     11th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MINOR      2
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       61
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   2
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -119,7 +119,7 @@ namespace mfcstl_project
 /// constructed from instance identifiers.
 class resource_string
     : public CString
-    , public stl_collection_tag
+    , public stlsoft_ns_qual(stl_collection_tag)
 {
 private:
     typedef CString         parent_class_type;

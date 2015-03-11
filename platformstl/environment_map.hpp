@@ -4,11 +4,11 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MINOR      7
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       28
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_REVISION   4
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ namespace platformstl_project
  */
 
 class environment_map
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
@@ -604,14 +604,16 @@ inline environment_map::size_type environment_map::erase(environment_map::first_
 
     if(0 != traits_type::erase_variable(name.c_str()))
     {
+#if 0
         // Failure to erase might be if some external part of the
-        // process has already failed.
+        // process has already erased it.
         //
         // Hence, the somewhat crude measure to checking whether it
         // still exists (rather than knowing what value(s) to check
         // the return value of erase_variable() for).
 
         if(NULL != traits_type::get_variable(name.c_str()))
+#endif /* 0 */
         {
             throw stlsoft_ns_qual_std(runtime_error)("Cannot erase environment variable");
         }
@@ -654,14 +656,16 @@ inline void environment_map::erase(environment_map::const_iterator it)
 
     if(0 != traits_type::erase_variable(name.c_str()))
     {
+#if 0
         // Failure to erase might be if some external part of the
-        // process has already failed.
+        // process has already erased it.
         //
         // Hence, the somewhat crude measure to checking whether it
         // still exists (rather than knowing what value(s) to check
         // the return value of erase_variable() for).
 
         if(NULL != traits_type::get_variable(name.c_str()))
+#endif /* 0 */
         {
             throw stlsoft_ns_qual_std(runtime_error)("Cannot erase environment variable");
         }

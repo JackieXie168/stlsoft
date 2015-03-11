@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     16th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       6
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        42
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -139,10 +139,12 @@
 
 /* Static assertions */
 #define __STLSOFT_CF_STATIC_ASSERT_SUPPORT
+#define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 /* Exception support */
 # if __option(exceptions)
 #  define __STLSOFT_CF_EXCEPTION_SUPPORT
+#  define STLSOFT_CF_EXCEPTION_SUPPORT
 # else
   /* Not defined */
 # endif /* __option(exceptions) */
@@ -154,6 +156,7 @@
 //#define _STLSOFT_NO_NAMESPACES
 
 #define __STLSOFT_CF_NAMESPACE_SUPPORT
+#define STLSOFT_CF_NAMESPACE_SUPPORT
 
 #define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
 
@@ -164,6 +167,7 @@
   /* Not defined */
 #else
 # define __STLSOFT_CF_TEMPLATE_SUPPORT
+# define STLSOFT_CF_TEMPLATE_SUPPORT
 #endif /* __option(ecplusplus) */
 
 //#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
@@ -222,6 +226,7 @@
  */
 
 #define __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
 #define __STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
 
@@ -240,8 +245,10 @@
 //# define __STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
 
 #define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
+#define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 
 #define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
 #define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 

@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     17th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MAJOR    5
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MINOR    4
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 6
-# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     200
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_MINOR    6
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_REVISION 3
+# define COMSTL_VER_COMSTL_HPP_ENUMERATOR_SEQUENCE_EDIT     209
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -69,11 +69,8 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h>     // for safe_release(), release_set_null()
-#endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef COMSTL_INCL_COMSTL_HPP_ENUMERATION_POLICIES
-# include <comstl/enumeration_policies.hpp> // for input_cloning_policy
+# include <comstl/enumeration_policies.hpp> // for cloneable_cloning_policy
 #endif /* !COMSTL_INCL_COMSTL_HPP_ENUMERATION_POLICIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
@@ -135,7 +132,7 @@ namespace comstl_project
 /// \param V Value type
 /// \param VP Value policy type
 /// \param R Reference type. The type returned by the iterator's dereference operator. Defaults to V const&. To make it mutable, set to V&
-/// \param CP Cloning policy type. Defaults to input_cloning_policy<I>
+/// \param CP Cloning policy type. Defaults to cloneable_cloning_policy<I>
 /// \param Q Quanta. The number of elements retrieved from the enumerator with each invocation of Next(). Defaults to 10
 ///
 /// The various parameterising types are used to stipulate the interface and the
@@ -190,15 +187,15 @@ namespace comstl_project
 ///
 /// \note The iterator instances returned by begin() and end() are valid outside 
 /// the lifetime of the collection instance from which they are obtained
-template<   ss_typename_param_k I                               /* Interface */
-        ,   ss_typename_param_k V                               /* Value type */
-        ,   ss_typename_param_k VP                              /* Value policy type */
-        ,   ss_typename_param_k R   =   V const &               /* Reference type */
-        ,   ss_typename_param_k CP  =   input_cloning_policy<I> /* Cloning policy type */
-        ,   cs_size_t           Q   =   10                      /* Quanta */
+template<   ss_typename_param_k I                                   /* Interface */
+        ,   ss_typename_param_k V                                   /* Value type */
+        ,   ss_typename_param_k VP                                  /* Value policy type */
+        ,   ss_typename_param_k R   =   V const &                   /* Reference type */
+        ,   ss_typename_param_k CP  =   cloneable_cloning_policy<I> /* Cloning policy type */
+        ,   cs_size_t           Q   =   10                          /* Quanta */
         >
 class enumerator_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// Interface type
@@ -236,34 +233,55 @@ public:
     typedef cs_size_t                                                   size_type;
     /// The difference type
     typedef cs_ptrdiff_t                                                difference_type;
+    /// The Boolean type
+    typedef cs_bool_t                                                   bool_type;
 
 public:
     /// Constructor
     ///
     /// \param i The enumeration interface pointer to adapt
     /// \param bAddRef Causes a reference to be added if \c true, otherwise the sequence is deemed to <i>sink</i>, or consume, the interface pointer
-    /// \param quanta The actual quanta required for this instance. Must be <= Q
+    /// \param quanta The actual quanta required for this instance. Must be <= Q. Defaults to 0, which causes it to be Q
+    /// \param bReset Determines whether the Reset() method is invoked on the enumerator instance upon construction. Defaults to true
     ///
     /// \note This does not throw an exception, so it is safe to be used to "eat" the 
-    /// reference. The only possible exception to this is if COMSTL_ASSERT(), which is
+    /// reference. The only possible exception to this is if COMSTL_ASSERT() or COMSTL_MESSAGE_ASSERT(), which are
     /// used to validate that the given quanta size is within the limit specified in
     /// the specialisation, has been redefined to throw an exception. But since 
     /// precondition violations are no more recoverable than any others (see the article
     /// "The Nuclear Reactor and the Deep Space Probe"), this does not represent
     /// a concerning contradiction to the no-throw status of the constructor.
-    enumerator_sequence(interface_type *i, cs_bool_t bAddRef, size_type quanta = 0, cs_bool_t bReset = true)
-        : m_i(i)
+    enumerator_sequence(interface_type *i, bool_type bAddRef, size_type quanta = 0, bool_type bReset = true)
+        : m_root(i)
+        , m_enumerator(NULL)
         , m_quanta(validate_quanta_(quanta))
+        , m_bFirst(true)
     {
         COMSTL_MESSAGE_ASSERT("Precondition violation: interface cannot be NULL!", NULL != i);
 
         if(bAddRef)
         {
-            m_i->AddRef();
+            m_root->AddRef();
         }
         if(bReset)
         {
-            m_i->Reset();
+            m_root->Reset();
+        }
+
+        // Here we instantiate m_enumerator
+        //
+        // If noncloneable, then just AddRef()
+        // Otherwise Clone() and fail
+        //
+        // At this point, m_enumerator will be non-NULL, and 
+        // can be used in all invocations of begin(), or it
+        // will be NULL, in which case the 2nd or subsequent
+        // invocations of begin() must be directed to throw.
+        m_enumerator = cloning_policy_type::get_working_instance(m_root);
+
+        if(NULL != m_enumerator)
+        {
+            m_bFirst = false;
         }
 
         COMSTL_ASSERT(is_valid());
@@ -273,7 +291,11 @@ public:
     {
         COMSTL_ASSERT(is_valid());
 
-        m_i->Release();
+        m_root->Release();
+        if(NULL != m_enumerator)
+        {
+            m_enumerator->Release();
+        }
     }
 
 public:
@@ -296,14 +318,23 @@ public:
     private:
         struct enumeration_context
         {
+        /// \name Member Types
+        /// @{
         public:
             typedef enumeration_context     class_type;
             typedef V                       value_type;
             typedef CP                      cloning_policy_type;
+        /// @}
 
+        /// \name Construction
+        /// @{
         private:
+            /// Copying constructor
+            ///
+            /// This constructor copies the state of rhs, and is given a new
+            /// cloned enumerator instance pointer.
             enumeration_context(interface_type *i, class_type const &rhs)
-                : m_i(i)
+                : m_enumerator(i)
                 , m_acquired(rhs.m_acquired)
                 , m_current(rhs.m_current)
                 , m_quanta(rhs.m_quanta)
@@ -312,47 +343,66 @@ public:
             {
                 COMSTL_ASSERT(rhs.m_acquired <= m_quanta);
 
-                value_type          *begin      =   &m_values[0];
-                value_type          *end        =   &m_values[0] + m_quanta;
-                value_type const    *src_begin  =   &rhs.m_values[0];
-                value_type const    *src_end    =   &rhs.m_values[0] + rhs.m_acquired;
+                // Initialise all elements first, so that if a copy() throws an exception
+                // all is cleared up simply.
+                init_elements_(m_quanta);
 
-                // Initialise and then copy each element up to the common extent ...
-                for(; src_begin != src_end; ++begin, ++src_begin)
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                try
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 {
-                    value_policy_type::init(begin);
-                    value_policy_type::copy(begin, src_begin);
-                }
+                    value_type          *begin      =   &m_values[0];
+                    value_type          *end        =   &m_values[0] + m_quanta;
+                    value_type const    *src_begin  =   &rhs.m_values[0];
+                    value_type const    *src_end    =   &rhs.m_values[0] + rhs.m_acquired;
 
-                // ... and then initialise the remainder, if any
-                for(; begin != end; ++begin)
-                {
-                    value_policy_type::init(begin);
+                    // Copy each element up to the common extent ...
+                    for(; src_begin != src_end; ++begin, ++src_begin)
+                    {
+                        value_policy_type::copy(begin, src_begin);
+                    }
+
+                    COMSTL_ASSERT(begin <= end);
                 }
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                catch(...)
+                {
+                    // Must clear everything up here, since the enumeration_context will
+                    // not be destroyed (because it is not fully constructed).
+                    clear_elements_();
+
+                    throw;
+                }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
                 COMSTL_ASSERT(is_valid());
 
                 COMSTL_ASSERT(this->index() == rhs.index());
             }
         public:
-            enumeration_context(interface_type *i, size_type quanta)
-                : m_i(cloning_policy_type::clone(i))
+            /// Sharing constructor
+            ///
+            /// The iterator is 
+            enumeration_context(interface_type *i, size_type quanta, bool_type bFirst)
+                : m_enumerator(bFirst ? (i->AddRef(), i) : cloning_policy_type::share(i))
                 , m_acquired(0)
                 , m_current(0)
                 , m_quanta(quanta)
                 , m_refCount(1)
                 , m_previousBlockTotal(0)
             {
+                COMSTL_ASSERT(quanta <= STLSOFT_NUM_ELEMENTS(m_values));
+        
                 init_elements_(m_quanta);
 
-                // Note: We don't add a reference here, because clone() increments the reference count.
+                // Note: We don't add a reference here, because share() increments the reference count.
 
-                increment_(true);
+                acquire_next_();
 
                 COMSTL_ASSERT(is_valid());
             }
 
-            ~enumeration_context()
+            ~enumeration_context() stlsoft_throw_0()
             {
                 ++m_refCount;
                 COMSTL_ASSERT(is_valid());
@@ -360,7 +410,10 @@ public:
 
                 clear_elements_();
 
-                safe_release(m_i);
+                if(NULL != m_enumerator)
+                {
+                    m_enumerator->Release();
+                }
             }
 
             void AddRef()
@@ -383,18 +436,18 @@ public:
                 }
                 else
                 {
-                    COMSTL_ASSERT(NULL != ctxt->m_i);   // Must always have one, so can test its cloneability
+                    COMSTL_ASSERT(NULL != ctxt->m_enumerator);   // Must always have one, so can test its cloneability
 
                     interface_type  *copy;
-                    const bool      bTrueClone  =   cloning_policy_type::clone(ctxt->m_i, &copy);
+                    const bool      bTrueClone  =   cloning_policy_type::clone(ctxt->m_enumerator, &copy);
 
                     if(!bTrueClone)
                     {
                         COMSTL_ASSERT(NULL == copy);
 
-                        // Either forward_cloning_policy that failed, or input_cloning_policy
+                        // Either forward_cloning_policy/input_cloning_policy that failed, or input_cloning_policy
                         //
-                        // No reference will have been taken on m_ctxt->m_i
+                        // No reference will have been taken on m_ctxt->m_enumerator
                         //
                         // Just add ref on context, and return
 
@@ -410,81 +463,98 @@ public:
                         //
                         // 
 
-                        class_type  *newCtxt = new class_type(copy, *ctxt);
+                        class_type  *newCtxt;
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                        try
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+                        {
+                            newCtxt = new class_type(copy, *ctxt);
+
+                            if(NULL == newCtxt)
+                            {
+                                copy->Release();
+                            }
+                        }
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                        catch(...)
+                        {
+                            copy->Release();
+
+                            throw;
+                        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
                         return newCtxt;
                     }
                 }
             }
+        /// @}
 
+        /// \name Iteration
+        /// @{
         public:
-            void increment_(bool bInitial = false)
+            void advance() stlsoft_throw_0()
             {
+                COMSTL_ASSERT(NULL != m_enumerator);
+
+                // Four possibilities here:
+                //
+                // 1. Called when in an invalid state. This is determined by:
+                //   - 
+                //   - 
+                //   - 
+                // 2. next iteration point is within the number acquired
+                // 3. need to acquire more elements from IEnumXXXX::Next()
+
+                // 1.
+                COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator: m_refCount < 1", 0 < m_refCount);
+                COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator: 0 == m_acquired", 0 != m_acquired);
+                COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator: m_current >= m_acquired", m_current < m_acquired);
+                COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator: m_acquired > m_quanta", m_acquired <= m_quanta);
+                COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator: m_quanta > dimensionof(m_values)", m_quanta <= STLSOFT_NUM_ELEMENTS(m_values));
+
                 if(++m_current < m_acquired)
                 {
+                    // 2. 
+
                     // Do nothing
-                }
-                else if(!bInitial &&
-                        0 == m_acquired)
-                {
-                    COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator", 0 < m_acquired && m_acquired < m_quanta && m_current == m_acquired);
-
-                    clear_elements_();
-
-                    m_acquired  =   0;
-                    m_current   =   0;
                 }
                 else
                 {
-                    COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator", NULL != m_i);
+                    COMSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator", NULL != m_enumerator);
 
                     clear_elements_();
 
                     // Reset enumeration
                     m_current = 0;
 
-                    ULONG   cFetched    =   0;
-
-                    // We no longer checked for a FAILED(hr), since some iterators
-                    // return invalid results. We rely on cFetched, which is the
-                    // only reliable guide when marshalling anyway
-
-                    m_i->Next(m_quanta, &m_values[0], &cFetched);
-
-                    m_acquired              =   cFetched;
-                    m_previousBlockTotal    +=  cFetched;
-
-#if 0
-                    if( hr == S_FALSE ||
-                        0 == m_acquired)
-                    {
-                        release_set_null(m_i);  // Must keep around, so can test for cloning
-                    }
-#endif /* 0 */
+                    acquire_next_();
                 }
             }
 
-            value_type &current()
+            value_type &current() stlsoft_throw_0()
             {
                 COMSTL_ASSERT(!empty());
 
                 return m_values[m_current];
             }
 
-            size_type index() const
+            size_type index() const stlsoft_throw_0()
             {
                 return m_previousBlockTotal + m_current;
             }
 
-            bool empty() const
+            bool empty() const stlsoft_throw_0()
             {
-                return 0 == m_acquired /* && NULL == m_i */;
+                return 0 == m_acquired /* && NULL == m_enumerator */;
             }
+        /// @}
 
         /// \name Invariant
         /// @{
         public:
-            cs_bool_t is_valid() const
+            bool_type is_valid() const
             {
                 if(m_refCount < 1)
                 {
@@ -494,7 +564,7 @@ public:
                     return false;
                 }
 
-                if( NULL == m_i &&
+                if( NULL == m_enumerator &&
                     0 == m_quanta)
                 {
                     if(0 != m_acquired)
@@ -548,15 +618,36 @@ public:
         /// \name Implementation
         /// @{
         private:
-            void clear_elements_()
+            void acquire_next_() stlsoft_throw_0()
             {
+//              COMSTL_ASSERT(0 == m_acquired);
+                COMSTL_ASSERT(0 == m_current);
+
+                ULONG   cFetched    =   0;
+
+                m_enumerator->Next(m_quanta, &m_values[0], &cFetched);
+
+                m_acquired              =   cFetched;
+                m_previousBlockTotal    +=  cFetched;
+
+                // We no longer checked for a FAILED(hr), since some enumerators
+                // return invalid results. We rely on cFetched, which is the
+                // only reliable guide when marshalling anyway
+            }
+
+            void clear_elements_() stlsoft_throw_0()
+            {
+                COMSTL_ASSERT(m_acquired <= STLSOFT_NUM_ELEMENTS(m_values));
+
                 typedef ss_typename_type_k value_policy_type::clear_element clear_t;
 
                 comstl_ns_qual_std(for_each)(&m_values[0], &m_values[0] + m_acquired, clear_t());
             }
 
-            void init_elements_(size_type n)
+            void init_elements_(size_type n) stlsoft_throw_0()
             {
+                COMSTL_ASSERT(n <= STLSOFT_NUM_ELEMENTS(m_values));
+
                 typedef ss_typename_type_k value_policy_type::init_element  init_t;
 
                 comstl_ns_qual_std(for_each)(&m_values[0], &m_values[0] + n, init_t());
@@ -565,13 +656,12 @@ public:
 
         /// \name Members
         /// @{
-        public:
-            interface_type  *m_i;
+        private:
+            interface_type  *m_enumerator;
             size_type       m_acquired;
             size_type       m_current;
             size_type const m_quanta;
             value_type      m_values[retrievalQuanta];
-        private:
             long            m_refCount;
             size_type       m_previousBlockTotal;
         /// @}
@@ -589,9 +679,13 @@ public:
         friend class enumerator_sequence<I, V, VP, R, CP, Q>;
 
         /// Constructor
-        iterator(interface_type *i, size_type quanta)
-            : m_ctxt(new enumeration_context(i, quanta))
-        {}
+        iterator(interface_type *i, size_type quanta, bool_type &bFirst)
+            : m_ctxt(new enumeration_context(i, quanta, bFirst))
+        {
+            bFirst = false;
+
+            COMSTL_ASSERT(is_valid());
+        }
     public:
         /// Default constructor
         iterator()
@@ -605,7 +699,9 @@ public:
         /// becomes a Move Constructor (see <a href = "http://synesis.com.au/resources/articles/cpp/movectors.pdf">Move constructor</a>)
         iterator(class_type const &rhs)
             : m_ctxt(enumeration_context::make_clone(rhs.m_ctxt))
-        {}
+        {
+            COMSTL_ASSERT(is_valid());
+        }
 
         /// Releases any internal storage
         ~iterator() stlsoft_throw_0()
@@ -641,7 +737,7 @@ public:
         {
             COMSTL_ASSERT(is_valid());
 
-            m_ctxt->increment_();
+            m_ctxt->advance();
 
             COMSTL_ASSERT(is_valid());
 
@@ -681,12 +777,12 @@ public:
         }
 
     private:
-        static cs_bool_t equal(class_type const &lhs, class_type const &rhs, stlsoft_ns_qual_std(input_iterator_tag))
+        static bool_type equal_(class_type const &lhs, class_type const &rhs, stlsoft_ns_qual_std(input_iterator_tag))
         {
             // The only valid comparison is when they both represent the end values.
             return lhs.is_end_point() && rhs.is_end_point();
         }
-        static cs_bool_t equal(class_type const &lhs, class_type const &rhs, stlsoft_ns_qual_std(forward_iterator_tag))
+        static bool_type equal_(class_type const &lhs, class_type const &rhs, stlsoft_ns_qual_std(forward_iterator_tag))
         {
             // The iterators can be equal under two conditions:
             //
@@ -712,28 +808,28 @@ public:
                     COMSTL_ASSERT(NULL != lhs.m_ctxt);
                     COMSTL_ASSERT(NULL != rhs.m_ctxt);
 
-                    return lhs.m_ctxt->index() == rhs.m_ctxt->index();
+                    return lhs.m_ctxt->index() == rhs.m_ctxt->index(); // 2 or 3
                 }
             }
         }
     public:
 
         /// Evaluates whether \c this and \c rhs are equivalent
-        cs_bool_t equal(class_type const &rhs) const
+        bool_type equal(class_type const &rhs) const
         {
             COMSTL_ASSERT(is_valid());
 
-            return class_type::equal(*this, rhs, iterator_tag_type());
+            return class_type::equal_(*this, rhs, iterator_tag_type());
         }
         /// Evaluates whether \c this and \c rhs are equivalent
-        cs_bool_t operator == (class_type const &rhs) const
+        bool_type operator == (class_type const &rhs) const
         {
             COMSTL_ASSERT(is_valid());
 
             return this->equal(rhs);
         }
         /// Evaluates whether \c this and \c rhs are not equivalent
-        cs_bool_t operator != (class_type const &rhs) const
+        bool_type operator != (class_type const &rhs) const
         {
             COMSTL_ASSERT(is_valid());
 
@@ -744,7 +840,7 @@ public:
     /// \name Invariant
     /// @{
     private:
-        cs_bool_t is_valid() const
+        bool_type is_valid() const
         {
             return (NULL == m_ctxt) || m_ctxt->is_valid();
         }
@@ -753,7 +849,7 @@ public:
     /// \name Implementation
     /// @{
     private:
-        cs_bool_t is_end_point() const
+        bool_type is_end_point() const
         {
             return NULL == m_ctxt || m_ctxt->empty();
         }
@@ -770,11 +866,42 @@ public:
     /// Begins the iteration
     ///
     /// \return An iterator representing the start of the sequence
+    ///
+    /// \note The first time this is called, the iterated range represented by [begin(), end())
+    /// directly uses that of the enumerator interface pointer passed to the constructor. When
+    /// specialised with cloneable_cloning_policy and forward_cloning_policy policies, all
+    /// subsequent calls to begin() will use a cloned enumerator instance, retrieved via
+    /// I::Clone(). If the enumerator instance is not cloneable, then begin() will throw an
+    /// instance of clone_failure on all subsequent invocations.
     iterator begin() const
     {
         COMSTL_ASSERT(is_valid());
 
-        return iterator(m_i, m_quanta);
+        interface_type  *en;
+
+        if(NULL != m_enumerator)
+        {
+            en = m_enumerator;
+        }
+        else
+        {
+            if(!m_bFirst)
+            {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                throw clone_failure(E_NOTIMPL);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+                return end();
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            }
+            else
+            {
+                en = m_root;
+            }
+        }
+
+        COMSTL_ASSERT(NULL != en);
+
+        return iterator(en, m_quanta, m_bFirst);
     }
     /// Ends the iteration
     ///
@@ -789,10 +916,16 @@ public:
 /// \name Invariant
 /// @{
 private:
-    cs_bool_t is_valid() const
+    bool_type is_valid() const
     {
-        if(NULL == m_i)
+        if(NULL == m_root)
         {
+#ifdef STLSOFT_UNITTEST
+            fprintf(stderr, "enumerator_sequence: m_root is NULL\n");
+
+            COMSTL_ASSERT(0);
+#endif /* STLSOFT_UNITTEST */
+
             return false;
         }
 
@@ -817,8 +950,10 @@ private:
 
 // Members
 private:
-    interface_type  *m_i;
-    size_type const m_quanta;
+    interface_type          *m_root;
+    interface_type          *m_enumerator;
+    size_type const         m_quanta;
+    ss_mutable_k bool_type  m_bFirst;
 
 // Not to be implemented
 private:

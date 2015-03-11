@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     17th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    2
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_REVISION 1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     50
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -275,7 +275,7 @@ public:
 /// @}
 };
 
-#else
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 template <ss_typename_param_k C>
 struct filesystem_traits;

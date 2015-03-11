@@ -1,5 +1,5 @@
 
-// Updated: 10th September 2005
+// Updated: 23rd January 2006
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_HPP_READDIR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within unixstl/readdir_sequence.hpp
@@ -23,6 +23,13 @@ namespace unittest
 
             readdir_sequence        files(".", readdir_sequence::files);
             int                     bFilesTestedEmpty = true;
+
+            {
+                readdir_sequence::const_iterator b  =   files.begin();
+
+                b   =   b;
+                b   =   files.begin();
+            }
 
             { for(readdir_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
             {

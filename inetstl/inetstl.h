@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     6th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    2
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     24
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h The root header for the \ref InetSTL project */
@@ -270,14 +270,14 @@
 #  error Versions of Watcom C/C++ prior to 12.0 are not supported by the InetSTL libraries
 # endif /* __WATCOMC__ */
 
-#else
+#else /* ? compiler */
 /* No recognised compiler */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _INETSTL_COMPILER_IS_UNKNOWN
 #  ifdef _STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to InetSTL")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
-# else
+# else /* ? _STLSOFT_FORCE_ANY_COMPILER */
 #  error Currently only Borland C++, Digital Mars C/C++, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the InetSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
@@ -393,7 +393,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifndef _INETSTL_NO_NAMESPACE
 # define inetstl_ns_qual(x)          ::inetstl::x
 # define inetstl_ns_using(x)         using ::inetstl::x;
-#else
+#else /* ? _INETSTL_NO_NAMESPACE */
 # define inetstl_ns_qual(x)          x
 # define inetstl_ns_using(x)
 #endif /* !_INETSTL_NO_NAMESPACE */
@@ -407,7 +407,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifdef __STLSOFT_CF_std_NAMESPACE
 # define inetstl_ns_qual_std(x)      ::std::x
 # define inetstl_ns_using_std(x)     using ::std::x;
-#else
+#else /* ? __STLSOFT_CF_std_NAMESPACE */
 # define inetstl_ns_qual_std(x)      x
 # define inetstl_ns_using_std(x)
 #endif /* !__STLSOFT_CF_std_NAMESPACE */

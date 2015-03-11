@@ -4,7 +4,7 @@
  * Purpose:     Enumerates clipboard formats.
  *
  * Created:     11th May 2003
- * Updated:     11th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     17
+# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ namespace winstl_project
 // class clipboard_format_sequence
 /// This class provides an STL-like sequence for iterating the clipboard formats for the current process
 class clipboard_format_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The type

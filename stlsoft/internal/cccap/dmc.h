@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     16th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      6
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       64
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -159,11 +159,13 @@
 /* Static assertions */
 #if __DMC__ >= 0x0835
 # define __STLSOFT_CF_STATIC_ASSERT_SUPPORT
+# define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 #endif /* __DMC__ */
 
 /* Exception support */
 #ifdef _CPPUNWIND
 # define __STLSOFT_CF_EXCEPTION_SUPPORT
+# define STLSOFT_CF_EXCEPTION_SUPPORT
 #else
  /* Not defined */
 #endif /* _CPPUNWIND */
@@ -182,6 +184,7 @@
 #endif /* __DMC__ < 0x832 */
 
 #define __STLSOFT_CF_NAMESPACE_SUPPORT
+#define STLSOFT_CF_NAMESPACE_SUPPORT
 
 #define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
 
@@ -189,6 +192,7 @@
 
 /* Template support */
 #define __STLSOFT_CF_TEMPLATE_SUPPORT
+#define STLSOFT_CF_TEMPLATE_SUPPORT
 
 //#define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
 
@@ -292,6 +296,7 @@
 
 #if (__DMC__ >= 0x0829)
 # define __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+# define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 #else
  /* Not defined */
 #endif /* __DMC__ >= 0x0829 */
@@ -316,9 +321,11 @@
 
 #if __DMC__ >= 0x0834
 # define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
+# define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 #endif /* __DMC__ */
 
 //#define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+//#define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 
 #if __DMC__ >= 0x0846
 //# define __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT

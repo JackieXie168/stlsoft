@@ -4,11 +4,11 @@
  * Purpose:     Selects the most appropriate allocator.
  *
  * Created:     20th August 2005
- * Updated:     24th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_EDIT        10
+# define STLSOFT_VER_STLSOFT_HPP_ALLOCATOR_SELECTOR_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@
 #elif defined(STLSOFT_COMPILER_IS_WATCOM)
  // Watcom's got major problems, so we use malloc_allocator
 # define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
-#else
+#else /* ? compiler */
  // Now we work out which to select by default for each 
 # if !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR) && \
      !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR) && \
@@ -118,13 +118,13 @@
 #   define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR
 #  elif !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR)
 #   define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
-#  else
+#  else /* ? NO_USE_??? */
 #   error All allocator types disabled. You must enable one or more, by disabling one or more of the 
 #   error symbols STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR, 
 #   error STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_NEW_ALLOCATOR
 #   error or STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR.
-#  endif
-# endif
+#  endif /* NO_USE_??? */
+# endif /* USE_??? */
 #endif /* allocator */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -141,7 +141,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR */
 #elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
 # include <memory>
-#else
+#else /* _USE_??? */
 # error Error in discrimination. allocator_selector must select either std::allocator, stlsoft::malloc_allocator or stlsoft::new_allocator
 #endif /* STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR */
 
@@ -167,7 +167,7 @@ struct allocator_selector
     typedef new_allocator<T>                    allocator_type;
 #elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
     typedef stlsoft_ns_qual_std(allocator)<T>   allocator_type;
-#else
+#else /* USE_??? */
 # error Error in discrimination. allocator_selector must select either std::allocator, stlsoft::malloc_allocator or stlsoft::new_allocator
 #endif /* allocator */
 };

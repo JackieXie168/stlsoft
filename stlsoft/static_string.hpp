@@ -4,11 +4,11 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     13th January 2006
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MINOR    4
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MINOR    6
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     160
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     162
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -99,9 +99,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                   // for std::out_of_range
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #ifdef STLSOFT_UNITTEST
 # include <string>
@@ -196,7 +196,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type                iterator;
+                                        >::type                         iterator;
     /// The non-mutating (const) iterator type
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -205,7 +205,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type                const_iterator;
+                                        >::type                         const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The mutating (non-const) reverse iterator type
@@ -417,7 +417,7 @@ public:
     /// Returns non-mutable (const) reference at the given index
     const_reference operator [](size_type index) const;
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     /// Returns mutable (non-const) reference at the given index
     ///
     /// \note Throws std::out_of_range if index >= size()
@@ -426,7 +426,7 @@ public:
     ///
     /// \note Throws std::out_of_range if index >= size()
     const_reference         at(size_type index) const;
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
     /// Returns null-terminated non-mutable (const) pointer to string data
     value_type const    *c_str() const;
@@ -1630,7 +1630,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::const_reference basic_
 }
 
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
@@ -1666,7 +1666,7 @@ inline ss_typename_type_k basic_static_string<C, CCH, T>::const_reference basic_
 
     return m_buffer[index];
 }
-#endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 
 template<   ss_typename_param_k C

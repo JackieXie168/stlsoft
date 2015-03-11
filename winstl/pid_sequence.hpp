@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MAJOR       1
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MINOR       5
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        21
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_MINOR       7
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_PID_SEQUENCE_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -67,11 +67,11 @@ STLSOFT_COMPILER_IS_COMO:
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
@@ -117,7 +117,7 @@ namespace winstl_project
 
 /// Process Id sequence
 class pid_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
@@ -136,7 +136,7 @@ public:
     typedef stlsoft_ns_qual(pointer_iterator)<  value_type
                                             ,   const_pointer
                                             ,   const_reference
-                                            >::iterator_type                const_iterator;
+                                            >::type                         const_iterator;
     /// The size type
     typedef ws_size_t                                                       size_type;
     /// The difference type
@@ -301,13 +301,13 @@ inline pid_sequence::pid_sequence(ws_uint32_t flags)
         if(!dl_call<BOOL>("PSAPI.DLL", "stdcall:EnumProcesses", &m_pids[0], sizeof(value_type) * m_pids.size(), &cbReturned))
 #endif /* psapi */
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             throw windows_exception("Failed to enumerate processes", ::GetLastError());
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             m_pids.resize(0);
 
             break;
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
         {

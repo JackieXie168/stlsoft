@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the cstring_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     19th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       3
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       0
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    1
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        54
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    2
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -147,10 +147,10 @@ namespace mfcstl_project
 class cstring_veneer
 #ifdef _MFCSTL_CSTRING_VENEER_INHERIT_AS_PUBLIC
     : public CString
-#else
+#else /* ? _MFCSTL_CSTRING_VENEER_INHERIT_AS_PUBLIC */
     : private CString
 #endif /* _MFCSTL_CSTRING_VENEER_INHERIT_AS_PUBLIC */
-    , public stl_collection_tag
+    , public stlsoft_ns_qual(stl_collection_tag)
 {
 private:
     typedef CString         parent_class_type;

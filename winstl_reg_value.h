@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_VALUE_MAJOR    2
 # define WINSTL_VER_H_WINSTL_REG_VALUE_MINOR    4
-# define WINSTL_VER_H_WINSTL_REG_VALUE_REVISION 1
-# define WINSTL_VER_H_WINSTL_REG_VALUE_EDIT     64
+# define WINSTL_VER_H_WINSTL_REG_VALUE_REVISION 2
+# define WINSTL_VER_H_WINSTL_REG_VALUE_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ class basic_reg_value_sequence_const_iterator;
 template<ss_typename_param_k A>
 class reg_blob
     : protected A
-    , public stl_collection_tag
+    , public stlsoft_ns_qual(stl_collection_tag)
 {
     typedef stlsoft_ns_qual(auto_buffer_old)<   ws_byte_t
                                             ,   processheap_allocator<ws_byte_t>
@@ -204,7 +204,7 @@ template<   ss_typename_param_k C
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = reg_traits<C>
         ,   ss_typename_param_k A = processheap_allocator<C>
-#else
+#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = reg_traits<C> */
         ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
@@ -232,9 +232,9 @@ public:
     _MSC_VER == 1100
     /* WSCB: VC5 has an internal compiler error if use traits_type::hkey_type */
     typedef HKEY                                                        hkey_type;
-#else
+#else /* ? compiler */
     typedef ss_typename_type_k traits_type::hkey_type                   hkey_type;
-#endif /* 0 */
+#endif /* compiler */
     /// The blob type
     typedef reg_blob<A>                                                 blob_type;
 private:

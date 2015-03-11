@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_MAJOR    5
-# define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_MINOR    4
+# define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_MINOR    5
 # define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_REVISION 2
-# define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_EDIT     73
+# define COMSTL_VER_COMSTL_HPP_COLLECTION_SEQUENCE_EDIT     75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,11 +78,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef COMSTL_INCL_COMSTL_HPP_INTERFACE_TRAITS
 # include <comstl/interface_traits.hpp>
 #endif /* !COMSTL_INCL_COMSTL_HPP_INTERFACE_TRAITS */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef COMSTL_INCL_COMSTL_HPP_EXCEPTIONS
 #  include <comstl/exceptions.hpp>
 # endif /* !COMSTL_INCL_COMSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef COMSTL_INCL_COMSTL_HPP_ENUMERATOR_SEQUENCE
 # include <comstl/enumerator_sequence.hpp>
 #endif /* !COMSTL_INCL_COMSTL_HPP_ENUMERATOR_SEQUENCE */
@@ -207,7 +207,7 @@ template<   ss_typename_param_k CI                                      /* Colle
         ,   ss_typename_param_k EAP =   new_enum_property_policy<CI>    /* Policy for acquiring the enumerator from the collection */
         >
 class collection_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
@@ -315,20 +315,20 @@ public:
             }
             else
             {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 COMSTL_ASSERT(is_valid());
 
                 throw com_exception("the enumerator does not provide the requested interface", hr);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
         else
         {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             COMSTL_ASSERT(is_valid());
 
             throw com_exception("enumerator could not be elicited from the collection", hr);
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
 #if !defined(STLSOFT_COMPILER_IS_COMO) && \

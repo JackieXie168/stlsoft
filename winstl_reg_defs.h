@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     16th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_H_WINSTL_REG_DEFS_MAJOR     2
 # define WINSTL_VER_H_WINSTL_REG_DEFS_MINOR     2
 # define WINSTL_VER_H_WINSTL_REG_DEFS_REVISION  1
-# define WINSTL_VER_H_WINSTL_REG_DEFS_EDIT      44
+# define WINSTL_VER_H_WINSTL_REG_DEFS_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -85,10 +85,10 @@
 #elif defined(_WINSTL_REG_STRING_USE_CUSTOM_STRING)
 # if !defined(_WINSTL_REG_STRING_CUSTOM_HEADER_FILE)
 #  error You must define the header file (e.g. "#define _WINSTL_REG_STRING_CUSTOM_HEADER_FILE <mystring.h>") if you specify _WINSTL_REG_STRING_USE_CUSTOM_STRING
-# else
+# else /* ? !_WINSTL_REG_STRING_CUSTOM_HEADER_FILE */
 #  include _WINSTL_REG_STRING_CUSTOM_HEADER_FILE    // Your string class
 # endif /* !_WINSTL_REG_STRING_CUSTOM_HEADER_FILE */
-#else
+#else /* ? _WINSTL_REG_STRING_USE_CUSTOM_STRING */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
 #  include <stlsoft/simple_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
@@ -147,9 +147,9 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
   typedef string                                            reg_string_a_t;
-# else
+# else /* ? compiler */
   typedef winstl_ns_qual_std(basic_string)<ws_char_a_t>     reg_string_a_t;
-# endif /* __STLSOFT_CF_THROW_BAD_ALLOC && _MSC_VER < 1100 */
+# endif /* compiler */
 
 # define _WINSTL_REG_STRING_STRING_A_DEFINED
 
@@ -160,9 +160,9 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
   typedef wstring                                           reg_string_w_t;
-# else
+# else /* ? compiler */
   typedef winstl_ns_qual_std(basic_string)<ws_char_w_t>     reg_string_w_t;
-# endif /* __STLSOFT_CF_THROW_BAD_ALLOC && _MSC_VER < 1100 */
+# endif /* compiler */
 
 # define _WINSTL_REG_STRING_STRING_W_DEFINED
 
@@ -180,7 +180,7 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 #  error If using custom strings, must provide definition of reg_string_w_t type, and defined _WINSTL_REG_STRING_STRING_W_DEFINED
 # endif /* !_WINSTL_REG_STRING_STRING_W_DEFINED */
 
-#else
+#else /* ? _WINSTL_REG_STRING_USE_STD_STRING */
 
 // ANSI
 

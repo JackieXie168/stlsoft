@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     6th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     5
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      19
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp The root header for the \ref ACESTL project */
@@ -306,7 +306,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #ifndef _ACESTL_NO_NAMESPACE
 # define acestl_ns_qual(x)             ::acestl::x
 # define acestl_ns_using(x)            using ::acestl::x;
-#else
+#else /* ? _ACESTL_NO_NAMESPACE */
 # define acestl_ns_qual(x)             x
 # define acestl_ns_using(x)
 #endif /* !_ACESTL_NO_NAMESPACE */

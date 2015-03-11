@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     17th January 2006
+ * Updated:     29th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,9 +61,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_MINOR      6
+# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_MINOR      9
 # define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_REVISION   2
-# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_EDIT       154
+# define WINSTL_VER_WINSTL_HPP_FINDFILE_SEQUENCE_EDIT       164
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -98,11 +98,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION
 # include <winstl/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION */
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -197,7 +197,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_findfile_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 /// \name Member Types
 /// @{
@@ -210,10 +210,8 @@ public:
     typedef basic_findfile_sequence<C, T>                                       class_type;
     /// The value type
     typedef basic_findfile_sequence_value_type<C, T>                            value_type;
-    /// The non-mutating (const) iterator type supporting the Input Iterator concept
-    typedef basic_findfile_sequence_const_input_iterator<C, T, value_type>      const_input_iterator;
     /// The non-mutating (const) iterator type
-    typedef const_input_iterator                                                const_iterator;
+    typedef basic_findfile_sequence_const_input_iterator<C, T, value_type>      const_iterator;
     /// The reference type
     typedef value_type const                                                    reference;
     /// The non-mutable (const) reference type
@@ -228,6 +226,10 @@ public:
     typedef ws_bool_t                                                           bool_type;
     /// The flags type
     typedef int                                                                 flags_type;
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    // For backwards compatibility
+    typedef const_iterator                                                      const_input_iterator;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
 /// \name Flags
@@ -246,9 +248,13 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// Commence a search according to the given search pattern and flags
+    /// Commence a search according to the given search pattern and flags, relative to the current directory
     ss_explicit_k basic_findfile_sequence(  char_type const *pattern
                                         ,   flags_type      flags = directories | files);
+    /// Commence a search according to the given search composite pattern and delimiter, flags, relative to the current directory
+    basic_findfile_sequence(char_type const *patterns
+                        ,   char_type       delim
+                        ,   flags_type      flags = directories | files);
     /// Commence a search according to the given search pattern and flags, relative to \c directory
     basic_findfile_sequence(char_type const *directory
                         ,   char_type const *pattern
@@ -296,16 +302,16 @@ public:
 /// \name Members
 /// @{
 private:
-    typedef basic_file_path_buffer<char_type>       file_path_buffer_type;
+    typedef basic_file_path_buffer<char_type>       file_path_buffer_type_;
     typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
                                             ,   processheap_allocator<char_type>
-                                            ,   128
-                                            >       patterns_buffer_type;
+                                            ,   32
+                                            >       patterns_buffer_type_;
 
     const char_type         m_delim;
     const flags_type        m_flags;
-    file_path_buffer_type   m_directory;    // The directory, as specified to the constructor
-    patterns_buffer_type    m_patterns;     // The pattern(s) specified to the constructor
+    file_path_buffer_type_  m_directory;    // The directory, as specified to the constructor
+    patterns_buffer_type_   m_patterns;     // The pattern(s) specified to the constructor
 /// @}
 
 /// \name Invariant
@@ -318,7 +324,7 @@ private:
 /// @{
 private:
     static flags_type   validate_flags_(flags_type flags);
-    static void         validate_directory_(char_type const *directory, file_path_buffer_type &dir);
+    static void         validate_directory_(char_type const *directory, file_path_buffer_type_ &dir);
 /// @}
 
 /// \name Not to be implemented
@@ -370,7 +376,7 @@ private:
 /// @}
 
 /// \name Construction
-// @{
+/// @{
 public:
     /// Default constructor
     basic_findfile_sequence_value_type();
@@ -386,14 +392,17 @@ private:
         traits_type::str_n_copy(&m_path[0], directory, cchDirectory);
         traits_type::ensure_dir_end(&m_path[0] + ((cchDirectory > 0) ? (cchDirectory - 1) : cchDirectory));
         traits_type::str_cat(&m_path[0] + cchDirectory, data.cFileName);
+        m_pathLen = cchDirectory + traits_type::str_len(&m_path[cchDirectory]);
+
+        WINSTL_ASSERT(traits_type::str_len(m_path.c_str()) == m_pathLen);
     }
 public:
     /// Copy assignment operator
     class_type &operator =(class_type const &rhs);
-// @}
+/// @}
 
 /// Accessors
-// @{
+/// @{
 public:
     /// Returns a non-mutating reference to find-data
     find_data_type const    &get_find_data() const;
@@ -409,11 +418,25 @@ public:
     /// Returns the short form of the filename part of the item
     char_type const         *get_short_filename() const;
     /// Returns the full path of the item
+    ///
+    /// \note The path is not canonicalised, so will not be in canonical form if the filename is a 
+    /// dots directory. For this you should use winstl::path, and call canonicalise()
     char_type const         *get_path() const;
     /// Returns the full path of the item
+    ///
+    /// \note The path is not canonicalised, so will not be in canonical form if the filename is a 
+    /// dots directory. For this you should use winstl::path, and call canonicalise()
     char_type const         *c_str() const;
+    /// Returns the length of the full path
+    size_type               length() const;
 
     /// Implicit conversion to a pointer-to-const of the full path
+    ///
+    /// \note The path is not canonicalised, so will not be in canonical form if the filename is a 
+    /// dots directory. For this you should use winstl::path, and call canonicalise()
+    ///
+    /// \deprecated This is provided for backwards compatibility with an earlier version, but since this
+    /// class does not have an implicit conversion constructor, it's pretty harmless.
     operator char_type const * () const;
 
     /// Indicates whether the entry is a directory
@@ -432,26 +455,34 @@ public:
     bool_type               is_system() const;
     /// Indicates whether the entry is hidden
     bool_type               is_hidden() const;
+/// @}
 
+/// Comparison
+/// @{
+public:
     bool_type               equal(char_type const *rhs) const;
     bool_type               equal(class_type const &rhs) const;
-// @}
+/// @}
 
 /// \name Members
 /// @{
 private:
     friend class basic_findfile_sequence_const_input_iterator<C, T, class_type>;
 
-    typedef basic_file_path_buffer<char_type>   file_path_buffer_type;
+    typedef basic_file_path_buffer<char_type>   file_path_buffer_type_;
 
     find_data_type          m_data;
-    file_path_buffer_type   m_path;
+    file_path_buffer_type_  m_path;
+    ws_size_t               m_pathLen;
 /// @}
 };
 
 // class basic_findfile_sequence_const_input_iterator
 /// Iterator type for the basic_findfile_sequence supporting the Input Iterator concept
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k V
+        >
 class basic_findfile_sequence_const_input_iterator
 #ifndef STLSOFT_COMPILER_IS_WATCOM
     : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(input_iterator_tag)
@@ -602,17 +633,17 @@ private:
 private:
     friend class basic_findfile_sequence<C, T>;
 
-    typedef basic_file_path_buffer<char_type>       file_path_buffer_type;
+    typedef basic_file_path_buffer<char_type>       file_path_buffer_type_;
 
     sequence_type const * const                     m_list;
     shared_handle                                   *m_handle;
     ss_typename_type_k traits_type::find_data_type  m_data;
-    file_path_buffer_type                           m_subpath;
+    file_path_buffer_type_                          m_subpath;
     size_type                                       m_subPathLen;
     char_type const                                 *m_pattern0;
     char_type const                                 *m_pattern1;
-    const char_type                                 m_delim;
-    const flags_type                                m_flags;
+    char_type                                       m_delim;
+    flags_type                                      m_flags;
 /// @}
 };
 
@@ -701,13 +732,13 @@ inline C const *c_str_data(basic_findfile_sequence_value_type<C, T> const &v)
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_size_t c_str_len(basic_findfile_sequence_value_type<C, T> const &v)
 {
-    return stlsoft_ns_qual(c_str_len(v.get_path()));
+    return v.length();
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_size_t c_str_size(basic_findfile_sequence_value_type<C, T> const &v)
 {
-    return stlsoft_ns_qual(c_str_size(v.get_path()));
+    return v.length() * sizeof(C);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
@@ -754,6 +785,17 @@ inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T>::flags_type
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T>::bool_type basic_findfile_sequence<C, T>::is_valid() const
 {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    if('\0' == m_directory[0])
+    {
+# ifdef STLSOFT_UNITTEST
+        fprintf(stderr, "m_directory is empty when exception handling is enabled\n");
+# endif /* STLSOFT_UNITTEST */
+
+        return false;
+    }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     // m_directory should either be empty, or should end with a slash
     if( '\0' != m_directory[0] &&
         !traits_type::has_dir_end(m_directory.c_str()))
@@ -769,7 +811,7 @@ inline /* static */ ss_typename_type_k basic_findfile_sequence<C, T>::bool_type 
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char_type const *directory, file_path_buffer_type &dir)
+inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char_type const *directory, file_path_buffer_type_ &dir)
 {
     if( NULL == directory ||
         '\0' == *directory)
@@ -781,14 +823,11 @@ inline /* static */ void basic_findfile_sequence<C, T>::validate_directory_(char
 
     if(0 == traits_type::get_full_path_name(directory, dir.size(), &dir[0]))
     {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-        if(ERROR_FILENAME_EXCED_RANGE == traits_type::get_last_error())
-        {
-            throw windows_exception("The directory is too long", ERROR_FILENAME_EXCED_RANGE);
-        }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
-
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        throw windows_exception(::GetLastError());
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         dir[0] = '\0';
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     else
     {
@@ -806,6 +845,21 @@ inline basic_findfile_sequence<C, T>::basic_findfile_sequence(char_type const *p
     validate_directory_(NULL, m_directory);
 
     traits_type::str_n_copy(&m_patterns[0], pattern, m_patterns.size());
+
+    WINSTL_ASSERT(is_valid());
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+inline basic_findfile_sequence<C, T>::basic_findfile_sequence(  char_type const *patterns
+                                                            ,   char_type       delim
+                                                            ,   flags_type      flags /* = directories | files */)
+    : m_delim(delim)
+    , m_flags(validate_flags_(flags))
+    , m_patterns(1 + traits_type::str_len(patterns))
+{
+    validate_directory_(NULL, m_directory);
+
+    traits_type::str_n_copy(&m_patterns[0], patterns, m_patterns.size());
 
     WINSTL_ASSERT(is_valid());
 }
@@ -858,7 +912,16 @@ inline ss_typename_type_k basic_findfile_sequence<C, T>::const_iterator basic_fi
 {
     WINSTL_ASSERT(is_valid());
 
-    return const_input_iterator(*this, m_patterns.data(), m_delim, m_flags);
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+    if('\0' == m_directory[0])
+    {
+        ::SetLastError(ERROR_INVALID_NAME);
+
+        return const_iterator(*this);
+    }
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+
+    return const_iterator(*this, m_patterns.data(), m_delim, m_flags);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
@@ -866,7 +929,7 @@ inline ss_typename_type_k basic_findfile_sequence<C, T>::const_iterator basic_fi
 {
     WINSTL_ASSERT(is_valid());
 
-    return const_input_iterator(*this);
+    return const_iterator(*this);
 }
 
 // Attributes
@@ -903,6 +966,7 @@ inline basic_findfile_sequence_value_type<C, T>::basic_findfile_sequence_value_t
     m_data.cFileName[0]             =   '\0';
     m_data.cAlternateFileName[0]    =   '\0';
     m_path[0]                       =   '\0';
+    m_pathLen                       =   0;
 }
 
 #if 0
@@ -953,6 +1017,18 @@ template <ss_typename_param_k C, ss_typename_param_k T>
 inline ss_typename_type_k basic_findfile_sequence_value_type<C, T>::char_type const *basic_findfile_sequence_value_type<C, T>::c_str() const
 {
     return get_path();
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T>
+#ifdef __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
+inline ss_typename_type_k basic_findfile_sequence_value_type<C, T>::size_type basic_findfile_sequence_value_type<C, T>::length() const
+#else /* ? __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+inline ss_size_t basic_findfile_sequence_value_type<C, T>::length() const
+#endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
+{
+    WINSTL_ASSERT(traits_type::str_len(this->c_str()) == m_pathLen);
+
+    return m_pathLen;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
@@ -1220,7 +1296,9 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
 inline basic_findfile_sequence_const_input_iterator<C, T, V> &basic_findfile_sequence_const_input_iterator<C, T, V>::operator =(basic_findfile_sequence_const_input_iterator<C, T, V> const &rhs)
 #endif /* STLSOFT_COMPILER_IS_WATCOM */
 {
-    WINSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", m_list == rhs.m_list);    // Should only be comparing iterators from same container
+    WINSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", m_list == NULL || rhs.m_list == NULL || rhs.m_list);    // Should only be comparing iterators from same container
+
+    shared_handle   *this_handle    =   m_handle;
 
     m_handle        =   rhs.m_handle;
     m_data          =   rhs.m_data;
@@ -1228,12 +1306,17 @@ inline basic_findfile_sequence_const_input_iterator<C, T, V> &basic_findfile_seq
     m_subPathLen    =   rhs.m_subPathLen;
     m_pattern0      =   rhs.m_pattern0;
     m_pattern1      =   rhs.m_pattern1;
-    WINSTL_ASSERT(m_delim == rhs.m_delim);
-    WINSTL_ASSERT(m_flags == rhs.m_flags);
+    m_delim         =   rhs.m_delim;
+    m_flags         =   rhs.m_flags;
 
     if(NULL != m_handle)
     {
         m_handle->AddRef();
+    }
+
+    if(NULL != this_handle)
+    {
+        this_handle->Release();
     }
 
     return *this;
@@ -1251,6 +1334,11 @@ inline basic_findfile_sequence_const_input_iterator<C, T, V>::~basic_findfile_se
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, V>::operator ++()
 {
+    // Pre-condition enforcements
+    WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", '\0' != *m_pattern0);
+    WINSTL_ASSERT(NULL != m_pattern0);
+    WINSTL_ASSERT(NULL != m_pattern1);
+
     enum
     {
 #ifdef FILE_ATTRIBUTE_REPARSE_POINT
@@ -1261,11 +1349,6 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
     };
 
     STLSOFT_STATIC_ASSERT(reparsePointConstant); // Suppress silly Borland's warnings
-
-    WINSTL_ASSERT(NULL != m_pattern0);
-    WINSTL_ASSERT(NULL != m_pattern1);
-
-    WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", '\0' != *m_pattern0);
 
     for(; '\0' != *m_pattern0 || '\0' != *m_pattern1;)
     {
@@ -1279,13 +1362,22 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
 
                 if(m_pattern1 != m_pattern0)    // Will return m_pattern0 == m_pattern1 for empty tokens
                 {
-                    file_path_buffer_type   search; // Buffer in which to prepare the search-spec for FindFirstFile()
-                    size_type               cch;
+                    // We now have a non-empty pattern, so we need to concatenate
+                    // it with the directory to form a search-spec for 
+                    // FindFirstFile()
+                    //
+                    // From this path we must also determine the sub-path for any items retrieved from
+                    // this search, since WIN32_FIND_DATA will contain only the file-name. Since the
+                    // sequence is tolerant of both slashes and backslashes, we need to find the last
+                    // of each and take the end-most.
+
+                    file_path_buffer_type_  search; // Buffer in which to prepare the search-spec for FindFirstFile()
+                    size_type               cch;    // Used to make the strrchr operations faster
 
                     if(traits_type::is_path_rooted(m_pattern0))
                     {
-                        search[0] = '\0';
-                        cch = 0;
+                        search[0]   =   '\0';
+                        cch         =   0;
                     }
                     else
                     {
@@ -1341,6 +1433,9 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
 
                     if(INVALID_HANDLE_VALUE != hSrch)
                     {
+                        // Special case, where the pattern specified is either "." or ".."
+                        // the API will return the directory name, but we want to keep the
+                        // dot name.
                         if( '.' == m_pattern0[0] &&
                             (   m_pattern1 == m_pattern0 + 1 ||
                                 (   '.' == m_pattern0[1] &&
@@ -1352,18 +1447,36 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
                             m_data.cFileName[n] = '\0';
                         }
 
-                        m_handle = new shared_handle(hSrch);
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                        try
+                        {
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+                            m_handle = new shared_handle(hSrch);
+
+                            if(NULL == m_handle)
+                            {
+                                ::FindClose(hSrch);
+                            }
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                        }
+                        catch(...)
+                        {
+                            ::FindClose(hSrch);
+
+                            throw;
+                        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
                         return *this;
                     }
-#if 0
                     else
                     {
+#ifdef _DEBUG
                         DWORD       dwErr   =   ::GetLastError();
 
-                        dwErr = 0;
+                        STLSOFT_SUPPRESS_UNUSED(dwErr);
+#endif /* _DEBUG */
                     }
-#endif /* 0 */
                 }
             }
         }
@@ -1432,24 +1545,17 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 inline const ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>::value_type basic_findfile_sequence_const_input_iterator<C, T, V>::operator *() const
 {
-    if(NULL != m_handle)
-    {
-        WINSTL_ASSERT(m_subPathLen == traits_type::str_len(m_subpath.c_str()));
+    WINSTL_MESSAGE_ASSERT("Dereferencing end()-valued iterator", NULL != m_handle);
 
-        if(0 == m_subPathLen)
-        {
-            return value_type(m_data, m_list->get_directory(), traits_type::str_len(m_list->get_directory()));
-        }
-        else
-        {
-            return value_type(m_data, m_subpath.c_str(), m_subPathLen);
-        }
+    WINSTL_ASSERT(m_subPathLen == traits_type::str_len(m_subpath.c_str()));
+
+    if(0 == m_subPathLen)
+    {
+        return value_type(m_data, m_list->get_directory(), traits_type::str_len(m_list->get_directory()));
     }
     else
     {
-        WINSTL_MESSAGE_ASSERT("Dereferencing end()-valued iterator", 0);
-
-        return value_type();
+        return value_type(m_data, m_subpath.c_str(), m_subPathLen);
     }
 }
 
@@ -1460,25 +1566,10 @@ inline ss_typename_type_k basic_findfile_sequence_const_input_iterator<C, T, V>:
 inline ws_bool_t basic_findfile_sequence_const_input_iterator<C, T, V>::equal(class_type const &rhs) const
 #endif /* __STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED */
 {
-    bool_type   eq;
-
     // Should only be comparing iterators from same container
-    WINSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", m_list == rhs.m_list);
+    WINSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list);
 
-    // Not equal if one but not both handles is NULL
-    // or if the data is not equal.
-    if( (NULL == m_handle) != (NULL == rhs.m_handle) ||
-        (   NULL != m_handle &&
-            traits_type::str_compare(m_data.cFileName, rhs.m_data.cFileName) != 0))
-    {
-        eq = ws_false_v;
-    }
-    else
-    {
-        eq = ws_true_v;
-    }
-
-    return eq;
+    return m_handle == rhs.m_handle;
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

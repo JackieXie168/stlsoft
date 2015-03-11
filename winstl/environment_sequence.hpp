@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     13th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MINOR       5
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        54
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MINOR       6
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ namespace winstl_project
 /// supporting all possible modes.
 template <ss_typename_param_k C>
 class basic_environment_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The character type
@@ -167,7 +167,7 @@ public:
         stlsoft_ns_qual(pointer_iterator)   <   value_type
                                             ,   const_pointer
                                             ,   const_reference
-                                            >::iterator_type    const_iterator;
+                                            >::type             const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type

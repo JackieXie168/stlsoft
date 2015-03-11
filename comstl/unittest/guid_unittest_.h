@@ -20,18 +20,18 @@ namespace unittest
 
             unittest_initialiser    init(r, "COMSTL", "guid", __FILE__);
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             try
             {
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 guid        g1;
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             }
             catch(com_exception &)
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             if(GUID_NULL != g1)
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             {
                 r->report("default construction failed", __LINE__);
                 bSuccess = false;
@@ -89,10 +89,10 @@ namespace unittest
             {
                 guid    g7("lemon scented");
 
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-#else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                 if(m_guid != GUID_NULL)
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 {
                     r->report("conversion construction from string succeeded when it should not", __LINE__);
                     bSuccess = false;

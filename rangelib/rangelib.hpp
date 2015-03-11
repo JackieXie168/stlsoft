@@ -4,11 +4,11 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     20th January 2006
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    2
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     10
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp The root header for the \ref rangelib project */
@@ -237,14 +237,14 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
 # endif /* _MSC_VER */
 
-#else
+#else /* ? compiler */
 /* No recognised compiler */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _RANGELIB_COMPILER_IS_UNKNOWN
 #  ifdef _STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to RangeLib")
 #  endif /* _STLSOFT_COMPILE_VERBOSE */
-# else
+# else /* ? _STLSOFT_FORCE_ANY_COMPILER */
 #  error Currently only Borland C++, Digital Mars C/C++, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the RangeLib libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */

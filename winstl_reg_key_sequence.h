@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     16th January 2006
+ * Updated:     26th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_MAJOR     2
 # define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_MINOR     4
-# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_REVISION  1
-# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_EDIT      86
+# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_REVISION  2
+# define WINSTL_VER_H_WINSTL_REG_KEY_SEQUENCE_EDIT      87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -147,13 +147,13 @@ template<   ss_typename_param_k C
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = reg_traits<C>
         ,   ss_typename_param_k A = processheap_allocator<C>
-#else
+#else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k T /* = reg_traits<C> */
         ,   ss_typename_param_k A /* = processheap_allocator<C> */
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_reg_key_sequence
-    : public stl_collection_tag
+    : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
     /// The character type

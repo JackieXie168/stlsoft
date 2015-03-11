@@ -4,7 +4,7 @@
  * Purpose:     index_iterator class template.
  *
  * Created:     5th April 2005
- * Updated:     17th January 2006
+ * Updated:     31st January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      13
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -331,6 +331,7 @@ public:
         return m_it[index];
     }
 
+    /// Calculate the distance between \c this and \c rhs
     difference_type distance(class_type const &rhs) const
     {
         return m_it - rhs.m_it;

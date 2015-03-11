@@ -4,11 +4,11 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     15th December 2005
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MAJOR       5
-# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MINOR       1
+# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MINOR       2
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        195
+# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        196
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -229,34 +229,34 @@ inline void *get_handle(module const &m)
 inline module::module(us_char_a_t const *modName, int mode)
     : m_hmodule(load(modName, mode))
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
         throw unix_exception("Cannot load module", errno);
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 inline module::module(us_char_w_t const *modName, int mode)
     : m_hmodule(load(modName, mode))
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
         throw unix_exception("Cannot load module", errno);
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 inline module::module(module::module_handle_type hmodule)
     : m_hmodule(hmodule)
 {
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
         throw unix_exception("Cannot load module", errno);
     }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
 inline module::~module() stlsoft_throw_0()

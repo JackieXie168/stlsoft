@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * File:        winstl_int_to_string.h
  *
- * Purpose:     WinSTL .
+ * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     22nd December 2005
+ * Updated:     22nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,16 +40,16 @@
 
 /// \file winstl_int_to_string.h
 ///
-/// WinSTL .
+/// WinSTL integer to string conversions.
 
 #ifndef WINSTL_INCL_H_WINSTL_INT_TO_STRING
 #define WINSTL_INCL_H_WINSTL_INT_TO_STRING
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MAJOR    1
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MINOR    4
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MINOR    5
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_REVISION 1
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     23
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -129,10 +129,10 @@ namespace winstl_project
  * Functions
  */
 
-#ifdef __STLSOFT_CF_NAMESPACE_SUPPORT
+#ifdef STLSOFT_CF_NAMESPACE_SUPPORT
 namespace int_to_string_tls
 {
-#endif /* __STLSOFT_CF_NAMESPACE_SUPPORT */
+#endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
 template< ss_typename_param_k C
         , ws_size_t           CCH
@@ -324,9 +324,9 @@ private:
 #endif /* 0 */
 };
 
-#ifdef __STLSOFT_CF_NAMESPACE_SUPPORT
+#ifdef STLSOFT_CF_NAMESPACE_SUPPORT
 } // namespace int_to_string_tls
-#endif /* __STLSOFT_CF_NAMESPACE_SUPPORT */
+#endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
 
 template< ss_typename_param_k C
@@ -340,13 +340,13 @@ inline C *i2str_get_tss_buffer()
     return s_buffer;
 #else
 
-#ifdef __STLSOFT_CF_NAMESPACE_SUPPORT
+#ifdef STLSOFT_CF_NAMESPACE_SUPPORT
     typedef int_to_string_tls::Key<C, CCH>      Key;
     typedef int_to_string_tls::Slot<C, CCH>     Slot;
 #else
     typedef Key<C, CCH>                         Key;
     typedef Slot<C, CCH>                        Slot;
-#endif /* __STLSOFT_CF_NAMESPACE_SUPPORT */
+#endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
     static Key      s_index;
     Slot            *slot   =   s_index.GetSlot();

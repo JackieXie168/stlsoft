@@ -4,11 +4,11 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     22nd December 2005
+ * Updated:     29th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MAJOR        3
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MINOR        1
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_REVISION     1
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_EDIT         55
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MAJOR    3
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MINOR    1
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -319,7 +319,7 @@ public:
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL source", 0 == cch || NULL != src);
 
 #ifdef _DEBUG
-        memset(dest, 0, cch * sizeof(char_type));
+        ::memset(dest, 0, cch * sizeof(char_type));
 #endif /* _DEBUG */
 
         for(ret = dest; 0 < cch; --cch, ++dest, ++src)
@@ -384,9 +384,9 @@ public:
     {
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
         return (int_type)(c);
-#else
+#else /* ? compiler */
         return static_cast<int_type>(static_cast<ss_typename_type_k sign_traits<char_type>::unsigned_type>(c));
-#endif /* STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
     }
 
     /// Evaluates whether \c lhs and \c rhs are equivalent
@@ -667,7 +667,7 @@ public:
 STLSOFT_TEMPLATE_SPECIALISATION
 inline char *stlsoft_char_traits<char>::assign(char *dest, ss_size_t cch, char const &c)
 {
-    return static_cast<char*>(memset(dest, c, cch * sizeof(char)));
+    return static_cast<char*>(::memset(dest, c, cch * sizeof(char)));
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -693,7 +693,7 @@ STLSOFT_TEMPLATE_SPECIALISATION
 inline char *stlsoft_char_traits<char>::copy(char *dest, char const *src, ss_size_t cch)
 {
 #ifdef _DEBUG
-    memset(dest, 0, cch * sizeof(char));
+    ::memset(dest, 0, cch * sizeof(char));
 #endif /* _DEBUG */
 
     return static_cast<char*>(memcpy(dest, src, cch * sizeof(char)));
@@ -702,7 +702,7 @@ inline char *stlsoft_char_traits<char>::copy(char *dest, char const *src, ss_siz
 STLSOFT_TEMPLATE_SPECIALISATION
 inline ss_size_t stlsoft_char_traits<char>::length(char const *s)
 {
-    return strlen(s);
+    return ::strlen(s);
 }
 
 /* wchar_t */
@@ -710,7 +710,7 @@ inline ss_size_t stlsoft_char_traits<char>::length(char const *s)
 STLSOFT_TEMPLATE_SPECIALISATION
 inline ss_size_t stlsoft_char_traits<wchar_t>::length(wchar_t const *s)
 {
-    return wcslen(s);
+    return ::wcslen(s);
 }
 
 #endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS && !STLSOFT_COMPILER_IS_DMC */

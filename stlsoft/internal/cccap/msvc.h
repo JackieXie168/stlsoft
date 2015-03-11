@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     16th January 2006
+ * Updated:     30th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     6
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      74
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -202,12 +202,14 @@
 
 /* Static assertions */
 #define __STLSOFT_CF_STATIC_ASSERT_SUPPORT
+#define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 #define __STLSOFT_CF_STATIC_ASSERT_RELEASE_OPTIMISATION_SUPPORT
 
 /* Exception support */
 #ifdef _CPPUNWIND
 # define __STLSOFT_CF_EXCEPTION_SUPPORT
+# define STLSOFT_CF_EXCEPTION_SUPPORT
 #else
  /* Not defined */
 #endif /* _CPPUNWIND */
@@ -229,6 +231,7 @@
 
 #if _MSC_VER >= 1020
 # define __STLSOFT_CF_NAMESPACE_SUPPORT
+# define STLSOFT_CF_NAMESPACE_SUPPORT
 #endif /* _MSC_VER >= 1020 */
 
 #define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
@@ -239,6 +242,7 @@
 
 /* Template support */
 #define __STLSOFT_CF_TEMPLATE_SUPPORT
+#define STLSOFT_CF_TEMPLATE_SUPPORT
 
 #if _MSC_VER < 1100
 # define STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
@@ -370,6 +374,7 @@
 
 #if _MSC_VER >= 1200
 # define __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+# define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
 #else
  /* Not defined */
 #endif /* _MSC_VER */
@@ -423,10 +428,12 @@
 
 #if _MSC_VER >= 1310
 # define __STLSOFT_CF_KOENIG_LOOKUP_SUPPORT
+# define STLSOFT_CF_ADL_LOOKUP_SUPPORT
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1300
 # define __STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
+# define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1300

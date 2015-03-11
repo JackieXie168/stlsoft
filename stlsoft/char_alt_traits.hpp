@@ -4,11 +4,11 @@
  * Purpose:     char_alt_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     18th December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_ALT_TRAITS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_ALT_TRAITS_MINOR    1
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_ALT_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_ALT_TRAITS_EDIT     26
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_ALT_TRAITS_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ struct char_alt_traits
     typedef not C           alt_char_type;  //!< The alternatve char type
 };
 
-#else
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 template <class C>
 struct char_alt_traits;

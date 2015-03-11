@@ -4,11 +4,11 @@
  * Purpose:     Class template that allows built-in & aggregate types to be treated as 1st-class types.
  *
  * Created:     8th September 2002
- * Updated:     22nd December 2005
+ * Updated:     21st January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      35
+# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -205,7 +205,7 @@ public:
     ss_explicit_k first_class_promoter(U &value)
         : m_value(value)
     {}
-#else
+#else /* ? __STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k first_class_promoter(value_type const &value)
         : m_value(value)
     {}
@@ -227,9 +227,9 @@ public:
         STLSOFT_STATIC_ASSERT(sizeof(class_type) == sizeof(value_type));
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
         STLSOFT_ASSERT(sizeof(class_type) == sizeof(value_type));
-#else
+#else /* ? compiler */
         STLSOFT_MESSAGE_ASSERT("first_class_promoter used for inappropriate type", sizeof(class_type) == sizeof(value_type));
-#endif /* !STLSOFT_COMPILER_IS_WATCOM */
+#endif /* compiler */
     }
 
     /// Copy assignment operator
