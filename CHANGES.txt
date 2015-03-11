@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  29th December 2007
+; Updated:  5th January 2008
 
 ============================================================================
 
@@ -15,6 +15,24 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.17 (5th January 2008)
+
+Summary:
+==========
+
+ * bug fix for UNIXSTL on Leopard/GCC 4.0.1
+
+Fixes:
+======
+
+ UNIXSTL:
+ --------
+
+ ~ Fixed new incompatibility in the definition of UNIXSTL_ASSERT for the
+   Mac OS-X platform, evinced with Leopard and GCC 4.0.1
 
 ============================================================================
 

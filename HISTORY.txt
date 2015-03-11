@@ -2,10 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  29th December 2007
+; Updated:  5th January 2008
 
 ============================================================================
 
+
+5th January 2008 - 1.9.17 released
+----------------------------------
+
+ * bug fix for UNIXSTL on Leopard/GCC 4.0.1
 
 29th December 2007 - 1.9.16 released
 ------------------------------------
