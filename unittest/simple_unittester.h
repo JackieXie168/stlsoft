@@ -4,7 +4,7 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_MAJOR      1
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_MINOR      3
 # define STLSOFT_VER_H_SIMPLE_UNITTESTER_REVISION   1
-# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       14
+# define STLSOFT_VER_H_SIMPLE_UNITTESTER_EDIT       15
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,8 +127,8 @@ extern "C" unittest_host *get_unittest_host(void);
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} // namespace unittest
-} // namespace stlsoft
+} /* namespace unittest */
+} /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

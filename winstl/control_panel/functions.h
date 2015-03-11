@@ -4,7 +4,7 @@
  * Purpose:     Control Panel functions.
  *
  * Created:     1st April 2006
- * Updated:     27th May 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,19 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       4
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   4
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 3)
+[Incompatibilies-end]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -426,10 +436,10 @@ inline void control_panel_stop(control_panel_entry_t entry, HWND hwnd, ss_size_t
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 

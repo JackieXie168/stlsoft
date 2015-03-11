@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     10th June 2006
+ * Updated:     16th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      8
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       70
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -277,8 +277,8 @@
  /* Not defined */
 #endif /* __DMC__ */
 
-//#define __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-//#define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#define __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
+#define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 
 #if defined(_STLPORT_VERSION) ||  /* Always for STLport */ \
     defined(__STL_USE_NAMESPACES) /* Only if discriminated by SGI STL */

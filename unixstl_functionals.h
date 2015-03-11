@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_MAJOR    2
 # define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_MINOR    3
 # define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_REVISION 1
-# define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_EDIT     32
+# define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,10 +123,10 @@ public:
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace unixstl
+} /* namespace unixstl */
 # else
-} // namespace unixstl_project
-} // namespace stlsoft
+} /* namespace unixstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 

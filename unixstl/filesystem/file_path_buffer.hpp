@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     10th June 2006
+ * Updated:     14th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       46
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
 # include <unixstl/string_access.hpp>         // for string access shims
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS
+# include <stlsoft/string/copy_functions.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS */
 #include <unistd.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,6 +153,10 @@ private:
 /// \name Member Types
 /// @{
 public:
+    /// \brief The character type
+    typedef C                                                       char_type;
+    /// \brief The allocator type
+    typedef A                                                       allocator_type;
     /// \brief The current parameterisation of the type
     typedef basic_file_path_buffer<C, A>                            class_type;
     /// \brief The value type
@@ -260,6 +267,16 @@ public:
     size_type size() const
     {
         return m_buffer.size();
+    }
+
+    /// \brief Copies the contents into a caller supplied buffer
+    ///
+    /// \param buffer Pointer to character buffer to receive the contents.
+    ///  May be NULL, in which case the method returns size().
+    /// \param cchBuffer Number of characters of available space in \c buffer.
+    size_type copy(char_type *buffer, size_type cchBuffer) const
+    {
+        return stlsoft_ns_qual(copy_contents)(buffer, cchBuffer, m_buffer.data(), m_buffer.size());
     }
 /// @}
 

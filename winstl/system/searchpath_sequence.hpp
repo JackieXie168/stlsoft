@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     10th June 2006
+ * Updated:     13th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    0
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 1
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     76
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 2
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION
-# include <winstl/system_version.hpp>
+# include <winstl/system/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION */
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SPIN_MUTEX
 # include <winstl/synch/spin_mutex.hpp>

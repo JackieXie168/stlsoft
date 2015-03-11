@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     10th June 2006
+ * Updated:     13th June 2006
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     99
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,6 +102,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS
+# include <stlsoft/string/copy_functions.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -203,6 +206,10 @@ private:
 /// \name Member Types
 /// @{
 public:
+    /// \brief The character type
+    typedef C                                                       char_type;
+    /// \brief The allocator type
+    typedef A                                                       allocator_type;
     /// \brief The current parameterisation of the type
     typedef basic_file_path_buffer<C, A>                            class_type;
     /// \brief The value type
@@ -312,6 +319,16 @@ public:
     size_type size() const
     {
         return m_buffer.size();
+    }
+
+    /// \brief Copies the contents into a caller supplied buffer
+    ///
+    /// \param buffer Pointer to character buffer to receive the contents.
+    ///  May be NULL, in which case the method returns size().
+    /// \param cchBuffer Number of characters of available space in \c buffer.
+    size_type copy(char_type *buffer, size_type cchBuffer) const
+    {
+        return stlsoft_ns_qual(copy_contents)(buffer, cchBuffer, m_buffer.data(), m_buffer.size());
     }
 /// @}
 

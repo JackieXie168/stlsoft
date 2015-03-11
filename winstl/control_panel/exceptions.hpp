@@ -4,7 +4,7 @@
  * Purpose:     Control Panel Library exception classes.
  *
  * Created:     1st April 2006
- * Updated:     27th May 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT        5
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,10 @@
 
 /*
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
-*/
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 3)
+[Incompatibilies-end]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

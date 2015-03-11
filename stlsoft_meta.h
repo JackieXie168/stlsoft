@@ -4,7 +4,7 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_META_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_META_MINOR       21
 # define STLSOFT_VER_H_STLSOFT_META_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_META_EDIT        120
+# define STLSOFT_VER_H_STLSOFT_META_EDIT        121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1055,7 +1055,7 @@ struct has_referent_type<void>
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

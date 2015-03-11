@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     65
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -603,10 +603,10 @@ typedef us_streamoff_t      streamoff_t;        //!< streamoff
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace unixstl
+} /* namespace unixstl */
 # else
-} // namespace unixstl_project
-} // namespace stlsoft
+} /* namespace unixstl_project */
+} /* namespace stlsoft */
 namespace unixstl = ::stlsoft::unixstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */

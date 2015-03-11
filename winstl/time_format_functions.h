@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    3
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 3
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     43
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 4
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
-# include <stlsoft/integer_to_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING
+# include <stlsoft/conversion/integer_to_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
@@ -773,10 +773,10 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW(   LCID                locale      
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 

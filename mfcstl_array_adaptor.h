@@ -5,7 +5,7 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MAJOR    3
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MINOR    4
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION 1
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     51
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -578,10 +578,10 @@ private:
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace mfcstl
+} /* namespace mfcstl */
 # else
-} // namespace mfcstl_project
-} // namespace stlsoft
+} /* namespace mfcstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 

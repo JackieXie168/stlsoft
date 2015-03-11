@@ -4,7 +4,7 @@
  * Purpose:     Definition of the tss_index type.
  *
  * Created:     20th March 2005
- * Updated:     10th June 2006
+ * Updated:     12th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -103,7 +103,7 @@ namespace platformstl_project
 	 * The class is not actually defined in the
 	 * \link ::platformstl platformstl\endlink namespace. Rather, it
 	 * resolves to the appropriate type for the given platform, relying on
-	 * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+	 * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
 	 * of the resolved platform-specific types.
 	 *
 	 * When compiling on UNIX platforms, the platformstl::tss_index

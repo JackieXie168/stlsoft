@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the array_veneer template.
  *
  * Created:     28th January 2003
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_MAJOR     3
 # define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_MINOR     4
 # define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_REVISION  1
-# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_EDIT      51
+# define MFCSTL_VER_H_MFCSTL_ARRAY_VENEER_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -797,10 +797,10 @@ inline ms_bool_t operator >=(ss_typename_type_k array_veneer<C, T>::iterator con
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace mfcstl
+} /* namespace mfcstl */
 # else
-} // namespace mfcstl_project
-} // namespace stlsoft
+} /* namespace mfcstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 

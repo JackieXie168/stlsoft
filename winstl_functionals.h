@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_MAJOR      2
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_MINOR      4
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_REVISION   1
-# define WINSTL_VER_H_WINSTL_FUNCTIONALS_EDIT       64
+# define WINSTL_VER_H_WINSTL_FUNCTIONALS_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -140,10 +140,10 @@ public:
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 

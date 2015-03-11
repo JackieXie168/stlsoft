@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     29
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -528,10 +528,10 @@ typedef is_streamoff_t      streamoff_t;        //!< streamoff
 #ifndef _INETSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace inetstl
+} /* namespace inetstl */
 # else
-} // namespace inetstl_project
-} // namespace stlsoft
+} /* namespace inetstl_project */
+} /* namespace stlsoft */
 namespace inetstl = ::stlsoft::inetstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_INETSTL_NO_NAMESPACE */

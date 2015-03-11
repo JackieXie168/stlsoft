@@ -4,7 +4,7 @@
  * Purpose:     proxy_iterator template class.
  *
  * Created:     28th June 2004
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MAJOR       2
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MINOR       5
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        42
+# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -483,7 +483,7 @@ inline ss_ptrdiff_t operator >=(proxy_iterator<E, V, T, C, R, P> const &lhs, pro
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

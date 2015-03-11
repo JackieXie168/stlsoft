@@ -4,7 +4,7 @@
  * Purpose:     Contains COM specific predicates and functionals.
  *
  * Created:     14th June 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_MAJOR      3
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_MINOR      2
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_REVISION   1
-# define COMSTL_VER_H_COMSTL_FUNCTIONALS_EDIT       56
+# define COMSTL_VER_H_COMSTL_FUNCTIONALS_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,10 +196,10 @@ inline std_mem_fun_ref_t<R, T> std_mem_fun_ref(R (STDAPICALLTYPE T::*f)())
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
+} /* namespace comstl */
 # else
-} // namespace comstl_project
-} // namespace stlsoft
+} /* namespace comstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 

@@ -5,7 +5,7 @@
  *              the glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_MAJOR      3
 # define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_MINOR      3
 # define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_REVISION   2
-# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_EDIT       63
+# define UNIXSTL_VER_H_UNIXSTL_FINDFILE_SEQUENCE_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,10 +116,10 @@ typedef glob_sequence   findfile_sequence;
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace unixstl
+} /* namespace unixstl */
 # else
-} // namespace unixstl_project
-} // namespace stlsoft
+} /* namespace unixstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 

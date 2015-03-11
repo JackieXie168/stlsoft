@@ -4,7 +4,7 @@
  * Purpose:     Platform header for directory manipulation functions.
  *
  * Created:     29th May 2006
- * Updated:     10th June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,6 +110,11 @@ namespace platformstl_project
  * Functions
  */
 
+/** \brief Creates the given directory, and any intermediate directories
+ *   that do not exist
+ *
+ * \ingroup group__library__file_system
+ */
 template <ss_typename_param_k S>
 inline bool_t create_directory_recurse(S const &dir)
 {

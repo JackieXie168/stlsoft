@@ -4,7 +4,7 @@
  * Purpose:     Reference-counting helper functions.
  *
  * Created:     2nd March 1996
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_H_INTERFACE_FUNCTIONS_MAJOR      2
 # define COMSTL_VER_COMSTL_H_INTERFACE_FUNCTIONS_MINOR      1
 # define COMSTL_VER_COMSTL_H_INTERFACE_FUNCTIONS_REVISION   1
-# define COMSTL_VER_COMSTL_H_INTERFACE_FUNCTIONS_EDIT       58
+# define COMSTL_VER_COMSTL_H_INTERFACE_FUNCTIONS_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -256,10 +256,10 @@ inline HRESULT is_interface_implemented(/* [in] */ LPUNKNOWN p, /* [in] */ REFII
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
+} /* namespace comstl */
 # else
-} // namespace comstl_project
-} // namespace stlsoft
+} /* namespace comstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 

@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     11th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MAJOR    1
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MINOR    5
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_REVISION 2
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     28
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_REVISION 3
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
-# include <stlsoft/integer_to_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING
+# include <stlsoft/conversion/integer_to_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING */
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_THREAD_MUTEX
 # include <winstl/synch/thread_mutex.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_THREAD_MUTEX */
@@ -311,7 +311,7 @@ private:
 };
 
 #ifdef STLSOFT_CF_NAMESPACE_SUPPORT
-} // namespace int_to_string_tls
+} /* namespace int_to_string_tls */
 #endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
 
@@ -424,10 +424,10 @@ inline C const *int_to_string(ws_uint64_t const &value)
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 

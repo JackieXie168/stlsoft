@@ -4,7 +4,7 @@
  * Purpose:     String duplication functions.
  *
  * Created:     26th May 2005
- * Updated:     10th June 2006
+ * Updated:     13th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     19
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT     20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,6 +103,8 @@ namespace stlsoft
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /** \brief Allocates a copy of the string, using the given allocator
  *
+ * \ingroup group__library__string
+ *
  * \param str The string to copy
  * \param cch The number of elements in str to copy
  * \param ator The allocator to use to allocate the memory
@@ -127,6 +129,8 @@ inline C *string_dup_impl(C const *str, size_t cch, A &ator)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \brief Allocates a copy of the string, using the given allocator
+ *
+ * \ingroup group__library__string
  *
  * \param str The string to copy
  * \param cch The number of elements in str to copy
@@ -158,6 +162,8 @@ inline C *string_dup(C const *str, size_t cch, A &ator)
 
 /** \brief Allocates a copy of the string, using the given allocator
  *
+ * \ingroup group__library__string
+ *
  * \param str The string to copy
  * \param ator The allocator to use to allocate the memory
  *
@@ -178,79 +184,7 @@ inline C *string_dup(C const *str, A &ator)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_stlsoft_cstring_functions(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "cstring_functions", __FILE__);
-
-            static const char       sz1[]       =   "";
-            static const char       sz2[]       =   "string 1";
-
-            char                    *ds1;
-            char                    *ds2;
-
-# ifdef STLSOFT_CF_THROW_BAD_ALLOC
-            try
-            {
-# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
-                {
-                    malloc_allocator<char>  ator;
-
-                    ds1 = string_dup(sz1, ator);
-                }
-# ifdef STLSOFT_CF_THROW_BAD_ALLOC
-            }
-            catch(stlsoft_ns_qual_std(bad_alloc) &)
-            {
-                ds1 = NULL;
-            }
-# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
-
-# ifdef STLSOFT_CF_THROW_BAD_ALLOC
-            try
-            {
-# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
-                {
-                    new_allocator<char>     ator;
-
-                    ds2 = string_dup(sz2, ator);
-                }
-# ifdef STLSOFT_CF_THROW_BAD_ALLOC
-            }
-            catch(stlsoft_ns_qual_std(bad_alloc) &)
-            {
-                ds2 = NULL;
-            }
-# endif /* STLSOFT_CF_THROW_BAD_ALLOC */
-
-            if( NULL != ds1 &&
-                0 != ::strcmp(sz1, ds1))
-            {
-                r->report("string_dup() (with non-empty string) failed", __LINE__);
-                bSuccess = false;
-            }
-
-            if( NULL != ds2 &&
-                0 != ::strcmp(sz2, ds2))
-            {
-                r->report("string_dup() (with empty string) failed", __LINE__);
-                bSuccess = false;
-            }
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_cstring_functions(test_stlsoft_cstring_functions);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/cstring_functions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */

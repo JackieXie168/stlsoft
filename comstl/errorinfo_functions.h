@@ -4,7 +4,7 @@
  * Purpose:     Error info functions.
  *
  * Created:     5th Feburary 2004
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MAJOR      3
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_MINOR      2
 # define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_REVISION   2
-# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       31
+# define COMSTL_VER_COMSTL_H_ERRORINFO_FUNCTIONS_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -359,10 +359,10 @@ inline HRESULT set_error_info(cs_char_w_t const *description, cs_char_w_t const 
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
+} /* namespace comstl */
 # else
-} // namespace comstl_project
-} // namespace stlsoft
+} /* namespace comstl_project */
+} /* namespace stlsoft */
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 

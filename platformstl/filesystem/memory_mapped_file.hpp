@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the memory_mapped_file components.
  *
  * Created:     20th March 2005
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,8 +45,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     10
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
@@ -69,13 +69,13 @@
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_MEMORY_MAPPED_FILE
-#  include <unixstl/memory_mapped_file.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_HPP_MEMORY_MAPPED_FILE */
+# ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE
+#  include <unixstl/filesystem/memory_mapped_file.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE */
 #elif defined(PLATFORMSTL_OS_IS_WIN32)
-# ifndef WINSTL_INCL_WINSTL_HPP_MEMORY_MAPPED_FILE
-#  include <winstl/memory_mapped_file.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_MEMORY_MAPPED_FILE */
+# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE
+#  include <winstl/filesystem/memory_mapped_file.hpp>
+# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE */
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
@@ -105,10 +105,12 @@ namespace platformstl_project
 
     /** \brief A facade for the platform's memory mapped file API.
      *
+     * \ingroup group__library__file_system
+     *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::memory_mapped_file

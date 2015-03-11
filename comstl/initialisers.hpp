@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     10th June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MAJOR       3
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MINOR       1
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    1
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        60
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,13 +89,16 @@ namespace comstl_project
  * Exception classes
  */
 
-/// Exception class thrown for COM initialisation failures
+/// \brief Exception class thrown for COM initialisation failures
 class com_initialisation_exception
     : public com_exception
 {
+/// \name Member Types
+/// @{
 public:
     typedef com_exception                   parent_class_type;
     typedef com_initialisation_exception    class_type;
+/// @}
 
 /// \name Construction
 /// @{
@@ -121,14 +124,19 @@ private:
 ////////////////////////////////////////////////////////////////////////////
 // Exception policies
 
-/// Exception policy whose action is to do nothing
+/// \brief Exception policy whose action is to do nothing
 // [[synesis:class:exception-policy: com_initialisation_exception_policy]]
 struct com_initialisation_exception_policy
 {
+/// \name Member Types
+/// @{
 public:
     /// The exception type
     typedef com_initialisation_exception    thrown_type;
+/// @}
 
+/// \name Operators
+/// @{
 public:
     /// The function call operator, which throws the exception
     ///
@@ -137,6 +145,7 @@ public:
     {
         throw com_initialisation_exception(hr);
     }
+/// @}
 };
 
 /// Exception policy whose action is to do nothing
@@ -146,7 +155,7 @@ typedef stlsoft_ns_qual(null_exception_policy)  ignore_initialisation_exception_
  * Classes
  */
 
-/// Initialises the COM libraries
+/// \brief Initialises the COM libraries
 ///
 /// This class is used to initialise the COM libraries. It can respond to
 /// CoInitializeEx argument flags when translated in a DCOM build.
@@ -155,6 +164,8 @@ template<   ss_typename_param_k IP  /* Initialisation policy type */
         >
 class initialiser
 {
+/// \name Member Types
+/// @{
 private:
     typedef initialiser   class_type;
 public:
@@ -164,8 +175,10 @@ public:
     typedef XP                                                      exception_policy_type;
     /// The thrown type
     typedef ss_typename_type_k exception_policy_type::thrown_type   thrown_type;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
     /// Initialises via CoInitialize()
     initialiser();
@@ -175,8 +188,10 @@ public:
 #endif /* __COMSTL_CF_DCOM_SUPPORT */
     /// Uninitialises via CoUninitialize()
     ~initialiser() stlsoft_throw_0();
+/// @}
 
-// Attributes
+/// \name Attributes
+/// @{
 public:
     /// Reflects whether the COM libraries were initialised
     cs_bool_t is_initialised() const;
@@ -184,15 +199,20 @@ public:
     cs_bool_t operator !() const;
     /// The result of the call to CoInitialize()/CoInitializeEx()
     HRESULT get_HRESULT() const;
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     HRESULT const   m_hr;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     initialiser(class_type const &rhs);
     class_type const &operator =(class_type const &rhs);
+/// @}
 };
 
 ////////////////////////////////////////////////////////////////////////////
@@ -237,21 +257,27 @@ public:
 ////////////////////////////////////////////////////////////////////////////
 // Typedefs for common instantiations
 
+/// \brief Instantiation that initialises via CoInitialize() but does not throw on failure.
 typedef initialiser<CoInitialize_policy, ignore_initialisation_exception_policy>    com_init_nothrow;
+/// \brief Instantiation that initialises via OleInitialize() but does not throw on failure.
 typedef initialiser<OleInitialize_policy, ignore_initialisation_exception_policy>   ole_init_nothrow;
 
+/// \brief Instantiation that initialises via CoInitialize() and throws on failure.
 typedef initialiser<CoInitialize_policy, com_initialisation_exception_policy>       com_init;
+/// \brief Instantiation that initialises via OleInitialize() and throws on failure.
 typedef initialiser<OleInitialize_policy, com_initialisation_exception_policy>      ole_init;
 
-/// Deprecated
+/// \deprecated
 typedef com_init_nothrow                                                            com_initialiser;
-/// Deprecated
+/// \deprecated
 typedef ole_init_nothrow                                                            ole_initialiser;
 
 ////////////////////////////////////////////////////////////////////////////
 // Typedefs for US-English spellers
 
+/// \brief Equivalent to com_initialiser
 typedef com_initialiser com_initializer;
+/// \brief Equivalent to ole_initialiser
 typedef ole_initialiser ole_initializer;
 
 ////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Contains the remove_from_scope class.
  *
  * Created:     10th June 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_MINOR      2
 # define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_EDIT       31
+# define STLSOFT_VER_H_STLSOFT_REMOVE_FROM_SCOPE_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ typedef inert   remove_from_scope;
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* _STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

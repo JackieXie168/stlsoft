@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     18th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        86
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h \brief [C, C++] The root header for the \ref group__project__comstl "COMSTL" project. */
@@ -581,10 +581,10 @@ typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
+} /* namespace comstl */
 # else
-} // namespace comstl_project
-} // namespace stlsoft
+} /* namespace comstl_project */
+} /* namespace stlsoft */
 namespace comstl = ::stlsoft::comstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
