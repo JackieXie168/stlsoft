@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     31st August 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 2
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     33
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp \brief [C++ only; requires WTL library] The root header for the \ref group__project__wtlstl "WTLSTL" project. */
@@ -498,14 +498,8 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 # define wtlstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param ar An array whose dimension is to be evaluated
- */
-#define WTLSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define WTLSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
 # define wtlstl_num_elements(ar)                        WTLSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

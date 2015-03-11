@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     31st August 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     6
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  5
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      29
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp \brief [C++ only] The root header for the \ref group__project__acestl "ACESTL" project. */
@@ -439,14 +439,8 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
 # define acestl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param ar An array whose dimension is to be evaluated
- */
-#define ACESTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define ACESTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
 # define acestl_num_elements(ar)                        ACESTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

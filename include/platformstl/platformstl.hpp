@@ -5,7 +5,7 @@
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     10th June 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       11
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.hpp

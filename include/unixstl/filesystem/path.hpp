@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     18th October 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       212
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       213
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -367,17 +367,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_path template for the ANSI character type \c char
+/** \brief Specialisation of the basic_path template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
 typedef basic_path<us_char_a_t, filesystem_traits<us_char_a_t> >       path_a;
-/** \brief Instantiation of the basic_path template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_path template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__file_system
  */
 typedef basic_path<us_char_w_t, filesystem_traits<us_char_w_t> >       path_w;
-/** \brief Instantiation of the basic_path template for the ANSI character type \c char
+/** \brief Specialisation of the basic_path template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
@@ -593,9 +593,9 @@ inline void swap(basic_path<C, T, A> &lhs, basic_path<C, T, A> &rhs)
  * Shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for unixstl::basic_path
+/** \brief \ref group__concept__shim__string_access__c_str_data for unixstl::basic_path
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -621,9 +621,9 @@ inline us_char_w_t const *c_str_data_w(unixstl_ns_qual(basic_path)<us_char_w_t, 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for unixstl::basic_path
+/** \brief \ref group__concept__shim__string_access__c_str_len for unixstl::basic_path
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -651,9 +651,9 @@ inline us_size_t c_str_len_w(unixstl_ns_qual(basic_path)<us_char_w_t, T, A> cons
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for unixstl::basic_path
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for unixstl::basic_path
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -681,9 +681,9 @@ inline us_char_w_t const *c_str_ptr_w(unixstl_ns_qual(basic_path)<us_char_w_t, T
 
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for unixstl::basic_path
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for unixstl::basic_path
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -713,9 +713,9 @@ inline us_char_w_t const *c_str_ptr_null_w(unixstl_ns_qual(basic_path)<us_char_w
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for unixstl::basic_path
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for unixstl::basic_path
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

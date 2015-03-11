@@ -5,7 +5,7 @@
  *              library.
  *
  * Created:     22nd May 2006
- * Updated:     15th September 2006
+ * Updated:     9th December 2006
  *
  * www:         http://www.stlsoft.org/
  *
@@ -109,13 +109,13 @@ int main()
     }
     catch(std::exception &x)
     {
-        cerr << "Unhandled error: " << x.what() << endl;
+        cerr << "Error: " << x.what() << endl;
 
         return EXIT_FAILURE;
     }
     catch(...)
     {
-        cerr << "Unhandled unknown error" << endl;
+        cerr << "Unknown error" << endl;
 
         return EXIT_FAILURE;
     }

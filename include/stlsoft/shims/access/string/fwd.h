@@ -5,7 +5,7 @@
  *              c_str_ptr_null, c_str_data, c_str_len, c_str_size.
  *
  * Created:     11th April 2005
- * Updated:     13th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
 /** \file stlsoft/shims/access/string/std/fwd.h
  *
  * \brief [C, C++] Forward declaration of the degenerate string access shims.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_MINOR    0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_REVISION 1
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_EDIT     9
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_H_FWD_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              classes.
  *
  * Created:     1st November 1994
- * Updated:     15th September 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        62
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -639,48 +639,72 @@ private:
  * Shims
  */
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T *get_ptr(auto_destructor<T> &ad)
 {
     return ad.get_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T const *get_ptr(auto_destructor<T> const &ad)
 {
     return ad.get_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T *get_ptr(return_value_destructor<T> &ad)
 {
     return ad.get_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T const *get_ptr(return_value_destructor<T> const &ad)
 {
     return ad.get_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T *get_ptr(auto_array_destructor<T> &ad)
 {
     return ad.get_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T const *get_ptr(auto_array_destructor<T> const &ad)
 {
     return ad.get_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T *get_ptr(return_value_array_destructor<T> &ad)
 {
     return ad.get_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T const *get_ptr(return_value_array_destructor<T> const &ad)
 {

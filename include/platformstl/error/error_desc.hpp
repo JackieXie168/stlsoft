@@ -4,7 +4,7 @@
  * Purpose:     Error .
  *
  * Created:     20th March 2005
- * Updated:     15th September 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT       16
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,11 +126,11 @@ namespace platformstl_project
     class basic_error_desc
     {};
 
-    /// \brief Instantiation of the basic_error_desc template for the ANSI character type \c char
+    /// \brief Specialisation of the basic_error_desc template for the ANSI character type \c char
     typedef basic_error_desc<char>          path_a;
-    /// \brief Instantiation of the basic_error_desc template for the Unicode character type \c wchar_t
+    /// \brief Specialisation of the basic_error_desc template for the Unicode character type \c wchar_t
     typedef basic_error_desc<wchar_t>       path_w;
-    /// \brief Instantiation of the basic_error_desc template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
+    /// \brief Specialisation of the basic_error_desc template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
     typedef basic_error_desc<tchar>         path;
 
 #elif defined(STLSOFT_COMPILER_IS_MSVC) && \

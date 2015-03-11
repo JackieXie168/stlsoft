@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta32
+File:     STLSoft-ReleaseNotes-1.9.1-beta33
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  7th December 2006
+Updated:  13th December 2006
 
 ============================================================================
 
@@ -29,7 +29,28 @@ Updated:  7th December 2006
 
 ============================================================================
 
-Changes for 1.9.1 beta 31 (6th December 2006):
+Changes for 1.9.1 beta 33 (13th December 2006):
+
+Changes:
+========
+
+ ~ all comstl__??? functions are no longer in the comstl namespace (when in
+   C++ compilation); their non comstl__-prefixed equivalents remain in the
+   comstl namespace. For example, the full name of the 
+    comstl::comstl__set_error_info_description_w() function is now
+    comstl__set_error_info_description_w() whether in C or C++; the name of
+    comstl::set_error_info_description_w() remains as it was.
+
+Additions:
+==========
+
+ + comstl::IDispatchImpl4
+
+ + comstl::try_interface_cast
+
+============================================================================
+
+Changes for 1.9.1 beta 32 (6th December 2006):
 
 Changes:
 ========

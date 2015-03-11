@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>ACE_INET_Addr</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   1
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       28
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -207,9 +207,9 @@ inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_data_w(ACE_INET_Addr cons
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_data for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_data(ACE_INET_Addr const &addr)
@@ -232,9 +232,9 @@ inline as_size_t c_str_len_w(ACE_INET_Addr const &addr)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_len for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline as_size_t c_str_len(ACE_INET_Addr const &addr)
@@ -257,9 +257,9 @@ inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_ptr_w(ACE_INET_Addr const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr(ACE_INET_Addr const &addr)
@@ -282,9 +282,9 @@ inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_ptr_null_w(ACE_INET_Addr 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr_null(ACE_INET_Addr const &addr)
@@ -294,9 +294,9 @@ inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr_null(ACE_INET_Addr cons
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for ACE_INET_Addr
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  *
  */
 template <ss_typename_param_k S>
@@ -325,9 +325,9 @@ inline S &operator <<(S &s, ACE_INET_Addr const &addr)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for ACE_INET_Addr
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  *
  */
 template <ss_typename_param_k S>

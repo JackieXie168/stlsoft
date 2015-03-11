@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Primary include file for string access shims representing
  *   COM types.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_SHIMS_ACCESS_HPP_STRING
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_MINOR    0
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_REVISION 1
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_EDIT     98
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_EDIT     99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

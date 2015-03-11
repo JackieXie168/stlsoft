@@ -64,7 +64,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-	_MSC_VER < 1200
+    _MSC_VER < 1200
 # include <stlsoft/string/shim_string_vc5_.hpp>
 #else /* ? compiler */
 

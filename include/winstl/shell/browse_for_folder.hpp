@@ -4,7 +4,7 @@
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     14th July 2006
+ * Updated:     9th December 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 1
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     52
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 2
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -262,7 +262,7 @@ inline ws_bool_t shell_browse_impl( C const         *title
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, HWND hwndOwner, LPCITEMIDLIST pidlRoot)
+inline ws_bool_t browse_for_folder(S const &title, C *displayName, UINT flags, HWND hwndOwner, LPCITEMIDLIST pidlRoot)
 {
     return shell_browse_impl(stlsoft_ns_qual(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, static_cast<C const*>(NULL));
 }
@@ -282,7 +282,7 @@ template<   ss_typename_param_k S0
         ,   ss_typename_param_k C
         ,   ss_typename_param_k S1
         >
-inline ws_bool_t browse_for_folder(const S0 &title, C *displayName, UINT flags, HWND hwndOwner, LPCITEMIDLIST pidlRoot, S1 const &defaultFolder)
+inline ws_bool_t browse_for_folder(S0 const &title, C *displayName, UINT flags, HWND hwndOwner, LPCITEMIDLIST pidlRoot, S1 const &defaultFolder)
 {
     return shell_browse_impl(stlsoft_ns_qual(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, stlsoft_ns_qual(c_str_ptr)(defaultFolder));
 }
@@ -299,7 +299,7 @@ inline ws_bool_t browse_for_folder(const S0 &title, C *displayName, UINT flags, 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, HWND hwndOwner)
+inline ws_bool_t browse_for_folder(S const &title, C *displayName, UINT flags, HWND hwndOwner)
 {
     return browse_for_folder(title, displayName, flags, hwndOwner, static_cast<LPCITEMIDLIST>(0));
 }
@@ -316,7 +316,7 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, H
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, LPCITEMIDLIST pidlRoot)
+inline ws_bool_t browse_for_folder(S const &title, C *displayName, UINT flags, LPCITEMIDLIST pidlRoot)
 {
     return browse_for_folder(title, displayName, flags, 0, pidlRoot);
 }
@@ -332,7 +332,7 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, L
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags)
+inline ws_bool_t browse_for_folder(S const &title, C *displayName, UINT flags)
 {
     return browse_for_folder(title, displayName, flags, 0, 0);
 }
@@ -353,14 +353,30 @@ template<   ss_typename_param_k S0
         ,   ss_typename_param_k C
         ,   ss_typename_param_k S1
         >
-inline ws_bool_t browse_for_folder(  const S0    &title
-                            ,   C           *displayName
-                            ,   UINT        flags
-                            ,   const S1    &defaultFolder
-                            )
+inline ws_bool_t browse_for_folder( S0 const    &title
+                                ,   C           *displayName
+                                ,   UINT        flags
+                                ,   S1 const    &defaultFolder
+                                )
 {
     return browse_for_folder(title, displayName, flags, 0, 0, defaultFolder);
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+// Disambiguates between the two four parameter overloads 
+//  browse_for_folder(S const &, C *, UINT , LPCITEMIDLIST )
+// and
+// template < . . . >
+//  browse_for_folder(S0 const&, C*, UINT, S1 const &)
+template<   ss_typename_param_k S
+        ,   ss_typename_param_k C
+        >
+inline ws_bool_t browse_for_folder(S const &title, C *displayName, UINT flags, LPITEMIDLIST pidlRoot)
+{
+    return browse_for_folder(title, displayName, flags, const_cast<LPCITEMIDLIST>(pidlRoot));
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 #endif /* compiler */
 
 /** \brief Browses the shell namespace according to the given parameters
@@ -373,7 +389,7 @@ inline ws_bool_t browse_for_folder(  const S0    &title
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline ws_bool_t browse_for_folder(const S &title, C *displayName)
+inline ws_bool_t browse_for_folder(S const &title, C *displayName)
 {
     return browse_for_folder(title, displayName, 0, 0, 0);
 }

@@ -4,7 +4,7 @@
  * Purpose:     Basic meta programming constructs.
  *
  * Created:     19th November 1998
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MAJOR      4
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MINOR      1
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__REVISION   1
-# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       122
+# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ namespace stlsoft
  */
 
 /** \brief \def STLSOFT_GEN_TRAIT_SPECIALISATION
- * \ingroup code_modification_macros
+ * \ingroup group__project__stlsoft__code_modification_macros
  *
  * \brief Used to define a specialisation of a traits type
  *
@@ -91,7 +91,7 @@ namespace stlsoft
 
 
 /** \brief \def STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE
- * \ingroup code_modification_macros
+ * \ingroup group__project__stlsoft__code_modification_macros
  *
  * \brief Used to define a specialisation of a traits type that contains a member type
  *

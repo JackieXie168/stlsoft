@@ -4,9 +4,9 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     27th November 2006
+ * Updated:     12th December 2006
  *
- * Thanks:		To Rupert Kittinger, for pointing out that prior
+ * Thanks:      To Rupert Kittinger, for pointing out that prior
  *              implementation that always yielded was not really "spinning".
  *
  * Home:        http://stlsoft.org/
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR       4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        47
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,8 +151,8 @@ public:
     ///
     /// \param p Pointer to an external counter variable. May be NULL, in
     ///  which case an internal member is used for the counter variable.
-	///
-	/// \note 
+    ///
+    /// \note 
     ss_explicit_k spin_mutex_base(atomic_int_type *p = NULL) stlsoft_throw_0()
         : m_spinCount((NULL != p) ? p : &m_internalCount)
         , m_internalCount(0)
@@ -166,7 +166,7 @@ public:
     ///
     /// \param p Pointer to an external counter variable. May be NULL, in
     ///  which case an internal member is used for the counter variable.
-	/// \param bYieldOnSpin
+    /// \param bYieldOnSpin
     spin_mutex_base(atomic_int_type *p, bool_type bYieldOnSpin) stlsoft_throw_0()
         : m_spinCount((NULL != p) ? p : &m_internalCount)
         , m_internalCount(0)
@@ -295,7 +295,7 @@ typedef spin_mutex_yield                                    spin_mutex;
 
 /** \brief This \ref group__concept__shims "control shim" aquires a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to aquire the lock.
  */
@@ -307,7 +307,7 @@ inline void lock_instance(winstl_ns_qual(spin_mutex_base)<SP> &mx)
 
 /** \brief This \ref group__concept__shims "control shim" releases a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to release the lock
  */

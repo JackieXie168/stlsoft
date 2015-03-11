@@ -4,7 +4,7 @@
  * Purpose:     Reference-counting helper functions.
  *
  * Created:     2nd March 1996
- * Updated:     4th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/util/object_functions.h
  *
  * \brief [C, C++] Definition of several interface and identity functions.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_OBJECT_FUNCTIONS
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MAJOR    3
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MINOR    0
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     60
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -88,7 +88,7 @@ namespace comstl_project
  * C functions
  */
 
-/** \brief Evaluates the an object identity
+/** \brief [C only] Evaluates the an object identity
  *
  * \param p The pointer to the object whose identity will be evaluated
  * \param identity
@@ -122,7 +122,7 @@ STLSOFT_INLINE HRESULT comstl__get_object_identity(/* [in] */ LPUNKNOWN p, /* [i
     return hr;
 }
 
-/** \brief Determines whether two interfaces refer to the same object
+/** \brief [C only] Determines whether two interfaces refer to the same object
  *
  * \return A status code indicating whether the two pointers refer to the same
  *          object
@@ -174,7 +174,7 @@ STLSOFT_INLINE HRESULT comstl__is_same_object(/* [in] */ LPUNKNOWN p1, /* [in] *
     return hr;
 }
 
-/** \brief Determines whether an object implements a given interface without adding a reference count
+/** \brief [C only] Determines whether an object implements a given interface without adding a reference count
  *
  * \return A status code indicating whether the given interface is implemented
  * \retval S_OK The interface is implemented and accessible
@@ -193,6 +193,15 @@ STLSOFT_INLINE HRESULT comstl__is_interface_implemented(/* [in] */ LPUNKNOWN p, 
 
     return hr;
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

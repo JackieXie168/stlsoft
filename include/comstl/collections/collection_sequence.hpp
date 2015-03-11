@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     6th December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 3
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     85
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -164,10 +164,10 @@ typedef collection_sequence&lt;IGUIDCollection
  * The value type is <b>GUID</b> and it is returned as a reference, as
  * the <b>GUID const &</b> in fact.
  *
- * The \ref COMSTL type <b>GUID_policy</b> controls how the <b>GUID</b>
+ * The \ref group__project__comstl type <b>GUID_policy</b> controls how the <b>GUID</b>
  * instances are initialised, copied and destroyed.
  *
- * The \ref COMSTL type forward_cloning_policy allows the sequence to provide
+ * The \ref group__project__comstl type forward_cloning_policy allows the sequence to provide
  * <a href = "http://sgi.com/tech/stl/ForwardIterator.html">Forward Iterator</a>
  * semantics.
  *

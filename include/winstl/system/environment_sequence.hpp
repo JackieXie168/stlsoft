@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     7th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     65
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -314,17 +314,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_environment_sequence template for the ANSI character type \c char
+/** \brief Specialisation of the basic_environment_sequence template for the ANSI character type \c char
  *
  * \ingroup group__library__system
  */
 typedef basic_environment_sequence<ws_char_a_t>     environment_sequence_a;
-/** \brief Instantiation of the basic_environment_sequence template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_environment_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__system
  */
 typedef basic_environment_sequence<ws_char_w_t>     environment_sequence_w;
-/** \brief Instantiation of the basic_environment_sequence template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_environment_sequence template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__system
  */

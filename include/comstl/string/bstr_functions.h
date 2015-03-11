@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     11th August 2006
+ * Updated:     9th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    1
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     69
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,9 +69,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -91,7 +91,7 @@ namespace comstl_project
  * C functions
  */
 
-/** \brief Creates a BSTR from a Unicode string
+/** \brief [C only] Creates a BSTR from a Unicode string
  *
  * \ingroup group__library__string
  *
@@ -104,7 +104,7 @@ STLSOFT_INLINE BSTR comstl__bstr_create_w(cs_char_w_t const *s)
     return STLSOFT_NS_GLOBAL(SysAllocString)(s);
 }
 
-/** \brief Creates a BSTR from a (part of a) Unicode string
+/** \brief [C only] Creates a BSTR from a (part of a) Unicode string
  *
  * \ingroup group__library__string
  *
@@ -120,7 +120,7 @@ STLSOFT_INLINE BSTR comstl__bstr_create_len_w(cs_char_w_t const *s, cs_size_t le
     return STLSOFT_NS_GLOBAL(SysAllocStringLen)(s, len);
 }
 
-/** \brief Creates a BSTR from an ANSI string
+/** \brief [C only] Creates a BSTR from an ANSI string
  *
  * \ingroup group__library__string
  *
@@ -158,7 +158,7 @@ STLSOFT_INLINE BSTR comstl__bstr_create_a(cs_char_a_t const *s)
     return bstr;
 }
 
-/** \brief Creates a BSTR from an ANSI string
+/** \brief [C only] Creates a BSTR from an ANSI string
  *
  * \ingroup group__library__string
  *
@@ -199,7 +199,7 @@ STLSOFT_INLINE BSTR comstl__bstr_create_len_a(cs_char_a_t const *s, cs_size_t le
     return bstr;
 }
 
-/** \brief Destroys a BSTR
+/** \brief [C only] Destroys a BSTR
  *
  * \ingroup group__library__string
  *
@@ -210,7 +210,7 @@ STLSOFT_INLINE void comstl__bstr_destroy(BSTR bstr)
     STLSOFT_NS_GLOBAL(SysFreeString)(bstr);
 }
 
-/** \brief Duplicates a BSTR
+/** \brief [C only] Duplicates a BSTR
  *
  * \ingroup group__library__string
  *
@@ -222,7 +222,7 @@ STLSOFT_INLINE BSTR comstl__bstr_dup(BSTR bstr)
     return comstl__bstr_create_w(bstr);
 }
 
-/** \brief Compares two BSTR strings
+/** \brief [C only] Compares two BSTR strings
  *
  * \ingroup group__library__string
  *
@@ -259,6 +259,15 @@ STLSOFT_INLINE int comstl__bstr_compare(BSTR s1, BSTR s2)
         }
     }
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

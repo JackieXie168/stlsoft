@@ -5,7 +5,7 @@
  *              libraries.
  *
  * Created:     12th May 2004
- * Updated:     7th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       26
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,8 +110,8 @@ private:
  * their function parameter declarations, resulting in compilation-time type
  * errors with some versions of the libraries, and not with others.
  *
- * \note See \link inetstl/filesystem_traits.h \endlink for an example of
- *  its use.
+ * \note See inetstl::filesystem_traits<char>::find_first_file() for an
+ * example of its use.
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k T1

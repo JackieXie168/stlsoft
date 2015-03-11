@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     27th August 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    6
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        151
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       4
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        154
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -184,7 +184,7 @@
 #ifdef __cplusplus
 # undef     INVALID_HANDLE_VALUE
 /** \def INVALID_HANDLE_VALUE
- * \brief A C++-only redifinition of this \#define which uses reinterpret_cast to
+ * \brief A C++-only redefinition of this \#define which uses reinterpret_cast to
  *  avoid C-style cast warnings.
  */
 # if defined(STLSOFT_COMPILER_IS_INTEL)
@@ -194,14 +194,14 @@
 # endif /* compiler */
 
 /** \def MAKEINTRESOURCE
- * \brief A C++-only redifinition of this \#define which uses C++ cast operators to
+ * \brief A C++-only redefinition of this \#define which uses C++ cast operators to
  *  avoid C-style cast warnings.
  */
 # undef     MAKEINTRESOURCE
 # define    MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
 
 /** \def MAKELANGID
- * \brief A C++-only redifinition of this \#define which uses C++ cast operators to
+ * \brief A C++-only redefinition of this \#define which uses C++ cast operators to
  *  avoid C-style cast warnings.
  */
 # undef     MAKELANGID
@@ -212,7 +212,7 @@
 /* # define    LOWORD(l)                   static_cast<WORD>(static_cast<DWORD>(l) & 0xffff) */
 
 /** \def INVALID_FILE_SIZE
- * \brief A C++-only redifinition of this \#define which uses C++ cast operators to
+ * \brief A C++-only redefinition of this \#define which uses C++ cast operators to
  *  avoid C-style cast warnings.
  */
 # undef     INVALID_FILE_SIZE
@@ -520,6 +520,85 @@ int main()
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Language agnostic macros.
+ */
+
+/** \def WINSTL_ITF_CALL(p)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ * 
+ * \brief Resolves to <b>p->lpVtbl</b> for C compilation, and to <b>p</b> in C++
+ *
+ * \see WINSTL_ITF_THIS, WINSTL_ITF_THIS0, WINSTL_IID_2_REF, WINSTL_REF_2_PTR
+ */
+
+#if defined(__cplusplus)
+# define WINSTL_ITF_CALL(p)         (p)
+#else /* ? __cplusplus */
+# define WINSTL_ITF_CALL(p)         (p)->lpVtbl
+#endif /* __cplusplus */
+
+/** \def WINSTL_ITF_THIS(p)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>p,</b> for C compilation, and to nothing in C++
+ *
+ * \see WINSTL_ITF_CALL, WINSTL_ITF_THIS0, WINSTL_IID_2_REF, WINSTL_REF_2_PTR
+ */
+
+#if defined(__cplusplus)
+# define WINSTL_ITF_THIS(p)
+#else /* ? __cplusplus */
+# define WINSTL_ITF_THIS(p)         (p),
+#endif /* __cplusplus */
+
+/** \def WINSTL_ITF_THIS0(p)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>p</b> for C compilation, and to nothing in C++
+ *
+ * \see WINSTL_ITF_CALL, WINSTL_ITF_THIS, WINSTL_IID_2_REF, WINSTL_REF_2_PTR
+ */
+
+#if defined(__cplusplus)
+# define WINSTL_ITF_THIS0(p)
+#else /* ? __cplusplus */
+# define WINSTL_ITF_THIS0(p)        (p)
+#endif /* __cplusplus */
+
+/** \def WINSTL_IID_2_REF(iid)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>&iid</b> for C compilation, and to <b>iid</b> in C++
+ *
+ * \see WINSTL_ITF_CALL, WINSTL_ITF_THIS, WINSTL_ITF_THIS0, WINSTL_REF_2_PTR
+ */
+
+#if defined(__cplusplus)
+# define WINSTL_IID_2_REF(iid)        (iid)
+#else /* ? __cplusplus */
+# define WINSTL_IID_2_REF(iid)        (&(iid))
+#endif /* __cplusplus */
+
+/** \def WINSTL_REF_2_PTR(iid)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief Resolves to <b>iid</b> for C compilation, and to <b>&iid</b> in C++
+ *
+ * \see WINSTL_ITF_CALL, WINSTL_ITF_THIS, WINSTL_ITF_THIS0, WINSTL_REF_2_REF
+ */
+
+#if defined(__cplusplus)
+# define WINSTL_REF_2_PTR(iid)        (&(iid))
+#else /* ? __cplusplus */
+# define WINSTL_REF_2_PTR(iid)        (iid)
+#endif /* __cplusplus */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The WinSTL uses a number of typedefs to aid in compiler-independence in the
@@ -649,19 +728,8 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
 # define winstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
- *
- * \param ar An array whose dimension is to be evaluated
- *
- * \remarks This is defined to \ref STLSOFT_NUM_ELEMENTS.
- *
- * \see The underlying technique that is used to proscribe the erroneous application of
- *  this construct to pointers and user-defined types that support subscript operators
- *  is described in Chapter 14 of
- *  <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>.
- */
-#define WINSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define WINSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
 # define winstl_num_elements(ar)                        WINSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

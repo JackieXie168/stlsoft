@@ -4,7 +4,7 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     25th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  2
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      2
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ namespace stlsoft
 </pre>
 \endhtmlonly
  *
- * \note Naturally, \ref group__concepts__shims__string_access "String Access
+ * \note Naturally, \ref group__concept__shim__string_access "String Access
  *  Shim" functions <b>c_str_ptr</b>, <b>c_str_data</b>, <b>c_str_len</b>
  *  are defined for the class template, so it may be manipulated
  *  generically. (This is very handy when used with the
@@ -201,12 +201,12 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Instantiation of the basic_error_desc template for the ANSI character type \c char
+/** \brief Specialisation of the basic_error_desc template for the ANSI character type \c char
  *
  * \ingroup group__library__error
  */
 typedef basic_error_desc<ss_char_a_t>   error_desc_a;
-/** \brief Instantiation of the basic_error_desc template for the character type \c char
+/** \brief Specialisation of the basic_error_desc template for the character type \c char
  *
  * \ingroup group__library__error
  */
@@ -269,9 +269,9 @@ inline ss_typename_type_k basic_error_desc<C>::size_type basic_error_desc<C>::si
 
 #ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C>
 inline C const *c_str_ptr_null(stlsoft_ns_qual(basic_error_desc)<C> const &e)
@@ -285,9 +285,9 @@ inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual(basic_error_desc)<ss_
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C>
 inline C const *c_str_ptr(stlsoft_ns_qual(basic_error_desc)<C> const &e)
@@ -301,9 +301,9 @@ inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual(basic_error_desc)<ss_char_
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C>
 inline C const *c_str_data(stlsoft_ns_qual(basic_error_desc)<C> const &e)
@@ -317,9 +317,9 @@ inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual(basic_error_desc)<ss_char
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::basic_error_desc
+/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::basic_error_desc
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k C>
 inline ss_size_t c_str_len(stlsoft_ns_qual(basic_error_desc)<C> const &e)
@@ -335,9 +335,9 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual(basic_error_desc)<ss_char_a_t> cons
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref section__concept__shims__pointer_access__get_ptr for stlsoft::basic_error_desc
+/** \brief \ref group__concept__shim__pointer_attribute__get_ptr for stlsoft::basic_error_desc
  *
- * \ingroup group__concept__shims__pointer_access
+ * \ingroup group__concept__shim__pointer_attribute
  */
 template <ss_typename_param_k C>
 inline C const *get_ptr(stlsoft_ns_qual(basic_error_desc)<C> const &e)
@@ -346,9 +346,9 @@ inline C const *get_ptr(stlsoft_ns_qual(basic_error_desc)<C> const &e)
 }
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for stlsoft::basic_error_desc
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for stlsoft::basic_error_desc
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

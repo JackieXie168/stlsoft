@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Queue class.
  *
  * Created:     16th December 2004
- * Updated:     3rd September 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Primary include file for is_empty attribute shims
  *   for <code>ACE_Message_Queue</code>.
- *  (\ref group__concept__shims__attribute "Attribute Shims" Concept.)
+ *  (\ref group__concept__shim__attribute "Attribute Shims" Concept.)
  */
 
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_REVISION  1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT      14
+# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ namespace acestl_project
 
 /** \brief Indicates whether the queue is empty
  *
- * \ingroup group__concept__shims__collection_attribute.
+ * \ingroup group__concept__shim__collection_attribute
  *
  */
 template <ACE_SYNCH_DECL>

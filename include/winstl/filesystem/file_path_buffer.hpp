@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     14th July 2006
+ * Updated:     13th December 2006
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     104
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -373,17 +373,17 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+/** \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
  *
  * \ingroup group__library__file_system
  */
 typedef basic_file_path_buffer<ws_char_a_t, processheap_allocator<ws_char_a_t> >    file_path_buffer_a;
-/** \brief Instantiation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__file_system
  */
 typedef basic_file_path_buffer<ws_char_w_t, processheap_allocator<ws_char_w_t> >    file_path_buffer_w;
-/** \brief Instantiation of the basic_file_path_buffer template for the ambeint character type \c TCHAR
+/** \brief Specialisation of the basic_file_path_buffer template for the ambeint character type \c TCHAR
  *
  * \ingroup group__library__file_system
  */
@@ -449,9 +449,9 @@ inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(basic_file_path_buffer)<ws
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_data for winstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -477,9 +477,9 @@ inline ws_size_t c_str_len_w(winstl_ns_qual(basic_file_path_buffer)<ws_char_w_t,
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_len for winstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -505,9 +505,9 @@ inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(basic_file_path_buffer)<ws_
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for winstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -534,9 +534,9 @@ inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(basic_file_path_buffer
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for winstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
@@ -549,9 +549,9 @@ inline C const *c_str_ptr_null(winstl_ns_qual(basic_file_path_buffer)<C, A> cons
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::basic_file_path_buffer
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for winstl::basic_file_path_buffer
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

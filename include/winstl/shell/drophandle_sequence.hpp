@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     26th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      0
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   3
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       79
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -374,17 +374,17 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Instantiation of the basic_drophandle_sequence template for the ANSI character type \c char
+/** \brief Specialisation of the basic_drophandle_sequence template for the ANSI character type \c char
  *
  * \ingroup group__library__shell
  */
 typedef basic_drophandle_sequence<ws_char_a_t, drophandle_sequence_traits<ws_char_a_t> >    drophandle_sequence_a;
-/** \brief Instantiation of the basic_drophandle_sequence template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_drophandle_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__shell
  */
 typedef basic_drophandle_sequence<ws_char_w_t, drophandle_sequence_traits<ws_char_w_t> >    drophandle_sequence_w;
-/** \brief Instantiation of the basic_drophandle_sequence template for the ANSI character type \c char
+/** \brief Specialisation of the basic_drophandle_sequence template for the ANSI character type \c char
  *
  * \ingroup group__library__shell
  */

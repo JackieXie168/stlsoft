@@ -5,7 +5,7 @@
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     18th October 2006
+ * Updated:     11th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       25
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   3
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,6 +96,114 @@ namespace stlsoft
  *
  * \ingroup group__library__conversion
  *
+ * Assume the following class hierarchy, and variables:
+\htmlonly
+<pre>
+  class Parent
+  {
+  public:
+    virtual ~Parent();
+  };
+
+  class A
+    : public Parent
+  {
+  public:
+    ~A();
+  };
+
+  class B
+    : public Parent
+  {
+  public:
+    ~B();
+  };
+
+  . . .
+
+  A   a;
+  B   b;
+
+</pre>
+\endhtmlonly
+ *
+ * The following code segments illustrate the similarities and differences
+ * between dynamic_cast and ptr_cast:
+ *
+ * (i) dynamic cast of reference that succeeds
+\htmlonly
+<pre>
+  A   &ra1 = <b>dynamic_cast</b>&lt;A&>(a);
+  A   &ra2 = stlsoft::<b>ptr_cast</b>&lt;A&>(a);
+  
+  assert(&ra1 == &ra2);
+</pre>
+\endhtmlonly
+ *
+ * (ii) dynamic cast of pointer that succeeds
+\htmlonly
+<pre>
+  A   *pa = <b>dynamic_cast</b>&lt;A*>(&a);
+  
+  assert(NULL != pa);
+  assert(stlsoft::<b>ptr_cast</b>&lt;A*>(&a) == pa);
+</pre>
+\endhtmlonly
+ *
+ * (iii) dynamic cast of reference that fails
+\htmlonly
+<pre>
+  bool bCastFailed1 = false;
+
+  try
+  {
+    B &b1 = <b>dynamic_cast</b>&lt;B&>(a);
+
+    . . . // Will never get here
+  }
+  catch(std::bad_cast &)
+  {
+    bCastFailed1 = true;
+  }
+  assert(bCastFailed1);
+
+  bool bCastFailed2 = false;
+
+  try
+  {
+    B &rb = stlsoft::<b>ptr_cast</b>&lt;B&>(a);
+
+    . . . // Will never get here
+  }
+  catch(std::bad_cast &)
+  {
+    bCastFailed2 = true;
+  }
+  assert(bCastFailed2);
+</pre>
+\endhtmlonly
+ *
+ * (iv) dynamic cast of pointer that fails
+\htmlonly
+<pre>
+  assert(NULL == <b>dynamic_cast</b>&lt;B*>(&a));
+
+  bool bCastFailed = false;
+
+  try
+  {
+    B &rb = stlsoft::<b>ptr_cast</b>&lt;B&>(&a);
+
+    . . . // Will never get here
+  }
+  catch(std::bad_cast &)
+  {
+    bCastFailed = true;
+  }
+  assert(bCastFailed);
+</pre>
+\endhtmlonly
+ *
  * \note This is described in detail in chapter 19 of
  *  <a href = "http://www.imperfectcplusplus.com/">Imperfect C++</a>.
  */
@@ -103,10 +211,15 @@ template <ss_typename_param_k Target>
 struct ptr_cast
 {
 public:
+    /// The target type
     typedef Target                                                          target_type;
+    /// The current instantiation of the type
     typedef ptr_cast<Target>                                                class_type;
+    /// The target base type
     typedef ss_typename_type_k stlsoft::base_type_traits<Target>::cv_type   target_base_type;
+    /// The reference type
     typedef target_base_type                                                &reference_type;
+    /// The pointer type
     typedef target_base_type                                                *pointer_type;
 
 private:
@@ -118,7 +231,7 @@ private:
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     static target_base_type_ *manage_const(target_base_type_ const *p)
     {
-        return const_cast<target_base_type_ *>(p);
+        return const_cast<target_base_type_*>(p);
     }
 #else /* ? compiler */
     static target_base_type_ const *manage_const(target_base_type_ const *p)
@@ -128,6 +241,7 @@ private:
 #endif /* compiler */
 
 public:
+    /// Constructor used when casting a reference
     template <ss_typename_param_k Source>
     ptr_cast(Source &s)
         : m_p(manage_const(&dynamic_cast<Target>(s)))
@@ -135,6 +249,7 @@ public:
         // Nothing to do: dynamic_cast throws for reference types
     }
 
+    /// Constructor used when casting a pointer
     template <ss_typename_param_k Source>
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_GCC) || \
@@ -151,30 +266,41 @@ public:
         }
     }
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     ptr_cast(pointer_type pt)
         : m_p(pt)
     {}
     ptr_cast(reference_type t)
         : m_p(&t)
     {}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 public:
+    /// Converts an instance of the cast class to a reference
     operator reference_type () const
     {
         return const_cast<reference_type>(*m_p);
     }
+    /// Converts an instance of the cast class to a pointer
     operator pointer_type () const
     {
         return const_cast<pointer_type>(m_p);
     }
 
-protected:
+private:
     pointer_type  m_p;
 
 // Not to be implemented
 private:
     ptr_cast(class_type const &);
 };
+
+////////////////////////////////////////////////////////////////////////////
+// Unit-testing
+
+#ifdef STLSOFT_UNITTEST
+# include "./unittest/ptr_cast_unittest_.h"
+#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

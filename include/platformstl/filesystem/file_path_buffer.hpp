@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_path_buffer components.
  *
  * Created:     20th March 2005
- * Updated:     11th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       17
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,11 +121,11 @@ namespace platformstl_project
     class basic_file_path_buffer
     {};
 
-    /// \brief Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+    /// \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
     typedef basic_file_path_buffer<char, filesystem_traits<char> >          path_a;
-    /// \brief Instantiation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
+    /// \brief Specialisation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
     typedef basic_file_path_buffer<wchar_t, filesystem_traits<wchar_t> >    path_w;
-    /// \brief Instantiation of the basic_file_path_buffer template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
+    /// \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
     typedef basic_file_path_buffer<tchar, filesystem_traits<tchar> >        path;
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)

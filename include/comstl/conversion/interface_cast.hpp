@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     6th December 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      0
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       99
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      1
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   3
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -641,7 +641,7 @@ private:
 <pre>
   IStream   *stm = . . .
 
-  if(comstl::interface_cast_test&lt;IStorage*>(stm))
+  if(comstl::<b>interface_cast_test</b>&lt;IStorage*>(stm))
   {
     printf("Object has IStorage interface\n");
   }
@@ -673,14 +673,11 @@ inline cs_bool_t interface_cast_test(ISrc *src)
  *
  * \ingroup group__library__conversion
  *
- * \param src wrapper instance holding the object whose capabilities
- *   will be tested. May be empty.
- *
 \htmlonly
 <pre>
   stlsoft::ref_ptr&lt;IStream>   stm = . . .
 
-  if(comstl::interface_cast_test&lt;IStorage*>(stm))
+  if(comstl::<b>interface_cast_test</b>&lt;IStorage>(stm))
   {
     printf("Wrapper object has IStorage interface\n");
   }
@@ -690,16 +687,47 @@ inline cs_bool_t interface_cast_test(ISrc *src)
   }
 </pre>
 \endhtmlonly
+ *
+ * \param src wrapper instance holding the object whose capabilities
+ *   will be tested. May be empty.
  */
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc
         >
 inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src)
 {
-    return interface_cast_test(src.get());
+    return interface_cast_test<IDest*>(src.get());
 }
 
 
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+/** \brief Casts a raw interface pointer to a wrapped instance.
+ *
+ * \ingroup group__library__conversion
+ *
+ * \note For technical reasons, the cast destination type differs from the
+ *   conventional behaviour. Rather than specifying the actual resultant
+ *   type, e.g. <code>stlsoft::ref_ptr<IStream></code>, just the destination
+ *   interface type must be specified, e.g.
+ *   <code>interface_cast<IStream></code>.
+ *
+ * \exception comstl::bad_interface_cast When compiling with exception - 
+ *   detected when <code>STLSOFT_CF_EXCEPTION_SUPPORT</code> is defined -
+ *   this will throw an instance of comstl::bad_interface_cast if the
+ *   requested interface cannot be acquired. When compiling absent exception
+ *   support, this cast function is not defined; instead use
+ *   comstl::try_interface_cast.
+ */
+template<   ss_typename_param_k IDest
+        ,   ss_typename_param_k ISrc
+        >
+inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(ISrc *src)
+{
+    interface_cast_noaddref<IDest*> ptr(src);   // This has to be separate, otherwise G++ has a spit
+
+    return stlsoft_ns_qual(ref_ptr)<IDest>(stlsoft_ns_qual(get_ptr)(ptr), true);
+}
 
 /** \brief Casts between instances of wrapped instances
  *
@@ -711,27 +739,59 @@ inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src)
  *   interface type must be specified, e.g.
  *   <code>interface_cast<IStream></code>.
  *
- * \exception When compiling with exception support, this will throw
- *   comstl::bad_interface if the requested interface cannot be acquired.
- *   When compiling absent exception support, failure to acquire the
- *   interface will cause the return of an empty wrapper instance.
+ * \exception comstl::bad_interface_cast When compiling with exception - 
+ *   detected when <code>STLSOFT_CF_EXCEPTION_SUPPORT</code> is defined -
+ *   this will throw an instance of comstl::bad_interface_cast if the
+ *   requested interface cannot be acquired. When compiling absent exception
+ *   support, this cast function is not defined; instead use
+ *   comstl::try_interface_cast.
  */
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc
         >
 inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(stlsoft_ns_qual(ref_ptr)<ISrc> src)
 {
-    ISrc                            *psrc = stlsoft_ns_qual(get_ptr)(src);  // This has to be separate, otherwise VC++ whinges
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    interface_cast_noaddref<IDest*> ptr(psrc);                              // This has to be separate, otherwise G++ has a spit
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-    interface_cast_addref<IDest*>   ptr(psrc);                              // This has to be separate, otherwise G++ has a spit
+    return interface_cast<IDest>(src.get());
+}
+
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+
+/** \brief Attempts to cast a raw interface pointer to a wrapped instance.
+ *
+ * \ingroup group__library__conversion
+ *
+\htmlonly
+<pre>
+  IStream   *pstm = . . . 
+  stlsoft::ref_ptr&lt;IStorage>  stg = comstl::<b>interface_cast</b>&lt;IStorage>(pstm);
+
+  if(!stg.empty())
+  {
+    . . .use <b>stg-></b>
+  }
+</pre>
+\endhtmlonly
+ *
+ * \note For technical reasons, the cast destination type differs from the
+ *   conventional behaviour. Rather than specifying the actual resultant
+ *   type, e.g. <code>stlsoft::ref_ptr<IStream></code>, just the destination
+ *   interface type must be specified, e.g.
+ *   <code>interface_cast<IStream></code>.
+ *
+ * \return 
+ */
+template<   ss_typename_param_k IDest
+        ,   ss_typename_param_k ISrc
+        >
+inline stlsoft_ns_qual(ref_ptr)<IDest> try_interface_cast(ISrc *src)
+{
+    interface_cast_addref<IDest*>   ptr(src);  // This has to be separate, otherwise G++ has a spit
 
     return stlsoft_ns_qual(ref_ptr)<IDest>(stlsoft_ns_qual(get_ptr)(ptr), true);
 }
 
-/** \brief Casts between instances of 
+/** \brief Attempts to cast between instances of wrapped instances
  *
  * \ingroup group__library__conversion
  *
@@ -740,24 +800,13 @@ inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(stlsoft_ns_qual(ref_ptr)<I
  *   type, e.g. <code>stlsoft::ref_ptr<IStream></code>, just the destination
  *   interface type must be specified, e.g.
  *   <code>interface_cast<IStream></code>.
- *
- * \exception When compiling with exception support, this will throw
- *   comstl::bad_interface if the requested interface cannot be acquired.
- *   When compiling absent exception support, failure to acquire the
- *   interface will cause the return of an empty wrapper instance.
  */
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc
         >
-inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(ISrc *src)
+inline stlsoft_ns_qual(ref_ptr)<IDest> try_interface_cast(stlsoft_ns_qual(ref_ptr)<ISrc> src)
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    interface_cast_noaddref<IDest*> ptr(src);   // This has to be separate, otherwise G++ has a spit
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-    interface_cast_addref<IDest*>   ptr(psrc);  // This has to be separate, otherwise G++ has a spit
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-
-    return stlsoft_ns_qual(ref_ptr)<IDest>(stlsoft_ns_qual(get_ptr)(ptr), true);
+    return try_interface_cast<IDest>(src.get());
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -771,7 +820,7 @@ inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(ISrc *src)
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shim__pointer_attribute
  *
  * \param p The cast instance
  */
@@ -786,7 +835,7 @@ inline I get_ptr(comstl_ns_qual(interface_cast_noaddref)<I, X> &p)
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shim__pointer_attribute
  *
  * \param p The cast instance
  */
@@ -802,7 +851,7 @@ inline I get_ptr(comstl_ns_qual(interface_cast_noaddref)<I, X> const &p)
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shim__pointer_attribute
  *
  * \param p The cast instance
  */
@@ -816,7 +865,7 @@ inline I get_ptr(comstl_ns_qual(interface_cast_addref)<I, X> &p)
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shim__pointer_attribute
  *
  * \param p The cast instance
  */

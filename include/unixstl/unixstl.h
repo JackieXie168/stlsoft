@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     69
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -587,14 +587,8 @@ typedef us_streamoff_t      streamoff_t;        /*!< streamoff */
 #define unixstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param ar An array whose dimension is to be evaluated
- */
-#define UNIXSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define UNIXSTL_NUM_ELEMENTS(ar)                       STLSOFT_NUM_ELEMENTS(ar)
 # define unixstl_num_elements(ar)                       UNIXSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

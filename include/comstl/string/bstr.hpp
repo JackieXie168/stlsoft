@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     3rd December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/string/bstr.hpp
  *
  * \brief [C++ only; requires COM] Definition of the comstl::bstr class.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_STRING_HPP_BSTR
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       1
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    4
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        37
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ namespace comstl_project
 
 /** \brief Facade for the COM BSTR type
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 class bstr
 {
@@ -195,9 +195,9 @@ private:
  * String access shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for comstl::bstr
+/** \brief \ref group__concept__shim__string_access__c_str_data for comstl::bstr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline bstr::const_pointer c_str_data(comstl_ns_qual(bstr) const &b)
 {
@@ -218,9 +218,9 @@ inline bstr::const_pointer c_str_data_o(comstl_ns_qual(bstr) const &b)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for comstl::bstr
+/** \brief \ref group__concept__shim__string_access__c_str_len for comstl::bstr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline size_t c_str_len(comstl_ns_qual(bstr) const &b)
 {
@@ -241,9 +241,9 @@ inline size_t c_str_len_o(comstl_ns_qual(bstr) const &b)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for comstl::bstr
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for comstl::bstr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline bstr::const_pointer c_str_ptr(comstl_ns_qual(bstr) const &b)
 {
@@ -264,9 +264,9 @@ inline bstr::const_pointer c_str_ptr_o(comstl_ns_qual(bstr) const &b)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for comstl::bstr
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for comstl::bstr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 inline bstr::const_pointer c_str_ptr_null(comstl_ns_qual(bstr) const &b)
 {

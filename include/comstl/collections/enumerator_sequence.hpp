@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     3rd December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    0
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 5
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     222
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     225
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,22 +128,26 @@ namespace comstl_project
  * Classes
  */
 
-/** \brief A template for adapting COM enumerators to STL-compatible sequence iteration.
+/** \brief A template for adapting COM enumerators to STL-compatible
+ *    sequence iteration.
  *
  * \ingroup group__library__collections
  *
  * \param I Interface
  * \param V Value type
  * \param VP Value policy type
- * \param R Reference type. The type returned by the iterator's dereference operator. Defaults to V const&. To make it mutable, set to V&
- * \param CP Cloning policy type. Defaults to cloneable_cloning_policy<I>
- * \param Q Quanta. The number of elements retrieved from the enumerator with each invocation of Next(). Defaults to 10
+ * \param R Reference type. The type returned by the iterator's dereference
+ *   operator. Defaults to <code>V const&</code>. To make it mutable, set to
+ *   <code>V&</code>
+ * \param CP Cloning policy type. Defaults to cloneable_cloning_policy&lt;I>
+ * \param Q Quanta. The number of elements retrieved from the enumerator
+ *   with each invocation of Next(). Defaults to 10
  *
- * The various parameterising types are used to stipulate the interface and the
- * value type, and how they are to be handled.
+ * The various parameterising types are used to stipulate the interface and
+ * the value type, and how they are to be handled.
  *
  * For example, the following parameterisation defines a sequence operating
- * over an <b>IEnumGUID</b> enumerator instance.
+ * over an <code>IEnumGUID</code> enumerator instance.
  *
 \htmlonly
 <pre>
@@ -157,18 +161,20 @@ typedef enumerator_sequence&lt;IEnumGUID
 </pre>
 \endhtmlonly
  *
- * The value type is <b>GUID</b> and it is returned as a reference, as
- * the <b>GUID const &</b> in fact.
+ * The value type is <code>GUID</code> and it is returned as a reference, as
+ * the <code>GUID const&</code> in fact.
  *
- * The \ref COMSTL type <b>GUID_policy</b> controls how the <b>GUID</b>
- * instances are initialised, copied and destroyed.
+ * The \link group__project__comstl\endlink type 
+ * <GUID const&>GUID_policy</GUID const&> controls how the 
+ * <GUID const&>GUID</GUID const&> instances are initialised, copied and
+ * destroyed.
  *
- * The \ref COMSTL type forward_cloning_policy allows the sequence to provide
+ * The \link group__project__comstl\endlink type forward_cloning_policy allows the sequence to provide
  * <a href = "http://sgi.com/tech/stl/ForwardIterator.html">Forward Iterator</a>
  * semantics.
  *
- * And the <b>5</b> indicates that the sequence should grab 5 values at a time,
- * to save round trips to the enumerator.
+ * And the <GUID const&>5</GUID const&> indicates that the sequence should
+ * grab 5 values at a time, to save round trips to the enumerator.
  *
  * This would be used as follows:
  *

@@ -4,7 +4,7 @@
  * Purpose:     Stream functions.
  *
  * Created:     22nd October 2005
- * Updated:     3rd December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file comstl/util/stream_functions.h
  *
  * \brief [C++ only; requires COM] COM stream functions.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_STREAM_FUNCTIONS
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MAJOR    2
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MINOR    0
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     9
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
  * Namespace
  */
 
-#ifndef _COMSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_COMSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::comstl */
 namespace comstl
 {
@@ -88,9 +88,11 @@ namespace comstl_project
  * C functions
  */
 
-/** \brief Gets the size of a stream
+/** \brief [C only] Gets the size of a stream
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
+ *
+ * \see comstl::get_stream_size
  */
 STLSOFT_INLINE HRESULT comstl__get_stream_size(LPSTREAM pstm, ULARGE_INTEGER *psize)
 {
@@ -106,13 +108,22 @@ STLSOFT_INLINE HRESULT comstl__get_stream_size(LPSTREAM pstm, ULARGE_INTEGER *ps
 }
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace comstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
 #ifdef __cplusplus
 /** \brief Gets the size of a stream
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 inline HRESULT get_stream_size(LPSTREAM pstm, ULARGE_INTEGER *psize)
 {
@@ -121,7 +132,7 @@ inline HRESULT get_stream_size(LPSTREAM pstm, ULARGE_INTEGER *psize)
 
 /** \brief Gets the size of a stream
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 inline HRESULT get_stream_size(LPSTREAM pstm, ULARGE_INTEGER &size)
 {
@@ -130,7 +141,7 @@ inline HRESULT get_stream_size(LPSTREAM pstm, ULARGE_INTEGER &size)
 
 /** \brief Gets the size of a stream
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 inline HRESULT get_stream_size(LPSTREAM pstm, cs_uint64_t &size)
 {

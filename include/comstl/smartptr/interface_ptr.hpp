@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     3rd December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      0
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       482
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       485
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ namespace comstl_project
  * Classes
  */
 
-/** \brief Manages a COM interface pointer, ensuring that it is released
+/** \brief [DEPRECATED] Manages a COM interface pointer, ensuring that it is released
  *
  * \deprecated Instead use stlsoft::ref_ptr
  *
@@ -185,7 +185,7 @@ inline void swap(interface_ptr<T> &lhs, interface_ptr<T> &rhs)
 /** \brief Indicates whether the
  *    \link comstl::interface_ptr interface_ptr\endlink instance is empty.
  *
- * \ingroup group__concept__shims__collection_attribute.
+ * \ingroup group__concept__shim__collection_attribute
  */
 template <ss_typename_param_k T>
 inline cs_bool_t is_empty(interface_ptr<T> const &p)
@@ -193,12 +193,18 @@ inline cs_bool_t is_empty(interface_ptr<T> const &p)
     return NULL == p.get_interface_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T const *get_ptr(interface_ptr<T> const &p)
 {
     return p.get_interface_ptr();
 }
 
+/** \brief 
+ * \ingroup group__concept__shim__pointer_attribute
+ */
 template <ss_typename_param_k T>
 inline T *get_ptr(interface_ptr<T> &p)
 {

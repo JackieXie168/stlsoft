@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_connection class.
  *
  * Created:     30th April 1999
- * Updated:     26th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MAJOR       5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       0
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    2
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        60
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -217,19 +217,19 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_connection template for the ANSI character type \c char
+/** \brief Specialisation of the basic_connection template for the ANSI character type \c char
  *
  * \ingroup group__library__network
  *
  */
 typedef basic_connection<is_char_a_t>   connection_a;
-/** \brief Instantiation of the basic_connection template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_connection template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__network
  *
  */
 typedef basic_connection<is_char_w_t>   connection_w;
-/** \brief Instantiation of the basic_connection template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_connection template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__network
  *

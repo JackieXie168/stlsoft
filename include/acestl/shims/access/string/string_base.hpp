@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>ACE_String_Base</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MAJOR       2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MINOR       0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_REVISION    1
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        21
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,9 +111,9 @@ inline as_char_w_t const *c_str_data_w(ACE_String_Base<as_char_w_t> const &s)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_data for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k C>
@@ -137,9 +137,9 @@ inline as_size_t c_str_len_w(ACE_String_Base<as_char_w_t> const &s)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_len for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k C>
@@ -163,9 +163,9 @@ inline as_char_w_t const *c_str_ptr_w(ACE_String_Base<as_char_w_t> const &s)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k C>
@@ -189,9 +189,9 @@ inline as_char_w_t const *c_str_ptr_null_w(ACE_String_Base<as_char_w_t> const &s
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for ACE_INET_Addr
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for ACE_INET_Addr
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 template <ss_typename_param_k C>
@@ -202,9 +202,9 @@ inline C const *c_str_ptr_null(ACE_String_Base<C> const &s)
 
 
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for ACE_String_Base
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_String_Base
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  *
  */
 template<   ss_typename_param_k S
@@ -228,9 +228,9 @@ inline S &operator <<(S &s, ACE_String_Base<C> const &str)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for ACE_String_Base
+/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_String_Base
  *
- * \ingroup group__concept__shims__stream_insertion
+ * \ingroup group__concept__shim__stream_insertion
  *
  */
 template<   ss_typename_param_k S

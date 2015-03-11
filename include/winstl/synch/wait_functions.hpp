@@ -111,26 +111,26 @@ inline your_type_is_implicitly_convertible_to_HANDLE WaitForMultipleObjects_veri
 template <ss_typename_param_k T>
 inline HANDLE WaitForMultipleObjects_verifier_helper_(T &t, ...)
 {
-	return winstl_ns_qual(get_synch_handle)(t);
+    return winstl_ns_qual(get_synch_handle)(t);
 }
 
 template <ss_typename_param_k T>
 inline HANDLE WaitForMultipleObjects_verifier_helper(T &t1, T const &t2)
 {
-	// If the compiler balks here with a message involving
-	// "your_type_is_implicitly_convertible_to_HANDLE", it means that the
-	// type of an argument passed to wait_for_multiple_objects() is
-	// implicitly convertible to HANDLE. This is dangerous and disallowed,
-	// and you must define a winstl::get_synch_handle() shim for it.
+    // If the compiler balks here with a message involving
+    // "your_type_is_implicitly_convertible_to_HANDLE", it means that the
+    // type of an argument passed to wait_for_multiple_objects() is
+    // implicitly convertible to HANDLE. This is dangerous and disallowed,
+    // and you must define a winstl::get_synch_handle() shim for it.
 
-	return WaitForMultipleObjects_verifier_helper_(t1, t2);
+    return WaitForMultipleObjects_verifier_helper_(t1, t2);
 
-//	return winstl_ns_qual(get_synch_handle)(t);
+//  return winstl_ns_qual(get_synch_handle)(t);
 }
 
 inline HANDLE WaitForMultipleObjects_verifier_helper(HANDLE h, HANDLE )
 {
-	return h;
+    return h;
 }
 #endif /* 0 */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -271,12 +271,12 @@ inline DWORD wait_for_multiple_objects(L0 &l0, L1 &l1, L2 &l2, L3 &l3, L4 &l4, L
     WINSTL_ASSERT(NULL != winstl_ns_qual(get_synch_handle)(l5));
 
 #if 0
-	WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l0, l0));
-	WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l1, l1));
-//	WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l2, l2));
-	WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l3, l3));
-	WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l4, l4));
-	WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l5, l5));
+    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l0, l0));
+    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l1, l1));
+//  WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l2, l2));
+    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l3, l3));
+    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l4, l4));
+    WINSTL_ASSERT(NULL != WaitForMultipleObjects_verifier_helper(l5, l5));
 #endif /* 0 */
 
 

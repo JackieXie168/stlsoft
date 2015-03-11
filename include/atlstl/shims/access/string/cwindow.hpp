@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>CWindow</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_MINOR    0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_EDIT     90
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_EDIT     91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ namespace atlstl_project
  * c_str_ptr_null() function, such that the window text of a given window
  * may be accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_ptr_null_CWindow_proxy
@@ -187,7 +187,7 @@ private:
  * c_str_ptr() function, such that the window text of a given window may be
  * accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_ptr_CWindow_proxy
@@ -318,9 +318,9 @@ inline S &operator <<(S & s, c_str_ptr_CWindow_proxy const &shim)
 
 /* CWindow */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for CWindow
+/** \brief \ref group__concept__shim__string_access__c_str_data for CWindow
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWindow_proxy c_str_data(atlstl_ns_qual_atl(CWindow) const &w)
@@ -348,9 +348,9 @@ inline c_str_ptr_CWindow_proxy c_str_data_a(atlstl_ns_qual_atl(CWindow) const &w
 
 /* CWindow */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for CWindow
+/** \brief \ref group__concept__shim__string_access__c_str_len for CWindow
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline as_size_t c_str_len(atlstl_ns_qual_atl(CWindow) const &w)
@@ -378,9 +378,9 @@ inline as_size_t c_str_len_a(atlstl_ns_qual_atl(CWindow) const &w)
 
 /* CWindow */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for CWindow
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for CWindow
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_CWindow_proxy c_str_ptr(atlstl_ns_qual_atl(CWindow) const &w)
@@ -408,9 +408,9 @@ inline c_str_ptr_CWindow_proxy c_str_ptr_a(atlstl_ns_qual_atl(CWindow) const &w)
 
 /* CWindow */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CWindow
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for CWindow
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_null_CWindow_proxy c_str_ptr_null(atlstl_ns_qual_atl(CWindow) const &w)

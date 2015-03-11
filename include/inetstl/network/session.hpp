@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     26th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      0
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       53
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -208,19 +208,19 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_session template for the ANSI character type \c char
+/** \brief Specialisation of the basic_session template for the ANSI character type \c char
  *
  * \ingroup group__library__network
  *
  */
 typedef basic_session<is_char_a_t>  session_a;
-/** \brief Instantiation of the basic_session template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_session template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__network
  *
  */
 typedef basic_session<is_char_w_t>  session_w;
-/** \brief Instantiation of the basic_session template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_session template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__network
  *

@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     14th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      2
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       58
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -208,17 +208,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_environment_variable template for the ANSI character type \c char
+/** \brief Specialisation of the basic_environment_variable template for the ANSI character type \c char
  *
  * \ingroup group__library__system
  */
 typedef basic_environment_variable<us_char_a_t, system_traits<us_char_a_t> >    environment_variable_a;
-/** \brief Instantiation of the basic_environment_variable template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_environment_variable template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__system
  */
 typedef basic_environment_variable<us_char_w_t, system_traits<us_char_w_t> >    environment_variable_w;
-/** \brief Instantiation of the basic_environment_variable template for the 'default' character type \c char
+/** \brief Specialisation of the basic_environment_variable template for the 'default' character type \c char
  *
  * \ingroup group__library__system
  */

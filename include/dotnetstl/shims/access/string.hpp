@@ -4,7 +4,7 @@
  * Purpose:     String access shims for .net.
  *
  * Created:     24th June 2003
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Primary include file for string access shims representing
  *   .net string types.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_SHIMS_ACCESS_HPP_STRING
@@ -52,7 +52,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_MAJOR      2
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_MINOR      0
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_REVISION   1
-# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_EDIT       8
+# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

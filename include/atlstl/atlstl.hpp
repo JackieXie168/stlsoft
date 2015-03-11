@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     31st August 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  3
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      95
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp \brief [C++ only; requires ATL library] The root header for the \ref group__project__atlstl "ATLSTL" project. */
@@ -478,14 +478,8 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     as_streamoff_t; //!< streamoff
 #define atlstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)  stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param ar An array whose dimension is to be evaluated
- */
-#define ATLSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define ATLSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
 # define atlstl_num_elements(ar)                        ATLSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

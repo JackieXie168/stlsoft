@@ -4,7 +4,7 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     15th September 2006
+ * Updated:     9th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file comstl/error/exceptions.hpp (formerly comstl_exceptions.h)
+/** \file comstl/error/exceptions.hpp
  *
  * \brief [C++ only] Definition of the comstl::com_exception and
  *   comstl::variant_type_exception exception classes, and the
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        32
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,14 +126,14 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// Constructs an instance from the given result code
+    /// \brief Constructs an instance from the given result code
     ///
     /// \param hr The result code associated with the exception
     ss_explicit_k com_exception(HRESULT hr)
         : m_reason()
         , m_hr(hr)
     {}
-    /// Constructs an instance from the given message string and result code
+    /// \brief Constructs an instance from the given message string and result code
     ///
     /// \param reason The message code associated with the exception
     /// \param hr The result code associated with the exception
@@ -141,7 +141,7 @@ public:
         : m_reason((NULL == reason) ? "" : reason)
         , m_hr(hr)
     {}
-    /// Destructor
+    /// \brief Destructor
     ///
     /// \note This does not do have any implementation, but is required to placate
     /// the Comeau and GCC compilers, which otherwise complain about mismatched
@@ -158,6 +158,7 @@ public:
         return m_reason.empty() ? this->real_what_(): m_reason.c_str();
     }
 
+    /// \brief The error code associated with the exception
     HRESULT hr() const
     {
         return m_hr;
@@ -210,7 +211,7 @@ public:
     variant_type_exception(char const *reason, HRESULT hr)
         : parent_class_type(reason, hr)
     {}
-    /// Destructor
+    /// \brief Destructor
     ///
     /// \note This does not do have any implementation, but is required to placate
     /// the Comeau and GCC compilers, which otherwise complain about mismatched

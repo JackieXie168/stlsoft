@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     18th October 2006
+ * Updated:     12th December 2006
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        73
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1597,9 +1597,9 @@ inline void swap(basic_string_view<C, T, A> &lhs, basic_string_view<C, T, A> &rh
 
 // c_str_data
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::basic_string_view
+/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::basic_string_view
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1627,9 +1627,9 @@ inline ss_char_w_t const *c_str_data_w(stlsoft_ns_qual(basic_string_view)<ss_cha
 
 // c_str_len
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::basic_string_view
+/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::basic_string_view
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1657,9 +1657,9 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual(basic_string_view)<ss_char_w_t, T, 
 
 // c_str_ptr
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::basic_string_view
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::basic_string_view
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -1687,9 +1687,9 @@ inline ss_char_w_t const *c_str_ptr_w(stlsoft_ns_qual(basic_string_view)<ss_char
 
 // c_str_ptr_null
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::basic_string_view
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::basic_string_view
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

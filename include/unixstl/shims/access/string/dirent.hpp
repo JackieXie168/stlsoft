@@ -4,7 +4,7 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback for Mac
  *              builds
@@ -45,7 +45,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>struct dirent</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        46
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,10 +102,10 @@ namespace unixstl_project
  * pointer to the character string or to an empty string.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for
+/** \brief \ref group__concept__shim__string_access__c_str_data for
  *    <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -115,10 +115,10 @@ inline us_char_a_t const *c_str_data_a(struct dirent const *d)
     return (NULL == d) ? "" : d->d_name;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for
+/** \brief \ref group__concept__shim__string_access__c_str_data for
  *    <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style string.
  */
@@ -128,10 +128,10 @@ inline us_char_a_t const *c_str_data(struct dirent const *d)
 }
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for
+/** \brief \ref group__concept__shim__string_access__c_str_data for
  *    <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
@@ -141,10 +141,10 @@ inline us_char_a_t const *c_str_data_a(struct dirent const &d)
     return d.d_name;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for
+/** \brief \ref group__concept__shim__string_access__c_str_data for
  *    <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a C-style string.
  */
@@ -160,10 +160,10 @@ inline us_char_a_t const *c_str_data(struct dirent const &d)
  * characters in the character string in the expression.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the string form of <code>d</code>.
  */
@@ -172,10 +172,10 @@ inline us_size_t c_str_len_a(struct dirent const *d)
     return stlsoft_ns_qual(c_str_len)(c_str_data(d));
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length of the string form of <code>d</code>.
  */
@@ -185,10 +185,10 @@ inline us_size_t c_str_len(struct dirent const *d)
 }
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length (in bytes) of the string form of <code>d</code>.
  */
@@ -197,10 +197,10 @@ inline us_size_t c_str_len_a(struct dirent const &d)
     return c_str_len_a(&d);
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_len function
+/** \brief \ref group__concept__shim__string_access__c_str_len function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Length of the string form of <code>d</code>.
  */
@@ -216,10 +216,10 @@ inline us_size_t c_str_len(struct dirent const &d)
  * pointer to the character string or to an empty string.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -229,10 +229,10 @@ inline us_char_a_t const *c_str_ptr_a(struct dirent const *d)
     return (NULL == d) ? "" : d->d_name;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string.
@@ -243,10 +243,10 @@ inline us_char_a_t const *c_str_ptr(struct dirent const *d)
 }
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -256,10 +256,10 @@ inline us_char_a_t const *c_str_ptr_a(struct dirent const &d)
     return d.d_name;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string.
@@ -276,10 +276,10 @@ inline us_char_a_t const *c_str_ptr(struct dirent const &d)
  * pointer to the character string or NULL.
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
@@ -289,10 +289,10 @@ inline us_char_a_t const *c_str_ptr_null_a(struct dirent const *d)
     return (NULL == d || 0 == d->d_name[0]) ? static_cast<us_char_a_t const*>(NULL) : d->d_name;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string.
@@ -303,10 +303,10 @@ inline us_char_a_t const *c_str_ptr_null(struct dirent const *d)
 }
 
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string.
@@ -316,10 +316,10 @@ inline us_char_a_t const *c_str_ptr_null_a(struct dirent const &d)
     return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
 }
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null function
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null function
  *    for <code>struct dirent</code>.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
  *   string.

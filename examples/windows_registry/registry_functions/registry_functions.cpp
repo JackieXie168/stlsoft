@@ -5,7 +5,7 @@
  *              library.
  *
  * Created:     22nd May 2006
- * Updated:     15th September 2006
+ * Updated:     9th December 2006
  *
  * www:         http://www.stlsoft.org/
  *
@@ -23,7 +23,7 @@
 
 /* WinSTL Header Files */
 #include <winstl/registry/functions.hpp>
-#include <winstl/error_desc.hpp>
+#include <winstl/error/error_desc.hpp>
 
 
 /* Standard C++ Header Files */
@@ -125,13 +125,13 @@ retry:
     }
     catch(std::exception &x)
     {
-        fprintf(stderr, "Unhandled error: %s\n", x.what());
+        fprintf(stderr, "Error: %s\n", x.what());
 
         return EXIT_FAILURE;
     }
     catch(...)
     {
-        fprintf(stderr, "Unhandled unknown error\n");
+        fprintf(stderr, "Unknown error\n");
 
         return EXIT_FAILURE;
     }

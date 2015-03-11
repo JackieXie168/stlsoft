@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     14th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Primary include file for string access shims representing
  *   MFC types.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_HPP_STRING
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_HPP_STRING_MAJOR    3
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_HPP_STRING_MINOR    5
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_HPP_STRING_REVISION 1
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_HPP_STRING_EDIT     78
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_HPP_STRING_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

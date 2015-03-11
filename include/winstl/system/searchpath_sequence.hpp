@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     14th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    1
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 1
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     80
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -450,17 +450,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Instantiation of the basic_searchpath_sequence template for the ANSI character type \c char
+/** \brief Specialisation of the basic_searchpath_sequence template for the ANSI character type \c char
  *
  * \ingroup group__library__system
  */
 typedef basic_searchpath_sequence<ws_char_a_t, filesystem_traits<ws_char_a_t> > searchpath_sequence_a;
-/** \brief Instantiation of the basic_searchpath_sequence template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_searchpath_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__system
  */
 typedef basic_searchpath_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> > searchpath_sequence_w;
-/** \brief Instantiation of the basic_searchpath_sequence template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_searchpath_sequence template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__system
  */

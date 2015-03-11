@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     4th December 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     47
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -407,7 +407,7 @@ private:
  */
 inline HANDLE get_synch_handle(process_mutex &mx)
 {
-	return mx.get();
+    return mx.get();
 }
 
 
@@ -422,7 +422,7 @@ inline HANDLE get_synch_handle(process_mutex &mx)
 
 /** \brief This \ref group__concept__shims "control shim" aquires a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to aquire the lock.
  */
@@ -433,7 +433,7 @@ inline void lock_instance(winstl_ns_qual(process_mutex) &mx)
 
 /** \brief This \ref group__concept__shims "control shim" releases a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to release the lock
  */

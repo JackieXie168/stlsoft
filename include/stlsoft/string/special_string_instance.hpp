@@ -4,7 +4,7 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     30th September 2006
+ * Updated:     12th December 2006
  *
  * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
  *              for special_string_instance_1.
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        10
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -739,9 +739,9 @@ private:
  * Shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::special_string_instance_0
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::special_string_instance_0
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr_null(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
@@ -761,9 +761,9 @@ inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::special_string_instance_0
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::special_string_instance_0
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_ptr(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
@@ -783,9 +783,9 @@ inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_ptr
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::special_string_instance_0
+/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::special_string_instance_0
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_typename_type_k special_string_instance_0<P>::char_type const *c_str_data(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
@@ -805,9 +805,9 @@ inline ss_typename_type_k special_string_instance_0<P>::cstring_w_type c_str_dat
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::special_string_instance_0
+/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::special_string_instance_0
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_size_t c_str_len(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
@@ -841,9 +841,9 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual(special_string_instance_0)<P> const
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::special_string_instance_1
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for stlsoft::special_string_instance_1
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_typename_type_k special_string_instance_1<P>::char_type const *c_str_ptr_null(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
@@ -863,9 +863,9 @@ inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::special_string_instance_1
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::special_string_instance_1
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_typename_type_k special_string_instance_1<P>::char_type const *c_str_ptr(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
@@ -885,9 +885,9 @@ inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::special_string_instance_1
+/** \brief \ref group__concept__shim__string_access__c_str_data for stlsoft::special_string_instance_1
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_typename_type_k special_string_instance_1<P>::char_type const *c_str_data(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
@@ -907,9 +907,9 @@ inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_dat
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::special_string_instance_1
+/** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::special_string_instance_1
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  */
 template <ss_typename_param_k P>
 inline ss_size_t c_str_len(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)

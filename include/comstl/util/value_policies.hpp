@@ -5,7 +5,7 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     31st October 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
 /** \file comstl/util/value_policies.hpp
  *
  * \brief [C++ only; requires COM] Value policies for various COM types.
- *  (\ref group__library__com_utility "COM Utility" Library.)
+ *  (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_VALUE_POLICIES
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     157
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     158
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ namespace comstl_project
 
 /** \brief Value policy for GUID
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 struct GUID_policy
 {
@@ -127,7 +127,7 @@ public:
 
 /** \brief Value policy for BSTR
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 struct BSTR_policy
 {
@@ -164,7 +164,7 @@ public:
 
 /** \brief Value policy for LPOLESTR
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 struct LPOLESTR_policy
 {
@@ -200,7 +200,7 @@ public:
 
 /** \brief Value policy for VARIANT
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 struct VARIANT_policy
 {
@@ -235,7 +235,7 @@ public:
 
 /** \brief Value policy for interface
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  *
  * \param I The interface
  */
@@ -275,7 +275,7 @@ public:
 
 /** \brief Value policy for LPUNKNOWN
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 struct LPUNKNOWN_policy
 {
@@ -311,7 +311,7 @@ public:
 
 /** \brief Value policy for STATSTG
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 struct STATSTG_policy
 {
@@ -350,7 +350,7 @@ public:
 
 /** \brief Value policy for FORMATETC
  *
- * \ingroup group__library__com_utility
+ * \ingroup group__library__utility__com
  */
 struct FORMATETC_policy
 {

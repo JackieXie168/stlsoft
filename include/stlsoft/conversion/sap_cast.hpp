@@ -5,7 +5,7 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     13th September 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       37
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,16 +108,29 @@ namespace stlsoft
  * - the FROM and TO types are both pointers
  * - no cv-qualifiers are stripped from the FROM type
  *
- * For example, the following 
+ * For example, this cast is allowed:
+\htmlonly
+<pre>
+ int         *pi = . . .;
+ short const *ps = stlsoft::<b>sap_cast</b>&lt;short const*>(pi);
+</pre>
+\endhtmlonly
  *
- * \param TO The pointer type to cast to
- * \param FROM The pointer type to cast from
+ * but this cast is not:
+\htmlonly
+<pre>
+ int const   *pi = . . .;
+ short       *ps = stlsoft::<b>sap_cast</b>&lt;short*>(pi);
+</pre>
+\endhtmlonly
+ *
+ * \param from The pointer to cast from.
  *
  * \remarks The cast operator was inspired by an item in the
- *  Sutter/Alexandrescu coding standards book, and its names stands for
- *  Sutter-Alexandrescu-Pointer cast. The acronym is overloaded, since one
- *  might also be said to be a sap if one made injudicious use of the cast,
- *  due to its inherent dangers.
+ *   Sutter/Alexandrescu coding standards book, and its names stands for
+ *   Sutter-Alexandrescu-Pointer cast. The acronym is overloaded, since one
+ *   might also be said to be a sap if one made injudicious use of the cast,
+ *   due to its inherent dangers.
  */
 #if defined(STLSOFT_NO_SAP_CAST)
 # define    sap_cast    reinterpret_cast

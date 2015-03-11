@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     16th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C, C++] Definition of the string access shims for
  *   <code>LSA_UNICODE_STRING</code>.
- *  (\ref group__concept__shims__string_access "String Access Shims" Concept.)
+ *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MAJOR     4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MINOR     0
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_REVISION  1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      101
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ namespace winstl_project
  * c_str_ptr_null() function, such that the text of a given LSA_UNICODE_STRING
  * string may be accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_ptr_LSA_UNICODE_STRING_proxy
@@ -182,7 +182,7 @@ private:
  * c_str_ptr_null() function, such that the text of a given LSA_UNICODE_STRING
  * string may be accessed as a null-terminated string.
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_ptr_null_LSA_UNICODE_STRING_proxy
@@ -290,9 +290,9 @@ inline LPCWSTR c_str_data_w(const LSA_UNICODE_STRING &s)
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for LSA_UNICODE_STRING
+/** \brief \ref group__concept__shim__string_access__c_str_data for LSA_UNICODE_STRING
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline LPCWSTR c_str_data(const LSA_UNICODE_STRING &s)
@@ -317,9 +317,9 @@ inline ws_size_t c_str_len_w(const LSA_UNICODE_STRING &s)
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for LSA_UNICODE_STRING
+/** \brief \ref group__concept__shim__string_access__c_str_len for LSA_UNICODE_STRING
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline ws_size_t c_str_len(const LSA_UNICODE_STRING &s)
@@ -344,9 +344,9 @@ inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr_w(const LSA_UNICODE_STRING &
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for LSA_UNICODE_STRING
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for LSA_UNICODE_STRING
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_LSA_UNICODE_STRING_proxy c_str_ptr(const LSA_UNICODE_STRING &s)
@@ -371,9 +371,9 @@ inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null_w(const LSA_UNICOD
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for LSA_UNICODE_STRING
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for LSA_UNICODE_STRING
  *
- * \ingroup group__concept__shims__string_access
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline c_str_ptr_null_LSA_UNICODE_STRING_proxy c_str_ptr_null(const LSA_UNICODE_STRING &s)

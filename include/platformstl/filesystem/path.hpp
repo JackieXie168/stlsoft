@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     11th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       19
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,11 +121,11 @@ namespace platformstl_project
     class basic_path
     {};
 
-    /// \brief Instantiation of the basic_path template for the ANSI character type \c char
+    /// \brief Specialisation of the basic_path template for the ANSI character type \c char
     typedef basic_path<char, filesystem_traits<char> >          path_a;
-    /// \brief Instantiation of the basic_path template for the Unicode character type \c wchar_t
+    /// \brief Specialisation of the basic_path template for the Unicode character type \c wchar_t
     typedef basic_path<wchar_t, filesystem_traits<wchar_t> >    path_w;
-    /// \brief Instantiation of the basic_path template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
+    /// \brief Specialisation of the basic_path template for the ANSI character type \c char on UNIX, and for the \c TCHAR type on Windows
     typedef basic_path<tchar, filesystem_traits<tchar> >        path;
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)

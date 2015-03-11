@@ -4,7 +4,7 @@
  * Purpose:     Mutual exclusion model class.
  *
  * Created:     19th December 1997
- * Updated:     7th July 2006
+ * Updated:     12th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      35
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ private:
 
 /** \brief This \ref group__concept__shims "control shim" aquires a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to aquire the lock.
  */
@@ -139,7 +139,7 @@ inline void lock_instance(stlsoft_ns_qual(null_mutex) &mx)
 
 /** \brief This \ref group__concept__shims "control shim" releases a lock on the given mutex
  *
- * \ingroup group__composite__synch_control_shims
+ * \ingroup group__concept__shim__synchronisation_control
  *
  * \param mx The mutex on which to release the lock
  */

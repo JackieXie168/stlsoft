@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     3rd December 2006
+ * Updated:     8th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    3
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        39
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -419,7 +419,7 @@ public:
     };
 };
 
-/** \brief Adapts a value policy to a function object based interface
+/** \brief [DEPRECATED] Adapts a value policy to a function object based interface
  *
  * \deprecated Equivalent to value_policy_adaptor
  *

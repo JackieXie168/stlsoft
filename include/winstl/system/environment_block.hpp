@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     14th July 2006
+ * Updated:     13th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        44
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -385,14 +385,14 @@ private:
 
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
 
- /// Instantiation of the basic_path template for the ANSI character type \c char
+ /// Specialisation of the basic_path template for the ANSI character type \c char
 typedef basic_environment_block<ws_char_a_t>    environment_block_a;
-/** \brief Instantiation of the basic_environment_block template for the Unicode character type \c wchar_t
+/** \brief Specialisation of the basic_environment_block template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__system
  */
 typedef basic_environment_block<ws_char_w_t>    environment_block_w;
-/** \brief Instantiation of the basic_environment_block template for the Win32 character type \c TCHAR
+/** \brief Specialisation of the basic_environment_block template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__system
  */

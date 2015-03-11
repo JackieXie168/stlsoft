@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     21st October 2006
+ * Updated:     8th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     650
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     651
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -225,6 +225,23 @@ public:
  *
 \htmlonly
 <pre>
+ ::stlsoft::<b>scoped_handle</b>&lt;void*>  h3(::malloc(100), ::free);
+</pre>
+\endhtmlonly
+ *
+ * or:
+ *
+\htmlonly
+<pre>
+ 
+ ::stlsoft::<b>scoped_handle</b>&lt;int>    h1(::open("file.ext"), ::close);
+</pre>
+\endhtmlonly
+ *
+ * or:
+ *
+\htmlonly
+<pre>
  ::stlsoft::<b>scoped_handle</b>&lt;int>    h1(::open("file.ext"), ::close);
 </pre>
 \endhtmlonly
@@ -235,14 +252,6 @@ public:
 <pre>
  FILE                             *file = ::fopen("file.ext", "r");
  ::stlsoft::<b>scoped_handle</b>&lt;FILE*>  h2(file, ::fclose);
-</pre>
-\endhtmlonly
- *
- * or:
- *
-\htmlonly
-<pre>
- ::stlsoft::<b>scoped_handle</b>&lt;void*>  h3(::malloc(100), ::free);
 </pre>
 \endhtmlonly
  *
