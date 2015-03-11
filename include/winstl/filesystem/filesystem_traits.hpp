@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     30th April 2008
+ * Updated:     8th June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        110
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -522,7 +522,7 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end    =   str_end(dir);
+        char_type *end = str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -684,7 +684,7 @@ public:
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-    static ws_dword_t get_full_path_name(char_type const* fileName, ws_dword_t cchBuffer, char_type* buffer, char_type **ppFile)
+    static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
     {
         WINSTL_MESSAGE_ASSERT("GetFullPathNameW() will crash when the file-name and buffer parameters are the same, so it's not a good idea to do this for ANSI compilation", fileName != buffer);
 
@@ -698,7 +698,7 @@ public:
             if( NULL != closing &&
                 closing - fileName == static_cast<ws_ptrdiff_t>(len - 1))
             {
-                ws_dword_t  res = class_type::get_full_path_name(fileName + 1, cchBuffer, buffer, ppFile);
+                size_type res = class_type::get_full_path_name(fileName + 1, cchBuffer, buffer, ppFile);
 
                 // ... 2. the front-quote skipped string can be converted, and ...
                 if( 0 != res &&
@@ -774,6 +774,17 @@ private:
         }
         else
         {
+#if 0
+			DWORD dw = ::GetLastError();
+
+			if( 0 == r &&
+				0 == dw &&
+				str_len(fileName) > _MAX_PATH)
+			{
+				::SetLastError(ERROR_FILENAME_EXCED_RANGE);
+			}
+#endif /* 0 */
+
             return r;
         }
     }
@@ -1239,17 +1250,42 @@ public:
 private:
     static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
     {
+		WINSTL_ASSERT(NULL != fileName);
+
+		size_type result;
+
 #ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        return ::GetFullPathNameA(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
+        result = ::GetFullPathNameA(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
-        return ::GetFullPathNameA(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
+        result = ::GetFullPathNameA(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
-        return ::GetFullPathNameA(fileName, cchBuffer, buffer, ppFile);
+        result = ::GetFullPathNameA(fileName, cchBuffer, buffer, ppFile);
 #endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+
+		if(0 == result)
+		{
+			size_type requiredLen = 0;
+
+			requiredLen += str_len(fileName);
+
+			if(!is_path_rooted(fileName))
+			{
+				size_type cwdLen = ::GetCurrentDirectoryA(0, NULL);
+
+				requiredLen += cwdLen;
+			}
+
+			if(requiredLen >= maxPathLength)
+			{
+				::SetLastError(ERROR_FILENAME_EXCED_RANGE);
+			}
+		}
+
+		return result;
     }
 
     static size_type GetShortPathNameA(char_type const* fileName, char_type* buffer, size_type cchBuffer)

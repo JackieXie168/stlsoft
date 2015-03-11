@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  1st June 2008
+; Updated:  8th June 2008
 
 ============================================================================
 
@@ -15,6 +15,43 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.45 (8th June 2008)
+
+Summary:
+========
+
+ * enhancement to stlsoft::to_uint64 conversion shim for ULARGE_INTEGER
+ * more Win-64 compatibility changes
+ * fixes to winstl::basic_path class template
+
+Changes:
+========
+
+ InetSTL:
+ --------
+
+  ~ inetstl/filesystem/filesystem_traits.hpp - 64-bit compatibility
+
+ WinSTL:
+ -------
+
+  + winstl/shims/conversion/to_uint64/ULARGE_INTEGER.hpp - added overloads
+    for ULARGE_INTEGER to stlsoft::to_uint64 conversion shim
+
+  ~ winstl/filesystem/filesystem_traits.hpp - get_full_path_name() sets last
+    error to ERROR_FILENAME_EXCED_RANGE when path is too long for
+    GetFullPathNameA() (since that does not set it)
+  ~ winstl/filesystem/path.hpp - 
+      ~ fix to push() to ensure that ambient slash flavour is used
+      ~ make_absolute() now throws an exception if get_full_path_name() does
+        not succeed
+      ~ fix to canonicalise() for empty paths
+      ~ fix to canonicalise() for paths that contain drive and top-slash
+        only
 
 
 ============================================================================
@@ -57,8 +94,8 @@ Changes:
   ~ stlsoft/conversion/char_conversions.hpp - Safe String compatibility
   ~ stlsoft/string/trim_functions.hpp - Safe String compatibility, and
     removal of dependency on soon-to-be-obselete STLSoft standard emulation
-	functions (as they'll be handed off to the soon-to-be-released
-	flecxx library; see http://flecxx.org/)
+    functions (as they'll be handed off to the soon-to-be-released
+    flecxx library; see http://flecxx.org/)
   ~ stlsoft/util/constraints.hpp - elimination of warnings for some highly
     pedantic compiler modes
 

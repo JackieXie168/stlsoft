@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     9th March 2008
+ * Updated:     7th June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     240
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 6
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     241
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,6 +70,11 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+#  include <winstl/error/exceptions.hpp>
+# endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
 # include <stlsoft/memory/allocator_features.hpp>   // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
@@ -420,6 +425,7 @@ private:
     class_type              &concat_(class_type const& rhs);
 
     static char_type const  *next_slash_or_end(char_type const* p);
+    static char_type const  *next_part_or_end(char_type const* p);
     static char_type        path_name_separator_alt();
 
 // Member Types
@@ -860,6 +866,27 @@ inline /* static */ ss_typename_param_k basic_path<C, T, A>::char_type const* ba
         {
             case    '/':
             case    '\\':
+            case    '\0':
+                return p;
+            default:
+                ++p;
+                break;
+        }
+    }
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline /* static */ ss_typename_param_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::next_part_or_end(ss_typename_param_k basic_path<C, T, A>::char_type const* p)
+{
+    for(; ; )
+    {
+        switch(*p)
+        {
+            case    '/':
+            case    '\\':
                 ++p;
             case    '\0':
                 return p;
@@ -1075,9 +1102,9 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push(char_type const* rhs, ws_b
             // In an attempt to maintain slash/backslash consistency, we
             // locate the next slash to help guide the push_sep_() method.
 
-            class_type      newPath(*this);
-            char_type const* psep   =   next_slash_or_end(c_str());
-            char_type       sep     =   ('\0' == *psep) ? char_type(0) : psep[-1];
+            class_type          newPath(*this);
+            char_type const*    psep   =   next_slash_or_end(c_str());
+            char_type           sep    =   ('\0' == *psep) ? char_type(0) : psep[0];
 
             newPath.push_sep_(sep);
             newPath.concat_(rhs);
@@ -1312,16 +1339,29 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::make_absolute(ws_bool_t bRemoveTrailingPathNameSeparator /* = true */)
 {
-    buffer_type_    buffer;
-    size_type       cch = traits_type::get_full_path_name(c_str(), buffer.size(), &buffer[0]);
-    class_type      newPath(stlsoft_ns_qual(c_str_ptr)(buffer), cch);
+	if(0 != size())
+	{
+		buffer_type_    buffer;
+		size_type       cch = traits_type::get_full_path_name(c_str(), buffer.size(), &buffer[0]);
 
-    if(bRemoveTrailingPathNameSeparator)
-    {
-        newPath.pop_sep();
-    }
+		if(0 == cch)
+		{
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+	        STLSOFT_THROW_X(windows_exception("could not determine the absolute path", ::GetLastError()));
+#else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
+		    return *this;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+		}
 
-    swap(newPath);
+		class_type      newPath(stlsoft_ns_qual(c_str_ptr)(buffer), cch);
+
+		if(bRemoveTrailingPathNameSeparator)
+		{
+			newPath.pop_sep();
+		}
+
+		swap(newPath);
+	}
 
     return *this;
 }
@@ -1332,6 +1372,11 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveTrailingPathNameSeparator /* = true */)
 {
+	if(0 == size())
+	{
+		return *this;
+	}
+
     class_type  newPath(*this);
 
 #ifdef _DEBUG
@@ -1380,7 +1425,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
 
         for(; '\0' != *p1; ++i)
         {
-            p2 = next_slash_or_end(p1);
+            p2 = next_part_or_end(p1);
 
             parts[i].len    =   static_cast<size_type>(p2 - p1);
             parts[i].p      =   p1;
@@ -1485,7 +1530,8 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
     coallesce_parts_(parts);
 
     // 2.c "insert" a '.' if we've removed everything.
-    if(parts.empty())
+    if( !this->is_rooted() &&
+        parts.empty())
     {
         static const char_type  s_dot[] = { '.', '/' };
 

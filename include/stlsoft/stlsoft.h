@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     1st June 2008
+ * Updated:     8th June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -210,12 +210,13 @@
 # define _STLSOFT_VER_1_9_42    0x01092aff  /*!< Version 1.9.42 (17th May 2008) */
 # define _STLSOFT_VER_1_9_43    0x01092bff  /*!< Version 1.9.43 (31st May 2008) */
 # define _STLSOFT_VER_1_9_44    0x01092cff  /*!< Version 1.9.44 (1st Jun 2008) */
+# define _STLSOFT_VER_1_9_45    0x01092dff  /*!< Version 1.9.45 (8th Jun 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   44
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_44
+#define _STLSOFT_VER_REVISION   45
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_45
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
