@@ -4,11 +4,11 @@
  * Purpose:     Scopes the console colour (and intensity).
  *
  * Created:     20th July 2006
- * Updated:     12th March 2007
+ * Updated:     8th February 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MINOR    0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_REVISION 4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_REVISION 5
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -145,6 +145,7 @@ public:
 private:
     static ws_uint32_t init_(HANDLE hBuffer, WORD textAttributes)
     {
+        ws_uint32_t                 attr = 0xffffffff;
         CONSOLE_SCREEN_BUFFER_INFO  bufferInfo;
 
         if(!::GetConsoleScreenBufferInfo(hBuffer, &bufferInfo))
@@ -163,11 +164,11 @@ private:
             }
             else
             {
-                return bufferInfo.wAttributes;
+                attr = bufferInfo.wAttributes;
             }
         }
 
-        return 0xffffffff;  // Catch-all returns the error code
+        return attr;
     }
 /// @}
 

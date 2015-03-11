@@ -4,13 +4,13 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     25th October 2007
+ * Updated:     19th January 2008
  *
  * Thanks to:   Pablo Aguilar for requesting multibyte / Unicode ambivalence.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      79
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,7 +148,7 @@ private:
                                                     ,   NULL)
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-                            ,   (void (STLSOFT_STDCALL *)(HANDLE))&::CloseHandle
+                            ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
                             ,   ::CloseHandle
 #endif /* compiler */
@@ -173,7 +173,7 @@ private:
                                                     ,   NULL)
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-                            ,   (void (STLSOFT_STDCALL *)(HANDLE))&::CloseHandle
+                            ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
                             ,   ::CloseHandle
 #endif /* compiler */
@@ -240,7 +240,7 @@ private:
                                                                     ,   NULL)
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-                                    ,   (void (STLSOFT_STDCALL *)(HANDLE))&::CloseHandle
+                                    ,   (void (STLSOFT_STDCALL*)(HANDLE))&::CloseHandle
 #else /* ? compiler */
                                     ,   ::CloseHandle
 #endif /* compiler */
@@ -252,11 +252,11 @@ private:
                 }
                 else
                 {
-                    void    *memory = ::MapViewOfFile(  hmap.get()
-                                                    ,   FILE_MAP_READ
-                                                    ,   static_cast<ws_uint32_t>(offset >> 32)
-                                                    ,   static_cast<ws_uint32_t>(offset)
-                                                    ,   requestSize);
+                    void* memory = ::MapViewOfFile( hmap.get()
+                                                ,   FILE_MAP_READ
+                                                ,   static_cast<ws_uint32_t>(offset >> 32)
+                                                ,   static_cast<ws_uint32_t>(offset)
+                                                ,   requestSize);
 
                     if(NULL == memory)
                     {
@@ -376,7 +376,7 @@ public:
 public:
     /// \brief Non-mutating (const) pointer to the start of the mapped
     ///  region.
-    void const  *memory() const
+    void const* memory() const
     {
         return m_memory;
     }
@@ -407,6 +407,9 @@ private:
 
         xp(message, error);
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        STLSOFT_SUPPRESS_UNUSED(message);
+
         m_lastError = error;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -416,7 +419,7 @@ private:
 /// @{
 private:
     size_type   m_cb;
-    void        *m_memory;
+    void*       m_memory;
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
     error_type  m_lastError;
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
