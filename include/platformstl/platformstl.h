@@ -5,11 +5,11 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     21st July 2009
+ * Updated:     30th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    13
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     38
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -122,12 +122,13 @@
 # define _PLATFORMSTL_VER_1_7_1     0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.38) */
 # define _PLATFORMSTL_VER_1_7_2     0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.9.64) */
 # define _PLATFORMSTL_VER_1_8_1     0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.86) */
+# define _PLATFORMSTL_VER_1_8_2     0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.90) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      8
-#define _PLATFORMSTL_VER_REVISION   1
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_8_1
+#define _PLATFORMSTL_VER_REVISION   2
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_8_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -141,8 +142,8 @@
  * STLSoft version compatibility
  */
 
-#if _STLSOFT_VER < 0x010956ff
-# error This version of the PlatformSTL libraries requires STLSoft version 1.9.86, or later. (www.stlsoft.org)
+#if _STLSOFT_VER < 0x01095bff
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.91, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 /* /////////////////////////////////////////////////////////////////////////

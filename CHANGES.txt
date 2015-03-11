@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  21st January 2010
+; Updated:  2nd February 2010
 
 ============================================================================
 
@@ -15,6 +15,45 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.91 (2nd February 2010)
+
+Summary:
+========
+
+ * introducing unixstl::/winstl::remove_directory_recurse() into platformstl namespace
+ * removal of dependency on so-called "unsafe" string functions
+ * elimination of calls to memcpy() in path classes
+ * throwing of exception in make_absolute() if failed to get full path
+
+Changes:
+========
+
+ PlatformSTL:
+ ============
+
+ ~ platformstl/filesystem/directory_functions.hpp:
+    + introducing unixstl::/winstl::remove_directory_recurse() into platformstl namespace
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/filesystem/path.hpp:
+    ~ elimination of calls to memcpy()
+    ~ throwing of exception in make_absolute() if failed to get full path
+
+ WinSTL:
+ =======
+
+ ~ winstl/filesystem/directory_functions.hpp:
+    - removal of dependency on so-called "unsafe" string functions
+
+ ~ winstl/filesystem/path.hpp:
+    ~ elimination of calls to memcpy()
+
 
 
 ============================================================================

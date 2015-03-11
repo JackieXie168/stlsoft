@@ -4,11 +4,11 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     10th August 2009
+ * Updated:     30th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        39
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -517,14 +517,14 @@ inline us_bool_t remove_directory_recurse(  us_char_a_t const*  dir
 {
     typedef filesystem_traits<us_char_a_t>  traits_t;
 
-    us_int_t  dwRet   =   remove_directory_recurse_impl<us_char_a_t, struct stat>(dir, pfn, param);
+    us_int_t dwRet = remove_directory_recurse_impl<us_char_a_t, struct stat>(dir, pfn, param);
 
     traits_t::set_last_error(dwRet);
 
     return 0 == dwRet;
 }
 
-/** \brief
+/** \brief Removes the given directory, and all its subdirectories.
  *
  * \ingroup group__library__filesystem
  */
@@ -534,7 +534,7 @@ inline us_bool_t remove_directory_recurse(us_char_a_t const* dir)
 }
 
 #if 0
-/** \brief
+/** \brief Removes the given directory, and all its subdirectories.
  *
  * \ingroup group__library__filesystem
  */
@@ -551,7 +551,7 @@ inline us_bool_t remove_directory_recurse(  us_char_w_t const*  dir
     return 0 == dwRet;
 }
 
-/** \brief
+/** \brief Removes the given directory, and all its subdirectories.
  *
  * \ingroup group__library__filesystem
  */
@@ -561,7 +561,7 @@ inline us_bool_t remove_directory_recurse(us_char_w_t const* dir)
 }
 #endif /* 0 */
 
-/** \brief
+/** \brief Removes the given directory, and all its subdirectories.
  *
  * \ingroup group__library__filesystem
  */
@@ -570,7 +570,7 @@ inline us_bool_t remove_directory_recurse(S const& dir)
 {
     typedef filesystem_traits<us_char_a_t>  traits_t;
 
-    us_int_t  dwRet   =   remove_directory_recurse(stlsoft_ns_qual(c_str_ptr)(dir), NULL, NULL);
+    us_int_t dwRet = remove_directory_recurse(stlsoft_ns_qual(c_str_ptr)(dir), NULL, NULL);
 
     traits_t::set_last_error(dwRet);
 

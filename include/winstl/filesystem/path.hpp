@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     5th January 2010
+ * Updated:     30th January 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 16
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     255
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 17
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     256
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -221,7 +221,7 @@ public:
     {
         m_len = stlsoft_ns_qual(c_str_len)(s);
 
-        ::memcpy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), sizeof(char_type) * m_len);
+        traits_type::char_copy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), m_len);
         m_buffer[m_len] = '\0';
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -708,7 +708,7 @@ inline basic_path<C> make_path(C const* path)
     return basic_path<C>(path);
 }
 
-#endif /* compiler */
+# endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -986,7 +986,7 @@ template<   ss_typename_param_k C
 inline ss_typename_param_k basic_path<C, T, A>::class_type&
 basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs, ss_typename_param_k basic_path<C, T, A>::size_type cch)
 {
-    ::memcpy(&m_buffer[0] + m_len, rhs, sizeof(char_type) * cch);
+    traits_type::char_copy(&m_buffer[0] + m_len, rhs, cch);
     m_len += cch;
     m_buffer[m_len] = '\0';
 
@@ -1063,7 +1063,7 @@ inline /* ss_explicit_k */ basic_path<C, T, A>::basic_path(ss_typename_type_k ba
 
         WINSTL_MESSAGE_ASSERT("path too long", cch < m_buffer.size());
 
-        ::memcpy(&m_buffer[0], path, sizeof(char_type) * cch);
+        traits_type::char_copy(&m_buffer[0], path, cch);
 
         m_len = cch;
     }
@@ -1082,9 +1082,9 @@ inline basic_path<C, T, A>::basic_path(ss_typename_type_k basic_path<C, T, A>::c
 
     if(0 != cch)
     {
-        WINSTL_ASSERT(cch < m_buffer.size());
+        WINSTL_MESSAGE_ASSERT("path too long", cch < m_buffer.size());
 
-        ::memcpy(&m_buffer[0], path, sizeof(char_type) * cch);
+        traits_type::char_copy(&m_buffer[0], path, cch);
     }
     m_buffer[cch] = '\0';
 }
@@ -1241,7 +1241,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::push_ext(char_type const* rhs, 
     newPath.pop_sep();
     if('.' != *rhs)
     {
-        newPath.concat_(".", 1);
+        newPath.concat_(".", 1u);
     }
     newPath.concat_(rhs, traits_type::str_len(rhs));
     if(bAddPathNameSeparator)
@@ -1721,7 +1721,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
 
         for(size_type i = 0; i < parts.size(); ++i)
         {
-            ::memcpy(dest, parts[i].p, sizeof(char_type) * parts[i].len);
+            traits_type::char_copy(dest, parts[i].p, parts[i].len);
 
             dest += parts[i].len;
         }
