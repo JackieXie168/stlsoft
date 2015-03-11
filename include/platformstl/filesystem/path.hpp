@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     1st April 2010
+ * Updated:     21st November 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       28
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,9 @@ namespace platformstl_project
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 
-    typedef basic_path<char>    path;
+    typedef basic_path<ss_char_a_t, unixstl_ns_qual(filesystem_traits)<ss_char_a_t> >   path_a;
+    typedef basic_path<ss_char_w_t, unixstl_ns_qual(filesystem_traits)<ss_char_w_t> >   path_w;
+    typedef basic_path<ss_char_a_t, unixstl_ns_qual(filesystem_traits)<ss_char_a_t> >   path;
 
 # else /* ? compiler */
 
@@ -226,6 +228,8 @@ namespace platformstl_project
     using ::basic_path;
 #  else /* ? _UNIXSTL_NO_NAMESPACE */
     using ::unixstl::basic_path;
+    using ::unixstl::path_a;
+    using ::unixstl::path_w;
     using ::unixstl::path;
 #  endif /* _UNIXSTL_NO_NAMESPACE */
 
@@ -321,14 +325,18 @@ namespace platformstl_project
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 
-    typedef basic_path<TCHAR>   path;
+    typedef basic_path<ss_char_a_t,  winstl_ns_qual(filesystem_traits)<ss_char_a_t> >   path_a;
+    typedef basic_path<ss_char_w_t,  winstl_ns_qual(filesystem_traits)<ss_char_w_t> >   path_w;
+    typedef basic_path<TCHAR,        winstl_ns_qual(filesystem_traits)<TCHAR      > >   path;
 
 # else /* ? compiler */
 
 #  ifdef _WINSTL_NO_NAMESPACE
-     using ::basic_path;
+    using ::basic_path;
 #  else /* ? _WINSTL_NO_NAMESPACE */
      using ::winstl::basic_path;
+     using ::winstl::path_a;
+     using ::winstl::path_w;
      using ::winstl::path;
 #  endif /* _WINSTL_NO_NAMESPACE */
 
