@@ -12,7 +12,7 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -60,7 +60,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      92
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -447,7 +447,7 @@ inline basic_reg_value<C, T, A>::~basic_reg_value() stlsoft_throw_0()
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_value<C, T, A>::class_type &basic_reg_value<C, T, A>::operator =(class_type const& rhs)
+inline ss_typename_type_ret_k basic_reg_value<C, T, A>::class_type& basic_reg_value<C, T, A>::operator =(class_type const& rhs)
 {
     m_name              =   rhs.m_name;
     m_type              =   rhs.m_type;

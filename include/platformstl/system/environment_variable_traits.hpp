@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_variable_traits class.
  *
  * Created:     9th December 2005
- * Updated:     12th March 2007
+ * Updated:     8th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MINOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     17
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -178,6 +178,21 @@ extern char **environ;
 #  define PLATFORMSTL_ENVVAR_HAS_ENVIRON
 #  define PLATFORMSTL_ENVVAR_SET_BY_PUTENV
 #  define PLATFORMSTL_ENVVAR_ERASE_BY_PUTENV
+# elif defined(_WIN32)
+#  define PLATFORMSTL_ENVVAR_SET_BY_PUTENV
+#  define PLATFORMSTL_ENVVAR_ERASE_BY_PUTENV_EQUALS
+#  define PLATFORMSTL_ENVVAR_HAS_ENVIRON
+#  define PLATFORMSTL_ENVVAR_ENVIRON_HAS_UNDERSCORE
+#  if defined(STLSOFT_COMPILER_IS_BORLAND)
+    /* putenv() */
+#  elif defined(STLSOFT_COMPILER_IS_DMC) || \
+        defined(STLSOFT_COMPILER_IS_GCC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_MWERKS)
+#   define PLATFORMSTL_ENVVAR_PUTENV_HAS_UNDERSCORE
+#  else /* ? compiler */
+#  endif /* compiler */
 # else /* ? UNIX OS family */
 #  error UNIX family flavours other than BSD and SVR4 are not currently supported.
 # endif /* UNIX OS family */
@@ -256,7 +271,7 @@ public:
     /// \brief Returns a pointer to the environment block pointer.
     ///
     /// \note The returned pointer must be passed back to release_environ().
-    static char_type const* *get_environ();
+    static char_type const** get_environ();
     /// \brief Releases any allocation performed by get_environ().
     ///
     /// \param env The pointer returned in a previous call to get_environ().
@@ -313,7 +328,7 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
-inline /* static */ environment_variable_traits::char_type const* *environment_variable_traits::get_environ()
+inline /* static */ environment_variable_traits::char_type const** environment_variable_traits::get_environ()
 {
 # ifdef PLATFORMSTL_ENVVAR_ENVIRON_HAS_UNDERSCORE
     return const_cast<char_type const**>(_environ);

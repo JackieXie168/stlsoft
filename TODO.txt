@@ -2,13 +2,13 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  19th November 2007
+; Updated:  10th December 2007
 
 ============================================================================
 
 
-STLSoft 1.9.9 TODOs:
-====================
+STLSoft 1.9.10 TODOs:
+=====================
 
 
 ? 1. STLSoft Documentation
@@ -68,6 +68,13 @@ Priority: high
 
 
 ? 9. scoped_method smart pointer class
+-----------------------------------------------------
+
+Priority: medium
+
+
+
+? 10. fixed array class modifications (as desc on NG)
 -----------------------------------------------------
 
 Priority: medium

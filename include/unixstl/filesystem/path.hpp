@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       225
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       226
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -221,28 +221,28 @@ public:
 /// @{
 public:
     /// \brief Appends the contents of \c rhs to the path
-    class_type &push(class_type const& rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push(class_type const& rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path
-    class_type &push(char_type const* rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push(char_type const* rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path as an extension
-    class_type &push_ext(class_type const& rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push_ext(class_type const& rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path as an extension
-    class_type &push_ext(char_type const* rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push_ext(char_type const* rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Ensures that the path has a trailing path name separator
-    class_type &push_sep();
+    class_type& push_sep();
     /// \brief Pops the last path element from the path
     ///
     /// \note In previous versions, this operation did not remove the
     ///   left-most path component. That behaviour is no longer supported,
     ///   and the method will now leave the path instance empty in that
     ///   case.
-    class_type &pop(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type& pop(bool_type bRemoveTrailingPathNameSeparator = true);
     /// \brief Ensures that the path does not have a trailing path name separator
     ///
     /// \note Does not trim the separator character from the root designator
-    class_type &pop_sep();
+    class_type& pop_sep();
     /// \brief Removes the extension, if any, from the file component of the path
-    class_type &pop_ext();
+    class_type& pop_ext();
 
     /// \brief Equivalent to push()
     class_type& operator /=(char_type const* rhs);
@@ -266,9 +266,9 @@ public:
     void        clear();
 
     /// \brief Converts the path to absolute form
-    class_type &make_absolute(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type& make_absolute(bool_type bRemoveTrailingPathNameSeparator = true);
     /// \brief Canonicalises the path, removing all "./" parts and evaluating all "../" parts
-    class_type &canonicalise(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type& canonicalise(bool_type bRemoveTrailingPathNameSeparator = true);
 /// @}
 
 /// \name Attributes
@@ -807,7 +807,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_param_k basic_path<C, T, A>::class_type &basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs)
+inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs)
 {
     m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs));
 
@@ -818,7 +818,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_param_k basic_path<C, T, A>::class_type &basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
+inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
 {
     m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs.c_str()));
 

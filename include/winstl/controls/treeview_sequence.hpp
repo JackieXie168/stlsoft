@@ -4,7 +4,7 @@
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_MINOR     0
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_REVISION  5
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT      68
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_TREEVIEW_SEQUENCE_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -370,7 +370,7 @@ inline HTREEITEM treeview_sequence_const_iterator<N, P>::operator *() const
 }
 
 template <UINT N, UINT P>
-inline ss_typename_type_ret_k treeview_sequence_const_iterator<N, P>::class_type &treeview_sequence_const_iterator<N, P>::operator ++()
+inline ss_typename_type_ret_k treeview_sequence_const_iterator<N, P>::class_type& treeview_sequence_const_iterator<N, P>::operator ++()
 {
     if(m_hitem != NULL)
     {

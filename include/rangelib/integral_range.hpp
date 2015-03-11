@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     4th August 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 3
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     49
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -307,7 +307,7 @@ public:
         return m_position;
     }
     /// Advances the current position in the range
-    class_type &advance()
+    class_type& advance()
     {
         STLSOFT_MESSAGE_ASSERT("Attempting to advance a closed range", is_open());
         STLSOFT_MESSAGE_ASSERT("Attempting to increment the range past its end point", (m_increment > 0 && m_position < m_last) || (m_increment < 0 && m_position > m_last));

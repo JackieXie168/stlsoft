@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       7
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        121
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -959,7 +959,7 @@ inline void basic_reg_key<C, T, A>::swap(ss_typename_type_k basic_reg_key<C, T, 
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type &basic_reg_key<C, T, A>::operator =(ss_typename_type_k basic_reg_key<C, T, A>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type& basic_reg_key<C, T, A>::operator =(ss_typename_type_k basic_reg_key<C, T, A>::class_type const& rhs)
 {
     class_type  _this(rhs);
 

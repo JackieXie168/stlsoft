@@ -4,7 +4,7 @@
  * Purpose:     Contains the stlsoft::mem_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     4th August 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MINOR      1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       58
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -499,7 +499,7 @@ public:
     ss_explicit_k cdecl_mem_fun_ref_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type &rt) const
+    return_type operator ()(operand_class_type& rt) const
     {
         return (rt.*m_func)();
     }
@@ -558,7 +558,7 @@ public:
     ss_explicit_k cdecl_mem_fun_ref_void_t(method_type func)
         : m_func(func)
     {}
-    void operator ()(operand_class_type &rt) const
+    void operator ()(operand_class_type& rt) const
     {
         (rt.*m_func)();
     }
@@ -621,7 +621,7 @@ public:
     ss_explicit_k fastcall_mem_fun_ref_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type &rt) const
+    return_type operator ()(operand_class_type& rt) const
     {
         return (rt.*m_func)();
     }
@@ -680,7 +680,7 @@ public:
     ss_explicit_k fastcall_mem_fun_ref_void_t(method_type func)
         : m_func(func)
     {}
-    void operator ()(operand_class_type &rt) const
+    void operator ()(operand_class_type& rt) const
     {
         (rt.*m_func)();
     }
@@ -745,7 +745,7 @@ public:
     ss_explicit_k stdcall_mem_fun_ref_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type &rt) const
+    return_type operator ()(operand_class_type& rt) const
     {
         return (rt.*m_func)();
     }
@@ -804,7 +804,7 @@ public:
     ss_explicit_k stdcall_mem_fun_ref_void_t(method_type func)
         : m_func(func)
     {}
-    void operator ()(operand_class_type &rt) const
+    void operator ()(operand_class_type& rt) const
     {
         (rt.*m_func)();
     }

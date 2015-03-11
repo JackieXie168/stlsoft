@@ -4,7 +4,7 @@
  * Purpose:     Byte-order independent large integer (aggregate) classes.
  *
  * Created:     15th October 2000
- * Updated:     22nd March 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MINOR     1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT      128
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT      129
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -358,7 +358,7 @@ inline sinteger64::sinteger64(long i)
 {}
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-inline sinteger64::class_type &sinteger64::operator =(class_type const& rhs)
+inline sinteger64::class_type& sinteger64::operator =(class_type const& rhs)
 {
     m_high  =   rhs.m_high;
     m_low   =   rhs.m_low;
@@ -366,7 +366,7 @@ inline sinteger64::class_type &sinteger64::operator =(class_type const& rhs)
     return *this;
 }
 
-inline sinteger64::class_type &sinteger64::operator =(ss_sint8_t i)
+inline sinteger64::class_type& sinteger64::operator =(ss_sint8_t i)
 {
     m_high  =   0;
     m_low   =   i;
@@ -374,7 +374,7 @@ inline sinteger64::class_type &sinteger64::operator =(ss_sint8_t i)
     return *this;
 }
 
-inline sinteger64::class_type &sinteger64::operator =(ss_sint16_t i)
+inline sinteger64::class_type& sinteger64::operator =(ss_sint16_t i)
 {
     m_high  =   0;
     m_low   =   i;
@@ -382,7 +382,7 @@ inline sinteger64::class_type &sinteger64::operator =(ss_sint16_t i)
     return *this;
 }
 
-inline sinteger64::class_type &sinteger64::operator =(ss_sint32_t i)
+inline sinteger64::class_type& sinteger64::operator =(ss_sint32_t i)
 {
     m_high  =   0;
     m_low   =   i;
@@ -391,7 +391,7 @@ inline sinteger64::class_type &sinteger64::operator =(ss_sint32_t i)
 }
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator =(int i)
+inline sinteger64::class_type& sinteger64::operator =(int i)
 {
     m_high  =   0;
     m_low   =   i;
@@ -401,7 +401,7 @@ inline sinteger64::class_type &sinteger64::operator =(int i)
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator =(long i)
+inline sinteger64::class_type& sinteger64::operator =(long i)
 {
     m_high  =   0;
     m_low   =   i;
@@ -410,7 +410,7 @@ inline sinteger64::class_type &sinteger64::operator =(long i)
 }
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-inline sinteger64::class_type &sinteger64::operator +=(class_type const& rhs)
+inline sinteger64::class_type& sinteger64::operator +=(class_type const& rhs)
 {
     m_low   +=  rhs.m_low;
     m_high  +=  rhs.m_high;
@@ -429,36 +429,36 @@ inline sinteger64::class_type &sinteger64::operator +=(class_type const& rhs)
     return *this;
 }
 
-inline sinteger64::class_type &sinteger64::operator +=(ss_sint8_t i)
+inline sinteger64::class_type& sinteger64::operator +=(ss_sint8_t i)
 {
     return operator +=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator +=(ss_sint16_t i)
+inline sinteger64::class_type& sinteger64::operator +=(ss_sint16_t i)
 {
     return operator +=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator +=(ss_sint32_t i)
+inline sinteger64::class_type& sinteger64::operator +=(ss_sint32_t i)
 {
     return operator +=(class_type(i));
 }
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator +=(int i)
+inline sinteger64::class_type& sinteger64::operator +=(int i)
 {
     return operator +=(class_type(i));
 }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator +=(long i)
+inline sinteger64::class_type& sinteger64::operator +=(long i)
 {
     return operator +=(class_type(i));
 }
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-inline sinteger64::class_type &sinteger64::operator -=(class_type const& rhs)
+inline sinteger64::class_type& sinteger64::operator -=(class_type const& rhs)
 {
     m_low   -=  rhs.m_low;
     m_high  -=  rhs.m_high;
@@ -477,36 +477,36 @@ inline sinteger64::class_type &sinteger64::operator -=(class_type const& rhs)
     return *this;
 }
 
-inline sinteger64::class_type &sinteger64::operator -=(ss_sint8_t i)
+inline sinteger64::class_type& sinteger64::operator -=(ss_sint8_t i)
 {
     return operator -=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator -=(ss_sint16_t i)
+inline sinteger64::class_type& sinteger64::operator -=(ss_sint16_t i)
 {
     return operator -=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator -=(ss_sint32_t i)
+inline sinteger64::class_type& sinteger64::operator -=(ss_sint32_t i)
 {
     return operator -=(class_type(i));
 }
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator -=(int i)
+inline sinteger64::class_type& sinteger64::operator -=(int i)
 {
     return operator -=(class_type(i));
 }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator -=(long i)
+inline sinteger64::class_type& sinteger64::operator -=(long i)
 {
     return operator -=(class_type(i));
 }
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-inline sinteger64::class_type &sinteger64::operator *=(class_type const& rhs)
+inline sinteger64::class_type& sinteger64::operator *=(class_type const& rhs)
 {
     m_low   *=  rhs.m_low;
     m_high  *=  rhs.m_high;
@@ -525,93 +525,93 @@ inline sinteger64::class_type &sinteger64::operator *=(class_type const& rhs)
     return *this;
 }
 
-inline sinteger64::class_type &sinteger64::operator *=(ss_sint8_t i)
+inline sinteger64::class_type& sinteger64::operator *=(ss_sint8_t i)
 {
     return operator *=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator *=(ss_sint16_t i)
+inline sinteger64::class_type& sinteger64::operator *=(ss_sint16_t i)
 {
     return operator *=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator *=(ss_sint32_t i)
+inline sinteger64::class_type& sinteger64::operator *=(ss_sint32_t i)
 {
     return operator *=(class_type(i));
 }
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator *=(int i)
+inline sinteger64::class_type& sinteger64::operator *=(int i)
 {
     return operator *=(class_type(i));
 }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator *=(long i)
+inline sinteger64::class_type& sinteger64::operator *=(long i)
 {
     return operator *=(class_type(i));
 }
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-//inline sinteger64::class_type &sinteger64::operator /=(class_type const& rhs);
+//inline sinteger64::class_type& sinteger64::operator /=(class_type const& rhs);
 
-inline sinteger64::class_type &sinteger64::operator /=(ss_sint8_t i)
+inline sinteger64::class_type& sinteger64::operator /=(ss_sint8_t i)
 {
     return operator /=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator /=(ss_sint16_t i)
+inline sinteger64::class_type& sinteger64::operator /=(ss_sint16_t i)
 {
     return operator /=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator /=(ss_sint32_t i)
+inline sinteger64::class_type& sinteger64::operator /=(ss_sint32_t i)
 {
     return operator /=(class_type(i));
 }
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator /=(int i)
+inline sinteger64::class_type& sinteger64::operator /=(int i)
 {
     return operator /=(class_type(i));
 }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator /=(long i)
+inline sinteger64::class_type& sinteger64::operator /=(long i)
 {
     return operator /=(class_type(i));
 }
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 
-//inline sinteger64::class_type &sinteger64::operator %=(class_type const& rhs);
+//inline sinteger64::class_type& sinteger64::operator %=(class_type const& rhs);
 
-inline sinteger64::class_type &sinteger64::operator %=(ss_sint8_t i)
+inline sinteger64::class_type& sinteger64::operator %=(ss_sint8_t i)
 {
     return operator %=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator %=(ss_sint16_t i)
+inline sinteger64::class_type& sinteger64::operator %=(ss_sint16_t i)
 {
     return operator %=(class_type(i));
 }
 
-inline sinteger64::class_type &sinteger64::operator %=(ss_sint32_t i)
+inline sinteger64::class_type& sinteger64::operator %=(ss_sint32_t i)
 {
     return operator %=(class_type(i));
 }
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator %=(int i)
+inline sinteger64::class_type& sinteger64::operator %=(int i)
 {
     return operator %=(class_type(i));
 }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-inline sinteger64::class_type &sinteger64::operator %=(long i)
+inline sinteger64::class_type& sinteger64::operator %=(long i)
 {
     return operator %=(class_type(i));
 }

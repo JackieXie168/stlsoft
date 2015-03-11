@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     22nd March 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    7
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        51
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -508,7 +508,7 @@ inline environment_map::const_iterator::const_iterator(environment_map::const_it
     , m_snapshot(rhs.m_snapshot)
 {}
 
-inline environment_map::const_iterator::class_type &environment_map::const_iterator::operator ++()
+inline environment_map::const_iterator::class_type& environment_map::const_iterator::operator ++()
 {
     ++m_it;
 
@@ -529,7 +529,7 @@ inline environment_map::const_reference environment_map::const_iterator::operato
     return *m_it;
 }
 
-inline environment_map::const_iterator::class_type &environment_map::const_iterator::operator --()
+inline environment_map::const_iterator::class_type& environment_map::const_iterator::operator --()
 {
     --m_it;
 

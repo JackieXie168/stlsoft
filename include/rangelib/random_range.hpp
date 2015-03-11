@@ -4,7 +4,7 @@
  * Purpose:     Random number range class.
  *
  * Created:     31st May 2004
- * Updated:     22nd March 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   2
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       26
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ public:
         return m_value;
     }
     /// Advances the current position in the range
-    class_type &advance()
+    class_type& advance()
     {
         STLSOFT_MESSAGE_ASSERT("Attempting to advance a closed range", is_open());
 

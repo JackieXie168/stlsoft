@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      0
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   6
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       88
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -452,7 +452,7 @@ inline basic_drophandle_sequence_const_iterator<C, T>::basic_drophandle_sequence
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator =(ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type& basic_drophandle_sequence_const_iterator<C, T>::operator =(ss_typename_type_k basic_drophandle_sequence_const_iterator<C, T>::class_type const& rhs)
 {
     m_hdrop = rhs.m_hdrop;
     m_index = rhs.m_index;
@@ -463,7 +463,7 @@ inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::cl
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator ++()
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type& basic_drophandle_sequence_const_iterator<C, T>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Incrementing the end iterator", m_index != sentinel_());
 
@@ -487,7 +487,7 @@ inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::cl
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type &basic_drophandle_sequence_const_iterator<C, T>::operator --()
+inline ss_typename_type_ret_k basic_drophandle_sequence_const_iterator<C, T>::class_type& basic_drophandle_sequence_const_iterator<C, T>::operator --()
 {
     // If currently at 'end' ....
     if(m_index == sentinel_())

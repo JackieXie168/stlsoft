@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     10th October 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     118
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -774,7 +774,7 @@ inline VsStringTable::const_iterator::const_iterator(void const* p)
     : m_p(p)
 {}
 
-inline VsStringTable::const_iterator::class_type &VsStringTable::const_iterator::operator ++()
+inline VsStringTable::const_iterator::class_type& VsStringTable::const_iterator::operator ++()
 {
     String_hdr const* str = static_cast<String_hdr const*>(m_p);
 
@@ -838,7 +838,7 @@ inline VsVarFileInfo::const_iterator::const_iterator(void const* p)
     : m_p(p)
 {}
 
-inline VsVarFileInfo::const_iterator::class_type &VsVarFileInfo::const_iterator::operator ++()
+inline VsVarFileInfo::const_iterator::class_type& VsVarFileInfo::const_iterator::operator ++()
 {
     Var_hdr const* var = static_cast<Var_hdr const*>(m_p);
 
@@ -902,7 +902,7 @@ inline VsStringFileInfo::const_iterator::const_iterator(void const* p)
     : m_p(p)
 {}
 
-inline VsStringFileInfo::const_iterator::class_type &VsStringFileInfo::const_iterator::operator ++()
+inline VsStringFileInfo::const_iterator::class_type& VsStringFileInfo::const_iterator::operator ++()
 {
     StringTable_hdr const* strtbl = static_cast<StringTable_hdr const*>(m_p);
 

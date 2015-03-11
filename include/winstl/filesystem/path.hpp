@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     237
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     238
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -274,7 +274,7 @@ public:
     ///   left-most path component. That behaviour is no longer supported,
     ///   and the method will now leave the path instance empty in that
     ///   case.
-    class_type &pop(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type& pop(bool_type bRemoveTrailingPathNameSeparator = true);
     /// \brief Ensures that the path does not have a trailing path name separator
     ///
     /// \note Does not trim the separator character from the root designator
@@ -886,7 +886,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_param_k basic_path<C, T, A>::class_type &basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs)
+inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs)
 {
     m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs));
 
@@ -897,7 +897,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_param_k basic_path<C, T, A>::class_type &basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
+inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
 {
     m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs.c_str()));
 

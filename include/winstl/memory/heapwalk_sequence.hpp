@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     22nd March 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        60
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -347,7 +347,7 @@ inline heapwalk_sequence_const_iterator::heapwalk_sequence_const_iterator(class_
     , m_value(rhs.m_value)
 {}
 
-inline heapwalk_sequence_const_iterator::class_type &heapwalk_sequence_const_iterator::operator =(const heapwalk_sequence_const_iterator::class_type& rhs)
+inline heapwalk_sequence_const_iterator::class_type& heapwalk_sequence_const_iterator::operator =(const heapwalk_sequence_const_iterator::class_type& rhs)
 {
     WINSTL_ASSERT(m_list == rhs.m_list);
 
@@ -359,7 +359,7 @@ inline heapwalk_sequence_const_iterator::class_type &heapwalk_sequence_const_ite
 inline heapwalk_sequence_const_iterator::~heapwalk_sequence_const_iterator() stlsoft_throw_0()
 {}
 
-inline heapwalk_sequence_const_iterator::class_type &heapwalk_sequence_const_iterator::operator ++()
+inline heapwalk_sequence_const_iterator::class_type& heapwalk_sequence_const_iterator::operator ++()
 {
     if( NULL != m_list &&
         !::HeapWalk(m_list->m_hHeap, &m_value))

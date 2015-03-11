@@ -4,7 +4,7 @@
  * Purpose:     Indexed range adaptor class.
  *
  * Created:     11th October 2004
- * Updated:     6th January 2007
+ * Updated:     6th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       4
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    2
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        31
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -220,7 +220,7 @@ public:
         return m_range.current();
     }
     /// Advances the current position in the range
-    class_type &advance()
+    class_type& advance()
     {
         STLSOFT_MESSAGE_ASSERT("Attempting to increment the range past its end point", is_open());
 

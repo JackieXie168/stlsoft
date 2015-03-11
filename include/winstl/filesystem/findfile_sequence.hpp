@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     6th November 2007
+ * Updated:     6th December 2007
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
  *              example when writing books about good design/implementation.
@@ -69,7 +69,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        208
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        209
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1080,7 +1080,7 @@ inline basic_findfile_sequence_value_type<C, T>::basic_findfile_sequence_value_t
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::class_type &basic_findfile_sequence_value_type<C, T>::operator =(ss_typename_type_k basic_findfile_sequence_value_type<C, T>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::class_type& basic_findfile_sequence_value_type<C, T>::operator =(ss_typename_type_k basic_findfile_sequence_value_type<C, T>::class_type const& rhs)
 {
     m_data      =   rhs.m_data;
     m_path      =   rhs.m_path;
@@ -1364,7 +1364,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, V>::basic_findfile_seq
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 #ifndef STLSOFT_COMPILER_IS_WATCOM
-inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, V>::operator =(ss_typename_param_k basic_findfile_sequence_const_input_iterator<C, T, V>::class_type const& rhs)
+inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, V>::class_type& basic_findfile_sequence_const_input_iterator<C, T, V>::operator =(ss_typename_param_k basic_findfile_sequence_const_input_iterator<C, T, V>::class_type const& rhs)
 #else /* ? compiler */
 inline basic_findfile_sequence_const_input_iterator<C, T, V> &basic_findfile_sequence_const_input_iterator<C, T, V>::operator =(basic_findfile_sequence_const_input_iterator<C, T, V> const& rhs)
 #endif /* compiler */
@@ -1405,7 +1405,7 @@ inline basic_findfile_sequence_const_input_iterator<C, T, V>::~basic_findfile_se
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
-inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, V>::class_type &basic_findfile_sequence_const_input_iterator<C, T, V>::operator ++()
+inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T, V>::class_type& basic_findfile_sequence_const_input_iterator<C, T, V>::operator ++()
 {
     // Pre-condition enforcements
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", '\0' != *m_pattern0);
