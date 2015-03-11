@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     2nd June 2007
+ * Updated:     4th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        101
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -393,7 +393,7 @@ public:
 public:
     static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         if(0 == cchBuffer)
         {
@@ -407,7 +407,7 @@ public:
 
     static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         size_type   cch =   get_module_filename(hModule, buffer, cchBuffer);
 
@@ -431,14 +431,14 @@ public:
 
     static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         return ::GetSystemDirectoryA(buffer, cchBuffer);
     }
 
     static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         return ::GetWindowsDirectoryA(buffer, cchBuffer);
     }
@@ -483,7 +483,7 @@ public:
     static size_type get_environment_variable(char_type const* name, char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != name);
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         return ::GetEnvironmentVariableA(name, buffer, cchBuffer);
     }
@@ -624,7 +624,7 @@ public:
 public:
     static size_type get_module_filename(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         if(0 == cchBuffer)
         {
@@ -646,7 +646,7 @@ public:
 
     static size_type get_module_directory(HINSTANCE hModule, char_type* buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         size_type   cch =   get_module_filename(hModule, buffer, cchBuffer);
 
@@ -670,14 +670,14 @@ public:
 
     static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         return ::GetSystemDirectoryW(buffer, cchBuffer);
     }
 
     static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
     {
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         return ::GetWindowsDirectoryW(buffer, cchBuffer);
     }
@@ -723,7 +723,7 @@ public:
     static size_type get_environment_variable(char_type const* name, char_type* buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != name);
-        WINSTL_ASSERT(NULL != buffer);
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
 
         return ::GetEnvironmentVariableW(name, buffer, cchBuffer);
     }

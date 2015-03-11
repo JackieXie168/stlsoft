@@ -2,7 +2,7 @@
 STLSoft - Install
 
 ; Created:  29th March 2002
-; Updated:  2nd August 2007
+; Updated:  4th August 2007
 
 ============================================================================
 
@@ -11,8 +11,8 @@ STLSoft - Install
  STLSoft is a 100% header-only library, and so requires no building.
 
  It is recommended that you define an STLSOFT environment variable. For
- example, if you install to /usr/local/stlsoft/stlsoft-1.9.4, then you
- should set STLSOFT to /usr/local/stlsoft/stlsoft-1.9.4. In that case,
+ example, if you install to /usr/local/stlsoft/stlsoft-1.9.5, then you
+ should set STLSOFT to /usr/local/stlsoft/stlsoft-1.9.5. In that case,
  the file stlsoft/stlsoft.h will be located at
  $STLSOFT/include/stlsoft/stlsoft.h
 

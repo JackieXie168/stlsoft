@@ -1,5 +1,5 @@
 
-// Updated: 9th March 2007
+// Updated: 4th August 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE)
 # error This file cannot be directly included, and should only be included within stlsoft/smartptr/scoped_handle.hpp
@@ -13,6 +13,7 @@ namespace unittest
 {
 	namespace
 	{
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
 		void STLSOFT_CDECL test_stlsoft_scoped_handle__close_short_cdecl_void(short )
 		{}
 		bool STLSOFT_CDECL test_stlsoft_scoped_handle__close_short_cdecl(short )
@@ -29,6 +30,7 @@ namespace unittest
 
 			return true;
 		}
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 		void STLSOFT_FASTCALL test_stlsoft_scoped_handle__close_long_fastcall_void(long )

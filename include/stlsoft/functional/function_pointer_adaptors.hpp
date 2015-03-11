@@ -4,7 +4,7 @@
  * Purpose:     Contains the stlsoft::ptr_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     3rd April 2007
+ * Updated:     4th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_MINOR    1
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_MINOR    2
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_REVISION 1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_EDIT     59
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,6 +82,7 @@ namespace stlsoft
  * Classes
  */
 
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
 /** \brief A unary function adaptor for pointers to functions with CDecl (__cdecl) calling convention
  *
  * \ingroup group__library__functional
@@ -139,6 +140,7 @@ public:
 private:
     function_type m_func;
 };
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 /** \brief A unary function adaptor for pointers to functions with FastCall (__fastcall) calling convention
@@ -262,6 +264,7 @@ private:
 
 
 #if !defined(STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID)
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
 /** \brief A unary function adaptor for pointers to functions with CDecl (__cdecl) calling convention that
  * have a void return type
  *
@@ -318,6 +321,8 @@ public:
 private:
     function_type m_func;
 };
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
+
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 /** \brief A unary function adaptor for pointers to functions with FastCall (__fastcall) calling convention that
  * have a void return type
@@ -441,6 +446,7 @@ private:
  * Creator functions
  */
 
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
 /** \brief Creator function to adapt pointers to functions with CDecl (__cdecl) calling convention
  *
  * \ingroup group__library__functional
@@ -467,6 +473,7 @@ binary_cdecl_function_pointer<R, A0, A1> ptr_fun(R (STLSOFT_CDECL *func)(A0, A1)
 {
     return binary_cdecl_function_pointer<R, A0, A1>(func);
 }
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 /** \brief Creator function to adapt pointers to functions with FastCall (__fastcall) calling convention
@@ -529,6 +536,7 @@ binary_stdcall_function_pointer<R, A0, A1> ptr_fun(R (STLSOFT_STDCALL *func)(A0,
 
 #if defined(STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID)
 
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
 /** \brief Creator function to adapt pointers to functions with CDecl (__cdecl) calling convention that
  * have a void return type
  *
@@ -554,6 +562,7 @@ binary_cdecl_function_pointer<void, A0, A1> ptr_fun_void(void (STLSOFT_CDECL *fu
 {
     return binary_cdecl_function_pointer<void, A0, A1>(func);
 }
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 /** \brief Creator function to adapt pointers to functions with FastCall (__fastcall) calling convention that
@@ -614,6 +623,7 @@ binary_stdcall_function_pointer<void, A0, A1> ptr_fun_void(void (STLSOFT_STDCALL
 
 #else /* ? STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
 
+# ifdef STLSOFT_CF_CDECL_SUPPORTED
 /** \brief Creator function to adapt pointers to functions with CDecl (__cdecl) calling convention that
  * have a void return type
  *
@@ -663,6 +673,7 @@ binary_cdecl_void_function_pointer<A0, A1> ptr_fun(void (STLSOFT_CDECL *func)(A0
 {
     return ptr_fun_void(func);
 }
+# endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 /** \brief Creator function to adapt pointers to functions with FastCall (__fastcall) calling convention that

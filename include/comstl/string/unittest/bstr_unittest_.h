@@ -1,5 +1,5 @@
 
-// Updated: 2nd September 2006
+// Updated: 4th August 2007
 
 #if !defined(COMSTL_INCL_COMSTL_STRING_HPP_BSTR)
 # error This file cannot be directly included, and should only be included within comstl/string/bstr.hpp
@@ -343,6 +343,34 @@ namespace unittest
 				if(!test_comstl_string_bstr_invariant(r, s1))
 				{
 					bSuccess = false;
+				}
+			}
+
+			{
+				bstr	s1;
+				BSTR	bstr1	=	::SysAllocString(L"abc");
+
+				if(NULL != bstr1)
+				{
+					s1.attach(bstr1);
+
+					if(s1.empty())
+					{
+						r->report("attach() failed", __LINE__);
+						bSuccess = false;
+					}
+
+					if(3 != s1.size())
+					{
+						r->report("attach() failed", __LINE__);
+						bSuccess = false;
+					}
+
+					if(L"abc" != s1)
+					{
+						r->report("attach() failed", __LINE__);
+						bSuccess = false;
+					}
 				}
 			}
 

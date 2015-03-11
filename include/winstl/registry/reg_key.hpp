@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     1st June 2007
+ * Updated:     4th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        118
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -453,7 +453,7 @@ public:
      *  value returned from the get_key_handle() method.
      */
     template <ss_typename_param_k H, ss_typename_param_k S>
-    static class_type create_key(H &key, S const& subKeyName, REGSAM accessMask = KEY_ALL_ACCESS)
+    static class_type create_key(H const& key, S const& subKeyName, REGSAM accessMask = KEY_ALL_ACCESS)
     {
         return create_key(get_HKEY(key), stlsoft_ns_qual(c_str_ptr)(subKeyName), accessMask);
     }

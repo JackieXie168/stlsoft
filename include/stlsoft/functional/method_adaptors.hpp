@@ -4,7 +4,7 @@
  * Purpose:     Contains the stlsoft::mem_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     12th March 2007
+ * Updated:     4th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MAJOR      4
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MINOR      0
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MINOR      1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       57
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,6 +98,7 @@ namespace stlsoft
 
 // cdecl
 
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
 /** \brief A function class that invokes a <b>cdecl</b> calling convention
  *    0-parameter mutating (non-const) member function on its pointer argument.
  *
@@ -113,11 +114,11 @@ struct cdecl_mem_fun_t
 public:
     typedef R                           return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+# ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)();
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)();
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_t(method_type func)
         : m_func(func)
@@ -145,11 +146,11 @@ struct cdecl_mem_fun_const_t
 public:
     typedef R                           return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+# ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_const_t(method_type func)
         : m_func(func)
@@ -162,7 +163,7 @@ private:
     method_type m_func;
 };
 
-#ifndef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
+# ifndef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
 
 template< ss_typename_param_k T
         >
@@ -172,11 +173,11 @@ struct cdecl_mem_fun_void_t
 public:
     typedef void                        return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+#  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)();
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)();
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_void_t(method_type func)
         : m_func(func)
@@ -197,11 +198,11 @@ struct cdecl_mem_fun_const_void_t
 public:
     typedef void                        return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+#  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_const_void_t(method_type func)
         : m_func(func)
@@ -214,7 +215,8 @@ private:
     method_type m_func;
 };
 
-#endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+# endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 
 
@@ -471,6 +473,8 @@ private:
 
 
 
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
+
 /** \brief A function class that invokes a <b>cdecl</b> calling convention
  *    0-parameter mutating (non-const) member function on its pointer argument.
  *
@@ -486,11 +490,11 @@ struct cdecl_mem_fun_ref_t
 public:
     typedef R                           return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+# ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)();
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)();
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_t(method_type func)
         : m_func(func)
@@ -518,11 +522,11 @@ struct cdecl_mem_fun_ref_const_t
 public:
     typedef R                           return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+# ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+# endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_const_t(method_type func)
         : m_func(func)
@@ -535,7 +539,7 @@ private:
     method_type m_func;
 };
 
-#ifndef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
+# ifndef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
 
 template< ss_typename_param_k T
         >
@@ -545,11 +549,11 @@ struct cdecl_mem_fun_ref_void_t
 public:
     typedef void                        return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+#  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)();
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)();
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_void_t(method_type func)
         : m_func(func)
@@ -570,11 +574,11 @@ struct cdecl_mem_fun_ref_const_void_t
 public:
     typedef void                        return_type;
     typedef T                           operand_class_type;
-#ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+#  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
     typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
-#else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
     typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
-#endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+#  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_const_void_t(method_type func)
         : m_func(func)
@@ -587,7 +591,8 @@ private:
     method_type m_func;
 };
 
-#endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+# endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
@@ -841,6 +846,7 @@ private:
  */
 
 // cdecl
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
 
 /** \brief Creator function to adapt a pointer to a 0-parameter mutating
  *    (non-const) member function, for use with a pointer to the class.
@@ -958,16 +964,17 @@ inline cdecl_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_CDECL T::*func)(
 }
 
 #endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 
 // fastcall
+#ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 
 /** \brief Creator function to adapt a pointer to a 0-parameter mutating
  *    (non-const) member function, for use with a pointer to the class.
  *
  * \ingroup group__library__functional
  */
-#ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 
 template< ss_typename_param_k R
         , ss_typename_param_k T
@@ -1220,6 +1227,7 @@ inline stdcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*fu
 
 
 // cdecl
+#ifdef STLSOFT_CF_CDECL_SUPPORTED
 
 /** \brief Creator function to adapt a pointer to a 0-parameter mutating
  *    (non-const) member function, for use with a reference to the class.
@@ -1336,7 +1344,8 @@ inline cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_CDECL T:
     return cdecl_mem_fun_ref_const_void_t<T>(func);
 }
 
-#endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+# endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+#endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 
 // fastcall
