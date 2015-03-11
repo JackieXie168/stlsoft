@@ -19,6 +19,15 @@ STLSoft - Changes
 
 ============================================================================
 
+Changes for 1.9.41 (13th May 2008)
+
+Summary:
+========
+
+ * bug fix for GCC compilation on PowerPC that was broken with 1.9.40
+
+============================================================================
+
 Changes for 1.9.40 (13th May 2008)
 
 Summary:
