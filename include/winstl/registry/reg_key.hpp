@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     25th April 2008
+ * Updated:     26th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        125
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1022,19 +1022,11 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type basic_reg_key<
     size_type   cch_key_class   =   0;
     ws_long_t   res             =   traits_type::reg_query_info(m_hkey, NULL, &cch_key_class, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
-    if(ERROR_SUCCESS == res)
+    if(ERROR_SUCCESS != res)
     {
-        stlsoft_ns_qual(auto_buffer_old)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>  p(++cch_key_class);
-
-        res = traits_type::reg_query_info(m_hkey, &p[0], &cch_key_class, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
-        if(ERROR_SUCCESS == res)
-        {
-            return string_type(&p[0], cch_key_class);
-        }
-    }
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+query_fail:
+
         static const char message[] = "could not determine the key registry class";
 
         if(ERROR_ACCESS_DENIED == res)
@@ -1046,6 +1038,24 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type basic_reg_key<
             STLSOFT_THROW_X(registry_exception(message, res));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+    else
+    {
+        stlsoft_ns_qual(auto_buffer_old)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>  p(++cch_key_class);
+
+        res = traits_type::reg_query_info(m_hkey, &p[0], &cch_key_class, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+        if(ERROR_SUCCESS != res)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            goto query_fail;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+        else
+        {
+            return string_type(&p[0], cch_key_class);
+        }
+    }
 
     return string_type();
 }

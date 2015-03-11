@@ -11,8 +11,10 @@
  *
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
+ *              To Austin Ziegler for the value_multi_sz() method
+ *
  * Created:     19th January 2002
- * Updated:     25th April 2008
+ * Updated:     29th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,9 +60,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      96
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,6 +101,12 @@
 # define STLSOFT_INCL_ALGORITHM
 # include <algorithm>
 #endif /* !STLSOFT_INCL_ALGORITHM */
+#ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
+# ifndef STLSOFT_INCL_VECTOR
+#  define STLSOFT_INCL_VECTOR
+#  include <vector>
+# endif /* !STLSOFT_INCL_VECTOR */
+#endif /* !WINSTL_REG_VALUE_NO_MULTI_SZ */
 
 #ifndef STLSOFT_UNITTEST
 # include <winstl/registry/reg_key.hpp>
@@ -270,6 +278,10 @@ public:
     typedef ss_typename_type_k traits_type::size_type                   size_type;
     /// \brief The string type
     typedef ss_typename_type_k traits_type::string_type                 string_type;
+#ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
+    /// \brief The string vector type
+    typedef stlsoft_ns_qual_std(vector)<string_type>                    strings_type;
+#endif /* !WINSTL_REG_VALUE_NO_MULTI_SZ */
     /// \brief The key type
 #if defined(STLSOFT_CF_THROW_BAD_ALLOC) && \
     defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -367,6 +379,10 @@ public:
     ws_dword_t  value_dword_bigendian() const;
     /// \brief The registry value as a binary value
     blob_type   value_binary() const;
+#ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
+    /// \brief The registry value in \c REG_MULTI_SZ form
+    strings_type value_multi_sz() const;
+#endif /* !WINSTL_REG_VALUE_NO_MULTI_SZ */
 /// @}
 
 /// \name Implementation
@@ -549,27 +565,10 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
     size_type   data_size;
     ws_long_t   res =   traits_type::reg_query_info(m_hkey, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &data_size, NULL, NULL);
 
-    if( ERROR_SUCCESS == res &&
-        data_size > 0)
-    {
-        char_buffer_type_   buffer(1 + data_size);
-        ws_dword_t          dw;
-
-        data_size = buffer.size();
-        res = traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, &buffer[0], data_size);
-
-        if(ERROR_SUCCESS == res)
-        {
-            buffer[data_size / sizeof(char_type)] = 0; // The site of a former bug. Thanks to Diego Chanoux for spotting this
-
-            ret = buffer.data();
-        }
-    }
-
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(ERROR_SUCCESS != res)
     {
-        static const char message[] = "could not elicit string value";
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        static const char message[] = "could not determine the data size";
 
         if(ERROR_ACCESS_DENIED == res)
         {
@@ -579,8 +578,38 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
         {
             STLSOFT_THROW_X(registry_exception(message, res));
         }
-    }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+    else if(data_size > 0)
+    {
+        char_buffer_type_   buffer(1 + data_size);
+        ws_dword_t          dw;
+
+        data_size = buffer.size();
+        res = traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, &buffer[0], data_size);
+
+        if(ERROR_SUCCESS != res)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            static const char message[] = "could not elicit string value";
+
+            if(ERROR_ACCESS_DENIED == res)
+            {
+                STLSOFT_THROW_X(access_denied_exception(message, res));
+            }
+            else
+            {
+                STLSOFT_THROW_X(registry_exception(message, res));
+            }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+        else
+        {
+            buffer[data_size / sizeof(char_type)] = 0; // The site of a former bug. Thanks to Diego Chanoux for spotting this
+
+            ret.assign(buffer.data(), data_size / sizeof(char_type));
+        }
+    }
 
     return ret;
 }
@@ -716,6 +745,86 @@ query_failed:
 
     return blob_type();
 }
+
+#ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_typename_type_ret_k basic_reg_value<C, T, A>::strings_type basic_reg_value<C, T, A>::value_multi_sz() const
+{
+    strings_type    ret;
+    size_type       data_size;
+    ws_long_t       res = traits_type::reg_query_info(m_hkey, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &data_size, NULL, NULL);
+
+    if(ERROR_SUCCESS != res)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        static const char message[] = "could not determine the data size";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+    else if(data_size > 0)
+    {
+        char_buffer_type_   buffer(1 + data_size);
+        ws_dword_t          dw;
+
+        data_size   =   buffer.size();
+        res         =   traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, &buffer[0], data_size);
+
+        if(ERROR_SUCCESS != res)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            static const char message[] = "could not elicit string values";
+
+            if(ERROR_ACCESS_DENIED == res)
+            {
+                STLSOFT_THROW_X(access_denied_exception(message, res));
+            }
+            else
+            {
+                STLSOFT_THROW_X(registry_exception(message, res));
+            }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+        else
+        {
+            buffer[data_size / sizeof(char_type)] = 0;
+
+            ss_typename_type_k char_buffer_type_::const_iterator start = buffer.begin();
+
+            { for(ss_typename_type_k char_buffer_type_::const_iterator ii = buffer.begin(); buffer.end() != ii;)
+            {
+                if (*ii != (char_type)0)
+                {
+                    ++ii;
+                    continue;
+                }
+
+                if ((*ii == (char_type)0) && (*start == (char_type)0))
+                {
+                    break;
+                }
+
+                ret.push_back(start);
+                start = ++ii;
+            }}
+
+            if (*start != (char_type)0)
+            {
+                ret.push_back(start);
+            }
+        }
+    }
+
+    return ret;
+}
+#endif /* !WINSTL_REG_VALUE_NO_MULTI_SZ */
 
 // reg_blob
 
