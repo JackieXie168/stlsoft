@@ -4,11 +4,11 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     10th August 2009
+ * Updated:     7th March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       1
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       2
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    1
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        43
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -159,6 +159,14 @@ public:
     }
 
     /// \brief The error code associated with the exception
+	HRESULT get_hr() const
+	{
+		return m_hr;
+	}
+
+	/// [DEPRECATED]
+	///
+	/// \deprecated Use get_hr() instead
     HRESULT hr() const
     {
         return m_hr;
