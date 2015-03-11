@@ -4,14 +4,14 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     29th December 2007
+ * Updated:     15th March 2008
  *
  * Thanks:      To Cláudio Albuquerque for working on the
  *              Win64-compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,9 +63,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     16
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     17
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      99
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,6 +91,12 @@
 
 #if _MSC_VER >= 900
 # define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#endif /* _MSC_VER */
+
+/* Support for __FUNCTION__
+ */
+#if _MSC_VER >= 1300
+# define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
 #endif /* _MSC_VER */
 
 /* Variadic Macros

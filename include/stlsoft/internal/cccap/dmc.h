@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     29th December 2007
+ * Updated:     15th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -105,6 +105,13 @@
  */
 
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+
+/* Support for __FUNCTION__
+ */
+
+#if __DMC__ >= 0x850
+# define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
+#endif /* __DMC__ >= 0x850 */
 
 /* Variadic Macros
  */

@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  9th March 2008
+; Updated:  15th March 2008
 
 ============================================================================
 
@@ -15,6 +15,34 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.26 (15th March 2008)
+
+Summary:
+==========
+
+ * definition, where appropriate, of STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT,
+   denoting that a particular compiler supports the __FUNCTION__
+   pre-processor symbol
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+   ~ stlsoft/internal/cccap/borland.h
+   ~ stlsoft/internal/cccap/como.h
+   ~ stlsoft/internal/cccap/dmc.h
+   ~ stlsoft/internal/cccap/gcc.h
+   ~ stlsoft/internal/cccap/intel.h
+   ~ stlsoft/internal/cccap/msvc.h
+   ~ stlsoft/internal/cccap/mwerks.h
+   ~ stlsoft/internal/cccap/unknown.h
+   ~ stlsoft/internal/cccap/vectorc.h
+   ~ stlsoft/internal/cccap/watcom.h
 
 ============================================================================
 

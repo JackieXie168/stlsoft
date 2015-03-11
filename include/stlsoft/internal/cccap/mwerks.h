@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     20th February 2008
+ * Updated:     15th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -83,6 +83,15 @@
  */
 
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+
+/* Support for __FUNCTION__
+ */
+
+#if (__MWERKS__ & 0xFF00) >= 0x3000
+# define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
+#else /* ? compiler */
+ /* Not defined */
+#endif /* compiler */
 
 /* Variadic Macros
  */
