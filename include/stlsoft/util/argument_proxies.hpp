@@ -4,7 +4,7 @@
  * Purpose:     Const and non-const reference and pointer proxy classes.
  *
  * Created:     28th April 2000
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_REVISION  3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      128
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ARGUMENT_PROXIES_EDIT      130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ class pointer_proxy
 {
 public:
     typedef A                   argument_type;
-    typedef argument_type       *argument_pointer_type;
+    typedef argument_type*      argument_pointer_type;
     typedef pointer_proxy<A>    class_type;
 
 // const_ruction
@@ -128,7 +128,7 @@ class const_pointer_proxy
 {
 public:
     typedef A                       argument_type;
-    typedef argument_type const     *argument_pointer_type;
+    typedef argument_type const*    argument_pointer_type;
     typedef const_pointer_proxy<A>  class_type;
 
 // const_ruction
@@ -168,7 +168,7 @@ class reference_proxy
 {
 public:
     typedef A                   argument_type;
-    typedef argument_type       &argument_reference_type;
+    typedef argument_type&      argument_reference_type;
     typedef reference_proxy<A>  class_type;
 
 // const_ruction
@@ -208,7 +208,7 @@ class const_reference_proxy
 {
 public:
     typedef A                           argument_type;
-    typedef argument_type const         &argument_reference_type;
+    typedef argument_type const&        argument_reference_type;
     typedef const_reference_proxy<A>    class_type;
 
 // const_ruction

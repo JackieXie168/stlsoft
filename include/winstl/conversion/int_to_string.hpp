@@ -4,11 +4,11 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MAJOR      2
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      1
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   3
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       39
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   4
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -145,7 +145,7 @@ public:
     thread_mx_()
     {}
 
-    void *operator new(ws_size_t , void *p)
+    void* operator new(ws_size_t , void* p)
     {
         return p;
     }
@@ -153,7 +153,7 @@ public:
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
-    void operator delete(void *, void *)
+    void operator delete(void* , void* )
     {}
 #endif /* compiler */
     void operator delete(void*)
@@ -166,7 +166,7 @@ template< ss_typename_param_k C
         >
 struct Slot
 {
-    Slot(Slot *next)
+    Slot(Slot* next)
         : next(next)
     {}
     ~Slot() stlsoft_throw_0()
@@ -187,17 +187,17 @@ struct Slot
     // 5. Want a C++-exception free solution, so use the Win32-system
     //    out-of-memory exception, and not have to worry about any
     //    linkage pains.
-    void *operator new(ws_size_t cb)
+    void* operator new(ws_size_t cb)
     {
         return ::HeapAlloc(::GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, cb);
     }
-    void operator delete(void *pv)
+    void operator delete(void* pv)
     {
         ::HeapFree(::GetProcessHeap(), 0, pv);
     }
 
     C       buff[CCH];
-    Slot    *next;
+    Slot*   next;
 };
 
 template< ss_typename_param_k C
@@ -283,15 +283,15 @@ struct Key
         }
     }
 
-    Slot *GetSlot()
+    Slot* GetSlot()
     {
         // NOTE: This does not need to be thread-safe
         return sap_cast<Slot*>(::TlsGetValue(m_index));
     }
 
-    Slot *AllocSlot()
+    Slot* AllocSlot()
     {
-        Slot    *next;
+        Slot* next;
 
         { // Protect linked-list manipulation
             stlsoft_ns_qual(lock_scope)<thread_mutex, thread_mutex_lock_traits>  lock(mx());
@@ -308,22 +308,23 @@ struct Key
 private:
     thread_mutex &mx()
     {
-        return *static_cast<thread_mutex*>(static_cast<void*>(&m__mx._mx[0]));
+        return *static_cast<thread_mutex*>(static_cast<void*>(&m__mx.bytes[0]));
     }
 
 private:
 #if 0
 // In an ideal world the member layout would be as follows:
     ws_dword_t      m_index;
-    Slot            *m_top;
+    Slot*           m_top;
     thread_mutex    m_mx;
-#else
+#else /* ? 0 */
 // But we're not in an ideal world, so it is like this
     ws_dword_t      m_index;
-    Slot            *m_top;
-    struct
+    Slot*           m_top;
+    union
     {
-        ws_byte_t   _mx[sizeof(thread_mutex)];
+        ws_byte_t   bytes[sizeof(thread_mutex)];
+        long double ld;
     }               m__mx;
     ws_sint32_t     m_init; // Construction count
     ws_sint32_t     m_ctor; // Ctor entry count
@@ -338,7 +339,7 @@ private:
 template< ss_typename_param_k C
         , ws_size_t           CCH
         >
-inline C *i2str_get_tss_buffer()
+inline C* i2str_get_tss_buffer()
 {
 #if defined(_WINSTL_INT_TO_STRING_USE_DECLSPECTHREAD_FOR_EXES)
     __declspec(thread) static C s_buffer[CCH];
@@ -354,8 +355,8 @@ inline C *i2str_get_tss_buffer()
     typedef Slot<C, CCH>                        Slot;
 #endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
-    static Key      s_index;
-    Slot            *slot   =   s_index.GetSlot();
+    static Key  s_index;
+    Slot*       slot = s_index.GetSlot();
 
     if(NULL == slot)
     {
@@ -388,7 +389,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_sint8_t value)
 {
     const ws_size_t CCH     = 21; // 5 fits 8-bit + sign
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -413,7 +414,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_uint8_t value)
 {
     const ws_size_t CCH     = 21; // 4 fits 8-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -438,7 +439,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_sint16_t value)
 {
     const ws_size_t CCH     = 21; // 7 fits 16-bit + sign
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -463,7 +464,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_uint16_t value)
 {
     const ws_size_t CCH     = 21; // 6 fits 16-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -488,7 +489,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_sint32_t value)
 {
     const ws_size_t CCH     = 21; // 12 fits 32-bit + sign
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -513,7 +514,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_uint32_t value)
 {
     const ws_size_t CCH     = 21; // 11 fits 32-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -538,7 +539,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_sint64_t const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit + sign
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -563,7 +564,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(ws_uint64_t const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -575,7 +576,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(int const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -584,7 +585,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(unsigned int const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -597,7 +598,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(long const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }
@@ -606,7 +607,7 @@ template<ss_typename_param_k C>
 inline C const* int_to_string(unsigned long const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
-    C               *buffer = i2str_get_tss_buffer<C, CCH>();
+    C*              buffer  = i2str_get_tss_buffer<C, CCH>();
 
     return stlsoft::integer_to_string(buffer, CCH, value);
 }

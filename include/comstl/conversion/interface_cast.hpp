@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,7 +61,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   3
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       113
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -475,7 +475,7 @@ public:
 # ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
     /// The interface type
     typedef ss_typename_type_k parent_class_type::interface_type            interface_type;
-    typedef protect_refcount<interface_type>                                *protected_interface_pointer_type;
+    typedef protect_refcount<interface_type>*                               protected_interface_pointer_type;
 # else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     typedef interface_pointer_type                                          protected_interface_pointer_type;
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
@@ -612,7 +612,7 @@ public:
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
     /// The interface type
     typedef ss_typename_type_k parent_class_type::interface_type                            interface_type;
-    typedef protect_refcount<interface_type>                                                *protected_interface_pointer_type;
+    typedef protect_refcount<interface_type>*                                               protected_interface_pointer_type;
 #else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     typedef interface_pointer_type                                                          protected_interface_pointer_type;
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */

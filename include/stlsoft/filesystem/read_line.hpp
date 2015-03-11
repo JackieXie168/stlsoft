@@ -98,7 +98,7 @@ struct read_line_flags
 {
     enum flags_t
     {
-        recogniseCrAsEOL    =   0x0001,	/*!< Recognises a sole carriage return ('\r') character as a line feed */
+        recogniseCrAsEOL    =   0x0001, /*!< Recognises a sole carriage return ('\r') character as a line feed */
         recogniseLfAsEOL    =   0x0002,
         recogniseCrLfAsEOL  =   0x0004,
         recogniseAll        =   (recogniseCrAsEOL | recogniseLfAsEOL | recogniseCrLfAsEOL),

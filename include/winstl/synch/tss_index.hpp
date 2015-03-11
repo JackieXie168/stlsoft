@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for Win32 TSS key.
  *
  * Created:     20th January 1999
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     35
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ public:
     /// \deprecated Deprecated in favour of key_type
     typedef key_type    index_type;
     /// \brief The type of the slot values
-    typedef void        *value_type;
+    typedef void*       value_type;
 /// @}
 
 /// \name Construction

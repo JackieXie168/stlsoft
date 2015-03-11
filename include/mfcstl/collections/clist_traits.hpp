@@ -4,7 +4,7 @@
  * Purpose:     Definition of the CList_traits traits class.
  *
  * Created:     1st December 2002
- * Updated:     12th March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_MAJOR       3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_MINOR       0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_REVISION    1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_EDIT        54
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_TRAITS_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,8 +143,8 @@ struct CList_traits;
 STLSOFT_TEMPLATE_SPECIALISATION
 struct CList_traits<CObList>
 {
-    typedef CObject         *value_type;
-    typedef CObject         *arg_type;
+    typedef CObject*        value_type;
+    typedef CObject*        arg_type;
     typedef CObList         list_type;
 };
 
@@ -153,8 +153,8 @@ struct CList_traits<CObList>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct CList_traits<CPtrList>
 {
-    typedef void            *value_type;
-    typedef void            *arg_type;
+    typedef void*           value_type;
+    typedef void*           arg_type;
     typedef CPtrList        list_type;
 };
 
@@ -165,7 +165,7 @@ struct CList_traits<CStringList>
 {
     typedef CString         value_type;
 # if 0
-    typedef CString const   &arg_type;
+    typedef CString const&  arg_type;
 # else /* ? 0 */
     typedef LPCTSTR         arg_type;
 # endif /* 0 */

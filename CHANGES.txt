@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  1st October 2008
+; Updated:  10th October 2008
 
 ============================================================================
 
@@ -16,6 +16,60 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.57 (10th October 2008)
+
+Summary:
+========
+
+ * addition of missing const_reference member type in various Windows
+   controls collection classes
+ * C / C++ compatibility fixes for COMSTL
+ * fix of minor non-standard name in winstl::int_to_string() supporting
+   class
+ * a large number of files were altered in minor ways, to do with whitespace
+   and the placement of * and & symbols
+ * several files' documentation markup was cleaned up
+
+Changes:
+========
+
+ *:
+ --
+
+  ~ a large number of files were altered in minor ways, to do with whitespace
+   and the placement of * and & symbols
+  ~ several files' documentation markup was cleaned up
+
+ COMSTL:
+ -------
+
+  ~ comstl/comstl.h:
+     + added the macros COMSTL_ACCESS_VARIANT_MEM_BYPTR(),
+        COMSTL_ACCESS_VARIANT_MEM_BYREF(), COMSTL_ACCESS_VARIANT_vt_BYPTR(),
+       COMSTL_ACCESS_VARIANT_vt_BYREF(),
+       COMSTL_ACCESS_VARIANT_decVal_BYPTR(), and
+       COMSTL_ACCESS_VARIANT_decVal_BYREF(), which abstract the access of
+       VARIANT members between C (incl. Standard C) and C++
+
+  ~ comstl/util/DECIMAL_functions.h:
+  ~ comstl/util/VARIANT_functions.h:
+     ~ compatibility with Standard-C compilation (where anonymous unions and
+	   structures are not valid)
+
+ WinSTL:
+ -------
+
+  ~ winstl/conversion/int_to_string.hpp:
+     ~ rename of non-standard symbol
+
+  ~ winstl/controls/combobox_sequence.hpp:
+  ~ winstl/controls/edit_line_sequence.hpp:
+  ~ winstl/controls/listbox_data_sequence.hpp:
+  ~ winstl/controls/listbox_sequence.hpp:
+     + added const_reference member type
 
 ============================================================================
 
@@ -45,7 +99,7 @@ Changes:
   ~ unixstl/performance/processtimes_counter.hpp:
      ~ tidied up includes for UNIX emulation on Win32
      ~ fixed defect in forward-include guards for sys/mman.h, sys/resource.h
-	   and sys/time.h
+       and sys/time.h
 
   ~ unixstl/synch/sleep_functions.h:
      ~ tidied up includes for UNIX emulation on Win32
@@ -75,8 +129,8 @@ Changes:
 
   ~ winstl/conversion/char_conversions.hpp
      ~ corrected defective effective size() method (inherited from parent)
-	 of multibyte2wide and wide2multibyte class templates, by hiding parent
-	 and defining in-class version of method
+     of multibyte2wide and wide2multibyte class templates, by hiding parent
+     and defining in-class version of method
 
   ~ stlsoft/stlsoft.h:
      ~ some Watcom compatibility
@@ -372,10 +426,10 @@ Changes:
  -------
 
   ~ mfcstl/collections/clist_adaptors.hpp - GCC 4.3 pedantic warnings
-  
+
  RangeLib:
  ---------
- 
+
   ~ rangelib/integral_range.hpp - GCC 4.3 pedantic warnings
 
  WinSTL:
@@ -387,7 +441,7 @@ Changes:
 
   ~ winstl::clipboard_scope defect in deallocation function fixed, and
     documentation markup improved to make clear the full semantics
-    
+
   ~ winstl/controls/listbox_const_iterator.hpp - GCC 4.3 pedantic warnings
 
   ~ winstl/controls/listbox_data_const_iterator.hpp - GCC 4.3 pedantic warnings
@@ -473,7 +527,7 @@ Changes:
   ~ winstl/filesystem/filesystem_traits.hpp - get_full_path_name() sets last
     error to ERROR_FILENAME_EXCED_RANGE when path is too long for
     GetFullPathNameA() (since that does not set it)
-  ~ winstl/filesystem/path.hpp - 
+  ~ winstl/filesystem/path.hpp -
       ~ fix to push() to ensure that ambient slash flavour is used
       ~ make_absolute() now throws an exception if get_full_path_name() does
         not succeed
@@ -798,7 +852,7 @@ Changes:
  *:
  --
 
-  - STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT changed to 
+  - STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT changed to
     STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT in all files
 
   ~ renamed all get_hwnd() attribute shims to get_HWND()
@@ -941,7 +995,7 @@ Changes:
  STLSoft:
  --------
 
-   + new STLSoft-root exception: stlsoft::project_exception 
+   + new STLSoft-root exception: stlsoft::project_exception
 
    ~ exception hierarchy refactoring
 

@@ -4,7 +4,7 @@
  * Purpose:     Adds a const or volatile qualifier to a type.
  *
  * Created:     30th December 2005
- * Updated:     12th March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_REVISION    2
-# define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_EDIT        9
+# define STLSOFT_VER_STLSOFT_META_HPP_ADD_QUALIFIER_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ struct add_volatile<void>
 template <ss_typename_param_k T>
 struct add_const_ref
 {
-    typedef T const     &type;
+    typedef T const&    type;
 };
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -150,7 +150,7 @@ struct add_const_ref<void>
 template <ss_typename_param_k T>
 struct add_volatile_ref
 {
-    typedef volatile T  &type;
+    typedef volatile T& type;
 };
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION

@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Thanks:      To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     195
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     197
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -166,13 +166,13 @@ public:
     /// The character type
     typedef value_type                                                  char_type;
     /// The pointer type
-    typedef value_type                                                  *pointer;
+    typedef value_type*                                                 pointer;
     /// The non-mutable (const) pointer type
-    typedef value_type const                                            *const_pointer;
+    typedef value_type const*                                           const_pointer;
     /// The reference type
-    typedef value_type                                                  &reference;
+    typedef value_type&                                                 reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                                            &const_reference;
+    typedef value_type const&                                           const_reference;
     /// The size type
     typedef ss_size_t                                                   size_type;
     /// The difference type

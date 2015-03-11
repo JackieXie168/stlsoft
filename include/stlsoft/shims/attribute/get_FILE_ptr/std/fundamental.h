@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_FILE_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     22nd September 2008
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/shims/attribute/get_FILE_ptr/std/fundamental.hpp
+/** \file stlsoft/shims/attribute/get_FILE_ptr/std/fundamental.h
  *
  * \brief [C++] Pointer attribute shims for built-in types
  *   (\ref group__concept__shim__pointer_attribute__get_FILE_ptr "get_FILE_ptr Pointer Attribute Shim").
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_REVISION    4
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_EDIT        4
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

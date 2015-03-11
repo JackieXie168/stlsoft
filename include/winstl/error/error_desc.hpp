@@ -267,7 +267,7 @@ public:
     /// The length of the error description
     size_type       size() const stlsoft_throw_0();
     /// Indicates whether the instance is empty
-    bool_type		empty() const stlsoft_throw_0();
+    bool_type       empty() const stlsoft_throw_0();
 /// @}
 
 /// \name Implementation

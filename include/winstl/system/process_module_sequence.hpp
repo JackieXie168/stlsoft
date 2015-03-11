@@ -4,7 +4,7 @@
  * Purpose:     Process Id sequence class.
  *
  * Created:     24th June 2005
- * Updated:     23rd September 2008
+ * Updated:     10th October 2008
  *
  * Thanks to:   Adi Shavit for spotting a small inefficiency in the
  *              resize()-ing, during the review of Extended STL volume 1
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MINOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      45
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,9 +147,9 @@ public:
     /// The class type
     typedef process_module_sequence                                         class_type;
     /// The non-mutating (const) pointer type
-    typedef value_type const                                                *const_pointer;
+    typedef value_type const*                                               const_pointer;
     /// The non-mutating (const) reference type
-    typedef value_type const                                                &const_reference;
+    typedef value_type const&                                               const_reference;
     /// The non-mutating (const) iterator type
     typedef stlsoft_ns_qual(pointer_iterator)<  value_type
                                             ,   const_pointer

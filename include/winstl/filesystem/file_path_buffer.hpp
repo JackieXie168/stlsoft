@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     22nd March 2007
+ * Updated:     10th October 2008
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     112
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -215,9 +215,9 @@ public:
     /// \brief The value type
     typedef ss_typename_type_k buffer_type::value_type              value_type;
     /// \brief The reference type
-    typedef value_type                                              &reference;
+    typedef value_type&                                             reference;
     /// \brief The non-mutating (const) reference type
-    typedef value_type const                                        &const_reference;
+    typedef value_type const&                                       const_reference;
     /// \brief The size type
     typedef ss_typename_type_k buffer_type::size_type               size_type;
 /// @}

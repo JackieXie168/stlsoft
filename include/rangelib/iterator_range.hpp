@@ -4,7 +4,7 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     6th December 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     40
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,12 +161,12 @@ public:
     /// The mutating (non-const) iterator type
     typedef I                                                                           iterator;
     /// The non-mutating (const) iterator type
-    typedef ss_typename_type_k base_type_traits<iterator>::base_type const              &const_iterator;
+    typedef ss_typename_type_k base_type_traits<iterator>::base_type const&             const_iterator;
     /// The mutating (non-const) refernce type
     typedef ss_typename_type_k select_first_type_if<base_value_type const&
                                                 ,   base_value_type &, is_const>::type  reference;
     /// The non-mutating (const) reference type
-    typedef base_value_type const                                                       &const_reference;
+    typedef base_value_type const&                                                      const_reference;
 // TODO: Stick in the member-finder stuff here, so can assume ptrdiff_t if none found
     /// The difference type
     typedef ss_typename_type_k iterator_type::difference_type                           difference_type;
@@ -182,10 +182,10 @@ template<   ss_typename_param_k T
 struct iterator_range_traits<T*, B_CONST>
 {
     typedef T                   value_type;
-    typedef value_type          *iterator;
-    typedef value_type const    *const_iterator;
-    typedef value_type          &reference;
-    typedef value_type const    &const_reference;
+    typedef value_type*         iterator;
+    typedef value_type const*   const_iterator;
+    typedef value_type&         reference;
+    typedef value_type const&   const_reference;
 };
 
 template<   ss_typename_param_k T
@@ -194,10 +194,10 @@ template<   ss_typename_param_k T
 struct iterator_range_traits<T const*, B_CONST>
 {
     typedef T                   value_type;
-    typedef value_type const    *iterator;
-    typedef value_type const    *const_iterator;
-    typedef value_type const    &reference;
-    typedef value_type const    &const_reference;
+    typedef value_type const*   iterator;
+    typedef value_type const*   const_iterator;
+    typedef value_type const&   reference;
+    typedef value_type const&   const_reference;
 };
 
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -240,10 +240,10 @@ template<   ss_typename_param_k T
 struct pointer_iterator_range_traits
 {
     typedef T                                                       value_type;
-    typedef T                                                       *iterator;
-    typedef T const                                                 *const_iterator;
-    typedef T                                                       &reference;
-    typedef T const                                                 &const_reference;
+    typedef T*                                                      iterator;
+    typedef T const*                                                const_iterator;
+    typedef T&                                                      reference;
+    typedef T const&                                                const_reference;
     typedef ptrdiff_t                                               difference_type;
     typedef size_t                                                  size_type;
 };
@@ -253,10 +253,10 @@ template<   ss_typename_param_k T
 struct const_pointer_iterator_range_traits
 {
     typedef T                                                       value_type;
-    typedef T const                                                 *iterator;
-    typedef T const                                                 *const_iterator;
-    typedef T const                                                 &reference;
-    typedef T const                                                 &const_reference;
+    typedef T const*                                                iterator;
+    typedef T const*                                                const_iterator;
+    typedef T const&                                                reference;
+    typedef T const&                                                const_reference;
     typedef ptrdiff_t                                               difference_type;
     typedef size_t                                                  size_type;
 };

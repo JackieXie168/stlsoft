@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       2
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        158
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -439,9 +439,9 @@ public:
     typedef ss_ptrdiff_t                                        difference_type;
 #if !defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The iterator type
-    typedef value_type                                          *iterator;
+    typedef value_type*                                         iterator;
     /// The non-mutable (const) iterator type
-    typedef value_type const                                    *const_iterator;
+    typedef value_type const*                                   const_iterator;
 #else /* ? !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The iterator type
     typedef

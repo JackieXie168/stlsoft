@@ -426,7 +426,7 @@ class VsVarFileInfo
 public:
     /// This type
     typedef VsVarFileInfo   class_type;
-	/// The value type
+    /// The value type
     typedef VsVar           value_type;
 
 public:

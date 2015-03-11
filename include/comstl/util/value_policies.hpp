@@ -5,7 +5,7 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     12th March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     161
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     162
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -244,7 +244,7 @@ struct interface_policy
 {
 public:
     typedef I               interface_type;
-    typedef interface_type  *value_type;
+    typedef interface_type* value_type;
 
 public:
     /// Initialises an instance

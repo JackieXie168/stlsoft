@@ -5,7 +5,7 @@
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     9th March 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       35
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -212,9 +212,9 @@ public:
     /// The target base type
     typedef ss_typename_type_k stlsoft::base_type_traits<Target>::cv_type   target_base_type;
     /// The reference type
-    typedef target_base_type                                                &reference_type;
+    typedef target_base_type&                                               reference_type;
     /// The pointer type
-    typedef target_base_type                                                *pointer_type;
+    typedef target_base_type*                                               pointer_type;
 
 private:
     typedef ss_typename_type_k stlsoft::base_type_traits<Target>::base_type target_base_type_;

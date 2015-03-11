@@ -5,13 +5,13 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     27th September 2008
+ * Updated:     6th November 2007
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     665
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     664
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,14 +65,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Compatibility
- */
-
-#if defined(STLSOFT_COMPILER_IS_WATCOM)
-# define STLSOFT_SCOPED_HANDLE_NO_INDIRECT
-#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler warnings
@@ -99,19 +91,18 @@ namespace stlsoft
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
 template <ss_typename_param_k H>
 struct H_holder
 {
 /// \name Construction
 /// @{
 public:
-    ss_explicit_k H_holder(H h)
+    H_holder(H h)
         : bPointer(false)
     {
         this->u.h = h;
     }
-    ss_explicit_k H_holder(H* ph)
+    H_holder(H* ph)
         : bPointer(true)
     {
         this->u.ph = ph;
@@ -146,7 +137,6 @@ private:
     H_holder(H_holder const&);
     H_holder& operator =(H_holder const&);
 };
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template<   ss_typename_param_k H
@@ -159,39 +149,27 @@ private:
 public:
     typedef R       (STLSOFT_CDECL *function_type)(H);
     typedef R       (STLSOFT_CDECL *indirect_function_type)(H*);
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
     typedef H_holder<H>             holder_type;
-# else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-    typedef H                       holder_type;
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 
     static void translate(holder_type& h, degenerate_function_type pv)
     {
-        function_type fn = reinterpret_cast<function_type>(pv);
+        function_type   fn  =   reinterpret_cast<function_type>(pv);
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         STLSOFT_ASSERT(!h.bPointer);
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
         STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         fn(h.u.h);
-# else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-        fn(h);
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
     }
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
     static void translate_indirect(holder_type& h, degenerate_function_type pv)
     {
-        indirect_function_type fn = reinterpret_cast<indirect_function_type>(pv);
+        indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
 
         STLSOFT_ASSERT(h.bPointer);
         STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
         fn(h.u.ph);
     }
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 };
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
@@ -206,29 +184,18 @@ private:
 public:
     typedef R       (STLSOFT_FASTCALL *function_type)(H);
     typedef R       (STLSOFT_FASTCALL *indirect_function_type)(H*);
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
-    typedef H_holder<H>             holder_type;
-# else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-    typedef H                       holder_type;
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
+    typedef H_holder<H>                 holder_type;
 
     static void translate(holder_type& h, degenerate_function_type pv)
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         STLSOFT_ASSERT(!h.bPointer);
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
         STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         fn(h.u.h);
-# else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-        fn(h);
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
     }
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
     static void translate_indirect(holder_type& h, degenerate_function_type pv)
     {
         indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
@@ -238,7 +205,6 @@ public:
 
         fn(h.u.ph);
     }
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 };
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
@@ -253,29 +219,18 @@ private:
 public:
     typedef R       (STLSOFT_STDCALL *function_type)(H);
     typedef R       (STLSOFT_STDCALL *indirect_function_type)(H*);
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
-    typedef H_holder<H>             holder_type;
-# else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-    typedef H                       holder_type;
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
+    typedef H_holder<H>                 holder_type;
 
     static void translate(holder_type& h, degenerate_function_type pv)
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         STLSOFT_ASSERT(!h.bPointer);
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
         STLSOFT_MESSAGE_ASSERT("function pointer must not be NULL", NULL != fn);
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         fn(h.u.h);
-# else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-        fn(h);
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
     }
 
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
     static void translate_indirect(holder_type& h, degenerate_function_type pv)
     {
         indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
@@ -285,7 +240,6 @@ public:
 
         fn(h.u.ph);
     }
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 };
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
@@ -402,11 +356,7 @@ class scoped_handle
 /// @{
 private:
     typedef void (STLSOFT_CDECL *degenerate_function_type)();
-# ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
     typedef H_holder<H>         holder_type;
-# else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-    typedef H                   holder_type;
-# endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 public:
     /// \brief The resource type
     typedef H                   resource_type;
@@ -434,9 +384,8 @@ public:
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
 
-#  ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
     /// \brief Construct from a resource handle and an indirect clean-up function with void return type
-    scoped_handle(  resource_type*  ph
+    scoped_handle(  resource_type   *ph
                 ,   void            (STLSOFT_CDECL *f)(resource_type*)
                 ,   resource_type   hNull = 0)
         : m_hh(ph)
@@ -446,7 +395,6 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
-#  endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -464,7 +412,7 @@ public:
     }
     /// \brief Construct from a resource handle and an indirect clean-up function with non-void return type
     template <ss_typename_param_k R>
-    scoped_handle(  resource_type*  ph
+    scoped_handle(  resource_type   *ph
                 ,   R               (STLSOFT_CDECL *f)(resource_type*)
                 ,   resource_type   hNull = 0)
         : m_hh(ph)
@@ -547,9 +495,8 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
-#  ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
     /// \brief Construct from a resource handle and an indirect clean-up "stdcall" function with void return type
-    scoped_handle(  resource_type*  ph
+    scoped_handle(  resource_type   *ph
                 ,   void            (STLSOFT_STDCALL *f)(resource_type*)
                 ,   resource_type   hNull = 0)
         : m_hh(ph)
@@ -559,7 +506,6 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
     }
-#  endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -577,7 +523,7 @@ public:
     }
     /// \brief Construct from a resource handle and an indirect clean-up "stdcall" function with non-void return type
     template <ss_typename_param_k R>
-    scoped_handle(  resource_type*  ph
+    scoped_handle(  resource_type   *ph
                 ,   R               (STLSOFT_STDCALL *f)(resource_type*)
                 ,   resource_type   hNull = 0)
         : m_hh(ph)
@@ -613,11 +559,7 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Invariant violation: function pointer must not be NULL", NULL != m_fn);
 
-#ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         return get_null_value_() == m_hh.get();
-#else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-        return get_null_value_() == m_hh;
-#endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
     }
 /// @}
 
@@ -635,11 +577,7 @@ public:
         {
             m_tfn(m_hh, m_fn);
 
-#ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
             m_hh.set(get_null_value_());
-#else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-            m_hh = get_null_value_();
-#endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
         }
     }
 
@@ -651,15 +589,9 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("Invariant violation: function pointer must not be NULL", NULL != m_fn);
 
-#ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         resource_type   h   =   m_hh.get();
 
         m_hh.set(get_null_value_());
-#else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-        resource_type   h   =   m_hh;
-
-        m_hh = get_null_value_();
-#endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
 
         return h;
     }
@@ -674,21 +606,17 @@ public:
     /// \deprecated Deprecated in favour of get()
     resource_type handle() const
     {
-#ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
+#if defined(STLSOFT_COMPILER_IS_WATCOM)
+        return (resource_type)(m_hh.get());
+#else /* ? compiler */
         return const_cast<resource_type>(m_hh.get());
-#else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-        return const_cast<resource_type>(m_hh);
-#endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
+#endif /* compiler */
     }
     /// \brief Provides the bare resource handle to the caller. Does not detach the
     /// handle from the managing instance.
     resource_type get() const
     {
-#ifndef STLSOFT_SCOPED_HANDLE_NO_INDIRECT
         return const_cast<class_type&>(*this).m_hh.get();
-#else /* ? !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
-        return const_cast<class_type&>(*this).m_hh;
-#endif /* !STLSOFT_SCOPED_HANDLE_NO_INDIRECT */
     }
 /// @}
 

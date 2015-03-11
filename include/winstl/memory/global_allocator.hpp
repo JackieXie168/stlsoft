@@ -4,7 +4,7 @@
  * Purpose:     global_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     12th March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_REVISION 2
-# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     75
+# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -188,8 +188,8 @@ class global_allocator<void>
 public:
     typedef void                       value_type;
     typedef global_allocator<void>     class_type;
-    typedef void                       *pointer;
-    typedef void const                 *const_pointer;
+    typedef void*                      pointer;
+    typedef void const*                const_pointer;
     typedef ws_ptrdiff_t               difference_type;
     typedef ws_size_t                  size_type;
 

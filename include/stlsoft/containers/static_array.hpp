@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     11th August 2008
+ * Updated:     10th October 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      185
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      187
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -219,10 +219,10 @@ public:
     typedef P                                               policy_type;
 
     typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
+    typedef value_type&                                     reference;
+    typedef value_type const&                               const_reference;
+    typedef value_type*                                     pointer;
+    typedef value_type const*                               const_pointer;
     typedef ss_size_t                                       size_type;
     typedef ss_size_t                                       index_type;
     typedef ss_ptrdiff_t                                    difference_type;
@@ -357,10 +357,10 @@ public:
     typedef P                                               policy_type;
 
     typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
+    typedef value_type&                                     reference;
+    typedef value_type const&                               const_reference;
+    typedef value_type*                                     pointer;
+    typedef value_type const*                               const_pointer;
     typedef ss_size_t                                       size_type;
     typedef ss_size_t                                       index_type;
     typedef ss_ptrdiff_t                                    difference_type;
@@ -506,10 +506,10 @@ public:
     typedef P                                               policy_type;
 
     typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
+    typedef value_type&                                     reference;
+    typedef value_type const&                               const_reference;
+    typedef value_type*                                     pointer;
+    typedef value_type const*                               const_pointer;
     typedef ss_size_t                                       size_type;
     typedef ss_size_t                                       index_type;
     typedef ss_ptrdiff_t                                    difference_type;
@@ -658,10 +658,10 @@ public:
     typedef P                                               policy_type;
 
     typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
+    typedef value_type&                                     reference;
+    typedef value_type const&                               const_reference;
+    typedef value_type*                                     pointer;
+    typedef value_type const*                               const_pointer;
     typedef ss_size_t                                       size_type;
     typedef ss_size_t                                       index_type;
     typedef ss_ptrdiff_t                                    difference_type;

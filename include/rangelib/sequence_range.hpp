@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     6th December 2007
+ * Updated:     10th October 2008
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     60
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,7 +170,7 @@ public:
     /// The sequence type
     typedef S                                                       sequence_type;
     /// The sequence reference type
-    typedef S                                                       &sequence_reference_type;
+    typedef S&                                                      sequence_reference_type;
     /// The value type
     typedef ss_typename_type_k sequence_type::value_type            value_type;
     /// The mutating (non-const) iterator type
@@ -218,7 +218,7 @@ public:
     /// The sequence type
     typedef S                                                       sequence_type;
     /// The sequence reference type
-    typedef S                                                       &sequence_reference_type;
+    typedef S&                                                      sequence_reference_type;
     /// The value type
     typedef ss_typename_type_k sequence_type::value_type            value_type;
     /// The mutating (non-const) iterator type
@@ -244,7 +244,7 @@ struct sequence_range_traits
 {
 public:
     typedef S                                                       sequence_type;
-    typedef S                                                       &sequence_reference_type;
+    typedef S&                                                      sequence_reference_type;
     typedef ss_typename_type_k sequence_type::value_type            value_type;
     typedef ss_typename_type_k sequence_type::iterator              iterator;
     typedef ss_typename_type_k sequence_type::const_iterator        const_iterator;
@@ -260,7 +260,7 @@ struct const_sequence_range_traits
 {
 public:
     typedef S                                                       sequence_type;
-    typedef S const                                                 &sequence_reference_type;
+    typedef S const&                                                sequence_reference_type;
     typedef ss_typename_type_k sequence_type::value_type            value_type;
     typedef ss_typename_type_k sequence_type::const_iterator        iterator;
     typedef ss_typename_type_k sequence_type::const_iterator        const_iterator;
@@ -276,7 +276,7 @@ struct non_const_sequence_range_traits
 {
 public:
     typedef S                                                       sequence_type;
-    typedef S const                                                 &sequence_reference_type;
+    typedef S const&                                                sequence_reference_type;
     typedef ss_typename_type_k sequence_type::value_type            value_type;
     typedef ss_typename_type_k sequence_type::iterator              iterator;
     typedef ss_typename_type_k sequence_type::iterator              const_iterator;

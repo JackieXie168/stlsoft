@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     9th March 2008
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  5
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      38
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -214,7 +214,7 @@ inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_data_w(ACE_Time_Value con
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_data for ACE_Time_Value
+/** An overload of \ref group__concept__shim__string_access__c_str_data for ACE_Time_Value
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -239,7 +239,7 @@ inline as_size_t c_str_len_w(ACE_Time_Value const& /* t */)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_len for ACE_Time_Value
+/** An overload of \ref group__concept__shim__string_access__c_str_len for ACE_Time_Value
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -264,7 +264,7 @@ inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_ptr_w(ACE_Time_Value cons
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr for ACE_Time_Value
+/** An overload of \ref group__concept__shim__string_access__c_str_ptr for ACE_Time_Value
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -289,7 +289,7 @@ inline ::stlsoft::basic_shim_string<as_char_w_t> c_str_ptr_null_w(ACE_Time_Value
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for ACE_Time_Value
+/** An overload of \ref group__concept__shim__string_access__c_str_ptr_null for ACE_Time_Value
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -304,7 +304,7 @@ inline ::stlsoft::basic_shim_string<ACE_TCHAR> c_str_ptr_null(ACE_Time_Value con
  * Stream Insertion Shims
  */
 
-/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_Time_Value
+/** A \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_Time_Value
  *
  * \ingroup group__concept__shim__stream_insertion
  */
@@ -334,7 +334,7 @@ inline S& operator <<(S& s, ACE_Time_Value const& t)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_Time_Value
+/** A \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_Time_Value
  *
  * \ingroup group__concept__shim__stream_insertion
  */

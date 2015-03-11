@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     9th March 2008
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MAJOR       2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MINOR       0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_REVISION    2
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        29
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ inline as_char_w_t const* c_str_data_w(ACE_String_Base<as_char_w_t> const& s)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_data for ACE_INET_Addr
+/** An overload of \ref group__concept__shim__string_access__c_str_data for ACE_INET_Addr
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -142,7 +142,7 @@ inline as_size_t c_str_len_w(ACE_String_Base<as_char_w_t> const& s)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_len for ACE_INET_Addr
+/** An overload of \ref group__concept__shim__string_access__c_str_len for ACE_INET_Addr
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -168,7 +168,7 @@ inline as_char_w_t const* c_str_ptr_w(ACE_String_Base<as_char_w_t> const& s)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr for ACE_INET_Addr
+/** An overload of \ref group__concept__shim__string_access__c_str_ptr for ACE_INET_Addr
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -194,7 +194,7 @@ inline as_char_w_t const* c_str_ptr_null_w(ACE_String_Base<as_char_w_t> const& s
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for ACE_INET_Addr
+/** An overload of \ref group__concept__shim__string_access__c_str_ptr_null for ACE_INET_Addr
  *
  * \ingroup group__concept__shim__string_access
  *
@@ -207,7 +207,7 @@ inline C const* c_str_ptr_null(ACE_String_Base<C> const& s)
 
 
 
-/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_String_Base
+/** A \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_String_Base
  *
  * \ingroup group__concept__shim__stream_insertion
  *
@@ -233,7 +233,7 @@ inline S& operator <<(S& s, ACE_String_Base<C> const& str)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/** \brief \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_String_Base
+/** A \ref group__concept__shim__stream_insertion "stream insertion shim" for ACE_String_Base
  *
  * \ingroup group__concept__shim__stream_insertion
  *

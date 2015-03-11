@@ -4,7 +4,7 @@
  * Purpose:     Range adaptor for C-strings.
  *
  * Created:     17th May 2004
- * Updated:     6th December 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     3
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  3
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      35
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ public:
     /// The value type
     typedef C           value_type;
     /// The non-mutable (const) reference type
-    typedef C const     &const_reference;
+    typedef C const&    const_reference;
 /// @}
 };
 
@@ -166,7 +166,7 @@ public:
     /// The current parameterisation of the type
     typedef cstring_range<C>                                class_type;
     /// The non-mutable (const) reference type
-    typedef value_type const                                &const_reference;
+    typedef value_type const&                               const_reference;
 /// @}
 
 /// \name Construction

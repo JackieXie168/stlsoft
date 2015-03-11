@@ -4,7 +4,7 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     4th July 2007
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MINOR       0
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_REVISION    3
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        4
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_REVISION    1
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ namespace stlsoft
 
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER != 1200
-/** \brief
+/** <code>uint8_t</code> overload of the <b>stlsoft::to_uint64</b> shim
  * \ingroup group__concept__shim__integer_conversion__to_uint64
  */
 inline ss_uint64_t to_uint64(ss_uint8_t i)
@@ -88,7 +88,7 @@ inline ss_uint64_t to_uint64(ss_uint8_t i)
     return i;
 }
 
-/** \brief
+/** <code>uint16_t</code> overload of the <b>stlsoft::to_uint64</b> shim
  * \ingroup group__concept__shim__integer_conversion__to_uint64
  */
 inline ss_uint64_t to_uint64(ss_uint16_t i)
@@ -96,7 +96,7 @@ inline ss_uint64_t to_uint64(ss_uint16_t i)
     return i;
 }
 
-/** \brief
+/** <code>uint32_t</code> overload of the <b>stlsoft::to_uint64</b> shim
  * \ingroup group__concept__shim__integer_conversion__to_uint64
  */
 inline ss_uint64_t to_uint64(ss_uint32_t i)
@@ -105,7 +105,8 @@ inline ss_uint64_t to_uint64(ss_uint32_t i)
 }
 #endif /* VC++ 6.0  */
 
-/** \brief
+/** Degenerate form of the <b>stlsoft::to_uint64</b> shim
+ *
  * \ingroup group__concept__shim__integer_conversion__to_uint64
  */
 inline ss_uint64_t to_uint64(ss_uint64_t i)

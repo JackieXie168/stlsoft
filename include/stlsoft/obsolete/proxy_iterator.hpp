@@ -4,7 +4,7 @@
  * Purpose:     proxy_iterator template class.
  *
  * Created:     28th June 2004
- * Updated:     8th April 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_REVISION   3
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       51
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ public:
     typedef E                                                       element_type;
     typedef raw_value_type                                          value_type;
     typedef ss_typename_type_k parent_class_type::reference         reference;
-    typedef value_type const                                        &const_reference;
+    typedef value_type const&                                       const_reference;
     typedef T                                                       traits_type;
     typedef ss_typename_type_k parent_class_type::iterator_category iterator_category;
     typedef ss_typename_type_k parent_class_type::pointer           pointer;

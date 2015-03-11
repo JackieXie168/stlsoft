@@ -4,11 +4,11 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     22nd March 2007
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     62
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,7 @@ namespace winstl_project
  * as a C-string of its value.
  */
 
-/** \brief Represents an environment variable
+/** Represents an environment variable
  *
  * \ingroup group__library__system
  *
@@ -226,17 +226,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Specialisation of the basic_environment_variable template for the ANSI character type \c char
+/** Specialisation of the basic_environment_variable template for the ANSI character type \c char
  *
  * \ingroup group__library__system
  */
 typedef basic_environment_variable<ws_char_a_t, system_traits<ws_char_a_t> >    environment_variable_a;
-/** \brief Specialisation of the basic_environment_variable template for the Unicode character type \c wchar_t
+/** Specialisation of the basic_environment_variable template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__system
  */
 typedef basic_environment_variable<ws_char_w_t, system_traits<ws_char_w_t> >    environment_variable_w;
-/** \brief Specialisation of the basic_environment_variable template for the Win32 character type \c TCHAR
+/** Specialisation of the basic_environment_variable template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__system
  */
@@ -249,7 +249,7 @@ typedef basic_environment_variable<TCHAR, system_traits<TCHAR> >                
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER >= 1100
 
-/** \brief This helper function makes an environment variable without needing to
+/** This helper function makes an environment variable without needing to
  * qualify the template parameter.
  *
  * \ingroup group__library__system

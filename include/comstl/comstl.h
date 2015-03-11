@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       6
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    3
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        107
+# define COMSTL_VER_COMSTL_H_COMSTL_MINOR       7
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -142,12 +142,13 @@
 # define _COMSTL_VER_1_7_3      0x00010703  /*!< Version 1.7.3 (with STLSoft 1.9.25) */
 # define _COMSTL_VER_1_7_4      0x010704ff  /*!< Version 1.7.4 (with STLSoft 1.9.31) */
 # define _COMSTL_VER_1_8_1      0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.37) */
+# define _COMSTL_VER_1_8_2      0x010802ff  /*!< Version 1.8.1 (with STLSoft 1.9.57) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       8
-#define _COMSTL_VER_REVISION    1
-#define _COMSTL_VER             _COMSTL_VER_1_8_1
+#define _COMSTL_VER_REVISION    2
+#define _COMSTL_VER             _COMSTL_VER_1_8_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -167,8 +168,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010925ff
-# error This version of the COMSTL libraries requires STLSoft version 1.9.37, or later
+    _STLSOFT_VER < 0x010939ff
+# error This version of the COMSTL libraries requires STLSoft version 1.9.57, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -517,6 +518,86 @@ stlsoft_ns_using(move_lhs_from_rhs)
 #else /* ? __cplusplus */
 # define COMSTL_REF_2_PTR(iid)        (iid)
 #endif /* __cplusplus */
+
+/** \def COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief 
+ */
+#ifdef __cplusplus
+# define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)     (pvar)->mem
+#else /* ? __cplusplus */
+# if (  __STDC__ && \
+        !defined(_FORCENAMELESSUNION)) || \
+    defined(NONAMELESSUNION)
+#  define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)    (pvar)->__VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.mem
+# else /* ? __STDC__ */
+#  define COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvar, mem)    (pvar)->mem
+# endif /* __STDC__ */
+#endif /* __cplusplus */
+
+/** \def COMSTL_ACCESS_VARIANT_MEM_BYREF(var, mem)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief 
+ */
+#define COMSTL_ACCESS_VARIANT_MEM_BYREF(var, mem)       COMSTL_ACCESS_VARIANT_MEM_BYPTR(&(var), mem)
+
+
+/** \def COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief 
+ */
+#ifdef __cplusplus
+# define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)           (pvar)->vt
+#else /* ? __cplusplus */
+# if (  __STDC__ && \
+        !defined(_FORCENAMELESSUNION)) || \
+    defined(NONAMELESSUNION)
+#  define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)          (pvar)->__VARIANT_NAME_1.__VARIANT_NAME_2.vt
+# else /* ? __STDC__ */
+#  define COMSTL_ACCESS_VARIANT_vt_BYPTR(pvar)          (pvar)->vt
+# endif /* __STDC__ */
+#endif /* __cplusplus */
+
+/** \def COMSTL_ACCESS_VARIANT_vt_BYREF(var)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief 
+ */
+#define COMSTL_ACCESS_VARIANT_vt_BYREF(var)             COMSTL_ACCESS_VARIANT_vt_BYPTR(&(var))
+
+
+/** \def COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief 
+ */
+#ifdef __cplusplus
+# define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)       (pvar)->decVal
+#else /* ? __cplusplus */
+# if (  __STDC__ && \
+        !defined(_FORCENAMELESSUNION)) || \
+    defined(NONAMELESSUNION)
+#  define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)      (pvar)->__VARIANT_NAME_1.decVal
+# else /* ? __STDC__ */
+#  define COMSTL_ACCESS_VARIANT_decVal_BYPTR(pvar)      (pvar)->decVal
+# endif /* __STDC__ */
+#endif /* __cplusplus */
+
+/** \def COMSTL_ACCESS_VARIANT_decVal_BYREF(var, mem)
+ *
+ * \ingroup group__project__comstl__language_agnostic_macros
+ *
+ * \brief 
+ */
+#define COMSTL_ACCESS_VARIANT_decVal_BYREF(var)         COMSTL_ACCESS_VARIANT_decVal_BYPTR(&(var))
 
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs

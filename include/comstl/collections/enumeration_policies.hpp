@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     22nd March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    6
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        49
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -198,7 +198,7 @@ struct input_cloning_policy
 {
 public:
     typedef I                                       interface_type;
-    typedef interface_type                          *value_type;
+    typedef interface_type*                         value_type;
     typedef comstl_ns_qual_std(input_iterator_tag)  iterator_tag_type;
 
 public:
@@ -247,7 +247,7 @@ struct cloneable_cloning_policy
 {
 public:
     typedef I                                       interface_type;
-    typedef interface_type                          *value_type;
+    typedef interface_type*                         value_type;
     typedef comstl_ns_qual_std(input_iterator_tag)  iterator_tag_type;
 
 public:
@@ -317,7 +317,7 @@ struct forward_cloning_policy
 {
 public:
     typedef I                                           interface_type;
-    typedef interface_type                              *value_type;
+    typedef interface_type*                             value_type;
     typedef comstl_ns_qual_std(forward_iterator_tag)    iterator_tag_type;
 
 public:

@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     10th June 2008
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    3
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     12
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
@@ -123,6 +123,8 @@ namespace platformstl_project
  * Classes
  */
 
+/** Maps a text file's contents and presents them as a vector of lines
+ */
 template<   typename C
         ,   typename V = stlsoft::basic_string_view<C>
         ,   typename B = stlsoft::basic_simple_string<C>

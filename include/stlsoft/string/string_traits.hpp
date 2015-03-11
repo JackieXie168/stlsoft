@@ -4,7 +4,7 @@
  * Purpose:     string_traits traits class.
  *
  * Created:     16th January 2002
- * Updated:     17th October 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      75
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,9 +108,9 @@ struct string_traits<ss_char_a_t *>
     typedef ss_char_a_t             char_type;
     typedef ss_size_t               size_type;
     typedef char_type const         const_char_type;
-    typedef value_type const        *string_type;
-    typedef value_type              *pointer;
-    typedef value_type const        *const_pointer;
+    typedef value_type const*       string_type;
+    typedef value_type*             pointer;
+    typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
     enum {  char_type_size      =   sizeof(char_type)   };
@@ -135,9 +135,9 @@ struct string_traits<ss_char_a_t const*>
     typedef ss_char_a_t             char_type;
     typedef ss_size_t               size_type;
     typedef char_type const         const_char_type;
-    typedef value_type const        *string_type;
-    typedef value_type              *pointer;
-    typedef value_type const        *const_pointer;
+    typedef value_type const*       string_type;
+    typedef value_type*             pointer;
+    typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
     enum {  char_type_size      =   sizeof(char_type)   };
@@ -190,9 +190,9 @@ struct string_traits<C (&)[N]>
     typedef ss_char_a_t             char_type;
     typedef ss_size_t               size_type;
     typedef char_type const         const_char_type;
-    typedef value_type const        *string_type;
-    typedef value_type              *pointer;
-    typedef value_type const        *const_pointer;
+    typedef value_type const*       string_type;
+    typedef value_type*             pointer;
+    typedef value_type const*       const_pointer;
 };
 
 template <ss_typename_param_k C, ss_size_t N>
@@ -203,9 +203,9 @@ struct string_traits<C const (&)[N]>
     typedef ss_char_a_t             char_type;
     typedef ss_size_t               size_type;
     typedef char_type const         const_char_type;
-    typedef value_type const        *string_type;
-    typedef value_type              *pointer;
-    typedef value_type const        *const_pointer;
+    typedef value_type const*       string_type;
+    typedef value_type*             pointer;
+    typedef value_type const*       const_pointer;
 };
 
 #   endif /* 0 */
@@ -221,9 +221,9 @@ struct string_traits<ss_char_w_t *>
     typedef ss_char_w_t             char_type;
     typedef ss_size_t               size_type;
     typedef char_type const         const_char_type;
-    typedef value_type const        *string_type;
-    typedef value_type              *pointer;
-    typedef value_type const        *const_pointer;
+    typedef value_type const*       string_type;
+    typedef value_type*             pointer;
+    typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
     enum {  char_type_size      =   sizeof(char_type)   };
@@ -248,9 +248,9 @@ struct string_traits<ss_char_w_t const*>
     typedef ss_char_w_t             char_type;
     typedef ss_size_t               size_type;
     typedef char_type const         const_char_type;
-    typedef value_type const        *string_type;
-    typedef value_type              *pointer;
-    typedef value_type const        *const_pointer;
+    typedef value_type const*       string_type;
+    typedef value_type*             pointer;
+    typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
     enum {  char_type_size      =   sizeof(char_type)   };

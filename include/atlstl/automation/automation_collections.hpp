@@ -4,7 +4,7 @@
  * Purpose:     Adaptor classes for creating COM collection instances.
  *
  * Created:     16th April 1999
- * Updated:     9th March 2008
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MAJOR     3
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MINOR     2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      105
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -266,6 +266,8 @@ inline LPUNKNOWN get_clone(I1* instance, HRESULT (STDAPICALLTYPE I3::*pfn)(I2**)
     return clone;
 }
 
+/** Class for defining COM Automation collections
+ */
 // [[synesis:class:collection: atlstl::generic_automation_collection<T<E>, T<ThreadModel>, T<I>, int>]]
 template<   ss_typename_param_k E
         ,   ss_typename_param_k ThreadModel =   CComObjectThreadModel

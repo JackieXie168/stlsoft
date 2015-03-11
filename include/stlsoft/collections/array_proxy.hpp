@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     22nd March 2007
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MAJOR    4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION 3
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     53
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,12 +96,12 @@ class array_proxy
 public:
     typedef T                   value_type;
     typedef array_proxy<T>      class_type;
-    typedef value_type          *pointer;
-    typedef value_type          *const_pointer;     // This is deliberately non-const
-    typedef value_type          *iterator;
-    typedef value_type          *const_iterator;    // This is deliberately non-const
-    typedef value_type          &reference;
-    typedef value_type          &const_reference;   // This is deliberately non-const
+    typedef value_type*         pointer;
+    typedef value_type*         const_pointer;     // This is deliberately non-const
+    typedef value_type*         iterator;
+    typedef value_type*         const_iterator;    // This is deliberately non-const
+    typedef value_type&         reference;
+    typedef value_type&         const_reference;   // This is deliberately non-const
     typedef ss_size_t           size_type;
 
 /// \name Construction

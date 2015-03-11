@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     1st October 2008
+ * Updated:     10th October 2008
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        89
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,16 +161,16 @@ public:
     ///
     /// \note This type is not used by any functions, but is here to facilitate
     /// type detection
-    typedef value_type const                *pointer;
+    typedef value_type const*               pointer;
 #endif /* 0 */
     /// The non-mutable (const) pointer type
-    typedef value_type const                *const_pointer;
+    typedef value_type const*               const_pointer;
 #if 0
     /// The reference type
-    typedef value_type                      &reference;
+    typedef value_type&                     reference;
 #endif /* 0 */
     /// The non-mutable (const) reference type
-    typedef value_type const                &const_reference;
+    typedef value_type const&               const_reference;
     /// The size type
     typedef ss_size_t                       size_type;
     /// The difference type

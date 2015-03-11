@@ -4,7 +4,7 @@
  * Purpose:     VARIANT helper functions.
  *
  * Created:     23rd August 2008
- * Updated:     23rd August 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_REVISION    1
-# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        1
+# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_REVISION    2
+# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,53 +133,53 @@ STLSOFT_INLINE int comstl__VARIANT_equal(VARIANT const* lhs, VARIANT const* rhs,
 
     *comparisonSucceeded = S_OK;
 
-    if(lhs->vt != rhs->vt)
+    if(COMSTL_ACCESS_VARIANT_vt_BYPTR(lhs) != COMSTL_ACCESS_VARIANT_vt_BYPTR(rhs))
     {
         return 0;
     }
     else
     {
-        switch(lhs->vt)
+        switch(COMSTL_ACCESS_VARIANT_vt_BYPTR(lhs))
         {
             case    VT_EMPTY:
             case    VT_NULL:
                 return 1;
             case    VT_I1:
-                return lhs->cVal == rhs->cVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, cVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, cVal);
             case    VT_UI1:
-                return lhs->bVal == rhs->bVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, bVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, bVal);
             case    VT_I2:
-                return lhs->iVal == rhs->iVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, iVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, iVal);
             case    VT_UI2:
-                return lhs->uiVal == rhs->uiVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, uiVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, uiVal);
             case    VT_I4:
-                return lhs->lVal == rhs->lVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, lVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, lVal);
             case    VT_UI4:
-                return lhs->ulVal == rhs->ulVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, ulVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, ulVal);
             case    VT_INT:
-                return lhs->intVal == rhs->intVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, intVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, intVal);
             case    VT_UINT:
-                return lhs->uintVal == rhs->uintVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, uintVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, uintVal);
             case    VT_R4:
-                return lhs->fltVal == rhs->fltVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, fltVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, fltVal);
             case    VT_R8:
-                return lhs->dblVal == rhs->dblVal;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, dblVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, dblVal);
             case    VT_BOOL:
-                return (VARIANT_FALSE != lhs->boolVal) == (VARIANT_FALSE != rhs->boolVal);
+                return (VARIANT_FALSE != COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, boolVal)) == (VARIANT_FALSE != COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, boolVal));
             case    VT_BSTR:
-                return 0 == comstl__bstr_compare(lhs->bstrVal, rhs->bstrVal);
+                return 0 == comstl__bstr_compare(COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, bstrVal), COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, bstrVal));
             case    VT_ERROR:
-                return lhs->scode == rhs->scode;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, scode) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, scode);
             case    VT_DECIMAL:
-                return 0 == comstl__DECIMAL_compare(&lhs->decVal, &rhs->decVal);
+                return 0 == comstl__DECIMAL_compare(&COMSTL_ACCESS_VARIANT_decVal_BYPTR(lhs), &COMSTL_ACCESS_VARIANT_decVal_BYPTR(rhs));
             case    VT_CY:
-                return 0 == comstl__CY_compare(&lhs->cyVal, &rhs->cyVal);
+                return 0 == comstl__CY_compare(&COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, cyVal), &COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, cyVal));
             case    VT_UNKNOWN:
-                return (lhs->punkVal == rhs->punkVal) || (S_OK == comstl__is_same_object(lhs->punkVal, rhs->punkVal));
+                return (COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, punkVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, punkVal)) || (S_OK == comstl__is_same_object(COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, punkVal), COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, punkVal)));
             case    VT_DISPATCH:
-                return (lhs->pdispVal == rhs->pdispVal) || (S_OK == comstl__is_same_object(stlsoft_static_cast(LPUNKNOWN, lhs->pdispVal), stlsoft_static_cast(LPUNKNOWN, rhs->pdispVal)));
+                return (COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, pdispVal) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, pdispVal)) || (S_OK == comstl__is_same_object(stlsoft_static_cast(LPUNKNOWN, COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, pdispVal)), stlsoft_static_cast(LPUNKNOWN, COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, pdispVal))));
             case    VT_DATE:
-                return lhs->date == rhs->date;
+                return COMSTL_ACCESS_VARIANT_MEM_BYPTR(lhs, date) == COMSTL_ACCESS_VARIANT_MEM_BYPTR(rhs, date);
 #if 0
             case    VT_VARIANT:
             case    VT_RECORD:

@@ -4,7 +4,7 @@
  * Purpose:     Basic support meta types.
  *
  * Created:     19th November 1998
- * Updated:     1st October 2008
+ * Updated:     9th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MINOR     2
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  3
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      116
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  4
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,27 +83,26 @@ namespace stlsoft
  * @{
  */
 
-
-typedef struct { ss_byte_t ar[1]; }    one_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[2];  }    two_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[3];  }    three_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[4];  }    four_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[5];  }    five_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[6];  }    six_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[7];  }    seven_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[8];  }    eight_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[9];  }    nine_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[10]; }    ten_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[11]; }    eleven_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[12]; }    twelve_type;		/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[13]; }    thirteen_type;	/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[14]; }    fourteen_type;	/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[15]; }    fifteen_type;	/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[16]; }    sixteen_type;	/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[17]; }    seventeen_type;	/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[18]; }    eighteen_type;	/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[19]; }    nineteen_type;	/*!< A distinct type for use in meta-programming */
-typedef struct { one_type ar[20]; }    twenty_type;		/*!< A distinct type for use in meta-programming */
+/** A distinct type for use in meta-programming */  struct one_type         { ss_byte_t ar[1]; };
+/** A distinct type for use in meta-programming */  struct two_type         { one_type ar[2];  };
+/** A distinct type for use in meta-programming */  struct three_type       { one_type ar[3];  };
+/** A distinct type for use in meta-programming */  struct four_type        { one_type ar[4];  };
+/** A distinct type for use in meta-programming */  struct five_type        { one_type ar[5];  };
+/** A distinct type for use in meta-programming */  struct six_type         { one_type ar[6];  };
+/** A distinct type for use in meta-programming */  struct seven_type       { one_type ar[7];  };
+/** A distinct type for use in meta-programming */  struct eight_type       { one_type ar[8];  };
+/** A distinct type for use in meta-programming */  struct nine_type        { one_type ar[9];  };
+/** A distinct type for use in meta-programming */  struct ten_type         { one_type ar[10]; };
+/** A distinct type for use in meta-programming */  struct eleven_type      { one_type ar[11]; };
+/** A distinct type for use in meta-programming */  struct twelve_type      { one_type ar[12]; };
+/** A distinct type for use in meta-programming */  struct thirteen_type    { one_type ar[13]; };
+/** A distinct type for use in meta-programming */  struct fourteen_type    { one_type ar[14]; };
+/** A distinct type for use in meta-programming */  struct fifteen_type     { one_type ar[15]; };
+/** A distinct type for use in meta-programming */  struct sixteen_type     { one_type ar[16]; };
+/** A distinct type for use in meta-programming */  struct seventeen_type   { one_type ar[17]; };
+/** A distinct type for use in meta-programming */  struct eighteen_type    { one_type ar[18]; };
+/** A distinct type for use in meta-programming */  struct nineteen_type    { one_type ar[19]; };
+/** A distinct type for use in meta-programming */  struct twenty_type      { one_type ar[20]; };
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION

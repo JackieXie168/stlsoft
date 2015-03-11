@@ -13,7 +13,7 @@
  *              basic_reg_key_sequence class interface.
  *
  * Created:     19th January 2002
- * Updated:     25th April 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,7 +61,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      9
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       129
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -176,9 +176,9 @@ public:
     /// \note This is retained for backwards compatibility
     typedef iterator                                                            const_iterator;
     /// \brief The reference type
-    typedef key_type                                                            &reference;
+    typedef key_type&                                                           reference;
     /// \brief The non-mutable (const) reference type
-    typedef key_type const                                                      &const_reference;
+    typedef key_type const&                                                     const_reference;
     /// \brief The hkey type
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1100

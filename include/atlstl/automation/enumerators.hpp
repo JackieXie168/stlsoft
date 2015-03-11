@@ -4,7 +4,7 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     1st October 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 4
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     63
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -202,7 +202,7 @@ public:
     typedef V                                               value_type;
     typedef IV                                              internal_value_type;
     typedef I2ETx                                           internal_to_external_transformer_type;
-//    typedef V const                                           *const_pointer;
+//    typedef V const*                                          const_pointer;
     typedef copy_enumerator_impl<I, piid, V, IV, I2ETx>     class_type;
     typedef ss_size_t                                       size_type;
     typedef ss_ptrdiff_t                                    difference_type;

@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     23rd September 2008
+ * Updated:     10th October 2008
  *
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
@@ -63,7 +63,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     4
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      99
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -160,11 +160,11 @@ public:
     /// \brief The value type
     typedef ws_byte_t                                       value_type;
     /// \brief The non-mutable (const) reference type
-    typedef value_type const                                &const_reference;
+    typedef value_type const&                               const_reference;
     /// \brief The non-mutable (const) pointer type
-    typedef value_type const                                *const_pointer;
+    typedef value_type const*                               const_pointer;
     /// \brief The non-mutating (const) iterator type
-    typedef value_type const                                *const_iterator;
+    typedef value_type const*                               const_iterator;
     /// \brief The size type
     typedef ws_size_t                                       size_type;
     /// \brief The difference type

@@ -5,7 +5,7 @@
  *              abstracting away standard library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     22nd September 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      107
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  1
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@
 /*
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_WATCOM: __WATCOMC__<1240
+STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
 
@@ -226,7 +226,7 @@ namespace stlsoft
 # define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
 #elif defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
 # define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
-#elif defined(STLSOFT_CF_STD_LIBRARY_IS_WATCOM)
+#elif defined(STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH)
 # define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
 #else
 # error Library version not recognised
@@ -318,7 +318,7 @@ namespace stlsoft
  *      typedef random_access_iterator_tag  iterator_category;
  *      typedef V                           value_type;
  *      typedef D                           difference_type;
- *      typedef V                           *pointer;
+ *      typedef V*                          pointer;
  *      typedef R                           reference;
  *      . . .
  *    };

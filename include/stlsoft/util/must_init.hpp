@@ -5,7 +5,7 @@
  *              explicit initialisation.
  *
  * Created:     18th June 2006
- * Updated:     1st October 2008
+ * Updated:     10th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        14
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,9 +127,9 @@ public:
     /// \brief The current instantiation of the type
     typedef must_init_builtin<T>    class_type;
     /// The reference type
-    typedef T                       &reference;
+    typedef T&                      reference;
     /// The non-mutating (const) reference type
-    typedef T const                 &const_reference;
+    typedef T const&                const_reference;
 /// @}
 
 /// \name Construction
@@ -209,9 +209,9 @@ public:
     /// \brief The current instantiation of the type
     typedef must_init<T>    class_type;
     /// The reference type
-    typedef T               &reference;
+    typedef T&              reference;
     /// The non-mutating (const) reference type
-    typedef T const         &const_reference;
+    typedef T const&        const_reference;
 /// @}
 
 /// \name Construction
