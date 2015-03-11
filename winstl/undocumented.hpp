@@ -4,7 +4,7 @@
  * Purpose:     Various constants.
  *
  * Created:     20th October 1994
- * Updated:     10th June 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_MAJOR     3
-# define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_MINOR     1
+# define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_MINOR     2
 # define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_EDIT      31
+# define WINSTL_VER_WINSTL_HPP_UNDOCUMENTED_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ namespace winstl_project
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER >= 1300)
 
-template <int i>
+template <int N>
 inline UINT get_undoc_clipboard_fmt__(LPCTSTR lpszFormat)
 {
     static UINT fmt = ::RegisterClipboardFormat(lpszFormat);
@@ -115,7 +115,7 @@ inline UINT get_undoc_clipboard_fmt__(LPCTSTR lpszFormat)
 
 #else /* ? compiler */
 
-template <int i>
+template <int N>
 struct get_undoc_clipboard_fmt__
 {
 public:

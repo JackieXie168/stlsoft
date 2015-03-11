@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     8th July 2006
+ * Updated:     14th July 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -73,9 +73,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
 # include <winstl/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>          // for string access shims
-#endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
+# include <winstl/shims/access/string.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 # ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
 #  include <winstl/filesystem/file_path_buffer.hpp>
 # endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */

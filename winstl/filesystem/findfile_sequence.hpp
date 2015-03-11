@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     9th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -64,9 +64,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        184
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,9 +106,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_COMPILER_IS_WATCOM
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 #  include <stlsoft/iterator.hpp>           // for stlsoft::iterator_base

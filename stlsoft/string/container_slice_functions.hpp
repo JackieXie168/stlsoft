@@ -4,7 +4,7 @@
  * Purpose:     String container slice functions.
  *
  * Created:     25th April 2005
- * Updated:     6th July 2006
+ * Updated:     14th July 2006
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions.
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MAJOR    2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MINOR    0
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     14
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MINOR    1
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 1
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,9 +89,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX
 # include <stlsoft/util/minmax.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
 #ifdef STLSOFT_UNITTEST
 # include <string>
@@ -103,9 +103,9 @@ STLSOFT_COMPILER_IS_WATCOM:
      (  defined(STLSOFT_COMPILER_IS_INTEL) || \
         defined(STLSOFT_COMPILER_IS_MSVC))
 #  include <afx.h>
-#  ifndef MFCSTL_INCL_MFCSTL_HPP_STRING_ACCESS
-#   include <mfcstl/string_access.hpp>
-#  endif /* !MFCSTL_INCL_MFCSTL_HPP_STRING_ACCESS */
+#  ifndef MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_HPP_STRING
+#   include <mfcstl/shims/access/string.hpp>
+#  endif /* !MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_HPP_STRING */
 #  ifndef MFCSTL_INCL_MFCSTL_HPP_STRING_TRAITS
 #   include <mfcstl/string_traits.hpp>
 #  endif /* !MFCSTL_INCL_MFCSTL_HPP_STRING_TRAITS */

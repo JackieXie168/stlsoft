@@ -4,7 +4,7 @@
  * Purpose:     Cursor scoping class.
  *
  * Created:     4th May 2003
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MINOR      2
-# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_REVISION   2
-# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_EDIT       33
+# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_MINOR      3
+# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_REVISION   1
+# define WINSTL_VER_WINSTL_HPP_SETFOCUS_SCOPE_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,12 +59,12 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>      // for string access shims
-#endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
+# include <winstl/shims/access/string.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

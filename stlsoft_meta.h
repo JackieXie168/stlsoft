@@ -4,7 +4,7 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     7th July 2006
+ * Updated:     15th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_META_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_META_MINOR       23
+# define STLSOFT_VER_H_STLSOFT_META_MINOR       24
 # define STLSOFT_VER_H_STLSOFT_META_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_META_EDIT        126
+# define STLSOFT_VER_H_STLSOFT_META_EDIT        127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,6 +118,54 @@
 # include <stlsoft/meta/is_volatile_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_VOLATILE_TYPE */
 
+#ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR
+#  include <stlsoft/meta/detector/has_const_iterator.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_POINTER
+#  include <stlsoft/meta/detector/has_const_pointer.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_POINTER */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_REFERENCE
+#  include <stlsoft/meta/detector/has_const_reference.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_REFERENCE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_DIFFERENCE_TYPE
+#  include <stlsoft/meta/detector/has_difference_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_DIFFERENCE_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_DISTANCE_TYPE
+#  include <stlsoft/meta/detector/has_distance_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_DISTANCE_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR
+#  include <stlsoft/meta/detector/has_iterator.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_CATEGORY
+#  include <stlsoft/meta/detector/has_iterator_category.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_CATEGORY */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_KEY_TYPE
+#  include <stlsoft/meta/detector/has_key_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_KEY_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_MAPPED_TYPE
+#  include <stlsoft/meta/detector/has_mapped_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_MAPPED_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_POINTER
+#  include <stlsoft/meta/detector/has_pointer.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_POINTER */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_POINTER_TYPE
+#  include <stlsoft/meta/detector/has_pointer_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_POINTER_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_REFERENCE
+#  include <stlsoft/meta/detector/has_reference.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_REFERENCE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_REFERENCE_TYPE
+#  include <stlsoft/meta/detector/has_reference_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_REFERENCE_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_REFERENT_TYPE
+#  include <stlsoft/meta/detector/has_referent_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_REFERENT_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_VALUE_TYPE
+#  include <stlsoft/meta/detector/has_value_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_VALUE_TYPE */
+#endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
+
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
 # include <stlsoft/meta/n_types.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
@@ -146,7 +194,7 @@ namespace stlsoft
 /** \brief This test determines whether the given type is convertible to a pointer
  * type
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__meta
  */
 template <ss_typename_param_k T>
 struct is_convertible_to_pointer
@@ -218,7 +266,7 @@ convertible_index<void*>::type          convertible_index_function(void const vo
 /** \brief This test determines whether the given type is convertible to a pointer
  * type
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__meta
  */
 template <ss_typename_param_k T>
 struct is_convertible_to_bool
@@ -275,621 +323,6 @@ struct is_void
 {
     enum { value = is_void_type<T>::value };
 };
-
-
-
-
-#if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
-    (   !defined(STLSOFT_COMPILER_IS_DMC) || \
-        __DMC__ >= 0x0845) && \
-    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-        _MSC_VER >= 1310) && \
-    !defined(STLSOFT_COMPILER_IS_VECTORC) && \
-    !defined(STLSOFT_COMPILER_IS_WATCOM)
-
-# define STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
-
-// has_value_type
-
-template <ss_typename_param_k T>
-one_t has_value_type_function(...);
-
-template <ss_typename_param_k T>
-two_t has_value_type_function(ss_typename_type_k T::value_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c value_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_value_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_value_type_function<T>(0)) == sizeof(two_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_value_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_iterator
-
-template <ss_typename_param_k T>
-one_t has_iterator_function(...);
-
-template <ss_typename_param_k T>
-three_t has_iterator_function(ss_typename_type_k T::iterator const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c iterator
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_iterator
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_iterator_function<T>(0)) == sizeof(three_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_iterator<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_const_iterator
-
-# if !defined(STLSOFT_COMPILER_IS_DMC) || \
-     __DMC__ >= 0x0845 || \
-     defined(STLSOFT_FORCE_HAS_REFERENCE)
-
-template <ss_typename_param_k T>
-one_t has_const_iterator_function(...);
-
-template <ss_typename_param_k T>
-four_t has_const_iterator_function(ss_typename_type_k T::const_iterator const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c const_iterator
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_const_iterator
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_const_iterator_function<T>(0)) == sizeof(four_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_const_iterator<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-# endif /* compiler */
-
-// has_pointer
-
-template <ss_typename_param_k T>
-one_t has_pointer_function(...);
-
-template <ss_typename_param_k T>
-five_t has_pointer_function(ss_typename_type_k T::pointer const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_pointer
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_pointer_function<T>(0)) == sizeof(five_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_pointer<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_pointer_type
-
-template <ss_typename_param_k T>
-one_t has_pointer_type_function(...);
-
-template <ss_typename_param_k T>
-six_t has_pointer_type_function(ss_typename_type_k T::pointer_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c pointer_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_pointer_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_pointer_type_function<T>(0)) == sizeof(six_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_pointer_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_reference
-
-# if defined(STLSOFT_COMPILER_IS_MWERKS) || \
-     defined(STLSOFT_FORCE_HAS_REFERENCE)
-
-template <ss_typename_param_k T>
-one_t has_reference_function(...);
-
-template <ss_typename_param_k T>
-seven_t has_reference_function(ss_typename_type_k T::reference const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c reference
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_reference
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_reference_function<T>(0)) == sizeof(seven_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_reference<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_reference_type
-
-template <ss_typename_param_k T>
-one_t has_reference_type_function(...);
-
-template <ss_typename_param_k T>
-eight_t has_reference_type_function(ss_typename_type_k T::reference_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c reference_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_reference_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_reference_type_function<T>(0)) == sizeof(eight_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_reference_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-// has_const_reference
-
-template <ss_typename_param_k T>
-one_t has_const_reference_function(...);
-
-template <ss_typename_param_k T>
-nine_t has_const_reference_function(ss_typename_type_k T::const_reference const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c const_reference
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_const_reference
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_const_reference_function<T>(0)) == sizeof(nine_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_const_reference<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-# endif /* compiler */
-
-
-// has_const_pointer
-
-template <ss_typename_param_k T>
-one_t has_const_pointer_function(...);
-
-template <ss_typename_param_k T>
-sixteen_t has_const_pointer_function(ss_typename_type_k T::const_pointer const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c const_pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_const_pointer
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_const_pointer_function<T>(0)) == sizeof(sixteen_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_const_pointer<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_iterator_category
-
-template <ss_typename_param_k T>
-one_t has_iterator_category_function(...);
-
-template <ss_typename_param_k T>
-ten_t has_iterator_category_function(ss_typename_type_k T::iterator_category const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c iterator_category
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_iterator_category
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_iterator_category_function<T>(0)) == sizeof(ten_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_iterator_category<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_distance_type
-
-template <ss_typename_param_k T>
-one_t has_distance_type_function(...);
-
-template <ss_typename_param_k T>
-eleven_t has_distance_type_function(ss_typename_type_k T::distance_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c distance_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_distance_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_distance_type_function<T>(0)) == sizeof(eleven_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_distance_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_difference_type
-
-template <ss_typename_param_k T>
-one_t has_difference_type_function(...);
-
-template <ss_typename_param_k T>
-twelve_t has_difference_type_function(ss_typename_type_k T::difference_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c difference_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_difference_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_difference_type_function<T>(0)) == sizeof(twelve_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_difference_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_key_type
-
-template <ss_typename_param_k T>
-one_t has_key_type_function(...);
-
-template <ss_typename_param_k T>
-thirteen_t has_key_type_function(ss_typename_type_k T::key_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c key_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_key_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_key_type_function<T>(0)) == sizeof(thirteen_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_key_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_mapped_type
-
-template <ss_typename_param_k T>
-one_t has_mapped_type_function(...);
-
-template <ss_typename_param_k T>
-fourteen_t has_mapped_type_function(ss_typename_type_k T::mapped_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c mapped_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_mapped_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_mapped_type_function<T>(0)) == sizeof(fourteen_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_mapped_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-// has_referent_type
-
-template <ss_typename_param_k T>
-one_t has_referent_type_function(...);
-
-template <ss_typename_param_k T>
-fifteen_t has_referent_type_function(ss_typename_type_k T::referent_type const volatile *);
-
-/** \brief traits type used to determine whether a given type has a member \c referent_type
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-template <ss_typename_param_k T>
-struct has_referent_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-
-    enum { value = sizeof(has_referent_type_function<T>(0)) == sizeof(fifteen_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct has_referent_type<void>
-{
-    typedef void    test_type;
-
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-
-#else /* ? compiler */
-
-# ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
-#  undef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
-# endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-
-#endif /* compiler */
-
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
-
-#ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_stlsoft_meta(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "STLSoft", "meta", __FILE__);
-
-            STLSOFT_SUPPRESS_UNUSED(bSuccess);
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_meta(test_stlsoft_meta);
-    } // anonymous namespace
-
-} /* namespace unittest */
-
-
-#endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

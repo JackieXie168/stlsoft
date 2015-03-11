@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     10th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     104
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,9 +83,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
 # include <stlsoft/conversion/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>                // for iterator base class templates
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */

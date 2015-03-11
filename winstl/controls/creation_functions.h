@@ -4,7 +4,7 @@
  * Purpose:     Control creation functions.
  *
  * Created:     7th May 2000
- * Updated:     18th June 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,9 +62,9 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifdef __cplusplus
-# ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD
-#  include <stlsoft/string_access_fwd.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
+# ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
+#  include <stlsoft/shims/access/string/fwd.h>
+# endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 #endif /* __cplusplus */
 #ifndef WINSTL_INCL_WINSTL_H_WINDOW_CREATION_FUNCTIONS
 # include <winstl/window_creation_functions.h>

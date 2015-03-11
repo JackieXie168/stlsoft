@@ -1,17 +1,12 @@
-#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
-# include <stlsoft/stlsoft.h>
-#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#include <stlsoft/stlsoft.h>
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/ptr_access.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/shims/attribute/get_ptr.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_PTR_ACCESS
-# include <stlsoft/ptr_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_PTR_ACCESS */
+#include <stlsoft/shims/attribute/get_ptr.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
-

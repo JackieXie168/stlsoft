@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     18th June 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     21
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -109,17 +109,18 @@
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      4
-#define _PLATFORMSTL_VER_REVISION   1
+#define _PLATFORMSTL_VER_REVISION   2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _PLATFORMSTL_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
 # define _PLATFORMSTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 */
 # define _PLATFORMSTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 */
 # define _PLATFORMSTL_VER_1_2_1     0x00010201  /*!< Version 1.2.1 */
 # define _PLATFORMSTL_VER_1_3_1     0x00010301  /*!< Version 1.3.1 */
-# define _PLATFORMSTL_VER_1_4_1     0x00010401  /*!< Version 1.4.1 (12th December 2005) */
+# define _PLATFORMSTL_VER_1_4_1     0x00010401  /*!< Version 1.4.1 */
+# define _PLATFORMSTL_VER_1_4_2     0x00010402  /*!< Version 1.4.2 */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_4_1
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_4_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -133,10 +134,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_8_9) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_8_9
-# error This version of the PlatformSTL libraries requires STLSoft version 1.8.9 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_8_9 */
+#if !defined(_STLSOFT_VER_1_9_1) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.1 or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Operating system identification

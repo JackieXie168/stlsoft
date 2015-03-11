@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     8th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -71,9 +71,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS
 # include <unixstl/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS */
-#ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
-# include <unixstl/string_access.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
+#ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING
+# include <unixstl/shims/access/string.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING */
 #include <dlfcn.h>
 #include <errno.h>
 

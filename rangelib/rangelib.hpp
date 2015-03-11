@@ -4,7 +4,7 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,11 +44,14 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    2
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     17
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file rangelib/rangelib.hpp \brief [C++ only] The root header for the \ref group__project__rangelib "RangeLib" project. */
+/** \file rangelib/rangelib.hpp
+ * 
+ * \brief [C++ only] The root header for the \ref group__project__rangelib "RangeLib" project.
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * RangeLib version
@@ -110,14 +113,15 @@
 
 #define _RANGELIB_VER_MAJOR     1
 #define _RANGELIB_VER_MINOR     0
-#define _RANGELIB_VER_REVISION  3
+#define _RANGELIB_VER_REVISION  4
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _RANGELIB_VER_1_0_1    0x00010001  /*!< Version 1.0.1 */
 # define _RANGELIB_VER_1_0_2    0x00010002  /*!< Version 1.0.2 */
 # define _RANGELIB_VER_1_0_3    0x00010003  /*!< Version 1.0.3 */
+# define _RANGELIB_VER_1_0_4    0x00010004  /*!< Version 1.0.4 */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _RANGELIB_VER             _RANGELIB_VER_1_0_3
+#define _RANGELIB_VER             _RANGELIB_VER_1_0_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -141,9 +145,9 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_8_3) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_8_3
-# error RangeLib is only compatible with STLSoft version 1.8.3 and above
+#if !defined(_STLSOFT_VER_1_9_1) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1
+# error RangeLib is only compatible with STLSoft version 1.9.1 and above
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////

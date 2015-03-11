@@ -4,7 +4,7 @@
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    1
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 1
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     51
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,12 +67,12 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR
 # include <winstl/memory/shell_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>      // for string access shims
-#endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
+# include <winstl/shims/access/string.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 
 #ifdef STLSOFT_UNITTEST
 # include <string>

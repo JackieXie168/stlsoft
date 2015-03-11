@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -72,9 +72,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
 # include <stlsoft/smartptr/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD
-# include <stlsoft/string_access_fwd.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
+# include <stlsoft/shims/access/string/fwd.h>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

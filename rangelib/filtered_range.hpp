@@ -4,7 +4,7 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     7th July 2006
+ * Updated:     15th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    4
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     26
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    5
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,15 +82,15 @@ STLSOFT_COMPILER_IS_MWERKS:     (__MWERKS__ & 0xFF00) < 0x3000
 #if !defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 # error This file is not compatible with compilers that do not support member type detection
 #else /* ? STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_DIFFERENCE_TYPE
-#  include <stlsoft/typefixer/difference_type.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_DIFFERENCE_TYPE */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE
-#  include <stlsoft/typefixer/reference.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENCE */
-# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR
-#  include <stlsoft/typefixer/iterator.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_DIFFERENCE_TYPE
+#  include <stlsoft/meta/typefixer/difference_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_DIFFERENCE_TYPE */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE
+#  include <stlsoft/meta/typefixer/reference.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE */
+# ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_ITERATOR
+#  include <stlsoft/meta/typefixer/iterator.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_ITERATOR */
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
 #  include <stlsoft/meta/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */

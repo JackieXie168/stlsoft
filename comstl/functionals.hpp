@@ -1,20 +1,12 @@
-/** \file comstl/functionals.hpp Redirects inclusion to comstl_functionals.h. This will be changed in a subsequent release, such that this file will contain the component definitions, and comstl_functionals.h will contain redirect */
-#ifndef COMSTL_INCL_COMSTL_HPP_FUNCTIONALS
-#define COMSTL_INCL_COMSTL_HPP_FUNCTIONALS
+#include <stlsoft/stlsoft.h>
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include comstl/functional/functionals.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_DMC:
-STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4)
-[Incompatibilies-end]
- */
+#include <comstl/functional/functionals.hpp>
 
-#ifndef COMSTL_INCL_H_COMSTL_FUNCTIONALS
-# include <comstl_functionals.h>
-#endif /* !COMSTL_INCL_H_COMSTL_FUNCTIONALS */
-
-#endif /* !COMSTL_INCL_COMSTL_HPP_FUNCTIONALS */
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/

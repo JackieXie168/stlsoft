@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       3
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    1
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        88
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h \brief [C, C++] The root header for the \ref group__project__comstl "COMSTL" project. */
@@ -105,7 +105,7 @@
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       6
-#define _COMSTL_VER_REVISION    1
+#define _COMSTL_VER_REVISION    2
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_1_0_1      0x00010001  /*!< Version 1.0.1 */
 # define _COMSTL_VER_1_1_1      0x00010101  /*!< Version 1.1.1 */
@@ -121,9 +121,10 @@
 # define _COMSTL_VER_1_5_3      0x00010503  /*!< Version 1.5.3 */
 # define _COMSTL_VER_1_5_4      0x00010504  /*!< Version 1.5.4 */
 # define _COMSTL_VER_1_6_1      0x00010601  /*!< Version 1.6.1 */
+# define _COMSTL_VER_1_6_2      0x00010602  /*!< Version 1.6.2 */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _COMSTL_VER             _COMSTL_VER_1_6_1
+#define _COMSTL_VER             _COMSTL_VER_1_6_2
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -138,10 +139,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_5_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_5_1
-# error This version of the COMSTL libraries requires STLSoft version 1.5.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_5_1 */
+#if !defined(_STLSOFT_VER_1_9_1) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1
+# error This version of the COMSTL libraries requires STLSoft version 1.9.1 or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility

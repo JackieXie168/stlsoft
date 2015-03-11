@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     9th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       1
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        24
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
 # include <stlsoft/meta/is_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

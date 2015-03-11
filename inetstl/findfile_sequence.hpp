@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     9th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MAJOR    2
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    13
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_MINOR    14
 # define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_REVISION 1
-# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     113
+# define INETSTL_VER_INETSTL_HPP_FINDFILE_SEQUENCE_EDIT     114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,9 +94,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/conversion/integer_to_string.hpp>

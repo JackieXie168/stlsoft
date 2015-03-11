@@ -1,17 +1,12 @@
-#ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
-# include <unixstl/unixstl.h>
-#endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
+#include <stlsoft/stlsoft.h>
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/string_access.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include unixstl/shims/access/string.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
-# include <unixstl/string_access.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
+#include <unixstl/shims/access/string.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
-

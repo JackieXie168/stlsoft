@@ -4,7 +4,7 @@
  * Purpose:     ATL ActiveX control (OCX) container window functions.
  *
  * Created:     30th November 2000
- * Updated:     7th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,9 +59,9 @@
 #ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
-#ifndef ATLSTL_INCL_ATLSTL_HPP_STRING_ACCESS
-# include <atlstl/string_access.hpp>
-#endif /* !ATLSTL_INCL_ATLSTL_HPP_STRING_ACCESS */
+#ifndef ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_HPP_STRING
+# include <atlstl/shims/access/string.hpp>
+#endif /* !ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_HPP_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

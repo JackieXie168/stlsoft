@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     7th July 2006
+ * Updated:     15th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       33
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
 # include <stlsoft/smartptr/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
@@ -128,16 +128,43 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents);
  *
  * \ingroup group__library__file_system
  *
- * \param fileName The name/path of the text file to load. Can be nul-terminated
- *                  C-style string, or a string object
- * \param contents A reference to a string instance into which the contents will
- *                  be loaded (with the assign() method)
+ * \param fileName The name/path of the text file to load. Can be
+ *                  nul-terminated C-style string, or a string object
+ * \param contents A reference to a string instance into which the contents
+ *                  will be loaded (with the assign() method)
  *
  * \return The number of bytes read from the file
  *
- * \note The character type of the text file is assumed (and controlled) to be
- * that of the \c contents parameter. For example, if \c contents is of type
- * \c std::wstring then the file will be processed as if it contains \c wchar_t.
+\htmlonly
+<pre>
+  std::string       contents;
+  winstl::uint64_t  numBytes = winstl::<b>load_text_file</b>("mytextfile.ext", contents);
+</pre>
+\htmlonly
+ *
+ * \remarks The character type of the text file is assumed (and controlled)
+ *   to be that of the \c contents parameter. For example, if \c contents is
+ *   of type \c std::wstring then the file will be processed as if it
+ *   contains \c wchar_t.
+ *
+ * \note When used with a compiler that does not support partial template
+ *   specialisation, the use of string types for which explicit
+ *   specialisations are not defined will fail. Hence, using
+ *   <code>stlsoft::simple_string</code> (which is the specialisation
+ *   <code>stlsoft::basic_simple_string&lt;char></code>) will succeed
+ *   because a specialisation of <code>stlsoft::string_traits</code> exists
+ *   for that type. The same applies for
+ *   <code>stlsoft::simple_wstring</code>, <code>std::string</code> and
+ *   <code>std::wstring</code>. However, if you attempt to use a
+ *   specialisation of a string class template for which an explicit
+ *   specialisation of <code>stlsoft::string_traits</code> does not exist
+ *   then you will experience a compile-time error in the implementation
+ *   of <code>winstl::load_text_file_impl()</code>. To correct this, you
+ *   must either provide an explicit specialisation of
+ *   <code>stlsoft::string_traits</code> for your type, or use a type for
+ *   which a specialisation of <code>stlsoft::string_traits</code> does
+ *   exist.<br><br>This problem does not occur for compilers that support
+ *   partial template specialisation.
  */
 template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
@@ -329,9 +356,46 @@ void readlines_impl(CH const *p, ss_size_t len, C &container)
  * \ingroup group__library__file_system
  *
  * \param fileName The name of the text-file to load
- * \param container Reference to the sequence container to which each line read from \c fileName will be appended (via its push_back() method)
+ * \param container Reference to the sequence container to which each line
+ *   read from \c fileName will be appended (via its push_back() method)
  *
  * \returns The \c container reference
+ *
+\htmlonly
+<pre>
+  std::vector&lt;std::string>  lines;
+
+  winstl::<b>readlines</b>("mytextfile.ext", lines);
+</pre>
+\htmlonly
+ *
+ *
+ * \remarks The container type's <code>value_type</code> must provide
+ *   a two-parameter constructor whose parameters types are
+ *   <code>char_type const*</code> (where <code>char_type</code> is the
+ *   <code>value_type</code> of the string type <code>S</code>) and
+ *   <code>size_t</code>, indicating the pointer to the beginning and the
+ *   length of the C-style string that represents the line read from the
+ *   file denoted by <code>fileName</code>.
+ *
+ * \note When used with a compiler that does not support partial template
+ *   specialisation, the use of string types for which explicit
+ *   specialisations are not defined will fail. Hence, using
+ *   <code>stlsoft::simple_string</code> (which is the specialisation
+ *   <code>stlsoft::basic_simple_string&lt;char></code>) will succeed
+ *   because a specialisation of <code>stlsoft::string_traits</code> exists
+ *   for that type. The same applies for
+ *   <code>stlsoft::simple_wstring</code>, <code>std::string</code> and
+ *   <code>std::wstring</code>. However, if you attempt to use a
+ *   specialisation of a string class template for which an explicit
+ *   specialisation of <code>stlsoft::string_traits</code> does not exist
+ *   then you will experience a compile-time error in the implementation
+ *   of <code>winstl::load_text_file_impl()</code>. To correct this, you
+ *   must either provide an explicit specialisation of
+ *   <code>stlsoft::string_traits</code> for your type, or use a type for
+ *   which a specialisation of <code>stlsoft::string_traits</code> does
+ *   exist.<br><br>This problem does not occur for compilers that support
+ *   partial template specialisation.
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

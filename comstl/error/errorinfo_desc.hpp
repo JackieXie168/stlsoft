@@ -4,7 +4,7 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     9th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -72,9 +72,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD
-# include <stlsoft/string_access_fwd.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
+# include <stlsoft/shims/access/string/fwd.h>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
 # include <stdexcept>
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC */

@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     9th July 2006
+ * Updated:     14th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     1
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  1
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      25
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,9 +92,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
 # include <stlsoft/string/string_view.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
-# include <stlsoft/string_access.hpp>
-#endif /* STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -4,7 +4,7 @@
  * Purpose:     Window text scoping class.
  *
  * Created:     21st August 2003
- * Updated:     7th July 2006
+ * Updated:     12th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MINOR    3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     31
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION 4
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
+#ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
+# include <winstl/shims/attribute/get_hwnd.hpp>
+#endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_TRAITS
 # include <winstl/window_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_TRAITS */
