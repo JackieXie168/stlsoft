@@ -4,14 +4,14 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     30th August 2010
+ * Updated:     19th January 2011
  *
  * Thanks:      To Pablo Aguilar for requesting multibyte / wide string
  *              ambivalence. To Joe Mariadassou for requesting swap().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     8
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     10
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      97
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,6 +82,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>    // for memcmp()
+#endif /* !STLSOFT_INCL_H_STRING */
 
 #ifdef STLSOFT_UNITTEST
 # include <winstl/filesystem/file_path_buffer.hpp>
@@ -474,6 +479,36 @@ public:
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 /// @}
 
+/// \name Comparison
+/// @{
+public:
+    /** Determines whether the given instance is the same size and has
+     * identical contents to the calling instance.
+     *
+     * \param rhs The instance against whose contents will be compared those
+     *   of the calling instance.
+     *
+     * \retval true \c rhs is the same size and has identical contents to
+     *   the calling instance.
+     * \retval false \c rhs is a different size and/or has different
+     *   contents to the calling instance.
+     */
+    bool equal(class_type const& rhs) const
+    {
+        class_type const& lhs = *this;
+
+        if(lhs.size() != rhs.size())
+        {
+            return false;
+        }
+        if(0 != ::memcmp(lhs.memory(), rhs.memory(), lhs.size()))
+        {
+            return false;
+        }
+        return true;
+    }
+/// @}
+
 /// \name Implementation
 /// @{
 private:
@@ -566,6 +601,41 @@ private:
 };
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Comparison operators
+ */
+
+inline bool operator ==(
+    memory_mapped_file const&   lhs
+,   memory_mapped_file const&   rhs
+)
+{
+    return lhs.equal(rhs);
+}
+
+inline bool operator !=(
+    memory_mapped_file const&   lhs
+,   memory_mapped_file const&   rhs
+)
+{
+    return !lhs.equal(rhs);
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Swapping
+ */
+
+/** Swaps the state of two \link winstl::memory_mapped_file memory_mapped_file\endlink
+ * instances.
+ */
+inline void swap(
+    memory_mapped_file& lhs
+,   memory_mapped_file& rhs
+)
+{
+    lhs.swap(rhs);
+}
+
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -587,6 +657,7 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
+#ifdef STLSOFT_CF_std_NAMESPACE
 namespace std
 {
 
@@ -599,6 +670,7 @@ namespace std
     }
 
 } /* namespace std */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,11 +4,11 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     10th August 2009
+ * Updated:     28th December 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       5
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        77
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    3
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
 # include <winstl/system/system_traits.hpp>    // for load_library()
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
-# include <winstl/shims/access/string.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS
 # include <stlsoft/string/char_alt_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS */

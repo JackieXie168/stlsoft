@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     11th August 2010
+ * Updated:     25th January 2011
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      113
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -382,6 +382,9 @@ public:
     /// \brief Copy a file
 //    static bool_type    copy_file(char_type const* sourceName, char_type const* newName, bool_type bFailIfExists = false);
 
+    /// The value returned by open_file() that indicates that the
+    /// operation failed
+    static file_handle_type invalid_handle_value();
     /// \brief Create / open a file
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode);
     /// \brief Closes the given operating system handle
@@ -397,6 +400,18 @@ public:
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     /// \brief Gets the size of the file
     static us_uint64_t      get_file_size(file_handle_type fd);
+    /// \brief Gets the size of the file
+    static us_uint64_t  get_file_size(stat_data_type const& sd);
+    /// \brief Gets the size of the file
+    ///
+    /// \pre (NULL != psd)
+    static us_uint64_t  get_file_size(stat_data_type const* psd);
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+private:
+    /// Not currently supported
+    static void         get_file_size(stat_data_type const*);
+    /// Not currently supported
+    static void         get_file_size(stat_data_type const&);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /// @}
 };
@@ -1138,6 +1153,11 @@ public:
 # pragma warning(disable : 4996)
 #endif /* compiler */
 
+    static file_handle_type invalid_handle_value()
+    {
+        return NULL;
+    }
+
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode)
     {
 #if defined(_WIN32) && \
@@ -1186,6 +1206,16 @@ public:
         struct stat st;
 
         return class_type::fstat(fd, &st) ? st.st_size : 0;
+    }
+    static us_uint64_t get_file_size(stat_data_type const& sd)
+    {
+        return sd.st_size;
+    }
+    static us_uint64_t get_file_size(stat_data_type const* psd)
+    {
+        UNIXSTL_ASSERT(NULL != psd);
+
+        return get_file_size(*psd);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 };

@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/iterators/c_str_inserter.hpp
  *
- * Purpose:     Contains the c_str_insert_iterator template class and c_str_inserter creator function.
+ * Purpose:     Contains the c_str_ptr_extract_iterator template class and c_str_inserter creator function.
  *
  * Created:     12th October 2004
- * Updated:     10th August 2009
+ * Updated:     28th January 2011
  *
  * Thanks to:   Pablo Aguilar for spotting missing inclusions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_REVISION  2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      29
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,13 +105,13 @@ namespace stlsoft
  * found in the local directory to the vector of strings:
  *
 \code
-  std::vector<std::string>  c1;
+  std::vector&lt;std::string>  c1;
   unixstl::readdir_sequence files(".");
 
   std::copy(files.begin(), files.end(), c_str_inserter(std::back_inserter(c1)));
 
-  std::cout << "Files:" << std::endl;
-  std::copy(c1.begin(), c1.end(), stlsoft::ostream_iterator<std::string>(std::cout, "\t", "\n"));
+  std::cout &lt;&lt; "Files:" &lt;&lt; std::endl;
+  std::copy(c1.begin(), c1.end(), stlsoft::ostream_iterator&lt;std::string>(std::cout, "\t", "\n"));
 \endcode
  */
 

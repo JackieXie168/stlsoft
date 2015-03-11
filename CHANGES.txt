@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  28th December 2010
+; Updated:  30th January 2011
 
 ============================================================================
 
@@ -15,6 +15,114 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.107 (30th January 2011)
+
+Summary:
+========
+
+ * added data() member to stlsoft::multibyte2wide and stlsoft::wide2multibyte
+ * added data() member to winstl::multibyte2wide and winstl::wide2multibyte
+ * improved performance of of c_str_len(_a|_w)() shim overloads of stlsoft::multibyte2wide and stlsoft::wide2multibyte
+ * improved performance of of c_str_len(_a|_w)() shim overloads of winstl::multibyte2wide and winstl::wide2multibyte
+ * added equal() method and operator ==/!=() non-member functions to unixstl::memory_mapped_file
+ * added equal() method and operator ==/!=() non-member functions to winstl::memory_mapped_file
+ * added non-member unixstl::swap() function for unixstl::memory_mapped_file
+ * added non-member platformstl::swap() function for platformstl::memory_mapped_file
+ * changed definition of unixstl::memory_mapped_file::size_type to be size_t
+ * added invalid_handle_value() method to unixstl::filesystem_traits<>
+ * added invalid_handle_value() method to winstl::filesystem_traits<>
+ * added added get_file_size(stat_data_type const&) and get_file_size(stat_data_type const*) overloads to unixstl::filesystem_traits<>
+ * added added get_file_size(stat_data_type const&) and get_file_size(stat_data_type const*) overloads to winstl::filesystem_traits<>
+ * reduced dependencies on other string access shim overloads in winstl::error_desc
+
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/collections/associative_mapped_type_detector.hpp:
+ ~ stlsoft/collections/collections.hpp:
+ ~ stlsoft/containers/array_policies.hpp:
+ ~ stlsoft/string/char_traits.hpp:
+ ~ stlsoft/util/std/algorithm.hpp:
+ ~ stlsoft/exceptions/active_end_iterator_exhaustion.hpp:
+ ~ stlsoft/exceptions/contract_violation.hpp:
+ ~ stlsoft/exceptions/external_iterator_invalidation.hpp:
+ ~ stlsoft/exceptions/iteration_interruption.hpp:
+ ~ stlsoft/exceptions/unrecoverable.hpp:
+ ~ stlsoft/function_adaptors/ref2ptr.hpp:
+ ~ stlsoft/functional/access_predicates.hpp:
+    ~ trivial formatting changes
+
+ ~ stlsoft/conversion/char_conversions.hpp:
+    + added data() member
+    + added size() member, which returns length of contents, not length of buffer (was off by 1)
+    ~ improved performance of c_str_len(_a|_w)() shim overloads
+
+ ~ stlsoft/iterators/c_str_inserter.hpp:
+    ~ documentation improvement
+
+
+ COMSTL:
+ =======
+
+ ~ comstl/interface/bad_interface_cast.hpp:
+ ~ comstl/interface/interface_cast.hpp:
+ ~ comstl/interface/interface_traits.hpp:
+    ~ trivial formatting changes
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/filesystem/filesystem_traits.hpp:
+    + added invalid_handle_value() method
+    + added get_file_size(stat_data_type const&) and get_file_size(stat_data_type const*) overloads
+
+ ~ unixstl/filesystem/memory_mapped_file.hpp:
+    + adds equal() method
+    + adds operator ==() non-member function
+    + adds operator !=() non-member function
+    + adds swap() non-member function (in unixstl namespace)
+    ~ size_type is not defined to be size_t, which affects only the case of a 32-bit architecture on which the compiler supports 64-bit integers; the effect is to move runtime failures to compile-time (since it's not possible to map a range of memory whose size exceeds 32-bits on a 32-bit system)
+
+ ~ unixstl/synch/exceptions.hpp:
+    ~ trivial formatting changes
+
+ WinSTL:
+ =======
+
+ ~ winstl/clipboard/exceptions.hpp:
+ ~ winstl/control_panel/exceptions.hpp:
+ ~ winstl/registry/defs.hpp:
+ ~ winstl/registry/exceptions.hpp:
+ ~ winstl/registry/shared_handles.hpp:
+ ~ winstl/shell/memory_functions.h:
+ ~ winstl/synch/exceptions.hpp:
+ ~ winstl/synch/functions.hpp:
+ ~ winstl/time/format_functions.h:
+ ~ winstl/toolhelp/exceptions.hpp:
+ ~ winstl/toolhelp/sequence_value_traits.hpp:
+    ~ trivial formatting changes
+
+ ~ winstl/conversion/char_conversions.hpp:
+    + added data() member
+    ~ improved performance of c_str_len(_a|_w)() shim overloads
+
+ ~ winstl/error/error_desc.hpp:
+    - reduced the amount of dependencies on other string access shim overloads
+
+ ~ winstl/filesystem/filesystem_traits.hpp:
+    + added invalid_handle_value() method
+    + added get_file_size(stat_data_type const&) and get_file_size(stat_data_type const*) overloads
+
+ ~ winstl/filesystem/memory_mapped_file.hpp:
+    + added equal() method, and operator ==/!= non-member operators
+    + added swap() in winstl namespace
 
 ============================================================================
 

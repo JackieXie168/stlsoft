@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     7th July 2010
+ * Updated:     25th January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        122
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       8
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -431,6 +431,9 @@ public:
     /// \brief Copy a file
     static bool_type    copy_file(char_type const* sourceName, char_type const* newName, bool_type bFailIfExists = false);
 
+    /// The value returned by create_file() that indicates that the
+    /// operation failed
+    static file_handle_type invalid_handle_value();
     /// \brief Create / open a file
     static file_handle_type create_file(char_type const* fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, HANDLE hTemplateFile);
     /// \brief Closes the given file handle
@@ -438,12 +441,19 @@ public:
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     /// \brief Gets the size of the file
     static ws_uint64_t  get_file_size(file_handle_type h);
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    /// \brief Gets the size of the file
+    static ws_uint64_t  get_file_size(stat_data_type const& sd);
+    /// \brief Gets the size of the file
+    ///
+    /// \pre (NULL != psd)
+    static ws_uint64_t  get_file_size(stat_data_type const* psd);
+#else /* STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
     /// Not currently supported
     static void         get_file_size(stat_data_type const*);
     /// Not currently supported
     static void         get_file_size(stat_data_type const&);
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /// @}
 };
 
@@ -1273,6 +1283,11 @@ public:
         return FALSE != ::CopyFileA(sourceName, newName, bFailIfExists);
     }
 
+    static file_handle_type invalid_handle_value()
+    {
+        return INVALID_HANDLE_VALUE;
+    }
+
     static file_handle_type create_file(char_type const* fileName, ws_uint32_t desiredAccess, ws_uint32_t shareMode, LPSECURITY_ATTRIBUTES sa, ws_uint32_t creationDisposition, ws_uint32_t flagAndAttributes, file_handle_type hTemplateFile)
     {
         return ::CreateFileA(fileName, desiredAccess, shareMode, sa, creationDisposition, flagAndAttributes, hTemplateFile);
@@ -1288,10 +1303,26 @@ public:
     {
         return filesystem_traits_::get_file_size(h);
     }
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    static ws_uint64_t get_file_size(stat_data_type const& sd)
+    {
+        ws_uint64_t size = 0;
+
+        size += sd.nFileSizeHigh;
+        size += sd.nFileSizeHigh;
+
+        return size;
+    }
+    static ws_uint64_t get_file_size(stat_data_type const* psd)
+    {
+        WINSTL_ASSERT(NULL != psd);
+
+        return get_file_size(*psd);
+    }
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
     static void         get_file_size(stat_data_type const*);
     static void         get_file_size(stat_data_type const&);
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 private:
     static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
@@ -1893,6 +1924,11 @@ public:
         return FALSE != ::CopyFileW(sourceName, newName, bFailIfExists);
     }
 
+    static file_handle_type invalid_handle_value()
+    {
+        return INVALID_HANDLE_VALUE;
+    }
+
     static file_handle_type create_file(char_type const* fileName, ws_uint32_t desiredAccess, ws_uint32_t shareMode, LPSECURITY_ATTRIBUTES sa, ws_uint32_t creationDisposition, ws_uint32_t flagAndAttributes, file_handle_type hTemplateFile)
     {
         return ::CreateFileW(fileName, desiredAccess, shareMode, sa, creationDisposition, flagAndAttributes, hTemplateFile);
@@ -1908,10 +1944,26 @@ public:
     {
         return filesystem_traits_::get_file_size(h);
     }
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    static ws_uint64_t get_file_size(stat_data_type const& sd)
+    {
+        ws_uint64_t size = 0;
+
+        size += sd.nFileSizeHigh;
+        size += sd.nFileSizeHigh;
+
+        return size;
+    }
+    static ws_uint64_t get_file_size(stat_data_type const* psd)
+    {
+        WINSTL_ASSERT(NULL != psd);
+
+        return get_file_size(*psd);
+    }
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
     static void         get_file_size(stat_data_type const*);
     static void         get_file_size(stat_data_type const&);
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 private:
     static size_type GetFullPathNameW(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)

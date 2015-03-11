@@ -4,11 +4,11 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     21st December 2010
+ * Updated:     29th January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     94
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -227,9 +227,29 @@ private:
 /// \name Accessors
 /// @{
 public:
+    char_type const* data() const
+    {
+        return parent_class_type::data();
+    }
     char_type const* c_str() const
     {
         return parent_class_type::data();
+    }
+
+    size_type size() const
+    {
+        size_type n = parent_class_type::size();
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        STLSOFT_ASSERT(0 != n);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        if(0 == n)
+        {
+            return 0;
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        return n - 1;
     }
 /// @}
 
@@ -365,9 +385,29 @@ private:
 /// \name Accessors
 /// @{
 public:
+    char_type const* data() const
+    {
+        return parent_class_type::data();
+    }
     char_type const* c_str() const
     {
         return parent_class_type::data();
+    }
+
+    size_type size() const
+    {
+        size_type n = parent_class_type::size();
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        STLSOFT_ASSERT(0 != n);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        if(0 == n)
+        {
+            return 0;
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        return n - 1;
     }
 /// @}
 
@@ -527,7 +567,7 @@ template<   ss_size_t   CCH
         >
 inline ss_char_w_t const* c_str_data(stlsoft_ns_qual(multibyte2wide)<CCH> const& b)
 {
-    return b.c_str();
+    return b.data();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -536,7 +576,7 @@ template<   ss_size_t   CCH
         >
 inline ss_char_w_t const* c_str_data_w(stlsoft_ns_qual(multibyte2wide)<CCH> const& b)
 {
-    return b.c_str();
+    return b.data();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -549,7 +589,7 @@ template<   ss_size_t   CCH
         >
 inline ss_size_t c_str_len(stlsoft_ns_qual(multibyte2wide)<CCH> const& b)
 {
-    return stlsoft_ns_qual(c_str_len)(b.c_str());
+    return b.size();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -558,7 +598,7 @@ template<   ss_size_t   CCH
         >
 inline ss_size_t c_str_len_w(stlsoft_ns_qual(multibyte2wide)<CCH> const& b)
 {
-    return stlsoft_ns_qual(c_str_len_w)(b.c_str());
+    return b.size();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -617,7 +657,7 @@ template<   ss_size_t   CCH
         >
 inline ss_char_a_t const* c_str_data(stlsoft_ns_qual(wide2multibyte)<CCH> const& b)
 {
-    return b.c_str();
+    return b.data();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -626,7 +666,7 @@ template<   ss_size_t   CCH
         >
 inline ss_char_a_t const* c_str_data_a(stlsoft_ns_qual(wide2multibyte)<CCH> const& b)
 {
-    return b.c_str();
+    return b.data();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -639,7 +679,7 @@ template<   ss_size_t   CCH
         >
 inline ss_size_t c_str_len(stlsoft_ns_qual(wide2multibyte)<CCH> const& b)
 {
-    return stlsoft_ns_qual(c_str_len)(b.c_str());
+    return b.size();
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -648,7 +688,7 @@ template<   ss_size_t   CCH
         >
 inline ss_size_t c_str_len_a(stlsoft_ns_qual(wide2multibyte)<CCH> const& b)
 {
-    return stlsoft_ns_qual(c_str_len_a)(b.c_str());
+    return b.size();
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

@@ -4,11 +4,11 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     26th March 2010
+ * Updated:     21st January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        92
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,13 +102,10 @@ namespace unixstl
 {
 # else
 /* Define stlsoft::unixstl_project */
-
 namespace stlsoft
 {
-
 namespace unixstl_project
 {
-
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
@@ -133,11 +130,7 @@ public:
     /// \brief This type
     typedef memory_mapped_file              class_type;
     /// \brief The size type
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    typedef us_uint64_t                     size_type;
-#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
-    typedef us_uint32_t                     size_type;
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    typedef us_size_t                       size_type;
     /// \brief The error type
     typedef int                             error_type;
     /// \brief The offset type
@@ -292,6 +285,36 @@ public:
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 /// @}
 
+/// \name Comparison
+/// @{
+public:
+    /** Determines whether the given instance is the same size and has
+     * identical contents to the calling instance.
+     *
+     * \param rhs The instance against whose contents will be compared those
+     *   of the calling instance.
+     *
+     * \retval true \c rhs is the same size and has identical contents to
+     *   the calling instance.
+     * \retval false \c rhs is a different size and/or has different
+     *   contents to the calling instance.
+     */
+    bool equal(class_type const& rhs) const
+    {
+        class_type const& lhs = *this;
+
+        if(lhs.size() != rhs.size())
+        {
+            return false;
+        }
+        if(0 != ::memcmp(lhs.memory(), rhs.memory(), lhs.size()))
+        {
+            return false;
+        }
+        return true;
+    }
+/// @}
+
 /// \name Implementation
 /// @{
 private:
@@ -337,6 +360,41 @@ private:
     class_type& operator =(class_type const&);
 /// @}
 };
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Comparison operators
+ */
+
+inline bool operator ==(
+    memory_mapped_file const&   lhs
+,   memory_mapped_file const&   rhs
+)
+{
+    return lhs.equal(rhs);
+}
+
+inline bool operator !=(
+    memory_mapped_file const&   lhs
+,   memory_mapped_file const&   rhs
+)
+{
+    return !lhs.equal(rhs);
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Swapping
+ */
+
+/** Swaps the state of two \link unixstl::memory_mapped_file memory_mapped_file\endlink
+ * instances.
+ */
+inline void swap(
+    memory_mapped_file& lhs
+,   memory_mapped_file& rhs
+)
+{
+    lhs.swap(rhs);
+}
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

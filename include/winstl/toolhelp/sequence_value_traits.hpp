@@ -4,14 +4,14 @@
  * Purpose:     Instantiations of th_sequence_value_traits<>.
  *
  * Created:     21st May 2005
- * Updated:     22nd September 2008
+ * Updated:     13th January 2011
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Pablo Aguilar
- * Copyright (c) 2006-2007, Matthew Wilson
+ * Copyright (c) 2005-2011, Pablo Aguilar
+ * Copyright (c) 2006-2011, Matthew Wilson
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_REVISION  4
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      8
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Compatibility
@@ -120,3 +120,5 @@ struct th_sequence_value_traits<WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_VALUE>
 #undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_NEXT
 #undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_FLAG
 #undef WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_CREATE_SNAPSHOT_FAIL_MESSAGE
+
+/* ///////////////////////////// end of file //////////////////////////// */
