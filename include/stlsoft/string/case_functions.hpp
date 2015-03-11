@@ -87,7 +87,7 @@ namespace stlsoft
 template<   ss_typename_param_k S
         ,   ss_typename_param_k F
         >
-inline S &transform_impl(S &s, F f)
+inline S& transform_impl(S& s, F f)
 {
     std_transform(s.begin(), s.end(), s.begin(), f);
 
@@ -101,7 +101,7 @@ inline S &transform_impl(S &s, F f)
  * \ingroup group__library__string
  */
 template <ss_typename_param_k S>
-inline S &make_upper(S &s)
+inline S& make_upper(S& s)
 {
     typedef string_traits<S>                                string_traits_t;
     typedef ss_typename_type_k string_traits_t::char_type   char_t;
@@ -115,7 +115,7 @@ inline S &make_upper(S &s)
  * \ingroup group__library__string
  */
 template <ss_typename_param_k S>
-inline S &make_lower(S &s)
+inline S& make_lower(S& s)
 {
     typedef string_traits<S>                                string_traits_t;
     typedef ss_typename_type_k string_traits_t::char_type   char_t;

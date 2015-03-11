@@ -5,11 +5,11 @@
  *              do or do not have a standard library.
  *
  * Created:     17th January 2002
- * Updated:     10th August 2009
+ * Updated:     10th February 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MINOR       4
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        75
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    4
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -416,7 +416,8 @@ template<   ss_typename_param_k I
 // [[synesis:function:algorithm: std_transform(T<I> first, T<I> last, T<O> dest, T<UF> func)]]
 inline O std_transform(I first, I last, O dest, UF func)
 {
-#ifdef STLSOFT_CF_std_NAMESPACE
+#if defined(STLSOFT_CF_std_NAMESPACE) && \
+    !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
     return stlsoft_ns_qual_std(transform)(first, last, dest, func);
 #else /* ? STLSOFT_CF_std_NAMESPACE */
     for(; first != last; ++first, ++dest)

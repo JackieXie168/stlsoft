@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     10th August 2009
+ * Updated:     31st January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    1
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     73
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    2
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 1
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -199,6 +199,11 @@ public:
     static bool_type    is_path_rooted(char_type const* path);
     /// Returns \c true if path is an absolute path
     static bool_type    is_path_absolute(char_type const* path);
+
+    /// \brief Returns \c true if the character is a path-name separator
+    ///
+    /// \note Both \c / and \c \\ are interpreted as a path name separator
+    static bool_type    is_path_name_separator(char_type ch);
 
     /// Returns the path separator
     ///
@@ -459,6 +464,11 @@ public:
     static bool_type is_path_absolute(char_type const* path)
     {
         return is_path_rooted(path);
+    }
+
+    static bool_type is_path_name_separator(char_type ch)
+    {
+        return '/' == ch;
     }
 
     static char_type path_separator()
