@@ -2,9 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  25th January 2009
+; Updated:  28th January 2009
 
 ============================================================================
+
+
+28th January 2009 - 1.9.71 released
+-----------------------------------
+
+ * fixed DMC++ incompatibility introduced in 1.9.70
 
 
 25th January 2009 - 1.9.70 released

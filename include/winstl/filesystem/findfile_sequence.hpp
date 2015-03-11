@@ -18,10 +18,11 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     24th January 2009
+ * Updated:     28th January 2009
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
- *              example when writing books about good design/implementation.
+ *              example when writing books about good design/implementation;
+ *              to Florin L for DMC++ missing standard symbols.
  *
  * Home:        http://stlsoft.org/
  *
@@ -68,8 +69,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        212
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    6
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        213
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -953,6 +954,10 @@ basic_findfile_sequence<C, T>::validate_directory_(
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(directoryLen > dir.size())
     {
+# ifndef CO_E_PATHTOOLONG
+        enum { CO_E_PATHTOOLONG = int(0x80040212L) };
+# endif /* !CO_E_PATHTOOLONG */
+
         STLSOFT_THROW_X(windows_exception(CO_E_PATHTOOLONG));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
