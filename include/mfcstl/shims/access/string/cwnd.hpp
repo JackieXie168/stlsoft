@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd December 2009
+ * Updated:     12th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    5
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        91
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -275,7 +275,7 @@ public:
 
             if(NULL != m_buffer)
             {
-				impl::GetWindowText_T_(w, m_buffer, length + 1);
+                impl::GetWindowText_T_(w, m_buffer, length + 1);
             }
         }
     }

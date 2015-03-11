@@ -2,9 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  12th January 2010
+; Updated:  19th January 2010
 
 ============================================================================
+
+
+19th January 2010 - 1.9.89 released
+-----------------------------------
+
+ * fixed defective stream inserter for stlsoft::error_desc
+ * fixed erroneous push-pop in include/acestl/reactor/custom_event_handler.hpp:
+ * safe-string compatibility for various UNIXSTL system/filesystem components
 
 
 12th January 2010 - 1.9.88 released

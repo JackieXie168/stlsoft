@@ -4,11 +4,11 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     10th August 2009
+ * Updated:     19th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  7
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      18
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  8
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -526,7 +526,6 @@ inline C const* get_ptr(stlsoft_ns_qual(basic_error_desc)<C> const& e)
  */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
-        ,   ss_typename_param_k T
         >
 inline S& operator <<(S& s, stlsoft_ns_qual(basic_error_desc)<C> const& e)
 {
@@ -563,11 +562,13 @@ inline S& operator <<(S& s, stlsoft_ns_qual(basic_error_desc)<C> const& e)
 
 # include <iosfwd>
 
+#if 0
 template <ss_typename_param_k C>
 inline stlsoft_ns_qual_std(basic_ostream)<C>& operator <<(stlsoft_ns_qual_std(basic_ostream)<C> &stm, stlsoft_ns_qual(basic_error_desc)<C> const& desc)
 {
     return stm << desc.c_str();
 }
+#endif /* 0 */
 
 #endif /* library */
 

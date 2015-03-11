@@ -4,11 +4,11 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     10th August 2009
+ * Updated:     19th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     91
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -639,7 +639,7 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual(wide2multibyte)<CCH> const& b)
  * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
-        ,   ss_size_t   CCH
+        ,   ss_size_t           CCH
         >
 inline S& operator <<(S& s, stlsoft_ns_qual(multibyte2wide)<CCH> const& b)
 {
@@ -653,7 +653,7 @@ inline S& operator <<(S& s, stlsoft_ns_qual(multibyte2wide)<CCH> const& b)
  * \ingroup group__concept__shim__stream_insertion
  */
 template<   ss_typename_param_k S
-        ,   ss_size_t   CCH
+        ,   ss_size_t           CCH
         >
 inline S& operator <<(S& s, stlsoft_ns_qual(wide2multibyte)<CCH> const& b)
 {

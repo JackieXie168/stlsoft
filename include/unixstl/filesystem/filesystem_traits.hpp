@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     10th August 2009
+ * Updated:     12th January 2010
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      107
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  9
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -888,7 +888,13 @@ public:
     // File-system state
     static bool_type set_current_directory(char_type const* dir)
     {
+#if defined(_WIN32) && \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL))
+        return 0 == ::_chdir(dir);
+#else /* ? _WIN32 */
         return 0 == ::chdir(dir);
+#endif /* _WIN32 */
     }
 
     static size_type get_current_directory(size_type cchBuffer, char_type* buffer)
@@ -898,7 +904,13 @@ public:
 
     static size_type get_current_directory(char_type* buffer, size_type cchBuffer)
     {
+#if defined(_WIN32) && \
+    (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC))
+        char_type const* dir = ::_getcwd(buffer, cchBuffer);
+#else /* ? _WIN32 */
         char_type const* dir = ::getcwd(buffer, cchBuffer);
+#endif /* _WIN32 */
 
         return (NULL == dir) ? 0 : str_len(dir);
     }
@@ -1039,7 +1051,7 @@ public:
 
         STLSOFT_SUPPRESS_UNUSED(permissions);
 
-        return 0 == ::mkdir(dir);
+        return 0 == ::_mkdir(dir);
 #else /* ? _WIN32 */
         return 0 == ::mkdir(dir, permissions);
 #endif /* _WIN32 */
@@ -1047,7 +1059,13 @@ public:
 
     static bool_type remove_directory(char_type const* dir)
     {
+#if defined(_WIN32) && \
+    (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC))
+        return 0 == ::_rmdir(dir);
+#else /* ? _WIN32 */
         return 0 == ::rmdir(dir);
+#endif /* _WIN32 */
     }
 
     static bool_type unlink_file(char_type const* file)
@@ -1065,14 +1083,45 @@ public:
         return 0 == ::rename(currentName, newName);
     }
 
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL)) && \
+    defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+# if _MSC_VER >= 1200
+#  pragma warning(push)
+# endif /* compiler */
+# pragma warning(disable : 4996)
+#endif /* compiler */
+
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode)
     {
+#if defined(_WIN32) && \
+    (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC))
+        return ::_open(fileName, oflag, pmode);
+#else /* ? _WIN32 */
         return ::open(fileName, oflag, pmode);
+#endif /* _WIN32 */
     }
+
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL)) && \
+    defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
+# if _MSC_VER >= 1200
+#  pragma warning(pop)
+# else /* ? compiler */
+#  pragma warning(default : 4996)
+# endif /* _MSC_VER */
+#endif /* compiler */
 
     static bool_type close_file(file_handle_type fd)
     {
+#if defined(_WIN32) && \
+    (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC))
+        return 0 == ::_close(fd);
+#else /* ? _WIN32 */
         return 0 == ::close(fd);
+#endif /* _WIN32 */
     }
 
     static file_handle_type open(char_type const* fileName, int oflag, int pmode)

@@ -4,11 +4,11 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     27th December 2009
+ * Updated:     12th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       153
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       155
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -187,7 +187,7 @@ public:
      *
      * \exception - Does not throw an exception
      */
-	variant(stlsoft::sint8_t i);
+    variant(stlsoft::sint8_t i);
 
     /** Conversion constructor
      *
@@ -198,7 +198,7 @@ public:
      *
      * \exception - Does not throw an exception
      */
-	variant(stlsoft::uint8_t i);
+    variant(stlsoft::uint8_t i);
 
     /** Conversion constructor
      *
@@ -209,7 +209,7 @@ public:
      *
      * \exception - Does not throw an exception
      */
-	variant(stlsoft::sint16_t i);
+    variant(stlsoft::sint16_t i);
 
     /** Conversion constructor
      *
@@ -220,7 +220,7 @@ public:
      *
      * \exception - Does not throw an exception
      */
-	variant(stlsoft::uint16_t i);
+    variant(stlsoft::uint16_t i);
 
     /** Conversion constructor
      *
@@ -231,7 +231,7 @@ public:
      *
      * \exception - Does not throw an exception
      */
-	variant(stlsoft::sint32_t i);
+    variant(stlsoft::sint32_t i);
 
     /** Conversion constructor
      *
@@ -242,11 +242,11 @@ public:
      *
      * \exception - Does not throw an exception
      */
-	variant(stlsoft::uint32_t i);
+    variant(stlsoft::uint32_t i);
 
 //#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-//	variant(stlsoft::sint64_t i);
-//	variant(stlsoft::uint64_t i);
+//  variant(stlsoft::sint64_t i);
+//  variant(stlsoft::uint64_t i);
 //#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 #ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
@@ -264,7 +264,7 @@ public:
     /** Conversion constructor
      *
      * Initialises the instance with the given
-	 * <code>unsigned short</code> value
+     * <code>unsigned short</code> value
      *
      * \post <code>assert(VT_UI2 == this->vt)</code>
      * \post <code>assert(i == this->uiVal)</code>
@@ -289,7 +289,7 @@ public:
     /** Conversion constructor
      *
      * Initialises the instance with the given
-	 * <code>unsigned int</code> value
+     * <code>unsigned int</code> value
      *
      * \post <code>assert(VT_UI4 == this->vt)</code>
      * \post <code>assert(i == this->ulVal)</code>
@@ -314,7 +314,7 @@ public:
     /** Conversion constructor
      *
      * Initialises the instance with the given
-	 * <code>unsigned long</code> value
+     * <code>unsigned long</code> value
      *
      * \post <code>assert(VT_UI4 == this->vt)</code>
      * \post <code>assert(i == this->ulVal)</code>
@@ -375,9 +375,9 @@ public:
     variant(cs_char_w_t const* s, int len = -1);
     variant(VARIANT const& var, VARTYPE vt);
 
-	/** Releases any resources associated with the underlying
-	 *   <code>VARIANT</code>
-	 */
+    /** Releases any resources associated with the underlying
+     *   <code>VARIANT</code>
+     */
     ~variant() stlsoft_throw_0()
     {
         stlsoft_constraint_must_be_same_size(class_type, VARIANT);
@@ -397,32 +397,32 @@ public:
     HRESULT     try_convert(VARTYPE vt);
     class_type  &convert(VARTYPE vt);
 
-	/** Returns a pointer to a specified interface on an object to which
-	 * a client currently holds an interface pointer.
-	 *
-	 * \return An <code>HRESULT</code> code indicating the success of the
-	 *   operation.
-	 * \retval <code>S_OK</code> The interface is supported:
-	 *   <code>*ppv</code> will hold the pointer to the requested interface
-	 * \retval <code>E_INTERFACE</code> The interface is not supported: the
-	 *   value of <code>*ppv</code> is undefined.
-	 *
-	 * \pre <code>NULL != ppv</code>
-	 */
+    /** Returns a pointer to a specified interface on an object to which
+     * a client currently holds an interface pointer.
+     *
+     * \return An <code>HRESULT</code> code indicating the success of the
+     *   operation.
+     * \retval <code>S_OK</code> The interface is supported:
+     *   <code>*ppv</code> will hold the pointer to the requested interface
+     * \retval <code>E_INTERFACE</code> The interface is not supported: the
+     *   value of <code>*ppv</code> is undefined.
+     *
+     * \pre <code>NULL != ppv</code>
+     */
     HRESULT     QueryInterface(REFIID riid, void** ppv) const;
 
-	/** Returns a pointer to a specified interface on an object to which
-	 * a client currently holds an interface pointer.
-	 *
-	 * \return An <code>HRESULT</code> code indicating the success of the
-	 *   operation.
-	 * \retval <code>S_OK</code> The interface is supported:
-	 *   <code>*ppi</code> will hold the pointer to the requested interface
-	 * \retval <code>E_INTERFACE</code> The interface is not supported: the
-	 *   value of <code>*ppi</code> is undefined.
-	 *
-	 * \pre <code>NULL != ppi</code>
-	 */
+    /** Returns a pointer to a specified interface on an object to which
+     * a client currently holds an interface pointer.
+     *
+     * \return An <code>HRESULT</code> code indicating the success of the
+     *   operation.
+     * \retval <code>S_OK</code> The interface is supported:
+     *   <code>*ppi</code> will hold the pointer to the requested interface
+     * \retval <code>E_INTERFACE</code> The interface is not supported: the
+     *   value of <code>*ppi</code> is undefined.
+     *
+     * \pre <code>NULL != ppi</code>
+     */
     template <ss_typename_param_k I>
     HRESULT QueryInterfaceValue(I** ppi)
     {
@@ -430,8 +430,8 @@ public:
     }
 
 public:
-	/** Swaps the contents with another instance
-	 */
+    /** Swaps the contents with another instance
+     */
     void swap(class_type& rhs);
 
 /// Comparison

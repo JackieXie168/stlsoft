@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     10th August 2009
+ * Updated:     12th January 2010
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *              To Nevin Liber for pressing upon me the need to lead by
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      141
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      142
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -866,15 +866,20 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* direc
         }
         else
         {
-            traits_type::str_copy(&scratch_[0], directory);
-            dirLen = traits_type::str_len(scratch_.c_str());
+            dirLen = traits_type::str_len(directory);
+
+            traits_type::char_copy(&scratch_[0], directory, dirLen);
+            scratch_[dirLen] = '\0';
         }
 
         // ... ensure that it has a trailing path name-separator, and ...
         traits_type::ensure_dir_end(&scratch_[0] + (dirLen ? dirLen - 1 : 0));
 
         // ... prefix directory onto pattern.
-        traits_type::str_cat(&scratch_[0] + dirLen, pattern);
+        size_type scratchLen = traits_type::str_len(scratch_.data());
+        size_type patternLen = traits_type::str_len(pattern);
+        traits_type::char_copy(&scratch_[0] + scratchLen, pattern, patternLen);
+        scratch_[scratchLen + patternLen] = '\0';
         pattern = scratch_.c_str();
     }
 

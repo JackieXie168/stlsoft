@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  12th January 2010
+; Updated:  19th January 2010
 
 ============================================================================
 
@@ -16,6 +16,45 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.89 (19th January 2010)
+
+Summary:
+========
+
+ * fixed defective stream inserter for stlsoft::error_desc
+ * fixed erroneous push-pop in include/acestl/reactor/custom_event_handler.hpp:
+ * safe-string compatibility for various UNIXSTL system/filesystem components
+
+Changes:
+========
+
+ general:
+ =======
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/error/error_desc.hpp:
+    ~ fixed defective stream inserter definition
+
+ ACESTL:
+ =======
+
+ ~ include/acestl/reactor/custom_event_handler.hpp:
+    ~ corrected warning suppression push-pop
+
+ UNIXSTL:
+ ========
+
+ ~ include/unixstl/filesystem/filesystem_traits.hpp:
+ ~ include/unixstl/filesystem/glob_sequence.hpp:
+ ~ include/unixstl/filesystem/path_functions.hpp:
+ ~ include/unixstl/filesystem/readdir_sequence.hpp:
+ ~ include/unixstl/system/system_traits.hpp:
+    ~ safe string compatibility
 
 ============================================================================
 
