@@ -2,11 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  29th April 2008
+; Updated:  30th April 2008
 
 ============================================================================
 
 
+
+30th April 2008 - 1.9.36 released
+---------------------------------
+
+ * added support for FreeBSD operating system
 
 29th April 2008 - 1.9.35 released
 ---------------------------------
