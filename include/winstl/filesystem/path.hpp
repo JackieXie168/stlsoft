@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     23rd January 2009
+ * Updated:     24th January 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 8
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     243
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 9
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     245
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -219,7 +219,7 @@ public:
     {
         m_len = stlsoft_ns_qual(c_str_len)(s);
 
-        traits_type::str_n_copy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), m_len);
+        ::memcpy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), sizeof(char_type) * m_len);
         m_buffer[m_len] = '\0';
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -271,15 +271,19 @@ public:
 /// @{
 public:
     /// \brief Appends the contents of \c rhs to the path
-    class_type  &push(class_type const& rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push(class_type const& rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path
-    class_type  &push(char_type const* rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push(char_type const* rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path as an extension
-    class_type  &push_ext(class_type const& rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push_ext(class_type const& rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Appends the contents of \c rhs to the path as an extension
-    class_type  &push_ext(char_type const* rhs, bool_type bAddPathNameSeparator = false);
+    class_type& push_ext(char_type const* rhs, bool_type bAddPathNameSeparator = false);
     /// \brief Ensures that the path has a trailing path name separator
-    class_type  &push_sep();
+    ///
+    /// \remarks If the path currently contains path name separators, and
+    ///   they are all forward slashes '/', then a forward slash will be
+    ///   used; otherwise a backslash '\\' will be used.
+    class_type& push_sep();
     /// \brief Pops the last path element from the path
     ///
     /// \note In previous versions, this operation did not remove the
@@ -290,9 +294,9 @@ public:
     /// \brief Ensures that the path does not have a trailing path name separator
     ///
     /// \note Does not trim the separator character from the root designator
-    class_type  &pop_sep();
+    class_type& pop_sep();
     /// \brief Removes the extension, if any, from the file component of the path
-    class_type  &pop_ext();
+    class_type& pop_ext();
 
     /// \brief Equivalent to push()
     class_type& operator /=(char_type const* rhs);
@@ -316,7 +320,7 @@ public:
     void        clear();
 
     /// \brief Converts the path to absolute form
-    class_type  &make_absolute(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type& make_absolute(bool_type bRemoveTrailingPathNameSeparator = true);
     /// \brief Canonicalises the path
     ///
     /// Canonicalises the path, removing all "./" parts and evaluating all
@@ -326,7 +330,7 @@ public:
     ///
     /// \param bRemoveTrailingPathNameSeparator Removes any trailing
     ///   separator, even if no other changes have been made.
-    class_type  &canonicalise(bool_type bRemoveTrailingPathNameSeparator = true);
+    class_type& canonicalise(bool_type bRemoveTrailingPathNameSeparator = true);
 /// @}
 
 /// \name Attributes
@@ -426,8 +430,13 @@ private:
     class_type              &concat_(class_type const& rhs, size_type cch);
 #endif /* 0 */
 
-    static char_type const  *next_slash_or_end(char_type const* p);
-    static char_type const  *next_part_or_end(char_type const* p);
+    bool_type               has_dir_end_() const;
+
+    static char_type const* last_slash_(char_type const* buffer, size_type len);
+
+    static char_type const* next_slash_or_end(char_type const* p);
+    static char_type const* next_part_or_end(char_type const* p);
+    static char_type        path_name_separator();
     static char_type        path_name_separator_alt();
 
 // Member Types
@@ -860,6 +869,38 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
+inline /* static */ ss_typename_param_k basic_path<C, T, A>::bool_type
+basic_path<C, T, A>::has_dir_end_() const
+{
+    return empty() ? false : traits_type::has_dir_end(m_buffer.c_str() + (m_len - 1));
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline /* static */ ss_typename_param_k basic_path<C, T, A>::char_type const*
+basic_path<C, T, A>::last_slash_(
+    ss_typename_param_k basic_path<C, T, A>::char_type const*   buffer
+,   ss_typename_param_k basic_path<C, T, A>::size_type          /* len */
+)
+{
+    char_type*  slash   =   traits_type::str_rchr(buffer, path_name_separator());
+    char_type*  slash_a =   traits_type::str_rchr(buffer, path_name_separator_alt());
+
+    if(slash_a > slash)
+    {
+        slash = slash_a;
+    }
+
+    return slash;
+}
+
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
 inline /* static */ ss_typename_param_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::next_slash_or_end(ss_typename_param_k basic_path<C, T, A>::char_type const* p)
 {
     for(; ; )
@@ -908,6 +949,15 @@ inline /* static */ ss_typename_param_k basic_path<C, T, A>::char_type basic_pat
     return '/';
 }
 
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline /* static */ ss_typename_param_k basic_path<C, T, A>::char_type
+basic_path<C, T, A>::path_name_separator()
+{
+    WINSTL_ASSERT('\\' == traits_type::path_name_separator());
+
+    return '\\';
+}
+
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -939,7 +989,7 @@ template<   ss_typename_param_k C
         >
 inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
 {
-	return concat_(rhs.data(), rhs.size());
+    return concat_(rhs.data(), rhs.size());
 
     return *this;
 }
@@ -1100,6 +1150,12 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push(char_type const* rhs, ws_b
         {
             class_type newPath(rhs);
 
+            if( bAddPathNameSeparator &&
+                !newPath.has_dir_end_())
+            {
+                newPath.push_sep();
+            }
+
             swap(newPath);
         }
         else
@@ -1108,9 +1164,9 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push(char_type const* rhs, ws_b
             // locate the next slash to help guide the push_sep_() method.
 
             class_type          newPath(*this);
-            char_type const*    psep	=   next_slash_or_end(c_str());
-            char_type           sep		=   ('\0' == *psep) ? char_type(0) : psep[0];
-			const size_type		cch		=	traits_type::str_len(rhs);
+            char_type const*    psep    =   next_slash_or_end(c_str());
+            char_type           sep     =   ('\0' == *psep) ? char_type(0) : psep[0];
+            const size_type     cch     =   traits_type::str_len(rhs);
 
             newPath.push_sep_(sep);
             newPath.concat_(rhs, cch);
@@ -1168,7 +1224,18 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::push_sep()
 {
-    return push_sep_(traits_type::path_name_separator());
+    char_type   sep = path_name_separator();
+
+    char_type*  slash   =   traits_type::str_chr(m_buffer.c_str(), path_name_separator());
+    char_type*  slash_a =   traits_type::str_chr(m_buffer.c_str(), path_name_separator_alt());
+
+    if( NULL == slash &&
+        NULL != slash_a)
+    {
+        sep = path_name_separator_alt();
+    }
+
+    return push_sep_(sep);
 }
 
 template<   ss_typename_param_k C
@@ -1179,7 +1246,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push_sep_(ss_typename_type_k ba
 {
     if(0 == sep)
     {
-        sep = traits_type::path_name_separator();
+        sep = path_name_separator();
     }
 
     WINSTL_MESSAGE_ASSERT("You can only push a path name separator character recognised by your operating system!", traits_type::is_path_name_separator(sep));
@@ -1214,27 +1281,90 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::pop(ws_bool_t bRemoveTrailingPathNameSeparator /* = true */)
 {
-    char_type   *slash      =   traits_type::str_rchr(c_str_ptr(m_buffer), traits_type::path_name_separator());
-    char_type   *slash_a    =   traits_type::str_rchr(c_str_ptr(m_buffer), path_name_separator_alt());
+    char_type* slash = const_cast<char_type*>(last_slash_(m_buffer.data(), m_len));
 
-    if(slash_a > slash)
+    if(NULL != slash)
     {
-        slash = slash_a;
+        if(slash - m_buffer.data() + 1 == m_len)
+        {
+            bool shouldRemoveTrailingSlash = true;
+
+            // The last slash is just a trailing separator
+            //
+            // Is it just a volume, or just a UNC, or just a root slash
+            if(traits_type::is_path_rooted(m_buffer.c_str()))
+            {
+                if(traits_type::is_path_UNC(m_buffer.c_str()))
+                {
+                    char_type const* share = next_part_or_end(m_buffer.c_str() + 2);
+
+                    if(NULL == share)
+                    {
+                        shouldRemoveTrailingSlash = false;
+                    }
+                }
+                else if(traits_type::is_path_absolute(m_buffer.c_str()))
+                {
+                    if(3 == m_len)
+                    {
+                        shouldRemoveTrailingSlash = false;
+                    }
+                }
+                else
+                {
+                    if(1 == m_len)
+                    {
+                        shouldRemoveTrailingSlash = false;
+                    }
+                }
+            }
+
+            if(shouldRemoveTrailingSlash)
+            {
+                m_buffer[--m_len] = '\0';
+
+                slash = const_cast<char_type*>(last_slash_(m_buffer.data(), m_len));
+            }
+        }
+    }
+
+    if(NULL != slash)
+    {
+        if(traits_type::is_path_UNC(m_buffer.c_str()))
+        {
+            char_type const* shareSlash = next_slash_or_end(m_buffer.c_str() + 2);
+
+            if(shareSlash == slash)
+            {
+                slash = NULL;
+            }
+        }
+        else if(traits_type::is_path_absolute(m_buffer.c_str()) &&
+                3 == m_len)
+        {
+            slash = NULL;
+        }
+        else if(traits_type::is_path_rooted(m_buffer.c_str()) &&
+                1 == m_len)
+        {
+            slash = NULL;
+        }
     }
 
     if(NULL != slash)
     {
         *(slash + 1) = '\0';
         m_len = static_cast<size_type>((slash + 1) - stlsoft_ns_qual(c_str_ptr)(m_buffer));
-    }
-    else
-    {
-        clear();
+
+        if(bRemoveTrailingPathNameSeparator)
+        {
+            this->pop_sep();
+        }
     }
 
-    if(bRemoveTrailingPathNameSeparator)
+    if(NULL == slash)
     {
-        this->pop_sep();
+        clear();
     }
 
     return *this;
@@ -1264,7 +1394,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::pop_sep()
             // We can pop a separator off anything else, including a UNC host
             char_type* last = &m_buffer[m_len - 1];
 
-            if(*last == traits_type::path_name_separator())
+            if(*last == path_name_separator())
             {
                 m_buffer[m_len-- - 1] = '\0';
             }
@@ -1421,7 +1551,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
     }
     else if(this->is_rooted())
     {
-        *dest++ = traits_type::path_name_separator();
+        *dest++ = path_name_separator();
         ++p1;
     }
 
@@ -1451,7 +1581,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
                         {
                             parts[i].type   =   part_type::dotdot;
                         }
-                        else if(traits_type::path_name_separator() == p1[1])
+                        else if(path_name_separator() == p1[1])
                         {
                             parts[i].type   =   part_type::dot;
                         }
@@ -1465,7 +1595,7 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
                     if( '.' == p1[0] &&
                         '.' == p1[1])
                     {
-                        if(traits_type::path_name_separator() == p1[2])
+                        if(path_name_separator() == p1[2])
                         {
                             parts[i].type   =   part_type::dotdot;
                         }
@@ -1592,17 +1722,11 @@ template<   ss_typename_param_k C
         >
 inline ss_typename_type_ret_k basic_path<C, T, A>::char_type const* basic_path<C, T, A>::get_file() const
 {
-    char_type const* slash      =   traits_type::str_rchr(c_str_ptr(m_buffer), traits_type::path_name_separator());
-    char_type const* slash_a    =   traits_type::str_rchr(c_str_ptr(m_buffer), path_name_separator_alt());
-
-    if(slash_a > slash)
-    {
-        slash = slash_a;
-    }
+    char_type const* slash = last_slash_(m_buffer.data(), m_len);
 
     if(NULL == slash)
     {
-        slash = stlsoft_ns_qual(c_str_ptr)(m_buffer);
+        slash = m_buffer.c_str();
     }
     else
     {

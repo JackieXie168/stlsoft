@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the readdir_sequence components.
  *
  * Created:     29th April 2006
- * Updated:     10th October 2008
+ * Updated:     24th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -159,7 +159,7 @@ namespace platformstl_project
     /// \name Member Constants
     /// @{
     public:
-        enum
+        enum search_flags
         {
                 includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence */
             ,   directories     =   0x0010  /*!< Causes the search to include directories */
@@ -184,7 +184,19 @@ namespace platformstl_project
         /// this reflects the default behaviour of \c readdir(), and also because it is the
         /// most efficient.
         template <ss_typename_param_k S>
-        readdir_sequence(S const& directory, flags_type flags = directories | files)
+        ss_explicit_k readdir_sequence(S const& directory)
+            : m_ffs(stlsoft_ns_qual(c_str_ptr)(directory), "*.*", translate_flags_(directories | files))
+            , m_flags(validate_flags_(directories | files))
+        {}
+
+        template <ss_typename_param_k S>
+        readdir_sequence(S const& directory, flags_type flags)
+            : m_ffs(stlsoft_ns_qual(c_str_ptr)(directory), "*.*", translate_flags_(flags))
+            , m_flags(validate_flags_(flags))
+        {}
+
+        template <ss_typename_param_k S>
+        readdir_sequence(S const& directory, search_flags flags)
             : m_ffs(stlsoft_ns_qual(c_str_ptr)(directory), "*.*", translate_flags_(flags))
             , m_flags(validate_flags_(flags))
         {}

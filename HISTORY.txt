@@ -2,9 +2,19 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  23rd January 2009
+; Updated:  25th January 2009
 
 ============================================================================
+
+
+25th January 2009 - 1.9.70 released
+-----------------------------------
+
+ * improved stlsoft::find_next_token() function templates to ensure that all empty fields are reported to caller
+ * added char_copy() methods to filesystem_traits classes in InetSTL and WinSTL, as part of move away from "unsafe" string functions
+ * minor enhancements to platformstl::readdir_sequence, to disambiguate constructor overloads
+ * removed all "unsafe" string functions from winstl::basic_findfile_sequence class template and supporting components
+ * improved winstl::basic_path class template to ensure proper behaviour in corner cases of use of push() and pop() methods
 
 
 23rd January 2009 - 1.9.69 released

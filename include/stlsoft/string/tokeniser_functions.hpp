@@ -4,11 +4,11 @@
  * Purpose:     Restartable tokenising functions.
  *
  * Created:     6th January 2001
- * Updated:     12th March 2007
+ * Updated:     24th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_REVISION   1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       19
+# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_REVISION   2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,37 +91,63 @@ namespace stlsoft
  * Functions
  */
 
-/** \brief Adjusts the delimiters into a token string to find the next token, according
- * to the given delimiter. Processing stops when \c p1 is equal to \c end
+/** \brief Adjusts the delimiters into a token string to find the next
+ *    token, according to the given delimiter. Processing stops when \c p1
+ *    is equal to \c end
  *
  * \ingroup group__library__string
  *
- * \param p0 Pointer to the current token in the string. Will be set to the next when the function returns
- * \param p1 Pointer to the current token in the string. Well be set to the end of the token when the function returns
+ * \param p0 Pointer to the current token in the string. Will be set to the
+ *   next when the function returns
+ * \param p1 Pointer to the current token in the string. Will be set to the
+ *   end of the token when the function returns
  * \param end The end of the string
  * \param delim The delimiter
+ *
+ * \return p0
+ *
+ * \pre NULL != p0
+ * \pre NULL != p1
+ * \pre NULL != end
+ * \pre p0 <= p1
+ * \pre p1 <= end
  */
 template <ss_typename_param_k C>
+inline C const*
+find_next_token(
+    C const*&       p0
+,   C const*&       p1
 #if defined(STLSOFT_COMPILER_IS_DMC)
-inline C const* find_next_token(C const*& p0, C const*& p1, C const* end, C delim)
+,   C const*        end
 #else /* ? compiler */
-inline C const* find_next_token(C const*& p0, C const*& p1, C const* const end, C delim)
+,   C const* const  end
 #endif /* compiler */
+,   C               delim
+)
 {
     STLSOFT_ASSERT(NULL != p0);
     STLSOFT_ASSERT(NULL != p1);
     STLSOFT_ASSERT(NULL != end);
+    STLSOFT_ASSERT(p0 <= p1);
+    STLSOFT_ASSERT(p1 <= end);
 
     if(p1 != end)
     {
-        p0 = p1;
+        if(p0 != p1)
+        {
+            p0 = ++p1;
+        }
+        else
+        {
+            p0 = p1;
+        }
 
         if(delim == *p1)
         {
             ++p0;
             ++p1;
         }
-        for(; p1 != end; ++p1)
+        else for(; p1 != end; ++p1)
         {
             if(delim == *p1)
             {
@@ -137,26 +163,50 @@ inline C const* find_next_token(C const*& p0, C const*& p1, C const* const end, 
     return p0;
 }
 
-/** \brief Adjusts the delimiters into a token string to find the next token, according
- * to the given delimiter. Processing stops when \c p1 points to the nul-terminating character
+/** \brief Adjusts the delimiters into a token string to find the next
+ *    token, according to the given delimiter. Processing stops when \c p1
+ *    points to the nul-terminating character
  *
  * \ingroup group__library__string
  *
- * \param p0 Pointer to the current token in the string. Will be set to the next when the function returns
- * \param p1 Pointer to the current token in the string. Well be set to the end of the token when the function returns
+ * \param p0 Pointer to the current token in the string. Will be set to the
+ *   next when the function returns
+ * \param p1 Pointer to the current token in the string. Will be set to the
+ *   end of the token when the function returns
  * \param delim The delimiter
+ *
+ * \return p0
+ *
+ * \pre NULL != p0
+ * \pre NULL != p1
+ * \pre p0 <= p1
  */
 template <ss_typename_param_k C>
-inline bool find_next_token(C const*& p0, C const*& p1, C delim)
+inline bool
+find_next_token(
+    C const*&   p0
+,   C const*&   p1
+,   C           delim
+)
 {
     STLSOFT_ASSERT(NULL != p0);
     STLSOFT_ASSERT(NULL != p1);
     STLSOFT_ASSERT(p0 <= p1);
 
-    p0 = p1;
     if('\0' == *p1)
     {
+        p0 = p1;
+
         return false;
+    }
+
+    if(p0 != p1)
+    {
+        p0 = ++p1;
+    }
+    else
+    {
+        p0 = p1;
     }
 
     if(delim == *p1)
@@ -164,8 +214,7 @@ inline bool find_next_token(C const*& p0, C const*& p1, C delim)
         ++p0;
         ++p1;
     }
-
-    for(;; ++p1)
+    else for(;; ++p1)
     {
         if('\0' == *p1)
         {
