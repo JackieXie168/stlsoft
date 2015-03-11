@@ -4,7 +4,7 @@
  * Purpose:     string_traits traits class.
  *
  * Created:     16th January 2002
- * Updated:     10th October 2008
+ * Updated:     22nd May 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      76
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ struct string_traits<ss_char_a_t *>
     typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
-    enum {  char_type_size      =   sizeof(char_type)   };
+    enum {  char_type_size      =   int(sizeof(char_type))   };
 
     static string_type empty_string()
     {
@@ -140,7 +140,7 @@ struct string_traits<ss_char_a_t const*>
     typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
-    enum {  char_type_size      =   sizeof(char_type)   };
+    enum {  char_type_size      =   int(sizeof(char_type))   };
 
     static string_type empty_string()
     {
@@ -226,7 +226,7 @@ struct string_traits<ss_char_w_t *>
     typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
-    enum {  char_type_size      =   sizeof(char_type)   };
+    enum {  char_type_size      =   int(sizeof(char_type))   };
 
     static string_type empty_string()
     {
@@ -253,7 +253,7 @@ struct string_traits<ss_char_w_t const*>
     typedef value_type const*       const_pointer;
     enum {  is_pointer          =   true                };
     enum {  is_pointer_to_const =   false               };
-    enum {  char_type_size      =   sizeof(char_type)   };
+    enum {  char_type_size      =   int(sizeof(char_type))   };
 
     static string_type empty_string()
     {

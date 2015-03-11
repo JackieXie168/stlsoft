@@ -7,7 +7,7 @@
  *              in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     4th January 2009
+ * Updated:     22nd May 2009
  *
  * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MINOR    2
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 5
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     58
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 6
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,8 +90,14 @@ namespace stlsoft
 #define STLSOFT_GEN_UINT8_SUFFIX(i)             (i ## U)
 #define STLSOFT_GEN_SINT16_SUFFIX(i)            (i)
 #define STLSOFT_GEN_UINT16_SUFFIX(i)            (i ## U)
-#define STLSOFT_GEN_SINT32_SUFFIX(i)            (i ## L)
-#define STLSOFT_GEN_UINT32_SUFFIX(i)            (i ## UL)
+#if _STLSOFT_SIZEOF_LONG == 4
+# define STLSOFT_GEN_SINT32_SUFFIX(i)           (i ## L)
+# define STLSOFT_GEN_UINT32_SUFFIX(i)           (i ## UL)
+#else /* ? _STLSOFT_SIZEOF_LONG */
+# define STLSOFT_GEN_SINT32_SUFFIX(i)           (i)
+# define STLSOFT_GEN_UINT32_SUFFIX(i)           (i ## U)
+#endif /* _STLSOFT_SIZEOF_LONG */
+
 #if (   (   defined(STLSOFT_COMPILER_IS_BORLAND) && \
             __BORLANDC__ >= 0x0582) || \
         defined(STLSOFT_COMPILER_IS_DMC) || \

@@ -4,11 +4,11 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     9th March 2008
+ * Updated:     23rd May 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  5
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      15
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  6
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,12 +65,18 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS
 # include <stlsoft/string/cstring_functions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #ifndef STLSOFT_INCL_H_STRING
 # define STLSOFT_INCL_H_STRING
@@ -82,6 +88,32 @@
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL)) && \
+    _MSC_VER >= 1300
+# define STLSOFT_ERROR_DESC_wcserror    ::_wcserror
+#endif /* compiler */
+
+#if (   defined(STLSOFT_COMPILER_IS_MSVC) || \
+        defined(STLSOFT_COMPILER_IS_INTEL)) && \
+    _MSC_VER >= 1400
+# define STLSOFT_ERROR_DESC_wcserror_s  ::_wcserror_s
+#endif /* compiler */
+
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+# ifdef STLSOFT_ERROR_DESC_wcserror_s
+#  define STLSOFT_ERROR_DESC_WIDE_STRING_SUPPORT_
+# endif /* STLSOFT_ERROR_DESC_wcserror_s */
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+# ifdef STLSOFT_ERROR_DESC_wcserror
+#  define STLSOFT_ERROR_DESC_WIDE_STRING_SUPPORT_
+# endif /* STLSOFT_ERROR_DESC_wcserror */
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -89,6 +121,79 @@
 namespace stlsoft
 {
 #endif /* !_STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Helpers
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k C>
+struct error_desc_traits;
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct error_desc_traits<ss_char_a_t>
+{
+# ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+
+    static int invoke_strerror_s_(ss_char_a_t* buff, size_t n, int code)
+    {
+        return ::strerror_s(buff, n, code);
+    }
+
+# else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
+    static ss_char_a_t const* invoke_strerror_(int code, ss_char_a_t const*)
+    {
+        return ::strerror(code);
+    }
+
+# endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+};
+
+# ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+
+#  ifdef STLSOFT_ERROR_DESC_wcserror_s
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct error_desc_traits<ss_char_w_t>
+{
+    static int invoke_strerror_s_(ss_char_w_t* buff, size_t n, int code)
+    {
+        return STLSOFT_ERROR_DESC_wcserror_s(buff, n, code);
+    }
+};
+
+#  else /* ? STLSOFT_ERROR_DESC_wcserror_s */
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct error_desc_traits<ss_char_a_t>;
+
+#  endif /* STLSOFT_ERROR_DESC_wcserror_s */
+
+# else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
+#  ifdef STLSOFT_ERROR_DESC_wcserror
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct error_desc_traits<ss_char_w_t>
+{
+    static ss_char_w_t const* invoke_strerror_(int code, ss_char_w_t const*)
+    {
+        return STLSOFT_ERROR_DESC_wcserror(code);
+    }
+};
+
+#  else /* ? STLSOFT_ERROR_DESC_wcserror_s */
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct error_desc_traits<ss_char_w_t>;
+
+#  endif /* STLSOFT_ERROR_DESC_wcserror */
+
+# endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -148,6 +253,8 @@ public:
     typedef int                                                         error_type;
     /// \brief The size type
     typedef ss_size_t                                                   size_type;
+private:
+    typedef error_desc_traits<char_type>                                traits_type;
 /// @}
 
 /// \name Construction
@@ -172,23 +279,23 @@ public:
 /// @{
 public:
     /// \brief The error description
-    char_type const* c_str() const;
+    char_type const*    c_str() const;
     /// \brief The length of the error description
-    size_type       length() const stlsoft_throw_0();
+    size_type           length() const stlsoft_throw_0();
     /// \brief The length of the error description
-    size_type       size() const stlsoft_throw_0();
+    size_type           size() const stlsoft_throw_0();
 /// @}
 
 /// \name Implementation
 /// @{
 private:
-    allocator_type &get_allocator_();
+    allocator_type& get_allocator_();
 /// @}
 
 /// \name Members
 /// @{
 private:
-    char_type   *m_str;
+    char_type*  m_str;
     size_type   m_length;
 /// @}
 
@@ -201,11 +308,16 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Specialisation of the basic_error_desc template for the ANSI character type \c char
+/** \brief Specialisation of the basic_error_desc template for the multibyte character type \c char
  *
  * \ingroup group__library__error
  */
 typedef basic_error_desc<ss_char_a_t>   error_desc_a;
+/** \brief Specialisation of the basic_error_desc template for the wide character type \c wchar_t
+ *
+ * \ingroup group__library__error
+ */
+typedef basic_error_desc<ss_char_w_t>   error_desc_w;
 /** \brief Specialisation of the basic_error_desc template for the character type \c char
  *
  * \ingroup group__library__error
@@ -226,8 +338,54 @@ inline ss_typename_type_ret_k basic_error_desc<C>::allocator_type &basic_error_d
 
 template <ss_typename_param_k C>
 inline basic_error_desc<C>::basic_error_desc(ss_typename_type_k basic_error_desc<C>::error_type error /* = errno */)
-    : m_str(string_dup(::strerror(error), get_allocator_(), &m_length))
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+    : m_length(0)
+{
+    stlsoft::auto_buffer<char_type, 128, allocator_type>    buff(128);
+
+    for(;;)
+    {
+        // If you get compiler errors on the following line, it may be because
+        // you are trying to use a wide char specialisation of basic_error_desc
+        // with a compiler for which a definition for
+        // STLSOFT_ERROR_DESC_wcserror_s does not exist. If your platform has an
+        // equivalental function, as does Microsoft's with _wcserror_s(), then
+        // define STLSOFT_ERROR_DESC_wcserror_s to the name of your function
+        int n = traits_type::invoke_strerror_s_(&buff[0], buff.size() - 1, error);
+
+        buff[buff.size() - 1u] = '\0';
+
+        if(0 == n)
+        {
+            size_t cch = c_str_len(buff.data());
+
+            if(cch < buff.size() - 2u)
+            {
+                m_length = cch;
+                buff.resize(cch + 1u);
+                break;
+            }
+        }
+
+        if(!buff.resize(1u + buff.size() * 2u))
+        {
+            buff.resize(1u);
+            break;
+        }
+    }
+
+    m_str = string_dup(buff.data(), m_length, get_allocator_());
+}
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+    // If you get compiler errors on the following line, it may be because
+    // you are trying to use a wide char specialisation of basic_error_desc
+    // with a compiler for which a definition for
+    // STLSOFT_ERROR_DESC_wcserror does not exist. If your platform has an
+    // equivalental function, as does Microsoft's with _wcserror(), then
+    // define STLSOFT_ERROR_DESC_wcserror to the name of your function
+    : m_str(string_dup(traits_type::invoke_strerror_(error, static_cast<char_type const*>(0)), get_allocator_(), &m_length))
 {}
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
 
 template <ss_typename_param_k C>
 inline basic_error_desc<C>::~basic_error_desc() stlsoft_throw_0()
@@ -283,6 +441,10 @@ inline ss_char_a_t const* c_str_ptr_null_a(stlsoft_ns_qual(basic_error_desc)<ss_
 {
     return (0 != e.length()) ? e.c_str() : NULL;
 }
+inline ss_char_w_t const* c_str_ptr_null_w(stlsoft_ns_qual(basic_error_desc)<ss_char_w_t> const& e)
+{
+    return (0 != e.length()) ? e.c_str() : NULL;
+}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \brief \ref group__concept__shim__string_access__c_str_ptr for stlsoft::basic_error_desc
@@ -296,6 +458,10 @@ inline C const* c_str_ptr(stlsoft_ns_qual(basic_error_desc)<C> const& e)
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline ss_char_a_t const* c_str_ptr_a(stlsoft_ns_qual(basic_error_desc)<ss_char_a_t> const& e)
+{
+    return e.c_str();
+}
+inline ss_char_w_t const* c_str_ptr_w(stlsoft_ns_qual(basic_error_desc)<ss_char_w_t> const& e)
 {
     return e.c_str();
 }
@@ -315,6 +481,10 @@ inline ss_char_a_t const* c_str_data_a(stlsoft_ns_qual(basic_error_desc)<ss_char
 {
     return e.c_str();
 }
+inline ss_char_w_t const* c_str_data_w(stlsoft_ns_qual(basic_error_desc)<ss_char_w_t> const& e)
+{
+    return e.c_str();
+}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \brief \ref group__concept__shim__string_access__c_str_len for stlsoft::basic_error_desc
@@ -329,6 +499,10 @@ inline ss_size_t c_str_len(stlsoft_ns_qual(basic_error_desc)<C> const& e)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline ss_size_t c_str_len_a(stlsoft_ns_qual(basic_error_desc)<ss_char_a_t> const& e)
+{
+    return e.length();
+}
+inline ss_size_t c_str_len_w(stlsoft_ns_qual(basic_error_desc)<ss_char_w_t> const& e)
 {
     return e.length();
 }

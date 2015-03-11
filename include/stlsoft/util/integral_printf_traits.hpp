@@ -4,7 +4,7 @@
  * Purpose:     integral_printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     13th May 2008
+ * Updated:     22nd May 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MINOR      1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       64
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   6
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -338,8 +338,8 @@ struct integral_printf_traits_base<char>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_CHAR_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_CHAR_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_CHAR_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_CHAR_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -375,8 +375,8 @@ struct integral_printf_traits_base<unsigned char>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UCHAR_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UCHAR_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UCHAR_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UCHAR_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -404,8 +404,8 @@ struct integral_printf_traits_base<signed char>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SCHAR_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SCHAR_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SCHAR_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SCHAR_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -436,8 +436,8 @@ struct integral_printf_traits_base<short>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SHORT_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SHORT_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SHORT_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SHORT_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -465,8 +465,8 @@ struct integral_printf_traits_base<unsigned short>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_USHORT_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_USHORT_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_USHORT_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_USHORT_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -497,8 +497,8 @@ struct integral_printf_traits_base<int>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_INT_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_INT_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_INT_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_INT_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -526,8 +526,8 @@ struct integral_printf_traits_base<unsigned int>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -558,8 +558,8 @@ struct integral_printf_traits_base<long>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -587,8 +587,8 @@ struct integral_printf_traits_base<unsigned long>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -621,8 +621,8 @@ struct integral_printf_traits_base<ss_sint64_t>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -674,8 +674,8 @@ struct integral_printf_traits_base<ss_uint64_t>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MAX))
+            size_min = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MIN)))
+        ,   size_max = int(sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MAX)))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 

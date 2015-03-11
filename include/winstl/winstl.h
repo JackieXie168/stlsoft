@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     15th May 2009
+ * Updated:     22nd May 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       9
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        172
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        173
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -138,12 +138,13 @@
 # define _WINSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.9.37) */
 # define _WINSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.9.42) */
 # define _WINSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.9.82) */
+# define _WINSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.9.84) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       10
-#define _WINSTL_VER_REVISION    3
-#define _WINSTL_VER             _WINSTL_VER_1_10_3
+#define _WINSTL_VER_REVISION    4
+#define _WINSTL_VER             _WINSTL_VER_1_10_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -185,8 +186,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010952ff
-# error This version of the WinSTL libraries requires STLSoft version 1.9.82, or later
+    _STLSOFT_VER < 0x010954ff
+# error This version of the WinSTL libraries requires STLSoft version 1.9.84, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////

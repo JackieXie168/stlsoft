@@ -4,7 +4,7 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     20th January 2007
+ * Updated:     22nd May 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_MINOR      1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_EDIT       44
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_REVISION   2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@ struct sign_traits<ss_char_a_t>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<ss_char_w_t>
 {
-    enum { bytes    =   sizeof(ss_char_w_t)     };
+    enum { bytes    =   int(sizeof(ss_char_w_t))     };
     enum { bits     =   8 * bytes               };
 
     typedef ss_char_w_t                             type;
@@ -281,7 +281,7 @@ struct sign_traits<unsigned>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<long>
 {
-    enum { bytes    =   sizeof(long)            };
+    enum { bytes    =   int(sizeof(long))            };
     enum { bits     =   8 * bytes               };
 
     typedef long            type;
@@ -293,7 +293,7 @@ struct sign_traits<long>
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<unsigned long>
 {
-    enum { bytes    =   sizeof(unsigned long)   };
+    enum { bytes    =   int(sizeof(unsigned long))   };
     enum { bits     =   8 * bytes               };
 
     typedef unsigned long   type;
