@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    3
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     37
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 2
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp \brief [C++ only; requires C++.NET compiler] The root header for the \ref group__project__dotnetstl ".netSTL" project. */
@@ -129,10 +129,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1
-# error This version of the .netSTL libraries requires STLSoft version 1.9.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
+#if !defined(_STLSOFT_VER_1_9_1_B20) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
+# error This version of the .netSTL libraries requires STLSoft version 1.9.1 beta 20, or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility

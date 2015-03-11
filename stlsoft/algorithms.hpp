@@ -4,7 +4,7 @@
  * Purpose:     Main header file for the STLSoft Algorithms library.
  *
  * Created:     23rd October 2004
- * Updated:     16th July 2006
+ * Updated:     2nd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_MINOR       0
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        26
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_REVISION    2
+# define STLSOFT_VER_STLSOFT_HPP_ALGORITHMS_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,28 +73,28 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_BOUNDED
-# include <stlsoft\algorithms\bounded.hpp>
+# include <stlsoft/algorithms/bounded.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_BOUNDED */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_COLLECTION
-# include <stlsoft\algorithms\collection.hpp>
+# include <stlsoft/algorithms/collection.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_COLLECTION */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_DEBUG
-# include <stlsoft\algorithms\debug.hpp>
+# include <stlsoft/algorithms/debug.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_DEBUG */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_DEPRECATED
-# include <stlsoft\algorithms\deprecated.hpp>
+# include <stlsoft/algorithms/deprecated.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_DEPRECATED */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
-# include <stlsoft\algorithms\pod.hpp>
+# include <stlsoft/algorithms/pod.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_UNORDERED
-# include <stlsoft\algorithms\unordered.hpp>
+# include <stlsoft/algorithms/unordered.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_UNORDERED */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_STD_HPP_ALT
-# include <stlsoft\algorithms\std\alt.hpp>
+# include <stlsoft/algorithms/std/alt.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_STD_HPP_ALT */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_STD_HPP_EXT
-# include <stlsoft\algorithms\std\ext.hpp>
+# include <stlsoft/algorithms/std/ext.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_STD_HPP_EXT */
 
 /* ////////////////////////////////////////////////////////////////////// */

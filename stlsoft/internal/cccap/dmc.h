@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     16th June 2006
+ * Updated:     25th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      8
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       71
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -302,7 +302,7 @@
  */
 
 #if (__DMC__ >= 0x0835)
-/* This is no longer supported here. Include stlsoft/util/std/library_discriminator.hpp
+/* This is no longer supported here. Include stlsoft/memory/allocator_features.hpp
 # define STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
  */
 #else

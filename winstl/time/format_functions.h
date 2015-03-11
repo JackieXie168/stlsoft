@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     7th July 2006
+ * Updated:     23rd August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     46
+# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -294,7 +294,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
                     break;
                 default:
                     {
-                        static const char_t EMPTY_STRING[] = { '\0' };
+                        static const char_t s_emptyString[] = { '\0' };
                         char_t const        *p;
 
                         switch(prev)
@@ -318,7 +318,7 @@ inline int STLSOFT_STDCALL GetTimeFormat_ms_(   LCID                locale      
                                     }
                                 }
                                 // Fall through
-                            default:        p = EMPTY_STRING;   break;
+                            default:        p = s_emptyString;   break;
                         }
 
                         for(; '\0' != *p; *w++ = *p++, ++len)
@@ -735,6 +735,23 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW_(  LCID                locale      
 }
 #endif /* 0 */
 
+
+/** \brief Analogue to the Win32 API <code>GetTimeFormat()</code>, but also
+ *    provides milliseconds as part of the time picture.
+ *
+ * \param locale 
+ * \param dwFlags 
+ * \param lpTime 
+ * \param lpFormat 
+ * \param lpTimeStr The buffer into which the result will be written
+ * \param cchTime Number of character spaces available in
+ *   <code>lpTimeStr</code>. If 0, the required length is returned, and
+ *   <code>lpTimeStr</code> is ignored.
+ *
+ * \return The number of characters written to <code>lpTimeStr</code>
+ *    (if <code>0 != cchTime</code>), or required
+ *    (if <code>0 == cchTime</code>).
+ */
 inline int STLSOFT_STDCALL GetTimeFormat_msA(   LCID                locale      // locale
                                             ,   DWORD               dwFlags     // options
                                             ,   CONST SYSTEMTIME    *lpTime     // time
@@ -742,6 +759,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msA(   LCID                locale      
                                             ,   ws_char_a_t         *lpTimeStr  // formatted string buffer
                                             ,   int                 cchTime)    // size of string buffer
 {
+    WINSTL_ASSERT(0 == cchTime || NULL != lpTimeStr);
+
 #if 0
     return GetTimeFormat_msA_(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
 #else /* ? 0 */
@@ -756,6 +775,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW(   LCID                locale      
                                             ,   ws_char_w_t         *lpTimeStr  // formatted string buffer
                                             ,   int                 cchTime)    // size of string buffer
 {
+    WINSTL_ASSERT(0 == cchTime || NULL != lpTimeStr);
+
 #if 0
     return GetTimeFormat_msW_(locale, dwFlags, lpTime, lpFormat, lpTimeStr, cchTime);
 #else /* ? 0 */

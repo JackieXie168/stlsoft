@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/guid.hpp (originally MOGuidGn.h/.cpp, ::SynesisCom)
+ * File:        comstl/util/guid.hpp (originally MOGuidGn.h/.cpp, ::SynesisCom)
  *
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     16th July 2006
+ * Updated:     11th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file comstl/guid.hpp
+/** \file comstl/util/guid.hpp
  *
  * \brief [C++ only; requires COM] Definition of the comstl::guid class.
  *  (\ref group__library__com_utility "COM Utility" Library.)
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       32
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   2
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,114 +218,114 @@ private:
  * String access shims
  */
 
-/** \brief \ref section__concept__shims__string_access__c_str_data for ACE_Time_Value
+/** \brief \ref section__concept__shims__string_access__c_str_data for comstl::guid
  *
  * \ingroup group__concept__shims__string_access
  */
-inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(guid const &g)
+inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_data)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline size_t c_str_len_a(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_data_a(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_len_a)(g.get());
+    return stlsoft_ns_qual(c_str_data_a)(g.get());
 }
 
-inline size_t c_str_len_w(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_data_w(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_len_w)(g.get());
+    return stlsoft_ns_qual(c_str_data_w)(g.get());
 }
 
-inline size_t c_str_len_o(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_len_o)(g.get());
+    return stlsoft_ns_qual(c_str_data_o)(g.get());
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_len for ACE_Time_Value
+/** \brief \ref section__concept__shims__string_access__c_str_len for comstl::guid
  *
  * \ingroup group__concept__shims__string_access
  */
-inline size_t c_str_len(guid const &g)
+inline size_t c_str_len(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_len)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_a(guid const &g)
+inline size_t c_str_len_a(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_ptr_a)(g.get());
+    return stlsoft_ns_qual(c_str_len_a)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_w(guid const &g)
+inline size_t c_str_len_w(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_ptr_w)(g.get());
+    return stlsoft_ns_qual(c_str_len_w)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_o(guid const &g)
+inline size_t c_str_len_o(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_ptr_o)(g.get());
+    return stlsoft_ns_qual(c_str_len_o)(g.get());
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr for ACE_Time_Value
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for comstl::guid
  *
  * \ingroup group__concept__shims__string_access
  */
-inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(guid const &g)
+inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_ptr)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_null_a(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_a(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_ptr_null_a)(g.get());
+    return stlsoft_ns_qual(c_str_ptr_a)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_null_w(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_w(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_ptr_null_w)(g.get());
+    return stlsoft_ns_qual(c_str_ptr_w)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_o(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_ptr_null_o)(g.get());
+    return stlsoft_ns_qual(c_str_ptr_o)(g.get());
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for ACE_Time_Value
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for comstl::guid
  *
  * \ingroup group__concept__shims__string_access
  */
-inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(guid const &g)
+inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(comstl_ns_qual(guid) const &g)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(g.get());
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_data_a(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_null_a(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_data_a)(g.get());
+    return stlsoft_ns_qual(c_str_ptr_null_a)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_data_w(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_null_w(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_data_w)(g.get());
+    return stlsoft_ns_qual(c_str_ptr_null_w)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(guid const &g)
+inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(comstl_ns_qual(guid) const &g)
 {
-    return stlsoft_ns_qual(c_str_data_o)(g.get());
+    return stlsoft_ns_qual(c_str_ptr_null_o)(g.get());
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

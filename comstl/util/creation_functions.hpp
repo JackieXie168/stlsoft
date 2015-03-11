@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/creation_functions.hpp
+ * File:        comstl/util/creation_functions.hpp
  *
  * Purpose:     COM instance creation helper functions
  *
  * Created:     21st September 2005
- * Updated:     7th July 2006
+ * Updated:     10th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file comstl/creation_functions.hpp
+/** \file comstl/util/creation_functions.hpp
  *
  * \brief [C++ only; requires COM] COM instance creation helper functions.
  *  (\ref group__library__com_utility "COM Utility" Library.)
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MAJOR    2
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MINOR    0
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     8
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_MINOR    1
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_REVISION 1
+# define COMSTL_VER_COMSTL_UTIL_HPP_CREATION_FUNCTIONS_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,6 +101,36 @@ inline HRESULT co_create_instance(  REFCLSID    clsid
                                 ,   I           **ppi)
 {
     return ::CoCreateInstance(clsid, NULL, CLSCTX_ALL, IID_traits<I>::iid(), reinterpret_cast<void**>(ppi));
+}
+
+/** \brief Type-safe creation of a COM object from a Programmatic Id,
+ *  acquiring the requisite interface pointer.
+ *
+ * \ingroup group__library__com_utility
+ *
+ * \param id The Programatic Identifier (ProgId) - e.g.
+ *    pantheios.com.LoggerManager - or the string form of the
+ *    class id - e.g. {4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}
+ * \param Pointer to the interface pointer.
+ */
+template <ss_typename_param_k I>
+inline HRESULT co_create_instance(  LPCOLESTR   id
+                                ,   I           **ppi)
+{
+    CLSID   clsid;
+    HRESULT hr  =   ::CLSIDFromProgID(id, &clsid);
+
+    if(FAILED(hr))
+    {
+        hr = ::CLSIDFromString(const_cast<LPOLESTR>(id), &clsid);
+    }
+
+    if(SUCCEEDED(hr))
+    {
+        hr = co_create_instance(clsid, ppi);
+    }
+
+    return hr;
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     18th July 2006
+ * Updated:     25th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       3
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        62
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -204,6 +204,16 @@ public:
     }
     /// \brief Releases any resources.
     ~basic_error_desc() stlsoft_throw_0();
+
+#if defined(STLSOFT_COMPILER_IS_GCC) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+    /// \brief This move constructor satisfies GCC, which misunderstands
+    ///   certain expressions containing non-mutating (const) references
+    ///   to instances of the type.
+    ///
+    /// \note Defined only for GCC compilation.
+    basic_error_desc(class_type &rhs) stlsoft_throw_0();
+#endif /* compiler */
 /// @}
 
 /// \name Attributes
@@ -246,7 +256,9 @@ private:
 /// \name Not to be implemented
 /// @{
 private:
+#if !defined(STLSOFT_COMPILER_IS_GCC)
     basic_error_desc(class_type const &);
+#endif /* compiler */
     basic_error_desc &operator =(class_type const &);
 /// @}
 };
@@ -360,6 +372,19 @@ inline basic_error_desc<C, T>::~basic_error_desc() stlsoft_throw_0()
         ::LocalFree(m_message);
     }
 }
+
+#if defined(STLSOFT_COMPILER_IS_GCC)
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        >
+inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_desc<C, T>::class_type &rhs) stlsoft_throw_0()
+{
+    m_length        =   rhs.m_length;
+    rhs.m_length    =   0;
+    m_message       =   rhs.m_message;
+    rhs.m_message   =   NULL;
+}
+#endif /* compiler */
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     23rd June 2006
+ * Updated:     2nd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MAJOR       2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       0
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        17
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_MINOR       1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_REVISION    1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_REFCOUNT_FUNCTIONS_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/atomic_functions.h
@@ -134,6 +134,9 @@ namespace platformstl_project
      (   defined(PLATFORMSTL_OS_IS_WIN32) && \
          defined(_WINSTL_NO_NAMESPACE))
  /* Source atomic functions are defined within a namespace, either unixstl or winstl. */
+
+    using atomic_int_t;
+
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
    /* OS: UNIX */
 #   if defined(_WIN32)
@@ -213,6 +216,9 @@ namespace platformstl_project
 #  endif /* operating system */
 # else /* ? global */
  /* Source atomic functions are defined within the global namespace. */
+
+    using implementation::platform_stl_::atomic_int_t;
+
 #  if defined(PLATFORMSTL_OS_IS_UNIX)
    /* OS: UNIX */
 #   if defined(_WIN32)

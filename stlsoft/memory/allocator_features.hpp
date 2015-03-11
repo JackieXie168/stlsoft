@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     10th June 2006
+ * Updated:     25th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MAJOR    5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_MINOR    0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     32
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_REVISION 2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,7 +150,7 @@
 
 #if (   defined(STLSOFT_COMPILER_IS_DMC) && \
         __DMC__ < 0x0836) || \
-    (   (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+    (   (   /* defined(STLSOFT_COMPILER_IS_INTEL) || */ \
             defined(STLSOFT_COMPILER_IS_MSVC)) && \
         _MSC_VER < 1300) || \
     defined(STLSOFT_COMPILER_IS_WATCOM)

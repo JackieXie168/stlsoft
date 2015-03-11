@@ -4,7 +4,7 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     18th June 2006
+ * Updated:     2nd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      191
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     2
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      192
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,6 +196,12 @@ namespace winstl_project
 #  endif /* __cplusplus */
 # endif /* STSLSOFT_INLINE_ASM_SUPPORTED */
 #endif /* declaration / definition */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Typedefs
+ */
+
+typedef ws_sint32_t     atomic_int_t;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Atomic function declarations

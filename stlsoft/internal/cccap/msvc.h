@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     10th June 2006
+ * Updated:     25th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -60,7 +60,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     8
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      82
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -385,7 +385,7 @@
 #endif /* _MSC_VER */
 
 #if _MSC_VER > 1200
-/* This is no longer supported here. Include stlsoft/util/std/library_discriminator.hpp
+/* This is no longer supported here. Include stlsoft/memory/allocator_features.hpp
 # define STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
  */
 #else

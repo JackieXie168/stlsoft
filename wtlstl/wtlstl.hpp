@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     7th July 2006
+ * Updated:     31st August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 1
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     32
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 2
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp \brief [C++ only; requires WTL library] The root header for the \ref group__project__wtlstl "WTLSTL" project. */
@@ -173,10 +173,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1
-# error This version of the WTLSTL libraries requires STLSoft version 1.9.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
+#if !defined(_STLSOFT_VER_1_9_1_B20) || \
+    _STLSOFT_VER < __STLSOFT_VER_1_9_1_B20
+# error This version of the WTLSTL libraries requires STLSoft version 1.9.1 beta 20, or later
+#endif /* _STLSOFT_VER < __STLSOFT_VER_1_9_1_B20 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility

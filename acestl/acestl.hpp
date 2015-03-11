@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     14th July 2006
+ * Updated:     31st August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     6
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  4
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      28
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  5
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp \brief [C++ only] The root header for the \ref group__project__acestl "ACESTL" project. */
@@ -136,10 +136,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1
-# error This version of the ACESTL libraries requires STLSoft version 1.9.1 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1 */
+#if !defined(_STLSOFT_VER_1_9_1_B20) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
+# error This version of the ACESTL libraries requires STLSoft version 1.9.1 beta 20, or later
+#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * ACE version
