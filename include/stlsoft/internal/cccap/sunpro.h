@@ -4,10 +4,12 @@
  * Purpose:     Compiler feature discrimination for SunPro C / SunPro C++.
  *
  * Created:     24th April 2008
- * Updated:     4th January 2009
+ * Updated:     7th May 2009
  *
- * Thanks:      To Jonathan Wakely and Lars Ivar Igesund for help with
+ * Thanks to:   Jonathan Wakely and Lars Ivar Igesund for help with
  *              getting STLSoft (and Pantheios) compatible with Solaris.
+ *
+ *              Austin Ziegler for pointing out __func__ support
  *
  * Home:        http://stlsoft.org/
  *
@@ -60,8 +62,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MAJOR      1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MINOR      0
-# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,6 +117,8 @@
  */
 
 /* #define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT */
+
+#define STLSOFT_CF_func_SYMBOL_SUPPORT
 
 /* Variadic Macros
  *

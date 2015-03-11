@@ -4,11 +4,11 @@
  * Purpose:     Obsolete
  *
  * Created:     11th May 2008
- * Updated:     22nd September 2008
+ * Updated:     7th May 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_MAJOR     1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_MINOR     0
-# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_EDIT      2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_REVISION  3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_OBSOLETE_EDIT      3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,6 +68,10 @@
 #ifdef STLSOFT_PPF_FUNCTION_SYMBOL_SUPPORT
 # define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
 #endif /* STLSOFT_PPF_FUNCTION_SYMBOL_SUPPORT */
+
+#ifdef STLSOFT_PPF_func_SYMBOL_SUPPORT
+# define STLSOFT_CF_func_SYMBOL_SUPPORT
+#endif /* STLSOFT_PPF_func_SYMBOL_SUPPORT */
 
 #ifdef STLSOFT_PPF_VARIADIC_MACROS_SUPPORT
 # define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS

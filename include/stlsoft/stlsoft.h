@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     3rd May 2009
+ * Updated:     7th May 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    20
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 9
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     385
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    21
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     386
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -244,12 +244,13 @@
 # define _STLSOFT_VER_1_9_78    0x01094eff  /*!< Version 1.9.78 (27th Apr 2009) */
 # define _STLSOFT_VER_1_9_79    0x01094fff  /*!< Version 1.9.79 (2nd May 2009) */
 # define _STLSOFT_VER_1_9_80    0x010950ff  /*!< Version 1.9.80 (5th May 2009) */
+# define _STLSOFT_VER_1_9_81    0x010951ff  /*!< Version 1.9.81 (??? May 2009) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   80
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_80
+#define _STLSOFT_VER_REVISION   81
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_81
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -300,6 +301,7 @@
  * GCC 2.95, 2.96, 3.2, 3.3, 3.4 & 4.0
  * Intel C/C++ 6.0, 7.0, 7.1, 8.0, 9.0
  * Metrowerks 2.4 & 3.0 (CodeWarrior 7.0 & 8.0)
+ * SunPro 5.9
  * Visual C++ 4.2, 5.0, 6.0, 7.0 (.NET), 7.1 (.NET 2003), 8.0
  * Watcom C/C++ 11.0, Open Watcom 1.0, 1.1, 1.2, 1.3, 1.4, 1.5
  */
@@ -713,6 +715,23 @@
 #ifdef _STLSOFT_COMPILE_VERBOSE
 # pragma message(STLSOFT_COMPILER_VERSION_STRING)
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+
+
+/* __FUNCTION__ support */
+
+/** \def STLSOFT_FUNCTION_SYMBOL
+ *
+ * The symbol to be used where __FUNCTION__ may be used, taking into account
+ * any compiler-specific alternative forms
+ *
+ * \note Not defined if no appropriate symbol is available
+ */
+
+#if defined(STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT)
+# define STLSOFT_FUNCTION_SYMBOL	__FUNCTION__
+#elif defined(STLSOFT_CF_func_SYMBOL_SUPPORT)
+# define STLSOFT_FUNCTION_SYMBOL	__func__
+#endif /* __FUNCTION__ or __func__ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Sanity checks - 2

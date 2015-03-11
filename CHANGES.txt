@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  6th May 2009
+; Updated:  7th May 2009
 
 ============================================================================
 
@@ -15,6 +15,30 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.80 (6th May 2009)
+
+Summary:
+========
+
+ * now recognises __func__, provided by Sun Pro, via STLSOFT_CF_func_SYMBOL_SUPPORT
+ * abstracts __FUNCTION__ support to STLSOFT_FUNCTION_SYMBOL
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/internal/cccap/obsolete.h:
+ ~ include/stlsoft/internal/cccap/sunpro.h:
+    + added __func__ support detection
+
+ ~ include/stlsoft/stlsoft.h:
+    + added __func__ support detection, via STLSOFT_CF_func_SYMBOL_SUPPORT
+    + added symbol for __FUNCTION__ or equivalent: STLSOFT_FUNCTION_SYMBOL
 
 ============================================================================
 
