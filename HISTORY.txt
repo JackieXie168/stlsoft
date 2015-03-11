@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  3rd February 2009
+; Updated:  13th February 2009
 
 ============================================================================
+
+
+13th February 2009 - 1.9.74 released
+------------------------------------
+
+ * further implementation of special Borland version of stlsoft::scoped_handle
+ * further workarounds to Borland code generation defects in stlsoft::basic_simple_string and platformstl::basic_file_lines
 
 
 3rd February 2009 - 1.9.73 released

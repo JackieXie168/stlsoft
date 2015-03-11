@@ -4,11 +4,11 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     9th December 2008
+ * Updated:     13th February 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     243
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     244
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,6 +108,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
+
+#if defined(__BORLANDC__) && \
+    __BORLANDC__ > 0x0580 && \
+    defined(_DEBUG)
+# include <stdio.h>
+#endif /* compiler */
 
 
 #ifdef STLSOFT_UNITTEST
@@ -1506,7 +1512,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
         {
 #if defined(STLSOFT_UNITTEST) || \
     defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-            printf("%08x: capacity (%u) < 1\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity));
+            fprintf(stderr, "%08x: capacity (%u) < 1\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity));
 #endif /* STLSOFT_UNITTEST */
 
             return false;
@@ -1515,7 +1521,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
         {
 #if defined(STLSOFT_UNITTEST) || \
     defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-            printf("%08x: capacity (%u) < length (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity), static_cast<unsigned>(buffer->length), static_cast<unsigned>(buffer->length));
+            fprintf(stderr, "%08x: capacity (%u) < length (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity), static_cast<unsigned>(buffer->length), static_cast<unsigned>(buffer->length));
 #endif /* STLSOFT_UNITTEST */
 
             return false;
@@ -1528,7 +1534,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
             {
 #if defined(STLSOFT_UNITTEST) || \
     defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-                printf("%08x: length (%u) < length() (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->length), static_cast<unsigned>(len), static_cast<unsigned>(len));
+                fprintf(stderr, "%08x: length (%u) < length() (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->length), static_cast<unsigned>(len), static_cast<unsigned>(len));
 #endif /* STLSOFT_UNITTEST */
 
                 return false;
@@ -1654,16 +1660,32 @@ template<   ss_typename_param_k C
         >
 inline basic_simple_string<C, T, A>::~basic_simple_string() stlsoft_throw_0()
 {
+#if defined(__BORLANDC__) && \
+    __BORLANDC__ > 0x0580 && \
+    defined(_DEBUG)
+
+    /* NOTE: this quite unbelievable call sequence is required with Borland
+     * 6.1 to prevent the class invariant assertion from firing. It first
+     * manifested in Pantheios' fe.WindowRegistry back-end unit-test.
+     */
+
+    if(!is_valid())
+    {
+        this->size();
+    }
+    else
+    {
+        this->size();
+        fprintf(stdin, "%.*s", int(this->size()), this->data());
+    }
+#endif /* compiler */
+
     STLSOFT_ASSERT(is_valid());
 
     if(NULL != m_buffer)
     {
         destroy_buffer_(m_buffer);
     }
-
-#ifdef STLSOFT_UNITTEST
-//  printf("~basic_simple_string(%08x)\n", this);
-#endif /* STLSOFT_UNITTEST */
 }
 
 // Comparison

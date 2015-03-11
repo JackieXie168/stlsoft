@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     9th October 2008
+ * Updated:     6th February 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     13
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 4
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
@@ -152,10 +152,12 @@ public:
 public:
     template <typename S>
     basic_file_lines(S const& path)
-        : m_mmf(new memory_mapped_file(stlsoft_ns_qual(c_str_ptr)(path)))
+        : m_mmf(NULL) /* NOTE: can't initialise m_mmf here, as Borland causes the MMF ctor to fail with Access Denied. Go figure! */
         , m_contents()
         , m_strings()
     {
+		m_mmf = (new memory_mapped_file(stlsoft_ns_qual(c_str_ptr)(path))); // See comment above for why we initialise intra-body
+
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
         STLSOFT_ASSERT(NULL != m_mmf);
 #else /* ? STLSOFT_CF_THROW_BAD_ALLOC */
