@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  30th January 2011
+; Updated:  31st January 2011
 
 ============================================================================
 
@@ -15,6 +15,38 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.108 (31st January 2011)
+
+Summary:
+========
+
+ * changed erroneously named new unixstl::/winstl::filesystem_traits method's name from invalid_handle_value() to invalid_file_handle_value()
+ * added third, defaulted, template parameter to stlsoft::frequency_map for specification of predicate
+
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/containers/frequency_map.hpp:
+    + added third, defaulted, template parameter, allowing specification of predicate
+
+ UNIXSTL:
+ ========
+
+ ~ include/unixstl/filesystem/filesystem_traits.hpp:
+    ~ changed erroneously named new method's name from invalid_handle_value() to invalid_file_handle_value()
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/filesystem_traits.hpp:
+    ~ changed erroneously named new method's name from invalid_handle_value() to invalid_file_handle_value()
 
 ============================================================================
 
