@@ -4,7 +4,7 @@
  * Purpose:     Definition of stlsoft::read_line() function template.
  *
  * Created:     2nd January 2007
- * Updated:     9th June 2010
+ * Updated:     28th December 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MAJOR     2
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MINOR     1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      14
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,13 +98,13 @@ struct read_line_flags
 {
     enum flags_t
     {
-        /** Recognises a sole carriage return (<code>'\r'</code>) character as the end-of-line marker */
+        /** Recognises a sole carriage return (<code>'\\r'</code>) character as the end-of-line marker */
         recogniseCrAsEOL    =   0x0001,
-        /** Recognises a sole line feed (<code>'\r'</code>) character as the end-of-line marker */
+        /** Recognises a sole line feed (<code>'\\r'</code>) character as the end-of-line marker */
         recogniseLfAsEOL    =   0x0002,
         /** Recognises the carriage return + line feed sequence (<code>"\r\n"</code>) as the end-of-line marker */
         recogniseCrLfAsEOL  =   0x0004,
-        /** Recognises a sole carriage return (<code>'\r'</code>) character, or a sole line feed (<code>'\r'</code>) character or the carriage return + line feed sequence (<code>"\r\n"</code>) as the end-of-line marker */
+        /** Recognises a sole carriage return (<code>'\\r'</code>) character, or a sole line feed (<code>'\\r'</code>) character or the carriage return + line feed sequence (<code>"\r\n"</code>) as the end-of-line marker */
         recogniseAll        =   (recogniseCrAsEOL | recogniseLfAsEOL | recogniseCrLfAsEOL),
 
         /** Flags mask */

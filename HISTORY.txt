@@ -2,9 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  27th December 2010
+; Updated:  28th December 2010
 
 ============================================================================
+
+
+28th December 2010 - 1.9.106 released
+-------------------------------------
+
+ * workaround for Intel compile error
 
 
 27th December 2010 - 1.9.105 released

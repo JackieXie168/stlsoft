@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     28th May 2010
+ * Updated:     28th December 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        61
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    4
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -287,7 +287,14 @@ private:
 
             if(0 != format_message(err, NULL, &s))
             {
+#if 0
                 stlsoft_ns_qual(scoped_handle)<char*> scoper(s, format_message_free_buff);
+#else /* ? 0 */
+                // Workaround for Intel compile error
+                void (*pfn)(ws_char_a_t*) = format_message_free_buff;
+
+                stlsoft_ns_qual(scoped_handle)<char*> scoper(s, pfn);
+#endif /* 0 */
 
                 return r + ": " + s;
             }
