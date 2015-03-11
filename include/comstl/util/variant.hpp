@@ -4,7 +4,7 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     12th January 2010
+ * Updated:     18th March 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       155
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   3
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       156
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -395,7 +395,7 @@ public:
 public:
     HRESULT     try_conversion_copy(VARIANT const& var, VARTYPE vt);
     HRESULT     try_convert(VARTYPE vt);
-    class_type  &convert(VARTYPE vt);
+    class_type& convert(VARTYPE vt);
 
     /** Returns a pointer to a specified interface on an object to which
      * a client currently holds an interface pointer.
@@ -541,7 +541,7 @@ inline variant::variant(class_type const& rhs)
 {
     ::VariantInit(this);
 
-    class_type& rhs_   =   const_cast<class_type&>(rhs);
+    class_type& rhs_    =   const_cast<class_type&>(rhs);
     HRESULT     hr      =   ::VariantCopy(this, &rhs_);
 
     if(FAILED(hr))
@@ -554,7 +554,7 @@ inline variant::variant(VARIANT const& rhs)
 {
     ::VariantInit(this);
 
-    HRESULT     hr      =   ::VariantCopy(this, const_cast<VARIANT*>(&rhs));
+    HRESULT hr = ::VariantCopy(this, const_cast<VARIANT*>(&rhs));
 
     if(FAILED(hr))
     {
@@ -564,7 +564,7 @@ inline variant::variant(VARIANT const& rhs)
 
 inline variant::class_type& variant::operator =(variant::class_type const& rhs)
 {
-    class_type  r(rhs);
+    class_type r(rhs);
 
     r.swap(*this);
 
@@ -871,7 +871,13 @@ inline variant::bool_type variant::equal(VARIANT const& rhs) const
 
     if(FAILED(comparisonSucceeded))
     {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         throw comstl::com_exception("support for comparison of variant type not currently supported", comparisonSucceeded);
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        OutputDebugStringA("support for comparison of variant type not currently supported\n");
+
+        return false;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     return 0 != areEqual;

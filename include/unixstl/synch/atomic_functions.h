@@ -4,14 +4,14 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     10th August 2009
+ * Updated:     4th April 2010
  *
  * Thanks:      To Brad Cox, for helping out in testing and fixing the
  *              implementation for MAC OSX (Intel).
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      199
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      200
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,14 +68,17 @@
 # include <unixstl/synch/util/features.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES */
 
-#ifdef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
-# ifdef UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS
-# elif defined(_WIN32)
-#  include <windows.h>
-# elif defined(UNIXSTL_OS_IS_MACOSX)
-#  include <libkern/OSAtomic.h>
-# endif /* architecture */
-#endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
+#if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS)
+ /* Nothing to include here; UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS will be included inside unixstl namespace */
+#elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_GCC_BUILTINS)
+ /* Nothing to include, since using built-ins */
+#elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX)
+# include <libkern/OSAtomic.h>
+#elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED)
+# include <windows.h>
+#else
+# error Atomic integer operations not supported: see unixstl/synch/util/features.h for details
+#endif /* ? */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -103,18 +106,20 @@ namespace unixstl_project
  * Typedefs
  */
 
-#ifdef UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS
-# ifdef UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS
-#  ifndef UNIXSTL_FORCED_ATOMIC_INT_T
-#   error If you are forcing atomic integer support (by defining UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) you must also define UNIXSTL_FORCED_ATOMIC_INT_T
-#  endif /* UNIXSTL_FORCED_ATOMIC_INT_T */
-typedef UNIXSTL_FORCED_ATOMIC_INT_T atomic_int_t;
-# elif defined(_WIN32)
-typedef us_sint32_t                 atomic_int_t;
-# elif defined(UNIXSTL_OS_IS_MACOSX)
-typedef STLSOFT_NS_GLOBAL(int32_t)  atomic_int_t;
-# endif /* architecture */
-#endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
+#if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS)
+# ifndef UNIXSTL_FORCED_ATOMIC_INT_T
+#  error If you are forcing atomic integer support (by defining UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) you must also define UNIXSTL_FORCED_ATOMIC_INT_T
+# endif /* UNIXSTL_FORCED_ATOMIC_INT_T */
+typedef UNIXSTL_FORCED_ATOMIC_INT_T     atomic_int_t;
+#elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_GCC_BUILTINS)
+typedef volatile int                    atomic_int_t;
+# elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED)
+typedef us_sint32_t                     atomic_int_t;
+# elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX)
+typedef STLSOFT_NS_GLOBAL(int32_t)      atomic_int_t;
+#else
+# error Atomic integer operations not supported: see unixstl/synch/util/features.h for details
+#endif
 
 /* /////////////////////////////////////////////////////////////////////////
  * Features
@@ -208,12 +213,37 @@ typedef STLSOFT_NS_GLOBAL(int32_t)  atomic_int_t;
 # define UNIXSTL_HAS_ATOMIC_POSTADD
 
 #elif defined(UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS)
-# ifdef UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS
+
+# if defined(UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS)
+
+
+ /* ************************************
+  * Forced
+  */
+
 #  ifndef UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS
-#   error If you are forcing atomic integer support (by defining UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) you must also define UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS
+#   error If you are forcing atomic integer support (by defining UNIXSTL_FORCE_ATOMIC_INTEGER_OPERATIONS) you must also define UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS as the header containing the atomic integer operations, which will be included
 #  endif /* UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS */
 #  include UNIXSTL_FORCED_ATOMIC_INTEGER_IMPLEMENTATIONS
-# elif defined(_WIN32)
+
+
+# elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_GCC_BUILTINS)
+
+
+ /* ************************************
+  * GCC builtins
+  */
+
+#  error This feature is not yet supported, and you should not be seeing this compilation path unless unixstl/synch/util/features.h is out of synch with this file; contact Synesis Software
+
+
+# elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_WINDOWS_INTERLOCKED)
+
+
+ /* ************************************
+  * Windows Interlocked
+  */
+
 #  if !defined(UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS)
 
 STLSOFT_INLINE atomic_int_t atomic_preincrement(atomic_int_t volatile* pl)
@@ -288,7 +318,13 @@ STLSOFT_INLINE atomic_int_t atomic_postadd(atomic_int_t volatile* pl, atomic_int
 
 #  endif /* !UNIXSTL_NO_WIN32_NATIVE_ATOMIC_FUNCTIONS */
 
-# elif defined(UNIXSTL_OS_IS_MACOSX)
+
+# elif defined(UNIXSTL_ATOMIC_INTEGER_OPERATIONS_VIA_MACOSX)
+
+
+ /* ************************************
+  * Mac OS-X
+  */
 
 /** \brief
  *
@@ -393,7 +429,15 @@ STLSOFT_INLINE atomic_int_t atomic_postadd(atomic_int_t volatile* pl, atomic_int
 }
 #  define UNIXSTL_HAS_ATOMIC_POSTADD
 
-# elif 0
+
+# else
+#  error Atomic integer operations not supported: see unixstl/synch/util/features.h for details
+# endif /* ? */
+
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+# if 0
 
 STLSOFT_INLINE atomic_int_t atomic_read(atomic_int_t volatile* pv);
 
@@ -421,9 +465,11 @@ STLSOFT_INLINE atomic_int_t atomic_write(atomic_int_t volatile* pv, atomic_int_t
 
     return oldval;
 }
-/* #   define UNIXSTL_HAS_ATOMIC_WRITE */
 
-# endif /* architecture */
+#endif
+
+/* ////////////////////////////////////////////////////////////////////// */
+
 #endif /* UNIXSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////

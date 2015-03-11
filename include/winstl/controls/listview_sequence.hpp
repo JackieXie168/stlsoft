@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     8th January 2010
+ * Updated:     29th March 2010
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      75
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -373,7 +373,7 @@ public:
             return *this;
         }
 
-        /// Indexing operator
+        /// Subscript operator
         value_type operator [](difference_type index) const
         {
             return value_type(m_hwndListView, m_index + index);

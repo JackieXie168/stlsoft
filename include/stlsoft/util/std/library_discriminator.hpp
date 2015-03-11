@@ -4,7 +4,7 @@
  * Purpose:     Discriminates between standard library implementations
  *
  * Created:     2nd January 2000
- * Updated:     9th March 2010
+ * Updated:     22nd March 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       6
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        101
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -248,14 +248,16 @@ namespace stlsoft
  * to differentiate between versions of the library, because there is no
  * version information contained in any of the headers, which is helpful.
  *
- * _STCONS               in      5, 6, 7.0, 7.1, 8, 9, 10
+ * _STCONS               in      5, 6, 7.0, 7.1, 8,  9,    10
  * _TEMPLATE_MEMBER      in            7.0
  * _TEMPLATE             in            7.0
- * _MESG                 in            7.0, 7.1, 8, 9
- * _HAS_EXCEPTIONS       in            7.0, 7.1, 8, 9, 10
- * _EMPTY_ARGUMENT       in                      8, 9, 10
- * _THROWS               in                         9, 10
- * _IS_YES               in                            10
+ * _MESG                 in            7.0, 7.1, 8,  9
+ * _HAS_EXCEPTIONS       in            7.0, 7.1, 8,  9,    10
+ * _EMPTY_ARGUMENT       in                      8,  9,    10
+ * _THROWS               in                          9,    10
+ * _IS_YES               in                          (9),  10
+ *
+ * _CPPLIB_VER           in      -  -  310  313  405 503/5 520
  *
  * _XTREE_ is in 6, 7.0, 7.1, but not in 4.2, 5. Of course, this means including it, which is a PITA!
  *
@@ -297,11 +299,27 @@ namespace stlsoft
     defined(_EMPTY_ARGUMENT) && \
     defined(_THROWS) && \
     defined(_IS_YES)
+#  if _CPPLIB_VER < 520
+  /* Version 9 */
+  /*
+   * This is a bit of a hack. We've seen that some VC++ 9 versions - 
+   * apparently SP1, though I've been unable to replicate - have _IS_YES
+   * defined, so will instead go on _CPPLIB_VER. Even that's somewhat of a
+   * guess though. As far as I've been able to determine, the versions out
+   * in the wild for 9 are 503 and 505 and for 10 is 520. This may not be
+   * exhaustive, and further changes may be required.
+   */
+#   ifdef _STLSOFT_COMPILE_VERBOSE
+#    pragma message("  Dinkumware version 9")
+#   endif /* _STLSOFT_COMPILE_VERBOSE */
+#   define STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION      STLSOFT_CF_DINKUMWARE_VC_VERSION_9_0
+#  else /* ? _CPPLIB_VER */
   /* Version 10 */
-#  ifdef _STLSOFT_COMPILE_VERBOSE
-#   pragma message("  Dinkumware version 10")
-#  endif /* _STLSOFT_COMPILE_VERBOSE */
-#  define STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION      STLSOFT_CF_DINKUMWARE_VC_VERSION_10_0
+#   ifdef _STLSOFT_COMPILE_VERBOSE
+#    pragma message("  Dinkumware version 10")
+#   endif /* _STLSOFT_COMPILE_VERBOSE */
+#   define STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION      STLSOFT_CF_DINKUMWARE_VC_VERSION_10_0
+#  endif /* _CPPLIB_VER */
 
 # elif \
     defined(_STCONS) && \

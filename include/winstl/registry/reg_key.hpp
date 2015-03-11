@@ -5,14 +5,14 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     22nd November 2009
+ * Updated:     22nd March 2010
  *
  * Thanks:      To Sam Fisher for spotting the defect in the set_value_()
  *              overload for REG_MULTI_SZ values (widestring only).
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        134
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -448,7 +448,7 @@ public:
      *  value returned from the get_key_handle() method.
      */
     template <ss_typename_param_k S>
-    class_type  create_sub_key(S const& subKeyName, REGSAM accessMask = KEY_ALL_ACCESS)
+    class_type create_sub_key(S const& subKeyName, REGSAM accessMask = KEY_ALL_ACCESS)
     {
         return create_sub_key_(stlsoft_ns_qual(c_str_ptr)(subKeyName), accessMask);
     }
@@ -487,7 +487,7 @@ public:
     template <ss_typename_param_k H, ss_typename_param_k S>
     static class_type create_key(H const& key, S const& subKeyName, REGSAM accessMask = KEY_ALL_ACCESS)
     {
-        return create_key(get_HKEY(key), stlsoft_ns_qual(c_str_ptr)(subKeyName), accessMask);
+        return create_key_(get_HKEY(key), stlsoft_ns_qual(c_str_ptr)(subKeyName), accessMask);
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
@@ -761,19 +761,22 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static hkey_type    open_key_(  hkey_type       hkeyParent
-                                ,   char_type const* keyName
-                                ,   REGSAM          accessMask);
-    class_type  open_sub_key_(      char_type const* subKeyName
-                                ,   REGSAM          accessMask);
-    class_type  create_sub_key_(    char_type const* subKeyName
-                                ,   REGSAM          accessMask);
-    bool_type   delete_sub_key_(    char_type const* subKeyName);
-    static result_type  set_value_( hkey_type       hkey
-                                ,   char_type const* valueName
-                                ,   ws_uint_t       type
-                                ,   void const      *value
-                                ,   size_type       cbValue);
+    static hkey_type    open_key_(  hkey_type           hkeyParent
+                                ,   char_type const*    keyName
+                                ,   REGSAM              accessMask);
+    class_type  open_sub_key_(      char_type const*    subKeyName
+                                ,   REGSAM              accessMask);
+    static class_type create_key_(  HKEY                hkey
+                                ,   char_type const*    subKeyName
+                                ,   REGSAM              accessMask);
+    class_type  create_sub_key_(    char_type const*    subKeyName
+                                ,   REGSAM              accessMask);
+    bool_type   delete_sub_key_(    char_type const*    subKeyName);
+    static result_type  set_value_( hkey_type           hkey
+                                ,   char_type const*    valueName
+                                ,   ws_uint_t           type
+                                ,   void const*         value
+                                ,   size_type           cbValue);
 
     bool_type   set_value_int_(char_type const* valueName, int value, stlsoft_ns_qual(yes_type));
     bool_type   set_value_int_(char_type const* valueName, int value, stlsoft_ns_qual(no_type));
@@ -1161,9 +1164,7 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_key(HKEY hkey, char_type const* subKeyName, REGSAM accessMask /* = KEY_ALL_ACCESS */)
 {
-    static const char_type  s_emptyString[] = { '\0' };
-
-    return class_type(hkey, s_emptyString, KEY_CREATE_SUB_KEY).create_sub_key(subKeyName, accessMask);
+    return create_key_(hkey, subKeyName, accessMask);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
@@ -1173,7 +1174,22 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_sub_key_(char_type const* subKeyName, REGSAM accessMask)
+inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_key_(
+    HKEY                hkey
+,   char_type const*    subKeyName
+,   REGSAM              accessMask
+)
+{
+    static const char_type  s_emptyString[] = { '\0' };
+
+    return class_type(hkey, s_emptyString, KEY_CREATE_SUB_KEY).create_sub_key(subKeyName, accessMask);
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_sub_key_(
+    char_type const*    subKeyName
+,   REGSAM              accessMask
+)
 {
     hkey_type   hkey;
     result_type res =   traits_type::reg_create_key(m_hkey, subKeyName, &hkey, accessMask);

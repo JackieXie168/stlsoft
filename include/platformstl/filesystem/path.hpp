@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     10th August 2009
+ * Updated:     1st April 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       27
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ namespace platformstl_project
      */
     template<   ss_typename_param_k C
             ,   ss_typename_param_k T = filesystem_traits<C>
-            ,   ss_typename_param_k A = stlsoft::allocator_selector<C>::allocator_type
+            ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft::allocator_selector<C>::allocator_type
             >
     class basic_path
     {};
@@ -147,7 +147,7 @@ namespace platformstl_project
     template<   ss_typename_param_k C
 #  ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
             ,   ss_typename_param_k T = unixstl_ns_qual(filesystem_traits)<C>
-            ,   ss_typename_param_k A = stlsoft::allocator_selector<C>::allocator_type
+            ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft::allocator_selector<C>::allocator_type
 #  else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
             ,   ss_typename_param_k T /* = filesystem_traits<C> */
             ,   ss_typename_param_k A /* = processheap_allocator<C> */

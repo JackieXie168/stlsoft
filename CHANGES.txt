@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  10th March 2010
+; Updated:  4th April 2010
 
 ============================================================================
 
@@ -16,6 +16,113 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.97 (4th April 2010)
+
+Summary:
+========
+
+ * added stlsoft::copy_preinc() and stlsoft::copy_postinc() algorithms
+ * added str_set() method to unixstl::/winstl::system_traits
+ * added unixstl/shims/conversion/to_uint64/stat.hpp
+ * added missing widestring specialisation of inetstl::filesystem_traits::is_path_name_separator()
+ * stlsoft::basic_error_desc synthesises widestring functionality if wcserror() is not available
+ * exposes widestring version of platformstl::system_traits from UNIXSTL
+ * comstl::variant compatibility with exception-support disabled
+ * removed erroneous definitions of strtol(), strtoul(), strtod()
+ * added missing 'mode' parameter to unixstl::module::load(), and uses 'mode' parameter passed to constructor template
+ * typename corrections to platformstl::basic_file_path_buffer and platformstl::basic_path
+ * improved discrimination of Visual C++ 9 / 10
+ * fixed defective arithmetic in unixstl::/winstl::memory_mapped_file
+ * refactored implementation of winstl::reg_key::create_key() to avoid infinite loop faults
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/algorithms/debug.hpp:
+    + copy_preinc()
+    + copy_postinc()
+
+ ~ stlsoft/error/error_desc.hpp:
+    + synthesises widestring functionality - in terms of strerror() - if not available as wcserror (or "safe string" equivalent)
+
+ ~ stlsoft/std/cstdlib.hpp:
+    - removed erroneous definitions of strtol(), strtoul(), strtod(): they used string access shims to elicit the string form of their arguments, and returned a pointer into the parsed string (which may no longer exist by the time the function returns)
+    + added strtol(char const*, ...) and strtol(wchar_t const*, ...)
+    + added strtoul(char const*, ...) and strtoul(wchar_t const*, ...)
+    + added strtod(char const*, ...) and strtod(wchar_t const*, ...)
+
+ ~ stlsoft/util/std/library_discriminator.hpp:
+    ~ better discrimination of VC++ 9 & 10
+
+ COMSTL:
+ =======
+
+ ~ comstl/collections/enumerator_sequence.hpp:
+    ~ minor warning workaround
+
+ ~ comstl/util/variant.hpp:
+    ~ compatibility with exception-support disabled
+
+ InetSTL:
+ ========
+
+ ~ inetstl/filesystem/filesystem_traits.hpp:
+    + added missing is_path_name_separator for wide specialisation
+
+ PlatformSTL:
+ ============
+
+ ~ platformstl/filesystem/file_path_buffer.hpp:
+ ~ platformstl/filesystem/path.hpp:
+    ~ correct use of typename to indicate dependent types in default template arguments
+
+ ~ platformstl/system/system_traits.hpp:
+    ~ exposes wide version from UNIXSTL
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/dl/module.hpp:
+    + added missing 'mode' parameter to load()
+    ~ used 'mode' parameter passed to constructor template
+
+ ~ unixstl/filesystem/memory_mapped_file.hpp:
+    ~ fixed defective arithmetic when validating non-0 request size
+
+ ~ unixstl/filesystem/path_functions.hpp:
+    ~ refactored implementation
+
+ ~ unixstl/shims/conversion/to_uint64/stat.hpp:
+    + added unixstl/shims/conversion/to_uint64/stat.hpp
+
+ ~ unixstl/synch/atomic_functions.h:
+ ~ unixstl/synch/util/features.h:
+    ~ preparation for future refinement
+
+ ~ unixstl/system/system_traits.hpp:
+    + str_set() method
+    ~ other widestring compatibility changes
+
+ WinSTL:
+ =======
+
+ ~ winstl/filesystem/memory_mapped_file.hpp:
+    ~ fixed defective arithmetic when validating non-0 request size
+
+ ~ winstl/filesystem/path_functions.hpp:
+    ~ minor restructuring
+
+ ~ winstl/registry/reg_key.hpp:
+    ~ refactored implementation of create_key() to avoid infinite loop fault in case of passing string types of non-matching character encodings
+
+ ~ winstl/system/system_traits.hpp:
+    + str_set() method
 
 ============================================================================
 

@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     15th February 2010
+ * Updated:     31st March 2010
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        123
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -193,6 +193,10 @@ public:
     static char_type*   str_pbrk(char_type const* s, char_type const* charSet);
     /// Returns a pointer to the end of the string
     static char_type*   str_end(char_type const* s);
+    /// Sets each character in \c s to the character \c c
+    ///
+    /// \return s + n
+    static char_type*   str_set(char_type* s, size_type n, char_type c);
 /// @}
 
 /// \name Locale management
@@ -484,6 +488,18 @@ public:
         {}
 
         return const_cast<char_type*>(s);
+    }
+
+    static char_type* str_set(char_type* s, size_type n, char_type c)
+    {
+        WINSTL_ASSERT(NULL != s || 0u == n);
+
+        for(; 0u != n; --n, ++s)
+        {
+            *s = c;
+        }
+
+        return s;
     }
 
 public:
@@ -865,6 +881,18 @@ public:
         {}
 
         return const_cast<char_type*>(s);
+    }
+
+    static char_type* str_set(char_type* s, size_type n, char_type c)
+    {
+        WINSTL_ASSERT(NULL != s || 0u == n);
+
+        for(; 0u != n; --n, ++s)
+        {
+            *s = c;
+        }
+
+        return s;
     }
 
 public:

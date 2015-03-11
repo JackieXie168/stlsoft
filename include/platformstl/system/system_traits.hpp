@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the system_traits components.
  *
  * Created:     2nd July 2006
- * Updated:     10th August 2009
+ * Updated:     31st March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     1
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      6
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -136,12 +136,10 @@ namespace platformstl_project
         : public unixstl_ns_qual(system_traits)<unixstl_ns_qual(us_char_a_t)>
     {};
 
-#if 0
     STLSOFT_TEMPLATE_SPECIALISATION
     struct system_traits<unixstl_ns_qual(us_char_w_t)>
         : public unixstl_ns_qual(system_traits)<unixstl_ns_qual(us_char_w_t)>
     {};
-#endif /* 0 */
 
 # else /* ? compiler */
 
