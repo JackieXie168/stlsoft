@@ -5,7 +5,7 @@
  *              libraries.
  *
  * Created:     12th May 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 
 /** \file stlsoft/conversion/any_cast.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::any_caster cast class.
- * (\ref group__library__conversion "Conversion" Library.)
+ * \brief [C++ only] Definition of the stlsoft::any_caster cast class
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       29
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

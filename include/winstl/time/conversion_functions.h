@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/time/conversion_functions.h
  *
- * \brief [C, C++] Conversion functions for Windows time types.
- * (\ref group__library__time "Time" Library.)
+ * \brief [C, C++] Conversion functions for Windows time types
+ *   (\ref group__library__time "Time" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TIME_H_CONVERSION_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     41
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_TIME_H_CONVERSION_FUNCTIONS_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,9 +70,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -137,6 +137,15 @@ STLSOFT_INLINE time_t winstl__FILETIMEToUNIXTime(FILETIME const *ft, ws_sint32_t
 
     return stlsoft_static_cast(time_t, i);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -229,8 +238,9 @@ inline void FILETIMEToUNIXTime(FILETIME const &ft, time_t &t, ws_sint32_t &micro
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/conversion_functions_unittest_.h"

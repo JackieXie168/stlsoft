@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the readdir_sequence components.
  *
  * Created:     29th April 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file platformstl/filesystem/readdir_sequence.hpp
  *
  * \brief [C++ only] Definition of the platformstl::readdir_sequence
- *  type.
- * (\ref group__library__file_system "File System" Library.)
+ *  type
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       5
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,14 +104,14 @@ namespace platformstl_project
 
     /** \brief STL-like readonly sequence based on directory contents.
      *
-     * \ingroup group__library__file_system
+     * \ingroup group__library__filesystem
      *
      * The class is only defined in the \link ::platformstl platformstl\endlink
      * when the platform is not UNIX, in which case it uses the services
      * of another file-system enumeration type, e.g.
      * winstl::basic_findfile_sequence. For UNIX compilation, it
      * resolves to unixstl::readdir_sequence, relying on
-     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_conformance "Intersecting Conformance"
      * of the resolved platform-specific types.
      */
     class readdir_sequence

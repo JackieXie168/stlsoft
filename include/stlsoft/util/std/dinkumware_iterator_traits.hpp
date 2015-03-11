@@ -4,7 +4,7 @@
  * Purpose:     "Old" Dinkumware library iterator capability discrimination.
  *
  * Created:     31st December 2005
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/util/std/dinkumware_iterator_traits.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::Dinkumware_iterator_traits
- *   utility traits class.
- * (\ref group__library__utility "Utility" Library.)
+ *   utility traits class
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_REVISION   5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       14
+# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
  * Created:     15th September 2004
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file acestl/collections/message_queue_sequence.hpp
  *
  * \brief [C++ only] Definition of the acestl::message_queue_sequence
- *   collection class template.
- * (\ref group__library__collections "Collections" Library.)
+ *   collection class template
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef ACESTL_INCL_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  7
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      48
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

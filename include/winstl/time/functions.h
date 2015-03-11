@@ -4,7 +4,7 @@
  * Purpose:     Time manipulation functions.
  *
  * Created:     21st November 2003
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/time/functions.h
  *
  * \brief [C, C++] Main include file that includes all WinSTL time function
- *   include files.
- * (\ref group__library__time "Time" Library.)
+ *   include files
+ *   (\ref group__library__time "Time" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_TIME_H_FUNCTIONS
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_MAJOR       5
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_EDIT        36
+# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_REVISION    3
+# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,9 +68,11 @@
 #ifndef WINSTL_INCL_WINSTL_TIME_H_CONVERSION_FUNCTIONS
 # include <winstl/time/conversion_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_TIME_H_CONVERSION_FUNCTIONS */
-#ifndef WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS
-# include <winstl/time/format_functions.h>
-#endif /* !WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS */
+#ifdef __cplusplus
+# ifndef WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS
+#  include <winstl/time/format_functions.hpp>
+# endif /* !WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS */
+#endif /* __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

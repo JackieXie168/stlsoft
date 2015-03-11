@@ -4,7 +4,7 @@
  * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,8 +44,8 @@
  *
  * \brief [C++ only] Definition of the stlsoft::os_exception exception
  *   class and the stlsoft::nothrow_exception_policy and
- *   stlsoft::throw_exception_policy exception policy classes.
- * (\ref group__library__error "Error" Library.)
+ *   stlsoft::throw_exception_policy exception policy classes
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      45
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Error functions.
  *
  * Created:     20th October 1994
- * Updated:     29th December 2006
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/font_functions.h
  *
- * \brief [C, C++] Error functions.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] Error functions
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_FONT_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT        134
+# define WINSTL_VER_WINSTL_WINDOW_H_FONT_FUNCTIONS_EDIT        136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,9 +69,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -110,7 +110,16 @@ STLSOFT_INLINE void winstl__set_window_font(HWND hwnd, HFONT hfont, ws_int_t bRe
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * C++ Function Overrides
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ functions
  */
 
 #if defined(__cplusplus)

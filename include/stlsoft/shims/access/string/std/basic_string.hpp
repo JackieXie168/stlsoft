@@ -5,14 +5,14 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,8 +45,8 @@
 /** \file stlsoft/shims/access/string/std/basic_string.hpp
  *
  * \brief [C++] Definition of the string access shims for
- *   std::basic_string (and its related compiler/library-dependent forms).
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   std::basic_string (and its related compiler/library-dependent forms)
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      87
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

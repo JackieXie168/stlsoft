@@ -1,13 +1,5 @@
-#include <stlsoft/stlsoft.h>
-
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/obsolete/inheritance_disambiguator.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#include <stlsoft/obsolete/inheritance_disambiguator.hpp>
+#error stlsoft_inheritance_disambiguator.h is now obsolete. Instead include stlsoft/obsolete/inheritance_disambiguator.hpp
 
 /* Compatibility
-[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
-

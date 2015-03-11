@@ -4,11 +4,11 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     30th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file comstl/collections/enumerator_sequence.hpp
  *
  * \brief [C++ only] Definition of the comstl::enumerator_sequence
- *   collection class template.
- * (\ref group__library__collections "Collections" Library.)
+ *   collection class template
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    0
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 10
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     230
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     231
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,5 @@
 
-// Updated: 11th June 2006
+// Updated: 14th January 2007
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SEMAPHORE)
 # error This file cannot be directly included, and should only be included within unixstl/synch/semaphore.hpp
@@ -30,15 +30,11 @@ namespace unittest
 			}
 			catch(synchronisation_exception &x)
 			{
-				r->report(x.what(), __LINE__);
+				if(r->verbosity() > 1)
+				{
+					r->report(x.what(), __LINE__);
+				}
 			}
-
-#if 0
-			if(0 != i)
-			{
-				bSuccess = false;
-			}
-#endif /* 0 */
 
 			return bSuccess;
 		}

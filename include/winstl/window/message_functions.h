@@ -4,11 +4,11 @@
  * Purpose:     Message functions.
  *
  * Created:     7th May 2000
- * Updated:     16th July 2006
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/message_functions.h
  *
- * \brief [C, C++] Message functions.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] Message functions
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT     36
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION 2
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,13 +133,6 @@ inline LRESULT SendMessageW(HWND    hwnd
     return winstl__SendMessageW(hwnd, uMsg, wParam, lParam);
 }
 
-//inline LRESULT SendMessage( HWND    hwnd
-//                        ,   UINT    uMsg
-//                        ,   WPARAM  wParam
-//                        ,   LPARAM  lParam)
-//{
-//    return winstl__SendMessage(hwnd, uMsg, wParam, lParam);
-//}
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

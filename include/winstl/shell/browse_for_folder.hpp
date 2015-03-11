@@ -4,7 +4,7 @@
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -43,8 +43,8 @@
 
 /** \file winstl/shell/browse_for_folder.hpp
  *
- * \brief [C++ only] Definition of Windows Shell folder browsing functions.
- * (\ref group__library__windows_shell "Windows Shell" Library.)
+ * \brief [C++ only] Definition of Windows Shell folder browsing functions
+ *   (\ref group__library__windows_shell "Windows Shell" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 2
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     55
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 3
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -337,7 +337,8 @@ inline ws_bool_t browse_for_folder(S const &title, C *displayName, UINT flags)
     return browse_for_folder(title, displayName, flags, 0, 0);
 }
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS) && \
+#if !defined(STLSOFT_COMPILER_IS_DMC) && \
+    !defined(STLSOFT_COMPILER_IS_MWERKS) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1300)
 /** \brief Browses the shell namespace according to the given parameters

@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file comstl/shims/access/string/variant.hpp
  *
  * \brief [C++] Definition of the string access shims for
- *   <code>VARIANT</code>.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   <code>VARIANT</code>
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef COMSTL_INCL_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    0
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 2
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     103
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ namespace comstl_project
  * c_str_ptr_null() function, such that the text of a given variant
  * may be accessed as a null-terminated string.
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_null_VARIANT_proxy
@@ -194,7 +194,7 @@ private:
  * c_str_ptr_w() function, such that the text of a given variant
  * may be accessed as a null-terminated string.
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_VARIANT_proxy_w
@@ -261,7 +261,7 @@ private:
  * c_str_ptr_a() function, such that the text of a given variant
  * may be accessed as a null-terminated string.
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 class c_str_VARIANT_proxy_a
@@ -517,7 +517,7 @@ inline c_str_VARIANT_proxy_w c_str_data_w(VARIANT const &v)
 
 /** \brief Returns the corresponding possibly unterminated C-string pointer of the VARIANT \c v
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 #ifdef UNICODE
@@ -544,7 +544,7 @@ inline c_str_VARIANT_proxy_a c_str_data(VARIANT const &v)
 /* VARIANT */
 /** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline cs_size_t c_str_len(VARIANT const &v)
@@ -586,7 +586,7 @@ inline cs_size_t c_str_len(VARIANT const &v)
 
 /** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline cs_size_t c_str_len_a(VARIANT const &v)
@@ -596,7 +596,7 @@ inline cs_size_t c_str_len_a(VARIANT const &v)
 
 /** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 inline cs_size_t c_str_len_w(VARIANT const &v)
@@ -629,7 +629,7 @@ inline c_str_VARIANT_proxy_w c_str_ptr_w(VARIANT const &v)
 
 /** \brief Returns the corresponding C-string pointer of the VARIANT \c v
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 #ifdef UNICODE
@@ -655,7 +655,7 @@ inline c_str_VARIANT_proxy_a c_str_ptr(VARIANT const &v)
 /* VARIANT */
 /** \brief Returns the corresponding ANSI C-string pointer of the VARIANT \c v, or a null pointer
  *
- * \ingroup group__library__string_access_shims
+ * \ingroup group__concept__shim__string_access
  *
  */
 //inline c_str_null_VARIANT_proxy<cs_char_a_t> c_str_ptr_null_a(VARIANT const &v);

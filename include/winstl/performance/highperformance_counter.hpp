@@ -4,7 +4,7 @@
  * Purpose:     WinSTL high performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     2nd January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/performance/highperformance_counter.hpp
  *
  * \brief [C++ only] Definition of the 
- *  \link winstl::highperformance_counter highperformance_counter\endlink class.
- * (\ref group__library__performance "Performance" Library.)
+ *  \link winstl::highperformance_counter highperformance_counter\endlink class
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MINOR    0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_REVISION 2
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     79
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-# error winstl_highperformance_counter.h is not compatible with Visual C++ 5.0 or earlier
+# error winstl/performance/highperformance_counter.hpp is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS

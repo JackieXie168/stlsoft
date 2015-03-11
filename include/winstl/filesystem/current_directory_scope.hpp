@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/filesystem/current_directory_scope.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_current_directory_scope
- *  class template.
- * (\ref group__library__file_system "File System" Library.)
+ *  class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      115
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@ namespace winstl_project
 
 /** \brief Current directory scoping class
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * This class scopes the process's current directory, by changing to the path
  * given in the constructor, and then, if that succeeded, changing back in the
@@ -218,17 +218,17 @@ private:
 
 /** \brief Specialisation of the basic_current_directory_scope template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_current_directory_scope<ws_char_a_t, filesystem_traits<ws_char_a_t> >     current_directory_scope_a;
 /** \brief Specialisation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_current_directory_scope<ws_char_w_t, filesystem_traits<ws_char_w_t> >     current_directory_scope_w;
 /** \brief Specialisation of the basic_current_directory_scope template for the Win32 character type \c TCHAR
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_current_directory_scope<TCHAR, filesystem_traits<TCHAR> >                 current_directory_scope;
 

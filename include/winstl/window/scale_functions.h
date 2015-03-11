@@ -4,11 +4,11 @@
  * Purpose:     Contains scale functions.
  *
  * Created:     7th February 2002
- * Updated:     29th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/scale_functions.h
  *
- * \brief [C, C++] Scale functions.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] Scale functions
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_SCALE_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_EDIT       41
+# define WINSTL_VER_WINSTL_WINDOW_H_SCALE_FUNCTIONS_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

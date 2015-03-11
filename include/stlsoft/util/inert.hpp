@@ -4,7 +4,7 @@
  * Purpose:     Contains the inert class.
  *
  * Created:     16th January 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/util/inert.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::inert class.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Definition of the stlsoft::inert class
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       36
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

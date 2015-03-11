@@ -4,7 +4,7 @@
  * Purpose:     Exceptions used by the Clipboard library.
  *
  * Created:     6th June 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/clipboard/error/exceptions.hpp
  *
- * \brief [C++ only] Exceptions used by the Windows Clipboard Library.
- * (\ref group__library__windows_clipboard "Windows Clipboard" Library.)
+ * \brief [C++ only] Exceptions used by the Windows Clipboard Library
+ *   (\ref group__library__windows_clipboard "Windows Clipboard" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS_EDIT      6
+# define WINSTL_VER_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

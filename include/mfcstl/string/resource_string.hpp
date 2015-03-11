@@ -4,7 +4,7 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file mfcstl/string/resource_string.hpp
  *
- * \brief [C++ only] Definition of the mfcstl::resource_string class.
- * (\ref group__library__string "String" Library.)
+ * \brief [C++ only] Definition of the mfcstl::resource_string class
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_STRING_HPP_RESOURCE_STRING
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MAJOR      4
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MINOR      0
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_REVISION   2
-# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       75
+# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

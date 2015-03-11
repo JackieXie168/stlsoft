@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
@@ -44,8 +44,8 @@
 /** \file stlsoft/smartptr/scoped_handle.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::scoped_handle smart
- *   pointer class template.
- * (\ref group__library__smart_pointers "Smart Pointers" Library.)
+ *   pointer class template
+ *   (\ref group__library__smart_pointers "Smart Pointers" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    2
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     655
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     656
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -634,8 +634,8 @@ public:
         , m_tfn(&function_translator_cdecl_void<void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {
-		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
-	}
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -646,8 +646,8 @@ public:
         , m_tfn(&function_translator_cdecl_void<R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {
-		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
-	}
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
@@ -659,8 +659,8 @@ public:
         , m_tfn(&function_translator_fastcall_void<void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {
-		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
-	}
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -671,8 +671,8 @@ public:
         , m_tfn(&function_translator_fastcall_void<R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {
-		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
-	}
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
@@ -686,8 +686,8 @@ public:
         , m_tfn(&function_translator_stdcall_void<void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {
-		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
-	}
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -698,8 +698,8 @@ public:
         , m_tfn(&function_translator_stdcall_void<R>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {
-		STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
-	}
+        STLSOFT_MESSAGE_ASSERT("Precondition violation: cannot initialise with a NULL function pointer", NULL != f);
+    }
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 

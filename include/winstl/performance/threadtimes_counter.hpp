@@ -4,7 +4,7 @@
  * Purpose:     WinSTL thread-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/performance/threadtimes_counter.hpp
  *
  * \brief [C++ only] Definition of the 
- *  \link winstl::threadtimes_counter threadtimes_counter\endlink class.
- * (\ref group__library__performance "Performance" Library.)
+ *  \link winstl::threadtimes_counter threadtimes_counter\endlink class
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_MINOR    0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_EDIT     42
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_THREADTIMES_COUNTER_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

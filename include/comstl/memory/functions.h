@@ -4,7 +4,7 @@
  * Purpose:     COM memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/memory/functions.h
  *
- * \brief [C, C++] COM memory functions.
- * (\ref group__library__memory "Memory" Library.)
+ * \brief [C, C++] COM memory functions
+ *   (\ref group__library__memory "Memory" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_MEMORY_H_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     1
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  2
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      46
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  3
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -262,8 +262,9 @@ inline void CoTaskMemHeapMinimize()
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/functions_unittest_.h"

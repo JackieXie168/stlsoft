@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/string/shim_string.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::basic_shim_string class
- *   template.
- * (\ref group__library__string "String" Library.)
+ *   template
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        35
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

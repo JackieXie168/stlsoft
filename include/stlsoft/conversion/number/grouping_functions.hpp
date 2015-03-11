@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/format/number/grouping_functions.hpp
+ * File:        stlsoft/conversion/number/grouping_functions.hpp
  *
  * Purpose:     Number formatting functions.
  *
  * Created:     28th August 2005
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,11 +38,11 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/format/number/grouping_functions.hpp
+/** \file stlsoft/conversion/number/grouping_functions.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::format_thousands() formatting
- *   function.
- * (\ref group__library__conversion "Conversion" Library.)
+ *   function
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  3
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      5
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,14 +88,21 @@ namespace stlsoft
 /** \brief
  *
  * \ingroup group__library__conversion
+ *
+ * \param dest Pointer to buffer to receive translation. If NULL, function returns required size.
+ * \param cchDest Size of available buffer. Ignored if dest is NULL.
+ * \param picture Grouping picture. May not be NULL. Behaviour is undefined if contains any characters other than <code>fmtSep</code> and digits.
+ * \param rawNumber The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits.
+ * \param fmtSep The separator in the format.
+ * \param outputSep The separator in the output.
  */
 template <ss_typename_param_k C>
-inline ss_size_t translate_thousands(   C           *dest       /*!< Pointer to buffer to receive translation. If NULL, function returns required size */
-                                    ,   ss_size_t   cchDest     /*!< Size of available buffer. Ignored if dest is NULL */
-                                    ,   C const     *picture    /*!< Grouping picture. May not be NULL. Behaviour is undefined if contains any characters other than <code>fmtSep</code> and digits */
-                                    ,   C const     *rawNumber  /*!< The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits */
-                                    ,   C           fmtSep      /*!< The separator in the format */
-                                    ,   C           outputSep   /*!< The separator in the output */
+inline ss_size_t translate_thousands(   C           *dest
+                                    ,   ss_size_t   cchDest
+                                    ,   C const     *picture
+                                    ,   C const     *rawNumber
+                                    ,   C           fmtSep
+                                    ,   C           outputSep
                                     )
 {
     typedef char_traits<C>  traits_t;
@@ -181,16 +188,23 @@ inline ss_size_t translate_thousands(   C           *dest       /*!< Pointer to 
 /** \brief
  *
  * \ingroup group__library__conversion
+ *
+ * \param dest Pointer to buffer to receive translation. If NULL, function returns required size.
+ * \param cchDest Size of available buffer. Ignored if dest is NULL.
+ * \param picture Grouping picture. May not be NULL. Behaviour is undefined if contains any characters other than <code>fmtSep</code> and digits.
+ * \param number The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits.
+ * \param fmtSep The separator in the format.
+ * \param outputSep The separator in the output.
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k I
         >
-inline ss_size_t format_thousands(  C           *dest       /*!< Pointer to buffer to receive translation. If NULL, function returns required size */
-                                ,   ss_size_t   cchDest     /*!< Size of available buffer. Ignored if dest is NULL */
-                                ,   C const     *picture    /*!< Grouping picture. May not be NULL. Behaviour is undefined if contains any characters other than <code>fmtSep</code> and digits */
-                                ,   I const     &number     /*!< The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits */
-                                ,   C           fmtSep      /*!< The separator in the format */
-                                ,   C           outputSep   /*!< The separator in the output */
+inline ss_size_t format_thousands(  C           *dest
+                                ,   ss_size_t   cchDest
+                                ,   C const     *picture
+                                ,   I const     &number
+                                ,   C           fmtSep
+                                ,   C           outputSep
                                 )
 {
     C       szRawNumber[21];    // 21 is large enough for any 64-bit number (signed or unsigned)
@@ -204,14 +218,19 @@ inline ss_size_t format_thousands(  C           *dest       /*!< Pointer to buff
 /** \brief
  *
  * \ingroup group__library__conversion
+ *
+ * \param dest Pointer to buffer to receive translation. If NULL, function returns required size.
+ * \param cchDest Size of available buffer. Ignored if dest is NULL.
+ * \param picture Grouping picture. May not be NULL. Behaviour is undefined if contains any characters other than <code>fmtSep</code> and digits.
+ * \param number The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits.
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k I
         >
-inline ss_size_t format_thousands(  C           *dest       /*!< Pointer to buffer to receive translation. If NULL, function returns required size */
-                                ,   ss_size_t   cchDest     /*!< Size of available buffer. Ignored if dest is NULL */
-                                ,   C const     *picture    /*!< Grouping picture. May not be NULL. Behaviour is undefined if contains any characters other than ; and digits */
-                                ,   I const     &number     /*!< The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits */
+inline ss_size_t format_thousands(  C           *dest
+                                ,   ss_size_t   cchDest
+                                ,   C const     *picture
+                                ,   I const     &number
                                 )
 {
     return format_thousands(dest, cchDest, picture, number, ';', ',');

@@ -4,7 +4,7 @@
  * Purpose:     Traits for detecting characteristics of adapted iterators.
  *
  * Created:     9th July 2004
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/iterators/adapted_iterator_traits.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::adapted_iterator_traits
- *   class template.
- * (\ref group__library__iterators "Iterators" Library.)
+ *   class template
+ *   (\ref group__library__iterators "Iterators" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MINOR    5
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     43
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

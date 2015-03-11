@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -45,8 +45,8 @@
 /** \file stlsoft/string/string_view.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::basic_string_view class
- *  template.
- * (\ref group__library__string "String" Library.)
+ *  template
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        80
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

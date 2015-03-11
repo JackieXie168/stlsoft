@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/controls/functionals.hpp
  *
- * \brief [C++] Functionals for application to controls.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ * \brief [C++] Functionals for application to controls
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_HPP_FUNCTIONALS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 2
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     68
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 3
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,7 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_DMC:	__DMC__<0x0850
 STLSOFT_COMPILER_IS_GCC:  __GNUC__<3
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 [Incompatibilies-end]
@@ -75,11 +76,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
     __GNUC__ < 3
-# error winstl_control_functionals.h is not compatible with GNU C++ prior to 3.0
+# error winstl/controls/functionals.hpp is not compatible with GNU C++ prior to 3.0
 #endif /* compiler */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1100
-# error winstl_control_functionals.h is not compatible with Visual C++ 4.2 or earlier
+# error winstl/controls/functionals.hpp is not compatible with Visual C++ 4.2 or earlier
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
@@ -127,6 +128,14 @@ namespace winstl_project
 
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Workarounds
+ */
+
+#if defined(STLSOFT_COMPILER_IS_DMC)
+
+#endif /* STLSOFT_COMPILER_IS_DMC */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -295,14 +304,16 @@ private:
     class_type &operator =(class_type const&);
 };
 
-
-/** \brief Function object used to insert items at the front of list-box
+/** \brief A function class used to insert items at the front of list-box
  *
  * \ingroup group__library__windows_controls
  */
 // [[synesis:class:unary-functor: listbox_front_inserter]]
 struct listbox_front_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_front_inserter>
+#endif /* compiler */
 {
 public:
     typedef listbox_front_inserter  class_type;
@@ -368,13 +379,16 @@ private:
     ws_int32_t  m_bUnicode;
 };
 
-/** \brief Function object used to add items to a list-box
+/** \brief A function class used to add items to a list-box
  *
  * \ingroup group__library__windows_controls
  */
 // [[synesis:class:unary-functor: listbox_add_inserter]]
 struct listbox_add_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_add_inserter>
+#endif /* compiler */
 {
 public:
     typedef listbox_add_inserter    class_type;
@@ -440,13 +454,16 @@ private:
     ws_int32_t  m_bUnicode;
 };
 
-/** \brief Function object used to insert items to the back of a list-box
+/** \brief A function class used to insert items to the back of a list-box
  *
  * \ingroup group__library__windows_controls
  */
 // [[synesis:class:unary-functor: listbox_back_inserter]]
 struct listbox_back_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_back_inserter>
+#endif /* compiler */
 {
 public:
     typedef listbox_back_inserter   class_type;
@@ -514,13 +531,16 @@ private:
 
 
 
-/** \brief Function object used to insert items at the front of combo-box
+/** \brief A function class used to insert items at the front of combo-box
  *
  * \ingroup group__library__windows_controls
  */
 // [[synesis:class:unary-functor: combobox_front_inserter]]
 struct combobox_front_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_front_inserter>
+#endif /* compiler */
 {
 public:
     typedef combobox_front_inserter class_type;
@@ -586,13 +606,16 @@ private:
     ws_int32_t  m_bUnicode;
 };
 
-/** \brief Function object used to add items to a combo-box
+/** \brief A function class used to add items to a combo-box
  *
  * \ingroup group__library__windows_controls
  */
 // [[synesis:class:unary-functor: combobox_add_inserter]]
 struct combobox_add_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_add_inserter>
+#endif /* compiler */
 {
 public:
     typedef combobox_add_inserter   class_type;
@@ -658,13 +681,16 @@ private:
     ws_int32_t  m_bUnicode;
 };
 
-/** \brief Function object used to insert items to the back of a combo-box
+/** \brief A function class used to insert items to the back of a combo-box
  *
  * \ingroup group__library__windows_controls
  */
 // [[synesis:class:unary-functor: combobox_back_inserter]]
 struct combobox_back_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_back_inserter>
+#endif /* compiler */
 {
 public:
     typedef combobox_back_inserter  class_type;

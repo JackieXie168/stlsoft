@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/attribute/is_empty/lists.hpp
+ * File:        winstl/synch/error/exceptions.hpp
  *
- * Purpose:     Helper functions for MFC list classes.
+ * Purpose:     Synchronisation API exception(s).
  *
- * Created:     18th December 2006
- * Updated:     19th December 2006
+ * Created:     30th May 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,107 +38,117 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file mfcstl/shims/attribute/is_empty/lists.hpp
+/** \file winstl/synch/error/exceptions.hpp
  *
- * \brief [C++] Primary include file for is_empty attribute shims
- *   for MFC list classes.
- *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
+ * \brief [C++ only] Definition of winstl::synchronisation_exception class
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
-#ifndef MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_LISTS
-#define MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_LISTS
+#ifndef WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+#define WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_LISTS_MAJOR     1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_LISTS_MINOR     0
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_LISTS_REVISION  1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_LISTS_EDIT      1
+# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_MAJOR     2
+# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_MINOR     0
+# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
-#ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
-# include <mfcstl/mfcstl.hpp>
-#endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
-#include <afxcoll.h>
+#ifndef WINSTL_INCL_WINSTL_H_WINSTL
+# include <winstl/winstl.h>
+#endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
-#ifndef _MFCSTL_NO_NAMESPMFC
-# if defined(_STLSOFT_NO_NAMESPMFC) || \
+#ifndef _WINSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::mfcstl */
-namespace mfcstl
+/* There is no stlsoft namespace, so must define ::winstl */
+namespace winstl
 {
 # else
-/* Define stlsoft::mfcstl_project */
+/* Define stlsoft::winstl_project */
 
 namespace stlsoft
 {
 
-namespace mfcstl_project
+namespace winstl_project
 {
 
-# endif /* _STLSOFT_NO_NAMESPMFC */
-#endif /* !_MFCSTL_NO_NAMESPMFC */
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Shims
+ * Classes
  */
 
-/** \brief Indicates whether the list is empty
- *
- * \ingroup group__concept__shim__collection_attribute__is_empty
- *
+/** \brief Root exception thrown by
+ *   the \ref group__library__synch "Synchronisation" library.
  */
-inline int is_empty(CPtrList const &l)
+class synchronisation_exception
+    : public windows_exception
 {
-    return 0 == l.GetCount();
-}
+/// \name Member Types
+/// @{
+public:
+    typedef windows_exception                   parent_class_type;
+    typedef synchronisation_exception           class_type;
+    typedef parent_class_type::error_code_type  error_code_type;
+/// @}
 
-/** \brief Indicates whether the list is empty
- *
- * \ingroup group__concept__shim__collection_attribute__is_empty
- *
- */
-inline int is_empty(CObList const &l)
-{
-    return 0 == l.GetCount();
-}
+/// \name Construction
+/// @{
+public:
+    synchronisation_exception(ws_char_a_t const *message, error_code_type error)
+        : parent_class_type(message, error)
+    {};
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    class_type &operator =(class_type const &);
+/// @}
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/lists_unittest_.h"
+# include "./unittest/exceptions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _MFCSTL_NO_NAMESPMFC
-# if defined(_STLSOFT_NO_NAMESPMFC) || \
+#ifndef _WINSTL_NO_NAMESPACE
+# if defined(_STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace mfcstl
+} // namespace winstl
 # else
-} // namespace mfcstl_project
+} // namespace winstl_project
 } // namespace stlsoft
-# endif /* _STLSOFT_NO_NAMESPMFC */
-
-namespace stlsoft
-{
-
-    using ::mfcstl::is_empty;
-
-} // namespace stlsoft
-
-#endif /* !_MFCSTL_NO_NAMESPMFC */
+# endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_LISTS */
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 
 /* ////////////////////////////////////////////////////////////////////// */

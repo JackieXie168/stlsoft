@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation functions.
  *
  * Created:     30th May 2006
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,11 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/synch/functions.hpp
+/** \file winstl/synch/wait_functions.hpp
  *
  * \brief [C++ only] Definition of the winstl::wait_for_multiple_objects()
- *  functions.
- * (\ref group__library__synch "Synchronisation" Library.)
+ *  functions
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        8
+# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

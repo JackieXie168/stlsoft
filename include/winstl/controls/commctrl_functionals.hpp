@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to common controls.
  *
  * Created:     8th October 2002
- * Updated:     6th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/controls/commctrl_functionals.hpp
  *
- * \brief [C++ only] Functionals for application to common controls.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ * \brief [C++ only] Functionals for application to common controls
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MINOR      1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_REVISION   2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       66
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_REVISION   3
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,7 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_DMC:	__DMC__<0x0850
 STLSOFT_COMPILER_IS_GCC: __GNUC__<3
 [Incompatibilies-end]
  */
@@ -114,14 +115,23 @@ namespace winstl_project
  * Classes
  */
 
-/** \brief Function object used to insert items into list views
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ws_bool_t BACK>
+struct listview_inserter;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief A function class used to insert items into list views
  *
  * \ingroup group__library__windows_controls
  */
+
 template <ws_bool_t BACK = true>
 // [[synesis:class:unary-functor: listview_inserter]]
 struct listview_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listview_inserter<BACK> >
+#endif /* compiler */
 {
 public:
     typedef listview_inserter   class_type;
@@ -222,25 +232,28 @@ inline ws_int_t listview_inserter<true>::insert_index() const
     return static_cast<ws_int_t>(::SendMessage(m_hwndListview, LVM_GETITEMCOUNT, 0, 0L));   // Back insertion
 }
 
-/** \brief Function object used to insert items at the front of list-views
+/** \brief A function class used to insert items at the front of list-views
  *
  * \ingroup group__library__windows_controls
  */
 typedef listview_inserter<false>    listview_front_inserter;
-/** \brief Function object used to insert items at the back of list-views
+/** \brief A function class used to insert items at the back of list-views
  *
  * \ingroup group__library__windows_controls
  */
 typedef listview_inserter<true>     listview_back_inserter;
 
 
-/** \brief Function object used to insert items into tree views
+/** \brief A function class used to insert items into tree views
  *
  * \ingroup group__library__windows_controls
  */
 // [[synesis:class:unary-functor: treeview_inserter]]
 struct treeview_inserter
+#if !defined(STLSOFT_COMPILER_IS_DMC) || \
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<treeview_inserter>
+#endif /* compiler */
 {
     enum
     {

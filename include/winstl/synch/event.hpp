@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/synch/event.hpp
  *
- * \brief [C++ only] Definition of the winstl::event class.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of the winstl::event class
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EVENT
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     51
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
-#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
-# include <winstl/synch/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+# include <winstl/synch/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -244,6 +244,19 @@ inline HANDLE get_synch_handle(event &ev)
     return ev.get();
 }
 
+/** \brief Overload of the form of the winstl::get_kernel_handle() shim for
+ *    the winstl::event type.
+ *
+ * \ingroup group__library__shims__kernel_handle_attribute
+ *
+ * \param ev The winstl::event instance
+ *
+ * \retval The synchronisation handle of \c ev
+ */
+inline HANDLE get_kernel_handle(event &ev)
+{
+    return ev.get();
+}
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

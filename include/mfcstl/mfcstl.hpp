@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     6th January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,10 +48,13 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  2
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      85
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file mfcstl/mfcstl.hpp \brief [C++ only; requires MFC library] The root header for the \ref group__project__mfcstl "MFCSTL" project. */
+/** \file mfcstl/mfcstl.hpp
+ *
+ * \brief [C++ only; requires MFC library] The root header for the \ref group__project__mfcstl "MFCSTL" project.
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * MFCSTL version
@@ -120,7 +123,7 @@
 # define _MFCSTL_VER_1_4_1      0x00010401  /*!< Version 1.4.1 */
 # define _MFCSTL_VER_1_4_2      0x00010402  /*!< Version 1.4.2 */
 # define _MFCSTL_VER_1_4_3      0x00010403  /*!< Version 1.4.3 */
-# define _MFCSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 */
+# define _MFCSTL_VER_1_5_1      0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _MFCSTL_VER             _MFCSTL_VER_1_5_1
@@ -149,10 +152,10 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B20) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
-# error This version of the MFCSTL libraries requires STLSoft version 1.9.1 beta 20, or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
+#if !defined(_STLSOFT_VER_1_9_1_B41) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
+# error This version of the MFCSTL libraries requires STLSoft version 1.9.1 beta 41, or later
+#endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility

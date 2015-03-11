@@ -4,7 +4,7 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     4th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,8 +44,8 @@
  *   comstl::variant_type_exception exception classes, and the
  *   comstl::exception_policy_base exception policy class (and the
  *   typedefs comstl::com_exception_policy and
- *   comstl::variant_type_exception_policy).
- * (\ref group__library__error "Error" Library.)
+ *   comstl::variant_type_exception_policy)
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    6
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        38
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

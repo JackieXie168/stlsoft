@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing token information.
  *
  * Created:     20th June 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/security/token_information.hpp
  *
- * \brief [C++ only] Definition of the winstl::token_information class.
- * (\ref group__library__security "Security" Library.)
+ * \brief [C++ only] Definition of the winstl::token_information class
+ *   (\ref group__library__security "Security" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SECURITY_HPP_TOKEN_INFORMATION
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MAJOR     4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MINOR     1
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_REVISION  1
-# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      49
+# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

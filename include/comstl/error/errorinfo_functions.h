@@ -4,7 +4,7 @@
  * Purpose:     Error info functions.
  *
  * Created:     5th Feburary 2004
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/error/errorinfo_functions.h
  *
- * \brief [C, C++] Error info functions.
- * (\ref group__library__error "Error" Library.)
+ * \brief [C, C++] Error info functions
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     36
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 2
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_w_(   cs_char_w_t const   *descrip
     {
         IErrorInfo  *pEI;
 
-        // Ask for IErrorInfo
+        /* Ask for IErrorInfo */
         hr = COMSTL_ITF_CALL(pCEI)->QueryInterface( COMSTL_ITF_THIS(pCEI)
                                                     COMSTL_IID_2_REF(IID_IErrorInfo)
                                                 ,   stlsoft_reinterpret_cast(void**, &pEI));
@@ -406,8 +406,9 @@ inline HRESULT set_error_info(cs_char_w_t const *description, cs_char_w_t const 
 }
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/errorinfo_functions_unittest_.h"

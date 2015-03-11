@@ -4,7 +4,7 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/synch/atomic_functions.h
  *
- * \brief [C++ only] Definition of the atomic functions.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of the atomic functions
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     2
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      193
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -274,7 +274,7 @@ STLSOFT_INLINE ws_sint32_t atomic_preadd(ws_sint32_t volatile *pl, ws_sint32_t n
 # pragma warn -8070     /* Suppresses: "Function should return a value" */
 #endif /* compiler */
 
-// Uni-processor
+/* Uni-processor */
 
 /** \brief 
  *
@@ -284,14 +284,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+		 */
         mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -300,8 +301,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_up(ws_sint32_t volatile
 
         xadd dword ptr [ecx], eax
 
-        // Since this is pre-increment, we need to inc eax to catch up with the
-        // real value
+        /* Since this is pre-increment, we need to inc eax to catch up with the
+         * real value
+		 */
         inc eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -320,14 +322,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+		 */
         mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -336,8 +339,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_up(ws_sint32_t volatile
 
         xadd dword ptr [ecx], eax
 
-        // Since this is pre-decrement, we need to inc eax to catch up with the
-        // real value
+        /* Since this is pre-decrement, we need to inc eax to catch up with the
+         * real value
+		 */
         dec eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -356,14 +360,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatil
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+		 */
         mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -372,8 +377,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_up(ws_sint32_t volatil
 
         xadd dword ptr [ecx], eax
 
-        // Since this is post-increment, we need do nothing, since the previous
-        // value is in eax
+        /* Since this is post-increment, we need do nothing, since the previous
+         * value is in eax
+		 */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
         ret
@@ -391,14 +397,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_up(ws_sint32_t volatil
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+		 */
         mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -407,8 +414,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_up(ws_sint32_t volatil
 
         xadd dword ptr [ecx], eax
 
-        // Since this is post-decrement, we need do nothing, since the previous
-        // value is in eax
+        /* Since this is post-decrement, we need do nothing, since the previous
+         * value is in eax
+         */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
         ret
@@ -427,9 +435,9 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment_up(ws_sint32_t volatile * /* pl *
     _asm
     {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -455,9 +463,9 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement_up(ws_sint32_t volatile * /* pl *
     _asm
     {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -484,21 +492,23 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_up(ws_sint32_t volatile const *
     {
         mov eax, 0
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
         mov ecx, dword ptr [esp + 4]
 #else
 # error Need to define calling convention
 #endif /* call-conv */
 
-        // pop 0 into eax, which can then be atomically added into *pl (held
-        // in ecx), leaving the value unchanged.
+        /* pop 0 into eax, which can then be atomically added into *pl (held
+         * in ecx), leaving the value unchanged.
+         */
         xadd dword ptr [ecx], eax
 
-        // Since it's an xadd it exchanges the previous value into eax, which
-        // is exactly what's required
+        /* Since it's an xadd it exchanges the previous value into eax, which
+         * is exactly what's required
+         */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
         ret
@@ -517,19 +527,19 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_up(ws_sint32_t volatile * /* p
     _asm
     {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl, edx is n
+        /* __fastcall: ecx is pl, edx is n */
 
-        // Just exchange *pl and n
+        /* Just exchange *pl and n */
         xchg dword ptr [ecx], edx
 
-        // The previous value goes into edx, so me move it into eax for return
+        /* The previous value goes into edx, so me move it into eax for return */
         mov eax, edx
 
         ret
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8
-        mov ecx, dword ptr [esp + 4]    // Load the address of pl into ecx
-        mov eax, dword ptr [esp + 8]    // Load the value into eax, so the return value will be there waiting
+        /* __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8 */
+        mov ecx, dword ptr [esp + 4]    /* Load the address of pl into ecx */
+        mov eax, dword ptr [esp + 8]    /* Load the value into eax, so the return value will be there waiting */
 
         xchg dword ptr [ecx], eax
 
@@ -547,31 +557,33 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_up(ws_sint32_t volatile * /* p
  */
 WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_up(ws_sint32_t volatile * /* pl */, ws_sint32_t /* n */)
 {
-    // Thanks to Eugene Gershnik for the fast-call implementation
+    /* Thanks to Eugene Gershnik for the fast-call implementation */
     __asm
     {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl, edx is n
+        /* __fastcall: ecx is pl, edx is n */
 
-        // Simply atomically add them, which will leave the previous value
-        // in edx
+        /* Simply atomically add them, which will leave the previous value
+         * in edx
+         */
         xadd dword ptr [ecx], edx
 
-        // Just need to move adx into eax to return it
+        /* Just need to move adx into eax to return it */
         mov eax, edx
 
         ret
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8
+        /* __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8 */
 
-        // Simply atomically add them, which will leave the previous value
-        // in edx
-        mov ecx, dword ptr [esp + 4]    // Load the address of pl into ecx
-        mov eax, dword ptr [esp + 8]    // Load the value into eax, so the return value will be there waiting
+        /* Simply atomically add them, which will leave the previous value
+         * in edx
+         */
+        mov ecx, dword ptr [esp + 4]    /* Load the address of pl into ecx */
+        mov eax, dword ptr [esp + 8]    /* Load the value into eax, so the return value will be there waiting */
 
         xadd dword ptr [ecx], eax
 
-        // Just need to move adx into eax to return it
+        /* Just need to move adx into eax to return it */
 
         ret 8
 #else
@@ -580,7 +592,7 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_up(ws_sint32_t volatile * /*
     }
 }
 
-// Symmetric multi-processor
+/* Symmetric multi-processor */
 
 /** \brief 
  *
@@ -590,14 +602,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatil
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+         */
         mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -606,8 +619,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement_smp(ws_sint32_t volatil
 
         lock xadd dword ptr [ecx], eax
 
-        // Since this is pre-increment, we need to inc eax to catch up with the
-        // real value
+        /* Since this is pre-increment, we need to inc eax to catch up with the
+         * real value
+		 */
         inc eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -626,14 +640,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_smp(ws_sint32_t volatil
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+         */
         mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -642,8 +657,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement_smp(ws_sint32_t volatil
 
         lock xadd dword ptr [ecx], eax
 
-        // Since this is pre-decrement, we need to inc eax to catch up with the
-        // real value
+        /* Since this is pre-decrement, we need to inc eax to catch up with the
+         * real value
+         */
         dec eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -662,14 +678,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_smp(ws_sint32_t volati
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+         */
         mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -678,8 +695,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement_smp(ws_sint32_t volati
 
         lock xadd dword ptr [ecx], eax
 
-        // Since this is post-increment, we need do nothing, since the previous
-        // value is in eax
+        /* Since this is post-increment, we need do nothing, since the previous
+         * value is in eax
+         */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
         ret
@@ -697,14 +715,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_smp(ws_sint32_t volati
 {
     _asm
     {
-        // pop 1 into eax, which can then be atomically added into *pl (held
-        // in ecx). Since it's an xadd it exchanges the previous value into eax
+        /* pop 1 into eax, which can then be atomically added into *pl (held
+         * in ecx). Since it's an xadd it exchanges the previous value into eax
+         */
         mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
 
         mov ecx, dword ptr [esp + 4]
 #else
@@ -713,8 +732,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement_smp(ws_sint32_t volati
 
         lock xadd dword ptr [ecx], eax
 
-        // Since this is post-decrement, we need do nothing, since the previous
-        // value is in eax
+        /* Since this is post-decrement, we need do nothing, since the previous
+         * value is in eax
+         */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
         ret
@@ -734,21 +754,23 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read_smp(ws_sint32_t volatile const 
     {
         mov eax, 0
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+        /* __fastcall: ecx is pl */
 
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack
+        /* __stdcall: arguments are on the stack */
         mov ecx, dword ptr [esp + 4]
 #else
 # error Need to define calling convention
 #endif /* call-conv */
 
-        // pop 0 into eax, which can then be atomically added into *pl (held
-        // in ecx), leaving the value unchanged.
+        /* pop 0 into eax, which can then be atomically added into *pl (held
+         * in ecx), leaving the value unchanged.
+         */
         lock xadd dword ptr [ecx], eax
 
-        // Since it's an xadd it exchanges the previous value into eax, which
-        // is exactly what's required
+        /* Since it's an xadd it exchanges the previous value into eax, which
+         * is exactly what's required
+         */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
         ret
@@ -767,19 +789,19 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_smp(ws_sint32_t volatile * /* 
     _asm
     {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl, edx is n
+        /* __fastcall: ecx is pl, edx is n */
 
-        // Just exchange *pl and n
+        /* Just exchange *pl and n */
         /* lock */ xchg dword ptr [ecx], edx
 
-        // The previous value goes into edx, so me move it into eax for return
+        /* The previous value goes into edx, so me move it into eax for return */
         mov eax, edx
 
         ret
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8
-        mov ecx, dword ptr [esp + 4]    // Load the address of pl into ecx
-        mov eax, dword ptr [esp + 8]    // Load the value into eax, so the return value will be there waiting
+        /* __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8 */
+        mov ecx, dword ptr [esp + 4]    /* Load the address of pl into ecx */
+        mov eax, dword ptr [esp + 8]    /* Load the value into eax, so the return value will be there waiting */
 
         /* lock */ xchg dword ptr [ecx], eax
 
@@ -797,31 +819,33 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write_smp(ws_sint32_t volatile * /* 
  */
 WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_smp(ws_sint32_t volatile * /* pl */, ws_sint32_t /* n */)
 {
-    // Thanks to Eugene Gershnik for the fast-call implementation
+    /* Thanks to Eugene Gershnik for the fast-call implementation */
     __asm
     {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl, edx is n
+        /* __fastcall: ecx is pl, edx is n */
 
-        // Simply atomically add them, which will leave the previous value
-        // in edx
+        /* Simply atomically add them, which will leave the previous value
+         * in edx
+         */
         lock xadd dword ptr [ecx], edx
 
-        // Just need to move adx into eax to return it
+        /* Just need to move adx into eax to return it */
         mov eax, edx
 
         ret
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8
+        /* __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8 */
 
-        // Simply atomically add them, which will leave the previous value
-        // in edx
-        mov ecx, dword ptr [esp + 4]    // Load the address of pl into ecx
-        mov eax, dword ptr [esp + 8]    // Load the value into eax, so the return value will be there waiting
+        /* Simply atomically add them, which will leave the previous value
+         * in edx
+         */
+        mov ecx, dword ptr [esp + 4]    /* Load the address of pl into ecx */
+        mov eax, dword ptr [esp + 8]    /* Load the value into eax, so the return value will be there waiting */
 
         lock xadd dword ptr [ecx], eax
 
-        // Just need to move adx into eax to return it
+        /* Just need to move adx into eax to return it */
 
         ret 8
 #else
@@ -830,20 +854,20 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd_smp(ws_sint32_t volatile * /
     }
 }
 
-// Processor detection
+/* Processor detection */
 
 namespace
 {
     inline ws_bool_t is_host_up()
     {
-        // All these statics are guaranteed to be zero as a result of the module/process loading
-        static ws_sint32_t  s_spin; // The spin variable
-        static ws_bool_t    s_init; // This is guaranteed to be zero
-        static ws_bool_t    s_up;   // This is the flag variably, also guaranteed to be zero
+        /* All these statics are guaranteed to be zero as a result of the module/process loading */
+        static ws_sint32_t  s_spin; /* The spin variable */
+        static ws_bool_t    s_init; /* This is guaranteed to be zero */
+        static ws_bool_t    s_up;   /* This is the flag variably, also guaranteed to be zero */
 
-        // Simple spin lock
-        if(!s_init) // Low cost pre-test. In the unlikely event that another thread does come in and
-        {           // also see this as false, the dual initialisation of all three statics is benign
+        /* Simple spin lock */
+        if(!s_init) /* Low cost pre-test. In the unlikely event that another thread does come in and */
+        {           /* also see this as false, the dual initialisation of all three statics is benign */
             spin_mutex  smx(&s_spin);
 
             smx.lock();
@@ -863,17 +887,18 @@ namespace
         return s_up;
     }
 
-    // s_up is guaranteed to be zero at load time.
-    //
-    // There is a race condition with all static variables, since multiple threads
-    // can come in and one can have set the hidden flag variable without prior to
-    // setting the static variable itself, just at the time that an arbitrary number
-    // of other threads pick up the pre-initialised value.
-    //
-    // However, because the test here is whether to skip the lock, the pathological
-    // case is benign. The only cost in the very rare case where it happens is that
-    // the thread(s) will use bus locking until such time as the static is fully
-    // initialised.
+    /* s_up is guaranteed to be zero at load time.
+     *
+     * There is a race condition with all static variables, since multiple threads
+     * can come in and one can have set the hidden flag variable without prior to
+     * setting the static variable itself, just at the time that an arbitrary number
+     * of other threads pick up the pre-initialised value.
+     *
+     * However, because the test here is whether to skip the lock, the pathological
+     * case is benign. The only cost in the very rare case where it happens is that
+     * the thread(s) will use bus locking until such time as the static is fully
+     * initialised.
+	 */
     static ws_bool_t    s_up = is_host_up();
 }
 
@@ -887,14 +912,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile * 
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -903,8 +929,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile * 
 
             xadd dword ptr [ecx], eax
 
-            // Since this is pre-increment, we need to inc eax to catch up with the
-            // real value
+            /* Since this is pre-increment, we need to inc eax to catch up with the
+             * real value
+             */
             inc eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -918,14 +945,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile * 
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -934,8 +962,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_preincrement(ws_sint32_t volatile * 
 
             lock xadd dword ptr [ecx], eax
 
-            // Since this is pre-increment, we need to inc eax to catch up with the
-            // real value
+            /* Since this is pre-increment, we need to inc eax to catch up with the
+             * real value
+             */
             inc eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -957,14 +986,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile * 
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -973,8 +1003,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile * 
 
             xadd dword ptr [ecx], eax
 
-            // Since this is pre-decrement, we need to inc eax to catch up with the
-            // real value
+            /* Since this is pre-decrement, we need to inc eax to catch up with the
+             * real value
+             */
             dec eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -988,14 +1019,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile * 
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1004,8 +1036,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_predecrement(ws_sint32_t volatile * 
 
             lock xadd dword ptr [ecx], eax
 
-            // Since this is pre-decrement, we need to inc eax to catch up with the
-            // real value
+            /* Since this is pre-decrement, we need to inc eax to catch up with the
+             * real value
+             */
             dec eax
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
@@ -1027,14 +1060,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile *
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1043,8 +1077,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile *
 
             xadd dword ptr [ecx], eax
 
-            // Since this is post-increment, we need do nothing, since the previous
-            // value is in eax
+            /* Since this is post-increment, we need do nothing, since the previous
+             * value is in eax
+             */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
             ret
@@ -1057,14 +1092,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile *
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, 1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1073,8 +1109,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postincrement(ws_sint32_t volatile *
 
             lock xadd dword ptr [ecx], eax
 
-            // Since this is post-increment, we need do nothing, since the previous
-            // value is in eax
+            /* Since this is post-increment, we need do nothing, since the previous
+             * value is in eax
+             */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
             ret
@@ -1095,14 +1132,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile *
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+			/* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1111,8 +1149,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile *
 
             xadd dword ptr [ecx], eax
 
-            // Since this is post-decrement, we need do nothing, since the previous
-            // value is in eax
+            /* Since this is post-decrement, we need do nothing, since the previous
+             * value is in eax
+             */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
             ret
@@ -1125,14 +1164,15 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile *
     {
         _asm
         {
-            // pop 1 into eax, which can then be atomically added into *pl (held
-            // in ecx). Since it's an xadd it exchanges the previous value into eax
+            /* pop 1 into eax, which can then be atomically added into *pl (held
+             * in ecx). Since it's an xadd it exchanges the previous value into eax
+             */
             mov eax, -1
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl
+			/* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1141,8 +1181,9 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postdecrement(ws_sint32_t volatile *
 
             lock xadd dword ptr [ecx], eax
 
-            // Since this is post-decrement, we need do nothing, since the previous
-            // value is in eax
+            /* Since this is post-decrement, we need do nothing, since the previous
+             * value is in eax
+             */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
             ret
@@ -1164,9 +1205,9 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(ws_sint32_t volatile * /* pl */)
         _asm
         {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1187,18 +1228,19 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(ws_sint32_t volatile * /* pl */)
         _asm
         {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
 # error Need to define calling convention
 #endif /* call-conv */
 
-            // The IA-32 Intel Architecture Software Developer's Manual, volume 2
-            // states that a LOCK can be prefixed to ADD, but CodePlay VectorC
-            // has a problem with it.
+            /* The IA-32 Intel Architecture Software Developer's Manual, volume 2
+             * states that a LOCK can be prefixed to ADD, but CodePlay VectorC
+             * has a problem with it.
+			 */
 #if defined(STLSOFT_COMPILER_IS_VECTORC)
             mov eax, 1
             lock xadd dword ptr [ecx], eax
@@ -1227,9 +1269,9 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(ws_sint32_t volatile * /* pl */)
         _asm
         {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1250,9 +1292,9 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(ws_sint32_t volatile * /* pl */)
         _asm
         {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
 
             mov ecx, dword ptr [esp + 4]
 #else
@@ -1263,7 +1305,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(ws_sint32_t volatile * /* pl */)
             mov eax, -1
             lock xadd dword ptr [ecx], eax
 #else /* ? compiler */
-            // This might be wrong
+            /* This might be wrong */
             lock sub dword ptr [ecx], 1
 #endif /* compiler */
 
@@ -1288,21 +1330,23 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read(ws_sint32_t volatile const * /*
         {
             mov eax, 0
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
             mov ecx, dword ptr [esp + 4]
 #else
 # error Need to define calling convention
 #endif /* call-conv */
 
-            // pop 0 into eax, which can then be atomically added into *pl (held
-            // in ecx), leaving the value unchanged.
+            /* pop 0 into eax, which can then be atomically added into *pl (held
+             * in ecx), leaving the value unchanged.
+             */
             xadd dword ptr [ecx], eax
 
-            // Since it's an xadd it exchanges the previous value into eax, which
-            // is exactly what's required
+            /* Since it's an xadd it exchanges the previous value into eax, which
+             * is exactly what's required
+             */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
             ret
@@ -1317,21 +1361,23 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_read(ws_sint32_t volatile const * /*
         {
             mov eax, 0
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl
+            /* __fastcall: ecx is pl */
 
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack
+            /* __stdcall: arguments are on the stack */
             mov ecx, dword ptr [esp + 4]
 #else
 # error Need to define calling convention
 #endif /* call-conv */
 
-            // pop 0 into eax, which can then be atomically added into *pl (held
-            // in ecx), leaving the value unchanged.
+            /* pop 0 into eax, which can then be atomically added into *pl (held
+             * in ecx), leaving the value unchanged.
+             */
             lock xadd dword ptr [ecx], eax
 
-            // Since it's an xadd it exchanges the previous value into eax, which
-            // is exactly what's required
+            /* Since it's an xadd it exchanges the previous value into eax, which
+             * is exactly what's required
+             */
 
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
             ret
@@ -1351,19 +1397,19 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write(ws_sint32_t volatile * /* pl *
     _asm
     {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-        // __fastcall: ecx is pl, edx is n
+        /* __fastcall: ecx is pl, edx is n */
 
-        // Just exchange *pl and n
+        /* Just exchange *pl and n */
         lock xchg dword ptr [ecx], edx
 
-        // The previous value goes into edx, so me move it into eax for return
+        /* The previous value goes into edx, so me move it into eax for return */
         mov eax, edx
 
         ret
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-        // __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8
-        mov ecx, dword ptr [esp + 4]    // Load the address of pl into ecx
-        mov eax, dword ptr [esp + 8]    // Load the value into eax, so the return value will be there waiting
+        /* __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8 */
+        mov ecx, dword ptr [esp + 4]    /* Load the address of pl into ecx */
+        mov eax, dword ptr [esp + 8]    /* Load the value into eax, so the return value will be there waiting */
 
         xchg dword ptr [ecx], eax
 
@@ -1381,33 +1427,35 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_write(ws_sint32_t volatile * /* pl *
  */
 WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile * /* pl */, ws_sint32_t /* n */)
 {
-    // Thanks to Eugene Gershnik for the fast-call implementation
+    /* Thanks to Eugene Gershnik for the fast-call implementation */
     if(s_up)
     {
         __asm
         {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl, edx is n
+            /* __fastcall: ecx is pl, edx is n */
 
-            // Simply atomically add them, which will leave the previous value
-            // in edx
+            /* Simply atomically add them, which will leave the previous value
+             * in edx
+             */
             xadd dword ptr [ecx], edx
 
-            // Just need to move adx into eax to return it
+            /* Just need to move adx into eax to return it */
             mov eax, edx
 
             ret
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8
+            /* __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8 */
 
-            // Simply atomically add them, which will leave the previous value
-            // in edx
-            mov ecx, dword ptr [esp + 4]    // Load the address of pl into ecx
-            mov eax, dword ptr [esp + 8]    // Load the value into eax, so the return value will be there waiting
+            /* Simply atomically add them, which will leave the previous value
+             * in edx
+             */
+            mov ecx, dword ptr [esp + 4]    /* Load the address of pl into ecx */
+            mov eax, dword ptr [esp + 8]    /* Load the value into eax, so the return value will be there waiting */
 
             xadd dword ptr [ecx], eax
 
-            // Just need to move adx into eax to return it
+            /* Just need to move adx into eax to return it */
 
             ret 8
 #else
@@ -1420,27 +1468,29 @@ WINSTL_ATOMIC_FNS_IMPL_(ws_sint32_t) atomic_postadd(ws_sint32_t volatile * /* pl
         __asm
         {
 #if defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_FASTCALL)
-            // __fastcall: ecx is pl, edx is n
+            /* __fastcall: ecx is pl, edx is n */
 
-            // Simply atomically add them, which will leave the previous value
-            // in edx
+            /* Simply atomically add them, which will leave the previous value
+             * in edx
+             */
             lock xadd dword ptr [ecx], edx
 
-            // Just need to move adx into eax to return it
+            /* Just need to move adx into eax to return it */
             mov eax, edx
 
             ret
 #elif defined(WINSTL_ATOMIC_FNS_CALLCONV_IS_STDCALL)
-            // __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8
+            /* __stdcall: arguments are on the stack: pl in esp+4, pl in esp+8 */
 
-            // Simply atomically add them, which will leave the previous value
-            // in edx
-            mov ecx, dword ptr [esp + 4]    // Load the address of pl into ecx
-            mov eax, dword ptr [esp + 8]    // Load the value into eax, so the return value will be there waiting
+            /* Simply atomically add them, which will leave the previous value
+             * in edx
+             */
+            mov ecx, dword ptr [esp + 4]    /* Load the address of pl into ecx */
+            mov eax, dword ptr [esp + 8]    /* Load the value into eax, so the return value will be there waiting */
 
             lock xadd dword ptr [ecx], eax
 
-            // Just need to move adx into eax to return it
+            /* Just need to move adx into eax to return it */
 
             ret 8
 #else

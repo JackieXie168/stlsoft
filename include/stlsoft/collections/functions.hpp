@@ -4,11 +4,11 @@
  * Purpose:     Collection manipulation functions.
  *
  * Created:     11th November 2004
- * Updated:     30th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/collections/functions.hpp
  *
- * \brief [C++ only] Definition of collection manipulation functions.
- * (\ref group__library__collections "Collections" Library.)
+ * \brief [C++ only] Definition of collection manipulation functions
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_FUNCTIONS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_EDIT     29
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_FUNCTIONS_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

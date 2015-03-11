@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/dl/dl_call.hpp
  *
- * \brief [C++ only] Definition of the winstl::dl_call() function suite.
- * (\ref group__library__dl "DL" Library.)
+ * \brief [C++ only] Definition of the winstl::dl_call() function suite
+ *   (\ref group__library__dl "DL" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_DL_HPP_DL_CALL
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     3
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  5
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      33
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -144,7 +144,7 @@ namespace winstl_project
 
 /** \brief Indicates an entry point cannot be located in a dynamic library.
  *
- * \ingroup group__library__dl__exceptions
+ * \ingroup group__library__dl__error
  */
 class missing_entry_point_exception
     : public windows_exception
@@ -192,7 +192,7 @@ private:
 
 /** \brief Indicates an invalid calling convention specifier.
  *
- * \ingroup group__library__dl__exceptions
+ * \ingroup group__library__dl__error
  */
 class invalid_calling_convention_exception
     : public windows_exception
@@ -382,7 +382,7 @@ namespace MyNamespace
 namespace winstl
 {
   template <>
-  struct is_valid_dl_call_arg<MyNamespace::MyType>
+  struct is_valid_dl_call_arg&lt;MyNamespace::MyType>
   {
     enum { value = 1 };
   };
@@ -4518,6 +4518,9 @@ inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD
 
 // 0 params
 
+/** \brief Invoke a dynamic function with 0 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4533,6 +4536,9 @@ inline R dl_call(L const &library, FD const &fd)
 
 // 1 param
 
+/** \brief Invoke a dynamic function with 1 param
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4550,6 +4556,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0)
 
 // 2 params
 
+/** \brief Invoke a dynamic function with 2 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4568,6 +4577,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1)
 
 // 3 params
 
+/** \brief Invoke a dynamic function with 3 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4587,6 +4599,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2)
 
 // 4 params
 
+/** \brief Invoke a dynamic function with 4 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4607,6 +4622,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3)
 
 // 5 params
 
+/** \brief Invoke a dynamic function with 5 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4628,6 +4646,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 6 params
 
+/** \brief Invoke a dynamic function with 6 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4650,6 +4671,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 7 params
 
+/** \brief Invoke a dynamic function with 7 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4673,6 +4697,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 8 params
 
+/** \brief Invoke a dynamic function with 8 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4697,6 +4724,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 9 params
 
+/** \brief Invoke a dynamic function with 9 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4722,6 +4752,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 10 params
 
+/** \brief Invoke a dynamic function with 10 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4748,6 +4781,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 11 params
 
+/** \brief Invoke a dynamic function with 11 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4775,6 +4811,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 12 params
 
+/** \brief Invoke a dynamic function with 12 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4803,6 +4842,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 13 params
 
+/** \brief Invoke a dynamic function with 13 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4832,6 +4874,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 14 params
 
+/** \brief Invoke a dynamic function with 14 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4862,6 +4907,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 15 params
 
+/** \brief Invoke a dynamic function with 15 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4893,6 +4941,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 16 params
 
+/** \brief Invoke a dynamic function with 16 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4925,6 +4976,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 17 params
 
+/** \brief Invoke a dynamic function with 17 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4958,6 +5012,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 18 params
 
+/** \brief Invoke a dynamic function with 18 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -4992,6 +5049,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 19 params
 
+/** \brief Invoke a dynamic function with 19 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5027,6 +5087,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 20 params
 
+/** \brief Invoke a dynamic function with 20 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5063,6 +5126,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 21 params
 
+/** \brief Invoke a dynamic function with 21 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5100,6 +5166,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 22 params
 
+/** \brief Invoke a dynamic function with 22 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5138,6 +5207,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 23 params
 
+/** \brief Invoke a dynamic function with 23 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5177,6 +5249,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 24 params
 
+/** \brief Invoke a dynamic function with 24 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5217,6 +5292,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 25 params
 
+/** \brief Invoke a dynamic function with 25 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5258,6 +5336,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 26 params
 
+/** \brief Invoke a dynamic function with 26 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5300,6 +5381,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 27 params
 
+/** \brief Invoke a dynamic function with 27 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5343,6 +5427,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 28 params
 
+/** \brief Invoke a dynamic function with 28 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5387,6 +5474,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 29 params
 
+/** \brief Invoke a dynamic function with 29 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5432,6 +5522,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 30 params
 
+/** \brief Invoke a dynamic function with 30 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5478,6 +5571,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 31 params
 
+/** \brief Invoke a dynamic function with 31 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD
@@ -5525,6 +5621,9 @@ inline R dl_call(L const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 // 32 params
 
+/** \brief Invoke a dynamic function with 32 params
+ * \ingroup group__library__dl
+ */
 template< ss_typename_param_k R
         , ss_typename_param_k L
         , ss_typename_param_k FD

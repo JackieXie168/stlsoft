@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for copying.
  *
  * Created:     13th June 2006
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/string/copy_functions.hpp
  *
- * \brief [C++ only] String utility functions for copying.
- * (\ref group__library__string "String" Library.)
+ * \brief [C++ only] String utility functions for copying
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_MINOR       0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_REVISION    2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_EDIT        4
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

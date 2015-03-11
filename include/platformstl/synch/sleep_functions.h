@@ -4,7 +4,7 @@
  * Purpose:     Time functions.
  *
  * Created:     10th June 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file platformstl/synch/sleep_functions.h
  *
- * \brief [C, C++] Various time functions.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C, C++] Various time functions
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS
@@ -51,7 +51,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       3
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

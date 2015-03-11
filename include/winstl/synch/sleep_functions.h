@@ -4,7 +4,7 @@
  * Purpose:     WinSTL time functions.
  *
  * Created:     11th June 2006
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/synch/sleep_functions.h
  *
- * \brief [C, C++] Various time functions.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C, C++] Various time functions
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       9
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   3
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -88,13 +88,64 @@ namespace winstl_project
  * Functions
  */
 
-/** \brief Puts the calling thread to sleep for the given numbrt og
+/** \brief [C, C++] Puts the calling thread to sleep for the given number of
  *   microseconds.
+\htmlonly
+<pre>
+  winstl__micro_sleep(100000);  // Sleep for 0.1 seconds
+  winstl__micro_sleep(100);     // Sleep for 0.1 milliseconds
+</pre>
+\endhtmlonly
+ *
+ * \param microseconds The number of microseconds to wait
+ *
+ * \return A boolean value indicating whether the operation was 
+ *   successful. If not, <code>::GetLastError()</code> will contain an error code
+ *   representing the reason for failure.
+ *
+ * \see winstl::micro_sleep
  */
-STLSOFT_INLINE ws_bool_t micro_sleep(ws_uint_t microseconds)
+STLSOFT_INLINE ws_int_t winstl__micro_sleep(ws_uint_t microseconds)
 {
     return (STLSOFT_NS_GLOBAL(Sleep)(microseconds / 1000), ws_true_v);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ functions
+ */
+
+#ifdef __cplusplus
+
+/** \brief [C++ only] Puts the calling thread to sleep for the given number of
+ *   microseconds.
+\htmlonly
+<pre>
+  winstl::micro_sleep(100000);  // Sleep for 0.1 seconds
+  winstl::micro_sleep(100);     // Sleep for 0.1 milliseconds
+</pre>
+\endhtmlonly
+ *
+ * \param microseconds The number of microseconds to wait
+ *
+ * \return A boolean value indicating whether the operation was 
+ *   successful. If not, <code>::GetLastError()</code> will contain an error code
+ *   representing the reason for failure.
+ */
+inline ws_int_t micro_sleep(ws_uint_t microseconds)
+{
+    return winstl__micro_sleep(microseconds);
+}
+
+#endif /* __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

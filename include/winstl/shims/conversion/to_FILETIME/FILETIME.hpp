@@ -4,11 +4,11 @@
  * Purpose:     winstl::to_FILETIME(FILETIME const&) overload.
  *
  * Created:     24th May 2002
- * Updated:     15th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file winstl/shims/conversion/to_FILETIME/FILETIME.hpp
  *
  * \brief [C++] Definition of the winstl::to_FILETIME(FILETIME const&)
- *   overload.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   overload
+ *   (\ref group__concept__shim__time_conversion__to_FILETIME "winstl::to_FILETIME" Time Conversion Shim).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_REVISION   1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_EDIT       1
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,11 +89,17 @@ namespace winstl_project
  * Functions
  */
 
-/** 
+/** \brief Degenerate case of the \ref group__concept__shim__time_conversion__to_FILETIME.
  *
+ * \ingroup group__concept__shim__time_conversion__to_FILETIME
  *
+ * \param rhs An instance of type <code>FILETIME</code>
+ * \return An instance of type <code>FILETIME</code>
+ *
+ * \exception &lt;none&gt; No error checking is performed, and no exception
+ *   can be thrown.
  */
-inline FILETIME const &to_FILETIME(FILETIME const &rhs)
+inline FILETIME const &to_FILETIME(FILETIME const &rhs) stlsoft_throw_0()
 {
     return rhs;
 }

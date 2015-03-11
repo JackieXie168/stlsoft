@@ -4,7 +4,7 @@
  * Purpose:     Field-based properties.
  *
  * Created:     6th October 2003
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
  *  stlsoft::field_property_set,
  *  stlsoft::field_property_get_external
  *  and
- *  stlsoft::field_property_set_external.
- * (\ref group__library__properties "Properties" Library.)
+ *  stlsoft::field_property_set_external
+ *   (\ref group__library__properties "Properties" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   2
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       23
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

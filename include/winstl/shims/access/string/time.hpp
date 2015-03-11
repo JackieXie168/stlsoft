@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
@@ -44,8 +44,8 @@
 /** \file winstl/shims/access/string/time.hpp
  *
  * \brief [C++] Definition of the string access shims for
- *   <code>FILETIME</code> and <code>SYSTEMTIME</code>.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   <code>FILETIME</code> and <code>SYSTEMTIME</code>
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       0
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        38
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       1
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    2
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,12 +65,15 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME
+# include <winstl/shims/conversion/to_SYSTEMTIME/FILETIME.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
 # include <stlsoft/string/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
-#ifndef WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS
-# include <winstl/time/format_functions.h>
-#endif /* !WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS
+# include <winstl/time/format_functions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
@@ -101,8 +104,10 @@ namespace winstl_project
  * Helper Functions
  */
 
-/** \brief Converts a <code>FILETIME</code> value to a
+/** \brief [DEPRECATED] Converts a <code>FILETIME</code> value to a
  *   <code>SYSTEMTIME</code> value.
+ *
+ * \deprecated Instead use winstl::to_SYSTEMTIME(FILETIME const&)
  *
  * \ingroup group__library__shims__string_access
  *
@@ -115,11 +120,7 @@ namespace winstl_project
  */
 inline SYSTEMTIME FILETIME2SYSTEMTIME(FILETIME const &ft)
 {
-    SYSTEMTIME  st;
-
-    FileTimeToSystemTime(&ft, &st);
-
-    return st;
+    return winstl_ns_qual(to_SYSTEMTIME)(ft);
 }
 
 template <ss_typename_param_k S>

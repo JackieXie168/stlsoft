@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/memory/auto_buffer.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::auto_buffer class template.
- * (\ref group__library__memory "Memory" Library.)
+ * \brief [C++ only] Definition of the stlsoft::auto_buffer class template
+ *   (\ref group__library__memory "Memory" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    7
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        149
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

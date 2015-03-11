@@ -6,7 +6,7 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -43,8 +43,8 @@
 /** \file winstl/performance/performance_counter.hpp
  *
  * \brief [C++ only] Definition of the 
- *  \link winstl::performance_counter performance_counter\endlink class.
- * (\ref group__library__performance "Performance" Library.)
+ *  \link winstl::performance_counter performance_counter\endlink class
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    1
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 4
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     27
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

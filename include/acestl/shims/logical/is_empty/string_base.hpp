@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/attribute/is_empty/message_queue.hpp
+ * File:        acestl/shims/logical/is_empty/string_base.hpp
  *
- * Purpose:     Helper functions for ACE_Message_Queue class.
+ * Purpose:     Helper functions for ACE_String_Base class.
  *
  * Created:     16th December 2004
- * Updated:     29th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,21 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file acestl/shims/attribute/is_empty/message_queue.hpp
+/** \file acestl/shims/logical/is_empty/string_base.hpp
  *
  * \brief [C++] Primary include file for is_empty attribute shims
- *   for <code>ACE_Message_Queue</code>.
- *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
+ *   for <code>ACE_String_Base</code>
+ *   (\ref group__concept__shim__collection_logical__is_empty "is_empty Collection Logical Shim").
  */
 
-#ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE
-#define ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE
+#ifndef ACESTL_INCL_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE
+#define ACESTL_INCL_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_MAJOR     2
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_MINOR     0
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_REVISION  3
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT      20
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MAJOR     2
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MINOR     0
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_REVISION  1
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,10 +62,10 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES
-# include <stlsoft/shims/attribute/is_empty/util/features.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_IS_EMPTY_UTIL_HPP_FEATURES */
-#include <ace/Message_Queue.h>              // for ACE_Message_Queue<>
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES
+# include <stlsoft/shims/logical/is_empty/util/features.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES */
+#include <ace/String_Base.h>        // for ACE_String_Base<>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -80,52 +80,58 @@ namespace stlsoft
  * Shims
  */
 
-#ifdef STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP
+#ifdef STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP
 
-no_type is_empty_helper_assistant(ACE_Message_Queue_Base const *, ACE_Message_Queue_Base const *)
+no_type is_empty_helper_assistant(ACE_String_Base<ss_char_a_t> const *, ACE_String_Base<ss_char_a_t> const *)
 {
     return no_type();
 }
 
-inline ss_bool_t is_empty_helper(ACE_Message_Queue_Base const &q, no_type)
+inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_a_t> const &s, no_type)
 {
-    return 0 != const_cast<ACE_Message_Queue_Base&>(q).is_empty();
+    return 0 != s.length();
 }
 
-#else /* ? STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP */
 
-/** \brief Indicates whether the message queue is empty
+no_type is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const *, ACE_String_Base<ss_char_w_t> const *)
+{
+    return no_type();
+}
+
+inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_w_t> const &s, no_type)
+{
+    return 0 != s.length();
+}
+
+#else /* ? STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
+
+/** \brief Indicates whether the string is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
-inline int is_empty(ACE_Message_Queue_Base const &q)
+inline int is_empty(ACE_String_Base<ss_char_a_t> const &s)
 {
-    // Have to cast this, as ACE is not const-correct with is_empty().
-
-    return const_cast<ACE_Message_Queue_Base&>(q).is_empty();
+    return 0 != s.length();
 }
 
-/** \brief Indicates whether the message queue is empty
+/** \brief Indicates whether the string is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
-template <ACE_SYNCH_DECL>
-inline int is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const &q)
+inline int is_empty(ACE_String_Base<ss_char_w_t> const &s)
 {
-    // Have to cast this, as ACE is not const-correct with is_empty().
-
-    return const_cast<ACE_Message_Queue<ACE_SYNCH_USE>&>(q).is_empty();
+    return 0 != s.length();
 }
 
-#endif /* STLSOFT_SHIM_ATTRIBUTE_IS_EMPTY_NEEDS_HELP */
+#endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-# include "./unittest/message_queue_unittest_.h"
+# include "./unittest/string_base_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -136,6 +142,6 @@ inline int is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const &q)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE */
+#endif /* ACESTL_INCL_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE */
 
 /* ////////////////////////////////////////////////////////////////////// */

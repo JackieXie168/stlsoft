@@ -4,7 +4,7 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_MAJOR       2
-# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_MINOR       6
-# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_REVISION    2
-# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_EDIT        23
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_MINOR       7
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_REVISION    1
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_EDIT        24
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,6 +129,7 @@ protected:
     virtual void start_section(char const *message, int line, char const *baseFile);
     virtual void end_section(char const *message, int line, char const *baseFile);
     virtual void stop();
+    virtual int  verbosity() const;
 
 public:
     char const *get_project() const;
@@ -258,6 +259,11 @@ void simple_unittest_reporter::end_section(char const *message, int line, char c
 
 void simple_unittest_reporter::stop()
 {
+}
+
+int simple_unittest_reporter::verbosity() const
+{
+    return m_bVerbose ? 2 : 0;
 }
 
 char const *simple_unittest_reporter::get_project() const

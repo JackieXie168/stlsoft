@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/system/commandline_parser.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_commandline_parser
- *  class template.
- * (\ref group__library__system "System" Library.)
+ *  class template
+ *   (\ref group__library__system "System" Library).
  */
 
 
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       27
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

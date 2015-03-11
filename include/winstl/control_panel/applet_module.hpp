@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,8 +44,8 @@
  *  \link winstl::applet applet\endlink
  *  and
  *  \link winstl::applet_module applet_module\endlink
- *  classes.
- * (\ref group__library__windows_control_panel "Windows Control Panel" Library.)
+ *  classes
+ *   (\ref group__library__windows_control_panel "Windows Control Panel" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 9
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     14
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,9 +79,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_PANEL_H_FUNCTIONS
 # include <winstl/control_panel/functions.h>
 #endif /* !WINSTL_INCL_WINSTL_CONTROL_PANEL_H_FUNCTIONS */
-#ifndef WINSTL_INCL_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS
-# include <winstl/control_panel/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS
+# include <winstl/control_panel/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_STRING_HPP_RESOURCE_STRING
 # include <winstl/string/resource_string.hpp>
 #endif /* !WINSTL_INCL_WINSTL_STRING_HPP_RESOURCE_STRING */

@@ -4,7 +4,7 @@
  * Purpose:     Console functions.
  *
  * Created:     3rd December 2005
- * Updated:     3rd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/system/console_functions.h
  *
  * \brief [C++ only] Definition of the winstl::basic_environment_block class
- *  template.
- * (\ref group__library__system "System" Library.)
+ *  template
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      13
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,8 +73,8 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #if defined(STLSOFT_UNITTEST) && \
-	(	!defined(STLSOFT_COMPILER_IS_COMO) && \
-		!defined(STLSOFT_COMPILER_IS_WATCOM))
+    (   !defined(STLSOFT_COMPILER_IS_COMO) && \
+        !defined(STLSOFT_COMPILER_IS_WATCOM))
 # include <winstl/dl/dl_call.hpp>
 #endif /* STLSOFT_UNITTEST */
 
@@ -176,7 +176,7 @@ namespace winstl
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * C++ Function Overrides
+ * C++ functions
  */
 
 #if defined(__cplusplus)

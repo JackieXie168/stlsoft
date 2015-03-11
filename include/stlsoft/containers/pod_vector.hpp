@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     2nd January 2007
+ * Updated:     13th January 2007
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
@@ -44,8 +44,8 @@
 /** \file stlsoft/containers/pod_vector.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::pod_vector container class
- *   template.
- * (\ref group__library__containers "Containers" Library.)
+ *   template
+ *   (\ref group__library__containers "Containers" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_POD_VECTOR
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    7
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        66
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-# error stlsoft_pod_vector.h is not compatible with Visual C++ 5.0 or earlier
+# error stlsoft/containers/pod_vector.hpp is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER

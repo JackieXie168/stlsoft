@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/system/environment_variable.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_environment_variable
- *  class template.
- * (\ref group__library__system "System" Library.)
+ *  class template
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     59
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

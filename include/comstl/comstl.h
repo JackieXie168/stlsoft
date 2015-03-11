@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       4
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    2
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        96
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    4
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -140,7 +140,7 @@
 # define _COMSTL_VER_1_5_4      0x00010504  /*!< Version 1.5.4 */
 # define _COMSTL_VER_1_6_1      0x00010601  /*!< Version 1.6.1 */
 # define _COMSTL_VER_1_6_2      0x00010602  /*!< Version 1.6.2 */
-# define _COMSTL_VER_1_7_1      0x00010701  /*!< Version 1.7.1 */
+# define _COMSTL_VER_1_7_1      0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.1) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER             _COMSTL_VER_1_7_1
@@ -152,16 +152,16 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#include <objbase.h>    // COM types
+#include <objbase.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B20) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20
-# error This version of the COMSTL libraries requires STLSoft version 1.9.1 beta 20 or later
-#endif /* _STLSOFT_VER < _STLSOFT_VER_1_9_1_B20 */
+#if !defined(_STLSOFT_VER_1_9_1_B41) || \
+    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
+# error This version of the COMSTL libraries requires STLSoft version 1.9.1 beta 41, or later
+#endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
@@ -519,34 +519,34 @@ stlsoft_ns_using(move_lhs_from_rhs)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-typedef stlsoft_ns_qual(ss_char_a_t)        cs_char_a_t;    //!< Ansi char type
-typedef stlsoft_ns_qual(ss_char_w_t)        cs_char_w_t;    //!< Unicode char type
-typedef OLECHAR                             cs_char_o_t;    //!< COM char type
-typedef stlsoft_ns_qual(ss_sint8_t)         cs_sint8_t;     //!< 8-bit signed integer
-typedef stlsoft_ns_qual(ss_uint8_t)         cs_uint8_t;     //!< 8-bit unsigned integer
-typedef stlsoft_ns_qual(ss_int16_t)         cs_int16_t;     //!< 16-bit integer
-typedef stlsoft_ns_qual(ss_sint16_t)        cs_sint16_t;    //!< 16-bit signed integer
-typedef stlsoft_ns_qual(ss_uint16_t)        cs_uint16_t;    //!< 16-bit unsigned integer
-typedef stlsoft_ns_qual(ss_int32_t)         cs_int32_t;     //!< 32-bit integer
-typedef stlsoft_ns_qual(ss_sint32_t)        cs_sint32_t;    //!< 32-bit signed integer
-typedef stlsoft_ns_qual(ss_uint32_t)        cs_uint32_t;    //!< 32-bit unsigned integer
+typedef stlsoft_ns_qual(ss_char_a_t)        cs_char_a_t;    /*!< Ansi char type             */
+typedef stlsoft_ns_qual(ss_char_w_t)        cs_char_w_t;    /*!< Unicode char type          */
+typedef OLECHAR                             cs_char_o_t;    /*!< COM char type              */
+typedef stlsoft_ns_qual(ss_sint8_t)         cs_sint8_t;     /*!< 8-bit signed integer       */
+typedef stlsoft_ns_qual(ss_uint8_t)         cs_uint8_t;     /*!< 8-bit unsigned integer     */
+typedef stlsoft_ns_qual(ss_int16_t)         cs_int16_t;     /*!< 16-bit integer             */
+typedef stlsoft_ns_qual(ss_sint16_t)        cs_sint16_t;    /*!< 16-bit signed integer      */
+typedef stlsoft_ns_qual(ss_uint16_t)        cs_uint16_t;    /*!< 16-bit unsigned integer    */
+typedef stlsoft_ns_qual(ss_int32_t)         cs_int32_t;     /*!< 32-bit integer             */
+typedef stlsoft_ns_qual(ss_sint32_t)        cs_sint32_t;    /*!< 32-bit signed integer      */
+typedef stlsoft_ns_qual(ss_uint32_t)        cs_uint32_t;    /*!< 32-bit unsigned integer    */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef stlsoft_ns_qual(ss_int64_t)         cs_int64_t;     //!< 64-bit integer
-typedef stlsoft_ns_qual(ss_sint64_t)        cs_sint64_t;    //!< 64-bit signed integer
-typedef stlsoft_ns_qual(ss_uint64_t)        cs_uint64_t;    //!< 64-bit unsigned integer
+typedef stlsoft_ns_qual(ss_int64_t)         cs_int64_t;     /*!< 64-bit integer             */
+typedef stlsoft_ns_qual(ss_sint64_t)        cs_sint64_t;    /*!< 64-bit signed integer      */
+typedef stlsoft_ns_qual(ss_uint64_t)        cs_uint64_t;    /*!< 64-bit unsigned integer    */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef stlsoft_ns_qual(ss_int_t)           cs_int_t;       //!< integer
-typedef stlsoft_ns_qual(ss_sint_t)          cs_sint_t;      //!< signed integer
-typedef stlsoft_ns_qual(ss_uint_t)          cs_uint_t;      //!< unsigned integer
-typedef stlsoft_ns_qual(ss_long_t)          cs_long_t;      //!< long
+typedef stlsoft_ns_qual(ss_int_t)           cs_int_t;       /*!< integer                    */
+typedef stlsoft_ns_qual(ss_sint_t)          cs_sint_t;      /*!< signed integer             */
+typedef stlsoft_ns_qual(ss_uint_t)          cs_uint_t;      /*!< unsigned integer           */
+typedef stlsoft_ns_qual(ss_long_t)          cs_long_t;      /*!< long                       */
 #if defined(__cplusplus)
-typedef stlsoft_ns_qual(ss_bool_t)          cs_bool_t;      //!< bool
+typedef stlsoft_ns_qual(ss_bool_t)          cs_bool_t;      /*!< bool                       */
 #endif /* __cplusplus */
-typedef DWORD                               cs_dword_t;     //!< dword
-typedef stlsoft_ns_qual(ss_size_t)          cs_size_t;      //!< size
-typedef stlsoft_ns_qual(ss_ptrdiff_t)       cs_ptrdiff_t;   //!< ptr diff
-typedef stlsoft_ns_qual(ss_streampos_t)     cs_streampos_t; //!< streampos
-typedef stlsoft_ns_qual(ss_streamoff_t)     cs_streamoff_t; //!< streamoff
+typedef DWORD                               cs_dword_t;     /*!< dword                      */
+typedef stlsoft_ns_qual(ss_size_t)          cs_size_t;      /*!< size                       */
+typedef stlsoft_ns_qual(ss_ptrdiff_t)       cs_ptrdiff_t;   /*!< ptr diff                   */
+typedef stlsoft_ns_qual(ss_streampos_t)     cs_streampos_t; /*!< streampos                  */
+typedef stlsoft_ns_qual(ss_streamoff_t)     cs_streamoff_t; /*!< streamoff                  */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 typedef cs_char_a_t         char_a_t;           /*!< Ansi char type             */
@@ -573,13 +573,7 @@ typedef cs_long_t           long_t;             /*!< long integer               
 typedef cs_bool_t           bool_t;             /*!< bool                       */
 #endif /* __cplusplus */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-#if 0
-typedef cs_size_t           size_t;             /*!< size                       */
-#endif /* 0 */
 typedef cs_dword_t          dword_t;            /*!< dword                      */
-#if 0
-typedef cs_ptrdiff_t        ptrdiff_t;          /*!< ptr diff                   */
-#endif /* 0 */
 typedef cs_streampos_t      streampos_t;        /*!< streampos                  */
 typedef cs_streamoff_t      streamoff_t;        /*!< streamoff                  */
 # endif /* compiler */

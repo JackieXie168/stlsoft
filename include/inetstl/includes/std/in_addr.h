@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        inetstl/includes/std/in_addr.h
  *
- * Purpose:     .
+ * Purpose:     Discrimination of various operating-specific header files
+ *              for Internet-related types.
  *
  * Created:     
- * Updated:     21st October 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,16 +39,33 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/** \file inetstl/includes/std/in_addr.h
+ *
+ * \brief [C, C++] Discrimination of various operating-specific header files
+ *   for Internet-related types
+ *   (\ref group__library__utility "Utility" Library).
+ */
 
+#ifndef INETSTL_INCL_INETSTL_INCLUDES_STD_H_IN_ADDR
+#define INETSTL_INCL_INETSTL_INCLUDES_STD_H_IN_ADDR
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_MAJOR       1
+# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_MINOR       0
+# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_REVISION    1
+# define INETSTL_VER_INETSTL_INCLUDES_STD_H_IN_ADDR_EDIT        3
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
 
 #if defined(WIN32)
 
 # if !defined(_WINSOCKAPI_) && \
      !defined(_WINSOCK2API_)
 #  include <winsock2.h>
-# endif
+# endif /* !_WINSOCKAPI_ && !_WINSOCK2API_ */
 
 #else /* ? OS */
 
@@ -57,3 +75,9 @@
 # include <arpa/inet.h>
 
 #endif /* OS */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+#endif /* INETSTL_INCL_INETSTL_INCLUDES_STD_H_IN_ADDR */
+
+/* ////////////////////////////////////////////////////////////////////// */

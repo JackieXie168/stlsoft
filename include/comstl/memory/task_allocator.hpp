@@ -4,7 +4,7 @@
  * Purpose:     task_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/memory/task_allocator.hpp
  *
- * \brief [C++ only] Definition of the comstl::task_allocator class.
- * (\ref group__library__memory "Memory" Library.)
+ * \brief [C++ only] Definition of the comstl::task_allocator class
+ *   (\ref group__library__memory "Memory" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_MEMORY_HPP_TASK_ALLOCATOR
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MAJOR      4
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MINOR      0
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_REVISION   3
-# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       80
+# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

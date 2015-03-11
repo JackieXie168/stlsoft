@@ -4,7 +4,7 @@
  * Purpose:     WinSTL tick-count performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/performance/tick_counter.hpp
  *
  * \brief [C++ only] Definition of the 
- *  \link winstl::tick_counter tick_counter\endlink class.
- * (\ref group__library__performance "Performance" Library.)
+ *  \link winstl::tick_counter tick_counter\endlink class
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_PERFORMANCE_HPP_TICK_COUNTER
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_MAJOR       4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_MINOR       0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_REVISION    1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_EDIT        40
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

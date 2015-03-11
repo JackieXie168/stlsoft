@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     2nd August 2006
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/controls/dialog_functionals.hpp
  *
- * \brief [C++] Functionals for application to dialog controls.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ * \brief [C++] Functionals for application to dialog controls
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MAJOR     1
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MINOR     0
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_REVISION  1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      2
+# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,11 +75,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
     __GNUC__ < 3
-# error winstl_control_functionals.h is not compatible with GNU C++ prior to 3.0
+# error winstl/controls/dialog_functionals.hpp is not compatible with GNU C++ prior to 3.0
 #endif /* compiler */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1100
-# error winstl_control_functionals.h is not compatible with Visual C++ 4.2 or earlier
+# error winstl/controls/dialog_functionals.hpp is not compatible with Visual C++ 4.2 or earlier
 #endif /* compiler */
 
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND

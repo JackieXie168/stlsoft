@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -42,8 +42,8 @@
 
 /** \file unixstl/filesystem/glob_sequence.hpp
  *
- * \brief [C++ only] Definition of the unixstl::glob_sequence class.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the unixstl::glob_sequence class
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE
@@ -53,7 +53,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      129
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -175,7 +175,7 @@ namespace unixstl_project
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 /** \brief The exception-type thrown by unixstl::glob_sequence
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 class glob_sequence_exception
 #if defined(STLSOFT_COMPILER_IS_DMC)
@@ -240,7 +240,7 @@ private:
 
 /** \brief STL-like readonly sequence based on the results of file-system wildcard matches
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * This class presents and STL-like readonly sequence interface to allow the
  * iteration over the results of file-system wildcard matches.

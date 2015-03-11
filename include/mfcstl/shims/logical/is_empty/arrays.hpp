@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/attribute/is_empty/arrays.hpp
+ * File:        mfcstl/shims/logical/is_empty/arrays.hpp
  *
  * Purpose:     Helper functions for MFC array classes.
  *
  * Created:     18th December 2006
- * Updated:     19th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,21 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file mfcstl/shims/attribute/is_empty/arrays.hpp
+/** \file mfcstl/shims/logical/is_empty/arrays.hpp
  *
  * \brief [C++] Primary include file for is_empty attribute shims
- *   for MFC array classes.
- *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
+ *   for MFC array classes
+ *   (\ref group__concept__shim__collection_logical__is_empty "is_empty Collection Logical Shim").
  */
 
-#ifndef MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_ARRAYS
-#define MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_ARRAYS
+#ifndef MFCSTL_INCL_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS
+#define MFCSTL_INCL_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_ARRAYS_MAJOR    1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_ARRAYS_MINOR    0
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_ARRAYS_REVISION 1
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_ARRAYS_EDIT     1
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_MAJOR      2
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_MINOR      0
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_REVISION   1
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ namespace mfcstl_project
 
 /** \brief Indicates whether the array is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
 inline int is_empty(CByteArray const &ar)
@@ -102,7 +102,7 @@ inline int is_empty(CByteArray const &ar)
 
 /** \brief Indicates whether the array is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
 inline int is_empty(CWordArray const &ar)
@@ -112,7 +112,7 @@ inline int is_empty(CWordArray const &ar)
 
 /** \brief Indicates whether the array is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
 inline int is_empty(CDWordArray const &ar)
@@ -122,7 +122,7 @@ inline int is_empty(CDWordArray const &ar)
 
 /** \brief Indicates whether the array is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
 inline int is_empty(CUIntArray const &ar)
@@ -132,7 +132,7 @@ inline int is_empty(CUIntArray const &ar)
 
 /** \brief Indicates whether the array is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
 inline int is_empty(CPtrArray const &ar)
@@ -142,7 +142,7 @@ inline int is_empty(CPtrArray const &ar)
 
 /** \brief Indicates whether the array is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
 inline int is_empty(CObArray const &ar)
@@ -152,7 +152,7 @@ inline int is_empty(CObArray const &ar)
 
 /** \brief Indicates whether the array is empty
  *
- * \ingroup group__concept__shim__collection_attribute__is_empty
+ * \ingroup group__concept__shim__collection_logical__is_empty
  *
  */
 inline int is_empty(CStringArray const &ar)
@@ -189,6 +189,6 @@ namespace stlsoft
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_ARRAYS */
+#endif /* MFCSTL_INCL_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS */
 
 /* ////////////////////////////////////////////////////////////////////// */

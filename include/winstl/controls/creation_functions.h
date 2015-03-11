@@ -4,7 +4,7 @@
  * Purpose:     Control creation functions.
  *
  * Created:     7th May 2000
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/controls/creation_functions.h
  *
- * \brief [C, C++] Control creation functions.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ * \brief [C, C++] Control creation functions
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROL_H_CREATION_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        15
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    3
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -100,9 +100,12 @@ namespace winstl_project
  *
  * \ingroup group__library__windows_controls
  */
-STLSOFT_INLINE void winstl__setchildfont_(HWND STLSOFT_UNNAMED_PARAM(hwnd), HWND STLSOFT_UNNAMED_PARAM(hwndParent))
+STLSOFT_INLINE void winstl__setchildfont_(HWND hwnd, HWND hwndParent)
 {
-//  ::SendMessage(hwndParent, WM_SETFONT, ::SendMessage(hwnd, WM_GETFONT, 0, 0L), 1);
+    STLSOFT_SUPPRESS_UNUSED(hwnd);
+    STLSOFT_SUPPRESS_UNUSED(hwndParent);
+
+    /* ::SendMessage(hwndParent, WM_SETFONT, ::SendMessage(hwnd, WM_GETFONT, 0, 0L), 1); */
 }
 
 /** \brief 
@@ -184,6 +187,19 @@ STLSOFT_INLINE HWND winstl__CreateCheckboxW(HWND hwndParent, ws_char_w_t const *
     return winstl__CreateWindowW(L"BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, stlsoft_reinterpret_cast(HMENU, id), NULL, NULL);
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ functions
+ */
 
 #ifdef __cplusplus
 

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file winstl/system/searchpath_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_searchpath_sequence
- *  class template.
- * (\ref group__library__system "System" Library.)
+ *  class template
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SEARCHPATH_SEQUENCE
@@ -53,7 +53,7 @@
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    1
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 3
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     85
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

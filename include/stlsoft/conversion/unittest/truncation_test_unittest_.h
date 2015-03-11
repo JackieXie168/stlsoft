@@ -1,5 +1,5 @@
 
-// Updated: 6th January 2007
+// Updated: 14th January 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST)
 # error This file cannot be directly included, and should only be included within stlsoft/conversion/truncation_test.hpp
@@ -17,6 +17,9 @@ namespace unittest
 	{
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # define STLSOFT_CONV_TRUNCATION_TEST_CASE(fromType, toType, fromValue) stlsoft_ns_qual(truncation_test)<toType>(static_cast<fromType>(fromValue))
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      _MSC_VER < 1200
+# define STLSOFT_CONV_TRUNCATION_TEST_CASE(fromType, toType, fromValue) stlsoft_ns_qual(truncation_test)<toType>(static_cast<fromType>(fromValue), toType())
 #else /* ? compiler */
 # define STLSOFT_CONV_TRUNCATION_TEST_CASE(fromType, toType, fromValue) stlsoft_ns_qual(truncation_test)<toType, fromType>(static_cast<fromType>(fromValue))
 #endif /* compiler */

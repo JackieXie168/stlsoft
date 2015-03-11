@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     13th June 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/filesystem/path_functions.hpp
  *
- * \brief [C++ only] Helper functions for (text) file handling.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Helper functions for (text) file handling
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

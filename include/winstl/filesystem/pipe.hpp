@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/filesystem/pipe.hpp
  *
- * \brief [C++ only] Definition of the winstl::pipe class.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the winstl::pipe class
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PIPE
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     31
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ namespace winstl_project
 
 /** \brief Class which wraps the Win32 pipe kernel object
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 class pipe
 {
@@ -166,7 +166,7 @@ public:
         {
             ::CloseHandle(m_hReadHandle);
 
-			m_hReadHandle = NULL;
+            m_hReadHandle = NULL;
         }
     }
     /// \brief Closes the write handle, if not already closed
@@ -176,7 +176,7 @@ public:
         {
             ::CloseHandle(m_hWriteHandle);
 
-			m_hReadHandle = NULL;
+            m_hReadHandle = NULL;
         }
     }
     /// \brief Closes the read and write handles, if not already closed

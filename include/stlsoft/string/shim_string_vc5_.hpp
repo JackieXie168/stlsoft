@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class for VC++ 5.
  *
  * Created:     16th October 2006
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,6 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/** \file stlsoft/string/shim_string_vc5_.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::basic_shim_string class
+ *   template for Visual C++ 5.0
+ *   (\ref group__library__string "String" Library).
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
 # error shim_string_vc5_.hpp can not be included in isolation: include stlsoft/string/shim_string.hpp instead
@@ -47,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5__MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

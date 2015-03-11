@@ -4,7 +4,7 @@
  * Purpose:     Contains equivalents to contents of std's <utility>.
  *
  * Created:     17th January 2002
- * Updated:     2nd January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/util/std/utility.hpp
  *
- * \brief [C++ only] Contains equivalents to contents of std's <utility>.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Contains equivalents to contents of std's &lt;utility&gt;
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_UTILITY
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MAJOR     3
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MINOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      67
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

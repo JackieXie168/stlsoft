@@ -4,7 +4,7 @@
  * Purpose:     Class that adapts a unary function to an output iterator.
  *
  * Created:     20th July 2005
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file stlsoft/iterators/unary_function_output_iterator_adaptor.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::unary_function_output_iterator_adaptor
- *   class template.
- * (\ref group__library__iterators "Iterators" Library.)
+ *   class template
+ *   (\ref group__library__iterators "Iterators" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      10
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,6 @@ public:
 
 public:
     typedef stlsoft_ns_qual_std(output_iterator_tag)    iterator_category;
-//  typedef ss_typename_type_k F::argument_type         value_type;
     typedef void                                        value_type;
     typedef void                                        pointer;
     typedef void                                        reference;

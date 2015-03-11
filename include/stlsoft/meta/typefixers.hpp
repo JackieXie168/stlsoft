@@ -4,7 +4,7 @@
  * Purpose:     Combined header file for STLSoft's TypeFixer utility components.
  *
  * Created:     24th April 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/meta/typefixers.hpp
  *
- * \brief [C++ only] Common include file for all typefixer class templates.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ * \brief [C++ only] Common include file for all typefixer class templates
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_TYPEFIXERS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_REVISION   1
-# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       9
+# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

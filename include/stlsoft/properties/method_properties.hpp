@@ -4,7 +4,7 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
  * stlsoft::static_method_property_get_external,
  * stlsoft::static_method_property_set_external
  * and
- * stlsoft::static_method_property_getset_external.
- * (\ref group__library__properties "Properties" Library.)
+ * stlsoft::static_method_property_getset_external
+ *   (\ref group__library__properties "Properties" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES
@@ -64,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MINOR     0
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_REVISION  2
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      50
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_REVISION  3
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,8 @@
 
 /*
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_GCC:     __GNUC__ == 3 && defined(__APPLE__)
+STLSOFT_COMPILER_IS_GCC:    __GNUC__ == 3 && defined(__APPLE__)
+STLSOFT_COMPILER_IS_MSVC:   _MSC_VER<1200
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -86,6 +87,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# error stlsoft/properties/method_properties.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compatibility

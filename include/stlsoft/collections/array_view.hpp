@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -43,8 +43,8 @@
 /** \file stlsoft/collections/array_view.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::array_view
- *   class template.
- * (\ref group__library__collections "Collections" Library.)
+ *   class template
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    7
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        62
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

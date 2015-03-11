@@ -151,7 +151,7 @@ namespace unittest
 
 				try
 				{
-					stlsoft::ref_ptr<IStorage>	stg2	= 	interface_cast<IStorage>(stm);
+					stlsoft::ref_ptr<IStorage>	stg2	=	interface_cast<IStorage>(stm);
 
 					r->report("interface_cast cast to wrong type ", __LINE__);
 					bSuccess = false;

@@ -4,7 +4,7 @@
  * Purpose:     Contains the c_str_insert_iterator template class and c_str_inserter creator function.
  *
  * Created:     12th October 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks to:   Pablo Aguilar for spotting missing inclusions.
  *
@@ -45,7 +45,7 @@
  * \brief [C++ only] Definition of the stlsoft::c_str_ptr_extract_iterator
  *   and its creator function 
  *   class template
- * (\ref group__library__iterators "Iterators" Library.)
+ *   (\ref group__library__iterators "Iterators" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_C_STR_INSERTER
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_REVISION  1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      22
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

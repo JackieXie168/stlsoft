@@ -1,5 +1,5 @@
 
-// Updated: 6th December 2006
+// Updated: 14th January 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR)
 # error This file cannot be directly included, and should only be included within stlsoft/smartptr/ref_ptr.hpp
@@ -409,7 +409,8 @@ namespace unittest
 				}
 
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-	_MSC_VER != 1300
+	(	_MSC_VER > 1100 && \
+		_MSC_VER != 1300)
 				Base_ptr		p2(p1);
 
 				if(derived.Count() != startCount + 2)
@@ -451,7 +452,8 @@ namespace unittest
 				Base_ptr		p2;
 
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-	_MSC_VER != 1300
+	(	_MSC_VER > 1100 && \
+		_MSC_VER != 1300)
 				p2 = p1;
 
 				if(derived.Count() != startCount + 2)
@@ -542,8 +544,11 @@ namespace unittest
 
 				p2_3	=	p2_1;
 
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+	_MSC_VER > 1100
 				p1		=	p2_3;
 				p2_3	=	p1;
+#endif /* compiler */
 			}
 
 			if(base.Count() != startCount)
@@ -564,6 +569,9 @@ namespace unittest
 
 			Derived_ptr 	d1(new RCIs2::Derived(), false);
 
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+	_MSC_VER > 1100
+
 			Base_ptr		d2(d1);
 
 			if(d1.get() != d2.get())
@@ -579,6 +587,12 @@ namespace unittest
 				r->report("Copying failed", __LINE__);
 				bSuccess = false;
 			}
+
+#else /* compiler */
+
+			STLSOFT_SUPPRESS_UNUSED(bSuccess);
+
+#endif /* compiler */
 
 			return bSuccess;
 		}

@@ -4,7 +4,7 @@
  * Purpose:     Error functions.
  *
  * Created:     20th October 1994
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/gdi_functions.h
  *
- * \brief [C, C++] GDI functions.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] GDI functions
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_GDI_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     133
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     135
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -117,6 +117,15 @@ STLSOFT_INLINE ws_size_t winstl__get_LOGFONT(HFONT hpal, LOGFONT *pfnt)
 {
     return stlsoft_static_cast(ws_size_t, STLSOFT_NS_GLOBAL(GetObject)(hpal, sizeof(LOGFONT), pfnt));
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions

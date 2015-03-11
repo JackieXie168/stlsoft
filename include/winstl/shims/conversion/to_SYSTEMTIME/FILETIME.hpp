@@ -4,11 +4,11 @@
  * Purpose:     winstl::to_SYSTEMTIME(FILETIME const&) overload.
  *
  * Created:     24th May 2002
- * Updated:     24th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file winstl/shims/conversion/to_SYSTEMTIME/FILETIME.hpp
  *
  * \brief [C++] Definition of the winstl::to_SYSTEMTIME(FILETIME const&)
- *   overload.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   overload
+ *   (\ref group__concept__shim__time_conversion__to_SYSTEMTIME "winstl::to_SYSTEMTIME" Time Conversion Shim).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_MINOR    0
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_REVISION 4
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_EDIT     4
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_REVISION 5
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,13 +96,20 @@ namespace winstl_project
  * Functions
  */
 
-/** Conversion shim
+/** \brief Converts an instance of FILETIME to an instance of SYSTEMTIME,
+ *    using the Windows API function <code>FileTimeToSystemTime()</code>.
  *
- * \param rhs A date FILETIME 
- * \return An instance of 
+ * \ingroup group__concept__shim__time_conversion__to_SYSTEMTIME
  *
+ * \param rhs A valid date, of type <code>FILETIME</code>
+ * \return A valid date, of type <code>SYSTEMTIME</code>
+ *
+ * \exception winstl::conversion_error If the conversion fails, e.g. the
+ *   <code>FILETIME</code> instance does not contain a valid date. When
+ *   compiling absent exception support, a zero-initialised instance of
+ *   <code>SYSTEMTIME</code> is returned.
  */
-inline SYSTEMTIME to_SYSTEMTIME(FILETIME const &rhs)
+inline const SYSTEMTIME to_SYSTEMTIME(FILETIME const &rhs)
 {
     SYSTEMTIME  st;
 

@@ -4,7 +4,7 @@
  * Purpose:     Byte formatting functions.
  *
  * Created:     23rd July 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/conversion/byte_format_functions.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::byte_format() function(s).
- * (\ref group__library__conversion "Conversion" Library.)
+ * \brief [C++ only] Definition of the stlsoft::byte_format() function(s)
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      4
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,6 +84,20 @@ namespace stlsoft
  * Functions
  */
 
+/** \brief Formats the contents of a contiguous block of memory into
+ *    hexadecimal text, optionally aligning into groups and/or lines.
+ *
+ * \ingroup group__library__conversion
+ *
+ * \param pv Pointer to the block
+ * \param cb Number of bytes in the block
+ * \param buff Pointer to the destination character buffer to receive the formatted contents
+ * \param cchBuff Number of character spaces available in the buffer
+ * \param byteGrouping Number of bytes in a group
+ * \param groupSeparator Group separator
+ * \param groupsPerLine Number of groups per line
+ * \param lineSeparator Line separator
+ */
 inline ss_size_t format_bytes(  void const  *pv
                             ,   ss_size_t   cb
                             ,   char        *buff

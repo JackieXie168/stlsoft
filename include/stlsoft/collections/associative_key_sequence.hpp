@@ -4,11 +4,11 @@
  * Purpose:     Adapts associative containers into a sequence of their values.
  *
  * Created:     28th January 2005
- * Updated:     30th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file stlsoft/collections/associative_key_sequence.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::associative_key_sequence
- *   class template.
- * (\ref group__library__collections "Collections" Library.)
+ *   class template
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_KEY_SEQUENCE
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_KEY_SEQUENCE_MAJOR     2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_KEY_SEQUENCE_MINOR     0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_KEY_SEQUENCE_REVISION  2
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_KEY_SEQUENCE_EDIT      18
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_KEY_SEQUENCE_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

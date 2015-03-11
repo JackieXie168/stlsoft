@@ -4,7 +4,7 @@
  * Purpose:     Exception thrown when interface casts fail.
  *
  * Created:     22nd December 2003
- * Updated:     4th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/error/bad_interface_cast.hpp
  *
- * \brief [C++ only] Definition of the comstl::bad_interface_cast class.
- * (\ref group__library__error "Error" Library.)
+ * \brief [C++ only] Definition of the comstl::bad_interface_cast class
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MAJOR       5
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MINOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_REVISION    2
-# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        30
+# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ namespace comstl_project
  * \see comstl::interface_cast_noaddref
  * \see comstl::interface_cast_test
  *
- * \ingroup group__library__com_interface
+ * \ingroup group__library__error
  */
 // [[synesis:class:exception: comstl::bad_cast]]
 class bad_interface_cast

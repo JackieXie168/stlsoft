@@ -1,11 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/iterators/transform_iterator.hpp
  *
- * Purpose:     An iterator adaptor that uses a unary function object to transform
- *              the values from the iterator's underlying sequence.
+ * Purpose:     An iterator adaptor that uses a unary function object to
+ *              transform the values from the iterator's underlying
+ *              sequence.
  *
  * Created:     6th February 1999
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +43,8 @@
 /** \file stlsoft/iterators/transform_iterator.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::transform_iterator
- *   iterator adaptor class template.
- * (\ref group__library__iterators "Iterators" Library.)
+ *   iterator adaptor class template
+ *   (\ref group__library__iterators "Iterators" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR
@@ -52,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  14
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      110
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  15
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +63,7 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -73,6 +75,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# error stlsoft/iterators/transform_iterator.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
+
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */

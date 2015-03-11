@@ -4,7 +4,7 @@
  * Purpose:     compiler_optimisation_traits class.
  *
  * Created:     15th November 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/util/compiler_optimisation_traits.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::compiler_optimisation_traits
- *   traits class.
- * (\ref group__library__utility "Utility" Library.)
+ *   traits class
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_COMPILER_OPTIMISATION_TRAITS
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MAJOR       4
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MINOR       0
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        19
+# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

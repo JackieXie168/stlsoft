@@ -4,7 +4,7 @@
  * Purpose:     Command-line sequences class.
  *
  * Created:     25th June 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/system/cmdargs.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::cmdargs class.
- * (\ref group__library__system "System" Library.)
+ * \brief [C++ only] Definition of the stlsoft::cmdargs class
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SYSTEM_HPP_CMDARGS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        19
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

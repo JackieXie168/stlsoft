@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file unixstl/filesystem/file_path_buffer.hpp
  *
  * \brief [C++ only] Definition of the unixstl::basic_file_path_buffer class
- *  template.
- * (\ref group__library__file_system "File System" Library.)
+ *  template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       54
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ namespace unixstl_project
 // class basic_file_path_buffer
 /** \brief Acts as a buffer with sufficient size for any drive on the host machine
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * This class is a non-template class primarily so that separate instantiations
  * are not created for each instantiation of the basic_file_path_buffer.
@@ -324,17 +324,17 @@ private:
 /* Typedefs to commonly encountered types. */
 /** \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_file_path_buffer<us_char_a_t, stlsoft_ns_qual(allocator_selector)<us_char_a_t>::allocator_type>   file_path_buffer_a;
 /** \brief Specialisation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_file_path_buffer<us_char_w_t, stlsoft_ns_qual(allocator_selector)<us_char_w_t>::allocator_type>   file_path_buffer_w;
 /** \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_file_path_buffer<us_char_a_t, stlsoft_ns_qual(allocator_selector)<us_char_a_t>::allocator_type>   file_path_buffer;
 

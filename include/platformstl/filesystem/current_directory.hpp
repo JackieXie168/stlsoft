@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the current_directory components.
  *
  * Created:     13th June 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file platformstl/filesystem/current_directory.hpp
  *
  * \brief [C++ only] Definition of the platformstl::basic_current_directory
- *  pseudo type.
- * (\ref group__library__file_system "File System" Library.)
+ *  pseudo type
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      13
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,12 +101,12 @@ namespace platformstl_project
 
     /** \brief A facade for the platform's basic_current_directory functionality.
      *
-     * \ingroup group__library__file_system
+     * \ingroup group__library__filesystem
      *
      * The notional class template platformstl::basic_current_directory
      * used to be a placeholder for the appropriate type for the given
      * platform, relying on
-     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_conformance "Intersecting Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::basic_current_directory

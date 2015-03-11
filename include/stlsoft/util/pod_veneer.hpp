@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_veneer template class.
  *
  * Created:     19th January 2002
- * Updated:     2nd January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/util/pod_veneer.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::pod_veneer class template.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Definition of the stlsoft::pod_veneer class template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_POD_VENEER
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_EDIT       46
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_POD_VENEER_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,8 +113,8 @@ namespace stlsoft
 \endhtmlonly
  *
  * \param T The POD type
- * \param CF The function object type applied during construction
- * \param DF The function object type applied during destruction
+ * \param CF The function class applied during construction
+ * \param DF The function class applied during destruction
  *
  * \ingroup concepts_veneer
  */
@@ -130,9 +130,9 @@ public:
     typedef T                       value_type;
     /// The Plain Old Data type
     typedef T                       pod_type;
-    /// The constructor function object type
+    /// The constructor function class
     typedef CF                      constructor_function_type;
-    /// The destructor function object type
+    /// The destructor function class
     typedef DF                      destructor_function_type;
     /// The type of the current parameterisation
     typedef pod_veneer<T, CF, DF>   class_type;

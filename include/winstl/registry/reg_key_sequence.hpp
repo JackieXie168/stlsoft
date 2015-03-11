@@ -13,11 +13,11 @@
  *              basic_reg_key_sequence class interface.
  *
  * Created:     19th January 2002
- * Updated:     30th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 /** \file winstl/registry/reg_key_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_reg_key_sequence
- *   class template.
- * (\ref group__library__windows_registry "Windows Registry" Library.)
+ *   class template
+ *   (\ref group__library__windows_registry "Windows Registry" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE
@@ -61,7 +61,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      6
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       120
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,13 +1,5 @@
-#include <stlsoft/stlsoft.h>
-
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/first_class_promoter.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#include <stlsoft/first_class_promoter.hpp>
+#error stlsoft_first_class_promoter.h is now obsolete. Instead include stlsoft/first_class_promoter.hpp
 
 /* Compatibility
-[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
-

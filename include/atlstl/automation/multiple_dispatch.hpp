@@ -5,11 +5,11 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     29th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,8 +43,8 @@
  * \brief [C++ only; requires ATL library] Definition of the
  *  atlstl::IDispatchImpl2 and atlstl::IDispatchImpl3
  *  class templates, which make the methods and properties exhibited through
- *  multiple IDispatch interfaces visible to scripting clients.
- * (\ref group__library__automation "COM Automation" Library.)
+ *  multiple IDispatch interfaces visible to scripting clients
+ *   (\ref group__library__com_automation "COM Automation" Library).
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       10
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ namespace atlstl_project
 /** \brief Class template that enables the methods and properties exhibited
  * through two IDispatch interfaces to be visible to scripting clients.
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * The class template is used in place of ATL's IDispatchImpl class in the
  * parent class list of a class template that support two dispinterfaces.
@@ -327,7 +327,7 @@ protected:
 /** \brief Class template that enables the methods and properties exhibited
  * through three IDispatch interfaces to be visible to scripting clients.
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * IDispatchImpl3 is used (and operates) in exactly the same way as
  * IDispatchImpl2, except that it supports three dispinterfaces, rather than
@@ -497,7 +497,7 @@ protected:
 /** \brief Class template that enables the methods and properties exhibited
  *    through four IDispatch interfaces to be visible to scripting clients.
  *
- * \ingroup group__library__automation
+ * \ingroup group__library__com_automation
  *
  * IDispatchImpl4 is used (and operates) in exactly the same way as
  * IDispatchImpl3, except that it supports four dispinterfaces, rather than

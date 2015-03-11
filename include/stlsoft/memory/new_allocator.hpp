@@ -4,7 +4,7 @@
  * Purpose:     stlsoft_new_allocator class - use new & delete operators.
  *
  * Created:     2nd January 2001
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/memory/new_allocator.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::new_allocator class.
- * (\ref group__library__memory "Memory" Library.)
+ * \brief [C++ only] Definition of the stlsoft::new_allocator class
+ *   (\ref group__library__memory "Memory" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_REVISION  2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      76
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

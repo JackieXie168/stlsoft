@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file unixstl/system/environment_variable.hpp
  *
  * \brief [C++ only] Definition of the unixstl::basic_environment_variable
- *  class template.
- * (\ref group__library__system "System" Library.)
+ *  class template
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      2
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       61
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

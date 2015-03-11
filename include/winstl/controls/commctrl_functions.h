@@ -4,7 +4,7 @@
  * Purpose:     Various Windows common control functions.
  *
  * Created:     13th November 2002
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/controls/commctrl_functions.h
  *
- * \brief [C, C++] Various Windows common control functions.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ * \brief [C, C++] Various Windows common control functions
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       38
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   2
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,9 +70,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -140,6 +140,15 @@ STLSOFT_INLINE HTREEITEM winstl__treeview_getcaretitem(HWND hwnd)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -193,8 +202,9 @@ inline HTREEITEM treeview_getcaretitem(HWND hwnd)
 }
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/commctrl_functions_unittest_.h"

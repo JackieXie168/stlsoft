@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -45,8 +45,8 @@
 /** \file winstl/filesystem/file_path_buffer.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_file_path_buffer class
- *  template.
- * (\ref group__library__file_system "File System" Library.)
+ *  template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     108
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -149,7 +149,7 @@ struct is_ansi<ws_char_a_t>
 // class basic_file_path_buffer
 /** \brief Acts as a buffer with sufficient size for any drive on the host machine
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * This class is a non-template class primarily so that separate instantiations
  * are not created for each instantiation of the basic_file_path_buffer.
@@ -375,17 +375,17 @@ private:
 /* Typedefs to commonly encountered types. */
 /** \brief Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_file_path_buffer<ws_char_a_t, processheap_allocator<ws_char_a_t> >    file_path_buffer_a;
 /** \brief Specialisation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_file_path_buffer<ws_char_w_t, processheap_allocator<ws_char_w_t> >    file_path_buffer_w;
 /** \brief Specialisation of the basic_file_path_buffer template for the ambeint character type \c TCHAR
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_file_path_buffer<TCHAR, processheap_allocator<TCHAR> >                file_path_buffer;
 

@@ -4,7 +4,7 @@
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     2nd January 2007
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/util/printf_traits.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::printf_traits class
- *   template.
- * (\ref group__library__utility "Utility" Library.)
+ *   template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     54
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -237,10 +237,11 @@ struct printf_traits
 
 template <ss_typename_param_k T>
 struct printf_traits;
+
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template <ss_typename_param_k T>
 struct printf_traits_fixed;
-
-//#ifdef STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
 /* s/uint8 */
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -283,9 +284,6 @@ struct printf_traits_fixed<ss_uint8_t>
     }
 };
 
-//#endif // STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
-//#ifdef STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
-
 /* s/uint16 */
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits_fixed<ss_sint16_t>
@@ -326,9 +324,6 @@ struct printf_traits_fixed<ss_uint16_t>
         return L"%u";
     }
 };
-
-//#endif // STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
-//#ifdef STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
 /* s/uint32 */
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -371,7 +366,6 @@ struct printf_traits_fixed<ss_uint32_t>
     }
 };
 
-//#endif // STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 
 /* s/uint64 */
@@ -441,6 +435,8 @@ struct printf_traits_fixed<ss_uint64_t>
 
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_sint8_t>
@@ -452,7 +448,6 @@ struct printf_traits<ss_uint8_t>
     : printf_traits_fixed<ss_uint8_t>
 {};
 
-#ifdef STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_sint16_t>
     : printf_traits_fixed<ss_sint16_t>
@@ -462,9 +457,7 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_uint16_t>
     : printf_traits_fixed<ss_uint16_t>
 {};
-#endif // STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
-#ifdef STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_sint32_t>
     : printf_traits_fixed<ss_sint32_t>
@@ -474,7 +467,6 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<ss_uint32_t>
     : printf_traits_fixed<ss_uint32_t>
 {};
-#endif // STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -489,6 +481,7 @@ struct printf_traits<ss_uint64_t>
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<short>
     : printf_traits_fixed<int_size_traits<sizeof(short)>::signed_type>
@@ -498,7 +491,9 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<unsigned short>
     : printf_traits_fixed<int_size_traits<sizeof(unsigned short)>::unsigned_type>
 {};
+#endif // STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
 
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<int>
     : printf_traits_fixed<int_size_traits<sizeof(int)>::signed_type>
@@ -508,7 +503,9 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<unsigned int>
     : printf_traits_fixed<int_size_traits<sizeof(unsigned int)>::unsigned_type>
 {};
+#endif // STLSOFT_CF_INT_DISTINCT_INT_TYPE
 
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<long>
     : printf_traits_fixed<int_size_traits<sizeof(long)>::signed_type>
@@ -518,6 +515,7 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct printf_traits<unsigned long>
     : printf_traits_fixed<int_size_traits<sizeof(unsigned long)>::unsigned_type>
 {};
+#endif // STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

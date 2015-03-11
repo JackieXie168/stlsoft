@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     5th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/filesystem/file_functions.hpp
  *
- * \brief [C++ only] Helper functions for (text) file handling.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Helper functions for (text) file handling
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       44
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents);
 
 /** \brief Loads a text file into a string
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param fileName The name/path of the text file to load. Can be
  *                  nul-terminated C-style string, or a string object
@@ -140,7 +140,7 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents);
   std::string       contents;
   winstl::uint64_t  numBytes = winstl::<b>load_text_file</b>("mytextfile.ext", contents);
 </pre>
-\htmlonly
+\endhtmlonly
  *
  * \remarks The character type of the text file is assumed (and controlled)
  *   to be that of the \c contents parameter. For example, if \c contents is
@@ -252,7 +252,8 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents)
     return 0;
 }
 
-#if !defined(STLSOFT_COMPILER_IS_MWERKS) && \
+#if !defined(STLSOFT_COMPILER_IS_DMC) && \
+    !defined(STLSOFT_COMPILER_IS_MWERKS) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1300)
 
@@ -358,7 +359,7 @@ void readlines_impl(CH const *p, ss_size_t len, C &container)
 
 /** \brief Reads the lines of a text-file into a sequence container
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param fileName The name of the text-file to load
  * \param container Reference to the sequence container to which each line
@@ -372,7 +373,7 @@ void readlines_impl(CH const *p, ss_size_t len, C &container)
 
   winstl::<b>readlines</b>("mytextfile.ext", lines);
 </pre>
-\htmlonly
+\endhtmlonly
  *
  *
  * \remarks The container type's <code>value_type</code> must provide

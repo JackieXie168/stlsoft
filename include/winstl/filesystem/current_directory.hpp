@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 
 /** \file winstl/filesystem/current_directory.hpp
  *
- * \brief [C++ only] Definition of the winstl::basic_current_directory class template.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the winstl::basic_current_directory class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT        64
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT        66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

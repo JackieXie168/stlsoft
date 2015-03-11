@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/filesystem/memory_mapped_file.hpp
  *
- * \brief [C++ only] Definition of the unixstl::memory_mapped_file class.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the unixstl::memory_mapped_file class
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        75
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,7 +110,7 @@ namespace unixstl_project
 
 /** \brief Facade over the UNIX memory mapped file API.
  *
- * \ingroup group__file_system
+ * \ingroup group__library__filesystem
  */
 class memory_mapped_file
 {

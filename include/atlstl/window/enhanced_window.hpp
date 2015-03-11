@@ -4,11 +4,11 @@
  * Purpose:     Mixin class providing enhanced functions for ATL windows.
  *
  * Created:     30th November 2000
- * Updated:     29th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file atlstl/window/enhanced_window.hpp
  *
  * \brief [C++ only; requires ATL library] Definition of the
- *   atlstl::EnhancedWindow class template.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ *   atlstl::EnhancedWindow class template
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MINOR    0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     25
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

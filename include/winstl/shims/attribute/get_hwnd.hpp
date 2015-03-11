@@ -4,7 +4,7 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     7th October 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/shims/attribute/get_hwnd.hpp
  *
  * \brief [C++ only] Definition of stlsoft::get_hwnd attribute shim
- *   functions for Win32 types.
- * (\ref group__library__shims__window_attribute "Window Attribute Shims".)
+ *   functions for Win32 types
+ *   (\ref group__library__shims__window_attribute "Window Attribute Shims").
  */
 
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
@@ -52,7 +52,7 @@
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR     4
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR     0
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION  1
-# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT      42
+# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

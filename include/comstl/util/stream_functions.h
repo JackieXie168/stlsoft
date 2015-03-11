@@ -4,7 +4,7 @@
  * Purpose:     Stream functions.
  *
  * Created:     22nd October 2005
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/util/stream_functions.h
  *
- * \brief [C++ only; requires COM] COM stream functions.
- * (\ref group__library__utility__com "COM Utility" Library.)
+ * \brief [C++ only; requires COM] COM stream functions
+ *   (\ref group__library__utility__com "COM Utility" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_STREAM_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MAJOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MINOR    1
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     11
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 3
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ namespace comstl_project
 STLSOFT_INLINE HRESULT comstl__get_stream_size(LPSTREAM pstm, ULARGE_INTEGER *psize)
 {
     STATSTG statstg;
-    HRESULT hr  =   pstm->Stat(&statstg, STATFLAG_NONAME);
+    HRESULT hr  =   COMSTL_ITF_CALL(pstm)->Stat(COMSTL_ITF_THIS(pstm) &statstg, STATFLAG_NONAME);
 
     if(SUCCEEDED(hr))
     {
@@ -157,8 +157,9 @@ inline HRESULT get_stream_size(LPSTREAM pstm, cs_uint64_t &size)
 }
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/stream_functions_unittest_.h"

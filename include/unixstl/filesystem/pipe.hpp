@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/filesystem/pipe.hpp
  *
- * \brief [C++ only] Definition of the unixstl::pipe class.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the unixstl::pipe class
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_PIPE
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       38
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ namespace unixstl_project
 
 /** \brief Class which wraps the UNIX pipe() function
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 class pipe
 {

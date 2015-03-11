@@ -4,7 +4,7 @@
  * Purpose:     Simple class that converts a relative path to an absolute one.
  *
  * Created:     20th December 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/filesystem/absolute_path.hpp
  *
- * \brief [C++ only] Definition of the winstl::basic_absolute_path class template.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the winstl::basic_absolute_path class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        61
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -159,7 +159,7 @@ public:
 
 /** \brief Converts a relative path to an absolute path
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param T The traits type. On translators that support default template
@@ -200,7 +200,7 @@ public:
 
 /** \brief @{
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 private:
     basic_absolute_path(class_type const &);
@@ -214,17 +214,17 @@ private:
 
 /** \brief Specialisation of the basic_absolute_path template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_absolute_path<ws_char_a_t>    absolute_path_a;
 /** \brief Specialisation of the basic_absolute_path template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_absolute_path<ws_char_w_t>    absolute_path_w;
 /** \brief Specialisation of the basic_absolute_path template for the Win32 character type \c TCHAR
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_absolute_path<TCHAR>          absolute_path;
 

@@ -4,7 +4,7 @@
  * Purpose:     Pre-processor abilities for the meta library.
  *
  * Created:     5th March 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/meta/capabilities.hpp
  *
  * \brief [C++ only] Pre-processor discrimination of meta programming
- *   support.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ *   support
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     8
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,8 @@
 # undef STLSOFT_META_HAS_IS_SAME_TYPE
 #endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
 
-#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+    defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
   // If partial template specialisation is supported, then is_same_type is
   // supported ...
 # define STLSOFT_META_HAS_IS_SAME_TYPE

@@ -4,14 +4,14 @@
  * Purpose:     Instantiations of th_sequence_value_traits<>.
  *
  * Created:     21st May 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
  * Copyright (c) 2005-2007, Pablo Aguilar
- * Copyright (c) 2006, Matthew Wilson
+ * Copyright (c) 2006-2007, Matthew Wilson
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,8 +44,8 @@
 
 /** \file winstl/toolhelp/sequence_value_traits.hpp
  *
- * \brief [C++ only] Instantiations of th_sequence_value_traits<>.
- * (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ * \brief [C++ only] Instantiations of th_sequence_value_traits<>
+ *   (\ref group__library__windows_toolhelp "Windows ToolHelp" Library).
  */
 
 // NO INCLUDE GUARDS
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_REVISION  3
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      6
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_VALUE_TRAITS_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* Compatibility

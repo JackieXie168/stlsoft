@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/synch/process_mutex.hpp
  *
- * \brief [C++ only] Definition of winstl::process_mutex class.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of winstl::process_mutex class
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_PROCESS_MUTEX
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     52
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
-#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
-# include <winstl/synch/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+# include <winstl/synch/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -394,6 +394,20 @@ private:
  * \retval The synchronisation handle of \c mx
  */
 inline HANDLE get_synch_handle(process_mutex &mx)
+{
+    return mx.get();
+}
+
+/** \brief Overload of the form of the winstl::get_kernel_handle() shim for
+ *    the winstl::process_mutex type.
+ *
+ * \ingroup group__library__shims__kernel_handle_attribute
+ *
+ * \param mx The winstl::process_mutex instance
+ *
+ * \retval The synchronisation handle of \c mx
+ */
+inline HANDLE get_kernel_handle(process_mutex &mx)
 {
     return mx.get();
 }

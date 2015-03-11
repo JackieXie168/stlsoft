@@ -1,12 +1,5 @@
-#include <stlsoft/stlsoft.h>
-
-#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/error_desc.hpp")
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
-
-#include <winstl/error_desc.hpp>
+#error winstl_error_desc.h is now obsolete. Instead include winstl/error/error_desc.hpp
 
 /* Compatibility
-[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

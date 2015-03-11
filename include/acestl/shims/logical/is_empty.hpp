@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/attribute/is_empty.hpp
+ * File:        acestl/shims/logical/is_empty.hpp
  *
  * Purpose:     Contains the is_empty access shim.
  *
  * Created:     26th July 2006
- * Updated:     18th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,21 +38,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file acestl/shims/attribute/is_empty.hpp
+/** \file acestl/shims/logical/is_empty.hpp
  *
  * \brief [C++] Primary include file for is_empty attribute shims
- *   for ACE types.
- *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
+ *   for ACE types
+ *   (\ref group__concept__shim__collection_logical__is_empty "is_empty Collection Logical Shim").
  */
 
-#ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY
-#define ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY
+#ifndef ACESTL_INCL_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY
+#define ACESTL_INCL_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY
 
 #ifndef ACESTL_DOCUMENTATION_SKIP_SECTION
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MAJOR       1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MINOR       1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_REVISION    1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_EDIT        4
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MAJOR     2
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MINOR     0
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_REVISION  1
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT      7
 #endif /* !ACESTL_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,15 +62,15 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE
-# include <acestl/shims/attribute/is_empty/message_queue.hpp>
-#endif /* !ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE */
-#ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE
-# include <acestl/shims/attribute/is_empty/string_base.hpp>
-#endif /* !ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE */
+#ifndef ACESTL_INCL_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE
+# include <acestl/shims/logical/is_empty/message_queue.hpp>
+#endif /* !ACESTL_INCL_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE */
+#ifndef ACESTL_INCL_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE
+# include <acestl/shims/logical/is_empty/string_base.hpp>
+#endif /* !ACESTL_INCL_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY */
+#endif /* !ACESTL_INCL_ACESTL_SHIMS_LOGICAL_HPP_IS_EMPTY */
 
 /* ////////////////////////////////////////////////////////////////////// */

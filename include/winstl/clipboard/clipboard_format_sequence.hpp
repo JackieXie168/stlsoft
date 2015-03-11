@@ -4,7 +4,7 @@
  * Purpose:     Enumerates clipboard formats.
  *
  * Created:     11th May 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/clipboard/clipboard_format_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::clipboard_format_sequence
- *  class.
- * (\ref group__library__windows_clipboard "Windows Clipboard" Library.)
+ *  class
+ *   (\ref group__library__windows_clipboard "Windows Clipboard" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     26
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

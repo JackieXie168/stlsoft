@@ -4,7 +4,7 @@
  * Purpose:     size_traits classes.
  *
  * Created:     24th August 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/util/size_traits.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::size_traits class
- *   template.
- * (\ref group__library__utility "Utility" Library.)
+ *   template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_EDIT       20
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIZE_TRAITS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

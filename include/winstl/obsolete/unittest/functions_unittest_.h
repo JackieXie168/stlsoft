@@ -1,5 +1,5 @@
 
-// Updated:	30th December 2006
+// Updated: 30th December 2006
 
 #if !defined(WINSTL_INCL_WINSTL_OBSOLETE_H_FUNCTIONS)
 # error This file cannot be directly included, and should only be included within winstl/obsolete/functions.h

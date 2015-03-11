@@ -4,7 +4,7 @@
  * Purpose:     Defines the stlsoft::trip_bool class template.
  *
  * Created:     22nd October 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/util/trip_bool.hpp
  *
- * \brief [C++ only] Defines the stlsoft::trip_bool class template.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Defines the stlsoft::trip_bool class template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_TRIP_BOOL
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     A simple object enumerator, based on ArrayList.
  *
  * Created:     24th June 2003
- * Updated:     29th December 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file dotnetstl/collections/object_enumerators.hpp
  *
  * \brief [C++ only; requires .NET] Definition of the 
- *   dotnetstl::ArrayListEnumerator class.
- * (\ref group__library__collections "Collections" Library.)
+ *   dotnetstl::ArrayListEnumerator class
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS
@@ -52,7 +52,7 @@
 #define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_MAJOR    4
 #define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_MINOR    0
 #define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_REVISION 1
-#define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_EDIT     22
+#define DOTNETSTL_VER_DOTNETSTL_COLLECTIONS_HPP_OBJECT_ENUMERATORS_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

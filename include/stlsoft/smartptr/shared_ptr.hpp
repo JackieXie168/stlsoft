@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/smartptr/shared_ptr.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::shared_ptr smart
- *   pointer class template.
- * (\ref group__library__smart_pointers "Smart Pointers" Library.)
+ *   pointer class template
+ *   (\ref group__library__smart_pointers "Smart Pointers" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       0
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        24
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

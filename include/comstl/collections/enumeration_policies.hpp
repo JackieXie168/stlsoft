@@ -4,7 +4,7 @@
  * Purpose:     Policies for enumerator interface handling.
  *
  * Created:     20th December 2003
- * Updated:     4th January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/collections/enumeration_policies.hpp
  *
- * \brief [C++ only] Policies for enumerator interface handling.
- * (\ref group__library__collections "Collections" Library.)
+ * \brief [C++ only] Policies for enumerator interface handling
+ *   (\ref group__library__collections "Collections" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    6
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        45
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -378,7 +378,7 @@ public:
     }
 };
 
-/** \brief Adapts a value policy to a function object based interface
+/** \brief Adapts a value policy to a function class based interface
  *
  * \ingroup group__library__collections
  *
@@ -392,7 +392,7 @@ public:
     typedef ss_typename_type_k P::value_type    value_type;
 
 public:
-    /// \brief The initialisation function object type
+    /// \brief The initialisation function class
     struct init_element
     {
         /// The function call operator, which causes the value to be initialised
@@ -401,7 +401,7 @@ public:
             P::init(&v);
         }
     };
-    /// \brief The copy function object type
+    /// \brief The copy function class
     struct copy_element
     {
         /// The function call operator, which causes the destination to be copied from the source
@@ -410,7 +410,7 @@ public:
             P::copy(&dest, &src);
         }
     };
-    /// \brief The clear function object type
+    /// \brief The clear function class
     struct clear_element
     {
         /// The function call operator, which causes the value to be cleared
@@ -421,7 +421,7 @@ public:
     };
 };
 
-/** \brief [DEPRECATED] Adapts a value policy to a function object based interface
+/** \brief [DEPRECATED] Adapts a value policy to a function class based interface
  *
  * \deprecated Equivalent to value_policy_adaptor
  *

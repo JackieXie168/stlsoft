@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the pipe components.
  *
  * Created:     20th March 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,13 +46,13 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PIPE_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/pipe.hpp
  *
- * \brief [C++ only] Definition of the platformstl::pipe type.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the platformstl::pipe type
+ *   (\ref group__library__filesystem "File System" Library).
  *
  * When compiling on UNIX platforms, the platformstl::pipe
  * type resolves to the unixstl::pipe class. On Windows
@@ -105,12 +105,12 @@ namespace platformstl_project
 
     /** \brief A facade for the platform's pipe functionality.
      *
-     * \ingroup group__library__file_system
+     * \ingroup group__library__filesystem
      *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_conformance "Intersecting Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::pipe

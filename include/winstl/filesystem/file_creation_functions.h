@@ -4,7 +4,7 @@
  * Purpose:     File creation functions.
  *
  * Created:     12th September 2005
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/filesystem/file_creation_functions.h
  *
- * \brief [C, C++] File creation functions.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C, C++] File creation functions
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_H_FILE_CREATION_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       8
+# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -90,7 +90,7 @@ namespace winstl_project
 
 /** \brief Opens an existing file for shared read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 STLSOFT_INLINE HANDLE winstl__open_file_read_shared_a(ws_char_a_t const *fileName, DWORD dwShareMode)
 {
@@ -99,7 +99,7 @@ STLSOFT_INLINE HANDLE winstl__open_file_read_shared_a(ws_char_a_t const *fileNam
 
 /** \brief Opens an existing file for shared read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 STLSOFT_INLINE HANDLE winstl__open_file_read_shared_w(ws_char_w_t const *fileName, DWORD dwShareMode)
 {
@@ -108,7 +108,7 @@ STLSOFT_INLINE HANDLE winstl__open_file_read_shared_w(ws_char_w_t const *fileNam
 
 /** \brief Opens an existing file for exclusive read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 STLSOFT_INLINE HANDLE winstl__open_file_exclusive_a(ws_char_a_t const *fileName)
 {
@@ -117,7 +117,7 @@ STLSOFT_INLINE HANDLE winstl__open_file_exclusive_a(ws_char_a_t const *fileName)
 
 /** \brief Opens an existing file for exclusive read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 STLSOFT_INLINE HANDLE winstl__open_file_exclusive_w(ws_char_w_t const *fileName)
 {
@@ -125,14 +125,23 @@ STLSOFT_INLINE HANDLE winstl__open_file_exclusive_w(ws_char_w_t const *fileName)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
-#if defined(__cplusplus)
+#ifdef __cplusplus
 
 /** \brief Opens an existing file for shared read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline HANDLE open_file_read_shared(ws_char_a_t const *fileName, DWORD dwShareMode)
 {
@@ -140,7 +149,7 @@ inline HANDLE open_file_read_shared(ws_char_a_t const *fileName, DWORD dwShareMo
 }
 /** \brief Opens an existing file for shared read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline HANDLE open_file_read_shared(ws_char_w_t const *fileName, DWORD dwShareMode)
 {
@@ -149,7 +158,7 @@ inline HANDLE open_file_read_shared(ws_char_w_t const *fileName, DWORD dwShareMo
 
 /** \brief Opens an existing file for exclusive read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline HANDLE open_file_exclusive(ws_char_a_t const *fileName)
 {
@@ -157,7 +166,7 @@ inline HANDLE open_file_exclusive(ws_char_a_t const *fileName)
 }
 /** \brief Opens an existing file for exclusive read access.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 inline HANDLE open_file_exclusive(ws_char_w_t const *fileName)
 {

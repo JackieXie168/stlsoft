@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/filesystem/path.hpp
  *
- * \brief [C++ only] Definition of the winstl::basic_path class template.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the winstl::basic_path class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PATH
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     227
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     229
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,7 @@ namespace winstl_project
 
 /** \brief Class used for composing and decomposing file-system paths.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
@@ -190,7 +190,7 @@ public:
     ///
     /// \remarks The string object may be any type for which the 
     ///  <b>c_str_len</b> and <b>c_str_data</b> 
-    ///  \ref group__concept__string_access_shims "String Access Shims" are
+    ///  \ref group__concept__shim__string_access "String Access Shims" are
     ///  defined. The following example shows the use of a window handle
     ///  (HWND). Other types supported are <code>std::exception</code>,
     ///  <code>std::string</code>, <code>stlsoft::simple_string</code>,
@@ -377,7 +377,7 @@ public:
     /// \brief Evaluates whether the two instances hold strings that refer
     ///  to the same file-system entity.
     ///
-    /// \remarks See \link winstl::basic_path::equivalent(char_type const *) equivalent()\endlink for an example.
+    /// \remarks See \link winstl::basic_path::equivalent(C const *) equivalent()\endlink for an example.
     ///
     /// \note The string comparison is case-insensitive.
     bool_type equivalent(class_type const &rhs) const;
@@ -441,17 +441,17 @@ private:
 
 /** \brief Specialisation of the basic_path template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_path<ws_char_a_t, filesystem_traits<ws_char_a_t> >       path_a;
 /** \brief Specialisation of the basic_path template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_path<ws_char_w_t, filesystem_traits<ws_char_w_t> >       path_w;
 /** \brief Specialisation of the basic_path template for the Win32 character type \c TCHAR
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
 
@@ -591,7 +591,7 @@ inline ws_bool_t operator !=(basic_path<C, T, A> const &lhs, basic_path<C, T, A>
 
 /** \brief Concatenates \c rhs to the path \c lhs
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -604,7 +604,7 @@ inline basic_path<C, T, A> operator /(basic_path<C, T, A> const &lhs, ss_typenam
 
 /** \brief Concatenates \c rhs to the path \c lhs
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -617,7 +617,7 @@ inline basic_path<C, T, A> operator /(ss_typename_type_k basic_path<C, T, A>::ch
 
 /** \brief Concatenates \c rhs to the path \c lhs
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -632,13 +632,14 @@ inline basic_path<C, T, A> operator /(basic_path<C, T, A> const &lhs, basic_path
  * Helper functions
  */
 
-#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-    _MSC_VER >= 1100
+#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+     _MSC_VER >= 1100
 
 /** \brief This helper function makes a path variable without needing to
  * qualify the template parameter.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<ss_typename_param_k C>
 inline basic_path<C> make_path(C const *path)
@@ -647,6 +648,7 @@ inline basic_path<C> make_path(C const *path)
 }
 
 #endif /* compiler */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * swapping

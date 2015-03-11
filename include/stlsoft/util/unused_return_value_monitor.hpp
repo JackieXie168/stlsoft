@@ -4,7 +4,7 @@
  * Purpose:     Basic functionals.
  *
  * Created:     8th June 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/util/unused_return_value_monitor.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::unused_return_value_monitor
- *   class template.
- * (\ref group__library__utility "Utility" Library.)
+ *   class template
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MAJOR        4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MINOR        0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION     1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         38
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

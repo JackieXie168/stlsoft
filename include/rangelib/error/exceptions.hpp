@@ -4,7 +4,7 @@
  * Purpose:     Range exceptions.
  *
  * Created:     30th December 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -43,7 +43,7 @@
  * \brief [C++ only] Definition of the rangelib::range_exception and
  *   rangelib::empty_range_exception exception classes.
  *
- * (\ref group__library__error "Error" Library.)
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef RANGELIB_INCL_RANGELIB_ERROR_HPP_EXCEPTIONS
@@ -53,7 +53,7 @@
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      12
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

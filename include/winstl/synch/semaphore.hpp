@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/synch/semaphore.hpp
  *
- * \brief [C++ only] Definition of winstl::semaphore class.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of winstl::semaphore class
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SEMAPHORE
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     12
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
-#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
-# include <winstl/synch/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+# include <winstl/synch/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -339,6 +339,20 @@ private:
  * \retval The synchronisation handle of \c sem
  */
 inline HANDLE get_synch_handle(semaphore &sem)
+{
+    return sem.get();
+}
+
+/** \brief Overload of the form of the winstl::get_kernel_handle() shim for
+ *    the winstl::semaphore type.
+ *
+ * \ingroup group__library__shims__kernel_handle_attribute
+ *
+ * \param sem The winstl::semaphore instance
+ *
+ * \retval The synchronisation handle of \c sem
+ */
+inline HANDLE get_kernel_handle(semaphore &sem)
 {
     return sem.get();
 }

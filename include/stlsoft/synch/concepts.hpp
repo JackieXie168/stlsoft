@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation concept tags.
  *
  * Created:     16th January 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/synch/concepts.hpp
  *
- * \brief [C++ only] Synchronisation concept tags.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Synchronisation concept tags
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MINOR       0
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        7
+# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 /** \file winstl/filesystem/findfile_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_findfile_sequence class
- *  template.
- * (\ref group__library__file_system "File System" Library.)
+ *  template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE
@@ -66,7 +66,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        196
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        198
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,7 +171,7 @@ class basic_findfile_sequence_const_input_iterator;
 // class basic_findfile_sequence
 /** \brief Presents an STL-like sequence interface over the items on the file-system
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * \param C The character type
  * \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
@@ -335,17 +335,17 @@ private:
 
 /** \brief Specialisation of the basic_findfile_sequence template for the ANSI character type \c char
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_findfile_sequence<ws_char_a_t, filesystem_traits<ws_char_a_t> >     findfile_sequence_a;
 /** \brief Specialisation of the basic_findfile_sequence template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_findfile_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> >     findfile_sequence_w;
 /** \brief Specialisation of the basic_findfile_sequence template for the Win32 character type \c TCHAR
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_findfile_sequence<TCHAR, filesystem_traits<TCHAR> >                 findfile_sequence;
 
@@ -354,7 +354,7 @@ typedef basic_findfile_sequence<TCHAR, filesystem_traits<TCHAR> >               
 // class basic_findfile_sequence_value_type
 /** \brief Value type for the basic_findfile_sequence
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
@@ -488,7 +488,7 @@ private:
 // class basic_findfile_sequence_const_input_iterator
 /** \brief Iterator type for the basic_findfile_sequence supporting the Input Iterator concept
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_iterator type.
  *
  * Created:     9th February 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/meta/typefixer/iterator.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::typefixer::iterator
- *   typefixer class template.
- * (\ref group__library__meta "Template Meta-programming" Library.)
+ *   typefixer class template
+ *   (\ref group__library__meta "Template Meta-programming" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_ITERATOR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_EDIT       18
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_ITERATOR_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

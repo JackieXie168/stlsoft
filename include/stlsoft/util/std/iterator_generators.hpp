@@ -4,7 +4,7 @@
  * Purpose:     Iterator generator classes, and helper macros.
  *
  * Created:     2nd January 2000
- * Updated:     6th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
  *
  * \brief [C++ only] Definition of the stlsoft::reverse_iterator_generator
  *   and stlsoft::const_reverse_iterator_generator iterator
- *   \ref group__pattern__type_generator "generator" templates.
- * (\ref group__library__utility "Utility" Library.)
+ *   \ref group__pattern__type_generator "generator" templates
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_MINOR     1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_REVISION  5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      89
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS_EDIT      90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

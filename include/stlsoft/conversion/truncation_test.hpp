@@ -4,7 +4,7 @@
  * Purpose:     Runtime checking for numeric conversions.
  *
  * Created:     10th August 2006
- * Updated:     6th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/conversion/truncation_test.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::truncation_test functions.
- *  (\ref group__library__conversion "Conversion" Library.)
+ * \brief [C++ only] Definition of the stlsoft::truncation_test functions
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       37
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   3
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,13 +79,13 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
 # include <stlsoft/meta/is_integral_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
-#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
-# include <stlsoft/meta/is_same_type.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE
 # include <stlsoft/meta/is_signed_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SIGNED_TYPE */
 
+#ifdef STLSOFT_UNITTEST
+# include <limits.h>
+#endif /* STLSOFT_UNITTEST */
 #if defined(STLSOFT_UNITTEST) || \
     defined(_DEBUG)
 # include <typeinfo>
@@ -420,8 +420,6 @@ inline bool truncation_test_(FROM from, TO dummy = TO())    // The use of the du
 
     enum {  TO_is_signed        =   is_signed_type<TO>::value           };
     enum {  FROM_is_signed      =   is_signed_type<FROM>::value         };
-
-//  enum {  types_are_same      =   is_same_type<FROM, TO>::value       };
 
     // We know at compile time that FROM fits into TO if:
     //

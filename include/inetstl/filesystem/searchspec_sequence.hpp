@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 /** \file inetstl/filesystem/searchspec_sequence.hpp
  *
  * \brief [C++ only] Definition of the inetstl::searchspec_sequence
- *   class template.
- * (\ref group__library__file_system "File System" Library.)
+ *   class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef INETSTL_INCL_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE
@@ -63,7 +63,7 @@
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR      5
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR      1
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION   4
-# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       49
+# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ inline void call_set_null(T *&pt, void (T::*F)())
 
 /** \brief Provides multi-pattern functionality over a file-system search sequence class
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template <ss_typename_param_k S>
 class searchspec_sequence

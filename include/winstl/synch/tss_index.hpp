@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for Win32 TSS key.
  *
  * Created:     20th January 1999
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/synch/tss_index.hpp
  *
- * \brief [C++ only] Definition of winstl::tss_index class.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of winstl::tss_index class
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_TSS_INDEX
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     31
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
-#  include <winstl/synch/exceptions.hpp>
-# endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
+# ifndef WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+#  include <winstl/synch/error/exceptions.hpp>
+# endif /* !WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////

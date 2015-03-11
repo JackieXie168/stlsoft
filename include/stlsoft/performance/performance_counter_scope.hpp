@@ -4,7 +4,7 @@
  * Purpose:     Performance counter scope class.
  *
  * Created:     20th July 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/performance/performance_counter_scope.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::performance_counter_scope
- *  class template.
- * (\ref group__library__performance "Performance" Library.)
+ *  class template
+ *   (\ref group__library__performance "Performance" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     37
+# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

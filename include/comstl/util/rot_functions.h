@@ -4,7 +4,7 @@
  * Purpose:     COM ROT (Running Object Table) functions.
  *
  * Created:     21st October 1998
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/util/rot_functions.h
  *
- * \brief [C++ only; requires COM] COM ROT (Running Object Table) functions.
- * (\ref group__library__utility__com "COM Utility" Library.)
+ * \brief [C++ only; requires COM] COM ROT (Running Object Table) functions
+ *   (\ref group__library__utility__com "COM Utility" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_H_ROT_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    1
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        60
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    2
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -418,8 +418,9 @@ inline HRESULT Rot_EnumRunning(IEnumMoniker **ppenumMoniker)
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/rot_functions_unittest_.h"

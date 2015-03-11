@@ -4,11 +4,11 @@
  * Purpose:     An exception thrown when an active end iterator is exhausted.
  *
  * Created:     30th November 2005
- * Updated:     16th July 2006
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file stlsoft/error/active_end_iterator_exhaustion.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::active_end_iterator_exhaustion
- *   exception class.
- * (\ref group__library__error "Error" Library.)
+ *   exception class
+ *   (\ref group__library__error "Error" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_EDIT      10
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

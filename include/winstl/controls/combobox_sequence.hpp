@@ -4,7 +4,7 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -43,8 +43,8 @@
 /** \file winstl/controls/combobox_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::combobox_sequence class
- *  template.
- * (\ref group__library__windows_controls "Windows Controls" Library.)
+ *  template
+ *   (\ref group__library__windows_controls "Windows Controls" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MINOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   4
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       56
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

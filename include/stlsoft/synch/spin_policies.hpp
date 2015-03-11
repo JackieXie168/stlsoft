@@ -4,7 +4,7 @@
  * Purpose:     Policies for spin mutexes.
  *
  * Created:     25th November 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/synch/spin_policies.hpp
  *
  * \brief [C++ only] Definition of stlsoft::spin_yield and
- *    stlsoft::spin_no_yield policy classes.
- * (\ref group__library__synch "Synchronisation" Library.)
+ *    stlsoft::spin_no_yield policy classes
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_POLICIES
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_REVISION   1
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_EDIT       2
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_POLICIES_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

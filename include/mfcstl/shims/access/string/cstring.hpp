@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     29th December 2006
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,8 @@
 /** \file mfcstl/shims/access/string/cstring.hpp
  *
  * \brief [C++] Definition of the string access shims for
- *   <code>CString</code>.
- *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
+ *   <code>CString</code>
+ *   (\ref group__concept__shim__string_access "String Access Shims" Concept).
  */
 
 #ifndef MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING
@@ -52,7 +52,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MAJOR    4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_REVISION 1
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     83
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

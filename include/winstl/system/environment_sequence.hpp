@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     2nd January 2007
+ * Updated:     11th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file winstl/system/environment_sequence.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_environment_sequence
- *  class template.
- * (\ref group__library__system "System" Library.)
+ *  class template
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     70
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -267,7 +267,7 @@ private:
     static ws_int_t     compare_strings_(char_type const *s1, char_type const *s2, ws_int_t flags);
 
 public:
-    /// Function object that compares environment symbols for the basic_environment_sequence class
+    /// A function class that compares environment symbols for the basic_environment_sequence class
     // [[synesis:class:binary-functor: compare_symbol]]
     struct compare_symbol
         : stlsoft_ns_qual_std(binary_function)<symbol, symbol, ws_bool_t>

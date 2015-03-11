@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functions.
  *
  * Created:     7th May 2000
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file winstl/obsolete/functions.h
  *
- * \brief [C, C++; OBSOLETE] A number of useful functions.
- * (\ref group__library__utility__windows "Windows Utility" Library.)
+ * \brief [C, C++; OBSOLETE] A number of useful functions
+ *   (\ref group__library__utility__windows "Windows Utility" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_OBSOLETE_H_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_EDIT        59
+# define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -141,6 +141,15 @@ STLSOFT_INLINE ws_int_t winstl__IsKeyPressedAsync(int key)
 {
     return 0 != (STLSOFT_NS_GLOBAL(GetAsyncKeyState)(key) & 0x8000);
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -312,8 +321,9 @@ inline ws_bool_t IsKeyPressedAsync(int key)
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/functions_unittest_.h"

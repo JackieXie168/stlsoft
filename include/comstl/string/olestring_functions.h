@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     2nd March 1996
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/string/olestring_functions.h
  *
- * \brief [C, C++] Functions for manipulating OLE/COM strings.
- * (\ref group__library__string "String" Library.)
+ * \brief [C, C++] Functions for manipulating OLE/COM strings
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_STRING_H_OLESTRING_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    1
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        150
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    2
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        152
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_create_a(cs_char_a_t const *s)
     }
     else
     {
-        // NOTE: All this posz2 hoop jumping is needed because BC++ gets confused. Ahh, bless it ...
+        /* NOTE: All this posz2 hoop jumping is needed because BC++ gets confused. Ahh, bless it ... */
 
         cs_size_t       cch     =   stlsoft_static_cast(cs_size_t, STLSOFT_NS_GLOBAL(MultiByteToWideChar)(0, 0, s, -1, NULL, 0));
         const LPOLESTR  posz2   =   stlsoft_static_cast(LPOLESTR, STLSOFT_NS_GLOBAL(CoTaskMemAlloc)(sizeof(OLECHAR) * (cch + 1)));
@@ -273,8 +273,9 @@ inline LPOLESTR olestring_dup(LPCOLESTR posz)
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/olestring_functions_unittest_.h"

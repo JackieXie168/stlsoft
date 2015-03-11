@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the memory_mapped_file components.
  *
  * Created:     20th March 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,13 +46,13 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     15
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
  *
- * \brief [C++ only] Definition of the platformstl::memory_mapped_file type.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the platformstl::memory_mapped_file type
+ *   (\ref group__library__filesystem "File System" Library).
  *
  * When compiling on UNIX platforms, the platformstl::memory_mapped_file
  * type resolves to the unixstl::memory_mapped_file class. On Windows
@@ -105,12 +105,12 @@ namespace platformstl_project
 
     /** \brief A facade for the platform's memory mapped file API.
      *
-     * \ingroup group__library__file_system
+     * \ingroup group__library__filesystem
      *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_conformance "Intersecting Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::memory_mapped_file

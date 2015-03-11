@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     5th January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file winstl/system/windows_directory.hpp
  *
  * \brief [C++ only] Definition of the winstl::basic_windows_directory class
- *  template.
- * (\ref group__library__system "System" Library.)
+ *  template
+ *   (\ref group__library__system "System" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_MINOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_REVISION    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_EDIT        62
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_WINDOWS_DIRECTORY_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

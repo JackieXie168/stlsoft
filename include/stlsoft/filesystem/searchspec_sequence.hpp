@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     1st May 2004
- * Updated:     6th January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file stlsoft/filesystem/searchspec_sequence.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::searchspec_sequence class
- *  template.
- * (\ref group__library__file_system "File System" Library.)
+ *  template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    3
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        49
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    4
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,7 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -73,6 +74,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# error stlsoft/filesystem/searchspec_sequence.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
+
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 # include <stlsoft/string/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
@@ -126,7 +133,7 @@ inline void call_set_null(T *&pt, void (T::*F)())
 
 /** \brief Provides multi-pattern functionality over a file-system search sequence class
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 template <ss_typename_param_k S>
 class searchspec_sequence

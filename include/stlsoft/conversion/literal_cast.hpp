@@ -4,7 +4,7 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file stlsoft/conversion/literal_cast.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::literal_cast cast class.
- * (\ref group__library__conversion "Conversion" Library.)
+ * \brief [C++ only] Definition of the stlsoft::literal_cast cast class
+ *   (\ref group__library__conversion "Conversion" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_LITERAL_CAST
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_REVISION   4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       40
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

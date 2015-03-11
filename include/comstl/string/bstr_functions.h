@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file comstl/string/bstr_functions.h
  *
- * \brief [C, C++] Functions for manipulating BSTR strings.
- * (\ref group__library__string "String" Library.)
+ * \brief [C, C++] Functions for manipulating BSTR strings
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     72
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 3
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -425,8 +425,9 @@ inline int bstr_compare(BSTR s1, BSTR s2)
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////
-// Unit-testing
+/* /////////////////////////////////////////////////////////////////////////
+ * Unit-testing
+ */
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/bstr_functions_unittest_.h"

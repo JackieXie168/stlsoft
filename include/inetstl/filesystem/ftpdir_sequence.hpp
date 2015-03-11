@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     18th January 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file inetstl/filesystem/ftpdir_sequence.hpp
  *
  * \brief [C++ only] Definition of the inetstl::ftpdir_sequence
- *   class template.
- * (\ref group__library__file_system "File System" Library.)
+ *   class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MAJOR      2
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MINOR      0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_REVISION   2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       17
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -281,7 +281,7 @@ typedef basic_ftpdir_sequence<is_char_a_t
                             >                                                   ftpdir_sequence_a;
 /** \brief Specialisation of the basic_ftpdir_sequence template for the Unicode character type \c wchar_t
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_ftpdir_sequence<is_char_w_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -293,7 +293,7 @@ typedef basic_ftpdir_sequence<is_char_w_t
                             >                                                   ftpdir_sequence_w;
 /** \brief Specialisation of the basic_ftpdir_sequence template for the Win32 character type \c TCHAR
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 typedef basic_ftpdir_sequence<TCHAR
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT

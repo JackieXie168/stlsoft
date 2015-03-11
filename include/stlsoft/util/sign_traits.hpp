@@ -4,11 +4,11 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2006
+ * Updated:     13th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,8 @@
 
 /** \file stlsoft/util/sign_traits.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::sign_traits traits class.
+ * \brief [C++ only] Definition of the stlsoft::sign_traits traits class
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIGN_TRAITS
@@ -48,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_MAJOR      4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_REVISION   2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_EDIT       41
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_MINOR      1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_REVISION   1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_SIGN_TRAITS_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -245,7 +246,7 @@ struct sign_traits<ss_uint64_t>
 };
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
 
-#ifdef STLSOFT_CF_INT_DISTINCT_TYPE
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct sign_traits<int>
@@ -271,7 +272,35 @@ struct sign_traits<unsigned>
     typedef int         alt_sign_type;
 };
 
-#endif /* !STLSOFT_CF_INT_DISTINCT_TYPE */
+#endif /* !STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct sign_traits<long>
+{
+    enum { bytes    =   sizeof(long)            };
+    enum { bits     =   8 * bytes               };
+
+    typedef long            type;
+    typedef long            signed_type;
+    typedef unsigned long   unsigned_type;
+    typedef unsigned long   alt_sign_type;
+};
+
+STLSOFT_TEMPLATE_SPECIALISATION
+struct sign_traits<unsigned long>
+{
+    enum { bytes    =   sizeof(unsigned long)   };
+    enum { bits     =   8 * bytes               };
+
+    typedef unsigned long   type;
+    typedef long            signed_type;
+    typedef unsigned long   unsigned_type;
+    typedef long            alt_sign_type;
+};
+
+#endif /* !STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,8 +40,8 @@
 
 /** \file unixstl/filesystem/readdir_sequence.hpp
  *
- * \brief [C++ only] Definition of the unixstl::readdir_sequence class.
- * (\ref group__library__file_system "File System" Library.)
+ * \brief [C++ only] Definition of the unixstl::readdir_sequence class
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       114
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ namespace unixstl_project
 
 /** \brief Exception class thrown by unixstl::readdir_sequence.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  */
 class readdir_sequence_exception
     : public unix_exception
@@ -152,7 +152,7 @@ public:
 
 /** \brief STL-like readonly sequence based on directory contents
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * This class presents and STL-like readonly sequence interface to allow the
  * iteration over the contents of a directory.
@@ -290,7 +290,7 @@ private:
 
 /** \brief Iterator for the \link unixstl::readdir_sequence readdir_sequence\endlink class.
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * This class performs as a non-mutating iterator (aka const iterator) for the
  * readdir_sequence class.

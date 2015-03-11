@@ -5,7 +5,7 @@
  *              Synchronisation library.
  *
  * Created:     9th June 2006
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 
 /** \file winstl/synch/synchfwd.hpp
  *
- * \brief [C++ only] Definition of the winstl::event class.
- * (\ref group__library__synch "Synchronisation" Library.)
+ * \brief [C++ only] Definition of the winstl::event class
+ *   (\ref group__library__synch "Synchronisation" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_SYNCHFWD
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MAJOR     1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_MINOR     0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      3
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SYNCHFWD_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
-#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
-# include <winstl/synch/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS
+# include <winstl/synch/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -43,7 +43,7 @@
  *
  * \brief [C++ only] Definition of the stlsoft::filter_iterator
  *   class template
- * (\ref group__library__iterators "Iterators" Library.)
+ *   (\ref group__library__iterators "Iterators" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     32
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     An associative container that maintains the order of element insertion.
  *
  * Created:     12th February 2006
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/containers/unsorted_map.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::unsorted_map container
- *   class template.
- * (\ref group__library__containers "Containers" Library.)
+ *   class template
+ *   (\ref group__library__containers "Containers" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     8
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 5
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -142,10 +142,10 @@ private:
 public:
     typedef ss_typename_type_k container_type_::size_type                   size_type;
     typedef ss_typename_type_k container_type_::difference_type             difference_type;
-    typedef ss_typename_type_k value_type                                   *pointer;
-    typedef ss_typename_type_k value_type const                             *const_pointer;
-    typedef ss_typename_type_k value_type                                   &reference;
-    typedef ss_typename_type_k value_type const                             &const_reference;
+    typedef value_type                                                      *pointer;
+    typedef value_type const                                                *const_pointer;
+    typedef value_type                                                      &reference;
+    typedef value_type const                                                &const_reference;
 private:
     typedef pointer_iterator<value_type, pointer, reference>                iterator_gen_;
     typedef pointer_iterator<value_type, const_pointer, const_reference>    const_iterator_gen_;
@@ -217,6 +217,7 @@ public:
     {
         return sap_cast<value_type const*>(&*m_elements.end());
     }
+#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     reverse_iterator    rbegin()
     {
         return const_reverse_iterator(end());
@@ -233,6 +234,7 @@ public:
     {
         return const_reverse_iterator(begin());
     }
+#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 public:
     size_type erase(key_type const &key)

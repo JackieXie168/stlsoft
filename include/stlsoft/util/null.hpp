@@ -5,7 +5,7 @@
  *              automatically the strong NULL.
  *
  * Created:     8th September 2002
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 
 /** \file stlsoft/util/null.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::NULL_v class.
- * (\ref group__library__utility "Utility" Library.)
+ * \brief [C++ only] Definition of the stlsoft::NULL_v class
+ *   (\ref group__library__utility "Utility" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_NULL
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT      47
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_NULL_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

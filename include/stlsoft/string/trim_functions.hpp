@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for trimming and removing string contents.
  *
  * Created:     25th April 2005
- * Updated:     2nd January 2007
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file stlsoft/string/trim_functions.hpp
  *
  * \brief [C++ only] String utility functions for trimming and removing
- *  string contents.
- * (\ref group__library__string "String" Library.)
+ *  string contents
+ *   (\ref group__library__string "String" Library).
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        26
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    2
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,7 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
@@ -72,6 +73,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1200
+# error stlsoft/string/trim_functions.hpp is not compatible with Visual C++ 5.0 or earlier
+#endif /* compiler */
+
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
 # include <stlsoft/string/string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */

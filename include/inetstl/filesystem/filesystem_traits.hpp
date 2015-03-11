@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,8 +42,8 @@
 /** \file inetstl/filesystem/filesystem_traits.hpp
  *
  * \brief [C++ only] Definition of the inetstl::filesystem_traits
- *   traits class template.
- * (\ref group__library__file_system "File System" Library.)
+ *   traits class template
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     59
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ namespace inetstl_project
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /** \brief Traits for accessing the correct file-system functions for a given character type
  *
- * \ingroup group__library__file_system
+ * \ingroup group__library__filesystem
  *
  * filesystem_traits is a traits class for determining the correct file-system
  * structures and functions for a given character type.

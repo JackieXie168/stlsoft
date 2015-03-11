@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the current_directory_scope components.
  *
  * Created:     13th June 2005
- * Updated:     2nd January 2007
+ * Updated:     10th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,8 +41,8 @@
 /** \file platformstl/filesystem/current_directory_scope.hpp
  *
  * \brief [C++ only] Definition of the platformstl::basic_current_directory_scope
- *  type.
- * (\ref group__library__file_system "File System" Library.)
+ *  type
+ *   (\ref group__library__filesystem "File System" Library).
  */
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        7
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,12 +101,12 @@ namespace platformstl_project
 
     /** \brief A facade for the platform's current_directory_scope functionality.
      *
-     * \ingroup group__library__file_system
+     * \ingroup group__library__filesystem
      *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_conformance "Intersecting Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::current_directory_scope

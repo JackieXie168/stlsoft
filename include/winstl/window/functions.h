@@ -4,11 +4,11 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     16th July 2006
+ * Updated:     14th January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,8 @@
 
 /** \file winstl/window/functions.h
  *
- * \brief [C, C++] Miscellaneous functions.
- * (\ref group__library__windows_window "Windows Window" Library.)
+ * \brief [C, C++] Miscellaneous functions
+ *   (\ref group__library__windows_window "Windows Window" Library).
  */
 
 #ifndef WINSTL_INCL_WINSTL_WINDOW_H_FUNCTIONS
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      52
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
-     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if !defined(_WINSTL_NO_NAMESPACE) && \
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# if defined(_STLSOFT_NO_NAMESPACE)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
 {
@@ -212,6 +212,15 @@ STLSOFT_INLINE HINSTANCE winstl__GetWindowInstance(HWND hwnd)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+namespace winstl
+{
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -334,7 +343,7 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HICON hicon)
 
 # if defined(STLSOFT_COMPILER_IS_BORLAND) && \
      __BORLANDC__ < 0x0564
-    // This is needed here to prevent the Borland compiler from confused it with the winstl one!
+    /* This is needed here to prevent the Borland compiler from confused it with the winstl one! */
     using ::SendMessage;
 # endif /* compiler */
 
