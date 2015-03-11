@@ -2,9 +2,19 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  4th June 2012
+; Updated:  31st July 2012
 
 ============================================================================
+
+
+31st July 2012 - 1.9.115 released
+---------------------------------
+
+ * stlsoft::integer_to_string() new overloads with out-parameter as pointer; deprecated overloads with out-parameter as reference
+ * winstl::integral_printf_traits added octal_format_a/w(), hexadecimal_format_a/w(), decimal_format_a/w(); deprecated format_a/w() and hex_format_a/w() methods, and size_min, size_max, and size member constants
+ * Windows 7-compatibility for winstl::drophandle_sequence
+ * winstl::spin_mutex now uses SwitchToThread if _WIN32_WINNT >= 0x0400
+ * added winstl::added GetTimeFormat_msExA/W() by which custom time markers can be specified
 
 
 4th June 2012 - 1.9.114 released

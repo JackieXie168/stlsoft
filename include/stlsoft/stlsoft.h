@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     4th June 2012
+ * Updated:     30th July 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    25
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     426
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    28
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     430
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -277,12 +277,27 @@
 # define _STLSOFT_VER_1_9_112   0x010970ff  /*!< Version 1.9.112 (7th February 2012) */
 # define _STLSOFT_VER_1_9_113   0x010971ff  /*!< Version 1.9.113 (4th June 2012) */
 # define _STLSOFT_VER_1_9_114   0x010972ff  /*!< Version 1.9.114 (4th June 2012) */
+# define _STLSOFT_VER_1_9_115   0x010973ff  /*!< Version 1.9.115 (30th July 2012) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   114
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_114
+#define _STLSOFT_VER_REVISION   115
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_115
+
+/* /////////////////////////////////////
+ * Underlying version detection
+ */
+
+/* defines STLSOFT_HEAD_VER, which specifies the current version of the 
+ * main (HEAD) library. Will never be greater than STLSOFT_LEAD_VER.
+ */
+#include <stlsoft/internal/head_version.h>
+
+/* defines STLSOFT_LEAD_VER, which specifies the current version of any
+ * alpha (LEAD) library. Will never be less than STLSOFT_HEAD_VER.
+ */
+#include <stlsoft/internal/lead_version.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -743,13 +758,13 @@
 /* backwards-compatibility : _STLSOFT_COMPILE_VERBOSE => STLSOFT_COMPILE_VERBOSE */
 
 #if defined(_STLSOFT_COMPILE_VERBOSE) && \
-	!defined(STLSOFT_COMPILE_VERBOSE)
+    !defined(STLSOFT_COMPILE_VERBOSE)
 # define STLSOFT_COMPILE_VERBOSE
 #endif
 
 /* backwards-compatibility : STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT => STLSOFT_PPF_pragma_message_SUPPORT */
 #if defined(STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT) && \
-	!defined(STLSOFT_PPF_pragma_message_SUPPORT)
+    !defined(STLSOFT_PPF_pragma_message_SUPPORT)
 # define STLSOFT_PPF_pragma_message_SUPPORT
 #endif
 
@@ -1320,6 +1335,9 @@
  */
 #define stlsoft_message_assert(msg, ex)         STLSOFT_MESSAGE_ASSERT(msg, ex)
 
+/*
+ * TODO: decide on a form of static_assert with message (as the C++11 static_assert does)
+ */
 
 /** \def STLSOFT_STATIC_ASSERT(ex)
  *
@@ -1327,12 +1345,14 @@
  *
  * \param ex A compile-time evaluatable condition that must be non-zero, or compilation will fail.
  */
-#if defined(STLSOFT_CF_STATIC_ASSERT_SUPPORT)
+#if defined(STLSOFT_CF_static_assert_SUPPORT)
+# define STLSOFT_STATIC_ASSERT(ex)          static_assert((ex), #ex)
+#elif defined(STLSOFT_CF_STATIC_ASSERT_SUPPORT)
 # if defined(STLSOFT_COMPILER_IS_GCC) || \
-     defined(STLSOFT_COMPILER_IS_INTEL)
-#   define STLSOFT_STATIC_ASSERT(ex)        do { typedef int ai[(ex) ? 1 : -1]; } while(0)
-#  else /* ? compiler */
-#   define STLSOFT_STATIC_ASSERT(ex)        do { typedef int ai[(ex) ? 1 : 0]; } while(0)
+      defined(STLSOFT_COMPILER_IS_INTEL)
+#  define STLSOFT_STATIC_ASSERT(ex)         do { typedef int ai[(ex) ? 1 : -1]; } while(0)
+# else /* ? compiler */
+#  define STLSOFT_STATIC_ASSERT(ex)         do { typedef int ai[(ex) ? 1 : 0]; } while(0)
 # endif /* compiler */
 #else /* ? STLSOFT_CF_STATIC_ASSERT_SUPPORT */
 # define STLSOFT_STATIC_ASSERT(ex)          STLSOFT_MESSAGE_ASSERT("Static assertion failed: ", (ex))
@@ -1456,10 +1476,7 @@
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    (   _MSC_VER >= 1500 || \
-        (   _MSC_VER >= 1400 && \
-            defined(_MSC_FULL_VER) && \
-            _MSC_FULL_VER >= 140050320))
+    STLSOFT_MSVC_VER >= 140050320
 
 # define STLSOFT_DECLARE_DEPRECATION()                                      \
                                                                             \
@@ -1783,7 +1800,7 @@ typedef ss_uint8_t                      ss_byte_t;          /*!< Byte           
 # ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 typedef bool                            ss_bool_t;          /*!< Boolean type               */
 # else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
-typedef unsigned int                ss_bool_t;
+typedef unsigned int                    ss_bool_t;
 # endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 #endif /* __cplusplus */
 #ifndef _STLSOFT_NO_STD_INCLUDES
@@ -1819,9 +1836,9 @@ typedef ss_sint_t STLSOFT_WARN_64   sint_t;             /*!< signed integer     
 typedef ss_uint_t STLSOFT_WARN_64   uint_t;             /*!< unsigned integer           */
 typedef ss_long_t STLSOFT_WARN_64   long_t;             /*!< long integer               */
 typedef ss_byte_t                   byte_t;             /*!< Byte                       */
-#if defined(__cplusplus)
+# if defined(__cplusplus)
 typedef ss_bool_t                   bool_t;             /*!< bool                       */
-#endif /* __cplusplus */
+# endif /* __cplusplus */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
 typedef ss_streampos_t              streampos_t;        /*!< streampos                  */
 typedef ss_streamoff_t              streamoff_t;        /*!< streamoff                  */
@@ -2818,7 +2835,13 @@ STLSOFT_INLINE void _stlsoft_internal_verify_integral_type_sizes(void)
 #if defined(__cplusplus)
 
 template <ss_typename_param_k T>
-inline void const* ptr_byte_offset(T const p, ss_ptrdiff_t n)
+inline
+void
+const*
+ptr_byte_offset(
+    T const         p
+,   ss_ptrdiff_t    n
+)
 {
 # if 0
 # if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
@@ -2865,23 +2888,44 @@ inline void const* ptr_byte_offset(T const p, ss_ptrdiff_t n)
  * \result \c p offset by \c elements
  */
 template <ss_typename_param_k T>
-inline T const* ptr_offset(T const* p, ss_ptrdiff_t n)
+inline
+T const*
+ptr_offset(
+    T const*        p
+,   ss_ptrdiff_t    n
+)
 {
     return p + n;
 }
 
 /** \brief Get the difference in bytes between two pointers
  */
-template <ss_typename_param_k T1, ss_typename_param_k T2>
-inline ss_ptrdiff_t ptr_byte_diff(T1 const* p1, T2 const* p2)
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
+inline
+ss_ptrdiff_t
+ptr_byte_diff(
+    T1 const*   p1
+,   T2 const*   p2
+)
 {
     return static_cast<ss_byte_t const*>(static_cast<void const*>(p1)) - static_cast<ss_byte_t const*>(static_cast<void const*>(p2));
 }
 
 /** \brief Get the difference in elements between two pointers
  */
-template <ss_typename_param_k T1, ss_typename_param_k T2>
-inline ss_ptrdiff_t ptr_diff(T1 const* p1, T2 const* p2)
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
+inline
+ss_ptrdiff_t
+ptr_diff(
+    T1 const*   p1
+,   T2 const*   p2
+)
 {
     return p1 - p2;
 }
@@ -2904,22 +2948,50 @@ inline ss_ptrdiff_t ptr_diff(T1 const* p1, T2 const* p2)
 
 /** \brief Remove const-qualifier from an instance.
  *
- * \warning Using this function can result in undefined behaviour. As such, the
- * advice is: <b>Use With Care!</b>
+ * \warning Using this function can result in undefined behaviour. As such,
+ * the advice is: <b>Use With Care!</b>
  */
 template <ss_typename_param_k T>
-inline T& remove_const(T const& t)
+inline
+T&
+remove_const(T const& t)
 {
     return const_cast<T&>(t);
+}
+
+/** \brief Remove const-qualifier from an instance.
+ *
+ * \warning Using this function can result in undefined behaviour. As such,
+ * the advice is: <b>Use With Care!</b>
+ */
+template <ss_typename_param_k T>
+inline
+T*
+remove_const_ptr(T const* t)
+{
+    return const_cast<T*>(t);
 }
 
 /** \brief Adds const-qualifier to an instance.
  */
 template <ss_typename_param_k T>
-inline T const& apply_const(T& t)
+inline
+T const&
+apply_const(T& t)
 {
     return t;
 }
+
+/** \brief Adds const-qualifier to an instance.
+ */
+template <ss_typename_param_k T>
+inline
+T const*
+apply_const_ptr(T* t)
+{
+    return t;
+}
+
 
 /* Mutable support */
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
