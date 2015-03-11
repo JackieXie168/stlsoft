@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  11th May 2008
+; Updated:  13th May 2008
 
 ============================================================================
 
@@ -16,6 +16,36 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.40 (13th May 2008)
+
+Summary:
+========
+
+ * significant refactoring of compiler-capability discrimination for GCC and
+   VC++
+ * compatibility fixes for SunPro compilers
+ * bug fix in integral_printf_traits (introduced in 1.9.39)
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ include/stlsoft/internal/cccap/gcc.h: significant refactoring
+ ~ include/stlsoft/internal/cccap/msvc.h: significant refactoring
+ + include/stlsoft/internal/cccap/obsolete.h: defines old symbols in terms
+   of new; to be #included by all refactored compiler capability
+   discrimination files while rest of codebase is not up to date
+
+ ~ stlsoft/string/split_functions.hpp: now defines
+   STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY when using SunPro
+
+ ~ stlsoft/util/integral_printf_traits.hpp: fixed bug in 64-bit
+   specialisations that was introduced in 1.9.39
 
 ============================================================================
 

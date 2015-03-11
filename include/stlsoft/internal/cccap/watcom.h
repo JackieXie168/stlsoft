@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Watcom C/C++.
  *
  * Created:     7th February 2003
- * Updated:     24th April 2008
+ * Updated:     13th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       16
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       17
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        73
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,18 @@
 /* wchar_t */
 #if __WATCOMC__ >= 1200
 # define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
-#endif /* __WATCOMC__ >= 1200 */
+#endif /* __WATCOMC__ */
+
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Integral types
@@ -212,7 +223,7 @@
   */
 #if __WATCOMC__ < 1240
 # define _STLSOFT_NO_NAMESPACES
-#endif /* __WATCOMC__ < 1240 */
+#endif /* __WATCOMC__ */
 
 #define STLSOFT_CF_NAMESPACE_SUPPORT
 
@@ -238,11 +249,13 @@
 
 #if __WATCOMC__ >= 1200
 # define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
-#endif /* __WATCOMC__ >= 1200 */
+#endif /* __WATCOMC__ */
 
-#if __WATCOMC__ >= 1220
-/* # define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-#endif /* __WATCOMC__ >= 1200 */
+#if __WATCOMC__ >= 1270
+# define STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+#endif /* __WATCOMC__ */
+
+/* # define STLSOFT_CF_TEMPLATE_FUNCTION_FUNDAMENTAL_ARGUMENT_SUPPORT */
 
 /* #define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
 
@@ -266,7 +279,9 @@
 #  undef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 # endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 
-/* #define STLSOFT_CF_std_NAMESPACE */
+#if __WATCOMC__ >= 1240
+# define STLSOFT_CF_std_NAMESPACE
+#endif /* __WATCOMC__ */
 
 #define STLSOFT_CF_std_char_traits_AVAILABLE
 
@@ -310,6 +325,10 @@
 
 #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 /* #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Quality assurance features
+ */
 
 #if defined(_STLSOFT_CUSTOM_ASSERT)
  /* You have defined the pre-processor symbol _STLSOFT_CUSTOM_ASSERT,

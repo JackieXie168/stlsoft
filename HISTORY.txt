@@ -2,11 +2,18 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  11th May 2008
+; Updated:  13th May 2008
 
 ============================================================================
 
 
+13th May 2008 - 1.9.40 released
+-------------------------------
+
+ * significant refactoring of compiler-capability discrimination for GCC and
+   VC++
+ * compatibility fixes for SunPro compilers
+ * bug fix in integral_printf_traits (introduced in 1.9.39)
 
 11th May 2008 - 1.9.39 released
 -------------------------------

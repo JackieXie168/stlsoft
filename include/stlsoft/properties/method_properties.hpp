@@ -4,11 +4,11 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     22nd March 2007
+ * Updated:     11th May 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,7 +65,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_REVISION  3
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      54
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_METHOD_PROPERTIES_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,7 +161,7 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
-#define STLSOFT_METHOD_PROPERTY_GET(V, R, C, GM, P)         \
+# define STLSOFT_METHOD_PROPERTY_GET(V, R, C, GM, P)        \
                                                             \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)             \
                                                             \
@@ -174,7 +174,7 @@ namespace stlsoft
 
 #else /* ? STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
 
-#define STLSOFT_METHOD_PROPERTY_GET(V, R, C, GM, P)         \
+# define STLSOFT_METHOD_PROPERTY_GET(V, R, C, GM, P)        \
                                                             \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)             \
                                                             \
@@ -203,7 +203,7 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
-#define STLSOFT_METHOD_PROPERTY_SET(V, R, C, SM, P)         \
+# define STLSOFT_METHOD_PROPERTY_SET(V, R, C, SM, P)        \
                                                             \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)             \
                                                             \
@@ -281,7 +281,7 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
-#define STLSOFT_METHOD_PROPERTY_GET_EXTERNAL_PROP(R, C, GM, P)  \
+# define STLSOFT_METHOD_PROPERTY_GET_EXTERNAL_PROP(R, C, GM, P) \
                                                                 \
     stlsoft_ns_qual(method_property_get_external)<  R           \
                                                 ,   C           \
@@ -289,14 +289,14 @@ namespace stlsoft
                                                 ,   &C::GM      \
                                                 >       P
 
-#define STLSOFT_METHOD_PROPERTY_GET_EXTERNAL(R, C, GM, P)   \
+# define STLSOFT_METHOD_PROPERTY_GET_EXTERNAL(R, C, GM, P)  \
                                                             \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)             \
     STLSOFT_METHOD_PROPERTY_GET_EXTERNAL_PROP(R, C, GM, P)
 
 #else /* ? STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
 
-#define STLSOFT_METHOD_PROPERTY_GET_EXTERNAL(R, C, GM, P)   \
+# define STLSOFT_METHOD_PROPERTY_GET_EXTERNAL(R, C, GM, P)  \
                                                             \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)             \
                                                             \
@@ -323,7 +323,7 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
-#define STLSOFT_METHOD_PROPERTY_SET_EXTERNAL_PROP(R, C, SM, P)  \
+# define STLSOFT_METHOD_PROPERTY_SET_EXTERNAL_PROP(R, C, SM, P) \
                                                                 \
     stlsoft_ns_qual(method_property_set_external)<  R           \
                                                 ,   C           \
@@ -331,7 +331,7 @@ namespace stlsoft
                                                 ,   &C::SM      \
                                                 >           P
 
-#define STLSOFT_METHOD_PROPERTY_SET_EXTERNAL(R, C, SM, P)   \
+# define STLSOFT_METHOD_PROPERTY_SET_EXTERNAL(R, C, SM, P)  \
                                                             \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)             \
     STLSOFT_METHOD_PROPERTY_SET_EXTERNAL_PROP(R, C, SM, P)
@@ -358,7 +358,7 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
-#define STLSOFT_METHOD_PROPERTY_GETSET_EXTERNAL_PROP(RG, RS, C, GM, SM, P)  \
+# define STLSOFT_METHOD_PROPERTY_GETSET_EXTERNAL_PROP(RG, RS, C, GM, SM, P) \
                                                                             \
     stlsoft_ns_qual(method_property_getset_external)<   RG                  \
                                                     ,   RS                  \
@@ -368,7 +368,7 @@ namespace stlsoft
                                                     ,   &C::SM              \
                                                     >       P
 
-#define STLSOFT_METHOD_PROPERTY_GETSET_EXTERNAL(RG, RS, C, GM, SM, P)   \
+# define STLSOFT_METHOD_PROPERTY_GETSET_EXTERNAL(RG, RS, C, GM, SM, P)  \
                                                                         \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)                         \
     STLSOFT_METHOD_PROPERTY_GETSET_EXTERNAL_PROP(RG, RS, C, GM, SM, P)

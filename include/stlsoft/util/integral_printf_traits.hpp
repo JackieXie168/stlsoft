@@ -4,7 +4,7 @@
  * Purpose:     integral_printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     24th April 2008
+ * Updated:     13th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MINOR      1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       62
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -220,17 +220,19 @@ namespace stlsoft
 
 
  /* long long */
-# if _STLSOFT_SIZEOF_LONG_LONG == 8
+# ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
+#  if _STLSOFT_SIZEOF_LONG_LONG == 8
 
-#  define STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_LONG_MIN      STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MIN
-#  define STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_LONG_MAX      STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MAX
+#   define STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_LONG_MIN     STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MIN
+#   define STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_LONG_MAX     STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MAX
 
-#  define STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_LONG_MIN     STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MIN
-#  define STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_LONG_MAX     STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MAX
+#   define STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_LONG_MIN    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MIN
+#   define STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_LONG_MAX    STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MAX
 
-# else /* ? _STLSOFT_SIZEOF_LONG_LONG */
-#  error Cannot operate with a compiler for which sizeof(long long) != 8
-# endif /* _STLSOFT_SIZEOF_LONG_LONG */
+#  else /* ? _STLSOFT_SIZEOF_LONG_LONG */
+#   error Cannot operate with a compiler for which sizeof(long long) != 8
+#  endif /* _STLSOFT_SIZEOF_LONG_LONG */
+# endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -619,8 +621,8 @@ struct integral_printf_traits_base<ss_sint64_t>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_LONG_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_LONG_LONG_MAX))
+            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MIN))
+        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_SINT64_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
@@ -672,8 +674,8 @@ struct integral_printf_traits_base<ss_uint64_t>
 {
     enum
     {
-            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_LONG_MIN))
-        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_ULONG_LONG_MAX))
+            size_min = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MIN))
+        ,   size_max = sizeof(STLSOFT_STRINGIZE(STLSOFT_INTEGRAL_PRINTF_TRAITS_UINT64_MAX))
         ,   size = (size_min < size_max) ? size_max : size_min
     };
 
