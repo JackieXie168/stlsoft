@@ -2,7 +2,7 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  5th January 2008
+; Updated:  25th April 2008
 
 ============================================================================
 
@@ -87,6 +87,19 @@ Status: largely complete; more to come
 
 Priority: medium
 
+
+
+? 11. ensure that STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT is used, and that
+all headers are self-contained
+--------------------------------------------------------------
+
+Priority: medium
+
+
+? 12. Refactor auto_buffer's allocate_() methods into one
+--------------------------------------------------------------
+
+Priority: low
 
 
 

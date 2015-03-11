@@ -4,7 +4,7 @@
  * Purpose:     Discriminates between standard library implementations
  *
  * Created:     2nd January 2000
- * Updated:     9th March 2008
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       4
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        98
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       5
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    1
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,6 +106,9 @@ namespace stlsoft
  * 4. HP/SGI, including HP/SGI/Comeau           __SGI_STL_INTERNAL_ITERATOR_H
  * 5. Gnu FSF's HP/SGI derivative               __GLIBCPP_INTERNAL_ITERATOR_H, _GLIBCXX_ITERATOR
  * 6. HP/RW                                     __RW_ITERATOR_H. __STD_RW_ITERATOR__
+ * 7. Sun Pro/RW                                __STD_ITERATOR__
+ * 8. Watcom (patch)                            STLSOFT_OW12_INCL_ITERATOR
+ * 9. Watcom (none)                             STLSOFT_COMPILER_IS_WATCOM
  */
 
 /* The inclusion of <iterator> results in the following inclusions when using one
@@ -151,6 +154,10 @@ namespace stlsoft
 #ifdef STLSOFT_CF_STD_LIBRARY_IS_HP_RW
 # undef STLSOFT_CF_STD_LIBRARY_IS_HP_RW
 #endif /* STLSOFT_CF_STD_LIBRARY_IS_HP_RW */
+
+#ifdef STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
+# undef STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
+#endif /* STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
 
 #ifdef STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE
 # undef STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE
@@ -220,10 +227,17 @@ namespace stlsoft
 # endif /* _STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_HP_RW
 # define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "HP/SGI/RW"
+#elif defined(STLSOFT_COMPILER_IS_SUNPRO) && \
+      defined(__STD_ITERATOR__)
+ /* Sun Pro/RW */
+# define STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "SunPro/RW"
 #elif defined(STLSOFT_OW12_INCL_ITERATOR)
+ /* Watcom (patch) */
 # define STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH
 # define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "STLSoft Watcom Patch"
 #elif defined(STLSOFT_COMPILER_IS_WATCOM)
+ /* Watcom (none) */
 # define STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE
 # define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "<no standard library with Open Watcom>"
 #else /* ? */

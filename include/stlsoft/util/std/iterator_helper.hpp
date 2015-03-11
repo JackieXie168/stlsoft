@@ -5,7 +5,7 @@
  *              abstracting away standard library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     9th March 2008
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  2
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      103
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     2
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  1
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ namespace stlsoft
         (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) && \
             !defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT))
 #     error When compiling with Intel C/C++ or Microsoft Visual C++, only the Dinkumware or STLport STL implementations are currently supported.
-#     error  Please contact STLSoft (admin@stlsoft.org) if you need to support a different STL implementation with these compilers.
+#     error  Please contact Synesis Software (www.synesis.com.au) if you need to support a different STL implementation with these compilers.
 #    endif /* (Intel || MSVC) && !DinkumWare && !STLport */
 # endif /* 0 */
 
@@ -223,6 +223,8 @@ namespace stlsoft
 #elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_SGI_GNU)
 # define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
 #elif defined(STLSOFT_CF_STD_LIBRARY_IS_HP_RW)
+# define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
+#elif defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
 # define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
 #elif defined(STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH)
 # define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
@@ -344,9 +346,61 @@ namespace stlsoft
 #endif /* !STLSOFT_ITERATOR_REVERSE_ITERATOR_FORM5_SUPPORT */
 
 
-/* Form 1 */
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+
+/* Determine whether we can support bidirectional iterators
+ *
+ * This used to be in each compiler's capability file
+ * (include/stlsoft/internal/cccap/xxxx.h), but is moved here because it is
+ * actually a library feature (somewhat dependent on compilers's abilities).
+ */
+
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+# define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#elif defined(STLSOFT_COMPILER_IS_COMO)
+# define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#elif defined(STLSOFT_COMPILER_IS_DMC)
+# if (__DMC__ >= 0x0829)
+#  define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+# endif /* __DMC__ >= 0x0829 */
+#elif defined(STLSOFT_COMPILER_IS_GCC)
+# define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#elif defined(STLSOFT_COMPILER_IS_INTEL)
+# define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#elif defined(STLSOFT_COMPILER_IS_MSVC)
+# if _MSC_VER >= 1200
+#  define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+# endif /* _MSC_VER */
+#elif defined(STLSOFT_COMPILER_IS_MWERKS)
+# define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#elif defined(STLSOFT_COMPILER_IS_SUNPRO)
+# if !defined(STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW)
+#  define STLSOFT_ITERATOR_ITERATOR_FORM1_SUPPORT
+# endif /* !STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
+/* #elif defined(STLSOFT_COMPILER_IS_UNKNOWN) */
+/* # define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#elif defined(STLSOFT_COMPILER_IS_VECTORC)
+/* #define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#elif defined(STLSOFT_COMPILER_IS_WATCOM)
+/* #define STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#else /* ? compiler/library */
+# error Compiler/library configuration not recognised. Contact Synesis Software
+#endif /* compiler/library */
+
+
+/* Obsolete definition: STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+# define STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#else /* ? STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#  undef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+# endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
+
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+
+/* Form 1 / Form 5 */
 
 # if defined(STLSOFT_CF_STD_LIBRARY_IS_STLPORT)
  /* STLport is form 1 when not using the old form */
@@ -400,11 +454,11 @@ namespace stlsoft
 /* stlsoft_reverse_iterator() */
 # if defined(STLSOFT_ITERATOR_REVERSE_ITERATOR_FORM1_SUPPORT) || \
      defined(STLSOFT_ITERATOR_REVERSE_ITERATOR_FORM2_SUPPORT)
-#  define stlsoft_reverse_iterator(I, V, R, P, D)        stlsoft_ns_qual_std(reverse_iterator)<I>
+#  define stlsoft_reverse_iterator(I, V, R, P, D)       stlsoft_ns_qual_std(reverse_iterator)<I>
 # elif defined(STLSOFT_ITERATOR_REVERSE_ITERATOR_FORM3_SUPPORT)
-#   define stlsoft_reverse_iterator(I, V, R, P, D)       stlsoft_ns_qual_std(reverse_iterator)<I, V, R, P, D>
+#  define stlsoft_reverse_iterator(I, V, R, P, D)       stlsoft_ns_qual_std(reverse_iterator)<I, V, R, P, D>
 //# elif defined(STLSOFT_ITERATOR_REVERSE_ITERATOR_FORM4_SUPPORT)
-//#   define stlsoft_reverse_iterator(I, V, R, P, D)       stlsoft_ns_qual_std(reverse_iterator)<I, V, R, P, D>
+//#  define stlsoft_reverse_iterator(I, V, R, P, D)       stlsoft_ns_qual_std(reverse_iterator)<I, C, V, R, P, D>
 # elif defined(STLSOFT_ITERATOR_REVERSE_ITERATOR_FORM5_SUPPORT)
 #  define stlsoft_reverse_iterator(I, V, R, P, D)       stlsoft_ns_qual_std(reverse_iterator)<I, V, R, D>
 # else
@@ -425,7 +479,7 @@ namespace stlsoft
 #  define stlsoft_reverse_bidirectional_iterator(I, V, R, P, D)      stlsoft_reverse_iterator(I, V, R, P, D)
 # endif /*  */
 
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Iterators
@@ -552,7 +606,7 @@ public:
 };
 
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
 // reverse_iterator_base, const_reverse_iterator_base,
 // reverse_bidirectional_iterator_base and const_reverse_bidirectional_iterator_base
@@ -781,7 +835,7 @@ public:
     {}
 };
 
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Random access iterator support

@@ -4,7 +4,7 @@
  * Purpose:     integral_printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     27th January 2008
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_MINOR      1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       60
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_REVISION   3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_TRAITS_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -260,10 +260,11 @@ namespace stlsoft
 #  define STLSOFT_CF_64_BIT_PRINTF_USES_I64
 # elif defined(STLSOFT_COMPILER_IS_COMO) || \
        defined(STLSOFT_COMPILER_IS_DMC) || \
+       defined(STLSOFT_COMPILER_IS_GCC) || \
        defined(STLSOFT_COMPILER_IS_INTEL) || \
        defined(STLSOFT_COMPILER_IS_MSVC) || \
-       defined(STLSOFT_COMPILER_IS_GCC) || \
-       defined(STLSOFT_COMPILER_IS_MWERKS)
+       defined(STLSOFT_COMPILER_IS_MWERKS) || \
+       defined(STLSOFT_COMPILER_IS_SUNPRO)
 #  define STLSOFT_CF_64_BIT_PRINTF_USES_LL
 # else /* ? compiler */
 #  error Further compiler discrimination is required
@@ -782,7 +783,7 @@ struct integral_printf_traits<ss_sint8_t>
 {};
 STLSOFT_TEMPLATE_SPECIALISATION
 struct integral_printf_traits<ss_uint8_t>
-    : public integral_printf_traits_base<signed char>
+    : public integral_printf_traits_base<unsigned char>
 {};
 # endif /* _STLSOFT_SIZEOF_CHAR == 1 */
 #endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */

@@ -4,11 +4,11 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     12th August 2007
+ * Updated:     24th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        154
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        155
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -488,7 +488,11 @@ private:
     pointer allocate_(size_type cItems, void const* hint)
     {
 #ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+# ifdef STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
+        return static_cast<pointer>(get_allocator().allocate(cItems, const_cast<void*>(hint)));
+# else /* ? STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
         return get_allocator().allocate(cItems, hint);
+# endif /* STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
 #else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
         STLSOFT_SUPPRESS_UNUSED(hint);
 
@@ -499,7 +503,11 @@ private:
     pointer allocate_(size_type cItems)
     {
 #ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+# ifdef STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
+        return static_cast<pointer>(get_allocator().allocate(cItems, NULL));
+# else /* ? STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
         return get_allocator().allocate(cItems, NULL);
+# endif /* STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
 #else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
         return get_allocator().allocate(cItems);
 #endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
@@ -520,7 +528,7 @@ private:
 
     pointer reallocate_(pointer p, size_type cItems, size_type cNewItems)
     {
-        pointer new_p   =   allocate_(cNewItems, p);
+        pointer new_p = allocate_(cNewItems, p);
 
         // This test is needed, since some allocators may not throw
         // bad_alloc

@@ -1,5 +1,5 @@
 
-// Updated: 12th March 2007
+// Updated: 24th April 2008
 
 #if !defined(COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/collections/enumerator_sequence.hpp
@@ -279,7 +279,7 @@ namespace unittest
 										,	LPOLESTR_policy
 										>			enumerator_t;
 
-				{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+				{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 				{
 					LPENUMSTRING	lpenStr;
 
@@ -379,7 +379,7 @@ namespace unittest
 											,	10
 											>			enumerator_t;
 
-					{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+					{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 					{
 						LPENUMGUID	  lpenStr;
 
@@ -442,7 +442,7 @@ namespace unittest
 											,	10
 											>			enumerator_t;
 
-					{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+					{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 					{
 						LPENUMGUID	  lpenStr;
 
@@ -511,7 +511,7 @@ namespace unittest
 											,	10
 											>			enumerator_t;
 
-					{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+					{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 					{
 						LPENUMGUID	  lpenStr;
 
@@ -574,7 +574,7 @@ namespace unittest
 											,	10
 											>			enumerator_t;
 
-					{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+					{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 					{
 						LPENUMGUID	  lpenStr;
 
@@ -643,7 +643,7 @@ namespace unittest
 											,	10
 											>			enumerator_t;
 
-					{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+					{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 					{
 						LPENUMGUID	  lpenStr;
 
@@ -712,7 +712,7 @@ namespace unittest
 											,	10
 											>			enumerator_t;
 
-					{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+					{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 					{
 						LPENUMGUID	  lpenStr;
 
@@ -835,7 +835,7 @@ namespace unittest
 										,	BSTR_policy
 										>			enumerator_t;
 
-				{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+				{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 				{
 					LPENUMBSTR	lpenStr;
 
@@ -931,7 +931,7 @@ namespace unittest
 										,	1
 										>			enumerator_t;
 
-				{ for(cs_size_t q = 0; q < enumerator_t::retrievalQuanta; ++q)
+				{ for(cs_size_t q = 0; q < enumerator_t::quanta(); ++q)
 				{
 					LPENUMVARIANT	lpenStr;
 

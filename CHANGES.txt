@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  13th April 2008
+; Updated:  25th April 2008
 
 ============================================================================
 
@@ -15,6 +15,95 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.32 (22nd April 2008)
+
+Summary:
+==========
+
+  * added support for the SunPro C and C++ compilers
+  * various mods to ensure headers are self-contained when used with
+    Windows "lean and mean" suppression symbols
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ STLSOFT_STRINGIZE_w_() now defined in terms of STLSOFT_STRINGIZE_a()
+    for Sun Pro C and Borland
+  + Sun Pro C and Sun Pro C++ compatibility
+  ~ stlsoft::fixed_array_?d::swap() methods now implemented in terms of
+    new private get_allocator_() method
+  - STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT removed from all the compiler
+    capability files
+  ~ stlsoft::member_selector_iterator.hpp now compatible with Sun Pro C++
+    when used in the -library=libCstd
+  ~ stlsoft/memory/allocator_features.hpp now compatible with Sun Pro C++
+    when used in the -library=libCstd
+  ~ stlsoft/memory/auto_buffer.hpp now compatible with Sun Pro C++
+    when used in the -library=libCstd
+  ~ stlsoft/shims/access/string/std/c_string.h now compatible with Sun Pro C++
+  ~ stlsoft/string/simple_string.hpp now compatible with Sun Pro C++
+  ~ stlsoft/util/integral_printf_traits.hpp now compatible with Sun Pro C++
+  ~ correction to definition of stlsoft::integral_printf_traits<ss_uint8_t>
+  ~ stlsoft/util/std/iterator_helper.hpp now compatible with Sun Pro C++
+  ~ stlsoft/util/std/library_discriminator.hpp now compatible with Sun Pro C++
+
+ COMSTL:
+ -------
+
+  + comstl::enumerator_sequence<>::quanta()
+  + comstl/error/errorinfo_functions.h includes oaidl.h and oleauto.h
+  + comstl/internal/interface_traits_std.hpp includes oaidl.h
+  + comstl/util/initialisers.hpp includes ole2.h
+
+ UNIXSTL:
+ --------
+
+  ~ unixstl/unixstl.h now compatible with Sun Pro C++
+
+ WinSTL:
+ -------
+
+  ~ correction to return type of winstl__combobox_getitemdata()
+  ~ correction to return type of winstl__listbox_getitemdata()
+  ~ renamed listbox_operation_traits to listbox_data_sequence_traits (in
+    winstl/controls/listbox_data_sequence.hpp)
+  ~ renamed listbox_operation_traits to listbox_sequence_traits (in
+    winstl/controls/listbox_sequence.hpp)
+  ~ made winstl/error/exceptions.hpp self-contained when used with
+    Windows "lean and mean" suppression symbols
+  ~ marked winstl/shims/access/string/lsa_unicode_string.hpp as not for
+    unit-test (since the unit-test programs do not #include <ntsecapi.h>)
+
+============================================================================
+
+Changes for 1.9.32 (22nd April 2008)
+
+Summary:
+==========
+
+  * fix for VC++ 8/9 linker error in the allocator_selector
+  * refactoring of string access shim headers for lightweight compilation
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ fix for VC++ 8/9 linker error in the allocator_selector
+
+ WinSTL:
+ -------
+
+  ~ refactoring of string access shim headers in light of Windows
+    "lean and mean" disabling symbols (e.g. NOUSER, NOWINOFFSETS)
 
 
 ============================================================================

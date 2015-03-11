@@ -4,13 +4,13 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     10th January 2007
+ * Updated:     24th April 2008
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        58
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MINOR       1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-struct listbox_operation_traits
+struct listbox_sequence_traits
 {
 public:
     static ws_int_t err_constant()
@@ -145,7 +145,7 @@ public:
     /// The current parameterisation of the type
     typedef listbox_sequence<S>                                             class_type;
     /// The non-mutating (const) iterator type
-    typedef listbox_const_iterator<S, listbox_operation_traits>             const_iterator;
+    typedef listbox_const_iterator<S, listbox_sequence_traits>              const_iterator;
     /// The character type
     typedef ss_typename_type_k const_iterator::char_type                    char_type;
     /// The value type
@@ -162,7 +162,7 @@ public:
     typedef ss_typename_type_k const_iterator::allocator_type               allocator_type;
 private:
     typedef ss_typename_type_k const_iterator::buffer_type                  buffer_type;
-    typedef listbox_operation_traits                                        control_traits_type;
+    typedef listbox_sequence_traits                                         control_traits_type;
 /// @}
 
 /// \name Construction

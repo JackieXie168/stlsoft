@@ -2,13 +2,13 @@
 STLSoft - Known Issues:
 
 ; Created:  29th March 2002
-; Updated:  3rd April 2008
+; Updated:  25th April 2008
 
 ============================================================================
 
 
 STLSoft 1.9 Known Issues:
-----------------------------
+-------------------------
 
  * The safe string library compatibility is not done yet. This is planned to
    be fully complete with 1.10.
@@ -21,5 +21,11 @@ STLSoft 1.9 Known Issues:
 
  * The documentation is still hopeless. This will be addressed in the next
    few months.
+
+STLSoft 1.9 Suspected Issues:
+-----------------------------
+
+ * The SunPro C/C++ has not been fully tested, and remains speculative for
+   the moment
 
 =============================== End of file ================================

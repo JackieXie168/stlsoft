@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     13th April 2008
+ * Updated:     24th April 2008
  *
  * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   1
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       78
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   2
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,6 +70,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_THROW_POLICIES
 # include <stlsoft/error/throw_policies.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_THROW_POLICIES */
+#ifndef STLSOFT_INCL_H_OLE2
+# define STLSOFT_INCL_H_OLE2
+# include <ole2.h>
+#endif /* !STLSOFT_INCL_H_OLE2 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -5,7 +5,7 @@
  *              fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     20th December 2007
+ * Updated:     24th April 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode,
  *              requesting the function call operator, and for requesting
@@ -16,7 +16,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      8
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       184
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -309,12 +309,14 @@ public:
 
 // Implementation
 private:
-    pointer     allocate_(size_type n);
-    void        deallocate_(pointer p, size_type n);
+    pointer         allocate_(size_type n);
+    void            deallocate_(pointer p, size_type n);
 
-    pointer     data_();
-    index_type  calc_index_(index_type i0) const;
-    void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    pointer         data_();
+    index_type      calc_index_(index_type i0) const;
+    void            range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+
+    allocator_type& get_allocator_();
 
 // Members
 private:
@@ -471,13 +473,15 @@ public:
 
 // Implementation
 private:
-    pointer     allocate_(size_type n);
-    void        deallocate_(pointer p, size_type n);
+    pointer			allocate_(size_type n);
+    void			deallocate_(pointer p, size_type n);
+					
+    pointer			data_();
+    index_type		calc_index_(index_type i0, index_type i1) const;
+    void			range_check_(index_type i0, index_type i1) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    void			range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
-    pointer     data_();
-    index_type  calc_index_(index_type i0, index_type i1) const;
-    void        range_check_(index_type i0, index_type i1) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
-    void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    allocator_type& get_allocator_();
 
 // Members
 private:
@@ -636,13 +640,15 @@ public:
 
 // Implementation
 private:
-    pointer     allocate_(size_type n);
-    void        deallocate_(pointer p, size_type n);
+    pointer			allocate_(size_type n);
+    void			deallocate_(pointer p, size_type n);
+					
+    pointer			data_();
+    index_type		calc_index_(index_type i0, index_type i1, index_type i2) const;
+    void			range_check_(index_type i0, index_type i1, index_type i2) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    void			range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
-    pointer     data_();
-    index_type  calc_index_(index_type i0, index_type i1, index_type i2) const;
-    void        range_check_(index_type i0, index_type i1, index_type i2) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
-    void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    allocator_type& get_allocator_();
 
 // Members
 private:
@@ -802,13 +808,15 @@ public:
 
 // Implementation
 private:
-    pointer     allocate_(size_type n);
-    void        deallocate_(pointer p, size_type n);
+    pointer			allocate_(size_type n);
+    void			deallocate_(pointer p, size_type n);
+					
+    pointer			data_();
+    index_type		calc_index_(index_type i0, index_type i1, index_type i2, index_type i3) const;
+    void			range_check_(index_type i0, index_type i1, index_type i2, index_type i3) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    void			range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
-    pointer     data_();
-    index_type  calc_index_(index_type i0, index_type i1, index_type i2, index_type i3) const;
-    void        range_check_(index_type i0, index_type i1, index_type i2, index_type i3) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
-    void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
+    allocator_type& get_allocator_();
 
 // Members
 private:
@@ -880,6 +888,12 @@ inline void fixed_array_1d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 #else
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_1d<T, A, P, R>::allocator_type& fixed_array_1d<T, A, P, R>::get_allocator_()
+{
+	return *this;
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
@@ -977,7 +991,7 @@ inline void fixed_array_1d<T, A, P, R>::swap(ss_typename_type_k fixed_array_1d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(get_allocator_(), rhs.get_allocator_()); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
 }
@@ -1212,6 +1226,12 @@ inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_2d<T, A, P, R>::allocator_type& fixed_array_2d<T, A, P, R>::get_allocator_()
+{
+	return *this;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_2d<T, A, P, R>::range_check_(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -1333,7 +1353,7 @@ inline void fixed_array_2d<T, A, P, R>::swap(ss_typename_type_k fixed_array_2d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(get_allocator_(), rhs.get_allocator_()); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);
@@ -1600,6 +1620,12 @@ inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_ar
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_3d<T, A, P, R>::allocator_type& fixed_array_3d<T, A, P, R>::get_allocator_()
+{
+	return *this;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_3d<T, A, P, R>::range_check_(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -1721,7 +1747,7 @@ inline void fixed_array_3d<T, A, P, R>::swap(ss_typename_type_k fixed_array_3d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(get_allocator_(), rhs.get_allocator_()); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);
@@ -1993,6 +2019,12 @@ inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_a
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
+inline ss_typename_type_k fixed_array_4d<T, A, P, R>::allocator_type& fixed_array_4d<T, A, P, R>::get_allocator_()
+{
+	return *this;
+}
+
+template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
 inline void fixed_array_4d<T, A, P, R>::range_check_(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) )
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -2121,7 +2153,7 @@ inline void fixed_array_4d<T, A, P, R>::swap(ss_typename_type_k fixed_array_4d<T
     // variables that are being swapped are simple types (integers and
     // pointers).
 
-    std_swap(static_cast<allocator_type&>(*this), static_cast<allocator_type&>(rhs)); 
+    std_swap(get_allocator_(), rhs.get_allocator_()); 
     std_swap(m_data, rhs.m_data);
     std_swap(m_d0, rhs.m_d0);
     std_swap(m_d1, rhs.m_d1);
