@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     12th March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     63
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 3
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -290,7 +290,7 @@ public:
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
     {
-        return strncpy(dest, src, cch);
+        return ::strncpy(dest, src, cch);
     }
 
     static char_type *str_cat(char_type *dest, char_type const* src)
@@ -443,7 +443,7 @@ public:
                 len = cchBuffer;
             }
 
-            strncpy(buffer, fileName, cchBuffer);
+            ::strncpy(buffer, fileName, cchBuffer);
 
             if(NULL != ppFile)
             {
@@ -607,7 +607,7 @@ public:
 
     static char_type *str_n_copy(char_type *dest, char_type const* src, is_size_t cch)
     {
-        return wcsncpy(dest, src, cch);
+        return ::wcsncpy(dest, src, cch);
     }
 
     static char_type *str_cat(char_type *dest, char_type const* src)
@@ -761,7 +761,7 @@ public:
                 len = cchBuffer;
             }
 
-            wcsncpy(buffer, fileName, cchBuffer);
+            ::wcsncpy(buffer, fileName, cchBuffer);
 
             if(NULL != ppFile)
             {

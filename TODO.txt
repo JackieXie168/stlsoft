@@ -2,12 +2,12 @@
 STLSoft - TODO
 
 ; Created:  29th March 2002
-; Updated:  30th April 2007
+; Updated:  2nd June 2007
 
 ============================================================================
 
 
-STLSoft 1.9.1 TODOs:
+STLSoft 1.9.2 TODOs:
 ====================
 
 ? 1. STLSoft Documentation

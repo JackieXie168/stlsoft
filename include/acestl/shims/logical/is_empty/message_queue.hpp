@@ -84,15 +84,15 @@ namespace stlsoft
 
 STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
 
-	no_type is_empty_helper_assistant(ACE_Message_Queue_Base const*, ACE_Message_Queue_Base const*)
-	{
-		return no_type();
-	}
+    no_type is_empty_helper_assistant(ACE_Message_Queue_Base const*, ACE_Message_Queue_Base const*)
+    {
+        return no_type();
+    }
 
-	inline ss_bool_t is_empty_helper(ACE_Message_Queue_Base const& q, no_type)
-	{
-		return 0 != const_cast<ACE_Message_Queue_Base&>(q).is_empty();
-	}
+    inline ss_bool_t is_empty_helper(ACE_Message_Queue_Base const& q, no_type)
+    {
+        return 0 != const_cast<ACE_Message_Queue_Base&>(q).is_empty();
+    }
 
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
 

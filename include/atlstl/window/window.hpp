@@ -5,7 +5,7 @@
  *              operations.
  *
  * Created:     25th November 2006
- * Updated:     22nd March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MAJOR      1
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MINOR      0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   2
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       5
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,6 +102,7 @@ namespace atlstl_project
  *
  * \ingroup group__library__windows_window
  */
+// [[synesis:class:ui-window: atlstl::Window]]
 class Window
     : public CWindow
     , public EnhancedWindow<Window>

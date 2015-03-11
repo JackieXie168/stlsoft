@@ -107,15 +107,15 @@ class semaphore
     , public stlsoft_ns_qual(synchronisable_object_tag)
 {
 public:
-	/// This type
+    /// This type
     typedef semaphore       class_type;
-	/// The synchronisation handle type
+    /// The synchronisation handle type
     typedef HANDLE          synch_handle_type;
-	/// The Boolean type
+    /// The Boolean type
     typedef ws_bool_t       bool_type;
-	/// The count type
+    /// The count type
     typedef ws_size_t       count_type;
-	/// The resource type
+    /// The resource type
     typedef HANDLE          resource_type;
 
 public:

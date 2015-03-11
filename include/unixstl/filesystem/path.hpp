@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       223
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       224
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -258,7 +258,7 @@ public:
     template <ss_typename_param_k S>
     class_type& operator /=(S const& rhs)
     {
-        return operator /=(stlsoft_ns_qual(c_str_ptr)(rhs));
+        return push(stlsoft_ns_qual(c_str_ptr)(rhs));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 

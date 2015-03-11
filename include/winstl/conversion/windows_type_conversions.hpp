@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     1st June 2003
- * Updated:     12th March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MAJOR    4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR    0
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION 2
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     35
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR    1
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION 1
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,6 +173,15 @@ typedef stlsoft_ns_qual(union_caster)<LPARAM, HICON, false>         HICON2LPARAM
  * \ingroup group__library__conversion
  */
 typedef stlsoft_ns_qual(union_caster)<HICON, LONG, false>           LONG2HICON;
+
+/** \brief Checked conversion from <code>HICON</code> to <code>LRESULT</code>.
+ * \ingroup group__library__conversion
+ */
+typedef stlsoft_ns_qual(union_caster)<LRESULT, HICON, false>        HICON2LRESULT;
+/** \brief Checked conversion from <code>LRESULT</code> to <code>HICON</code>.
+ * \ingroup group__library__conversion
+ */
+typedef stlsoft_ns_qual(union_caster)<HICON, LRESULT, false>        LRESULT2HICON;
 
 #if defined(_INC_COMMCTRL) || \
     defined(_COMMCTRL_H)

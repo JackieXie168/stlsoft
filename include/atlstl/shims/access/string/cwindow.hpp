@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     22nd March 2007
+ * Updated:     17th May 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_MINOR    0
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_EDIT     97
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_REVISION 2
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_EDIT     98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ namespace atlstl_project
  * \ingroup group__concept__shim__string_access
  *
  */
-class c_str_ptr_null_CWindow_proxy
+struct c_str_ptr_null_CWindow_proxy
 {
 private:
     typedef cstring_maker<TCHAR>            string_maker_type;
@@ -190,7 +190,7 @@ private:
  * \ingroup group__concept__shim__string_access
  *
  */
-class c_str_ptr_CWindow_proxy
+struct c_str_ptr_CWindow_proxy
 {
 private:
     typedef cstring_maker<TCHAR>        string_maker_type;
@@ -257,11 +257,11 @@ public:
     }
 
 // Members
-protected:
+private:
     LPTSTR  m_buffer;
 
 // Not to be implemented
-protected:
+private:
     void operator =(class_type const& rhs);
 };
 

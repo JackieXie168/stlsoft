@@ -129,7 +129,7 @@ public:
     typedef process_mutex       class_type;
     typedef us_bool_t           bool_type;
 
-	typedef pthread_mutex_t*	resource_type;
+    typedef pthread_mutex_t*    resource_type;
 /// @}
 
 /// \name Construction

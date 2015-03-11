@@ -69,6 +69,13 @@ namespace unittest
 				k4.swap(k3);
 			}
 
+			if(0)
+			{
+				reg_key 	WinSTL	=	reg_key::create(HKEY_CURRENT_USER, reg_string_t("SOFTWARE\\Synesis Software\\STLSoft\\test\\WinSTL"));
+				reg_key 	RegKey	=	reg_key::create(HKEY_CURRENT_USER, "SOFTWARE\\Synesis Software\\STLSoft\\test\\reg_key");
+
+			}
+
 #if 0
 			if(<<TODO>>)
 			{

@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     12th March 2007
+ * Updated:     8th May 2007
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      180
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  5
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      181
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -312,7 +312,7 @@ protected:
     void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
 // Members
-protected:
+private:
     M   m_data;
 
 // Not to be implemented
@@ -459,7 +459,7 @@ protected:
     void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
 // Members
-protected:
+private:
     M   m_data;
 
 // Not to be implemented
@@ -609,7 +609,7 @@ protected:
     void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
 // Members
-protected:
+private:
     M   m_data;
 
 // Not to be implemented
@@ -763,7 +763,7 @@ protected:
     void        range_check_(index_type i0) const stlsoft_throw_1(stlsoft_ns_qual_std(out_of_range) );
 
 // Members
-protected:
+private:
     M   m_data;
 
 // Not to be implemented

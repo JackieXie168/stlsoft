@@ -4,7 +4,7 @@
  * Purpose:     WinSTL system-time performance counter class.
  *
  * Created:     22nd March 2002
- * Updated:     10th January 2007
+ * Updated:     8th May 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_MAJOR     4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_MINOR     0
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_REVISION  1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_EDIT      40
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_REVISION  2
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_SYSTEMTIME_COUNTER_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,7 @@ public:
     interval_type   get_microseconds() const;
 
 // Members
-protected:
+private:
     epoch_type  m_start;
     epoch_type  m_end;
 };

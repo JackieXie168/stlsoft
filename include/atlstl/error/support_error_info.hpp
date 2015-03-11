@@ -4,7 +4,7 @@
  * Purpose:     SupportErrorInfoImpl class.
  *
  * Created:     17th April 1999
- * Updated:     12th March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MAJOR     5
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MINOR     0
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_REVISION  1
-# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT      65
+# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,6 +96,7 @@ namespace atlstl_project
  *
  * \ingroup group__library__error
  */
+// [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*>]]
 template <IID const* piid>
 class ATL_NO_VTABLE SupportErrorInfoImpl
     : public ISupportErrorInfo
@@ -119,6 +120,7 @@ public:
  *
  * \ingroup group__library__error
  */
+// [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2>
 class ATL_NO_VTABLE SupportErrorInfoImpl2
     : public ISupportErrorInfo
@@ -143,6 +145,7 @@ public:
  *
  * \ingroup group__library__error
  */
+// [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2, IID const* piid3>
 class ATL_NO_VTABLE SupportErrorInfoImpl3
     : public ISupportErrorInfo
@@ -168,6 +171,7 @@ public:
  *
  * \ingroup group__library__error
  */
+// [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*, IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2, IID const* piid3, IID const* piid4>
 class ATL_NO_VTABLE SupportErrorInfoImpl4
     : public ISupportErrorInfo
@@ -194,6 +198,7 @@ public:
  *
  * \ingroup group__library__error
  */
+// [[synesis:class: atlstl::SupportErrorInfoImpl<IID const*, IID const*, IID const*, IID const*, IID const*>]]
 template <IID const* piid1, IID const* piid2, IID const* piid3, IID const* piid4, IID const* piid5>
 class ATL_NO_VTABLE SupportErrorInfoImpl5
     : public ISupportErrorInfo

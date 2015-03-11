@@ -4,7 +4,7 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     20th January 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR      4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR      0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION   2
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       48
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,6 +123,7 @@ struct IDD_to_type
  *
  * \ingroup group__library__windows_window
  */
+// [[synesis:class:ui-window: atlstl::AboutDialog<T<T>, T<B>>]]
 template<   class   T
         ,   class   B = CWindow
         >
@@ -242,6 +243,7 @@ protected:
  * \ingroup group__library__windows_window
  *
  */
+// [[synesis:class:ui-window: atlstl::AboutDialogId<UINT, T<B>>]]
 template<   UINT    ID
         ,   class   B = CWindow
         >

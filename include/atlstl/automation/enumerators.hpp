@@ -4,7 +4,7 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     22nd March 2007
+ * Updated:     2nd June 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     57
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -170,6 +170,7 @@ template<   ss_typename_param_k I                                   //!< Enumera
 class ATL_NO_VTABLE copy_enumerator;
 
 // class copy_enumerator_impl
+// [[synesis:class: atlstl::copy_enumerator_impl<T<I>, IID const*, T<V>, T<IV>, T<I2ETx>>]]
 template<   ss_typename_param_k I
         ,   IID const           *piid
         ,   ss_typename_param_k V
@@ -340,6 +341,7 @@ private:
 #endif /* compiler */
 
 // class copy_enumerator
+// [[synesis:class: atlstl::copy_enumerator<T<I>, IID const*, T<V>, T<IV>, T<I2ETx>, T<TM>>]]
 template<   ss_typename_param_k I                                   // Enumerator interface
         ,   IID const           *piid                               // Enumerator interface Id
         ,   ss_typename_param_k V                                   // Enumerator interface value type
