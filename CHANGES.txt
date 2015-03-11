@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  1st December 2008
+; Updated:  9th December 2008
 
 ============================================================================
 
@@ -16,6 +16,29 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.63 (9th December 2008)
+
+Summary:
+========
+
+ * optimised stlsoft::basic_string_view::reserve()
+ * enhanced compatibility for stlsoft::fixed_array_?d class templates
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/containers/fixed_arrays.hpp:
+    ~ compatibility with VC++ /Za option for fixed arrays
+
+ ~ stlsoft/string/simple_string.hpp:
+    ~ optimised reserve() method so that it now does not alloc new buffer if
+	  requested size is less than current capacity
 
 ============================================================================
 

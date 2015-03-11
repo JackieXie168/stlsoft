@@ -5,7 +5,7 @@
  *              fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     22nd September 2008
+ * Updated:     9th December 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode,
  *              requesting the function call operator, and for requesting
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       189
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   5
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       190
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -203,6 +203,7 @@ class fixed_array_1d
 public:
     typedef fixed_array_1d<T, A, P, R>              class_type;
     typedef T                                       dimension_element_type;
+    typedef /* const */ dimension_element_type          const_dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
     typedef value_type&                             reference;
@@ -362,6 +363,7 @@ class fixed_array_2d
 public:
     typedef fixed_array_2d<T, A, P, R>              class_type;
     typedef fixed_array_1d<T, A, P, false>          dimension_element_type;
+    typedef /* const */ dimension_element_type          const_dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
     typedef value_type&                             reference;
@@ -432,13 +434,13 @@ public:
 #endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
     dimension_element_type          at(index_type i0);
-    const dimension_element_type    at(index_type i0) const;
+    const_dimension_element_type    at(index_type i0) const;
 
     dimension_element_type          at_unchecked(index_type i0);
-    const dimension_element_type    at_unchecked(index_type i0) const;
+    const_dimension_element_type    at_unchecked(index_type i0) const;
 
     dimension_element_type          operator [](index_type i0);
-    const dimension_element_type    operator [](index_type i0) const;
+    const_dimension_element_type    operator [](index_type i0) const;
 
     /// A reference to the first element in the array
     reference               front();
@@ -527,6 +529,7 @@ class fixed_array_3d
 public:
     typedef fixed_array_3d<T, A, P, R>              class_type;
     typedef fixed_array_2d<T, A, P, false>          dimension_element_type;
+    typedef /* const */ dimension_element_type          const_dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
     typedef value_type&                             reference;
@@ -597,13 +600,13 @@ public:
 #endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
     dimension_element_type          at(index_type i0);
-    const dimension_element_type    at(index_type i0) const;
+    const_dimension_element_type    at(index_type i0) const;
 
     dimension_element_type          at_unchecked(index_type i0);
-    const dimension_element_type    at_unchecked(index_type i0) const;
+    const_dimension_element_type    at_unchecked(index_type i0) const;
 
     dimension_element_type          operator [](index_type i0);
-    const dimension_element_type    operator [](index_type i0) const;
+    const_dimension_element_type    operator [](index_type i0) const;
 
     reference               front();
     reference               back();
@@ -692,6 +695,7 @@ class fixed_array_4d
 public:
     typedef fixed_array_4d<T, A, P, R>              class_type;
     typedef fixed_array_3d<T, A, P, false>          dimension_element_type;
+    typedef /* const */ dimension_element_type          const_dimension_element_type;
     typedef A                                       allocator_type;
     typedef T                                       value_type;
     typedef value_type&                             reference;
@@ -762,13 +766,13 @@ public:
 #endif /* !STLSOFT_FIXED_ARRAY_NO_FUNCTION_OP */
 
     dimension_element_type          at(index_type i0);
-    const dimension_element_type    at(index_type i0) const;
+    const_dimension_element_type    at(index_type i0) const;
 
     dimension_element_type          at_unchecked(index_type i0);
-    const dimension_element_type    at_unchecked(index_type i0) const;
+    const_dimension_element_type    at_unchecked(index_type i0) const;
 
     dimension_element_type          operator [](index_type i0);
-    const dimension_element_type    operator [](index_type i0) const;
+    const_dimension_element_type    operator [](index_type i0) const;
 
     reference               front();
     reference               back();
@@ -1413,7 +1417,7 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::dimension_element_type const fixed_array_2d<T, A, P, R>::at(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_dimension_element_type fixed_array_2d<T, A, P, R>::at(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const
 {
     range_check_(i0);
 
@@ -1429,7 +1433,7 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::dimension_element_type const fixed_array_2d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_dimension_element_type fixed_array_2d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
 
@@ -1445,7 +1449,7 @@ inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::dimension_element_type const fixed_array_2d<T, A, P, R>::operator [](ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_2d<T, A, P, R>::const_dimension_element_type fixed_array_2d<T, A, P, R>::operator [](ss_typename_type_k fixed_array_2d<T, A, P, R>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
 
@@ -1807,7 +1811,7 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::dimension_element_type const fixed_array_3d<T, A, P, R>::at(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_dimension_element_type fixed_array_3d<T, A, P, R>::at(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const
 {
     range_check_(i0);
 
@@ -1823,7 +1827,7 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::dimension_element_type const fixed_array_3d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_dimension_element_type fixed_array_3d<T, A, P, R>::at_unchecked(ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
 
@@ -1839,7 +1843,7 @@ inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::dimension_element_type const fixed_array_3d<T, A, P, R>::operator [](ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_3d<T, A, P, R>::const_dimension_element_type fixed_array_3d<T, A, P, R>::operator [](ss_typename_type_k fixed_array_3d<T, A, P, R>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
 
@@ -2214,7 +2218,7 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline const ss_typename_type_k fixed_array_4d<T, A, P, R>::dimension_element_type fixed_array_4d<T, A, P, R>::at(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_k fixed_array_4d<T, A, P, R>::const_dimension_element_type fixed_array_4d<T, A, P, R>::at(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const
 {
     range_check_(i0);
 
@@ -2230,7 +2234,7 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::dimension_element_type const fixed_array_4d<T, A, P, R>::at_unchecked(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_dimension_element_type fixed_array_4d<T, A, P, R>::at_unchecked(ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
 
@@ -2246,7 +2250,7 @@ inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::dimension_element_type
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A, ss_typename_param_k P, ss_bool_t R>
-inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::dimension_element_type const fixed_array_4d<T, A, P, R>::operator [](ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const
+inline ss_typename_type_ret_k fixed_array_4d<T, A, P, R>::const_dimension_element_type fixed_array_4d<T, A, P, R>::operator [](ss_typename_param_k fixed_array_4d<T, A, P, R>::index_type i0) const
 {
     STLSOFT_MESSAGE_ASSERT("fixed array index out of range", i0 < m_d0);
 

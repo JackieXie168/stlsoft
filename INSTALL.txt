@@ -2,7 +2,7 @@
 STLSoft - Install
 
 ; Created:  29th March 2002
-; Updated:  19th November 2008
+; Updated:  9th December 2008
 
 ============================================================================
 
@@ -25,7 +25,7 @@ STLSoft - Install
   * recls           http://recls.org/
   * shwild          http://shwild.org/
   * xContract       http://xcontract.org/
-  * xCover          http://xcover.org/ (coming Dec '08)
+  * xCover          http://xcover.org/ (coming Jan '09)
   * xTests          http://xtests.org/
 
  If you're using STLSoft on UNIX, you might want to apply dos2unix over all
