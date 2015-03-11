@@ -2,9 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  16th October 2008
+; Updated:  25th October 2008
 
 ============================================================================
+
+
+25th October 2008 - 1.9.58 released
+-----------------------------------
+
+ * change in ATLSTL's property method helpers to avoid infinite loop in
+   Visual C++ 6 problem when implementing property puts to CComBSTR
+ * fixed compile error with GCC when using VARIANTs in C compilation units
 
 
 16th October 2008 - 1.9.58 released
