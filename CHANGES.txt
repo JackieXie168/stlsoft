@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  31st May 2008
+; Updated:  1st June 2008
 
 ============================================================================
 
@@ -15,6 +15,26 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.44 (1st June 2008)
+
+Summary:
+========
+
+ * bug fix in winstl/shims/access/string/LSA_UNICODE_STRING.hpp, required
+   for newly released flecxx library
+
+Changes:
+========
+
+ WinSTL:
+ -------
+
+  ~ winstl/shims/access/string/LSA_UNICODE_STRING.hpp - removed trailing
+    slash in two of the shim functions
 
 
 ============================================================================

@@ -2,10 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  31st May 2008
+; Updated:  1st June 2008
 
 ============================================================================
 
+
+1st June 2008 - 1.9.44 released
+-------------------------------
+
+ * bug fix in winstl/shims/access/string/LSA_UNICODE_STRING.hpp, required
+   for newly released flecxx library
 
 31st May 2008 - 1.9.43 released
 -------------------------------

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/access/string/lsa_unicode_string.hpp
+ * File:        winstl/shims/access/string/LSA_UNICODE_STRING.hpp
  *
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     24th April 2008
+ * Updated:     1st June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/shims/access/string/lsa_unicode_string.hpp
+/** \file winstl/shims/access/string/LSA_UNICODE_STRING.hpp
  *
  * \brief [C++] Definition of the string access shims for
  *   <code>LSA_UNICODE_STRING</code>
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MAJOR     4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MINOR     1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_REVISION  2
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      111
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_REVISION  3
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -292,7 +292,7 @@ inline S& operator <<(S& s, c_str_ptr_null_LSA_UNICODE_STRING_proxy const& shim)
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline LPCWSTR c_str_data_w(LSA_UNICODE_STRING const& s)
 {
-    return s.Buffer;    /
+    return s.Buffer;
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -303,7 +303,7 @@ inline LPCWSTR c_str_data_w(LSA_UNICODE_STRING const& s)
  */
 inline LPCWSTR c_str_data(LSA_UNICODE_STRING const& s)
 {
-    return s.Buffer;    /
+    return s.Buffer;
 }
 
 /* /////////////////////////////////////////////////////////////////////////

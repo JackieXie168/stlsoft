@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/access/string/hwnd.hpp
+ * File:        winstl/shims/access/string/HWND.hpp
  *
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd April 2008
+ * Updated:     1st June 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/shims/access/string/hwnd.hpp
+/** \file winstl/shims/access/string/HWND.hpp
  *
  * \brief [C++] Definition of the string access shims for
  *   <code>HWND</code>
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        109
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
