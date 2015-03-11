@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  19th August 2012
+; Updated:  16th February 2013
 
 ============================================================================
+
+
+16th February 2013 - 1.9.117 released
+-------------------------------------
+
+ * added Visual C++ 11 compatibility
+ * various minor changes
 
 
 19th August 2012 - 1.9.116 released
