@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     4th January 2009
+ * Updated:     17th January 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    19
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     369
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     370
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -230,12 +230,13 @@
 # define _STLSOFT_VER_1_9_64    0x010940ff  /*!< Version 1.9.64 (28th Dec 2008) */
 # define _STLSOFT_VER_1_9_65    0x010941ff  /*!< Version 1.9.65 (1st Jan 2009) */
 # define _STLSOFT_VER_1_9_66    0x010942ff  /*!< Version 1.9.66 (4th Jan 2009) */
+# define _STLSOFT_VER_1_9_67    0x010943ff  /*!< Version 1.9.67 (17th Jan 2009) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   66
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_66
+#define _STLSOFT_VER_REVISION   67
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_67
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -2612,7 +2613,7 @@ inline ss_ptrdiff_t ptr_diff(T1 const* p1, T2 const* p2)
 
 /** \brief Remove const-qualifier from an instance.
  *
- * \note Using this function can result in undefined behaviour. As such, the
+ * \warning Using this function can result in undefined behaviour. As such, the
  * advice is: <b>Use With Care!</b>
  */
 template <ss_typename_param_k T>
@@ -2669,7 +2670,7 @@ inline T& move_lhs_from_rhs(stlsoft_define_move_rhs_type(T) t)
 
 /** \brief Takes the address of a variable
  *
- * \remarks This function is used to take the address of a variable,
+ * \warning This function is used to take the address of a variable,
  * possibly a temporary, and allows the code to skip the reasonable
  * reservations of compilers to not want to compile code that uses the
  * address of temporaries. As such, the advice is: <b>Use With Care!</b>

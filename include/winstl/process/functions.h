@@ -4,11 +4,11 @@
  * Purpose:     Process functions.
  *
  * Created:     12th March 2006
- * Updated:     22nd September 2008
+ * Updated:     16th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     16
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ STLSOFT_INLINE BOOL winstl__CreateProcessFEA(ws_char_a_t const* cmdLine, DWORD f
 
     STLSOFT_NS_GLOBAL(memset)(&si, 0, sizeof(si));
 
-    b   =   STLSOFT_NS_GLOBAL(CreateProcessA)(NULL, stlsoft_const_cast(ws_char_a_t*, cmdLine), NULL, NULL, FALSE, flags, stlsoft_const_cast(void*, envBlock), NULL, &si, &pi);
+    b = STLSOFT_NS_GLOBAL(CreateProcessA)(NULL, stlsoft_const_cast(ws_char_a_t*, cmdLine), NULL, NULL, FALSE, flags, stlsoft_const_cast(void*, envBlock), NULL, &si, &pi);
 
     if(b)
     {

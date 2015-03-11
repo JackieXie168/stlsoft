@@ -4,11 +4,11 @@
  * Purpose:     null_allocator class - doesn't allocate.
  *
  * Created:     2nd January 2001
- * Updated:     10th October 2008
+ * Updated:     4th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_MINOR    0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_REVISION 2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_EDIT     77
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_REVISION 3
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,6 +73,10 @@
 # include <stlsoft/memory/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
 
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# include <new>
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
@@ -91,6 +95,12 @@ namespace stlsoft
  * \ingroup group__library__memory
  *
  * \param T The value_type of the allocator
+ *
+ * \note When exception support is enabled, instances of this type will
+ *   throw <code>std::bad_alloc</code> for any allocation request (even if
+ *   the requested size is 0). When exception support is not enabled,
+ *   requesting memory from this class is a contract violation, and an
+ *   enforcement will fire (if contract programming enforcement is enabled).
  */
 template <ss_typename_param_k T>
 class null_allocator
@@ -150,6 +160,14 @@ private:
     {
         STLSOFT_SUPPRESS_UNUSED(n);
         STLSOFT_SUPPRESS_UNUSED(hint);
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(bad_alloc)());
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+        // TODO: change this to 
+
+        STLSOFT_MESSAGE_ASSERT("may not be called when exception support is not enabled", 0);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return NULL;
     }

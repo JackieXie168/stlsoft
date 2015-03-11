@@ -4,11 +4,11 @@
  * Purpose:     Registry functions.
  *
  * Created:     20th November 1995
- * Updated:     22nd September 2008
+ * Updated:     4th January 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1995-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1995-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      47
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
