@@ -4,7 +4,7 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define STLSOFT_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       2
 # define STLSOFT_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    3
-# define STLSOFT_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        12
+# define STLSOFT_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,18 +72,18 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp> //
+# include <stlsoft/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>  //
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>      // For discrimination of the MSVC Dinkumware libs (with the bad member types)
+# include <stlsoft/iterator.hpp>      // for discrimination of the MSVC Dinkumware libs (with the bad member types)
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
  // This stuff's needed for type fixing 'referent_type' => 'mapped_type' 
 # ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
-#  include <stlsoft/member_traits.hpp>  //
+#  include <stlsoft/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR
 #  include <stlsoft/associative_mapped_type_detector.hpp>

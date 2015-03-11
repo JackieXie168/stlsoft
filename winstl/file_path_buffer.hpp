@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_MINOR       2
 # define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_EDIT        82
+# define WINSTL_VER_WINSTL_HPP_FILE_PATH_BUFFER_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -83,10 +83,10 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////

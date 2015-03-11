@@ -4,7 +4,7 @@
  * Purpose:     WinSTL .
  *
  * Created:     31st July 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MAJOR    1
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_MINOR    4
 #define _WINSTL_VER_H_WINSTL_INT_TO_STRING_REVISION 1
-#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     22
+#define _WINSTL_VER_H_WINSTL_INT_TO_STRING_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,19 +60,19 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING
-# include <stlsoft/integer_to_string.hpp>   // stlsoft::integer_to_string
+# include <stlsoft/integer_to_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_INTEGER_TO_STRING */
 #ifndef WINSTL_INCL_WINSTL_HPP_THREAD_MUTEX
-# include <winstl/thread_mutex.hpp>           // thread_mutex
+# include <winstl/thread_mutex.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_THREAD_MUTEX */
 #ifndef WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX
-# include <winstl/spin_mutex.hpp>             // spin_mutex
+# include <winstl/spin_mutex.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE
-# include <stlsoft/lock_scope.hpp>          // stlsoft::lock_scope
+# include <stlsoft/lock_scope.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>            // stlsoft::sap_cast
+# include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 
 /* /////////////////////////////////////////////////////////////////////////////

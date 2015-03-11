@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_H_COMSTL_INTERFACE_CAST_MAJOR       3
-# define COMSTL_VER_H_COMSTL_INTERFACE_CAST_MINOR       1
+# define COMSTL_VER_H_COMSTL_INTERFACE_CAST_MINOR       2
 # define COMSTL_VER_H_COMSTL_INTERFACE_CAST_REVISION    1
-# define COMSTL_VER_H_COMSTL_INTERFACE_CAST_EDIT        79
+# define COMSTL_VER_H_COMSTL_INTERFACE_CAST_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/interface_cast.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

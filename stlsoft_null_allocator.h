@@ -4,7 +4,7 @@
  * Purpose:     stlsoft_null_allocator class - doesn't allocate.
  *
  * Created:     2nd January 2001
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_NULL_ALLOCATOR_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_NULL_ALLOCATOR_MINOR       1
+# define STLSOFT_VER_H_STLSOFT_NULL_ALLOCATOR_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_NULL_ALLOCATOR_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_NULL_ALLOCATOR_EDIT        62
+# define STLSOFT_VER_H_STLSOFT_NULL_ALLOCATOR_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/null_allocator.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

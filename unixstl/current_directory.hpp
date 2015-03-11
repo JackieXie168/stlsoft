@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     1st November 2003
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_EDIT     34
+# define UNIXSTL_VER_UNIXSTL_HPP_CURRENT_DIRECTORY_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,10 +61,10 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem_traits.hpp> // filesystem_traits
+# include <unixstl/filesystem_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
-# include <unixstl/file_path_buffer.hpp>  // basic_file_path_buffer
+# include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
 
 /* /////////////////////////////////////////////////////////////////////////////

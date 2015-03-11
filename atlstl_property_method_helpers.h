@@ -5,7 +5,7 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_H_ATLSTL_PROPERTY_METHOD_HELPERS_MAJOR      3
-# define ATLSTL_VER_H_ATLSTL_PROPERTY_METHOD_HELPERS_MINOR      1
+# define ATLSTL_VER_H_ATLSTL_PROPERTY_METHOD_HELPERS_MINOR      2
 # define ATLSTL_VER_H_ATLSTL_PROPERTY_METHOD_HELPERS_REVISION   1
-# define ATLSTL_VER_H_ATLSTL_PROPERTY_METHOD_HELPERS_EDIT       52
+# define ATLSTL_VER_H_ATLSTL_PROPERTY_METHOD_HELPERS_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_DMC:
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include atlstl/property_method_helpers.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

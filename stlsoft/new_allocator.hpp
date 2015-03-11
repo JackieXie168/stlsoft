@@ -4,7 +4,7 @@
  * Purpose:     stlsoft_new_allocator class - use new & delete operators.
  *
  * Created:     2nd January 2001
- * Updated:     15th December 2005
+ * Updated:     21st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,12 +45,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR
 #define STLSOFT_INCL_STLSOFT_HPP_NEW_ALLOCATOR
 
-#ifndef __STLSOFT_DOCUMENTATION_SKIP_SECTION
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_MINOR    2
-# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_EDIT     65
-#endif /* !__STLSOFT_DOCUMENTATION_SKIP_SECTION */
+# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_NEW_ALLOCATOR_EDIT     66
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
  * Includes

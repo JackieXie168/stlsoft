@@ -4,7 +4,7 @@
  * Purpose:     proxy_iterator template class.
  *
  * Created:     28th June 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MAJOR       2
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MINOR       4
-# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        36
+# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_REVISION    2
+# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,11 +70,8 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>              // iterator_base
+# include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ADDRESS_HIDING_VENEER
-# include <stlsoft/address_hiding_veneer.hpp> // address_hiding_veneer
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ADDRESS_HIDING_VENEER */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

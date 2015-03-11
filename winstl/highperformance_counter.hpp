@@ -4,7 +4,7 @@
  * Purpose:     WinSTL high performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_EDIT       66
+# define WINSTL_VER_WINSTL_HPP_HIGHPERFORMANCE_COUNTER_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,13 +76,13 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* _MSC_VER < 1200 */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>          // stlsoft::limit_traits<ss_uint64_t>::maximum()
+# include <stlsoft/limit_traits.h>          // for stlsoft::limit_traits<ss_uint64_t>::maximum()
 #endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS
-# include <stlsoft/static_initialisers.hpp> // class_constructor
+# include <stlsoft/static_initialisers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_INITIALISERS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>            // sap_cast
+# include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 
 /* /////////////////////////////////////////////////////////////////////////////

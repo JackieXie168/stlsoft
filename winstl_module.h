@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_MODULE_MAJOR     5
-# define WINSTL_VER_H_WINSTL_MODULE_MINOR     1
+# define WINSTL_VER_H_WINSTL_MODULE_MINOR     2
 # define WINSTL_VER_H_WINSTL_MODULE_REVISION  1
-# define WINSTL_VER_H_WINSTL_MODULE_EDIT      194
+# define WINSTL_VER_H_WINSTL_MODULE_EDIT      195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/module.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

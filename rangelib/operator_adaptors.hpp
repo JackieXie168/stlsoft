@@ -5,7 +5,7 @@
  *              non_mutating_operator_adaptor classes.
  *
  * Created:     4th November 2003
- * Updated:     11th September 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MAJOR       1
 # define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MINOR       4
 # define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    2
-# define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        17
+# define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,18 +74,18 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/rangelib.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>          // TMP stuff
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
-#  include <stlsoft/member_traits.hpp> // member_traits
+#  include <stlsoft/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp> // Used for the operator "bool"
+# include <stlsoft/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_INERT
-# include <stlsoft/inert.hpp>         // stlsoft::inert
+# include <stlsoft/inert.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_INERT */
 
 /* /////////////////////////////////////////////////////////////////////////////

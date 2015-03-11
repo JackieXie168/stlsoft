@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MAJOR    4
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_MINOR    1
 # define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     43
+# define ATLSTL_VER_ATLSTL_HPP_CCOMBSTR_VENEER_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
-#include <wchar.h>  // wcscmp(), _wcsnset()
+#include <wchar.h>              // for wcscmp(), _wcsnset()
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

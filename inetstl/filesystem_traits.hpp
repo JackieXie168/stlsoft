@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_MINOR    1
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_REVISION 1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     48
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_TRAITS_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>               // sap_cast
+# include <stlsoft/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ANY_CASTER
 # include <stlsoft/any_caster.hpp>

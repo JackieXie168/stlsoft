@@ -4,7 +4,7 @@
  * Purpose:     Definition of the environment_map class.
  *
  * Created:     14th November 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_MINOR      6
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_REVISION   3
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       23
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_ENVIRONMENT_MAP_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR
-# include <stlsoft/shared_ptr.hpp>          // stlsoft::shared_ptr
+# include <stlsoft/shared_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>

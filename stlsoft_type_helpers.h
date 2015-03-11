@@ -4,7 +4,7 @@
  * Purpose:     Type assistor classes.
  *
  * Created:     5th December 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_TYPE_HELPERS_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_TYPE_HELPERS_MINOR       1
+# define STLSOFT_VER_H_STLSOFT_TYPE_HELPERS_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_TYPE_HELPERS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_TYPE_HELPERS_EDIT        14
+# define STLSOFT_VER_H_STLSOFT_TYPE_HELPERS_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/type_helpers.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

@@ -291,7 +291,7 @@ namespace unittest
                 }
 
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-	_MSC_VER != 1300
+    _MSC_VER != 1300
                 Base_ptr        p2(p1);
 
                 if(derived.Count() != startCount + 2)
@@ -333,7 +333,7 @@ namespace unittest
                 Base_ptr        p2;
                 
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
-	_MSC_VER != 1300
+    _MSC_VER != 1300
                 p2 = p1;
 
                 if(derived.Count() != startCount + 2)

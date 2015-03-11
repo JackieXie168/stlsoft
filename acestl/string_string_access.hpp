@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     17th July 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MAJOR       1
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_MINOR       2
 # define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_REVISION    2
-# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        12
+# define ACESTL_VER_ACESTL_HPP_STRING_STRING_ACCESS_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#include <ace/String_Base.h>                // ACE_String_Base
+#include <ace/String_Base.h>                // for ACE_String_Base
 #ifdef STLSOFT_UNITTEST
 # include <string.h>
 #endif /* STLSOFT_UNITTEST */

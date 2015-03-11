@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_H_UNIXSTL_SPIN_MUTEX_MAJOR     3
-# define UNIXSTL_VER_H_UNIXSTL_SPIN_MUTEX_MINOR     1
+# define UNIXSTL_VER_H_UNIXSTL_SPIN_MUTEX_MINOR     2
 # define UNIXSTL_VER_H_UNIXSTL_SPIN_MUTEX_REVISION  1
-# define UNIXSTL_VER_H_UNIXSTL_SPIN_MUTEX_EDIT      33
+# define UNIXSTL_VER_H_UNIXSTL_SPIN_MUTEX_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/spin_mutex.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

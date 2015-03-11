@@ -4,7 +4,7 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
 # define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    3
 # define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 4
-# define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     20
+# define STLSOFT_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ STLSOFT_COMPILER_IS_MWERKS:     (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/operator_adaptors.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>                      // TMP stuff
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #if !defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 # error This file is not compatible with compilers that do not support member type detection
@@ -96,7 +96,7 @@ STLSOFT_COMPILER_IS_MWERKS:     (__MWERKS__ & 0xFF00) < 0x3000
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR
-# include <stlsoft/filter_iterator.hpp>           // stlsoft::filtered_iterator
+# include <stlsoft/filter_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////

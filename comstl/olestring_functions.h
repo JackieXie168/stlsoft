@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     2nd March 1996
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_MAJOR      4
 # define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_MINOR      1
 # define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_REVISION   1
-# define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_EDIT       140
+# define COMSTL_VER_COMSTL_H_OLESTRING_FUNCTIONS_EDIT       141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef COMSTL_INCL_COMSTL_H_MEMORY_FUNCTIONS
-# include <comstl/memory_functions.h>    //
+# include <comstl/memory_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_H_MEMORY_FUNCTIONS */
 #include <wchar.h>
 

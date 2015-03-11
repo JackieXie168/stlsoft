@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_MINOR       3
 # define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        54
+# define WINSTL_VER_WINSTL_HPP_CHAR_CONVERSIONS_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,16 +81,16 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* _MSC_VER < 1200 */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>          // winstl::c_str_ptr
+# include <winstl/string_access.hpp>          // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 
 #ifdef STLSOFT_UNITTEST

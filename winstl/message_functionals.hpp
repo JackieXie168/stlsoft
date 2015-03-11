@@ -4,7 +4,7 @@
  * Purpose:     Window messaging function objects and predicates.
  *
  * Created:     19th January 2001
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     23
+# define WINSTL_VER_WINSTL_HPP_MESSAGE_FUNCTIONALS_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>  // get_hwnd()
+# include <winstl/window_access.hpp>  // for get_hwnd()
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
 #ifndef _WINSTL_WINDOW_FUNCTIONALS_NO_STD
 # include <functional>

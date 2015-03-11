@@ -4,7 +4,7 @@
  * Purpose:     Container accessor functions.
  *
  * Created:     11th November 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_MINOR     3
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_EDIT      17
+# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>      // For discrimination of the MSVC Dinkumware libs (with the bad member types)
+# include <stlsoft/iterator.hpp>      // for discrimination of the MSVC Dinkumware libs (with the bad member types)
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #include <stdexcept>
 #ifdef STLSOFT_UNITTEST

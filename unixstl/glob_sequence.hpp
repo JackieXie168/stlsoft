@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_MINOR    7
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     106
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_REVISION 3
+# define UNIXSTL_VER_UNIXSTL_HPP_GLOB_SEQUENCE_EDIT     109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,31 +62,31 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem_traits.hpp>   // filesystem_traits
+# include <unixstl/filesystem_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER
-# include <unixstl/file_path_buffer.hpp>    // basic_file_path_buffer
+# include <unixstl/file_path_buffer.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILE_PATH_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>            // pointer_iterator, reverse_iterator_base
+# include <stlsoft/iterator.hpp>            // for pointer_iterator, reverse_iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>         // auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS
-//# include <stlsoft/tokeniser_functions.hpp> // find_next_token
+//# include <stlsoft/tokeniser_functions.hpp> // for find_next_token
 #endif /* !STLSOFT_INCL_STLSOFT_TOKENISER_FUNCTIONS */
 #include <sys/types.h>
-#include <sys/stat.h>                       // stat()
+#include <sys/stat.h>                       // for stat()
 #include <errno.h>
-#include <glob.h>                           // glob(), globfree()
-#include <algorithm>                        // std::sort
-#include <exception>                        // std::exception
-#include <stdexcept>                        // std::runtime_error
-#include <utility>                          // std::swap
+#include <glob.h>                           // for glob(), globfree()
+#include <algorithm>                        // for std::sort
+#include <exception>                        // for std::exception
+#include <stdexcept>                        // for std::runtime_error
+#include <utility>                          // for std::swap
 
 #ifdef STLSOFT_UNITTEST
 # include <stlsoft/simple_string.hpp>
@@ -114,7 +114,7 @@
 #elif defined(STLSOFT_COMPILER_IS_UNKNOWN)
 # define GLOB_SEQUENCE_CTOR_PRIMARY_FORM
 #elif defined(STLSOFT_COMPILER_IS_BORLAND)
-# include "stlsoft_cccap_borland.h"
+# define GLOB_SEQUENCE_CTOR_OLD_FORM
 #elif defined(STLSOFT_COMPILER_IS_COMO)
 # define GLOB_SEQUENCE_CTOR_PRIMARY_FORM
 #elif defined(STLSOFT_COMPILER_IS_DMC)
@@ -530,7 +530,10 @@ private:
 
 // Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<char_type const*, allocator_type, 128>   buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type const*
+                                        ,   allocator_type
+                                        ,   128
+                                        >           buffer_type_;
 
     us_int_t const  m_flags;
     char_type const **m_base;

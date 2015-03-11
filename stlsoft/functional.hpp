@@ -4,7 +4,7 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_EDIT        9
+# define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_PTR_ACCESS
-# include <stlsoft/ptr_access.hpp>    // get_ptr
+# include <stlsoft/ptr_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_PTR_ACCESS */
 #include <functional>
 

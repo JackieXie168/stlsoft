@@ -4,7 +4,7 @@
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_EDIT     43
+# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@
 
 #ifdef STLSOFT_UNITTEST
 # ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-#  include <stlsoft/limit_traits.h> // limit_traits
+#  include <stlsoft/limit_traits.h>
 # endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
 # include <stdarg.h>
 # include <stdio.h>

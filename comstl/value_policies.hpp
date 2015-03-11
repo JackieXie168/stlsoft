@@ -5,7 +5,7 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_MAJOR     4
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_MINOR     1
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_EDIT      148
+# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_EDIT      149
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -61,10 +61,10 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h>    // safe_release, etc.
+# include <comstl/refcount_functions.h>    // for safe_release(), etc.
 #endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #ifndef COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS
-# include <comstl/olestring_functions.h>   // olestring_dup, etc.
+# include <comstl/olestring_functions.h>   // for olestring_dup(), etc.
 #endif /* !COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
 # include <stlsoft/sap_cast.hpp>

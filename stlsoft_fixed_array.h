@@ -4,7 +4,7 @@
  * Purpose:     Contains the array1D, array2D template classes.
  *
  * Created:     4th August 1998
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_FIXED_ARRAY_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_FIXED_ARRAY_MINOR     1
+# define STLSOFT_VER_H_STLSOFT_FIXED_ARRAY_MINOR     2
 # define STLSOFT_VER_H_STLSOFT_FIXED_ARRAY_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_FIXED_ARRAY_EDIT      145
+# define STLSOFT_VER_H_STLSOFT_FIXED_ARRAY_EDIT      146
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/fixed_array.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

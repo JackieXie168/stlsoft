@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_STRING_ACCESS_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_STRING_ACCESS_MINOR       1
+# define STLSOFT_VER_H_STLSOFT_STRING_ACCESS_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_STRING_ACCESS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_STRING_ACCESS_EDIT        68
+# define STLSOFT_VER_H_STLSOFT_STRING_ACCESS_EDIT        69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/string_access.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

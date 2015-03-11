@@ -4,7 +4,7 @@
  * Purpose:     shell_allocator class.
  *
  * Created:     2nd March 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_MINOR       3
 # define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_EDIT        63
+# define WINSTL_VER_WINSTL_HPP_SHELL_ALLOCATOR_EDIT        64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -62,8 +62,8 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
 # include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
-#include <stdexcept>                    // runtime_error
-#include <shlobj.h>                     // SHGetMalloc
+#include <stdexcept>                    // for std::runtime_error
+#include <shlobj.h>                     // for SHGetMalloc()
 
 /* ////////////////////////////////////////////////////////////////////////////
  * Namespace

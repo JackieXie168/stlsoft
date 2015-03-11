@@ -4,7 +4,7 @@
  * Purpose:     simple_string class.
  *
  * Created:     19th March 1993
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_STRING_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_STRING_MINOR     1
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_STRING_MINOR     2
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_STRING_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_STRING_EDIT      186
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_STRING_EDIT      187
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/simple_string.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

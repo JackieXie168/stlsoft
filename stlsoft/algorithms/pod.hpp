@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       2
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        68
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_INTEL) || \
     defined(STLSOFT_COMPILER_IS_MSVC)
-# include <memory.h>                    // memcpy
+# include <memory.h>                    // for memcpy
 #else /* ? compiler */
-# include <string.h>                    // memcpy
+# include <string.h>                    // for memcpy
 #endif /* compiler */
 
 #ifdef STLSOFT_UNITTEST

@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_LISTVIEW_SEQUENCE_MAJOR    3
-# define WINSTL_VER_H_WINSTL_LISTVIEW_SEQUENCE_MINOR    1
+# define WINSTL_VER_H_WINSTL_LISTVIEW_SEQUENCE_MINOR    2
 # define WINSTL_VER_H_WINSTL_LISTVIEW_SEQUENCE_REVISION 1
-# define WINSTL_VER_H_WINSTL_LISTVIEW_SEQUENCE_EDIT     38
+# define WINSTL_VER_H_WINSTL_LISTVIEW_SEQUENCE_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ STLSOFT_COMPILER_IS_BORLAND:
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/listview_sequence.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

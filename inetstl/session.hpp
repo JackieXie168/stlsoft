@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define INETSTL_VER_INETSTL_HPP_SESSION_MAJOR      4
 # define INETSTL_VER_INETSTL_HPP_SESSION_MINOR      1
 # define INETSTL_VER_INETSTL_HPP_SESSION_REVISION   1
-# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       45
+# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,15 +60,15 @@
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 #ifndef INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS
-# include <inetstl/filesystem_traits.hpp>     // filesystem_traits
+# include <inetstl/filesystem_traits.hpp>
 #endif /* !INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef INETSTL_INCL_INETSTL_HPP_EXCEPTIONS
-#  include <inetstl/exceptions.hpp>           // throw_internet_exception_policy
+#  include <inetstl/exceptions.hpp>           // for throw_internet_exception_policy
 # endif /* !INETSTL_INCL_INETSTL_HPP_EXCEPTIONS */
 #else /* ? __STLSOFT_CF_EXCEPTION_SUPPORT */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-#  include <stlsoft/exceptions.hpp>           // stlsoft::null_exception_policy
+#  include <stlsoft/exceptions.hpp>           // for stlsoft::null_exception_policy
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
 

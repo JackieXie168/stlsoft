@@ -4,7 +4,7 @@
  * Purpose:     Scoping class for ATL _Module
  *
  * Created:     8th December 2004
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_MODULE_SCOPE_MAJOR       1
 # define ATLSTL_VER_ATLSTL_HPP_MODULE_SCOPE_MINOR       2
 # define ATLSTL_VER_ATLSTL_HPP_MODULE_SCOPE_REVISION    1
-# define ATLSTL_VER_ATLSTL_HPP_MODULE_SCOPE_EDIT        12
+# define ATLSTL_VER_ATLSTL_HPP_MODULE_SCOPE_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>  // exception
+# include <stlsoft/exceptions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////

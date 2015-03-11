@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MAJOR        3
 # define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_MINOR        1
 # define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_REVISION     1
-# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_EDIT         41
+# define WINSTL_VER_WINSTL_HPP_HEAPWALK_SEQUENCE_EDIT         42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>      // stlsoft::iterator_base
+# include <stlsoft/iterator.hpp>      // for stlsoft::iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////

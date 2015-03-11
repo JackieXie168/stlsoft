@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_handle access shim.
  *
  * Created:     23rd February 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_EDIT     9
+# define STLSOFT_VER_STLSOFT_HPP_HANDLE_ACCESS_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef _STLSOFT_HANDLE_ACCESS_NO_AUTO_PTR
-# include <memory>                  // std::auto_ptr
+# include <memory>                  // for std::auto_ptr
 #endif /* _STLSOFT_HANDLE_ACCESS_NO_AUTO_PTR */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MINOR     3
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      19
+# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
-# include <stlsoft/shim_string.hpp>           // basic_shim_string
+# include <stlsoft/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Interface-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MAJOR     3
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MINOR     1
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  1
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      53
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h> // safe_addref, safe_release
+# include <comstl/refcount_functions.h> // for safe_addref(), safe_release()
 #endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
 #include <functional>
 

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       88
+# define WINSTL_VER_WINSTL_HPP_STRING_ACCESS_EDIT       89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@
 # include <winstl/windows_ident.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOWS_IDENT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER
-# include <stlsoft/cstring_maker.hpp>         //
+# include <stlsoft/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_MINOR    6
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_EDIT     79
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -136,32 +136,32 @@ struct filesystem_traits
 /// @{
 public:
     /// The character type
-    typedef C                       char_type;
+    typedef C                                       char_type;
     /// The size type
-    typedef us_size_t               size_type;
+    typedef us_size_t                               size_type;
     /// The difference type
-    typedef us_ptrdiff_t            difference_type;
+    typedef us_ptrdiff_t                            difference_type;
     /// The stat data type
-    typedef struct stat             stat_data_type;
+    typedef struct stat                             stat_data_type;
     /// The fstat data type
-    typedef struct stat             fstat_data_type;
+    typedef struct stat                             fstat_data_type;
     /// The current instantion of the type
-    typedef filesystem_traits<C>    class_type;
+    typedef filesystem_traits<C>                    class_type;
     /// The (signed) integer type
-    typedef us_int_t                int_type;
+    typedef us_int_t                                int_type;
     /// The Boolean type
-    typedef us_bool_t               bool_type;
+    typedef us_bool_t                               bool_type;
     /// The type of a system file handle
-    typedef int                     file_handle_type;
+    typedef int                                     file_handle_type;
     /// The type of a handle to a dynamically loaded module
-    typedef void                    *module_type;
+    typedef void                                    *module_type;
     /// The type of system error codes
-    typedef int                     error_type;
+    typedef int                                     error_type;
     /// The mode type
 #ifdef WIN32
-    typedef unsigned short          mode_type;
+    typedef unsigned short                          mode_type;
 #else /* ? WIN32 */
-    typedef mode_t                  mode_type;
+    typedef mode_t                                  mode_type;
 #endif /* WIN32 */
 /// @}
 
@@ -394,29 +394,32 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<us_char_a_t>
 {
 public:
-    typedef us_char_a_t                     char_type;
-    typedef us_size_t                       size_type;
-    typedef us_ptrdiff_t                    difference_type;
-
-    typedef struct stat                     stat_data_type;
-    typedef struct stat                     fstat_data_type;
-    typedef filesystem_traits<us_char_a_t>  class_type;
+    typedef us_char_a_t                             char_type;
+    typedef us_size_t                               size_type;
+    typedef us_ptrdiff_t                            difference_type;
+    typedef struct stat                             stat_data_type;
+    typedef struct stat                             fstat_data_type;
+    typedef filesystem_traits<us_char_a_t>          class_type;
     /// The (signed) integer type
-    typedef us_int_t                        int_type;
+    typedef us_int_t                                int_type;
     /// The Boolean type
-    typedef us_bool_t                       bool_type;
+    typedef us_bool_t                               bool_type;
     /// The type of a system file handle
-    typedef int                             file_handle_type;
+    typedef int                                     file_handle_type;
     /// The type of a handle to a dynamically loaded module
-    typedef void                            *module_type;
+    typedef void                                    *module_type;
     /// The type of system error codes
-    typedef int                             error_type;
+    typedef int                                     error_type;
     /// The mode type
 #ifdef WIN32
-    typedef unsigned short                  mode_type;
+    typedef unsigned short                          mode_type;
 #else /* ? WIN32 */
-    typedef mode_t                          mode_type;
+    typedef mode_t                                  mode_type;
 #endif /* WIN32 */
+private:
+    typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
+public:
+
 
 #ifdef PATH_MAX
     enum
@@ -678,9 +681,7 @@ private:
         else
         {
             // Given path is relative, so get the current directory, and then concatenate
-            typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
-
-            buffer_t    directory(1 + path_max());
+            buffer_type_    directory(1 + path_max());
 
             if(0 == directory.size())
             {
@@ -764,9 +765,7 @@ private:
 
         if('\0' != fileName[len])
         {
-            typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
-
-            buffer_t    fileName_(1 + (len - 1));
+            buffer_type_    fileName_(1 + (len - 1));
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -849,9 +848,7 @@ public:
         // Can't call realpath(), since that requires that the file exists
         return get_full_path_name_impl(fileName, str_len(fileName), buffer, cchBuffer);
 #else /* ? 0 */
-        typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
-
-        buffer_t    directory(1 + path_max());
+        buffer_type_    directory(1 + path_max());
 
         if( 0 == directory.size() ||
             NULL == ::realpath(fileName, &directory[0]))
@@ -986,9 +983,7 @@ public:
                 (   is_path_name_separator(*path) &&
                     len > 2))
             {
-                typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_t;
-
-                buffer_t    directory(1 + len);
+                buffer_type_    directory(1 + len);
 
                 if(0 == directory.size())
                 {

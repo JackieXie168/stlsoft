@@ -4,7 +4,7 @@
  * Purpose:     COM ROT (Running Object Table) functions.
  *
  * Created:     21st October 1998
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_H_COMSTL_ROT_FUNCTIONS_MAJOR    4
-# define COMSTL_VER_H_COMSTL_ROT_FUNCTIONS_MINOR    1
+# define COMSTL_VER_H_COMSTL_ROT_FUNCTIONS_MINOR    2
 # define COMSTL_VER_H_COMSTL_ROT_FUNCTIONS_REVISION 1
-# define COMSTL_VER_H_COMSTL_ROT_FUNCTIONS_EDIT     49
+# define COMSTL_VER_H_COMSTL_ROT_FUNCTIONS_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include comstl/rot_functions.h")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

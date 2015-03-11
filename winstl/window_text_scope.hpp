@@ -4,7 +4,7 @@
  * Purpose:     Window text scoping class.
  *
  * Created:     21st August 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MAJOR        3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MINOR        1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION     1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT         21
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION     2
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT         23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,16 +60,16 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>              // winstl::window_access
+# include <winstl/window_access.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_TRAITS
-# include <winstl/window_traits.hpp>              // winstl::window_traits
+# include <winstl/window_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>               // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>      // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -120,6 +120,8 @@ namespace winstl_project
 template <ss_typename_param_k S>
 class window_text_scope
 {
+/// \name Member Types
+/// @{
 public:
     /// The string type
     typedef S                                           string_type;
@@ -129,8 +131,14 @@ public:
     typedef ss_typename_type_k string_type::value_type  char_type;
     /// The traits type
     typedef window_traits<char_type>                    traits_type;
+private:
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   processheap_allocator<char_type>
+                                        >               buffer_type_;
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
     /// \brief Toggles the window text
     ///
@@ -142,10 +150,7 @@ public:
     ss_explicit_k window_text_scope(HWND wnd, char_type const *s)
         : m_hwnd(wnd)
     {
-        typedef processheap_allocator<char_type>                    ator_t;
-        typedef stlsoft_ns_qual(auto_buffer)<char_type,  ator_t>    buffer_t;
-
-        buffer_t    buffer(1 + traits_type::get_window_text_length(m_hwnd));
+        buffer_type_    buffer(1 + traits_type::get_window_text_length(m_hwnd));
 
         if(0 < buffer.size()) // Some allocators return NULL, rather than throw
         {
@@ -172,9 +177,7 @@ public:
     ss_explicit_k window_text_scope(HWND wnd, S const &s)
         : m_hwnd(wnd)
     {
-        typedef stlsoft_ns_qual(auto_buffer)<char_type, processheap_allocator<char_type> > buffer_t;
-
-        buffer_t    buffer(1 + traits_type::get_window_text_length(m_hwnd));
+        buffer_type_    buffer(1 + traits_type::get_window_text_length(m_hwnd));
 
         if(0 < buffer.size()) // Some allocators return NULL, rather than throw
         {
@@ -202,9 +205,7 @@ public:
     ss_explicit_k window_text_scope(W &wnd, S1 const &s)
         : m_hwnd(get_hwnd(wnd))
     {
-        typedef stlsoft_ns_qual(auto_buffer)<char_type, processheap_allocator<char_type> > buffer_t;
-
-        buffer_t    buffer(1 + traits_type::get_window_text_length(m_hwnd));
+        buffer_type_    buffer(1 + traits_type::get_window_text_length(m_hwnd));
 
         if(0 < buffer.size()) // Some allocators return NULL, rather than throw
         {
@@ -224,16 +225,21 @@ public:
     {
         traits_type::set_window_text(m_hwnd, m_oldText);
     }
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     HWND        m_hwnd;
     string_type m_oldText;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     window_text_scope(window_text_scope const &rhs);
     window_text_scope const &operator =(window_text_scope const &rhs);
+/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////////// */

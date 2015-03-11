@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MAJOR     3
 # define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_EDIT      45
+# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,19 +60,19 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem_traits.hpp>       // Include the UNIXSTL get_environment_variable
+# include <unixstl/filesystem_traits.hpp>       // for get_environment_variable()
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
-# include <unixstl/string_access.hpp>           // unixstl::c_str_ptr
+# include <unixstl/string_access.hpp>           // for string access shims
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>             // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>      // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -196,13 +196,15 @@ public:
 
 // Members
 private:
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, allocator_type>                 buffer_t;
+                                        ,   allocator_type
 #else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, malloc_allocator<char_type> >   buffer_t;
+                                        ,   malloc_allocator<char_type>
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+                                        >           buffer_type;
 
-    buffer_t    m_buffer;
+    buffer_type m_buffer;
 
 // Not to be implemented
 private:

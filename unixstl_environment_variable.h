@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_H_UNIXSTL_ENVIRONMENT_VARIABLE_MAJOR     3
-# define UNIXSTL_VER_H_UNIXSTL_ENVIRONMENT_VARIABLE_MINOR     1
+# define UNIXSTL_VER_H_UNIXSTL_ENVIRONMENT_VARIABLE_MINOR     2
 # define UNIXSTL_VER_H_UNIXSTL_ENVIRONMENT_VARIABLE_REVISION  1
-# define UNIXSTL_VER_H_UNIXSTL_ENVIRONMENT_VARIABLE_EDIT      43
+# define UNIXSTL_VER_H_UNIXSTL_ENVIRONMENT_VARIABLE_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/environment_variable.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

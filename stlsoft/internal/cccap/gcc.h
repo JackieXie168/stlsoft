@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      0
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       44
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -269,7 +269,7 @@
   * where
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
-# define stlsoft_assert(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
+# define STLSOFT_ASSERT(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME    _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else
@@ -279,7 +279,7 @@
 # define __STLSOFT_CF_ASSERT_SUPPORT
 /* # define   __STLSOFT_CF_USE_cassert */
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME       <assert.h>
-# define stlsoft_assert(_x)                     assert(_x)
+# define STLSOFT_ASSERT(_x)                     assert(_x)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
 /* /////////////////////////////////////////////////////////////////////////////

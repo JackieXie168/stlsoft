@@ -4,7 +4,7 @@
  * Purpose:     Simple class that converts a relative path to an absolute one.
  *
  * Created:     20th December 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_ABSOLUTE_PATH_MAJOR        3
-# define WINSTL_VER_H_WINSTL_ABSOLUTE_PATH_MINOR        1
+# define WINSTL_VER_H_WINSTL_ABSOLUTE_PATH_MINOR        2
 # define WINSTL_VER_H_WINSTL_ABSOLUTE_PATH_REVISION     1
-# define WINSTL_VER_H_WINSTL_ABSOLUTE_PATH_EDIT         41
+# define WINSTL_VER_H_WINSTL_ABSOLUTE_PATH_EDIT         42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/absolute_path.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MAJOR      3
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      2
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   1
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       61
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,28 +61,28 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>        // filesystem_traits
+# include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>    // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION
-# include <winstl/system_version.hpp>           // winstl::system_version
+# include <winstl/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SYSTEM_VERSION */
 #ifndef WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX
-# include <winstl/spin_mutex.hpp>               // winstl::spin_mutex
+# include <winstl/spin_mutex.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SPIN_MUTEX */
 #ifndef WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS
-//# include <winstl/registry_functions.hpp>     // winstl::
+//# include <winstl/registry_functions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_REGISTRY_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>             // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE
-# include <stlsoft/lock_scope.hpp>              // stlsoft::lock_scope
+# include <stlsoft/lock_scope.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_LOCK_SCOPE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>                // stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>                // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
 /* /////////////////////////////////////////////////////////////////////////////

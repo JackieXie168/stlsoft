@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functions.
  *
  * Created:     7th May 2000
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT     47
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_H_ERROR_FUNCTIONS
-# include <winstl/error_functions.h>    // format_message_*** functions
+# include <winstl/error_functions.h>    // for format_message_***() functions
 #endif /* !WINSTL_INCL_WINSTL_H_ERROR_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////

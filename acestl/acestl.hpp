@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,9 +45,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     3
+# define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     4
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  1
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      17
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp The root header for the \ref ACESTL project */
@@ -204,18 +204,18 @@
 /// Defines a runtime assertion
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
-#define ACESTL_ASSERT(expr)                stlsoft_assert(expr)
+#define ACESTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
 
 /// Defines a runtime assertion, with message
 ///
 /// \param expr Must be non-zero, or an assertion will be fired
 /// \param msg The literal character string message to be included in the assertion
-#define ACESTL_MESSAGE_ASSERT(msg, expr)   stlsoft_message_assert(msg, expr)
+#define ACESTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /// Defines a compile-time assertion
 ///
 /// \param expr Must be non-zero, or compilation will fail
-#define ACESTL_STATIC_ASSERT(expr)         stlsoft_static_assert(expr)
+#define ACESTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
 
 
 

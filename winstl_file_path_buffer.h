@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_buffer_size_() method.
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_MAJOR     3
-# define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_MINOR     1
+# define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_MINOR     2
 # define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_REVISION  1
-# define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_EDIT      75
+# define WINSTL_VER_H_WINSTL_FILE_PATH_BUFFER_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include winstl/file_path_buffer.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

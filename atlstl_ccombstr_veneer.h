@@ -4,7 +4,7 @@
  * Purpose:     Contains the definition of the ccombstr_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_H_ATLSTL_CCOMBSTR_VENEER_MAJOR      3
-# define ATLSTL_VER_H_ATLSTL_CCOMBSTR_VENEER_MINOR      1
+# define ATLSTL_VER_H_ATLSTL_CCOMBSTR_VENEER_MINOR      2
 # define ATLSTL_VER_H_ATLSTL_CCOMBSTR_VENEER_REVISION   1
-# define ATLSTL_VER_H_ATLSTL_CCOMBSTR_VENEER_EDIT       39
+# define ATLSTL_VER_H_ATLSTL_CCOMBSTR_VENEER_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include atlstl/ccombstr_veneer.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

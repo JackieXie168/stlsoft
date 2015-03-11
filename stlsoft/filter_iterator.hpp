@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_EDIT       16
+# define STLSOFT_VER_STLSOFT_HPP_FILTER_ITERATOR_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,13 +71,13 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>      // stlsoft::iterator, and macros
+# include <stlsoft/iterator.hpp>      // for stlsoft::iterator, and macros
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>          // TMP stuff
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-# include <stlsoft/type_traits.hpp>   // base_type_traits
+# include <stlsoft/type_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////

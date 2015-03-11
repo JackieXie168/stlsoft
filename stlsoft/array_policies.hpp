@@ -5,7 +5,7 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_EDIT      117
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_EDIT      118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
-#include <string.h>     // memcpy()
+#include <string.h>     // for memcpy()
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

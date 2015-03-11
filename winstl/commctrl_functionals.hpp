@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to common controls.
  *
  * Created:     8th October 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_EDIT        52
+# define WINSTL_VER_WINSTL_HPP_COMMCTRL_FUNCTIONALS_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ STLSOFT_COMPILER_IS_GCC: __GNUC__<3
 # include <stlsoft/unary_function_output_iterator_adaptor.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>  // winstl::c_str_ptr
+# include <winstl/string_access.hpp>  // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #include <commctrl.h>
 

@@ -4,7 +4,7 @@
  * Purpose:     ATL ActiveX control (OCX) container window functions.
  *
  * Created:     30th November 2000
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MAJOR    3
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_MINOR    1
 # define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     17
+# define ATLSTL_VER_ATLSTL_HPP_ENHANCED_WINDOW_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 #ifndef ATLSTL_INCL_ATLSTL_HPP_STRING_ACCESS
-# include <atlstl/string_access.hpp>  // string access
+# include <atlstl/string_access.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_STRING_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////

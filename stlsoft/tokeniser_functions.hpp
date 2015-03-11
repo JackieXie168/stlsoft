@@ -4,7 +4,7 @@
  * Purpose:     Simple tokenising functions.
  *
  * Created:     6th January 2001
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_TOKENISER_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_HPP_TOKENISER_FUNCTIONS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_TOKENISER_FUNCTIONS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_TOKENISER_FUNCTIONS_EDIT       10
+# define STLSOFT_VER_STLSOFT_HPP_TOKENISER_FUNCTIONS_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,14 +64,14 @@
 #  if defined(STLSOFT_COMPILER_IS_MWERKS) && \
       ((__MWERKS__ & 0xff00) < 0x3000)
 #   ifndef STLSOFT_INCL_STLSOFT_SIMPLE_STRING
-#    include <stlsoft/simple_string.hpp> // basic_simple_string
+#    include <stlsoft/simple_string.hpp>
 #   endif /* STLSOFT_INCL_STLSOFT_SIMPLE_STRING */
 #  else /* ? compiler */
 #   ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW
-#    include <stlsoft/string_view.hpp>   // basic_string_view
+#    include <stlsoft/string_view.hpp>
 #   endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_VIEW */
 #  endif /* compiler */
-#  include <vector>                      // std::vector
+#  include <vector>
 # endif /* compiler */
 #endif /* STLSOFT_UNITTEST */
 

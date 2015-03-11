@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        44
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_VIEW_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,11 +76,11 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-#  include <stlsoft/iterator.hpp>           // reverse_iterator_base
+#  include <stlsoft/iterator.hpp>           // for reverse_iterator_base
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-# include <stdexcept>                       // std::out_of_range
+# include <stdexcept>                       // for std::out_of_range
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////

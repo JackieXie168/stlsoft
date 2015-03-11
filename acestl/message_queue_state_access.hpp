@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Queue class.
  *
  * Created:     16th December 2004
- * Updated:     17th July 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_MINOR     0
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_REVISION  3
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_EDIT      8
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#include <ace/Message_Queue.h>              // ACE_Message_Queue<>
+#include <ace/Message_Queue.h>              // for ACE_Message_Queue<>
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

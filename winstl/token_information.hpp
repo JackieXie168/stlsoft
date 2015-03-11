@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing token information.
  *
  * Created:     20th June 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_EDIT       37
+# define WINSTL_VER_WINSTL_HPP_TOKEN_INFORMATION_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,13 +60,13 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>            // stlsoft::null_exception_policy
+# include <stlsoft/exceptions.hpp>            // for stlsoft::null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_HPP_LAST_ERROR_SCOPE
-# include <winstl/last_error_scope.hpp>       // winstl::last_error_scope
+# include <winstl/last_error_scope.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_LAST_ERROR_SCOPE */
 
 /* /////////////////////////////////////////////////////////////////////////////

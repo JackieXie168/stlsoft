@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,12 +46,12 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    0
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    1
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 1
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     21
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file wtlstl.h The root header for the \ref WTLSTL project */
+/** \file wtlstl/wtlstl.hpp The root header for the \ref WTLSTL project */
 
 /** \weakgroup projects STLSoft Projects
  *
@@ -278,18 +278,18 @@
 /// Defines a runtime assertion
 ///
 /// \param _x Must be non-zero, or an assertion will be fired
-#define WTLSTL_ASSERT(_x)               stlsoft_assert(_x)
+#define WTLSTL_ASSERT(_x)               STLSOFT_ASSERT(_x)
 
 /// Defines a runtime assertion, with message
 ///
 /// \param _x Must be non-zero, or an assertion will be fired
 /// \param _m The literal character string message to be included in the assertion
-#define WTLSTL_MESSAGE_ASSERT(_m, _x)   stlsoft_message_assert(_m, _x)
+#define WTLSTL_MESSAGE_ASSERT(_m, _x)   STLSOFT_MESSAGE_ASSERT(_m, _x)
 
 /// Defines a compile-time assertion
 ///
 /// \param _x Must be non-zero, or compilation will fail
-#define WTLSTL_STATIC_ASSERT(_x)        stlsoft_static_assert(_x)
+#define WTLSTL_STATIC_ASSERT(_x)        STLSOFT_STATIC_ASSERT(_x)
 
 
 

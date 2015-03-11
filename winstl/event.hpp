@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_EVENT_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_EVENT_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_EVENT_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_EVENT_EDIT     34
+# define WINSTL_VER_WINSTL_HPP_EVENT_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_HANDLE_ACCESS
-# include <winstl/handle_access.hpp>  // get_handle()
+# include <winstl/handle_access.hpp>  // for get_handle()
 #endif /* !WINSTL_INCL_WINSTL_HPP_HANDLE_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define STLSOFT_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    2
 # define STLSOFT_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 4
-# define STLSOFT_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     31
+# define STLSOFT_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,22 +72,22 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>     // operator_bool_generator
+# include <stlsoft/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>        // null_exception_policy
+# include <stlsoft/exceptions.hpp>        // for null_exception_policy
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>       // not_implicitly_comparable
+# include <stlsoft/constraints.hpp>       // for not_implicitly_comparable
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>              // is_integral_type, is_numeric_type
+# include <stlsoft/meta.hpp>              // for is_integral_type, is_numeric_type
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS
-# include <stlsoft/printf_traits.hpp>     // printf_traits::format_a() / format_w()
+# include <stlsoft/printf_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_PRINTF_TRAITS */
-#include <stdexcept>                    // std::out_of_range
-#include <stdio.h>                      // sprintf
+#include <stdexcept>                    // for std::out_of_range
+#include <stdio.h>                      // for sprintf
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

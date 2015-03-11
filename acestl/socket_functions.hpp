@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_SOCK (and derived) classes
  *
  * Created:     28th November 2004
- * Updated:     17th July 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_MAJOR      1
 # define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_MINOR      0
 # define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_REVISION   6
-# define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_EDIT       12
+# define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,8 +59,8 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#include <ace/SOCK.h>                       // ACE_SOCK
-#include <ace/Reactor.h>                    // ACE_Reactor
+#include <ace/SOCK.h>                       // for ACE_SOCK
+#include <ace/Reactor.h>                    // for ACE_Reactor
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

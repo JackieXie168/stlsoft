@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     11th January 2003
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback from Mac
  *              builds
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_H_UNIXSTL_STRING_ACCESS_MAJOR      3
-# define UNIXSTL_VER_H_UNIXSTL_STRING_ACCESS_MINOR      1
+# define UNIXSTL_VER_H_UNIXSTL_STRING_ACCESS_MINOR      2
 # define UNIXSTL_VER_H_UNIXSTL_STRING_ACCESS_REVISION   1
-# define UNIXSTL_VER_H_UNIXSTL_STRING_ACCESS_EDIT       35
+# define UNIXSTL_VER_H_UNIXSTL_STRING_ACCESS_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/string_access.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

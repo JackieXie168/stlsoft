@@ -4,7 +4,7 @@
  * Purpose:     RRID veneer for associative containers
  *
  * Created:     2nd October 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      29
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS
-# include <stlsoft/functionals.hpp>   // stlsoft::noop_function
+# include <stlsoft/functionals.hpp>   // for stlsoft::noop_function
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS */
 
 /* /////////////////////////////////////////////////////////////////////////////

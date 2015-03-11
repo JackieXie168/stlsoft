@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     5th June 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_EDIT        37
+# define WINSTL_VER_WINSTL_HPP_MODULE_DIRECTORY_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,22 +77,22 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* _MSC_VER < 1200 */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>  // filesystem_traits
+# include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>      // winstl::string_access
+# include <winstl/string_access.hpp>      // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>   // basic_file_path_buffer
+# include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-#  include <winstl/exceptions.hpp>        // windows_exception
+#  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #ifdef STLSOFT_UNITTEST
-# include <stdlib.h>                    // malloc(), free()
+# include <stdlib.h>                    // for malloc(), free()
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Contains string_traits for ATL.
  *
  * Created:     28th April 2005
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_MAJOR      2
 # define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_MINOR      1
-# define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_EDIT       7
+# define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_REVISION   3
+# define ATLSTL_VER_ATLSTL_HPP_STRING_TRAITS_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -119,11 +119,11 @@ struct string_traits<CComBSTR>
 
     static string_type construct(string_type const &src, size_type pos, size_type len)
     {
-        return string_type(len, static_cast<const_pointer>(src) + pos);
+        return string_type(static_cast<int>(len), static_cast<const_pointer>(src) + pos);
     }
     static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
     {
-        return (str = string_type(last - first, first));
+        return (str = string_type(static_cast<int>(last - first), first));
     }
 
     static iterator begin(string_type &str)

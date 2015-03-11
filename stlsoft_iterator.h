@@ -4,7 +4,7 @@
  * Purpose:     iterator classes.
  *
  * Created:     2nd January 2000
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_ITERATOR_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_ITERATOR_MINOR       1
+# define STLSOFT_VER_H_STLSOFT_ITERATOR_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_ITERATOR_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_ITERATOR_EDIT        79
+# define STLSOFT_VER_H_STLSOFT_ITERATOR_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/iterator.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

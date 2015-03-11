@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MINOR      1
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       75
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER
-# include <stlsoft/cstring_maker.hpp>         //
+# include <stlsoft/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER */
 #ifdef STLSOFT_UNITTEST
 # include <wchar.h>

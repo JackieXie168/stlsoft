@@ -4,7 +4,7 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_EDIT        29
+# define STLSOFT_VER_STLSOFT_HPP_LITERAL_CAST_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS
-# include <stlsoft/limit_traits.h>  // limit_traits
+# include <stlsoft/limit_traits.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_LIMIT_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////

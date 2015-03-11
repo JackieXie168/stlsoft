@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_MINOR    1
-# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_EDIT     21
+# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_REVISION 2
+# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,13 +64,13 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>         // auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>         // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
@@ -274,24 +274,28 @@ private:
 
 // Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, 1024>                                               char_buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   allocator_type
+                                        ,   1024
+                                        >                   char_buffer_type;
 
-#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    defined(STLSOFT_COMPILER_IS_GCC) || \
-    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1300)
     typedef stlsoft_ns_qual(auto_buffer)<   size_type
+#if defined(STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT)
+                                        ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<size_type>::other
+#else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
                                         ,   ss_typename_type_k allocator_selector<size_type>::allocator_type
+#endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
                                         ,   32
-                                        >       offset_buffer_type;
+                                        >                   offset_buffer_type;
+
     typedef stlsoft_ns_qual(auto_buffer)<   const_pointer
+#if defined(STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT)
+                                        ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<pointer>::other
+#else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
                                         ,   ss_typename_type_k allocator_selector<pointer>::allocator_type
+#endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
                                         ,   32
-                                        >       pointer_buffer_type;
-#else /* ? compiler */
-    typedef stlsoft_ns_qual(auto_buffer)<size_type, ss_typename_type_k allocator_type::rebind<size_type>::other, 32>    offset_buffer_type;
-    typedef stlsoft_ns_qual(auto_buffer)<const_pointer, ss_typename_type_k allocator_type::rebind<pointer>::other, 32>  pointer_buffer_type;
-#endif /* ? compiler */
+                                        >                   pointer_buffer_type;
 
     char_buffer_type        m_chars;
     offset_buffer_type      m_offsets;

@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_EDIT     55
+# define WINSTL_VER_WINSTL_HPP_CONTROL_FUNCTIONALS_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -87,16 +87,16 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 # include <stlsoft/unary_function_output_iterator_adaptor.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>        // winstl::c_str_ptr
+# include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>        // winstl::get_hwnd
+# include <winstl/window_access.hpp>        // for get_hwnd()
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_CHAR_CONVERSIONS
-# include <winstl/char_conversions.hpp>     // winstl::a2w, w2a
+# include <winstl/char_conversions.hpp>     // for winstl::a2w, w2a
 #endif /* !WINSTL_INCL_WINSTL_HPP_CHAR_CONVERSIONS */
 #ifndef WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS
-# include <winstl/control_functions.h>      // winstl::listbox_add_string, ...
+# include <winstl/control_functions.h>      // for winstl::listbox_add_string, ...
 #endif /* !WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS */
 #ifndef _WINSTL_CONTROL_FUNCTIONALS_NO_STD
 # include <functional>

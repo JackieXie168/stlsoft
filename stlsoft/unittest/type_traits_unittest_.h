@@ -65,7 +65,7 @@ namespace unittest
 
             STLSOFT_STATIC_ASSERT(base_type_traits_t::is_array      ==  bIsArray);
 #  else /* ? __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-            STLSOFT_STATIC_ASSERT(0									==  bIsArray);
+            STLSOFT_STATIC_ASSERT(0                                 ==  bIsArray);
 #  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
         }
 
@@ -76,16 +76,16 @@ namespace unittest
         {
             typedef base_type_traits<T>     base_type_traits_t;
 
-			const int is_array_or_pointer	=	0
+            const int is_array_or_pointer   =   0
 #  ifdef __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-											||	(0 != base_type_traits_t::is_array)
+                                            ||  (0 != base_type_traits_t::is_array)
 #  endif /* __STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-											||	(0 != base_type_traits_t::is_pointer)
-											;
+                                            ||  (0 != base_type_traits_t::is_pointer)
+                                            ;
 
-            STLSOFT_STATIC_ASSERT(is_array_or_pointer				==	bIsArrayOrPointer);
+            STLSOFT_STATIC_ASSERT(is_array_or_pointer               ==  bIsArrayOrPointer);
 
-			STLSOFT_SUPPRESS_UNUSED(is_array_or_pointer);
+            STLSOFT_SUPPRESS_UNUSED(is_array_or_pointer);
         }
 
         ss_bool_t test_stlsoft_type_traits(unittest_reporter *r)
@@ -210,7 +210,7 @@ namespace unittest
             // 3. Test const
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
-	!defined(STLSOFT_COMPILER_IS_DMC)
+    !defined(STLSOFT_COMPILER_IS_DMC)
             type_traits_type_test_const_<0>(i);
             type_traits_type_test_const_<1>(ci);
             type_traits_type_test_const_<0>(vi);
@@ -308,7 +308,7 @@ namespace unittest
             // 6. Test array or pointer
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
-	!defined(STLSOFT_COMPILER_IS_DMC)
+    !defined(STLSOFT_COMPILER_IS_DMC)
             type_traits_type_test_array_or_pointer_<0>(i);
             type_traits_type_test_array_or_pointer_<0>(ci);
             type_traits_type_test_array_or_pointer_<0>(vi);

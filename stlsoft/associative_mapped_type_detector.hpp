@@ -4,7 +4,7 @@
  * Purpose:     Definition of the associative_mapped_type_detector type.
  *
  * Created:     26th February 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MINOR     4
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      11
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ STLSOFT_COMPILER_IS_BORLAND:
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>  //
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 
 #ifndef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
@@ -82,13 +82,13 @@ STLSOFT_COMPILER_IS_BORLAND:
 #endif /* !STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
 #ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_MAPPED_TYPE
-# include <stlsoft/typefixer/mapped_type.hpp>     // fixer_mapped_type
+# include <stlsoft/typefixer/mapped_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_MAPPED_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENT_TYPE
-# include <stlsoft/typefixer/referent_type.hpp>   // fixer_referent_type
+# include <stlsoft/typefixer/referent_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_REFERENT_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
-# include <stlsoft/member_traits.hpp>             // member_traits
+# include <stlsoft/member_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////

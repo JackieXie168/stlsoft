@@ -4,7 +4,7 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_H_INETSTL_EXCEPTIONS_MAJOR     3
-# define INETSTL_VER_H_INETSTL_EXCEPTIONS_MINOR     1
+# define INETSTL_VER_H_INETSTL_EXCEPTIONS_MINOR     2
 # define INETSTL_VER_H_INETSTL_EXCEPTIONS_REVISION  1
-# define INETSTL_VER_H_INETSTL_EXCEPTIONS_EDIT      21
+# define INETSTL_VER_H_INETSTL_EXCEPTIONS_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include inetstl/exceptions.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

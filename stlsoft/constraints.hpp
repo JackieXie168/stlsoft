@@ -4,7 +4,7 @@
  * Purpose:     Compile-time template constraints templates.
  *
  * Created:     19th November 1998
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks:      To Peter Bannister for having the clear thinking to see the 
  *              obvious (but only in hindsight) tactic of overloading the
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       80
+# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>  // is_***
+# include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 
 /* /////////////////////////////////////////////////////////////////////////////

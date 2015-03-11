@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for 
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MAJOR      2
 # define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_MINOR      10
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_REVISION   2
-# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       53
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_REVISION   3
+# define STLSOFT_VER_STLSOFT_HPP_STRING_VIEW_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,20 +78,17 @@ STLSOFT_COMPILER_IS_WATCOM:
     ((__MWERKS__ & 0xff00) < 0x3000)
 # error stlsoft/string_view.hpp not compatible with Metrowerks 7.x (v2.4)
 #endif /* compiler */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>       // stlsoft::auto_buffer
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp> // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>          // stlsoft iterator bases
+# include <stlsoft/iterator.hpp>        // for stlsoft iterator bases
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-# include <stdexcept>                   // std::out_of_range
+# include <stdexcept>                   // for std::out_of_range
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     15th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_H_COMSTL_EXCEPTIONS_MAJOR       1
-# define COMSTL_VER_H_COMSTL_EXCEPTIONS_MINOR       1
-# define COMSTL_VER_H_COMSTL_EXCEPTIONS_REVISION    1
-# define COMSTL_VER_H_COMSTL_EXCEPTIONS_EDIT        18
+# define COMSTL_VER_H_COMSTL_EXCEPTIONS_MINOR       2
+# define COMSTL_VER_H_COMSTL_EXCEPTIONS_REVISION    2
+# define COMSTL_VER_H_COMSTL_EXCEPTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,11 +60,11 @@
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>      // os_exception
+# include <stlsoft/exceptions.hpp>      // for os_exception
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>   // stlsoft::simple_string
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
+# include <stlsoft/util/exception_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -99,10 +99,10 @@ class com_exception
 /// \name Types
 /// @{
 private:
-    typedef stlsoft_ns_qual(simple_string)  string_type;
+    typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
-    typedef com_exception                   class_type;
-    typedef os_exception                    parent_class_type;
+    typedef com_exception                       class_type;
+    typedef os_exception                        parent_class_type;
 /// @}
 
 /// \name Construction
@@ -146,10 +146,18 @@ private:
     }
 /// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     string_type m_reason;
     HRESULT     m_hr;
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    class_type &operator =(class_type const &);
+/// @}
 };
 
 /// The exception type thrown by safearray_sequence on variant type mismatches

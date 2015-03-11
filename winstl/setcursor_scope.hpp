@@ -4,7 +4,7 @@
  * Purpose:     Cursor scoping class.
  *
  * Created:     12th May 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       27
+# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>      // stlsoft::c_str_ptr
+# include <winstl/string_access.hpp>      // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////

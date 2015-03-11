@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_MAJOR     3
 # define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_EDIT      35
+# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_HPP_FILE_PATH_BUFFER_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,13 +60,13 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
-# include <unixstl/string_access.hpp>         // unixstl::c_str_ptr, etc.
+# include <unixstl/string_access.hpp>         // for string access shims
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
 #include <unistd.h>
 
@@ -147,7 +147,10 @@ private:
         indeterminateMaxPathGuess   =   2048
     };
 
-    typedef stlsoft_ns_qual(auto_buffer)<C, A, internalBufferSize>  buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer)<   C
+                                        ,   A
+                                        ,   internalBufferSize
+                                        >                           buffer_type;
 public:
     /// The current parameterisation of the type
     typedef basic_file_path_buffer<C, A>                            class_type;

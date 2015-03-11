@@ -4,7 +4,7 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     13th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_MINOR     5
-# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_REVISION  6
-# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_EDIT      32
+# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_REVISION  7
+# define ACESTL_VER_ACESTL_HPP_CUSTOM_EVENT_HANDLER_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,11 +59,11 @@
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
 # include <acestl/acestl.hpp>
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
-#include <ace/Event_Handler.h>              // ACE_Event_Handler
-#include <ace/Reactor.h>                    // ACE_Reactor
+#include <ace/Event_Handler.h>              // for ACE_Event_Handler
+#include <ace/Reactor.h>                    // for ACE_Reactor
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR
-# include <stlsoft/shared_ptr.hpp>          // stlsoft::shared_ptr
+# include <stlsoft/shared_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SHARED_PTR */
 
 #include <map>
@@ -490,14 +490,14 @@ inline custom_event_handler::event_id custom_event_handler::schedule_event_(even
 
     ACESTL_MESSAGE_ASSERT("Unexpected negative value", timerId >= -1 || -1 == timerId);
 
-    return (-1 == timerId) ? NULL : reinterpret_cast<event_id>(1 + timerId);
+    return (-1 == timerId) ? NULL : reinterpret_cast<event_id>(static_cast<as_size_t>(1 + timerId));
 }
 
 inline as_int_t custom_event_handler::cancel_event_(custom_event_handler::event_id id)
 {
     ACESTL_ASSERT(NULL != id);
 
-    return m_callbackHook.reactor()->cancel_timer(reinterpret_cast<long>(id - 1));
+    return m_callbackHook.reactor()->cancel_timer(static_cast<long>(reinterpret_cast<as_size_t>(id - 1)));
 }
 
 inline as_bool_t custom_event_handler::is_valid() const

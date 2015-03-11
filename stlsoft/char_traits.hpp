@@ -4,7 +4,7 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MAJOR        3
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_MINOR        1
 # define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_REVISION     1
-# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_EDIT         54
+# define STLSOFT_VER_STLSOFT_HPP_CHAR_TRAITS_EDIT         55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -90,15 +90,15 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS
-# include <stlsoft/sign_traits.hpp>   // stlsoft::sign_traits
+# include <stlsoft/sign_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SIGN_TRAITS */
 #if defined(__STLSOFT_CF_std_char_traits_AVAILABLE) && \
     defined(_STLSOFT_NO_NAMESPACE) && \
     !defined(__STLSOFT_CF_std_NAMESPACE)
-# include <string>                  // std::char_traits
+# include <string>                  // for std::char_traits
 #elif defined(STLSOFT_COMPILER_IS_DMC) && \
       !defined(__STLSOFT_CF_std_NAMESPACE)
-# include <string>                  // std::char_traits
+# include <string>                  // for std::char_traits
 #endif /* !::stlsoft && !::std */
 #if !defined(STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS) || \
     defined(_DEBUG)

@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_H_UNIXSTL_FILESYSTEM_TRAITS_MAJOR      3
-# define UNIXSTL_VER_H_UNIXSTL_FILESYSTEM_TRAITS_MINOR      1
+# define UNIXSTL_VER_H_UNIXSTL_FILESYSTEM_TRAITS_MINOR      2
 # define UNIXSTL_VER_H_UNIXSTL_FILESYSTEM_TRAITS_REVISION   1
-# define UNIXSTL_VER_H_UNIXSTL_FILESYSTEM_TRAITS_EDIT       66
+# define UNIXSTL_VER_H_UNIXSTL_FILESYSTEM_TRAITS_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include unixstl/filesystem_traits.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

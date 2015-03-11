@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     60
+# define WINSTL_VER_WINSTL_HPP_DROPHANDLE_SEQUENCE_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,24 +61,24 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #if defined(__STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED) || \
     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1200)
 # ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-#  include <winstl/processheap_allocator.hpp>  // winstl::processheap_allocator
+#  include <winstl/processheap_allocator.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>        // stlsoft::basic_simple_string
+#  include <stlsoft/simple_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
 #else /* ? __STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING
-#  include <stlsoft/static_string.hpp>         // stlsoft::basic_static_string
+#  include <stlsoft/static_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_STATIC_STRING */
 #endif /* __STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>              // stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>              // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>

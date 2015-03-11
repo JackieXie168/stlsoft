@@ -4,7 +4,7 @@
  * Purpose:     union_cast - a dangerous weapon in the hands of the unwary.
  *
  * Created:     2nd May 1997
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_MAJOR      4
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_MINOR      1
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_MINOR      2
 # define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_EDIT       20
+# define STLSOFT_VER_H_STLSOFT_SIMPLE_TYPE_CONVERTER_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/simple_type_converter.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

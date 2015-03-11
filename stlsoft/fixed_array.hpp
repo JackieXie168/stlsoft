@@ -4,7 +4,7 @@
  * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MINOR      3
 # define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_EDIT       149
+# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_EDIT       150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,16 +77,16 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* _MSC_VER < 1200 */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>          // stlsoft::iterator, stlsoft::reverse_iterator
+# include <stlsoft/iterator.hpp>            // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ARRAY_POLICIES
-# include <stlsoft/array_policies.hpp>    // stlsoft::do_construction
+# include <stlsoft/array_policies.hpp>      // for stlsoft::do_construction()
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ARRAY_POLICIES */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>  // is_pointer
+# include <stlsoft/meta.hpp>                // for is_pointer
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 
 #if 0
@@ -98,9 +98,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     defined(__STLSOFT_CF_STL_IS_STLPORT)
-# include <string>                      // std::string - sigh!
+# include <string>                      // for std::string - sigh!
 #endif /* STLSOFT_COMPILER_IS_MSVC && __STLSOFT_CF_STL_IS_STLPORT */
-#include <stdexcept>                    // std::out_of_range
+#include <stdexcept>                    // for std::out_of_range
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

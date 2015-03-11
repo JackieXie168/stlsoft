@@ -5,7 +5,7 @@
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_PTR_CAST_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_PTR_CAST_MINOR       1
+# define STLSOFT_VER_H_STLSOFT_PTR_CAST_MINOR       2
 # define STLSOFT_VER_H_STLSOFT_PTR_CAST_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_PTR_CAST_EDIT        16
+# define STLSOFT_VER_H_STLSOFT_PTR_CAST_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,12 +71,12 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1310
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/ptr_cast.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_PTR_CAST
-# include <stlsoft/ptr_cast.hpp>    // compiler_optimisation_traits
+# include <stlsoft/ptr_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_PTR_CAST */
 
 /* ////////////////////////////////////////////////////////////////////////// */

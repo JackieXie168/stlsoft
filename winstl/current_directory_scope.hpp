@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR    4
 # define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_EDIT     95
+# define WINSTL_VER_WINSTL_HPP_CURRENT_DIRECTORY_SCOPE_EDIT     96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,24 +76,24 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #endif /* _MSC_VER < 1200 */
 
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>  // filesystem_traits
+# include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>      // winstl::c_str_ptr
+# include <winstl/string_access.hpp>      // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>   // basic_file_path_buffer
+# include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-#  include <winstl/exceptions.hpp>        // windows_exception
+#  include <winstl/exceptions.hpp>
 # endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>     // operator_bool_generator
+# include <stlsoft/operator_bool.hpp>     // for operator_bool_generator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 
 /* /////////////////////////////////////////////////////////////////////////////

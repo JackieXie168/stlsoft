@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    0
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    1
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     256
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     258
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file stlsoft/stlsoft.h The root header for the \ref STLSoft project, and for all other \ref projects "projects" */
@@ -236,18 +236,14 @@
  *
  * Currently the only compilers supported by the STLSoft libraries are
  *
- * Borland C++ 5.5, 5.51 & 5.6
- * Comeau 4.3.1
+ * Borland C++ 5.5, 5.51, 5.6 & 5.6.4
+ * Comeau 4.3.0.1 & 4.3.3
  * Digital Mars C/C++ 8.26 and above
- * GCC 2.95, 2.96 & 3.2
- * Intel C/C++ 6.0 & 7.0
+ * GCC 2.95, 2.96, 3.2, 3.3, 3.4 & 4.0
+ * Intel C/C++ 6.0, 7.0, 7.1, 8.0
  * Metrowerks 2.4 & 3.0 (CodeWarrior 7.0 & 8.0)
- * Visual C++ 4.2, 5.0, 6.0 & .NET
- * Watcom C/C++ 11.0
- *
- * The following compilers are intended to be supported in a future release:
- *
- * Comeau C++
+ * Visual C++ 4.2, 5.0, 6.0, 7.0 (.NET), 7.1 (.NET 2003), 8.0
+ * Watcom C/C++ 11.0, 12.0, 13.0
  */
 
 #ifdef STLSOFT_COMPILER_IS_UNKNOWN
@@ -320,8 +316,8 @@
 #endif /* _MSC_VER */
 
 #if defined(_STLSOFT_FORCE_CUSTOM_COMPILER)
-# define __STLSOFT_COMPILER_LABEL_STRING        "Custom (forced) compiler"
-# define __STLSOFT_COMPILER_VERSION_STRING      "Custom (forced) compiler"
+# define STLSOFT_COMPILER_LABEL_STRING          "Custom (forced) compiler"
+# define STLSOFT_COMPILER_VERSION_STRING        "Custom (forced) compiler"
 # define __STLSOFT_COMPILER_IS_CUSTOM
 # define STLSOFT_COMPILER_IS_CUSTOM
 # ifndef __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME
@@ -332,32 +328,32 @@
 /* Comeau C++ */
 # define __STLSOFT_COMPILER_IS_COMO
 # define STLSOFT_COMPILER_IS_COMO
-# define __STLSOFT_COMPILER_LABEL_STRING        "Comeau C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "Comeau C++"
 # if __COMO_VERSION__ < 4300
 #  error Only versions 4.3.0.1 and later of Comeau C++ compiler is supported by the STLSoft libraries
 # elif (__COMO_VERSION__ == 4300)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Comeau C++ 4.3.0.1"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Comeau C++ 4.3.0.1"
 # elif (__COMO_VERSION__ == 4303)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Comeau C++ 4.3.3"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Comeau C++ 4.3.3"
 # else /* ? __COMO_VERSION__ */
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Unknown version of Comeau C++"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Unknown version of Comeau C++"
 # endif /* __COMO_VERSION__ */
 
 #elif defined(__BORLANDC__)
 /* Borland C++ */
 # define __STLSOFT_COMPILER_IS_BORLAND
 # define STLSOFT_COMPILER_IS_BORLAND
-# define __STLSOFT_COMPILER_LABEL_STRING        "Borland C/C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "Borland C/C++"
 # if 0 /* (__BORLANDC__ == 0x0460) */
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Borland C++ 4.52"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 4.52"
 # elif 0 /* (__BORLANDC__ == 0x0550) */
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Borland C++ 5.5"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.5"
 # elif (__BORLANDC__ == 0x0551)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Borland C++ 5.51"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.51"
 # elif (__BORLANDC__ == 0x0560)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Borland C++ 5.6"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.6"
 # elif (__BORLANDC__ == 0x0564)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Borland C++ 5.6.4 (C++ BuilderX)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Borland C++ 5.6.4 (C++ BuilderX)"
 # else /* ? __BORLANDC__ */
   /*# error Currently only versions 4.52, 5.5, 5.51 and 5.6 of the Borland C++ compiler are supported by the STLSoft libraries */
 #  error Currently only versions 5.51, 5.6 and 5.6.4 of the Borland C++ compiler are supported by the STLSoft libraries
@@ -367,24 +363,24 @@
 /* Digital Mars C/C++ */
 # define __STLSOFT_COMPILER_IS_DMC
 # define STLSOFT_COMPILER_IS_DMC
-# define __STLSOFT_COMPILER_LABEL_STRING        "Digital Mars C/C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "Digital Mars C/C++"
 # if (__DMC__ < 0x0826)
 #  error Only versions 8.26 and later of the Digital Mars C/C++ compilers are supported by the STLSoft libraries
 # else /* ? __DMC__ */
 #  if __DMC__ >= 0x0832
-#   define __STLSOFT_COMPILER_VERSION_STRING    __DMC_VERSION_STRING__
+#   define STLSOFT_COMPILER_VERSION_STRING      __DMC_VERSION_STRING__
 #  elif (__DMC__ == 0x0826)
-#   define __STLSOFT_COMPILER_VERSION_STRING    "Digital Mars C/C++ 8.26"
+#   define STLSOFT_COMPILER_VERSION_STRING      "Digital Mars C/C++ 8.26"
 #  elif (__DMC__ == 0x0827)
-#   define __STLSOFT_COMPILER_VERSION_STRING    "Digital Mars C/C++ 8.27"
+#   define STLSOFT_COMPILER_VERSION_STRING      "Digital Mars C/C++ 8.27"
 #  elif (__DMC__ == 0x0828)
-#   define __STLSOFT_COMPILER_VERSION_STRING    "Digital Mars C/C++ 8.28"
+#   define STLSOFT_COMPILER_VERSION_STRING      "Digital Mars C/C++ 8.28"
 #  elif (__DMC__ == 0x0829)
-#   define __STLSOFT_COMPILER_VERSION_STRING    "Digital Mars C/C++ 8.29"
+#   define STLSOFT_COMPILER_VERSION_STRING      "Digital Mars C/C++ 8.29"
 #  elif (__DMC__ == 0x0830)
-#   define __STLSOFT_COMPILER_VERSION_STRING    "Digital Mars C/C++ 8.30"
+#   define STLSOFT_COMPILER_VERSION_STRING      "Digital Mars C/C++ 8.30"
 #  elif (__DMC__ == 0x0831)
-#   define __STLSOFT_COMPILER_VERSION_STRING    "Digital Mars C/C++ 8.31"
+#   define STLSOFT_COMPILER_VERSION_STRING      "Digital Mars C/C++ 8.31"
 #  endif /* __DMC__ */
 # endif /* version */
 
@@ -392,22 +388,22 @@
 /* Intel C++ */
 # define __STLSOFT_COMPILER_IS_INTEL
 # define STLSOFT_COMPILER_IS_INTEL
-# define __STLSOFT_COMPILER_LABEL_STRING        "Intel C/C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "Intel C/C++"
 # if (__INTEL_COMPILER == 600)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Intel C/C++ 6.0"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 6.0"
 # elif (__INTEL_COMPILER == 700)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Intel C/C++ 7.0"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 7.0"
 # elif (__INTEL_COMPILER == 800)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Intel C/C++ 8.0"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 8.0"
 # else /* ? __INTEL_COMPILER */
-#  error Only Intel C++ Compiler versions 6.0 and 7.0 currently supported by the STLSoft libraries
+#  error Only Intel C++ Compiler versions 6.0, 7.0(/7.1) and 8.0 currently supported by the STLSoft libraries
 # endif /* __INTEL_COMPILER */
 
 #elif defined(__GNUC__)
 /* GNU C/C++ */
 # define __STLSOFT_COMPILER_IS_GCC
 # define STLSOFT_COMPILER_IS_GCC
-# define __STLSOFT_COMPILER_LABEL_STRING        "GNU C/C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "GNU C/C++"
 # if __GNUC__ != 2 && \
      __GNUC__ != 3 && \
      __GNUC__ != 4
@@ -416,27 +412,27 @@
 #  if __GNUC_MINOR__ < 95
 #   error Currently only version 2.95 and above of the GNU C/C++ compiler is supported by the STLSoft libraries
 #  elif __GNUC_MINOR__ == 95
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ 2.95"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ 2.95"
 #  elif __GNUC_MINOR__ == 96
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ 2.96"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ 2.96"
 #  else /* ? __GNUC_MINOR__ */
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ >2.96 - you should be aware that this version may not be supported correctly"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ >2.96 - you should be aware that this version may not be supported correctly"
 #  endif /* __GNUC_MINOR__  */
 # elif __GNUC__ == 3
 #  if __GNUC_MINOR__ == 2
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ 3.2"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ 3.2"
 #  elif __GNUC_MINOR__ == 3
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ 3.3"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ 3.3"
 #  elif __GNUC_MINOR__ == 4
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ 3.4"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ 3.4"
 #  else /* ? __GNUC_MINOR__ */
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ >3.4 - you should be aware that this version may not be supported correctly"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ >3.4 - you should be aware that this version may not be supported correctly"
 #  endif /* __GNUC_MINOR__  */
 # elif __GNUC__ == 0
 #  if __GNUC_MINOR__ == 0
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ 4.0"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ 4.0"
 #  else /* ? __GNUC_MINOR__ */
-#   define __STLSOFT_COMPILER_VERSION_STRING    "GNU C/C++ >4.0 - you should be aware that this version may not be supported correctly"
+#   define STLSOFT_COMPILER_VERSION_STRING      "GNU C/C++ >4.0 - you should be aware that this version may not be supported correctly"
 #  endif /* __GNUC__  */
 # endif /* __GNUC_MINOR__ */
 
@@ -444,13 +440,13 @@
 /* Metrowerks C++ */
 # define __STLSOFT_COMPILER_IS_MWERKS
 # define STLSOFT_COMPILER_IS_MWERKS
-# define __STLSOFT_COMPILER_LABEL_STRING        "Metrowerks CodeWarrior C/C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "Metrowerks CodeWarrior C/C++"
 # if ((__MWERKS__ & 0xFF00) == 0x2400)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Metrowerks CodeWarrior C/C++ 2.4"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Metrowerks CodeWarrior C/C++ 2.4"
 # elif ((__MWERKS__ & 0xFF00) == 0x3000)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Metrowerks CodeWarrior C/C++ 3.0"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Metrowerks CodeWarrior C/C++ 3.0"
 # elif ((__MWERKS__ & 0xFF00) == 0x3200)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Metrowerks CodeWarrior C/C++ 3.2"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Metrowerks CodeWarrior C/C++ 3.2"
 # else /* ? __MWERKS__ */
 #  error Only Metrowerks C++ Compiler 2.4 (CodeWarrior 7), 3.0 (CodeWarrior 8) and 3.2 (CodeWarrior 9) currently supported by the STLSoft libraries
 # endif /* __MWERKS__ */
@@ -459,9 +455,9 @@
 /* CodePlay Vector C/C++ */
 # define __STLSOFT_COMPILER_IS_VECTORC
 # define STLSOFT_COMPILER_IS_VECTORC
-# define __STLSOFT_COMPILER_LABEL_STRING        "CodePlay VectorC C/C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "CodePlay VectorC C/C++"
 # if (__VECTORC == 1)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "CodePlay VectorC C/C++"
+#  define STLSOFT_COMPILER_VERSION_STRING       "CodePlay VectorC C/C++"
 # else /* ? __VECTORC */
 #  error Currently only versions of the CodePlay Vector C/C++ compiler defining __VECTORC == 1 are supported by the STLSoft libraries
 # endif /* __VECTORC */
@@ -470,20 +466,20 @@
 /* Watcom C/C++ */
 # define __STLSOFT_COMPILER_IS_WATCOM
 # define STLSOFT_COMPILER_IS_WATCOM
-# define __STLSOFT_COMPILER_LABEL_STRING        "Watcom C/C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "Watcom C/C++"
 
 # if (__WATCOMC__ == 1100)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Watcom C/C++ 11.0"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Watcom C/C++ 11.0"
 # elif (__WATCOMC__ == 1200)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.0 (Watcom 12.0)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.0 (Watcom 12.0)"
 # elif (__WATCOMC__ == 1210)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.1 (Watcom 12.1)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.1 (Watcom 12.1)"
 # elif (__WATCOMC__ == 1220)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.2 (Watcom 12.2)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Open Watcom C/C++ 1.2 (Watcom 12.2)"
 # elif (__WATCOMC__ == 1230)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.3 (Watcom 12.3)"
+#  define STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.3 (Watcom 12.3)"
 # elif (__WATCOMC__ == 1240)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.3 (Watcom 12.4)"
+#  define STLSOFT_COMPILER_VERSION_STRING     "Open Watcom C/C++ 1.3 (Watcom 12.4)"
 # else /* ? __WATCOMC__ */
 #  error Currently only versions 11.0 and 12.0 of the Watcom C/C++ compiler is supported by the STLSoft libraries
 # endif /* __WATCOMC__ */
@@ -492,19 +488,19 @@
 /* Visual C++ */
 # define __STLSOFT_COMPILER_IS_MSVC
 # define STLSOFT_COMPILER_IS_MSVC
-# define __STLSOFT_COMPILER_LABEL_STRING        "Visual C++"
+# define STLSOFT_COMPILER_LABEL_STRING          "Visual C++"
 # if defined(STLSOFT_FORCE_MSVC_4_2) && (_MSC_VER == 1020)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Visual C++ 4.2"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 4.2"
 # elif (_MSC_VER == 1100)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Visual C++ 5.0"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 5.0"
 # elif (_MSC_VER == 1200)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Visual C++ 6.0"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 6.0"
 # elif (_MSC_VER == 1300)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Visual C++ .NET (7.0)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ .NET (7.0)"
 # elif (_MSC_VER == 1310)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Visual C++ .NET (7.1)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ .NET (7.1)"
 # elif (_MSC_VER == 1400)
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Visual C++ .NET (8.0)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ .NET (8.0)"
 # else /* ? _MSC_VER */
 #  error Currently only versions 5.0, 6.0, 7.0, 7.1 & 8.0 of the Visual C++ compiler are supported by the STLSoft libraries
 # endif /* _MSC_VER */
@@ -513,8 +509,8 @@
 /* No recognised compiler */
 # if defined(_STLSOFT_FORCE_UNKNOWN_COMPILER) || \
      defined(_STLSOFT_FORCE_ANY_COMPILER)
-#  define __STLSOFT_COMPILER_LABEL_STRING       "Unknown (forced) compiler"
-#  define __STLSOFT_COMPILER_VERSION_STRING     "Unknown (forced) compiler"
+#  define STLSOFT_COMPILER_LABEL_STRING         "Unknown (forced) compiler"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Unknown (forced) compiler"
 #  define __STLSOFT_COMPILER_IS_UNKNOWN
 #  define STLSOFT_COMPILER_IS_UNKNOWN
 # else /* ? _STLSOFT_FORCE_UNKNOWN_COMPILER || _STLSOFT_FORCE_ANY_COMPILER */
@@ -536,6 +532,9 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 
 #endif /* compiler tag */
+
+#define __STLSOFT_COMPILER_LABEL_STRING         STLSOFT_COMPILER_LABEL_STRING
+#define __STLSOFT_COMPILER_VERSION_STRING       STLSOFT_COMPILER_VERSION_STRING
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Compiler language feature support
@@ -591,7 +590,7 @@
 # endif /* STLSOFT_NO_COMPILE_VERBOSE && _STLSOFT_COMPILE_VERBOSE */
 
 # ifdef _STLSOFT_COMPILE_VERBOSE
-#  pragma message(__STLSOFT_COMPILER_VERSION_STRING)
+#  pragma message(STLSOFT_COMPILER_VERSION_STRING)
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -842,7 +841,7 @@
 /* /////////////////////////////////////////////////////////////////////////////
  * Debugging
  *
- * The macro stlsoft_assert provides standard debug-mode assert functionality.
+ * The macro STLSOFT_ASSERT provides standard debug-mode assert functionality.
  */
 
 /** \defgroup assertion_macros Assertion Macros
@@ -856,16 +855,16 @@
 # undef __STLSOFT_CF_ASSERT_SUPPORT
 #endif /* _STLSOFT_NO_ASSERT && __STLSOFT_CF_ASSERT_SUPPORT */
 
-/** \def stlsoft_assert(expr)
+/** \def STLSOFT_ASSERT(expr)
  * Defines a runtime assertion
  *
- * \param ex Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired
  */
 #ifdef __STLSOFT_CF_ASSERT_SUPPORT
 # ifdef __STLSOFT_CF_USE_cassert
   /* Using the standard assertion mechanism, located in <cassert> */
 #  include <cassert>
-#  define stlsoft_assert(ex)                assert(ex)
+#  define STLSOFT_ASSERT(expr)                  assert(expr)
 # else /* ? __STLSOFT_CF_USE_cassert */
   /* Using either a custom or proprietary assertion mechanism, so must
    * provide the header include name
@@ -876,46 +875,77 @@
 #   include __STLSOFT_CF_ASSERT_INCLUDE_NAME
 #  endif /* !__STLSOFT_CF_ASSERT_INCLUDE_NAME */
 # endif /* __STLSOFT_CF_USE_cassert */
-# ifndef stlsoft_assert
-#  error If your compiler discrimination file supports assertions, it must defined stlsoft_assert() (taking a single parameter)
-# endif /* !stlsoft_assert */
+# if !defined(STLSOFT_ASSERT) && \
+     defined(stlsoft_assert)
+#  define STLSOFT_ASSERT                        stlsoft_assert
+# elif defined(STLSOFT_ASSERT) && \
+       defined(stlsoft_assert)
+#  error Your compiler discrimination file cannot define both STLSOFT_ASSERT and stlsoft_assert. The former is the new version, and replaces the latter
+# endif /* STLSOFT_ASSERT / stlsoft_assert */
+# ifndef STLSOFT_ASSERT
+#  error If your compiler discrimination file supports assertions, it must define STLSOFT_ASSERT() (taking a single parameter)
+# endif /* !STLSOFT_ASSERT */
 #endif /* !__STLSOFT_CF_ASSERT_SUPPORT */
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_ASSERT(ex)                 stlsoft_assert(ex)
+
+#ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# undef stlsoft_assert
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+/** \def stlsoft_assert(expr)
+ *
+ * Defines a runtime assertion
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ *
+ * \deprecated
+ *
+ * \note This is a simple \#define for STLSOFT_ASSERT()
+ */
+#ifndef stlsoft_assert
+# define stlsoft_assert(ex)                     STLSOFT_ASSERT(ex)
+#endif /* !stlsoft_assert */
 
-/** \def stlsoft_message_assert(msg, expr)
+
+/** \def STLSOFT_MESSAGE_ASSERT(msg, expr)
  * Defines a runtime assertion, with message
  *
- * \param ex Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
 #if defined(__STLSOFT_CF_ASSERT_SUPPORT)
 # if defined(__WATCOMC__)
-#  define stlsoft_message_assert(msg, ex)   stlsoft_assert(ex)
+#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT(expr)
 # elif defined(__COMO__) || \
        defined(__GNUC__) || \
        defined(__MWERKS__)
-#  define stlsoft_message_assert(msg, ex)   stlsoft_assert((msg && ex))
+#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT((msg && expr))
 # else /* ? compiler */
-#  define stlsoft_message_assert(msg, ex)   stlsoft_assert((msg, ex))
+#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT((msg, expr))
 # endif /* __WATCOMC__ */
 #else /* ? __STLSOFT_CF_ASSERT_SUPPORT */
-# define stlsoft_message_assert(msg, ex)
+# define STLSOFT_MESSAGE_ASSERT(msg, expr)
 #endif /* __STLSOFT_CF_ASSERT_SUPPORT */
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_MESSAGE_ASSERT(msg, ex)    stlsoft_message_assert(msg, ex)
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+/** \def stlsoft_message_assert(expr)
+ *
+ * Defines a runtime assertion, with message
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ *
+ * \deprecated
+ *
+ * \note This is a simple \#define for STLSOFT_MESSAGE_ASSERT()
+ */
+#define stlsoft_message_assert(msg, ex)         STLSOFT_MESSAGE_ASSERT(msg, ex)
 
 
 /** \def STLSOFT_STATIC_ASSERT(expr)
  *
  * Defines a compile-time assertion
  *
- * \param ex Must be non-zero, or compilation will fail
+ * \param expr Must be non-zero, or compilation will fail
  */
 #if defined(__STLSOFT_CF_STATIC_ASSERT_SUPPORT)
 # if (  defined(STLSOFT_COMPILER_IS_GCC) && \
@@ -925,10 +955,10 @@
      defined(STLSOFT_COMPILER_IS_INTEL)
 #   define STLSOFT_STATIC_ASSERT(ex)        do { typedef int ai[(ex) ? 1 : -1]; } while(0)
 #  else /* ? compiler */
-#   define STLSOFT_STATIC_ASSERT(ex)        do { typedef int ai[(ex) ? 1 : 0]; } while(0)
+#   define STLSOFT_STATIC_ASSERT(expr)          do { typedef int ai[(expr) ? 1 : 0]; } while(0)
 # endif /* compiler */
 #else /* ? __STLSOFT_CF_STATIC_ASSERT_SUPPORT */
-# define STLSOFT_STATIC_ASSERT(ex)          stlsoft_message_assert("Static assertion failed: ", (ex))
+# define STLSOFT_STATIC_ASSERT(ex)          STLSOFT_MESSAGE_ASSERT("Static assertion failed: ", (ex))
 #endif /* __STLSOFT_CF_STATIC_ASSERT_SUPPORT */
 
 /** \def stlsoft_static_assert(expr)
@@ -941,7 +971,7 @@
  *
  * \note This is a simple \#define for STLSOFT_STATIC_ASSERT()
  */
-#define stlsoft_static_assert(expr)         STLSOFT_STATIC_ASSERT(expr)
+#define stlsoft_static_assert(expr)             STLSOFT_STATIC_ASSERT(expr)
 
 /** @} */
 

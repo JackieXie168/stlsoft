@@ -4,7 +4,7 @@
  * Purpose:     Include for defining NULL to be the NULL_v template class.
  *
  * Created:     17th December 2002
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_NULLDEF_MAJOR    3
-# define STLSOFT_VER_H_STLSOFT_NULLDEF_MINOR    1
+# define STLSOFT_VER_H_STLSOFT_NULLDEF_MINOR    2
 # define STLSOFT_VER_H_STLSOFT_NULLDEF_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_NULLDEF_EDIT     18
+# define STLSOFT_VER_H_STLSOFT_NULLDEF_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include stlsoft/nulldef.h")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

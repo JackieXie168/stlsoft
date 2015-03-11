@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_MINOR    2
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     155
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_REVISION 4
+# define STLSOFT_VER_STLSOFT_HPP_STATIC_STRING_EDIT     158
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,22 +82,22 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* _MSC_VER < 1200 */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS
-# include <stlsoft/char_traits.hpp>     // stlsoft::char_traits
+# include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>     // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/allocator_selector.hpp>  // stlsoft::allocator_selector
+# include <stlsoft/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 #ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-# include <stdexcept>                   // std::out_of_range
+# include <stdexcept>                   // for std::out_of_range
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #ifdef STLSOFT_UNITTEST
@@ -160,30 +160,29 @@ class basic_static_string
 
 /// \name Types
 /// @{
-private:
-    typedef ss_typename_type_k allocator_selector<C>::allocator_type    allocator_type;
-
 public:
     /// The value type
-    typedef C                               value_type;
+    typedef C                                                           value_type;
     /// The traits type
-    typedef T                               traits_type;
+    typedef T                                                           traits_type;
+    /// The allocator type
+    typedef ss_typename_type_k allocator_selector<C>::allocator_type    allocator_type;
     /// The current parameterisation of the type
-    typedef basic_static_string<C, cch, T>  class_type;
+    typedef basic_static_string<C, cch, T>                              class_type;
     /// The character type
-    typedef value_type                      char_type;
+    typedef value_type                                                  char_type;
     /// The pointer type
-    typedef value_type                      *pointer;
+    typedef value_type                                                  *pointer;
     /// The non-mutable (const) pointer type
-    typedef value_type const                *const_pointer;
+    typedef value_type const                                            *const_pointer;
     /// The reference type
-    typedef value_type                      &reference;
+    typedef value_type                                                  &reference;
     /// The non-mutable (const) reference type
-    typedef value_type const                &const_reference;
+    typedef value_type const                                            &const_reference;
     /// The size type
-    typedef ss_size_t                       size_type;
+    typedef ss_size_t                                                   size_type;
     /// The difference type
-    typedef ss_ptrdiff_t                    difference_type;
+    typedef ss_ptrdiff_t                                                difference_type;
 
     /// The iterator type
     typedef
@@ -193,7 +192,7 @@ public:
                        pointer_iterator <   value_type
                                         ,   pointer
                                         ,   reference
-                                        >::iterator_type    iterator;
+                                        >::iterator_type                iterator;
     /// The non-mutating (const) iterator type
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -202,7 +201,7 @@ public:
                        pointer_iterator <   value_type const
                                         ,   const_pointer
                                         ,   const_reference
-                                        >::iterator_type    const_iterator;
+                                        >::iterator_type                const_iterator;
 
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The mutating (non-const) reverse iterator type
@@ -211,7 +210,7 @@ public:
                                                             ,   reference
                                                             ,   pointer
                                                             ,   difference_type
-                                                            >::type             reverse_iterator;
+                                                            >::type     reverse_iterator;
 
     /// The non-mutating (const) reverse iterator type
     typedef ss_typename_type_k const_reverse_iterator_generator <   const_iterator
@@ -219,8 +218,13 @@ public:
                                                             ,   const_reference
                                                             ,   const_pointer
                                                             ,   difference_type
-                                                            >::type             const_reverse_iterator;
+                                                            >::type     const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
+private:
+    typedef auto_buffer<char_type
+                    ,   allocator_type
+                    >                                                   buffer_type_;
 /// @}
 
 /// \name Construction
@@ -250,9 +254,7 @@ public:
     {
         STLSOFT_MESSAGE_ASSERT("incident string too large for static_string construction", !(max_size() < m_length));
 
-        typedef auto_buffer<char_type, allocator_type>  buffer_t;
-
-        buffer_t    buffer(m_length);
+        buffer_type_    buffer(m_length);
 
         stlsoft_ns_qual_std(copy)(first, last, buffer.begin());
 
@@ -507,9 +509,7 @@ private:
     class_type &assign_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
-        typedef auto_buffer<char_type, allocator_type>  buffer_t;
-
-        buffer_t    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
+        buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
 
         stlsoft_ns_qual_std(copy)(first, last, buffer.begin());
         assign(&buffer[0], buffer.size());
@@ -541,9 +541,7 @@ private:
     class_type &append_(II first, II last, stlsoft_ns_qual_std(forward_iterator_tag))
 # endif /* compiler */
     {
-        typedef auto_buffer<char_type, allocator_type>  buffer_t;
-
-        buffer_t    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
+        buffer_type_    buffer(static_cast<ss_size_t>(stlsoft_ns_qual_std(distance)(first, last)));
 
         stlsoft_ns_qual_std(copy)(first, last, &buffer[0]);
         append(&buffer[0], buffer.size());
@@ -926,7 +924,7 @@ inline ss_bool_t basic_static_string<C, CCH, T>::is_valid() const
     if(b == e)
     {
 #ifdef STLSOFT_UNITTEST
-        printf("%08x: string contents have been overwritten! Contents=[%*s]\n", reinterpret_cast<unsigned>(this), static_cast<int>(max_size()), &m_buffer[0]);
+        printf("%08x: string contents have been overwritten! Contents=[%*s]\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<int>(max_size()), &m_buffer[0]);
 #endif /* STLSOFT_UNITTEST */
 
         return false;
@@ -935,7 +933,7 @@ inline ss_bool_t basic_static_string<C, CCH, T>::is_valid() const
             m_length > max_size())
     {
 #ifdef STLSOFT_UNITTEST
-        printf("%08x: length (%ld) greater than maximum allowed (%ld)\n", reinterpret_cast<unsigned>(this), static_cast<long>(m_length), static_cast<long>(max_size()));
+        printf("%08x: length (%ld) greater than maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
 #endif /* STLSOFT_UNITTEST */
 
         return false;
@@ -944,7 +942,7 @@ inline ss_bool_t basic_static_string<C, CCH, T>::is_valid() const
             '\0' != m_buffer[m_length])
     {
 #ifdef STLSOFT_UNITTEST
-        printf("%08x: string not nul-terminated at index (%ld); maximum allowed (%ld)\n", reinterpret_cast<unsigned>(this), static_cast<long>(m_length), static_cast<long>(max_size()));
+        printf("%08x: string not nul-terminated at index (%ld); maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
 #endif /* STLSOFT_UNITTEST */
 
         return false;

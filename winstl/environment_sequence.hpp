@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        50
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -60,16 +60,16 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>              // const_reverse_iterator_base
+# include <stlsoft/iterator.hpp>              // for stlsoft::const_reverse_iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
 # include <stlsoft/util/std/iterator_generators.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #include <algorithm>
 #ifndef _WINSTL_WINDOW_FUNCTIONALS_NO_STD
@@ -253,8 +253,12 @@ public:
 
 // Implementation
 private:
-    typedef auto_buffer<char_type, processheap_allocator<char_type> >   environment_buffer_type;
-    typedef auto_buffer<symbol, processheap_allocator<symbol> >         symbols_buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+                                        ,   processheap_allocator<char_type>
+                                        >           environment_buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer)<   symbol
+                                        ,   processheap_allocator<symbol>
+                                        >           symbols_buffer_type;
 
     static ws_size_t    calc_items_(char_type const *p, char_type const **q, ws_int_t flags);
     static void         prepare_items_(symbols_buffer_type &symbols, environment_buffer_type &environment, char_type *p, char_type *q, ws_int_t flags);

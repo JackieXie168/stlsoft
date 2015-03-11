@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class.
  *
  * Created:     6th January 2001
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_MINOR     4
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      176
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TOKENISER_EDIT      177
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,18 +82,18 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* _MSC_VER < 1200 */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>          // iterator_base
+# include <stlsoft/iterator.hpp>        // for iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifdef STLSOFT_UNITTEST
 # ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-#  include <stlsoft/simple_string.hpp>    // basic_simple_string
+#  include <stlsoft/simple_string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
-# include <string>                      // std::basic_string
+# include <string>
 #endif /* STLSOFT_UNITTEST */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#include <iterator>                     // std::distance
+#include <iterator>                     // for std::distance()
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Compatibility

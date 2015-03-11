@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     15th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_H_ATLSTL_STRING_ACCESS_MAJOR     3
-# define ATLSTL_VER_H_ATLSTL_STRING_ACCESS_MINOR     1
+# define ATLSTL_VER_H_ATLSTL_STRING_ACCESS_MINOR     2
 # define ATLSTL_VER_H_ATLSTL_STRING_ACCESS_REVISION  1
-# define ATLSTL_VER_H_ATLSTL_STRING_ACCESS_EDIT      73
+# define ATLSTL_VER_H_ATLSTL_STRING_ACCESS_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include atlstl/string_access.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

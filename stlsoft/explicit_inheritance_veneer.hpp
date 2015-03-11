@@ -4,7 +4,7 @@
  * Purpose:     Explicit inheritance veneer class.
  *
  * Created:     13th January 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       26
+# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
-# include <stlsoft/constraints.hpp>   // must_be_same_size
+# include <stlsoft/constraints.hpp>   // for must_be_same_size
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 
 /* /////////////////////////////////////////////////////////////////////////////

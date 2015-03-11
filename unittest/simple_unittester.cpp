@@ -4,7 +4,7 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,7 +59,7 @@
 #include <stlsoft/stlsoft.h>
 #include <unittest/simple_unittester.h>
 #ifdef __STLSOFT_CF_std_NAMESPACE
-# include <string>      // std::string
+# include <string>
 #else /* ? __STLSOFT_CF_std_NAMESPACE */
 # if defined(STLSOFT_COMPILER_IS_WATCOM)
 #  include <string.hpp>

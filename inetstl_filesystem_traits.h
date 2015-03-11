@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_H_INETSTL_FILESYSTEM_TRAITS_MAJOR      3
-# define INETSTL_VER_H_INETSTL_FILESYSTEM_TRAITS_MINOR      1
+# define INETSTL_VER_H_INETSTL_FILESYSTEM_TRAITS_MINOR      2
 # define INETSTL_VER_H_INETSTL_FILESYSTEM_TRAITS_REVISION   1
-# define INETSTL_VER_H_INETSTL_FILESYSTEM_TRAITS_EDIT       48
+# define INETSTL_VER_H_INETSTL_FILESYSTEM_TRAITS_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include inetstl/filesystem_traits.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

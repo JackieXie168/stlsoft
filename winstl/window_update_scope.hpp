@@ -4,7 +4,7 @@
  * Purpose:     Window update-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_EDIT       59
+# define WINSTL_VER_WINSTL_HPP_WINDOW_UPDATE_SCOPE_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS
-# include <winstl/window_access.hpp>  // winstl::window_access
+# include <winstl/window_access.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////

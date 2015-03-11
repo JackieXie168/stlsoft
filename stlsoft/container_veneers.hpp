@@ -4,7 +4,7 @@
  * Purpose:     STL container adaptor veneers.
  *
  * Created:     19th August 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_EDIT     30
+# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_VENEERS_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -80,10 +80,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER
-# include <stlsoft/associative_container_veneer.hpp> // associative_container_veneer
+# include <stlsoft/associative_container_veneer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER
-# include <stlsoft/sequence_container_veneer.hpp> // sequence_container_veneer
+# include <stlsoft/sequence_container_veneer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_SEQUENCE_CONTAINER_VENEER */
 
 /* ////////////////////////////////////////////////////////////////////////// */

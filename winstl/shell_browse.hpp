@@ -4,7 +4,7 @@
  * Purpose:     shell_browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_EDIT        43
+# define WINSTL_VER_WINSTL_HPP_SHELL_BROWSE_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -63,13 +63,13 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_SHELL_ALLOCATOR
-# include <winstl/shell_allocator.hpp>    // shell_allocator
+# include <winstl/shell_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_SHELL_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>      // stlsoft::c_str_ptr
+# include <winstl/string_access.hpp>      // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
 #ifdef STLSOFT_UNITTEST

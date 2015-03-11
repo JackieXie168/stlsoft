@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MINOR      1
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       66
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 # include <stlsoft/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER
-# include <stlsoft/cstring_maker.hpp>         //
+# include <stlsoft/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CSTRING_MAKER */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -74,14 +74,14 @@
 # pragma warn -8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-#include <afxwin.h>     // CWnd, CListBox
+#include <afxwin.h>     // for CWnd, CListBox
 #if !defined(__AFXCMN_H__) && \
     !defined(MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCMN)
-# include <afxcmn.h>    // CListCtrl
+# include <afxcmn.h>    // for CListCtrl
 #endif /* !__AFXCMN_H__ && !MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCMN */
 #if !defined(__AFXCVIEW_H__) && \
     !defined(MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCVIEW)
-# include <afxcview.h> // CListView
+# include <afxcview.h> // for CListView
 #endif /* !__AFXCVIEW_H__ && !MFCSTL_STRING_ACCESS_NO_INCLUDE_AFXCMN */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)

@@ -4,7 +4,7 @@
  * Purpose:     Exception class used by the DbSTL SQLite mapping
  *
  * Created:     4th December 2004
- * Updated:     27th July 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,9 +44,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define DBSTL_VER_DBSTL_SQLITE_HPP_EXCEPTIONS_MAJOR    0
-# define DBSTL_VER_DBSTL_SQLITE_HPP_EXCEPTIONS_MINOR    9
-# define DBSTL_VER_DBSTL_SQLITE_HPP_EXCEPTIONS_REVISION 2
-# define DBSTL_VER_DBSTL_SQLITE_HPP_EXCEPTIONS_EDIT     4
+# define DBSTL_VER_DBSTL_SQLITE_HPP_EXCEPTIONS_MINOR    10
+# define DBSTL_VER_DBSTL_SQLITE_HPP_EXCEPTIONS_REVISION 1
+# define DBSTL_VER_DBSTL_SQLITE_HPP_EXCEPTIONS_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,9 +60,9 @@
 # include <dbstl/sqlite/handle.hpp>
 #endif /* !DBSTL_INCL_DBSTL_SQLITE_HPP_HANDLE */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING
-# include <stlsoft/simple_string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SIMPLE_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
+# include <stlsoft/util/exception_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
 
 #include <exception>
 
@@ -88,8 +88,8 @@ class sqlite_exception
     : public ::std::exception
 {
 private:
-    typedef ::stlsoft::simple_string    string_type;
-    typedef sqlite_exception            class_type;
+    typedef stlsoft_ns_qual(exception_string)	string_type;
+    typedef sqlite_exception					class_type;
 
 public:
     sqlite_exception(sqlite3 *db)

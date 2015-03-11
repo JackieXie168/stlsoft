@@ -4,7 +4,7 @@
  * Purpose:     String split functions.
  *
  * Created:     28th January 2005
- * Updated:     20th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_MAJOR      1
 # define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_MINOR      3
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_REVISION   2
-# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_EDIT       21
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_REVISION   3
+# define STLSOFT_VER_INCL_STLSOFT_HPP_STRING_SPLIT_FUNCTIONS_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -93,6 +93,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <vector>
 #endif /* STLSOFT_STRING_SPLIT_FUNCTIONS_CANNOT_USE_STATIC_ARRAY */
 #include <algorithm>
+
+#ifdef STLSOFT_UNITTEST
+# include <stlsoft/simple_string.hpp>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

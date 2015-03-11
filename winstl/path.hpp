@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     18th December 2005
+ * Updated:     26th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PATH_MAJOR       5
 # define WINSTL_VER_WINSTL_HPP_PATH_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        187
+# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    3
+# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        190
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,30 +60,30 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem_traits.hpp>        // filesystem_traits
+# include <winstl/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILESYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER
-# include <winstl/file_path_buffer.hpp>         // basic_file_path_buffer
+# include <winstl/file_path_buffer.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_FILE_PATH_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>    // processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>          // feature discrimination
+# include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>            // winstl::c_str_ptr
+# include <winstl/string_access.hpp>            // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
-# include <stlsoft/string_tokeniser.hpp>        // stlsoft::string_tokeniser
+# include <stlsoft/string_tokeniser.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>             // stlsoft::auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
-#include <stdexcept>                            // std::logic_error
+#include <stdexcept>                            // for std::logic_error
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -734,24 +734,28 @@ inline /* ss_explicit_k */ basic_path<C, T, A>::basic_path(ss_typename_type_k ba
 
         m_len = cch;
     }
+    else
+    {
+        m_buffer[0] = '\0';
+    }
 }
 
 template<   ss_typename_param_k C
-    ,   ss_typename_param_k T
-    ,   ss_typename_param_k A
-    >
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
 inline basic_path<C, T, A>::basic_path(ss_typename_type_k basic_path<C, T, A>::char_type const *path, ss_typename_type_k basic_path<C, T, A>::size_type cch)
     : m_len(cch)
 {
-    WINSTL_ASSERT((NULL == path) == (0 == cch));
+    WINSTL_ASSERT((NULL != path) || (0 == cch));
 
     if(0 != cch)
     {
         WINSTL_ASSERT(cch < m_buffer.size());
 
         traits_type::str_n_copy(&m_buffer[0], path, cch);
-        m_buffer[cch] = '\0';
     }
+    m_buffer[cch] = '\0';
 }
 
 #ifndef STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD
@@ -1002,7 +1006,9 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
     typedef ss_typename_type_k allocator_selector<part>::allocator_type     part_ator_type;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
-    typedef stlsoft_ns_qual(auto_buffer)<part, part_ator_type>              part_buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer)<   part
+                                        ,   part_ator_type
+                                        >                                   part_buffer_t;
 
     part_buffer_t   parts(this->length() / 2);  // Uncanonicalised directory parts
     char_type       *dest   =   &newPath.m_buffer[0];

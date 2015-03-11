@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_H_TIME_COMPARISON_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_H_TIME_COMPARISON_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_H_TIME_COMPARISON_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_H_TIME_COMPARISON_FUNCTIONS_EDIT     31
+# define WINSTL_VER_WINSTL_H_TIME_COMPARISON_FUNCTIONS_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@
 //# include <stlsoft/string_access.hpp>
 //#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 //#ifndef STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING
-//# include <stlsoft/shim_string.hpp>           // basic_shim_string
+//# include <stlsoft/shim_string.hpp>
 //#endif /* !STLSOFT_INCL_STLSOFT_HPP_SHIM_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////////

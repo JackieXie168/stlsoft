@@ -4,7 +4,7 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      1
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       35
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   2
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,12 +70,12 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>         // auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR
-# include <stlsoft/malloc_allocator.hpp>    // malloc_allocator (ATL uses malloc() / free())
+# include <stlsoft/malloc_allocator.hpp>    // for malloc_allocator because ATL uses malloc() / free()
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MALLOC_ALLOCATOR */
-#include <atlwin.h>                         // CDialogImplBase
+#include <atlwin.h>                         // for CDialogImplBase
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -178,7 +178,10 @@ protected:
 
             if(DLGC_BUTTON & ctrlCode)
             {
-                typedef ::stlsoft::auto_buffer<TCHAR, ::stlsoft::malloc_allocator<TCHAR>, 512>  buffer_t;
+                typedef ::stlsoft::auto_buffer< TCHAR
+                                            ,   ::stlsoft::malloc_allocator<TCHAR>
+                                            ,   512
+                                            >               buffer_t;
 
                 // 3. Get text
                 //

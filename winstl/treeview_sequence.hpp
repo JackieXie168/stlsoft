@@ -4,7 +4,7 @@
  * Purpose:     Contains the treeview sequence classes.
  *
  * Created:     1st December 2002
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_MINOR    1
 # define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     44
+# define WINSTL_VER_WINSTL_HPP_TREEVIEW_SEQUENCE_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,10 +60,10 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>            // stlsoft::iterator_base
+# include <stlsoft/iterator.hpp>            // for stlsoft::iterator_base
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS
-# include <winstl/commctrl_functions.h>     // treeview_getnext, etc.
+# include <winstl/commctrl_functions.h>     // for treeview_getnext(), etc.
 #endif /* !WINSTL_INCL_WINSTL_H_COMMCTRL_FUNCTIONS */
 
 /* ////////////////////////////////////////////////////////////////////////// */

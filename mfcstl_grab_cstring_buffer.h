@@ -4,7 +4,7 @@
  * Purpose:     CString Get/ReleaseBuffer scoping class.
  *
  * Created:     12th February 1999
- * Updated:     18th December 2005
+ * Updated:     23rd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_H_MFCSTL_GRAB_CSTRING_BUFFER_MAJOR      3
-# define MFCSTL_VER_H_MFCSTL_GRAB_CSTRING_BUFFER_MINOR      1
+# define MFCSTL_VER_H_MFCSTL_GRAB_CSTRING_BUFFER_MINOR      2
 # define MFCSTL_VER_H_MFCSTL_GRAB_CSTRING_BUFFER_REVISION   1
-# define MFCSTL_VER_H_MFCSTL_GRAB_CSTRING_BUFFER_EDIT       46
+# define MFCSTL_VER_H_MFCSTL_GRAB_CSTRING_BUFFER_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 # pragma message("This file is now obsolete. Instead include mfcstl/grab_cstring_buffer.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 

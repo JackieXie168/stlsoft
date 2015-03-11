@@ -4,7 +4,7 @@
  * Purpose:     String duplication functions.
  *
  * Created:     26th May 2005
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_MINOR    1
 # define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_EDIT     11
+# define STLSOFT_VER_STLSOFT_HPP_CSTRING_FUNCTIONS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CHAR_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE
-# include <stlsoft/allocator_base.hpp>          // feature discrimination
+# include <stlsoft/allocator_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALLOCATOR_BASE */
 
 #ifdef STLSOFT_UNITTEST

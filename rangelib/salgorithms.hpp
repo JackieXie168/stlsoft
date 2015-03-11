@@ -4,7 +4,7 @@
  * Purpose:     Range-adapted Sequence algorithms.
  *
  * Created:     19th July 2005
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -69,7 +69,7 @@
 # define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_MAJOR     1
 # define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_MINOR     0
 # define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_REVISION  5
-# define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_EDIT      5
+# define STLSOFT_VER_RANGELIB_HPP_SALGORITHMS_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -92,14 +92,14 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/rangelib.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
 #ifndef STLSOFT_INCL_RANGELIB_HPP_ALGORITHMS
-# include <rangelib/algorithms.hpp>             // RangeLib algorithms
+# include <rangelib/algorithms.hpp>
 #endif /* !STLSOFT_INCL_RANGELIB_HPP_ALGORITHMS */
 #ifndef STLSOFT_INCL_RANGELIB_HPP_SEQUENCE_RANGE
-# include <rangelib/sequence_range.hpp>         // sequence_range adaptor
+# include <rangelib/sequence_range.hpp>
 #endif /* !STLSOFT_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
 #if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_HPP_META
-#  include <stlsoft/meta.hpp>                   // TMP structures
+#  include <stlsoft/meta.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 #endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 

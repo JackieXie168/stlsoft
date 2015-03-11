@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     18th December 2005
+ * Updated:     22nd December 2005
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_MINOR      1
 # define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       40
+# define WINSTL_VER_WINSTL_HPP_LISTVIEW_SEQUENCE_EDIT       41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,10 +72,10 @@ STLSOFT_COMPILER_IS_BORLAND:
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER
-# include <stlsoft/auto_buffer.hpp>           // Include the STLSoft auto_buffer
+# include <stlsoft/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/processheap_allocator.hpp>  // processheap_allocator
+# include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
@@ -98,7 +98,7 @@ typedef stlsoft_ns_qual(basic_simple_string)<   TCHAR
                                             >       lvs_string_t;
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>        // winstl::string_access
+# include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
 /* /////////////////////////////////////////////////////////////////////////////

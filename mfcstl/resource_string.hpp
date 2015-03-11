@@ -4,7 +4,7 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     15th December 2005
+ * Updated:     22nd December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MINOR      1
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       59
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@
 # pragma warn -8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-#include <afxwin.h>     // AfxThrowResourceException()
+#include <afxwin.h>     // for AfxThrowResourceException()
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn .8022 /* Suppresses "'f()' hides virtual function 'g()'" */
