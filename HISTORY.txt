@@ -2,10 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  2nd September 2008
+; Updated:  3rd September 2008
 
 ============================================================================
 
+
+3rd September 2008 - 1.9.50 released
+------------------------------------
+
+ * added stlsoft character conversion typedefs m2w, w2m, t2m, m2t
+ * fix for VC++ 6 defect in requiring return code after exception throw
 
 2nd September 2008 - 1.9.49 released
 ------------------------------------

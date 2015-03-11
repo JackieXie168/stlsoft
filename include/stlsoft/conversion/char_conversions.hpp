@@ -4,7 +4,7 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     26th May 2008
+ * Updated:     3rd September 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 11
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     89
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -414,10 +414,25 @@ private:
  *
  * \ingroup group__library__conversion
  */
-typedef multibyte2wide<256>               a2w;
+typedef multibyte2wide<256>               m2w;
 /** \brief Type that converts a wide string to a multibyte string.
  *
  * \ingroup group__library__conversion
+ */
+typedef wide2multibyte<256>               w2m;
+
+/** \brief [Deprecated] Type that converts a multibyte string to a wide string.
+ *
+ * \ingroup group__library__conversion
+ *
+ * \deprecated This name is deprecated in favour of stlsoft::m2w
+ */
+typedef multibyte2wide<256>               a2w;
+/** \brief [Deprecated] Type that converts a wide string to a multibyte string.
+ *
+ * \ingroup group__library__conversion
+ *
+ * \deprecated This name is deprecated in favour of stlsoft::w2m
  */
 typedef wide2multibyte<256>               w2a;
 
