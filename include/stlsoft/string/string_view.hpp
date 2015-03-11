@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     10th August 2010
+ * Updated:     5th March 2011
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        94
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -328,19 +328,19 @@ public:
     ///
     /// \note If the view's parameterisation is with a no-throw allocator, behaviour
     /// is undefined in con
-    value_type const        *c_str() const;
+    value_type const*       c_str() const;
 #if 0
     /// Facility for calling refresh() followed by c_str()
     ///
     /// \param bRefresh call refresh() before c_str()
     ///
     /// \note If bRefresh is \c false has identical semantics to c_str()
-    value_type const        *c_str(ss_bool_t bRefresh) const;
+    value_type const*       c_str(ss_bool_t bRefresh) const;
 #endif /* 0 */
     /// Returns non-mutable (const) pointer to string data
-    value_type const        *data() const stlsoft_throw_0();
+    value_type const*       data() const stlsoft_throw_0();
     /// Returns value of base pointer
-    value_type const        *base() const stlsoft_throw_0();
+    value_type const*       base() const stlsoft_throw_0();
 
 #if 0
     /// Returns the first character in the string
@@ -1488,8 +1488,8 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basi
         else
         {
             // Must allocate the m_cstr member
-            allocator_type  &ator   =   const_cast<class_type&>(*this);
-            char_type       *s      =   ator.allocate(1 + length(), NULL);
+            allocator_type& ator    =   const_cast<class_type&>(*this);
+            char_type*      s       =   ator.allocate(1 + length(), NULL);
 
             STLSOFT_SUPPRESS_UNUSED(ator);  // Need this for silly old Borland
 

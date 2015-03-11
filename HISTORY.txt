@@ -2,9 +2,22 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  31st January 2011
+; Updated:  13th August 2011
 
 ============================================================================
+
+
+13th August 2011 - 1.9.109 released
+-----------------------------------
+
+ * added rbegin()/rend() to stlsoft::frequency_map<>
+ * added push_n() to stlsoft::frequency_map<>
+ * refactored throw statement(s) in terms of STLSOFT_THROW_X() throughout
+ * added reset() method to stlsoft::shared_ptr<>
+ * added various STLSoft deprecation macros
+ * added is_path_rooted(), is_path_absolute(), and is_path_UNC() methods to unixstl::filesystem_traits<>
+ * added two-parameters overloads of is_path_rooted(), is_path_absolute(), and is_path_UNC() methods to winstl::filesystem_traits<>
+ * include/winstl/error/error_functions.h: substantial refactoring of format_message()-family of functions (and their C analogues)
 
 
 31st January 2011 - 1.9.108 released

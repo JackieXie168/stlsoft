@@ -5,11 +5,11 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     10th August 2009
+ * Updated:     5th March 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     164
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 2
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     165
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ public:
             NULL != *src &&
             L'\0' != (*src)[0])
         {
-            throw com_exception("failed to copy BSTR", E_OUTOFMEMORY);
+            STLSOFT_THROW_X(com_exception("failed to copy BSTR", E_OUTOFMEMORY));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -225,7 +225,7 @@ public:
         if( NULL == *dest &&
             NULL != *src)
         {
-            throw com_exception("failed to copy OLE string", E_OUTOFMEMORY);
+            STLSOFT_THROW_X(com_exception("failed to copy OLE string", E_OUTOFMEMORY));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -276,7 +276,7 @@ public:
         if(FAILED(hr))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw com_exception("failed to copy VARIANT", hr);
+            STLSOFT_THROW_X(com_exception("failed to copy VARIANT", hr));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -436,7 +436,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             if(NULL == dest->pwcsName)
             {
-                throw com_exception("failed to copy OLE string when copying STATSTG", E_OUTOFMEMORY);
+                STLSOFT_THROW_X(com_exception("failed to copy OLE string when copying STATSTG", E_OUTOFMEMORY));
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         };
@@ -493,7 +493,7 @@ public:
             if(NULL == dest->ptd)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw com_exception("failed to copy DVTARGETDEVICE when copying FORMATETC", E_OUTOFMEMORY);
+                STLSOFT_THROW_X(com_exception("failed to copy DVTARGETDEVICE when copying FORMATETC", E_OUTOFMEMORY));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
             else

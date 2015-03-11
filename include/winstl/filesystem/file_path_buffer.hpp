@@ -5,14 +5,14 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     7th February 2002
- * Updated:     15th February 2010
+ * Updated:     26th February 2011
  *
  * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
  *              addressed with the calc_path_max_() method.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     117
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -272,7 +272,7 @@ public:
 /// @{
 public:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    value_type const    *data() const
+    value_type const* data() const
     {
 #ifdef WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
         return m_buffer.data();
@@ -280,7 +280,7 @@ public:
         return &m_buffer[0];
 #endif /* WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER */
     }
-    value_type          *data()
+    value_type* data()
     {
 #ifdef WINSTL_FILE_PATH_BUFFER_USE_AUTO_BUFFER
         return m_buffer.data();
@@ -299,7 +299,7 @@ public:
     /// \brief Returns a mutable (non-const) pointer to the internal buffer
     reference operator [](ws_size_t index)
     {
-        buffer_type   &this_  =   m_buffer;
+        buffer_type& this_ = m_buffer;
 
         return this_[index];
     }

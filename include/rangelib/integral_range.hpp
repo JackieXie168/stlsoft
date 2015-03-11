@@ -4,11 +4,11 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     10th August 2009
+ * Updated:     5th March 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     55
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 5
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ public:
         STLSOFT_ASSERT(cch < STLSOFT_NUM_ELEMENTS(message));
         STLSOFT_SUPPRESS_UNUSED(cch);
 
-        throw thrown_type(message);
+        STLSOFT_THROW_X(thrown_type(message));
     }
     /// Function call operator, taking three 32-bit unsigned integer parameters
     void operator ()(ss_uint32_t first, ss_uint32_t last, ss_uint32_t increment) const
@@ -168,7 +168,7 @@ public:
         STLSOFT_SUPPRESS_UNUSED(s_format);
 #endif /* compiler */
 
-        throw thrown_type(message);
+        STLSOFT_THROW_X(thrown_type(message));
     }
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
     /// Function call operator, taking three 32-bit signed integer parameters
@@ -209,7 +209,7 @@ public:
         STLSOFT_ASSERT(cch2 < STLSOFT_NUM_ELEMENTS(message));
         STLSOFT_SUPPRESS_UNUSED(cch2);
 
-        throw thrown_type(message);
+        STLSOFT_THROW_X(thrown_type(message));
     }
     /// Function call operator, taking three 64-bit unsigned integer parameters
     void operator ()(ss_uint64_t first, ss_uint64_t last, ss_uint64_t increment) const
@@ -225,7 +225,7 @@ public:
         STLSOFT_ASSERT(cch2 < STLSOFT_NUM_ELEMENTS(message));
         STLSOFT_SUPPRESS_UNUSED(cch2);
 
-        throw thrown_type(message);
+        STLSOFT_THROW_X(thrown_type(message));
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 };

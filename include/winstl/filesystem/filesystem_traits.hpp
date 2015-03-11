@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     31st January 2011
+ * Updated:     13th August 2011
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        125
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       10
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,6 +100,10 @@
 # define STLSOFT_INCL_H_WCHAR
 # include <wchar.h>
 #endif /* !STLSOFT_INCL_H_WCHAR */
+#ifndef STLSOFT_INCL_H_WCTYPE
+# define STLSOFT_INCL_H_WCTYPE
+# include <wctype.h>
+#endif /* !STLSOFT_INCL_H_WCTYPE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * FindVolume API declarations
@@ -230,7 +234,7 @@ public:
 public:
     enum
     {
-        maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
+        maxPathLength = WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
     enum
@@ -275,17 +279,35 @@ public:
     /// necessary to detect the presence or absence of the operating system's
     /// root character sequence(s).
     static bool_type    is_path_rooted(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    is_path_rooted(
+        char_type const*    path
+    ,   size_t              cchPath
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// \brief Returns \c true if path is an absolute path
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the operating system's
     /// absolute path character sequence(s).
     static bool_type    is_path_absolute(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    is_path_absolute(
+        char_type const*    path
+    ,   size_t              cchPath
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// \brief Returns \c true if path is a UNC path
     ///
     /// \note Only enough characters of the path pointed to by \c path as are
     /// necessary to detect the presence or absence of the UNC character sequence(s).
     static bool_type    is_path_UNC(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    is_path_UNC(
+        char_type const*    path
+    ,   size_t              cchPath
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// \brief Indicates whether the given path is the root designator.
     ///
     /// The root designator is one of the following:
@@ -297,6 +319,12 @@ public:
     /// The function returns false if the path contains any part of a
     /// file name (or extension), directory, or share.
     static bool_type    is_root_designator(char_type const* path);
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    static bool_type    is_root_designator(
+        char_type const*    path
+    ,   size_t              cchPath
+    );
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// \brief Returns \c true if the character is a path-name separator
     ///
     /// \note Both \c / and \c \\ are interpreted as a path name separator
@@ -478,7 +506,7 @@ public:
 
     enum
     {
-        maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
+        maxPathLength = WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
     enum
@@ -552,7 +580,7 @@ public:
 
     enum
     {
-        maxPathLength = 1 + WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
+        maxPathLength = WINSTL_CONST_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
     enum
@@ -645,16 +673,42 @@ public:
         return is_path_name_separator(*path) || is_path_absolute(path);
     }
 
+    static bool_type is_path_rooted(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        return (0 != cchPath && is_path_name_separator(*path)) || is_path_absolute(path, cchPath);
+    }
+
     static bool_type is_path_absolute(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        size_type len = str_len(path);
+        return is_path_absolute(path, str_len(path));
+    }
 
-        return  is_path_UNC(path) ||
-                (   (2 < len) &&
-                    (':' == path[1]) &&
-                    is_path_name_separator(path[2]));
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        if(is_path_UNC(path, cchPath))
+        {
+            return true;
+        }
+
+        if(cchPath >= 3)
+        {
+            if( isalpha(path[0]) &&
+                ':' == path[1] &&
+                is_path_name_separator(path[2]))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     static bool_type is_path_UNC(char_type const* path)
@@ -664,27 +718,36 @@ public:
         return ('\\' == path[0] && '\\' == path[1]);
     }
 
-private:
-    static bool_type is_root_drive_(char_type const* path)
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
     {
-        if( isalpha(path[0]) &&
-            ':' == path[1] &&
-            is_path_name_separator(path[2]) &&
-            '\0' == path[3])
+        switch(cchPath)
         {
-            return true;
+            case    0:
+            case    1:
+                return false;
+            default:
+                return '\\' == path[0] && '\\' == path[1];
         }
-
-        return false;
     }
-    static bool_type is_root_UNC_(char_type const* path)
-    {
-        if(is_path_UNC(path))
-        {
-            char_type const* sep = str_pbrk(path + 2, "\\/");
 
-            if( NULL == sep ||
-                '\0' == sep[1])
+private:
+    // Determines whether the given path is a properly-formed drive:
+    //
+    //  "X:\"
+    //
+    static bool_type is_root_drive_(
+        char_type const*    path
+    ,   size_type           cchPath
+    )
+    {
+        if(3 == cchPath)
+        {
+            if( isalpha(path[0]) &&
+                ':' == path[1] &&
+                is_path_name_separator(path[2]))
             {
                 return true;
             }
@@ -692,12 +755,45 @@ private:
 
         return false;
     }
-    static bool_type is_root_directory_(char_type const* path)
+    // Determines whether the given path is a UNC root:
+    //
+    //  "\\"
+    //
+    static bool_type is_root_UNC_(
+        char_type const*    path
+    ,   size_type           cchPath
+    )
     {
-        if( is_path_name_separator(path[0]) &&
-            '\0' == path[1])
+        if(2 == cchPath)
         {
-            return true;
+            if( '\\' == path[0] &&
+                '\\' == path[1])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // Determines whether the given path is a directory root:
+    //
+    //  "\"
+    //
+    // or:
+    //
+    //  "/"
+    //
+    static bool_type is_root_directory_(
+        char_type const*    path
+    ,   size_type           cchPath
+    )
+    {
+        if(1 == cchPath)
+        {
+            if(is_path_name_separator(path[0]))
+            {
+                return true;
+            }
         }
 
         return false;
@@ -707,8 +803,20 @@ public:
     {
         WINSTL_ASSERT(NULL != path);
 
-        return is_root_directory_(path) || is_root_drive_(path) || is_root_UNC_(path);
+        size_type const cchPath = str_len(path);
+
+        return is_root_directory_(path, cchPath) || is_root_drive_(path, cchPath) || is_root_UNC_(path, cchPath);
     }
+
+#if 0
+    static bool_type is_root_designator(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        return is_root_directory_(path, cchPath) || is_root_drive_(path, cchPath) || is_root_UNC_(path, cchPath);
+    }
+#endif /* 0 */
 
     static bool_type is_path_name_separator(char_type ch)
     {
@@ -732,7 +840,7 @@ public:
 
     static size_type path_max()
     {
-        return 1 + WINSTL_CONST_MAX_PATH;
+        return WINSTL_CONST_MAX_PATH;
     }
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -759,7 +867,7 @@ public:
                 {
                     WINSTL_ASSERT('\0' == buffer[res]);
 
-                    char_type *const closing2 = class_type::str_chr(buffer, '"');
+                    char_type* const closing2 = class_type::str_chr(buffer, '"');
 
                     // ... 3. the front-quote skipped converted string contains a single trailing quote
                     if( NULL != closing2 &&
@@ -1102,10 +1210,18 @@ public:
 private:
     static bool_type stat_direct_(char_type const* path, stat_data_type* stat_data)
     {
-        WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-        if(is_root_drive_(path))
+        size_type const cchPath = (NULL == path) ? 0u : str_len(path);
+
+        if(0 == cchPath)
+        {
+            ::SetLastError(ERROR_INVALID_NAME);
+
+            return false;
+        }
+
+        if(is_root_drive_(path, cchPath))
         {
             stat_data->dwFileAttributes                 =   ::GetFileAttributesA(path);
             stat_data->ftCreationTime.dwLowDateTime     =   0;
@@ -1125,7 +1241,9 @@ private:
             return 0xFFFFFFFF != stat_data->dwFileAttributes;
         }
 
-        HANDLE  h   =   find_first_file(path, stat_data);
+        WINSTL_ASSERT(NULL != path);
+
+        HANDLE h = find_first_file(path, stat_data);
 
         return (INVALID_HANDLE_VALUE == h) ? false : (find_file_close(h), true);
     }
@@ -1356,7 +1474,7 @@ private:
                 requiredLen += cwdLen;
             }
 
-            if(requiredLen >= maxPathLength)
+            if(requiredLen > maxPathLength)
             {
                 ::SetLastError(ERROR_FILENAME_EXCED_RANGE);
             }
@@ -1451,7 +1569,7 @@ public:
 
     enum
     {
-        maxPathLength   =   1 + CONST_NT_MAX_PATH   //!< The maximum length of a path for the current file system
+        maxPathLength = CONST_NT_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
 public:
@@ -1539,16 +1657,42 @@ public:
         return is_path_name_separator(*path) || is_path_absolute(path);
     }
 
+    static bool_type is_path_rooted(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        return (0 != cchPath && is_path_name_separator(*path)) || is_path_absolute(path, cchPath);
+    }
+
     static bool_type is_path_absolute(char_type const* path)
     {
         WINSTL_ASSERT(NULL != path);
 
-        size_type len = str_len(path);
+        return is_path_absolute(path, str_len(path));
+    }
 
-        return  is_path_UNC(path) ||
-                (   (2 < len) &&
-                    (L':' == path[1]) &&
-                    is_path_name_separator(path[2]));
+    static bool_type is_path_absolute(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        if(is_path_UNC(path, cchPath))
+        {
+            return true;
+        }
+
+        if(cchPath >= 3)
+        {
+            if( isalpha(path[0]) &&
+                ':' == path[1] &&
+                is_path_name_separator(path[2]))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     static bool_type is_path_UNC(char_type const* path)
@@ -1558,27 +1702,37 @@ public:
         return (L'\\' == path[0] && L'\\' == path[1]);
     }
 
-private:
-    static bool_type is_root_drive_(char_type const* path)
+    static bool_type is_path_UNC(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
     {
-        if( isalpha(path[0]) &&
-            L':' == path[1] &&
-            is_path_name_separator(path[2]) &&
-            L'\0' == path[3])
+        switch(cchPath)
         {
-            return true;
+            case    0:
+            case    1:
+                return false;
+            case    2:
+            default:
+                return '\\' == path[0] && '\\' == path[1];
         }
-
-        return false;
     }
-    static bool_type is_root_UNC_(char_type const* path)
-    {
-        if(is_path_UNC(path))
-        {
-            char_type const* sep = str_pbrk(path + 2, L"\\/");
 
-            if( NULL == sep ||
-                L'\0' == sep[1])
+private:
+    // Determines whether the given path is a properly-formed drive:
+    //
+    //  "X:\"
+    //
+    static bool_type is_root_drive_(
+        char_type const*    path
+    ,   size_type           cchPath
+    )
+    {
+        if(3 == cchPath)
+        {
+            if( iswalpha(path[0]) &&
+                L':' == path[1] &&
+                is_path_name_separator(path[2]))
             {
                 return true;
             }
@@ -1586,12 +1740,45 @@ private:
 
         return false;
     }
-    static bool_type is_root_directory_(char_type const* path)
+    // Determines whether the given path is a UNC root:
+    //
+    //  "\\"
+    //
+    static bool_type is_root_UNC_(
+        char_type const*    path
+    ,   size_type           cchPath
+    )
     {
-        if( is_path_name_separator(path[0]) &&
-            L'\0' == path[1])
+        if(2 == cchPath)
         {
-            return true;
+            if( '\\' == path[0] &&
+                '\\' == path[1])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // Determines whether the given path is a directory root:
+    //
+    //  "\"
+    //
+    // or:
+    //
+    //  "/"
+    //
+    static bool_type is_root_directory_(
+        char_type const*    path
+    ,   size_type           cchPath
+    )
+    {
+        if(1 == cchPath)
+        {
+            if(is_path_name_separator(path[0]))
+            {
+                return true;
+            }
         }
 
         return false;
@@ -1601,8 +1788,20 @@ public:
     {
         WINSTL_ASSERT(NULL != path);
 
-        return is_root_directory_(path) || is_root_drive_(path) || is_root_UNC_(path);
+        size_type const cchPath = str_len(path);
+
+        return is_root_directory_(path, cchPath) || is_root_drive_(path, cchPath) || is_root_UNC_(path, cchPath);
     }
+
+#if 0
+    static bool_type is_root_designator(
+        char_type const*    path
+    ,   size_t              cchPath
+    )
+    {
+        return is_root_directory_(path, cchPath) || is_root_drive_(path, cchPath) || is_root_UNC_(path, cchPath);
+    }
+#endif /* 0 */
 
     static bool_type is_path_name_separator(char_type ch)
     {
@@ -1626,7 +1825,7 @@ public:
 
     static size_type path_max()
     {
-        return (::GetVersion() & 0x80000000) ? (1 + WINSTL_CONST_MAX_PATH) : (1 + CONST_NT_MAX_PATH);
+        return (::GetVersion() & 0x80000000) ? WINSTL_CONST_MAX_PATH : CONST_NT_MAX_PATH;
     }
 
     static size_type get_full_path_name(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
@@ -1638,7 +1837,7 @@ public:
 
     static size_type get_full_path_name(char_type const* fileName, char_type* buffer, size_type cchBuffer)
     {
-        char_type *pFile;
+        char_type* pFile;
 
         return get_full_path_name(fileName, cchBuffer, buffer, &pFile);
     }
@@ -1741,10 +1940,18 @@ public:
 private:
     static bool_type stat_direct_(char_type const* path, stat_data_type* stat_data)
     {
-        WINSTL_ASSERT(NULL != path);
         WINSTL_ASSERT(NULL != stat_data);
 
-        if(is_root_drive_(path))
+        size_type const cchPath = (NULL == path) ? 0u : str_len(path);
+
+        if(0 == cchPath)
+        {
+            ::SetLastError(ERROR_INVALID_NAME);
+
+            return false;
+        }
+
+        if(is_root_drive_(path, cchPath))
         {
             stat_data->dwFileAttributes                 =   ::GetFileAttributesW(path);
             stat_data->ftCreationTime.dwLowDateTime     =   0;
@@ -1764,7 +1971,9 @@ private:
             return 0xFFFFFFFF != stat_data->dwFileAttributes;
         }
 
-        HANDLE  h   =   find_first_file(path, stat_data);
+        WINSTL_ASSERT(NULL != path);
+
+        HANDLE h = find_first_file(path, stat_data);
 
         return (INVALID_HANDLE_VALUE == h) ? false : (find_file_close(h), true);
     }
@@ -1968,17 +2177,42 @@ private:
 private:
     static size_type GetFullPathNameW(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)
     {
+        WINSTL_ASSERT(NULL != fileName);
+
+        size_type result;
+
 #ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        return ::GetFullPathNameW(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
+        result = ::GetFullPathNameW(fileName, stlsoft_ns_qual(truncation_cast)<DWORD>(cchBuffer), buffer, ppFile);
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("buffer size out of range", stlsoft_ns_qual(truncation_test)<DWORD>(cchBuffer));
 
-        return ::GetFullPathNameW(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
+        result = ::GetFullPathNameW(fileName, static_cast<DWORD>(cchBuffer), buffer, ppFile);
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
-        return ::GetFullPathNameW(fileName, cchBuffer, buffer, ppFile);
+        result = ::GetFullPathNameW(fileName, cchBuffer, buffer, ppFile);
 #endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+
+        if(0 == result)
+        {
+            size_type requiredLen = 0;
+
+            requiredLen += str_len(fileName);
+
+            if(!is_path_rooted(fileName))
+            {
+                size_type cwdLen = ::GetCurrentDirectoryA(0, NULL);
+
+                requiredLen += cwdLen;
+            }
+
+            if(requiredLen > maxPathLength)
+            {
+                ::SetLastError(ERROR_FILENAME_EXCED_RANGE);
+            }
+        }
+
+        return result;
     }
 
     static size_type GetShortPathNameW(char_type const* fileName, char_type* buffer, size_type cchBuffer)

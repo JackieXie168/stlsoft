@@ -4,13 +4,13 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     14th May 2010
+ * Updated:     5th March 2011
  *
  * Thanks:      To Gabor Fischer for requesting attach().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    3
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        61
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    4
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -587,7 +587,7 @@ inline bstr::bstr(bstr::class_type const& rhs, bstr::size_type pos, bstr::size_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(pos > rhs.size())
     {
-        throw stlsoft_ns_qual_std(out_of_range)("Position out of range");
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("Position out of range"));
     }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
     COMSTL_MESSAGE_ASSERT("Position out of range", pos <= rhs.size());

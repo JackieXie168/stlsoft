@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     21st June 2010
+ * Updated:     2nd March 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      108
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -331,7 +331,17 @@ public:
         return ::strncmp(s1, s2, cch);
     }
 
+#ifdef _MSC_VER
+    static int_type str_n_compare_no_case(char_type const* s1, char_type const* s2, size_type cch)
+    {
+        UNIXSTL_ASSERT(NULL != s1);
+        UNIXSTL_ASSERT(NULL != s2);
+
+        return ::_strnicmp(s1, s2, cch);
+    }
+#else
     static int_type str_n_compare_no_case(char_type const* s1, char_type const* s2, size_type cch);
+#endif
 
     static size_type str_len(char_type const* src)
     {
@@ -528,7 +538,17 @@ public:
         return ::wcsncmp(s1, s2, cch);
     }
 
+#ifdef _MSC_VER
+    static int_type str_n_compare_no_case(char_type const* s1, char_type const* s2, size_type cch)
+    {
+        UNIXSTL_ASSERT(NULL != s1);
+        UNIXSTL_ASSERT(NULL != s2);
+
+        return ::_wcsnicmp(s1, s2, cch);
+    }
+#else
     static int_type str_n_compare_no_case(char_type const* s1, char_type const* s2, size_type cch);
+#endif
 
     static size_type str_len(char_type const* src)
     {

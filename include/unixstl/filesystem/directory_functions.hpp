@@ -4,11 +4,11 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     10th June 2010
+ * Updated:     13th February 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        41
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,6 @@ namespace unixstl
 
 namespace stlsoft
 {
-
 namespace unixstl_project
 {
 
@@ -105,13 +104,13 @@ namespace unixstl_project
  */
 
 template <ss_typename_param_k C>
-inline C *find_last_path_name_separator_(C const* s)
+inline C* find_last_path_name_separator_(C const* s)
 {
     typedef filesystem_traits<C>    traits_t;
 
-    ss_typename_type_k traits_t::char_type const    *slash  =   traits_t::str_rchr(s, '/');
+    ss_typename_type_k traits_t::char_type const*   slash   =   traits_t::str_rchr(s, '/');
 #ifdef _WIN32
-    ss_typename_type_k traits_t::char_type const    *bslash =   traits_t::str_rchr(s, '\\');
+    ss_typename_type_k traits_t::char_type const*   bslash  =   traits_t::str_rchr(s, '\\');
 
     if(NULL == slash)
     {
@@ -130,13 +129,18 @@ inline C *find_last_path_name_separator_(C const* s)
 }
 
 template <ss_typename_param_k C>
-inline us_bool_t create_directory_recurse_impl(C const* dir, unsigned short mode)
+inline
+us_bool_t
+create_directory_recurse_impl(
+    C const*        dir
+,   unsigned short  mode
+)
 {
     typedef C                                   char_type;
     typedef filesystem_traits<C>                traits_t;
     typedef basic_file_path_buffer<char_type>   file_path_buffer_t;
 
-    us_bool_t    bRet;
+    us_bool_t bRet;
 
     if( NULL == dir ||
         '\0' == *dir)
@@ -179,43 +183,54 @@ inline us_bool_t create_directory_recurse_impl(C const* dir, unsigned short mode
             }
             else
             {
-                traits_t::str_copy(&sz[0], dir);
-                traits_t::remove_dir_end(&sz[0]);
+                us_size_t const dirLen = traits_t::str_len(dir);
 
-                if( traits_t::create_directory(sz.c_str(), mode) ||
-                    EEXIST == traits_t::get_last_error())
+                if((dirLen + 1) > sz.size())
                 {
-                    traits_t::set_last_error(0);
+                    traits_t::set_last_error(EINVAL);
 
-                    bRet = true;
+                    bRet = false;
                 }
                 else
                 {
-                    // Trim previous directory
-                    traits_t::str_copy(&szParent[0], sz.c_str());
+                    traits_t::char_copy(&sz[0], dir, dirLen + 1);
+                    traits_t::remove_dir_end(&sz[0]);
 
-                    char_type   *pszSlash = find_last_path_name_separator_(szParent.c_str());
-                    if(pszSlash == NULL)
+                    if( traits_t::create_directory(sz.c_str(), mode) ||
+                        EEXIST == traits_t::get_last_error())
                     {
-                        traits_t::set_last_error(ENOTDIR);
+                        traits_t::set_last_error(0);
 
-                        bRet = false;
+                        bRet = true;
                     }
                     else
                     {
-                        *pszSlash = '\0';   // Will always have enough room for two bytes
+                        // Trim previous directory
+                        traits_t::char_copy(&szParent[0], sz.c_str(), dirLen + 1);
 
-                        // If second character is ':', and total lengths is less than four,
-                        // or the recurse create fails, then return false;
-                        if( (   szParent[1] == ':' &&
-                                (traits_t::set_last_error(EACCES), traits_t::str_len(szParent.c_str()) < 4)) ||
-                            !create_directory_recurse(szParent.c_str(), mode))
+                        char_type* pszSlash = find_last_path_name_separator_(szParent.c_str());
+                        if(pszSlash == NULL)
                         {
+                            traits_t::set_last_error(ENOTDIR);
+
                             bRet = false;
                         }
                         else
                         {
-                            bRet = traits_t::create_directory(sz.c_str(), mode) || EEXIST == traits_t::get_last_error();
+                            *pszSlash = '\0';   // Will always have enough room for two bytes
+
+                            // If second character is ':', and total lengths is less than four,
+                            // or the recurse create fails, then return false;
+                            if( (   szParent[1] == ':' &&
+                                    (traits_t::set_last_error(EACCES), traits_t::str_len(szParent.c_str()) < 4)) ||
+                                !create_directory_recurse_impl(szParent.c_str(), mode))
+                            {
+                                bRet = false;
+                            }
+                            else
+                            {
+                                bRet = traits_t::create_directory(sz.c_str(), mode) || EEXIST == traits_t::get_last_error();
+                            }
                         }
                     }
                 }
@@ -226,10 +241,17 @@ inline us_bool_t create_directory_recurse_impl(C const* dir, unsigned short mode
     return bRet;
 }
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k FD  // This is need because VC++6 cannot deduce filesystem_traits<C>::find_data_type
-        >
-inline us_int_t remove_directory_recurse_impl(C const* dir, us_int_t (*pfn)(void* param, C const* subDir, FD const* st, struct dirent const* de, int err), void* param)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k FD  // This is need because VC++6 cannot deduce filesystem_traits<C>::find_data_type
+>
+inline
+us_int_t
+remove_directory_recurse_impl(
+    C const*    dir
+,   us_int_t (*pfn)(void* param, C const* subDir, FD const* st, struct dirent const* de, int err)
+,   void*       param
+)
 {
     typedef C                                   char_type;
     typedef filesystem_traits<C>                traits_t;
@@ -291,7 +313,7 @@ inline us_int_t remove_directory_recurse_impl(C const* dir, us_int_t (*pfn)(void
                 }
                 else
                 {
-                    const int removeError =   traits_t::get_last_error();
+                    const int removeError = traits_t::get_last_error();
 
                     if(ENOTEMPTY != removeError)
                     {
@@ -306,11 +328,12 @@ inline us_int_t remove_directory_recurse_impl(C const* dir, us_int_t (*pfn)(void
                     {
                         // It has some contents, so we need to remove them
 
-                        file_path_buffer_t          sz;
-                        DIR                         *hSrch;
-                        us_size_t                   n;
+                        file_path_buffer_t  sz;
+                        DIR*                hSrch;
+                        us_size_t           n;
+                        us_size_t const     dirLen = traits_t::str_len(dir);
 
-                        traits_t::str_copy(&sz[0], dir);
+                        traits_t::char_copy(&sz[0], dir, dirLen + 1);
                         traits_t::ensure_dir_end(&sz[0]);
                         n = traits_t::str_len(sz.c_str());
 
@@ -329,7 +352,9 @@ inline us_int_t remove_directory_recurse_impl(C const* dir, us_int_t (*pfn)(void
                                 {
                                     ss_typename_type_k traits_t::stat_data_type st;
 
-                                    traits_t::str_copy(&sz[0] + n, de->d_name);
+                                    us_size_t const denameLen = traits_t::str_len(de->d_name);
+
+                                    traits_t::char_copy(&sz[0] + n, de->d_name, denameLen + 1);
                                     if(!traits_t::stat(sz.c_str(), &st))
                                     {
                                         dwRet = traits_t::get_last_error();
@@ -524,7 +549,7 @@ inline us_bool_t remove_directory_recurse(
 ,   void*               param
 )
 {
-    typedef filesystem_traits<us_char_a_t>  traits_t;
+    typedef filesystem_traits<us_char_a_t> traits_t;
 
     us_int_t dwRet = remove_directory_recurse_impl<us_char_a_t, struct stat>(dir, pfn, param);
 
@@ -547,13 +572,15 @@ inline us_bool_t remove_directory_recurse(us_char_a_t const* dir)
  *
  * \ingroup group__library__filesystem
  */
-inline us_bool_t remove_directory_recurse(  us_char_w_t const*  dir
-                                        ,   us_int_t            (*pfn)(void* param, us_char_w_t const* subDir, struct stat const* st, struct dirent const* de, int err)
-                                        ,   void*               param)
+inline us_bool_t remove_directory_recurse(
+    us_char_w_t const*  dir
+,   us_int_t            (*pfn)(void* param, us_char_w_t const* subDir, struct stat const* st, struct dirent const* de, int err)
+,   void*               param
+)
 {
     typedef filesystem_traits<us_char_w_t>  traits_t;
 
-    us_int_t  dwRet   =   remove_directory_recurse_impl<us_char_w_t, struct stat>(dir, pfn, param);
+    us_int_t dwRet = remove_directory_recurse_impl<us_char_w_t, struct stat>(dir, pfn, param);
 
     traits_t::set_last_error(dwRet);
 

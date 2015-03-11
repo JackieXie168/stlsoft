@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  31st January 2011
+; Updated:  13th August 2011
 
 ============================================================================
 
@@ -15,6 +15,155 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.109 (13th August 2011)
+
+Summary:
+========
+
+ * added rbegin()/rend() to stlsoft::frequency_map<>
+ * added push_n() to stlsoft::frequency_map<>
+ * refactored throw statement(s) in terms of STLSOFT_THROW_X() throughout
+ * added reset() method to stlsoft::shared_ptr<>
+ * added various STLSoft deprecation macros
+ * added is_path_rooted(), is_path_absolute(), and is_path_UNC() methods to unixstl::filesystem_traits<>
+ * added two-parameters overloads of is_path_rooted(), is_path_absolute(), and is_path_UNC() methods to winstl::filesystem_traits<>
+ * include/winstl/error/error_functions.h: substantial refactoring of format_message()-family of functions (and their C analogues)
+    
+Changes:
+========
+
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/containers/frequency_map.hpp:
+    + added push_n() (rudimentary implementation)
+    ~ trivial changes
+    ~ trivial changes
+    + added rbegin()/rend()
+
+ ~ include/stlsoft/conversion/truncation_cast.hpp:
+ ~ include/stlsoft/error/throw_policies.hpp:
+    ~ refactored throw statement(s) in terms of STLSOFT_THROW_X()
+
+ ~ include/stlsoft/functional/composite_predicates.hpp:
+    ~ trivial formatting changes
+    ~ documentation changes
+
+ ~ include/stlsoft/smartptr/shared_ptr.hpp:
+    + added reset() method
+
+ ~ include/stlsoft/stlsoft.h:
+    + added STLSOFT_DECLARE_DEPRECATION()
+    + added STLSOFT_DECLARE_DEPRECATION_MESSAGE()
+    + added STLSOFT_DECLARE_FUNCTION_DEPRECATION()
+    + added STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF()
+    + added STLSOFT_DECLARE_MACRO_DEPRECATION()
+    + added STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF()
+
+ ~ include/stlsoft/string/string_view.hpp:
+    ~ trivial formatting changes
+
+
+ COMSTL:
+ =======
+
+ ~ include/comstl/collections/enumeration_policies.hpp:
+ ~ include/comstl/error/bad_interface_cast.hpp:
+    ~ trivial formatting changes
+
+ ~ include/comstl/string/bstr.hpp:
+ ~ include/comstl/util/value_policies.hpp:
+ ~ include/comstl/util/variant.hpp:
+    ~ refactored throw statement(s) in terms of STLSOFT_THROW_X()
+
+ RangeLib:
+ =========
+
+ ~ include/rangelib/algorithms.hpp:
+ ~ include/rangelib/integral_range.hpp:
+    ~ refactored throw statement(s) in terms of STLSOFT_THROW_X()
+
+ UNIXSTL:
+ ========
+
+ ~ include/unixstl/filesystem/directory_functions.hpp:
+    ~ trivial formatting changes
+    ~ "safe string" compatibility
+
+ ~ include/unixstl/filesystem/filesystem_traits.hpp:
+    + added is_path_rooted() method
+    + added is_path_absolute() method
+    + added is_path_UNC() method
+    ~ widestring uses iswalpha()
+    ~ simplification/separation of Windows-emulation code
+    ~ corrected maximum-path length calculation(s)
+
+ ~ include/unixstl/system/system_traits.hpp:
+    ~ "safe string" compatibility
+    + added implementations of str_n_compare_no_case() when emulating UNIX on Windows
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/error/error_desc.hpp:
+    ~ reimplemented to new overload of format_message(), specifying flags to more precisely control behaviour
+    ~ use of FORMAT_MESSAGE_IGNORE_INSERTS to resolve strings with inserts
+    ~ application of new STLSoft deprecation features
+    ~ trivial formatting changes
+
+ ~ include/winstl/error/error_functions.h:
+    ~ renamed winstl_C_fmtmsg_find_last_good_a/w__ to winstl_C_fmtmsg_elide_message_a/w_
+    + added winstl_C_format_message_from_module_to_allocated_buffer_a()
+    + added winstl_C_format_message_from_module_to_allocated_buffer()
+    + added new overload of format_message()
+    ~ applying new deprecation macros
+    ~ conditional elision of period
+    ~ deprecated functions
+    ~ reimplementing in terms of new functions
+    + added winstl_C_FormatMessageA_INVOKE_for_alloc_()
+    + added winstl_C_FormatMessageW_INVOKE_for_alloc_()
+    + winstl_C_FormatMessageA_INVOKE_in_buffer_()
+    + winstl_C_FormatMessageW_INVOKE_in_buffer_()
+    ~ trivial formatting changes
+
+ ~ include/winstl/error/exceptions.hpp:
+    ~ uses new format_message() function(s)
+
+ ~ include/winstl/filesystem/directory_functions.hpp:
+    ~ corrected maximum-path length calculation(s)
+    ~ trivial formatting changes
+
+ ~ include/winstl/filesystem/file_path_buffer.hpp:
+    ~ trivial change
+
+ ~ include/winstl/filesystem/filesystem_traits.hpp:
+    + added two-parameter overload of is_path_absolute()
+    + added two-parameter overload of is_path_rooted()
+    + added two-parameter overload of is_path_UNC()
+    ~ refactored internal implementation methods
+    ~ corrected maximum-path length calculation(s)
+
+ ~ include/winstl/filesystem/memory_mapped_file.hpp:
+    ~ VC++ 9 compatibility
+    ~ corrected behaviour (and updated class invariant) for non-exception compilation
+    ~ now initialises m_lastStatusCode, so can be used in invariant
+    ~ removed all possible uses of word 'error' and replaced with 'status code'
+
+ ~ include/winstl/shims/access/string/time.hpp:
+    ~ avoiding warnings (due to compiler not being able to see that STLSOFT_THROW_X() actually throws an exception, so the subsequent return is fatuous)
+    ~ refactored throw statement(s) in terms of STLSOFT_THROW_X()
+
+ ~ include/winstl/system/system_traits.hpp:
+    ~ corrected maximum-path length calculation(s)
+    ~ pedantic change from HINSTANCE to HMODULE
+
+ ~ include/winstl/winstl.h:
+    ~ now issues #error if compiling with WIN64 defined absent definition of _WIN64
+
 
 ============================================================================
 

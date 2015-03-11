@@ -4,11 +4,11 @@
  * Purpose:     Exception throwing policy classes.
  *
  * Created:     19th January 2002
- * Updated:     10th August 2009
+ * Updated:     5th March 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * Copyright (c) 2006, Pablo Aguilar
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_THROW_POLICIES_MAJOR     5
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_THROW_POLICIES_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_THROW_POLICIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_THROW_POLICIES_EDIT      50
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_THROW_POLICIES_REVISION  2
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_THROW_POLICIES_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -181,7 +181,7 @@ public:
     /// Function call operator, taking no parameters
     void operator ()() const
     {
-        throw thrown_type();
+        STLSOFT_THROW_X(thrown_type());
     }
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /// Function call operator, taking one parameter
