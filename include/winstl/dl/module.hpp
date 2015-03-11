@@ -4,13 +4,13 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     24th December 2006
+ * Updated:     2nd January 2007
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 /** \file winstl/dl/module.hpp
  *
  * \brief [C++ only] Definition of the unixstl::module class.
- *  (\ref group__library__dl "DL" Library.)
+ * (\ref group__library__dl "DL" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_DL_HPP_MODULE
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      3
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   2
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       216
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       217
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

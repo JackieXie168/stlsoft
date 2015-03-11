@@ -4,11 +4,11 @@
  * Purpose:     string_traits traits class.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file stlsoft/string/string_traits.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::string_traits traits class.
- *  (\ref group__library__string "String" Library.)
+ * (\ref group__library__string "String" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      70
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     24th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file comstl/string/bstr.hpp
  *
  * \brief [C++ only; requires COM] Definition of the comstl::bstr class.
- *  (\ref group__library__utility__com "COM Utility" Library.)
+ * (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_STRING_HPP_BSTR
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       1
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    6
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        40
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file winstl/clipboard/clipboard_scope.hpp
  *
  * \brief [C++ only] Definition of the winstl::clipboard_scope class.
- *  (\ref group__library__windows_clipboard "Windows Clipboard" Library.)
+ * (\ref group__library__windows_clipboard "Windows Clipboard" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   3
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       22
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   4
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_CLIPBOARD_HPP_EXCEPTIONS
-# include <winstl/clipboard/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_CLIPBOARD_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS
+# include <winstl/clipboard/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_CLIPBOARD_ERROR_HPP_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR
 # include <winstl/memory/global_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR */

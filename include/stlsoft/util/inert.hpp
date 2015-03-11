@@ -4,11 +4,11 @@
  * Purpose:     Contains the inert class.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file stlsoft/util/inert.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::inert class.
- *  (\ref group__library__utility "Utility" Library.)
+ * (\ref group__library__utility "Utility" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       34
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

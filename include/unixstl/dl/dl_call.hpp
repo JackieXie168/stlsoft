@@ -4,11 +4,11 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     24th December 2006
+ * Updated:     3rd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file unixstl/dl/dl_call.hpp
  *
  * \brief [C++ only] Definition of the unixstl::dl_call() function suite.
- *  (\ref group__library__dl "DL" Library.)
+ * (\ref group__library__dl "DL" Library.)
  */
 
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_DL_CALL
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    4
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        30
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    5
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -189,7 +189,7 @@ struct is_valid_dl_call_arg
     enum { value = 0 };
 };
 
-/* Internal traits class used by the \ref group__library__dl.
+/* Internal traits class used by the DL Library.
  *
  * \note This is a struct, rather than a namespace, because namespaces are
  *        open, and we want this to be closed.
@@ -209,7 +209,29 @@ public:
 public:
     static entry_point_type get_symbol(library_handle_type hLib, char const *functionName)
     {
+#if 0
+
         return (dl_call_traits::entry_point_type)::dlsym(hLib, functionName);
+
+#else /* ? 0 */
+
+        // If this static assert fires, this component cannot be used. (It'd also be
+        // something amazing, unfathomable operating system architecture, but it's
+        // possible.)
+        STLSOFT_STATIC_ASSERT(sizeof(dl_call_traits::entry_point_type) == sizeof(::dlsym(hLib, functionName)));
+
+        union
+        {
+            dl_call_traits::entry_point_type    pfn;
+            void                                *pv;
+
+        } u;
+
+        u.pv = ::dlsym(hLib, functionName);
+
+        return u.pfn;
+
+#endif /* 0 */
     }
 /// @}
 

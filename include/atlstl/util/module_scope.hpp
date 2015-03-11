@@ -4,11 +4,11 @@
  * Purpose:     Scoping class for ATL _Module
  *
  * Created:     8th December 2004
- * Updated:     30th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file atlstl/util/module_scope.hpp
  *
  * \brief [C++ only] Definition of the atlstl::module_scope class template.
- * (\ref group__library__util "Utility" Library.)
+ * (\ref group__library__utility "Utility" Library.)
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_UTIL_HPP_MODULE_SCOPE
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MAJOR       2
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       1
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_REVISION    1
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        20
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ namespace atlstl_project
 
 /** \brief Scopes the initialisation and uninitialisation of an ATL module
  *
- * \ingroup group__library__util
+ * \ingroup group__library__utility
  */
 template<   ss_typename_param_k M
         ,   ss_typename_param_k X = stlsoft_ns_qual(null_exception_policy)

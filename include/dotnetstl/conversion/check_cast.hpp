@@ -5,11 +5,11 @@
  *              on the cast instance in debug builds.
  *
  * Created:     9th August 2006
- * Updated:     9th August 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
 /** \file dotnetstl/conversion/check_cast.hpp
  *
  * \brief [C++ only] Definition of the dotnetstl::check_cast cast function.
- *  (\ref group__library__conversion "Conversion" Library.)
+ * (\ref group__library__conversion "Conversion" Library.)
  */
 
 #ifndef DOTNETSTL_INCL_DOTNETSTL_CONVERSION_HPP_CHECK_CAST
@@ -52,7 +52,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_CONVERSION_HPP_CHECK_CAST_MAJOR    1
 # define DOTNETSTL_VER_DOTNETSTL_CONVERSION_HPP_CHECK_CAST_MINOR    0
 # define DOTNETSTL_VER_DOTNETSTL_CONVERSION_HPP_CHECK_CAST_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_CONVERSION_HPP_CHECK_CAST_EDIT     1
+# define DOTNETSTL_VER_DOTNETSTL_CONVERSION_HPP_CHECK_CAST_EDIT     2
 #endif /* !DOTNETSTL_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

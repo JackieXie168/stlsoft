@@ -4,11 +4,11 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     24th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file comstl/util/guid.hpp
  *
  * \brief [C++ only; requires COM] Definition of the comstl::guid class.
- *  (\ref group__library__utility__com "COM Utility" Library.)
+ * (\ref group__library__utility__com "COM Utility" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_COMSTL_GUID
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   5
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       38
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

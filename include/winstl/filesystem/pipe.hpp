@@ -4,11 +4,11 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     30th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file winstl/filesystem/pipe.hpp
  *
  * \brief [C++ only] Definition of the winstl::pipe class.
- *  (\ref group__library__file_system "File System" Library.)
+ * (\ref group__library__file_system "File System" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PIPE
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     30
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

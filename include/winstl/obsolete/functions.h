@@ -4,11 +4,11 @@
  * Purpose:     A number of useful functions.
  *
  * Created:     7th May 2000
- * Updated:     30th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file winstl/obsolete/functions.h
  *
  * \brief [C, C++; OBSOLETE] A number of useful functions.
- *  (\ref group__library__util__windows "Windows Utility" Library.)
+ * (\ref group__library__utility__windows "Windows Utility" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_OBSOLETE_H_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_EDIT        57
+# define WINSTL_VER_WINSTL_OBSOLETE_H_FUNCTIONS_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ namespace winstl_project
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 STLSOFT_INLINE ws_int_t winstl__CloseHandleSetNull(HANDLE *h)
 {
@@ -111,7 +111,7 @@ STLSOFT_INLINE ws_int_t winstl__CloseHandleSetNull(HANDLE *h)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  *
  * \note There is no error return
  */
@@ -124,7 +124,7 @@ STLSOFT_INLINE ws_int_t winstl__IsWaitObjectSignalled(HANDLE h)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 STLSOFT_INLINE ws_int_t winstl__DuplicateLocalHandle(HANDLE h, HANDLE *hDup)
 {
@@ -135,7 +135,7 @@ STLSOFT_INLINE ws_int_t winstl__DuplicateLocalHandle(HANDLE h, HANDLE *hDup)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 STLSOFT_INLINE ws_int_t winstl__IsKeyPressedAsync(int key)
 {
@@ -152,7 +152,7 @@ STLSOFT_INLINE ws_int_t winstl__IsKeyPressedAsync(int key)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  *
  * Closes a handle, and sets its value to NULL
  */
@@ -165,7 +165,7 @@ inline ws_bool_t CloseHandleSetNull(HANDLE &h)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  *
  * Indicates whether the given handle is signalled.
  *
@@ -180,7 +180,7 @@ inline ws_bool_t IsWaitObjectSignalled(HANDLE h)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  *
  * Indicates whether the I/O operation has completed
  *
@@ -197,7 +197,7 @@ inline BOOL HasOverlappedIoCompleted(LPOVERLAPPED lpOverlapped)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  *
  * Duplicates a handle. Both the handle and the duplicate are within the context
  * of the current process.
@@ -213,7 +213,7 @@ inline ws_bool_t DuplicateLocalHandle(HANDLE h, HANDLE &hDup)
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_a_t *buffer, ws_uint_t cchBuffer)
 {
@@ -224,7 +224,7 @@ inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_a_t *buffe
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_w_t *buffer, ws_uint_t cchBuffer)
 {
@@ -235,7 +235,7 @@ inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_w_t *buffe
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline ws_dword_t FormatMessage(DWORD error, ws_char_a_t *buffer, ws_uint_t cchBuffer)
 {
@@ -246,7 +246,7 @@ inline ws_dword_t FormatMessage(DWORD error, ws_char_a_t *buffer, ws_uint_t cchB
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline ws_dword_t FormatMessage(DWORD error, ws_char_w_t *buffer, ws_uint_t cchBuffer)
 {
@@ -257,7 +257,7 @@ inline ws_dword_t FormatMessage(DWORD error, ws_char_w_t *buffer, ws_uint_t cchB
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_a_t **buffer)
 {
@@ -268,7 +268,7 @@ inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_a_t **buff
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_w_t **buffer)
 {
@@ -279,7 +279,7 @@ inline ws_dword_t FormatMessage(DWORD error, HINSTANCE hinst, ws_char_w_t **buff
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline void FormatMessage_BufferFree(ws_char_a_t *buffer)
 {
@@ -290,7 +290,7 @@ inline void FormatMessage_BufferFree(ws_char_a_t *buffer)
  *
  * \deprecated Instead use winstl::format_message()
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline void FormatMessage_BufferFree(ws_char_w_t *buffer)
 {
@@ -303,7 +303,7 @@ inline void FormatMessage_BufferFree(ws_char_w_t *buffer)
  *
  * \deprecated
  *
- * \ingroup group__library__util__windows
+ * \ingroup group__library__utility__windows
  */
 inline ws_bool_t IsKeyPressedAsync(int key)
 {

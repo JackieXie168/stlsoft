@@ -4,11 +4,11 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     30th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file winstl/dl/dl_call.hpp
  *
  * \brief [C++ only] Definition of the winstl::dl_call() function suite.
- *  (\ref group__library__dl "DL" Library.)
+ * (\ref group__library__dl "DL" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_DL_HPP_DL_CALL
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     3
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  5
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      32
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -396,7 +396,7 @@ struct is_valid_dl_call_arg
     enum { value = 0 };
 };
 
-/* Internal traits class used by the \ref group__library__dl.
+/* Internal traits class used by the DL Library.
  *
  * \note This is a struct, rather than a namespace, because namespaces are
  *        open, and we want this to be closed.

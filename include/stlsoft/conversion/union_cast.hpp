@@ -6,11 +6,11 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     13th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 /** \file stlsoft/conversion/union_cast.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::union_cast cast.
- *  (\ref group__library__conversion "Conversion" Library.)
+ * (\ref group__library__conversion "Conversion" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     57
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

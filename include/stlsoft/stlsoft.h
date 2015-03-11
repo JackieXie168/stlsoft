@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     29th December 2006
+ * Updated:     31st December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     292
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     293
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -2033,7 +2033,7 @@ inline void stlsoft_destroy_instance_fn(T *p)
  */
 #if defined(__cplusplus) && \
     (   defined(STLSOFT_COMPILER_IS_COMO) || \
-        defined(STLSOFT_COMPILER_IS_DMC) || \
+        /* defined(STLSOFT_COMPILER_IS_DMCx) || */ \
         (   defined(STLSOFT_COMPILER_IS_GCC) && \
             __GNUC__ >= 3) || \
         defined(STLSOFT_COMPILER_IS_INTEL))

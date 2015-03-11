@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for CodePlay Vector C.
  *
  * Created:     3rd October 2003
- * Updated:     26th November 2006
+ * Updated:     3rd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MINOR      7
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_REVISION   3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       41
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -330,7 +330,7 @@
 # else
 #  error You must define _STLSOFT_CUSTOM_ASSERT_INCLUDE along with _STLSOFT_CUSTOM_ASSERT()
 # endif /* !_STLSOFT_CUSTOM_ASSERT_INCLUDE */
-#else
+#else /* ? _STLSOFT_CUSTOM_ASSERT */
 # ifndef _DEBUG
 /* #  define NDEBUG */
 # endif /* _DEBUG */ */

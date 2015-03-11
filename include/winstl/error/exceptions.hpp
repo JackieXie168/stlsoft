@@ -4,11 +4,11 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,7 @@
  *   winstl::resource_exception exception classes, and the
  *   winstl::windows_exception_policy and winstl::resource_exception_policy
  *   exception policy classes.
- *  (\ref group__library__error "Error" Library.)
+ * (\ref group__library__error "Error" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_EXCEPTIONS
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        48
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

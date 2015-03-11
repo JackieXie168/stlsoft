@@ -4,11 +4,11 @@
  * Purpose:     Exception thrown when interface casts fail.
  *
  * Created:     22nd December 2003
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file comstl/error/bad_interface_cast.hpp
  *
  * \brief [C++ only] Definition of the comstl::bad_interface_cast class.
- *  (\ref group__library__error "Error" Library.)
+ * (\ref group__library__error "Error" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MAJOR       5
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_MINOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_REVISION    1
-# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        28
+# define COMSTL_VER_COMSTL_ERROR_HPP_BAD_INTERFACE_CAST_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

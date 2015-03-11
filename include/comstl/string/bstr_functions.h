@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     23rd December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file comstl/string/bstr_functions.h
  *
  * \brief [C, C++] Functions for manipulating BSTR strings.
- *  (\ref group__library__string "String" Library.)
+ * (\ref group__library__string "String" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 2
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     71
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

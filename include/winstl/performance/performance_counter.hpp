@@ -6,11 +6,11 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,7 @@
  *
  * \brief [C++ only] Definition of the 
  *  \link winstl::performance_counter performance_counter\endlink class.
- *  (\ref group__library__performance "Performance" Library.)
+ * (\ref group__library__performance "Performance" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 3
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     25
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 4
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -197,6 +197,7 @@ public:
 /// \name Construction
 /// @{
 public:
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static void class_init()
     {
         class_type  instance;
@@ -205,6 +206,10 @@ public:
     }
     static void class_uninit()
     {}
+
+    performance_counter() // This is needed only to suppress compiler warnings about unused variables
+    {}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
 /// \name Operations

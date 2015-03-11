@@ -4,11 +4,11 @@
  * Purpose:     Shell memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     30th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 /** \file winstl/shell/memory_functions.h
  *
  * \brief [C, C++] Shell memory functions.
- *  (\ref group__library__memory "Memory" Library.)
+ * (\ref group__library__memory "Memory" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_MEMORY_H_FUNCTIONS
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_EDIT      46
+# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

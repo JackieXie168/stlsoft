@@ -4,11 +4,11 @@
  * Purpose:     Include for defining NULL to be the NULL_v template class.
  *
  * Created:     17th December 2002
- * Updated:     29th December 2006
+ * Updated:     2nd January 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
  *
  * \brief [C++ only] Defines the NULL pre-processor symbol as
  *   stlsoft::NULL_v().
- *  (\ref group__library__utility "Utility" Library.)
+ * (\ref group__library__utility "Utility" Library.)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_H_NULLDEF
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_EDIT     24
+# define STLSOFT_VER_STLSOFT_UTIL_H_NULLDEF_EDIT     25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
