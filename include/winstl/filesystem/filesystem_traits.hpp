@@ -775,14 +775,14 @@ private:
         else
         {
 #if 0
-			DWORD dw = ::GetLastError();
+            DWORD dw = ::GetLastError();
 
-			if( 0 == r &&
-				0 == dw &&
-				str_len(fileName) > _MAX_PATH)
-			{
-				::SetLastError(ERROR_FILENAME_EXCED_RANGE);
-			}
+            if( 0 == r &&
+                0 == dw &&
+                str_len(fileName) > _MAX_PATH)
+            {
+                ::SetLastError(ERROR_FILENAME_EXCED_RANGE);
+            }
 #endif /* 0 */
 
             return r;
@@ -1250,9 +1250,9 @@ public:
 private:
     static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
     {
-		WINSTL_ASSERT(NULL != fileName);
+        WINSTL_ASSERT(NULL != fileName);
 
-		size_type result;
+        size_type result;
 
 #ifdef _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -1266,26 +1266,26 @@ private:
         result = ::GetFullPathNameA(fileName, cchBuffer, buffer, ppFile);
 #endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
-		if(0 == result)
-		{
-			size_type requiredLen = 0;
+        if(0 == result)
+        {
+            size_type requiredLen = 0;
 
-			requiredLen += str_len(fileName);
+            requiredLen += str_len(fileName);
 
-			if(!is_path_rooted(fileName))
-			{
-				size_type cwdLen = ::GetCurrentDirectoryA(0, NULL);
+            if(!is_path_rooted(fileName))
+            {
+                size_type cwdLen = ::GetCurrentDirectoryA(0, NULL);
 
-				requiredLen += cwdLen;
-			}
+                requiredLen += cwdLen;
+            }
 
-			if(requiredLen >= maxPathLength)
-			{
-				::SetLastError(ERROR_FILENAME_EXCED_RANGE);
-			}
-		}
+            if(requiredLen >= maxPathLength)
+            {
+                ::SetLastError(ERROR_FILENAME_EXCED_RANGE);
+            }
+        }
 
-		return result;
+        return result;
     }
 
     static size_type GetShortPathNameA(char_type const* fileName, char_type* buffer, size_type cchBuffer)

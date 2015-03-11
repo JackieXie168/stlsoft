@@ -4,10 +4,13 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     25th April 2008
+ * Updated:     11th August 2008
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
+ *
+ *              Christian Roessel, for spotting the bug in the copy ctor that
+ *              fails an assert if the copied instance is empty
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        72
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,37 +142,36 @@ class pod_vector
 /// \name Typedefs
 /// @{
 private:
-    typedef auto_buffer_old<T, A, SPACE>                            buffer_type;
+    typedef auto_buffer_old<T, A, SPACE>                            buffer_type_;
 public:
     /// The value type
-    typedef ss_typename_type_k buffer_type::value_type              value_type;
+    typedef ss_typename_type_k buffer_type_::value_type             value_type;
     /// The allocator type
-    typedef ss_typename_type_k buffer_type::allocator_type          allocator_type;
+    typedef ss_typename_type_k buffer_type_::allocator_type         allocator_type;
     /// The type of the current parameterisation
     typedef pod_vector<T, A, SPACE>                                 class_type;
     /// The reference type
-    typedef ss_typename_type_k buffer_type::reference               reference;
+    typedef ss_typename_type_k buffer_type_::reference              reference;
     /// The non-mutable (const) reference type
-    typedef ss_typename_type_k buffer_type::const_reference         const_reference;
+    typedef ss_typename_type_k buffer_type_::const_reference        const_reference;
     /// The pointer type
-    typedef ss_typename_type_k buffer_type::pointer                 pointer;
+    typedef ss_typename_type_k buffer_type_::pointer                pointer;
     /// The non-mutable (const) pointer type
-    typedef ss_typename_type_k buffer_type::const_pointer           const_pointer;
+    typedef ss_typename_type_k buffer_type_::const_pointer          const_pointer;
     /// The iterator type
-    typedef ss_typename_type_k buffer_type::iterator                iterator;
+    typedef ss_typename_type_k buffer_type_::iterator               iterator;
     /// The non-mutable (const) iterator type
-    typedef ss_typename_type_k buffer_type::const_iterator          const_iterator;
+    typedef ss_typename_type_k buffer_type_::const_iterator         const_iterator;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The type of the non-const (mutating) reverse iterator
-    typedef ss_typename_type_k buffer_type::reverse_iterator        reverse_iterator;
+    typedef ss_typename_type_k buffer_type_::reverse_iterator       reverse_iterator;
     /// The type of the const (non-mutating) reverse iterator
-    typedef ss_typename_type_k buffer_type::const_reverse_iterator  const_reverse_iterator;
+    typedef ss_typename_type_k buffer_type_::const_reverse_iterator const_reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The size type
-    typedef ss_typename_type_k buffer_type::size_type               size_type;
+    typedef ss_typename_type_k buffer_type_::size_type              size_type;
     /// The difference type
-    typedef ss_typename_type_k buffer_type::difference_type         difference_type;
-
+    typedef ss_typename_type_k buffer_type_::difference_type        difference_type;
 /// @}
 
 /// \name Construction
@@ -258,10 +260,10 @@ private:
 /// \name Members
 /// @{
 private:
-    size_type   m_cItems;   // A size member is used, rather than m_end (iterator), because some of the state
-                            // is maintained in the parent class. Doing it this way makes swap() and other methods
-                            // very simple.
-    buffer_type m_buffer;   // The auto_buffer
+    size_type       m_cItems;   // A size member is used, rather than m_end (iterator), because some of the state
+                                // is maintained in the parent class. Doing it this way makes swap() and other methods
+                                // very simple.
+    buffer_type_    m_buffer;   // The auto_buffer
 /// @}
 };
 
@@ -486,7 +488,7 @@ inline pod_vector<T, A, SPACE>::pod_vector(class_type const& rhs)
     m_cItems = m_buffer.size(); // This is done here, since it comes before m_buffer in
                                 // the object layout for efficiency (caching) reasons
 
-    pod_copy_n(begin_(), &rhs[0], size());
+    pod_copy_n(begin_(), rhs.begin_(), size());
 
     STLSOFT_ASSERT(is_valid_());
 }
@@ -965,13 +967,7 @@ inline void pod_vector<T, A, SPACE>::resize(size_type cItems) /* stlsoft_throw_1
 {
     STLSOFT_ASSERT(is_valid_());
 
-    // We only resize if we're getting bigger, or the requested size is 0
-    if( (0 != cItems &&
-        cItems < size()) ||
-        m_buffer.resize(cItems))
-    {
-        m_cItems = cItems;
-    }
+    resize(cItems, value_type());
 
     STLSOFT_ASSERT(is_valid_());
 }
@@ -988,19 +984,14 @@ inline void pod_vector<T, A, SPACE>::resize(size_type cItems, ss_typename_type_k
 {
     STLSOFT_ASSERT(is_valid_());
 
-    // We only resize if we're getting bigger, or the requested size is 0
-    if( 0 != cItems &&
-        cItems < m_cItems)
+    if(m_buffer.resize(cItems))
     {
-        m_cItems = cItems;
-    }
-    else if(m_cItems < cItems)
-    {
-        if(m_buffer.resize(cItems))
+        if(m_cItems < cItems)
         {
             pod_fill_n(begin_() + m_cItems, cItems - m_cItems, value);
-            m_cItems = cItems;
         }
+
+        m_cItems = cItems;
     }
 
     STLSOFT_ASSERT(is_valid_());
@@ -1172,7 +1163,7 @@ inline void pod_vector<T, A, SPACE>::insert(iterator it, const_iterator first, c
         pod_move_n(&it[cItems], &it[0], cMove);
 
         // And insert the new ones
-        pod_copy_n(begin_(), first, cItems);
+        pod_copy_n(it, first, cItems);
     }
 
     STLSOFT_ASSERT(is_valid_());
@@ -1193,14 +1184,16 @@ inline ss_typename_type_ret_k pod_vector<T, A, SPACE>::iterator pod_vector<T, A,
     STLSOFT_ASSERT(it < end());
     STLSOFT_ASSERT(!(it < begin()));
 
-    if(it != end() - 1)
-    {
-        pod_move_n(&it[0], &it[1], 1);
-    }
+    size_type   index = it - begin();
+    size_type   cMove = size() - (index + 1);
+
+    pod_move_n(&it[0], &it[1], cMove);
 
     if(0 == --m_cItems)
     {
         m_buffer.resize(0);
+
+        it = begin();
     }
 
     STLSOFT_ASSERT(is_valid_());

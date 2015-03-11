@@ -1339,29 +1339,29 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::make_absolute(ws_bool_t bRemoveTrailingPathNameSeparator /* = true */)
 {
-	if(0 != size())
-	{
-		buffer_type_    buffer;
-		size_type       cch = traits_type::get_full_path_name(c_str(), buffer.size(), &buffer[0]);
+    if(0 != size())
+    {
+        buffer_type_    buffer;
+        size_type       cch = traits_type::get_full_path_name(c_str(), buffer.size(), &buffer[0]);
 
-		if(0 == cch)
-		{
+        if(0 == cch)
+        {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-	        STLSOFT_THROW_X(windows_exception("could not determine the absolute path", ::GetLastError()));
+            STLSOFT_THROW_X(windows_exception("could not determine the absolute path", ::GetLastError()));
 #else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
-		    return *this;
+            return *this;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-		}
+        }
 
-		class_type      newPath(stlsoft_ns_qual(c_str_ptr)(buffer), cch);
+        class_type      newPath(stlsoft_ns_qual(c_str_ptr)(buffer), cch);
 
-		if(bRemoveTrailingPathNameSeparator)
-		{
-			newPath.pop_sep();
-		}
+        if(bRemoveTrailingPathNameSeparator)
+        {
+            newPath.pop_sep();
+        }
 
-		swap(newPath);
-	}
+        swap(newPath);
+    }
 
     return *this;
 }
@@ -1372,10 +1372,10 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveTrailingPathNameSeparator /* = true */)
 {
-	if(0 == size())
-	{
-		return *this;
-	}
+    if(0 == size())
+    {
+        return *this;
+    }
 
     class_type  newPath(*this);
 
