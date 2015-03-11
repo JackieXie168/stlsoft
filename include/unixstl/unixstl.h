@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     8th November 2007
+ * Updated:     18th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    3
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 7
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     77
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 8
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -105,7 +105,7 @@
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      6
-#define _UNIXSTL_VER_REVISION   2
+#define _UNIXSTL_VER_REVISION   3
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _UNIXSTL_VER_0_9_1     0x00000901  /*!< Version 0.9.1 */
 # define _UNIXSTL_VER_0_9_2     0x00000902  /*!< Version 0.9.2 */
@@ -119,9 +119,10 @@
 # define _UNIXSTL_VER_1_5_1     0x00010501  /*!< Version 1.5.1 */
 # define _UNIXSTL_VER_1_6_1     0x00010601  /*!< Version 1.6.1 (with STLSoft 1.9.1) */
 # define _UNIXSTL_VER_1_6_2     0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.7) */
+# define _UNIXSTL_VER_1_6_3     0x00010602  /*!< Version 1.6.3 (with STLSoft 1.9.9) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_6_2
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_6_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes

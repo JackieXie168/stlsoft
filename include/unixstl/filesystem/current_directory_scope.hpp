@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     6th November 2007
+ * Updated:     18th November 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        113
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,6 +218,25 @@ typedef basic_current_directory_scope<char, filesystem_traits<char> >           
  * Shims
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k C>
+inline us_char_a_t const* c_str_ptr_null_a(unixstl_ns_qual(basic_current_directory_scope)<us_char_a_t, C> const& b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_a)(b.c_str());
+}
+template <ss_typename_param_k C>
+inline us_char_w_t const* c_str_ptr_null_w(unixstl_ns_qual(basic_current_directory_scope)<us_char_w_t, C> const& b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null_w)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref group__concept__shim__string_access__c_str_ptr_null for unixstl::basic_current_directory_scope
+ *
+ * \ingroup group__concept__shim__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -226,6 +245,26 @@ inline C const* c_str_ptr_null(basic_current_directory_scope<C, T> const& b)
     return stlsoft_ns_qual(c_str_ptr_null)(b.get_previous());
 }
 
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k C>
+inline us_char_a_t const* c_str_ptr_a(unixstl_ns_qual(basic_current_directory_scope)<us_char_a_t, C> const& b)
+{
+    return b.c_str();
+}
+template <ss_typename_param_k C>
+inline us_char_w_t const* c_str_ptr_w(unixstl_ns_qual(basic_current_directory_scope)<us_char_w_t, C> const& b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref group__concept__shim__string_access__c_str_ptr for unixstl::basic_current_directory_scope
+ *
+ * \ingroup group__concept__shim__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -234,6 +273,26 @@ inline C const* c_str_ptr(basic_current_directory_scope<C, T> const& b)
     return b.get_previous();
 }
 
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k C>
+inline us_char_a_t const* c_str_data_a(unixstl_ns_qual(basic_current_directory_scope)<us_char_a_t, C> const& b)
+{
+    return b.c_str();
+}
+template <ss_typename_param_k C>
+inline us_char_w_t const* c_str_data_w(unixstl_ns_qual(basic_current_directory_scope)<us_char_w_t, C> const& b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref group__concept__shim__string_access__c_str_data for unixstl::basic_current_directory_scope
+ *
+ * \ingroup group__concept__shim__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -242,6 +301,27 @@ inline C const* c_str_data(basic_current_directory_scope<C, T> const& b)
     return b.get_previous();
 }
 
+
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k C>
+inline us_size_t c_str_len_a(unixstl_ns_qual(basic_current_directory_scope)<us_char_a_t, C> const& b)
+{
+    return stlsoft_ns_qual(c_str_len_a)(b.c_str());
+}
+template <ss_typename_param_k C>
+inline us_size_t c_str_len_w(unixstl_ns_qual(basic_current_directory_scope)<us_char_w_t, C> const& b)
+{
+    return stlsoft_ns_qual(c_str_len_w)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref group__concept__shim__string_access__c_str_len for unixstl::basic_current_directory_scope
+ *
+ * \ingroup group__concept__shim__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -364,13 +444,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::unixstl::c_str_ptr_null;
-
-using ::unixstl::c_str_ptr;
-
 using ::unixstl::c_str_data;
+using ::unixstl::c_str_data_a;
+using ::unixstl::c_str_data_w;
 
 using ::unixstl::c_str_len;
+using ::unixstl::c_str_len_a;
+using ::unixstl::c_str_len_w;
+
+using ::unixstl::c_str_ptr;
+using ::unixstl::c_str_ptr_a;
+using ::unixstl::c_str_ptr_w;
+
+using ::unixstl::c_str_ptr_null;
+using ::unixstl::c_str_ptr_null_a;
+using ::unixstl::c_str_ptr_null_w;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
