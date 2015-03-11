@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  1st February 2009
+; Updated:  3rd February 2009
 
 ============================================================================
+
+
+3rd February 2009 - 1.9.73 released
+-----------------------------------
+
+ * added partial support for Borland 5.9.x and 6.1.x; to support use of Borland with Pantheios
+ * re-applied VC++ 7.1 workaround eroneously removed in 1.9.70
 
 
 1st February 2009 - 1.9.72 released

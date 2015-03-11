@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     28th January 2009
+ * Updated:     1st February 2009
  *
  * Thanks:      To Nevin Liber for pressing upon me the need to lead by
  *              example when writing books about good design/implementation;
@@ -448,7 +448,7 @@ public:
     /// dots directory. For this you should use winstl::path, and call canonicalise()
     char_type const*        c_str() const;
     /// Returns the length of the full path
-    size_type               length() const;
+    ws_size_t               length() const; // NOTE: The return type must be ws_size_t, due to a defect in VC++ 7.1
 
     /// Implicit conversion to a pointer-to-const of the full path
     ///
@@ -1185,7 +1185,7 @@ inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::char_typ
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_ret_k basic_findfile_sequence_value_type<C, T>::size_type
+inline ws_size_t // NOTE: The return type must be ws_size_t, due to a defect in VC++ 7.1
 basic_findfile_sequence_value_type<C, T>::length() const
 {
     WINSTL_ASSERT(traits_type::str_len(this->c_str()) == m_pathLen);
