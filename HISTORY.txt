@@ -2,10 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  13th May 2008
+; Updated:  17th May 2008
 
 ============================================================================
 
+
+17th May 2008 - 1.9.42 released
+-------------------------------
+
+ * more Win64-compatibility modifications
+ * more Safe String library modifications
 
 13th May 2008 - 1.9.41 released
 -------------------------------

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     2nd March 1996
- * Updated:     9th March 2008
+ * Updated:     13th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    3
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        156
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    4
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        157
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,6 +64,9 @@
 #ifndef COMSTL_INCL_COMSTL_MEMORY_H_MEMORY_FUNCTIONS
 # include <comstl/memory/functions.h>
 #endif /* !COMSTL_INCL_COMSTL_MEMORY_H_MEMORY_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
+# include <stlsoft/internal/safestr.h>
+#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
 #ifndef STLSOFT_INCL_H_WCHAR
 # define STLSOFT_INCL_H_WCHAR
@@ -143,7 +146,7 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_create_a(cs_char_a_t const* s)
  */
 STLSOFT_INLINE LPOLESTR comstl__olestring_create_w(cs_char_w_t const* s)
 {
-    LPOLESTR    posz;
+    LPOLESTR posz;
 
     if(NULL == s)
     {
@@ -151,13 +154,17 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_create_w(cs_char_w_t const* s)
     }
     else
     {
-        cs_size_t   cch =   STLSOFT_NS_GLOBAL(wcslen)(s);
+        cs_size_t cch = STLSOFT_NS_GLOBAL(wcslen)(s);
 
-        posz    =   stlsoft_static_cast(LPOLESTR, STLSOFT_NS_GLOBAL(CoTaskMemAlloc)(sizeof(OLECHAR) * (cch + 1)));
+        posz = stlsoft_static_cast(LPOLESTR, STLSOFT_NS_GLOBAL(CoTaskMemAlloc)(sizeof(OLECHAR) * (cch + 1)));
 
         if(NULL != posz)
         {
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+            STLSOFT_NS_GLOBAL(wcscpy_s)(posz, 1 + cch, s);
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
             STLSOFT_NS_GLOBAL(wcscpy)(posz, s);
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
         }
     }
 

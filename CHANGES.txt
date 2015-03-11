@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  13th May 2008
+; Updated:  17th May 2008
 
 ============================================================================
 
@@ -16,6 +16,37 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.42 (13th May 2008)
+
+Summary:
+========
+
+ * more Win64-compatibility modifications
+ * more Safe String library modifications
+
+Changes:
+========
+
+ COMSTL:
+ -------
+
+ ~ comstl/string/olestring_functions.h - Safe String library compatibility
+   modifications, using wcscpy_s() instead of wcscpy()
+
+ InetSTL:
+ --------
+
+ ~ inetstl/filesystem/findfile_sequence.hpp - minor warning suppression
+
+ WinSTL:
+ -------
+
+ ~ winstl/window/functions.h - rewrote GetWindowLong()/SetWindowLong() use
+   to common functions winstl__get_window_sptrint_() and
+   winstl__set_window_sptrint_()
 
 ============================================================================
 
@@ -73,12 +104,12 @@ Changes:
 
   + added STLSOFT_WARN_64, to apply to variables whose sizes will be
     different between Win32 and Win64, to elicit warnings from VC++
-	(stlsoft/stlsoft.h)
+    (stlsoft/stlsoft.h)
 
   ~ stlsoft::truncation_test: suppression of 4267 warning in VC++ for the
     final conversion, since it's already been determined by the test that
-	the conversion is valid
-	(stlsoft/conversion/truncation_test.hpp)
+    the conversion is valid
+    (stlsoft/conversion/truncation_test.hpp)
 
  WinSTL:
  -------
@@ -88,21 +119,21 @@ Changes:
 
   ~ Windows Registry Library: change of result type from ws_long_t to LONG,
     to avoid unnecessary conversions and Win32/64 warnings
-	(winstl/registry/reg_traits.hpp)
+    (winstl/registry/reg_traits.hpp)
 
   ~ winstl::system_traits<>::get_locale_info(): change of cchData param from
     int_type to int to avoid unnecessary conversions and Win32/64 warnings
-	(winstl/system/system_traits.hpp)
+    (winstl/system/system_traits.hpp)
 
   ~ Windows Window Library: wholesale change from use of ws_long_t to
     ws_sptrint_t to ensure that the window style functions are 32 and 64-bit
-	compatible
-	(winstl/window/functions.h)
+    compatible
+    (winstl/window/functions.h)
 
   ~ winstl::set_window_icon(): suppression of 4267 warning in VC++ for what
     appears to be a compiler bug in interpretation of the conversion to
-	LPARAM in this function
-	(winstl/window/functions.h)
+    LPARAM in this function
+    (winstl/window/functions.h)
 
 ============================================================================
 
@@ -161,7 +192,7 @@ Changes:
 
   ~ platformstl/synch/atomic_functions.h now discriminates on
     WINSTL_ARCH_IS_X86, WINSTL_ARCH_IS_IA64 and WINSTL_ARCH_IS_X64 instead
-	of _M_IX86, _M_IA64 and _M_X64
+    of _M_IX86, _M_IA64 and _M_X64
 
  UNIXSTL:
  --------
@@ -250,10 +281,10 @@ Changes:
     and _WCHAR_T for the bool and wchar_t types support
   ~ include/stlsoft/internal/cccap/sunpro.h: adjustment to integral size
     detection: now simply searches for _LP64 or __LP64__ for LP64, otherwise
-	assumes int & long are 4-bytes
+    assumes int & long are 4-bytes
   ~ include/stlsoft/internal/cccap/sunpro.h: fix to known bug in Sun Pro C++
     library headers - <cwchar> is introduced to ensure it is included before
-	<stdio.h>
+    <stdio.h>
 
   ~ stlsoft::auto_buffer::allocate_() 1-param overload implemented in terms
     of the 2-param version
