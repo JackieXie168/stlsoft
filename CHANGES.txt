@@ -18,6 +18,26 @@ STLSoft - Changes
 
 ============================================================================
 
+Changes for 1.9.15 (24th December 2007)
+
+Summary:
+==========
+
+ * minor bug fix for C compilation
+
+Fixes:
+======
+
+ STLSoft:
+ --------
+
+ ~ previous versions of STLSoft defined STLSOFT_CF_EXCEPTION_SUPPORT and
+   STLSOFT_CF_RTTI_SUPPORT for some compilers in C compilation, notably GCC.
+   This was causing problems with the (soon-to-be-released) xTests and
+   flecxx libraries, and is now fixed.
+
+============================================================================
+
 Changes for 1.9.14 (23rd December 2007)
 
 Summary:

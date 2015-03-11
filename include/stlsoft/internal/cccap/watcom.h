@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Watcom C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th December 2007
+ * Updated:     23rd December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       14
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        69
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -164,20 +164,20 @@
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 /* RTTI support */
-# if defined(_CPPRTTI) || \
-     defined(__CPPRTTI)
+#if defined(_CPPRTTI) || \
+    defined(__CPPRTTI)
 # define STLSOFT_CF_RTTI_SUPPORT
-# else
-  /* Not defined */
-# endif /* __CPPUNWIND */
+#else
+ /* Not defined */
+#endif /* __CPPUNWIND */
 
 /* Exception support */
-# if defined(_CPPUNWIND) || \
-     defined(__CPPUNWIND)
-#  define STLSOFT_CF_EXCEPTION_SUPPORT
-# else
-  /* Not defined */
-# endif /* __CPPUNWIND */
+#if defined(_CPPUNWIND) || \
+    defined(__CPPUNWIND)
+# define STLSOFT_CF_EXCEPTION_SUPPORT
+#else
+ /* Not defined */
+#endif /* __CPPUNWIND */
 
 /*  */
 #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED

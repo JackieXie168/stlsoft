@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     15th December 2007
+ * Updated:     23rd December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     13
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      60
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -177,10 +177,14 @@
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 /* RTTI support */
-#define STLSOFT_CF_RTTI_SUPPORT
+#ifdef __cplusplus
+# define STLSOFT_CF_RTTI_SUPPORT
+#endif /* __cplusplus */
 
 /* Exception support */
-#define STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef __cplusplus
+# define STLSOFT_CF_EXCEPTION_SUPPORT
+#endif /* __cplusplus */
 
 /*  */
 #define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
