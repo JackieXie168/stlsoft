@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     22nd March 2007
+ * Updated:     12th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    7
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        153
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        154
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -893,6 +893,53 @@ public:
         STLSOFT_ASSERT(is_valid());
 
         return m_buffer;
+    }
+
+    /// \brief Returns a reference to the last element in the buffer
+    ///
+    /// \pre The buffer instance must not be empty
+    reference front()
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        STLSOFT_MESSAGE_ASSERT("Cannot call front() on an empty buffer!", !empty());
+
+        return m_buffer[0];
+    }
+    /// \brief Returns a reference to the last element in the buffer
+    ///
+    /// \pre The buffer instance must not be empty
+    reference back()
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        STLSOFT_MESSAGE_ASSERT("Cannot call back() on an empty buffer!", !empty());
+
+        return m_buffer[size() - 1];
+    }
+    /// \brief Returns a non-mutating (const) reference to the last element
+    ///   in the buffer
+    ///
+    /// \pre The buffer instance must not be empty
+    const_reference front() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        STLSOFT_MESSAGE_ASSERT("Cannot call front() on an empty buffer!", !empty());
+
+        return m_buffer[0];
+    }
+    /// \brief Returns a non-mutating (const) reference to the last element
+    ///   in the buffer
+    ///
+    /// \pre The buffer instance must not be empty
+    const_reference back() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        STLSOFT_MESSAGE_ASSERT("Cannot call back() on an empty buffer!", !empty());
+
+        return m_buffer[size() - 1];
     }
 /// @}
 

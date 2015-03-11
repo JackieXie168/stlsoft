@@ -4,7 +4,7 @@
  * Purpose:     string_traits traits class.
  *
  * Created:     16th January 2002
- * Updated:     12th March 2007
+ * Updated:     19th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MINOR     0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      73
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -302,16 +302,13 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<C> >
     }
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type &assign_inplace(string_type& str, I first, I last)
 #  else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type &assign_inplace(string_type& str, const_iterator first, const_iterator last)
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // std::basic_string cannot assign in-place (or rather not all implementations do so)
-        str.erase(last, str.end());
-        str.erase(str.begin(), first);
-
-        return str;
+        return (str = string_type(first, last), str);
     }
 };
 #  else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
@@ -344,16 +341,13 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_a_t> >
     }
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type &assign_inplace(string_type& str, I first, I last)
 #  else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type &assign_inplace(string_type& str, const_iterator first, const_iterator last)
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // std::basic_string cannot assign in-place (or rather not all implementations do so)
-        str.erase(last, str.end());
-        str.erase(str.begin(), first);
-
-        return str;
+        return (str = string_type(first, last), str);
     }
 };
 
@@ -385,16 +379,13 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_w_t> >
     }
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type &assign_inplace(string_type& str, I first, I last)
 #  else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type &assign_inplace(string_type& str, const_iterator first, const_iterator last)
 #  endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // std::basic_string cannot assign in-place (or rather not all implementations do so)
-        str.erase(last, str.end());
-        str.erase(str.begin(), first);
-
-        return str;
+        return (str = string_type(first, last), str);
     }
 };
 #   endif /* STLSOFT_CF_std_NAMESPACE */

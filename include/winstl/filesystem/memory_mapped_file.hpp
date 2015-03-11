@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     22nd March 2007
+ * Updated:     17th August 2007
  *
  * Thanks to:   Pablo Aguilar for requesting multibyte / Unicode ambivalence.
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      76
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,12 +124,20 @@ public:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     /// \brief The error type
     typedef ws_dword_t                      error_type;
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    /// \brief The offset type
+    typedef ws_uint64_t                     offset_type;
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /// @}
 
 /// \name Implementation
 /// @{
 private:
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    void open_(ws_char_a_t const* fileName, offset_type offset, ws_uint32_t requestSize)
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     void open_(ws_char_a_t const* fileName)
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     {
         scoped_handle<HANDLE>   hfile(  ::CreateFileA(  fileName
                                                     ,   GENERIC_READ
@@ -147,10 +155,14 @@ private:
                             ,   INVALID_HANDLE_VALUE);
 
 
-        open_helper_(hfile.get());
+        open_helper_(hfile.get(), offset, requestSize);
     }
 
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    void open_(ws_char_w_t const* fileName, offset_type offset, ws_uint32_t requestSize)
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     void open_(ws_char_w_t const* fileName)
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     {
         scoped_handle<HANDLE>   hfile(  ::CreateFileW(  fileName
                                                     ,   GENERIC_READ
@@ -168,10 +180,14 @@ private:
                             ,   INVALID_HANDLE_VALUE);
 
 
-        open_helper_(hfile.get());
+        open_helper_(hfile.get(), offset, requestSize);
     }
 
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    void open_helper_(HANDLE hFile, offset_type offset, ws_uint32_t requestSize)
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     void open_helper_(HANDLE hFile)
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     {
         if(INVALID_HANDLE_VALUE == hFile)
         {
@@ -202,11 +218,25 @@ private:
             }
             else
             {
+                DWORD   maxSizeHi   =   0;
+                DWORD   maxSizeLo   =   0;
+
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+                if( /* 0 != offset && \
+                     */0 != requestSize)
+                {
+                    offset_type maxSize = offset + requestSize;
+
+                    maxSizeHi = static_cast<DWORD>(maxSize >> 32);
+                    maxSizeLo = static_cast<DWORD>(maxSize);
+                }
+#endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
+
                 scoped_handle<HANDLE>   hmap(   ::CreateFileMappingA(   hFile
                                                                     ,   NULL
                                                                     ,   PAGE_READONLY
-                                                                    ,   0
-                                                                    ,   0
+                                                                    ,   maxSizeHi
+                                                                    ,   maxSizeLo
                                                                     ,   NULL)
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
@@ -224,9 +254,9 @@ private:
                 {
                     void    *memory = ::MapViewOfFile(  hmap.get()
                                                     ,   FILE_MAP_READ
-                                                    ,   0
-                                                    ,   0
-                                                    ,   0);
+                                                    ,   static_cast<ws_uint32_t>(offset >> 32)
+                                                    ,   static_cast<ws_uint32_t>(offset)
+                                                    ,   requestSize);
 
                     if(NULL == memory)
                     {
@@ -236,7 +266,7 @@ private:
                     {
                         m_memory    =   memory;
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-                        m_cb        =   (size_type(fileSizeHigh) << 32) | fileSizeLow;
+                        m_cb        =   (0 == requestSize) ? (size_type(fileSizeHigh) << 32) | fileSizeLow : requestSize;
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
                         m_cb        =   fileSizeLow;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
@@ -250,25 +280,84 @@ private:
 /// \name Construction
 /// @{
 public:
+    /// Maps an entire file into memory
     ss_explicit_k memory_mapped_file(ws_char_a_t const* fileName)
         : m_cb(0)
         , m_memory(NULL)
     {
-        open_(fileName);
+        open_(fileName, 0, 0);
     }
+    /// Maps an entire file into memory
     ss_explicit_k memory_mapped_file(ws_char_w_t const* fileName)
         : m_cb(0)
         , m_memory(NULL)
     {
-        open_(fileName);
+        open_(fileName, 0, 0);
     }
+    /// Maps an entire file into memory
     template <ss_typename_param_k S>
     ss_explicit_k memory_mapped_file(S const& fileName)
         : m_cb(0)
         , m_memory(NULL)
     {
-        open_(stlsoft_ns_qual(c_str_ptr)(fileName));
+        open_(stlsoft_ns_qual(c_str_ptr)(fileName), 0, 0);
     }
+
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    /// Maps a portion of a file into memory
+    ///
+    /// \param fileName The name of the file to map into memory
+    /// \param offset The offset into the file where the mapping
+    ///   begins. Must be a multiple of the system allocation
+    ///   granularity
+    /// \param requestSize The size of the portion of the file
+    ///   to map into memory. If 0, all (of the remaining portion)
+    ///   of the file is loaded
+    memory_mapped_file( ws_char_a_t const*  fileName
+                    ,   offset_type         offset
+                    ,   ws_uint32_t         requestSize)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(fileName, offset, requestSize);
+    }
+    /// Maps a portion of a file into memory
+    ///
+    /// \param fileName The name of the file to map into memory
+    /// \param offset The offset into the file where the mapping
+    ///   begins. Must be a multiple of the system allocation
+    ///   granularity
+    /// \param requestSize The size of the portion of the file
+    ///   to map into memory. If 0, all (of the remaining portion)
+    ///   of the file is loaded
+    memory_mapped_file( ws_char_w_t const*  fileName
+                    ,   offset_type         offset
+                    ,   ws_uint32_t         requestSize)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(fileName, offset, requestSize);
+    }
+    /// Maps a portion of a file into memory
+    ///
+    /// \param fileName The name of the file to map into memory
+    /// \param offset The offset into the file where the mapping
+    ///   begins. Must be a multiple of the system allocation
+    ///   granularity
+    /// \param requestSize The size of the portion of the file
+    ///   to map into memory. If 0, all (of the remaining portion)
+    ///   of the file is loaded
+    template <ss_typename_param_k S>
+    memory_mapped_file( S const&            fileName
+                    ,   offset_type         offset
+                    ,   ws_uint32_t         requestSize)
+        : m_cb(0)
+        , m_memory(NULL)
+    {
+        open_(stlsoft_ns_qual(c_str_ptr)(fileName), offset, requestSize);
+    }
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+
     ~memory_mapped_file() stlsoft_throw_0()
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT

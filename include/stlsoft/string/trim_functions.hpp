@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for trimming and removing string contents.
  *
  * Created:     25th April 2005
- * Updated:     12th March 2007
+ * Updated:     19th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        30
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    4
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -112,7 +112,7 @@ namespace stlsoft
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C>
-inline C const* default_trim_chars(C const* , ss_size_t &n)
+inline C const* default_trim_chars(C const* , ss_size_t& n)
 {
     static const C  s_trimChars[] =
     {
@@ -139,10 +139,10 @@ inline C const* default_trim_chars(C const* , ss_size_t &n)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline S &trim_left_impl(S &str, C const* trimChars)
+inline S& trim_left_impl(S& str, C const* trimChars)
 #else /* ? compiler */
 template<ss_typename_param_k S>
-inline S &trim_left_impl(S &str, ss_typename_type_k string_traits<S>::char_type const* trimChars)
+inline S& trim_left_impl(S& str, ss_typename_type_k string_traits<S>::char_type const* trimChars)
 #endif /* compiler */
 {
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
@@ -154,8 +154,7 @@ inline S &trim_left_impl(S &str, ss_typename_type_k string_traits<S>::char_type 
     // 3. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type           char_t;
     // 4. typedef the iterator type(s)
-    typedef ss_typename_type_k string_traits_t::iterator            iterator_t;
-//    typedef ss_typename_type_k string_traits_t::reverse_iterator  reverse_iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_iterator      iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
 
@@ -163,19 +162,19 @@ inline S &trim_left_impl(S &str, ss_typename_type_k string_traits<S>::char_type 
     const iterator_t  it_b    =   str.begin();
     const iterator_t  it_e    =   str.end();
     const iterator_t  it_l    =   find_if(it_b, it_e, not1(bind1st(ptr_fun(pfn), trimChars)));
-    iterator_t const  &it_r   =   it_e;
+    iterator_t const& it_r    =   it_e;
 
     return string_traits_t::assign_inplace(str, it_l, it_r);
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief
+/** \brief Trims all the leading whitespace characters, if any, from a string
  *
  * \ingroup group__library__string
  */
 template<ss_typename_param_k S>
-inline S &trim_left(S &str)
+inline S& trim_left(S& str)
 {
     // 1. typedef the string traits
     typedef string_traits<S>                                string_traits_t;
@@ -184,13 +183,15 @@ inline S &trim_left(S &str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
+
+    STLSOFT_SUPPRESS_UNUSED(p);
 # endif /* compiler */
 
     // 2. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type   char_t;
 
     ss_size_t       n;
-    char_t const    *trimChars  =   default_trim_chars(static_cast<char_t const*>(0), n);
+    char_t const*   trimChars  =   default_trim_chars(static_cast<char_t const*>(0), n);
 
     STLSOFT_SUPPRESS_UNUSED(n);
 
@@ -204,7 +205,7 @@ inline S &trim_left(S &str)
 template<   ss_typename_param_k S0
         ,   ss_typename_param_k S1
         >
-inline S0 &trim_left(S0 &str, S1 const& trimChars)
+inline S0& trim_left(S0& str, S1 const& trimChars)
 {
     return trim_left_impl(str, stlsoft_ns_qual(c_str_ptr)(trimChars));
 }
@@ -223,31 +224,33 @@ inline S0 &trim_left(S0 &str, S1 const& trimChars)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline S &trim_right_impl(S &str, C const* trimChars)
+inline S& trim_right_impl(S& str, C const* trimChars)
 #else /* ? compiler */
 template<ss_typename_param_k S>
-inline S &trim_right_impl(S &str, ss_typename_type_k string_traits<S>::char_type const* trimChars)
+inline S& trim_right_impl(S& str, ss_typename_type_k string_traits<S>::char_type const* trimChars)
 #endif /* compiler */
 {
+    S const& cstr = str;
+
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
 #ifdef STLSOFT_CF_std_NAMESPACE
     using namespace std;
 #endif /* STLSOFT_CF_std_NAMESPACE */
     // 2. typedef the string traits
-    typedef string_traits<S>                                        string_traits_t;
+    typedef string_traits<S>                                            string_traits_t;
     // 3. typedef the char_t
-    typedef ss_typename_type_k string_traits_t::char_type           char_t;
+    typedef ss_typename_type_k string_traits_t::char_type               char_t;
     // 4. typedef the iterator type(s)
-    typedef ss_typename_type_k string_traits_t::iterator            iterator_t;
-    typedef ss_typename_type_k string_traits_t::reverse_iterator    reverse_iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_iterator          iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_reverse_iterator  reverse_iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
 
     // Get a (reverse) iterator to the first element that is not a space === find_last_not_of
-    const iterator_t            it_b    =   str.begin();
-//    const iterator_t            it_e    =   str.end();
+    const iterator_t            it_b    =   cstr.begin();
+//  const iterator_t            it_e    =   cstr.end();
     const iterator_t            it_l    =   it_b;
-    const reverse_iterator_t    rit     =   find_if(str.rbegin(), str.rend(), not1(bind1st(ptr_fun(pfn), trimChars)));
+    const reverse_iterator_t    rit     =   find_if(cstr.rbegin(), cstr.rend(), not1(bind1st(ptr_fun(pfn), trimChars)));
     const iterator_t            it_r    =   rit.base();
 
     return string_traits_t::assign_inplace(str, it_l, it_r);
@@ -260,12 +263,12 @@ inline S &trim_right_impl(S &str, ss_typename_type_k string_traits<S>::char_type
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief
+/** \brief Trims all the trailing whitespace characters, if any, from a string
  *
  * \ingroup group__library__string
  */
 template<ss_typename_param_k S>
-inline S &trim_right(S &str)
+inline S& trim_right(S& str)
 {
     // 1. typedef the string traits
     typedef string_traits<S>                                string_traits_t;
@@ -274,13 +277,15 @@ inline S &trim_right(S &str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
+
+    STLSOFT_SUPPRESS_UNUSED(n);
 # endif /* compiler */
 
     // 2. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type   char_t;
 
     ss_size_t       n;
-    char_t const    *trimChars  =   default_trim_chars(static_cast<char_t const*>(0), n);
+    char_t const*   trimChars  =   default_trim_chars(static_cast<char_t const*>(0), n);
 
     STLSOFT_SUPPRESS_UNUSED(n);
 
@@ -294,7 +299,7 @@ inline S &trim_right(S &str)
 template<   ss_typename_param_k S0
         ,   ss_typename_param_k S1
         >
-inline S0 &trim_right(S0 &str, S1 const& trimChars)
+inline S0& trim_right(S0& str, S1 const& trimChars)
 {
     return trim_right_impl(str, stlsoft_ns_qual(c_str_ptr)(trimChars));
 }
@@ -314,12 +319,14 @@ inline S0 &trim_right(S0 &str, S1 const& trimChars)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline S &trim_all_impl(S &str, C const* trimChars)
+inline S& trim_all_impl(S& str, C const* trimChars)
 #else /* ? compiler */
 template<ss_typename_param_k S>
-inline S &trim_all_impl(S &str, ss_typename_type_k string_traits<S>::char_type const* trimChars)
+inline S& trim_all_impl(S& str, ss_typename_type_k string_traits<S>::char_type const* trimChars)
 #endif /* compiler */
 {
+    S const& cstr = str;
+
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
 #ifdef STLSOFT_CF_std_NAMESPACE
     using namespace std;
@@ -329,16 +336,16 @@ inline S &trim_all_impl(S &str, ss_typename_type_k string_traits<S>::char_type c
     // 3. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type           char_t;
     // 4. typedef the iterator type(s)
-    typedef ss_typename_type_k string_traits_t::iterator            iterator_t;
-    typedef ss_typename_type_k string_traits_t::reverse_iterator    reverse_iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_iterator            iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_reverse_iterator    reverse_iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
 
     // Get an iterator to the first element that
-    const iterator_t            it_b    =   str.begin();
-//    const iterator_t            it_e    =   str.end();
-    const iterator_t            it_l    =   find_if(it_b, str.end(), not1(bind1st(ptr_fun(pfn), trimChars)));
-    const reverse_iterator_t    rit     =   find_if(str.rbegin(), str.rend(), not1(bind1st(ptr_fun(pfn), trimChars)));
+    const iterator_t            it_b    =   cstr.begin();
+//  const iterator_t            it_e    =   cstr.end();
+    const iterator_t            it_l    =   find_if(it_b, cstr.end(), not1(bind1st(ptr_fun(pfn), trimChars)));
+    const reverse_iterator_t    rit     =   find_if(cstr.rbegin(), cstr.rend(), not1(bind1st(ptr_fun(pfn), trimChars)));
     const iterator_t            it_r    =   rit.base();
 
     return string_traits_t::assign_inplace(str, it_l, it_r);
@@ -351,12 +358,12 @@ inline S &trim_all_impl(S &str, ss_typename_type_k string_traits<S>::char_type c
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief
+/** \brief Trims all the leading and trailing whitespace characters, if any, from a string
  *
  * \ingroup group__library__string
  */
 template<ss_typename_param_k S>
-inline S &trim_all(S &str)
+inline S& trim_all(S& str)
 {
     // 1. typedef the string traits
     typedef string_traits<S>                                string_traits_t;
@@ -365,13 +372,15 @@ inline S &trim_all(S &str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
+
+    STLSOFT_SUPPRESS_UNUSED(n);
 # endif /* compiler */
 
     // 2. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type   char_t;
 
     ss_size_t       n;
-    char_t const    *trimChars  =   default_trim_chars(static_cast<char_t const*>(0), n);
+    char_t const*   trimChars  =   default_trim_chars(static_cast<char_t const*>(0), n);
 
     STLSOFT_SUPPRESS_UNUSED(n);
 
@@ -385,7 +394,7 @@ inline S &trim_all(S &str)
 template<   ss_typename_param_k S0
         ,   ss_typename_param_k S1
         >
-inline S0 &trim_all(S0 &str, S1 const& trimChars)
+inline S0& trim_all(S0& str, S1 const& trimChars)
 {
     return trim_all_impl(str, stlsoft_ns_qual(c_str_ptr)(trimChars));
 }
@@ -398,10 +407,10 @@ inline S0 &trim_all(S0 &str, S1 const& trimChars)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-inline S &remove_all_impl(S &str, C const* removeChars)
+inline S& remove_all_impl(S& str, C const* removeChars)
 #else /* ? compiler */
 template<ss_typename_param_k S>
-inline S &remove_all_impl(S &str, ss_typename_type_k S::value_type const* removeChars)
+inline S& remove_all_impl(S& str, ss_typename_type_k S::value_type const* removeChars)
 #endif /* compiler */
 {
     // 1. 'use' the std namespace here, otherwise get totally clogged in stlsoft_ns_qual_std(XX)
@@ -413,14 +422,13 @@ inline S &remove_all_impl(S &str, ss_typename_type_k S::value_type const* remove
     // 3. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type           char_t;
     // 4. typedef the iterator type(s)
-    typedef ss_typename_type_k string_traits_t::iterator            iterator_t;
-//    typedef ss_typename_type_k string_traits_t::reverse_iterator  reverse_iterator_t;
+    typedef ss_typename_type_k string_traits_t::const_iterator      iterator_t;
     // 5. Since ::stlsoft::strchr is an overloaded function, we disambiguate by casting to the type required
     char_t const* (*pfn)(char_t const*, char_t)   =   ::stlsoft::strchr;
 
     // Get an iterator to the first element that
     /* const */ iterator_t        it_b    =   str.begin();
-//    const iterator_t        it_e    =   str.end();
+//  const iterator_t        it_e    =   str.end();
     const iterator_t        it_l    =   it_b;
     const iterator_t        it_r    =   remove_if(it_b, str.end(), bind1st(ptr_fun(pfn), removeChars));
 
@@ -434,7 +442,7 @@ inline S &remove_all_impl(S &str, ss_typename_type_k S::value_type const* remove
  * \ingroup group__library__string
  */
 template<ss_typename_param_k S>
-inline S &remove_all(S &str)
+inline S& remove_all(S& str)
 {
     // 1. typedef the string traits
     typedef string_traits<S>                                string_traits_t;
@@ -443,13 +451,15 @@ inline S &remove_all(S &str)
      __BORLANDC__ < 0x0564
     // This is needed here to tell the Borland compiler that it's a type!
     string_traits_t::char_type  *p  =   NULL;
+
+    STLSOFT_SUPPRESS_UNUSED(n);
 # endif /* compiler */
 
     // 2. typedef the char_t
     typedef ss_typename_type_k string_traits_t::char_type   char_t;
 
     ss_size_t       n;
-    char_t const    *removeChars    =   default_trim_chars(static_cast<char_t const*>(0), n);
+    char_t const*   removeChars    =   default_trim_chars(static_cast<char_t const*>(0), n);
 
     STLSOFT_SUPPRESS_UNUSED(n);
 
@@ -463,7 +473,7 @@ inline S &remove_all(S &str)
 template<   ss_typename_param_k S0
         ,   ss_typename_param_k S1
         >
-inline S0 &remove_all(S0 &str, S1 const& removeChars)
+inline S0& remove_all(S0& str, S1 const& removeChars)
 {
     return remove_all_impl(str, stlsoft_ns_qual(c_str_ptr)(removeChars));
 }

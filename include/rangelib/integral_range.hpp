@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     22nd March 2007
+ * Updated:     4th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     48
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 3
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -157,6 +157,9 @@ public:
 
         STLSOFT_ASSERT(cch < STLSOFT_NUM_ELEMENTS(message));
         STLSOFT_SUPPRESS_UNUSED(cch);
+#if defined(STLSOFT_COMPILER_IS_COMO)
+        STLSOFT_SUPPRESS_UNUSED(s_format);
+#endif /* compiler */
 
         throw thrown_type(message);
     }

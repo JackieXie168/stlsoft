@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     22nd March 2007
+ * Updated:     17th September 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     213
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     214
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,11 +111,11 @@ class module
 {
 public:
     /// \brief The handle type
-    typedef void        *module_handle_type;
+    typedef void*       module_handle_type;
     /// \brief The class type
     typedef module      class_type;
     /// \brief The entry point type
-    typedef void        *proc_pointer_type;
+    typedef void*       proc_pointer_type;
 
 /// \name Construction
 /// @{

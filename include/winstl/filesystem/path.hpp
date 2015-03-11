@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     22nd March 2007
+ * Updated:     12th August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     234
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     235
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -305,7 +305,15 @@ public:
 
     /// \brief Converts the path to absolute form
     class_type  &make_absolute(bool_type bRemoveTrailingPathNameSeparator = true);
-    /// \brief Canonicalises the path, removing all "./" parts and evaluating all "../" parts
+    /// \brief Canonicalises the path
+    ///
+    /// Canonicalises the path, removing all "./" parts and evaluating all
+    /// "../" parts. Any path with only one part will not be canonicalised.
+    /// A leading '.' will be preserved if no other '..' or "normal" parts
+    /// are contained.
+    ///
+    /// \param bRemoveTrailingPathNameSeparator Removes any trailing
+    ///   separator, even if no other changes have been made.
     class_type  &canonicalise(bool_type bRemoveTrailingPathNameSeparator = true);
 /// @}
 
@@ -407,13 +415,13 @@ private:
     static char_type const  *next_slash_or_end(char_type const* p);
     static char_type        path_name_separator_alt();
 
-// Members
+// Member Types
 private:
     typedef basic_file_path_buffer< char_type
                                 ,   allocator_type
-                                >                   buffer_type;
+                                >                   buffer_type_;
 
-    struct part
+    struct part_type
     {
         enum Type
         {
@@ -427,8 +435,30 @@ private:
         Type                type;
     };
 
-    buffer_type m_buffer;
-    size_type   m_len;
+#ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+    typedef ss_typename_type_k A::ss_template_qual_k rebind<part_type>::other   part_ator_type_;
+#else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+# ifdef WIN32
+    typedef ss_typename_type_k processheap_allocator<part_type>                 part_ator_type_;
+# else /* ? OS */
+    typedef ss_typename_type_k allocator_selector<part_type>::allocator_type    part_ator_type_;
+# endif /* OS */
+#endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+
+    typedef stlsoft_ns_qual(auto_buffer_old)<   part_type
+                                            ,   part_ator_type_
+# ifdef WIN32
+                                            ,   _MAX_PATH / 2
+# endif /* OS */
+                                            >                               part_buffer_type_;
+
+
+    static size_type coallesce_parts_(part_buffer_type_& parts);
+
+// Member Variables
+private:
+    buffer_type_    m_buffer;
+    size_type       m_len;
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -878,6 +908,40 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
+inline /* static */ ss_typename_param_k basic_path<C, T, A>::size_type basic_path<C, T, A>::coallesce_parts_(ss_typename_param_k basic_path<C, T, A>::part_buffer_type_& parts)
+{
+    ss_typename_param_k part_buffer_type_::iterator src     =   parts.begin();
+    ss_typename_param_k part_buffer_type_::iterator dest    =   parts.begin();
+
+    { for(size_type i = 0; i < parts.size(); ++i, ++src)
+    {
+        if(0 == parts[i].len)
+        {
+            ; // Skip/overwrite this element
+        }
+        else
+        {
+            if(dest != src)
+            {
+                *dest = *src;
+            }
+
+            ++dest;
+        }
+    }}
+
+    size_type   n = dest - parts.begin();
+
+    parts.resize(n);
+
+    return n;
+}
+
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
 inline basic_path<C, T, A>::basic_path()
     : m_len(0)
 {
@@ -1078,20 +1142,26 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::push_sep_(ss_typename_type_k ba
         sep = traits_type::path_name_separator();
     }
 
-    WINSTL_ASSERT(sep == traits_type::path_name_separator() || sep == path_name_separator_alt());
+    WINSTL_MESSAGE_ASSERT("You can only push a path name separator character recognised by your operating system!", traits_type::is_path_name_separator(sep));
 
     if(0 != m_len)
     {
-        if(traits_type::path_name_separator() != m_buffer[m_len - 1])
-        {
-            if(path_name_separator_alt() != m_buffer[m_len - 1])
-            {
-                WINSTL_ASSERT(m_len + 1 < m_buffer.size());
+        char_type&  last = m_buffer[m_len - 1];
 
-                m_buffer[m_len]     =   sep;
-                m_buffer[m_len + 1] =   '\0';
-                ++m_len;
+        if(traits_type::is_path_name_separator(last))
+        {
+            if(last != sep)
+            {
+                last = sep;
             }
+        }
+        else
+        {
+            WINSTL_ASSERT(m_len + 1 < m_buffer.size());
+
+            m_buffer[m_len]     =   sep;
+            m_buffer[m_len + 1] =   '\0';
+            ++m_len;
         }
     }
 
@@ -1235,9 +1305,9 @@ template<   ss_typename_param_k C
         >
 inline basic_path<C, T, A> &basic_path<C, T, A>::make_absolute(ws_bool_t bRemoveTrailingPathNameSeparator /* = true */)
 {
-    buffer_type buffer;
-    size_type   cch = traits_type::get_full_path_name(c_str(), buffer.size(), &buffer[0]);
-    class_type  newPath(stlsoft_ns_qual(c_str_ptr)(buffer), cch);
+    buffer_type_    buffer;
+    size_type       cch = traits_type::get_full_path_name(c_str(), buffer.size(), &buffer[0]);
+    class_type      newPath(stlsoft_ns_qual(c_str_ptr)(buffer), cch);
 
     if(bRemoveTrailingPathNameSeparator)
     {
@@ -1263,20 +1333,12 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
 
     // Basically we scan through the path looking for ./ .\ ..\ and ../
 
-#ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
-    typedef ss_typename_type_k A::ss_template_qual_k rebind<part>::other    part_ator_type;
-#else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    typedef ss_typename_type_k allocator_selector<part>::allocator_type     part_ator_type;
-#endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+    // 0. Handle special path prefixes
 
-    typedef stlsoft_ns_qual(auto_buffer_old)<   part
-                                            ,   part_ator_type
-                                            >                               part_buffer_t;
-
-    part_buffer_t   parts(this->length() / 2);  // Uncanonicalised directory parts
-    char_type       *dest   =   &newPath.m_buffer[0];
-    char_type const* p1     =   this->c_str();
-    char_type const* p2;
+    part_buffer_type_   parts(this->length() / 2);  // Uncanonicalised directory parts
+    char_type*          dest   =   &newPath.m_buffer[0];
+    char_type const*    p1     =   this->c_str();
+    char_type const*    p2;
 
     if(traits_type::is_path_UNC(this->c_str()))
     {
@@ -1315,13 +1377,13 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
 
             parts[i].len    =   static_cast<size_type>(p2 - p1);
             parts[i].p      =   p1;
-            parts[i].type   =   part::normal;
+            parts[i].type   =   part_type::normal;
             switch(parts[i].len)
             {
                 case    1:
                     if('.' == p1[0])
                     {
-                        parts[i].type   =   part::dot;
+                        parts[i].type   =   part_type::dot;
                     }
                     break;
                 case    2:
@@ -1329,15 +1391,15 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
                     {
                         if('.' == p1[1])
                         {
-                            parts[i].type   =   part::dotdot;
+                            parts[i].type   =   part_type::dotdot;
                         }
                         else if(traits_type::path_name_separator() == p1[1])
                         {
-                            parts[i].type   =   part::dot;
+                            parts[i].type   =   part_type::dot;
                         }
                         else if(path_name_separator_alt() == p1[1])
                         {
-                            parts[i].type   =   part::dot;
+                            parts[i].type   =   part_type::dot;
                         }
                     }
                     break;
@@ -1347,11 +1409,11 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
                     {
                         if(traits_type::path_name_separator() == p1[2])
                         {
-                            parts[i].type   =   part::dotdot;
+                            parts[i].type   =   part_type::dotdot;
                         }
                         else if(path_name_separator_alt() == p1[2])
                         {
-                            parts[i].type   =   part::dotdot;
+                            parts[i].type   =   part_type::dotdot;
                         }
                     }
                     break;
@@ -1365,52 +1427,71 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
         parts.resize(i);
     }
 
-    // 2. Process the parts into a canonicalised sequence
+    // 2.a Remove all '.' parts
+    { for(size_type i = 0; i < parts.size(); ++i)
     {
-        for(size_type i = 0; i < parts.size(); ++i)
+        WINSTL_ASSERT(0 != parts[i].len);
+
+        part_type&  part = parts[i];
+
+        if(part_type::dot == part.type)
         {
-            switch(parts[i].type)
+            part.len = 0;
+        }
+    }}
+
+    coallesce_parts_(parts);
+
+    // 2.b Process the '..' parts
+    { for(size_type i = 1; i < parts.size(); ++i)
+    {
+        WINSTL_ASSERT(0 != parts[i].len);
+
+        part_type&  part = parts[i];
+
+        if(part_type::dotdot == part.type)
+        {
+            { for(size_type prior = i; ; )
             {
-                case    part::dot:
-                    parts[i].len = 0;
+                if(0 == prior)
+                {
                     break;
-                case    part::dotdot:
-                    // Now need to track back and find a prior normal element
+                }
+                else
+                {
+                    --prior;
+
+                    if(0 != parts[prior].len)
                     {
-                        size_type   prior;
-
-                        for(prior = i; ; )
+                        if(part_type::normal == parts[prior].type)
                         {
-                            if(0 == prior)
-                            {
-                                STLSOFT_THROW_X(winstl_ns_qual_std(invalid_argument)("No prior part to \"..\" for path canonicalisation"));
-                            }
-                            else
-                            {
-                                --prior;
-
-                                if( part::normal == parts[prior].type &&
-                                    0 != parts[prior].len)
-                                {
-                                    parts[i].len = 0;
-                                    parts[prior].len = 0;
-                                    break;
-                                }
-                            }
+                            part.len = 0;
+                            parts[prior].len = 0;
+                            break;
                         }
                     }
-                    break;
-                case    part::normal:
-                default:
-                    break;
-            }
+                }
+            }}
         }
+    }}
+
+    coallesce_parts_(parts);
+
+    // 2.c "insert" a '.' if we've removed everything.
+    if(parts.empty())
+    {
+        static const char_type  s_dot[] = { '.', '/' };
+
+        parts.resize(1);
+        parts[0].type   =   part_type::dot;
+        parts[0].len    =   1;
+        parts[0].p      =   s_dot;
     }
 
     // 3. Write out all the parts back into the new path instance
     {
 #ifdef _DEBUG
-        memset(dest, '~', newPath.m_buffer.size() - (dest - &newPath.m_buffer[0]));
+        ::memset(dest, '~', newPath.m_buffer.size() - (dest - &newPath.m_buffer[0]));
 #endif /* _DEBUG */
 
         for(size_type i = 0; i < parts.size(); ++i)
@@ -1424,7 +1505,19 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
         newPath.m_len = static_cast<size_type>(dest - newPath.c_str());
     }
 
-    if(bRemoveTrailingPathNameSeparator)
+    // Now we determine whether to leave a trailing separator or
+    // not and, if so, what type it should be.
+
+    WINSTL_ASSERT(m_len > 0);
+
+    char_type last = m_buffer[m_len - 1];
+
+    if( !bRemoveTrailingPathNameSeparator &&
+        traits_type::is_path_name_separator(last))
+    {
+        newPath.push_sep_(last);
+    }
+    else
     {
         newPath.pop_sep();
     }

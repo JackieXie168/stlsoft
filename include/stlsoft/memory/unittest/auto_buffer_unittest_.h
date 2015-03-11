@@ -1,5 +1,5 @@
 
-// Updated: 12th March 2007
+// Updated: 12th August 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER)
 # error This file cannot be directly included, and should only be included within stlsoft/memory/auto_buffer.hpp
@@ -74,6 +74,34 @@ namespace unittest
 				bSuccess = false;
 			}
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
+			if(!buffer1.empty())
+			{
+				if(&buffer1.front() != buffer1.data())
+				{
+					r->report("front() failed", __LINE__);
+					bSuccess = false;
+				}
+				if(&buffer1.back() != buffer1.data() + (buffer1.size() - 1))
+				{
+					r->report("back() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
+
+			if(!buffer2.empty())
+			{
+				if(&buffer2.front() != buffer2.data())
+				{
+					r->report("front() failed", __LINE__);
+					bSuccess = false;
+				}
+				if(&buffer2.back() != buffer2.data() + (buffer2.size() - 1))
+				{
+					r->report("back() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
 			return bSuccess;
 		}
