@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     2nd March 2012
+ * Updated:     22nd November 2013
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    8
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     91
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -600,7 +600,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     us_streamoff_t; /*!< streamoff */
 #ifndef _UNIXSTL_NO_NAMESPACE
 typedef us_char_a_t         char_a_t;           /*!< Ansi char type */
 typedef us_char_w_t         char_w_t;           /*!< Unicode char type */
-/* typedef us_int8_t           int8_t; */             /*!< 8-bit integer */
+/* typedef us_int8_t           int8_t; */              /*!< 8-bit integer */
 typedef us_sint8_t          sint8_t;            /*!< 8-bit signed integer */
 typedef us_uint8_t          uint8_t;            /*!< 8-bit unsigned integer */
 typedef us_int16_t          int16_t;            /*!< 16-bit integer */
@@ -619,7 +619,7 @@ typedef us_int_t            int_t;              /*!< integer */
 typedef us_sint_t           sint_t;             /*!< signed integer */
 typedef us_uint_t           uint_t;             /*!< unsigned integer */
 typedef us_long_t           long_t;             /*!< long integer */
-/* typedef us_byte_t           byte_t; */             /*!< Byte */
+/* typedef us_byte_t           byte_t; */              /*!< Byte */
 typedef us_bool_t           bool_t;             /*!< bool */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
 typedef us_streampos_t      streampos_t;        /*!< streampos */
@@ -663,17 +663,17 @@ typedef us_streamoff_t      streamoff_t;        /*!< streamoff */
 # define unixstl_num_elements(ar)                       UNIXSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define unixstl_destroy_instance(t, _type, p)           STLSOFT_DESTROY_INSTANCE(t, _type, p)
+#define unixstl_destroy_instance(t, type, p)            STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define unixstl_gen_opaque(_htype)                      STLSOFT_GEN_OPAQUE(_htype)
+#define unixstl_gen_opaque(htype)                       STLSOFT_GEN_OPAQUE(htype)
 
 /* ////////////////////////////////////////////////////////////////////// */
 

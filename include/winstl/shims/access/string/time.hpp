@@ -4,14 +4,14 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     10th March 2011
+ * Updated:     28th May 2014
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    8
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        55
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    9
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,11 +129,15 @@ struct winstl_shims_access_string_time_impl
                                                     ,   int                 cchTime);   // size of string buffer
 
     //
-    static ws_size_t calc_sizes(SYSTEMTIME const&       t
-                            ,   pfnGetDateTimeFmtA_t    pfnGetDateFmtA
-                            ,   pfnGetDateTimeFmtA_t    pfnGetTimeFmtA
-                            ,   ws_size_t&              cchDate
-                            ,   ws_size_t&              cchTime)
+    static
+    ws_size_t
+    calc_sizes(
+        SYSTEMTIME const&       t
+    ,   pfnGetDateTimeFmtA_t    pfnGetDateFmtA
+    ,   pfnGetDateTimeFmtA_t    pfnGetTimeFmtA
+    ,   ws_size_t&              cchDate
+    ,   ws_size_t&              cchTime
+    )
     {
         cchDate = static_cast<ws_size_t>(pfnGetDateFmtA(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0));
 
@@ -148,18 +152,27 @@ struct winstl_shims_access_string_time_impl
         }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(conversion_error("failed to convert date/time", ::GetLastError()));
+        DWORD const e = ::GetLastError();
+
+        // TODO: discriminate on e and on the values of t to determine
+        // which condition (of invalid value, out-of-range, etc.)
+
+        STLSOFT_THROW_X(conversion_error("failed to convert date/time", e));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return 0;
     }
 
     //
-    static ws_size_t calc_sizes(SYSTEMTIME const&       t
-                            ,   pfnGetDateTimeFmtW_t    pfnGetDateFmtW
-                            ,   pfnGetDateTimeFmtW_t    pfnGetTimeFmtW
-                            ,   ws_size_t&              cchDate
-                            ,   ws_size_t&              cchTime)
+    static
+    ws_size_t
+    calc_sizes(
+        SYSTEMTIME const&       t
+    ,   pfnGetDateTimeFmtW_t    pfnGetDateFmtW
+    ,   pfnGetDateTimeFmtW_t    pfnGetTimeFmtW
+    ,   ws_size_t&              cchDate
+    ,   ws_size_t&              cchTime
+    )
     {
         cchDate = static_cast<ws_size_t>(pfnGetDateFmtW(LOCALE_USER_DEFAULT, 0, &t, NULL, NULL, 0));
 
@@ -174,7 +187,12 @@ struct winstl_shims_access_string_time_impl
         }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(conversion_error("failed to convert date/time", ::GetLastError()));
+        DWORD const e = ::GetLastError();
+
+        // TODO: discriminate on e and on the values of t to determine
+        // which condition (of invalid value, out-of-range, etc.)
+
+        STLSOFT_THROW_X(conversion_error("failed to convert date/time", e));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return 0;
@@ -200,13 +218,19 @@ struct winstl_shims_access_string_time_impl
  *  <code>GetLastError()</code> to determine whether the conversion has been
  *  successful.
  */
-inline SYSTEMTIME FILETIME2SYSTEMTIME(FILETIME const& ft)
+inline
+SYSTEMTIME
+FILETIME2SYSTEMTIME(
+    FILETIME const& ft
+)
 {
     return winstl_ns_qual(to_SYSTEMTIME)(ft);
 }
 
 template <ss_typename_param_k S>
-inline void stream_insert(S &stm, SYSTEMTIME const& t)
+inline
+void
+stream_insert(S &stm, SYSTEMTIME const& t)
 {
     typedef stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>     string_t;
     typedef winstl_shims_access_string_time_impl                impl_t;
@@ -242,7 +266,9 @@ inline void stream_insert(S &stm, SYSTEMTIME const& t)
 }
 
 template <ss_typename_param_k S>
-inline void stream_insert(S &stm, FILETIME const& ft)
+inline
+void
+stream_insert(S &stm, FILETIME const& ft)
 {
     stream_insert(stm, FILETIME2SYSTEMTIME(ft));
 }
@@ -250,7 +276,9 @@ inline void stream_insert(S &stm, FILETIME const& ft)
 #ifdef WINSTL_UDATE_DEFINED
 
 template <ss_typename_param_k S>
-inline void stream_insert(S &stm, UDATE const& ud)
+inline
+void
+stream_insert(S &stm, UDATE const& ud)
 {
     stream_insert(stm, ud.st);
 }
@@ -267,7 +295,12 @@ inline void stream_insert(S &stm, UDATE const& ud)
 
 // SYSTEMTIME
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_a(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     typedef stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>     string_t;
     typedef winstl_shims_access_string_time_impl                impl_t;
@@ -303,12 +336,21 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME co
 
     return s;
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_a(
+    SYSTEMTIME const& t
+)
 {
     return c_str_ptr_a(t, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_w(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     typedef stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>     string_t;
     typedef winstl_shims_access_string_time_impl                impl_t;
@@ -344,20 +386,33 @@ inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME co
 
     return s;
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_w(
+    SYSTEMTIME const& t
+)
 {
     return c_str_ptr_w(t, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
 #ifdef UNICODE
     return c_str_ptr_w(t, bMilliseconds);
-#else /* ? UNICODD */
+#else /* ? UNICODE */
     return c_str_ptr_a(t, bMilliseconds);
-#endif /* UNICODD */
+#endif /* UNICODE */
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr(
+    SYSTEMTIME const& t
+)
 {
     return c_str_ptr(t, ws_false_v);
 }
@@ -365,29 +420,56 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(SYSTEMTIME const& t)
 
 // FILETIME
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_a(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_a(
+    FILETIME const& t
+)
 {
     return c_str_ptr_a(t, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_w(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_w(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_w(
+    FILETIME const& t
+)
 {
     return c_str_ptr_w(t, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr(
+    FILETIME const& t
+)
 {
     return c_str_ptr(t, ws_false_v);
 }
@@ -397,32 +479,59 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(FILETIME const& t)
 
 // UDATE
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(UDATE const& ud, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_a(
+    UDATE const&    ud
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_a(ud.st, bMilliseconds);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_a(UDATE const& ud)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_a(
+    UDATE const& ud
+)
 {
     return c_str_ptr_a(ud.st);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(UDATE const& ud, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_w(
+    UDATE const&    ud
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_w(ud.st, bMilliseconds);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_w(UDATE const& ud)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_w(
+    UDATE const& ud
+)
 {
     return c_str_ptr_w(ud.st);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(UDATE const& ud, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr(
+    UDATE const&    ud
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr(ud.st, bMilliseconds);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(UDATE const& ud)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr(
+    UDATE const& ud
+)
 {
     return c_str_ptr(ud.st);
 }
@@ -435,33 +544,60 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr(UDATE const& ud)
 
 // SYSTEMTIME
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_data_a(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     return c_str_ptr_a(t, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_data_a(
+    SYSTEMTIME const& t
+)
 {
     return c_str_data_a(t, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_data_w(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     return c_str_ptr_w(t, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_data_w(
+    SYSTEMTIME const& t
+)
 {
     return c_str_data_w(t, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_data(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
 #ifdef UNICODE
     return c_str_data_w(t, bMilliseconds);
-#else /* ? UNICODD */
+#else /* ? UNICODE */
     return c_str_data_a(t, bMilliseconds);
-#endif /* UNICODD */
+#endif /* UNICODE */
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_data(
+    SYSTEMTIME const& t
+)
 {
     return c_str_data(t, ws_false_v);
 }
@@ -469,29 +605,56 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(SYSTEMTIME const& t)
 
 // FILETIME
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_data_a(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_data_a(
+    FILETIME const& t
+)
 {
     return c_str_data_a(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_data_w(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_w(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_data_w(
+    FILETIME const& t
+)
 {
     return c_str_data_w(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_data(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_data(
+    FILETIME const& t
+)
 {
     return c_str_data(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
@@ -501,29 +664,56 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(FILETIME const& t)
 
 #ifdef WINSTL_UDATE_DEFINED
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_data_a(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_a(t.st, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_data_a(UDATE const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_data_a(
+    UDATE const& t
+)
 {
     return c_str_data_a(t.st, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_data_w(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_w(t.st, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_data_w(UDATE const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_data_w(
+    UDATE const& t
+)
 {
     return c_str_data_w(t.st, ws_false_v);
 }
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_data(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr(t.st, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(UDATE const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_data(
+    UDATE const& t
+)
 {
     return c_str_data(t.st, ws_false_v);
 }
@@ -536,31 +726,58 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_data(UDATE const& t)
 
 // SYSTEMTIME
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_null_a(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     return c_str_ptr_a(t, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_null_a(
+    SYSTEMTIME const& t
+)
 {
     return c_str_ptr_null_a(t, ws_false_v);
 }
 
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_null_w(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     return c_str_ptr_w(t, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_null_w(
+    SYSTEMTIME const& t
+)
 {
     return c_str_ptr_null_w(t, ws_false_v);
 }
 
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr_null(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     return c_str_ptr(t, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(SYSTEMTIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr_null(
+    SYSTEMTIME const& t
+)
 {
     return c_str_ptr_null(t, ws_false_v);
 }
@@ -569,31 +786,58 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(SYSTEMTIME const
 
 // FILETIME
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_null_a(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_null_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_null_a(
+    FILETIME const& t
+)
 {
     return c_str_ptr_null_a(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_null_w(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_null_w(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_null_w(
+    FILETIME const& t
+)
 {
     return c_str_ptr_null_w(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr_null(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_null(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(FILETIME const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr_null(
+    FILETIME const& t
+)
 {
     return c_str_ptr_null(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
@@ -603,31 +847,58 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(FILETIME const& 
 
 #ifdef WINSTL_UDATE_DEFINED
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_null_a(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_null_a(t.st, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_a_t> c_str_ptr_null_a(UDATE const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>
+c_str_ptr_null_a(
+    UDATE const& t
+)
 {
     return c_str_ptr_null_a(t.st, ws_false_v);
 }
 
 
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_null_w(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_null_w(t.st, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<ws_char_w_t> c_str_ptr_null_w(UDATE const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<ws_char_w_t>
+c_str_ptr_null_w(
+    UDATE const& t
+)
 {
     return c_str_ptr_null_w(t.st, ws_false_v);
 }
 
 
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr_null(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_ptr_null(t.st, bMilliseconds);
 }
-inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(UDATE const& t)
+inline
+stlsoft_ns_qual(basic_shim_string)<TCHAR>
+c_str_ptr_null(
+    UDATE const& t
+)
 {
     return c_str_ptr_null(t.st, ws_false_v);
 }
@@ -645,7 +916,12 @@ inline stlsoft_ns_qual(basic_shim_string)<TCHAR> c_str_ptr_null(UDATE const& t)
 
 // SYSTEMTIME
 
-inline ws_size_t c_str_len_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len_a(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     typedef winstl_shims_access_string_time_impl impl_t;
 
@@ -663,12 +939,21 @@ inline ws_size_t c_str_len_a(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 
     return impl_t::calc_sizes(t, ::GetDateFormatA, pfnGetTimeFormatA, cchDate, cchTime);
 }
-inline ws_size_t c_str_len_a(SYSTEMTIME const& t)
+inline
+ws_size_t
+c_str_len_a(
+    SYSTEMTIME const& t
+)
 {
     return c_str_len_a(t, ws_false_v);
 }
 
-inline ws_size_t c_str_len_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len_w(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
     typedef winstl_shims_access_string_time_impl impl_t;
 
@@ -686,20 +971,33 @@ inline ws_size_t c_str_len_w(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
 
     return impl_t::calc_sizes(t, ::GetDateFormatW, pfnGetTimeFormatW, cchDate, cchTime);
 }
-inline ws_size_t c_str_len_w(SYSTEMTIME const& t)
+inline
+ws_size_t
+c_str_len_w(
+    SYSTEMTIME const& t
+)
 {
     return c_str_len_w(t, ws_false_v);
 }
 
-inline ws_size_t c_str_len(SYSTEMTIME const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len(
+    SYSTEMTIME const&   t
+,   ws_bool_t           bMilliseconds
+)
 {
 #ifdef UNICODE
     return c_str_len_w(t, bMilliseconds);
-#else /* ? UNICODD */
+#else /* ? UNICODE */
     return c_str_len_a(t, bMilliseconds);
-#endif /* UNICODD */
+#endif /* UNICODE */
 }
-inline ws_size_t c_str_len(SYSTEMTIME const& t)
+inline
+ws_size_t
+c_str_len(
+    SYSTEMTIME const& t
+)
 {
     return c_str_len(t, ws_false_v);
 }
@@ -707,30 +1005,57 @@ inline ws_size_t c_str_len(SYSTEMTIME const& t)
 
 // FILETIME
 
-inline ws_size_t c_str_len_a(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len_a(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_len_a(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline ws_size_t c_str_len_a(FILETIME const& t)
+inline
+ws_size_t
+c_str_len_a(
+    FILETIME const& t
+)
 {
     return c_str_len_a(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
-inline ws_size_t c_str_len_w(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len_w(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_len_w(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline ws_size_t c_str_len_w(FILETIME const& t)
+inline
+ws_size_t
+c_str_len_w(
+    FILETIME const& t
+)
 {
     return c_str_len_w(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
 
 
-inline ws_size_t c_str_len(FILETIME const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len(
+    FILETIME const& t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_len(FILETIME2SYSTEMTIME(t), bMilliseconds);
 }
-inline ws_size_t c_str_len(FILETIME const& t)
+inline
+ws_size_t
+c_str_len(
+    FILETIME const& t
+)
 {
     return c_str_len(FILETIME2SYSTEMTIME(t), ws_false_v);
 }
@@ -740,29 +1065,56 @@ inline ws_size_t c_str_len(FILETIME const& t)
 
 #ifdef WINSTL_UDATE_DEFINED
 
-inline ws_size_t c_str_len_a(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len_a(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_len_a(t.st, bMilliseconds);
 }
-inline ws_size_t c_str_len_a(UDATE const& t)
+inline
+ws_size_t
+c_str_len_a(
+    UDATE const& t
+)
 {
     return c_str_len_a(t.st, ws_false_v);
 }
 
-inline ws_size_t c_str_len_w(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len_w(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_len_w(t.st, bMilliseconds);
 }
-inline ws_size_t c_str_len_w(UDATE const& t)
+inline
+ws_size_t
+c_str_len_w(
+    UDATE const& t
+)
 {
     return c_str_len_w(t.st, ws_false_v);
 }
 
-inline ws_size_t c_str_len(UDATE const& t, ws_bool_t bMilliseconds)
+inline
+ws_size_t
+c_str_len(
+    UDATE const&    t
+,   ws_bool_t       bMilliseconds
+)
 {
     return c_str_len(t.st, bMilliseconds);
 }
-inline ws_size_t c_str_len(UDATE const& t)
+inline
+ws_size_t
+c_str_len(
+    UDATE const& t
+)
 {
     return c_str_len(t.st, ws_false_v);
 }
@@ -780,7 +1132,12 @@ inline ws_size_t c_str_len(UDATE const& t)
  *
  */
 template <ss_typename_param_k S>
-inline S& operator <<(S& s, SYSTEMTIME const& st)
+inline
+S&
+operator <<(
+    S&                  s
+,   SYSTEMTIME const&   st
+)
 {
     stream_insert(s, st);
 
@@ -793,7 +1150,12 @@ inline S& operator <<(S& s, SYSTEMTIME const& st)
  *
  */
 template <ss_typename_param_k S>
-inline S& operator <<(S& s, FILETIME const& ft)
+inline
+S&
+operator <<(
+    S&              s
+,   FILETIME const& ft
+)
 {
     stream_insert(s, ft);
 
@@ -808,7 +1170,12 @@ inline S& operator <<(S& s, FILETIME const& ft)
  *
  */
 template <ss_typename_param_k S>
-inline S& operator <<(S& s, UDATE const& ud)
+inline
+S&
+operator <<(
+    S&              s
+,   UDATE const&    ud
+)
 {
     stream_insert(s, ud);
 
@@ -834,7 +1201,12 @@ inline S& operator <<(S& s, UDATE const& ud)
  *
  */
 template <ss_typename_param_k S>
-inline S& operator <<(S& s, SYSTEMTIME const& st)
+inline
+S&
+operator <<(
+    S&                  s
+,   SYSTEMTIME const&   st
+)
 {
     ::winstl::stream_insert(s, st);
 
@@ -847,7 +1219,12 @@ inline S& operator <<(S& s, SYSTEMTIME const& st)
  *
  */
 template <ss_typename_param_k S>
-inline S& operator <<(S& s, FILETIME const& st)
+inline
+S&
+operator <<(
+    S&              s
+,   FILETIME const& st
+)
 {
     ::winstl::stream_insert(s, st);
 

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for SunPro C / SunPro C++.
  *
  * Created:     24th April 2008
- * Updated:     3rd February 2012
+ * Updated:     22nd November 2013
  *
  * Thanks to:   Jonathan Wakely and Lars Ivar Igesund for help with
  *              getting STLSoft (and Pantheios) compatible with Solaris.
@@ -13,7 +13,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2008-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,8 +62,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MAJOR      1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MINOR      0
-# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       8
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   4
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -391,18 +391,18 @@
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *   #define MY_ASSERT(expr) ((void)((!(expr)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #expr))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
   *
-  *  #define _STLSOFT_CUSTOM_ASSERT(_x)    MY_ASSERT(_x)
+  *  #define _STLSOFT_CUSTOM_ASSERT(expr)    MY_ASSERT(expr)
   *
   * where
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
-# define STLSOFT_ASSERT(_x)                     _STLSOFT_CUSTOM_ASSERT(_x)
+# define STLSOFT_ASSERT(expr)                   _STLSOFT_CUSTOM_ASSERT(expr)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME    _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else
@@ -413,7 +413,7 @@
 # define STLSOFT_CF_ASSERT_SUPPORT
 /* # define   __STLSOFT_CF_USE_cassert */
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME       <assert.h>
-# define STLSOFT_ASSERT(_x)                     assert(_x)
+# define STLSOFT_ASSERT(expr)                   assert(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
 /* /////////////////////////////////////////////////////////////////////////

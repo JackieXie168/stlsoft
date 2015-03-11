@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     10th September 2011
+ * Updated:     3rd March 2013
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       8
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        131
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        133
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,6 +87,12 @@
 #  endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+
+#if STLSOFT_LEAD_VER >= 0x010a0000
+# ifndef WINSTL_INCL_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
+#  include <winstl/system/directory_functions.h>
+# endif /* !WINSTL_INCL_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS */
+#endif /* STLSoft 1.10+ */
 
 #ifndef STLSOFT_INCL_H_STRING
 # define STLSOFT_INCL_H_STRING
@@ -224,6 +230,10 @@ public:
     static size_type    get_system_directory(char_type* buffer, size_type cchBuffer);
     /// Gets the full path name of the windows directory
     static size_type    get_windows_directory(char_type* buffer, size_type cchBuffer);
+#if STLSOFT_LEAD_VER >= 0x010a0000
+    /// Gets the full path name of the user's home directory
+    static size_type    get_home_directory(char_type* buffer, size_type cchBuffer);
+#endif /* STLSoft 1.10+ */
 /// @}
 
 /// \name Dynamic Loading
@@ -247,6 +257,8 @@ public:
 /// \name Error
 /// @{
 public:
+    /// Gives the failure code that represents success
+    static error_type   get_success_code();
     /// Gives the last error
     static error_type   get_last_error();
     /// Sets the last error
@@ -340,6 +352,11 @@ public:
     }
 
 public:
+    static error_type get_success_code()
+    {
+        return ERROR_SUCCESS;
+    }
+
     static error_type get_last_error()
     {
         return ::GetLastError();
@@ -628,6 +645,16 @@ public:
         return class_type::GetWindowsDirectoryA(buffer, cchBuffer);
     }
 
+#if STLSOFT_LEAD_VER >= 0x010a0000
+    /// Gets the full path name of the user's home directory
+    static size_type get_home_directory(char_type* buffer, size_type cchBuffer)
+	{
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
+
+		return winstl_C_get_home_directory_a(buffer, cchBuffer);
+	}
+#endif /* STLSoft 1.10+ */
+
 public:
     static module_type load_library(char_type const* name)
     {
@@ -654,6 +681,11 @@ public:
     }
 
 public:
+    static error_type get_success_code()
+    {
+        return system_traits_::get_success_code();
+    }
+
     static error_type get_last_error()
     {
         return system_traits_::get_last_error();
@@ -1087,6 +1119,16 @@ public:
         return class_type::GetWindowsDirectoryW(buffer, cchBuffer);
     }
 
+#if STLSOFT_LEAD_VER >= 0x010a0000
+    /// Gets the full path name of the user's home directory
+    static size_type    get_home_directory(char_type* buffer, size_type cchBuffer)
+	{
+        WINSTL_ASSERT(NULL != buffer || 0 == cchBuffer);
+
+		return winstl_C_get_home_directory_w(buffer, cchBuffer);
+	}
+#endif /* STLSoft 1.10+ */
+
 public:
     static module_type load_library(char_type const* name)
     {
@@ -1114,6 +1156,11 @@ public:
     }
 
 public:
+    static error_type get_success_code()
+    {
+        return system_traits_::get_success_code();
+    }
+
     static error_type get_last_error()
     {
         return system_traits_::get_last_error();

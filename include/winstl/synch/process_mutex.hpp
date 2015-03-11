@@ -4,11 +4,11 @@
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     10th August 2009
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     61
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,7 +196,7 @@ public:
     {
         WINSTL_ASSERT(NULL != m_mx);
 
-        DWORD   dwRes   =   ::WaitForSingleObject(m_mx, INFINITE);
+        DWORD const dwRes = ::WaitForSingleObject(m_mx, INFINITE);
 
         if(WAIT_ABANDONED == dwRes)
         {
@@ -208,8 +208,14 @@ public:
 
             if(WAIT_OBJECT_0 != dwRes)
             {
+                DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                STLSOFT_THROW_X(synchronisation_exception("mutex wait failed", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+                STLSOFT_THROW_X(wait_failed_logic_exception(e, "mutex wait failed"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+                STLSOFT_THROW_X(synchronisation_exception("mutex wait failed", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
@@ -219,7 +225,7 @@ public:
     {
         WINSTL_ASSERT(NULL != m_mx);
 
-        DWORD   dwRes   =   ::WaitForSingleObject(m_mx, wait);
+        DWORD const dwRes = ::WaitForSingleObject(m_mx, wait);
 
         if(WAIT_ABANDONED == dwRes)
         {
@@ -239,8 +245,14 @@ public:
             {
                 if(WAIT_OBJECT_0 != dwRes)
                 {
+                    DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    STLSOFT_THROW_X(synchronisation_exception("mutex wait failed", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+                    STLSOFT_THROW_X(wait_failed_logic_exception(e, "mutex wait failed"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+                    STLSOFT_THROW_X(synchronisation_exception("mutex wait failed", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
 
@@ -262,8 +274,14 @@ public:
 
         if(!::ReleaseMutex(m_mx))
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("mutex release failed", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_object_state_change_failed_exception(e, "mutex release failed", Synchronisation_MutexReleaseFailed));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("mutex release failed", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }
@@ -313,12 +331,18 @@ public:
 private:
     static HANDLE create_mutex_(LPSECURITY_ATTRIBUTES psa, ws_bool_t bInitialOwner, ws_char_a_t const* name, ws_bool_t &bCreated)
     {
-        HANDLE  mx  =   ::CreateMutexA(psa, bInitialOwner, name);
+        HANDLE const mx = ::CreateMutexA(psa, bInitialOwner, name);
 
         if(NULL == mx)
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("Failed to create kernel mutex object", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_creation_exception(e, "failed to create kernel mutex object"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("failed to create kernel mutex object", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -328,12 +352,18 @@ private:
     }
     static HANDLE create_mutex_(LPSECURITY_ATTRIBUTES psa, ws_bool_t bInitialOwner, ws_char_w_t const* name, ws_bool_t &bCreated)
     {
-        HANDLE  mx  =   ::CreateMutexW(psa, bInitialOwner, name);
+        HANDLE const mx = ::CreateMutexW(psa, bInitialOwner, name);
 
         if(NULL == mx)
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("Failed to create kernel mutex object", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_creation_exception(e, "failed to create kernel mutex object"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("failed to create kernel mutex object", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -343,12 +373,18 @@ private:
     }
     static HANDLE open_mutex_(ws_dword_t access, ws_bool_t bInheritHandle, ws_char_a_t const* name, ws_bool_t &bCreated)
     {
-        HANDLE  mx  =   ::OpenMutexA(access, bInheritHandle, name);
+        HANDLE const mx = ::OpenMutexA(access, bInheritHandle, name);
 
         if(NULL == mx)
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("Failed to open kernel mutex object", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_creation_exception(e, "failed to open kernel mutex object"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("failed to open kernel mutex object", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
@@ -358,12 +394,18 @@ private:
     }
     static HANDLE open_mutex_(ws_dword_t access, ws_bool_t bInheritHandle, ws_char_w_t const* name, ws_bool_t &bCreated)
     {
-        HANDLE  mx  =   ::OpenMutexW(access, bInheritHandle, name);
+        HANDLE const mx = ::OpenMutexW(access, bInheritHandle, name);
 
         if(NULL == mx)
         {
+            DWORD const e = ::GetLastError();
+
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(synchronisation_exception("Failed to open kernel mutex object", ::GetLastError()));
+# if STLSOFT_LEAD_VER >= 0x010a0000
+            STLSOFT_THROW_X(synchronisation_creation_exception(e, "failed to open kernel mutex object"));
+# else /* ? STLSOFT_LEAD_VER >= 1.10 */
+            STLSOFT_THROW_X(synchronisation_exception("failed to open kernel mutex object", e));
+# endif /* STLSOFT_LEAD_VER >= 1.10 */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 

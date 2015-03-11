@@ -6,14 +6,14 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     2nd March 2012
+ * Updated:     22nd November 2013
  *
  * Thanks:      To Cl�udio Albuquerque for suggesting the inclusion of
  *              atlstr.h.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  1
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      93
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  2
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -475,17 +475,17 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
 # define mfcstl_num_elements(ar)                        MFCSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define mfcstl_destroy_instance(t, _type, p)            STLSOFT_DESTROY_INSTANCE(t, _type, p)
+#define mfcstl_destroy_instance(t, type, p)             STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define mfcstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
+#define mfcstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
 /* ////////////////////////////////////////////////////////////////////// */
 

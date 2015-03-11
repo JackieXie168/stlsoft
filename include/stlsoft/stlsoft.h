@@ -6,11 +6,11 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     12th December 2012
+ * Updated:     31st May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    29
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     433
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    30
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     435
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -279,13 +279,14 @@
 # define _STLSOFT_VER_1_9_114   0x010972ff  /*!< Version 1.9.114 (4th June 2012) */
 # define _STLSOFT_VER_1_9_115   0x010973ff  /*!< Version 1.9.115 (30th July 2012) */
 # define _STLSOFT_VER_1_9_116   0x010974ff  /*!< Version 1.9.116 (18th August 2012) */
-# define _STLSOFT_VER_1_9_117   0x010975ff  /*!< Version 1.9.117 (12th December 2012) */
+# define _STLSOFT_VER_1_9_117   0x010975ff  /*!< Version 1.9.117 (16th February 2013) */
+# define _STLSOFT_VER_1_9_118   0x010976ff  /*!< Version 1.9.118 (31st May 2014) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   117
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_117
+#define _STLSOFT_VER_REVISION   118
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_118
 
 /* /////////////////////////////////////
  * Underlying version detection
@@ -667,8 +668,10 @@
 #  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 10.0"
 # elif (_MSC_VER == 1700)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 11.0"
+# elif (_MSC_VER == 1800)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 12.0"
 # else /* ? _MSC_VER */
-#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, and 11.0 of the Visual C++ compiler are supported by the STLSoft libraries
+#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, 11.0, and 12.0 of the Visual C++ compiler are supported by the STLSoft libraries
 # endif /* _MSC_VER */
 
 #else /* ? compiler */
@@ -1240,10 +1243,10 @@
 # undef STLSOFT_CF_ASSERT_SUPPORT
 #endif /* _STLSOFT_NO_ASSERT && STLSOFT_CF_ASSERT_SUPPORT */
 
-/** \def STLSOFT_ASSERT(ex)
+/** \def STLSOFT_ASSERT(expr)
  * \brief Defines an assertion construct for runtime verification.
  *
- * \param ex Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired
  *
  * \note By default, the macro resolves to the standard macro
  *  <code>assert()</code> or the equivalent default assertion macro
@@ -1254,7 +1257,7 @@
  *  details.
  */
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-# define STLSOFT_ASSERT(ex)                     assert(ex)
+# define STLSOFT_ASSERT(expr)                   assert(expr)
 #elif defined(STLSOFT_CF_ASSERT_SUPPORT)
 # ifdef __STLSOFT_CF_USE_cassert
   /* Using the standard assertion mechanism, located in <cassert> */
@@ -1263,7 +1266,7 @@
 #  else /* ? __cplusplus */
 #   include <assert.h>
 #  endif /* __cplusplus */
-#  define STLSOFT_ASSERT(ex)                    assert(ex)
+#  define STLSOFT_ASSERT(expr)                  assert(expr)
 # else /* ? __STLSOFT_CF_USE_cassert */
   /* Using either a custom or proprietary assertion mechanism, so must
    * provide the header include name
@@ -1291,88 +1294,88 @@
 # undef stlsoft_assert
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \def stlsoft_assert(ex)
+/** \def stlsoft_assert(expr)
  *
  * \brief [DEPRECATED] Defines a runtime assertion
  *
- * \param ex Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired
  *
  * \deprecated This is deprecated in favour of \ref STLSOFT_ASSERT().
  *
  * \note This is a simple \#define for STLSOFT_ASSERT()
  */
 #ifndef stlsoft_assert
-# define stlsoft_assert(ex)                     STLSOFT_ASSERT(ex)
+# define stlsoft_assert(expr)                   STLSOFT_ASSERT(expr)
 #endif /* !stlsoft_assert */
 
 
-/** \def STLSOFT_MESSAGE_ASSERT(msg, ex)
+/** \def STLSOFT_MESSAGE_ASSERT(msg, expr)
  * \brief Defines a runtime assertion, with message
  *
- * \param ex Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
 #if defined(STLSOFT_CF_ASSERT_SUPPORT)
 # if defined(__WATCOMC__)
-#  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT(ex)
+#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT(expr)
 # elif defined(__COMO__) || \
        defined(__GNUC__) || \
        defined(__MWERKS__)
-#  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT((msg && (ex)))
+#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT((msg && (expr)))
 # else /* ? compiler */
-#  define STLSOFT_MESSAGE_ASSERT(msg, ex)       STLSOFT_ASSERT((msg, ex))
+#  define STLSOFT_MESSAGE_ASSERT(msg, expr)     STLSOFT_ASSERT((msg, expr))
 # endif /* __WATCOMC__ */
 #else /* ? STLSOFT_CF_ASSERT_SUPPORT */
-# define STLSOFT_MESSAGE_ASSERT(msg, ex)
+# define STLSOFT_MESSAGE_ASSERT(msg, expr)
 #endif /* STLSOFT_CF_ASSERT_SUPPORT */
 
-/** \def stlsoft_message_assert(ex)
+/** \def stlsoft_message_assert(expr)
  *
  * \brief [DEPRECATED] Defines a runtime assertion, with message
  *
- * \param ex Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  *
  * \deprecated This is deprecated in favour of \ref STLSOFT_MESSAGE_ASSERT().
  *
  * \note This is a simple \#define for STLSOFT_MESSAGE_ASSERT()
  */
-#define stlsoft_message_assert(msg, ex)         STLSOFT_MESSAGE_ASSERT(msg, ex)
+#define stlsoft_message_assert(msg, expr)       STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /*
  * TODO: decide on a form of static_assert with message (as the C++11 static_assert does)
  */
 
-/** \def STLSOFT_STATIC_ASSERT(ex)
+/** \def STLSOFT_STATIC_ASSERT(expr)
  *
  * \brief Defines an assertion construct for compile-time verification.
  *
- * \param ex A compile-time evaluatable condition that must be non-zero, or compilation will fail.
+ * \param expr A compile-time evaluatable condition that must be non-zero, or compilation will fail.
  */
 #if defined(STLSOFT_CF_static_assert_SUPPORT)
-# define STLSOFT_STATIC_ASSERT(ex)          static_assert((ex), #ex)
+# define STLSOFT_STATIC_ASSERT(expr)        static_assert((expr), #expr)
 #elif defined(STLSOFT_CF_STATIC_ASSERT_SUPPORT)
 # if defined(STLSOFT_COMPILER_IS_GCC) || \
       defined(STLSOFT_COMPILER_IS_INTEL)
-#  define STLSOFT_STATIC_ASSERT(ex)         do { typedef int ai[(ex) ? 1 : -1]; } while(0)
+#  define STLSOFT_STATIC_ASSERT(expr)       do { typedef int ai[(expr) ? 1 : -1]; } while(0)
 # else /* ? compiler */
-#  define STLSOFT_STATIC_ASSERT(ex)         do { typedef int ai[(ex) ? 1 : 0]; } while(0)
+#  define STLSOFT_STATIC_ASSERT(expr)       do { typedef int ai[(expr) ? 1 : 0]; } while(0)
 # endif /* compiler */
 #else /* ? STLSOFT_CF_STATIC_ASSERT_SUPPORT */
-# define STLSOFT_STATIC_ASSERT(ex)          STLSOFT_MESSAGE_ASSERT("Static assertion failed: ", (ex))
+# define STLSOFT_STATIC_ASSERT(expr)        STLSOFT_MESSAGE_ASSERT("Static assertion failed: ", (expr))
 #endif /* STLSOFT_CF_STATIC_ASSERT_SUPPORT */
 
-/** \def stlsoft_static_assert(ex)
+/** \def stlsoft_static_assert(expr)
  *
  * \brief [DEPRECATED] Defines a compile-time assertion
  *
- * \param ex Must be non-zero, or compilation will fail
+ * \param expr Must be non-zero, or compilation will fail
  *
  * \note This is a simple \#define for STLSOFT_STATIC_ASSERT()
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_STATIC_ASSERT().
  */
-#define stlsoft_static_assert(ex)           STLSOFT_STATIC_ASSERT(ex)
+#define stlsoft_static_assert(expr)         STLSOFT_STATIC_ASSERT(expr)
 
 /** @} */
 

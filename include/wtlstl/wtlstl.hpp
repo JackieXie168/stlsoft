@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     2nd March 2012
+ * Updated:     22nd November 2013
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 5
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     43
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 6
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp
@@ -249,28 +249,26 @@
  *
  * \ingroup group__library__macros__assertion
  *
- * \param _x Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired
  */
-#define WTLSTL_ASSERT(_x)               STLSOFT_ASSERT(_x)
+#define WTLSTL_ASSERT(expr)                 STLSOFT_ASSERT(expr)
 
 /** \brief Defines a runtime assertion, with message
  *
  * \ingroup group__library__macros__assertion
  *
- * \param _x Must be non-zero, or an assertion will be fired
- * \param _m The literal character string message to be included in the assertion
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
  */
-#define WTLSTL_MESSAGE_ASSERT(_m, _x)   STLSOFT_MESSAGE_ASSERT(_m, _x)
+#define WTLSTL_MESSAGE_ASSERT(msg, expr)    STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /** \brief Defines a compile-time assertion
  *
  * \ingroup group__library__macros__assertion
  *
- * \param _x Must be non-zero, or compilation will fail
+ * \param expr Must be non-zero, or compilation will fail
  */
-#define WTLSTL_STATIC_ASSERT(_x)        STLSOFT_STATIC_ASSERT(_x)
-
-
+#define WTLSTL_STATIC_ASSERT(expr)          STLSOFT_STATIC_ASSERT(expr)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define wtlstl_assert(expr)                WTLSTL_ASSERT(expr)
@@ -509,17 +507,17 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 # define wtlstl_num_elements(ar)                        WTLSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c _type)
+/** \brief [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define wtlstl_destroy_instance(t, _type, p)            STLSOFT_DESTROY_INSTANCE(t, _type, p)
+#define wtlstl_destroy_instance(t, type, p)             STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** \brief [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define wtlstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
+#define wtlstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
 /* ////////////////////////////////////////////////////////////////////// */
 

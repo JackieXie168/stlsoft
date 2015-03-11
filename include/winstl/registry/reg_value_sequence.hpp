@@ -14,11 +14,11 @@
  *              basic_reg_value_sequence).
  *
  * Created:     19th January 2002
- * Updated:     10th August 2009
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     125
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -669,7 +669,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence(ss_typename_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", ::GetLastError()));
+        STLSOFT_THROW_X(registry_exception("failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -684,7 +684,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence( ss_typename_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", ::GetLastError()));
+        STLSOFT_THROW_X(registry_exception("failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -700,7 +700,7 @@ inline basic_reg_value_sequence<C, T, A>::basic_reg_value_sequence( ss_typename_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hkey)
     {
-        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", ::GetLastError()));
+        STLSOFT_THROW_X(registry_exception("failed to take duplicate of key", ::GetLastError()));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -844,7 +844,7 @@ inline ss_typename_type_ret_k basic_reg_value_sequence<C, T, A>::iterator basic_
     if(NULL == handle)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(registry_exception("Failed to take duplicate of key", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("failed to take duplicate of key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         index = 0; // This will fall through to the constructor at the end of the function
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
