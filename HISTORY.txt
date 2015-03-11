@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  1st January 2009
+; Updated:  4th January 2009
 
 ============================================================================
+
+
+4th January 2009 - 1.9.66 released
+----------------------------------
+
+ * compatibility with GCC 4.3's pedantic precedence warnings
+ * compatibility with SunPro compiler for limit_traits
 
 
 1st January 2009 - 1.9.65 released

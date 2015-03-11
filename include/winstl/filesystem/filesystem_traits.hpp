@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     8th June 2008
+ * Updated:     31st December 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        112
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    8
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -756,7 +756,7 @@ private:
                         r2 = cchBuffer;
                     }
 
-                    str_n_copy(&buffer[0], &buffer_[0], r2);
+                    ::memcpy(&buffer[0], &buffer_[0], sizeof(char_type) * r2);
                     if( NULL != pFile2 &&
                         r2 == (r - 1) &&
                         static_cast<size_type>(pFile2 - &buffer_[0]) < r2)
@@ -812,7 +812,7 @@ private:
             {
                 fileName_[len] = '\0';
 
-                return get_full_path_name_impl( str_n_copy(&fileName_[0], fileName, len)
+                return get_full_path_name_impl( static_cast<char_type*>(::memcpy(&fileName_[0], fileName, sizeof(char_type) * len))
                                             ,   len
                                             ,   buffer
                                             ,   cchBuffer
@@ -1123,7 +1123,7 @@ public:
             {
                 WINSTL_ASSERT(len > 0);
 
-                class_type::str_copy(&buffer[0], path);
+                ::memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
 
                 buffer[len - 1] = '\0';
 
@@ -1729,7 +1729,7 @@ public:
             {
                 WINSTL_ASSERT(len > 0);
 
-                class_type::str_copy(&buffer[0], path);
+                ::memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
 
                 buffer[len - 1] = L'\0';
 
